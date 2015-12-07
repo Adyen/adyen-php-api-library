@@ -2,6 +2,7 @@
 
 namespace Adyen;
 
+use Psr\Log\LoggerInterface;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
