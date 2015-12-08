@@ -23,6 +23,12 @@ class Payment extends \Adyen\Service
         return $result;
     }
 
+    public function authorise3D($params)
+    {
+        $result = $this->_authorise3D->request($params);
+        return $result;
+    }
+
 
 
 }
