@@ -8,12 +8,13 @@ use Monolog\Handler\StreamHandler;
 
 class Client
 {
-    const LIBVERSION                    = "0.1.0";
+    const LIB_VERSION                    = "0.1.0";
     const USER_AGENT_SUFFIX             = "adyen-php-api-library/";
     const ENDPOINT_TEST                 = "https://pal-test.adyen.com";
     const ENDPOINT_LIVE                 = "https://pal-live.adyen.com";
     const ENPOINT_TEST_DIRECTORY_LOOKUP = "https://test.adyen.com/hpp/directory.shtml";
     const ENPOINT_LIVE_DIRECTORY_LOOKUP = "https://live.adyen.com/hpp/directory.shtml";
+    const API_VERSION                   = "v12";
 
     /**
      * @var Adyen_Config $config
@@ -130,7 +131,17 @@ class Client
      */
     public function getLibraryVersion()
     {
-        return self::LIBVERSION;
+        return self::LIB_VERSION;
+    }
+
+    /**
+     * Get the version of the API endpoint
+     *
+     * @return string
+     */
+    public function getApiVersion()
+    {
+        return self::API_VERSION;
     }
 
     /**
