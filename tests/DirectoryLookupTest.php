@@ -18,27 +18,13 @@ class DirectoryLookupTest extends TestCase
 
         // initialize client
         $client = $this->createClient();
-//        $logger = $client->getLogger();
-
-//        $logger->log(
-//            'info',
-//            'OAuth2 access token refresh with Signed JWT assertion grants.'
-//        );
 
         // intialize service
         $service = new Service\DirectoryLookup($client);
-
-
-        date_default_timezone_set('UTC');
-
         $sessionValidity = date(
             DATE_ATOM,
             mktime(date("H") + 10, date("i"), date("s"), date("m"), date("j"), date("Y"))
         );
-
-        // [sessionValidity] => 2015-11-06T15:13:11+00:00
-
-        //CNY retrieves Ideal as well should not be
 
         $json = '{
               "paymentAmount": "1000",
