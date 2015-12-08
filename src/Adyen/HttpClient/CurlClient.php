@@ -6,13 +6,28 @@ namespace Adyen\HttpClient;
 class CurlClient implements ClientInterface
 {
 
+    /**
+     * Json API request to Adyen
+     *
+     * @param \Adyen\Service $service
+     * @param $requestUrl
+     * @param $params
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
     public function requestJson(\Adyen\Service $service, $requestUrl, $params)
     {
-
-        $username = $service->getClient()->getConfig()->getUsername();
-        $password = $service->getClient()->getConfig()->getPassword();
-
+        $client =  $service->getClient();
+        $config = $client->getConfig();
+        $logger = $client->getLogger();
+        $username = $config->getUsername();
+        $password = $config->getPassword();
         $jsonRequest = json_encode($params);
+
+        // log the requestUr, params and json request
+        $logger->info("Request url to Adyen: " . $requestUrl);
+        $logger->info('Params in request to Adyen:' . print_r($params, 1));
+        $logger->info('JSON Request to Adyen:' . $jsonRequest);
 
         //Initiate cURL.
         $ch = curl_init($requestUrl);
@@ -28,7 +43,7 @@ class CurlClient implements ClientInterface
         curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonRequest);
 
         // set a custom User-Agent
-        $userAgent = $service->getClient()->getConfig()->get('applicationName') . " " . \Adyen\Client::USER_AGENT_SUFFIX . $service->getClient()->getLibraryVersion();
+        $userAgent = $config->get('applicationName') . " " . \Adyen\Client::USER_AGENT_SUFFIX . $client->getLibraryVersion();
 
         //Set the content type to application/json and use the defined userAgent
         $headers = array(
@@ -45,34 +60,56 @@ class CurlClient implements ClientInterface
         $result = curl_exec($ch);
         $httpStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
+        // log the raw response
+        $logger->info("JSON Response is: " . $result);
+
         // result not 200 throw error
         if ($httpStatus != 200 && $result) {
-            $this->handleResultError($result);
+            $this->handleResultError($result, $logger);
         } elseif(!$result) {
             $errno = curl_errno($ch);
             $message = curl_error($ch);
 
             curl_close($ch);
-            $this->handleCurlError($requestUrl, $errno, $message);
+            $this->handleCurlError($requestUrl, $errno, $message, $logger);
         }
 
         curl_close($ch);
 
         // result in array or json
-        if($service->getClient()->getConfig()->getOutputType() == 'array') {
+        if($config->getOutputType() == 'array') {
+
             // transform to PHP Array
-            return json_decode($result, true);
+            $result = json_decode($result, true);
+
+            // log the array result
+            $logger->info('Params in response from Adyen:' . print_r($result, 1));
         }
 
         return $result;
 
     }
 
+    /**
+     * Request to Adyen with query string used for Directory Lookup
+     *
+     * @param \Adyen\Service $service
+     * @param $requestUrl
+     * @param $params
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
     public function requestPost(\Adyen\Service $service, $requestUrl, $params)
     {
-        $username = $service->getClient()->getConfig()->getUsername();
-        $password = $service->getClient()->getConfig()->getPassword();
+        $client =  $service->getClient();
+        $config = $client->getConfig();
+        $logger = $client->getLogger();
+        $username = $config->getUsername();
+        $password = $config->getPassword();
 
+        // log the requestUr, params and json request
+        $logger->info("Request url to Adyen: " . $requestUrl);
+        $logger->info('Params in request to Adyen:' . print_r($params, 1));
 
         //Initiate cURL.
         $ch = curl_init($requestUrl);
@@ -83,13 +120,11 @@ class CurlClient implements ClientInterface
         // set authorisation
         curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
         curl_setopt($ch, CURLOPT_USERPWD, $username.":".$password);
-
-//        needed for directoryLookup ? yes and disabled contyent type = json
         curl_setopt($ch, CURLOPT_POST, count($params));
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
 
         // set a custom User-Agent
-        $userAgent = $service->getClient()->getConfig()->get('applicationName') . " " . \Adyen\Client::USER_AGENT_SUFFIX . $service->getClient()->getLibraryVersion();
+        $userAgent = $config->get('applicationName') . " " . \Adyen\Client::USER_AGENT_SUFFIX . $client->getLibraryVersion();
 
         //Set the content type to application/json and use the defined userAgent
         $headers = array(
@@ -102,34 +137,47 @@ class CurlClient implements ClientInterface
 
         //Execute the request
         $result = curl_exec($ch);
-
         $httpStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
+        // log the raw response
+        $logger->info("JSON Response is: " . $result);
+
         if ($httpStatus != 200 && $result) {
-            $this->handleResultError($result);
+            $this->handleResultError($result, $logger);
         } elseif(!$result) {
             $errno = curl_errno($ch);
             $message = curl_error($ch);
             $httpStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
             curl_close($ch);
-            $this->handleCurlError($requestUrl, $errno, $message);
+            $this->handleCurlError($requestUrl, $errno, $message, $logger);
         }
 
         curl_close($ch);
 
         // result in array or json
-        if($service->getClient()->getConfig()->getOutputType() == 'array') {
+        if($config->getOutputType() == 'array') {
             // transform to PHP Array
-            return json_decode($result, true);
+            $result = json_decode($result, true);
+
+            // log the array result
+            $logger->info('Params in response from Adyen:' . print_r($result, 1));
         }
 
         return $result;
     }
 
 
-
-    private function handleCurlError($url, $errno, $message)
+    /**
+     * Handle Curl exceptions
+     *
+     * @param $url
+     * @param $errno
+     * @param $message
+     * @param $logger
+     * @throws \Adyen\AdyenException
+     */
+    private function handleCurlError($url, $errno, $message, $logger)
     {
         switch ($errno) {
             case CURLE_OK:
@@ -151,16 +199,26 @@ class CurlClient implements ClientInterface
                 $msg = "Unexpected error communicating with Adyen.";
         }
         $msg .= "\n(Network error [errno $errno]: $message)";
+        $logger->error($msg);
         throw new \Adyen\AdyenException($msg);
     }
 
-    private function handleResultError($result)
+    /**
+     * Handle result errors from Adyen
+     *
+     * @param $result
+     * @param $logger
+     * @throws \Adyen\AdyenException
+     */
+    private function handleResultError($result, $logger)
     {
         $decodeResult = json_decode($result, true);
 
         if(isset($decodeResult['message']) && isset($decodeResult['errorCode'])) {
+            $logger->error($decodeResult['errorCode'] . ': ' . $decodeResult['message']);
             throw new \Adyen\AdyenException($decodeResult['message'], $decodeResult['errorCode']);
         }
+        $logger->error($result);
         throw new \Adyen\AdyenException($result);
     }
 
