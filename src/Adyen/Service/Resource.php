@@ -44,6 +44,13 @@ class Resource
 
     public function requestPost($params)
     {
+        // check if paramenters has a value
+        if(!$params) {
+            $msg = 'The parameters in the request are empty';
+            $this->_service->getClient()->getLogger()->error($msg);
+            throw new \Adyen\AdyenException($msg);
+        }
+
         // validate the request parameters
         $this->_validate($params);
 

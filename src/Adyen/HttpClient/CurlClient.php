@@ -160,9 +160,16 @@ class CurlClient implements ClientInterface
             // transform to PHP Array
             $result = json_decode($result, true);
 
+            if(!$result) {
+                $msg = "The result is empty, looks like your request is invalid";
+                $logger->error($msg);
+                throw new \Adyen\AdyenException($msg);
+            }
+
             // log the array result
             $logger->info('Params in response from Adyen:' . print_r($result, 1));
         }
+
 
         return $result;
     }
