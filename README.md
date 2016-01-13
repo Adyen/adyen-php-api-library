@@ -60,6 +60,36 @@ For CSE use
 }
 ```
 
+Refund example:
+
+```php
+
+$client = new \Adyen\Client();
+$client->setApplicationName("Adyen PHP Api Library Example");
+$client->setUsername("YOUR USERNAME");
+$client->setPassword("YOUR PASSWORD");
+$client->setModus("test");
+
+// intialize modification service
+$service = new Service\Modification($client);
+
+// set the amount you want to refund
+$modificationAmount = array('currency' => 'CURRENCY', 'value' => 'VALUE');
+
+// required are merchantAccount, ModificationAmount(currency,value), reference and originalReference
+$params = array(
+    "merchantAccount" => 'YOUR MERCHANT ACCOUNT',
+    "modificationAmount" => $modificationAmount,
+    "reference" => 'YOUR OWN REFERENCE',
+    "originalReference" => 'PSPREFERENCE OF THE PAYMENT YOU WANT TO REFUND'
+);
+
+$result = $service->refund($params);
+
+// $result['response'] = [refund-received]
+
+```
+
 ## Tests ##
 For the test cases you need the PCI permission enabled on you account. There are no test cases for CSE because credit card data is encrypted through our javascript library.
 By default the test will then be skipped. If you have these permissions fill in your account details in the config/test.ini file to let the test work.
