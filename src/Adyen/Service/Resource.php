@@ -66,7 +66,6 @@ class Resource
      */
     protected function _validate($params)
     {
-
         $missingFields = array();
         if(is_array($this->_requiredFields)) {
             foreach($this->_requiredFields as $requiredField) {
@@ -82,7 +81,6 @@ class Resource
 
                 if(!array_key_exists($requiredField, $params)) {
                     $missingFields[] = $requiredField;
-
                 }
             }
         }

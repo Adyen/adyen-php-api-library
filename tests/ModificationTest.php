@@ -33,4 +33,35 @@ class ModificationTest extends TestCase
 
     }
 
+    public function testRefundModification()
+    {
+        // create a payment
+        require_once __DIR__ . '/CreatePaymentRequestTest.php';
+        $test = new CreatePaymentRequestTest();
+        $result = $test->testCreatePaymentSuccess();
+
+        $pspReference = $result['pspReference'];
+
+        // create modification
+        $client = $this->createClient();
+
+        // intialize service
+        $service = new Service\Modification($client);
+
+        $modificationAmount = array('currency' => 'EUR', 'value' => '750');
+
+        $params = array(
+            "merchantAccount" => $this->_merchantAccount,
+            "modificationAmount" => $modificationAmount,
+            "reference" => $pspReference . '_refund',
+            "originalReference" => $pspReference
+        );
+
+        $result = $service->refund($params);
+
+        $this->assertEquals('[refund-received]', $result['response']);
+
+    }
+
+
 }

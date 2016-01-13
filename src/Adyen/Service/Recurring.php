@@ -27,7 +27,7 @@ class Recurring extends \Adyen\Service
         return $result;
     }
 
-    public function  disable($params)
+    public function disable($params)
     {
         $result =  $this->_disable->request($params);
         return $result;

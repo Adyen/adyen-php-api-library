@@ -32,13 +32,13 @@ class Modification extends \Adyen\Service
         return $result;
     }
 
-    public function Capture($params)
+    public function capture($params)
     {
         $result =  $this->_capture->request($params);
         return $result;
     }
 
-    public function Refund($params)
+    public function refund($params)
     {
         $result =  $this->_refund->request($params);
         return $result;
