@@ -13,12 +13,14 @@ This library is in Beta. We're comfortable enough with the stability and feature
 
 Simple usage looks like:
 
+Create Payment Request on Test:
 ```php
+
 $client = new \Adyen\Client();
 $client->setApplicationName("Adyen PHP Api Library Example");
 $client->setUsername("YOUR USERNAME");
 $client->setPassword("YOUR PASSWORD");
-$client->setModus("test");
+$client->setEnvironment(\Adyen\Environment::TEST);
 
 $service = new Service\Payment($client);
 
@@ -68,7 +70,7 @@ $client = new \Adyen\Client();
 $client->setApplicationName("Adyen PHP Api Library Example");
 $client->setUsername("YOUR USERNAME");
 $client->setPassword("YOUR PASSWORD");
-$client->setModus("test");
+$client->setEnvironment(\Adyen\Environment::TEST);
 
 // intialize modification service
 $service = new Service\Modification($client);

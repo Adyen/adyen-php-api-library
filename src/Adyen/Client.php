@@ -69,18 +69,25 @@ class Client
     }
 
     /**
-     * Set modus
+     * Set environment to connect to test or live platform of Adyen
      *
-     * @param $modus
+     * @param $environment
+     * @throws AdyenException
      */
-    public function setModus($modus)
+    public function setEnvironment($environment)
     {
-        if($modus == 'test') {
+        if($environment == \Adyen\Environment::TEST) {
+            $this->_config->set('environment', \Adyen\Environment::TEST);
             $this->_config->set('endpoint', self::ENDPOINT_TEST);
             $this->_config->set('endpointDirectorylookup', self::ENPOINT_TEST_DIRECTORY_LOOKUP);
-        } elseif($modus == 'live') {
+        } elseif($environment == \Adyen\Environment::LIVE) {
+            $this->_config->set('environment', \Adyen\Environment::LIVE);
             $this->_config->set('endpoint', self::ENDPOINT_LIVE);
             $this->_config->set('endpointDirectorylookup', self::ENPOINT_LIVE_DIRECTORY_LOOKUP);
+        } else {
+            // environment does not exists
+            $msg = "This environment does not exists use " . \Adyen\Environment::TEST . ' or ' . \Adyen\Environment::LIVE;
+            throw new \Adyen\AdyenException($msg);
         }
     }
 
@@ -137,7 +144,7 @@ class Client
     /**
      * Get the version of the API endpoint
      *
-     * @return string
+     * @return stringf
      */
     public function getApiVersion()
     {

@@ -70,12 +70,26 @@ class Resource
         if(is_array($this->_requiredFields)) {
             foreach($this->_requiredFields as $requiredField) {
 
-                if (  strpos ($requiredField,"." ) !== FALSE ){
+                // if validation is two levels validate if parent and child is in the request
+                if (strpos ($requiredField,".") !== FALSE ) {
+                    $results = explode('.', $requiredField);
 
-                    // split on .
-                    // check if this array part exisst in provided array can be done with isset(['param1']['param2']
+                    // for validation only a depth for 2 levels is needed
+                    $parent = $results[0];
+                    $child = $results[1];
 
-                    // ignore for now
+                    if(!isset($params[$parent])) {
+                        // missing the parent param in request
+                        $missingFields[] = $requiredField;
+                        continue;
+                    }
+                    if(!isset($params[$parent][$child])) {
+                        // missing the child param in request
+                        $missingFields[] = $requiredField;
+                        continue;
+                    }
+
+                    // the param is in the request so continue
                     continue;
                 }
 

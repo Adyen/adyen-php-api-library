@@ -38,7 +38,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
             {
                 $client = new \Adyen\Client();
                 $client->setApplicationName("My Test Application");
-                $client->setModus("test");
+                $client->setEnvironment(\Adyen\Environment::TEST);
                 $this->_skipTest();
                 return $client;
             } else {
@@ -46,7 +46,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
                 $client->setApplicationName("My Test Application");
                 $client->setUsername($settings['username']);
                 $client->setPassword($settings['password']);
-                $client->setModus("test");
+                $client->setEnvironment(\Adyen\Environment::TEST);
                 return $client;
             }
         } else {
