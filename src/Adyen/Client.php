@@ -144,7 +144,7 @@ class Client
     /**
      * Get the version of the API endpoint
      *
-     * @return stringf
+     * @return string
      */
     public function getApiVersion()
     {
