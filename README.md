@@ -1,4 +1,4 @@
-# adyen-php-api-library
+# Adyen APIs Library for PHP
 
 ## Description ##
 The Adyen API Library for PHP enables you to work with Adyen APIs.
@@ -11,6 +11,23 @@ To make the automatice testing cases working for your account change the credent
 ## Beta ##
 This library is in Beta. We're comfortable enough with the stability and features of the library that we want you to build real production applications on it. We are using this Libary in our Magento plugins. We will make an effort to support the public and protected surface of the library and maintain backwards compatibility in the future. While we are still in Beta, we reserve the right to make incompatible changes. If we do remove some functionality (typically because better functionality exists or if the feature proved infeasible), we will release a new version of the application.
 
+## Installation ##
+You can use Composer or simply Download the Release
+
+## Composer ##
+
+The preferred method is via [composer](https://getcomposer.org). Follow the
+[installation instructions](https://getcomposer.org/doc/00-intro.md) if you do not already have
+composer installed.
+
+
+Once composer is installed, execute the following command in your project root to install this library:
+
+```sh
+composer require adyen/php-api-library
+```
+
+## Examples ##
 Simple usage looks like:
 
 Create Payment Request on Test:
