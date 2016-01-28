@@ -80,6 +80,6 @@ class Config
 
     public function getMerchantAccount()
     {
-        return $this->data['merchantAccount'];
+        return isset($this->data['merchantAccount']) ? $this->data['merchantAccount'] : null;
     }
 }
