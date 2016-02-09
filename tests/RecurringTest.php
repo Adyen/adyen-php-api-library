@@ -22,7 +22,7 @@ class RecurringTest extends TestCase
         // initialize client
         $client = $this->createClient();
 
-        // intialize service
+        // initialize service
         $service = new Service\Recurring($client);
 
         $recurring = array('contract' => \Adyen\Contract::RECURRING);

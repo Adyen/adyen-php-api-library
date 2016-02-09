@@ -19,7 +19,7 @@ class DirectoryLookupTest extends TestCase
         // initialize client
         $client = $this->createClient();
 
-        // intialize service
+        // initialize service
         $service = new Service\DirectoryLookup($client);
         $sessionValidity = date(
             DATE_ATOM,
@@ -69,7 +69,7 @@ class DirectoryLookupTest extends TestCase
         // initialize client
         $client = $this->createClient();
 
-        // intialize service
+        // initialize service
         $service = new Service\DirectoryLookup($client);
 
         $error = null;
@@ -90,7 +90,7 @@ class DirectoryLookupTest extends TestCase
         // initialize client
         $client = $this->createClient();
 
-        // intialize service
+        // initialize service
         $service = new Service\DirectoryLookup($client);
 
         $sessionValidity = date(

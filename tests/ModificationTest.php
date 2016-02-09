@@ -24,7 +24,7 @@ class ModificationTest extends TestCase
         // create modification
         $client = $this->createClient();
 
-        // intialize service
+        // initialize service
         $service = new Service\Modification($client);
         $params = array('originalReference' => $pspReference, 'merchantAccount' => $this->_merchantAccount);
         $result = $service->cancel($params);
@@ -45,7 +45,7 @@ class ModificationTest extends TestCase
         // create modification
         $client = $this->createClient();
 
-        // intialize service
+        // initialize service
         $service = new Service\Modification($client);
 
         $modificationAmount = array('currency' => 'EUR', 'value' => '750');

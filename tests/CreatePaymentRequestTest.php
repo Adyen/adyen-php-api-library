@@ -16,7 +16,7 @@ class CreatePaymentRequestTest extends TestCase
         // initialize client
         $client = $this->createClient();
 
-        // intialize service
+        // initialize service
         $service = new Service\Payment($client);
 
         $json = '{
@@ -53,7 +53,7 @@ class CreatePaymentRequestTest extends TestCase
         // initialize client
         $client = $this->createClient();
 
-        // intialize service
+        // initialize service
         $service = new Service\Payment($client);
 
         $json = '{
@@ -96,7 +96,7 @@ class CreatePaymentRequestTest extends TestCase
         // initialize client
         $client = $this->createClient();
 
-        // intialize service
+        // initialize service
         $service = new Service\Payment($client);
 
         $json = '{
@@ -146,7 +146,7 @@ class CreatePaymentRequestTest extends TestCase
         // initialize client
         $client = $this->createClientWithMerchantAccount();
 
-        // intialize service
+        // initialize service
         $service = new Service\Payment($client);
 
         $json = '{
@@ -194,7 +194,7 @@ class CreatePaymentRequestTest extends TestCase
         $this->assertEquals('json', $client->getConfig()->getInputType());
         $this->assertEquals('json', $client->getConfig()->getOutputType());
 
-        // intialize service
+        // initialize service
         $service = new Service\Payment($client);
 
         $json = '{
@@ -243,7 +243,7 @@ class CreatePaymentRequestTest extends TestCase
         // initialize client
         $client = $this->createClient();
 
-        // intialize service
+        // initialize service
         $service = new Service\Payment($client);
 
         $json = '{

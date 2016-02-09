@@ -16,7 +16,7 @@ class ExceptionTest extends \Adyen\TestCase
         // initialize client
         $client = $this->createClient();
 
-        // intialize service
+        // initialize service
         $service = new Service\Payment($client);
 
         $json = '{
@@ -75,7 +75,7 @@ class ExceptionTest extends \Adyen\TestCase
         // initialize client
         $client = $this->createClient();
 
-        // intialize service
+        // initialize service
         $service = new Service\Recurring($client);
 
         $recurring = array('contract' => "WRONG PARAMETER");
@@ -101,7 +101,7 @@ class ExceptionTest extends \Adyen\TestCase
         $client->setPassword("");
         $client->setEnvironment(\Adyen\Environment::TEST);
 
-        // intialize service
+        // initialize service
         $service = new Service\Recurring($client);
 
         // in a model form ?
