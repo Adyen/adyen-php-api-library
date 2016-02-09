@@ -113,7 +113,7 @@ class CreatePaymentRequestTest extends TestCase
               },
               "merchantAccount": "' . $this->_merchantAccount .'",
               "recurring": {
-                "contract": "RECURRING",
+                "contract": "' . \Adyen\Contract::RECURRING . '",
                 "recurringDetailName": "1"
               },
               "reference": "payment-test",

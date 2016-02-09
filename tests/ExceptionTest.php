@@ -105,7 +105,7 @@ class ExceptionTest extends \Adyen\TestCase
         $service = new Service\Recurring($client);
 
         // in a model form ?
-        $recurring = array('contract' => "RECURRING");
+        $recurring = array('contract' => \Adyen\Contract::RECURRING);
         $params = array('merchantAccount' => $this->getMerchantAccount(), 'recurring' => $recurring, 'shopperReference' => '1');
 
         $e = null;

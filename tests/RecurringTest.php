@@ -25,7 +25,7 @@ class RecurringTest extends TestCase
         // intialize service
         $service = new Service\Recurring($client);
 
-        $recurring = array('contract' => "RECURRING");
+        $recurring = array('contract' => \Adyen\Contract::RECURRING);
         $params = array('merchantAccount' => $this->getMerchantAccount(), 'recurring' => $recurring, 'shopperReference' => '1');
 
         $result = $service->listRecurringDetails($params);
