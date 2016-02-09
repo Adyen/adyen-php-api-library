@@ -45,10 +45,7 @@ class CreatePaymentRequestTest extends TestCase
 
         // check if exception is correct
         $this->assertEquals('Adyen\AdyenException', get_class($e));
-        $this->assertEquals('Reference Missing', $e->getMessage());
-        $this->assertEquals('130', $e->getCode());
-
-
+        $this->assertEquals('Missing the following values: reference', $e->getMessage());
     }
 
     public function testCreatePaymentSuccess()

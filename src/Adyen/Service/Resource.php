@@ -67,6 +67,8 @@ class Resource
     protected function _validate($params)
     {
         $missingFields = array();
+        $missingValues = array();
+
         if(is_array($this->_requiredFields)) {
             foreach($this->_requiredFields as $requiredField) {
 
@@ -87,6 +89,11 @@ class Resource
                         // missing the child param in request
                         $missingFields[] = $requiredField;
                         continue;
+                    } else {
+                        // check if value is set
+                        if($params[$parent][$child] == "") {
+                            $missingValues[] = $requiredField;
+                        }
                     }
 
                     // the param is in the request so continue
@@ -95,12 +102,22 @@ class Resource
 
                 if(!array_key_exists($requiredField, $params)) {
                     $missingFields[] = $requiredField;
+                } else {
+                    // check if value is set
+                    if($params[$requiredField] == "") {
+                        $missingValues[] = $requiredField;
+                    }
                 }
             }
         }
 
         if(!empty($missingFields)) {
             $msg = 'Missing the following fields: ' . implode($missingFields, ',');
+            throw new \Adyen\AdyenException($msg);
+        }
+
+        if(!empty($missingValues)) {
+            $msg = 'Missing the following values: ' . implode($missingValues, ',');
             throw new \Adyen\AdyenException($msg);
         }
     }

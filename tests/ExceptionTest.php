@@ -8,10 +8,47 @@
 
 namespace Adyen;
 
-
-class ExceptionTest extends TestCase
+class ExceptionTest extends \Adyen\TestCase
 {
 
+    public function testExceptionMissingValuesToParams()
+    {
+        // initialize client
+        $client = $this->createClient();
+
+        // intialize service
+        $service = new Service\Payment($client);
+
+        $json = '{
+              "card": {
+                "number": "",
+                "expiryMonth": "",
+                "expiryYear": "",
+                "cvc": "",
+                "holderName": ""
+              },
+              "amount": {
+                "value": "",
+                "currency": ""
+              },
+              "reference": "",
+              "merchantAccount": ""
+            }';
+
+        $params = json_decode($json, true);
+        $e = null;
+        try {
+            $result = $service->authorise($params);
+        } catch (\Exception $e) {
+
+        }
+
+        $this->assertEquals('Adyen\AdyenException', get_class($e));
+        $this->assertEquals('Missing the following values: merchantAccount,amount.value,amount.currency,reference', $e->getMessage());
+
+
+
+    }
     public function testExceptionMissingEnvironmentValue()
     {
         $client = new \Adyen\Client();
