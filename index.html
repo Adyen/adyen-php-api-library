@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Adyen-php-api-library by Adyen</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Adyen-php-api-library</h1>
+        <p>Adyen API Library for PHP</p>
+
+        <p class="view"><a href="https://github.com/Adyen/adyen-php-api-library">View the Project on GitHub <small>Adyen/adyen-php-api-library</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/Adyen/adyen-php-api-library/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/Adyen/adyen-php-api-library/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/Adyen/adyen-php-api-library">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="adyen-apis-library-for-php" class="anchor" href="#adyen-apis-library-for-php" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Adyen APIs Library for PHP</h1>
+
+<h2>
+<a id="description" class="anchor" href="#description" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Description</h2>
+
+<p>The Adyen API Library for PHP enables you to work with Adyen APIs.</p>
+
+<h2>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h2>
+
+<p>Make sure you have an Adyen account. If you don't have this you can request it <a href="https://www.adyen.com/home/discover/test-account-signup#form" target="_blank">here</a>
+To make the automatice testing cases working for your account change the credentials in the config/test.ini file.</p>
+
+<h2>
+<a id="beta" class="anchor" href="#beta" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Beta</h2>
+
+<p>This library is in Beta. We're comfortable enough with the stability and features of the library that we want you to build real production applications on it. We are using this Libary in our Magento plugins. We will make an effort to support the public and protected surface of the library and maintain backwards compatibility in the future. While we are still in Beta, we reserve the right to make incompatible changes. If we do remove some functionality (typically because better functionality exists or if the feature proved infeasible), we will release a new version of the application.</p>
+
+<h2>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Documentation</h2>
+
+<p><a href="https://docs.adyen.com/manuals/adyen-apis-library-for-php">https://docs.adyen.com/manuals/adyen-apis-library-for-php</a></p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>You can use Composer or simply Download the Release</p>
+
+<h2>
+<a id="composer" class="anchor" href="#composer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Composer</h2>
+
+<p>The preferred method is via <a href="https://getcomposer.org">composer</a>. Follow the
+<a href="https://getcomposer.org/doc/00-intro.md">installation instructions</a> if you do not already have
+composer installed.</p>
+
+<p>Once composer is installed, execute the following command in your project root to install this library:</p>
+
+<div class="highlight highlight-source-shell"><pre>composer require adyen/php-api-library</pre></div>
+
+<h2>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h2>
+
+<p>Create Payment Request on Test:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$client</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">\Adyen\</span><span class="pl-c1">Client</span>();</span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>setApplicationName(<span class="pl-s"><span class="pl-pds">"</span>Adyen PHP Api Library Example<span class="pl-pds">"</span></span>);</span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>setUsername(<span class="pl-s"><span class="pl-pds">"</span>YOUR USERNAME<span class="pl-pds">"</span></span>);</span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>setPassword(<span class="pl-s"><span class="pl-pds">"</span>YOUR PASSWORD<span class="pl-pds">"</span></span>);</span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>setEnvironment(<span class="pl-c1">\Adyen\</span><span class="pl-c1">Environment</span><span class="pl-k">::</span><span class="pl-c1">TEST</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$service</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Service\</span><span class="pl-c1">Payment</span>(<span class="pl-smi">$client</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$json</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>{</span></span>
+<span class="pl-s1"><span class="pl-s">      "card": {</span></span>
+<span class="pl-s1"><span class="pl-s">        "number": "4111111111111111",</span></span>
+<span class="pl-s1"><span class="pl-s">        "expiryMonth": "6",</span></span>
+<span class="pl-s1"><span class="pl-s">        "expiryYear": "2016",</span></span>
+<span class="pl-s1"><span class="pl-s">        "cvc": "737",</span></span>
+<span class="pl-s1"><span class="pl-s">        "holderName": "John Smith"</span></span>
+<span class="pl-s1"><span class="pl-s">      },</span></span>
+<span class="pl-s1"><span class="pl-s">      "amount": {</span></span>
+<span class="pl-s1"><span class="pl-s">        "value": 1500,</span></span>
+<span class="pl-s1"><span class="pl-s">        "currency": "EUR"</span></span>
+<span class="pl-s1"><span class="pl-s">      },</span></span>
+<span class="pl-s1"><span class="pl-s">      "reference": "payment-test",</span></span>
+<span class="pl-s1"><span class="pl-s">      "merchantAccount": "YOUR MERCHANT ACCOUNT"</span></span>
+<span class="pl-s1"><span class="pl-s">}<span class="pl-pds">'</span></span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$params</span> <span class="pl-k">=</span> <span class="pl-c1">json_decode</span>(<span class="pl-smi">$json</span>, <span class="pl-c1">true</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$result</span> <span class="pl-k">=</span> <span class="pl-smi">$service</span><span class="pl-k">-&gt;</span>authorise(<span class="pl-smi">$params</span>);</span>
+<span class="pl-s1"></span></pre></div>
+
+<p>For CSE use</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">{</span>
+<span class="pl-s1">  <span class="pl-s"><span class="pl-pds">"</span>amount<span class="pl-pds">"</span></span>: {</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>value<span class="pl-pds">"</span></span>: <span class="pl-c1">1499</span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>currency<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>GBP<span class="pl-pds">"</span></span></span>
+<span class="pl-s1">  },</span>
+<span class="pl-s1">  <span class="pl-s"><span class="pl-pds">"</span>reference<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>payment-test<span class="pl-pds">"</span></span>,</span>
+<span class="pl-s1">  <span class="pl-s"><span class="pl-pds">"</span>merchantAccount<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>YOUR MERCHANT ACCOUNT<span class="pl-pds">"</span></span>,</span>
+<span class="pl-s1">  <span class="pl-s"><span class="pl-pds">"</span>additionalData<span class="pl-pds">"</span></span>: {</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>card.encrypted.json<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>THE ENCRYPTED DATA<span class="pl-pds">"</span></span></span>
+<span class="pl-s1">  }</span>
+<span class="pl-s1">}</span></pre></div>
+
+<p>Refund example:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$client</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">\Adyen\</span><span class="pl-c1">Client</span>();</span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>setApplicationName(<span class="pl-s"><span class="pl-pds">"</span>Adyen PHP Api Library Example<span class="pl-pds">"</span></span>);</span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>setUsername(<span class="pl-s"><span class="pl-pds">"</span>YOUR USERNAME<span class="pl-pds">"</span></span>);</span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>setPassword(<span class="pl-s"><span class="pl-pds">"</span>YOUR PASSWORD<span class="pl-pds">"</span></span>);</span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>setEnvironment(<span class="pl-c1">\Adyen\</span><span class="pl-c1">Environment</span><span class="pl-k">::</span><span class="pl-c1">TEST</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// intialize modification service</span></span>
+<span class="pl-s1"><span class="pl-smi">$service</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Service\</span><span class="pl-c1">Modification</span>(<span class="pl-smi">$client</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// set the amount you want to refund</span></span>
+<span class="pl-s1"><span class="pl-smi">$modificationAmount</span> <span class="pl-k">=</span> <span class="pl-c1">array</span>(<span class="pl-s"><span class="pl-pds">'</span>currency<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>CURRENCY<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>value<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>VALUE<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// required are merchantAccount, ModificationAmount(currency,value), reference and originalReference</span></span>
+<span class="pl-s1"><span class="pl-smi">$params</span> <span class="pl-k">=</span> <span class="pl-c1">array</span>(</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>merchantAccount<span class="pl-pds">"</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>YOUR MERCHANT ACCOUNT<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>modificationAmount<span class="pl-pds">"</span></span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$modificationAmount</span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>reference<span class="pl-pds">"</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>YOUR OWN REFERENCE<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>originalReference<span class="pl-pds">"</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>PSPREFERENCE OF THE PAYMENT YOU WANT TO REFUND<span class="pl-pds">'</span></span></span>
+<span class="pl-s1">);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$result</span> <span class="pl-k">=</span> <span class="pl-smi">$service</span><span class="pl-k">-&gt;</span>refund(<span class="pl-smi">$params</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// $result['response'] = [refund-received]</span></span>
+<span class="pl-s1"></span></pre></div>
+
+<h2>
+<a id="tests" class="anchor" href="#tests" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Tests</h2>
+
+<p>For the test cases you need the PCI permission enabled on you account. There are no test cases for CSE because credit card data is encrypted through our javascript library.
+By default the test will then be skipped. If you have these permissions fill in your account details in the config/test.ini file to let the test work.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/Adyen">Adyen</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
