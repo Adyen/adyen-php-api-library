@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Adyen-php-api-library by Adyen</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Adyen-php-api-library</h1>
+        <p>Adyen API Library for PHP</p>
+
+        <p class="view"><a href="https://github.com/Adyen/adyen-php-api-library">View the Project on GitHub <small>Adyen/adyen-php-api-library</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/Adyen/adyen-php-api-library/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/Adyen/adyen-php-api-library/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/Adyen/adyen-php-api-library">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+      	<h2>Using the library</h2>
+      	<p>
+      		Set up a client and set the credentials to the Adyen platform.
+      	</p>  
+      	
+      	<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"></span><span class="pl-s1"><span class="pl-smi">$client</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">\Adyen\</span><span class="pl-c1">Client</span>();</span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>setApplicationName(<span class="pl-s"><span class="pl-pds">"</span>Adyen PHP Api Library Example<span class="pl-pds">"</span></span>);</span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>setUsername(<span class="pl-s"><span class="pl-pds">"</span>YOUR USERNAME<span class="pl-pds">"</span></span>);</span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>setPassword(<span class="pl-s"><span class="pl-pds">"</span>YOUR PASSWORD<span class="pl-pds">"</span></span>);</span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>setEnvironment(<span class="pl-c1">\Adyen\</span><span class="pl-c1">Environment</span><span class="pl-k">::</span><span class="pl-c1">TEST</span>);</span>
+<span class="pl-s1"></span></pre></div>
+
+		<p>
+			The example connects you to the Adyen test platform. If you want to use our live platform use:
+		</p>
+		<div class="highlight highlight-text-html-php"><pre>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>setEnvironment(<span class="pl-c1">\Adyen\</span><span class="pl-c1">Environment</span><span class="pl-k">::</span><span class="pl-c1">LIVE</span>);</span>
+<span class="pl-s1"></span></pre></div>
+
+		<p>You can now use the following services:
+			<ul>
+				<li><a title="Payment" href="payment.html">Payment</a></li>
+				<li><a title="Recurring" href="recurring.html">Recurring</a></li>
+				<li><a title="Modification" href="modification.html">Modification</a></li>
+				<li><a title="Directory Lookup" href="directory-lookup.html">Directory Lookup</a></li>
+			</ul>
+		</p>
+		
+		<p>By default the input and output parameters are of type array. If you would like to use JSON you can doing the following thing:</p>
+      	<div class="highlight highlight-text-html-php"><pre>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>setInputType('json');</span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>setOutputType('json');</span>
+<span class="pl-s1"></span></pre></div>
+      	
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/Adyen">Adyen</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>

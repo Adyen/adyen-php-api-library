@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Adyen-php-api-library by Adyen</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Adyen-php-api-library</h1>
+        <p>Adyen API Library for PHP</p>
+
+        <p class="view"><a href="https://github.com/Adyen/adyen-php-api-library">View the Project on GitHub <small>Adyen/adyen-php-api-library</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/Adyen/adyen-php-api-library/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/Adyen/adyen-php-api-library/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/Adyen/adyen-php-api-library">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+      	<h1>Directory lookup PHP</h1>
+      		<p>
+      			Support additional payment methods using directory lookup. Create a skin on the Adyen side to display these methods.
+      		</p>
+      		
+<div class="highlight highlight-text-html-php"><pre>
+<span class="pl-s1">// initialize service</span>
+<span class="pl-s1"><span class="pl-smi">$service</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Service\</span><span class="pl-c1">DirectoryLookup</span>(<span class="pl-smi">$client</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$sessionValidity</span> <span class="pl-k">=</span> <span class="pl-c1">date</span>(</span>
+<span class="pl-s1">    DATE_ATOM,</span>
+<span class="pl-s1">    mktime(date("H") + 10, date("i"), date("s"), date("m"), date("j"), date("Y"))</span>
+<span class="pl-s1">);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$json</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>{</span></span>
+<span class="pl-s1"><span class="pl-s">      "paymentAmount": "1000",</span></span>
+<span class="pl-s1"><span class="pl-s">      "currencyCode": "EUR"</span></span>
+<span class="pl-s1"><span class="pl-s">      "merchantReference": "Get Payment methods",</span></span>
+<span class="pl-s1"><span class="pl-s">      "skinCode": "YOUR SKIN CODE"</span></span>
+<span class="pl-s1"><span class="pl-s">      "merchantAccount": "YOUR MERCHANT ACCOUNT",</span></span>
+<span class="pl-s1"><span class="pl-s">      "sessionValidity": "'.$sessionValidity.'"</span></span>
+<span class="pl-s1"><span class="pl-s">      "countryCode": "NL",</span></span>
+<span class="pl-s1"><span class="pl-s">      "shopperLocale": "nl_NL"</span></span>
+<span class="pl-s1"><span class="pl-s">}<span class="pl-pds">'</span></span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$params</span> <span class="pl-k">=</span> <span class="pl-c1">json_decode</span>(<span class="pl-smi">$json</span>, <span class="pl-c1">true</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">// add signature in request</span>
+<span class="pl-s1">$hmacKey = 'YOUR HMAC KEY OF THE SKIN';</span>
+<span class="pl-s1">$params["merchantSig"] = Util::calculateSha256Signature($hmacKey, $params);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$result</span> <span class="pl-k">=</span> <span class="pl-smi">$service</span><span class="pl-k">-&gt;</span>directoryLookup(<span class="pl-smi">$params</span>);</span>
+<span class="pl-s1"></span></pre></div>
+
+
+
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/Adyen">Adyen</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>

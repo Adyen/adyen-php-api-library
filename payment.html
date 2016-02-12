@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Adyen-php-api-library by Adyen</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Adyen-php-api-library</h1>
+        <p>Adyen API Library for PHP</p>
+
+        <p class="view"><a href="https://github.com/Adyen/adyen-php-api-library">View the Project on GitHub <small>Adyen/adyen-php-api-library</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/Adyen/adyen-php-api-library/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/Adyen/adyen-php-api-library/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/Adyen/adyen-php-api-library">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+      	<h1>Payment</h1>
+      		<p>
+      			The payment service has the following methods:
+      		</p>
+      		<h2>authorise</h2>
+      		<p>
+      			With authorise method you can choose between full API integration (for PCI compliant merchants) or our Easy encryption solution.
+      		</p>
+      		<h3>API</h3>
+      		<div class="highlight highlight-text-html-php"><pre>
+<span class="pl-s1"><span class="pl-smi">$service</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Service\</span><span class="pl-c1">Payment</span>(<span class="pl-smi">$client</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$json</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>{</span></span>
+<span class="pl-s1"><span class="pl-s">      "card": {</span></span>
+<span class="pl-s1"><span class="pl-s">        "number": "4111111111111111",</span></span>
+<span class="pl-s1"><span class="pl-s">        "expiryMonth": "6",</span></span>
+<span class="pl-s1"><span class="pl-s">        "expiryYear": "2016",</span></span>
+<span class="pl-s1"><span class="pl-s">        "cvc": "737",</span></span>
+<span class="pl-s1"><span class="pl-s">        "holderName": "John Smith"</span></span>
+<span class="pl-s1"><span class="pl-s">      },</span></span>
+<span class="pl-s1"><span class="pl-s">      "amount": {</span></span>
+<span class="pl-s1"><span class="pl-s">        "value": 1500,</span></span>
+<span class="pl-s1"><span class="pl-s">        "currency": "EUR"</span></span>
+<span class="pl-s1"><span class="pl-s">      },</span></span>
+<span class="pl-s1"><span class="pl-s">      "reference": "payment-test",</span></span>
+<span class="pl-s1"><span class="pl-s">      "merchantAccount": "YOUR MERCHANT ACCOUNT"</span></span>
+<span class="pl-s1"><span class="pl-s">}<span class="pl-pds">'</span></span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$params</span> <span class="pl-k">=</span> <span class="pl-c1">json_decode</span>(<span class="pl-smi">$json</span>, <span class="pl-c1">true</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$result</span> <span class="pl-k">=</span> <span class="pl-smi">$service</span><span class="pl-k">-&gt;</span>authorise(<span class="pl-smi">$params</span>);</span>
+<span class="pl-s1"></span></pre></div>
+
+			<h3>EE</h3>
+			<p>
+				The encryption key is retrieved from our EE library.
+			</p>
+			<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">{</span>
+<span class="pl-s1">  <span class="pl-s"><span class="pl-pds">"</span>amount<span class="pl-pds">"</span></span>: {</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>value<span class="pl-pds">"</span></span>: <span class="pl-s">1499</span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>currency<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>GBP<span class="pl-pds">"</span></span></span>
+<span class="pl-s1">  },</span>
+<span class="pl-s1">  <span class="pl-s"><span class="pl-pds">"</span>reference<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>payment-test<span class="pl-pds">"</span></span>,</span>
+<span class="pl-s1">  <span class="pl-s"><span class="pl-pds">"</span>merchantAccount<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>YOUR MERCHANT ACCOUNT<span class="pl-pds">"</span></span>,</span>
+<span class="pl-s1">  <span class="pl-s"><span class="pl-pds">"</span>additionalData<span class="pl-pds">"</span></span>: {</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>card.encrypted.json<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>THE ENCRYPTED DATA<span class="pl-pds">"</span></span></span>
+<span class="pl-s1">  }</span>
+<span class="pl-s1">}</span></pre></div>
+
+
+		<h2>authorise3D</h2>
+<div class="highlight highlight-text-html-php"><pre>
+<span class="pl-s1"><span class="pl-smi">$browserInfo</span> <span class="pl-k">=</span> <span class="pl-c1">array</span>(<span class="pl-s"><span class="pl-pds">'</span>userAgent<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">$_SERVER['HTTP_USER_AGENT']</span>, <span class="pl-s"><span class="pl-pds">'</span>acceptHeader<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s">$_SERVER['HTTP_ACCEPT']</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$request</span> <span class="pl-k">=</span> <span class="pl-c1">array</span>(</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>merchantAccount<span class="pl-pds">"</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>YOUR MERCHANT ACCOUNT<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>browserInfo<span class="pl-pds">"</span></span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$browserInfo</span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>md<span class="pl-pds">"</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>MD YOU GET BACK IN POST RESPONSE<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>paResponse<span class="pl-pds">"</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>paResponse YOU GET BACK IN POST RESPONSE<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>shopperIP<span class="pl-pds">"</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>IP ADDRESS OF SHOPPER<span class="pl-pds">'</span></span></span>
+<span class="pl-s1">);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">$service = new \Adyen\Service\Payment($this->_client);</span>
+<span class="pl-s1">$result = $service->authorise3D($request); </span>
+<span class="pl-s1"></span></pre></div>
+
+
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/Adyen">Adyen</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>

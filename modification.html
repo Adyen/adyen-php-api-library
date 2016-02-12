@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Adyen-php-api-library by Adyen</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Adyen-php-api-library</h1>
+        <p>Adyen API Library for PHP</p>
+
+        <p class="view"><a href="https://github.com/Adyen/adyen-php-api-library">View the Project on GitHub <small>Adyen/adyen-php-api-library</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/Adyen/adyen-php-api-library/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/Adyen/adyen-php-api-library/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/Adyen/adyen-php-api-library">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+      	<h1>Modification</h1>
+      		<p>
+      			The payment service has the following methods:
+      		</p>
+      		<h2>capture</h2>
+      		<p>
+      			Using this you can capture the payment.
+      		</p>
+      		<div class="highlight highlight-text-html-php"><pre>
+<span class="pl-s1"><span class="pl-smi">$service</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Service\</span><span class="pl-c1">Modification<span>(<span class="pl-smi">$client</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$modificationAmount</span> <span class="pl-k">=</span> <span class="pl-c1">array</span>(<span class="pl-s"><span class="pl-pds">'</span>currency<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'EUR'</span>, <span class="pl-s"><span class="pl-pds">'</span>value<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s">'750'</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$params</span> <span class="pl-k">=</span> <span class="pl-c1">array</span>(</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>merchantAccount<span class="pl-pds">"</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>YOUR MERCHANT ACCOUNT<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>modificationAmount<span class="pl-pds">"</span></span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$modificationAmount</span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>originalReference<span class="pl-pds">"</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>ORIGINAL PSP REFERENCE OF AUTHORISED PAYMENT<span class="pl-pds">'</span></span></span>
+<span class="pl-s1">);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">$result = $service->capture($params);</span>
+<span>// result['response'] should be [capture-received]</span>
+</pre></div>
+
+
+
+		<h2>cancel</h2>
+<div class="highlight highlight-text-html-php"><pre>
+<span class="pl-s1"><span class="pl-smi">$service</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Service\</span><span class="pl-c1">Modification<span>(<span class="pl-smi">$client</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$params</span> <span class="pl-k">=</span> <span class="pl-c1">array</span>(</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>merchantAccount<span class="pl-pds">"</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>YOUR MERCHANT ACCOUNT<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>originalReference<span class="pl-pds">"</span></span> <span class="pl-k">=&gt;</span> <span class="pl-smi">'ORIGINAL PSP REFERENCE OF AUTHORISED PAYMENT'</span></span>
+<span class="pl-s1">);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">$result = $service->cancel($params);</span>
+<span>// $result['response'] should be [cancel-received]</span>
+</pre></div>
+
+<h2>cancelOrRefund</h2>
+<p>Similar to cancel, using this you can choose to cancel or refund the payment.</p>
+<div class="highlight highlight-text-html-php"><pre>
+<span class="pl-s1"><span class="pl-smi">$service</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Service\</span><span class="pl-c1">Modification<span>(<span class="pl-smi">$client</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$params</span> <span class="pl-k">=</span> <span class="pl-c1">array</span>(</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>merchantAccount<span class="pl-pds">"</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>YOUR MERCHANT ACCOUNT<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>originalReference<span class="pl-pds">"</span></span> <span class="pl-k">=&gt;</span> <span class="pl-smi">'ORIGINAL PSP REFERENCE OF AUTHORISED PAYMENT'</span></span>
+<span class="pl-s1">);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">$result = $service->cancelOrRefund($params);</span>
+<span>// $result['response'] should be [cancelOrRefund-received]</span>
+</pre></div>
+
+		<h2>refund</h2>
+      		<p>
+      			With refund you have to specify the amount you want to refund. You can also choose to do a partial refund.
+      		</p>
+      		<div class="highlight highlight-text-html-php"><pre>
+<span class="pl-s1"><span class="pl-smi">$service</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Service\</span><span class="pl-c1">Modification<span>(<span class="pl-smi">$client</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$modificationAmount</span> <span class="pl-k">=</span> <span class="pl-c1">array</span>(<span class="pl-s"><span class="pl-pds">'</span>currency<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'EUR'</span>, <span class="pl-s"><span class="pl-pds">'</span>value<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s">'750'</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$params</span> <span class="pl-k">=</span> <span class="pl-c1">array</span>(</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>merchantAccount<span class="pl-pds">"</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>YOUR MERCHANT ACCOUNT<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>modificationAmount<span class="pl-pds">"</span></span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$modificationAmount</span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>originalReference<span class="pl-pds">"</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>ORIGINAL PSP REFERENCE OF AUTHORISED PAYMENT<span class="pl-pds">'</span></span></span>
+<span class="pl-s1">);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">$result = $service->refund($params);</span>
+<span>// result['response'] should be [refund-received]</span>
+</pre></div>
+
+<p>For more information see <a title="modifications" href="https://docs.adyen.com/display/TD/Modification+requests" target="_blank">modifications</a>.</p>
+
+
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/Adyen">Adyen</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
