@@ -12,7 +12,7 @@ To make the automatice testing cases working for your account change the credent
 This library is in Beta. We're comfortable enough with the stability and features of the library that we want you to build real production applications on it. We are using this Libary in our Magento plugins. We will make an effort to support the public and protected surface of the library and maintain backwards compatibility in the future. While we are still in Beta, we reserve the right to make incompatible changes. If we do remove some functionality (typically because better functionality exists or if the feature proved infeasible), we will release a new version of the application.
 
 ## Documentation ##
-https://docs.adyen.com/manuals/adyen-apis-library-for-php
+http://adyen.github.io/adyen-php-api-library/
 
 ## Installation ##
 You can use Composer or simply Download the Release
