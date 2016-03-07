@@ -73,7 +73,7 @@ class Resource
             foreach($this->_requiredFields as $requiredField) {
 
                 // if validation is two levels validate if parent and child is in the request
-                if (strpos ($requiredField,".") !== FALSE ) {
+                if(strpos($requiredField, ".") !== FALSE) {
                     $results = explode('.', $requiredField);
 
                     // for validation only a depth for 2 levels is needed
@@ -120,19 +120,6 @@ class Resource
             $msg = 'Missing the following values: ' . implode($missingValues, ',');
             throw new \Adyen\AdyenException($msg);
         }
-    }
-
-    protected function array_keys_recursive($myArray, $arrayKeys = array())
-    {
-        $keys = array_keys($myArray);
-
-        foreach($keys as $key){
-            if(is_array($myArray[$key])){
-                $arrayKeys[$key] = $this->array_keys_recursive($myArray[$key]);
-            }
-        }
-
-        return $arrayKeys;
     }
 
 }
