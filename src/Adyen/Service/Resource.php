@@ -58,7 +58,6 @@ class Resource
         return $curlClient->requestPost($this->_service, $this->_endpoint, $params);
     }
 
-
     /**
      * Validate if all required fields are in the params
      *
@@ -121,5 +120,4 @@ class Resource
             throw new \Adyen\AdyenException($msg);
         }
     }
-
 }
