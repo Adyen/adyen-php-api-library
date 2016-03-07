@@ -12,14 +12,14 @@ class Payment extends \Adyen\Service
     {
         parent::__construct($client);
 
-        $this->_auhtorise = new \Adyen\Service\Resource\Payment\Authorise($this);
+        $this->_authorise = new \Adyen\Service\Resource\Payment\Authorise($this);
         $this->_authorise3D = new \Adyen\Service\Resource\Payment\Authorise3D($this);
 
     }
 
     public function authorise($params)
     {
-        $result =  $this->_auhtorise->request($params);
+        $result =  $this->_authorise->request($params);
         return $result;
     }
 
