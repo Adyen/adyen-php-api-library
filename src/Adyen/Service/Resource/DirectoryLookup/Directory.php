@@ -14,7 +14,6 @@ class Directory extends \Adyen\Service\Resource
         'skinCode',
         'merchantAccount',
         'sessionValidity',
-        'countryCode',
         'shopperLocale',
         'merchantSig'
     );
