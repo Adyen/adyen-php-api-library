@@ -8,6 +8,15 @@ class Util
 
     public static function calculateSha256Signature($hmacKey, $params)
     {
+        // validate if hmacKey is provided
+        if($hmacKey == "") {
+            throw new \Adyen\AdyenException("You did not provide a HMAC key");
+        }
+
+        if(empty($params)) {
+            throw new \Adyen\AdyenException("You did not provide any parameters");
+        }
+
         // The character escape function
         $escapeval = function($val) {
             return str_replace(':','\\:',str_replace('\\','\\\\',$val));
