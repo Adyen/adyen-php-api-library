@@ -22,8 +22,8 @@ class CreatePaymentRequestTest extends TestCase
         $json = '{
               "card": {
                 "number": "4111111111111111",
-                "expiryMonth": "6",
-                "expiryYear": "2016",
+                "expiryMonth": "08",
+                "expiryYear": "2018",
                 "cvc": "737",
                 "holderName": "John Smith"
               },
@@ -59,8 +59,8 @@ class CreatePaymentRequestTest extends TestCase
         $json = '{
               "card": {
                 "number": "4111111111111111",
-                "expiryMonth": "6",
-                "expiryYear": "2016",
+                "expiryMonth": "08",
+                "expiryYear": "2018",
                 "cvc": "737",
                 "holderName": "John Smith"
               },
@@ -106,8 +106,8 @@ class CreatePaymentRequestTest extends TestCase
               },
               "card": {
                 "cvc": "737",
-                "expiryMonth": "6",
-                "expiryYear": "2016",
+                "expiryMonth": "08",
+                "expiryYear": "2018",
                 "holderName": "John Smith",
                 "number": "4111111111111111"
               },
@@ -152,8 +152,8 @@ class CreatePaymentRequestTest extends TestCase
         $json = '{
               "card": {
                 "number": "4111111111111111",
-                "expiryMonth": "6",
-                "expiryYear": "2016",
+                "expiryMonth": "08",
+                "expiryYear": "2018",
                 "cvc": "737",
                 "holderName": "John Smith"
               },
@@ -200,8 +200,8 @@ class CreatePaymentRequestTest extends TestCase
         $json = '{
               "card": {
                 "number": "4111111111111111",
-                "expiryMonth": "6",
-                "expiryYear": "2016",
+                "expiryMonth": "08",
+                "expiryYear": "2018",
                 "cvc": "737",
                 "holderName": "John Smith"
               },
@@ -249,8 +249,8 @@ class CreatePaymentRequestTest extends TestCase
         $json = '{
               "card": {
                 "number": "4111111111111111",
-                "expiryMonth": "6",
-                "expiryYear": "2016",
+                "expiryMonth": "08",
+                "expiryYear": "2018",
                 "cvc": "111",
                 "holderName": "John Smith"
               },
