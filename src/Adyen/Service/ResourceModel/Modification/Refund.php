@@ -1,8 +1,8 @@
 <?php
 
-namespace Adyen\Service\Resource\Modification;
+namespace Adyen\Service\ResourceModel\Modification;
 
-class Capture extends \Adyen\Service\Resource
+class Refund extends \Adyen\Service\AbstractResource
 {
     protected $_requiredFields = array(
         'merchantAccount',
@@ -16,7 +16,7 @@ class Capture extends \Adyen\Service\Resource
 
     public function __construct($service)
     {
-        $this->_endpoint = $service->getClient()->getConfig()->get('endpoint') . '/pal/servlet/Payment/' . $service->getClient()->getApiVersion() . '/capture';
+        $this->_endpoint = $service->getClient()->getConfig()->get('endpoint') . '/pal/servlet/Payment/' . $service->getClient()->getApiVersion() . '/refund';
         parent::__construct($service, $this->_endpoint, $this->_requiredFields);
     }
 

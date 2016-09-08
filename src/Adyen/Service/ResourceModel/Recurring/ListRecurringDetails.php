@@ -1,8 +1,8 @@
 <?php
 
-namespace Adyen\Service\Resource\Recurring;
+namespace Adyen\Service\ResourceModel\Recurring;
 
-class ListRecurringDetails extends \Adyen\Service\Resource
+class ListRecurringDetails extends \Adyen\Service\AbstractResource
 {
 
     protected $_requiredFields = array(

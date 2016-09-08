@@ -1,8 +1,8 @@
 <?php
 
-namespace Adyen\Service\Resource\Modification;
+namespace Adyen\Service\ResourceModel\Modification;
 
-class Cancel extends \Adyen\Service\Resource
+class Cancel extends \Adyen\Service\AbstractResource
 {
     protected $_requiredFields = array(
         'merchantAccount',

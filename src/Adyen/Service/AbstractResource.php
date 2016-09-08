@@ -2,7 +2,7 @@
 
 namespace Adyen\Service;
 
-class Resource
+class AbstractResource
 {
 
     protected $_service;

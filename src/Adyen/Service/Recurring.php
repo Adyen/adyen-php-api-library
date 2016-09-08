@@ -12,10 +12,10 @@ class Recurring extends \Adyen\Service
     {
         parent::__construct($client);
 
-        $this->_listRecurringDetails = new \Adyen\Service\Resource\Recurring\ListRecurringDetails(
+        $this->_listRecurringDetails = new \Adyen\Service\ResourceModel\Recurring\ListRecurringDetails(
             $this);
 
-        $this->_disable = new \Adyen\Service\Resource\Recurring\Disable(
+        $this->_disable = new \Adyen\Service\ResourceModel\Recurring\Disable(
             $this,
             $this->getClient()->getConfig()->get('endpoint') . '/disable',
             array('merchantAccount', 'shopperReference'));

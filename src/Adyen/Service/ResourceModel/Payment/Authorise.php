@@ -1,8 +1,8 @@
 <?php
 
-namespace Adyen\Service\Resource\Payment;
+namespace Adyen\Service\ResourceModel\Payment;
 
-class Authorise extends \Adyen\Service\Resource
+class Authorise extends \Adyen\Service\AbstractResource
 {
     protected $_requiredFields = array(
         'merchantAccount',
