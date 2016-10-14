@@ -90,7 +90,7 @@ class Resource
                         continue;
                     } else {
                         // check if value is set
-                        if($params[$parent][$child] == "") {
+                        if($params[$parent][$child] === "") {
                             $missingValues[] = $requiredField;
                         }
                     }
