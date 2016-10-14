@@ -90,7 +90,7 @@ class AbstractResource
                         continue;
                     } else {
                         // check if value is set
-                        if($params[$parent][$child] == "") {
+                        if($params[$parent][$child] === "") {
                             $missingValues[] = $requiredField;
                         }
                     }
@@ -103,7 +103,7 @@ class AbstractResource
                     $missingFields[] = $requiredField;
                 } else {
                     // check if value is set
-                    if($params[$requiredField] == "") {
+                    if($params[$requiredField] === "") {
                         $missingValues[] = $requiredField;
                     }
                 }
