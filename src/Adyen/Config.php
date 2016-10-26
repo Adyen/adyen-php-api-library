@@ -2,7 +2,7 @@
 
 namespace Adyen;
 
-class Config
+class Config implements ConfigInterface
 {
 
     /** @var array */

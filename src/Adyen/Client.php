@@ -8,13 +8,13 @@ use Monolog\Handler\StreamHandler;
 
 class Client
 {
-    const LIB_VERSION                    = "0.1.0";
+    const LIB_VERSION                    = "1.1.0";
     const USER_AGENT_SUFFIX             = "adyen-php-api-library/";
     const ENDPOINT_TEST                 = "https://pal-test.adyen.com";
     const ENDPOINT_LIVE                 = "https://pal-live.adyen.com";
     const ENPOINT_TEST_DIRECTORY_LOOKUP = "https://test.adyen.com/hpp/directory.shtml";
     const ENPOINT_LIVE_DIRECTORY_LOOKUP = "https://live.adyen.com/hpp/directory.shtml";
-    const API_VERSION                   = "v12";
+    const API_VERSION                   = "v18";
 
     /**
      * @var Adyen_Config $config
@@ -27,17 +27,20 @@ class Client
      */
     private $logger;
 
-
     /**
-     * @param $config
+     * Client constructor.
+     * @param null $config
+     * @throws AdyenException
      */
     public function __construct($config = null)
     {
-        if(!$config) {
+        if (!$config) {
             // create config
             $this->_config = new \Adyen\Config();
-        }else {
+        }elseif ($config instanceof \Adyen\ConfigInterface) {
             $this->_config = $config;
+        } else {
+            throw new \Adyen\AdyenException("This config object is not supported, you need to implement the ConfigInterface");
         }
     }
 
@@ -45,7 +48,6 @@ class Client
     {
         return $this->_config;
     }
-
 
     /**
      * Set Username of Web Service User
