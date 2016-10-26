@@ -12,8 +12,8 @@ class Payment extends \Adyen\Service
     {
         parent::__construct($client);
 
-        $this->_authorise = new \Adyen\Service\Resource\Payment\Authorise($this);
-        $this->_authorise3D = new \Adyen\Service\Resource\Payment\Authorise3D($this);
+        $this->_authorise = new \Adyen\Service\ResourceModel\Payment\Authorise($this);
+        $this->_authorise3D = new \Adyen\Service\ResourceModel\Payment\Authorise3D($this);
 
     }
 

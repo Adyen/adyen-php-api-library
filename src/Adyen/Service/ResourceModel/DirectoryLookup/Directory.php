@@ -3,9 +3,9 @@
 //https://test.adyen.com/hpp/directory.shtml
 
 
-namespace Adyen\Service\Resource\DirectoryLookup;
+namespace Adyen\Service\ResourceModel\DirectoryLookup;
 
-class Directory extends \Adyen\Service\Resource
+class Directory extends \Adyen\Service\AbstractResource
 {
     protected $_requiredFields = array(
         'paymentAmount',
@@ -14,7 +14,6 @@ class Directory extends \Adyen\Service\Resource
         'skinCode',
         'merchantAccount',
         'sessionValidity',
-        'countryCode',
         'shopperLocale',
         'merchantSig'
     );

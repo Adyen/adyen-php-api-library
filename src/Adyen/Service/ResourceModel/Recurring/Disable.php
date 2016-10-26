@@ -1,8 +1,8 @@
 <?php
 
-namespace Adyen\Service\Resource\Recurring;
+namespace Adyen\Service\ResourceModel\Recurring;
 
-class Disable extends \Adyen\Service\Resource
+class Disable extends \Adyen\Service\AbstractResource
 {
     protected $_requiredFields = array(
         'merchantAccount',

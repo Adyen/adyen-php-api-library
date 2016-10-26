@@ -11,7 +11,7 @@ class DirectoryLookup extends \Adyen\Service
     {
         parent::__construct($client);
 
-        $this->_directoryLookup = new \Adyen\Service\Resource\DirectoryLookup\Directory($this);
+        $this->_directoryLookup = new \Adyen\Service\ResourceModel\DirectoryLookup\Directory($this);
     }
 
     public function directoryLookup($params)

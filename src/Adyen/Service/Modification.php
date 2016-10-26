@@ -14,10 +14,10 @@ class Modification extends \Adyen\Service
     {
         parent::__construct($client);
 
-        $this->_cancel = new \Adyen\Service\Resource\Modification\Cancel($this);
-        $this->_cancelOrRefund = new \Adyen\Service\Resource\Modification\CancelOrRefund($this);
-        $this->_capture = new \Adyen\Service\Resource\Modification\Capture($this);
-        $this->_refund = new \Adyen\Service\Resource\Modification\Refund($this);
+        $this->_cancel = new \Adyen\Service\ResourceModel\Modification\Cancel($this);
+        $this->_cancelOrRefund = new \Adyen\Service\ResourceModel\Modification\CancelOrRefund($this);
+        $this->_capture = new \Adyen\Service\ResourceModel\Modification\Capture($this);
+        $this->_refund = new \Adyen\Service\ResourceModel\Modification\Refund($this);
     }
 
     public function cancel($params)

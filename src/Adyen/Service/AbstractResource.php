@@ -2,7 +2,7 @@
 
 namespace Adyen\Service;
 
-class Resource
+class AbstractResource
 {
 
     protected $_service;
@@ -103,7 +103,7 @@ class Resource
                     $missingFields[] = $requiredField;
                 } else {
                     // check if value is set
-                    if($params[$requiredField] == "") {
+                    if($params[$requiredField] === "") {
                         $missingValues[] = $requiredField;
                     }
                 }
@@ -112,11 +112,13 @@ class Resource
 
         if(!empty($missingFields)) {
             $msg = 'Missing the following fields: ' . implode($missingFields, ',');
+            $this->_service->getClient()->getLogger()->error($msg);
             throw new \Adyen\AdyenException($msg);
         }
 
         if(!empty($missingValues)) {
             $msg = 'Missing the following values: ' . implode($missingValues, ',');
+            $this->_service->getClient()->getLogger()->error($msg);
             throw new \Adyen\AdyenException($msg);
         }
     }
