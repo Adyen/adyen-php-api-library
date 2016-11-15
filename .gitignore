@@ -9,3 +9,6 @@ composer.lock
 
 # ignore Mac OS X file
 .DS_Store
+
+# ignore PhpStorm .idea folder
+.idea
