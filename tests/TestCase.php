@@ -160,7 +160,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
     {
         $settings = $this->_loadConfigIni();
 
-        if(!isset($settings['skinCode']) || $settings['skinCode'] == 'YOUR SKINCODE') {
+        if(!isset($settings['skinCode']) || $settings['skinCode'] == 'YOUR SKIN CODE') {
             return null;
         }
 
