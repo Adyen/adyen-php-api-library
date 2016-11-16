@@ -17,42 +17,116 @@ class TestCase extends \PHPUnit_Framework_TestCase
     }
 
 
-    /**
-     * Mock client
-     *
-     * @return Adyen_Client
-     */
-    protected function createClient()
-    {
-        // load settings from .ini file
-        $settings = $this->_loadConfigIni();
+	/**
+	 * Mock client
+	 *
+	 * @return \Adyen\Client
+	 */
+	protected function createClient()
+	{
+		// load settings from .ini file
+		$settings = $this->_loadConfigIni();
 
-        // validate username, password and MERCHANTAccount
+		// validate username, password and MERCHANTAccount
 
-        if(isset($settings['username']) && isset($settings['password'])) {
+		if(isset($settings['username']) && isset($settings['password'])) {
 
-            if($settings['username'] == "YOUR USERNAME"
-                || $settings['username'] == ""
-                || $settings['password'] == "YOUR PASSWORD"
-                || $settings['password'] == "")
-            {
-                $client = new \Adyen\Client();
-                $client->setApplicationName("My Test Application");
-                $client->setEnvironment(\Adyen\Environment::TEST);
-                $this->_skipTest();
-                return $client;
-            } else {
-                $client = new \Adyen\Client();
-                $client->setApplicationName("My Test Application");
-                $client->setUsername($settings['username']);
-                $client->setPassword($settings['password']);
-                $client->setEnvironment(\Adyen\Environment::TEST);
-                return $client;
-            }
-        } else {
-            $this->_skipTest();
-        }
-    }
+			if($settings['username'] == "YOUR USERNAME"
+				|| $settings['username'] == ""
+				|| $settings['password'] == "YOUR PASSWORD"
+				|| $settings['password'] == "")
+			{
+				$client = new \Adyen\Client();
+				$client->setApplicationName("My Test Application");
+				$client->setEnvironment(\Adyen\Environment::TEST);
+				$this->_skipTest("Skipped the test. Configure your WebService Username and Password in the config");
+				return $client;
+			} else {
+				$client = new \Adyen\Client();
+				$client->setApplicationName("My Test Application");
+				$client->setUsername($settings['username']);
+				$client->setPassword($settings['password']);
+				$client->setEnvironment(\Adyen\Environment::TEST);
+				return $client;
+			}
+		} else {
+			$this->_skipTest("Skipped the test. Configure your WebService Username and Password in the config");
+		}
+	}
+
+	/**
+	 * Mock client for payout
+	 *
+	 * @return \Adyen\Client
+	 */
+	protected function createPayoutClient()
+	{
+		// load settings from .ini file
+		$settings = $this->_loadConfigIni();
+
+		// validate username, password and MERCHANTAccount
+
+		if(isset($settings['storePayoutUsername']) && isset($settings['storePayoutPassword'])) {
+
+			if($settings['storePayoutUsername'] == "YOUR STORE PAYOUT USERNAME"
+				|| $settings['storePayoutUsername'] == ""
+				|| $settings['storePayoutPassword'] == "YOUR STORE PAYOUT PASSWORD"
+				|| $settings['storePayoutPassword'] == "")
+			{
+				$client = new \Adyen\Client();
+				$client->setApplicationName("My Test Application");
+				$client->setEnvironment(\Adyen\Environment::TEST);
+				$this->_skipTest("Skipped the test. Configure your WebService Payout Username and Password in the config");
+				return $client;
+			} else {
+				$client = new \Adyen\Client();
+				$client->setApplicationName("My Test Application");
+				$client->setUsername($settings['storePayoutUsername']);
+				$client->setPassword($settings['storePayoutPassword']);
+				$client->setEnvironment(\Adyen\Environment::TEST);
+				return $client;
+			}
+		} else {
+			$this->_skipTest("Skipped the test. Configure your WebService Payout Username and Password in the config");
+		}
+	}
+
+	/**
+	 * Mock client for reviewing payout
+	 *
+	 * @return \Adyen\Client
+	 */
+	protected function createReviewPayoutClient()
+	{
+		// load settings from .ini file
+		$settings = $this->_loadConfigIni();
+
+		// validate username, password and MERCHANTAccount
+
+		if(isset($settings['reviewPayoutUsername']) && isset($settings['reviewPayoutPassword'])) {
+
+			if($settings['reviewPayoutUsername'] == "YOUR REVIEW PAYOUT USERNAME"
+				|| $settings['reviewPayoutUsername'] == ""
+				|| $settings['reviewPayoutPassword'] == "YOUR REVIEW PAYOUT PASSWORD"
+				|| $settings['reviewPayoutPassword'] == "")
+			{
+				$client = new \Adyen\Client();
+				$client->setApplicationName("My Test Application");
+				$client->setEnvironment(\Adyen\Environment::TEST);
+				$this->_skipTest("Skipped the test. Configure your WebService ReviewPayout Username and Password in the config");
+				return $client;
+			} else {
+				$client = new \Adyen\Client();
+				$client->setApplicationName("My Test Application");
+				$client->setUsername($settings['reviewPayoutUsername']);
+				$client->setPassword($settings['reviewPayoutPassword']);
+				$client->setEnvironment(\Adyen\Environment::TEST);
+				return $client;
+			}
+		} else {
+			$this->_skipTest("Skipped the test. Configure your WebService ReviewPayout Username and Password in the config");
+		}
+	}
 
 
     protected function createClientWithMerchantAccount()
@@ -63,7 +137,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
         $settings = $this->_loadConfigIni();
 
         if(!isset($settings['merchantAccount']) || $settings['merchantAccount'] == 'YOUR MERCHANTACCOUNT') {
-            $this->_skipTest();
+            $this->_skipTest("Skipped the test. Configure your MerchantAccount in the config");
             return null;
         }
 
@@ -86,7 +160,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
     {
         $settings = $this->_loadConfigIni();
 
-        if(!isset($settings['skinCode']) || $settings['merchantAccount'] == 'YOUR SKINCODE') {
+        if(!isset($settings['skinCode']) || $settings['skinCode'] == 'YOUR SKINCODE') {
             return null;
         }
 
@@ -110,10 +184,16 @@ class TestCase extends \PHPUnit_Framework_TestCase
     }
 
 
-    protected function _skipTest()
+    protected function _skipTest($msg)
     {
-        $this->markTestSkipped("Skipped the test. Configure your WebService Username, Password and MerchantAccount in the config");
+        $this->markTestSkipped($msg);
     }
+
+	protected function _needSkinCode() {
+		if (!$this->_skinCode) {
+			$this->_skipTest("Skipped the test. Configure your SkinCode in the config");
+		}
+	}
 
     public function validateApiPermission($e)
     {

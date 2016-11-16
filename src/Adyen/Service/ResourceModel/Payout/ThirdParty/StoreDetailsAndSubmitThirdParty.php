@@ -14,10 +14,7 @@ class StoreDetailsAndSubmitThirdParty extends \Adyen\Service\AbstractResource
 		'amount.value',
 		'bank.iban',
 		'bank.ownerName',
-		'bank.countryCode',
-		'street',
-		'city',
-		'country'
+		'bank.countryCode'
 	);
 
 	protected $_endpoint;
