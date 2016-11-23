@@ -13,9 +13,10 @@ use Adyen\Util\Util;
 
 class DirectoryLookupTest extends TestCase
 {
+
     public function testDirectoryLookup()
     {
-
+	    $this->_needSkinCode();
         // initialize client
         $client = $this->createClient();
 
@@ -72,11 +73,10 @@ class DirectoryLookupTest extends TestCase
         // initialize service
         $service = new Service\DirectoryLookup($client);
 
-        $error = null;
+	    $e = null;
         try {
             $result = $service->directoryLookup("");
         } catch (\Exception $e) {
-            $error = $e;
         }
 
         $this->assertEquals('Adyen\AdyenException', get_class($e));
@@ -87,6 +87,7 @@ class DirectoryLookupTest extends TestCase
 
     public function testDirectoryLookupFailed()
     {
+	    $this->_needSkinCode();
         // initialize client
         $client = $this->createClient();
 
@@ -113,11 +114,10 @@ class DirectoryLookupTest extends TestCase
         // convert the result into an array
         $params = json_decode($json, true);
 
-        $error = null;
+        $e = null;
         try {
             $result = $service->directoryLookup($params);
         } catch (\Exception $e) {
-            $error = $e;
         }
 
         $this->assertEquals('Adyen\AdyenException', get_class($e));
