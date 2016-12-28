@@ -13,6 +13,7 @@ class Payout extends \Adyen\Service
     protected $_declineThirdParty;
     protected $_storeDetailsAndSubmitThirdParty;
     protected $_submitThirdParty;
+    protected $_storeDetail;
 
     public function __construct(\Adyen\Client $client)
     {
@@ -26,7 +27,7 @@ class Payout extends \Adyen\Service
 	    $this->_declineThirdParty = new \Adyen\Service\ResourceModel\Payout\ThirdParty\DeclineThirdParty($this);
 	    $this->_storeDetailsAndSubmitThirdParty = new \Adyen\Service\ResourceModel\Payout\ThirdParty\StoreDetailsAndSubmitThirdParty($this);
 	    $this->_submitThirdParty = new \Adyen\Service\ResourceModel\Payout\ThirdParty\SubmitThirdParty($this);
-
+        $this->_storeDetail = new \Adyen\Service\ResourceModel\Payout\ThirdParty\StoreDetail($this);
     }
 
 	public function confirm($params) {
@@ -61,7 +62,10 @@ class Payout extends \Adyen\Service
 		$result = $this->_submitThirdParty->request($params);
 		return $result;
 	}
-
+	public function storeDetail($params) {
+	    $result = $this->_storeDetail->request($params);
+	    return $result;
+	}
 
 
 }
