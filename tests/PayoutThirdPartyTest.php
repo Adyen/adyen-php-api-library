@@ -134,6 +134,47 @@ class PayoutThirdPartyTest extends TestCase
 		$this->assertEquals('Adyen\AdyenException', get_class($e));
 		$this->assertEquals('Invalid iban', $e->getMessage());
 	}
+	
+	public function testStoreDetailsBankSuccess()
+	{
+	    // initialize client
+	    $client = $this->createPayoutClient();
+	
+	    // initialize service
+	    $service = new Service\Payout($client);
+	
+	    $json = '{
+              "bank": {
+                "iban": "FR14 2004 1010 0505 0001 3M02 606",
+                "ownerName": "John Smith",
+                "countryCode": "FR"
+              },
+              "recurring": {
+                "contract": "PAYOUT"
+              },
+              "shopperEmail": "john.smith@test.com",
+              "shopperReference": "johnsmithuniqueid",
+              "merchantAccount": "' . $this->_merchantAccount .'"
+            }';
+	
+	    $params = json_decode($json, true);
+	
+	    try {
+	        $result = $service->storeDetail($params);
+	    } catch (\Exception $e) {
+	        $this->validateApiPermission($e);
+	    }
+	
+	    // must exists
+	    $this->assertTrue(isset($result['resultCode']));
+	
+	    // Assert
+	    $this->assertEquals('Success', $result['resultCode']);
+	
+	    // return the result so this can be used in other test cases
+	    return $result;
+	
+	}
 
 	public function testStoreDetailAndSubmitPayoutThirdPartySuccess()
 	{
