@@ -8,5 +8,10 @@ php:
   - nightly
 before_script:
   - composer install
-after_script:
-  - travis_retry php vendor/bin/coveralls
+
+script:
+  - mkdir -p build/logs
+  - phpunit --coverage-clover build/logs/clover.xml -c app
+
+after_success:
+    - bin/coveralls -v
