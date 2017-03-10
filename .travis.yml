@@ -8,10 +8,3 @@ php:
   - nightly
 before_script:
   - composer install
-
-script:
-  - mkdir -p build/logs
-  - phpunit --coverage-clover build/logs/clover.xml -c app
-
-after_success:
-    - bin/coveralls -v
