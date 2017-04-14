@@ -14,7 +14,7 @@ class Client
     const ENDPOINT_LIVE                 = "https://pal-live.adyen.com";
     const ENPOINT_TEST_DIRECTORY_LOOKUP = "https://test.adyen.com/hpp/directory.shtml";
     const ENPOINT_LIVE_DIRECTORY_LOOKUP = "https://live.adyen.com/hpp/directory.shtml";
-    const API_VERSION                   = "v18";
+    const API_VERSION                   = "v25";
 
     /**
      * @var Adyen_Config $config
