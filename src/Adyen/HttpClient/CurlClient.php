@@ -184,7 +184,7 @@ class CurlClient implements ClientInterface
      * @param $logger
      * @throws \Adyen\AdyenException
      */
-    private function handleCurlError($url, $errno, $message, $logger)
+    protected function handleCurlError($url, $errno, $message, $logger)
     {
         switch ($errno) {
             case CURLE_OK:
@@ -217,7 +217,7 @@ class CurlClient implements ClientInterface
      * @param $logger
      * @throws \Adyen\AdyenException
      */
-    private function handleResultError($result, $logger)
+    protected function handleResultError($result, $logger)
     {
         $decodeResult = json_decode($result, true);
 
