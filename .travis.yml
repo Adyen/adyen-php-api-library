@@ -10,7 +10,7 @@ php:
   - nightly
 matrix: # to support hhvm tests
   include:
-    - php: "hhvm"
+    - php: hhvm
       dist: trusty
 before_script:
   - composer install
