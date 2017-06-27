@@ -8,9 +8,9 @@ php:
   - 7.1
   - hhvm
   - nightly
-matrix: # to support hhvm tests
+matrix:
   include:
-    - php: hhvm
-      dist: trusty
+  - php: hhvm
+    dist: trusty
 before_script:
   - composer install
