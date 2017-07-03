@@ -6,11 +6,6 @@ php:
   - 5.6
   - 7.0
   - 7.1
-  - hhvm
   - nightly
-matrix: # to support hhvm tests
-  include:
-    - php: "hhvm"
-      dist: trusty
 before_script:
   - composer install
