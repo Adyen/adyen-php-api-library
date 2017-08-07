@@ -116,7 +116,7 @@ class ExceptionTest extends \Adyen\TestCase
         }
 
         // check if exception is correct
-        $this->assertEquals('Adyen\AdyenException', get_class($e));
+        $this->assertEquals('Adyen\ConnectionException', get_class($e));
         $this->assertEquals("Probably your Web Service username and/or password is incorrect\n(Network error [errno 0]: )", $e->getMessage());
         $this->assertEquals('0', $e->getCode());
     }

@@ -184,7 +184,7 @@ class CurlClient implements ClientInterface
      * @param $logger
      * @throws \Adyen\AdyenException
      */
-    private function handleCurlError($url, $errno, $message, $logger)
+    protected function handleCurlError($url, $errno, $message, $logger)
     {
         switch ($errno) {
             case CURLE_OK:
@@ -207,7 +207,7 @@ class CurlClient implements ClientInterface
         }
         $msg .= "\n(Network error [errno $errno]: $message)";
         $logger->error($msg);
-        throw new \Adyen\AdyenException($msg);
+        throw new \Adyen\ConnectionException($msg);
     }
 
     /**
@@ -217,13 +217,13 @@ class CurlClient implements ClientInterface
      * @param $logger
      * @throws \Adyen\AdyenException
      */
-    private function handleResultError($result, $logger)
+    protected function handleResultError($result, $logger)
     {
         $decodeResult = json_decode($result, true);
 
         if(isset($decodeResult['message']) && isset($decodeResult['errorCode'])) {
             $logger->error($decodeResult['errorCode'] . ': ' . $decodeResult['message']);
-            throw new \Adyen\AdyenException($decodeResult['message'], $decodeResult['errorCode']);
+            throw new \Adyen\AdyenException($decodeResult['message'], $decodeResult['errorCode'], null, $decodeResult['status'], $decodeResult['errorType']);
         }
         $logger->error($result);
         throw new \Adyen\AdyenException($result);
