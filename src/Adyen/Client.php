@@ -12,8 +12,8 @@ class Client
     const USER_AGENT_SUFFIX             = "adyen-php-api-library/";
     const ENDPOINT_TEST                 = "https://pal-test.adyen.com";
     const ENDPOINT_LIVE                 = "https://pal-live.adyen.com";
-    const ENPOINT_TEST_DIRECTORY_LOOKUP = "https://test.adyen.com/hpp/directory.shtml";
-    const ENPOINT_LIVE_DIRECTORY_LOOKUP = "https://live.adyen.com/hpp/directory.shtml";
+    const ENPOINT_TEST_DIRECTORY_LOOKUP = "https://test.adyen.com/hpp/directory/v2.shtml";
+    const ENPOINT_LIVE_DIRECTORY_LOOKUP = "https://live.adyen.com/hpp/directory/v2.shtml";
     const API_VERSION                   = "v25";
 
     /**
