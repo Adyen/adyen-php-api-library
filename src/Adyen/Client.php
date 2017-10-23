@@ -8,13 +8,14 @@ use Monolog\Handler\StreamHandler;
 
 class Client
 {
-    const LIB_VERSION                    = "1.3.0";
+    const LIB_VERSION                   = "1.4.0";
     const USER_AGENT_SUFFIX             = "adyen-php-api-library/";
     const ENDPOINT_TEST                 = "https://pal-test.adyen.com";
     const ENDPOINT_LIVE                 = "https://pal-live.adyen.com";
     const ENPOINT_TEST_DIRECTORY_LOOKUP = "https://test.adyen.com/hpp/directory/v2.shtml";
     const ENPOINT_LIVE_DIRECTORY_LOOKUP = "https://live.adyen.com/hpp/directory/v2.shtml";
-    const API_VERSION                   = "v25";
+    const API_VERSION                   = "v30";
+    const API_RECURRING_VERSION         = "v25";
 
     /**
      * @var Adyen_Config $config
@@ -152,6 +153,17 @@ class Client
     {
         return self::API_VERSION;
     }
+
+    /**
+     * Get the version of the Recurring API endpoint
+     *
+     * @return string
+     */
+    public function getApiRecurringVersion()
+    {
+        return self::API_RECURRING_VERSION;
+    }
+
 
     /**
      * @param HttpClient\ClientInterface $httpClient
