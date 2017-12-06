@@ -52,48 +52,6 @@ class PayoutThirdPartyTest extends TestCase
 
 	}
 
-	public function testStoreDetailAndSubmitPayoutThirdPartyBadPaymentMethod()
-	{
-		// initialize client
-		$client = $this->createPayoutClient();
-
-		// initialize service
-		$service = new Service\Payout($client);
-
-		$json = '{
-              "card": {
-                "number": "4111111111111111",
-                "expiryMonth": "08",
-                "expiryYear": "2018",
-                "cvc": "737",
-                "holderName": "John Smith"
-              },
-              "amount": {
-                "value": 1500,
-                "currency": "EUR"
-              },
-              "reference": "payout-test",
-              "recurring": {
-                "contract": "PAYOUT"
-              },
-              "shopperEmail": "john.smith@test.com",
-              "shopperReference": "johnsmithuniqueid",
-              "merchantAccount": "' . $this->_merchantAccount .'"
-            }';
-
-		$params = json_decode($json, true);
-		$e = null;
-		try {
-			$result = $service->storeDetailsAndSubmitThirdParty($params);
-		} catch (\Exception $e) {
-			$this->validateApiPermission($e);
-		}
-
-		// check if exception is correct
-		$this->assertEquals('Adyen\AdyenException', get_class($e));
-		$this->assertEquals('Missing the following fields: bank.iban,bank.ownerName,bank.countryCode', $e->getMessage());
-	}
-
 	public function testStoreDetailAndSubmitPayoutThirdPartyInvalidIban()
 	{
 		// initialize client
