@@ -2,7 +2,9 @@
   "name": "adyen/php-api-library",
   "type": "library",
   "description": "A PHP client library for accessing Adyen APIs",
-  "keywords": ["adyen"],
+  "keywords": [
+    "adyen"
+  ],
   "homepage": "https://github.com/Adyen/adyen-php-api-library",
   "license": "Apache-2.0",
   "require": {
@@ -19,7 +21,12 @@
       "Adyen\\": "src/Adyen/"
     },
     "classmap": [
-        "src/Adyen/Service/"
-      ]
+      "src/Adyen/Service/"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Adyen\\Tests\\": "tests/"
     }
+  }
 }
