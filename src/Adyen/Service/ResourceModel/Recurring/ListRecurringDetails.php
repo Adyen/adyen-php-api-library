@@ -7,9 +7,7 @@ class ListRecurringDetails extends \Adyen\Service\AbstractResource
 
     protected $_requiredFields = array(
         'merchantAccount',
-        'shopperReference',
-        'recurring',
-        'recurring.contract'
+        'shopperReference'
     );
 
     public function __construct($service)
