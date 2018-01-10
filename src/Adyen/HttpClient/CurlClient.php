@@ -120,15 +120,6 @@ class CurlClient implements ClientInterface
         curl_setopt($ch, CURLOPT_POST, count($params));
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
 
-        // set a custom User-Agent
-        $userAgent = $config->get('applicationName') . " " . \Adyen\Client::USER_AGENT_SUFFIX . $client->getLibraryVersion();
-
-        //Set the content type to application/json and use the defined userAgent
-        $headers = array(
-            'Content-Type: application/json',
-            'User-Agent: ' . $userAgent
-        );
-
         // return the result
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
@@ -144,7 +135,6 @@ class CurlClient implements ClientInterface
         } elseif (!$result) {
             $errno = curl_errno($ch);
             $message = curl_error($ch);
-            $httpStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
             curl_close($ch);
             $this->handleCurlError($requestUrl, $errno, $message, $logger);
@@ -179,7 +169,7 @@ class CurlClient implements ClientInterface
      * @param $errno
      * @param $message
      * @param $logger
-     * @throws \Adyen\AdyenException
+     * @throws \Adyen\ConnectionException
      */
     protected function handleCurlError($url, $errno, $message, $logger)
     {
