@@ -120,6 +120,17 @@ class CurlClient implements ClientInterface
         curl_setopt($ch, CURLOPT_POST, count($params));
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
 
+        // set a custom User-Agent
+        $userAgent = $config->get('applicationName') . " " . \Adyen\Client::USER_AGENT_SUFFIX . $client->getLibraryVersion();
+
+        //Set the content type to application/json and use the defined userAgent
+        $headers = array(
+            'Content-Type: application/json',
+            'User-Agent: ' . $userAgent
+        );
+
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
         // return the result
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
