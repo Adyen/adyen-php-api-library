@@ -21,6 +21,8 @@ class CurlClient implements ClientInterface
         $logger = $client->getLogger();
         $username = $config->getUsername();
         $password = $config->getPassword();
+        $xapikey = $config->getXApiKey();
+
         $jsonRequest = json_encode($params);
 
         // log the request
@@ -32,22 +34,33 @@ class CurlClient implements ClientInterface
         //Tell cURL that we want to send a POST request.
         curl_setopt($ch, CURLOPT_POST, 1);
 
-        // set authorisation
-        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-        curl_setopt($ch, CURLOPT_USERPWD, $username . ":" . $password);
-
         //Attach our encoded JSON string to the POST fields.
         curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonRequest);
 
-        // set a custom User-Agent
+        //create a custom User-Agent
         $userAgent = $config->get('applicationName') . " " . \Adyen\Client::USER_AGENT_SUFFIX . $client->getLibraryVersion();
 
-        //Set the content type to application/json and use the defined userAgent
-        $headers = array(
-            'Content-Type: application/json',
-            'User-Agent: ' . $userAgent
-        );
+        // set authorisation credentials according to support & availability
+        if ($service->supportsXAPIKey() && $xapikey != "") {
+            //Set the content type to application/json and use the defined userAgent along with the x-api-key
+            $headers = array(
+                'Content-Type: application/json',
+                'User-Agent: ' . $userAgent,
+                'x-api-key: ' . $xapikey
+            );
+        } else {
+            //Set the basic auth credentials
+            curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+            curl_setopt($ch, CURLOPT_USERPWD, $username . ":" . $password);
 
+            //Set the content type to application/json and use the defined userAgent
+            $headers = array(
+                'Content-Type: application/json',
+                'User-Agent: ' . $userAgent
+            );
+        }
+
+        //Set the headers
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         // return the result
