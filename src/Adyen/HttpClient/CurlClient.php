@@ -5,6 +5,16 @@ namespace Adyen\HttpClient;
 
 class CurlClient implements ClientInterface
 {
+    private $client;
+
+    /**
+     * CurlClient constructor.
+     */
+    public function __construct()
+    {
+        $this->client = curl_init();
+    }
+
     /**
      * Json API request to Adyen
      *
@@ -27,10 +37,11 @@ class CurlClient implements ClientInterface
         $this->logRequest($logger, $requestUrl, $params);
 
         //Initiate cURL.
-        $ch = curl_init($requestUrl);
+        $ch = $this->client;
 
         //Tell cURL that we want to send a POST request.
         curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_URL, $requestUrl);
 
         // set authorisation
         curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
@@ -246,5 +257,14 @@ class CurlClient implements ClientInterface
             $params["card"]["cvc"] = "*";
         }
         $logger->info('JSON Request to Adyen:' . json_encode($params));
+    }
+
+    /**
+     * Destructor
+     */
+    public function __destruct()
+    {
+        curl_close($this->client);
+        $this->client = null;
     }
 }
