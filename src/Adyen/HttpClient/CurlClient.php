@@ -78,11 +78,8 @@ class CurlClient implements ClientInterface
             $errno = curl_errno($ch);
             $message = curl_error($ch);
 
-            curl_close($ch);
             $this->handleCurlError($requestUrl, $errno, $message, $logger);
         }
-
-        curl_close($ch);
 
         // result in array or json
         if ($config->getOutputType() == 'array') {
