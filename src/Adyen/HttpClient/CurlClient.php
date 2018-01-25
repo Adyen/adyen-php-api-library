@@ -129,6 +129,8 @@ class CurlClient implements ClientInterface
             'User-Agent: ' . $userAgent
         );
 
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
         // return the result
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
@@ -144,7 +146,6 @@ class CurlClient implements ClientInterface
         } elseif (!$result) {
             $errno = curl_errno($ch);
             $message = curl_error($ch);
-            $httpStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
             curl_close($ch);
             $this->handleCurlError($requestUrl, $errno, $message, $logger);
@@ -179,7 +180,7 @@ class CurlClient implements ClientInterface
      * @param $errno
      * @param $message
      * @param $logger
-     * @throws \Adyen\AdyenException
+     * @throws \Adyen\ConnectionException
      */
     protected function handleCurlError($url, $errno, $message, $logger)
     {
