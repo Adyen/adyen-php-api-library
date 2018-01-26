@@ -61,12 +61,12 @@ class Config implements ConfigInterface
 
     public function getXApiKey()
     {
-        return isset($this->data['x-api-key']) ? $this->data['x-api-key'] : null;
+        return !empty($this->data['x-api-key']) ? $this->data['x-api-key'] : null;
     }
 
     public function getPOIID()
     {
-        return isset($this->data['POIID']) ? $this->data['POIID'] : null;
+        return !empty($this->data['POIID']) ? $this->data['POIID'] : null;
     }
 
     public function getInputType()
