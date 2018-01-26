@@ -78,9 +78,9 @@ class Client
      *
      * @param $xapikey
      */
-    public function setXApiKey($xapikey)
+    public function setXApiKey($xApiKey)
     {
-        $this->_config->set('x-api-key', $xapikey);
+        $this->_config->set('x-api-key', $xApiKey);
     }
 
     /**

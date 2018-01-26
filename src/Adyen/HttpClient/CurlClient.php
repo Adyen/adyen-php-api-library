@@ -21,7 +21,7 @@ class CurlClient implements ClientInterface
         $logger = $client->getLogger();
         $username = $config->getUsername();
         $password = $config->getPassword();
-        $xapikey = $config->getXApiKey();
+        $xApiKey = $config->getXApiKey();
 
         $jsonRequest = json_encode($params);
 
@@ -40,24 +40,20 @@ class CurlClient implements ClientInterface
         //create a custom User-Agent
         $userAgent = $config->get('applicationName') . " " . \Adyen\Client::USER_AGENT_SUFFIX . $client->getLibraryVersion();
 
+        //Set the content type to application/json and use the defined userAgent
+        $headers = array(
+            'Content-Type: application/json',
+            'User-Agent: ' . $userAgent
+        );
+
         // set authorisation credentials according to support & availability
-        if ($service->supportsXAPIKey() && $xapikey != "") {
+        if ($service->supportsXAPIKey() && !empty($xApiKey)) {
             //Set the content type to application/json and use the defined userAgent along with the x-api-key
-            $headers = array(
-                'Content-Type: application/json',
-                'User-Agent: ' . $userAgent,
-                'x-api-key: ' . $xapikey
-            );
+            $headers["x-api-key"] = $xApiKey;
         } else {
             //Set the basic auth credentials
             curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
             curl_setopt($ch, CURLOPT_USERPWD, $username . ":" . $password);
-
-            //Set the content type to application/json and use the defined userAgent
-            $headers = array(
-                'Content-Type: application/json',
-                'User-Agent: ' . $userAgent
-            );
         }
 
         //Set the headers

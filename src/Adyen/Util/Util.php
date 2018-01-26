@@ -32,6 +32,14 @@ class Util
         return $merchantSig;
     }
 
+    /**
+     * @param $POIID
+     * @param $amountValue
+     * @param $amountCurrency
+     * @param $merchantReference
+     * @param $transactionType
+     * @return string
+     */
     public static function buildPosPaymentRequest(
         $POIID,
         $amountValue,
