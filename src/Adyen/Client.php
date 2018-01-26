@@ -104,6 +104,16 @@ class Client
         $this->_config->set('endpoint', $url);
     }
 
+    /**
+     * Set directory lookup URL
+     *
+     * @param $url
+     */
+    public function setDirectoryLookupUrl($url)
+    {
+        $this->_config->set('endpointDirectorylookup', $url);
+    }
+
     public function setMerchantAccount($merchantAccount)
     {
         $this->_config->set('merchantAccount', $merchantAccount);
