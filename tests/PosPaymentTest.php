@@ -17,7 +17,7 @@ class PosPaymentTest extends TestCase
 
         //Construct request
         $transactionType = \Adyen\TransactionType::GOODS_SERVICES;
-        $json =  Util::buildPosPaymentRequest($this->getPOIID(), 1491, "EUR", "POSauth", $transactionType);
+        $json =  Util::buildPosPaymentRequest($this->getPOIID(), 14.91, "EUR", "POSauth", $transactionType);
         $params = json_decode($json, true); //Create associative array for passing along
         $serviceID =  $service->getServiceId($params);
 
@@ -42,7 +42,7 @@ class PosPaymentTest extends TestCase
 
         //Construct request
         $transactionType = \Adyen\TransactionType::GOODS_SERVICES;
-        $json =  Util::buildPosPaymentRequest($this->getPOIID(), 149, "EUR", "POSdeclined", $transactionType);
+        $json =  Util::buildPosPaymentRequest($this->getPOIID(), 1.49, "EUR", "POSdeclined", $transactionType);
         $params = json_decode($json, true); //Create associative array for passing along
         $serviceID =  $service->getServiceId($params);
 
@@ -67,7 +67,7 @@ class PosPaymentTest extends TestCase
 
         //Construct request
         $transactionType = \Adyen\TransactionType::REFUND;
-        $json =  Util::buildPosPaymentRequest($this->getPOIID(), 1491, "EUR", "POSrefund", $transactionType);
+        $json =  Util::buildPosPaymentRequest($this->getPOIID(), 14.91, "EUR", "POSrefund", $transactionType);
         $params = json_decode($json, true); //Create associative array for passing along
 
         $serviceID =  $service->getServiceId($params);

@@ -43,8 +43,6 @@ class Util
         $serviceID = date("dHis");
         $timeStamper = date("Y-m-d") . "T" . date("H:i:s+00:00");
 
-        //check for existing '.'
-        $_amountValue = self::fromMinorUnits($amountValue, $amountCurrency);
 
         //Convert requested type
         switch ($transactionType) {
@@ -82,7 +80,7 @@ class Util
                             "PaymentTransaction": {
                                 "AmountsReq": {
                                     "Currency": "' . $amountCurrency . '",
-                                    "RequestedAmount": ' . $_amountValue . '
+                                    "RequestedAmount": ' . $amountValue . '
                                 }
                             },
                             "PaymentData": {
@@ -93,59 +91,5 @@ class Util
                 }
             ';
         return $result;
-    }
-
-    public static function getDecimalDigits($currency)
-    {
-        switch ($currency) {
-            case "JPY":
-            case "IDR":
-            case "KRW":
-            case "BYR":
-            case "VND":
-            case "CVE":
-            case "DJF":
-            case "GNF":
-            case "PYG":
-            case "RWF":
-            case "UGX":
-            case "VUV":
-            case "XAF":
-            case "XOF":
-            case "XPF":
-            case "GHC":
-            case "KMF":
-                $format = 0;
-                break;
-            case "MRO":
-                $format = 1;
-                break;
-            case "BHD":
-            case "JOD":
-            case "KWD":
-            case "OMR":
-            case "LYD":
-            case "TND":
-                $format = 3;
-                break;
-            default:
-                $format = 2;
-                break;
-        }
-        return $format;
-    }
-
-    public static function toMinorUnits($amount, $currency)
-    {
-        $format = self::getDecimalDigits($currency);
-
-        return (int)number_format($amount, $format, '', '');
-    }
-
-    public static function fromMinorUnits($amount, $currency)
-    {
-        $format = self::getDecimalDigits($currency);
-
-        return number_format($amount / pow(10, $format), $format, '.', '');
     }
 }
