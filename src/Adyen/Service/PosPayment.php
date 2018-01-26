@@ -31,17 +31,6 @@ class PosPayment extends \Adyen\Service
         return $result;
     }
 
-    private function _getFormattedAmountValue($amountValue)
-    {   //Terminal API amountValue requires 42.42 format
-        if (strlen($amountValue) > 2) {
-            return substr($amountValue, 0, strlen($amountValue) - 2) . '.' . substr($amountValue, strlen($amountValue) - 2);
-        } elseif (strlen($amountValue) > 1) {
-            return '0.' . $amountValue;
-        } else {
-            return '0.0' . $amountValue;
-        }
-    }
-
     public function getServiceId($request)
     {
         if (isset($request['SaleToPOIRequest']['MessageHeader']['ServiceID'])) {
@@ -50,62 +39,4 @@ class PosPayment extends \Adyen\Service
         return null;
     }
 
-    public function getPaymentRequest($POIID, $amountValue, $amountCurrency, $merchantReference, $transactionType)
-    {
-        //Set specific dynamic parameters
-        $serviceID = date("dHis");
-        $timeStamper = date("Y-m-d") . "T" . date("H:i:s+00:00");
-
-        //check for existing '.'
-        $_amountValue = $this->_getFormattedAmountValue($amountValue);
-
-        //Convert requested type
-        switch ($transactionType) {
-            case "GOODS_SERVICES":
-                $this->_txType = 'Normal';
-                break;
-            case "REFUND":
-                $this->_txType = 'Refund';
-                break;
-
-            default:
-                $this->_txType = $transactionType;
-        }
-
-        //Provide json as result
-        $result = '{
-                    "SaleToPOIRequest": {
-                        "MessageHeader": {
-                            "MessageType": "Request",
-                            "MessageClass": "Service",
-                            "MessageCategory": "Payment",
-                            "SaleID": "MagentoCloudEMV",
-                            "POIID": "' . $POIID . '",
-                            "ProtocolVersion": "3.0",
-                            "ServiceID": "' . $serviceID . '"
-                        },
-                        "PaymentRequest": {
-                            "SaleData": {
-                                "SaleTransactionID": {
-                                    "TransactionID": "' . $merchantReference . '",
-                                    "TimeStamp": "' . $timeStamper . '"
-                                },
-                                "TokenRequestedType": "Customer",
-                                "SaleReferenceID": "SalesRefABC"
-                            },
-                            "PaymentTransaction": {
-                                "AmountsReq": {
-                                    "Currency": "' . $amountCurrency . '",
-                                    "RequestedAmount": ' . $_amountValue . '
-                                }
-                            },
-                            "PaymentData": {
-                                "PaymentType": "' . $this->_txType . '"
-                            }
-                        }
-                    }
-                }
-            ';
-        return $result;
-    }
 }
