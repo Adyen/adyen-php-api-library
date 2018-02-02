@@ -7,7 +7,6 @@ class PosPayment extends \Adyen\Service
 
     protected $_runTenderSync;
     protected $_runTenderAsync;
-    protected $_supportsXAPIKey = true;
     protected $_txType;
 
     public function __construct(\Adyen\Client $client)
@@ -16,7 +15,7 @@ class PosPayment extends \Adyen\Service
 
         $this->_runTenderSync = new \Adyen\Service\ResourceModel\Payment\TerminalCloudAPI($this, false);
         $this->_runTenderAsync = new \Adyen\Service\ResourceModel\Payment\TerminalCloudAPI($this, true);
-
+        $this->_supportsXAPIKey = true;
     }
 
     public function runTenderSync($params)

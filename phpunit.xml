@@ -2,7 +2,6 @@
     <testsuites>
         <testsuite name="Adyen PHP Test Suite">
             <directory suffix="Test.php">tests</directory>
-            <exclude>tests/PosPaymentTest.php</exclude>
         </testsuite>
     </testsuites>
     <filter>

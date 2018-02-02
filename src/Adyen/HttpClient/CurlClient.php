@@ -49,8 +49,12 @@ class CurlClient implements ClientInterface
         // set authorisation credentials according to support & availability
         if ($service->supportsXAPIKey() && !empty($xApiKey)) {
             //Set the content type to application/json and use the defined userAgent along with the x-api-key
-            $headers[] = 'x-api-key: '. $xApiKey;
+            $headers[] = 'x-api-key: ' . $xApiKey;
+        } elseif ($service->supportsXAPIKey() && empty($xApiKey)) {
+            $msg = "Please insert a valid Checkout API Key in your test.ini file";
+            throw new \Adyen\AdyenException($msg);
         } else {
+
             //Set the basic auth credentials
             curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
             curl_setopt($ch, CURLOPT_USERPWD, $username . ":" . $password);
