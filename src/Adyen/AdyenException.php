@@ -22,7 +22,7 @@ class AdyenException extends Exception
     {
         $this->_status = $status;
         $this->_errorType = $errorType;
-        parent::__construct($message, $code, $previous);
+        parent::__construct($message, (int) $code, $previous);
     }
 
     /**
