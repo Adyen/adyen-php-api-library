@@ -5,7 +5,6 @@ namespace Adyen\HttpClient;
 
 class CurlClient implements ClientInterface
 {
-
     /**
      * Json API request to Adyen
      *
@@ -17,17 +16,15 @@ class CurlClient implements ClientInterface
      */
     public function requestJson(\Adyen\Service $service, $requestUrl, $params)
     {
-        $client =  $service->getClient();
+        $client = $service->getClient();
         $config = $client->getConfig();
         $logger = $client->getLogger();
         $username = $config->getUsername();
         $password = $config->getPassword();
         $jsonRequest = json_encode($params);
 
-        // log the requestUr, params and json request
-        $logger->info("Request url to Adyen: " . $requestUrl);
-        $logger->info('Params in request to Adyen:' . print_r($params, 1));
-        $logger->info('JSON Request to Adyen:' . $jsonRequest);
+        // log the request
+        $this->logRequest($logger, $requestUrl, $params);
 
         //Initiate cURL.
         $ch = curl_init($requestUrl);
@@ -37,7 +34,7 @@ class CurlClient implements ClientInterface
 
         // set authorisation
         curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-        curl_setopt($ch, CURLOPT_USERPWD, $username.":".$password);
+        curl_setopt($ch, CURLOPT_USERPWD, $username . ":" . $password);
 
         //Attach our encoded JSON string to the POST fields.
         curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonRequest);
@@ -66,7 +63,7 @@ class CurlClient implements ClientInterface
         // result not 200 throw error
         if ($httpStatus != 200 && $result) {
             $this->handleResultError($result, $logger);
-        } elseif(!$result) {
+        } elseif (!$result) {
             $errno = curl_errno($ch);
             $message = curl_error($ch);
 
@@ -77,7 +74,7 @@ class CurlClient implements ClientInterface
         curl_close($ch);
 
         // result in array or json
-        if($config->getOutputType() == 'array') {
+        if ($config->getOutputType() == 'array') {
 
             // transform to PHP Array
             $result = json_decode($result, true);
@@ -101,7 +98,7 @@ class CurlClient implements ClientInterface
      */
     public function requestPost(\Adyen\Service $service, $requestUrl, $params)
     {
-        $client =  $service->getClient();
+        $client = $service->getClient();
         $config = $client->getConfig();
         $logger = $client->getLogger();
         $username = $config->getUsername();
@@ -119,7 +116,7 @@ class CurlClient implements ClientInterface
 
         // set authorisation
         curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-        curl_setopt($ch, CURLOPT_USERPWD, $username.":".$password);
+        curl_setopt($ch, CURLOPT_USERPWD, $username . ":" . $password);
         curl_setopt($ch, CURLOPT_POST, count($params));
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
 
@@ -132,8 +129,10 @@ class CurlClient implements ClientInterface
             'User-Agent: ' . $userAgent
         );
 
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
         // return the result
-        curl_setopt($ch,  CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
         //Execute the request
         $result = curl_exec($ch);
@@ -144,10 +143,9 @@ class CurlClient implements ClientInterface
 
         if ($httpStatus != 200 && $result) {
             $this->handleResultError($result, $logger);
-        } elseif(!$result) {
+        } elseif (!$result) {
             $errno = curl_errno($ch);
             $message = curl_error($ch);
-            $httpStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
             curl_close($ch);
             $this->handleCurlError($requestUrl, $errno, $message, $logger);
@@ -156,11 +154,11 @@ class CurlClient implements ClientInterface
         curl_close($ch);
 
         // result in array or json
-        if($config->getOutputType() == 'array') {
+        if ($config->getOutputType() == 'array') {
             // transform to PHP Array
             $result = json_decode($result, true);
 
-            if(!$result) {
+            if (!$result) {
                 $msg = "The result is empty, looks like your request is invalid";
                 $logger->error($msg);
                 throw new \Adyen\AdyenException($msg);
@@ -182,7 +180,7 @@ class CurlClient implements ClientInterface
      * @param $errno
      * @param $message
      * @param $logger
-     * @throws \Adyen\AdyenException
+     * @throws \Adyen\ConnectionException
      */
     protected function handleCurlError($url, $errno, $message, $logger)
     {
@@ -221,12 +219,33 @@ class CurlClient implements ClientInterface
     {
         $decodeResult = json_decode($result, true);
 
-        if(isset($decodeResult['message']) && isset($decodeResult['errorCode'])) {
+        if (isset($decodeResult['message']) && isset($decodeResult['errorCode'])) {
             $logger->error($decodeResult['errorCode'] . ': ' . $decodeResult['message']);
-            throw new \Adyen\AdyenException($decodeResult['message'], $decodeResult['errorCode'], null, $decodeResult['status'], $decodeResult['errorType']);
+            throw new \Adyen\AdyenException($decodeResult['message'], $decodeResult['errorCode'], null,
+                $decodeResult['status'], $decodeResult['errorType']);
         }
         $logger->error($result);
         throw new \Adyen\AdyenException($result);
     }
 
+    /**
+     * Logs the API request, removing sensitive data
+     *
+     * @param \Psr\Log\LoggerInterface $logger
+     * @param $requestUrl
+     * @param $params
+     */
+    private function logRequest(\Psr\Log\LoggerInterface $logger, $requestUrl, $params)
+    {
+        // log the requestUr, params and json request
+        $logger->info("Request url to Adyen: " . $requestUrl);
+        if (isset($params["additionalData"]) && isset($params["additionalData"]["card.encrypted.json"])) {
+            $params["additionalData"]["card.encrypted.json"] = "*";
+        }
+        if (isset($params["card"]) && isset($params["card"]["number"])) {
+            $params["card"]["number"] = "*";
+            $params["card"]["cvc"] = "*";
+        }
+        $logger->info('JSON Request to Adyen:' . json_encode($params));
+    }
 }

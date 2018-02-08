@@ -4,12 +4,16 @@ namespace Adyen\Util;
 
 class Util
 {
-
     public static function calculateSha256Signature($hmacKey, $params)
     {
         // validate if hmacKey is provided
-        if ($hmacKey == "") {
+        if (empty($hmacKey)) {
             throw new \Adyen\AdyenException("You did not provide a HMAC key");
+        }
+
+        // validate if hmacKey contains only hexadecimal chars to be packed with H*
+        if (!ctype_xdigit($hmacKey)) {
+            throw new \Adyen\AdyenException("Invalid HMAC key: $hmacKey");
         }
 
         if (empty($params)) {

@@ -11,10 +11,7 @@ class StoreDetailsAndSubmitThirdParty extends \Adyen\Service\AbstractResource
 		'reference',
 		'recurring.contract',
 		'amount.currency',
-		'amount.value',
-		'bank.iban',
-		'bank.ownerName',
-		'bank.countryCode'
+		'amount.value'
 	);
 
 	protected $_endpoint;
