@@ -79,12 +79,12 @@ class ModificationTest extends TestCase
         // initialize service
         $service = new Service\Modification($client);
 
-        $params = [
+        $params = array(
             "merchantAccount" => $this->_merchantAccount,
-            "modificationAmount" => ['currency' => 'EUR', 'value' => '750'],
+            "modificationAmount" => array('currency' => 'EUR', 'value' => '750'),
             "reference" => $pspReference.'_adjustAuthorisation',
             "originalReference" => $pspReference
-        ];
+        );
         
         $result = $service->adjustAuthorisation($params);
 
@@ -107,12 +107,12 @@ class ModificationTest extends TestCase
         // initialize service
         $service = new Service\Modification($client);
 
-        $params = [
+        $params = array(
             "merchantAccount" => $this->_merchantAccount,
-            "modificationAmount" => ['currency' => 'EUR', 'value' => '1600'],
+            "modificationAmount" => array('currency' => 'EUR', 'value' => '1600'),
             "reference" => $pspReference.'_adjustAuthorisation',
             "originalReference" => $pspReference
-        ];
+        );
         
         $result = $service->adjustAuthorisation($params);
 
