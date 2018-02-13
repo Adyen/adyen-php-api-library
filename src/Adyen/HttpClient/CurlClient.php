@@ -125,7 +125,7 @@ class CurlClient implements ClientInterface
 
         //Set the content type to application/json and use the defined userAgent
         $headers = array(
-            'Content-Type: application/json',
+            'Content-Type: application/x-www-form-urlencoded',
             'User-Agent: ' . $userAgent
         );
 
