@@ -9,6 +9,7 @@ class Modification extends \Adyen\Service
     protected $_cancelOrRefund;
     protected $_capture;
     protected $_refund;
+    protected $_adjustAuthorisation;
 
     public function __construct(\Adyen\Client $client)
     {
@@ -18,6 +19,7 @@ class Modification extends \Adyen\Service
         $this->_cancelOrRefund = new \Adyen\Service\ResourceModel\Modification\CancelOrRefund($this);
         $this->_capture = new \Adyen\Service\ResourceModel\Modification\Capture($this);
         $this->_refund = new \Adyen\Service\ResourceModel\Modification\Refund($this);
+        $this->_adjustAuthorisation = new \Adyen\Service\ResourceModel\Modification\AdjustAuthorisation($this);
     }
 
     public function cancel($params)
@@ -44,4 +46,9 @@ class Modification extends \Adyen\Service
         return $result;
     }
 
+    public function adjustAuthorisation($params)
+    {
+        $result =  $this->_adjustAuthorisation->request($params);
+        return $result;
+    }
 }
