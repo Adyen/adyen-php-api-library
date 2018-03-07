@@ -14,6 +14,8 @@ class Client
     const ENDPOINT_LIVE                 = "https://pal-live.adyen.com";
     const ENPOINT_TEST_DIRECTORY_LOOKUP = "https://test.adyen.com/hpp/directory/v2.shtml";
     const ENPOINT_LIVE_DIRECTORY_LOOKUP = "https://live.adyen.com/hpp/directory/v2.shtml";
+    const ENPOINT_TEST_SKIP_DETAILS     = "https://test.adyen.com/hpp/skipDetails.shtml";
+    const ENPOINT_LIVE_SKIP_DETAILS     = "https://live.adyen.com/hpp/skipDetails.shtml";
     const API_VERSION                   = "v30";
     const API_RECURRING_VERSION         = "v25";
 
@@ -83,10 +85,12 @@ class Client
             $this->_config->set('environment', \Adyen\Environment::TEST);
             $this->_config->set('endpoint', self::ENDPOINT_TEST);
             $this->_config->set('endpointDirectorylookup', self::ENPOINT_TEST_DIRECTORY_LOOKUP);
+            $this->_config->set('endpointSkipDetails', self::ENPOINT_TEST_SKIP_DETAILS);
         } elseif($environment == \Adyen\Environment::LIVE) {
             $this->_config->set('environment', \Adyen\Environment::LIVE);
             $this->_config->set('endpoint', self::ENDPOINT_LIVE);
             $this->_config->set('endpointDirectorylookup', self::ENPOINT_LIVE_DIRECTORY_LOOKUP);
+            $this->_config->set('endpointSkipDetails', self::ENPOINT_LIVE_SKIP_DETAILS);
         } else {
             // environment does not exists
             $msg = "This environment does not exists use " . \Adyen\Environment::TEST . ' or ' . \Adyen\Environment::LIVE;
@@ -112,6 +116,26 @@ class Client
     public function setDirectoryLookupUrl($url)
     {
         $this->_config->set('endpointDirectorylookup', $url);
+    }
+
+    /**
+     * Set SkipDetails URL
+     *
+     * @param $url
+     */
+    public function setSkipDetailsUrl($url)
+    {
+        $this->_config->set('endpointSkipDetails', $url);
+    }
+
+    /**
+     * Get SkipDetails URL
+     *
+     * @return  $url
+     */
+    public function getSkipDetailsUrl()
+    {
+        return $this->_config->get('endpointSkipDetails');
     }
 
     public function setMerchantAccount($merchantAccount)
