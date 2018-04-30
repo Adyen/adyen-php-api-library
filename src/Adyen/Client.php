@@ -16,6 +16,8 @@ class Client
     const ENPOINT_LIVE_DIRECTORY_LOOKUP = "https://live.adyen.com/hpp/directory/v2.shtml";
     const API_VERSION                   = "v30";
     const API_RECURRING_VERSION         = "v25";
+    const TERMINAL_CLOUD_TEST           = "https://terminal-api-test.adyen.com";
+    const TERMINAL_CLOUD_LIVE           = "https://terminal-api-live.adyen.com";
 
     /**
      * @var Adyen_Config $config
@@ -72,6 +74,16 @@ class Client
     }
 
     /**
+     * Set x-api-key for Web Service Client
+     *
+     * @param $xapikey
+     */
+    public function setXApiKey($xApiKey)
+    {
+        $this->_config->set('x-api-key', $xApiKey);
+    }
+
+    /**
      * Set environment to connect to test or live platform of Adyen
      *
      * @param $environment
@@ -83,10 +95,12 @@ class Client
             $this->_config->set('environment', \Adyen\Environment::TEST);
             $this->_config->set('endpoint', self::ENDPOINT_TEST);
             $this->_config->set('endpointDirectorylookup', self::ENPOINT_TEST_DIRECTORY_LOOKUP);
+            $this->_config->set('endpointTerminalCloud', self::TERMINAL_CLOUD_TEST);
         } elseif($environment == \Adyen\Environment::LIVE) {
             $this->_config->set('environment', \Adyen\Environment::LIVE);
             $this->_config->set('endpoint', self::ENDPOINT_LIVE);
             $this->_config->set('endpointDirectorylookup', self::ENPOINT_LIVE_DIRECTORY_LOOKUP);
+            $this->_config->set('endpointTerminalCloud', self::TERMINAL_CLOUD_LIVE);
         } else {
             // environment does not exists
             $msg = "This environment does not exists use " . \Adyen\Environment::TEST . ' or ' . \Adyen\Environment::LIVE;

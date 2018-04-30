@@ -11,9 +11,11 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
     public function __construct()
     {
+
         $this->_merchantAccount = $this->getMerchantAccount();
         $this->_skinCode = $this->getSkinCode();
         $this->_hmacSignature = $this->getHmacSignature();
+
     }
 
 
@@ -128,6 +130,23 @@ class TestCase extends \PHPUnit_Framework_TestCase
 		}
 	}
 
+	protected function createTerminalCloudAPIClient()
+    {
+        // load settings from .ini file
+        $settings = $this->_loadConfigIni();
+
+        if(!isset($settings['x-api-key']) || !isset($settings['POIID']) || $settings['x-api-key'] == 'YOUR X-API KEY' || $settings['POIID'] == 'UNIQUETERMINALID'){
+            $this->_skipTest("Skipped the test. Configure your x-api-key and POIID in the config");
+        }else{
+
+            $client = new \Adyen\Client();
+            $client->setApplicationName("My Test Terminal API App");
+            $client->setEnvironment(\Adyen\Environment::TEST);
+            $client->setXApiKey($settings['x-api-key']);
+            return $client;
+
+        }
+    }
 
     protected function createClientWithMerchantAccount()
     {
@@ -176,6 +195,17 @@ class TestCase extends \PHPUnit_Framework_TestCase
         }
 
         return $settings['hmacSignature'];
+    }
+
+    protected function getPOIID()
+    {
+        $settings = $this->_loadConfigIni();
+
+        if(!isset($settings['POIID']) || $settings['POIID'] == 'MODEL-SERIALNUMBER') {
+            return null;
+        }
+
+        return $settings['POIID'];
     }
 
     protected function _loadConfigIni()

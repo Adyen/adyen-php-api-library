@@ -59,6 +59,26 @@ class Config implements ConfigInterface
         return isset($this->data['password']) ? $this->data['password'] : null;
     }
 
+    /**
+     * Get the Checkout API Key from the Adyen Customer Area
+     *
+     * @return mixed|null
+     */
+    public function getXApiKey()
+    {
+        return !empty($this->data['x-api-key']) ? $this->data['x-api-key'] : null;
+    }
+
+    /**
+     * Get the Point of Interest Terminal ID, used for POS Transactions with Terminal API
+     *
+     * @return mixed|null
+     */
+    public function getPOIID()
+    {
+        return !empty($this->data['POIID']) ? $this->data['POIID'] : null;
+    }
+
     public function getInputType()
     {
         if(isset($this->data['inputType']) && in_array($this->data['inputType'], $this->allowedInput)) {
