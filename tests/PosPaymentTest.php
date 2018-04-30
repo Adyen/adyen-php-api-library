@@ -62,7 +62,6 @@ class PosPaymentTest extends TestCase
             $this->validateApiPermission($e);
         }
 
-        print $result;
         $this->assertTrue(isset($result['SaleToPOIResponse']));
         $this->assertEquals('Success', $result['SaleToPOIResponse']['PaymentResponse']['Response']['Result']);
 
