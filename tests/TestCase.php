@@ -12,8 +12,6 @@ class TestCase extends \PHPUnit_Framework_TestCase
     public function __construct()
     {
 
-        date_default_timezone_set('Europe/Amsterdam');
-
         $this->_merchantAccount = $this->getMerchantAccount();
         $this->_skinCode = $this->getSkinCode();
         $this->_hmacSignature = $this->getHmacSignature();

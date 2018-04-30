@@ -16,12 +16,45 @@ class PosPaymentTest extends TestCase
         $service = new Service\PosPayment($client);
 
         //Construct request
-        $transactionType = \Adyen\TransactionType::GOODS_SERVICES;
-        $json =  Util::buildPosPaymentRequest($this->getPOIID(), 14.91, "EUR", "POSauth", $transactionType);
-        $params = json_decode($json, true); //Create associative array for passing along
+        $transactionType = \Adyen\TransactionType::NORMAL;
+        $serviceID = date("dHis");
+        $timeStamper = date("Y-m-d") . "T" . date("H:i:s+00:00");
 
-        // Needed for async calls
-        $serviceID =  $service->getServiceId($params);
+        $json = '{
+                    "SaleToPOIRequest": {
+                        "MessageHeader": {
+                            "MessageType": "Request",
+                            "MessageClass": "Service",
+                            "MessageCategory": "Payment",
+                            "SaleID": "PosTestLibrary",
+                            "POIID": "' . $this->getPOIID() . '",
+                            "ProtocolVersion": "3.0",
+                            "ServiceID": "' . $serviceID . '"
+                        },
+                        "PaymentRequest": {
+                            "SaleData": {
+                                "SaleTransactionID": {
+                                    "TransactionID": "POSauth",
+                                    "TimeStamp": "' . $timeStamper . '"
+                                },
+                                "TokenRequestedType": "Customer",
+                                "SaleReferenceID": "SalesRefABC"
+                            },
+                            "PaymentTransaction": {
+                                "AmountsReq": {
+                                    "Currency": "EUR",
+                                    "RequestedAmount": ' . 14.91 . '
+                                }
+                            },
+                            "PaymentData": {
+                                "PaymentType": "' . $transactionType . '"
+                            }
+                        }
+                    }
+                }
+            ';
+
+        $params = json_decode($json, true); //Create associative array for passing along
 
         try {
             $result = $service->runTenderSync($params);
@@ -29,6 +62,7 @@ class PosPaymentTest extends TestCase
             $this->validateApiPermission($e);
         }
 
+        print $result;
         $this->assertTrue(isset($result['SaleToPOIResponse']));
         $this->assertEquals('Success', $result['SaleToPOIResponse']['PaymentResponse']['Response']['Result']);
 
@@ -43,12 +77,45 @@ class PosPaymentTest extends TestCase
         $service = new Service\PosPayment($client);
 
         //Construct request
-        $transactionType = \Adyen\TransactionType::GOODS_SERVICES;
-        $json =  Util::buildPosPaymentRequest($this->getPOIID(), 1.49, "EUR", "POSdeclined", $transactionType);
-        $params = json_decode($json, true); //Create associative array for passing along
+        $transactionType = \Adyen\TransactionType::NORMAL;
+        $serviceID = date("dHis");
+        $timeStamper = date("Y-m-d") . "T" . date("H:i:s+00:00");
 
-        // Needed for async calls
-        $serviceID =  $service->getServiceId($params);
+        $json = '{
+                    "SaleToPOIRequest": {
+                        "MessageHeader": {
+                            "MessageType": "Request",
+                            "MessageClass": "Service",
+                            "MessageCategory": "Payment",
+                            "SaleID": "PosTestLibrary",
+                            "POIID": "' . $this->getPOIID() . '",
+                            "ProtocolVersion": "3.0",
+                            "ServiceID": "' . $serviceID . '"
+                        },
+                        "PaymentRequest": {
+                            "SaleData": {
+                                "SaleTransactionID": {
+                                    "TransactionID": "POSdeclined",
+                                    "TimeStamp": "' . $timeStamper . '"
+                                },
+                                "TokenRequestedType": "Customer",
+                                "SaleReferenceID": "SalesRefABC"
+                            },
+                            "PaymentTransaction": {
+                                "AmountsReq": {
+                                    "Currency": "EUR",
+                                    "RequestedAmount": ' . 1.49 . '
+                                }
+                            },
+                            "PaymentData": {
+                                "PaymentType": "' . $transactionType . '"
+                            }
+                        }
+                    }
+                }
+            ';
+
+        $params = json_decode($json, true); //Create associative array for passing along
 
         try {
             $result = $service->runTenderSync($params);
@@ -71,11 +138,44 @@ class PosPaymentTest extends TestCase
 
         //Construct request
         $transactionType = \Adyen\TransactionType::REFUND;
-        $json =  Util::buildPosPaymentRequest($this->getPOIID(), 14.91, "EUR", "POSrefund", $transactionType);
-        $params = json_decode($json, true); //Create associative array for passing along
+        $serviceID = date("dHis");
+        $timeStamper = date("Y-m-d") . "T" . date("H:i:s+00:00");
 
-        // Needed for async calls
-        $serviceID =  $service->getServiceId($params);
+        $json = '{
+                    "SaleToPOIRequest": {
+                        "MessageHeader": {
+                            "MessageType": "Request",
+                            "MessageClass": "Service",
+                            "MessageCategory": "Payment",
+                            "SaleID": "PosTestLibrary",
+                            "POIID": "' . $this->getPOIID() . '",
+                            "ProtocolVersion": "3.0",
+                            "ServiceID": "' . $serviceID . '"
+                        },
+                        "PaymentRequest": {
+                            "SaleData": {
+                                "SaleTransactionID": {
+                                    "TransactionID": "POSrefund",
+                                    "TimeStamp": "' . $timeStamper . '"
+                                },
+                                "TokenRequestedType": "Customer",
+                                "SaleReferenceID": "SalesRefABC"
+                            },
+                            "PaymentTransaction": {
+                                "AmountsReq": {
+                                    "Currency": "EUR",
+                                    "RequestedAmount": ' . 14.91 . '
+                                }
+                            },
+                            "PaymentData": {
+                                "PaymentType": "' . $transactionType . '"
+                            }
+                        }
+                    }
+                }
+            ';
+
+        $params = json_decode($json, true); //Create associative array for passing along
 
         try {
             $result = $service->runTenderSync($params);

@@ -6,7 +6,7 @@ namespace Adyen;
 
 class TransactionType
 {
-    const GOODS_SERVICES = 'Normal';
+    const NORMAL = 'Normal';
     const REFUND = 'Refund';
 
 }
