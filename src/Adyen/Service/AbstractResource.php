@@ -38,7 +38,7 @@ class AbstractResource
         // validate the request parameters
         $this->_validate($params);
 
-        $curlClient = $this->_service->getClient()->getHttpClient();
+        $curlClient = $this->_service->getClient()->getHttpClient();        //mockthis
         return $curlClient->requestJson($this->_service, $this->_endpoint, $params);
     }
 

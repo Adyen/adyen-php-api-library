@@ -67,8 +67,7 @@ class CurlClient implements ClientInterface
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
         //Execute the request
-        $result = curl_exec($ch);
-        $httpStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        list($result, $httpStatus) = $this->curlRequest($ch);
 
         // log the raw response
         $logger->info("JSON Response is: " . $result);
@@ -231,7 +230,6 @@ class CurlClient implements ClientInterface
     protected function handleResultError($result, $logger)
     {
         $decodeResult = json_decode($result, true);
-
         if (isset($decodeResult['message']) && isset($decodeResult['errorCode'])) {
             $logger->error($decodeResult['errorCode'] . ': ' . $decodeResult['message']);
             throw new \Adyen\AdyenException($decodeResult['message'], $decodeResult['errorCode'], null,
@@ -260,5 +258,12 @@ class CurlClient implements ClientInterface
             $params["card"]["cvc"] = "*";
         }
         $logger->info('JSON Request to Adyen:' . json_encode($params));
+    }
+
+    protected function curlRequest($ch)
+    {
+        $result = curl_exec($ch);
+        $httpStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        return array($result, $httpStatus);
     }
 }

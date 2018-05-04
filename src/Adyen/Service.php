@@ -14,7 +14,7 @@ class Service
         // validate if client has all the configuration we need
         if(!$client->getConfig()->get('environment')) {
             // throw exception
-            $msg = "The Client does not have a corect environment. use " . \Adyen\Environment::TEST . ' or ' . \Adyen\Environment::LIVE;
+            $msg = "The Client does not have a correct environment, use " . \Adyen\Environment::TEST . ' or ' . \Adyen\Environment::LIVE;
             throw new \Adyen\AdyenException($msg);
         }
 
