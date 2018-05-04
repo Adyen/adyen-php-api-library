@@ -65,7 +65,7 @@ class ExceptionTest extends \Adyen\TestCase
 
         // should have environment exception
         $this->assertEquals('Adyen\AdyenException', get_class($e));
-        $this->assertEquals('The Client does not have a corect environment. use test or live', $e->getMessage());
+        $this->assertEquals('The Client does not have a correct environment, use test or live', $e->getMessage());
 
     }
 
