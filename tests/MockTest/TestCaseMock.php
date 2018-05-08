@@ -8,6 +8,7 @@ class TestCaseMock extends \PHPUnit_Framework_TestCase
     protected function createCheckoutMockClient($jsonFile, $httpStatus)
     {
         date_default_timezone_set('Europe/Amsterdam');
+        $json = null;
         if ($jsonFile != null) {
             $json = file_get_contents($jsonFile, true);
         }

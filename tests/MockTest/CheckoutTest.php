@@ -21,7 +21,7 @@ class CheckoutTest extends TestCaseMock
         // initialize service
         $service = new \Adyen\Service\Checkout($client);
 
-        $params = array('merchantAccount' => $this->_merchantAccount);
+        $params = array('merchantAccount' => "YourMerchantAccount");
         $result = $service->paymentMethods($params);
 
         $this->assertArrayHasKey('paymentMethods', $result);
@@ -53,7 +53,7 @@ class CheckoutTest extends TestCaseMock
         // initialize service
         $service = new \Adyen\Service\Checkout($client);
 
-        $params = array('merchantAccount' => $this->_merchantAccount);
+        $params = array('merchantAccount' => "YourMerchantAccount");
         try {
             $result = $service->paymentMethods($params);
         } catch (\Exception $e) {
@@ -92,7 +92,7 @@ class CheckoutTest extends TestCaseMock
         $service = new \Adyen\Service\Checkout($client);
 
         $params = array(
-            'merchantAccount' => $this->_merchantAccount,
+            'merchantAccount' => "YourMerchantAccount",
             'amount' => array('currency' => "EUR", 'value' => 1000),
             'paymentMethod' => array(
                 'type' => "scheme",
@@ -138,7 +138,7 @@ class CheckoutTest extends TestCaseMock
         $service = new \Adyen\Service\Checkout($client);
 
         $params = array(
-            'merchantAccount' => $this->_merchantAccount,
+            'merchantAccount' => "YourMerchantAccount",
             'amount' => array('currency' => "EUR", 'value' => 1000),
             'paymentMethod' => array(
                 'type' => "scheme",
@@ -191,7 +191,7 @@ class CheckoutTest extends TestCaseMock
         $service = new \Adyen\Service\Checkout($client);
 
         $params = array(
-            'merchantAccount' => $this->_merchantAccount,
+            'merchantAccount' => "YourMerchantAccount",
             'paymentData' => 'Ab02b4c0!BQABAgCJN1wRZuGJmq8dMncmypvknj9s7l5Tj...',
             'details' => array(
                 'MD' => 'sdfsdfsdf...',
@@ -227,7 +227,7 @@ class CheckoutTest extends TestCaseMock
         $service = new \Adyen\Service\Checkout($client);
 
         $params = array(
-            'merchantAccount' => $this->_merchantAccount,
+            'merchantAccount' => "YourMerchantAccount",
             'amount' => array('currency' => "EUR", 'value' => 1000),
             'countryCode' => "NL",
             'reference' => "Your order number",
