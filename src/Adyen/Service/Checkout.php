@@ -3,7 +3,7 @@
 namespace Adyen\Service;
 
 
-class Checkout extends \Adyen\Service
+class Checkout extends \Adyen\ApiKeyAuthenticatedService
 {
     protected $_setup;
     protected $_verify;
@@ -20,7 +20,6 @@ class Checkout extends \Adyen\Service
         $this->_paymentMethods = new \Adyen\Service\ResourceModel\Checkout\PaymentMethods($this);
         $this->_payments = new \Adyen\Service\ResourceModel\Checkout\Payments($this);
         $this->_paymentsDetails = new \Adyen\Service\ResourceModel\Checkout\PaymentsDetails($this);
-        $this->_supportsXAPIKey = true;
 
     }
 

@@ -5,7 +5,7 @@ namespace Adyen;
 class Service
 {
     private $client;
-    protected $_supportsXAPIKey = false;
+    protected $_requiresApiKey = false;
 
     public function __construct(\Adyen\Client $client)
     {
@@ -26,9 +26,9 @@ class Service
         return $this->client;
     }
 
-    public function supportsXAPIKey()
+    public function requiresApiKey()
     {
-        return $this->_supportsXAPIKey;
+        return $this->_requiresApiKey;
     }
 
 }

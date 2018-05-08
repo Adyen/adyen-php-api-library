@@ -3,7 +3,7 @@
 namespace Adyen\Service;
 
 
-class CheckoutUtility extends \Adyen\Service
+class CheckoutUtility extends \Adyen\ApiKeyAuthenticatedService
 {
     protected $_originKeys;
 
@@ -12,7 +12,6 @@ class CheckoutUtility extends \Adyen\Service
         parent::__construct($client);
 
         $this->_originKeys = new \Adyen\Service\ResourceModel\CheckoutUtility\OriginKeys($this);
-        $this->_supportsXAPIKey = true;
 
     }
 
