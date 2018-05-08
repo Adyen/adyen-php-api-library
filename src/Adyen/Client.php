@@ -22,8 +22,6 @@ class Client
     const TERMINAL_CLOUD_LIVE = "https://terminal-api-live.adyen.com";
     const ENDPOINT_CHECKOUT_TEST = "https://checkout-test.adyen.com";
     const ENDPOINT_CHECKOUT_LIVE = "https://checkout-live.adyen.com";
-    const ENDPOINT_CHECKOUT_UTILITY_TEST = "https://checkout-test.adyen.com/checkoutUtility";
-    const ENDPOINT_CHECKOUT_UTILITY_LIVE = "https://checkout-live.adyen.com/checkoutUtility";
 
     /**
      * @var Adyen_Config $config
@@ -103,16 +101,14 @@ class Client
             $this->_config->set('endpointDirectorylookup', self::ENDPOINT_TEST_DIRECTORY_LOOKUP);
             $this->_config->set('endpointTerminalCloud', self::TERMINAL_CLOUD_TEST);
             $this->_config->set('endpointCheckout', self::ENDPOINT_CHECKOUT_TEST);
-            $this->_config->set('endpointCheckoutUtility', self::ENDPOINT_CHECKOUT_UTILITY_TEST);
         } elseif ($environment == \Adyen\Environment::LIVE) {
             $this->_config->set('environment', \Adyen\Environment::LIVE);
             $this->_config->set('endpoint', self::ENDPOINT_LIVE);
             $this->_config->set('endpointDirectorylookup', self::ENDPOINT_LIVE_DIRECTORY_LOOKUP);
             $this->_config->set('endpointTerminalCloud', self::TERMINAL_CLOUD_LIVE);
             $this->_config->set('endpointCheckout', self::ENDPOINT_CHECKOUT_LIVE);
-            $this->_config->set('endpointCheckoutUtility', self::ENDPOINT_CHECKOUT_UTILITY_LIVE);
         } else {
-            // environment does not exists
+            // environment does not exist
             $msg = "This environment does not exist, use " . \Adyen\Environment::TEST . ' or ' . \Adyen\Environment::LIVE;
             throw new \Adyen\AdyenException($msg);
         }
