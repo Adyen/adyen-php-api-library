@@ -14,48 +14,87 @@
   </head>
   <body>
     <div class="wrapper">
-      <header>
-        <h1>Adyen-php-api-library</h1>
-        <p>Adyen API Library for PHP</p>
+        <header>
+            <h1>Adyen-php-api-library</h1>
+            <p>Adyen API Library for PHP</p>
 
-        <p class="view"><a href="https://github.com/Adyen/adyen-php-api-library">View the Project on GitHub <small>Adyen/adyen-php-api-library</small></a></p>
+            <p class="view"><a href="https://github.com/Adyen/adyen-php-api-library">View the Project on GitHub
+                <small>Adyen/adyen-php-api-library</small>
+            </a></p>
 
 
-        <ul>
-          <li><a href="https://github.com/Adyen/adyen-php-api-library/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/Adyen/adyen-php-api-library/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/Adyen/adyen-php-api-library">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
+            <ul>
+                <li><a href="https://github.com/Adyen/adyen-php-api-library/zipball/master">Download <strong>ZIP
+                    File</strong></a></li>
+                <li><a href="https://github.com/Adyen/adyen-php-api-library/tarball/master">Download <strong>TAR
+                    Ball</strong></a></li>
+                <li><a href="https://github.com/Adyen/adyen-php-api-library">View On <strong>GitHub</strong></a></li>
+            </ul>
+        </header>
       <section>
       	<h2>Using the library</h2>
       	<p>
-      		Set up a client and set the credentials to the Adyen platform.
+      		Set up a client and set the credentials to the Adyen platform.<br>
+            If you don't know your X-API-KEY, you can obtain it from the Customer Area, as described in <a href="https://docs.adyen.com/developers/user-management/how-to-get-the-checkout-api-key">How to get the Checkout API key</a>
       	</p>  
       	
       	<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"></span><span class="pl-s1"><span class="pl-smi">$client</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">\Adyen\</span><span class="pl-c1">Client</span>();</span>
 <span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>setApplicationName(<span class="pl-s"><span class="pl-pds">"</span>Adyen PHP Api Library Example<span class="pl-pds">"</span></span>);</span>
-<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>setUsername(<span class="pl-s"><span class="pl-pds">"</span>YOUR USERNAME<span class="pl-pds">"</span></span>);</span>
-<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>setPassword(<span class="pl-s"><span class="pl-pds">"</span>YOUR PASSWORD<span class="pl-pds">"</span></span>);</span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>setXApiKey(<span class="pl-s"><span class="pl-pds">"</span>YOUR X-API-KEY<span class="pl-pds">"</span></span>);</span>
 <span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>setEnvironment(<span class="pl-c1">\Adyen\</span><span class="pl-c1">Environment</span><span class="pl-k">::</span><span class="pl-c1">TEST</span>);</span>
 <span class="pl-s1"></span></pre></div>
 
-		<p>
+          <p>
+              If you are not using Checkout, you can use the authentication with <a href="https://docs.adyen.com/developers/user-management/how-to-get-the-web-service-ws-user-password"> Webservice Username and Password</a> instead of the X-API-KEY:
+          </p>
+          <div class="highlight highlight-text-html-php"><pre>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>setUsername(<span class="pl-s"><span class="pl-pds">"</span>YOUR USERNAME<span class="pl-pds">"</span></span>);</span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>setPassword(<span class="pl-s"><span class="pl-pds">"</span>YOUR PASSWORD<span class="pl-pds">"</span></span>);</span><span class="pl-s1"></span></pre></div>
+          <p>
 			The example connects you to the Adyen test platform. If you want to use our live platform use:
 		</p>
 		<div class="highlight highlight-text-html-php"><pre>
 <span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>setEnvironment(<span class="pl-c1">\Adyen\</span><span class="pl-c1">Environment</span><span class="pl-k">::</span><span class="pl-c1">LIVE</span>);</span>
 <span class="pl-s1"></span></pre></div>
 
-		<p>You can now use the following services:
+          <h2>Adyen Checkout Service</h2>
+          <p>Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments.
+              You can use the same integration for payments made with cards (including One-Click and 3D Secure), mobile wallets, and local payment methods (e.g. iDEAL and Sofort).
+              To learn more about the API, visit <a href="https://docs.adyen.com/developers/checkout"> Checkout documentation</a>.
+          <ul>
+              <li><a title="Checkout" href="checkout-sdk.html">Checkout SDK integration</a></li>
+              <li><a title="Checkout" href="checkout-api.html">Checkout API integration</a></li>
+          </ul>
+          </p>
+
+          <h2>Adyen Checkout Utility Service</h2>
+          <p>A web service containing utility functions available for merchants integrating with Checkout APIs.</p>
+          <ul>
+              <li><a title="Checkout Utility" href="recurring.html">Checkout Utility</a></li>
+          </ul>
+          <h2>Adyen Payment Service</h2>
+		<p>A set of API endpoints that allow you to initiate, settle, and modify payments on the Adyen payments platform.
+            You can use the API to accept card payments (including One-Click and 3D Secure), bank transfers, ewallets, and many other payment methods.
 			<ul>
 				<li><a title="Payment" href="payment.html">Payment</a></li>
-				<li><a title="Recurring" href="recurring.html">Recurring</a></li>
 				<li><a title="Modification" href="modification.html">Modification</a></li>
-				<li><a title="Directory Lookup" href="directory-lookup.html">Directory Lookup</a></li>
 			</ul>
 		</p>
-		
+
+          <h2>Adyen Recurring Service</h2>
+          <p>Additional methods that allow you to manage payment details stored for recurring payments.
+              For more information, refer to <a href="https://docs.adyen.com/developers/features/recurring-payments">Recurring payments</a>.
+          <ul>
+              <li><a title="Recurring" href="recurring.html">Recurring</a></li>
+          </ul>
+          </p>
+          <h2>Adyen Hosted Payment Pages</h2>
+          <p>The Adyen Hosted Payment Pages (HPP) provide a flexible, secure and easy way for shoppers to purchase goods and services.
+              The directory lookup call returns the available payment methods for the shopper based on the country they are shopping from,
+              the amount and currency and skin code you provided. The returned data is a JSON object containing an array of the payment methods.</p>
+          <ul>
+              <li><a title="Directory Lookup" href="directory-lookup.html">Directory Lookup</a></li>
+          </ul>
 		<p>By default the input and output parameters are of type array. If you would like to use JSON you can doing the following thing:</p>
       	<div class="highlight highlight-text-html-php"><pre>
 <span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>setInputType('json');</span>
