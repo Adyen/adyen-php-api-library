@@ -4,7 +4,7 @@ namespace Adyen\MockTest;
 
 class CheckoutTest extends TestCaseMock
 {
-    const NO_CHECKOUT_KEY = "Please insert a valid Checkout API Key in your test.ini file";
+    const NO_CHECKOUT_KEY = "Please provide a valid Checkout API Key";
     const MISSING_FIELDS = "Missing the following fields:";
 
     /**
@@ -56,13 +56,13 @@ class CheckoutTest extends TestCaseMock
         $params = array('merchantAccount' => "YourMerchantAccount");
         try {
             $result = $service->paymentMethods($params);
+            $this->fail();
         } catch (\Exception $e) {
-        }
-
-        $this->assertEquals('Adyen\AdyenException', get_class($e));
-        $this->assertContains($expectedExceptionMessage, $e->getMessage());
-        if ($httpStatus != null) {
-            $this->assertEquals($httpStatus, $e->getStatus());
+            $this->assertEquals('Adyen\AdyenException', get_class($e));
+            $this->assertContains($expectedExceptionMessage, $e->getMessage());
+            if ($httpStatus != null) {
+                $this->assertEquals($httpStatus, $e->getStatus());
+            }
         }
 
     }
@@ -156,12 +156,13 @@ class CheckoutTest extends TestCaseMock
 
         try {
             $result = $service->payments($params);
+            $this->fail();
         } catch (\Exception $e) {
-        }
-        $this->assertEquals('Adyen\AdyenException', get_class($e));
-        $this->assertContains($expectedExceptionMessage, $e->getMessage());
-        if ($httpStatus != null) {
-            $this->assertEquals($httpStatus, $e->getStatus());
+            $this->assertEquals('Adyen\AdyenException', get_class($e));
+            $this->assertContains($expectedExceptionMessage, $e->getMessage());
+            if ($httpStatus != null) {
+                $this->assertEquals($httpStatus, $e->getStatus());
+            }
         }
     }
 

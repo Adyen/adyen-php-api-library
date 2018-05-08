@@ -51,7 +51,7 @@ class CurlClient implements ClientInterface
             //Set the content type to application/json and use the defined userAgent along with the x-api-key
             $headers[] = 'x-api-key: ' . $xApiKey;
         } elseif ($service->requiresApiKey() && empty($xApiKey)) {
-            $msg = "Please insert a valid Checkout API Key in your test.ini file";
+            $msg = "Please provide a valid Checkout API Key";
             throw new \Adyen\AdyenException($msg);
         } else {
 
