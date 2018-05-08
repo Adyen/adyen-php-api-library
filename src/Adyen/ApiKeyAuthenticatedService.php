@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: alessio
- * Date: 5/8/18
- * Time: 10:34 AM
- */
 
 namespace Adyen;
 
