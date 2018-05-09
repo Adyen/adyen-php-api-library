@@ -2,7 +2,6 @@
     <testsuites>
         <testsuite name="Adyen PHP Test Suite">
             <directory suffix="Test.php">tests</directory>
-            <directory suffix="Test.php">tests/MockTest</directory>
         </testsuite>
     </testsuites>
     <filter>
