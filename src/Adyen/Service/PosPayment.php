@@ -2,7 +2,7 @@
 
 namespace Adyen\Service;
 
-class PosPayment extends \Adyen\Service
+class PosPayment extends \Adyen\ApiKeyAuthenticatedService
 {
 
     protected $_runTenderSync;
@@ -15,7 +15,6 @@ class PosPayment extends \Adyen\Service
 
         $this->_runTenderSync = new \Adyen\Service\ResourceModel\Payment\TerminalCloudAPI($this, false);
         $this->_runTenderAsync = new \Adyen\Service\ResourceModel\Payment\TerminalCloudAPI($this, true);
-        $this->_supportsXAPIKey = true;
     }
 
     public function runTenderSync($params)
