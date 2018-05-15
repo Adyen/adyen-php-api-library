@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Adyen-php-api-library by Adyen</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="wrapper">
+    <header>
+        <h1>Adyen-php-api-library</h1>
+        <p>Adyen API Library for PHP</p>
+
+        <p class="view"><a href="https://github.com/Adyen/adyen-php-api-library">View the Project on GitHub
+            <small>Adyen/adyen-php-api-library</small>
+        </a></p>
+
+
+        <ul>
+            <li><a href="https://github.com/Adyen/adyen-php-api-library/zipball/master">Download <strong>ZIP
+                File</strong></a></li>
+            <li><a href="https://github.com/Adyen/adyen-php-api-library/tarball/master">Download <strong>TAR
+                Ball</strong></a></li>
+            <li><a href="https://github.com/Adyen/adyen-php-api-library">View On <strong>GitHub</strong></a></li>
+        </ul>
+    </header>
+    <section>
+        <h1>Checkout API integration</h1>
+        <p>
+            The Checkout API service has the following methods:
+        </p>
+        <h2>PaymentMethods</h2>
+        <p>
+            Queries the available payment methods for a transaction based on the transaction context (like amount,
+            country, and currency).
+            Besides giving back a list of the available payment methods, the response also returns which input details
+            you need to collect from the shopper (to be submitted to <strong>payments( )</strong>).
+            Although we highly recommend using this endpoint to ensure you are always offering the most up-to-date list
+            of payment methods, its usage is optional.
+            You can, for example, also cache the <strong>paymentMethods( )</strong> response and update it once a week.
+        </p>
+        <div class="highlight highlight-text-html-php"><pre>
+<span class="pl-s1"><span class="pl-smi">$service</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span
+        class="pl-c1">\Adyen\Service\</span><span class="pl-c1">Checkout</span>(<span
+        class="pl-smi">$client</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$params</span> <span class="pl-k">=</span> <span
+        class="pl-c1">array</span>(<span class="pl-s"><span class="pl-pds">'</span>merchantAccount<span
+        class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">"</span>YourMerchantAccount<span
+        class="pl-pds">"</span></span>);</span><span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$result</span> <span class="pl-k">=</span> <span class="pl-smi">$service</span><span
+        class="pl-k">-&gt;</span>paymentMethods(<span class="pl-smi">$params</span>);</span>
+                <span class="pl-s1"></span></pre>
+        </div>
+        <h2>Payments</h2>
+        <p>
+            Sends payment parameters (like amount, country, and currency) together with the input details collected from
+            the shopper. The response returns the result of the payment request:
+        <ul>
+            <li> For some payment methods (e.g. Visa, Mastercard, and SEPA Direct Debits) you'll get a final state in
+                the resultCode (e.g. authorised or refused).
+            </li>
+            <li> For other payment methods, you'll receive redirectShopper as resultCode together with a redirectUrl. In
+                this case, the shopper must finalize the payment on the page behind the redirectUrl.
+            </li>
+        </ul>
+        </p>
+        <div class="highlight highlight-text-html-php"><pre>
+<span class="pl-s1"><span class="pl-smi">$service</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span
+        class="pl-c1">\Adyen\Service\</span><span class="pl-c1">Checkout</span>(<span
+        class="pl-smi">$client</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$params</span> <span class="pl-k">=</span> <span class="pl-c1">array</span>(</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>merchantAccount<span
+                    class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span
+                    class="pl-pds">"</span>YourMerchantAccount<span class="pl-pds">"</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>amount<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">array</span>(<span class="pl-s"><span class="pl-pds">'</span>currency<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">"</span>EUR<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">'</span>value<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">1000</span>),</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>paymentMethod<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">array</span>(</span>
+<span class="pl-s1">        <span class="pl-s"><span class="pl-pds">'</span>type<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">"</span>scheme<span class="pl-pds">"</span></span>,</span>
+<span class="pl-s1">        <span class="pl-s"><span class="pl-pds">'</span>number<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">"</span>4111111111111111<span class="pl-pds">"</span></span>,</span>
+<span class="pl-s1">        <span class="pl-s"><span class="pl-pds">'</span>expiryMonth<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">"</span>08<span class="pl-pds">"</span></span>,</span>
+<span class="pl-s1">        <span class="pl-s"><span class="pl-pds">'</span>expiryYear<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">"</span>2018<span class="pl-pds">"</span></span>,</span>
+<span class="pl-s1">        <span class="pl-s"><span class="pl-pds">'</span>holderName<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">"</span>John Smith<span class="pl-pds">"</span></span>,</span>
+<span class="pl-s1">        <span class="pl-s"><span class="pl-pds">'</span>cvc<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">"</span>737<span class="pl-pds">"</span></span></span>
+<span class="pl-s1">    ),</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>returnUrl<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">"</span>https://your-company.com/...<span class="pl-pds">"</span></span></span>
+<span class="pl-s1">);</span>
+
+<span class="pl-s1"><span class="pl-smi">$result</span> <span class="pl-k">=</span> <span class="pl-smi">$service</span><span class="pl-k">-&gt;</span>payments(<span class="pl-smi">$params</span>);</span></pre>
+        </div>
+
+        <h2>Payments/Details</h2>
+        <p>
+            Submits details for a payment created using <strong>payments( )</strong>. This step is only needed when no final state has been reached on the <strong>payments( )</strong> request (for example for 3D Secure, or when getting redirected back directly from a payment method using an app switch).
+            The exact details, which need to be sent to this endpoint, are always specified in the response of the associated <strong>payments( )</strong> request. When sending in the request to <strong>paymentsDetails( )</strong>, make sure you send the corresponding paymentData as obtained during the <strong>payments( )</strong> call.
+            In addition, the endpoint can be used to verify a payload, which is returned after coming back from the Checkout SDK or any of the redirect based methods on the Checkout API.
+        </p>
+        <div class="highlight highlight-text-html-php"><pre>
+<span class="pl-s1"><span class="pl-smi">$service</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span
+        class="pl-c1">\Adyen\Service\</span><span class="pl-c1">Checkout</span>(<span
+        class="pl-smi">$client</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$params</span> <span class="pl-k">=</span> <span class="pl-c1">array</span>(</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>merchantAccount<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">"</span>YourMerchantAccount<span class="pl-pds">"</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>paymentData<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>Ab02b4c0!BQABAgCJN1wRZuGJmq8dMncmypvknj9s7l5Tj...<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>details<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">array</span>(</span>
+<span class="pl-s1">        <span class="pl-s"><span class="pl-pds">'</span>MD<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>sdfsdfsdf...<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">        <span class="pl-s"><span class="pl-pds">'</span>PaRes<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>sdkfhskdjfsdf...<span class="pl-pds">'</span></span></span>
+<span class="pl-s1">    ),</span>
+<span class="pl-s1">);</span>
+
+<span class="pl-s1"><span class="pl-smi">$result</span> <span class="pl-k">=</span> <span class="pl-smi">$service</span><span class="pl-k">-&gt;</span>paymentsDetails(<span class="pl-smi">$params</span>);</span>
+        </pre>
+        </div>
+
+
+    </section>
+    <footer>
+        <p>This project is maintained by <a href="https://github.com/Adyen">Adyen</a></p>
+        <p>
+            <small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a>
+            </small>
+        </p>
+    </footer>
+</div>
+<script src="javascripts/scale.fix.js"></script>
+
+</body>
+</html>
