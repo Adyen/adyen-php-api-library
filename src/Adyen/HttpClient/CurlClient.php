@@ -76,8 +76,8 @@ class CurlClient implements ClientInterface
         if ($httpStatus != 200 && $result) {
             $this->handleResultError($result, $logger);
         } elseif (!$result) {
-            $errno = curl_errno($ch);
-            $message = curl_error($ch);
+
+            list($errno, $message) = $this->curlError($ch);
 
             curl_close($ch);
             $this->handleCurlError($requestUrl, $errno, $message, $logger);
@@ -266,4 +266,12 @@ class CurlClient implements ClientInterface
         $httpStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         return array($result, $httpStatus);
     }
+
+    protected function curlError($ch)
+    {
+        $errno = curl_errno($ch);
+        $message = curl_error($ch);
+        return array($errno, $message);
+    }
+
 }
