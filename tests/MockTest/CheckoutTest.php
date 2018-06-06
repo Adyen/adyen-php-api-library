@@ -16,7 +16,7 @@ class CheckoutTest extends TestCaseMock
     public function testPaymentMethodsSuccess($jsonFile, $httpStatus)
     {
         // create Checkout client
-        $client = $this->createCheckoutMockClient($jsonFile, $httpStatus);
+        $client = $this->createMockClient($jsonFile, $httpStatus);
 
         // initialize service
         $service = new \Adyen\Service\Checkout($client);
@@ -45,7 +45,7 @@ class CheckoutTest extends TestCaseMock
     public function testPaymentMethodsFailure($jsonFile, $httpStatus, $expectedExceptionMessage)
     {
         // create Checkout client
-        $client = $this->createCheckoutMockClient($jsonFile, $httpStatus);
+        $client = $this->createMockClient($jsonFile, $httpStatus);
 
         if ($expectedExceptionMessage == self::NO_CHECKOUT_KEY) {
             $client->setXApiKey("");
@@ -86,7 +86,7 @@ class CheckoutTest extends TestCaseMock
     public function testPaymentsSuccess($jsonFile, $httpStatus)
     {
         // create Checkout client
-        $client = $this->createCheckoutMockClient($jsonFile, $httpStatus);
+        $client = $this->createMockClient($jsonFile, $httpStatus);
 
         // initialize service
         $service = new \Adyen\Service\Checkout($client);
@@ -132,7 +132,7 @@ class CheckoutTest extends TestCaseMock
     public function testPaymentsFailure($jsonFile, $httpStatus, $expectedExceptionMessage)
     {
         // create Checkout client
-        $client = $this->createCheckoutMockClient($jsonFile, $httpStatus);
+        $client = $this->createMockClient($jsonFile, $httpStatus);
 
         // initialize service
         $service = new \Adyen\Service\Checkout($client);
@@ -186,7 +186,7 @@ class CheckoutTest extends TestCaseMock
     public function testPaymentsDetailsSuccess($jsonFile, $httpStatus)
     {
         // create Checkout client
-        $client = $this->createCheckoutMockClient($jsonFile, $httpStatus);
+        $client = $this->createMockClient($jsonFile, $httpStatus);
 
         // initialize service
         $service = new \Adyen\Service\Checkout($client);
@@ -222,7 +222,7 @@ class CheckoutTest extends TestCaseMock
     public function testSetupSuccess($jsonFile, $httpStatus)
     {
         // create Checkout client
-        $client = $this->createCheckoutMockClient($jsonFile, $httpStatus);
+        $client = $this->createMockClient($jsonFile, $httpStatus);
 
         // initialize service
         $service = new \Adyen\Service\Checkout($client);
@@ -258,7 +258,7 @@ class CheckoutTest extends TestCaseMock
     public function testVerifySuccess($jsonFile, $httpStatus)
     {
         // create Checkout client
-        $client = $this->createCheckoutMockClient($jsonFile, $httpStatus);
+        $client = $this->createMockClient($jsonFile, $httpStatus);
 
         // initialize service
         $service = new \Adyen\Service\Checkout($client);
