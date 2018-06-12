@@ -12,7 +12,7 @@ class TestCaseMock extends \PHPUnit_Framework_TestCase
             $json = file_get_contents($jsonFile, true);
         }
         $curlClient = $this->getMockBuilder(get_class(new \Adyen\HttpClient\CurlClient))
-            ->setMethods(array('curlRequest', 'logRequest', 'curlError'))
+            ->setMethods(array('curlRequest', 'curlError'))
             ->getMock();
         $curlClient->method('curlRequest')
             ->willReturn(array($json, $httpStatus));
