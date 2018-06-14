@@ -58,7 +58,7 @@ class CheckoutTest extends TestCaseMock
             $result = $service->paymentMethods($params);
             $this->fail();
         } catch (\Exception $e) {
-            $this->assertEquals('Adyen\AdyenException', get_class($e));
+            $this->assertInstanceOf('Adyen\AdyenException', $e);
             $this->assertContains($expectedExceptionMessage, $e->getMessage());
             if ($httpStatus != null) {
                 $this->assertEquals($httpStatus, $e->getStatus());
@@ -158,7 +158,7 @@ class CheckoutTest extends TestCaseMock
             $result = $service->payments($params);
             $this->fail();
         } catch (\Exception $e) {
-            $this->assertEquals('Adyen\AdyenException', get_class($e));
+            $this->assertInstanceOf('Adyen\AdyenException', $e);
             $this->assertContains($expectedExceptionMessage, $e->getMessage());
             if ($httpStatus != null) {
                 $this->assertEquals($httpStatus, $e->getStatus());

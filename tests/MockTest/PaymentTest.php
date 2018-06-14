@@ -100,7 +100,7 @@ class PaymentTest extends TestCaseMock
             $result = $service->authorise($params);
             $this->fail();
         } catch (\Exception $e) {
-            $this->assertEquals('Adyen\ConnectionException', get_class($e));
+            $this->assertInstanceOf('Adyen\ConnectionException', $e);
             $this->assertContains($expectedExceptionMessage, $e->getMessage());
             if ($httpStatus != null) {
                 $this->assertEquals($httpStatus, $e->getCode());
@@ -154,7 +154,7 @@ class PaymentTest extends TestCaseMock
             $result = $service->authorise($params);
             $this->fail();
         } catch (\Exception $e) {
-            $this->assertEquals('Adyen\AdyenException', get_class($e));
+            $this->assertInstanceOf( 'Adyen\AdyenException', $e);
             $this->assertContains($expectedExceptionMessage, $e->getMessage());
             if ($httpStatus != null) {
                 $this->assertEquals($httpStatus, $e->getStatus());
