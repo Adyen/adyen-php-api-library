@@ -17,9 +17,17 @@ class PaymentTest extends TestCaseMock
         // create client
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
-        // Set Logger on level INFO and capture on memory
-        $stream = fopen('php://memory','r+');
-        $client->getLogger()->pushHandler(new StreamHandler($stream, \Monolog\Logger::INFO));
+        // Stub Logger to prevent full card data being logged
+        $loggerMock = $this->getMockBuilder('\Monolog\Logger')->setMethods(array('info'))->disableOriginalConstructor()->getMock();
+        $client->setLogger($loggerMock);
+        $loggerMock->expects($this->any())
+            ->method('info')
+            ->with(
+                $this->logicalAnd(
+                    $this->logicalNot($this->stringContains('4111')),
+                    $this->logicalNot($this->stringContains('737'))
+                )
+            );
 
         // initialize service
         $service = new \Adyen\Service\Payment($client);
@@ -44,15 +52,8 @@ class PaymentTest extends TestCaseMock
 
         $result = $service->authorise($params);
 
-        // Rewind the stream and save the INFO logs in a variable
-        rewind($stream);
-        $infoLogs = stream_get_contents($stream);
-        fclose($stream);
-
         $this->assertArrayHasKey('resultCode', $result);
         $this->assertEquals('Authorised', $result['resultCode']);
-        $this->assertContains("JSON Request to Adyen:{\"card\":{\"number\"", $infoLogs);
-        $this->assertNotContains("4111111111111111", $infoLogs);
     }
 
     public static function successAuthoriseProvider()
@@ -154,7 +155,7 @@ class PaymentTest extends TestCaseMock
             $result = $service->authorise($params);
             $this->fail();
         } catch (\Exception $e) {
-            $this->assertInstanceOf( 'Adyen\AdyenException', $e);
+            $this->assertInstanceOf('Adyen\AdyenException', $e);
             $this->assertContains($expectedExceptionMessage, $e->getMessage());
             if ($httpStatus != null) {
                 $this->assertEquals($httpStatus, $e->getStatus());
