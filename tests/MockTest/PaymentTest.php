@@ -25,7 +25,8 @@ class PaymentTest extends TestCaseMock
             ->with(
                 $this->logicalAnd(
                     $this->logicalNot($this->stringContains('4111')),
-                    $this->logicalNot($this->stringContains('737'))
+                    $this->logicalNot($this->stringContains('737')),
+                    $this->logicalNot($this->stringContains('adyenjs....'))
                 )
             );
 
@@ -45,7 +46,10 @@ class PaymentTest extends TestCaseMock
                 "currency": "EUR"
               },
               "reference": "payment-test",
-              "merchantAccount": "YourMerchantReference"
+              "merchantAccount": "YourMerchantReference",
+              "additionalData": {
+                "card.encrypted.json" : "adyenjs...."
+              }
             }';
 
         $params = json_decode($json, true);
