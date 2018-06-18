@@ -15,7 +15,7 @@ class CheckoutUtilityTest extends TestCaseMock
     public function testOriginKeysSuccess($jsonFile, $httpStatus)
     {
         // create Checkout client
-        $client = $this->createCheckoutMockClient($jsonFile, $httpStatus);
+        $client = $this->createMockClient($jsonFile, $httpStatus);
 
         // initialize service
         $service = new \Adyen\Service\CheckoutUtility($client);
