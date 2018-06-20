@@ -11,6 +11,4 @@ Interface ConfigInterface {
     public function getInputType();
     public function getOutputType();
     public function getMerchantAccount();
-    public function getPOIID();
-
 }
