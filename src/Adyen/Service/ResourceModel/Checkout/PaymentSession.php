@@ -2,7 +2,7 @@
 
 namespace Adyen\Service\ResourceModel\Checkout;
 
-class Setup extends \Adyen\Service\AbstractResource
+class PaymentSession extends \Adyen\Service\AbstractResource
 {
 
     protected $_requiredFields = array(
@@ -16,7 +16,7 @@ class Setup extends \Adyen\Service\AbstractResource
 
     public function __construct($service)
     {
-        $this->_endpoint = $service->getClient()->getConfig()->get('endpointCheckout') .'/'. $service->getClient()->getApiCheckoutVersion() . '/setup';
+        $this->_endpoint = $service->getClient()->getConfig()->get('endpointCheckout') .'/'. $service->getClient()->getApiCheckoutVersion() . '/paymentSession';
         parent::__construct($service, $this->_endpoint, $this->_requiredFields);
     }
 
