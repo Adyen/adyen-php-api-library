@@ -9,7 +9,9 @@ class PaymentSession extends \Adyen\Service\AbstractResource
         'amount.value',
         'amount.currency',
         'countryCode',
-        'merchantAccount'
+        'merchantAccount',
+        'returnUrl',
+        'reference'
     );
 
     protected $_endpoint;
