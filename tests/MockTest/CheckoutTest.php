@@ -216,10 +216,10 @@ class CheckoutTest extends TestCaseMock
      * @param $jsonFile
      * @param $httpStatus
      *
-     * @dataProvider successSetupProvider
+     * @dataProvider successPaymentSessionProvider
      *
      */
-    public function testSetupSuccess($jsonFile, $httpStatus)
+    public function testPaymentSessionSuccess($jsonFile, $httpStatus)
     {
         // create Checkout client
         $client = $this->createMockClient($jsonFile, $httpStatus);
@@ -232,19 +232,19 @@ class CheckoutTest extends TestCaseMock
             'amount' => array('currency' => "EUR", 'value' => 1000),
             'countryCode' => "NL",
             'reference' => "Your order number",
-            'returnUrl' => "https://your-company.com/"
+            'returnUrl' => "https://your-company.com/",
+            "sdkVersion" => "1.3.0"
         );
 
-        $result = $service->setup($params);
+        $result = $service->paymentSession($params);
 
-        $this->assertArrayHasKey("paymentData", $result);
-        $this->assertArrayHasKey("paymentMethods", $result);
+        $this->assertArrayHasKey("paymentSession", $result);
     }
 
-    public static function successSetupProvider()
+    public static function successPaymentSessionProvider()
     {
         return array(
-            array('tests/Resources/Checkout/setup-success.json', 200)
+            array('tests/Resources/Checkout/payment-session-success.json', 200)
         );
     }
 
@@ -252,10 +252,10 @@ class CheckoutTest extends TestCaseMock
      * @param $jsonFile
      * @param $httpStatus
      *
-     * @dataProvider successVerifyProvider
+     * @dataProvider successPaymentsResultProvider
      *
      */
-    public function testVerifySuccess($jsonFile, $httpStatus)
+    public function testPaymentsResultSuccess($jsonFile, $httpStatus)
     {
         // create Checkout client
         $client = $this->createMockClient($jsonFile, $httpStatus);
@@ -267,15 +267,15 @@ class CheckoutTest extends TestCaseMock
             'payload' => "YourPayload"
         );
 
-        $result = $service->verify($params);
+        $result = $service->paymentsResult($params);
 
         $this->assertContains($result['resultCode'], array('Authorised'));
     }
 
-    public static function successVerifyProvider()
+    public static function successPaymentsResultProvider()
     {
         return array(
-            array('tests/Resources/Checkout/verify-success.json', 200)
+            array('tests/Resources/Checkout/payments-result-success.json', 200)
         );
     }
 

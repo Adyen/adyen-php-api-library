@@ -5,8 +5,8 @@ namespace Adyen\Service;
 
 class Checkout extends \Adyen\ApiKeyAuthenticatedService
 {
-    protected $_setup;
-    protected $_verify;
+    protected $_paymentSession;
+    protected $_paymentsResult;
     protected $_paymentMethods;
     protected $_payments;
     protected $_paymentsDetails;
@@ -15,23 +15,23 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
     {
         parent::__construct($client);
 
-        $this->_setup = new \Adyen\Service\ResourceModel\Checkout\Setup($this);
-        $this->_verify = new \Adyen\Service\ResourceModel\Checkout\Verify($this);
+        $this->_paymentSession = new \Adyen\Service\ResourceModel\Checkout\PaymentSession($this);
+        $this->_paymentsResult = new \Adyen\Service\ResourceModel\Checkout\PaymentsResult($this);
         $this->_paymentMethods = new \Adyen\Service\ResourceModel\Checkout\PaymentMethods($this);
         $this->_payments = new \Adyen\Service\ResourceModel\Checkout\Payments($this);
         $this->_paymentsDetails = new \Adyen\Service\ResourceModel\Checkout\PaymentsDetails($this);
 
     }
 
-    public function setup($params)
+    public function paymentSession($params)
     {
-        $result = $this->_setup->request($params);
+        $result = $this->_paymentSession->request($params);
         return $result;
     }
 
-    public function verify($params)
+    public function paymentsResult($params)
     {
-        $result = $this->_verify->request($params);
+        $result = $this->_paymentsResult->request($params);
         return $result;
     }
 
