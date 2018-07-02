@@ -164,6 +164,11 @@ class Client
         $this->_config->set('outputType', $value);
     }
 
+    public function setTimeout($value)
+    {
+        $this->_config->set('timeout', $value);
+    }
+
 
     /**
      * Get the library version

@@ -88,6 +88,11 @@ class Config implements ConfigInterface
         return $this->defaultOutput;
     }
 
+    public function getTimeout()
+    {
+        return !empty($this->data['timeout']) ? $this->data['timeout'] : null;
+    }
+
     public function getMerchantAccount()
     {
         return isset($this->data['merchantAccount']) ? $this->data['merchantAccount'] : null;
