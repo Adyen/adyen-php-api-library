@@ -60,6 +60,11 @@ class CurlClient implements ClientInterface
             curl_setopt($ch, CURLOPT_USERPWD, $username . ":" . $password);
         }
 
+        //Set the timeout
+        if($config->getTimeout() != null){
+            curl_setopt($ch, CURLOPT_TIMEOUT, $config->getTimeout());
+        }
+
         //Set the headers
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
