@@ -11,43 +11,6 @@ namespace Adyen;
 class CreatePaymentRequestTest extends TestCase
 {
 
-    public function testCreatePaymentMissingReference()
-    {
-        // initialize client
-        $client = $this->createClient();
-
-        // initialize service
-        $service = new Service\Payment($client);
-
-        $json = '{
-              "card": {
-                "number": "4111111111111111",
-                "expiryMonth": "08",
-                "expiryYear": "2018",
-                "cvc": "737",
-                "holderName": "John Smith"
-              },
-              "amount": {
-                "value": 1500,
-                "currency": "EUR"
-              },
-              "reference": "",
-              "merchantAccount": "' . $this->_merchantAccount .'"
-            }';
-
-        $params = json_decode($json, true);
-        $e = null;
-        try {
-            $result = $service->authorise($params);
-        } catch (\Exception $e) {
-            $this->validateApiPermission($e);
-        }
-
-        // check if exception is correct
-        $this->assertEquals('Adyen\AdyenException', get_class($e));
-        $this->assertEquals('Missing the following values: reference', $e->getMessage());
-    }
-
     public function testCreatePaymentSuccess()
     {
         // initialize client
