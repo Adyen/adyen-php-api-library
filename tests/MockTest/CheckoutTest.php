@@ -5,7 +5,6 @@ namespace Adyen\MockTest;
 class CheckoutTest extends TestCaseMock
 {
     const NO_CHECKOUT_KEY = "Please provide a valid Checkout API Key";
-    const MISSING_FIELDS = "Missing the following fields:";
 
     /**
      * @param $jsonFile Json file location
@@ -150,9 +149,8 @@ class CheckoutTest extends TestCaseMock
             ),
             'returnUrl' => "https://your-company.com/..."
         );
-        if ($expectedExceptionMessage != self::MISSING_FIELDS) {
-            $params['reference'] = 'yourownreference';
-        }
+
+        $params['reference'] = 'yourownreference';
 
         try {
             $result = $service->payments($params);
@@ -171,8 +169,7 @@ class CheckoutTest extends TestCaseMock
     {
         return array(
             array('tests/Resources/Checkout/invalid-merchant-account.json', 403, "Invalid Merchant Account"),
-            array('tests/Resources/Checkout/payments-forbidden.json', null, "Forbidden"),
-            array(null, null, self::MISSING_FIELDS)
+            array('tests/Resources/Checkout/payments-forbidden.json', null, "Forbidden")
         );
     }
 
