@@ -59,6 +59,16 @@ class Config implements ConfigInterface
         return isset($this->data['password']) ? $this->data['password'] : null;
     }
 
+    /**
+     * Get the Checkout API Key from the Adyen Customer Area
+     *
+     * @return mixed|null
+     */
+    public function getXApiKey()
+    {
+        return !empty($this->data['x-api-key']) ? $this->data['x-api-key'] : null;
+    }
+
     public function getInputType()
     {
         if(isset($this->data['inputType']) && in_array($this->data['inputType'], $this->allowedInput)) {
@@ -76,6 +86,11 @@ class Config implements ConfigInterface
         }
         // return the default type
         return $this->defaultOutput;
+    }
+
+    public function getTimeout()
+    {
+        return !empty($this->data['timeout']) ? $this->data['timeout'] : null;
     }
 
     public function getMerchantAccount()

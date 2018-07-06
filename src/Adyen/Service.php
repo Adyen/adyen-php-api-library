@@ -5,6 +5,7 @@ namespace Adyen;
 class Service
 {
     private $client;
+    protected $_requiresApiKey = false;
 
     public function __construct(\Adyen\Client $client)
     {
@@ -13,7 +14,7 @@ class Service
         // validate if client has all the configuration we need
         if(!$client->getConfig()->get('environment')) {
             // throw exception
-            $msg = "The Client does not have a corect environment. use " . \Adyen\Environment::TEST . ' or ' . \Adyen\Environment::LIVE;
+            $msg = "The Client does not have a correct environment, use " . \Adyen\Environment::TEST . ' or ' . \Adyen\Environment::LIVE;
             throw new \Adyen\AdyenException($msg);
         }
 
@@ -23,6 +24,11 @@ class Service
     public function getClient()
     {
         return $this->client;
+    }
+
+    public function requiresApiKey()
+    {
+        return $this->_requiresApiKey;
     }
 
 }

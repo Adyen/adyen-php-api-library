@@ -21,6 +21,8 @@ class CurlClient implements ClientInterface
         $logger = $client->getLogger();
         $username = $config->getUsername();
         $password = $config->getPassword();
+        $xApiKey = $config->getXApiKey();
+
         $jsonRequest = json_encode($params);
 
         // log the request
@@ -32,14 +34,10 @@ class CurlClient implements ClientInterface
         //Tell cURL that we want to send a POST request.
         curl_setopt($ch, CURLOPT_POST, 1);
 
-        // set authorisation
-        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-        curl_setopt($ch, CURLOPT_USERPWD, $username . ":" . $password);
-
         //Attach our encoded JSON string to the POST fields.
         curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonRequest);
 
-        // set a custom User-Agent
+        //create a custom User-Agent
         $userAgent = $config->get('applicationName') . " " . \Adyen\Client::USER_AGENT_SUFFIX . $client->getLibraryVersion();
 
         //Set the content type to application/json and use the defined userAgent
@@ -48,14 +46,33 @@ class CurlClient implements ClientInterface
             'User-Agent: ' . $userAgent
         );
 
+        // set authorisation credentials according to support & availability
+        if ($service->requiresApiKey() && !empty($xApiKey)) {
+            //Set the content type to application/json and use the defined userAgent along with the x-api-key
+            $headers[] = 'x-api-key: ' . $xApiKey;
+        } elseif ($service->requiresApiKey() && empty($xApiKey)) {
+            $msg = "Please provide a valid Checkout API Key";
+            throw new \Adyen\AdyenException($msg);
+        } else {
+
+            //Set the basic auth credentials
+            curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+            curl_setopt($ch, CURLOPT_USERPWD, $username . ":" . $password);
+        }
+
+        //Set the timeout
+        if($config->getTimeout() != null){
+            curl_setopt($ch, CURLOPT_TIMEOUT, $config->getTimeout());
+        }
+
+        //Set the headers
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         // return the result
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
         //Execute the request
-        $result = curl_exec($ch);
-        $httpStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        list($result, $httpStatus) = $this->curlRequest($ch);
 
         // log the raw response
         $logger->info("JSON Response is: " . $result);
@@ -64,8 +81,8 @@ class CurlClient implements ClientInterface
         if ($httpStatus != 200 && $result) {
             $this->handleResultError($result, $logger);
         } elseif (!$result) {
-            $errno = curl_errno($ch);
-            $message = curl_error($ch);
+
+            list($errno, $message) = $this->curlError($ch);
 
             curl_close($ch);
             $this->handleCurlError($requestUrl, $errno, $message, $logger);
@@ -218,7 +235,6 @@ class CurlClient implements ClientInterface
     protected function handleResultError($result, $logger)
     {
         $decodeResult = json_decode($result, true);
-
         if (isset($decodeResult['message']) && isset($decodeResult['errorCode'])) {
             $logger->error($decodeResult['errorCode'] . ': ' . $decodeResult['message']);
             throw new \Adyen\AdyenException($decodeResult['message'], $decodeResult['errorCode'], null,
@@ -248,4 +264,19 @@ class CurlClient implements ClientInterface
         }
         $logger->info('JSON Request to Adyen:' . json_encode($params));
     }
+
+    protected function curlRequest($ch)
+    {
+        $result = curl_exec($ch);
+        $httpStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        return array($result, $httpStatus);
+    }
+
+    protected function curlError($ch)
+    {
+        $errno = curl_errno($ch);
+        $message = curl_error($ch);
+        return array($errno, $message);
+    }
+
 }
