@@ -18,10 +18,13 @@ class Client
     const API_RECURRING_VERSION = "v25";
     const API_CHECKOUT_VERSION = "v32";
     const API_CHECKOUT_UTILITY_VERSION = "v1";
+    const API_NOTIFICATION_VERSION = "v1";
     const TERMINAL_CLOUD_TEST = "https://terminal-api-test.adyen.com";
     const TERMINAL_CLOUD_LIVE = "https://terminal-api-live.adyen.com";
     const ENDPOINT_CHECKOUT_TEST = "https://checkout-test.adyen.com";
     const ENDPOINT_CHECKOUT_LIVE = "https://checkout-live.adyen.com";
+    const ENPOINT_NOTIFICATION_TEST = "https://cal-test.adyen.com";
+    const ENPOINT_NOTIFICATION_LIVE = "https://cal-live.adyen.com";
 
     /**
      * @var Adyen_Config $config
@@ -101,12 +104,14 @@ class Client
             $this->_config->set('endpointDirectorylookup', self::ENDPOINT_TEST_DIRECTORY_LOOKUP);
             $this->_config->set('endpointTerminalCloud', self::TERMINAL_CLOUD_TEST);
             $this->_config->set('endpointCheckout', self::ENDPOINT_CHECKOUT_TEST);
+            $this->_config->set('endpointNotification', self::ENPOINT_NOTIFICATION_TEST);
         } elseif ($environment == \Adyen\Environment::LIVE) {
             $this->_config->set('environment', \Adyen\Environment::LIVE);
             $this->_config->set('endpoint', self::ENDPOINT_LIVE);
             $this->_config->set('endpointDirectorylookup', self::ENDPOINT_LIVE_DIRECTORY_LOOKUP);
             $this->_config->set('endpointTerminalCloud', self::TERMINAL_CLOUD_LIVE);
             $this->_config->set('endpointCheckout', self::ENDPOINT_CHECKOUT_LIVE);
+            $this->_config->set('endpointNotification', self::ENPOINT_NOTIFICATION_LIVE);
         } else {
             // environment does not exist
             $msg = "This environment does not exist, use " . \Adyen\Environment::TEST . ' or ' . \Adyen\Environment::LIVE;
@@ -218,6 +223,16 @@ class Client
     public function getApiCheckoutUtilityVersion()
     {
         return self::API_CHECKOUT_UTILITY_VERSION;
+    }
+
+    /**
+     * Get the version of the Notification API endpoint
+     *
+     * @return string
+     */
+    public function getApiNotificationVersion()
+    {
+        return self::API_NOTIFICATION_VERSION;
     }
 
     /**
