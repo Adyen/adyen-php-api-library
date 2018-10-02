@@ -11,9 +11,22 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
     protected $_payments;
     protected $_paymentsDetails;
 
+    /**
+     * Checkout constructor.
+     * @param \Adyen\Client $client
+     * @throws \Adyen\AdyenException
+     */
     public function __construct(\Adyen\Client $client)
     {
         parent::__construct($client);
+
+        // check if endpoint is set
+        if ($client->getConfig()->get('endpointCheckout') == null) {
+            $logger = $client->getLogger();
+            $msg = "You forgot to specify a unique identifier when setting the environment";
+            $logger->error($msg);
+            throw new \Adyen\AdyenException($msg);
+        }
 
         $this->_paymentSession = new \Adyen\Service\ResourceModel\Checkout\PaymentSession($this);
         $this->_paymentsResult = new \Adyen\Service\ResourceModel\Checkout\PaymentsResult($this);

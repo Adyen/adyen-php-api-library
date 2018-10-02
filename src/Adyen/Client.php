@@ -12,16 +12,18 @@ class Client
     const USER_AGENT_SUFFIX = "adyen-php-api-library/";
     const ENDPOINT_TEST = "https://pal-test.adyen.com";
     const ENDPOINT_LIVE = "https://pal-live.adyen.com";
+    const ENDPOINT_LIVE_SUFFIX = "-pal-live.adyenpayments.com";
     const ENDPOINT_TEST_DIRECTORY_LOOKUP = "https://test.adyen.com/hpp/directory/v2.shtml";
     const ENDPOINT_LIVE_DIRECTORY_LOOKUP = "https://live.adyen.com/hpp/directory/v2.shtml";
     const API_VERSION = "v30";
     const API_RECURRING_VERSION = "v25";
     const API_CHECKOUT_VERSION = "v32";
     const API_CHECKOUT_UTILITY_VERSION = "v1";
-    const TERMINAL_CLOUD_TEST = "https://terminal-api-test.adyen.com";
-    const TERMINAL_CLOUD_LIVE = "https://terminal-api-live.adyen.com";
-    const ENDPOINT_CHECKOUT_TEST = "https://checkout-test.adyen.com";
-    const ENDPOINT_CHECKOUT_LIVE = "https://checkout-live.adyen.com";
+    const ENDPOINT_TERMINAL_CLOUD_TEST = "https://terminal-api-test.adyen.com";
+    const ENDPOINT_TERMINAL_CLOUD_LIVE = "https://terminal-api-live.adyen.com";
+    const ENDPOINT_CHECKOUT_TEST = "https://checkout-test.adyen.com/checkout";
+    const ENDPOINT_CHECKOUT_LIVE_SUFFIX = "-checkout-live.adyenpayments.com/checkout";
+    const ENDPOINT_PROTOCOL = "https://";
 
     /**
      * @var Adyen_Config $config
@@ -89,24 +91,32 @@ class Client
 
     /**
      * Set environment to connect to test or live platform of Adyen
+     * For live please specify the unique identifier.
      *
      * @param $environment
+     * @param null $liveEndpointUrlPrefix
      * @throws AdyenException
      */
-    public function setEnvironment($environment)
+    public function setEnvironment($environment, $liveEndpointUrlPrefix = null)
     {
         if ($environment == \Adyen\Environment::TEST) {
             $this->_config->set('environment', \Adyen\Environment::TEST);
             $this->_config->set('endpoint', self::ENDPOINT_TEST);
             $this->_config->set('endpointDirectorylookup', self::ENDPOINT_TEST_DIRECTORY_LOOKUP);
-            $this->_config->set('endpointTerminalCloud', self::TERMINAL_CLOUD_TEST);
+            $this->_config->set('endpointTerminalCloud', self::ENDPOINT_TERMINAL_CLOUD_TEST);
             $this->_config->set('endpointCheckout', self::ENDPOINT_CHECKOUT_TEST);
         } elseif ($environment == \Adyen\Environment::LIVE) {
             $this->_config->set('environment', \Adyen\Environment::LIVE);
-            $this->_config->set('endpoint', self::ENDPOINT_LIVE);
             $this->_config->set('endpointDirectorylookup', self::ENDPOINT_LIVE_DIRECTORY_LOOKUP);
-            $this->_config->set('endpointTerminalCloud', self::TERMINAL_CLOUD_LIVE);
-            $this->_config->set('endpointCheckout', self::ENDPOINT_CHECKOUT_LIVE);
+            $this->_config->set('endpointTerminalCloud', self::ENDPOINT_TERMINAL_CLOUD_LIVE);
+
+            if ($liveEndpointUrlPrefix) {
+                $this->_config->set('endpoint', self::ENDPOINT_PROTOCOL . $liveEndpointUrlPrefix . self::ENDPOINT_LIVE_SUFFIX);
+                $this->_config->set('endpointCheckout', self::ENDPOINT_PROTOCOL . $liveEndpointUrlPrefix . self::ENDPOINT_CHECKOUT_LIVE_SUFFIX);
+            } else {
+                $this->_config->set('endpoint', self::ENDPOINT_LIVE);
+                $this->_config->set('endpointCheckout', null); // not supported please specify unique identifier
+            }
         } else {
             // environment does not exist
             $msg = "This environment does not exist, use " . \Adyen\Environment::TEST . ' or ' . \Adyen\Environment::LIVE;
