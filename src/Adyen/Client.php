@@ -93,8 +93,8 @@ class Client
      * Set environment to connect to test or live platform of Adyen
      * For live please specify the unique identifier.
      *
-     * @param $environment
-     * @param null $liveEndpointUrlPrefix
+     * @param $environment test
+     * @param null $liveEndpointUrlPrefix Provide the unique live url prefix from the "API URLs and Response" menu in the Adyen Customer Area
      * @throws AdyenException
      */
     public function setEnvironment($environment, $liveEndpointUrlPrefix = null)

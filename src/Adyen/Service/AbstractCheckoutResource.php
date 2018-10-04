@@ -17,7 +17,7 @@ class AbstractCheckoutResource extends AbstractResource
         // check if endpoint is set
         if ($service->getClient()->getConfig()->get('endpointCheckout') == null) {
             $logger = $service->getClient()->getLogger();
-            $msg = "You forgot to specify a unique identifier when setting the environment";
+            $msg =  "Please provide your unique live url prefix on the setEnvironment() call on the Client or provide endpointCheckout in your config object.";
             $logger->error($msg);
             throw new \Adyen\AdyenException($msg);
         }
