@@ -11,16 +11,19 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
     protected $_payments;
     protected $_paymentsDetails;
 
+    /**
+     * Checkout constructor.
+     * @param \Adyen\Client $client
+     * @throws \Adyen\AdyenException
+     */
     public function __construct(\Adyen\Client $client)
     {
         parent::__construct($client);
-
         $this->_paymentSession = new \Adyen\Service\ResourceModel\Checkout\PaymentSession($this);
         $this->_paymentsResult = new \Adyen\Service\ResourceModel\Checkout\PaymentsResult($this);
         $this->_paymentMethods = new \Adyen\Service\ResourceModel\Checkout\PaymentMethods($this);
         $this->_payments = new \Adyen\Service\ResourceModel\Checkout\Payments($this);
         $this->_paymentsDetails = new \Adyen\Service\ResourceModel\Checkout\PaymentsDetails($this);
-
     }
 
     public function paymentSession($params)

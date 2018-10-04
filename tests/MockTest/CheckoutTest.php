@@ -30,7 +30,37 @@ class CheckoutTest extends TestCaseMock
     public static function successPaymentMethodsProvider()
     {
         return array(
-            array('tests/Resources/Checkout/payment-methods-success.json', 200),
+            array('tests/Resources/Checkout/payment-methods-success.json', 200)
+        );
+    }
+
+    /**
+     * @param $jsonFile
+     * @param $httpStatus
+     * @param $expectedExceptionMessage
+     * @throws \Adyen\AdyenException
+     * @dataProvider failurePaymentMethodsMissingIdentifierOnLiveProvider
+     */
+    public function testPaymentMethodsFailureMissingIdentifierOnLive($jsonFile, $httpStatus, $expectedExceptionMessage)
+    {
+        // create Checkout client
+        $client = $this->createMockClient($jsonFile, $httpStatus);
+        $client->setEnvironment(\Adyen\Environment::LIVE);
+
+        try {
+            $service = new \Adyen\Service\Checkout($client);
+            $params = array('merchantAccount' => "YourMerchantAccount");
+            $service->paymentMethods($params);
+        } catch (\Exception $e) {
+            $this->assertInstanceOf('Adyen\AdyenException', $e);
+            $this->assertContains($expectedExceptionMessage, $e->getMessage());
+        }
+    }
+
+    public static function failurePaymentMethodsMissingIdentifierOnLiveProvider()
+    {
+        return array(
+            array('tests/Resources/Checkout/payment-methods-success.json', null, 'Please provide your unique live url prefix on the setEnvironment() call on the Client or provide endpointCheckout in your config object.')
         );
     }
 
@@ -39,7 +69,6 @@ class CheckoutTest extends TestCaseMock
      * @param $httpStatus
      * @param $expectedExceptionMessage
      * @dataProvider failurePaymentMethodsProvider
-     *
      */
     public function testPaymentMethodsFailure($jsonFile, $httpStatus, $expectedExceptionMessage)
     {
