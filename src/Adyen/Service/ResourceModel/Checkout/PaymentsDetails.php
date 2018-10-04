@@ -2,13 +2,13 @@
 
 namespace Adyen\Service\ResourceModel\Checkout;
 
-class PaymentsDetails extends \Adyen\Service\AbstractResource
+class PaymentsDetails extends \Adyen\Service\AbstractCheckoutResource
 {
     protected $_endpoint;
 
     public function __construct($service)
     {
-        $this->_endpoint = $service->getClient()->getConfig()->get('endpointCheckout') .'/'. $service->getClient()->getApiCheckoutVersion() . '/payments/details';
+        $this->_endpoint = $this->getCheckoutEndpoint($service) .'/'. $service->getClient()->getApiCheckoutVersion() . '/payments/details';
         parent::__construct($service, $this->_endpoint);
     }
 
