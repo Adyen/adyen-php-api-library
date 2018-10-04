@@ -60,7 +60,7 @@ class CheckoutTest extends TestCaseMock
     public static function failurePaymentMethodsMissingIdentifierOnLiveProvider()
     {
         return array(
-            array('tests/Resources/Checkout/payment-methods-success.json', null, 'You forgot to specify a unique identifier when setting the environment')
+            array('tests/Resources/Checkout/payment-methods-success.json', null, 'Please provide your unique live url prefix on the setEnvironment() call on the Client or provide endpointCheckout in your config object.')
         );
     }
 
