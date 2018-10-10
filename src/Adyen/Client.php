@@ -9,6 +9,7 @@ use Monolog\Handler\StreamHandler;
 class Client
 {
     const LIB_VERSION = "1.5.1";
+    const LIB_NAME = "adyen-php-api-library";
     const USER_AGENT_SUFFIX = "adyen-php-api-library/";
     const ENDPOINT_TEST = "https://pal-test.adyen.com";
     const ENDPOINT_LIVE = "https://pal-live.adyen.com";
@@ -93,7 +94,7 @@ class Client
      * Set environment to connect to test or live platform of Adyen
      * For live please specify the unique identifier.
      *
-     * @param $environment test
+     * @param string $environment
      * @param null $liveEndpointUrlPrefix Provide the unique live url prefix from the "API URLs and Response" menu in the Adyen Customer Area
      * @throws AdyenException
      */
@@ -179,6 +180,15 @@ class Client
         $this->_config->set('timeout', $value);
     }
 
+	/**
+	 * Get the library name
+	 *
+	 * @return string
+	 */
+	public function getLibraryName()
+	{
+		return self::LIB_NAME;
+	}
 
     /**
      * Get the library version
