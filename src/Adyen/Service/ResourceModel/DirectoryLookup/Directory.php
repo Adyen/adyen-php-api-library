@@ -12,14 +12,11 @@ class Directory extends \Adyen\Service\AbstractResource
     protected $_endpoint;
 
 	/**
-	 * Add parameters that you want to filter out from the params in the request
-	 * For more information about building this property please check Adyen\Service\AbstractResource filterParams doc block
+	 * Remove applicationInfo key from the request parameters
 	 *
-	 * @var array
+	 * @var bool
 	 */
-	protected $paramsToFilter = array(
-		"applicationInfo"
-	);
+	protected $removeApplicationInfoFromRequest = true;
 
 	/**
 	 * Directory constructor.
@@ -29,6 +26,6 @@ class Directory extends \Adyen\Service\AbstractResource
     public function __construct($service)
     {
         $this->_endpoint = $service->getClient()->getConfig()->get('endpointDirectorylookup');
-        parent::__construct($service, $this->_endpoint, $this->paramsToFilter);
+        parent::__construct($service, $this->_endpoint, $this->removeApplicationInfoFromRequest);
     }
 }

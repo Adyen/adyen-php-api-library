@@ -10,14 +10,11 @@ class Decline extends \Adyen\Service\AbstractResource
 	protected $_endpoint;
 
 	/**
-	 * Add parameters that you want to filter out from the params in the request
-	 * For more information about building this property please check Adyen\Service\AbstractResource filterParams doc block
+	 * Remove applicationInfo key from the request parameters
 	 *
-	 * @var array
+	 * @var bool
 	 */
-	protected $paramsToFilter = array(
-		"applicationInfo"
-	);
+	protected $removeApplicationInfoFromRequest = true;
 
 	/**
 	 * Decline constructor.
@@ -27,6 +24,6 @@ class Decline extends \Adyen\Service\AbstractResource
 	public function __construct($service)
 	{
 		$this->_endpoint = $service->getClient()->getConfig()->get('endpoint') . '/pal/servlet/Payout/' . $service->getClient()->getApiVersion() . '/decline';
-		parent::__construct($service, $this->_endpoint, $this->paramsToFilter);
+		parent::__construct($service, $this->_endpoint, $this->removeApplicationInfoFromRequest);
 	}
 }

@@ -10,12 +10,11 @@ class PaymentSession extends \Adyen\Service\AbstractCheckoutResource
 	protected $_endpoint;
 
 	/**
-	 * Add parameters that you want to filter out from the params in the request
-	 * For more information about building this property please check Adyen\Service\AbstractResource filterParams doc block
+	 * Remove applicationInfo key from the request parameters
 	 *
-	 * @var array
+	 * @var bool
 	 */
-	protected $paramsToFilter = array();
+	protected $removeApplicationInfoFromRequest = true;
 
 	/**
 	 * PaymentSession constructor.
@@ -26,6 +25,6 @@ class PaymentSession extends \Adyen\Service\AbstractCheckoutResource
     public function __construct($service)
     {
         $this->_endpoint = $this->getCheckoutEndpoint($service) .'/'. $service->getClient()->getApiCheckoutVersion() . '/paymentSession';
-        parent::__construct($service, $this->_endpoint, $this->paramsToFilter);
+        parent::__construct($service, $this->_endpoint, $this->removeApplicationInfoFromRequest);
     }
 }

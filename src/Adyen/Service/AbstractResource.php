@@ -2,8 +2,6 @@
 
 namespace Adyen\Service;
 
-use Adyen\AdyenException;
-
 class AbstractResource
 {
 	/**
@@ -17,22 +15,22 @@ class AbstractResource
     protected $_endpoint;
 
 	/**
-	 * @var array
+	 * @var bool
 	 */
-    protected $paramsToFilter;
+    protected $removeApplicationInfoFromRequest;
 
 	/**
 	 * AbstractResource constructor.
 	 *
 	 * @param \Adyen\Service $service
 	 * @param $endpoint
-	 * @param array $paramsToFilter
+	 * @param bool $removeApplicationInfoFromRequest
 	 */
-    public function __construct(\Adyen\Service $service, $endpoint, $paramsToFilter = array())
+    public function __construct(\Adyen\Service $service, $endpoint, $removeApplicationInfoFromRequest = false)
     {
         $this->_service = $service;
         $this->_endpoint = $endpoint;
-        $this->paramsToFilter = $paramsToFilter;
+        $this->removeApplicationInfoFromRequest = $removeApplicationInfoFromRequest;
     }
 
 	/**
@@ -63,7 +61,7 @@ class AbstractResource
 
         $params = $this->addDefaultParametersToRequest($params);
 
-        $params = $this->filterParams($params);
+        $params = $this->handleApplicationInfoInRequest($params);
 
         $curlClient = $this->_service->getClient()->getHttpClient();
         return $curlClient->requestJson($this->_service, $this->_endpoint, $params);
@@ -100,53 +98,27 @@ class AbstractResource
 			$params['merchantAccount'] = $this->_service->getClient()->getConfig()->getMerchantAccount();
 		}
 
-		// check if applicationInfo is set and has the adyenLibrary in it
-		if (!isset($params['applicationInfo']['adyenLibrary'])) {
-			$params['applicationInfo']['adyenLibrary']['name'] = $this->_service->getClient()->getLibraryName();
-			$params['applicationInfo']['adyenLibrary']['version'] = $this->_service->getClient()->getLibraryVersion();
-		}
-
 		return $params;
 	}
 
 	/**
-	 * All the parameters that can be found in the _paramsToFilter array will be filtered out for the specific endpoint
-	 * You can add multilevel filtering by defining associative arrays in the property
-	 * If left empty no filtering is going to take place so all the parameters will be sent unfiltered towards the API
-	 *
-	 * @param  array $params
-	 * @return array $params
-	 */
-	private function filterParams($params)
-	{
-		if (empty($this->paramsToFilter)) {
-			return $params;
-		}
-
-		return $this->iterateThroughArrayAndCheckParamsRecursive($params, $this->paramsToFilter);
-	}
-
-	/**
-	 * Recursive helper for the filterParams function filtering out always the specific level's parameters
+	 * If removeApplicationInfoFromRequest is true then it removes unnecessary applicationInfo from request
+	 * otherwise sets the default values
 	 *
 	 * @param $params
-	 * @param $paramsToFilter
-	 * @return array
+	 * @return mixed
 	 */
-	private function iterateThroughArrayAndCheckParamsRecursive($params, $paramsToFilter)
+	private function handleApplicationInfoInRequest($params)
 	{
-		foreach ($paramsToFilter as $key => $value) {
-			if (is_array($value)){
-				if ($value) {
-					if (isset($params[$key])) {
-						$params[$key] = $this->iterateThroughArrayAndCheckParamsRecursive($params[$key], $value);
-					}
-				}
-			} else {
-				if (isset($params[$value])) {
-					unset($params[$value]);
-				}
+		// remove if exists
+		if ($this->removeApplicationInfoFromRequest) {
+			if (isset($params['applicationInfo'])) {
+				unset($params['applicationInfo']);
 			}
+		} else {
+			// add/overwrite applicationInfo adyenLibrary even if it's already set
+			$params['applicationInfo']['adyenLibrary']['name'] = $this->_service->getClient()->getLibraryName();
+			$params['applicationInfo']['adyenLibrary']['version'] = $this->_service->getClient()->getLibraryVersion();
 		}
 
 		return $params;

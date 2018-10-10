@@ -10,14 +10,6 @@ class PaymentsDetails extends \Adyen\Service\AbstractCheckoutResource
 	protected $_endpoint;
 
 	/**
-	 * Add parameters that you want to filter out from the params in the request
-	 * For more information about building this property please check Adyen\Service\AbstractResource filterParams doc block
-	 *
-	 * @var array
-	 */
-	protected $paramsToFilter = array();
-
-	/**
 	 * PaymentsDetails constructor.
 	 *
 	 * @param \Adyen\Service $service
@@ -26,6 +18,6 @@ class PaymentsDetails extends \Adyen\Service\AbstractCheckoutResource
     public function __construct($service)
     {
         $this->_endpoint = $this->getCheckoutEndpoint($service) .'/'. $service->getClient()->getApiCheckoutVersion() . '/payments/details';
-        parent::__construct($service, $this->_endpoint, $this->paramsToFilter);
+        parent::__construct($service, $this->_endpoint);
     }
 }
