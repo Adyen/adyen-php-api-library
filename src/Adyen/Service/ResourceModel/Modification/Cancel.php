@@ -10,6 +10,13 @@ class Cancel extends \Adyen\Service\AbstractResource
 	protected $_endpoint;
 
 	/**
+	 * Include applicationInfo key in the request parameters
+	 *
+	 * @var bool
+	 */
+	protected $allowApplicationInfo = true;
+
+	/**
 	 * Cancel constructor.
 	 *
 	 * @param \Adyen\Service $service
@@ -17,6 +24,6 @@ class Cancel extends \Adyen\Service\AbstractResource
 	public function __construct($service)
 	{
 		$this->_endpoint = $service->getClient()->getConfig()->get('endpoint') . '/pal/servlet/Payment/' . $service->getClient()->getApiVersion() . '/cancel';
-		parent::__construct($service, $this->_endpoint);
+		parent::__construct($service, $this->_endpoint, $this->allowApplicationInfo);
 	}
 }

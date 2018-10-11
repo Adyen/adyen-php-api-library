@@ -10,13 +10,6 @@ class ListRecurringDetails extends \Adyen\Service\AbstractResource
 	protected $endpoint;
 
 	/**
-	 * Remove applicationInfo key from the request parameters
-	 *
-	 * @var bool
-	 */
-	protected $removeApplicationInfoFromRequest = true;
-
-	/**
 	 * ListRecurringDetails constructor.
 	 *
 	 * @param \Adyen\Service $service
@@ -24,6 +17,6 @@ class ListRecurringDetails extends \Adyen\Service\AbstractResource
     public function __construct($service)
     {
         $this->endpoint = $service->getClient()->getConfig()->get('endpoint') . '/pal/servlet/Recurring/' . $service->getClient()->getApiRecurringVersion() . '/listRecurringDetails';
-        parent::__construct($service, $this->endpoint, $this->removeApplicationInfoFromRequest);
+        parent::__construct($service, $this->endpoint);
     }
 }

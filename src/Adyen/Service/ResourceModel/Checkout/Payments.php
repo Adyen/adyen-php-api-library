@@ -10,6 +10,13 @@ class Payments extends \Adyen\Service\AbstractCheckoutResource
 	protected $_endpoint;
 
 	/**
+	 * Include applicationInfo key in the request parameters
+	 *
+	 * @var bool
+	 */
+	protected $allowApplicationInfo = true;
+
+	/**
 	 * Payments constructor.
 	 *
 	 * @param \Adyen\Service $service
@@ -18,6 +25,6 @@ class Payments extends \Adyen\Service\AbstractCheckoutResource
     public function __construct($service)
     {
         $this->_endpoint = $this->getCheckoutEndpoint($service) .'/'. $service->getClient()->getApiCheckoutVersion() . '/payments';
-        parent::__construct($service, $this->_endpoint);
+        parent::__construct($service, $this->_endpoint, $this->allowApplicationInfo);
     }
 }

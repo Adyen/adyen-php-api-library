@@ -10,13 +10,6 @@ class StoreDetailsAndSubmitThirdParty extends \Adyen\Service\AbstractResource
 	protected $_endpoint;
 
 	/**
-	 * Remove applicationInfo key from the request parameters
-	 *
-	 * @var bool
-	 */
-	protected $removeApplicationInfoFromRequest = true;
-
-	/**
 	 * StoreDetailsAndSubmitThirdParty constructor.
 	 *
 	 * @param \Adyen\Service $service
@@ -24,6 +17,6 @@ class StoreDetailsAndSubmitThirdParty extends \Adyen\Service\AbstractResource
 	public function __construct($service)
 	{
 		$this->_endpoint = $service->getClient()->getConfig()->get('endpoint') . '/pal/servlet/Payout/' . $service->getClient()->getApiVersion() . '/storeDetailAndSubmitThirdParty';
-		parent::__construct($service, $this->_endpoint, $this->removeApplicationInfoFromRequest);
+		parent::__construct($service, $this->_endpoint);
 	}
 }

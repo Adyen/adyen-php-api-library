@@ -17,20 +17,20 @@ class AbstractResource
 	/**
 	 * @var bool
 	 */
-    protected $removeApplicationInfoFromRequest;
+    protected $allowApplicationInfo;
 
 	/**
 	 * AbstractResource constructor.
 	 *
 	 * @param \Adyen\Service $service
 	 * @param $endpoint
-	 * @param bool $removeApplicationInfoFromRequest
+	 * @param bool $allowApplicationInfo
 	 */
-    public function __construct(\Adyen\Service $service, $endpoint, $removeApplicationInfoFromRequest = false)
+    public function __construct(\Adyen\Service $service, $endpoint, $allowApplicationInfo = false)
     {
         $this->_service = $service;
         $this->_endpoint = $endpoint;
-        $this->removeApplicationInfoFromRequest = $removeApplicationInfoFromRequest;
+        $this->allowApplicationInfo = $allowApplicationInfo;
     }
 
 	/**
@@ -102,23 +102,24 @@ class AbstractResource
 	}
 
 	/**
-	 * If removeApplicationInfoFromRequest is true then it removes unnecessary applicationInfo from request
-	 * otherwise sets the default values
+	 * If allowApplicationInfo is true then it adds applicationInfo to request
+	 * otherwise removes from the request
 	 *
 	 * @param $params
 	 * @return mixed
 	 */
 	private function handleApplicationInfoInRequest($params)
 	{
-		// remove if exists
-		if ($this->removeApplicationInfoFromRequest) {
-			if (isset($params['applicationInfo'])) {
-				unset($params['applicationInfo']);
-			}
-		} else {
+		// Only add if allowed
+		if ($this->allowApplicationInfo) {
 			// add/overwrite applicationInfo adyenLibrary even if it's already set
 			$params['applicationInfo']['adyenLibrary']['name'] = $this->_service->getClient()->getLibraryName();
 			$params['applicationInfo']['adyenLibrary']['version'] = $this->_service->getClient()->getLibraryVersion();
+		} else {
+			// remove if exists
+			if (isset($params['applicationInfo'])) {
+				unset($params['applicationInfo']);
+			}
 		}
 
 		return $params;

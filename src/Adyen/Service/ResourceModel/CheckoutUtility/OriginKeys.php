@@ -10,13 +10,6 @@ class OriginKeys extends \Adyen\Service\AbstractCheckoutResource
     protected $_endpoint;
 
 	/**
-	 * Remove applicationInfo key from the request parameters
-	 *
-	 * @var bool
-	 */
-	protected $removeApplicationInfoFromRequest = true;
-
-	/**
 	 * OriginKeys constructor.
 	 *
 	 * @param \Adyen\Service $service
@@ -25,6 +18,6 @@ class OriginKeys extends \Adyen\Service\AbstractCheckoutResource
     public function __construct($service)
     {
         $this->_endpoint = $this->getCheckoutEndpoint($service) .'/'. $service->getClient()->getApiCheckoutUtilityVersion() . '/originKeys';
-        parent::__construct($service, $this->_endpoint, $this->removeApplicationInfoFromRequest);
+        parent::__construct($service, $this->_endpoint);
     }
 }
