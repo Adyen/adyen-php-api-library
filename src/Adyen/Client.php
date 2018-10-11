@@ -27,7 +27,7 @@ class Client
     const ENDPOINT_PROTOCOL = "https://";
 
     /**
-     * @var Adyen_Config $config
+     * @var \Adyen\Config $config
      */
     private $_config;
     private $_httpClient;
@@ -154,6 +154,28 @@ class Client
     {
         $this->_config->set('applicationName', $applicationName);
     }
+
+	/**
+	 * Set external platform name and version
+	 *
+	 * @param string $name
+	 * @param string $version
+	 */
+	public function setExternalPlatform($name, $version)
+	{
+		$this->_config->set('externalPlatform', array('name' => $name, 'version' => $version));
+	}
+
+	/**
+	 * Set Adyen payment source name and version
+	 *
+	 * @param string $name
+	 * @param string $version
+	 */
+	public function setAdyenPaymentSource($name, $version)
+	{
+		$this->_config->set('adyenPaymentSource', array('name' => $name, 'version' => $version));
+	}
 
     /**
      * Type can be json or array

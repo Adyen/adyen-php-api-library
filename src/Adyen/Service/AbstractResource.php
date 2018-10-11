@@ -115,6 +115,17 @@ class AbstractResource
 			// add/overwrite applicationInfo adyenLibrary even if it's already set
 			$params['applicationInfo']['adyenLibrary']['name'] = $this->_service->getClient()->getLibraryName();
 			$params['applicationInfo']['adyenLibrary']['version'] = $this->_service->getClient()->getLibraryVersion();
+
+			if ($adyenPaymentSource = $this->_service->getClient()->getConfig()->getAdyenPaymentSource()) {
+				$params['applicationInfo']['adyenPaymentSource']['version'] = $adyenPaymentSource['version'];
+				$params['applicationInfo']['adyenPaymentSource']['name'] = $adyenPaymentSource['name'];
+			}
+
+			if ($externalPlatform = $this->_service->getClient()->getConfig()->getExternalPlatform()) {
+				$params['applicationInfo']['externalPlatform']['version'] = $externalPlatform['version'];
+				$params['applicationInfo']['externalPlatform']['name'] = $externalPlatform['name'];
+			}
+
 		} else {
 			// remove if exists
 			if (isset($params['applicationInfo'])) {
