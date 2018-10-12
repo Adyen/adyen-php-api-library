@@ -12,7 +12,6 @@ class AbstractResourceTest extends TestCase
 	/**
 	 * If the allowApplicationInfo is false the applicationInfo key should be removed from the params
 	 *
-	 * @author attilak
 	 * @covers \Adyen\Service\AbstractResource::handleApplicationInfoInRequest
 	 */
 	public function testHandleApplicationInfoInRequestShouldRemoveApplicationInfoFromParams()
@@ -44,7 +43,6 @@ class AbstractResourceTest extends TestCase
 	/**
 	 * If the allowApplicationInfo is true the applicationInfo Adyen Library should be overwritten with the real values
 	 *
-	 * @author attilak
 	 * @covers \Adyen\Service\AbstractResource::handleApplicationInfoInRequest
 	 */
 	public function testHandleApplicationInfoInRequestShouldOverwriteApplicationInfoAdyenLibraryParams()
@@ -78,7 +76,6 @@ class AbstractResourceTest extends TestCase
 	 * If the config adyenPaymentSource is set the applicationInfo adyenPaymentSource should be added to the params
 	 * If the config externalPlatform is not set the applicationInfo externalPlatform should not be added to the params
 	 *
-	 * @author attilak
 	 * @covers \Adyen\Service\AbstractResource::handleApplicationInfoInRequest
 	 */
 	public function testHandleApplicationInfoInRequestShouldAddApplicationInfoAdyenPaymentSourceToParams()
@@ -91,7 +88,8 @@ class AbstractResourceTest extends TestCase
 			"applicationInfo" => array(
 				"adyenPaymentSource" => array(
 					"name" => "name-test",
-					"version" => "version-test")
+					"version" => "version-test"
+				)
 			)
 		);
 
@@ -111,5 +109,67 @@ class AbstractResourceTest extends TestCase
 
 		$this->assertArrayHasKey("applicationInfo", $result);
 		$this->assertArraySubset($expectedArraySubset, $result);
+	}
+
+	/**
+	 * If the config adyenPaymentSource integrator is set, the applicationInfo adyenPaymentSource integrator should be
+	 * added to the params.
+	 *
+	 * @covers \Adyen\Service\AbstractResource::handleApplicationInfoInRequest
+	 */
+	public function testHandleApplicationInfoInRequestShouldAddApplicationInfoAdyenPaymentSourceIntegratorToParams()
+	{
+		$params = array(
+			"topLevelKey" => "test"
+		);
+
+		// Mock client without the Test ini settings
+		$mockedClient = $this->createClientWithoutTestIni();
+
+		$mockedClient->setExternalPlatform("name-test", "version-test", "integrator-test");
+
+		// Mock abstract class with mocked client and $paramsToFilter parameters
+		$mockedClass = $this->getMockForAbstractClass($this->className, array((new \Adyen\Service($mockedClient)), "", true));
+
+		// Get private method as testable public method
+		$method = $this->getMethod($this->className, "handleApplicationInfoInRequest");
+
+		// Test against function
+		$result = $method->invokeArgs($mockedClass, array($params));
+
+		$this->assertArrayHasKey("applicationInfo", $result);
+		$this->assertArrayHasKey("externalPlatform", $result["applicationInfo"]);
+		$this->assertArrayHasKey("integrator", $result["applicationInfo"]["externalPlatform"]);
+	}
+
+	/**
+	 * If the config adyenPaymentSource integrator is not set, the applicationInfo adyenPaymentSource integrator should
+	 * not be added to the params.
+	 *
+	 * @covers \Adyen\Service\AbstractResource::handleApplicationInfoInRequest
+	 */
+	public function testHandleApplicationInfoInRequestShouldNotAddApplicationInfoAdyenPaymentSourceIntegratorToParams()
+	{
+		$params = array(
+			"topLevelKey" => "test"
+		);
+
+		// Mock client without the Test ini settings
+		$mockedClient = $this->createClientWithoutTestIni();
+
+		$mockedClient->setExternalPlatform("name-test", "version-test");
+
+		// Mock abstract class with mocked client and $paramsToFilter parameters
+		$mockedClass = $this->getMockForAbstractClass($this->className, array((new \Adyen\Service($mockedClient)), "", true));
+
+		// Get private method as testable public method
+		$method = $this->getMethod($this->className, "handleApplicationInfoInRequest");
+
+		// Test against function
+		$result = $method->invokeArgs($mockedClass, array($params));
+
+		$this->assertArrayHasKey("applicationInfo", $result);
+		$this->assertArrayHasKey("externalPlatform", $result["applicationInfo"]);
+		$this->assertArrayNotHasKey("integrator", $result["applicationInfo"]["externalPlatform"]);
 	}
 }

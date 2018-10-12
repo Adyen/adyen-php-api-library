@@ -124,6 +124,10 @@ class AbstractResource
 			if ($externalPlatform = $this->_service->getClient()->getConfig()->getExternalPlatform()) {
 				$params['applicationInfo']['externalPlatform']['version'] = $externalPlatform['version'];
 				$params['applicationInfo']['externalPlatform']['name'] = $externalPlatform['name'];
+
+				if (!empty($externalPlatform['integrator'])) {
+					$params['applicationInfo']['externalPlatform']['integrator'] = $externalPlatform['integrator'];
+				}
 			}
 
 		} else {

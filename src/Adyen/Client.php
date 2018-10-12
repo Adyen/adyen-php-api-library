@@ -33,7 +33,7 @@ class Client
     private $_httpClient;
 
     /**
-     * @var Adyen_Logger_Abstract $logger
+     * @var Logger $logger
      */
     private $logger;
 
@@ -156,14 +156,15 @@ class Client
     }
 
 	/**
-	 * Set external platform name and version
+	 * Set external platform name, version and integrator
 	 *
 	 * @param string $name
 	 * @param string $version
+	 * @param string $integrator
 	 */
-	public function setExternalPlatform($name, $version)
+	public function setExternalPlatform($name, $version, $integrator = "")
 	{
-		$this->_config->set('externalPlatform', array('name' => $name, 'version' => $version));
+		$this->_config->set('externalPlatform', array('name' => $name, 'version' => $version, 'integrator' => $integrator));
 	}
 
 	/**
