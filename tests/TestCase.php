@@ -10,7 +10,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
     protected $_hmacSignature;
 
 	/**
-	 * Settings parsed from the config/tests.ini file
+	 * Settings parsed from the config/test.ini file
 	 *
 	 * @var array
 	 */
@@ -226,6 +226,11 @@ class TestCase extends \PHPUnit_Framework_TestCase
         return $settings['POIID'];
     }
 
+	/**
+	 * Loads the settings into and array from the config/test.ini file
+	 *
+	 * @return array|bool
+	 */
     protected function _loadConfigIni()
     {
         return parse_ini_file(__DIR__ . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'test.ini', true);
@@ -244,7 +249,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * In case of developing the api library alone zou can set the standalone_library_development_in_progress property
+	 * In case of developing the api library alone you can set the standalone_library_development_in_progress property
 	 * true to set up the default missing values for local development which otherwise would set by the merchant
 	 *
 	 * @return bool
