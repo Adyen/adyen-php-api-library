@@ -187,4 +187,68 @@ class PosPaymentTest extends TestCase
 
     }
 
+    /**
+     * After timeout, an Exception will be returned with code: CURLE_OPERATION_TIMEOUTED
+     * @covers \Adyen\HttpClient\CurlClient::handleCurlError
+     */
+    public function testPosPaymentFailTimeout()
+    {
+        // initialize client
+        $client = $this->createTerminalCloudAPIClient();
+        $client->setTimeout(1);
+
+        // initialize service
+        $service = new Service\PosPayment($client);
+
+        //Construct request
+        $transactionType = \Adyen\TransactionType::NORMAL;
+        $serviceID = date("dHis");
+        $timeStamper = date("Y-m-d") . "T" . date("H:i:s+00:00");
+
+        $json = '{
+                    "SaleToPOIRequest": {
+                        "MessageHeader": {
+                            "MessageType": "Request",
+                            "MessageClass": "Service",
+                            "MessageCategory": "Payment",
+                            "SaleID": "PosTestLibrary",
+                            "POIID": "' . $this->getPOIID() . '",
+                            "ProtocolVersion": "3.0",
+                            "ServiceID": "' . $serviceID . '"
+                        },
+                        "PaymentRequest": {
+                            "SaleData": {
+                                "SaleTransactionID": {
+                                    "TransactionID": "POStimeout",
+                                    "TimeStamp": "' . $timeStamper . '"
+                                },
+                                "TokenRequestedType": "Customer",
+                                "SaleReferenceID": "SalesRefABC"
+                            },
+                            "PaymentTransaction": {
+                                "AmountsReq": {
+                                    "Currency": "EUR",
+                                    "RequestedAmount": ' . 14.91 . '
+                                }
+                            },
+                            "PaymentData": {
+                                "PaymentType": "' . $transactionType . '"
+                            }
+                        }
+                    }
+                }
+            ';
+
+        $params = json_decode($json, true); //Create associative array for passing along
+
+        try {
+            $result = $service->runTenderSync($params);
+            $this->fail();
+        } catch (\Exception $e) {
+            $this->assertEquals(CURLE_OPERATION_TIMEOUTED, $e->getCode());
+            $this->validateApiPermission($e);
+        }
+
+    }
+
 }
