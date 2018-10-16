@@ -17,7 +17,6 @@ class AbstractResourceTest extends TestCase
 	public function testHandleApplicationInfoInRequestShouldRemoveApplicationInfoFromParams()
 	{
 		$params = array(
-			"topLevelKey" => "test",
 			"applicationInfo" => array(
 				"adyenLibrary" => array(
 					"name" => "test",
@@ -48,7 +47,6 @@ class AbstractResourceTest extends TestCase
 	public function testHandleApplicationInfoInRequestShouldOverwriteApplicationInfoAdyenLibraryParams()
 	{
 		$params = array(
-			"topLevelKey" => "test",
 			"applicationInfo" => array(
 				"adyenLibrary" => array(
 					"name" => "test",
@@ -80,9 +78,7 @@ class AbstractResourceTest extends TestCase
 	 */
 	public function testHandleApplicationInfoInRequestShouldAddApplicationInfoAdyenPaymentSourceToParams()
 	{
-		$params = array(
-			"topLevelKey" => "test"
-		);
+		$params = array();
 
 		$expectedArraySubset = array(
 			"applicationInfo" => array(
@@ -119,9 +115,7 @@ class AbstractResourceTest extends TestCase
 	 */
 	public function testHandleApplicationInfoInRequestShouldAddApplicationInfoAdyenPaymentSourceIntegratorToParams()
 	{
-		$params = array(
-			"topLevelKey" => "test"
-		);
+		$params = array();
 
 		// Mock client without the Test ini settings
 		$mockedClient = $this->createClientWithoutTestIni();
@@ -150,9 +144,7 @@ class AbstractResourceTest extends TestCase
 	 */
 	public function testHandleApplicationInfoInRequestShouldNotAddApplicationInfoAdyenPaymentSourceIntegratorToParams()
 	{
-		$params = array(
-			"topLevelKey" => "test"
-		);
+		$params = array();
 
 		// Mock client without the Test ini settings
 		$mockedClient = $this->createClientWithoutTestIni();
