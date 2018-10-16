@@ -32,8 +32,11 @@ class TestCase extends \PHPUnit_Framework_TestCase
 	 */
     private function setDefaultsDuringDevelopment()
 	{
-		if ($this->isStandaloneLibraryDevelopmentInProgress()) {
-			date_default_timezone_set('Europe/Amsterdam');
+		if ($this->isDev()) {
+			// Check default timezone if not set use a default value for that
+			if (!ini_get('date.timezone')) {
+				ini_set('date.timezone', 'Europe/Amsterdam');
+			}
 		}
 	}
 
@@ -249,20 +252,20 @@ class TestCase extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * In case of developing the api library alone you can set the standalone_library_development_in_progress property
+	 * In case of developing the api library alone you can set the dev property
 	 * true to set up the default missing values for local development which otherwise would set by the merchant
 	 *
 	 * @return bool
 	 */
-	protected function isStandaloneLibraryDevelopmentInProgress()
+	protected function isDev()
 	{
 		$settings = $this->settings;
 
-		if(!isset($settings['standalone_library_development_in_progress'])) {
+		if(!isset($settings['dev'])) {
 			return false;
 		}
 
-		return $settings['standalone_library_development_in_progress'];
+		return $settings['dev'];
 	}
 	
     public function validateApiPermission($e)
