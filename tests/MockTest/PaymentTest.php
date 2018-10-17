@@ -107,8 +107,8 @@ class PaymentTest extends TestCaseMock
         } catch (\Exception $e) {
             $this->assertInstanceOf('Adyen\ConnectionException', $e);
             $this->assertContains($expectedExceptionMessage, $e->getMessage());
-            if ($httpStatus != null) {
-                $this->assertEquals($httpStatus, $e->getCode());
+            if ($errno != null) {
+                $this->assertEquals($errno, $e->getCode());
             }
         }
     }
