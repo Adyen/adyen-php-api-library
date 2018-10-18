@@ -222,7 +222,7 @@ class CurlClient implements ClientInterface
         }
         $msg .= "\n(Network error [errno $errno]: $message)";
         $logger->error($msg);
-        throw new \Adyen\ConnectionException($msg);
+        throw new \Adyen\ConnectionException($msg, $errno);
     }
 
     /**
