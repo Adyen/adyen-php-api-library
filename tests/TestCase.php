@@ -32,11 +32,9 @@ class TestCase extends \PHPUnit_Framework_TestCase
 	 */
     private function setDefaultsDuringDevelopment()
 	{
-		if ($this->isDev()) {
-			// Check default timezone if not set use a default value for that
-			if (!ini_get('date.timezone')) {
-				ini_set('date.timezone', 'Europe/Amsterdam');
-			}
+		// Check default timezone if not set use a default value for that
+		if (!ini_get('date.timezone')) {
+			ini_set('date.timezone', 'Europe/Amsterdam');
 		}
 	}
 
@@ -249,23 +247,6 @@ class TestCase extends \PHPUnit_Framework_TestCase
 		if (!$this->_skinCode) {
 			$this->_skipTest("Skipped the test. Configure your SkinCode in the config");
 		}
-	}
-
-	/**
-	 * In case of developing the api library alone you can set the dev property
-	 * true to set up the default missing values for local development which otherwise would set by the merchant
-	 *
-	 * @return bool
-	 */
-	protected function isDev()
-	{
-		$settings = $this->settings;
-
-		if(!isset($settings['dev'])) {
-			return false;
-		}
-
-		return $settings['dev'];
 	}
 	
     public function validateApiPermission($e)
