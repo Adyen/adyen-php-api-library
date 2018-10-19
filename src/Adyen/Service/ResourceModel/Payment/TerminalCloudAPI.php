@@ -4,8 +4,17 @@ namespace Adyen\Service\ResourceModel\Payment;
 
 class TerminalCloudAPI extends \Adyen\Service\AbstractResource
 {
-    protected $_endpoint;
+	/**
+	 * @var string
+	 */
+	protected $_endpoint;
 
+	/**
+	 * TerminalCloudAPI constructor.
+	 *
+	 * @param \Adyen\Service $service
+	 * @param bool $asynchronous
+	 */
     public function __construct($service, $asynchronous)
     {
         if ($asynchronous) {
@@ -15,5 +24,4 @@ class TerminalCloudAPI extends \Adyen\Service\AbstractResource
         }
         parent::__construct($service, $this->_endpoint);
     }
-
 }
