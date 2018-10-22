@@ -14,9 +14,9 @@ class ListRecurringDetails extends \Adyen\Service\AbstractResource
 	 *
 	 * @param \Adyen\Service $service
 	 */
-    public function __construct($service)
-    {
-        $this->endpoint = $service->getClient()->getConfig()->get('endpoint') . '/pal/servlet/Recurring/' . $service->getClient()->getApiRecurringVersion() . '/listRecurringDetails';
-        parent::__construct($service, $this->endpoint);
-    }
+	public function __construct($service)
+	{
+		$this->endpoint = $service->getClient()->getConfig()->get('endpoint') . '/pal/servlet/Recurring/' . $service->getClient()->getApiRecurringVersion() . '/listRecurringDetails';
+		parent::__construct($service, $this->endpoint);
+	}
 }

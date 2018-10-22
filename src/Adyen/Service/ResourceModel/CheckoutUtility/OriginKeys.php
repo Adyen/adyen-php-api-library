@@ -7,7 +7,7 @@ class OriginKeys extends \Adyen\Service\AbstractCheckoutResource
 	/**
 	 * @var string
 	 */
-    protected $_endpoint;
+	protected $_endpoint;
 
 	/**
 	 * OriginKeys constructor.
@@ -15,9 +15,9 @@ class OriginKeys extends \Adyen\Service\AbstractCheckoutResource
 	 * @param \Adyen\Service $service
 	 * @throws \Adyen\AdyenException
 	 */
-    public function __construct($service)
-    {
-        $this->_endpoint = $this->getCheckoutEndpoint($service) .'/'. $service->getClient()->getApiCheckoutUtilityVersion() . '/originKeys';
-        parent::__construct($service, $this->_endpoint);
-    }
+	public function __construct($service)
+	{
+		$this->_endpoint = $this->getCheckoutEndpoint($service) . '/' . $service->getClient()->getApiCheckoutUtilityVersion() . '/originKeys';
+		parent::__construct($service, $this->_endpoint);
+	}
 }
