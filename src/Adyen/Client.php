@@ -8,7 +8,7 @@ use Monolog\Handler\StreamHandler;
 
 class Client
 {
-    const LIB_VERSION = "1.5.1";
+    const LIB_VERSION = "1.5.2";
     const LIB_NAME = "adyen-php-api-library";
     const USER_AGENT_SUFFIX = "adyen-php-api-library/";
     const ENDPOINT_TEST = "https://pal-test.adyen.com";
