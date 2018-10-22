@@ -76,6 +76,24 @@ class TestCase extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
+	 * Mock client object without configuring the config/test.ini
+	 *
+	 * @return \Adyen\Client
+	 */
+	protected function createClientWithoutTestIni()
+	{
+		try	{
+			$client = new \Adyen\Client();
+			$client->setApplicationName("My Test Application");
+			$client->setEnvironment(\Adyen\Environment::TEST);
+		} catch (\Adyen\AdyenException $exception) {
+			$this->_skipTest($exception->getMessage());
+		}
+
+		return $client;
+	}
+
+	/**
 	 * Mock client for payout
 	 *
 	 * @return \Adyen\Client
@@ -264,4 +282,23 @@ class TestCase extends \PHPUnit_Framework_TestCase
             $this->markTestSkipped("Skipped the test. You do not have the permission to do a recurring transaction.");
         }
     }
+
+	/**
+	 * Get reflection class method set to public to make it testable
+	 *
+	 * @param  string $class full path
+	 * @param  string $name
+	 * @return mixed
+	 */
+	protected function getMethod($class, $name) {
+		try {
+			$class = new \ReflectionClass($class);
+		} catch (\ReflectionException $exception) {
+			$this->_skipTest($exception->getMessage());
+		}
+
+		$method = $class->getMethod($name);
+		$method->setAccessible(true);
+		return $method;
+	}
 }
