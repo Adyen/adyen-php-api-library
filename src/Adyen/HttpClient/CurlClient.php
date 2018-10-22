@@ -2,7 +2,6 @@
 
 namespace Adyen\HttpClient;
 
-
 class CurlClient implements ClientInterface
 {
     /**
@@ -81,10 +80,7 @@ class CurlClient implements ClientInterface
         if ($httpStatus != 200 && $result) {
             $this->handleResultError($result, $logger);
         } elseif (!$result) {
-
             list($errno, $message) = $this->curlError($ch);
-
-            curl_close($ch);
             $this->handleCurlError($requestUrl, $errno, $message, $logger);
         }
 
@@ -151,9 +147,8 @@ class CurlClient implements ClientInterface
         // return the result
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-        //Execute the request
-        $result = curl_exec($ch);
-        $httpStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		//Execute the request
+		list($result, $httpStatus) = $this->curlRequest($ch);
 
         // log the raw response
         $logger->info("JSON Response is: " . $result);
@@ -161,10 +156,7 @@ class CurlClient implements ClientInterface
         if ($httpStatus != 200 && $result) {
             $this->handleResultError($result, $logger);
         } elseif (!$result) {
-            $errno = curl_errno($ch);
-            $message = curl_error($ch);
-
-            curl_close($ch);
+			list($errno, $message) = $this->curlError($ch);
             $this->handleCurlError($requestUrl, $errno, $message, $logger);
         }
 
@@ -184,7 +176,6 @@ class CurlClient implements ClientInterface
             // log the array result
             $logger->info('Params in response from Adyen:' . print_r($result, 1));
         }
-
 
         return $result;
     }
@@ -265,6 +256,12 @@ class CurlClient implements ClientInterface
         $logger->info('JSON Request to Adyen:' . json_encode($params));
     }
 
+	/**
+	 * Execute curl, return the result and the http response code
+	 *
+	 * @param $ch
+	 * @return array
+	 */
     protected function curlRequest($ch)
     {
         $result = curl_exec($ch);
@@ -272,6 +269,12 @@ class CurlClient implements ClientInterface
         return array($result, $httpStatus);
     }
 
+	/**
+	 * Retrieve curl error number and message
+	 *
+	 * @param $ch
+	 * @return array
+	 */
     protected function curlError($ch)
     {
         $errno = curl_errno($ch);

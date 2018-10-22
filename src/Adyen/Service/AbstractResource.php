@@ -2,7 +2,7 @@
 
 namespace Adyen\Service;
 
-class AbstractResource
+abstract class AbstractResource
 {
 	/**
 	 * @var \Adyen\Service
