@@ -8,7 +8,8 @@ use Monolog\Handler\StreamHandler;
 
 class Client
 {
-    const LIB_VERSION = "1.5.1";
+    const LIB_VERSION = "1.5.2";
+    const LIB_NAME = "adyen-php-api-library";
     const USER_AGENT_SUFFIX = "adyen-php-api-library/";
     const ENDPOINT_TEST = "https://pal-test.adyen.com";
     const ENDPOINT_LIVE = "https://pal-live.adyen.com";
@@ -26,13 +27,13 @@ class Client
     const ENDPOINT_PROTOCOL = "https://";
 
     /**
-     * @var Adyen_Config $config
+     * @var \Adyen\Config $config
      */
     private $_config;
     private $_httpClient;
 
     /**
-     * @var Adyen_Logger_Abstract $logger
+     * @var Logger $logger
      */
     private $logger;
 
@@ -93,7 +94,7 @@ class Client
      * Set environment to connect to test or live platform of Adyen
      * For live please specify the unique identifier.
      *
-     * @param $environment test
+     * @param string $environment
      * @param null $liveEndpointUrlPrefix Provide the unique live url prefix from the "API URLs and Response" menu in the Adyen Customer Area
      * @throws AdyenException
      */
@@ -154,6 +155,29 @@ class Client
         $this->_config->set('applicationName', $applicationName);
     }
 
+	/**
+	 * Set external platform name, version and integrator
+	 *
+	 * @param string $name
+	 * @param string $version
+	 * @param string $integrator
+	 */
+	public function setExternalPlatform($name, $version, $integrator = "")
+	{
+		$this->_config->set('externalPlatform', array('name' => $name, 'version' => $version, 'integrator' => $integrator));
+	}
+
+	/**
+	 * Set Adyen payment source name and version
+	 *
+	 * @param string $name
+	 * @param string $version
+	 */
+	public function setAdyenPaymentSource($name, $version)
+	{
+		$this->_config->set('adyenPaymentSource', array('name' => $name, 'version' => $version));
+	}
+
     /**
      * Type can be json or array
      *
@@ -179,6 +203,15 @@ class Client
         $this->_config->set('timeout', $value);
     }
 
+	/**
+	 * Get the library name
+	 *
+	 * @return string
+	 */
+	public function getLibraryName()
+	{
+		return self::LIB_NAME;
+	}
 
     /**
      * Get the library version

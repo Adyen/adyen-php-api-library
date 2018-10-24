@@ -97,4 +97,20 @@ class Config implements ConfigInterface
     {
         return isset($this->data['merchantAccount']) ? $this->data['merchantAccount'] : null;
     }
+
+	/**
+	 * @return mixed|null
+	 */
+	public function getAdyenPaymentSource()
+	{
+		return isset($this->data['adyenPaymentSource']) ? $this->data['adyenPaymentSource'] : null;
+	}
+
+	/**
+	 * @return mixed|null
+	 */
+	public function getExternalPlatform()
+	{
+		return isset($this->data['externalPlatform']) ? $this->data['externalPlatform'] : null;
+	}
 }

@@ -9,15 +9,34 @@ class TestCase extends \PHPUnit_Framework_TestCase
     protected $_skinCode;
     protected $_hmacSignature;
 
+	/**
+	 * Settings parsed from the config/test.ini file
+	 *
+	 * @var array
+	 */
+    protected $settings;
+
     public function __construct()
     {
-
         $this->_merchantAccount = $this->getMerchantAccount();
         $this->_skinCode = $this->getSkinCode();
         $this->_hmacSignature = $this->getHmacSignature();
+		$this->settings = $this->_loadConfigIni();
 
+		$this->setDefaultsDuringDevelopment();
     }
 
+	/**
+	 * During development of the standalone php api library this function sets the necessary defaults which would
+	 * otherwise set by the merchant
+	 */
+    private function setDefaultsDuringDevelopment()
+	{
+		// Check default timezone if not set use a default value for that
+		if (!ini_get('date.timezone')) {
+			ini_set('date.timezone', 'Europe/Amsterdam');
+		}
+	}
 
 	/**
 	 * Mock client
@@ -27,7 +46,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
 	protected function createClient()
 	{
 		// load settings from .ini file
-		$settings = $this->_loadConfigIni();
+		$settings = $this->settings;
 
 		// validate username, password and MERCHANTAccount
 
@@ -57,6 +76,24 @@ class TestCase extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
+	 * Mock client object without configuring the config/test.ini
+	 *
+	 * @return \Adyen\Client
+	 */
+	protected function createClientWithoutTestIni()
+	{
+		try	{
+			$client = new \Adyen\Client();
+			$client->setApplicationName("My Test Application");
+			$client->setEnvironment(\Adyen\Environment::TEST);
+		} catch (\Adyen\AdyenException $exception) {
+			$this->_skipTest($exception->getMessage());
+		}
+
+		return $client;
+	}
+
+	/**
 	 * Mock client for payout
 	 *
 	 * @return \Adyen\Client
@@ -64,7 +101,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
 	protected function createPayoutClient()
 	{
 		// load settings from .ini file
-		$settings = $this->_loadConfigIni();
+		$settings = $this->settings;
 
 		// validate username, password and MERCHANTAccount
 
@@ -101,7 +138,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
 	protected function createReviewPayoutClient()
 	{
 		// load settings from .ini file
-		$settings = $this->_loadConfigIni();
+		$settings = $this->settings;
 
 		// validate username, password and MERCHANTAccount
 
@@ -133,7 +170,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
 	protected function createTerminalCloudAPIClient()
     {
         // load settings from .ini file
-        $settings = $this->_loadConfigIni();
+        $settings = $this->settings;
 
         if(!isset($settings['x-api-key']) || !isset($settings['POIID']) || $settings['x-api-key'] == 'YOUR X-API KEY' || $settings['POIID'] == 'UNIQUETERMINALID'){
             $this->_skipTest("Skipped the test. Configure your x-api-key and POIID in the config");
@@ -153,7 +190,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
         $client = $this->createClient();
 
         // load settings from .ini file
-        $settings = $this->_loadConfigIni();
+        $settings = $this->settings;
 
         if(!isset($settings['merchantAccount']) || $settings['merchantAccount'] == 'YOUR MERCHANTACCOUNT') {
             $this->_skipTest("Skipped the test. Configure your MerchantAccount in the config");
@@ -166,7 +203,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
     protected function getMerchantAccount()
     {
-        $settings = $this->_loadConfigIni();
+        $settings = $this->settings;
 
         if(!isset($settings['merchantAccount']) || $settings['merchantAccount'] == 'YOUR MERCHANTACCOUNT') {
             return null;
@@ -177,7 +214,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
     protected function getSkinCode()
     {
-        $settings = $this->_loadConfigIni();
+        $settings = $this->settings;
 
         if(!isset($settings['skinCode']) || $settings['skinCode'] == 'YOUR SKIN CODE') {
             return null;
@@ -188,7 +225,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
     protected function getHmacSignature()
     {
-        $settings = $this->_loadConfigIni();
+        $settings = $this->settings;
 
         if(!isset($settings['hmacSignature'])|| $settings['hmacSignature'] == 'YOUR HMAC SIGNATURE') {
             return null;
@@ -199,7 +236,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
     protected function getPOIID()
     {
-        $settings = $this->_loadConfigIni();
+        $settings = $this->settings;
 
         if(!isset($settings['POIID']) || $settings['POIID'] == 'MODEL-SERIALNUMBER') {
             return null;
@@ -208,6 +245,11 @@ class TestCase extends \PHPUnit_Framework_TestCase
         return $settings['POIID'];
     }
 
+	/**
+	 * Loads the settings into and array from the config/test.ini file
+	 *
+	 * @return array|bool
+	 */
     protected function _loadConfigIni()
     {
         return parse_ini_file(__DIR__ . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'test.ini', true);
@@ -224,7 +266,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
 			$this->_skipTest("Skipped the test. Configure your SkinCode in the config");
 		}
 	}
-
+	
     public function validateApiPermission($e)
     {
         // it is possible you do not have permission to use full API then switch over to CSE
@@ -241,4 +283,22 @@ class TestCase extends \PHPUnit_Framework_TestCase
         }
     }
 
+	/**
+	 * Get reflection class method set to public to make it testable
+	 *
+	 * @param  string $class full path
+	 * @param  string $name
+	 * @return mixed
+	 */
+	protected function getMethod($class, $name) {
+		try {
+			$class = new \ReflectionClass($class);
+		} catch (\ReflectionException $exception) {
+			$this->_skipTest($exception->getMessage());
+		}
+
+		$method = $class->getMethod($name);
+		$method->setAccessible(true);
+		return $method;
+	}
 }
