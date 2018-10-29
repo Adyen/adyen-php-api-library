@@ -16,7 +16,8 @@ class Client
     const ENDPOINT_LIVE_SUFFIX = "-pal-live.adyenpayments.com";
     const ENDPOINT_TEST_DIRECTORY_LOOKUP = "https://test.adyen.com/hpp/directory/v2.shtml";
     const ENDPOINT_LIVE_DIRECTORY_LOOKUP = "https://live.adyen.com/hpp/directory/v2.shtml";
-    const API_VERSION = "v30";
+    const API_PAYMENT_VERSION = "v40";
+	const API_PAYOUT_VERSION = "v30";
     const API_RECURRING_VERSION = "v25";
     const API_CHECKOUT_VERSION = "v32";
     const API_CHECKOUT_UTILITY_VERSION = "v1";
@@ -224,14 +225,24 @@ class Client
     }
 
     /**
-     * Get the version of the API endpoint
+     * Get the version of the API Payment endpoint
      *
      * @return string
      */
-    public function getApiVersion()
+    public function getApiPaymentVersion()
     {
-        return self::API_VERSION;
+        return self::API_PAYMENT_VERSION;
     }
+
+	/**
+	 * Get the version of the API Payout endpoint
+	 *
+	 * @return string
+	 */
+	public function getApiPayoutVersion()
+	{
+		return self::API_PAYOUT_VERSION;
+	}
 
     /**
      * Get the version of the Recurring API endpoint
