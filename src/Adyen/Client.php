@@ -18,7 +18,7 @@ class Client
     const ENDPOINT_LIVE_DIRECTORY_LOOKUP = "https://live.adyen.com/hpp/directory/v2.shtml";
     const API_VERSION = "v30";
     const API_RECURRING_VERSION = "v25";
-    const API_CHECKOUT_VERSION = "v32";
+    const API_CHECKOUT_VERSION = "v40";
     const API_CHECKOUT_UTILITY_VERSION = "v1";
     const ENDPOINT_TERMINAL_CLOUD_TEST = "https://terminal-api-test.adyen.com";
     const ENDPOINT_TERMINAL_CLOUD_LIVE = "https://terminal-api-live.adyen.com";
