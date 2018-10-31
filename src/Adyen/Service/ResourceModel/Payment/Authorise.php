@@ -23,7 +23,7 @@ class Authorise extends \Adyen\Service\AbstractResource
 	 */
     public function __construct($service)
     {
-        $this->_endpoint = $service->getClient()->getConfig()->get('endpoint') . '/pal/servlet/Payment/' . $service->getClient()->getApiVersion() . '/authorise';
+        $this->_endpoint = $service->getClient()->getConfig()->get('endpoint') . '/pal/servlet/Payment/' . $service->getClient()->getApiPaymentVersion() . '/authorise';
         parent::__construct($service, $this->_endpoint, $this->allowApplicationInfo);
     }
 }
