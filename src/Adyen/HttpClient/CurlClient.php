@@ -76,15 +76,17 @@ class CurlClient implements ClientInterface
 		// log the raw response
 		$logger->info("JSON Response is: " . $result);
 
+		// Get errors
+		list($errno, $message) = $this->curlError($ch);
+
+		curl_close($ch);
+
 		// result not 200 throw error
 		if ($httpStatus != 200 && $result) {
 			$this->handleResultError($result, $logger);
 		} elseif (!$result) {
-			list($errno, $message) = $this->curlError($ch);
 			$this->handleCurlError($requestUrl, $errno, $message, $logger);
 		}
-
-		curl_close($ch);
 
 		// result in array or json
 		if ($config->getOutputType() == 'array') {
@@ -152,14 +154,16 @@ class CurlClient implements ClientInterface
 		// log the raw response
 		$logger->info("JSON Response is: " . $result);
 
+		// Get errors
+		list($errno, $message) = $this->curlError($ch);
+
+		curl_close($ch);
+
 		if ($httpStatus != 200 && $result) {
 			$this->handleResultError($result, $logger);
 		} elseif (!$result) {
-			list($errno, $message) = $this->curlError($ch);
 			$this->handleCurlError($requestUrl, $errno, $message, $logger);
 		}
-
-		curl_close($ch);
 
 		// result in array or json
 		if ($config->getOutputType() == 'array') {
