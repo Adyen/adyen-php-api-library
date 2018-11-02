@@ -42,6 +42,7 @@ $client = new \Adyen\Client();
 $client->setApplicationName("Adyen PHP Api Library Example");
 $client->setUsername("YOUR USERNAME");
 $client->setPassword("YOUR PASSWORD");
+$client->setXApiKey("YOUR API KEY");
 $client->setEnvironment(\Adyen\Environment::TEST);
 
 $service = new Service\Payment($client);
@@ -92,6 +93,7 @@ $client = new \Adyen\Client();
 $client->setApplicationName("Adyen PHP Api Library Example");
 $client->setUsername("YOUR USERNAME");
 $client->setPassword("YOUR PASSWORD");
+$client->setXApiKey("YOUR API KEY");
 $client->setEnvironment(\Adyen\Environment::TEST);
 
 // intialize modification service

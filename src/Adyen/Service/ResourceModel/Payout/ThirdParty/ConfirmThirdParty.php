@@ -16,7 +16,7 @@ class ConfirmThirdParty extends \Adyen\Service\AbstractResource
 	 */
 	public function __construct($service)
 	{
-		$this->_endpoint = $service->getClient()->getConfig()->get('endpoint') . '/pal/servlet/Payout/' . $service->getClient()->getApiVersion() . '/confirmThirdParty';
+		$this->_endpoint = $service->getClient()->getConfig()->get('endpoint') . '/pal/servlet/Payout/' . $service->getClient()->getApiPayoutVersion() . '/confirmThirdParty';
 		parent::__construct($service, $this->_endpoint);
 	}
 }

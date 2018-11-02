@@ -21,9 +21,9 @@ class Authorise3D extends \Adyen\Service\AbstractResource
 	 *
 	 * @param \Adyen\Service $service
 	 */
-	public function __construct($service)
-	{
-		$this->_endpoint = $service->getClient()->getConfig()->get('endpoint') . '/pal/servlet/Payment/' . $service->getClient()->getApiVersion() . '/authorise3d';
-		parent::__construct($service, $this->_endpoint, $this->allowApplicationInfo);
-	}
+    public function __construct($service)
+    {
+        $this->_endpoint = $service->getClient()->getConfig()->get('endpoint') . '/pal/servlet/Payment/' . $service->getClient()->getApiPaymentVersion() . '/authorise3d';
+        parent::__construct($service, $this->_endpoint, $this->allowApplicationInfo);
+    }
 }
