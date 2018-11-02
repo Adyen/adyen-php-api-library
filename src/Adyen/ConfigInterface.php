@@ -2,14 +2,22 @@
 
 namespace Adyen;
 
-Interface ConfigInterface {
+Interface ConfigInterface
+{
 
-    public function getUsername();
-    public function getPassword();
-    public function getXApiKey();
-    public function get($param);
-    public function getInputType();
-    public function getOutputType();
-    public function getMerchantAccount();
-    public function getTimeout();
+	public function getUsername();
+
+	public function getPassword();
+
+	public function getXApiKey();
+
+	public function get($param);
+
+	public function getInputType();
+
+	public function getOutputType();
+
+	public function getMerchantAccount();
+
+	public function getTimeout();
 }

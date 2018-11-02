@@ -4,99 +4,135 @@ namespace Adyen;
 
 class Config implements ConfigInterface
 {
+	/**
+	 * @var array
+	 */
+	protected $data = array();
 
-    /** @var array */
-    protected $data = array();
+	/**
+	 * @var array
+	 */
+	protected $allowedInput = array('array', 'json');
 
-    // allowed input
-    protected $allowedInput = array('array', 'json');
-    protected $defaultInput = 'array';
+	/**
+	 * @var string
+	 */
+	protected $defaultInput = 'array';
 
-    // allowed output
-    protected $allowedOutput = array('array', 'json');
-    protected $defaultOutput = 'array';
+	/**
+	 * @var array
+	 */
+	protected $allowedOutput = array('array', 'json');
 
-    public function __construct($params = null)
-    {
-        if($params && is_array($params)) {
-            foreach($params as $key => $param) {
-                $this->data[$key] = $param;
-            }
-        }
-        return $this;
-    }
+	/**
+	 * @var string
+	 */
+	protected $defaultOutput = 'array';
 
-    /**
-     * Get a specific key value.
-     *
-     * @param string $key Key to retrieve.
-     *
-     * @return mixed|null Value of the key or NULL
-     */
-    public function get($key)
-    {
-        return isset($this->data[$key]) ? $this->data[$key] : null;
-    }
+	/**
+	 * Config constructor.
+	 *
+	 * @param null $params
+	 */
+	public function __construct($params = null)
+	{
+		if ($params && is_array($params)) {
+			foreach ($params as $key => $param) {
+				$this->data[$key] = $param;
+			}
+		}
 
-    /**
-     * Set a key value pair
-     *
-     * @param string $key   Key to set
-     * @param mixed  $value Value to set
-     */
-    public function set($key, $value)
-    {
-        $this->data[$key] = $value;
-    }
+		return $this;
+	}
 
-    public function getUsername()
-    {
-        return isset($this->data['username']) ? $this->data['username'] : null;
-    }
+	/**
+	 * Get a specific key value.
+	 *
+	 * @param string $key Key to retrieve.
+	 *
+	 * @return mixed|null Value of the key or NULL
+	 */
+	public function get($key)
+	{
+		return isset($this->data[$key]) ? $this->data[$key] : null;
+	}
 
-    public function getPassword()
-    {
-        return isset($this->data['password']) ? $this->data['password'] : null;
-    }
+	/**
+	 * Set a key value pair
+	 *
+	 * @param string $key Key to set
+	 * @param mixed $value Value to set
+	 */
+	public function set($key, $value)
+	{
+		$this->data[$key] = $value;
+	}
 
-    /**
-     * Get the Checkout API Key from the Adyen Customer Area
-     *
-     * @return mixed|null
-     */
-    public function getXApiKey()
-    {
-        return !empty($this->data['x-api-key']) ? $this->data['x-api-key'] : null;
-    }
+	/**
+	 * @return mixed|null
+	 */
+	public function getUsername()
+	{
+		return isset($this->data['username']) ? $this->data['username'] : null;
+	}
 
-    public function getInputType()
-    {
-        if(isset($this->data['inputType']) && in_array($this->data['inputType'], $this->allowedInput)) {
-            return $this->data['inputType'];
-        }
+	/**
+	 * @return mixed|null
+	 */
+	public function getPassword()
+	{
+		return isset($this->data['password']) ? $this->data['password'] : null;
+	}
 
-        // return default type
-        return $this->defaultInput;
-    }
+	/**
+	 * Get the Checkout API Key from the Adyen Customer Area
+	 *
+	 * @return mixed|null
+	 */
+	public function getXApiKey()
+	{
+		return !empty($this->data['x-api-key']) ? $this->data['x-api-key'] : null;
+	}
 
-    public function getOutputType()
-    {
-        if(isset($this->data['outputType']) && in_array($this->data['outputType'], $this->allowedOutput)) {
-            return $this->data['outputType'];
-        }
-        // return the default type
-        return $this->defaultOutput;
-    }
+	/**
+	 * @return mixed|string
+	 */
+	public function getInputType()
+	{
+		if (isset($this->data['inputType']) && in_array($this->data['inputType'], $this->allowedInput)) {
+			return $this->data['inputType'];
+		}
 
-    public function getTimeout()
-    {
-        return !empty($this->data['timeout']) ? $this->data['timeout'] : null;
-    }
+		return $this->defaultInput;
+	}
 
-    public function getMerchantAccount()
-    {
-        return isset($this->data['merchantAccount']) ? $this->data['merchantAccount'] : null;
-    }
+	/**
+	 * @return mixed|string
+	 */
+	public function getOutputType()
+	{
+		if (isset($this->data['outputType']) && in_array($this->data['outputType'], $this->allowedOutput)) {
+			return $this->data['outputType'];
+		}
+
+		return $this->defaultOutput;
+	}
+
+	/**
+	 * @return mixed|null
+	 */
+	public function getTimeout()
+	{
+		return !empty($this->data['timeout']) ? $this->data['timeout'] : null;
+	}
+
+	/**
+	 * @return mixed|null
+	 */
+	public function getMerchantAccount()
+	{
+		return isset($this->data['merchantAccount']) ? $this->data['merchantAccount'] : null;
+	}
 
 	/**
 	 * @return mixed|null
