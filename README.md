@@ -45,7 +45,7 @@ $client->setPassword("YOUR PASSWORD");
 $client->setXApiKey("YOUR API KEY");
 $client->setEnvironment(\Adyen\Environment::TEST);
 
-$service = new Service\Payment($client);
+$service = new \Adyen\Service\Payment($client);
 
 $json = '{
       "card": {
@@ -97,7 +97,7 @@ $client->setXApiKey("YOUR API KEY");
 $client->setEnvironment(\Adyen\Environment::TEST);
 
 // intialize modification service
-$service = new Service\Modification($client);
+$service = new \Adyen\Service\Modification($client);
 
 // set the amount you want to refund
 $modificationAmount = array('currency' => 'CURRENCY', 'value' => 'VALUE');
