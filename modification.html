@@ -37,7 +37,7 @@
       			Using this you can capture the payment.
       		</p>
       		<div class="highlight highlight-text-html-php"><pre>
-<span class="pl-s1"><span class="pl-smi">$service</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Service\</span><span class="pl-c1">Modification<span>(<span class="pl-smi">$client</span>);</span>
+<span class="pl-s1"><span class="pl-smi">$service</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">\Adyen\</span><span class="pl-c1">Service\</span><span class="pl-c1">Modification<span>(<span class="pl-smi">$client</span>);</span>
 <span class="pl-s1"></span>
 <span class="pl-s1"><span class="pl-smi">$modificationAmount</span> <span class="pl-k">=</span> <span class="pl-c1">array</span>(<span class="pl-s"><span class="pl-pds">'</span>currency<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'EUR'</span>, <span class="pl-s"><span class="pl-pds">'</span>value<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s">'750'</span>);</span>
 <span class="pl-s1"></span>
@@ -55,7 +55,7 @@
 
 		<h2>cancel</h2>
 <div class="highlight highlight-text-html-php"><pre>
-<span class="pl-s1"><span class="pl-smi">$service</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Service\</span><span class="pl-c1">Modification<span>(<span class="pl-smi">$client</span>);</span>
+<span class="pl-s1"><span class="pl-smi">$service</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">\Adyen\</span><span class="pl-c1">Service\</span><span class="pl-c1">Modification<span>(<span class="pl-smi">$client</span>);</span>
 <span class="pl-s1"></span>
 <span class="pl-s1"><span class="pl-smi">$params</span> <span class="pl-k">=</span> <span class="pl-c1">array</span>(</span>
 <span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>merchantAccount<span class="pl-pds">"</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>YOUR MERCHANT ACCOUNT<span class="pl-pds">'</span></span>,</span>
@@ -69,7 +69,7 @@
 <h2>cancelOrRefund</h2>
 <p>Similar to cancel, using this you can choose to cancel or refund the payment.</p>
 <div class="highlight highlight-text-html-php"><pre>
-<span class="pl-s1"><span class="pl-smi">$service</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Service\</span><span class="pl-c1">Modification<span>(<span class="pl-smi">$client</span>);</span>
+<span class="pl-s1"><span class="pl-smi">$service</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">\Adyen\</span><span class="pl-c1">Service\</span><span class="pl-c1">Modification<span>(<span class="pl-smi">$client</span>);</span>
 <span class="pl-s1"></span>
 <span class="pl-s1"><span class="pl-smi">$params</span> <span class="pl-k">=</span> <span class="pl-c1">array</span>(</span>
 <span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>merchantAccount<span class="pl-pds">"</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>YOUR MERCHANT ACCOUNT<span class="pl-pds">'</span></span>,</span>
@@ -85,7 +85,7 @@
       			With refund you have to specify the amount you want to refund. You can also choose to do a partial refund.
       		</p>
       		<div class="highlight highlight-text-html-php"><pre>
-<span class="pl-s1"><span class="pl-smi">$service</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Service\</span><span class="pl-c1">Modification<span>(<span class="pl-smi">$client</span>);</span>
+<span class="pl-s1"><span class="pl-smi">$service</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">\Adyen\</span><span class="pl-c1">Service\</span><span class="pl-c1">Modification<span>(<span class="pl-smi">$client</span>);</span>
 <span class="pl-s1"></span>
 <span class="pl-s1"><span class="pl-smi">$modificationAmount</span> <span class="pl-k">=</span> <span class="pl-c1">array</span>(<span class="pl-s"><span class="pl-pds">'</span>currency<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'EUR'</span>, <span class="pl-s"><span class="pl-pds">'</span>value<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s">'750'</span>);</span>
 <span class="pl-s1"></span>
