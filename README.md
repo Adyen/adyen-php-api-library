@@ -50,8 +50,8 @@ $service = new \Adyen\Service\Payment($client);
 $json = '{
       "card": {
         "number": "4111111111111111",
-        "expiryMonth": "6",
-        "expiryYear": "2016",
+        "expiryMonth": "10",
+        "expiryYear": "2020",
         "cvc": "737",
         "holderName": "John Smith"
       },
