@@ -15,9 +15,9 @@ class PaymentMethods extends \Adyen\Service\AbstractCheckoutResource
 	 * @param \Adyen\Service $service
 	 * @throws \Adyen\AdyenException
 	 */
-    public function __construct($service)
-    {
-        $this->_endpoint = $this->getCheckoutEndpoint($service) .'/'. $service->getClient()->getApiCheckoutVersion() . '/paymentMethods';
-        parent::__construct($service, $this->_endpoint);
-    }
+	public function __construct($service)
+	{
+		$this->_endpoint = $this->getCheckoutEndpoint($service) . '/' . $service->getClient()->getApiCheckoutVersion() . '/paymentMethods';
+		parent::__construct($service, $this->_endpoint);
+	}
 }

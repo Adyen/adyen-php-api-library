@@ -23,7 +23,7 @@ class Refund extends \Adyen\Service\AbstractResource
 	 */
     public function __construct($service)
     {
-        $this->_endpoint = $service->getClient()->getConfig()->get('endpoint') . '/pal/servlet/Payment/' . $service->getClient()->getApiVersion() . '/refund';
+        $this->_endpoint = $service->getClient()->getConfig()->get('endpoint') . '/pal/servlet/Payment/' . $service->getClient()->getApiPaymentVersion() . '/refund';
         parent::__construct($service, $this->_endpoint, $this->allowApplicationInfo);
     }
 }

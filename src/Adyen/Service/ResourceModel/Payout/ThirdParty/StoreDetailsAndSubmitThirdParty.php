@@ -16,7 +16,7 @@ class StoreDetailsAndSubmitThirdParty extends \Adyen\Service\AbstractResource
 	 */
 	public function __construct($service)
 	{
-		$this->_endpoint = $service->getClient()->getConfig()->get('endpoint') . '/pal/servlet/Payout/' . $service->getClient()->getApiVersion() . '/storeDetailAndSubmitThirdParty';
+		$this->_endpoint = $service->getClient()->getConfig()->get('endpoint') . '/pal/servlet/Payout/' . $service->getClient()->getApiPayoutVersion() . '/storeDetailAndSubmitThirdParty';
 		parent::__construct($service, $this->_endpoint);
 	}
 }
