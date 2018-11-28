@@ -1,0 +1,14 @@
+{
+  "pspReference": "8515325109463086",
+  "resultCode": "Success",
+  "submittedAsync": "false",
+  "accountTransactionLists": [
+    {
+      "AccountTransactionList": {
+        "accountCode": "128112447",
+        "hasNextPage": "false",
+        "transactions": []
+      }
+    }
+  ]
+}

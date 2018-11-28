@@ -1,0 +1,27 @@
+{
+    "pspReference": "8515324248243715",
+    "submittedAsync": "false",
+    "configurationDetails": {
+        "active": "false",
+        "description": "new yolo 1",
+        "eventConfigs": [
+            {
+                "NotificationEventConfiguration": {
+                    "eventType": "ACCOUNT_CREATED",
+                    "includeMode": "INCLUDE"
+                }
+            },
+            {
+                "NotificationEventConfiguration": {
+                    "eventType": "ACCOUNT_HOLDER_CREATED",
+                    "includeMode": "EXCLUDE"
+                }
+            }
+        ],
+        "messageFormat": "SOAP",
+        "notificationId": 15007,
+        "notifyURL": "http://www.adyen.com",
+        "sendActionHeader": "false",
+        "sslProtocol": "TLSv10"
+    }
+}

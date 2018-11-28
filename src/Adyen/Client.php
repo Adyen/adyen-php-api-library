@@ -17,231 +17,247 @@ class Client
     const ENDPOINT_TEST_DIRECTORY_LOOKUP = "https://test.adyen.com/hpp/directory/v2.shtml";
     const ENDPOINT_LIVE_DIRECTORY_LOOKUP = "https://live.adyen.com/hpp/directory/v2.shtml";
     const API_PAYMENT_VERSION = "v40";
-	const API_PAYOUT_VERSION = "v30";
+    const API_PAYOUT_VERSION = "v30";
     const API_RECURRING_VERSION = "v25";
     const API_CHECKOUT_VERSION = "v40";
     const API_CHECKOUT_UTILITY_VERSION = "v1";
+    const API_NOTIFICATION_VERSION = "v1";
+    const API_ACCOUNT_VERSION = "v4";
+    const API_FUND_VERSION = "v3";
     const ENDPOINT_TERMINAL_CLOUD_TEST = "https://terminal-api-test.adyen.com";
     const ENDPOINT_TERMINAL_CLOUD_LIVE = "https://terminal-api-live.adyen.com";
     const ENDPOINT_CHECKOUT_TEST = "https://checkout-test.adyen.com/checkout";
     const ENDPOINT_CHECKOUT_LIVE_SUFFIX = "-checkout-live.adyenpayments.com/checkout";
     const ENDPOINT_PROTOCOL = "https://";
+    const ENDPOINT_NOTIFICATION_TEST = "https://cal-test.adyen.com/cal/services/Notification";
+    const ENDPOINT_NOTIFICATION_LIVE = "https://cal-live.adyen.com/cal/services/Notification";
+    const ENPOINT_ACCOUNT_TEST = "https://cal-test.adyen.com/cal/services/Account";
+    const ENPOINT_ACCOUNT_LIVE = "https://cal-live.adyen.com/cal/services/Account";
+    const ENPOINT_FUND_TEST = "https://cal-test.adyen.com/cal/services/Fund";
+    const ENPOINT_FUND_LIVE = "https://cal-live.adyen.com/cal/services/Fund";
 
-	/**
-	 * @var \Adyen\Config $config
-	 */
-	private $_config;
 
-	/**
-	 * @var
-	 */
-	private $_httpClient;
+    /**
+     * @var \Adyen\Config $config
+     */
+    private $_config;
 
-	/**
-	 * @var Logger $logger
-	 */
-	private $logger;
+    /**
+     * @var
+     */
+    private $_httpClient;
 
-	/**
-	 * Client constructor.
-	 *
-	 * @param null $config
-	 * @throws AdyenException
-	 */
-	public function __construct($config = null)
-	{
-		if (!$config) {
-			// create config
-			$this->_config = new \Adyen\Config();
-		} elseif ($config instanceof \Adyen\ConfigInterface) {
-			$this->_config = $config;
-		} else {
-			throw new \Adyen\AdyenException("This config object is not supported, you need to implement the ConfigInterface");
-		}
-	}
+    /**
+     * @var Logger $logger
+     */
+    private $logger;
 
-	/**
-	 * @return Config|ConfigInterface|null
-	 */
-	public function getConfig()
-	{
-		return $this->_config;
-	}
+    /**
+     * Client constructor.
+     *
+     * @param null $config
+     * @throws AdyenException
+     */
+    public function __construct($config = null)
+    {
+        if (!$config) {
+            // create config
+            $this->_config = new \Adyen\Config();
+        } elseif ($config instanceof \Adyen\ConfigInterface) {
+            $this->_config = $config;
+        } else {
+            throw new \Adyen\AdyenException("This config object is not supported, you need to implement the ConfigInterface");
+        }
+    }
 
-	/**
-	 * Set Username of Web Service User
-	 *
-	 * @param $username
-	 */
-	public function setUsername($username)
-	{
-		$this->_config->set('username', $username);
-	}
+    /**
+     * @return Config|ConfigInterface|null
+     */
+    public function getConfig()
+    {
+        return $this->_config;
+    }
 
-	/**
-	 * Set Password of Web Service User
-	 *
-	 * @param $password
-	 */
-	public function setPassword($password)
-	{
-		$this->_config->set('password', $password);
-	}
+    /**
+     * Set Username of Web Service User
+     *
+     * @param $username
+     */
+    public function setUsername($username)
+    {
+        $this->_config->set('username', $username);
+    }
 
-	/**
-	 * Set x-api-key for Web Service Client
-	 *
-	 * @param $xapikey
-	 */
-	public function setXApiKey($xApiKey)
-	{
-		$this->_config->set('x-api-key', $xApiKey);
-	}
+    /**
+     * Set Password of Web Service User
+     *
+     * @param $password
+     */
+    public function setPassword($password)
+    {
+        $this->_config->set('password', $password);
+    }
 
-	/**
-	 * Set environment to connect to test or live platform of Adyen
-	 * For live please specify the unique identifier.
-	 *
-	 * @param string $environment
-	 * @param null $liveEndpointUrlPrefix Provide the unique live url prefix from the "API URLs and Response" menu in the Adyen Customer Area
-	 * @throws AdyenException
-	 */
-	public function setEnvironment($environment, $liveEndpointUrlPrefix = null)
-	{
-		if ($environment == \Adyen\Environment::TEST) {
-			$this->_config->set('environment', \Adyen\Environment::TEST);
-			$this->_config->set('endpoint', self::ENDPOINT_TEST);
-			$this->_config->set('endpointDirectorylookup', self::ENDPOINT_TEST_DIRECTORY_LOOKUP);
-			$this->_config->set('endpointTerminalCloud', self::ENDPOINT_TERMINAL_CLOUD_TEST);
-			$this->_config->set('endpointCheckout', self::ENDPOINT_CHECKOUT_TEST);
-		} elseif ($environment == \Adyen\Environment::LIVE) {
-			$this->_config->set('environment', \Adyen\Environment::LIVE);
-			$this->_config->set('endpointDirectorylookup', self::ENDPOINT_LIVE_DIRECTORY_LOOKUP);
-			$this->_config->set('endpointTerminalCloud', self::ENDPOINT_TERMINAL_CLOUD_LIVE);
+    /**
+     * Set x-api-key for Web Service Client
+     *
+     * @param $xapikey
+     */
+    public function setXApiKey($xApiKey)
+    {
+        $this->_config->set('x-api-key', $xApiKey);
+    }
 
-			if ($liveEndpointUrlPrefix) {
-				$this->_config->set('endpoint',
-					self::ENDPOINT_PROTOCOL . $liveEndpointUrlPrefix . self::ENDPOINT_LIVE_SUFFIX);
-				$this->_config->set('endpointCheckout',
-					self::ENDPOINT_PROTOCOL . $liveEndpointUrlPrefix . self::ENDPOINT_CHECKOUT_LIVE_SUFFIX);
-			} else {
-				$this->_config->set('endpoint', self::ENDPOINT_LIVE);
-				$this->_config->set('endpointCheckout', null); // not supported please specify unique identifier
-			}
-		} else {
-			// environment does not exist
-			$msg = "This environment does not exist, use " . \Adyen\Environment::TEST . ' or ' . \Adyen\Environment::LIVE;
-			throw new \Adyen\AdyenException($msg);
-		}
-	}
+    /**
+     * Set environment to connect to test or live platform of Adyen
+     * For live please specify the unique identifier.
+     *
+     * @param string $environment
+     * @param null $liveEndpointUrlPrefix Provide the unique live url prefix from the "API URLs and Response" menu in the Adyen Customer Area
+     * @throws AdyenException
+     */
+    public function setEnvironment($environment, $liveEndpointUrlPrefix = null)
+    {
+        if ($environment == \Adyen\Environment::TEST) {
+            $this->_config->set('environment', \Adyen\Environment::TEST);
+            $this->_config->set('endpoint', self::ENDPOINT_TEST);
+            $this->_config->set('endpointDirectorylookup', self::ENDPOINT_TEST_DIRECTORY_LOOKUP);
+            $this->_config->set('endpointTerminalCloud', self::ENDPOINT_TERMINAL_CLOUD_TEST);
+            $this->_config->set('endpointCheckout', self::ENDPOINT_CHECKOUT_TEST);
+            $this->_config->set('endpointNotification', self::ENDPOINT_NOTIFICATION_TEST);
+            $this->_config->set('endpointAccount', self::ENPOINT_ACCOUNT_TEST);
+            $this->_config->set('endpointFund', self::ENPOINT_FUND_TEST);
+        } elseif ($environment == \Adyen\Environment::LIVE) {
+            $this->_config->set('environment', \Adyen\Environment::LIVE);
+            $this->_config->set('endpointDirectorylookup', self::ENDPOINT_LIVE_DIRECTORY_LOOKUP);
+            $this->_config->set('endpointTerminalCloud', self::ENDPOINT_TERMINAL_CLOUD_LIVE);
+            $this->_config->set('endpointNotification', self::ENDPOINT_NOTIFICATION_LIVE);
+            $this->_config->set('endpointAccount', self::ENPOINT_ACCOUNT_LIVE);
+            $this->_config->set('endpointFund', self::ENPOINT_FUND_LIVE);
 
-	/**
-	 * Set Request URl
-	 *
-	 * @param $url
-	 */
-	public function setRequestUrl($url)
-	{
-		$this->_config->set('endpoint', $url);
-	}
+            if ($liveEndpointUrlPrefix) {
+                $this->_config->set('endpoint',
+                    self::ENDPOINT_PROTOCOL . $liveEndpointUrlPrefix . self::ENDPOINT_LIVE_SUFFIX);
+                $this->_config->set('endpointCheckout',
+                    self::ENDPOINT_PROTOCOL . $liveEndpointUrlPrefix . self::ENDPOINT_CHECKOUT_LIVE_SUFFIX);
+            } else {
+                $this->_config->set('endpoint', self::ENDPOINT_LIVE);
+                $this->_config->set('endpointCheckout', null); // not supported please specify unique identifier
+            }
+        } else {
+            // environment does not exist
+            $msg = "This environment does not exist, use " . \Adyen\Environment::TEST . ' or ' . \Adyen\Environment::LIVE;
+            throw new \Adyen\AdyenException($msg);
+        }
+    }
 
-	/**
-	 * Set directory lookup URL
-	 *
-	 * @param $url
-	 */
-	public function setDirectoryLookupUrl($url)
-	{
-		$this->_config->set('endpointDirectorylookup', $url);
-	}
+    /**
+     * Set Request URl
+     *
+     * @param $url
+     */
+    public function setRequestUrl($url)
+    {
+        $this->_config->set('endpoint', $url);
+    }
 
-	/**
-	 * @param $merchantAccount
-	 */
-	public function setMerchantAccount($merchantAccount)
-	{
-		$this->_config->set('merchantAccount', $merchantAccount);
-	}
+    /**
+     * Set directory lookup URL
+     *
+     * @param $url
+     */
+    public function setDirectoryLookupUrl($url)
+    {
+        $this->_config->set('endpointDirectorylookup', $url);
+    }
 
-	/**
-	 * @param $applicationName
-	 */
-	public function setApplicationName($applicationName)
-	{
-		$this->_config->set('applicationName', $applicationName);
-	}
+    /**
+     * @param $merchantAccount
+     */
+    public function setMerchantAccount($merchantAccount)
+    {
+        $this->_config->set('merchantAccount', $merchantAccount);
+    }
 
-	/**
-	 * Set external platform name, version and integrator
-	 *
-	 * @param string $name
-	 * @param string $version
-	 * @param string $integrator
-	 */
-	public function setExternalPlatform($name, $version, $integrator = "")
-	{
-		$this->_config->set('externalPlatform',
-			array('name' => $name, 'version' => $version, 'integrator' => $integrator));
-	}
+    /**
+     * @param $applicationName
+     */
+    public function setApplicationName($applicationName)
+    {
+        $this->_config->set('applicationName', $applicationName);
+    }
 
-	/**
-	 * Set Adyen payment source name and version
-	 *
-	 * @param string $name
-	 * @param string $version
-	 */
-	public function setAdyenPaymentSource($name, $version)
-	{
-		$this->_config->set('adyenPaymentSource', array('name' => $name, 'version' => $version));
-	}
+    /**
+     * Set external platform name, version and integrator
+     *
+     * @param string $name
+     * @param string $version
+     * @param string $integrator
+     */
+    public function setExternalPlatform($name, $version, $integrator = "")
+    {
+        $this->_config->set('externalPlatform',
+            array('name' => $name, 'version' => $version, 'integrator' => $integrator));
+    }
 
-	/**
-	 * Type can be json or array
-	 *
-	 * @param $value
-	 */
-	public function setInputType($value)
-	{
-		$this->_config->set('inputType', $value);
-	}
+    /**
+     * Set Adyen payment source name and version
+     *
+     * @param string $name
+     * @param string $version
+     */
+    public function setAdyenPaymentSource($name, $version)
+    {
+        $this->_config->set('adyenPaymentSource', array('name' => $name, 'version' => $version));
+    }
 
-	/**
-	 * Type can be json or array
-	 *
-	 * @param $value
-	 */
-	public function setOutputType($value)
-	{
-		$this->_config->set('outputType', $value);
-	}
+    /**
+     * Type can be json or array
+     *
+     * @param $value
+     */
+    public function setInputType($value)
+    {
+        $this->_config->set('inputType', $value);
+    }
 
-	/**
-	 * @param $value
-	 */
-	public function setTimeout($value)
-	{
-		$this->_config->set('timeout', $value);
-	}
+    /**
+     * Type can be json or array
+     *
+     * @param $value
+     */
+    public function setOutputType($value)
+    {
+        $this->_config->set('outputType', $value);
+    }
 
-	/**
-	 * Get the library name
-	 *
-	 * @return string
-	 */
-	public function getLibraryName()
-	{
-		return self::LIB_NAME;
-	}
+    /**
+     * @param $value
+     */
+    public function setTimeout($value)
+    {
+        $this->_config->set('timeout', $value);
+    }
 
-	/**
-	 * Get the library version
-	 *
-	 * @return string
-	 */
-	public function getLibraryVersion()
-	{
-		return self::LIB_VERSION;
-	}
+    /**
+     * Get the library name
+     *
+     * @return string
+     */
+    public function getLibraryName()
+    {
+        return self::LIB_NAME;
+    }
+
+    /**
+     * Get the library version
+     *
+     * @return string
+     */
+    public function getLibraryVersion()
+    {
+        return self::LIB_VERSION;
+    }
 
     /**
      * Get the version of the API Payment endpoint
@@ -253,104 +269,135 @@ class Client
         return self::API_PAYMENT_VERSION;
     }
 
-	/**
-	 * Get the version of the API Payout endpoint
-	 *
-	 * @return string
-	 */
-	public function getApiPayoutVersion()
-	{
-		return self::API_PAYOUT_VERSION;
-	}
+    /**
+     * Get the version of the API Payout endpoint
+     *
+     * @return string
+     */
+    public function getApiPayoutVersion()
+    {
+        return self::API_PAYOUT_VERSION;
+    }
 
-	/**
-	 * Get the version of the Recurring API endpoint
-	 *
-	 * @return string
-	 */
-	public function getApiRecurringVersion()
-	{
-		return self::API_RECURRING_VERSION;
-	}
+    /**
+     * Get the version of the Recurring API endpoint
+     *
+     * @return string
+     */
+    public function getApiRecurringVersion()
+    {
+        return self::API_RECURRING_VERSION;
+    }
 
-	/**
-	 * Get the version of the Checkout API endpoint
-	 *
-	 * @return string
-	 */
-	public function getApiCheckoutVersion()
-	{
-		return self::API_CHECKOUT_VERSION;
-	}
+    /**
+     * Get the version of the Checkout API endpoint
+     *
+     * @return string
+     */
+    public function getApiCheckoutVersion()
+    {
+        return self::API_CHECKOUT_VERSION;
+    }
 
-	/**
-	 * Get the version of the Checkout Utility API endpoint
-	 *
-	 * @return string
-	 */
-	public function getApiCheckoutUtilityVersion()
-	{
-		return self::API_CHECKOUT_UTILITY_VERSION;
-	}
+    /**
+     * Get the version of the Checkout Utility API endpoint
+     *
+     * @return string
+     */
+    public function getApiCheckoutUtilityVersion()
+    {
+        return self::API_CHECKOUT_UTILITY_VERSION;
+    }
 
-	/**
-	 * @param HttpClient\ClientInterface $httpClient
-	 */
-	public function setHttpClient(\Adyen\HttpClient\ClientInterface $httpClient)
-	{
-		$this->_httpClient = $httpClient;
-	}
+    /**
+     * Get the version of the Notification API endpoint
+     *
+     * @return string
+     */
+    public function getApiNotificationVersion()
+    {
+        return self::API_NOTIFICATION_VERSION;
+    }
 
-	/**
-	 * @return mixed
-	 */
-	public function getHttpClient()
-	{
-		if (is_null($this->_httpClient)) {
-			$this->_httpClient = $this->_createDefaultHttpClient();
-		}
-		return $this->_httpClient;
-	}
+    /**
+     * Get the version of the Account API endpoint
+     *
+     * @return string
+     */
+    public function getApiAccountVersion()
+    {
+        return self::API_ACCOUNT_VERSION;
+    }
 
-	/**
-	 * @return HttpClient\CurlClient
-	 */
-	protected function _createDefaultHttpClient()
-	{
-		return new \Adyen\HttpClient\CurlClient();
-	}
+    /**
+     * Get the version of the Fund API endpoint
+     *
+     * @return string
+     */
+    public function getApiFundVersion()
+    {
+        return self::API_FUND_VERSION;
+    }
 
-	/**
-	 * Set the Logger object
-	 *
-	 * @param \Psr\Log\LoggerInterface $logger
-	 */
-	public function setLogger(LoggerInterface $logger)
-	{
-		$this->logger = $logger;
-	}
+    /**
+     * @param HttpClient\ClientInterface $httpClient
+     */
+    public function setHttpClient(\Adyen\HttpClient\ClientInterface $httpClient)
+    {
+        $this->_httpClient = $httpClient;
+    }
 
-	/**
-	 * @return \Psr\Log\LoggerInterface implementation
-	 */
-	public function getLogger()
-	{
-		if (!isset($this->logger)) {
-			$this->logger = $this->createDefaultLogger();
-		}
+    /**
+     * @return mixed
+     */
+    public function getHttpClient()
+    {
+        if (is_null($this->_httpClient)) {
+            $this->_httpClient = $this->_createDefaultHttpClient();
+        }
+        return $this->_httpClient;
+    }
 
-		return $this->logger;
-	}
+    /**
+     * @return HttpClient\CurlClient
+     */
+    protected function _createDefaultHttpClient()
+    {
+        return new \Adyen\HttpClient\CurlClient();
+    }
 
-	/**
-	 * @return Logger
-	 * @throws \Exception
-	 */
-	protected function createDefaultLogger()
-	{
-		$logger = new Logger('adyen-php-api-library');
-		$logger->pushHandler(new StreamHandler('php://stderr', Logger::NOTICE));
+    /**
+     * Set the Logger object
+     *
+     * @param \Psr\Log\LoggerInterface $logger
+     */
+    public function setLogger(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+    }
 
-		return $logger;
-	}
+    /**
+     * @return Logger
+     * @throws \Exception
+     */
+    public function getLogger()
+    {
+        if (!isset($this->logger)) {
+            $this->logger = $this->createDefaultLogger();
+        }
+
+        return $this->logger;
+    }
+
+    /**
+     * @return Logger
+     * @throws \Exception
+     */
+    protected function createDefaultLogger()
+    {
+        $logger = new Logger('adyen-php-api-library');
+        $logger->pushHandler(new StreamHandler('php://stderr', Logger::NOTICE));
+
+        return $logger;
+    }
 }
