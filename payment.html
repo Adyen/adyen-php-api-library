@@ -94,6 +94,20 @@
 <span class="pl-s1">$result = $service->authorise3D($request); </span>
 <span class="pl-s1"></span></pre></div>
 
+		<h2>authorise3DS2</h2>
+<div class="highlight highlight-text-html-php"><pre>
+<span class="pl-s1"><span class="pl-smi">$request</span> <span class="pl-k">=</span> <span class="pl-c1">array</span>(</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>merchantAccount<span class="pl-pds">"</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>YOUR MERCHANT ACCOUNT<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>threeDS2RequestData<span class="pl-pds">"</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-c1">array</span>(</span>,</span>
+<span class="pl-s1">        <span class="pl-s"><span class="pl-pds">"</span>threeDSCompInd<span class="pl-pds">"</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>Y<span class="pl-pds">'</span></span></span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds"></span>),<span class="pl-pds"></span></span></span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>threeDS2Token<span class="pl-pds">"</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>3DS2_TOKEN_HERE<span class="pl-pds">'</span></span></span>
+<span class="pl-s1">);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">$service = new \Adyen\Service\Payment($client);</span>
+<span class="pl-s1">$result = $service->authorise3DS2($request); </span>
+<span class="pl-s1"></span></pre></div>
+
 
       </section>
       <footer>
