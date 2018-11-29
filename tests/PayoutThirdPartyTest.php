@@ -48,7 +48,7 @@ class PayoutThirdPartyTest extends TestCase
 
 		// check if exception is correct
 		$this->assertEquals('Adyen\AdyenException', get_class($e));
-		$this->assertEquals('Missing the following fields: reference', $e->getMessage());
+		$this->assertEquals('Required field \'reference\' is null', $e->getMessage());
 
 	}
 
@@ -314,7 +314,7 @@ class PayoutThirdPartyTest extends TestCase
 
 		// check if exception is correct
 		$this->assertEquals('Adyen\AdyenException', get_class($e));
-		$this->assertEquals('Missing the following values: originalReference', $e->getMessage());
+		$this->assertEquals('Invalid Request: Original pspReference is invalid for this environment!', $e->getMessage());
 	}
 
 	public function testDeclinePayoutThirdPartySuccess()
@@ -373,7 +373,7 @@ class PayoutThirdPartyTest extends TestCase
 
 		// check if exception is correct
 		$this->assertEquals('Adyen\AdyenException', get_class($e));
-		$this->assertEquals('Missing the following values: originalReference', $e->getMessage());
+		$this->assertEquals('Invalid Request: Original pspReference is invalid for this environment!', $e->getMessage());
 	}
 
 }
