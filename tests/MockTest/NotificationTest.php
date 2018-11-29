@@ -201,7 +201,7 @@ class NotificationTest extends TestCaseMock
             }',
             true
         );
-        $result = $service->updateNotificationConfiguration($params);
+        $result = $service->deleteNotificationConfigurations($params);
 
         $this->assertContains($result['pspReference'], array('8815324250627802'));
 

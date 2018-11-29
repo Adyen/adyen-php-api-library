@@ -31,10 +31,10 @@ class Client
     const ENDPOINT_PROTOCOL = "https://";
     const ENDPOINT_NOTIFICATION_TEST = "https://cal-test.adyen.com/cal/services/Notification";
     const ENDPOINT_NOTIFICATION_LIVE = "https://cal-live.adyen.com/cal/services/Notification";
-    const ENPOINT_ACCOUNT_TEST = "https://cal-test.adyen.com/cal/services/Account";
-    const ENPOINT_ACCOUNT_LIVE = "https://cal-live.adyen.com/cal/services/Account";
-    const ENPOINT_FUND_TEST = "https://cal-test.adyen.com/cal/services/Fund";
-    const ENPOINT_FUND_LIVE = "https://cal-live.adyen.com/cal/services/Fund";
+    const ENDPOINT_ACCOUNT_TEST = "https://cal-test.adyen.com/cal/services/Account";
+    const ENDPOINT_ACCOUNT_LIVE = "https://cal-live.adyen.com/cal/services/Account";
+    const ENDPOINT_FUND_TEST = "https://cal-test.adyen.com/cal/services/Fund";
+    const ENDPOINT_FUND_LIVE = "https://cal-live.adyen.com/cal/services/Fund";
 
 
     /**
@@ -125,15 +125,15 @@ class Client
             $this->_config->set('endpointTerminalCloud', self::ENDPOINT_TERMINAL_CLOUD_TEST);
             $this->_config->set('endpointCheckout', self::ENDPOINT_CHECKOUT_TEST);
             $this->_config->set('endpointNotification', self::ENDPOINT_NOTIFICATION_TEST);
-            $this->_config->set('endpointAccount', self::ENPOINT_ACCOUNT_TEST);
-            $this->_config->set('endpointFund', self::ENPOINT_FUND_TEST);
+            $this->_config->set('endpointAccount', self::ENDPOINT_ACCOUNT_TEST);
+            $this->_config->set('endpointFund', self::ENDPOINT_FUND_TEST);
         } elseif ($environment == \Adyen\Environment::LIVE) {
             $this->_config->set('environment', \Adyen\Environment::LIVE);
             $this->_config->set('endpointDirectorylookup', self::ENDPOINT_LIVE_DIRECTORY_LOOKUP);
             $this->_config->set('endpointTerminalCloud', self::ENDPOINT_TERMINAL_CLOUD_LIVE);
             $this->_config->set('endpointNotification', self::ENDPOINT_NOTIFICATION_LIVE);
-            $this->_config->set('endpointAccount', self::ENPOINT_ACCOUNT_LIVE);
-            $this->_config->set('endpointFund', self::ENPOINT_FUND_LIVE);
+            $this->_config->set('endpointAccount', self::ENDPOINT_ACCOUNT_LIVE);
+            $this->_config->set('endpointFund', self::ENDPOINT_FUND_LIVE);
 
             if ($liveEndpointUrlPrefix) {
                 $this->_config->set('endpoint',
