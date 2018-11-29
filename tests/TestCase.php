@@ -18,7 +18,6 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
     public function __construct()
     {
-
         $this->settings = $this->_loadConfigIni();
         $this->_merchantAccount = $this->getMerchantAccount();
         $this->_skinCode = $this->getSkinCode();
