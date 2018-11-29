@@ -18,10 +18,10 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
     public function __construct()
     {
+        $this->settings = $this->_loadConfigIni();
         $this->_merchantAccount = $this->getMerchantAccount();
         $this->_skinCode = $this->getSkinCode();
         $this->_hmacSignature = $this->getHmacSignature();
-		$this->settings = $this->_loadConfigIni();
 
 		$this->setDefaultsDuringDevelopment();
     }
@@ -199,6 +199,21 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
         $client->setMerchantAccount($settings['merchantAccount']);
         return $client;
+    }
+
+    protected function createCheckoutAPIClient()
+    {
+        $client = $this->createClientWithMerchantAccount();
+
+        // load settings from .ini file
+        $settings = $this->settings;
+
+        if(!isset($settings['x-api-key']) || $settings['x-api-key'] == 'YOUR X-API KEY'){
+            $this->_skipTest("Skipped the test. Configure your x-api-key");
+        }else{
+            $client->setXApiKey($settings['x-api-key']);
+            return $client;
+        }
     }
 
     protected function getMerchantAccount()
