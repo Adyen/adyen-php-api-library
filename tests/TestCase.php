@@ -18,7 +18,6 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
     public function __construct()
     {
-        date_default_timezone_set('Europe/Amsterdam');
 
         $this->settings = $this->_loadConfigIni();
         $this->_merchantAccount = $this->getMerchantAccount();
