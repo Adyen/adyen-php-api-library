@@ -1,0 +1,26 @@
+{
+    "pspReference": "8515324254564657",
+    "submittedAsync": "false",
+    "errorMessages": [
+        "Failed to send message. Error description: Read timed out"
+    ],
+    "eventTypes": [
+        "ACCOUNT_HOLDER_VERIFICATION"
+    ],
+    "exchangeMessages": [
+        {
+            "ExchangeMessage": {
+                "messageCode": "Number",
+                "messageDescription": "1"
+            }
+        },
+        {
+            "ExchangeMessage": {
+                "messageCode": "Title",
+                "messageDescription": "Test 1: Test_ACCOUNT_HOLDER_VERIFICATION"
+            }
+        }
+    ],
+    "notificationId": 15009,
+    "okMessages": []
+}
