@@ -101,7 +101,7 @@ class Client
     /**
      * Set x-api-key for Web Service Client
      *
-     * @param $xapikey
+     * @param $xApiKey
      */
     public function setXApiKey($xApiKey)
     {
