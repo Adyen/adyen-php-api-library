@@ -34,7 +34,7 @@ class PayoutThirdPartyTest extends TestCase
               },
               "shopperEmail": "john.smith@test.com",
               "shopperReference": "johnsmithuniqueid",
-              "merchantAccount": "' . $this->_merchantAccount .'"
+              "merchantAccount": "' . $this->merchantAccount .'"
             }';
 
 		$params = json_decode($json, true);
@@ -76,7 +76,7 @@ class PayoutThirdPartyTest extends TestCase
               },
               "shopperEmail": "john.smith@test.com",
               "shopperReference": "johnsmithuniqueid",
-              "merchantAccount": "' . $this->_merchantAccount .'"
+              "merchantAccount": "' . $this->merchantAccount .'"
             }';
 
 		$params = json_decode($json, true);
@@ -112,7 +112,7 @@ class PayoutThirdPartyTest extends TestCase
               },
               "shopperEmail": "john.smith@test.com",
               "shopperReference": "johnsmithuniqueid",
-              "merchantAccount": "' . $this->_merchantAccount .'"
+              "merchantAccount": "' . $this->merchantAccount .'"
             }';
 	
 	    $params = json_decode($json, true);
@@ -158,7 +158,7 @@ class PayoutThirdPartyTest extends TestCase
               },
               "shopperEmail": "john.smith@test.com",
               "shopperReference": "johnsmithuniqueid",
-              "merchantAccount": "' . $this->_merchantAccount .'"
+              "merchantAccount": "' . $this->merchantAccount .'"
             }';
 
 		$params = json_decode($json, true);
@@ -200,7 +200,7 @@ class PayoutThirdPartyTest extends TestCase
               "shopperEmail": "john.smith@test.com",
               "shopperReference": "johnsmithuniqueid",
               "selectedRecurringDetailReference": "LATEST",
-              "merchantAccount": "' . $this->_merchantAccount .'"
+              "merchantAccount": "' . $this->merchantAccount .'"
             }';
 
 		$params = json_decode($json, true);
@@ -241,7 +241,7 @@ class PayoutThirdPartyTest extends TestCase
               "shopperEmail": "john.smith@test.com",
               "shopperReference": "johnsmithuniqueid",
               "selectedRecurringDetailReference": "1234",
-              "merchantAccount": "' . $this->_merchantAccount .'"
+              "merchantAccount": "' . $this->merchantAccount .'"
             }';
 
 		$params = json_decode($json, true);
@@ -269,7 +269,7 @@ class PayoutThirdPartyTest extends TestCase
 		$service = new Service\Payout($client);
 
 		$json = '{
-              "merchantAccount": "' . $this->_merchantAccount .'",
+              "merchantAccount": "' . $this->merchantAccount .'",
               "originalReference": '.$submitted_payout['pspReference'].'
             }';
 
@@ -300,7 +300,7 @@ class PayoutThirdPartyTest extends TestCase
 		$service = new Service\Payout($client);
 
 		$json = '{
-              "merchantAccount": "' . $this->_merchantAccount .'",
+              "merchantAccount": "' . $this->merchantAccount .'",
               "originalReference": ""
             }';
 
@@ -328,7 +328,7 @@ class PayoutThirdPartyTest extends TestCase
 		$service = new Service\Payout($client);
 
 		$json = '{
-              "merchantAccount": "' . $this->_merchantAccount .'",
+              "merchantAccount": "' . $this->merchantAccount .'",
               "originalReference": '.$submitted_payout['pspReference'].'
             }';
 
@@ -359,7 +359,7 @@ class PayoutThirdPartyTest extends TestCase
 		$service = new Service\Payout($client);
 
 		$json = '{
-              "merchantAccount": "' . $this->_merchantAccount .'",
+              "merchantAccount": "' . $this->merchantAccount .'",
               "originalReference": ""
             }';
 

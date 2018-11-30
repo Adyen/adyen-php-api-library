@@ -7,7 +7,7 @@ class PaymentsResult extends \Adyen\Service\AbstractCheckoutResource
 	/**
 	 * @var string
 	 */
-	protected $_endpoint;
+	protected $endpoint;
 
 	/**
 	 * PaymentsResult constructor.
@@ -17,7 +17,7 @@ class PaymentsResult extends \Adyen\Service\AbstractCheckoutResource
 	 */
 	public function __construct($service)
 	{
-		$this->_endpoint = $this->getCheckoutEndpoint($service) . '/' . $service->getClient()->getApiCheckoutVersion() . '/payments/result';
-		parent::__construct($service, $this->_endpoint);
+		$this->endpoint = $this->getCheckoutEndpoint($service) . '/' . $service->getClient()->getApiCheckoutVersion() . '/payments/result';
+		parent::__construct($service, $this->endpoint);
 	}
 }

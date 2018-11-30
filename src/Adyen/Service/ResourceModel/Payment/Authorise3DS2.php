@@ -7,7 +7,7 @@ class Authorise3DS2 extends \Adyen\Service\AbstractResource
 	/**
 	 * @var string
 	 */
-	protected $_endpoint;
+	protected $endpoint;
 
 	/**
 	 * Include applicationInfo key in the request parameters
@@ -23,7 +23,7 @@ class Authorise3DS2 extends \Adyen\Service\AbstractResource
 	 */
     public function __construct($service)
     {
-        $this->_endpoint = $service->getClient()->getConfig()->get('endpoint') . '/pal/servlet/Payment/' . $service->getClient()->getApiPaymentVersion() . '/authorise3ds2';
-        parent::__construct($service, $this->_endpoint, $this->allowApplicationInfo);
+        $this->endpoint = $service->getClient()->getConfig()->get('endpoint') . '/pal/servlet/Payment/' . $service->getClient()->getApiPaymentVersion() . '/authorise3ds2';
+        parent::__construct($service, $this->endpoint, $this->allowApplicationInfo);
     }
 }

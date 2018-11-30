@@ -5,9 +5,9 @@ namespace Adyen;
 class TestCase extends \PHPUnit_Framework_TestCase
 {
 
-    protected $_merchantAccount;
-    protected $_skinCode;
-    protected $_hmacSignature;
+    protected $merchantAccount;
+    protected $skinCode;
+    protected $hmacSignature;
 
 	/**
 	 * Settings parsed from the config/test.ini file
@@ -18,10 +18,10 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
     public function __construct()
     {
-        $this->settings = $this->_loadConfigIni();
-        $this->_merchantAccount = $this->getMerchantAccount();
-        $this->_skinCode = $this->getSkinCode();
-        $this->_hmacSignature = $this->getHmacSignature();
+        $this->settings = $this->loadConfigIni();
+        $this->merchantAccount = $this->getMerchantAccount();
+        $this->skinCode = $this->getSkinCode();
+        $this->hmacSignature = $this->getHmacSignature();
 
 		$this->setDefaultsDuringDevelopment();
     }
@@ -60,7 +60,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
 				$client = new \Adyen\Client();
 				$client->setApplicationName("My Test Application");
 				$client->setEnvironment(\Adyen\Environment::TEST);
-				$this->_skipTest("Skipped the test. Configure your WebService Username and Password in the config");
+				$this->skipTest("Skipped the test. Configure your WebService Username and Password in the config");
 				return $client;
 			} else {
 				$client = new \Adyen\Client();
@@ -71,7 +71,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
 				return $client;
 			}
 		} else {
-			$this->_skipTest("Skipped the test. Configure your WebService Username and Password in the config");
+			$this->skipTest("Skipped the test. Configure your WebService Username and Password in the config");
 		}
 	}
 
@@ -87,7 +87,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
 			$client->setApplicationName("My Test Application");
 			$client->setEnvironment(\Adyen\Environment::TEST);
 		} catch (\Adyen\AdyenException $exception) {
-			$this->_skipTest($exception->getMessage());
+			$this->skipTest($exception->getMessage());
 		}
 
 		return $client;
@@ -115,7 +115,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
 				$client = new \Adyen\Client();
 				$client->setApplicationName("My Test Application");
 				$client->setEnvironment(\Adyen\Environment::TEST);
-				$this->_skipTest("Skipped the test. Configure your WebService Payout Username and Password in the config");
+				$this->skipTest("Skipped the test. Configure your WebService Payout Username and Password in the config");
 				return $client;
 			} else {
 				$client = new \Adyen\Client();
@@ -126,7 +126,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
 				return $client;
 			}
 		} else {
-			$this->_skipTest("Skipped the test. Configure your WebService Payout Username and Password in the config");
+			$this->skipTest("Skipped the test. Configure your WebService Payout Username and Password in the config");
 		}
 	}
 
@@ -152,7 +152,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
 				$client = new \Adyen\Client();
 				$client->setApplicationName("My Test Application");
 				$client->setEnvironment(\Adyen\Environment::TEST);
-				$this->_skipTest("Skipped the test. Configure your WebService ReviewPayout Username and Password in the config");
+				$this->skipTest("Skipped the test. Configure your WebService ReviewPayout Username and Password in the config");
 				return $client;
 			} else {
 				$client = new \Adyen\Client();
@@ -163,7 +163,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
 				return $client;
 			}
 		} else {
-			$this->_skipTest("Skipped the test. Configure your WebService ReviewPayout Username and Password in the config");
+			$this->skipTest("Skipped the test. Configure your WebService ReviewPayout Username and Password in the config");
 		}
 	}
 
@@ -173,7 +173,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
         $settings = $this->settings;
 
         if(!isset($settings['x-api-key']) || !isset($settings['POIID']) || $settings['x-api-key'] == 'YOUR X-API KEY' || $settings['POIID'] == 'UNIQUETERMINALID'){
-            $this->_skipTest("Skipped the test. Configure your x-api-key and POIID in the config");
+            $this->skipTest("Skipped the test. Configure your x-api-key and POIID in the config");
         }else{
 
             $client = new \Adyen\Client();
@@ -193,7 +193,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
         $settings = $this->settings;
 
         if(!isset($settings['merchantAccount']) || $settings['merchantAccount'] == 'YOUR MERCHANTACCOUNT') {
-            $this->_skipTest("Skipped the test. Configure your MerchantAccount in the config");
+            $this->skipTest("Skipped the test. Configure your MerchantAccount in the config");
             return null;
         }
 
@@ -209,7 +209,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
         $settings = $this->settings;
 
         if(!isset($settings['x-api-key']) || $settings['x-api-key'] == 'YOUR X-API KEY'){
-            $this->_skipTest("Skipped the test. Configure your x-api-key");
+            $this->skipTest("Skipped the test. Configure your x-api-key");
         }else{
             $client->setXApiKey($settings['x-api-key']);
             return $client;
@@ -265,20 +265,20 @@ class TestCase extends \PHPUnit_Framework_TestCase
 	 *
 	 * @return array|bool
 	 */
-    protected function _loadConfigIni()
+    protected function loadConfigIni()
     {
         return parse_ini_file(__DIR__ . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'test.ini', true);
     }
 
 
-    protected function _skipTest($msg)
+    protected function skipTest($msg)
     {
         $this->markTestSkipped($msg);
     }
 
-	protected function _needSkinCode() {
-		if (!$this->_skinCode) {
-			$this->_skipTest("Skipped the test. Configure your SkinCode in the config");
+	protected function needSkinCode() {
+		if (!$this->skinCode) {
+			$this->skipTest("Skipped the test. Configure your SkinCode in the config");
 		}
 	}
 	
@@ -309,7 +309,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
 		try {
 			$class = new \ReflectionClass($class);
 		} catch (\ReflectionException $exception) {
-			$this->_skipTest($exception->getMessage());
+			$this->skipTest($exception->getMessage());
 		}
 
 		$method = $class->getMethod($name);

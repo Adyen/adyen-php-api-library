@@ -15,7 +15,7 @@ class CheckoutTest extends TestCase
             'amount' => 1000,
             'countryCode' => 'NL',
             'shopperLocale' => 'nl_NL',
-            'merchantAccount' => $this->_merchantAccount,
+            'merchantAccount' => $this->merchantAccount,
         );
 
         $result = $service->paymentMethods($params);
@@ -43,7 +43,7 @@ class CheckoutTest extends TestCase
             'amount' => 1000,
             'countryCode' => 'NL',
             'shopperLocale' => 'nl_NL',
-            'merchantAccount' => $this->_merchantAccount,
+            'merchantAccount' => $this->merchantAccount,
             'blockedPaymentMethods' => array('ideal'),
         );
 

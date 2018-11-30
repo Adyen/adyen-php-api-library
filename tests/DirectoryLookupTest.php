@@ -16,7 +16,7 @@ class DirectoryLookupTest extends TestCase
 
     public function testDirectoryLookup()
     {
-	    $this->_needSkinCode();
+	    $this->needSkinCode();
         // initialize client
         $client = $this->createClient();
 
@@ -31,8 +31,8 @@ class DirectoryLookupTest extends TestCase
               "paymentAmount": "1000",
               "currencyCode": "EUR",
               "merchantReference": "Get Payment methods",
-              "skinCode":  "' . $this->_skinCode .'",
-              "merchantAccount": "' . $this->_merchantAccount .'",
+              "skinCode":  "' . $this->skinCode .'",
+              "merchantAccount": "' . $this->merchantAccount .'",
               "sessionValidity": "'.$sessionValidity.'",
               "countryCode": "NL",
               "shopperLocale": "nl_NL"
@@ -43,7 +43,7 @@ class DirectoryLookupTest extends TestCase
         $params = json_decode($json, true);
 
         // calculate the signature
-        $hmacKey = $this->_hmacSignature;
+        $hmacKey = $this->hmacSignature;
 
         // add signature in request
         $params["merchantSig"] = Util::calculateSha256Signature($hmacKey, $params);
@@ -87,7 +87,7 @@ class DirectoryLookupTest extends TestCase
 
     public function testDirectoryLookupFailed()
     {
-	    $this->_needSkinCode();
+	    $this->needSkinCode();
         // initialize client
         $client = $this->createClient();
 
@@ -103,7 +103,7 @@ class DirectoryLookupTest extends TestCase
               "paymentAmount": "1000",
               "currencyCode": "EUR",
               "merchantReference": "Get Payment methods",
-              "skinCode":  "' . $this->_skinCode .'",
+              "skinCode":  "' . $this->skinCode .'",
               "merchantAccount": "A MERCHANT ACCOUNT THAT DOES NOT EXISTS",
               "sessionValidity": "'.$sessionValidity.'",
               "countryCode": "NL",

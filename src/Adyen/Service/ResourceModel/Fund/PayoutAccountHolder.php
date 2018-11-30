@@ -7,7 +7,7 @@ class PayoutAccountHolder extends \Adyen\Service\AbstractResource
     /**
      * @var string
      */
-    protected $_endpoint;
+    protected $endpoint;
 
     /**
      * PayoutAccountHolder constructor.
@@ -15,9 +15,9 @@ class PayoutAccountHolder extends \Adyen\Service\AbstractResource
      */
     public function __construct($service)
     {
-        $this->_endpoint = $service->getClient()->getConfig()->get('endpointFund') . '/' . $service->getClient()->getApiFundVersion() . '/payoutAccountHolder';
+        $this->endpoint = $service->getClient()->getConfig()->get('endpointFund') . '/' . $service->getClient()->getApiFundVersion() . '/payoutAccountHolder';
 
-        parent::__construct($service, $this->_endpoint);
+        parent::__construct($service, $this->endpoint);
     }
 
 }

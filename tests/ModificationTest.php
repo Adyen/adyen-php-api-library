@@ -26,7 +26,7 @@ class ModificationTest extends TestCase
 
         // initialize service
         $service = new Service\Modification($client);
-        $params = array('originalReference' => $pspReference, 'merchantAccount' => $this->_merchantAccount);
+        $params = array('originalReference' => $pspReference, 'merchantAccount' => $this->merchantAccount);
         $result = $service->cancel($params);
 
         $this->assertEquals('[cancel-received]', $result['response']);
@@ -51,7 +51,7 @@ class ModificationTest extends TestCase
         $modificationAmount = array('currency' => 'EUR', 'value' => '750');
 
         $params = array(
-            "merchantAccount" => $this->_merchantAccount,
+            "merchantAccount" => $this->merchantAccount,
             "modificationAmount" => $modificationAmount,
             "reference" => $pspReference.'_refund',
             "originalReference" => $pspReference
@@ -80,7 +80,7 @@ class ModificationTest extends TestCase
         $service = new Service\Modification($client);
 
         $params = array(
-            "merchantAccount" => $this->_merchantAccount,
+            "merchantAccount" => $this->merchantAccount,
             "modificationAmount" => array('currency' => 'EUR', 'value' => '750'),
             "reference" => $pspReference.'_adjustAuthorisation',
             "originalReference" => $pspReference
@@ -108,7 +108,7 @@ class ModificationTest extends TestCase
         $service = new Service\Modification($client);
 
         $params = array(
-            "merchantAccount" => $this->_merchantAccount,
+            "merchantAccount" => $this->merchantAccount,
             "modificationAmount" => array('currency' => 'EUR', 'value' => '1600'),
             "reference" => $pspReference.'_adjustAuthorisation',
             "originalReference" => $pspReference

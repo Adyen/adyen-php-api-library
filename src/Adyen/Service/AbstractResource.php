@@ -7,12 +7,12 @@ abstract class AbstractResource
 	/**
 	 * @var \Adyen\Service
 	 */
-	protected $_service;
+	protected $service;
 
 	/**
 	 * @var string
 	 */
-	protected $_endpoint;
+	protected $endpoint;
 
 	/**
 	 * @var bool
@@ -28,8 +28,8 @@ abstract class AbstractResource
 	 */
 	public function __construct(\Adyen\Service $service, $endpoint, $allowApplicationInfo = false)
 	{
-		$this->_service = $service;
-		$this->_endpoint = $endpoint;
+		$this->service = $service;
+		$this->endpoint = $endpoint;
 		$this->allowApplicationInfo = $allowApplicationInfo;
 	}
 
@@ -43,18 +43,18 @@ abstract class AbstractResource
 	public function request($params)
 	{
 		// convert to PHP Array if type is inputType is json
-		if ($this->_service->getClient()->getConfig()->getInputType() == 'json') {
+		if ($this->service->getClient()->getConfig()->getInputType() == 'json') {
 			$params = json_decode($params, true);
 			if ($params === null && json_last_error() !== JSON_ERROR_NONE) {
 				$msg = 'The parameters in the request expect valid JSON but JSON error code found: ' . json_last_error();
-				$this->_service->getClient()->getLogger()->error($msg);
+				$this->service->getClient()->getLogger()->error($msg);
 				throw new \Adyen\AdyenException($msg);
 			}
 		}
 
 		if (!is_array($params)) {
 			$msg = 'The parameter is not valid array';
-			$this->_service->getClient()->getLogger()->error($msg);
+			$this->service->getClient()->getLogger()->error($msg);
 			throw new \Adyen\AdyenException($msg);
 		}
 
@@ -62,8 +62,8 @@ abstract class AbstractResource
 
 		$params = $this->handleApplicationInfoInRequest($params);
 
-		$curlClient = $this->_service->getClient()->getHttpClient();
-		return $curlClient->requestJson($this->_service, $this->_endpoint, $params);
+		$curlClient = $this->service->getClient()->getHttpClient();
+		return $curlClient->requestJson($this->service, $this->endpoint, $params);
 	}
 
 	/**
@@ -76,12 +76,12 @@ abstract class AbstractResource
 		// check if paramenters has a value
 		if (!$params) {
 			$msg = 'The parameters in the request are empty';
-			$this->_service->getClient()->getLogger()->error($msg);
+			$this->service->getClient()->getLogger()->error($msg);
 			throw new \Adyen\AdyenException($msg);
 		}
 
-		$curlClient = $this->_service->getClient()->getHttpClient();
-		return $curlClient->requestPost($this->_service, $this->_endpoint, $params);
+		$curlClient = $this->service->getClient()->getHttpClient();
+		return $curlClient->requestPost($this->service, $this->endpoint, $params);
 	}
 
 	/**
@@ -93,8 +93,8 @@ abstract class AbstractResource
 	private function addDefaultParametersToRequest($params)
 	{
 		// check if merchantAccount is setup in client and request is missing merchantAccount then add it
-		if (!isset($params['merchantAccount']) && $this->_service->getClient()->getConfig()->getMerchantAccount()) {
-			$params['merchantAccount'] = $this->_service->getClient()->getConfig()->getMerchantAccount();
+		if (!isset($params['merchantAccount']) && $this->service->getClient()->getConfig()->getMerchantAccount()) {
+			$params['merchantAccount'] = $this->service->getClient()->getConfig()->getMerchantAccount();
 		}
 
 		return $params;
@@ -112,15 +112,15 @@ abstract class AbstractResource
 		// Only add if allowed
 		if ($this->allowApplicationInfo) {
 			// add/overwrite applicationInfo adyenLibrary even if it's already set
-			$params['applicationInfo']['adyenLibrary']['name'] = $this->_service->getClient()->getLibraryName();
-			$params['applicationInfo']['adyenLibrary']['version'] = $this->_service->getClient()->getLibraryVersion();
+			$params['applicationInfo']['adyenLibrary']['name'] = $this->service->getClient()->getLibraryName();
+			$params['applicationInfo']['adyenLibrary']['version'] = $this->service->getClient()->getLibraryVersion();
 
-			if ($adyenPaymentSource = $this->_service->getClient()->getConfig()->getAdyenPaymentSource()) {
+			if ($adyenPaymentSource = $this->service->getClient()->getConfig()->getAdyenPaymentSource()) {
 				$params['applicationInfo']['adyenPaymentSource']['version'] = $adyenPaymentSource['version'];
 				$params['applicationInfo']['adyenPaymentSource']['name'] = $adyenPaymentSource['name'];
 			}
 
-			if ($externalPlatform = $this->_service->getClient()->getConfig()->getExternalPlatform()) {
+			if ($externalPlatform = $this->service->getClient()->getConfig()->getExternalPlatform()) {
 				$params['applicationInfo']['externalPlatform']['version'] = $externalPlatform['version'];
 				$params['applicationInfo']['externalPlatform']['name'] = $externalPlatform['name'];
 

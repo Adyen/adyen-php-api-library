@@ -7,27 +7,27 @@ class Modification extends \Adyen\Service
 	/**
 	 * @var ResourceModel\Modification\Cancel
 	 */
-	protected $_cancel;
+	protected $cancel;
 
 	/**
 	 * @var ResourceModel\Modification\CancelOrRefund
 	 */
-	protected $_cancelOrRefund;
+	protected $cancelOrRefund;
 
 	/**
 	 * @var ResourceModel\Modification\Capture
 	 */
-	protected $_capture;
+	protected $capture;
 
 	/**
 	 * @var ResourceModel\Modification\Refund
 	 */
-	protected $_refund;
+	protected $refund;
 
 	/**
 	 * @var ResourceModel\Modification\AdjustAuthorisation
 	 */
-	protected $_adjustAuthorisation;
+	protected $adjustAuthorisation;
 
 	/**
 	 * Modification constructor.
@@ -38,11 +38,11 @@ class Modification extends \Adyen\Service
 	public function __construct(\Adyen\Client $client)
 	{
 		parent::__construct($client);
-		$this->_cancel = new \Adyen\Service\ResourceModel\Modification\Cancel($this);
-		$this->_cancelOrRefund = new \Adyen\Service\ResourceModel\Modification\CancelOrRefund($this);
-		$this->_capture = new \Adyen\Service\ResourceModel\Modification\Capture($this);
-		$this->_refund = new \Adyen\Service\ResourceModel\Modification\Refund($this);
-		$this->_adjustAuthorisation = new \Adyen\Service\ResourceModel\Modification\AdjustAuthorisation($this);
+		$this->cancel = new \Adyen\Service\ResourceModel\Modification\Cancel($this);
+		$this->cancelOrRefund = new \Adyen\Service\ResourceModel\Modification\CancelOrRefund($this);
+		$this->capture = new \Adyen\Service\ResourceModel\Modification\Capture($this);
+		$this->refund = new \Adyen\Service\ResourceModel\Modification\Refund($this);
+		$this->adjustAuthorisation = new \Adyen\Service\ResourceModel\Modification\AdjustAuthorisation($this);
 	}
 
 	/**
@@ -52,7 +52,7 @@ class Modification extends \Adyen\Service
 	 */
 	public function cancel($params)
 	{
-		$result = $this->_cancel->request($params);
+		$result = $this->cancel->request($params);
 		return $result;
 	}
 
@@ -63,7 +63,7 @@ class Modification extends \Adyen\Service
 	 */
 	public function cancelOrRefund($params)
 	{
-		$result = $this->_cancelOrRefund->request($params);
+		$result = $this->cancelOrRefund->request($params);
 		return $result;
 	}
 
@@ -74,7 +74,7 @@ class Modification extends \Adyen\Service
 	 */
 	public function capture($params)
 	{
-		$result = $this->_capture->request($params);
+		$result = $this->capture->request($params);
 		return $result;
 	}
 
@@ -85,7 +85,7 @@ class Modification extends \Adyen\Service
 	 */
 	public function refund($params)
 	{
-		$result = $this->_refund->request($params);
+		$result = $this->refund->request($params);
 		return $result;
 	}
 
@@ -96,7 +96,7 @@ class Modification extends \Adyen\Service
 	 */
 	public function adjustAuthorisation($params)
 	{
-		$result = $this->_adjustAuthorisation->request($params);
+		$result = $this->adjustAuthorisation->request($params);
 		return $result;
 	}
 }

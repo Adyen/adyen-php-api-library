@@ -32,7 +32,7 @@ class CreatePaymentRequestTest extends TestCase
                 "currency": "EUR"
               },
               "reference": "payment-test",
-              "merchantAccount": "' . $this->_merchantAccount .'"
+              "merchantAccount": "' . $this->merchantAccount .'"
             }';
 
         $params = json_decode($json, true);
@@ -74,7 +74,7 @@ class CreatePaymentRequestTest extends TestCase
                 "holderName": "John Smith",
                 "number": "4111111111111111"
               },
-              "merchantAccount": "' . $this->_merchantAccount .'",
+              "merchantAccount": "' . $this->merchantAccount .'",
               "recurring": {
                 "contract": "' . \Adyen\Contract::RECURRING . '",
                 "recurringDetailName": "1"
@@ -173,7 +173,7 @@ class CreatePaymentRequestTest extends TestCase
                 "currency": "EUR"
               },
               "reference": "payment-test",
-              "merchantAccount": "' . $this->_merchantAccount .'"
+              "merchantAccount": "' . $this->merchantAccount .'"
             }';
 
 
@@ -222,7 +222,7 @@ class CreatePaymentRequestTest extends TestCase
                 "currency": "EUR"
               },
               "reference": "payment-test",
-              "merchantAccount": "' . $this->_merchantAccount .'"
+              "merchantAccount": "' . $this->merchantAccount .'"
             }';
 
         $params = json_decode($json, true);

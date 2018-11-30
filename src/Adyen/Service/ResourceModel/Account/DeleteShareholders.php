@@ -7,7 +7,7 @@ class DeleteShareholders extends \Adyen\Service\AbstractResource
     /**
      * @var string
      */
-    protected $_endpoint;
+    protected $endpoint;
 
     /**
      * DeleteShareholders constructor.
@@ -15,7 +15,7 @@ class DeleteShareholders extends \Adyen\Service\AbstractResource
      */
     public function __construct($service)
     {
-        $this->_endpoint = $service->getClient()->getConfig()->get('endpointAccount') . '/' . $service->getClient()->getApiAccountVersion() . '/deleteShareholders';
-        parent::__construct($service, $this->_endpoint);
+        $this->endpoint = $service->getClient()->getConfig()->get('endpointAccount') . '/' . $service->getClient()->getApiAccountVersion() . '/deleteShareholders';
+        parent::__construct($service, $this->endpoint);
     }
 }
