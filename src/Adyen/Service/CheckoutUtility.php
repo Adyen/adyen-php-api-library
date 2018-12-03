@@ -7,7 +7,7 @@ class CheckoutUtility extends \Adyen\ApiKeyAuthenticatedService
 	/**
 	 * @var ResourceModel\CheckoutUtility\OriginKeys
 	 */
-	protected $_originKeys;
+	protected $originKeys;
 
 	/**
 	 * CheckoutUtility constructor.
@@ -18,7 +18,7 @@ class CheckoutUtility extends \Adyen\ApiKeyAuthenticatedService
 	public function __construct(\Adyen\Client $client)
 	{
 		parent::__construct($client);
-		$this->_originKeys = new \Adyen\Service\ResourceModel\CheckoutUtility\OriginKeys($this);
+		$this->originKeys = new \Adyen\Service\ResourceModel\CheckoutUtility\OriginKeys($this);
 	}
 
 	/**
@@ -28,7 +28,7 @@ class CheckoutUtility extends \Adyen\ApiKeyAuthenticatedService
 	 */
 	public function originKeys($params)
 	{
-		$result = $this->_originKeys->request($params);
+		$result = $this->originKeys->request($params);
 		return $result;
 	}
 }

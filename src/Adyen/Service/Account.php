@@ -8,72 +8,72 @@ class Account extends \Adyen\Service
     /**
      * @var ResourceModel\Account\CreateAccount
      */
-    protected $_createAccount;
+    protected $createAccount;
 
     /**
      * @var ResourceModel\Account\CreateAccountHolder
      */
-    protected $_createAccountHolder;
+    protected $createAccountHolder;
 
     /**
      * @var ResourceModel\Account\UpdateAccountHolder
      */
-    protected $_updateAccountHolder;
+    protected $updateAccountHolder;
 
     /**
      * @var ResourceModel\Account\GetAccountHolder
      */
-    protected $_getAccountHolder;
+    protected $getAccountHolder;
 
     /**
      * @var ResourceModel\Account\UpdateAccount
      */
-    protected $_updateAccount;
+    protected $updateAccount;
 
     /**
      * @var ResourceModel\Account\UploadDocument
      */
-    protected $_uploadDocument;
+    protected $uploadDocument;
 
     /**
      * @var ResourceModel\Account\GetUploadedDocuments
      */
-    protected $_getUploadedDocuments;
+    protected $getUploadedDocuments;
 
     /**
      * @var ResourceModel\Account\UpdateAccountHolderState
      */
-    protected $_updateAccountHolderState;
+    protected $updateAccountHolderState;
 
     /**
      * @var ResourceModel\Account\DeleteBankAccounts
      */
-    protected $_deleteBankAccounts;
+    protected $deleteBankAccounts;
 
     /**
      * @var ResourceModel\Account\DeleteShareholders
      */
-    protected $_deleteShareholders;
+    protected $deleteShareholders;
 
     /**
      * @var ResourceModel\Account\CloseAccount
      */
-    protected $_closeAccount;
+    protected $closeAccount;
 
     /**
      * @var ResourceModel\Account\CloseAccountHolder
      */
-    protected $_closeAccountHolder;
+    protected $closeAccountHolder;
 
     /**
      * @var ResourceModel\Account\SuspendAccountHolder
      */
-    protected $_suspendAccountHolder;
+    protected $suspendAccountHolder;
 
     /**
      * @var ResourceModel\Account\UnSuspendAccountHolder
      */
-    protected $_unSuspendAccountHolder;
+    protected $unSuspendAccountHolder;
 
     /**
      * Account constructor.
@@ -84,20 +84,20 @@ class Account extends \Adyen\Service
     {
         parent::__construct($client);
 
-        $this->_createAccount = new \Adyen\Service\ResourceModel\Account\CreateAccount($this);
-        $this->_createAccountHolder = new \Adyen\Service\ResourceModel\Account\CreateAccountHolder($this);
-        $this->_updateAccountHolder = new \Adyen\Service\ResourceModel\Account\UpdateAccountHolder($this);
-        $this->_getAccountHolder = new \Adyen\Service\ResourceModel\Account\GetAccountHolder($this);
-        $this->_updateAccount = new \Adyen\Service\ResourceModel\Account\UpdateAccount($this);
-        $this->_uploadDocument = new \Adyen\Service\ResourceModel\Account\UploadDocument($this);
-        $this->_getUploadedDocuments = new \Adyen\Service\ResourceModel\Account\GetUploadedDocuments($this);
-        $this->_updateAccountHolderState = new \Adyen\Service\ResourceModel\Account\UpdateAccountHolderState($this);
-        $this->_deleteBankAccounts = new \Adyen\Service\ResourceModel\Account\DeleteBankAccounts($this);
-        $this->_deleteShareholders = new \Adyen\Service\ResourceModel\Account\DeleteShareholders($this);
-        $this->_closeAccount = new \Adyen\Service\ResourceModel\Account\CloseAccount($this);
-        $this->_closeAccountHolder = new \Adyen\Service\ResourceModel\Account\CloseAccountHolder($this);
-        $this->_suspendAccountHolder = new \Adyen\Service\ResourceModel\Account\SuspendAccountHolder($this);
-        $this->_unSuspendAccountHolder = new \Adyen\Service\ResourceModel\Account\UnSuspendAccountHolder($this);
+        $this->createAccount = new \Adyen\Service\ResourceModel\Account\CreateAccount($this);
+        $this->createAccountHolder = new \Adyen\Service\ResourceModel\Account\CreateAccountHolder($this);
+        $this->updateAccountHolder = new \Adyen\Service\ResourceModel\Account\UpdateAccountHolder($this);
+        $this->getAccountHolder = new \Adyen\Service\ResourceModel\Account\GetAccountHolder($this);
+        $this->updateAccount = new \Adyen\Service\ResourceModel\Account\UpdateAccount($this);
+        $this->uploadDocument = new \Adyen\Service\ResourceModel\Account\UploadDocument($this);
+        $this->getUploadedDocuments = new \Adyen\Service\ResourceModel\Account\GetUploadedDocuments($this);
+        $this->updateAccountHolderState = new \Adyen\Service\ResourceModel\Account\UpdateAccountHolderState($this);
+        $this->deleteBankAccounts = new \Adyen\Service\ResourceModel\Account\DeleteBankAccounts($this);
+        $this->deleteShareholders = new \Adyen\Service\ResourceModel\Account\DeleteShareholders($this);
+        $this->closeAccount = new \Adyen\Service\ResourceModel\Account\CloseAccount($this);
+        $this->closeAccountHolder = new \Adyen\Service\ResourceModel\Account\CloseAccountHolder($this);
+        $this->suspendAccountHolder = new \Adyen\Service\ResourceModel\Account\SuspendAccountHolder($this);
+        $this->unSuspendAccountHolder = new \Adyen\Service\ResourceModel\Account\UnSuspendAccountHolder($this);
     }
 
     /**
@@ -107,7 +107,7 @@ class Account extends \Adyen\Service
      */
     public function createAccount($params)
     {
-        return $this->_createAccount->request($params);
+        return $this->createAccount->request($params);
     }
 
     /**
@@ -117,7 +117,7 @@ class Account extends \Adyen\Service
      */
     public function createAccountHolder($params)
     {
-        return $this->_createAccountHolder->request($params);
+        return $this->createAccountHolder->request($params);
     }
 
     /**
@@ -127,7 +127,7 @@ class Account extends \Adyen\Service
      */
     public function updateAccountHolder($params)
     {
-        return $this->_updateAccountHolder->request($params);
+        return $this->updateAccountHolder->request($params);
     }
 
     /**
@@ -137,7 +137,7 @@ class Account extends \Adyen\Service
      */
     public function getAccountHolder($params)
     {
-        return $this->_getAccountHolder->request($params);
+        return $this->getAccountHolder->request($params);
     }
 
     /**
@@ -147,7 +147,7 @@ class Account extends \Adyen\Service
      */
     public function updateAccount($params)
     {
-        return $this->_updateAccount->request($params);
+        return $this->updateAccount->request($params);
     }
 
     /**
@@ -157,7 +157,7 @@ class Account extends \Adyen\Service
      */
     public function uploadDocument($params)
     {
-        return $this->_uploadDocument->request($params);
+        return $this->uploadDocument->request($params);
     }
 
     /**
@@ -167,7 +167,7 @@ class Account extends \Adyen\Service
      */
     public function getUploadedDocuments($params)
     {
-        return $this->_getUploadedDocuments->request($params);
+        return $this->getUploadedDocuments->request($params);
     }
 
     /**
@@ -177,7 +177,7 @@ class Account extends \Adyen\Service
      */
     public function updateAccountHolderState($params)
     {
-        return $this->_updateAccountHolderState->request($params);
+        return $this->updateAccountHolderState->request($params);
     }
 
     /**
@@ -187,7 +187,7 @@ class Account extends \Adyen\Service
      */
     public function deleteBankAccounts($params)
     {
-        return $this->_deleteBankAccounts->request($params);
+        return $this->deleteBankAccounts->request($params);
     }
 
     /**
@@ -197,7 +197,7 @@ class Account extends \Adyen\Service
      */
     public function deleteShareholders($params)
     {
-        return $this->_deleteShareholders->request($params);
+        return $this->deleteShareholders->request($params);
     }
 
     /**
@@ -207,7 +207,7 @@ class Account extends \Adyen\Service
      */
     public function closeAccount($params)
     {
-        return $this->_closeAccount->request($params);
+        return $this->closeAccount->request($params);
     }
 
     /**
@@ -217,7 +217,7 @@ class Account extends \Adyen\Service
      */
     public function closeAccountHolder($params)
     {
-        return $this->_closeAccountHolder->request($params);
+        return $this->closeAccountHolder->request($params);
     }
 
     /**
@@ -227,7 +227,7 @@ class Account extends \Adyen\Service
      */
     public function suspendAccountHolder($params)
     {
-        return $this->_suspendAccountHolder->request($params);
+        return $this->suspendAccountHolder->request($params);
     }
 
     /**
@@ -237,6 +237,6 @@ class Account extends \Adyen\Service
      */
     public function unSuspendAccountHolder($params)
     {
-        return $this->_unSuspendAccountHolder->request($params);
+        return $this->unSuspendAccountHolder->request($params);
     }
 }

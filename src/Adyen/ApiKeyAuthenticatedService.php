@@ -7,5 +7,5 @@ class ApiKeyAuthenticatedService extends Service
 	/**
 	 * @var bool
 	 */
-	protected $_requiresApiKey = true;
+	protected $requiresApiKey = true;
 }

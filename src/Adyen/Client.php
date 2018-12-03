@@ -40,12 +40,12 @@ class Client
     /**
      * @var \Adyen\Config $config
      */
-    private $_config;
+    private $config;
 
     /**
      * @var
      */
-    private $_httpClient;
+    private $httpClient;
 
     /**
      * @var Logger $logger
@@ -62,9 +62,9 @@ class Client
     {
         if (!$config) {
             // create config
-            $this->_config = new \Adyen\Config();
+            $this->config = new \Adyen\Config();
         } elseif ($config instanceof \Adyen\ConfigInterface) {
-            $this->_config = $config;
+            $this->config = $config;
         } else {
             throw new \Adyen\AdyenException("This config object is not supported, you need to implement the ConfigInterface");
         }
@@ -75,7 +75,7 @@ class Client
      */
     public function getConfig()
     {
-        return $this->_config;
+        return $this->config;
     }
 
     /**
@@ -85,7 +85,7 @@ class Client
      */
     public function setUsername($username)
     {
-        $this->_config->set('username', $username);
+        $this->config->set('username', $username);
     }
 
     /**
@@ -95,17 +95,17 @@ class Client
      */
     public function setPassword($password)
     {
-        $this->_config->set('password', $password);
+        $this->config->set('password', $password);
     }
 
     /**
      * Set x-api-key for Web Service Client
      *
-     * @param $xapikey
+     * @param $xApiKey
      */
     public function setXApiKey($xApiKey)
     {
-        $this->_config->set('x-api-key', $xApiKey);
+        $this->config->set('x-api-key', $xApiKey);
     }
 
     /**
@@ -119,30 +119,30 @@ class Client
     public function setEnvironment($environment, $liveEndpointUrlPrefix = null)
     {
         if ($environment == \Adyen\Environment::TEST) {
-            $this->_config->set('environment', \Adyen\Environment::TEST);
-            $this->_config->set('endpoint', self::ENDPOINT_TEST);
-            $this->_config->set('endpointDirectorylookup', self::ENDPOINT_TEST_DIRECTORY_LOOKUP);
-            $this->_config->set('endpointTerminalCloud', self::ENDPOINT_TERMINAL_CLOUD_TEST);
-            $this->_config->set('endpointCheckout', self::ENDPOINT_CHECKOUT_TEST);
-            $this->_config->set('endpointNotification', self::ENDPOINT_NOTIFICATION_TEST);
-            $this->_config->set('endpointAccount', self::ENDPOINT_ACCOUNT_TEST);
-            $this->_config->set('endpointFund', self::ENDPOINT_FUND_TEST);
+            $this->config->set('environment', \Adyen\Environment::TEST);
+            $this->config->set('endpoint', self::ENDPOINT_TEST);
+            $this->config->set('endpointDirectorylookup', self::ENDPOINT_TEST_DIRECTORY_LOOKUP);
+            $this->config->set('endpointTerminalCloud', self::ENDPOINT_TERMINAL_CLOUD_TEST);
+            $this->config->set('endpointCheckout', self::ENDPOINT_CHECKOUT_TEST);
+            $this->config->set('endpointNotification', self::ENDPOINT_NOTIFICATION_TEST);
+            $this->config->set('endpointAccount', self::ENDPOINT_ACCOUNT_TEST);
+            $this->config->set('endpointFund', self::ENDPOINT_FUND_TEST);
         } elseif ($environment == \Adyen\Environment::LIVE) {
-            $this->_config->set('environment', \Adyen\Environment::LIVE);
-            $this->_config->set('endpointDirectorylookup', self::ENDPOINT_LIVE_DIRECTORY_LOOKUP);
-            $this->_config->set('endpointTerminalCloud', self::ENDPOINT_TERMINAL_CLOUD_LIVE);
-            $this->_config->set('endpointNotification', self::ENDPOINT_NOTIFICATION_LIVE);
-            $this->_config->set('endpointAccount', self::ENDPOINT_ACCOUNT_LIVE);
-            $this->_config->set('endpointFund', self::ENDPOINT_FUND_LIVE);
+            $this->config->set('environment', \Adyen\Environment::LIVE);
+            $this->config->set('endpointDirectorylookup', self::ENDPOINT_LIVE_DIRECTORY_LOOKUP);
+            $this->config->set('endpointTerminalCloud', self::ENDPOINT_TERMINAL_CLOUD_LIVE);
+            $this->config->set('endpointNotification', self::ENDPOINT_NOTIFICATION_LIVE);
+            $this->config->set('endpointAccount', self::ENDPOINT_ACCOUNT_LIVE);
+            $this->config->set('endpointFund', self::ENDPOINT_FUND_LIVE);
 
             if ($liveEndpointUrlPrefix) {
-                $this->_config->set('endpoint',
+                $this->config->set('endpoint',
                     self::ENDPOINT_PROTOCOL . $liveEndpointUrlPrefix . self::ENDPOINT_LIVE_SUFFIX);
-                $this->_config->set('endpointCheckout',
+                $this->config->set('endpointCheckout',
                     self::ENDPOINT_PROTOCOL . $liveEndpointUrlPrefix . self::ENDPOINT_CHECKOUT_LIVE_SUFFIX);
             } else {
-                $this->_config->set('endpoint', self::ENDPOINT_LIVE);
-                $this->_config->set('endpointCheckout', null); // not supported please specify unique identifier
+                $this->config->set('endpoint', self::ENDPOINT_LIVE);
+                $this->config->set('endpointCheckout', null); // not supported please specify unique identifier
             }
         } else {
             // environment does not exist
@@ -158,7 +158,7 @@ class Client
      */
     public function setRequestUrl($url)
     {
-        $this->_config->set('endpoint', $url);
+        $this->config->set('endpoint', $url);
     }
 
     /**
@@ -168,7 +168,7 @@ class Client
      */
     public function setDirectoryLookupUrl($url)
     {
-        $this->_config->set('endpointDirectorylookup', $url);
+        $this->config->set('endpointDirectorylookup', $url);
     }
 
     /**
@@ -176,7 +176,7 @@ class Client
      */
     public function setMerchantAccount($merchantAccount)
     {
-        $this->_config->set('merchantAccount', $merchantAccount);
+        $this->config->set('merchantAccount', $merchantAccount);
     }
 
     /**
@@ -184,7 +184,7 @@ class Client
      */
     public function setApplicationName($applicationName)
     {
-        $this->_config->set('applicationName', $applicationName);
+        $this->config->set('applicationName', $applicationName);
     }
 
     /**
@@ -196,7 +196,7 @@ class Client
      */
     public function setExternalPlatform($name, $version, $integrator = "")
     {
-        $this->_config->set('externalPlatform',
+        $this->config->set('externalPlatform',
             array('name' => $name, 'version' => $version, 'integrator' => $integrator));
     }
 
@@ -208,7 +208,7 @@ class Client
      */
     public function setAdyenPaymentSource($name, $version)
     {
-        $this->_config->set('adyenPaymentSource', array('name' => $name, 'version' => $version));
+        $this->config->set('adyenPaymentSource', array('name' => $name, 'version' => $version));
     }
 
     /**
@@ -218,7 +218,7 @@ class Client
      */
     public function setInputType($value)
     {
-        $this->_config->set('inputType', $value);
+        $this->config->set('inputType', $value);
     }
 
     /**
@@ -228,7 +228,7 @@ class Client
      */
     public function setOutputType($value)
     {
-        $this->_config->set('outputType', $value);
+        $this->config->set('outputType', $value);
     }
 
     /**
@@ -236,7 +236,7 @@ class Client
      */
     public function setTimeout($value)
     {
-        $this->_config->set('timeout', $value);
+        $this->config->set('timeout', $value);
     }
 
     /**
@@ -344,7 +344,7 @@ class Client
      */
     public function setHttpClient(\Adyen\HttpClient\ClientInterface $httpClient)
     {
-        $this->_httpClient = $httpClient;
+        $this->httpClient = $httpClient;
     }
 
     /**
@@ -352,16 +352,16 @@ class Client
      */
     public function getHttpClient()
     {
-        if (is_null($this->_httpClient)) {
-            $this->_httpClient = $this->_createDefaultHttpClient();
+        if (is_null($this->httpClient)) {
+            $this->httpClient = $this->createDefaultHttpClient();
         }
-        return $this->_httpClient;
+        return $this->httpClient;
     }
 
     /**
      * @return HttpClient\CurlClient
      */
-    protected function _createDefaultHttpClient()
+    protected function createDefaultHttpClient()
     {
         return new \Adyen\HttpClient\CurlClient();
     }

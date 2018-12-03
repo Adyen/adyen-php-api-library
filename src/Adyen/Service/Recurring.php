@@ -7,12 +7,12 @@ class Recurring extends \Adyen\Service
 	/**
 	 * @var ResourceModel\Recurring\ListRecurringDetails
 	 */
-	protected $_listRecurringDetails;
+	protected $listRecurringDetails;
 
 	/**
 	 * @var ResourceModel\Recurring\Disable
 	 */
-	protected $_disable;
+	protected $disable;
 
 	/**
 	 * Recurring constructor.
@@ -23,9 +23,9 @@ class Recurring extends \Adyen\Service
 	public function __construct(\Adyen\Client $client)
 	{
 		parent::__construct($client);
-		$this->_listRecurringDetails = new \Adyen\Service\ResourceModel\Recurring\ListRecurringDetails($this);
+		$this->listRecurringDetails = new \Adyen\Service\ResourceModel\Recurring\ListRecurringDetails($this);
 
-		$this->_disable = new \Adyen\Service\ResourceModel\Recurring\Disable(
+		$this->disable = new \Adyen\Service\ResourceModel\Recurring\Disable(
 			$this,
 			$this->getClient()->getConfig()->get('endpoint') . '/disable',
 			array('merchantAccount', 'shopperReference'));
@@ -38,7 +38,7 @@ class Recurring extends \Adyen\Service
 	 */
 	public function listRecurringDetails($params)
 	{
-		$result = $this->_listRecurringDetails->request($params);
+		$result = $this->listRecurringDetails->request($params);
 		return $result;
 	}
 
@@ -49,7 +49,7 @@ class Recurring extends \Adyen\Service
 	 */
 	public function disable($params)
 	{
-		$result = $this->_disable->request($params);
+		$result = $this->disable->request($params);
 		return $result;
 	}
 }

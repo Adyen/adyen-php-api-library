@@ -9,12 +9,12 @@ class AdyenException extends Exception
 	/**
 	 * @var null
 	 */
-	protected $_status;
+	protected $status;
 
 	/**
 	 * @var null
 	 */
-	protected $_errorType;
+	protected $errorType;
 
 	/**
 	 * AdyenException constructor.
@@ -27,8 +27,8 @@ class AdyenException extends Exception
 	 */
 	public function __construct($message = "", $code = 0, Exception $previous = null, $status = null, $errorType = null)
 	{
-		$this->_status = $status;
-		$this->_errorType = $errorType;
+		$this->status = $status;
+		$this->errorType = $errorType;
 		parent::__construct($message, (int)$code, $previous);
 	}
 
@@ -39,7 +39,7 @@ class AdyenException extends Exception
 	 */
 	public function getStatus()
 	{
-		return $this->_status;
+		return $this->status;
 	}
 
 	/**
@@ -47,6 +47,6 @@ class AdyenException extends Exception
 	 */
 	public function getErrorType()
 	{
-		return $this->_errorType;
+		return $this->errorType;
 	}
 }

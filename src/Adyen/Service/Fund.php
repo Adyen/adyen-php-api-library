@@ -8,32 +8,32 @@ class Fund extends \Adyen\Service
     /**
      * @var ResourceModel\Fund\PayoutAccountHolder
      */
-    protected $_payoutAccountHolder;
+    protected $payoutAccountHolder;
 
     /**
      * @var ResourceModel\Fund\AccountHolderBalance
      */
-    protected $_accountHolderBalance;
+    protected $accountHolderBalance;
 
     /**
      * @var ResourceModel\Fund\AccountHolderTransactionList
      */
-    protected $_accountHolderTransactionList;
+    protected $accountHolderTransactionList;
 
     /**
      * @var ResourceModel\Fund\RefundNotPaidOutTransfers
      */
-    protected $_refundNotPaidOutTransfers;
+    protected $refundNotPaidOutTransfers;
 
     /**
      * @var ResourceModel\Fund\SetupBeneficiary
      */
-    protected $_setupBeneficiary;
+    protected $setupBeneficiary;
 
     /**
      * @var ResourceModel\Fund\TransferFunds
      */
-    protected $_transferFunds;
+    protected $transferFunds;
 
     /**
      * Fund constructor.
@@ -44,12 +44,12 @@ class Fund extends \Adyen\Service
     {
         parent::__construct($client);
 
-        $this->_payoutAccountHolder = new \Adyen\Service\ResourceModel\Fund\PayoutAccountHolder($this);
-        $this->_accountHolderBalance = new \Adyen\Service\ResourceModel\Fund\AccountHolderBalance($this);
-        $this->_accountHolderTransactionList = new \Adyen\Service\ResourceModel\Fund\AccountHolderTransactionList($this);
-        $this->_refundNotPaidOutTransfers = new \Adyen\Service\ResourceModel\Fund\RefundNotPaidOutTransfers($this);
-        $this->_setupBeneficiary = new \Adyen\Service\ResourceModel\Fund\SetupBeneficiary($this);
-        $this->_transferFunds = new \Adyen\Service\ResourceModel\Fund\TransferFunds($this);
+        $this->payoutAccountHolder = new \Adyen\Service\ResourceModel\Fund\PayoutAccountHolder($this);
+        $this->accountHolderBalance = new \Adyen\Service\ResourceModel\Fund\AccountHolderBalance($this);
+        $this->accountHolderTransactionList = new \Adyen\Service\ResourceModel\Fund\AccountHolderTransactionList($this);
+        $this->refundNotPaidOutTransfers = new \Adyen\Service\ResourceModel\Fund\RefundNotPaidOutTransfers($this);
+        $this->setupBeneficiary = new \Adyen\Service\ResourceModel\Fund\SetupBeneficiary($this);
+        $this->transferFunds = new \Adyen\Service\ResourceModel\Fund\TransferFunds($this);
 
     }
 
@@ -60,7 +60,7 @@ class Fund extends \Adyen\Service
      */
     public function payoutAccountHolder($params)
     {
-        return $this->_payoutAccountHolder->request($params);
+        return $this->payoutAccountHolder->request($params);
     }
 
     /**
@@ -70,7 +70,7 @@ class Fund extends \Adyen\Service
      */
     public function accountHolderBalance($params)
     {
-        return $this->_accountHolderBalance->request($params);
+        return $this->accountHolderBalance->request($params);
     }
 
     /**
@@ -80,7 +80,7 @@ class Fund extends \Adyen\Service
      */
     public function accountHolderTransactionList($params)
     {
-        return $this->_accountHolderTransactionList->request($params);
+        return $this->accountHolderTransactionList->request($params);
     }
 
     /**
@@ -90,7 +90,7 @@ class Fund extends \Adyen\Service
      */
     public function refundNotPaidOutTransfers($params)
     {
-        return $this->_refundNotPaidOutTransfers->request($params);
+        return $this->refundNotPaidOutTransfers->request($params);
     }
 
     /**
@@ -100,7 +100,7 @@ class Fund extends \Adyen\Service
      */
     public function setupBeneficiary($params)
     {
-        return $this->_setupBeneficiary->request($params);
+        return $this->setupBeneficiary->request($params);
     }
 
     /**
@@ -110,6 +110,6 @@ class Fund extends \Adyen\Service
      */
     public function transferFunds($params)
     {
-        return $this->_transferFunds->request($params);
+        return $this->transferFunds->request($params);
     }
 }

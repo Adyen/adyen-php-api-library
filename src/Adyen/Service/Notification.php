@@ -8,32 +8,32 @@ class Notification extends \Adyen\Service
     /**
      * @var ResourceModel\Notification\CreateNotificationConfiguration
      */
-    protected $_createNotificationConfiguration;
+    protected $createNotificationConfiguration;
 
     /**
      * @var ResourceModel\Notification\UpdateNotificationConfiguration
      */
-    protected $_updateNotificationConfiguration;
+    protected $updateNotificationConfiguration;
 
     /**
      * @var ResourceModel\Notification\GetNotificationConfiguration
      */
-    protected $_getNotificationConfiguration;
+    protected $getNotificationConfiguration;
 
     /**
      * @var ResourceModel\Notification\DeleteNotificationConfigurations
      */
-    protected $_deleteNotificationConfigurations;
+    protected $deleteNotificationConfigurations;
 
     /**
      * @var ResourceModel\Notification\GetNotificationConfigurationList
      */
-    protected $_getNotificationConfigurationList;
+    protected $getNotificationConfigurationList;
 
     /**
      * @var ResourceModel\Notification\TestNotificationConfiguration
      */
-    protected $_testNotificationConfiguration;
+    protected $testNotificationConfiguration;
 
     /**
      * Notification constructor.
@@ -44,12 +44,12 @@ class Notification extends \Adyen\Service
     {
         parent::__construct($client);
 
-        $this->_createNotificationConfiguration = new \Adyen\Service\ResourceModel\Notification\CreateNotificationConfiguration($this);
-        $this->_updateNotificationConfiguration = new \Adyen\Service\ResourceModel\Notification\UpdateNotificationConfiguration($this);
-        $this->_getNotificationConfiguration = new \Adyen\Service\ResourceModel\Notification\GetNotificationConfiguration($this);
-        $this->_deleteNotificationConfigurations = new \Adyen\Service\ResourceModel\Notification\DeleteNotificationConfigurations($this);
-        $this->_getNotificationConfigurationList = new \Adyen\Service\ResourceModel\Notification\GetNotificationConfigurationList($this);
-        $this->_testNotificationConfiguration = new \Adyen\Service\ResourceModel\Notification\TestNotificationConfiguration($this);
+        $this->createNotificationConfiguration = new \Adyen\Service\ResourceModel\Notification\CreateNotificationConfiguration($this);
+        $this->updateNotificationConfiguration = new \Adyen\Service\ResourceModel\Notification\UpdateNotificationConfiguration($this);
+        $this->getNotificationConfiguration = new \Adyen\Service\ResourceModel\Notification\GetNotificationConfiguration($this);
+        $this->deleteNotificationConfigurations = new \Adyen\Service\ResourceModel\Notification\DeleteNotificationConfigurations($this);
+        $this->getNotificationConfigurationList = new \Adyen\Service\ResourceModel\Notification\GetNotificationConfigurationList($this);
+        $this->testNotificationConfiguration = new \Adyen\Service\ResourceModel\Notification\TestNotificationConfiguration($this);
     }
 
     /**
@@ -59,7 +59,7 @@ class Notification extends \Adyen\Service
      */
     public function createNotificationConfiguration($params)
     {
-        return $this->_createNotificationConfiguration->request($params);
+        return $this->createNotificationConfiguration->request($params);
     }
 
     /**
@@ -69,7 +69,7 @@ class Notification extends \Adyen\Service
      */
     public function updateNotificationConfiguration($params)
     {
-        return $this->_updateNotificationConfiguration->request($params);
+        return $this->updateNotificationConfiguration->request($params);
     }
 
     /**
@@ -79,7 +79,7 @@ class Notification extends \Adyen\Service
      */
     public function getNotificationConfiguration($params)
     {
-        return $this->_getNotificationConfiguration->request($params);
+        return $this->getNotificationConfiguration->request($params);
     }
 
     /**
@@ -89,7 +89,7 @@ class Notification extends \Adyen\Service
      */
     public function deleteNotificationConfigurations($params)
     {
-        return $this->_deleteNotificationConfigurations->request($params);
+        return $this->deleteNotificationConfigurations->request($params);
     }
 
     /**
@@ -99,7 +99,7 @@ class Notification extends \Adyen\Service
      */
     public function getNotificationConfigurationList($params)
     {
-        return $this->_getNotificationConfigurationList->request($params);
+        return $this->getNotificationConfigurationList->request($params);
     }
 
     /**
@@ -109,6 +109,6 @@ class Notification extends \Adyen\Service
      */
     public function testNotificationConfiguration($params)
     {
-        return $this->_testNotificationConfiguration->request($params);
+        return $this->testNotificationConfiguration->request($params);
     }
 }
