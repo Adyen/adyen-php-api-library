@@ -12,7 +12,7 @@ class Service
 	/**
 	 * @var bool
 	 */
-	protected $_requiresApiKey = false;
+	protected $requiresApiKey = false;
 
 	/**
 	 * Service constructor.
@@ -47,6 +47,6 @@ class Service
 	 */
 	public function requiresApiKey()
 	{
-		return $this->_requiresApiKey;
+		return $this->requiresApiKey;
 	}
 }

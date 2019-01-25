@@ -7,7 +7,7 @@ class PaymentSession extends \Adyen\Service\AbstractCheckoutResource
 	/**
 	 * @var string
 	 */
-	protected $_endpoint;
+	protected $endpoint;
 
 	/**
 	 * PaymentSession constructor.
@@ -17,7 +17,7 @@ class PaymentSession extends \Adyen\Service\AbstractCheckoutResource
 	 */
 	public function __construct($service)
 	{
-		$this->_endpoint = $this->getCheckoutEndpoint($service) . '/' . $service->getClient()->getApiCheckoutVersion() . '/paymentSession';
-		parent::__construct($service, $this->_endpoint);
+		$this->endpoint = $this->getCheckoutEndpoint($service) . '/' . $service->getClient()->getApiCheckoutVersion() . '/paymentSession';
+		parent::__construct($service, $this->endpoint);
 	}
 }

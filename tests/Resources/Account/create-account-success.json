@@ -1,0 +1,15 @@
+{
+    "pspReference":"8815214563869136",
+    "submittedAsync":"false",
+    "accountCode":"138215709",
+    "accountHolderCode":"QklMTFlCT0IK",
+    "legalEntity":"Individual",
+    "accountHolderDetails":{
+        "address":{
+            "country":"US"
+        }
+    },
+    "accountHolderStatus": {
+        "status": "Active"
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "pspReference": "8815324240916034",
+    "submittedAsync": "false",
+    "configurations": [
+        {
+            "NotificationConfigurationDetails": {
+                "active": "true",
+                "description": "Yolo notification 1",
+                "eventConfigs": [
+                    {
+                        "NotificationEventConfiguration": {
+                            "eventType": "ACCOUNT_HOLDER_VERIFICATION",
+                            "includeMode": "INCLUDE"
+                        }
+                    }
+                ],
+                "messageFormat": "SOAP",
+                "notificationId": 15007,
+                "notifyURL": "https://www.merchant-domain.com/notification-handler",
+                "sendActionHeader": "true",
+                "sslProtocol": "SSLInsecureCiphers"
+            }
+        }
+    ]
+}

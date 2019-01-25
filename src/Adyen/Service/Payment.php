@@ -7,17 +7,17 @@ class Payment extends \Adyen\Service
 	/**
 	 * @var ResourceModel\Payment\Authorise
 	 */
-	protected $_authorise;
+	protected $authorise;
 
 	/**
 	 * @var ResourceModel\Payment\Authorise3D
 	 */
-	protected $_authorise3D;
+	protected $authorise3D;
 
 	/**
 	 * @var ResourceModel\Payment\Authorise3DS2
 	 */
-	protected $_authorise3DS2;
+	protected $authorise3DS2;
 
 	/**
 	 * Payment constructor.
@@ -28,9 +28,9 @@ class Payment extends \Adyen\Service
 	public function __construct(\Adyen\Client $client)
 	{
 		parent::__construct($client);
-		$this->_authorise = new \Adyen\Service\ResourceModel\Payment\Authorise($this);
-		$this->_authorise3D = new \Adyen\Service\ResourceModel\Payment\Authorise3D($this);
-		$this->_authorise3DS2 = new \Adyen\Service\ResourceModel\Payment\Authorise3DS2($this);
+		$this->authorise = new \Adyen\Service\ResourceModel\Payment\Authorise($this);
+		$this->authorise3D = new \Adyen\Service\ResourceModel\Payment\Authorise3D($this);
+		$this->authorise3DS2 = new \Adyen\Service\ResourceModel\Payment\Authorise3DS2($this);
 	}
 
 	/**
@@ -40,7 +40,7 @@ class Payment extends \Adyen\Service
 	 */
 	public function authorise($params)
 	{
-		$result = $this->_authorise->request($params);
+		$result = $this->authorise->request($params);
 		return $result;
 	}
 
@@ -51,7 +51,7 @@ class Payment extends \Adyen\Service
 	 */
 	public function authorise3D($params)
 	{
-		$result = $this->_authorise3D->request($params);
+		$result = $this->authorise3D->request($params);
 		return $result;
 	}
 
@@ -62,7 +62,7 @@ class Payment extends \Adyen\Service
 	 */
 	public function authorise3DS2($params)
 	{
-		$result = $this->_authorise3DS2->request($params);
+		$result = $this->authorise3DS2->request($params);
 		return $result;
 	}
 }
