@@ -122,8 +122,8 @@ $result = $service->refund($params);
 ```
 
 ## Documentation ##
-https://docs.adyen.com/developers/development-resources/libraries
-https://docs.adyen.com/developers/checkout/api-integration
+* https://docs.adyen.com/developers/development-resources/libraries
+* https://docs.adyen.com/developers/checkout/api-integration
 
 ## Tests ##
 For the test cases you need the PCI permission enabled on you account. There are no test cases for CSE because credit card data is encrypted through our javascript library.
