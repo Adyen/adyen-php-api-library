@@ -2,25 +2,27 @@
 
 [![Build Status](https://api.travis-ci.org/Adyen/adyen-php-api-library.svg?branch=master)](https://travis-ci.org/Adyen/adyen-php-api-library)
 
-## Description ##
-The Adyen API Library for PHP enables you to work with Adyen APIs.
+The Adyen API Library for PHP lets you easily work with Adyen's API.
 
-## Getting Started ##
+## Integration
+The Library supports all APIs under the following services:
 
-Make sure you have an Adyen account. If you don't have this you can request it <a href="https://www.adyen.com/home/discover/test-account-signup#form" target="_blank">here</a>
-To make the automatice testing cases working for your account change the credentials in the config/test.ini file.
+* checkout
+* checkout utility
+* payments
+* modifications
+* payouts
+* recurring
+* marketpay
+* Terminal API (Cloud based)
 
-## DISCLAIMER ##
-The ownership of the content of the Adyen API Library remains with Adyen. The content of the Adyen API Library may only be used in connection with the services of Adyen and subject to the applicable license (Apache License, Version 2.0, the “License”), a copy of which is included in the library. 
-Unless required by applicable law or agreed to in writing, the library is offered and/or distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. Adyen does not warrant that the library or any content will be available uninterrupted or error free, that defects will be corrected, or that the library or its supporting systems are free of viruses or bugs. Please refer to the License for the specific language governing permissions and limitations under the License.
-
-## Documentation ##
-http://adyen.github.io/adyen-php-api-library/
+## Requirements
+PHP 5.3 or higher
 
 ## Installation ##
 You can use Composer or simply Download the Release
 
-## Composer ##
+### Composer ###
 
 The preferred method is via [composer](https://getcomposer.org). Follow the
 [installation instructions](https://getcomposer.org/doc/00-intro.md) if you do not already have
@@ -33,7 +35,10 @@ Once composer is installed, execute the following command in your project root t
 composer require adyen/php-api-library
 ```
 
-## Examples ##
+## Usage
+To make the automatice testing cases working for your account change the credentials in the config/test.ini file.
+
+### Examples ###
 
 Create Payment Request on Test:
 ```php
@@ -116,6 +121,16 @@ $result = $service->refund($params);
 
 ```
 
+## Documentation ##
+* https://docs.adyen.com/developers/development-resources/libraries
+* https://docs.adyen.com/developers/checkout/api-integration
+
 ## Tests ##
 For the test cases you need the PCI permission enabled on you account. There are no test cases for CSE because credit card data is encrypted through our javascript library.
 By default the test will then be skipped. If you have these permissions fill in your account details in the config/test.ini file to let the test work.
+
+## Support
+If you have any problems, questions or suggestions, create an issue here or send your inquiry to support@adyen.com.
+
+## Licence
+MIT license. For more information, see the LICENSE file.
