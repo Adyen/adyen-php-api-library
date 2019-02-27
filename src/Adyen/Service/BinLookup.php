@@ -7,7 +7,7 @@ class BinLookup extends \Adyen\Service
 	/**
 	 * @var ResourceModel\BinLookup\Get3dsAvailability
 	 */
-	protected $_get3dsAvailability;
+	protected $get3dsAvailability;
 
 	/**
 	 * Payment constructor.
