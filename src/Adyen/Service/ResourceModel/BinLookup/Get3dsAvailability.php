@@ -24,7 +24,7 @@ class Get3dsAvailability extends \Adyen\Service\AbstractResource
     public function __construct($service)
     {
         $this->_endpoint = $service->getClient()->getConfig()->get('endpoint') . '/pal/servlet/BinLookup/get3dsAvailability';
-        parent::__construct($service, $this->_endpoint, $this->allowApplicationInfo);
+        parent::__construct($service, $this->endpoint, $this->allowApplicationInfo);
     }
 }
 
