@@ -7,7 +7,7 @@ class Get3dsAvailability extends \Adyen\Service\AbstractResource
     /**
      * @var string
      */
-    protected $_endpoint;
+    protected $endpoint;
 
     /**
      * Include applicationInfo key in the request parameters
