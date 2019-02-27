@@ -27,4 +27,3 @@ class Get3dsAvailability extends \Adyen\Service\AbstractResource
         parent::__construct($service, $this->_endpoint, $this->allowApplicationInfo);
     }
 }
-

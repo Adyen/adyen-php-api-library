@@ -33,4 +33,3 @@ class BinLookup extends \Adyen\Service
 		return $result;
 	}
 }
-
