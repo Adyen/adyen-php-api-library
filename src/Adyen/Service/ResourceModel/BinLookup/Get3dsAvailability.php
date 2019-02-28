@@ -14,7 +14,7 @@ class Get3dsAvailability extends \Adyen\Service\AbstractResource
      *
      * @var bool
      */
-    protected $allowApplicationInfo = true;
+    protected $allowApplicationInfo = false;
 
     /**
      * Authorise constructor.
