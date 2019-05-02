@@ -2,6 +2,7 @@
 
 namespace Adyen;
 
+use PayPal\Exception\PayPalConfigurationException;
 use Psr\Log\LoggerInterface;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
@@ -107,6 +108,16 @@ class Client
     public function setXApiKey($xApiKey)
     {
         $this->config->set('x-api-key', $xApiKey);
+    }
+
+    /**
+     * Set HTTP proxy information
+     *
+     * @param string $proxy
+     */
+    public function setHttpProxy($proxy)
+    {
+        $this->config->set('http-proxy', $proxy);
     }
 
     /**
