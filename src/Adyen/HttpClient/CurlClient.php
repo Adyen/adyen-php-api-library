@@ -163,7 +163,7 @@ class CurlClient implements ClientInterface
 		//Tell cURL that we want to send a POST request.
 		curl_setopt($ch, CURLOPT_POST, 1);
 
-		$this->curlSetHttpProxy($httpProxy);
+		$this->curlSetHttpProxy($ch, $httpProxy);
 
 		// set authorisation
 		curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
