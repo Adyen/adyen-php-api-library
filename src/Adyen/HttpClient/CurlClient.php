@@ -106,34 +106,34 @@ class CurlClient implements ClientInterface
 		return $result;
 	}
 
-    /**
-     * Set httpProxy in the current curl configuration
-     *
-     * @param resource $ch
-     * @param string $httpProxy
-     * @throws AdyenException
-     */
+	/**
+	 * Set httpProxy in the current curl configuration
+	 *
+	 * @param resource $ch
+	 * @param string $httpProxy
+	 * @throws AdyenException
+	 */
 	public function curlSetHttpProxy($ch, $httpProxy)
-    {
-        if (empty($httpProxy)) {
-            return;
-        }
+	{
+		if (empty($httpProxy)) {
+			return;
+		}
 
-        $urlParts = parse_url($httpProxy);
-        if ($urlParts == false || !array_key_exists("host", $urlParts)) {
-            throw new AdyenException("Invalid proxy configuration " . $httpProxy);
-        }
+		$urlParts = parse_url($httpProxy);
+		if ($urlParts == false || !array_key_exists("host", $urlParts)) {
+			throw new AdyenException("Invalid proxy configuration " . $httpProxy);
+		}
 
-        $proxy = $urlParts["host"];
-        if (isset($urlParts["port"])) {
-            $proxy .= ":" . $urlParts["port"];
-        }
-        curl_setopt($ch, CURLOPT_PROXY, $proxy);
+		$proxy = $urlParts["host"];
+		if (isset($urlParts["port"])) {
+			$proxy .= ":" . $urlParts["port"];
+		}
+		curl_setopt($ch, CURLOPT_PROXY, $proxy);
 
-        if (isset($urlParts["user"])) {
-            curl_setopt($ch, CURLOPT_PROXYUSERPWD, $urlParts["user"] . ":" . $urlParts["pass"]);
-        }
-    }
+		if (isset($urlParts["user"])) {
+			curl_setopt($ch, CURLOPT_PROXYUSERPWD, $urlParts["user"] . ":" . $urlParts["pass"]);
+		}
+	}
 
 	/**
 	 * Request to Adyen with query string used for Directory Lookup
@@ -151,7 +151,7 @@ class CurlClient implements ClientInterface
 		$logger = $client->getLogger();
 		$username = $config->getUsername();
 		$password = $config->getPassword();
-        $httpProxy = $config->getHttpProxy();
+		$httpProxy = $config->getHttpProxy();
 
 		// log the requestUr, params and json request
 		$logger->info("Request url to Adyen: " . $requestUrl);
@@ -163,7 +163,7 @@ class CurlClient implements ClientInterface
 		//Tell cURL that we want to send a POST request.
 		curl_setopt($ch, CURLOPT_POST, 1);
 
-        $this->curlSetHttpProxy($httpProxy);
+		$this->curlSetHttpProxy($httpProxy);
 
 		// set authorisation
 		curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);

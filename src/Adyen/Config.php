@@ -94,15 +94,15 @@ class Config implements ConfigInterface
 		return !empty($this->data['x-api-key']) ? $this->data['x-api-key'] : null;
 	}
 
-    /**
-     * Get the http proxy configuration
-     *
-     * @return mixed|null
-     */
+	/**
+	 * Get the http proxy configuration
+	 *
+	 * @return mixed|null
+	 */
 	public function getHttpProxy()
-    {
-        return !empty($this->data['http-proxy']) ? $this->data['http-proxy'] : null;
-    }
+	{
+		return !empty($this->data['http-proxy']) ? $this->data['http-proxy'] : null;
+	}
 
 	/**
 	 * @return mixed|string
