@@ -2,7 +2,6 @@
 
 namespace Adyen;
 
-use PayPal\Exception\PayPalConfigurationException;
 use Psr\Log\LoggerInterface;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
