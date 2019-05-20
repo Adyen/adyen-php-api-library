@@ -25,7 +25,7 @@ class Modification extends \Adyen\Service
 	protected $refund;
 
 	/**
-	 * @var ResourceModel\Modification\Refund
+	 * @var ResourceModel\Modification\RefundWithData
 	 */
 	protected $refundWithData;
 
