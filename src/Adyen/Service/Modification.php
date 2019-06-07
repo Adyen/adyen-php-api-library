@@ -25,6 +25,11 @@ class Modification extends \Adyen\Service
 	protected $refund;
 
 	/**
+	 * @var ResourceModel\Modification\RefundWithData
+	 */
+	protected $refundWithData;
+
+	/**
 	 * @var ResourceModel\Modification\AdjustAuthorisation
 	 */
 	protected $adjustAuthorisation;
@@ -42,6 +47,7 @@ class Modification extends \Adyen\Service
 		$this->cancelOrRefund = new \Adyen\Service\ResourceModel\Modification\CancelOrRefund($this);
 		$this->capture = new \Adyen\Service\ResourceModel\Modification\Capture($this);
 		$this->refund = new \Adyen\Service\ResourceModel\Modification\Refund($this);
+		$this->refundWithData = new \Adyen\Service\ResourceModel\Modification\RefundWithData($this);
 		$this->adjustAuthorisation = new \Adyen\Service\ResourceModel\Modification\AdjustAuthorisation($this);
 	}
 
@@ -86,6 +92,17 @@ class Modification extends \Adyen\Service
 	public function refund($params)
 	{
 		$result = $this->refund->request($params);
+		return $result;
+	}
+
+	/**
+	 * @param $params
+	 * @return mixed
+	 * @throws \Adyen\AdyenException
+	 */
+	public function refundWithData($params)
+	{
+		$result = $this->refundWithData->request($params);
 		return $result;
 	}
 
