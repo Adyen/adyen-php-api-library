@@ -110,6 +110,16 @@ class Client
     }
 
     /**
+     * Set HTTP proxy information
+     *
+     * @param string $proxy
+     */
+    public function setHttpProxy($proxy)
+    {
+        $this->config->set('http-proxy', $proxy);
+    }
+
+    /**
      * Set environment to connect to test or live platform of Adyen
      * For live please specify the unique identifier.
      *
