@@ -172,8 +172,8 @@ class TestCase extends \PHPUnit_Framework_TestCase
         // load settings from .ini file
         $settings = $this->settings;
 
-        if(!isset($settings['x-api-key']) || !isset($settings['POIID']) || $settings['x-api-key'] == 'YOUR X-API KEY' || $settings['POIID'] == 'UNIQUETERMINALID'){
-            $this->skipTest("Skipped the test. Configure your x-api-key and POIID in the config");
+        if(!isset($settings['x-api-key']) || $settings['x-api-key'] == 'YOUR X-API KEY'){
+            $this->skipTest("Skipped the test. Configure your x-api-key in the config");
         }else{
 
             $client = new \Adyen\Client();
