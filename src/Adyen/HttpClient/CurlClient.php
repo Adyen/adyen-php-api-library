@@ -4,7 +4,6 @@ namespace Adyen\HttpClient;
 use Adyen\AdyenException;
 
 
-use Adyen\AdyenException;
 
 class CurlClient implements ClientInterface
 {
