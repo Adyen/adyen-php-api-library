@@ -14,13 +14,13 @@ class PosPayment extends \Adyen\ApiKeyAuthenticatedService
 	 */
 	protected $runTenderAsync;
 
-	/**
-	 * @var
-	 */
+    /**
+     * @var
+     */
 	protected $txType;
 
     /**
-     * @var ResourceModel\Payment\TerminalCloudAPI
+     * @var ResourceModel\Payment\ConnectedTerminals
      */
 	protected $connectedTerminals;
 

@@ -172,7 +172,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
         // load settings from .ini file
         $settings = $this->settings;
 
-        if(!isset($settings['x-api-key']) || $settings['x-api-key'] == 'YOUR X-API KEY'){
+        if(!empty($settings['x-api-key']) || $settings['x-api-key'] == 'YOUR X-API KEY'){
             $this->skipTest("Skipped the test. Configure your x-api-key in the config");
         }else{
 
@@ -192,7 +192,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
         // load settings from .ini file
         $settings = $this->settings;
 
-        if(!isset($settings['merchantAccount']) || $settings['merchantAccount'] == 'YOUR MERCHANTACCOUNT') {
+        if(!empty($settings['merchantAccount']) || $settings['merchantAccount'] == 'YOUR MERCHANTACCOUNT') {
             $this->skipTest("Skipped the test. Configure your MerchantAccount in the config");
             return null;
         }
@@ -208,7 +208,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
         // load settings from .ini file
         $settings = $this->settings;
 
-        if(!isset($settings['x-api-key']) || $settings['x-api-key'] == 'YOUR X-API KEY'){
+        if(!empty($settings['x-api-key']) || $settings['x-api-key'] == 'YOUR X-API KEY'){
             $this->skipTest("Skipped the test. Configure your x-api-key");
         }else{
             $client->setXApiKey($settings['x-api-key']);
@@ -220,7 +220,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
     {
         $settings = $this->settings;
 
-        if(!isset($settings['merchantAccount']) || $settings['merchantAccount'] == 'YOUR MERCHANTACCOUNT') {
+        if(!empty($settings['merchantAccount']) || $settings['merchantAccount'] == 'YOUR MERCHANTACCOUNT') {
             return null;
         }
 
@@ -231,7 +231,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
     {
         $settings = $this->settings;
 
-        if(!isset($settings['skinCode']) || $settings['skinCode'] == 'YOUR SKIN CODE') {
+        if(!empty($settings['skinCode']) || $settings['skinCode'] == 'YOUR SKIN CODE') {
             return null;
         }
 
@@ -242,7 +242,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
     {
         $settings = $this->settings;
 
-        if(!isset($settings['hmacSignature'])|| $settings['hmacSignature'] == 'YOUR HMAC SIGNATURE') {
+        if(!empty($settings['hmacSignature'])|| $settings['hmacSignature'] == 'YOUR HMAC SIGNATURE') {
             return null;
         }
 
@@ -253,7 +253,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
     {
         $settings = $this->settings;
 
-        if(!isset($settings['POIID']) || $settings['POIID'] == 'MODEL-SERIALNUMBER') {
+        if(!empty($settings['POIID']) || $settings['POIID'] == 'MODEL-SERIALNUMBER') {
             return null;
         }
 
