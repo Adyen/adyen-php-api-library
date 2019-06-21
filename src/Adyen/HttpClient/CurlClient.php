@@ -4,6 +4,8 @@ namespace Adyen\HttpClient;
 use Adyen\AdyenException;
 
 
+use Adyen\AdyenException;
+
 class CurlClient implements ClientInterface
 {
 	/**
@@ -13,7 +15,7 @@ class CurlClient implements ClientInterface
 	 * @param $requestUrl
 	 * @param $params
 	 * @return mixed
-	 * @throws \Adyen\AdyenException
+	 * @throws AdyenException
 	 */
 	public function requestJson(\Adyen\Service $service, $requestUrl, $params)
 	{
@@ -56,7 +58,7 @@ class CurlClient implements ClientInterface
             $headers[] = 'x-api-key: ' . $xApiKey;
         } elseif ($service->requiresApiKey()) {
             $msg = "Please provide a valid Checkout API Key";
-            throw new \Adyen\AdyenException($msg);
+            throw new AdyenException($msg);
         } else {
 
 			//Set the basic auth credentials
@@ -142,7 +144,7 @@ class CurlClient implements ClientInterface
 	 * @param $requestUrl
 	 * @param $params
 	 * @return mixed
-	 * @throws \Adyen\AdyenException
+	 * @throws AdyenException
 	 */
 	public function requestPost(\Adyen\Service $service, $requestUrl, $params)
 	{
@@ -210,7 +212,7 @@ class CurlClient implements ClientInterface
 			if (!$result) {
 				$msg = "The result is empty, looks like your request is invalid";
 				$logger->error($msg);
-				throw new \Adyen\AdyenException($msg);
+				throw new AdyenException($msg);
 			}
 
 			// log the array result
@@ -261,18 +263,24 @@ class CurlClient implements ClientInterface
 	 *
 	 * @param $result
 	 * @param $logger
-	 * @throws \Adyen\AdyenException
+	 * @throws AdyenException
 	 */
 	protected function handleResultError($result, $logger)
 	{
 		$decodeResult = json_decode($result, true);
 		if (isset($decodeResult['message']) && isset($decodeResult['errorCode'])) {
 			$logger->error($decodeResult['errorCode'] . ': ' . $decodeResult['message']);
-			throw new \Adyen\AdyenException($decodeResult['message'], $decodeResult['errorCode'], null,
-				$decodeResult['status'], $decodeResult['errorType']);
+			throw new AdyenException(
+                $decodeResult['message'],
+                $decodeResult['errorCode'],
+                null,
+                $decodeResult['status'],
+                $decodeResult['errorType'],
+                isset($decodeResult['pspReference']) ? $decodeResult['pspReference'] : null
+            );
 		}
 		$logger->error($result);
-		throw new \Adyen\AdyenException($result);
+		throw new AdyenException($result);
 	}
 
 	/**

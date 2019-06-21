@@ -16,19 +16,32 @@ class AdyenException extends Exception
 	 */
 	protected $errorType;
 
-	/**
-	 * AdyenException constructor.
-	 *
-	 * @param string $message
-	 * @param int $code
-	 * @param Exception|null $previous
-	 * @param null $status
-	 * @param null $errorType
-	 */
-	public function __construct($message = "", $code = 0, Exception $previous = null, $status = null, $errorType = null)
-	{
+    /**
+     * @var string
+     */
+	protected $pspReference;
+
+    /**
+     * AdyenException constructor.
+     *
+     * @param string $message
+     * @param int $code
+     * @param Exception|null $previous
+     * @param null $status
+     * @param null $errorType
+     * @param null $pspReference
+     */
+	public function __construct(
+	    $message = "",
+        $code = 0,
+        Exception $previous = null,
+        $status = null,
+        $errorType = null,
+        $pspReference = null
+    ) {
 		$this->status = $status;
 		$this->errorType = $errorType;
+		$this->pspReference = $pspReference;
 		parent::__construct($message, (int)$code, $previous);
 	}
 
@@ -49,4 +62,12 @@ class AdyenException extends Exception
 	{
 		return $this->errorType;
 	}
+
+    /**
+     * @return string
+     */
+    public function getPspReference()
+    {
+        return $this->pspReference;
+    }
 }

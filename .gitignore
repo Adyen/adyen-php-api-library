@@ -1,5 +1,5 @@
 # ignore config file
-/tests/config/*
+tests/config
 
 # Ignore the /vendor/ directory
 /vendor/
