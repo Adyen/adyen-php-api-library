@@ -10,7 +10,7 @@ class BinLookup extends \Adyen\Service
 	protected $get3dsAvailability;
 
 	/**
-	 * Payment constructor.
+	 * BinLookup constructor.
 	 *
 	 * @param \Adyen\Client $client
 	 * @throws \Adyen\AdyenException
