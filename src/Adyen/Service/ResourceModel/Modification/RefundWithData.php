@@ -19,7 +19,7 @@ class RefundWithData extends \Adyen\Service\AbstractResource
 	protected $allowApplicationInfo = true;
 
 	/**
-	 * Refund constructor.
+	 * RefundWithData constructor.
 	 *
 	 * @param \Adyen\Service $service
 	 */
