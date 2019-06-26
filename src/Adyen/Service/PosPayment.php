@@ -72,6 +72,11 @@ class PosPayment extends \Adyen\ApiKeyAuthenticatedService
 		return null;
 	}
 
+    /**
+     * @param $params
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
 	public function getConnectedTerminals($params)
     {
         $result = $this->connectedTerminals->request($params);
