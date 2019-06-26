@@ -14,10 +14,15 @@ class PosPayment extends \Adyen\ApiKeyAuthenticatedService
 	 */
 	protected $runTenderAsync;
 
-	/**
-	 * @var
-	 */
+    /**
+     * @var
+     */
 	protected $txType;
+
+    /**
+     * @var ResourceModel\Payment\ConnectedTerminals
+     */
+	protected $connectedTerminals;
 
 	/**
 	 * PosPayment constructor.
@@ -30,6 +35,7 @@ class PosPayment extends \Adyen\ApiKeyAuthenticatedService
 		parent::__construct($client);
 		$this->runTenderSync = new \Adyen\Service\ResourceModel\Payment\TerminalCloudAPI($this, false);
 		$this->runTenderAsync = new \Adyen\Service\ResourceModel\Payment\TerminalCloudAPI($this, true);
+	    $this->connectedTerminals = new \Adyen\Service\ResourceModel\Payment\ConnectedTerminals($this);
 	}
 
 	/**
@@ -65,4 +71,15 @@ class PosPayment extends \Adyen\ApiKeyAuthenticatedService
 		}
 		return null;
 	}
+
+    /**
+     * @param $params
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+	public function getConnectedTerminals($params)
+    {
+        $result = $this->connectedTerminals->request($params);
+        return $result;
+    }
 }

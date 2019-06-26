@@ -95,6 +95,16 @@ class Config implements ConfigInterface
 	}
 
 	/**
+	 * Get the http proxy configuration
+	 *
+	 * @return mixed|null
+	 */
+	public function getHttpProxy()
+	{
+		return !empty($this->data['http-proxy']) ? $this->data['http-proxy'] : null;
+	}
+
+	/**
 	 * @return mixed|string
 	 */
 	public function getInputType()

@@ -9,6 +9,10 @@ class PosPaymentTest extends TestCase
 
     public function testCreatePosPaymentSuccess()
     {
+        if (empty($this->settings['POIID']) || $this->settings['POIID'] = 'UNIQUETERMINALID') {
+            $this->skipTest("Skipped the test. Configure your POIID in the config");
+        }
+
         // initialize client
         $client = $this->createTerminalCloudAPIClient();
 
@@ -69,6 +73,11 @@ class PosPaymentTest extends TestCase
 
     public function testCreatePosPaymentDeclined()
     {
+
+        if (empty($this->settings['POIID']) || $this->settings['POIID'] = 'UNIQUETERMINALID') {
+            $this->skipTest("Skipped the test. Configure your POIID in the config");
+        }
+
         // initialize client
         $client = $this->createTerminalCloudAPIClient();
 
@@ -129,6 +138,10 @@ class PosPaymentTest extends TestCase
 
     public function testCreatePosEMVRefundSuccess()
     {
+        if (empty($this->settings['POIID']) || $this->settings['POIID'] = 'UNIQUETERMINALID') {
+            $this->skipTest("Skipped the test. Configure your POIID in the config");
+        }
+
         // initialize client
         $client = $this->createTerminalCloudAPIClient();
 
@@ -193,6 +206,10 @@ class PosPaymentTest extends TestCase
      */
     public function testPosPaymentFailTimeout()
     {
+        if (empty($this->settings['POIID']) || $this->settings['POIID'] = 'UNIQUETERMINALID') {
+            $this->skipTest("Skipped the test. Configure your POIID in the config");
+        }
+
         // initialize client
         $client = $this->createTerminalCloudAPIClient();
         $client->setTimeout(1);
@@ -249,6 +266,30 @@ class PosPaymentTest extends TestCase
             $this->validateApiPermission($e);
         }
 
+    }
+
+    public function testGetConnectedTerminals()
+    {
+        // initialize client
+        $client = $this->createTerminalCloudAPIClient();
+
+        // initialize service
+        $service = new Service\PosPayment($client);
+
+        //Construct request
+        $json = '{
+                    "merchantAccount": "' . $this->settings['merchantAccount'] . '"
+                }';
+
+        $params = json_decode($json, true); //Create associative array for passing along
+
+        try {
+            $result = $service->getConnectedTerminals($params);
+        } catch (\Exception $e) {
+            $this->validateApiPermission($e);
+        }
+
+        $this->assertTrue(isset($result['uniqueTerminalIds']));
     }
 
 }

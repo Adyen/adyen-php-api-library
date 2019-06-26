@@ -8,7 +8,7 @@ use Monolog\Handler\StreamHandler;
 
 class Client
 {
-    const LIB_VERSION = "2.0.0";
+    const LIB_VERSION = "2.1.0";
     const LIB_NAME = "adyen-php-api-library";
     const USER_AGENT_SUFFIX = "adyen-php-api-library/";
     const ENDPOINT_TEST = "https://pal-test.adyen.com";
@@ -17,6 +17,7 @@ class Client
     const ENDPOINT_TEST_DIRECTORY_LOOKUP = "https://test.adyen.com/hpp/directory/v2.shtml";
     const ENDPOINT_LIVE_DIRECTORY_LOOKUP = "https://live.adyen.com/hpp/directory/v2.shtml";
     const API_PAYMENT_VERSION = "v40";
+    const API_BIN_LOOKUP_VERSION = "v40";
     const API_PAYOUT_VERSION = "v30";
     const API_RECURRING_VERSION = "v25";
     const API_CHECKOUT_VERSION = "v41";
@@ -106,6 +107,16 @@ class Client
     public function setXApiKey($xApiKey)
     {
         $this->config->set('x-api-key', $xApiKey);
+    }
+
+    /**
+     * Set HTTP proxy information
+     *
+     * @param string $proxy
+     */
+    public function setHttpProxy($proxy)
+    {
+        $this->config->set('http-proxy', $proxy);
     }
 
     /**
@@ -267,6 +278,16 @@ class Client
     public function getApiPaymentVersion()
     {
         return self::API_PAYMENT_VERSION;
+    }
+
+    /**
+     * Get the version of the API BinLookUp endpoint
+     *
+     * @return string
+     */
+    public function getApiBinLookupVersion()
+    {
+        return self::API_BIN_LOOKUP_VERSION;
     }
 
     /**
