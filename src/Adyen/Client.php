@@ -23,7 +23,7 @@ class Client
     const API_CHECKOUT_VERSION = "v41";
     const API_CHECKOUT_UTILITY_VERSION = "v1";
     const API_NOTIFICATION_VERSION = "v1";
-    const API_ACCOUNT_VERSION = "v4";
+    const API_ACCOUNT_VERSION = "v5";
     const API_FUND_VERSION = "v3";
     const ENDPOINT_TERMINAL_CLOUD_TEST = "https://terminal-api-test.adyen.com";
     const ENDPOINT_TERMINAL_CLOUD_LIVE = "https://terminal-api-live.adyen.com";
