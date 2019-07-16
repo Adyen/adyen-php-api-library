@@ -60,4 +60,25 @@ class CheckoutTest extends TestCase
 
         $this->assertFalse($hasIdeal);
     }
+
+    public function testApiCheckoutVersionOverride()
+    {
+        $overrideApiCheckoutVersion = 'v49';
+
+        $client = $this->createCheckoutAPIClient();
+
+        $service = new Service\Checkout($client);
+
+        // Check that we get the expected default version
+        $clientApiCheckoutVersion = $service->getClient()->getApiCheckoutVersion();
+        $this->assertEquals($clientApiCheckoutVersion, Client::API_CHECKOUT_VERSION);
+
+        $client->setApiCheckoutVersion($overrideApiCheckoutVersion);
+
+        $service = new Service\Checkout($client);
+
+        // Now check that we get our override version
+        $clientApiCheckoutVersion = $service->getClient()->getApiCheckoutVersion();
+        $this->assertEquals($clientApiCheckoutVersion, $overrideApiCheckoutVersion);
+    }
 }

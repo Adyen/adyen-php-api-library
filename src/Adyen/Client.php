@@ -20,7 +20,7 @@ class Client
     const API_BIN_LOOKUP_VERSION = "v40";
     const API_PAYOUT_VERSION = "v30";
     const API_RECURRING_VERSION = "v25";
-    const API_CHECKOUT_VERSION = "v49";
+    const API_CHECKOUT_VERSION = "v41";
     const API_CHECKOUT_UTILITY_VERSION = "v1";
     const API_NOTIFICATION_VERSION = "v1";
     const API_ACCOUNT_VERSION = "v5";
@@ -118,6 +118,17 @@ class Client
     {
         $this->config->set('http-proxy', $proxy);
     }
+
+    /**
+     * Set x-api-key for Web Service Client
+     *
+     * @param $xApiKey
+     */
+    public function setApiCheckoutVersion($xApiKey)
+    {
+        $this->config->set('apiCheckoutVersion', $xApiKey);
+    }
+
 
     /**
      * Set environment to connect to test or live platform of Adyen
@@ -317,6 +328,9 @@ class Client
      */
     public function getApiCheckoutVersion()
     {
+        if ($apiCheckoutVersion = $this->config->get("apiCheckoutVersion")) {
+            return $apiCheckoutVersion;
+        }
         return self::API_CHECKOUT_VERSION;
     }
 
