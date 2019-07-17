@@ -50,26 +50,18 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
 		// validate username, password and MERCHANTAccount
 
-		if(isset($settings['username']) && isset($settings['password'])) {
+		if(!empty($settings['username']) &&
+            $settings['username'] != "YOUR USERNAME" &&
+            !empty($settings['password']) &&
+            $settings['password'] != "YOUR PASSWORD"
+        ) {
+            $client = new \Adyen\Client();
+            $client->setApplicationName("My Test Application");
+            $client->setUsername($settings['username']);
+            $client->setPassword($settings['password']);
+            $client->setEnvironment(\Adyen\Environment::TEST);
 
-			if($settings['username'] == "YOUR USERNAME"
-				|| $settings['username'] == ""
-				|| $settings['password'] == "YOUR PASSWORD"
-				|| $settings['password'] == "")
-			{
-				$client = new \Adyen\Client();
-				$client->setApplicationName("My Test Application");
-				$client->setEnvironment(\Adyen\Environment::TEST);
-				$this->skipTest("Skipped the test. Configure your WebService Username and Password in the config");
-				return $client;
-			} else {
-				$client = new \Adyen\Client();
-				$client->setApplicationName("My Test Application");
-				$client->setUsername($settings['username']);
-				$client->setPassword($settings['password']);
-				$client->setEnvironment(\Adyen\Environment::TEST);
-				return $client;
-			}
+            return $client;
 		} else {
 			$this->skipTest("Skipped the test. Configure your WebService Username and Password in the config");
 		}
@@ -172,7 +164,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
         // load settings from .ini file
         $settings = $this->settings;
 
-        if(!empty($settings['x-api-key']) || $settings['x-api-key'] == 'YOUR X-API KEY'){
+        if(empty($settings['x-api-key']) || $settings['x-api-key'] == 'YOUR X-API KEY'){
             $this->skipTest("Skipped the test. Configure your x-api-key in the config");
         }else{
 
@@ -192,7 +184,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
         // load settings from .ini file
         $settings = $this->settings;
 
-        if(!empty($settings['merchantAccount']) || $settings['merchantAccount'] == 'YOUR MERCHANTACCOUNT') {
+        if(empty($settings['merchantAccount']) || $settings['merchantAccount'] == 'YOUR MERCHANTACCOUNT') {
             $this->skipTest("Skipped the test. Configure your MerchantAccount in the config");
             return null;
         }
@@ -208,7 +200,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
         // load settings from .ini file
         $settings = $this->settings;
 
-        if(!empty($settings['x-api-key']) || $settings['x-api-key'] == 'YOUR X-API KEY'){
+        if(empty($settings['x-api-key']) || $settings['x-api-key'] == 'YOUR X-API KEY'){
             $this->skipTest("Skipped the test. Configure your x-api-key");
         }else{
             $client->setXApiKey($settings['x-api-key']);
@@ -220,7 +212,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
     {
         $settings = $this->settings;
 
-        if(!empty($settings['merchantAccount']) || $settings['merchantAccount'] == 'YOUR MERCHANTACCOUNT') {
+        if(empty($settings['merchantAccount']) || $settings['merchantAccount'] == 'YOUR MERCHANTACCOUNT') {
             return null;
         }
 
@@ -231,7 +223,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
     {
         $settings = $this->settings;
 
-        if(!empty($settings['skinCode']) || $settings['skinCode'] == 'YOUR SKIN CODE') {
+        if(empty($settings['skinCode']) || $settings['skinCode'] == 'YOUR SKIN CODE') {
             return null;
         }
 
@@ -242,7 +234,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
     {
         $settings = $this->settings;
 
-        if(!empty($settings['hmacSignature'])|| $settings['hmacSignature'] == 'YOUR HMAC SIGNATURE') {
+        if(empty($settings['hmacSignature'])|| $settings['hmacSignature'] == 'YOUR HMAC SIGNATURE') {
             return null;
         }
 
@@ -253,7 +245,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
     {
         $settings = $this->settings;
 
-        if(!empty($settings['POIID']) || $settings['POIID'] == 'MODEL-SERIALNUMBER') {
+        if(empty($settings['POIID']) || $settings['POIID'] == 'MODEL-SERIALNUMBER') {
             return null;
         }
 
