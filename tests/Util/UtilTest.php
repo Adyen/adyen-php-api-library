@@ -22,4 +22,11 @@ class UtilTest extends \PHPUnit_Framework_TestCase
         ));
         $this->assertEquals("YtbpYcrdbvk0RSVwTwENMzomS0LYtiItMwXhI5tohXs=", $signature);
     }
+
+    public function testFormatAmount() {
+        $amount = 15.02;
+        $currency = "EUR";
+        $formattedAmount = Util::formatAmount($amount, $currency);
+        $this->assertEquals(1502, $formattedAmount);
+    }
 }
