@@ -23,10 +23,24 @@ class UtilTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("YtbpYcrdbvk0RSVwTwENMzomS0LYtiItMwXhI5tohXs=", $signature);
     }
 
-    public function testFormatAmount() {
+    public function testFormatAmountThreeDecimals() {
+        $amount = 15.021;
+        $currency = "TND";
+        $formattedAmount = Util::formatAmount($amount, $currency);
+        $this->assertEquals(15021, $formattedAmount);
+    }
+
+    public function testFormatAmountTwoDecimals() {
         $amount = 15.02;
         $currency = "EUR";
         $formattedAmount = Util::formatAmount($amount, $currency);
         $this->assertEquals(1502, $formattedAmount);
+    }
+
+    public function testFormatAmountZeroDecimals() {
+        $amount = 15021;
+        $currency = "IDR";
+        $formattedAmount = Util::formatAmount($amount, $currency);
+        $this->assertEquals(15021, $formattedAmount);
     }
 }
