@@ -73,13 +73,13 @@ class ExceptionTest extends \Adyen\TestCase
         $e = null;
         try {
             $result = $service->listRecurringDetails($params);
-        } catch (\Exception $e){
-
+        } catch (\Exception $e) {
         }
 
         // check if exception is correct
-        $this->assertEquals('Adyen\ConnectionException', get_class($e));
-        $this->assertEquals("Probably your Web Service username and/or password is incorrect\n(Network error [errno 0]: )", $e->getMessage());
+        $this->assertEquals('Adyen\AdyenException', get_class($e));
+        $this->assertEquals("HTTP Status Response - Unauthorized", $e->getMessage());
         $this->assertEquals('0', $e->getCode());
+        $this->assertEquals('401', $e->getStatus());
     }
 }

@@ -35,4 +35,46 @@ class Util
         $merchantSig = base64_encode(hash_hmac('sha256', $signData, pack("H*", $hmacKey), true));
         return $merchantSig;
     }
+
+    /**
+     * Return the formatted currency. Adyen accepts the currency in multiple formats.
+     * @param $amount
+     * @param $currency
+     * @return int
+     */
+    public static function formatAmount($amount, $currency)
+    {
+        switch ($currency) {
+            case "CVE":
+            case "DJF":
+            case "GNF":
+            case "IDR":
+            case "JPY":
+            case "KMF":
+            case "KRW":
+            case "PYG":
+            case "RWF":
+            case "UGX":
+            case "VND":
+            case "VUV":
+            case "XAF":
+            case "XOF":
+            case "XPF":
+                $format = 0;
+                break;
+            case "BHD":
+            case "IQD":
+            case "JOD":
+            case "KWD":
+            case "LYD":
+            case "OMR":
+            case "TND":
+                $format = 3;
+                break;
+            default:
+                $format = 2;
+        }
+
+        return (int)number_format($amount, $format, '', '');
+    }
 }
