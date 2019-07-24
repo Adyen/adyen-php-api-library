@@ -120,13 +120,14 @@ class Client
     }
 
     /**
-     * Set x-api-key for Web Service Client
+     * Set the API CheckoutVersion, overriding the default.
+     * Example: 'v45'
      *
-     * @param $xApiKey
+     * @param $version
      */
-    public function setApiCheckoutVersion($xApiKey)
+    public function setApiCheckoutVersion($version)
     {
-        $this->config->set('apiCheckoutVersion', $xApiKey);
+        $this->config->set('apiCheckoutVersion', $version);
     }
 
 
