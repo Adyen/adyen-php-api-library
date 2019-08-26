@@ -77,4 +77,17 @@ class Util
 
         return (int)number_format($amount, $format, '', '');
     }
+
+    public static function isValidHmac($params, $key)
+    {
+        if (empty($params["additionalData"]) || empty($params["additionalData"]["hmacSignature"])) {
+            throw new \Adyen\AdyenException("You did not provide hmacSignature in additionalData");
+        }
+        $merchantSign = $params["additionalData"]["hmacSignature"];
+        unset($params["additionalData"]);
+        $expectedSign = Util::calculateSha256Signature($key, $params);
+
+        return $expectedSign == $merchantSign;
+    }
+
 }

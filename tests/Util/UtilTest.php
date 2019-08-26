@@ -43,4 +43,29 @@ class UtilTest extends \PHPUnit_Framework_TestCase
         $formattedAmount = Util::formatAmount($amount, $currency);
         $this->assertEquals(15021, $formattedAmount);
     }
+
+    public function testNotificationRequestItemHmac()
+    {
+        $params = json_decode('{
+	            "pspReference": "pspReference",
+	            "originalReference": "originalReference",
+	            "merchantAccount": "merchantAccount",
+	            "amount": {
+	                "value": 100000,
+	                "currency": "EUR"
+	            },
+	            "eventCode": "EVENT",
+	            "Success": "true"
+	        }', true);
+        $key = "DFB1EB5485895CFA84146406857104ABB4CBCABDC8AAF103A624C8F6A3EAAB00";
+        $hmacCalculation = Util::calculateSha256Signature($key, $params);
+        $expectedHmac = "BI5nfzzHjgJ2RNFbM5wyxWpmJYLwdl7RVFJ8SfXeoZc=";
+        $this->assertTrue($hmacCalculation != "");
+        $this->assertEquals($hmacCalculation, $expectedHmac);
+        $params['additionalData'] = array(
+            'hmacSignature' => $hmacCalculation
+        );
+        $hmacValidate = Util::isValidHmac($params, $key);
+        $this->assertTrue($hmacValidate);
+    }
 }
