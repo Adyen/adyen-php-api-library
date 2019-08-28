@@ -78,14 +78,63 @@ class Util
         return (int)number_format($amount, $format, '', '');
     }
 
-    public static function isValidHmac($params, $key)
+    public static function calculateNotificationHMAC($params, $hmacKey)
+    {
+        // validate if hmacKey is provided
+        if (empty($hmacKey)) {
+            throw new \Adyen\AdyenException("You did not provide a HMAC key");
+        }
+
+        // validate if hmacKey contains only hexadecimal chars to be packed with H*
+        if (!ctype_xdigit($hmacKey)) {
+            throw new \Adyen\AdyenException("Invalid HMAC key: $hmacKey");
+        }
+
+        if (empty($params)) {
+            throw new \Adyen\AdyenException("You did not provide any parameters");
+        }
+
+        $dataToSign = self::getNotificationDataToSign($params);
+
+        // base64-encode the binary result of the HMAC computation
+        $merchantSig = base64_encode(hash_hmac('sha256', $dataToSign, pack("H*", $hmacKey), true));
+        return $merchantSig;
+    }
+
+    public static function getNotificationDataToSign($params)
+    {
+        $value = $params['amount']['value'];
+        $currency = $params['amount']['currency'];
+
+        $dataToSign = array(
+            $params['pspReference'],
+            $params['originalReference'],
+            $params['merchantAccountCode'],
+            $params['merchantReference'],
+            $value,
+            $currency,
+            $params['eventCode'],
+            $params['success']
+        );
+
+        // The character escape function
+        $escapeval = function ($val) {
+            return str_replace(':', '\\:', str_replace('\\', '\\\\', $val));
+        };
+
+        $dataToSign = implode(":", array_map($escapeval, array_values($dataToSign)));
+
+        return $dataToSign;
+    }
+
+    public static function isValidNotificationHMAC($params, $hmacKey)
     {
         if (empty($params["additionalData"]) || empty($params["additionalData"]["hmacSignature"])) {
             throw new \Adyen\AdyenException("You did not provide hmacSignature in additionalData");
         }
         $merchantSign = $params["additionalData"]["hmacSignature"];
         unset($params["additionalData"]);
-        $expectedSign = Util::calculateSha256Signature($key, $params);
+        $expectedSign = Util::calculateNotificationHMAC($params, $hmacKey);
 
         return $expectedSign == $merchantSign;
     }

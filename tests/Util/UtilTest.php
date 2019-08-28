@@ -47,25 +47,25 @@ class UtilTest extends \PHPUnit_Framework_TestCase
     public function testNotificationRequestItemHmac()
     {
         $params = json_decode('{
-	            "pspReference": "pspReference",
-	            "originalReference": "originalReference",
-	            "merchantAccount": "merchantAccount",
+	            "pspReference": "7914073381342284",
+	            "merchantAccountCode": "TestMerchant",
+	            "merchantReference": "TestPayment-1407325143704",
 	            "amount": {
-	                "value": 100000,
+	                "value": 1130,
 	                "currency": "EUR"
 	            },
-	            "eventCode": "EVENT",
-	            "Success": "true"
+	            "eventCode": "AUTHORISATION",
+	            "success": "true"
 	        }', true);
         $key = "DFB1EB5485895CFA84146406857104ABB4CBCABDC8AAF103A624C8F6A3EAAB00";
-        $hmacCalculation = Util::calculateSha256Signature($key, $params);
-        $expectedHmac = "BI5nfzzHjgJ2RNFbM5wyxWpmJYLwdl7RVFJ8SfXeoZc=";
+        $hmacCalculation = Util::calculateNotificationHMAC($params, $key);
+        $expectedHmac = "Ny9gS2veKo5E4w8/OL6xz1/wvT/hYkAXy1xNc/QvO4I=";
         $this->assertTrue($hmacCalculation != "");
         $this->assertEquals($hmacCalculation, $expectedHmac);
         $params['additionalData'] = array(
             'hmacSignature' => $hmacCalculation
         );
-        $hmacValidate = Util::isValidHmac($params, $key);
+        $hmacValidate = Util::isValidNotificationHMAC($params, $key);
         $this->assertTrue($hmacValidate);
     }
 }
