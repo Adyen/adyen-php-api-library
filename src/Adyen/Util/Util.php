@@ -103,18 +103,24 @@ class Util
 
     public static function getNotificationDataToSign($params)
     {
-        $value = $params['amount']['value'];
-        $currency = $params['amount']['currency'];
+        $pspReference = (!empty($params['pspReference'])) ? $params['pspReference'] : "";
+        $originalReference = (!empty($params['originalReference'])) ? $params['originalReference'] : "";
+        $merchantAccountCode = (!empty($params['merchantAccountCode'])) ? $params['merchantAccountCode'] : "";
+        $merchantReference = (!empty($params['merchantReference'])) ? $params['merchantReference'] : "";
+        $value = (!empty($params['amount']['value'])) ? $params['amount']['value'] : "";
+        $currency = (!empty($params['amount']['currency'])) ? $params['amount']['currency'] : "";
+        $eventCode = (!empty($params['eventCode'])) ? $params['eventCode'] : "";
+        $success = (!empty($params['success'])) ? $params['success'] : "";
 
         $dataToSign = array(
-            $params['pspReference'],
-            $params['originalReference'],
-            $params['merchantAccountCode'],
-            $params['merchantReference'],
+            $pspReference,
+            $originalReference,
+            $merchantAccountCode,
+            $merchantReference,
             $value,
             $currency,
-            $params['eventCode'],
-            $params['success']
+            $eventCode,
+            $success
         );
 
         // The character escape function
