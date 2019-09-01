@@ -2,8 +2,6 @@
 
 namespace Adyen\MockTest;
 
-use Monolog\Handler\StreamHandler;
-
 class PosPaymentTest extends TestCaseMock
 {
     /**
