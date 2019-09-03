@@ -2,6 +2,9 @@
 
 namespace Adyen\MockTest;
 
+use Monolog\Handler\TestHandler;
+use Monolog\Logger;
+
 class PaymentTest extends TestCaseMock
 {
     /**
@@ -15,18 +18,12 @@ class PaymentTest extends TestCaseMock
         // create client
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
+        $handler = new TestHandler();
+
+        $logger = new Logger('test', array($handler));
+
         // Stub Logger to prevent full card data being logged
-        $loggerMock = $this->getMockBuilder('\Monolog\Logger')->setMethods(array('info'))->disableOriginalConstructor()->getMock();
-        $client->setLogger($loggerMock);
-        $loggerMock->expects($this->any())
-            ->method('info')
-            ->with(
-                $this->logicalAnd(
-                    $this->logicalNot($this->stringContains('4111')),
-                    $this->logicalNot($this->stringContains('737')),
-                    $this->logicalNot($this->stringContains('adyenjs....'))
-                )
-            );
+        $client->setLogger($logger);
 
         // initialize service
         $service = new \Adyen\Service\Payment($client);
@@ -56,6 +53,10 @@ class PaymentTest extends TestCaseMock
 
         $this->assertArrayHasKey('resultCode', $result);
         $this->assertEquals('Authorised', $result['resultCode']);
+
+        $this->assertFalse($handler->hasInfoThatContains('4111'));
+        $this->assertFalse($handler->hasInfoThatContains('737'));
+        $this->assertFalse($handler->hasInfoThatContains('adyenjs....'));
     }
 
     public static function successAuthoriseProvider()
