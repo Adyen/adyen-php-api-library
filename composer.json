@@ -14,7 +14,8 @@
   "require-dev": {
     "phpunit/phpunit": "~4",
     "satooshi/php-coveralls": "~1.0.1",
-    "squizlabs/php_codesniffer": "~2.3"
+    "squizlabs/php_codesniffer": "~2.3",
+    "ext-json": "*"
   },
   "autoload": {
     "psr-4": {
