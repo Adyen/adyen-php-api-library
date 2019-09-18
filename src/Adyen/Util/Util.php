@@ -1,9 +1,42 @@
 <?php
+/**
+ *                       ######
+ *                       ######
+ * ############    ####( ######  #####. ######  ############   ############
+ * #############  #####( ######  #####. ######  #############  #############
+ *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+ * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+ * ###### ######  #####( ######  #####. ######  #####          #####  ######
+ * #############  #############  #############  #############  #####  ######
+ *  ############   ############  #############   ############  #####  ######
+ *                                      ######
+ *                               #############
+ *                               ############
+ *
+ * Adyen API Library for PHP
+ *
+ * Copyright (c) 2019 Adyen B.V.
+ * This file is open source and available under the MIT license.
+ * See the LICENSE file for more info.
+ *
+ */
 
 namespace Adyen\Util;
 
+/**
+ * Class Util
+ * @package Adyen\Util
+ * @deprecated
+ */
 class Util
 {
+    /**
+     * @param $hmacKey
+     * @param $params
+     * @return string
+     * @throws \Adyen\AdyenException
+     * @deprecated
+     */
     public static function calculateSha256Signature($hmacKey, $params)
     {
         // validate if hmacKey is provided
@@ -41,6 +74,7 @@ class Util
      * @param $amount
      * @param $currency
      * @return int
+     * @deprecated
      */
     public static function formatAmount($amount, $currency)
     {
@@ -78,6 +112,13 @@ class Util
         return (int)number_format($amount, $format, '', '');
     }
 
+    /**
+     * @param $params
+     * @param $hmacKey
+     * @return string
+     * @throws \Adyen\AdyenException
+     * @deprecated
+     */
     public static function calculateNotificationHMAC($params, $hmacKey)
     {
         // validate if hmacKey is provided
@@ -101,6 +142,11 @@ class Util
         return $merchantSig;
     }
 
+    /**
+     * @param $params
+     * @return array|string
+     * @deprecated
+     */
     public static function getNotificationDataToSign($params)
     {
         $pspReference = (!empty($params['pspReference'])) ? $params['pspReference'] : "";
@@ -133,6 +179,13 @@ class Util
         return $dataToSign;
     }
 
+    /**
+     * @param $params
+     * @param $hmacKey
+     * @return bool
+     * @throws \Adyen\AdyenException
+     * @deprecated
+     */
     public static function isValidNotificationHMAC($params, $hmacKey)
     {
         if (empty($params["additionalData"]) || empty($params["additionalData"]["hmacSignature"])) {
