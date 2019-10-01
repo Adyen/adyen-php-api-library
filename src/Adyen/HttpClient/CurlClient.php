@@ -52,7 +52,7 @@ class CurlClient implements ClientInterface
 		);
 
 		// if idempotency key is provided as option include into request
-        if ($requestOptions != null && !empty($requestOptions['idempotencyKey'])) {
+        if (!empty($requestOptions['idempotencyKey'])) {
             $headers[] = 'Idempotency-Key: ' . $requestOptions['idempotencyKey'];
         }
 
