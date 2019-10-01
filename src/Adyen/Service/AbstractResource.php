@@ -33,14 +33,15 @@ abstract class AbstractResource
 		$this->allowApplicationInfo = $allowApplicationInfo;
 	}
 
-	/**
-	 * Do the request to the Http Client
-	 *
-	 * @param $params
-	 * @return mixed
-	 * @throws \Adyen\AdyenException
-	 */
-	public function request($params)
+    /**
+     * Do the request to the Http Client
+     *
+     * @param $params
+     * @param null $requestOptions
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+	public function request($params, $requestOptions = null)
 	{
 		// convert to PHP Array if type is inputType is json
 		if ($this->service->getClient()->getConfig()->getInputType() == 'json') {
@@ -63,7 +64,7 @@ abstract class AbstractResource
 		$params = $this->handleApplicationInfoInRequest($params);
 
 		$curlClient = $this->service->getClient()->getHttpClient();
-		return $curlClient->requestJson($this->service, $this->endpoint, $params);
+		return $curlClient->requestJson($this->service, $this->endpoint, $params, $requestOptions);
 	}
 
 	/**

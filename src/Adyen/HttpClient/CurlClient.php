@@ -16,7 +16,7 @@ class CurlClient implements ClientInterface
 	 * @return mixed
 	 * @throws AdyenException
 	 */
-	public function requestJson(\Adyen\Service $service, $requestUrl, $params)
+	public function requestJson(\Adyen\Service $service, $requestUrl, $params, $requestOptions = null)
 	{
 		$client = $service->getClient();
 		$config = $client->getConfig();
@@ -50,6 +50,11 @@ class CurlClient implements ClientInterface
 			'Content-Type: application/json',
 			'User-Agent: ' . $userAgent
 		);
+
+		// if idempotency key is provided as option include into request
+        if ($requestOptions != null && !empty($requestOptions['idempotencyKey'])) {
+            $headers[] = 'Idempotency-Key: ' . $requestOptions['idempotencyKey'];
+        }
 
         // set authorisation credentials according to support & availability
         if (!empty($xApiKey)) {
