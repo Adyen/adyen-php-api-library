@@ -51,69 +51,75 @@ class Modification extends \Adyen\Service
 		$this->adjustAuthorisation = new \Adyen\Service\ResourceModel\Modification\AdjustAuthorisation($this);
 	}
 
-	/**
-	 * @param $params
-	 * @return mixed
-	 * @throws \Adyen\AdyenException
-	 */
-	public function cancel($params)
+    /**
+     * @param $params
+     * @param null $requestOptions
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+	public function cancel($params, $requestOptions = null)
 	{
-		$result = $this->cancel->request($params);
+		$result = $this->cancel->request($params, $requestOptions);
 		return $result;
 	}
 
-	/**
-	 * @param $params
-	 * @return mixed
-	 * @throws \Adyen\AdyenException
-	 */
-	public function cancelOrRefund($params)
+    /**
+     * @param $params
+     * @param null $requestOptions
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+	public function cancelOrRefund($params, $requestOptions = null)
 	{
-		$result = $this->cancelOrRefund->request($params);
+		$result = $this->cancelOrRefund->request($params, $requestOptions);
 		return $result;
 	}
 
-	/**
-	 * @param $params
-	 * @return mixed
-	 * @throws \Adyen\AdyenException
-	 */
-	public function capture($params)
+    /**
+     * @param $params
+     * @param null $requestOptions
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+	public function capture($params, $requestOptions = null)
 	{
-		$result = $this->capture->request($params);
+		$result = $this->capture->request($params, $requestOptions);
 		return $result;
 	}
 
-	/**
-	 * @param $params
-	 * @return mixed
-	 * @throws \Adyen\AdyenException
-	 */
-	public function refund($params)
+    /**
+     * @param $params
+     * @param null $requestOptions
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+	public function refund($params, $requestOptions = null)
 	{
-		$result = $this->refund->request($params);
+		$result = $this->refund->request($params, $requestOptions);
 		return $result;
 	}
 
-	/**
-	 * @param $params
-	 * @return mixed
-	 * @throws \Adyen\AdyenException
-	 */
-	public function refundWithData($params)
+    /**
+     * @param $params
+     * @param null $requestOptions
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+	public function refundWithData($params, $requestOptions = null)
 	{
-		$result = $this->refundWithData->request($params);
+		$result = $this->refundWithData->request($params, $requestOptions);
 		return $result;
 	}
 
-	/**
-	 * @param $params
-	 * @return mixed
-	 * @throws \Adyen\AdyenException
-	 */
-	public function adjustAuthorisation($params)
+    /**
+     * @param $params
+     * @param null $requestOptions
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+	public function adjustAuthorisation($params, $requestOptions = null)
 	{
-		$result = $this->adjustAuthorisation->request($params);
+		$result = $this->adjustAuthorisation->request($params, $requestOptions);
 		return $result;
 	}
 }
