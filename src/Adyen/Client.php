@@ -2,7 +2,6 @@
 
 namespace Adyen;
 
-use Adyen\HttpClient\CurlClient;
 use Psr\Log\LoggerInterface;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
@@ -45,7 +44,7 @@ class Client
     private $config;
 
     /**
-     * @var HttpClient\CurlClient
+     * @var
      */
     private $httpClient;
 
@@ -370,7 +369,7 @@ class Client
     }
 
     /**
-     * @return HttpClient\CurlClient
+     * @return mixed
      */
     public function getHttpClient()
     {
