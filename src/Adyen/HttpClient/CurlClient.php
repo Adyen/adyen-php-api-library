@@ -202,7 +202,7 @@ class CurlClient implements ClientInterface
 
 		curl_close($ch);
 
-		if ($httpStatus != 200 && $result) {
+		if ($httpStatus >= 400 && $result) {
 			$this->handleResultError($result, $logger);
 		} elseif (!$result) {
 			$this->handleCurlError($requestUrl, $errno, $message, $logger);
