@@ -27,9 +27,9 @@ class AdyenException extends Exception
      * @param string $message
      * @param int $code
      * @param Exception|null $previous
-     * @param ?string $status
-     * @param ?string $errorType
-     * @param ?string $pspReference
+     * @param string|null $status
+     * @param string|null $errorType
+     * @param string|null $pspReference
      */
 	public function __construct(
 	    $message = "",
@@ -48,7 +48,7 @@ class AdyenException extends Exception
 	/**
 	 * Get status
 	 *
-	 * @return ?string
+	 * @return string|null
 	 */
 	public function getStatus()
 	{
@@ -58,7 +58,7 @@ class AdyenException extends Exception
 	/**
 	 * Get Adyen Error type
 	 * 
-	 * @return ?string
+	 * @return string|null
 	 */
 	public function getErrorType()
 	{
@@ -66,7 +66,7 @@ class AdyenException extends Exception
 	}
 
     /**
-     * @return ?string
+     * @return string|null
      */
     public function getPspReference()
     {
