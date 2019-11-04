@@ -12,3 +12,7 @@ composer.lock
 
 # ignore PhpStorm .idea folder
 .idea
+
+# ignore Vagrant metadata files
+# these files are unique to each user
+.vagrant
