@@ -56,4 +56,32 @@ class HmacSignatureTest extends \PHPUnit_Framework_TestCase
             $this->fail('Unexpected exception');
         }
     }
+    public function testHmacSignatureForRefundWithZeroValue()
+    {
+        $params = json_decode('{
+	            "pspReference": "7914073381342284",
+	            "merchantAccountCode": "TestMerchant",
+	            "merchantReference": "TestPayment-1407325143704",
+	            "amount": {
+	                "value": 0,
+	                "currency": "EUR"
+	            },
+	            "eventCode": "REFUND",
+	            "success": "true"
+	        }', true);
+        $key = "44782DEF547AAA06C910C43932B1EB0C71FC68D9D0C057550C48EC2ACF6BA056";
+        $hmac = new HmacSignature();
+        try {
+            $hmacCalculation = $hmac->calculateNotificationHMAC($key, $params);
+            $this->assertNotEmpty($hmacCalculation);
+            $this->assertEquals("J7HhsgZo5KwqdB7LFZJV6rfQgp+RqC2kuYyw/3x3w+8=", $hmacCalculation);
+            $params['additionalData'] = array(
+                'hmacSignature' => $hmacCalculation
+            );
+            $hmacValidate = $hmac->isValidNotificationHMAC($key, $params);
+            $this->assertTrue($hmacValidate);
+        } catch (AdyenException $e) {
+            $this->fail('Unexpected exception');
+        }
+    }
 }

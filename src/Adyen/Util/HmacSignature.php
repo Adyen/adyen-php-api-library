@@ -66,7 +66,8 @@ class HmacSignature
         $originalReference = (!empty($params['originalReference'])) ? $params['originalReference'] : "";
         $merchantAccountCode = (!empty($params['merchantAccountCode'])) ? $params['merchantAccountCode'] : "";
         $merchantReference = (!empty($params['merchantReference'])) ? $params['merchantReference'] : "";
-        $value = (!empty($params['amount']['value'])) ? $params['amount']['value'] : "";
+        // `empty` treats too many value types as empty. `isset` should prevent some of these cases.
+        $value = (isset($params['amount']['value'])) ? $params['amount']['value'] : "";
         $currency = (!empty($params['amount']['currency'])) ? $params['amount']['currency'] : "";
         $eventCode = (!empty($params['eventCode'])) ? $params['eventCode'] : "";
         $success = (!empty($params['success'])) ? $params['success'] : "";
