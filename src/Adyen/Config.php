@@ -41,8 +41,6 @@ class Config implements ConfigInterface
 				$this->data[$key] = $param;
 			}
 		}
-
-		return $this;
 	}
 
 	/**
