@@ -20,7 +20,7 @@ class Client
     const API_BIN_LOOKUP_VERSION = "v40";
     const API_PAYOUT_VERSION = "v30";
     const API_RECURRING_VERSION = "v25";
-    const API_CHECKOUT_VERSION = "v49";
+    const API_CHECKOUT_VERSION = "v51";
     const API_CHECKOUT_UTILITY_VERSION = "v1";
     const API_NOTIFICATION_VERSION = "v1";
     const API_ACCOUNT_VERSION = "v5";
