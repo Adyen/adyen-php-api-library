@@ -19,18 +19,25 @@ abstract class AbstractResource
 	 */
 	protected $allowApplicationInfo;
 
-	/**
-	 * AbstractResource constructor.
-	 *
-	 * @param \Adyen\Service $service
-	 * @param $endpoint
-	 * @param bool $allowApplicationInfo
-	 */
-	public function __construct(\Adyen\Service $service, $endpoint, $allowApplicationInfo = false)
+    /**
+     * @var bool
+     */
+	protected $allowApplicationInfoPOS;
+
+    /**
+     * AbstractResource constructor.
+     *
+     * @param \Adyen\Service $service
+     * @param $endpoint
+     * @param bool $allowApplicationInfo
+     * @param bool $allowApplicationInfoPOS
+     */
+	public function __construct(\Adyen\Service $service, $endpoint, $allowApplicationInfo = false, $allowApplicationInfoPOS = false)
 	{
 		$this->service = $service;
 		$this->endpoint = $endpoint;
 		$this->allowApplicationInfo = $allowApplicationInfo;
+		$this->allowApplicationInfoPOS = $allowApplicationInfoPOS;
 	}
 
     /**
@@ -61,7 +68,11 @@ abstract class AbstractResource
 
 		$params = $this->addDefaultParametersToRequest($params);
 
-		$params = $this->handleApplicationInfoInRequest($params);
+        if ($this->allowApplicationInfo) {
+            $params = $this->handleApplicationInfoInRequest($params);
+        } elseif ($this->allowApplicationInfoPOS) {
+            $params = $this->handleApplicationInfoInRequestPOS($params);
+        }
 
 		$curlClient = $this->service->getClient()->getHttpClient();
 		return $curlClient->requestJson($this->service, $this->endpoint, $params, $requestOptions);
@@ -111,7 +122,7 @@ abstract class AbstractResource
 	private function handleApplicationInfoInRequest($params)
 	{
 		// Only add if allowed
-		if ($this->allowApplicationInfo) {
+		if ($this->allowApplicationInfo || $this->allowApplicationInfoPOS) {
 			// add/overwrite applicationInfo adyenLibrary even if it's already set
 			$params['applicationInfo']['adyenLibrary']['name'] = $this->service->getClient()->getLibraryName();
 			$params['applicationInfo']['adyenLibrary']['version'] = $this->service->getClient()->getLibraryVersion();
@@ -139,4 +150,55 @@ abstract class AbstractResource
 
 		return $params;
 	}
+
+    /**
+     * If allowApplicationInfoPOS is true, this function does the following:
+     * 1) Converts SaleToAcquirerData to array(from querystring or base64encoded)
+     * 2) Adds ApplicationInfo to the array
+     * 3) Base64 encodes SaleToAcquirerData
+     *
+     * @param $params
+     * @return mixed
+     */
+    private function handleApplicationInfoInRequestPOS($params)
+    {
+        $saleToAcquirerData = $params['SaleToPOIRequest']['PaymentRequest']['SaleData']['SaleToAcquirerData'];
+        //If the POS request is not a payment request, do not add application info
+        if (empty($params['SaleToPOIRequest']['PaymentRequest'])) {
+            return $params;
+        }
+
+        //If SaleToAcquirerData is a querystring convert it to array
+        parse_str($saleToAcquirerData, $queryString);
+        $queryStringValues = array_values($queryString);
+        //check if querystring is nonempty and contains a value
+        if (!empty($queryString) && !empty($queryStringValues[0])) {
+            $saleToAcquirerData = $queryString;
+        }
+
+        //If SaleToAcquirerData is a base64encoded string decode it and convert it to array
+        elseif ($this->isBase64Encoded($saleToAcquirerData)){
+            $saleToAcquirerData = json_decode(base64_decode($saleToAcquirerData, true), true);
+        }
+        //add Application Information
+        $saleToAcquirerData = $this->handleApplicationInfoInRequest($saleToAcquirerData);
+        $saleToAcquirerData = base64_encode(json_encode($saleToAcquirerData));
+        $params['SaleToPOIRequest']['PaymentRequest']['SaleData']['SaleToAcquirerData'] = $saleToAcquirerData;
+
+        return $params;
+
+    }
+
+    /**
+     * @param $data
+     * @return bool
+     */
+    private function isBase64Encoded($data)
+    {
+        if (preg_match('%^[a-zA-Z0-9/+]*={0,2}$%', $data) && !empty($data)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

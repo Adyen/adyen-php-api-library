@@ -9,6 +9,20 @@ class TerminalCloudAPI extends \Adyen\Service\AbstractResource
 	 */
 	protected $endpoint;
 
+    /**
+     * Include applicationInfo key in the request parameters
+     *
+     * @var bool
+     */
+    protected $allowApplicationInfo = false;
+
+    /**
+     * Include applicationInfo key in the request parameters
+     *
+     * @var bool
+     */
+    protected $allowApplicationInfoPOS = true;
+
 	/**
 	 * TerminalCloudAPI constructor.
 	 *
@@ -22,6 +36,6 @@ class TerminalCloudAPI extends \Adyen\Service\AbstractResource
 		} else {
 			$this->endpoint = $service->getClient()->getConfig()->get('endpointTerminalCloud') . '/sync';
 		}
-		parent::__construct($service, $this->endpoint);
+		parent::__construct($service, $this->endpoint, $allowApplicationInfo = false, $this->allowApplicationInfoPOS);
 	}
 }
