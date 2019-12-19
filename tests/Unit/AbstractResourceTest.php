@@ -335,7 +335,7 @@ class AbstractResourceTest extends TestCase
             'recurringContract' => "ONECLICK"
         );
 
-        // Add RecurringDetails using querystring
+        // Add RecurringDetails using base64
         $params['SaleToPOIRequest']['PaymentRequest']['SaleData']['SaleToAcquirerData'] = base64_encode(json_encode($recurringDetails));
 
         // Mock client without the Test ini settings
