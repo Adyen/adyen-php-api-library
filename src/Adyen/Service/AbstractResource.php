@@ -162,24 +162,32 @@ abstract class AbstractResource
      */
     private function handleApplicationInfoInRequestPOS($params)
     {
-        $saleToAcquirerData = $params['SaleToPOIRequest']['PaymentRequest']['SaleData']['SaleToAcquirerData'];
         //If the POS request is not a payment request, do not add application info
         if (empty($params['SaleToPOIRequest']['PaymentRequest'])) {
             return $params;
         }
 
-        //If SaleToAcquirerData is a querystring convert it to array
-        parse_str($saleToAcquirerData, $queryString);
-        $queryStringValues = array_values($queryString);
-        //check if querystring is nonempty and contains a value
-        if (!empty($queryString) && !empty($queryStringValues[0])) {
-            $saleToAcquirerData = $queryString;
+        // Initialize $saleToAcquirerData
+        $saleToAcquirerData = array();
+
+        if (!empty($params['SaleToPOIRequest']['PaymentRequest']['SaleData']['SaleToAcquirerData'])) {
+            $saleToAcquirerData = $params['SaleToPOIRequest']['PaymentRequest']['SaleData']['SaleToAcquirerData'];
+
+            //If SaleToAcquirerData is a querystring convert it to array
+            parse_str($saleToAcquirerData, $queryString);
+            $queryStringValues = array_values($queryString);
+
+            //check if querystring is nonempty and contains a value
+            if (!empty($queryString) && !empty($queryStringValues[0])) {
+                $saleToAcquirerData = $queryString;
+            }
+
+            //If SaleToAcquirerData is a base64encoded string decode it and convert it to array
+            elseif ($this->isBase64Encoded($saleToAcquirerData)) {
+                $saleToAcquirerData = json_decode(base64_decode($saleToAcquirerData, true), true);
+            }
         }
 
-        //If SaleToAcquirerData is a base64encoded string decode it and convert it to array
-        elseif ($this->isBase64Encoded($saleToAcquirerData)){
-            $saleToAcquirerData = json_decode(base64_decode($saleToAcquirerData, true), true);
-        }
         //add Application Information
         $saleToAcquirerData = $this->handleApplicationInfoInRequest($saleToAcquirerData);
         $saleToAcquirerData = base64_encode(json_encode($saleToAcquirerData));
