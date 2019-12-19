@@ -284,7 +284,6 @@ class PosPaymentTest extends TestCase
         $params['SaleToPOIRequest']['PaymentRequest']['SaleData']['SaleToAcquirerData'] = http_build_query($recurringDetails);
         try {
             $result = $service->runTenderSync($params);
-            print_r($result);
         } catch (\Exception $e) {
             $this->validateApiPermission($e);
         }
@@ -361,7 +360,6 @@ class PosPaymentTest extends TestCase
         $params['SaleToPOIRequest']['PaymentRequest']['SaleData']['SaleToAcquirerData'] = base64_encode(json_encode($recurringDetails));
         try {
             $result = $service->runTenderSync($params);
-            print_r($result);
         } catch (\Exception $e) {
             $this->validateApiPermission($e);
         }
