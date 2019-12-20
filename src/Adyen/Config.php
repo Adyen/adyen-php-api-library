@@ -150,6 +150,14 @@ class Config implements ConfigInterface
 		return isset($this->data['adyenPaymentSource']) ? $this->data['adyenPaymentSource'] : null;
 	}
 
+    /**
+     * @return mixed|null
+     */
+    public function getMerchantApplication()
+    {
+        return isset($this->data['merchantApplication']) ? $this->data['merchantApplication'] : null;
+    }
+
 	/**
 	 * @return mixed|null
 	 */

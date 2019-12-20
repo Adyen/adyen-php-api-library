@@ -141,6 +141,11 @@ abstract class AbstractResource
 				}
 			}
 
+            if ($merchantApplication = $this->service->getClient()->getConfig()->getMerchantApplication()) {
+                $params['applicationInfo']['merchantApplication']['version'] = $merchantApplication['version'];
+                $params['applicationInfo']['merchantApplication']['name'] = $merchantApplication['name'];
+            }
+
 		} else {
 			// remove if exists
 			if (isset($params['applicationInfo'])) {

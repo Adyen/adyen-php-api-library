@@ -223,6 +223,17 @@ class Client
     }
 
     /**
+     * Set merchant application name and version
+     *
+     * @param string $name
+     * @param string $version
+     */
+    public function setMerchantApplication($name, $version)
+    {
+        $this->config->set('merchantApplication', array('name' => $name, 'version' => $version));
+    }
+
+    /**
      * Type can be json or array
      *
      * @param $value

@@ -311,6 +311,9 @@ class PosPaymentTest extends TestCase
         // initialize service
         $service = new Service\PosPayment($client);
 
+        //Set merchantApplication
+        $client->setMerchantApplication("merchantPosApplication", "0.0.test");
+
         //Construct request
         $transactionType = \Adyen\TransactionType::NORMAL;
         $serviceID = date("dHis");
