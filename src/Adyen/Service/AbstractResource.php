@@ -28,7 +28,7 @@ abstract class AbstractResource
      * AbstractResource constructor.
      *
      * @param \Adyen\Service $service
-     * @param $endpoint
+     * @param string $endpoint
      * @param bool $allowApplicationInfo
      * @param bool $allowApplicationInfoPOS
      */
