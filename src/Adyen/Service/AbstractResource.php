@@ -160,9 +160,9 @@ abstract class AbstractResource
      * 3) Base64 encodes SaleToAcquirerData
      *
      * @param $params
-     * @return mixed
+     * @return array|null
      */
-    private function handleApplicationInfoInRequestPOS($params)
+    private function handleApplicationInfoInRequestPOS(array $params)
     {
         //If the POS request is not a payment request, do not add application info
         if (empty($params['SaleToPOIRequest']['PaymentRequest'])) {

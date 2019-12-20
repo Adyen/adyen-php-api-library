@@ -10,36 +10,6 @@ class AbstractResourceTest extends TestCase
 	private $className = "Adyen\Service\AbstractResource";
 
 	/**
-	 * If the allowApplicationInfo is false the applicationInfo key should be removed from the params
-	 *
-	 * @covers \Adyen\Service\AbstractResource::handleApplicationInfoInRequest
-	 */
-	public function testHandleApplicationInfoInRequestShouldRemoveApplicationInfoFromParams()
-	{
-		$params = array(
-			"applicationInfo" => array(
-				"adyenLibrary" => array(
-					"name" => "test",
-            		"version" => "test"
-				)
-			)
-		);
-
-		// Mock client without the Test ini settings
-		$mockedClient = $this->createClientWithoutTestIni();
-
-		// Mock abstract class with mocked client and $paramsToFilter parameters
-		$mockedClass = $this->getMockForAbstractClass($this->className, array((new \Adyen\Service($mockedClient)), "", false));
-
-		// Get private method as testable public method
-		$method = $this->getMethod($this->className, "handleApplicationInfoInRequest");
-
-		// Test against function
-		$result = $method->invokeArgs($mockedClass, array($params));
-		$this->assertArrayNotHasKey("applicationInfo", $result);
-	}
-
-	/**
 	 * If the allowApplicationInfo is true the applicationInfo Adyen Library should be overwritten with the real values
 	 *
 	 * @covers \Adyen\Service\AbstractResource::handleApplicationInfoInRequest

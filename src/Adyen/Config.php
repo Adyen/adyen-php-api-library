@@ -151,7 +151,7 @@ class Config implements ConfigInterface
 	}
 
     /**
-     * @return mixed|null
+     * @return array|null an array with 'name' and 'version'
      */
     public function getMerchantApplication()
     {
