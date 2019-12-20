@@ -72,6 +72,11 @@ abstract class AbstractResource
             $params = $this->handleApplicationInfoInRequest($params);
         } elseif ($this->allowApplicationInfoPOS) {
             $params = $this->handleApplicationInfoInRequestPOS($params);
+        } else {
+            // remove if exists
+            if (isset($params['applicationInfo'])) {
+                unset($params['applicationInfo']);
+            }
         }
 
 		$curlClient = $this->service->getClient()->getHttpClient();
@@ -121,37 +126,29 @@ abstract class AbstractResource
 	 */
 	private function handleApplicationInfoInRequest($params)
 	{
-		// Only add if allowed
-		if ($this->allowApplicationInfo || $this->allowApplicationInfoPOS) {
-			// add/overwrite applicationInfo adyenLibrary even if it's already set
-			$params['applicationInfo']['adyenLibrary']['name'] = $this->service->getClient()->getLibraryName();
-			$params['applicationInfo']['adyenLibrary']['version'] = $this->service->getClient()->getLibraryVersion();
+        // add/overwrite applicationInfo adyenLibrary even if it's already set
+        $params['applicationInfo']['adyenLibrary']['name'] = $this->service->getClient()->getLibraryName();
+        $params['applicationInfo']['adyenLibrary']['version'] = $this->service->getClient()->getLibraryVersion();
 
-			if ($adyenPaymentSource = $this->service->getClient()->getConfig()->getAdyenPaymentSource()) {
-				$params['applicationInfo']['adyenPaymentSource']['version'] = $adyenPaymentSource['version'];
-				$params['applicationInfo']['adyenPaymentSource']['name'] = $adyenPaymentSource['name'];
-			}
+        if ($adyenPaymentSource = $this->service->getClient()->getConfig()->getAdyenPaymentSource()) {
+            $params['applicationInfo']['adyenPaymentSource']['version'] = $adyenPaymentSource['version'];
+            $params['applicationInfo']['adyenPaymentSource']['name'] = $adyenPaymentSource['name'];
+        }
 
-			if ($externalPlatform = $this->service->getClient()->getConfig()->getExternalPlatform()) {
-				$params['applicationInfo']['externalPlatform']['version'] = $externalPlatform['version'];
-				$params['applicationInfo']['externalPlatform']['name'] = $externalPlatform['name'];
+        if ($externalPlatform = $this->service->getClient()->getConfig()->getExternalPlatform()) {
+            $params['applicationInfo']['externalPlatform']['version'] = $externalPlatform['version'];
+            $params['applicationInfo']['externalPlatform']['name'] = $externalPlatform['name'];
 
-				if (!empty($externalPlatform['integrator'])) {
-					$params['applicationInfo']['externalPlatform']['integrator'] = $externalPlatform['integrator'];
-				}
-			}
-
-            if ($merchantApplication = $this->service->getClient()->getConfig()->getMerchantApplication()) {
-                $params['applicationInfo']['merchantApplication']['version'] = $merchantApplication['version'];
-                $params['applicationInfo']['merchantApplication']['name'] = $merchantApplication['name'];
+            if (!empty($externalPlatform['integrator'])) {
+                $params['applicationInfo']['externalPlatform']['integrator'] = $externalPlatform['integrator'];
             }
+        }
 
-		} else {
-			// remove if exists
-			if (isset($params['applicationInfo'])) {
-				unset($params['applicationInfo']);
-			}
-		}
+        if ($merchantApplication = $this->service->getClient()->getConfig()->getMerchantApplication()) {
+            $params['applicationInfo']['merchantApplication']['version'] = $merchantApplication['version'];
+            $params['applicationInfo']['merchantApplication']['name'] = $merchantApplication['name'];
+        }
+
 
 		return $params;
 	}
