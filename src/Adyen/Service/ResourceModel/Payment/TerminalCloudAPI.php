@@ -36,6 +36,6 @@ class TerminalCloudAPI extends \Adyen\Service\AbstractResource
 		} else {
 			$this->endpoint = $service->getClient()->getConfig()->get('endpointTerminalCloud') . '/sync';
 		}
-		parent::__construct($service, $this->endpoint, $allowApplicationInfo = false, $this->allowApplicationInfoPOS);
+		parent::__construct($service, $this->endpoint, $this->allowApplicationInfo, $this->allowApplicationInfoPOS);
 	}
 }
