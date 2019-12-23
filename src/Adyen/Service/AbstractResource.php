@@ -19,18 +19,25 @@ abstract class AbstractResource
 	 */
 	protected $allowApplicationInfo;
 
-	/**
-	 * AbstractResource constructor.
-	 *
-	 * @param \Adyen\Service $service
-	 * @param $endpoint
-	 * @param bool $allowApplicationInfo
-	 */
-	public function __construct(\Adyen\Service $service, $endpoint, $allowApplicationInfo = false)
+    /**
+     * @var bool
+     */
+	protected $allowApplicationInfoPOS;
+
+    /**
+     * AbstractResource constructor.
+     *
+     * @param \Adyen\Service $service
+     * @param string $endpoint
+     * @param bool $allowApplicationInfo
+     * @param bool $allowApplicationInfoPOS
+     */
+	public function __construct(\Adyen\Service $service, $endpoint, $allowApplicationInfo = false, $allowApplicationInfoPOS = false)
 	{
 		$this->service = $service;
 		$this->endpoint = $endpoint;
 		$this->allowApplicationInfo = $allowApplicationInfo;
+		$this->allowApplicationInfoPOS = $allowApplicationInfoPOS;
 	}
 
     /**
@@ -61,7 +68,16 @@ abstract class AbstractResource
 
 		$params = $this->addDefaultParametersToRequest($params);
 
-		$params = $this->handleApplicationInfoInRequest($params);
+        if ($this->allowApplicationInfo) {
+            $params = $this->handleApplicationInfoInRequest($params);
+        } elseif ($this->allowApplicationInfoPOS) {
+            $params = $this->handleApplicationInfoInRequestPOS($params);
+        } else {
+            // remove if exists
+            if (isset($params['applicationInfo'])) {
+                unset($params['applicationInfo']);
+            }
+        }
 
 		$curlClient = $this->service->getClient()->getHttpClient();
 		return $curlClient->requestJson($this->service, $this->endpoint, $params, $requestOptions);
@@ -110,33 +126,89 @@ abstract class AbstractResource
 	 */
 	private function handleApplicationInfoInRequest($params)
 	{
-		// Only add if allowed
-		if ($this->allowApplicationInfo) {
-			// add/overwrite applicationInfo adyenLibrary even if it's already set
-			$params['applicationInfo']['adyenLibrary']['name'] = $this->service->getClient()->getLibraryName();
-			$params['applicationInfo']['adyenLibrary']['version'] = $this->service->getClient()->getLibraryVersion();
+        // add/overwrite applicationInfo adyenLibrary even if it's already set
+        $params['applicationInfo']['adyenLibrary']['name'] = $this->service->getClient()->getLibraryName();
+        $params['applicationInfo']['adyenLibrary']['version'] = $this->service->getClient()->getLibraryVersion();
 
-			if ($adyenPaymentSource = $this->service->getClient()->getConfig()->getAdyenPaymentSource()) {
-				$params['applicationInfo']['adyenPaymentSource']['version'] = $adyenPaymentSource['version'];
-				$params['applicationInfo']['adyenPaymentSource']['name'] = $adyenPaymentSource['name'];
-			}
+        if ($adyenPaymentSource = $this->service->getClient()->getConfig()->getAdyenPaymentSource()) {
+            $params['applicationInfo']['adyenPaymentSource']['version'] = $adyenPaymentSource['version'];
+            $params['applicationInfo']['adyenPaymentSource']['name'] = $adyenPaymentSource['name'];
+        }
 
-			if ($externalPlatform = $this->service->getClient()->getConfig()->getExternalPlatform()) {
-				$params['applicationInfo']['externalPlatform']['version'] = $externalPlatform['version'];
-				$params['applicationInfo']['externalPlatform']['name'] = $externalPlatform['name'];
+        if ($externalPlatform = $this->service->getClient()->getConfig()->getExternalPlatform()) {
+            $params['applicationInfo']['externalPlatform']['version'] = $externalPlatform['version'];
+            $params['applicationInfo']['externalPlatform']['name'] = $externalPlatform['name'];
 
-				if (!empty($externalPlatform['integrator'])) {
-					$params['applicationInfo']['externalPlatform']['integrator'] = $externalPlatform['integrator'];
-				}
-			}
+            if (!empty($externalPlatform['integrator'])) {
+                $params['applicationInfo']['externalPlatform']['integrator'] = $externalPlatform['integrator'];
+            }
+        }
 
-		} else {
-			// remove if exists
-			if (isset($params['applicationInfo'])) {
-				unset($params['applicationInfo']);
-			}
-		}
+        if ($merchantApplication = $this->service->getClient()->getConfig()->getMerchantApplication()) {
+            $params['applicationInfo']['merchantApplication']['version'] = $merchantApplication['version'];
+            $params['applicationInfo']['merchantApplication']['name'] = $merchantApplication['name'];
+        }
+
 
 		return $params;
 	}
+
+    /**
+     * If allowApplicationInfoPOS is true, this function does the following:
+     * 1) Converts SaleToAcquirerData to array(from querystring or base64encoded)
+     * 2) Adds ApplicationInfo to the array
+     * 3) Base64 encodes SaleToAcquirerData
+     *
+     * @param $params
+     * @return array|null
+     */
+    private function handleApplicationInfoInRequestPOS(array $params)
+    {
+        //If the POS request is not a payment request, do not add application info
+        if (empty($params['SaleToPOIRequest']['PaymentRequest'])) {
+            return $params;
+        }
+
+        // Initialize $saleToAcquirerData
+        $saleToAcquirerData = array();
+
+        if (!empty($params['SaleToPOIRequest']['PaymentRequest']['SaleData']['SaleToAcquirerData'])) {
+            $saleToAcquirerData = $params['SaleToPOIRequest']['PaymentRequest']['SaleData']['SaleToAcquirerData'];
+
+            //If SaleToAcquirerData is a querystring convert it to array
+            parse_str($saleToAcquirerData, $queryString);
+            $queryStringValues = array_values($queryString);
+
+            //check if querystring is nonempty and contains a value
+            if (!empty($queryString) && !empty($queryStringValues[0])) {
+                $saleToAcquirerData = $queryString;
+            }
+
+            //If SaleToAcquirerData is a base64encoded string decode it and convert it to array
+            elseif ($this->isBase64Encoded($saleToAcquirerData)) {
+                $saleToAcquirerData = json_decode(base64_decode($saleToAcquirerData, true), true);
+            }
+        }
+
+        //add Application Information
+        $saleToAcquirerData = $this->handleApplicationInfoInRequest($saleToAcquirerData);
+        $saleToAcquirerData = base64_encode(json_encode($saleToAcquirerData));
+        $params['SaleToPOIRequest']['PaymentRequest']['SaleData']['SaleToAcquirerData'] = $saleToAcquirerData;
+
+        return $params;
+
+    }
+
+    /**
+     * @param $data
+     * @return bool
+     */
+    private function isBase64Encoded($data)
+    {
+        if (preg_match('%^[a-zA-Z0-9/+]*={0,2}$%', $data) && !empty($data)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
