@@ -2,6 +2,11 @@
 
 namespace Adyen;
 
+/**
+ * Interface ConfigInterface
+ * @deprecated Please do not use your own interface as we will deprecate this in the future for improvements on the library
+ * @package Adyen
+ */
 Interface ConfigInterface
 {
 

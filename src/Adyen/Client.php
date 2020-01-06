@@ -8,7 +8,7 @@ use Monolog\Handler\StreamHandler;
 
 class Client
 {
-    const LIB_VERSION = "5.0.0";
+    const LIB_VERSION = "5.0.1";
     const LIB_NAME = "adyen-php-api-library";
     const USER_AGENT_SUFFIX = "adyen-php-api-library/";
     const ENDPOINT_TEST = "https://pal-test.adyen.com";
@@ -220,6 +220,17 @@ class Client
     public function setAdyenPaymentSource($name, $version)
     {
         $this->config->set('adyenPaymentSource', array('name' => $name, 'version' => $version));
+    }
+
+    /**
+     * Set merchant application name and version
+     *
+     * @param string $name
+     * @param string $version
+     */
+    public function setMerchantApplication($name, $version)
+    {
+        $this->config->set('merchantApplication', array('name' => $name, 'version' => $version));
     }
 
     /**
