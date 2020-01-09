@@ -124,7 +124,7 @@ class Client
      * For live please specify the unique identifier.
      *
      * @param string $environment
-     * @param null $liveEndpointUrlPrefix Provide the unique live url prefix from the "API URLs and Response" menu in the Adyen Customer Area
+     * @param string|null $liveEndpointUrlPrefix Provide the unique live url prefix from the "API URLs and Response" menu in the Adyen Customer Area
      * @throws AdyenException
      */
     public function setEnvironment($environment, $liveEndpointUrlPrefix = null)
