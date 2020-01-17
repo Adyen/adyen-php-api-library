@@ -25,6 +25,7 @@ class Client
     const API_NOTIFICATION_VERSION = "v1";
     const API_ACCOUNT_VERSION = "v5";
     const API_FUND_VERSION = "v5";
+    const API_DISPUTE_SERVICE_VERSION = "v30";
     const ENDPOINT_TERMINAL_CLOUD_TEST = "https://terminal-api-test.adyen.com";
     const ENDPOINT_TERMINAL_CLOUD_LIVE = "https://terminal-api-live.adyen.com";
     const ENDPOINT_CHECKOUT_TEST = "https://checkout-test.adyen.com/checkout";
@@ -36,7 +37,8 @@ class Client
     const ENDPOINT_ACCOUNT_LIVE = "https://cal-live.adyen.com/cal/services/Account";
     const ENDPOINT_FUND_TEST = "https://cal-test.adyen.com/cal/services/Fund";
     const ENDPOINT_FUND_LIVE = "https://cal-live.adyen.com/cal/services/Fund";
-
+    const ENDPOINT_DISPUTE_SERVICE_TEST = "https://ca-test.adyen.com/ca/services/DisputeService";
+    const ENDPOINT_DISPUTE_SERVICE_LIVE = "https://ca-live.adyen.com/ca/services/DisputeService";
 
     /**
      * @var \Adyen\Config $config
@@ -138,6 +140,7 @@ class Client
             $this->config->set('endpointNotification', self::ENDPOINT_NOTIFICATION_TEST);
             $this->config->set('endpointAccount', self::ENDPOINT_ACCOUNT_TEST);
             $this->config->set('endpointFund', self::ENDPOINT_FUND_TEST);
+            $this->config->set('endpointDisputeService', self::ENDPOINT_DISPUTE_SERVICE_TEST);
         } elseif ($environment == \Adyen\Environment::LIVE) {
             $this->config->set('environment', \Adyen\Environment::LIVE);
             $this->config->set('endpointDirectorylookup', self::ENDPOINT_LIVE_DIRECTORY_LOOKUP);
@@ -145,6 +148,7 @@ class Client
             $this->config->set('endpointNotification', self::ENDPOINT_NOTIFICATION_LIVE);
             $this->config->set('endpointAccount', self::ENDPOINT_ACCOUNT_LIVE);
             $this->config->set('endpointFund', self::ENDPOINT_FUND_LIVE);
+            $this->config->set('endpointDisputeService', self::ENDPOINT_DISPUTE_SERVICE_LIVE);
 
             if ($liveEndpointUrlPrefix) {
                 $this->config->set('endpoint',
@@ -369,6 +373,16 @@ class Client
     public function getApiFundVersion()
     {
         return self::API_FUND_VERSION;
+    }
+
+    /**
+     * Get the disputes service API version
+     *
+     * @return string
+     */
+    public function getDisputeServiceVersion()
+    {
+        return self::API_DISPUTE_SERVICE_VERSION;
     }
 
     /**
