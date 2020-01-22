@@ -15,7 +15,8 @@ class TransferFunds extends \Adyen\Service\AbstractResource
      */
     public function __construct($service)
     {
-        $this->endpoint = $service->getClient()->getConfig()->get('endpointFund') . '/' . $service->getClient()->getApiFundVersion() . '/transferFunds';
+        $this->endpoint = $service->getClient()->getConfig()->get('endpointFund') .
+            '/' . $service->getClient()->getApiFundVersion() . '/transferFunds';
         parent::__construct($service, $this->endpoint);
     }
 }

@@ -15,7 +15,8 @@ class DeleteBankAccounts extends \Adyen\Service\AbstractResource
      */
     public function __construct($service)
     {
-        $this->endpoint = $service->getClient()->getConfig()->get('endpointAccount') . '/' . $service->getClient()->getApiAccountVersion() . '/deleteBankAccounts';
+        $this->endpoint = $service->getClient()->getConfig()->get('endpointAccount') .
+            '/' . $service->getClient()->getApiAccountVersion() . '/deleteBankAccounts';
         parent::__construct($service, $this->endpoint);
     }
 }

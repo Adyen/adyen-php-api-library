@@ -56,7 +56,13 @@ class CheckoutTest extends TestCaseMock
     public static function failurePaymentMethodsMissingIdentifierOnLiveProvider()
     {
         return array(
-            array('tests/Resources/Checkout/payment-methods-success.json', null, 'Please provide your unique live url prefix on the setEnvironment() call on the Client or provide endpointCheckout in your config object.')
+            array(
+                'tests/Resources/Checkout/payment-methods-success.json',
+                null,
+                'Please provide your unique live url prefix on the ' .
+                'setEnvironment() call on the Client or provide ' .
+                'endpointCheckout in your config object.'
+            )
         );
     }
 
@@ -66,8 +72,11 @@ class CheckoutTest extends TestCaseMock
      * @param $expectedExceptionMessage
      * @dataProvider failurePaymentMethodsProvider
      */
-    public function testPaymentMethodsFailure($jsonFile, $httpStatus, $expectedExceptionMessage)
-    {
+    public function testPaymentMethodsFailure(
+        $jsonFile,
+        $httpStatus,
+        $expectedExceptionMessage
+    ) {
         // create Checkout client
         $client = $this->createMockClient($jsonFile, $httpStatus);
 

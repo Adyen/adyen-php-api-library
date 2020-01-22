@@ -15,7 +15,8 @@ class TestNotificationConfiguration extends \Adyen\Service\AbstractResource
      */
     public function __construct($service)
     {
-        $this->endpoint = $service->getClient()->getConfig()->get('endpointNotification') . '/' . $service->getClient()->getApiNotificationVersion() . '/testNotificationConfiguration';
+        $this->endpoint = $service->getClient()->getConfig()->get('endpointNotification') .
+            '/' . $service->getClient()->getApiNotificationVersion() . '/testNotificationConfiguration';
         parent::__construct($service, $this->endpoint);
     }
 }

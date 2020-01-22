@@ -5,6 +5,7 @@ tests/config
 vendor
 build
 .phpunit.result.cache
+.php_cs.cache
 .vagrant
 
 # ignore Mac OS X file

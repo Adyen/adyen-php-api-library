@@ -2,43 +2,50 @@
 
 namespace Adyen\Service;
 
+use Adyen\AdyenException;
+use Adyen\Service;
+
 abstract class AbstractResource
 {
-	/**
-	 * @var \Adyen\Service
-	 */
-	protected $service;
+    /**
+     * @var Service
+     */
+    protected $service;
 
-	/**
-	 * @var string
-	 */
-	protected $endpoint;
-
-	/**
-	 * @var bool
-	 */
-	protected $allowApplicationInfo;
+    /**
+     * @var string
+     */
+    protected $endpoint;
 
     /**
      * @var bool
      */
-	protected $allowApplicationInfoPOS;
+    protected $allowApplicationInfo;
+
+    /**
+     * @var bool
+     */
+    protected $allowApplicationInfoPOS;
 
     /**
      * AbstractResource constructor.
      *
-     * @param \Adyen\Service $service
+     * @param Service $service
      * @param string $endpoint
      * @param bool $allowApplicationInfo
      * @param bool $allowApplicationInfoPOS
      */
-	public function __construct(\Adyen\Service $service, $endpoint, $allowApplicationInfo = false, $allowApplicationInfoPOS = false)
-	{
-		$this->service = $service;
-		$this->endpoint = $endpoint;
-		$this->allowApplicationInfo = $allowApplicationInfo;
-		$this->allowApplicationInfoPOS = $allowApplicationInfoPOS;
-	}
+    public function __construct(
+        Service $service,
+        $endpoint,
+        $allowApplicationInfo = false,
+        $allowApplicationInfoPOS = false
+    ) {
+        $this->service = $service;
+        $this->endpoint = $endpoint;
+        $this->allowApplicationInfo = $allowApplicationInfo;
+        $this->allowApplicationInfoPOS = $allowApplicationInfoPOS;
+    }
 
     /**
      * Do the request to the Http Client
@@ -46,27 +53,28 @@ abstract class AbstractResource
      * @param $params
      * @param null $requestOptions
      * @return mixed
-     * @throws \Adyen\AdyenException
+     * @throws AdyenException
      */
-	public function request($params, $requestOptions = null)
-	{
-		// convert to PHP Array if type is inputType is json
-		if ($this->service->getClient()->getConfig()->getInputType() == 'json') {
-			$params = json_decode($params, true);
-			if ($params === null && json_last_error() !== JSON_ERROR_NONE) {
-				$msg = 'The parameters in the request expect valid JSON but JSON error code found: ' . json_last_error();
-				$this->service->getClient()->getLogger()->error($msg);
-				throw new \Adyen\AdyenException($msg);
-			}
-		}
+    public function request($params, $requestOptions = null)
+    {
+        // convert to PHP Array if type is inputType is json
+        if ($this->service->getClient()->getConfig()->getInputType() == 'json') {
+            $params = json_decode($params, true);
+            if ($params === null && json_last_error() !== JSON_ERROR_NONE) {
+                $msg = 'The parameters in the request expect valid JSON but JSON error code found: ' .
+                    json_last_error();
+                $this->service->getClient()->getLogger()->error($msg);
+                throw new AdyenException($msg);
+            }
+        }
 
-		if (!is_array($params)) {
-			$msg = 'The parameter is not valid array';
-			$this->service->getClient()->getLogger()->error($msg);
-			throw new \Adyen\AdyenException($msg);
-		}
+        if (!is_array($params)) {
+            $msg = 'The parameter is not valid array';
+            $this->service->getClient()->getLogger()->error($msg);
+            throw new AdyenException($msg);
+        }
 
-		$params = $this->addDefaultParametersToRequest($params);
+        $params = $this->addDefaultParametersToRequest($params);
 
         if ($this->allowApplicationInfo) {
             $params = $this->handleApplicationInfoInRequest($params);
@@ -79,53 +87,53 @@ abstract class AbstractResource
             }
         }
 
-		$curlClient = $this->service->getClient()->getHttpClient();
-		return $curlClient->requestJson($this->service, $this->endpoint, $params, $requestOptions);
-	}
+        $curlClient = $this->service->getClient()->getHttpClient();
+        return $curlClient->requestJson($this->service, $this->endpoint, $params, $requestOptions);
+    }
 
-	/**
-	 * @param $params
-	 * @return mixed
-	 * @throws \Adyen\AdyenException
-	 */
-	public function requestPost($params)
-	{
-		// check if paramenters has a value
-		if (!$params) {
-			$msg = 'The parameters in the request are empty';
-			$this->service->getClient()->getLogger()->error($msg);
-			throw new \Adyen\AdyenException($msg);
-		}
+    /**
+     * @param $params
+     * @return mixed
+     * @throws AdyenException
+     */
+    public function requestPost($params)
+    {
+        // check if paramenters has a value
+        if (!$params) {
+            $msg = 'The parameters in the request are empty';
+            $this->service->getClient()->getLogger()->error($msg);
+            throw new AdyenException($msg);
+        }
 
-		$curlClient = $this->service->getClient()->getHttpClient();
-		return $curlClient->requestPost($this->service, $this->endpoint, $params);
-	}
+        $curlClient = $this->service->getClient()->getHttpClient();
+        return $curlClient->requestPost($this->service, $this->endpoint, $params);
+    }
 
-	/**
-	 * Fill expected but missing parameters with default data
-	 *
-	 * @param $params
-	 * @return mixed
-	 */
-	private function addDefaultParametersToRequest($params)
-	{
-		// check if merchantAccount is setup in client and request is missing merchantAccount then add it
-		if (!isset($params['merchantAccount']) && $this->service->getClient()->getConfig()->getMerchantAccount()) {
-			$params['merchantAccount'] = $this->service->getClient()->getConfig()->getMerchantAccount();
-		}
+    /**
+     * Fill expected but missing parameters with default data
+     *
+     * @param $params
+     * @return mixed
+     */
+    private function addDefaultParametersToRequest($params)
+    {
+        // check if merchantAccount is setup in client and request is missing merchantAccount then add it
+        if (!isset($params['merchantAccount']) && $this->service->getClient()->getConfig()->getMerchantAccount()) {
+            $params['merchantAccount'] = $this->service->getClient()->getConfig()->getMerchantAccount();
+        }
 
-		return $params;
-	}
+        return $params;
+    }
 
-	/**
-	 * If allowApplicationInfo is true then it adds applicationInfo to request
-	 * otherwise removes from the request
-	 *
-	 * @param $params
-	 * @return mixed
-	 */
-	private function handleApplicationInfoInRequest($params)
-	{
+    /**
+     * If allowApplicationInfo is true then it adds applicationInfo to request
+     * otherwise removes from the request
+     *
+     * @param $params
+     * @return mixed
+     */
+    private function handleApplicationInfoInRequest($params)
+    {
         // add/overwrite applicationInfo adyenLibrary even if it's already set
         $params['applicationInfo']['adyenLibrary']['name'] = $this->service->getClient()->getLibraryName();
         $params['applicationInfo']['adyenLibrary']['version'] = $this->service->getClient()->getLibraryVersion();
@@ -150,8 +158,8 @@ abstract class AbstractResource
         }
 
 
-		return $params;
-	}
+        return $params;
+    }
 
     /**
      * If allowApplicationInfoPOS is true, this function does the following:
@@ -182,10 +190,8 @@ abstract class AbstractResource
             //check if querystring is nonempty and contains a value
             if (!empty($queryString) && !empty($queryStringValues[0])) {
                 $saleToAcquirerData = $queryString;
-            }
-
-            //If SaleToAcquirerData is a base64encoded string decode it and convert it to array
-            elseif ($this->isBase64Encoded($saleToAcquirerData)) {
+            } elseif ($this->isBase64Encoded($saleToAcquirerData)) {
+                //If SaleToAcquirerData is a base64encoded string decode it and convert it to array
                 $saleToAcquirerData = json_decode(base64_decode($saleToAcquirerData, true), true);
             }
         }
@@ -196,7 +202,6 @@ abstract class AbstractResource
         $params['SaleToPOIRequest']['PaymentRequest']['SaleData']['SaleToAcquirerData'] = $saleToAcquirerData;
 
         return $params;
-
     }
 
     /**

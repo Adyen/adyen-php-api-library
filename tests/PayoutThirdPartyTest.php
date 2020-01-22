@@ -310,7 +310,10 @@ class PayoutThirdPartyTest extends TestCase
 
         // check if exception is correct
         $this->assertEquals('Adyen\AdyenException', get_class($e));
-        $this->assertEquals('Invalid Request: Original pspReference is invalid for this environment!', $e->getMessage());
+        $this->assertEquals(
+            'Invalid Request: Original pspReference is invalid for this environment!',
+            $e->getMessage()
+        );
     }
 
     public function testDeclinePayoutThirdPartySuccess()
@@ -348,6 +351,8 @@ class PayoutThirdPartyTest extends TestCase
 
     public function testDeclinePayoutThirdPartyInvalidReference()
     {
+        $this->expectException('Adyen\AdyenException');
+        $this->expectExceptionMessage('Invalid Request: Original pspReference is invalid for this environment!');
         // initialize client
         $client = $this->createReviewPayoutClient();
 
@@ -360,15 +365,6 @@ class PayoutThirdPartyTest extends TestCase
             }';
 
         $params = json_decode($json, true);
-        $e = null;
-        try {
-            $result = $service->declineThirdParty($params);
-        } catch (\Exception $e) {
-            $this->validateApiPermission($e);
-        }
-
-        // check if exception is correct
-        $this->assertEquals('Adyen\AdyenException', get_class($e));
-        $this->assertEquals('Invalid Request: Original pspReference is invalid for this environment!', $e->getMessage());
+        $service->declineThirdParty($params);
     }
 }

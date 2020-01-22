@@ -39,7 +39,11 @@ class ExceptionTest extends \Adyen\TestCase
         $service = new Service\Recurring($client);
 
         $recurring = array('contract' => "WRONG PARAMETER");
-        $params = array('merchantAccount' => $this->getMerchantAccount(), 'recurring' => $recurring, 'shopperReference' => '1');
+        $params = array(
+            'merchantAccount' => $this->getMerchantAccount(),
+            'recurring' => $recurring,
+            'shopperReference' => '1'
+        );
 
         try {
             $result = $service->listRecurringDetails($params);
@@ -66,7 +70,11 @@ class ExceptionTest extends \Adyen\TestCase
 
         // in a model form ?
         $recurring = array('contract' => \Adyen\Contract::RECURRING);
-        $params = array('merchantAccount' => $this->getMerchantAccount(), 'recurring' => $recurring, 'shopperReference' => '1');
+        $params = array(
+            'merchantAccount' => $this->getMerchantAccount(),
+            'recurring' => $recurring,
+            'shopperReference' => '1'
+        );
 
         $e = null;
         try {

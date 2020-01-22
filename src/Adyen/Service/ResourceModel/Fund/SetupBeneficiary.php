@@ -15,7 +15,8 @@ class SetupBeneficiary extends \Adyen\Service\AbstractResource
      */
     public function __construct($service)
     {
-        $this->endpoint = $service->getClient()->getConfig()->get('endpointFund') . '/' . $service->getClient()->getApiFundVersion() . '/setupBeneficiary';
+        $this->endpoint = $service->getClient()->getConfig()->get('endpointFund') .
+            '/' . $service->getClient()->getApiFundVersion() . '/setupBeneficiary';
         parent::__construct($service, $this->endpoint);
     }
 }
