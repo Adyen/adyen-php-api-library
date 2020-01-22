@@ -10,7 +10,6 @@ namespace Adyen;
 
 class ExceptionTest extends \Adyen\TestCase
 {
-
     public function testExceptionMissingEnvironmentValue()
     {
         $client = new \Adyen\Client();
@@ -22,13 +21,12 @@ class ExceptionTest extends \Adyen\TestCase
 
         try {
             $service = new Service\Recurring($client);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
         }
 
         // should have environment exception
         $this->assertEquals('Adyen\AdyenException', get_class($e));
         $this->assertEquals('The Client does not have a correct environment, use test or live', $e->getMessage());
-
     }
 
     public function testExceptionMisspelledContractParameterValue()
@@ -45,7 +43,7 @@ class ExceptionTest extends \Adyen\TestCase
 
         try {
             $result = $service->listRecurringDetails($params);
-        } catch (\Exception $e){
+        } catch (\Exception $e) {
         }
 
         // check if exception is correct

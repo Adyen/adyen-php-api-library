@@ -2,9 +2,8 @@
 
 namespace Adyen\MockTest;
 
-class TestCaseMock extends \PHPUnit_Framework_TestCase
+class TestCaseMock extends \PHPUnit\Framework\TestCase
 {
-
     protected function createMockClient($jsonFile, $httpStatus, $errno = null)
     {
         $json = null;

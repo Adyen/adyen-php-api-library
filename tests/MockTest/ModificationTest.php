@@ -18,7 +18,8 @@ class ModificationTest extends TestCaseMock
         // initialize service
         $service = new \Adyen\Service\Modification($client);
 
-        $params = json_decode('
+        $params = json_decode(
+            '
              {
                 "amount":{
                     "value":1500,

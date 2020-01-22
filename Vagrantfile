@@ -2,7 +2,7 @@ $script = <<-SCRIPT
 sudo yum install epel-release yum-utils -y
 sudo yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm -y
 sudo yum-config-manager --enable remi-php73
-sudo yum install unzip wget php php-common php-opcache php-mcrypt php-cli php-curl php-xml php-mbstring -y
+sudo yum install unzip wget php php-common php-opcache php-mcrypt php-cli php-curl php-xml php-mbstring php-pecl-xdebug -y
 cd /home/vagrant/adyen-php-api-library
 echo "Installing composer"
 sh bin/composer-installer.sh

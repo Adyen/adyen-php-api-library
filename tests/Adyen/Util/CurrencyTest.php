@@ -23,10 +23,10 @@
 
 namespace Adyen\Util;
 
-
-class CurrencyTest extends \PHPUnit_Framework_TestCase
+class CurrencyTest extends \PHPUnit\Framework\TestCase
 {
-    public function testFormatAmountThreeDecimals() {
+    public function testFormatAmountThreeDecimals()
+    {
         $currencySanitizer = new Currency();
         $amount = 15.021;
         $currency = "TND";
@@ -34,7 +34,8 @@ class CurrencyTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(15021, $formattedAmount);
     }
 
-    public function testFormatAmountTwoDecimals() {
+    public function testFormatAmountTwoDecimals()
+    {
         $currencySanitizer = new Currency();
         $amount = 15.02;
         $currency = "EUR";
@@ -42,7 +43,8 @@ class CurrencyTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(1502, $formattedAmount);
     }
 
-    public function testFormatAmountZeroDecimals() {
+    public function testFormatAmountZeroDecimals()
+    {
         $currencySanitizer = new Currency();
         $amount = 15021;
         $currency = "IDR";
