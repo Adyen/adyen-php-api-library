@@ -18,7 +18,8 @@ class AccountTest extends TestCaseMock
         // initialize service
         $service = new \Adyen\Service\Account($client);
 
-        $params = json_decode('
+        $params = json_decode(
+            '
             {
               "accountHolderCode": "TestAccountHolderCode",
               "accountHolderDetails": {
@@ -41,7 +42,10 @@ class AccountTest extends TestCaseMock
 
         $result = $service->createAccount($params);
 
-        $this->assertContains($result['accountHolderStatus']['status'], "Active");
+        $this->assertStringContainsString(
+            $result['accountHolderStatus']['status'],
+            'Active'
+        );
     }
 
     /**

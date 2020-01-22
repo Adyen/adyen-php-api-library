@@ -8,10 +8,8 @@
 
 namespace Adyen;
 
-
 class RecurringTest extends TestCase
 {
-
     public function testListRecurringContracts()
     {
         // create a payment with a recurring contract
@@ -34,14 +32,12 @@ class RecurringTest extends TestCase
         $this->assertEquals($result['lastKnownShopperEmail'], "test@test.nl");
 
         $cardInResults = false;
-        foreach($result['details'] as $detail) {
-
-            if(isset($detail['RecurringDetail']['card']['number']) && $detail['RecurringDetail']['card']['number'] == '1111') {
+        foreach ($result['details'] as $detail) {
+            if (isset($detail['RecurringDetail']['card']['number']) && $detail['RecurringDetail']['card']['number'] == '1111') {
                 $cardInResults = true;
             }
         }
 
         $this->assertTrue($cardInResults);
     }
-
 }

@@ -8,15 +8,13 @@
 
 namespace Adyen;
 
-
 use Adyen\Util\Util;
 
 class DirectoryLookupTest extends TestCase
 {
-
     public function testDirectoryLookup()
     {
-	    $this->needSkinCode();
+        $this->needSkinCode();
         // initialize client
         $client = $this->createClient();
 
@@ -52,12 +50,12 @@ class DirectoryLookupTest extends TestCase
         $result = $service->directoryLookup($params);
 
         // needs to have an array with the result
-        $this->assertInternalType('array',$result);
+        $this->assertInternalType('array', $result);
 
         // needs to have Ideal in result because country is netherlands
         $hasIdeal = false;
-        foreach($result['paymentMethods'] as $paymentMethod) {
-            if($paymentMethod['brandCode'] == 'ideal') {
+        foreach ($result['paymentMethods'] as $paymentMethod) {
+            if ($paymentMethod['brandCode'] == 'ideal') {
                 $hasIdeal = true;
             }
         }
@@ -73,7 +71,7 @@ class DirectoryLookupTest extends TestCase
         // initialize service
         $service = new Service\DirectoryLookup($client);
 
-	    $e = null;
+        $e = null;
         try {
             $result = $service->directoryLookup("");
         } catch (\Exception $e) {
@@ -82,12 +80,11 @@ class DirectoryLookupTest extends TestCase
         $this->assertEquals('Adyen\AdyenException', get_class($e));
         $this->assertEquals("The parameters in the request are empty", $e->getMessage());
         $this->assertEquals('0', $e->getCode());
-
     }
 
     public function testDirectoryLookupFailed()
     {
-	    $this->needSkinCode();
+        $this->needSkinCode();
         // initialize client
         $client = $this->createClient();
 

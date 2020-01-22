@@ -2,7 +2,6 @@
 
 namespace Adyen\MockTest;
 
-
 class CheckoutUtilityTest extends TestCaseMock
 {
     /**
@@ -31,7 +30,6 @@ class CheckoutUtilityTest extends TestCaseMock
         $result = $service->originKeys($params);
 
         $this->assertArrayHasKey('originKeys', $result);
-
     }
 
     public static function successOriginKeysProvider()

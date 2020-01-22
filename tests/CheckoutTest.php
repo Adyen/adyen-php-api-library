@@ -87,7 +87,6 @@ class CheckoutTest extends TestCase
         $result = $service->payments($params);
 
         $this->assertEquals($result['resultCode'], 'Authorised');
-
     }
 
     public function testPaymentsSuccessWithIdempotencyKey()
