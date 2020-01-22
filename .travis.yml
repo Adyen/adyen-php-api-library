@@ -39,7 +39,7 @@ matrix:
       php: 5.3
 
 before_script:
-  - composer install
+  - if [[ "$TEST" == "1" ]]; then composer install; fi
 # Run test script commands.
 # All commands must exit with code 0 on success. Anything else is considered failure.
 script:
