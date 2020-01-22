@@ -45,4 +45,4 @@ script:
   # Ignores `vendor` and `tests` directories, then search for files with `php` extension only
   - find -L . -path ./vendor -prune -o -path ./tests -prune -o -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l
   # Run PHPCS.
-  - if [[ "TEST" == "1" ]]; then vendor/bin/phpunit; fi
+  - if [[ "$TEST" == "1" ]]; then vendor/bin/phpunit; fi
