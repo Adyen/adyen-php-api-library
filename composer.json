@@ -9,7 +9,7 @@
   "license": "Apache-2.0",
   "require": {
     "php": ">=5.3",
-    "monolog/monolog": "~1.16"
+    "monolog/monolog": "~2.0"
   },
   "require-dev": {
     "dms/phpunit-arraysubset-asserts": "v0.1.0",
