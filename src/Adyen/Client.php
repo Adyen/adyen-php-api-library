@@ -67,7 +67,10 @@ class Client
         } elseif ($config instanceof \Adyen\ConfigInterface) {
             $this->config = $config;
         } else {
-            throw new \Adyen\AdyenException("This config object is not supported, you need to implement the ConfigInterface");
+            throw new \Adyen\AdyenException(
+                'This config object is not supported,' .
+                ' you need to implement the ConfigInterface'
+            );
         }
     }
 
@@ -124,7 +127,8 @@ class Client
      * For live please specify the unique identifier.
      *
      * @param string $environment
-     * @param string|null $liveEndpointUrlPrefix Provide the unique live url prefix from the "API URLs and Response" menu in the Adyen Customer Area
+     * @param string|null $liveEndpointUrlPrefix Provide the unique live url prefix from the "API URLs and Response"
+     *                                           menu in the Adyen Customer Area
      * @throws AdyenException
      */
     public function setEnvironment($environment, $liveEndpointUrlPrefix = null)
@@ -147,17 +151,22 @@ class Client
             $this->config->set('endpointFund', self::ENDPOINT_FUND_LIVE);
 
             if ($liveEndpointUrlPrefix) {
-                $this->config->set('endpoint',
-                    self::ENDPOINT_PROTOCOL . $liveEndpointUrlPrefix . self::ENDPOINT_LIVE_SUFFIX);
-                $this->config->set('endpointCheckout',
-                    self::ENDPOINT_PROTOCOL . $liveEndpointUrlPrefix . self::ENDPOINT_CHECKOUT_LIVE_SUFFIX);
+                $this->config->set(
+                    'endpoint',
+                    self::ENDPOINT_PROTOCOL . $liveEndpointUrlPrefix . self::ENDPOINT_LIVE_SUFFIX
+                );
+                $this->config->set(
+                    'endpointCheckout',
+                    self::ENDPOINT_PROTOCOL . $liveEndpointUrlPrefix . self::ENDPOINT_CHECKOUT_LIVE_SUFFIX
+                );
             } else {
                 $this->config->set('endpoint', self::ENDPOINT_LIVE);
                 $this->config->set('endpointCheckout', null); // not supported please specify unique identifier
             }
         } else {
             // environment does not exist
-            $msg = "This environment does not exist, use " . \Adyen\Environment::TEST . ' or ' . \Adyen\Environment::LIVE;
+            $msg = "This environment does not exist, use " .
+                \Adyen\Environment::TEST . ' or ' . \Adyen\Environment::LIVE;
             throw new \Adyen\AdyenException($msg);
         }
     }
@@ -207,8 +216,10 @@ class Client
      */
     public function setExternalPlatform($name, $version, $integrator = "")
     {
-        $this->config->set('externalPlatform',
-            array('name' => $name, 'version' => $version, 'integrator' => $integrator));
+        $this->config->set(
+            'externalPlatform',
+            array('name' => $name, 'version' => $version, 'integrator' => $integrator)
+        );
     }
 
     /**

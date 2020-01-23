@@ -105,7 +105,9 @@ class TestCase extends \PHPUnit\Framework\TestCase
                 $client = new \Adyen\Client();
                 $client->setApplicationName("My Test Application");
                 $client->setEnvironment(\Adyen\Environment::TEST);
-                $this->skipTest("Skipped the test. Configure your WebService Payout Username and Password in the config");
+                $this->skipTest(
+                    "Skipped the test. Configure your WebService Payout Username and Password in the config"
+                );
                 return $client;
             } else {
                 $client = new \Adyen\Client();
@@ -140,7 +142,9 @@ class TestCase extends \PHPUnit\Framework\TestCase
                 $client = new \Adyen\Client();
                 $client->setApplicationName("My Test Application");
                 $client->setEnvironment(\Adyen\Environment::TEST);
-                $this->skipTest("Skipped the test. Configure your WebService ReviewPayout Username and Password in the config");
+                $this->skipTest(
+                    "Skipped the test. Configure your WebService ReviewPayout Username and Password in the config"
+                );
                 return $client;
             } else {
                 $client = new \Adyen\Client();
@@ -151,7 +155,9 @@ class TestCase extends \PHPUnit\Framework\TestCase
                 return $client;
             }
         } else {
-            $this->skipTest("Skipped the test. Configure your WebService ReviewPayout Username and Password in the config");
+            $this->skipTest(
+                "Skipped the test. Configure your WebService ReviewPayout Username and Password in the config"
+            );
         }
     }
 
@@ -276,7 +282,10 @@ class TestCase extends \PHPUnit\Framework\TestCase
             $this->assertEquals('Adyen\AdyenException', get_class($e));
             $this->assertEquals('Not allowed', $e->getMessage());
             $this->assertEquals('10', $e->getCode());
-            $this->markTestSkipped("Skipped the test. You do not have the permission to do a full api call. Try to use Client Side Encryption (CSE)");
+            $this->markTestSkipped(
+                'Skipped the test. ' .
+                'You do not have the permission to do a full api call. Try to use Client Side Encryption (CSE)'
+            );
         } elseif ($e->getMessage() == "Recurring is not enabled") {
             $this->assertEquals('Adyen\AdyenException', get_class($e));
             $this->assertEquals('Recurring is not enabled', $e->getMessage());

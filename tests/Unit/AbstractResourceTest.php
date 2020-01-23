@@ -31,7 +31,10 @@ class AbstractResourceTest extends TestCase
         $mockedClient = $this->createClientWithoutTestIni();
 
         // Mock abstract class with mocked client and $paramsToFilter parameters
-        $mockedClass = $this->getMockForAbstractClass($this->className, array((new \Adyen\Service($mockedClient)), "", true));
+        $mockedClass = $this->getMockForAbstractClass(
+            $this->className,
+            array((new \Adyen\Service($mockedClient)), "", true)
+        );
 
         // Get private method as testable public method
         $method = $this->getMethod($this->className, "handleApplicationInfoInRequest");
@@ -67,7 +70,10 @@ class AbstractResourceTest extends TestCase
         $mockedClient->setAdyenPaymentSource("name-test", "version-test");
 
         // Mock abstract class with mocked client and $paramsToFilter parameters
-        $mockedClass = $this->getMockForAbstractClass($this->className, array((new \Adyen\Service($mockedClient)), "", true));
+        $mockedClass = $this->getMockForAbstractClass(
+            $this->className,
+            array((new \Adyen\Service($mockedClient)), "", true)
+        );
 
         // Get private method as testable public method
         $method = $this->getMethod($this->className, "handleApplicationInfoInRequest");
@@ -96,7 +102,10 @@ class AbstractResourceTest extends TestCase
         $mockedClient->setExternalPlatform("name-test", "version-test", "integrator-test");
 
         // Mock abstract class with mocked client and $paramsToFilter parameters
-        $mockedClass = $this->getMockForAbstractClass($this->className, array((new \Adyen\Service($mockedClient)), "", true));
+        $mockedClass = $this->getMockForAbstractClass(
+            $this->className,
+            array((new \Adyen\Service($mockedClient)), "", true)
+        );
 
         // Get private method as testable public method
         $method = $this->getMethod($this->className, "handleApplicationInfoInRequest");
@@ -110,7 +119,8 @@ class AbstractResourceTest extends TestCase
     }
 
     /**
-     * If the config adyenPaymentSource integrator is not set, the applicationInfo adyenPaymentSource integrator should
+     * If the config adyenPaymentSource integrator is not set,
+     * the applicationInfo adyenPaymentSource integrator should
      * not be added to the params.
      *
      * @covers \Adyen\Service\AbstractResource::handleApplicationInfoInRequest
@@ -125,7 +135,10 @@ class AbstractResourceTest extends TestCase
         $mockedClient->setExternalPlatform("name-test", "version-test");
 
         // Mock abstract class with mocked client and $paramsToFilter parameters
-        $mockedClass = $this->getMockForAbstractClass($this->className, array((new \Adyen\Service($mockedClient)), "", true));
+        $mockedClass = $this->getMockForAbstractClass(
+            $this->className,
+            array((new \Adyen\Service($mockedClient)), "", true)
+        );
 
         // Get private method as testable public method
         $method = $this->getMethod($this->className, "handleApplicationInfoInRequest");
@@ -180,7 +193,10 @@ class AbstractResourceTest extends TestCase
         $mockedClient = $this->createClientWithoutTestIni();
 
         // Mock abstract class with mocked client and $paramsToFilter parameters
-        $mockedClass = $this->getMockForAbstractClass($this->className, array((new \Adyen\Service($mockedClient)), "", true));
+        $mockedClass = $this->getMockForAbstractClass(
+            $this->className,
+            array((new \Adyen\Service($mockedClient)), "", true)
+        );
 
         // Get private method as testable public method
         $method = $this->getMethod($this->className, "handleApplicationInfoInRequestPOS");
@@ -238,13 +254,18 @@ class AbstractResourceTest extends TestCase
         );
 
         // Add RecurringDetails using querystring
-        $params['SaleToPOIRequest']['PaymentRequest']['SaleData']['SaleToAcquirerData'] = http_build_query($recurringDetails);
+        $params['SaleToPOIRequest']['PaymentRequest']['SaleData']['SaleToAcquirerData'] = http_build_query(
+            $recurringDetails
+        );
 
         // Mock client without the Test ini settings
         $mockedClient = $this->createClientWithoutTestIni();
 
         // Mock abstract class with mocked client and $paramsToFilter parameters
-        $mockedClass = $this->getMockForAbstractClass($this->className, array((new \Adyen\Service($mockedClient)), "", true));
+        $mockedClass = $this->getMockForAbstractClass(
+            $this->className,
+            array((new \Adyen\Service($mockedClient)), "", true)
+        );
 
         // Get private method as testable public method
         $method = $this->getMethod($this->className, "handleApplicationInfoInRequestPOS");
@@ -262,7 +283,11 @@ class AbstractResourceTest extends TestCase
         $this->assertArrayHasKey("adyenLibrary", $resultArray['applicationInfo']);
     }
 
-    public function testHandleApplicationInfoInRequestPOSWithBase64AddBase64EncodedApplicationInfo()
+    /**
+     * @test
+     * @throws AdyenException
+     */
+    public function handleApplicationInfoInRequestPOSWithBase64AddBase64EncodedApplicationInfo()
     {
         $json = '{
                     "SaleToPOIRequest": {
@@ -307,13 +332,18 @@ class AbstractResourceTest extends TestCase
         );
 
         // Add RecurringDetails using base64
-        $params['SaleToPOIRequest']['PaymentRequest']['SaleData']['SaleToAcquirerData'] = base64_encode(json_encode($recurringDetails));
+        $params['SaleToPOIRequest']['PaymentRequest']['SaleData']['SaleToAcquirerData'] = base64_encode(
+            json_encode($recurringDetails)
+        );
 
         // Mock client without the Test ini settings
         $mockedClient = $this->createClientWithoutTestIni();
 
         // Mock abstract class with mocked client and $paramsToFilter parameters
-        $mockedClass = $this->getMockForAbstractClass($this->className, array((new \Adyen\Service($mockedClient)), "", true));
+        $mockedClass = $this->getMockForAbstractClass(
+            $this->className,
+            array((new \Adyen\Service($mockedClient)), "", true)
+        );
 
         // Get private method as testable public method
         $method = $this->getMethod($this->className, "handleApplicationInfoInRequestPOS");

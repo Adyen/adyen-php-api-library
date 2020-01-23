@@ -15,7 +15,8 @@ class AccountHolderTransactionList extends \Adyen\Service\AbstractResource
      */
     public function __construct($service)
     {
-        $this->endpoint = $service->getClient()->getConfig()->get('endpointFund') . '/' . $service->getClient()->getApiFundVersion() . '/accountHolderTransactionList';
+        $this->endpoint = $service->getClient()->getConfig()->get('endpointFund') .
+            '/' . $service->getClient()->getApiFundVersion() . '/accountHolderTransactionList';
 
         parent::__construct($service, $this->endpoint);
     }

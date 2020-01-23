@@ -33,18 +33,21 @@ matrix:
     # aliased to a recent 7.3 version
     - php: 7.3
       env:
-      - TEST=1
+        - COMPOSER_INSTALL=1
+        - TEST=1
+        - SNIFF=1
     # aliased to a recent 5.3 version
     - dist: precise
       php: 5.3
 
 before_script:
-  - if [[ "$TEST" == "1" ]]; then composer install; fi
+  - if [[ "$COMPOSER_INSTALL" == "1" ]]; then composer install; fi
 # Run test script commands.
 # All commands must exit with code 0 on success. Anything else is considered failure.
 script:
   # Search for PHP syntax errors.
   # Ignores `vendor` and `tests` directories, then search for files with `php` extension only
   - find -L . -path ./vendor -prune -o -path ./tests -prune -o -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l
-  # Run PHPCS.
+  # Run tests and sniffer and others
   - if [[ "$TEST" == "1" ]]; then vendor/bin/phpunit; fi
+  - if [[ "$SNIFF" == "1" ]]; then vendor/bin/phpcs; fi

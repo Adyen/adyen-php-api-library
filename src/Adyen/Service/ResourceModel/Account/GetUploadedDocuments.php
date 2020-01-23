@@ -15,7 +15,8 @@ class GetUploadedDocuments extends \Adyen\Service\AbstractResource
      */
     public function __construct($service)
     {
-        $this->endpoint = $service->getClient()->getConfig()->get('endpointAccount') . '/' . $service->getClient()->getApiAccountVersion() . '/getUploadedDocuments';
+        $this->endpoint = $service->getClient()->getConfig()->get('endpointAccount') .
+            '/' . $service->getClient()->getApiAccountVersion() . '/getUploadedDocuments';
         parent::__construct($service, $this->endpoint);
     }
 }

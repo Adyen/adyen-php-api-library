@@ -6,20 +6,20 @@ use Exception;
 
 class AdyenException extends Exception
 {
-	/**
-	 * @var null
-	 */
-	protected $status;
+    /**
+     * @var null
+     */
+    protected $status;
 
-	/**
-	 * @var null
-	 */
-	protected $errorType;
+    /**
+     * @var null
+     */
+    protected $errorType;
 
     /**
      * @var string
      */
-	protected $pspReference;
+    protected $pspReference;
 
     /**
      * AdyenException constructor.
@@ -31,39 +31,39 @@ class AdyenException extends Exception
      * @param string|null $errorType
      * @param string|null $pspReference
      */
-	public function __construct(
-	    $message = "",
+    public function __construct(
+        $message = "",
         $code = 0,
         Exception $previous = null,
         $status = null,
         $errorType = null,
         $pspReference = null
     ) {
-		$this->status = $status;
-		$this->errorType = $errorType;
-		$this->pspReference = $pspReference;
-		parent::__construct($message, (int)$code, $previous);
-	}
+        $this->status = $status;
+        $this->errorType = $errorType;
+        $this->pspReference = $pspReference;
+        parent::__construct($message, (int)$code, $previous);
+    }
 
-	/**
-	 * Get status
-	 *
-	 * @return string|null
-	 */
-	public function getStatus()
-	{
-		return $this->status;
-	}
+    /**
+     * Get status
+     *
+     * @return string|null
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
 
-	/**
-	 * Get Adyen Error type
-	 * 
-	 * @return string|null
-	 */
-	public function getErrorType()
-	{
-		return $this->errorType;
-	}
+    /**
+     * Get Adyen Error type
+     *
+     * @return string|null
+     */
+    public function getErrorType()
+    {
+        return $this->errorType;
+    }
 
     /**
      * @return string|null

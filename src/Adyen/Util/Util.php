@@ -197,5 +197,4 @@ class Util
 
         return $expectedSign == $merchantSign;
     }
-
 }

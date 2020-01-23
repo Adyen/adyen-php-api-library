@@ -50,7 +50,6 @@ class Fund extends \Adyen\Service
         $this->refundNotPaidOutTransfers = new \Adyen\Service\ResourceModel\Fund\RefundNotPaidOutTransfers($this);
         $this->setupBeneficiary = new \Adyen\Service\ResourceModel\Fund\SetupBeneficiary($this);
         $this->transferFunds = new \Adyen\Service\ResourceModel\Fund\TransferFunds($this);
-
     }
 
     /**

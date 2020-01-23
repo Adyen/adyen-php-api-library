@@ -15,7 +15,8 @@ class AccountHolderBalance extends \Adyen\Service\AbstractResource
      */
     public function __construct($service)
     {
-        $this->endpoint = $service->getClient()->getConfig()->get('endpointFund') . '/' . $service->getClient()->getApiFundVersion() . '/accountHolderBalance';
+        $this->endpoint = $service->getClient()->getConfig()->get('endpointFund') .
+            '/' . $service->getClient()->getApiFundVersion() . '/accountHolderBalance';
         parent::__construct($service, $this->endpoint);
     }
 }
