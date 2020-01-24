@@ -15,7 +15,7 @@
     "dms/phpunit-arraysubset-asserts": "v0.1.0",
     "friendsofphp/php-cs-fixer": "*",
     "phpunit/phpunit": "8.5.2",
-    "php-coveralls/php-coveralls": "1.0.2",
+    "php-coveralls/php-coveralls": "2.2.0",
     "squizlabs/php_codesniffer": "2.9.2",
     "ext-json": "*"
   },
