@@ -4,10 +4,10 @@ namespace Adyen\Service;
 
 class BinLookup extends \Adyen\Service
 {
-	/**
-	 * @var ResourceModel\BinLookup\Get3dsAvailability
-	 */
-	protected $get3dsAvailability;
+    /**
+     * @var ResourceModel\BinLookup\Get3dsAvailability
+     */
+    protected $get3dsAvailability;
 
     /**
      * @var \Adyen\Service\ResourceModel\BinLookup\GetCostEstimate

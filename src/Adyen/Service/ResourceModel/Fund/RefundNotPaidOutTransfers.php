@@ -15,7 +15,8 @@ class RefundNotPaidOutTransfers extends \Adyen\Service\AbstractResource
      */
     public function __construct($service)
     {
-        $this->endpoint = $service->getClient()->getConfig()->get('endpointFund') . '/' . $service->getClient()->getApiFundVersion() . '/refundNotPaidOutTransfers';
+        $this->endpoint = $service->getClient()->getConfig()->get('endpointFund') .
+            '/' . $service->getClient()->getApiFundVersion() . '/refundNotPaidOutTransfers';
         parent::__construct($service, $this->endpoint);
     }
 }

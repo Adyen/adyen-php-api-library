@@ -15,7 +15,8 @@ class CreateAccount extends \Adyen\Service\AbstractResource
      */
     public function __construct($service)
     {
-        $this->endpoint = $service->getClient()->getConfig()->get('endpointAccount') . '/' . $service->getClient()->getApiAccountVersion() . '/createAccount';
+        $this->endpoint = $service->getClient()->getConfig()->get('endpointAccount') .
+            '/' . $service->getClient()->getApiAccountVersion() . '/createAccount';
         parent::__construct($service, $this->endpoint);
     }
 }

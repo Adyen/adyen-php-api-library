@@ -15,7 +15,8 @@ class GetNotificationConfigurationList extends \Adyen\Service\AbstractResource
      */
     public function __construct($service)
     {
-        $this->endpoint = $service->getClient()->getConfig()->get('endpointNotification') . '/' . $service->getClient()->getApiNotificationVersion() . '/getNotificationConfigurationList';
+        $this->endpoint = $service->getClient()->getConfig()->get('endpointNotification') .
+            '/' . $service->getClient()->getApiNotificationVersion() . '/getNotificationConfigurationList';
         parent::__construct($service, $this->endpoint);
     }
 }

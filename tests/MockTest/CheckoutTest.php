@@ -24,7 +24,6 @@ class CheckoutTest extends TestCaseMock
         $result = $service->paymentMethods($params);
 
         $this->assertArrayHasKey('paymentMethods', $result);
-
     }
 
     public static function successPaymentMethodsProvider()
@@ -43,24 +42,27 @@ class CheckoutTest extends TestCaseMock
      */
     public function testPaymentMethodsFailureMissingIdentifierOnLive($jsonFile, $httpStatus, $expectedExceptionMessage)
     {
+        $this->expectException('Adyen\AdyenException');
+        $this->expectExceptionMessage($expectedExceptionMessage);
         // create Checkout client
         $client = $this->createMockClient($jsonFile, $httpStatus);
         $client->setEnvironment(\Adyen\Environment::LIVE);
 
-        try {
-            $service = new \Adyen\Service\Checkout($client);
-            $params = array('merchantAccount' => "YourMerchantAccount");
-            $service->paymentMethods($params);
-        } catch (\Exception $e) {
-            $this->assertInstanceOf('Adyen\AdyenException', $e);
-            $this->assertContains($expectedExceptionMessage, $e->getMessage());
-        }
+        $service = new \Adyen\Service\Checkout($client);
+        $params = array('merchantAccount' => "YourMerchantAccount");
+        $service->paymentMethods($params);
     }
 
     public static function failurePaymentMethodsMissingIdentifierOnLiveProvider()
     {
         return array(
-            array('tests/Resources/Checkout/payment-methods-success.json', null, 'Please provide your unique live url prefix on the setEnvironment() call on the Client or provide endpointCheckout in your config object.')
+            array(
+                'tests/Resources/Checkout/payment-methods-success.json',
+                null,
+                'Please provide your unique live url prefix on the ' .
+                'setEnvironment() call on the Client or provide ' .
+                'endpointCheckout in your config object.'
+            )
         );
     }
 
@@ -70,8 +72,11 @@ class CheckoutTest extends TestCaseMock
      * @param $expectedExceptionMessage
      * @dataProvider failurePaymentMethodsProvider
      */
-    public function testPaymentMethodsFailure($jsonFile, $httpStatus, $expectedExceptionMessage)
-    {
+    public function testPaymentMethodsFailure(
+        $jsonFile,
+        $httpStatus,
+        $expectedExceptionMessage
+    ) {
         // create Checkout client
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
@@ -87,12 +92,11 @@ class CheckoutTest extends TestCaseMock
             $this->fail();
         } catch (\Exception $e) {
             $this->assertInstanceOf('Adyen\AdyenException', $e);
-            $this->assertContains($expectedExceptionMessage, $e->getMessage());
+            $this->assertStringContainsString($expectedExceptionMessage, $e->getMessage());
             if ($httpStatus != null) {
                 $this->assertEquals($httpStatus, $e->getStatus());
             }
         }
-
     }
 
     public static function failurePaymentMethodsProvider()
@@ -139,7 +143,6 @@ class CheckoutTest extends TestCaseMock
         $result = $service->payments($params);
 
         $this->assertContains($result['resultCode'], array('Authorised', 'RedirectShopper'));
-
     }
 
     public static function successPaymentsProvider()
@@ -186,7 +189,7 @@ class CheckoutTest extends TestCaseMock
             $this->fail();
         } catch (\Exception $e) {
             $this->assertInstanceOf('Adyen\AdyenException', $e);
-            $this->assertContains($expectedExceptionMessage, $e->getMessage());
+            $this->assertStringContainsString($expectedExceptionMessage, $e->getMessage());
             if ($httpStatus != null) {
                 $this->assertEquals($httpStatus, $e->getStatus());
             }
@@ -304,5 +307,4 @@ class CheckoutTest extends TestCaseMock
             array('tests/Resources/Checkout/payments-result-success.json', 200)
         );
     }
-
 }

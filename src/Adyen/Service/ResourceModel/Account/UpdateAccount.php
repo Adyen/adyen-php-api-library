@@ -15,7 +15,8 @@ class UpdateAccount extends \Adyen\Service\AbstractResource
      */
     public function __construct($service)
     {
-        $this->endpoint = $service->getClient()->getConfig()->get('endpointAccount') . '/' . $service->getClient()->getApiAccountVersion() . '/updateAccount';
+        $this->endpoint = $service->getClient()->getConfig()->get('endpointAccount') .
+            '/' . $service->getClient()->getApiAccountVersion() . '/updateAccount';
         parent::__construct($service, $this->endpoint);
     }
 }

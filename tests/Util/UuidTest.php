@@ -4,7 +4,7 @@ namespace Adyen\Tests\Util;
 
 use Adyen\Util\Uuid;
 
-class UuidTest extends \PHPUnit_Framework_TestCase
+class UuidTest extends \PHPUnit\Framework\TestCase
 {
     public function testGenerateV4()
     {

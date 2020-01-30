@@ -2,11 +2,10 @@
 
 namespace Adyen;
 
-
 use Adyen\Util\Util;
 
-class BinLookupTest extends TestCase {
-
+class BinLookupTest extends TestCase
+{
     public function testValid3dsCard()
     {
         // initialize client
@@ -52,5 +51,4 @@ class BinLookupTest extends TestCase {
         // 1111111111111111 is a invalid 3ds card so the result should be false
         $this->assertEquals(false, $result['threeDS2supported']);
     }
-
 }

@@ -4,25 +4,25 @@ namespace Adyen;
 
 /**
  * Interface ConfigInterface
- * @deprecated Please do not use your own interface as we will deprecate this in the future for improvements on the library
+ * @deprecated Please do not use your own interface as we will deprecate this in the
+ *             future for improvements on the library
  * @package Adyen
  */
-Interface ConfigInterface
+interface ConfigInterface
 {
+    public function getUsername();
 
-	public function getUsername();
+    public function getPassword();
 
-	public function getPassword();
+    public function getXApiKey();
 
-	public function getXApiKey();
+    public function get($param);
 
-	public function get($param);
+    public function getInputType();
 
-	public function getInputType();
+    public function getOutputType();
 
-	public function getOutputType();
+    public function getMerchantAccount();
 
-	public function getMerchantAccount();
-
-	public function getTimeout();
+    public function getTimeout();
 }

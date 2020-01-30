@@ -15,7 +15,8 @@ class UnSuspendAccountHolder extends \Adyen\Service\AbstractResource
      */
     public function __construct($service)
     {
-        $this->endpoint = $service->getClient()->getConfig()->get('endpointAccount') . '/' . $service->getClient()->getApiAccountVersion() . '/unSuspendAccountHolder';
+        $this->endpoint = $service->getClient()->getConfig()->get('endpointAccount') .
+            '/' . $service->getClient()->getApiAccountVersion() . '/unSuspendAccountHolder';
         parent::__construct($service, $this->endpoint);
     }
 }

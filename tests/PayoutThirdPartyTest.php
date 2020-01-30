@@ -10,16 +10,15 @@ namespace Adyen;
  */
 class PayoutThirdPartyTest extends TestCase
 {
+    public function testStoreDetailAndSubmitPayoutThirdPartyMissingReference()
+    {
+        // initialize client
+        $client = $this->createPayoutClient();
 
-	public function testStoreDetailAndSubmitPayoutThirdPartyMissingReference()
-	{
-		// initialize client
-		$client = $this->createPayoutClient();
+        // initialize service
+        $service = new Service\Payout($client);
 
-		// initialize service
-		$service = new Service\Payout($client);
-
-		$json = '{
+        $json = '{
               "bank": {
                 "iban": "FR14 2004 1010 0505 0001 3M02 606",
                 "ownerName": "John Smith",
@@ -37,30 +36,29 @@ class PayoutThirdPartyTest extends TestCase
               "merchantAccount": "' . $this->merchantAccount .'"
             }';
 
-		$params = json_decode($json, true);
-		$e = null;
+        $params = json_decode($json, true);
+        $e = null;
 
-		try {
-			$result = $service->storeDetailsAndSubmitThirdParty($params);
-		} catch (\Exception $e) {
-			$this->validateApiPermission($e);
-		}
+        try {
+            $result = $service->storeDetailsAndSubmitThirdParty($params);
+        } catch (\Exception $e) {
+            $this->validateApiPermission($e);
+        }
 
-		// check if exception is correct
-		$this->assertEquals('Adyen\AdyenException', get_class($e));
-		$this->assertEquals('Required field \'reference\' is null', $e->getMessage());
+        // check if exception is correct
+        $this->assertEquals('Adyen\AdyenException', get_class($e));
+        $this->assertEquals('Required field \'reference\' is null', $e->getMessage());
+    }
 
-	}
+    public function testStoreDetailAndSubmitPayoutThirdPartyInvalidIban()
+    {
+        // initialize client
+        $client = $this->createPayoutClient();
 
-	public function testStoreDetailAndSubmitPayoutThirdPartyInvalidIban()
-	{
-		// initialize client
-		$client = $this->createPayoutClient();
+        // initialize service
+        $service = new Service\Payout($client);
 
-		// initialize service
-		$service = new Service\Payout($client);
-
-		$json = '{
+        $json = '{
               "bank": {
                 "iban": "4111111111111111",
                 "ownerName": "John Smith",
@@ -79,29 +77,29 @@ class PayoutThirdPartyTest extends TestCase
               "merchantAccount": "' . $this->merchantAccount .'"
             }';
 
-		$params = json_decode($json, true);
-		$e = null;
-		try {
-			$result = $service->storeDetailsAndSubmitThirdParty($params);
-		} catch (\Exception $e) {
-			$this->validateApiPermission($e);
-		}
+        $params = json_decode($json, true);
+        $e = null;
+        try {
+            $result = $service->storeDetailsAndSubmitThirdParty($params);
+        } catch (\Exception $e) {
+            $this->validateApiPermission($e);
+        }
 
 
-		// check if exception is correct
-		$this->assertEquals('Adyen\AdyenException', get_class($e));
-		$this->assertEquals('Invalid iban', $e->getMessage());
-	}
-	
-	public function testStoreDetailsBankSuccess()
-	{
-	    // initialize client
-	    $client = $this->createPayoutClient();
-	
-	    // initialize service
-	    $service = new Service\Payout($client);
-	
-	    $json = '{
+        // check if exception is correct
+        $this->assertEquals('Adyen\AdyenException', get_class($e));
+        $this->assertEquals('Invalid iban', $e->getMessage());
+    }
+    
+    public function testStoreDetailsBankSuccess()
+    {
+        // initialize client
+        $client = $this->createPayoutClient();
+    
+        // initialize service
+        $service = new Service\Payout($client);
+    
+        $json = '{
               "bank": {
                 "iban": "FR14 2004 1010 0505 0001 3M02 606",
                 "ownerName": "John Smith",
@@ -114,35 +112,34 @@ class PayoutThirdPartyTest extends TestCase
               "shopperReference": "johnsmithuniqueid",
               "merchantAccount": "' . $this->merchantAccount .'"
             }';
-	
-	    $params = json_decode($json, true);
-	
-	    try {
-	        $result = $service->storeDetail($params);
-	    } catch (\Exception $e) {
-	        $this->validateApiPermission($e);
-	    }
-	
-	    // must exists
-	    $this->assertTrue(isset($result['resultCode']));
-	
-	    // Assert
-	    $this->assertEquals('Success', $result['resultCode']);
-	
-	    // return the result so this can be used in other test cases
-	    return $result;
-	
-	}
+    
+        $params = json_decode($json, true);
+    
+        try {
+            $result = $service->storeDetail($params);
+        } catch (\Exception $e) {
+            $this->validateApiPermission($e);
+        }
+    
+        // must exists
+        $this->assertTrue(isset($result['resultCode']));
+    
+        // Assert
+        $this->assertEquals('Success', $result['resultCode']);
+    
+        // return the result so this can be used in other test cases
+        return $result;
+    }
 
-	public function testStoreDetailAndSubmitPayoutThirdPartySuccess()
-	{
-		// initialize client
-		$client = $this->createPayoutClient();
+    public function testStoreDetailAndSubmitPayoutThirdPartySuccess()
+    {
+        // initialize client
+        $client = $this->createPayoutClient();
 
-		// initialize service
-		$service = new Service\Payout($client);
+        // initialize service
+        $service = new Service\Payout($client);
 
-		$json = '{
+        $json = '{
               "bank": {
                 "iban": "FR14 2004 1010 0505 0001 3M02 606",
                 "ownerName": "John Smith",
@@ -161,34 +158,33 @@ class PayoutThirdPartyTest extends TestCase
               "merchantAccount": "' . $this->merchantAccount .'"
             }';
 
-		$params = json_decode($json, true);
+        $params = json_decode($json, true);
 
-		try {
-			$result = $service->storeDetailsAndSubmitThirdParty($params);
-		} catch (\Exception $e) {
-			$this->validateApiPermission($e);
-		}
+        try {
+            $result = $service->storeDetailsAndSubmitThirdParty($params);
+        } catch (\Exception $e) {
+            $this->validateApiPermission($e);
+        }
 
-		// must exists
-		$this->assertTrue(isset($result['resultCode']));
+        // must exists
+        $this->assertTrue(isset($result['resultCode']));
 
-		// Assert
-		$this->assertEquals('[payout-submit-received]', $result['resultCode']);
+        // Assert
+        $this->assertEquals('[payout-submit-received]', $result['resultCode']);
 
-		// return the result so this can be used in other test cases
-		return $result;
+        // return the result so this can be used in other test cases
+        return $result;
+    }
 
-	}
+    public function testSubmitPayoutThirdPartySuccess()
+    {
+        // initialize client
+        $client = $this->createPayoutClient();
 
-	public function testSubmitPayoutThirdPartySuccess()
-	{
-		// initialize client
-		$client = $this->createPayoutClient();
+        // initialize service
+        $service = new Service\Payout($client);
 
-		// initialize service
-		$service = new Service\Payout($client);
-
-		$json = '{
+        $json = '{
               "amount": {
                 "value": 1500,
                 "currency": "EUR"
@@ -203,33 +199,33 @@ class PayoutThirdPartyTest extends TestCase
               "merchantAccount": "' . $this->merchantAccount .'"
             }';
 
-		$params = json_decode($json, true);
+        $params = json_decode($json, true);
 
-		try {
-			$result = $service->submitThirdParty($params);
-		} catch (\Exception $e) {
-			$this->validateApiPermission($e);
-		}
+        try {
+            $result = $service->submitThirdParty($params);
+        } catch (\Exception $e) {
+            $this->validateApiPermission($e);
+        }
 
-		// must exists
-		$this->assertTrue(isset($result['resultCode']));
+        // must exists
+        $this->assertTrue(isset($result['resultCode']));
 
-		// Assert
-		$this->assertEquals('[payout-submit-received]', $result['resultCode']);
+        // Assert
+        $this->assertEquals('[payout-submit-received]', $result['resultCode']);
 
-		// return the result so this can be used in other test cases
-		return $result;
-	}
+        // return the result so this can be used in other test cases
+        return $result;
+    }
 
-	public function testSubmitPayoutThirdPartyBadRecurringDetailReference()
-	{
-		// initialize client
-		$client = $this->createPayoutClient();
+    public function testSubmitPayoutThirdPartyBadRecurringDetailReference()
+    {
+        // initialize client
+        $client = $this->createPayoutClient();
 
-		// initialize service
-		$service = new Service\Payout($client);
+        // initialize service
+        $service = new Service\Payout($client);
 
-		$json = '{
+        $json = '{
               "amount": {
                 "value": 1500,
                 "currency": "EUR"
@@ -244,136 +240,131 @@ class PayoutThirdPartyTest extends TestCase
               "merchantAccount": "' . $this->merchantAccount .'"
             }';
 
-		$params = json_decode($json, true);
+        $params = json_decode($json, true);
 
-		$e = null;
-		try {
-			$result = $service->submitThirdParty($params);
-		} catch (\Exception $e) {
-			$this->validateApiPermission($e);
-		}
+        $e = null;
+        try {
+            $result = $service->submitThirdParty($params);
+        } catch (\Exception $e) {
+            $this->validateApiPermission($e);
+        }
 
-		// check if exception is correct
-		$this->assertEquals('Adyen\AdyenException', get_class($e));
-		$this->assertEquals('PaymentDetail not found', $e->getMessage());
-	}
+        // check if exception is correct
+        $this->assertEquals('Adyen\AdyenException', get_class($e));
+        $this->assertEquals('PaymentDetail not found', $e->getMessage());
+    }
 
-	public function testConfirmPayoutThirdPartySuccess()
-	{
-		// initialize client
-		$client = $this->createReviewPayoutClient();
+    public function testConfirmPayoutThirdPartySuccess()
+    {
+        // initialize client
+        $client = $this->createReviewPayoutClient();
 
-		$submitted_payout = $this->testSubmitPayoutThirdPartySuccess();
+        $submitted_payout = $this->testSubmitPayoutThirdPartySuccess();
 
-		// initialize service
-		$service = new Service\Payout($client);
+        // initialize service
+        $service = new Service\Payout($client);
 
-		$json = '{
+        $json = '{
               "merchantAccount": "' . $this->merchantAccount .'",
               "originalReference": '.$submitted_payout['pspReference'].'
             }';
 
-		$params = json_decode($json, true);
+        $params = json_decode($json, true);
 
-		try {
-			$result = $service->confirmThirdParty($params);
-		} catch (\Exception $e) {
-			$this->validateApiPermission($e);
-		}
+        try {
+            $result = $service->confirmThirdParty($params);
+        } catch (\Exception $e) {
+            $this->validateApiPermission($e);
+        }
 
-		// must exists
-		$this->assertTrue(isset($result['pspReference']));
+        // must exists
+        $this->assertTrue(isset($result['pspReference']));
 
-		// Assert
-		$this->assertEquals('[payout-confirm-received]', $result['response']);
+        // Assert
+        $this->assertEquals('[payout-confirm-received]', $result['response']);
 
-		// return the result so this can be used in other test cases
-		return $result;
-	}
+        // return the result so this can be used in other test cases
+        return $result;
+    }
 
-	public function testConfirmPayoutThirdPartyInvalidReference()
-	{
-		// initialize client
-		$client = $this->createReviewPayoutClient();
+    public function testConfirmPayoutThirdPartyInvalidReference()
+    {
+        // initialize client
+        $client = $this->createReviewPayoutClient();
 
-		// initialize service
-		$service = new Service\Payout($client);
+        // initialize service
+        $service = new Service\Payout($client);
 
-		$json = '{
+        $json = '{
               "merchantAccount": "' . $this->merchantAccount .'",
               "originalReference": ""
             }';
 
-		$params = json_decode($json, true);
-		$e = null;
-		try {
-			$result = $service->confirmThirdParty($params);
-		} catch (\Exception $e) {
-			$this->validateApiPermission($e);
-		}
+        $params = json_decode($json, true);
+        $e = null;
+        try {
+            $result = $service->confirmThirdParty($params);
+        } catch (\Exception $e) {
+            $this->validateApiPermission($e);
+        }
 
-		// check if exception is correct
-		$this->assertEquals('Adyen\AdyenException', get_class($e));
-		$this->assertEquals('Invalid Request: Original pspReference is invalid for this environment!', $e->getMessage());
-	}
+        // check if exception is correct
+        $this->assertEquals('Adyen\AdyenException', get_class($e));
+        $this->assertEquals(
+            'Invalid Request: Original pspReference is invalid for this environment!',
+            $e->getMessage()
+        );
+    }
 
-	public function testDeclinePayoutThirdPartySuccess()
-	{
-		// initialize client
-		$client = $this->createReviewPayoutClient();
+    public function testDeclinePayoutThirdPartySuccess()
+    {
+        // initialize client
+        $client = $this->createReviewPayoutClient();
 
-		$submitted_payout = $this->testSubmitPayoutThirdPartySuccess();
+        $submitted_payout = $this->testSubmitPayoutThirdPartySuccess();
 
-		// initialize service
-		$service = new Service\Payout($client);
+        // initialize service
+        $service = new Service\Payout($client);
 
-		$json = '{
+        $json = '{
               "merchantAccount": "' . $this->merchantAccount .'",
               "originalReference": '.$submitted_payout['pspReference'].'
             }';
 
-		$params = json_decode($json, true);
+        $params = json_decode($json, true);
 
-		try {
-			$result = $service->declineThirdParty($params);
-		} catch (\Exception $e) {
-			$this->validateApiPermission($e);
-		}
+        try {
+            $result = $service->declineThirdParty($params);
+        } catch (\Exception $e) {
+            $this->validateApiPermission($e);
+        }
 
-		// must exists
-		$this->assertTrue(isset($result['pspReference']));
+        // must exists
+        $this->assertTrue(isset($result['pspReference']));
 
-		// Assert
-		$this->assertEquals('[payout-decline-received]', $result['response']);
+        // Assert
+        $this->assertEquals('[payout-decline-received]', $result['response']);
 
-		// return the result so this can be used in other test cases
-		return $result;
-	}
+        // return the result so this can be used in other test cases
+        return $result;
+    }
 
-	public function testDeclinePayoutThirdPartyInvalidReference()
-	{
-		// initialize client
-		$client = $this->createReviewPayoutClient();
+    public function testDeclinePayoutThirdPartyInvalidReference()
+    {
+        $this->expectException('Adyen\AdyenException');
+        $this->expectExceptionMessage('Invalid Request: Original pspReference is invalid for this environment!');
+        // initialize client
+        $client = $this->createReviewPayoutClient();
 
-		// initialize service
-		$service = new Service\Payout($client);
+        // initialize service
+        $service = new Service\Payout($client);
 
-		$json = '{
+        $json = '{
               "merchantAccount": "' . $this->merchantAccount .'",
               "originalReference": ""
             }';
 
-		$params = json_decode($json, true);
-		$e = null;
-		try {
-			$result = $service->declineThirdParty($params);
-		} catch (\Exception $e) {
-			$this->validateApiPermission($e);
-		}
-
-		// check if exception is correct
-		$this->assertEquals('Adyen\AdyenException', get_class($e));
-		$this->assertEquals('Invalid Request: Original pspReference is invalid for this environment!', $e->getMessage());
-	}
-
+        $params = json_decode($json, true);
+        $service->declineThirdParty($params);
+    }
 }

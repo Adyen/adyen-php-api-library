@@ -8,10 +8,8 @@
 
 namespace Adyen;
 
-
 class ModificationTest extends TestCase
 {
-
     public function testCancelModification()
     {
         // create a payment
@@ -30,7 +28,6 @@ class ModificationTest extends TestCase
         $result = $service->cancel($params);
 
         $this->assertEquals('[cancel-received]', $result['response']);
-
     }
 
     public function testRefundModification()
@@ -60,7 +57,6 @@ class ModificationTest extends TestCase
         $result = $service->refund($params);
 
         $this->assertEquals('[refund-received]', $result['response']);
-
     }
 
 
@@ -89,7 +85,6 @@ class ModificationTest extends TestCase
         $result = $service->adjustAuthorisation($params);
 
         $this->assertEquals('[adjustAuthorisation-received]', $result['response']);
-
     }
 
     public function testAdjustIncreaseModification()
@@ -117,8 +112,5 @@ class ModificationTest extends TestCase
         $result = $service->adjustAuthorisation($params);
 
         $this->assertEquals('[adjustAuthorisation-received]', $result['response']);
-
     }
-
-
 }
