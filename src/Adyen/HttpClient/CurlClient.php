@@ -84,8 +84,8 @@ class CurlClient implements ClientInterface
         //Execute the request
         list($result, $httpStatus) = $this->curlRequest($ch);
 
-        // log the raw response
-        $logger->info("JSON Response is: " . $result);
+        // log the response
+        $this->logResponse($logger, $environment, $result);
 
         // Get errors
         list($errno, $message) = $this->curlError($ch);
@@ -103,9 +103,6 @@ class CurlClient implements ClientInterface
         if ($config->getOutputType() == 'array') {
             // transform to PHP Array
             $result = json_decode($result, true);
-
-            // log the array result
-            $logger->info('Params in response from Adyen:' . print_r($result, 1));
         }
 
         return $result;
@@ -194,8 +191,8 @@ class CurlClient implements ClientInterface
         //Execute the request
         list($result, $httpStatus) = $this->curlRequest($ch);
 
-        // log the raw response
-        $logger->info("JSON Response is: " . $result);
+        // log the response
+        $this->logResponse($logger, $environment, $result);
 
         // Get errors
         list($errno, $message) = $this->curlError($ch);
@@ -203,7 +200,7 @@ class CurlClient implements ClientInterface
         curl_close($ch);
 
         $resultOKHttpStatusCodes = array(200, 201, 202, 204);
-        
+
         if (!in_array($httpStatus, $resultOKHttpStatusCodes) && $result) {
             $this->handleResultError($result, $logger);
         } elseif (!$result) {
@@ -220,9 +217,6 @@ class CurlClient implements ClientInterface
                 $logger->error($msg);
                 throw new AdyenException($msg);
             }
-
-            // log the array result
-            $logger->info('Params in response from Adyen:' . print_r($result, 1));
         }
 
         return $result;
@@ -297,7 +291,7 @@ class CurlClient implements ClientInterface
      * @param string $environment
      * @param array $params
      */
-    private function logRequest(\Psr\Log\LoggerInterface $logger, $requestUrl, $params)
+    private function logRequest(\Psr\Log\LoggerInterface $logger, $requestUrl, $environment, $params)
     {
         // log the requestUr, params and json request
         $logger->info("Request url to Adyen: " . $requestUrl);
@@ -333,6 +327,30 @@ class CurlClient implements ClientInterface
         }
 
         $logger->info('JSON Request to Adyen:' . json_encode($params));
+    }
+
+    /**
+     * Logs the API request, removing sensitive data
+     *
+     * @param \Psr\Log\LoggerInterface $logger
+     * @param string requestUrl
+     * @param string $environment
+     * @param array $params
+     */
+    private function logResponse(\Psr\Log\LoggerInterface $logger, $environment, $params)
+    {
+        // Filter sensitive data from logs when live
+        if (\Adyen\Environment::LIVE == $environment) {
+            // List of parameters that needs to be masked with the same array structure as it appears in
+            // the response array
+            $paramsToMaskList = array(
+                'paymentData'
+            );
+
+            $params = $this->maskParametersRecursive($paramsToMask, $params);
+        }
+
+        $logger->info('JSON Response to Adyen:' . json_encode($params));
     }
 
     /**
