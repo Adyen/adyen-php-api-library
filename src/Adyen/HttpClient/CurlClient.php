@@ -310,6 +310,45 @@ class CurlClient implements ClientInterface
     }
 
     /**
+     * @param $value
+     * @param $key
+     * @param $param
+     */
+    private function maskParametersRecursive($paramsToMaskList, $params)
+    {
+        if (is_array($paramsToMaskList)) {
+            foreach ($paramsToMaskList as $key => $paramsToMask) {
+
+                if (is_array($paramsToMask) && isset($params[$key])) {
+                    // if $paramsToMask is an array and $params[$key] exists, $paramsToMask is an array of keys
+                    $params[$key] = $this->maskParametersRecursive($paramsToMask, $params[$key]);
+                } elseif (!is_array($paramsToMask) && isset($params[$paramsToMask])) {
+                    // if $paramsToMask is not an array and $params[$paramsToMask] exists, $params[$paramsToMask] is a parameter that needs to be masked
+                    $params[$paramsToMask] = $this->maskParameter($params[$paramsToMask]);
+                }
+            }
+        } else {
+            // in case $paramsToMaskList is not an array then it is a parameter that needs to be masked
+            $params[$paramsToMaskList] = $this->maskParameter($params[$paramsToMaskList]);
+        }
+
+        return $params;
+    }
+
+    /**
+     * @param $parameter
+     * @return string
+     */
+    private function maskParameter($parameter)
+    {
+        if (!empty($parameter)) {
+            $parameter = substr($parameter, 0, 10) . '***';
+        }
+
+        return $parameter;
+    }
+
+    /**
      * Execute curl, return the result and the http response code
      *
      * @param $ch
