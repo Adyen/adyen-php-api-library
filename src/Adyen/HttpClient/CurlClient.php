@@ -24,11 +24,12 @@ class CurlClient implements ClientInterface
         $password = $config->getPassword();
         $xApiKey = $config->getXApiKey();
         $httpProxy = $config->getHttpProxy();
+        $environment = $config->getEnvironment();
 
         $jsonRequest = json_encode($params);
 
         // log the request
-        $this->logRequest($logger, $requestUrl, $params);
+        $this->logRequest($logger, $requestUrl, $environment, $params);
 
         //Initiate cURL.
         $ch = curl_init($requestUrl);
@@ -156,10 +157,10 @@ class CurlClient implements ClientInterface
         $username = $config->getUsername();
         $password = $config->getPassword();
         $httpProxy = $config->getHttpProxy();
+        $environment = $config->getEnvironment();
 
-        // log the requestUr, params and json request
-        $logger->info("Request url to Adyen: " . $requestUrl);
-        $logger->info('Params in request to Adyen:' . print_r($params, 1));
+        // log the request
+        $this->logRequest($logger, $requestUrl, $environment, $params);
 
         //Initiate cURL.
         $ch = curl_init($requestUrl);
@@ -292,20 +293,45 @@ class CurlClient implements ClientInterface
      * Logs the API request, removing sensitive data
      *
      * @param \Psr\Log\LoggerInterface $logger
-     * @param $requestUrl
-     * @param $params
+     * @param string requestUrl
+     * @param string $environment
+     * @param array $params
      */
     private function logRequest(\Psr\Log\LoggerInterface $logger, $requestUrl, $params)
     {
         // log the requestUr, params and json request
         $logger->info("Request url to Adyen: " . $requestUrl);
-        if (isset($params["additionalData"]) && isset($params["additionalData"]["card.encrypted.json"])) {
-            $params["additionalData"]["card.encrypted.json"] = "*";
+
+        // Filter sensitive data from logs when live
+        if (\Adyen\Environment::LIVE == $environment) {
+            // List of parameters that needs to be masked with the same array structure as it appears in
+            // the request array
+            $paramsToMaskList = array(
+                'card' => array(
+                    'number',
+                    'cvc'
+                ),
+                'additionalData' => array(
+                    'card.encrypted.json',
+                ),
+                'paymentMethod' => array(
+                    'number',
+                    'expiryMonth',
+                    'expiryYear',
+                    'holderName',
+                    'cvc',
+                    'encryptedCardNumber',
+                    'encryptedExpiryMonth',
+                    'encryptedExpiryYear',
+                    'encryptedSecurityCode',
+                    'applepay.token',
+                    'paywithgoogle.token'
+                )
+            );
+
+            $params = $this->maskParametersRecursive($paramsToMask, $params);
         }
-        if (isset($params["card"]) && isset($params["card"]["number"])) {
-            $params["card"]["number"] = "*";
-            $params["card"]["cvc"] = "*";
-        }
+
         $logger->info('JSON Request to Adyen:' . json_encode($params));
     }
 
