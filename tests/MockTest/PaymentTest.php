@@ -13,7 +13,7 @@ class PaymentTest extends TestCaseMock
      *
      * @dataProvider successAuthoriseProvider
      */
-    public function testAuthoriseSuccess($jsonFile, $httpStatus)
+    public function testAuthoriseSuccessInTestEnvironment($jsonFile, $httpStatus)
     {
         // create client
         $client = $this->createMockClient($jsonFile, $httpStatus);
@@ -54,9 +54,9 @@ class PaymentTest extends TestCaseMock
         $this->assertArrayHasKey('resultCode', $result);
         $this->assertEquals('Authorised', $result['resultCode']);
 
-        $this->assertFalse($handler->hasInfoThatContains('4111'));
-        $this->assertFalse($handler->hasInfoThatContains('737'));
-        $this->assertFalse($handler->hasInfoThatContains('adyenjs....'));
+        $this->assertTrue($handler->hasInfoThatContains('4111111111111111'));
+        $this->assertTrue($handler->hasInfoThatContains('737'));
+        $this->assertTrue($handler->hasInfoThatContains('adyenjs....'));
     }
 
     public static function successAuthoriseProvider()
