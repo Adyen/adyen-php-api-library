@@ -59,6 +59,58 @@ class PaymentTest extends TestCaseMock
         $this->assertTrue($handler->hasInfoThatContains('adyenjs....'));
     }
 
+    /**
+     * @param $jsonFile Json file location
+     * @param $httpStatus expected http status code
+     *
+     * @dataProvider successAuthoriseProvider
+     */
+    public function testAuthoriseSuccessInLiveEnvironment($jsonFile, $httpStatus)
+    {
+        // create client
+        $client = $this->createMockClient($jsonFile, $httpStatus, null, \Adyen\Environment::LIVE);
+
+        $handler = new TestHandler();
+
+        $logger = new Logger('test', array($handler));
+
+        // Stub Logger to prevent full card data being logged
+        $client->setLogger($logger);
+
+        // initialize service
+        $service = new \Adyen\Service\Payment($client);
+
+        $json = '{
+              "card": {
+                "number": "4111111111111111",
+                "expiryMonth": "08",
+                "expiryYear": "2018",
+                "cvc": "737",
+                "holderName": "John Smith"
+              },
+              "amount": {
+                "value": 1500,
+                "currency": "EUR"
+              },
+              "reference": "payment-test",
+              "merchantAccount": "YourMerchantReference",
+              "additionalData": {
+                "card.encrypted.json" : "adyenjs_0897248234342242524232...."
+              }
+            }';
+
+        $params = json_decode($json, true);
+
+        $result = $service->authorise($params);
+
+        $this->assertArrayHasKey('resultCode', $result);
+        $this->assertEquals('Authorised', $result['resultCode']);
+
+        $this->assertFalse($handler->hasInfoThatContains('4111111111111111'));
+        $this->assertFalse($handler->hasInfoThatContains('737'));
+        $this->assertFalse($handler->hasInfoThatContains('adyenjs_0897248234342242524232...'));
+    }
+
     public static function successAuthoriseProvider()
     {
         return array(
