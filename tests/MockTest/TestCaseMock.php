@@ -4,7 +4,7 @@ namespace Adyen\MockTest;
 
 class TestCaseMock extends \PHPUnit\Framework\TestCase
 {
-    protected function createMockClient($jsonFile, $httpStatus, $errno = null)
+    protected function createMockClient($jsonFile, $httpStatus, $errno = null, $environment = \Adyen\Environment::TEST)
     {
         $json = null;
         if ($jsonFile != null) {
@@ -20,7 +20,7 @@ class TestCaseMock extends \PHPUnit\Framework\TestCase
 
         $client = new \Adyen\Client();
         $client->setApplicationName("My Test Application");
-        $client->setEnvironment(\Adyen\Environment::TEST);
+        $client->setEnvironment($environment);
         $client->setXApiKey("MockAPIKey");
         $client->setHttpClient($curlClient);
         return $client;
