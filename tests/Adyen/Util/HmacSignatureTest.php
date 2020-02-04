@@ -86,7 +86,6 @@ class HmacSignatureTest extends \PHPUnit\Framework\TestCase
 
     public function testHmacSignatureEscaping()
     {
-        $this->markTestSkipped('Feature not fixed yet');
         $hmacSignature = "ovT21mqdbQToGbWssIhnBXAlnkhgKuehtGwvYFf5h2Q=";
         $hmacKey = "C56F00E99723D90F65254B00746844BED11BCDD0DD42B26EC980DC1301C6CD20";
         $params = json_decode(
