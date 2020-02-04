@@ -6,6 +6,40 @@ use Adyen\AdyenException;
 
 class CurlClient implements ClientInterface
 {
+    // List of parameters that needs to be masked with the same array structure as it appears in
+    // the response array
+    private static $responseParamsToMask = array(
+        'paymentData',
+        'action' => array(
+            'paymentData'
+        )
+    );
+
+    // List of parameters that needs to be masked with the same array structure as it appears in
+    // the request array
+
+    private static $requestParamsToMask = array(
+        'paymentData',
+        'card' => array(
+            'number',
+            'cvc'
+        ),
+        'additionalData' => array(
+            'card.encrypted.json',
+        ),
+        'paymentMethod' => array(
+            'number',
+            'expiryMonth',
+            'expiryYear',
+            'cvc',
+            'encryptedCardNumber',
+            'encryptedExpiryMonth',
+            'encryptedExpiryYear',
+            'encryptedSecurityCode',
+            'applepay.token',
+            'paywithgoogle.token'
+        )
+    );
     /**
      * Json API request to Adyen
      *
@@ -300,32 +334,7 @@ class CurlClient implements ClientInterface
 
         // Filter sensitive data from logs when live
         if (\Adyen\Environment::LIVE == $environment) {
-            // List of parameters that needs to be masked with the same array structure as it appears in
-            // the request array
-            $paramsToMask = array(
-                'paymentData',
-                'card' => array(
-                    'number',
-                    'cvc'
-                ),
-                'additionalData' => array(
-                    'card.encrypted.json',
-                ),
-                'paymentMethod' => array(
-                    'number',
-                    'expiryMonth',
-                    'expiryYear',
-                    'cvc',
-                    'encryptedCardNumber',
-                    'encryptedExpiryMonth',
-                    'encryptedExpiryYear',
-                    'encryptedSecurityCode',
-                    'applepay.token',
-                    'paywithgoogle.token'
-                )
-            );
-
-            $params = $this->maskParametersRecursive($paramsToMask, $params);
+            $params = $this->maskParametersRecursive(self::$requestParamsToMask, $params);
         }
 
         $logger->info('JSON Request to Adyen:' . json_encode($params));
@@ -343,16 +352,7 @@ class CurlClient implements ClientInterface
     {
         // Filter sensitive data from logs when live
         if (\Adyen\Environment::LIVE == $environment) {
-            // List of parameters that needs to be masked with the same array structure as it appears in
-            // the response array
-            $paramsToMask = array(
-                'paymentData',
-                'action' => array(
-                    'paymentData'
-                )
-            );
-
-            $params = $this->maskParametersRecursive($paramsToMask, $params);
+            $params = $this->maskParametersRecursive(self::$responseParamsToMask, $params);
         }
 
         $logger->info('JSON Response to Adyen:' . json_encode($params));

@@ -167,7 +167,7 @@ class Config implements ConfigInterface
     }
 
     /**
-     * @return mixed|null
+     * @return string|null
      */
     public function getEnvironment()
     {
