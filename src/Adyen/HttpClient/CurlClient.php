@@ -385,13 +385,23 @@ class CurlClient implements ClientInterface
     }
 
     /**
+     * Masks the parameter
+     * If the value is longer than 10 char then 3 asterisks are appended to the first 10 char of the value
+     * If the value is shorter than 10 char then replace all the chars with asterisks
+     *
      * @param $parameter
      * @return string
      */
     private function maskParameter($parameter)
     {
-        if (!empty($parameter)) {
+        if (empty($parameter)) {
+            return $parameter;
+        }
+
+        if (strlen($parameter) > 10) {
             $parameter = substr($parameter, 0, 10) . '***';
+        } else {
+            $parameter = str_repeat('*', strlen($parameter));
         }
 
         return $parameter;
