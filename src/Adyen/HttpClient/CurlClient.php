@@ -85,7 +85,8 @@ class CurlClient implements ClientInterface
         list($result, $httpStatus) = $this->curlRequest($ch);
 
         // log the response
-        $this->logResponse($logger, $environment, $result);
+        $decodedResult = json_decode($result, true);
+        $this->logResponse($logger, $environment, $decodedResult);
 
         // Get errors
         list($errno, $message) = $this->curlError($ch);
@@ -192,7 +193,8 @@ class CurlClient implements ClientInterface
         list($result, $httpStatus) = $this->curlRequest($ch);
 
         // log the response
-        $this->logResponse($logger, $environment, $result);
+        $decodedResult = json_decode($result, true);
+        $this->logResponse($logger, $environment, $decodedResult);
 
         // Get errors
         list($errno, $message) = $this->curlError($ch);
@@ -300,7 +302,8 @@ class CurlClient implements ClientInterface
         if (\Adyen\Environment::LIVE == $environment) {
             // List of parameters that needs to be masked with the same array structure as it appears in
             // the request array
-            $paramsToMaskList = array(
+            $paramsToMask = array(
+                'paymentData',
                 'card' => array(
                     'number',
                     'cvc'
@@ -312,7 +315,6 @@ class CurlClient implements ClientInterface
                     'number',
                     'expiryMonth',
                     'expiryYear',
-                    'holderName',
                     'cvc',
                     'encryptedCardNumber',
                     'encryptedExpiryMonth',
@@ -343,8 +345,11 @@ class CurlClient implements ClientInterface
         if (\Adyen\Environment::LIVE == $environment) {
             // List of parameters that needs to be masked with the same array structure as it appears in
             // the response array
-            $paramsToMaskList = array(
-                'paymentData'
+            $paramsToMask = array(
+                'paymentData',
+                'action' => array(
+                    'paymentData'
+                )
             );
 
             $params = $this->maskParametersRecursive($paramsToMask, $params);
