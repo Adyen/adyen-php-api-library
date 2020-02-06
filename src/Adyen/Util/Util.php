@@ -205,7 +205,7 @@ class Util
      * @param string $checkoutEnvironment
      * @return string
      */
-    public function getPspReferenceSearchUrl($pspReference, $checkoutEnvironment)
+    public static function getPspReferenceSearchUrl($pspReference, $checkoutEnvironment)
     {
 
         return sprintf(
