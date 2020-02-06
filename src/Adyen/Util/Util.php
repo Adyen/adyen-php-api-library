@@ -197,4 +197,22 @@ class Util
 
         return $expectedSign == $merchantSign;
     }
+
+    /**
+     * Get the Customer Area PSP Search URL with a preset PSP Reference
+     *
+     * @param string $pspReference
+     * @param string $checkoutEnvironment
+     * @return string
+     */
+    public function getPspReferenceSearchUrl($pspReference, $checkoutEnvironment)
+    {
+
+        return sprintf(
+            "https://ca-%s.adyen.com/ca/ca/accounts/showTx.shtml?pspReference=%s",
+            $checkoutEnvironment,
+            $pspReference
+        );
+
+    }
 }
