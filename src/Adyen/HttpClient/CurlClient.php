@@ -386,8 +386,8 @@ class CurlClient implements ClientInterface
 
     /**
      * Masks the parameter
-     * If the value is longer than 10 char then 3 asterisks are appended to the first 10 char of the value
-     * If the value is shorter than 10 char then replace all the chars with asterisks
+     * If the value is longer than 6 char then 3 asterisks are appended to the first 6 char of the value
+     * If the value is shorter than 6 char then replace all the chars with asterisks
      *
      * @param $parameter
      * @return string
@@ -398,8 +398,8 @@ class CurlClient implements ClientInterface
             return $parameter;
         }
 
-        if (strlen($parameter) > 10) {
-            $parameter = substr($parameter, 0, 10) . '***';
+        if (strlen($parameter) > 6) {
+            $parameter = substr($parameter, 0, 6) . '***';
         } else {
             $parameter = str_repeat('*', strlen($parameter));
         }
