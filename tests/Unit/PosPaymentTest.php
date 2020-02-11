@@ -45,7 +45,6 @@ class PosPaymentTest extends TestCaseMock
         $params = json_decode($json, true);
 
         $result = $service->getConnectedTerminals($params);
-        var_dump($result);
 
         $this->assertArrayHasKey('uniqueTerminalIds', $result);
     }
