@@ -1,4 +1,25 @@
 <?php
+/**
+ *                       ######
+ *                       ######
+ * ############    ####( ######  #####. ######  ############   ############
+ * #############  #####( ######  #####. ######  #############  #############
+ *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+ * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+ * ###### ######  #####( ######  #####. ######  #####          #####  ######
+ * #############  #############  #############  #############  #####  ######
+ *  ############   ############  #############   ############  #####  ######
+ *                                      ######
+ *                               #############
+ *                               ############
+ *
+ * Adyen API Library for PHP
+ *
+ * Copyright (c) 2020 Adyen B.V.
+ * This file is open source and available under the MIT license.
+ * See the LICENSE file for more info.
+ *
+ */
 
 namespace Adyen;
 
@@ -13,7 +34,10 @@ class CheckoutTest extends TestCase
         $service = new Service\Checkout($client);
 
         $params = array(
-            'amount' => 1000,
+            'amount' => array(
+                'currency' => "EUR",
+                'value' => 1000
+            ),
             'countryCode' => 'NL',
             'shopperLocale' => 'nl_NL',
             'merchantAccount' => $this->merchantAccount,
@@ -21,7 +45,7 @@ class CheckoutTest extends TestCase
 
         $result = $service->paymentMethods($params);
 
-        $this->assertInternalType('array', $result);
+        $this->assertIsArray($result);
 
         // needs to have Ideal in result because country is netherlands
         $hasIdeal = false;
@@ -50,7 +74,7 @@ class CheckoutTest extends TestCase
 
         $result = $service->paymentMethods($params);
 
-        $this->assertInternalType('array', $result);
+        $this->assertIsArray($result);
 
         $hasIdeal = false;
         foreach ($result['paymentMethods'] as $paymentMethod) {
