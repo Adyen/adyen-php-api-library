@@ -1,13 +1,28 @@
 <?php
+/**
+ *                       ######
+ *                       ######
+ * ############    ####( ######  #####. ######  ############   ############
+ * #############  #####( ######  #####. ######  #############  #############
+ *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+ * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+ * ###### ######  #####( ######  #####. ######  #####          #####  ######
+ * #############  #############  #############  #############  #####  ######
+ *  ############   ############  #############   ############  #####  ######
+ *                                      ######
+ *                               #############
+ *                               ############
+ *
+ * Adyen API Library for PHP
+ *
+ * Copyright (c) 2020 Adyen B.V.
+ * This file is open source and available under the MIT license.
+ * See the LICENSE file for more info.
+ *
+ */
 
 namespace Adyen;
 
-/**
- * Created by PhpStorm.
- * User: SwiTool
- * Date: 11/15/16
- * Time: 2:05 PM
- */
 class PayoutThirdPartyTest extends TestCase
 {
     public function testStoreDetailAndSubmitPayoutThirdPartyMissingReference()
@@ -266,7 +281,7 @@ class PayoutThirdPartyTest extends TestCase
 
         $json = '{
               "merchantAccount": "' . $this->merchantAccount .'",
-              "originalReference": '.$submitted_payout['pspReference'].'
+              "originalReference": "'.$submitted_payout['pspReference'].'"
             }';
 
         $params = json_decode($json, true);
@@ -328,7 +343,7 @@ class PayoutThirdPartyTest extends TestCase
 
         $json = '{
               "merchantAccount": "' . $this->merchantAccount .'",
-              "originalReference": '.$submitted_payout['pspReference'].'
+              "originalReference": "'.$submitted_payout['pspReference'].'"
             }';
 
         $params = json_decode($json, true);

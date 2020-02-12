@@ -1,9 +1,24 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: rikt
- * Date: 11/6/15
- * Time: 2:53 PM
+ *                       ######
+ *                       ######
+ * ############    ####( ######  #####. ######  ############   ############
+ * #############  #####( ######  #####. ######  #############  #############
+ *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+ * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+ * ###### ######  #####( ######  #####. ######  #####          #####  ######
+ * #############  #############  #############  #############  #####  ######
+ *  ############   ############  #############   ############  #####  ######
+ *                                      ######
+ *                               #############
+ *                               ############
+ *
+ * Adyen API Library for PHP
+ *
+ * Copyright (c) 2020 Adyen B.V.
+ * This file is open source and available under the MIT license.
+ * See the LICENSE file for more info.
+ *
  */
 
 namespace Adyen;
@@ -50,7 +65,7 @@ class DirectoryLookupTest extends TestCase
         $result = $service->directoryLookup($params);
 
         // needs to have an array with the result
-        $this->assertInternalType('array', $result);
+        $this->assertIsArray($result);
 
         // needs to have Ideal in result because country is netherlands
         $hasIdeal = false;
