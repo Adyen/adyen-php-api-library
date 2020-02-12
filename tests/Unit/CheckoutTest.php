@@ -1,6 +1,27 @@
 <?php
+/**
+ *                       ######
+ *                       ######
+ * ############    ####( ######  #####. ######  ############   ############
+ * #############  #####( ######  #####. ######  #############  #############
+ *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+ * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+ * ###### ######  #####( ######  #####. ######  #####          #####  ######
+ * #############  #############  #############  #############  #####  ######
+ *  ############   ############  #############   ############  #####  ######
+ *                                      ######
+ *                               #############
+ *                               ############
+ *
+ * Adyen API Library for PHP
+ *
+ * Copyright (c) 2020 Adyen B.V.
+ * This file is open source and available under the MIT license.
+ * See the LICENSE file for more info.
+ *
+ */
 
-namespace Adyen\MockTest;
+namespace Adyen\Unit;
 
 class CheckoutTest extends TestCaseMock
 {
@@ -118,7 +139,7 @@ class CheckoutTest extends TestCaseMock
     public function testPaymentsSuccess($jsonFile, $httpStatus)
     {
         // create Checkout client
-        $client = $this->createMockClient($jsonFile, $httpStatus);
+        $client = $this->createMockClient(__DIR__ . '/../../' . $jsonFile, $httpStatus);
 
         // initialize service
         $service = new \Adyen\Service\Checkout($client);
