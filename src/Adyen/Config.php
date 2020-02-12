@@ -165,4 +165,12 @@ class Config implements ConfigInterface
     {
         return isset($this->data['externalPlatform']) ? $this->data['externalPlatform'] : null;
     }
+
+    /**
+     * @return string|null
+     */
+    public function getEnvironment()
+    {
+        return isset($this->data['environment']) ? $this->data['environment'] : null;
+    }
 }

@@ -32,6 +32,8 @@ matrix:
     - php: 7.2
     # aliased to a recent 7.3 version
     - php: 7.3
+    # aliased to a recent 7.4 version
+    - php: 7.4
       env:
         - COMPOSER_INSTALL=1
         - TEST=1
