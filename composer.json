@@ -12,7 +12,7 @@
     "monolog/monolog": "~1.16"
   },
   "require-dev": {
-    "dms/phpunit-arraysubset-asserts": "v0.1.0",
+    "dms/phpunit-arraysubset-asserts": "0.2.0",
     "friendsofphp/php-cs-fixer": "*",
     "phpunit/phpunit": "8.5.2",
     "php-coveralls/php-coveralls": "2.2.0",
