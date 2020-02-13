@@ -2,7 +2,7 @@
 
 namespace Adyen\Tests\MockTest;
 
-use Adyen\MockTest\TestCaseMock;
+use Adyen\Unit\TestCaseMock;
 
 class BinLookupTest extends TestCaseMock
 {
@@ -20,15 +20,29 @@ class BinLookupTest extends TestCaseMock
         // initialize service
         $service = new \Adyen\Service\BinLookup($client);
 
-        $result = $service->getCostEstimate(array(
-            'amount' => array(
-                'value' => 4321,
-                'currency' => 'EUR'
-            )
-        ));
+        $params = array(
+            "amount" => array(
+                "value" => 1234,
+                "currency" => "EUR"
+            ),
+            "assumptions" => array(
+                "assumeLevel3Data" => true,
+                "assume3DSecureAuthenticated" => true
+            ),
+            "cardNumber" => "4111111111111111",
+            "merchantAccount" => "TestMerchant",
+            "merchantDetails" => array(
+                "countryCode" => "NL",
+                "mcc" => "7411",
+                "enrolledIn3DSecure" => true
+            ),
+            "shopperInteraction" => "Ecommerce"
 
-        $this->assertEquals($result['amount']['value'], 1234);
-        $this->assertEquals($result['amount']['currency'], 'EUR');
+        );
+
+        $result = $service->getCostEstimate($params);
+
+        $this->assertEquals($result['cardBin']['summary'], 1111);
     }
 
     /**

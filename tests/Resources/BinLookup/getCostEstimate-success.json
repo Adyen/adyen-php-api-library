@@ -1,18 +1,7 @@
 {
-  "amount": {
-    "value": 1234,
-    "currency": "EUR"
-  },
-  "assumptions": {
-    "assumeLevel3Data": true,
-    "assume3DSecureAuthenticated": true
-  },
-  "cardNumber": "4111111111111111",
-  "merchantAccount": "TestMerchant",
-  "merchantDetails": {
-    "countryCode": "NL",
-    "mcc": "7411",
-    "enrolledIn3DSecure": true
-  },
-  "shopperInteraction": "Ecommerce"
+    "cardBin": {
+        "summary": "1111"
+    },
+    "resultCode": "Unsupported",
+    "surchargeType": "ZERO"
 }
