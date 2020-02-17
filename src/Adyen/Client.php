@@ -8,7 +8,7 @@ use Monolog\Handler\StreamHandler;
 
 class Client
 {
-    const LIB_VERSION = "5.0.1";
+    const LIB_VERSION = "6.0.0";
     const LIB_NAME = "adyen-php-api-library";
     const USER_AGENT_SUFFIX = "adyen-php-api-library/";
     const ENDPOINT_TEST = "https://pal-test.adyen.com";
@@ -16,13 +16,13 @@ class Client
     const ENDPOINT_LIVE_SUFFIX = "-pal-live.adyenpayments.com";
     const ENDPOINT_TEST_DIRECTORY_LOOKUP = "https://test.adyen.com/hpp/directory/v2.shtml";
     const ENDPOINT_LIVE_DIRECTORY_LOOKUP = "https://live.adyen.com/hpp/directory/v2.shtml";
-    const API_PAYMENT_VERSION = "v40";
-    const API_BIN_LOOKUP_VERSION = "v40";
-    const API_PAYOUT_VERSION = "v30";
-    const API_RECURRING_VERSION = "v25";
-    const API_CHECKOUT_VERSION = "v51";
+    const API_PAYMENT_VERSION = "v51";
+    const API_BIN_LOOKUP_VERSION = "v50";
+    const API_PAYOUT_VERSION = "v51";
+    const API_RECURRING_VERSION = "v49";
+    const API_CHECKOUT_VERSION = "v52";
     const API_CHECKOUT_UTILITY_VERSION = "v1";
-    const API_NOTIFICATION_VERSION = "v1";
+    const API_NOTIFICATION_VERSION = "v5";
     const API_ACCOUNT_VERSION = "v5";
     const API_FUND_VERSION = "v5";
     const ENDPOINT_TERMINAL_CLOUD_TEST = "https://terminal-api-test.adyen.com";
@@ -67,7 +67,10 @@ class Client
         } elseif ($config instanceof \Adyen\ConfigInterface) {
             $this->config = $config;
         } else {
-            throw new \Adyen\AdyenException("This config object is not supported, you need to implement the ConfigInterface");
+            throw new \Adyen\AdyenException(
+                'This config object is not supported,' .
+                ' you need to implement the ConfigInterface'
+            );
         }
     }
 
@@ -124,7 +127,8 @@ class Client
      * For live please specify the unique identifier.
      *
      * @param string $environment
-     * @param null $liveEndpointUrlPrefix Provide the unique live url prefix from the "API URLs and Response" menu in the Adyen Customer Area
+     * @param string|null $liveEndpointUrlPrefix Provide the unique live url prefix from the "API URLs and Response"
+     *                                           menu in the Adyen Customer Area
      * @throws AdyenException
      */
     public function setEnvironment($environment, $liveEndpointUrlPrefix = null)
@@ -147,17 +151,22 @@ class Client
             $this->config->set('endpointFund', self::ENDPOINT_FUND_LIVE);
 
             if ($liveEndpointUrlPrefix) {
-                $this->config->set('endpoint',
-                    self::ENDPOINT_PROTOCOL . $liveEndpointUrlPrefix . self::ENDPOINT_LIVE_SUFFIX);
-                $this->config->set('endpointCheckout',
-                    self::ENDPOINT_PROTOCOL . $liveEndpointUrlPrefix . self::ENDPOINT_CHECKOUT_LIVE_SUFFIX);
+                $this->config->set(
+                    'endpoint',
+                    self::ENDPOINT_PROTOCOL . $liveEndpointUrlPrefix . self::ENDPOINT_LIVE_SUFFIX
+                );
+                $this->config->set(
+                    'endpointCheckout',
+                    self::ENDPOINT_PROTOCOL . $liveEndpointUrlPrefix . self::ENDPOINT_CHECKOUT_LIVE_SUFFIX
+                );
             } else {
                 $this->config->set('endpoint', self::ENDPOINT_LIVE);
                 $this->config->set('endpointCheckout', null); // not supported please specify unique identifier
             }
         } else {
             // environment does not exist
-            $msg = "This environment does not exist, use " . \Adyen\Environment::TEST . ' or ' . \Adyen\Environment::LIVE;
+            $msg = "This environment does not exist, use " .
+                \Adyen\Environment::TEST . ' or ' . \Adyen\Environment::LIVE;
             throw new \Adyen\AdyenException($msg);
         }
     }
@@ -207,8 +216,10 @@ class Client
      */
     public function setExternalPlatform($name, $version, $integrator = "")
     {
-        $this->config->set('externalPlatform',
-            array('name' => $name, 'version' => $version, 'integrator' => $integrator));
+        $this->config->set(
+            'externalPlatform',
+            array('name' => $name, 'version' => $version, 'integrator' => $integrator)
+        );
     }
 
     /**

@@ -28,8 +28,8 @@ use Adyen\AdyenException;
 class HmacSignature
 {
     /**
-     * @param string $hmacKey
-     * @param array $params
+     * @param string $hmacKey Can be found in Customer Area
+     * @param array $params The response from Adyen
      * @return string
      * @throws AdyenException
      */
@@ -83,16 +83,7 @@ class HmacSignature
             $success
         );
 
-        $characterEscapeFunction = function ($val) {
-            // escapes `:` and `\` to properly sign data
-            // `:` will be used as glue
-            // `\` is the standard escaping character
-            return str_replace(':', '\\:', str_replace('\\', '\\\\', $val));
-        };
-
-        $dataToSign = implode(":", array_map($characterEscapeFunction, array_values($dataToSign)));
-
-        return $dataToSign;
+        return implode(":", $dataToSign);
     }
 
     /**

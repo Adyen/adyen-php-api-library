@@ -1,6 +1,27 @@
 <?php
+/**
+ *                       ######
+ *                       ######
+ * ############    ####( ######  #####. ######  ############   ############
+ * #############  #####( ######  #####. ######  #############  #############
+ *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+ * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+ * ###### ######  #####( ######  #####. ######  #####          #####  ######
+ * #############  #############  #############  #############  #####  ######
+ *  ############   ############  #############   ############  #####  ######
+ *                                      ######
+ *                               #############
+ *                               ############
+ *
+ * Adyen API Library for PHP
+ *
+ * Copyright (c) 2020 Adyen B.V.
+ * This file is open source and available under the MIT license.
+ * See the LICENSE file for more info.
+ *
+ */
 
-namespace Adyen\MockTest;
+namespace Adyen\Unit;
 
 class FundTest extends TestCaseMock
 {
@@ -18,7 +39,8 @@ class FundTest extends TestCaseMock
         // initialize service
         $service = new \Adyen\Service\Fund($client);
 
-        $params = json_decode('
+        $params = json_decode(
+            '
             {
               "accountHolderCode": "TestAccountHolder877209"
             }',
@@ -54,7 +76,8 @@ class FundTest extends TestCaseMock
         // initialize service
         $service = new \Adyen\Service\Fund($client);
 
-        $params = json_decode('
+        $params = json_decode(
+            '
             {
               "accountHolderCode": "TestAccountHolder423978",
               "transactionStatuses": [],
@@ -92,7 +115,8 @@ class FundTest extends TestCaseMock
         // initialize service
         $service = new \Adyen\Service\Fund($client);
 
-        $params = json_decode('
+        $params = json_decode(
+            '
             {
               "accountCode": "118731451",
               "amount": {
@@ -133,7 +157,8 @@ class FundTest extends TestCaseMock
         // initialize service
         $service = new \Adyen\Service\Fund($client);
 
-        $params = json_decode('
+        $params = json_decode(
+            '
             {
               "sourceAccountCode": "189184578",
               "merchantReference": "myreference",
@@ -176,7 +201,8 @@ class FundTest extends TestCaseMock
         // initialize service
         $service = new \Adyen\Service\Fund($client);
 
-        $params = json_decode('
+        $params = json_decode(
+            '
             {
               "destinationAccountCode": "118731451",
               "merchantReference": "myreference",
@@ -211,7 +237,8 @@ class FundTest extends TestCaseMock
         // initialize service
         $service = new \Adyen\Service\Fund($client);
 
-        $params = json_decode('
+        $params = json_decode(
+            '
             {
               "accountHolderCode": "TestAccountHolder877210",
               "accountCode": "118731451"

@@ -15,7 +15,8 @@ class UpdateAccountHolder extends \Adyen\Service\AbstractResource
      */
     public function __construct($service)
     {
-        $this->endpoint = $service->getClient()->getConfig()->get('endpointAccount') . '/' . $service->getClient()->getApiAccountVersion() . '/updateAccountHolder';
+        $this->endpoint = $service->getClient()->getConfig()->get('endpointAccount') .
+            '/' . $service->getClient()->getApiAccountVersion() . '/updateAccountHolder';
         parent::__construct($service, $this->endpoint);
     }
 }

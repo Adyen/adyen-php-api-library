@@ -1,6 +1,27 @@
 <?php
+/**
+ *                       ######
+ *                       ######
+ * ############    ####( ######  #####. ######  ############   ############
+ * #############  #####( ######  #####. ######  #############  #############
+ *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+ * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+ * ###### ######  #####( ######  #####. ######  #####          #####  ######
+ * #############  #############  #############  #############  #####  ######
+ *  ############   ############  #############   ############  #####  ######
+ *                                      ######
+ *                               #############
+ *                               ############
+ *
+ * Adyen API Library for PHP
+ *
+ * Copyright (c) 2020 Adyen B.V.
+ * This file is open source and available under the MIT license.
+ * See the LICENSE file for more info.
+ *
+ */
 
-namespace Adyen\MockTest;
+namespace Adyen\Unit;
 
 class AccountTest extends TestCaseMock
 {
@@ -18,7 +39,8 @@ class AccountTest extends TestCaseMock
         // initialize service
         $service = new \Adyen\Service\Account($client);
 
-        $params = json_decode('
+        $params = json_decode(
+            '
             {
               "accountHolderCode": "TestAccountHolderCode",
               "accountHolderDetails": {
@@ -41,7 +63,10 @@ class AccountTest extends TestCaseMock
 
         $result = $service->createAccount($params);
 
-        $this->assertContains($result['accountHolderStatus']['status'], "Active");
+        $this->assertStringContainsString(
+            $result['accountHolderStatus']['status'],
+            'Active'
+        );
     }
 
     /**

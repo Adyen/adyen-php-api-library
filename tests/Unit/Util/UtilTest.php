@@ -1,20 +1,41 @@
 <?php
+/**
+ *                       ######
+ *                       ######
+ * ############    ####( ######  #####. ######  ############   ############
+ * #############  #####( ######  #####. ######  #############  #############
+ *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+ * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+ * ###### ######  #####( ######  #####. ######  #####          #####  ######
+ * #############  #############  #############  #############  #####  ######
+ *  ############   ############  #############   ############  #####  ######
+ *                                      ######
+ *                               #############
+ *                               ############
+ *
+ * Adyen API Library for PHP
+ *
+ * Copyright (c) 2020 Adyen B.V.
+ * This file is open source and available under the MIT license.
+ * See the LICENSE file for more info.
+ *
+ */
 
 namespace Adyen\Tests\Util;
 
 use Adyen\Util\Util;
 
-class UtilTest extends \PHPUnit_Framework_TestCase
+class UtilTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @expectedException        Adyen\AdyenException
-     * @expectedExceptionMessage Invalid HMAC key: INVALID
-     */
-    public function testSha256Invalid() {
+    public function testSha256Invalid()
+    {
+        $this->expectException('Adyen\AdyenException');
+        $this->expectExceptionMessage('Invalid HMAC key: INVALID');
         Util::calculateSha256Signature("INVALID", array('key' => 'value'));
     }
 
-    public function testSha256() {
+    public function testSha256()
+    {
         $signature = Util::calculateSha256Signature("123ABC", array(
             'akey' => 'val\\ue',
             'ckey' => 'val:ue',
@@ -23,21 +44,24 @@ class UtilTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("YtbpYcrdbvk0RSVwTwENMzomS0LYtiItMwXhI5tohXs=", $signature);
     }
 
-    public function testFormatAmountThreeDecimals() {
+    public function testFormatAmountThreeDecimals()
+    {
         $amount = 15.021;
         $currency = "TND";
         $formattedAmount = Util::formatAmount($amount, $currency);
         $this->assertEquals(15021, $formattedAmount);
     }
 
-    public function testFormatAmountTwoDecimals() {
+    public function testFormatAmountTwoDecimals()
+    {
         $amount = 15.02;
         $currency = "EUR";
         $formattedAmount = Util::formatAmount($amount, $currency);
         $this->assertEquals(1502, $formattedAmount);
     }
 
-    public function testFormatAmountZeroDecimals() {
+    public function testFormatAmountZeroDecimals()
+    {
         $amount = 15021;
         $currency = "IDR";
         $formattedAmount = Util::formatAmount($amount, $currency);

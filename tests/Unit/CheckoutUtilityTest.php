@@ -1,7 +1,27 @@
 <?php
+/**
+ *                       ######
+ *                       ######
+ * ############    ####( ######  #####. ######  ############   ############
+ * #############  #####( ######  #####. ######  #############  #############
+ *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+ * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+ * ###### ######  #####( ######  #####. ######  #####          #####  ######
+ * #############  #############  #############  #############  #####  ######
+ *  ############   ############  #############   ############  #####  ######
+ *                                      ######
+ *                               #############
+ *                               ############
+ *
+ * Adyen API Library for PHP
+ *
+ * Copyright (c) 2020 Adyen B.V.
+ * This file is open source and available under the MIT license.
+ * See the LICENSE file for more info.
+ *
+ */
 
-namespace Adyen\MockTest;
-
+namespace Adyen\Unit;
 
 class CheckoutUtilityTest extends TestCaseMock
 {
@@ -31,7 +51,6 @@ class CheckoutUtilityTest extends TestCaseMock
         $result = $service->originKeys($params);
 
         $this->assertArrayHasKey('originKeys', $result);
-
     }
 
     public static function successOriginKeysProvider()

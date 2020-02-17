@@ -15,7 +15,8 @@ class CloseAccount extends \Adyen\Service\AbstractResource
      */
     public function __construct($service)
     {
-        $this->endpoint = $service->getClient()->getConfig()->get('endpointAccount') . '/' . $service->getClient()->getApiAccountVersion() . '/closeAccount';
+        $this->endpoint = $service->getClient()->getConfig()->get('endpointAccount') .
+            '/' . $service->getClient()->getApiAccountVersion() . '/closeAccount';
         parent::__construct($service, $this->endpoint);
     }
 }

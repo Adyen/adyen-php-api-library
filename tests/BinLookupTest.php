@@ -1,12 +1,32 @@
 <?php
+/**
+ *                       ######
+ *                       ######
+ * ############    ####( ######  #####. ######  ############   ############
+ * #############  #####( ######  #####. ######  #############  #############
+ *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+ * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+ * ###### ######  #####( ######  #####. ######  #####          #####  ######
+ * #############  #############  #############  #############  #####  ######
+ *  ############   ############  #############   ############  #####  ######
+ *                                      ######
+ *                               #############
+ *                               ############
+ *
+ * Adyen API Library for PHP
+ *
+ * Copyright (c) 2020 Adyen B.V.
+ * This file is open source and available under the MIT license.
+ * See the LICENSE file for more info.
+ *
+ */
 
 namespace Adyen;
 
-
 use Adyen\Util\Util;
 
-class BinLookupTest extends TestCase {
-
+class BinLookupTest extends TestCase
+{
     public function testValid3dsCard()
     {
         // initialize client
@@ -16,7 +36,7 @@ class BinLookupTest extends TestCase {
         $service = new Service\BinLookup($client);
 
         $json = '{
-              "cardNumber": "4111111111111111",
+              "cardNumber": "5454545454545454",
               "merchantAccount": "' . $this->merchantAccount .'"
             }';
 
@@ -52,5 +72,4 @@ class BinLookupTest extends TestCase {
         // 1111111111111111 is a invalid 3ds card so the result should be false
         $this->assertEquals(false, $result['threeDS2supported']);
     }
-
 }

@@ -1,6 +1,27 @@
 <?php
+/**
+ *                       ######
+ *                       ######
+ * ############    ####( ######  #####. ######  ############   ############
+ * #############  #####( ######  #####. ######  #############  #############
+ *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+ * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+ * ###### ######  #####( ######  #####. ######  #####          #####  ######
+ * #############  #############  #############  #############  #####  ######
+ *  ############   ############  #############   ############  #####  ######
+ *                                      ######
+ *                               #############
+ *                               ############
+ *
+ * Adyen API Library for PHP
+ *
+ * Copyright (c) 2020 Adyen B.V.
+ * This file is open source and available under the MIT license.
+ * See the LICENSE file for more info.
+ *
+ */
 
-namespace Adyen\MockTest;
+namespace Adyen\Unit;
 
 class NotificationTest extends TestCaseMock
 {
@@ -18,7 +39,8 @@ class NotificationTest extends TestCaseMock
         // initialize service
         $service = new \Adyen\Service\Notification($client);
 
-        $params = json_decode('
+        $params = json_decode(
+            '
             {
               "configurationDetails": {
                 "active": "true",
@@ -68,7 +90,8 @@ class NotificationTest extends TestCaseMock
         // initialize service
         $service = new \Adyen\Service\Notification($client);
 
-        $params = json_decode('
+        $params = json_decode(
+            '
             {
               "configurationDetails": {
             
@@ -79,7 +102,6 @@ class NotificationTest extends TestCaseMock
         $result = $service->getNotificationConfigurationList($params);
 
         $this->assertContains($result['configurations'][0]['NotificationConfigurationDetails']['active'], array(true));
-
     }
 
     public static function successNotificationGetlistProvider()
@@ -103,7 +125,8 @@ class NotificationTest extends TestCaseMock
         // initialize service
         $service = new \Adyen\Service\Notification($client);
 
-        $params = json_decode('
+        $params = json_decode(
+            '
             {
               "notificationId": 15007
             }',
@@ -112,7 +135,6 @@ class NotificationTest extends TestCaseMock
         $result = $service->getNotificationConfiguration($params);
 
         $this->assertContains($result['configurationDetails']['notificationId'], array(15007));
-
     }
 
     public static function successNotificationGetProvider()
@@ -136,7 +158,8 @@ class NotificationTest extends TestCaseMock
         // initialize service
         $service = new \Adyen\Service\Notification($client);
 
-        $params = json_decode('
+        $params = json_decode(
+            '
             {
               "configurationDetails": {
                 "active": "false",
@@ -168,7 +191,6 @@ class NotificationTest extends TestCaseMock
         $result = $service->updateNotificationConfiguration($params);
 
         $this->assertContains($result['configurationDetails']['notificationId'], array(15007));
-
     }
 
     public static function successNotificationUpdateProvider()
@@ -192,7 +214,8 @@ class NotificationTest extends TestCaseMock
         // initialize service
         $service = new \Adyen\Service\Notification($client);
 
-        $params = json_decode('
+        $params = json_decode(
+            '
             {
               "notificationIds": [
                 15007,
@@ -204,7 +227,6 @@ class NotificationTest extends TestCaseMock
         $result = $service->deleteNotificationConfigurations($params);
 
         $this->assertContains($result['pspReference'], array('8815324250627802'));
-
     }
 
     public static function successNotificationDeleteProvider()
@@ -228,7 +250,8 @@ class NotificationTest extends TestCaseMock
         // initialize service
         $service = new \Adyen\Service\Notification($client);
 
-        $params = json_decode('
+        $params = json_decode(
+            '
             {
               "eventTypes": [],
               "notificationId": 15009
@@ -238,7 +261,6 @@ class NotificationTest extends TestCaseMock
         $result = $service->updateNotificationConfiguration($params);
 
         $this->assertContains($result['eventTypes'][0], array('ACCOUNT_HOLDER_VERIFICATION'));
-
     }
 
     /**

@@ -6,7 +6,6 @@ use Adyen\Util\Util;
 
 class PosPaymentTest extends TestCase
 {
-
     public function testCreatePosPaymentSuccess()
     {
         if (empty($this->settings['POIID']) || $this->settings['POIID'] == 'UNIQUETERMINALID') {
@@ -68,12 +67,10 @@ class PosPaymentTest extends TestCase
 
         $this->assertTrue(isset($result['SaleToPOIResponse']));
         $this->assertEquals('Success', $result['SaleToPOIResponse']['PaymentResponse']['Response']['Result']);
-
     }
 
     public function testCreatePosPaymentDeclined()
     {
-
         if (empty($this->settings['POIID']) || $this->settings['POIID'] == 'UNIQUETERMINALID') {
             $this->skipTest("Skipped the test. Configure your POIID in the config");
         }
@@ -133,7 +130,6 @@ class PosPaymentTest extends TestCase
 
         $this->assertTrue(isset($result['SaleToPOIResponse']['PaymentResponse']['Response']['Result']));
         $this->assertEquals('Failure', $result['SaleToPOIResponse']['PaymentResponse']['Response']['Result']);
-
     }
 
     public function testCreatePosEMVRefundSuccess()
@@ -197,7 +193,6 @@ class PosPaymentTest extends TestCase
 
         $this->assertTrue(isset($result['SaleToPOIResponse']));
         $this->assertEquals('Success', $result['SaleToPOIResponse']['PaymentResponse']['Response']['Result']);
-
     }
 
     public function testGetConnectedTerminals()
@@ -281,7 +276,9 @@ class PosPaymentTest extends TestCase
             'shopperReference' => strval(300),
             'recurringContract' => "ONECLICK"
         );
-        $params['SaleToPOIRequest']['PaymentRequest']['SaleData']['SaleToAcquirerData'] = http_build_query($recurringDetails);
+        $params['SaleToPOIRequest']['PaymentRequest']['SaleData']['SaleToAcquirerData'] = http_build_query(
+            $recurringDetails
+        );
         try {
             $result = $service->runTenderSync($params);
         } catch (\Exception $e) {
@@ -291,13 +288,14 @@ class PosPaymentTest extends TestCase
         $this->assertTrue(isset($result['SaleToPOIResponse']));
         $this->assertEquals('Success', $result['SaleToPOIResponse']['PaymentResponse']['Response']['Result']);
         try {
-            $additionalResponse = json_decode(base64_decode($result['SaleToPOIResponse']['PaymentResponse']['Response']['AdditionalResponse']), true);
+            $additionalResponse = json_decode(
+                base64_decode($result['SaleToPOIResponse']['PaymentResponse']['Response']['AdditionalResponse']),
+                true
+            );
             $this->assertNotNull($additionalResponse['additionalData']['recurring.recurringDetailReference']);
-        }
-        catch (\Exception $e){
+        } catch (\Exception $e) {
             $this->fail();
         }
-
     }
 
     public function testCreatePosPaymentSuccessWithOneclickBase64()
@@ -360,7 +358,9 @@ class PosPaymentTest extends TestCase
             'shopperReference' => strval(301),
             'recurringContract' => "ONECLICK"
         );
-        $params['SaleToPOIRequest']['PaymentRequest']['SaleData']['SaleToAcquirerData'] = base64_encode(json_encode($recurringDetails));
+        $params['SaleToPOIRequest']['PaymentRequest']['SaleData']['SaleToAcquirerData'] = base64_encode(
+            json_encode($recurringDetails)
+        );
         try {
             $result = $service->runTenderSync($params);
         } catch (\Exception $e) {
@@ -370,8 +370,10 @@ class PosPaymentTest extends TestCase
         $this->assertTrue(isset($result['SaleToPOIResponse']));
         $this->assertEquals('Success', $result['SaleToPOIResponse']['PaymentResponse']['Response']['Result']);
         try {
-            $additionalResponse = json_decode(base64_decode($result['SaleToPOIResponse']['PaymentResponse']['Response']['AdditionalResponse']),
-                true);
+            $additionalResponse = json_decode(
+                base64_decode($result['SaleToPOIResponse']['PaymentResponse']['Response']['AdditionalResponse']),
+                true
+            );
             $this->assertNotNull($additionalResponse['additionalData']['recurring.recurringDetailReference']);
         } catch (\Exception $e) {
             $this->fail();
@@ -443,8 +445,5 @@ class PosPaymentTest extends TestCase
             $this->assertEquals(CURLE_OPERATION_TIMEOUTED, $e->getCode());
             $this->validateApiPermission($e);
         }
-
     }
-
-
 }

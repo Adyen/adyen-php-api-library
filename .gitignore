@@ -1,15 +1,15 @@
 # ignore config file
 tests/config
 
-# Ignore the /vendor/ directory
-/vendor/
+# Ignore auto generated files directory
+vendor
+build
+.phpunit.result.cache
+.php_cs.cache
+.vagrant
 
 # ignore Mac OS X file
 .DS_Store
 
 # ignore PhpStorm .idea folder
 .idea
-
-# ignore Vagrant metadata files
-# these files are unique to each user
-.vagrant

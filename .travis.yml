@@ -1,23 +1,55 @@
+# Travis CI (MIT License) configuration file
+# @link https://travis-ci.org/
+
+# Use new container based environment
 sudo: false
+
 dist: trusty
+
+# Declare project language.
+# @link http://about.travis-ci.org/docs/user/languages/php/
 language: php
+
+# Declare versions of PHP to use. Use one decimal max.
+# @link http://docs.travis-ci.com/user/build-configuration/
 matrix:
+  fast_finish: true
+
   allow_failures:
     - php: nightly
   include:
-    - php: 7.3
-    - php: 7.2
-    - php: 7.1
-    - php: 7.0
-    - php: 5.6
-    - php: 5.6
-    - php: 5.5
-      env: COMPOSER_FRESH=1
+    # aliased to a recent 5.4 version
     - php: 5.4
-      env: COMPOSER_FRESH=1
+    # aliased to a recent 5.5 version
+    - php: 5.5
+    # aliased to a recent 5.6 version
+    - php: 5.6
+    # aliased to a recent 7.0 version
+    - php: 7.0
+    # aliased to a recent 7.1 version
+    - php: 7.1
+    # aliased to a recent 7.2 version
+    - php: 7.2
+    # aliased to a recent 7.3 version
+    - php: 7.3
+    # aliased to a recent 7.4 version
+    - php: 7.4
+      env:
+        - COMPOSER_INSTALL=1
+        - TEST=1
+        - SNIFF=1
+    # aliased to a recent 5.3 version
     - dist: precise
       php: 5.3
-      env: COMPOSER_FRESH=1
+
 before_script:
-  - if [[ "$COMPOSER_FRESH" == "1" ]]; then rm composer.lock; fi
-  - composer install
+  - if [[ "$COMPOSER_INSTALL" == "1" ]]; then composer install; fi
+# Run test script commands.
+# All commands must exit with code 0 on success. Anything else is considered failure.
+script:
+  # Search for PHP syntax errors.
+  # Ignores `vendor` and `tests` directories, then search for files with `php` extension only
+  - find -L . -path ./vendor -prune -o -path ./tests -prune -o -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l
+  # Run tests and sniffer and others
+  - if [[ "$TEST" == "1" ]]; then vendor/bin/phpunit --testsuite=unit; fi
+  - if [[ "$SNIFF" == "1" ]]; then vendor/bin/phpcs; fi

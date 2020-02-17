@@ -15,7 +15,7 @@
  *
  * Adyen API Library for PHP
  *
- * Copyright (c) 2019 Adyen B.V.
+ * Copyright (c) 2020 Adyen B.V.
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  *
@@ -23,30 +23,30 @@
 
 namespace Adyen\Util;
 
+use Adyen\AdyenException;
 
-class CurrencyTest extends \PHPUnit_Framework_TestCase
+class Sha256SignatureTest extends \PHPUnit\Framework\TestCase
 {
-    public function testFormatAmountThreeDecimals() {
-        $currencySanitizer = new Currency();
-        $amount = 15.021;
-        $currency = "TND";
-        $formattedAmount = $currencySanitizer->sanitize($amount, $currency);
-        $this->assertEquals(15021, $formattedAmount);
+    public function testSha256Invalid()
+    {
+        $this->expectException('\Adyen\AdyenException');
+        $this->expectExceptionMessage('Invalid HMAC key: INVALID');
+        $signature = new Sha256Signature();
+        $signature->generate("INVALID", array('key' => 'value'));
     }
 
-    public function testFormatAmountTwoDecimals() {
-        $currencySanitizer = new Currency();
-        $amount = 15.02;
-        $currency = "EUR";
-        $formattedAmount = $currencySanitizer->sanitize($amount, $currency);
-        $this->assertEquals(1502, $formattedAmount);
-    }
-
-    public function testFormatAmountZeroDecimals() {
-        $currencySanitizer = new Currency();
-        $amount = 15021;
-        $currency = "IDR";
-        $formattedAmount = $currencySanitizer->sanitize($amount, $currency);
-        $this->assertEquals(15021, $formattedAmount);
+    public function testSha256()
+    {
+        $signatureGenerator = new Sha256Signature();
+        try {
+            $signature = $signatureGenerator->generate("123ABC", array(
+                'akey' => 'val\\ue',
+                'ckey' => 'val:ue',
+                'bkey' => '1'
+            ));
+            $this->assertEquals("YtbpYcrdbvk0RSVwTwENMzomS0LYtiItMwXhI5tohXs=", $signature);
+        } catch (AdyenException $e) {
+            $this->fail('Unexpected exception');
+        }
     }
 }

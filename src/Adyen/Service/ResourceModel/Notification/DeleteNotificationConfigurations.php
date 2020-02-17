@@ -15,7 +15,8 @@ class DeleteNotificationConfigurations extends \Adyen\Service\AbstractResource
      */
     public function __construct($service)
     {
-        $this->endpoint = $service->getClient()->getConfig()->get('endpointNotification') . '/' . $service->getClient()->getApiNotificationVersion() . '/deleteNotificationConfigurations';
+        $this->endpoint = $service->getClient()->getConfig()->get('endpointNotification') .
+            '/' . $service->getClient()->getApiNotificationVersion() . '/deleteNotificationConfigurations';
         parent::__construct($service, $this->endpoint);
     }
 }

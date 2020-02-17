@@ -1,6 +1,27 @@
 <?php
+/**
+ *                       ######
+ *                       ######
+ * ############    ####( ######  #####. ######  ############   ############
+ * #############  #####( ######  #####. ######  #############  #############
+ *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+ * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+ * ###### ######  #####( ######  #####. ######  #####          #####  ######
+ * #############  #############  #############  #############  #####  ######
+ *  ############   ############  #############   ############  #####  ######
+ *                                      ######
+ *                               #############
+ *                               ############
+ *
+ * Adyen API Library for PHP
+ *
+ * Copyright (c) 2020 Adyen B.V.
+ * This file is open source and available under the MIT license.
+ * See the LICENSE file for more info.
+ *
+ */
 
-namespace Adyen\MockTest;
+namespace Adyen\Unit;
 
 class ModificationTest extends TestCaseMock
 {
@@ -18,7 +39,8 @@ class ModificationTest extends TestCaseMock
         // initialize service
         $service = new \Adyen\Service\Modification($client);
 
-        $params = json_decode('
+        $params = json_decode(
+            '
              {
                 "amount":{
                     "value":1500,

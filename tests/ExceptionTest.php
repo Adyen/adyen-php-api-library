@@ -10,7 +10,6 @@ namespace Adyen;
 
 class ExceptionTest extends \Adyen\TestCase
 {
-
     public function testExceptionMissingEnvironmentValue()
     {
         $client = new \Adyen\Client();
@@ -22,13 +21,12 @@ class ExceptionTest extends \Adyen\TestCase
 
         try {
             $service = new Service\Recurring($client);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
         }
 
         // should have environment exception
         $this->assertEquals('Adyen\AdyenException', get_class($e));
         $this->assertEquals('The Client does not have a correct environment, use test or live', $e->getMessage());
-
     }
 
     public function testExceptionMisspelledContractParameterValue()
@@ -41,11 +39,15 @@ class ExceptionTest extends \Adyen\TestCase
         $service = new Service\Recurring($client);
 
         $recurring = array('contract' => "WRONG PARAMETER");
-        $params = array('merchantAccount' => $this->getMerchantAccount(), 'recurring' => $recurring, 'shopperReference' => '1');
+        $params = array(
+            'merchantAccount' => $this->getMerchantAccount(),
+            'recurring' => $recurring,
+            'shopperReference' => '1'
+        );
 
         try {
             $result = $service->listRecurringDetails($params);
-        } catch (\Exception $e){
+        } catch (\Exception $e) {
         }
 
         // check if exception is correct
@@ -68,7 +70,11 @@ class ExceptionTest extends \Adyen\TestCase
 
         // in a model form ?
         $recurring = array('contract' => \Adyen\Contract::RECURRING);
-        $params = array('merchantAccount' => $this->getMerchantAccount(), 'recurring' => $recurring, 'shopperReference' => '1');
+        $params = array(
+            'merchantAccount' => $this->getMerchantAccount(),
+            'recurring' => $recurring,
+            'shopperReference' => '1'
+        );
 
         $e = null;
         try {

@@ -15,7 +15,7 @@
  *
  * Adyen API Library for PHP
  *
- * Copyright (c) 2019 Adyen B.V.
+ * Copyright (c) 2020 Adyen B.V.
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  *
@@ -23,10 +23,9 @@
 
 namespace Adyen\Util;
 
-
 use Adyen\AdyenException;
 
-class HmacSignatureTest extends \PHPUnit_Framework_TestCase
+class HmacSignatureTest extends \PHPUnit\Framework\TestCase
 {
     public function testNotificationRequestItemHmac()
     {
@@ -79,6 +78,50 @@ class HmacSignatureTest extends \PHPUnit_Framework_TestCase
                 'hmacSignature' => $hmacCalculation
             );
             $hmacValidate = $hmac->isValidNotificationHMAC($key, $params);
+            $this->assertTrue($hmacValidate);
+        } catch (AdyenException $e) {
+            $this->fail('Unexpected exception');
+        }
+    }
+
+    public function testHmacSignatureEscaping()
+    {
+        $hmacSignature = "ovT21mqdbQToGbWssIhnBXAlnkhgKuehtGwvYFf5h2Q=";
+        $hmacKey = "C56F00E99723D90F65254B00746844BED11BCDD0DD42B26EC980DC1301C6CD20";
+        $params = json_decode(
+            <<<'JSON'
+{
+    "additionalData": {
+        "hmacSignature": "ovT21mqdbQToGbWssIhnBXAlnkhgKuehtGwvYFf5h2Q="
+    },
+    "amount": {
+        "currency": "EUR",
+        "value": 113000
+    },
+    "eventCode": "AUTHORISATION",
+    "eventDate": "2020-01-08T12:00:00+01:00",
+    "merchantAccountCode": "PHPApiLibrary",
+    "merchantReference": "auth:123",
+    "originalReference": "",
+    "paymentMethod": "visa",
+    "pspReference": "TEST_CUSTOM_7914073381342284",
+    "reason": "",
+    "success": "true"
+}
+JSON
+            ,
+            true
+        );
+
+        $hmac = new HmacSignature();
+        try {
+            $hmacCalculation = $hmac->calculateNotificationHMAC($hmacKey, $params);
+            $this->assertNotEmpty($hmacCalculation);
+            $this->assertEquals($hmacSignature, $hmacCalculation);
+            $params['additionalData'] = array(
+                'hmacSignature' => $hmacCalculation
+            );
+            $hmacValidate = $hmac->isValidNotificationHMAC($hmacKey, $params);
             $this->assertTrue($hmacValidate);
         } catch (AdyenException $e) {
             $this->fail('Unexpected exception');
