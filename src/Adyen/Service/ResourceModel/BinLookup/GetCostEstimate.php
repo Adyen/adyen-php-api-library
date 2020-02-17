@@ -24,7 +24,7 @@ class GetCostEstimate extends \Adyen\Service\AbstractResource
      */
     public function __construct($service)
     {
-        $endpoint = $service->getClient()->getConfig()->get('endpoint') . '/pal/servlet/BinLookup/' . $service->getClient()->getApiBinLookupVersion() . '/getCostEstimate';
+        $this->endpoint = $service->getClient()->getConfig()->get('endpoint') . '/pal/servlet/BinLookup/' . $service->getClient()->getApiBinLookupVersion() . '/getCostEstimate';
         parent::__construct($service, $endpoint, false);
     }
 }
