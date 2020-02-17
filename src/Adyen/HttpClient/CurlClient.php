@@ -25,7 +25,7 @@ class CurlClient implements ClientInterface
             'cvc'
         ),
         'additionalData' => array(
-            'card.encrypted.json',
+            'card.encrypted.json'
         ),
         'paymentMethod' => array(
             'number',
