@@ -127,8 +127,9 @@ class CurlClient implements ClientInterface
 
         curl_close($ch);
 
-        // result not 200 throw error
-        if ($httpStatus != 200 && $result) {
+        $resultOKHttpStatusCodes = array(200, 201, 202, 204);
+
+        if (!in_array($httpStatus, $resultOKHttpStatusCodes) && $result) {
             $this->handleResultError($result, $logger);
         } elseif (!$result) {
             $this->handleCurlError($requestUrl, $errno, $message, $logger);
