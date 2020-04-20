@@ -58,7 +58,7 @@ class Client
     /**
      * Client constructor.
      *
-     * @param \Adyen\Config|null $config
+     * @param \Adyen\ConfigInterface|null $config
      * @throws AdyenException
      */
     public function __construct($config = null)
