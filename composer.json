@@ -22,10 +22,7 @@
   "autoload": {
     "psr-4": {
       "Adyen\\": "src/Adyen/"
-    },
-    "classmap": [
-      "src/Adyen/Service/"
-    ]
+    }
   },
   "autoload-dev": {
     "psr-4": {
