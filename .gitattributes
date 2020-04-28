@@ -1,0 +1,16 @@
+# Auto-detect text files, ensure they use LF.
+*       text=auto eol=lf
+
+# Exclude non-essential files from dist
+/.github export-ignore
+/tests export-ignore
+/.editorconfig export-ignore
+/.gitignore export-ignore
+/.travis.yml export-ignore
+/CODE_OF_CONDUCT.md export-ignore
+/composer.lock export-ignore
+/CONTRIBUTING.md export-ignore
+/phpcs.xml export-ignore
+/phpunit.xml export-ignore
+/renovate.json export-ignore
+/Vagrantfile export-ignore
