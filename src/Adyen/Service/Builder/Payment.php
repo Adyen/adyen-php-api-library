@@ -26,51 +26,6 @@ namespace Adyen\Service\Builder;
 class Payment
 {
     /**
-     * @param $encryptedCardNumber
-     * @param $encryptedExpiryMonth
-     * @param $encryptedExpiryYear
-     * @param $holderName
-     * @param $origin
-     * @param string $encryptedSecurityCode
-     * @param string $paymentMethodType
-     * @param bool $storePaymentMethod
-     * @param array $request
-     * @return array
-     */
-    public function buildCardData(
-        $encryptedCardNumber,
-        $encryptedExpiryMonth,
-        $encryptedExpiryYear,
-        $holderName,
-        $origin,
-        $encryptedSecurityCode = '',
-        $paymentMethodType = 'scheme',
-        $storePaymentMethod = false,
-        $request = array()
-    ) {
-        $request['paymentMethod']['type'] = $paymentMethodType;
-        $request['paymentMethod']['encryptedCardNumber'] = $encryptedCardNumber;
-        $request['paymentMethod']['encryptedExpiryMonth'] = $encryptedExpiryMonth;
-        $request['paymentMethod']['encryptedExpiryYear'] = $encryptedExpiryYear;
-        $request['paymentMethod']['holderName'] = $holderName;
-
-        // Security code is not required for all card types
-        if (!empty($encryptedSecurityCode)) {
-            $request['paymentMethod']['encryptedSecurityCode'] = $encryptedSecurityCode;
-        }
-
-        // Store card details required fields
-        if (true == $storePaymentMethod) {
-            $request['storePaymentMethod'] = true;
-            $request['shopperInteraction'] = 'Ecommerce';
-        }
-
-        $request = $this->build3DS2Data($origin, $request);
-
-        return $request;
-    }
-
-    /**
      * @param $currencyIso
      * @param $formattedValue
      * @param $reference
@@ -112,34 +67,6 @@ class Payment
         if (!empty($issuer)) {
             $request['paymentMethod']['issuer'] = $issuer;
         }
-
-        return $request;
-    }
-
-    /**
-     * @param $paymentMethodType
-     * @param $storedPaymentMethodId
-     * @param $origin
-     * @param string $encryptedSecurityCode
-     * @param array $request
-     * @return array
-     */
-    public function buildStoredPaymentData(
-        $paymentMethodType,
-        $storedPaymentMethodId,
-        $origin,
-        $encryptedSecurityCode = '',
-        $request = array()
-    ) {
-        $request['paymentMethod']['type'] = $paymentMethodType;
-
-        $request['paymentMethod']['storedPaymentMethodId'] = $storedPaymentMethodId;
-
-        if (!empty($encryptedSecurityCode)) {
-            $request['paymentMethod']['encryptedSecurityCode'] = $encryptedSecurityCode;
-        }
-
-        $request = $this->build3DS2Data($origin, $request);
 
         return $request;
     }
