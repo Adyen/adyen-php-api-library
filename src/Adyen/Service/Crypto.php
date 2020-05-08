@@ -15,7 +15,7 @@
  *
  * Adyen API Library for PHP
  *
- * Copyright (c) 2020 Adyen B.V.
+ * Copyright (c) 2020 Adyen N.V.
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  *
@@ -71,7 +71,7 @@ class Crypto
         }
 
         $ivLength = openssl_cipher_iv_length($this->method);
-        $hex = Tools::substr($data, 0, $ivLength * 2);
+        $hex = mb_substr($data, 0, $ivLength * 2);
 
         if (!ctype_xdigit($hex)) {
             throw new GenericLoggedException('Crypto decrypt() $data parameter is not hex encoded');
@@ -79,7 +79,7 @@ class Crypto
 
         $iv = hex2bin($hex);
         return openssl_decrypt(
-            Tools::substr($data, $ivLength * 2),
+            mb_substr($data, $ivLength * 2),
             $this->method,
             $this->configuration->sslEncryptionKey,
             0,
