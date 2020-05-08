@@ -23,6 +23,9 @@
 
 namespace Adyen\Service;
 
+use Adyen\Exception\GenericLoggedException;
+use Adyen\Exception\MissingDataException;
+
 class Crypto
 {
     /**
