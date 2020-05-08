@@ -38,7 +38,7 @@ class Crypto
      */
     private $method;
 
-    public function __construct(Configuration $configuration)
+    public function __construct(Configuration $configuration) //TODO Configuration class?
     {
         $this->method = 'aes-256-ctr';
         $this->configuration = $configuration;

@@ -23,9 +23,7 @@
 
 namespace Adyen\Exception;
 
-use Exception;
-
-class MissingDataException extends Exception
+class HMACKeyValidationException extends \Exception
 {
 
 }
