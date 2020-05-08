@@ -31,20 +31,14 @@ class Crypto
     private $configuration;
 
     /**
-     * @var Logger
-     */
-    private $logger;
-
-    /**
      * @var string
      */
     private $method;
 
-    public function __construct(Configuration $configuration, Logger $logger)
+    public function __construct(Configuration $configuration)
     {
         $this->method = 'aes-256-ctr';
         $this->configuration = $configuration;
-        $this->logger = $logger;
     }
 
     public function encrypt($data)
