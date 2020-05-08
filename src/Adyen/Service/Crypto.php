@@ -57,33 +57,4 @@ class Crypto
                 $iv
             );
     }
-
-    /**
-     * @param $data
-     * @return false|string
-     * @throws GenericLoggedException
-     * @throws MissingDataException
-     */
-    public function decrypt($data)
-    {
-        if (empty($data)) {
-            throw new MissingDataException();
-        }
-
-        $ivLength = openssl_cipher_iv_length($this->method);
-        $hex = mb_substr($data, 0, $ivLength * 2);
-
-        if (!ctype_xdigit($hex)) {
-            throw new GenericLoggedException('Crypto decrypt() $data parameter is not hex encoded');
-        }
-
-        $iv = hex2bin($hex);
-        return openssl_decrypt(
-            mb_substr($data, $ivLength * 2),
-            $this->method,
-            $this->configuration->sslEncryptionKey,
-            0,
-            $iv
-        );
-    }
 }
