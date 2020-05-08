@@ -23,8 +23,6 @@
 
 namespace Adyen\Service\Builder;
 
-use Tools;
-
 class OpenInvoice
 {
     /**
@@ -74,8 +72,8 @@ class OpenInvoice
     public function getVatCategory($paymentMethod)
     {
         if ($paymentMethod == "klarna" ||
-            Tools::strlen($paymentMethod) >= 9 &&
-            Tools::substr($paymentMethod, 0, 9) == 'afterpay_'
+            strlen($paymentMethod) >= 9 &&
+            mb_substr($paymentMethod, 0, 9) == 'afterpay_'
         ) {
             return 'High';
         }
