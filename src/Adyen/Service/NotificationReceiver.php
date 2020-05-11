@@ -64,16 +64,6 @@ class NotificationReceiver
     private $logger;
 
     /**
-     * @var Configuration
-     */
-    private $configuration;
-
-    /**
-     * @var AdyenNotification
-     */
-    private $adyenNotification;
-
-    /**
      * NotificationReceiver constructor.
      *
      * @param HmacSignature $hmacSignature
@@ -82,8 +72,6 @@ class NotificationReceiver
      * @param $notificationUsername
      * @param $notificationPassword
      * @param LoggerInterface $logger
-     * @param Configuration $configuration
-     * @param AdyenNotification $adyenNotification
      */
     public function __construct(
         HmacSignature $hmacSignature,
@@ -91,9 +79,7 @@ class NotificationReceiver
         $merchantAccount,
         $notificationUsername,
         $notificationPassword,
-        LoggerInterface $logger, //TODO outsource?
-        Configuration $configuration, //TODO outsource?
-        AdyenNotification $adyenNotification //TODO outsource?
+        LoggerInterface $logger
     ) {
         $this->hmacSignature = $hmacSignature;
         $this->notificationHMAC = $notificationHMAC;
@@ -101,8 +87,6 @@ class NotificationReceiver
         $this->notificationUsername = $notificationUsername;
         $this->notificationPassword = $notificationPassword;
         $this->logger = $logger;
-        $this->configuration = $configuration;
-        $this->adyenNotification = $adyenNotification;
     }
 
     /**
@@ -166,12 +150,11 @@ class NotificationReceiver
      * Checks if notification mode and the store mode configuration matches
      *
      * @param $notificationMode
+     * @param $testMode bool
      * @return bool
      */
-    protected function validateNotificationMode($notificationMode)
+    protected function validateNotificationMode($notificationMode, $testMode)
     {
-        $testMode = $this->configuration->isTestMode();
-
         // Notification mode can be a string or a boolean
         if (($testMode && ($notificationMode == 'false' || $notificationMode == false)) ||
             (!$testMode && ($notificationMode == 'true' || $notificationMode == true))
