@@ -25,7 +25,8 @@ namespace Adyen\Util;
 
 class IpAddress
 {
-    const HOSTNAMES = array(
+    /** @const */
+    public static $HOSTNAMES = array(
         'out.adyen.com',
         'outgoing1.adyen.com',
         'outgoing2.adyen.com'
@@ -39,7 +40,7 @@ class IpAddress
     public function getAdyenIpAddresses()
     {
         $ipAddresses = array();
-        foreach (self::HOSTNAMES as $hostname) {
+        foreach (self::$HOSTNAMES as $hostname) {
             $ipAddresses = array_merge($ipAddresses, gethostbynamel($hostname));
         }
         return $ipAddresses;

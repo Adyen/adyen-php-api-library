@@ -29,7 +29,6 @@ class IpAddressTest extends \PHPUnit\Framework\TestCase
     public function testGetAdyenIpAddresses()
     {
         $ipAddress = new IpAddress();
-        $this->assertIsArray($ipAddress->getAdyenIpAddresses());
+        $this->assertTrue(is_array($ipAddress->getAdyenIpAddresses()));
     }
-
 }
