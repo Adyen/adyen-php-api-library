@@ -108,16 +108,10 @@ class CheckoutTest extends TestCaseMock
         $service = new \Adyen\Service\Checkout($client);
 
         $params = array('merchantAccount' => "YourMerchantAccount");
-        try {
-            $result = $service->paymentMethods($params);
-            $this->fail();
-        } catch (\Exception $e) {
-            $this->assertInstanceOf('Adyen\AdyenException', $e);
-            $this->assertStringContainsString($expectedExceptionMessage, $e->getMessage());
-            if ($httpStatus != null) {
-                $this->assertEquals($httpStatus, $e->getStatus());
-            }
-        }
+
+        $this->expectException('Adyen\AdyenException');
+        $this->expectExceptionMessage($expectedExceptionMessage);
+        $service->paymentMethods($params);
     }
 
     public static function failurePaymentMethodsProvider()
