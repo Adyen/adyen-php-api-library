@@ -32,23 +32,6 @@ class IpAddress
     );
 
     /**
-     * Validates if any of the Adyen webhook hostnames resolves to the provided IP address
-     *
-     * @param string $ipAddress
-     * @return bool
-     */
-    public function isAdyenIpAddress($ipAddress)
-    {
-        if (!empty($ipAddress) && filter_var($ipAddress, FILTER_VALIDATE_IP, [FILTER_FLAG_IPV4, FILTER_FLAG_IPV6])) {
-            $name = gethostbyaddr($ipAddress);
-            if (in_array($name, self::HOSTNAMES)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
      * Gets IP addresses for the Adyen webhook hostnames
      *
      * @return string[]
