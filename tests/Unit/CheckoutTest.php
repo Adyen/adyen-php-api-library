@@ -199,16 +199,9 @@ class CheckoutTest extends TestCaseMock
 
         $params['reference'] = 'yourownreference';
 
-        try {
-            $result = $service->payments($params);
-            $this->fail();
-        } catch (\Exception $e) {
-            $this->assertInstanceOf('Adyen\AdyenException', $e);
-            $this->assertStringContainsString($expectedExceptionMessage, $e->getMessage());
-            if ($httpStatus != null) {
-                $this->assertEquals($httpStatus, $e->getStatus());
-            }
-        }
+        $this->expectException('Adyen\AdyenException');
+        $this->expectExceptionMessage($expectedExceptionMessage);
+        $service->payments($params);
     }
 
 
