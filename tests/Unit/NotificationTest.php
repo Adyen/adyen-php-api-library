@@ -66,7 +66,7 @@ class NotificationTest extends TestCaseMock
 
         $result = $service->createNotificationConfiguration($params);
 
-        $this->assertContains($result['configurationDetails']['active'], array(true));
+        $this->assertEquals('true', $result['configurationDetails']['active']);
     }
 
     public static function successNotificationCreateProvider()
