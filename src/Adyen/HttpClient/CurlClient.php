@@ -368,7 +368,6 @@ class CurlClient implements ClientInterface
     {
         if (is_array($paramsToMaskList)) {
             foreach ($paramsToMaskList as $key => $paramsToMask) {
-
                 if (is_array($paramsToMask) && isset($params[$key])) {
                     // if $paramsToMask is an array and $params[$key] exists, $paramsToMask is an array of keys
                     $params[$key] = $this->maskParametersRecursive($paramsToMask, $params[$key]);
