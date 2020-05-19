@@ -102,6 +102,7 @@ class DisputeService extends \Adyen\Service
      */
     public function getResourceURL($endpoint)
     {
-        return $this->getClient()->getConfig()->get('endpointDisputeService') . '/' . $this->getClient()->getDisputeServiceVersion() . '/' . $endpoint;
+        return $this->getClient()->getConfig()->get('endpointDisputeService') . '/'
+            . $this->getClient()->getDisputeServiceVersion() . '/' . $endpoint;
     }
 }

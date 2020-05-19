@@ -11,7 +11,8 @@ class DefendDispute extends AbstractResource
      *
      * @param \Adyen\Service\DisputeService $service
      */
-    public function __construct($service) {
+    public function __construct($service)
+    {
         parent::__construct($service, $service->getResourceURL('defendDispute'));
     }
 }
