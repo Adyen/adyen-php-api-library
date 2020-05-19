@@ -9,6 +9,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          # Disabling shallow clone to improve relevancy of SonarCloud reporting
+          fetch-depth: 0
 
       - name: Validate composer.json and composer.lock
         run: composer validate
