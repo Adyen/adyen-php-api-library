@@ -20,7 +20,7 @@ jobs:
         run: composer install --prefer-dist --no-progress
 
       - name: Run test suite
-        run: vendor/bin/phpunit --testsuite=unit --coverage-clover build/clover.xml
+        run: vendor/bin/phpunit --testsuite=unit --coverage-clover build/clover.xml --log-junit build/tests-log.xml
 
       - name: Run PHP Code Sniffer
         run: vendor/bin/phpcs
