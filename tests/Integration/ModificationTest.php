@@ -1,19 +1,44 @@
 <?php
 /**
+ *                       ######
+ *                       ######
+ * ############    ####( ######  #####. ######  ############   ############
+ * #############  #####( ######  #####. ######  #############  #############
+ *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+ * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+ * ###### ######  #####( ######  #####. ######  #####          #####  ######
+ * #############  #############  #############  #############  #####  ######
+ *  ############   ############  #############   ############  #####  ######
+ *                                      ######
+ *                               #############
+ *                               ############
+ *
+ * Adyen API Library for PHP
+ *
+ * Copyright (c) 2020 Adyen B.V.
+ * This file is open source and available under the MIT license.
+ * See the LICENSE file for more info.
+ *
+ */
+
+/**
  * Created by PhpStorm.
  * User: rikt
  * Date: 11/6/15
  * Time: 2:39 PM
  */
 
-namespace Adyen;
+namespace Adyen\Integration;
+
+use Adyen\TestCase;
+use Adyen\Service;
 
 class ModificationTest extends TestCase
 {
     public function testCancelModification()
     {
         // create a payment
-        require_once __DIR__.'/CreatePaymentRequestTest.php';
+        require_once __DIR__ . '/CreatePaymentRequestTest.php';
         $test = new CreatePaymentRequestTest();
         $result = $test->testCreatePaymentSuccess();
 
@@ -33,7 +58,7 @@ class ModificationTest extends TestCase
     public function testRefundModification()
     {
         // create a payment
-        require_once __DIR__.'/CreatePaymentRequestTest.php';
+        require_once __DIR__ . '/CreatePaymentRequestTest.php';
         $test = new CreatePaymentRequestTest();
         $result = $test->testCreatePaymentSuccess();
 
@@ -63,7 +88,7 @@ class ModificationTest extends TestCase
     public function testAdjustDecreaseModification()
     {
         // create a payment
-        require_once __DIR__.'/CreatePaymentRequestTest.php';
+        require_once __DIR__ . '/CreatePaymentRequestTest.php';
         $test = new CreatePaymentRequestTest();
         $result = $test->testCreatePaymentSuccess();
 
@@ -90,7 +115,7 @@ class ModificationTest extends TestCase
     public function testAdjustIncreaseModification()
     {
         // create a payment
-        require_once __DIR__.'/CreatePaymentRequestTest.php';
+        require_once __DIR__ . '/CreatePaymentRequestTest.php';
         $test = new CreatePaymentRequestTest();
         $result = $test->testCreatePaymentSuccess();
 

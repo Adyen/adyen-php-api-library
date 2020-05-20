@@ -19,7 +19,21 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
 
-      - name: Run test suite
+      - name: Run integration tests
+        run: vendor/bin/phpunit --testsuite=unit --no-coverage
+        env:
+          INTEGRATION_USERNAME: ${{ secrets.INTEGRATION_USERNAME }}
+          INTEGRATION_PASSWORD: ${{ secrets.INTEGRATION_PASSWORD }}
+          INTEGRATION_X_API_KEY: ${{ secrets.INTEGRATION_X_API_KEY }}
+          INTEGRATION_MERCHANT_ACCOUNT: ${{ secrets.INTEGRATION_MERCHANT_ACCOUNT }}
+          INTEGRATION_SKIN_CODE: ${{ secrets.INTEGRATION_SKIN_CODE }}
+          INTEGRATION_HMAC_SIGNATURE: ${{ secrets.INTEGRATION_HMAC_SIGNATURE }}
+          INTEGRATION_STORE_PAYOUT_USERNAME: ${{ secrets.INTEGRATION_STORE_PAYOUT_USERNAME }}
+          INTEGRATION_STORE_PAYOUT_PASSWORD: ${{ secrets.INTEGRATION_STORE_PAYOUT_PASSWORD }}
+          INTEGRATION_REVIEW_PAYOUT_USERNAME: ${{ secrets.INTEGRATION_REVIEW_PAYOUT_USERNAME }}
+          INTEGRATION_REVIEW_PAYOUT_PASSWORD: ${{ secrets.INTEGRATION_REVIEW_PAYOUT_PASSWORD }}
+
+      - name: Run unit tests
         run: vendor/bin/phpunit --testsuite=unit --coverage-clover build/clover.xml --log-junit build/tests-log.xml
 
       # PHPUnit generates absolute file paths and SonarCloud expects relative file paths. This command removes the

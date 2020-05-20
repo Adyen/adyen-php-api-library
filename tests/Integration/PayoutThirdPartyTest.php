@@ -21,7 +21,10 @@
  *
  */
 
-namespace Adyen;
+namespace Adyen\Integration;
+
+use Adyen\TestCase;
+use Adyen\Service;
 
 class PayoutThirdPartyTest extends TestCase
 {
@@ -326,7 +329,7 @@ class PayoutThirdPartyTest extends TestCase
         // check if exception is correct
         $this->assertEquals('Adyen\AdyenException', get_class($e));
         $this->assertEquals(
-            'Invalid Request: Original pspReference is invalid for this environment!',
+            'Original pspReference required for this operation',
             $e->getMessage()
         );
     }
@@ -367,7 +370,7 @@ class PayoutThirdPartyTest extends TestCase
     public function testDeclinePayoutThirdPartyInvalidReference()
     {
         $this->expectException('Adyen\AdyenException');
-        $this->expectExceptionMessage('Invalid Request: Original pspReference is invalid for this environment!');
+        $this->expectExceptionMessage('Original pspReference required for this operation');
         // initialize client
         $client = $this->createReviewPayoutClient();
 
