@@ -2,13 +2,15 @@
 
 namespace Adyen;
 
+use Adyen\HttpClient\ClientInterface;
+use Adyen\HttpClient\CurlClient;
 use Psr\Log\LoggerInterface;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
 class Client
 {
-    const LIB_VERSION = "6.1.0";
+    const LIB_VERSION = "6.2.0";
     const LIB_NAME = "adyen-php-api-library";
     const USER_AGENT_SUFFIX = "adyen-php-api-library/";
     const ENDPOINT_TEST = "https://pal-test.adyen.com";
@@ -41,32 +43,32 @@ class Client
     const ENDPOINT_DISPUTE_SERVICE_LIVE = "https://ca-live.adyen.com/ca/services/DisputeService";
 
     /**
-     * @var \Adyen\Config $config
+     * @var Config|ConfigInterface
      */
     private $config;
 
     /**
-     * @var
+     * @var ClientInterface|null
      */
     private $httpClient;
 
     /**
-     * @var Logger $logger
+     * @var LoggerInterface|null
      */
     private $logger;
 
     /**
      * Client constructor.
      *
-     * @param null $config
+     * @param ConfigInterface|null $config
      * @throws AdyenException
      */
     public function __construct($config = null)
     {
-        if (!$config) {
+        if ($config === null) {
             // create config
-            $this->config = new \Adyen\Config();
-        } elseif ($config instanceof \Adyen\ConfigInterface) {
+            $this->config = new Config();
+        } elseif ($config instanceof ConfigInterface) {
             $this->config = $config;
         } else {
             throw new \Adyen\AdyenException(
@@ -77,7 +79,7 @@ class Client
     }
 
     /**
-     * @return Config|ConfigInterface|null
+     * @return Config|ConfigInterface
      */
     public function getConfig()
     {
@@ -397,36 +399,36 @@ class Client
     }
 
     /**
-     * @param HttpClient\ClientInterface $httpClient
+     * @param ClientInterface $httpClient
      */
-    public function setHttpClient(\Adyen\HttpClient\ClientInterface $httpClient)
+    public function setHttpClient(ClientInterface $httpClient)
     {
         $this->httpClient = $httpClient;
     }
 
     /**
-     * @return mixed
+     * @return ClientInterface
      */
     public function getHttpClient()
     {
-        if (is_null($this->httpClient)) {
+        if ($this->httpClient === null) {
             $this->httpClient = $this->createDefaultHttpClient();
         }
         return $this->httpClient;
     }
 
     /**
-     * @return HttpClient\CurlClient
+     * @return CurlClient
      */
     protected function createDefaultHttpClient()
     {
-        return new \Adyen\HttpClient\CurlClient();
+        return new CurlClient();
     }
 
     /**
      * Set the Logger object
      *
-     * @param \Psr\Log\LoggerInterface $logger
+     * @param LoggerInterface $logger
      */
     public function setLogger(LoggerInterface $logger)
     {
@@ -434,12 +436,11 @@ class Client
     }
 
     /**
-     * @return Logger
-     * @throws \Exception
+     * @return LoggerInterface
      */
     public function getLogger()
     {
-        if (!isset($this->logger)) {
+        if ($this->logger === null) {
             $this->logger = $this->createDefaultLogger();
         }
 
@@ -448,7 +449,6 @@ class Client
 
     /**
      * @return Logger
-     * @throws \Exception
      */
     protected function createDefaultLogger()
     {
