@@ -22,6 +22,11 @@ jobs:
       - name: Run test suite
         run: vendor/bin/phpunit --testsuite=unit --coverage-clover build/clover.xml --log-junit build/tests-log.xml
 
+      # PHPUnit generates absolute file paths and SonarCloud expects relative file paths. This command removes the
+      # current working directory from the report files.
+      - name: Clean up reports
+        run: sed -i "s;`pwd`/;;g" build/*.xml
+
       - name: Run PHP Code Sniffer
         run: vendor/bin/phpcs
 
