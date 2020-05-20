@@ -17,7 +17,8 @@ The Library supports all APIs under the following services:
 * Terminal API (Cloud based)
 
 ## Requirements
-PHP 5.3 or higher
+PHP >=5.3 for production
+PHP >=7.3 for development
 
 ## Installation ##
 You can use Composer or simply Download the Release
@@ -36,7 +37,7 @@ composer require adyen/php-api-library
 ```
 
 ## Usage
-To make the automatice testing cases working for your account change the credentials in the config/test.ini file.
+To make the automatic testing cases work for your account change the credentials in the config/test.ini file.
 
 ### Examples ###
 
