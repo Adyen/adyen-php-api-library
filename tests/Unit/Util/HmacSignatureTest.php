@@ -128,7 +128,7 @@ JSON
         }
     }
 
-    public function testisHmacSupportedEventCodeSuccess()
+    public function testisHmacSupportedEventCode()
     {
         $params = json_decode('{
 	            "pspReference": "7914073381342284",
@@ -141,7 +141,7 @@ JSON
 	            "eventCode": "AUTHORISATION",
 	            "success": "true"
 	        }', true);
-
+        $hmac = new HmacSignature();
         $hmacSupportedEventCode = $hmac->isHmacSupportedEventCode($params);
         $this->assertTrue($hmacSupportedEventCode);
     }
