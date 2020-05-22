@@ -110,7 +110,7 @@ class HmacSignature
      */
     public function isHmacSupportedEventCode($response)
     {
-        $eventCodes = [
+        $eventCodes =  array(
             "ADVICE_OF_DEBIT",
             "AUTHORISATION",
             "AUTHORISATION_PENDING",
@@ -152,7 +152,7 @@ class HmacSignature
             "AUTHORISATION_ADJUSTMENT",
             "CANCEL_AUTORESCUE",
             "AUTORESCUE"
-        ];
+        );
         if (array_key_exists('eventCode', $response) && in_array($response['eventCode'], $eventCodes)) {
             return true;
         }
