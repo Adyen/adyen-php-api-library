@@ -128,7 +128,7 @@ JSON
         }
     }
 
-    public function testisHmacSupportedEventCode()
+    public function testIsHmacSupportedEventCode()
     {
         $params = json_decode('{
 	            "pspReference": "7914073381342284",
@@ -142,7 +142,11 @@ JSON
 	            "success": "true"
 	        }', true);
         $hmac = new HmacSignature();
-        $hmacSupportedEventCode = $hmac->isHmacSupportedEventCode($params);
-        $this->assertTrue($hmacSupportedEventCode);
+        try {
+            $hmacSupportedEventCode = $hmac->isHmacSupportedEventCode($params);
+            $this->assertTrue($hmacSupportedEventCode);
+        } catch (AdyenException $e) {
+            $this->fail('Unexpected exception');
+        }
     }
 }
