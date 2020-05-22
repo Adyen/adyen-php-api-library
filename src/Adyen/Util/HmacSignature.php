@@ -103,4 +103,59 @@ class HmacSignature
 
         return $expectedSign == $merchantSign;
     }
+    /**
+     * Returns true when the event code support HMAC validation
+     *
+     * @param $response
+     */
+    public function isHmacSupportedEventCode($response)
+    {
+        $eventCodes = [
+            "ADVICE_OF_DEBIT",
+            "AUTHORISATION",
+            "AUTHORISATION_PENDING",
+            "AUTHORISE_REFERRAL",
+            "CANCELLATION",
+            "CANCEL_OR_REFUND",
+            "CAPTURE",
+            "CAPTURE_FAILED",
+            "CAPTURE_WITH_EXTERNAL_AUTH",
+            "CHARGEBACK",
+            "CHARGEBACK_REVERSED",
+            "DEACTIVATE_RECURRING",
+            "FRAUD_ONLY",
+            "FUND_TRANSFER",
+            "HANDLED_EXTERNALLY",
+            "MANUAL_REVIEW_ACCEPT",
+            "NOTIFICATION_OF_CHARGEBACK",
+            "NOTIFICATION_OF_FRAUD",
+            "OFFER_CLOSED",
+            "ORDER_OPENED",
+            "PAIDOUT_REVERSED",
+            "PAYOUT_DECLINE",
+            "PAYOUT_EXPIRE",
+            "PAYOUT_THIRDPARTY",
+            "PREARBITRATION_LOST",
+            "PREARBITRATION_WON",
+            "PROCESS_RETRY",
+            "RECURRING_CONTRACT",
+            "REFUND",
+            "REFUNDED_REVERSED",
+            "REFUND_FAILED",
+            "REFUND_WITH_DATA",
+            "REQUEST_FOR_INFORMATION",
+            "SECOND_CHARGEBACK",
+            "SUBMIT_RECURRING",
+            "VOID_PENDING_REFUND",
+            "POSTPONED_REFUND",
+            "TECHNICAL_CANCEL",
+            "AUTHORISATION_ADJUSTMENT",
+            "CANCEL_AUTORESCUE",
+            "AUTORESCUE"
+        ];
+        if (array_key_exists('eventCode', $response) && in_array($response['eventCode'], $eventCodes)) {
+            return true;
+        }
+        return false;
+    }
 }
