@@ -27,6 +27,7 @@ use Adyen\AdyenException;
 
 class HmacSignature
 {
+    const EVENTCODE = "eventCode";
     /**
      * @param string $hmacKey Can be found in Customer Area
      * @param array $params The response from Adyen
@@ -69,7 +70,7 @@ class HmacSignature
         // `empty` treats too many value types as empty. `isset` should prevent some of these cases.
         $value = (isset($params['amount']['value'])) ? $params['amount']['value'] : "";
         $currency = (!empty($params['amount']['currency'])) ? $params['amount']['currency'] : "";
-        $eventCode = (!empty($params['eventCode'])) ? $params['eventCode'] : "";
+        $eventCode = (!empty($params[self::EVENTCODE])) ? $params[self::EVENTCODE] : "";
         $success = (!empty($params['success'])) ? $params['success'] : "";
 
         $dataToSign = array(
@@ -153,7 +154,7 @@ class HmacSignature
             "CANCEL_AUTORESCUE",
             "AUTORESCUE"
         );
-        if (array_key_exists('eventCode', $response) && in_array($response['eventCode'], $eventCodes)) {
+        if (array_key_exists(self::EVENTCODE, $response) && in_array($response[self::EVENTCODE], $eventCodes)) {
             return true;
         }
         return false;
