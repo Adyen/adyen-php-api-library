@@ -20,7 +20,7 @@ jobs:
         run: composer install --prefer-dist --no-progress
 
       - name: Run integration tests
-        run: vendor/bin/phpunit --testsuite=unit --no-coverage
+        run: vendor/bin/phpunit --testsuite=integration --no-coverage
         env:
           INTEGRATION_USERNAME: ${{ secrets.INTEGRATION_USERNAME }}
           INTEGRATION_PASSWORD: ${{ secrets.INTEGRATION_PASSWORD }}
