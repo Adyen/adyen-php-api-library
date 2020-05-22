@@ -26,8 +26,18 @@ namespace Adyen\Integration;
 use Adyen\TestCase;
 use Adyen\Service;
 
+/**
+ * Class PayoutThirdPartyTest
+ *
+ * @package Adyen\Integration
+ */
 class PayoutThirdPartyTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        $this->markTestIncomplete('Configure Payout accounts');
+    }
+
     public function testStoreDetailAndSubmitPayoutThirdPartyMissingReference()
     {
         // initialize client
