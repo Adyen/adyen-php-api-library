@@ -17,7 +17,7 @@ The Library supports all APIs under the following services:
 * Terminal API (Cloud based)
 
 ## Requirements
-PHP >=5.6for production
+PHP >=5.6 for production
 PHP >=7.3 for development
 
 ## Legacy version support
