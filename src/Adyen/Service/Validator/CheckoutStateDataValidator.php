@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Adyen\Service\Validator;
-
 
 class CheckoutStateDataValidator
 {

@@ -3,7 +3,6 @@
 
 namespace Adyen\Tests\Integration;
 
-
 use Adyen\TestCase;
 
 class ValidatorTest extends TestCase

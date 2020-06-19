@@ -3,7 +3,6 @@
 
 namespace Adyen\Service\Validator;
 
-
 class DataArrayValidator
 {
     /**
