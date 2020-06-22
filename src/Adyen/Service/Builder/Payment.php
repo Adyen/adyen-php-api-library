@@ -76,7 +76,7 @@ class Payment
      * @param array $request
      * @return array
      */
-    private function build3DS2Data(
+    public function build3DS2Data(
         $origin,
         $request = array()
     ) {

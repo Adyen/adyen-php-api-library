@@ -120,29 +120,40 @@ class Customer
         $lastName,
         $request = array()
     ) {
+        // Use $request['paymentMethod']['personalDetails'] as default for personalDetails
+        if (!empty($request['paymentMethod']['personalDetails'])) {
+            $paymentMethodPersonalDetails = $request['paymentMethod']['personalDetails'];
+        }
+
         if (!empty($email)) {
-            $request['paymentMethod']['personalDetails']['shopperEmail'] = $email;
+            $paymentMethodPersonalDetails['shopperEmail'] = $email;
         }
 
         if (!empty($telephoneNumber)) {
-            $request['paymentMethod']['personalDetails']['telephoneNumber'] = $telephoneNumber;
+            $paymentMethodPersonalDetails['telephoneNumber'] = $telephoneNumber;
         }
 
         if (!empty($gender)) {
-            $request['paymentMethod']['personalDetails']['gender'] = $gender;
+            $paymentMethodPersonalDetails['gender'] = $gender;
         }
 
         if (!empty($dateOfBirth)) {
-            $request['paymentMethod']['personalDetails']['dateOfBirth'] = $dateOfBirth;
+            $paymentMethodPersonalDetails['dateOfBirth'] = $dateOfBirth;
         }
 
         if (!empty($firstName)) {
-            $request['paymentMethod']['personalDetails']['firstName'] = $firstName;
+            $paymentMethodPersonalDetails['firstName'] = $firstName;
         }
 
         if (!empty($lastName)) {
-            $request['paymentMethod']['personalDetails']['lastName'] = $lastName;
+            $paymentMethodPersonalDetails['lastName'] = $lastName;
         }
+
+        // Reassing modified personalDetails into request array
+        if (isset($paymentMethodPersonalDetails)) {
+            $request['paymentMethod']['personalDetails'] = $paymentMethodPersonalDetails;
+        }
+
         return $request;
     }
 
@@ -175,20 +186,29 @@ class Customer
             $request['telephoneNumber'] = $telephoneNumber;
         }
 
-        if (!empty($gender)) {
-            $request['shopperName']['gender'] = $gender;
-        }
-
         if (!empty($dateOfBirth)) {
             $request['dateOfBirth'] = $dateOfBirth;
         }
 
+        // Use $request['shopperName'] as default for request shopperName array
+        if (!empty($request['shopperName'])) {
+            $shopperName = $request['shopperName'];
+        }
+
+        if (!empty($gender)) {
+            $shopperName['gender'] = $gender;
+        }
+
         if (!empty($firstName)) {
-            $request['shopperName']['firstName'] = $firstName;
+            $shopperName['firstName'] = $firstName;
         }
 
         if (!empty($lastName)) {
-            $request['shopperName']['lastName'] = $lastName;
+            $shopperName['lastName'] = $lastName;
+        }
+
+        if (isset($shopperName)) {
+            $request['shopperName'] = $shopperName;
         }
 
         return $request;

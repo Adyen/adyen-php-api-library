@@ -32,7 +32,6 @@ use Psr\Log\LoggerInterface;
 
 class NotificationReceiver
 {
-
     /**
      * @var string
      */
@@ -113,7 +112,7 @@ class NotificationReceiver
         }
 
         // validate username and password
-        if ((!isset($_SERVER['PHP_AUTH_USER']) && !isset($_SERVER['PHP_AUTH_PW']))) {
+        if (!isset($_SERVER['PHP_AUTH_USER']) && !isset($_SERVER['PHP_AUTH_PW'])) {
             if ($isTestNotification) {
                 $message = 'Authentication failed: PHP_AUTH_USER and PHP_AUTH_PW are empty.';
                 $this->logger->addAdyenNotification($message);
@@ -129,20 +128,19 @@ class NotificationReceiver
             throw new HMACKeyValidationException($message);
         }
 
-        $usernameCmp = strcmp($_SERVER['PHP_AUTH_USER'], $this->notificationUsername);
-        $passwordCmp = strcmp($_SERVER['PHP_AUTH_PW'], $this->notificationPassword);
-        if ($usernameCmp === 0 && $passwordCmp === 0) {
+        $usernameIsValid = hash_equals($this->notificationUsername, $_SERVER['PHP_AUTH_USER']);
+        $passwordIsValid = hash_equals($this->notificationPassword, $_SERVER['PHP_AUTH_PW']);
+        if ($usernameIsValid && $passwordIsValid) {
             return true;
         }
 
         // If notification is test check if fields are correct if not return error
         if ($isTestNotification) {
-            if ($usernameCmp != 0 || $passwordCmp != 0) {
-                $message = 'username and\or password are not the same as in settings';
-                $this->logger->addAdyenNotification($message);
-                throw new AuthenticationException($message);
-            }
+            $message = 'username and\or password are not the same as in settings';
+            $this->logger->addAdyenNotification($message);
+            throw new AuthenticationException($message);
         }
+
         return false;
     }
 
@@ -156,8 +154,8 @@ class NotificationReceiver
     protected function validateNotificationMode($notificationMode, $testMode)
     {
         // Notification mode can be a string or a boolean
-        if (($testMode && ($notificationMode == 'false' || $notificationMode == false)) ||
-            (!$testMode && ($notificationMode == 'true' || $notificationMode == true))
+        if (($testMode && ($notificationMode == 'false' || !$notificationMode)) ||
+            (!$testMode && ($notificationMode == 'true' || $notificationMode))
         ) {
             return true;
         }
@@ -202,7 +200,7 @@ class NotificationReceiver
      * @param $acceptedMessage
      * @return string
      */
-    private function returnAccepted($acceptedMessage)
+    public function returnAccepted($acceptedMessage)
     {
         if (empty($acceptedMessage)) {
             $acceptedMessage = '[accepted]';
