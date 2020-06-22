@@ -50,11 +50,11 @@ class Crypto
         $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length($this->method));
         // Encrypt the data using AES 256 encryption in CBC mode using our encryption key and initialization vector.
         return bin2hex($iv) . openssl_encrypt(
-                $data,
-                $this->method,
-                $this->configuration->sslEncryptionKey,
-                0,
-                $iv
-            );
+            $data,
+            $this->method,
+            $this->configuration->sslEncryptionKey,
+            0,
+            $iv
+        );
     }
 }
