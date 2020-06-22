@@ -1,12 +1,37 @@
 <?php
 /**
+ *                       ######
+ *                       ######
+ * ############    ####( ######  #####. ######  ############   ############
+ * #############  #####( ######  #####. ######  #############  #############
+ *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+ * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+ * ###### ######  #####( ######  #####. ######  #####          #####  ######
+ * #############  #############  #############  #############  #####  ######
+ *  ############   ############  #############   ############  #####  ######
+ *                                      ######
+ *                               #############
+ *                               ############
+ *
+ * Adyen API Library for PHP
+ *
+ * Copyright (c) 2020 Adyen B.V.
+ * This file is open source and available under the MIT license.
+ * See the LICENSE file for more info.
+ *
+ */
+
+/**
  * Created by PhpStorm.
  * User: rikt
  * Date: 11/6/15
  * Time: 1:07 PM
  */
 
-namespace Adyen;
+namespace Adyen\Integration;
+
+use Adyen\TestCase;
+use Adyen\Service;
 
 class RecurringTest extends TestCase
 {

@@ -17,7 +17,13 @@ The Library supports all APIs under the following services:
 * Terminal API (Cloud based)
 
 ## Requirements
-PHP 5.3 or higher
+PHP >=5.6 for production
+PHP >=7.3 for development
+
+## Legacy version support
+In case that you are using one of the older PHP versions 5.3, 5.4 or 5.5 you can download previous library 
+version 6 which can be found in [releases page](https://github.com/Adyen/adyen-php-api-library/releases). We are going to bump or patch version 6 if there is a request from merchants or it is used for one of our plugins.
+
 
 ## Installation ##
 You can use Composer or simply Download the Release
@@ -36,7 +42,7 @@ composer require adyen/php-api-library
 ```
 
 ## Usage
-To make the automatice testing cases working for your account change the credentials in the config/test.ini file.
+To make the automatic testing cases work for your account change the credentials in the config/test.ini file.
 
 ### Examples ###
 
@@ -130,7 +136,7 @@ For the test cases you need the PCI permission enabled on you account. There are
 By default the test will then be skipped. If you have these permissions fill in your account details in the config/test.ini file to let the test work.
 
 ## Support
-If you have any problems, questions or suggestions, create an issue here or send your inquiry to support@adyen.com.
+If you have a feature request, or spotted a bug or a technical problem, create a GitHub issue. For other questions, contact our [support team](https://support.adyen.com/hc/en-us/requests/new?ticket_form_id=360000705420).
 
 ## Contributing
 We strongly encourage you to join us in contributing to this repository so everyone can benefit from:

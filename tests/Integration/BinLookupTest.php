@@ -21,9 +21,10 @@
  *
  */
 
-namespace Adyen;
+namespace Adyen\Integration;
 
-use Adyen\Util\Util;
+use Adyen\TestCase;
+use Adyen\Service;
 
 class BinLookupTest extends TestCase
 {

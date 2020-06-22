@@ -1,4 +1,25 @@
 <?php
+/**
+ *                       ######
+ *                       ######
+ * ############    ####( ######  #####. ######  ############   ############
+ * #############  #####( ######  #####. ######  #############  #############
+ *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+ * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+ * ###### ######  #####( ######  #####. ######  #####          #####  ######
+ * #############  #############  #############  #############  #####  ######
+ *  ############   ############  #############   ############  #####  ######
+ *                                      ######
+ *                               #############
+ *                               ############
+ *
+ * Adyen API Library for PHP
+ *
+ * Copyright (c) 2020 Adyen B.V.
+ * This file is open source and available under the MIT license.
+ * See the LICENSE file for more info.
+ *
+ */
 
 namespace Adyen;
 
@@ -18,7 +39,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
     public function __construct($name = null, array $data = [], $dataName = '')
     {
         parent::__construct($name, $data, $dataName);
-        $this->settings = $this->loadConfigIni();
+        $this->settings = $this->loadConfig();
         $this->merchantAccount = $this->getMerchantAccount();
         $this->skinCode = $this->getSkinCode();
         $this->hmacSignature = $this->getHmacSignature();
@@ -252,6 +273,25 @@ class TestCase extends \PHPUnit\Framework\TestCase
         return $settings['POIID'];
     }
 
+    protected function loadConfig()
+    {
+        if (file_exists($this->getTestFilePath())) {
+            return $this->loadConfigIni();
+        }
+        return array(
+            'username' => getenv('INTEGRATION_USERNAME'),
+            'password' => getenv('INTEGRATION_PASSWORD'),
+            'x-api-key' => getenv('INTEGRATION_X_API_KEY'),
+            'merchantAccount' => getenv('INTEGRATION_MERCHANT_ACCOUNT'),
+            'skinCode' => getenv('INTEGRATION_SKIN_CODE'),
+            'hmacSignature' => getenv('INTEGRATION_HMAC_SIGNATURE'),
+            'storePayoutUsername' => getenv('INTEGRATION_STORE_PAYOUT_USERNAME'),
+            'storePayoutPassword' => getenv('INTEGRATION_STORE_PAYOUT_PASSWORD'),
+            'reviewPayoutUsername' => getenv('INTEGRATION_REVIEW_PAYOUT_USERNAME'),
+            'reviewPayoutPassword' => getenv('INTEGRATION_REVIEW_PAYOUT_PASSWORD'),
+        );
+    }
+
     /**
      * Loads the settings into and array from the config/test.ini file
      *
@@ -259,7 +299,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
      */
     protected function loadConfigIni()
     {
-        return parse_ini_file(__DIR__ . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'test.ini', true);
+        return parse_ini_file($this->getTestFilePath(), true);
     }
 
 
@@ -312,5 +352,13 @@ class TestCase extends \PHPUnit\Framework\TestCase
         $method = $class->getMethod($name);
         $method->setAccessible(true);
         return $method;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getTestFilePath()
+    {
+        return __DIR__ . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'test.ini';
     }
 }

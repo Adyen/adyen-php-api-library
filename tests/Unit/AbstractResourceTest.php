@@ -209,7 +209,7 @@ class AbstractResourceTest extends TestCase
         $this->assertArrayHasKey("adyenLibrary", $resultArray['applicationInfo']);
     }
 
-    public function testHandleApplicationInfoInRequestPOSWithQueryStringSaleToAcquirerDataAddBase64EncodedApplicationInfo()
+    public function testHandleApplicationInfoInRequestPOSQueryStringSaleToAcquirerDataAddBase64EncodedApplicationInfo()
     {
         $json = '{
                     "SaleToPOIRequest": {

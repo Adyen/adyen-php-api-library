@@ -21,8 +21,10 @@
  *
  */
 
-namespace Adyen;
+namespace Adyen\Integration;
 
+use Adyen\TestCase;
+use Adyen\Service;
 use Adyen\Util\Uuid;
 
 class CheckoutTest extends TestCase
