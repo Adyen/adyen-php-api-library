@@ -62,22 +62,4 @@ class OpenInvoice
 
         return $lineItem;
     }
-
-    /**
-     * For Klarna And AfterPay use Vat category High others use none
-     *
-     * @param $paymentMethod
-     * @return string 'High'/'None'
-     */
-    public function getVatCategory($paymentMethod)
-    {
-        if ($paymentMethod == "klarna" ||
-            strlen($paymentMethod) >= 9 &&
-            mb_substr($paymentMethod, 0, 9) == 'afterpay_'
-        ) {
-            return 'High';
-        }
-
-        return 'None';
-    }
 }
