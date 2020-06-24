@@ -9,7 +9,7 @@ class OpenInvoiceTest extends TestCase
     public function testBuildOpenInvoiceLineItem()
     {
         $expectedResult = array(
-            'id' => 1,
+            'id' => "1",
             'itemId' => 1,
             'description' => "item-description",
             'amountExcludingTax' => 1000,
