@@ -8,11 +8,6 @@ use Adyen\TestCase;
 
 class AddressTest extends TestCase
 {
-    /**
-     * @var string
-     */
-    private static $browserInfo = 'browserInfo';
-
     public function testBuildBillingAddress()
     {
         $expectedResult = array(

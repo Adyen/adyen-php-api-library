@@ -17,8 +17,8 @@ class Browser
      * @param bool $javaEnabled
      * @param array $request
      * @return array
+     * NOSONAR
      */
-    //NOSONAR
     public function buildBrowserData(
         $userAgent = '',
         $acceptHeader = '',
