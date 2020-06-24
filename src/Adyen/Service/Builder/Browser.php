@@ -3,7 +3,9 @@
 
 namespace Adyen\Service\Builder;
 
-
+/**
+ * NOSONAR
+ */
 class Browser
 {
     /**
@@ -17,7 +19,6 @@ class Browser
      * @param bool $javaEnabled
      * @param array $request
      * @return array
-     * NOSONAR
      */
     public function buildBrowserData(
         $userAgent = '',
