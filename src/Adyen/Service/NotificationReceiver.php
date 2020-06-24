@@ -79,12 +79,17 @@ class NotificationReceiver
     {
         $submittedMerchantAccount = $response['merchantAccountCode'];
 
+        $usernameIsValid = hash_equals($notificationUsername, $_SERVER['PHP_AUTH_USER']);
+        $passwordIsValid = hash_equals($notificationPassword, $_SERVER['PHP_AUTH_PW']);
+        if ($usernameIsValid && $passwordIsValid) {
+            return true;
+        }
+
         $isTestNotification = $this->isTestNotification($response['pspReference']);
         if (empty($submittedMerchantAccount) && empty($merchantAccount)) {
             if ($isTestNotification) {
                 throw new MerchantAccountCodeException('merchantAccountCode is empty in settings');
             }
-            return false;
         }
         // validate username and password
         if (!isset($_SERVER['PHP_AUTH_USER']) && !isset($_SERVER['PHP_AUTH_PW'])) {
@@ -92,15 +97,7 @@ class NotificationReceiver
                 $message = 'Authentication failed: PHP_AUTH_USER and PHP_AUTH_PW are empty.';
                 throw new AuthenticationException($message);
             }
-            return false;
         }
-
-        $usernameIsValid = hash_equals($notificationUsername, $_SERVER['PHP_AUTH_USER']);
-        $passwordIsValid = hash_equals($notificationPassword, $_SERVER['PHP_AUTH_PW']);
-        if ($usernameIsValid && $passwordIsValid) {
-            return true;
-        }
-
         // If notification is test check if fields are correct if not return error
         if ($isTestNotification) {
             $message = 'username and\or password are not the same as in settings';
