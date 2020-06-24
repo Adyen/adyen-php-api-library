@@ -34,7 +34,7 @@ class PaymentTest extends TestCase
             )
         );
         $payment = new Payment();
-        $result = $payment->buildAlternativePaymentMethodData('ideal', 'testIssuer', $request = array());
+        $result = $payment->buildAlternativePaymentMethodData('ideal', 'testIssuer', array());
         $this->assertEquals($result, $expectedResult);
     }
     public function testBuild3DS2Data()
@@ -44,10 +44,10 @@ class PaymentTest extends TestCase
                 'allow3DS2' => true
             ),
             'channel'=>'web',
-            'origin'=>'origin'
+            'origin'=>'theorigin'
         );
         $payment = new Payment();
-        $result = $payment->build3DS2Data('origin', $request = array());
+        $result = $payment->build3DS2Data('theorigin', array());
         $this->assertEquals($result, $expectedResult);
     }
 }

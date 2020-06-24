@@ -18,7 +18,7 @@ class OpenInvoiceTest extends \PHPUnit\Framework\TestCase
         $openInvoice = new OpenInvoice();
         $result = $openInvoice->isOpenInvoicePaymentMethod("klarna");
         $this->assertTrue($result);
-        $result = $openInvoice->isOpenInvoicePaymentMethod("ideal");
+        $result = $openInvoice->isOpenInvoicePaymentMethod("wechat");
         $this->assertFalse($result);
     }
 
@@ -27,7 +27,7 @@ class OpenInvoiceTest extends \PHPUnit\Framework\TestCase
         $openInvoice = new OpenInvoice();
         $result = $openInvoice->isAfterPayTouchPaymentMethod("afterpaytouch");
         $this->assertTrue($result);
-        $result = $openInvoice->isAfterPayTouchPaymentMethod("klarna");
+        $result = $openInvoice->isAfterPayTouchPaymentMethod("alipay");
         $this->assertFalse($result);
     }
 }

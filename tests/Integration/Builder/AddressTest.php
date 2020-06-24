@@ -8,19 +8,24 @@ use Adyen\TestCase;
 
 class AddressTest extends TestCase
 {
+    /**
+     * @var string
+     */
+    private static $browserInfo = 'browserInfo';
+
     public function testBuildBillingAddress()
     {
         $expectedResult = array(
             'billingAddress' => array(
-                'street' => "street",
+                'street' => "Blauwbrug",
                 'houseNumberOrName' => "33",
-                'postalCode' => "1333aa",
+                'postalCode' => "1334aa",
                 'city' => "Amsterdam",
                 'country' => "NL"
             )
         );
         $address = new Address();
-        $result = $address->buildBillingAddress("street", "33", "1333aa", "Amsterdam", "", "NL");
+        $result = $address->buildBillingAddress("Blauwbrug", "33", "1334aa", "Amsterdam", "", "NL");
         $this->assertEquals($result, $expectedResult);
     }
 
@@ -28,15 +33,15 @@ class AddressTest extends TestCase
     {
         $expectedResult = array(
             'deliveryAddress' => array(
-                'street' => "street",
+                'street' => "straat",
                 'houseNumberOrName' => "33",
                 'postalCode' => "1333aa",
-                'city' => "Amsterdam",
+                'city' => "Leiden",
                 'country' => "NL"
             )
         );
         $address = new Address();
-        $result = $address->buildDeliveryAddress("street", "33", "1333aa", "Amsterdam", "", "NL");
+        $result = $address->buildDeliveryAddress("straat", "33", "1333aa", "Leiden", "", "NL");
         $this->assertEquals($result, $expectedResult);
     }
 }
