@@ -18,6 +18,7 @@ class Browser
      * @param array $request
      * @return array
      */
+    //NOSONAR
     public function buildBrowserData(
         $userAgent = '',
         $acceptHeader = '',
