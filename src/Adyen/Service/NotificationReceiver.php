@@ -81,14 +81,20 @@ class NotificationReceiver
         $submittedMerchantAccount = $response['merchantAccountCode'];
 
         $isTestNotification = $this->isTestNotification($response['pspReference']);
-        if ((empty($submittedMerchantAccount) || empty($merchantAccount)) && $isTestNotification) {
-            throw new MerchantAccountCodeException('merchantAccountCode is empty in settings or in the notification');
+        if (empty($submittedMerchantAccount) || empty($merchantAccount)) {
+            if ($isTestNotification) {
+                throw new MerchantAccountCodeException(
+                    'merchantAccountCode is empty in settings or in the notification'
+                );
+            }
             return false;
         }
         // validate username and password
-        if ((!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])) && $isTestNotification) {
-            $message = 'Authentication failed: PHP_AUTH_USER or PHP_AUTH_PW are empty.';
-            throw new AuthenticationException($message);
+        if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])) {
+            if ($isTestNotification) {
+                $message = 'Authentication failed: PHP_AUTH_USER or PHP_AUTH_PW are empty.';
+                throw new AuthenticationException($message);
+            }
             return false;
         }
 
