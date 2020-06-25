@@ -36,7 +36,7 @@ class Browser
      * @param bool $javaEnabled
      * @param array $request
      * @return array
-     * @SuppressWarnings(‘all’)
+     * @SuppressWarnings:php:S107
      */
     public function buildBrowserData(
         $userAgent = '',
