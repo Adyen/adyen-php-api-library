@@ -46,3 +46,4 @@ class OpenInvoiceTest extends TestCase
         $this->assertEquals($result, $expectedResult);
     }
 }
+

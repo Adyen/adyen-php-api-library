@@ -1,4 +1,26 @@
 <?php
+/**
+ *                       ######
+ *                       ######
+ * ############    ####( ######  #####. ######  ############   ############
+ * #############  #####( ######  #####. ######  #############  #############
+ *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+ * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+ * ###### ######  #####( ######  #####. ######  #####          #####  ######
+ * #############  #############  #############  #############  #####  ######
+ *  ############   ############  #############   ############  #####  ######
+ *                                      ######
+ *                               #############
+ *                               ############
+ *
+ * Adyen API Library for PHP
+ *
+ * Copyright (c) 2020 Adyen N.V.
+ * This file is open source and available under the MIT license.
+ * See the LICENSE file for more info.
+ *
+ */
+
 namespace Adyen\Util;
 
 class OpenInvoice
@@ -45,10 +67,8 @@ class OpenInvoice
      */
     public function getVatCategory($paymentMethod)
     {
-        if ($paymentMethod == "klarna" ||
-            strlen($paymentMethod) >= 9 &&
-            mb_substr($paymentMethod, 0, 9) == 'afterpay_'
-        ) {
+        if (mb_substr($paymentMethod, 0, 6) == self::KLARNA_PAYMENT_METHOD ||
+            mb_substr($paymentMethod, 0, 8) == self::AFTERPAY_PAYMENT_METHOD) {
             return 'High';
         }
         return 'None';

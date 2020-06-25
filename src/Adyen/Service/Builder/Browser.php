@@ -25,6 +25,8 @@ namespace Adyen\Service\Builder;
 
 class Browser
 {
+    const BROWSER_INFO = 'browserInfo';
+
     /**
      * @param string $userAgent
      * @param string $acceptHeader
@@ -49,36 +51,35 @@ class Browser
         $javaEnabled = false,
         $request = array()
     ) {
-        $browserInfo = 'browserInfo';
         if (!empty($userAgent)) {
-            $request[$browserInfo]['userAgent'] = $userAgent;
+            $request[self::BROWSER_INFO]['userAgent'] = $userAgent;
         }
 
         if (!empty($acceptHeader)) {
-            $request[$browserInfo]['acceptHeader'] = $acceptHeader;
+            $request[self::BROWSER_INFO]['acceptHeader'] = $acceptHeader;
         }
 
         if (!empty($screenWidth)) {
-            $request[$browserInfo]['screenWidth'] = $screenWidth;
+            $request[self::BROWSER_INFO]['screenWidth'] = $screenWidth;
         }
 
         if (!empty($screenHeight)) {
-            $request[$browserInfo]['screenHeight'] = $screenHeight;
+            $request[self::BROWSER_INFO]['screenHeight'] = $screenHeight;
         }
 
         if (!empty($colorDepth)) {
-            $request[$browserInfo]['colorDepth'] = $colorDepth;
+            $request[self::BROWSER_INFO]['colorDepth'] = $colorDepth;
         }
 
         if (!empty($timeZoneOffset)) {
-            $request[$browserInfo]['timeZoneOffset'] = $timeZoneOffset;
+            $request[self::BROWSER_INFO]['timeZoneOffset'] = $timeZoneOffset;
         }
 
         if (!empty($language)) {
-            $request[$browserInfo]['language'] = $language;
+            $request[self::BROWSER_INFO]['language'] = $language;
         }
 
-        $request[$browserInfo]['javaEnabled'] = $javaEnabled;
+        $request[self::BROWSER_INFO]['javaEnabled'] = $javaEnabled;
 
         return $request;
     }
