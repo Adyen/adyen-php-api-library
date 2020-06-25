@@ -32,7 +32,7 @@ class OpenInvoiceTest extends TestCase
     {
         $expectedResult = array(
             'id' => "1",
-            'itemId' => 1,
+            'itemId' => "1",
             'description' => "item-description",
             'amountExcludingTax' => 1000,
             'taxAmount' => 21,
@@ -42,7 +42,7 @@ class OpenInvoiceTest extends TestCase
 
         );
         $openInvoice = new OpenInvoice();
-        $result = $openInvoice->buildOpenInvoiceLineItem("item-description", 1000, 21, 10, 10, "vat", 1);
+        $result = $openInvoice->buildOpenInvoiceLineItem("item-description", 1000, 21, 10, 10, "vat", "1");
         $this->assertEquals($result, $expectedResult);
     }
 }

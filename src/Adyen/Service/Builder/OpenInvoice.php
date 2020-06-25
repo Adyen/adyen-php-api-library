@@ -34,7 +34,7 @@ class OpenInvoice
      * @param float $itemVatPercentage
      * @param int $numberOfItems
      * @param string $vatCategory
-     * @param int $itemId
+     * @param string $itemId
      * @return mixed
      */
     public function buildOpenInvoiceLineItem(
@@ -44,11 +44,11 @@ class OpenInvoice
         $itemVatPercentage,
         $numberOfItems,
         $vatCategory,
-        $itemId = 0
+        $itemId
     ) {
         $lineItem = array();
         // item id is optional
-        if (0 !== $itemId) {
+        if (!empty($itemId)) {
             $lineItem['id'] = $itemId;
             $lineItem['itemId'] = $itemId;
         }
