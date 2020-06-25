@@ -75,7 +75,7 @@ class NotificationReceiver
      * @throws AuthenticationException
      * @throws MerchantAccountCodeException
      */
-    protected function isAuthenticated($response, $merchantAccount, $notificationUsername, $notificationPassword)
+    public function isAuthenticated($response, $merchantAccount, $notificationUsername, $notificationPassword)
     {
         $submittedMerchantAccount = $response['merchantAccountCode'];
 
