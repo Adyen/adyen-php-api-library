@@ -127,4 +127,26 @@ JSON
             $this->fail('Unexpected exception');
         }
     }
+
+    public function testIsHmacSupportedEventCode()
+    {
+        $params = json_decode('{
+	            "pspReference": "7914073381342284",
+	            "merchantAccountCode": "TestMerchant",
+	            "merchantReference": "TestPayment-1407325143704",
+	            "amount": {
+	                "value": 0,
+	                "currency": "EUR"
+	            },
+	            "eventCode": "AUTHORISATION",
+	            "success": "true"
+	        }', true);
+        $hmac = new HmacSignature();
+        try {
+            $hmacSupportedEventCode = $hmac->isHmacSupportedEventCode($params);
+            $this->assertTrue($hmacSupportedEventCode);
+        } catch (AdyenException $e) {
+            $this->fail('Unexpected exception');
+        }
+    }
 }
