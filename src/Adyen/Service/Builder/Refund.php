@@ -43,7 +43,7 @@ class Refund
 
         return
             array(
-                'originalReference' => $pspReference,
+                'originalReference' => $originalPspReference,
                 'modificationAmount' => array(
                     'value' => $amount,
                     'currency' => $currency
