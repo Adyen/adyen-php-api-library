@@ -25,6 +25,10 @@ namespace Adyen\Service\Builder;
 
 class Customer
 {
+    const PAYMENT_METHOD = 'paymentMethod';
+    const PERSONAL_DETAILS = 'personalDetails';
+    const SHOPPER_NAME = 'shopperName';
+
     /**
      * Builds the customer related data
      *
@@ -121,8 +125,8 @@ class Customer
         $request = array()
     ) {
         // Use $request['paymentMethod']['personalDetails'] as default for personalDetails
-        if (!empty($request['paymentMethod']['personalDetails'])) {
-            $paymentMethodPersonalDetails = $request['paymentMethod']['personalDetails'];
+        if (!empty($request[self::PAYMENT_METHOD][self::PERSONAL_DETAILS])) {
+            $paymentMethodPersonalDetails = $request[self::PAYMENT_METHOD][self::PERSONAL_DETAILS];
         }
 
         if (!empty($email)) {
@@ -151,7 +155,7 @@ class Customer
 
         // Reassing modified personalDetails into request array
         if (isset($paymentMethodPersonalDetails)) {
-            $request['paymentMethod']['personalDetails'] = $paymentMethodPersonalDetails;
+            $request[self::PAYMENT_METHOD][self::PERSONAL_DETAILS] = $paymentMethodPersonalDetails;
         }
 
         return $request;
@@ -191,8 +195,8 @@ class Customer
         }
 
         // Use $request['shopperName'] as default for request shopperName array
-        if (!empty($request['shopperName'])) {
-            $shopperName = $request['shopperName'];
+        if (!empty($request[self::SHOPPER_NAME])) {
+            $shopperName = $request[self::SHOPPER_NAME];
         }
 
         if (!empty($gender)) {
@@ -208,7 +212,7 @@ class Customer
         }
 
         if (isset($shopperName)) {
-            $request['shopperName'] = $shopperName;
+            $request[self::SHOPPER_NAME] = $shopperName;
         }
 
         return $request;
