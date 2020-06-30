@@ -21,8 +21,8 @@ PHP >=5.6 for production
 PHP >=7.3 for development
 
 ## Legacy version support
-In case that you are using one of the older PHP versions 5.3, 5.4 or 5.5 you can download previous library 
-version 6 which can be found in [releases page](https://github.com/Adyen/adyen-php-api-library/releases). We are going to bump or patch version 6 if there is a request from merchants or it is used for one of our plugins.
+In case that you are using one of the older PHP versions 5.3, 5.4 or 5.5 you can download the previous library 
+version 6 which can be found in the [releases page](https://github.com/Adyen/adyen-php-api-library/releases). We are going to bump or patch version 6 if there is a request from merchants or if it's used for one of our plugins.
 
 
 ## Installation ##
