@@ -36,7 +36,7 @@ class Refund
      *
      * @return array
      */
-    public function buildRefundRequest($orderAmount, $orderId, $pspReference, $currency, $merchantAccount)
+    public function buildRefundRequest($orderAmount, $orderId, $originalPspReference, $currency, $merchantAccount)
     {
         $currencyConverter = new Currency();
         $amount = $currencyConverter->sanitize($orderAmount, $currency);
