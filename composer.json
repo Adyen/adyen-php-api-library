@@ -8,8 +8,11 @@
   "homepage": "https://github.com/Adyen/adyen-php-api-library",
   "license": "Apache-2.0",
   "require": {
-    "php": ">=5.3",
-    "monolog/monolog": "^1.16"
+    "php": ">=5.6",
+    "monolog/monolog": ">=1.16",
+    "ext-openssl": "*",
+    "ext-ctype": "*",
+    "ext-mbstring": "*"
   },
   "require-dev": {
     "dms/phpunit-arraysubset-asserts": "0.2.0",
