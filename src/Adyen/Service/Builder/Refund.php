@@ -29,7 +29,7 @@ class Refund
 {
     /**
      * @param $orderAmount
-     * @param stirng $orderId
+     * @param string $orderId
      * @param string $originalPspReference
      * @param string $currency
      * @param string $merchantAccount
