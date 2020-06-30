@@ -29,7 +29,6 @@ class OpenInvoice
     const AFTERPAY_B2B_PAYMENT_METHOD = 'afterpay_b2b';
     const AFTERPAY_DEFAULT_PAYMENT_METHOD = 'afterpay_default';
     const AFTERPAY_DIRECTDEBIT_PAYMENT_METHOD = 'afterpay_directdebit';
-
     const AFTERPAYTOUCH_PAYMENT_METHOD = 'afterpaytouch';
 
     const RATEPAY_PAYMENT_METHOD = 'ratepay';
