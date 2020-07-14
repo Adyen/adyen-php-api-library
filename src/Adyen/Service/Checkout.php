@@ -30,6 +30,11 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
     protected $paymentsDetails;
 
     /**
+     * @var ResourceModel\Checkout\PaymentLinks
+     */
+    protected $paymentLinks;
+
+    /**
      * Checkout constructor.
      *
      * @param \Adyen\Client $client
@@ -43,6 +48,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
         $this->paymentMethods = new \Adyen\Service\ResourceModel\Checkout\PaymentMethods($this);
         $this->payments = new \Adyen\Service\ResourceModel\Checkout\Payments($this);
         $this->paymentsDetails = new \Adyen\Service\ResourceModel\Checkout\PaymentsDetails($this);
+        $this->paymentLinks = new \Adyen\Service\ResourceModel\Checkout\PaymentLinks($this);
     }
 
     /**
@@ -100,5 +106,16 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
     {
         $result = $this->paymentsDetails->request($params, $requestOptions);
         return $result;
+    }
+
+    /**
+     * @param array $params
+     * @param array|null $requestOptions
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+    public function paymentLinks($params, $requestOptions = null)
+    {
+        return $this->paymentLinks->request($params, $requestOptions);
     }
 }
