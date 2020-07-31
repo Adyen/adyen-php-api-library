@@ -18,7 +18,9 @@ class CheckoutStateDataValidator
         'browserInfo',
         'installments',
         'storePaymentMethod',
-        'conversionId'
+        'conversionId',
+        'paymentData',
+        'details'
     );
 
     /**
