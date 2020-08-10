@@ -315,4 +315,88 @@ class CheckoutTest extends TestCaseMock
             array('tests/Resources/Checkout/payments-result-success.json', 200)
         );
     }
+
+    /**
+     * @param string $jsonFile
+     * @param int $httpStatus
+     *
+     * @dataProvider successPaymentLinksProvider
+     */
+    public function testPaymentLinksSuccess($jsonFile, $httpStatus)
+    {
+        $client = $this->createMockClient($jsonFile, $httpStatus);
+
+        $service = new \Adyen\Service\Checkout($client);
+
+        $params = array(
+            'merchantAccount' => "YourMerchantAccount",
+            'reference' => '12345',
+            'amount' => array('currency' => "BRL", 'value' => 1250),
+            'countryCode' => "BR",
+            'shopperReference' => "YourUniqueShopperId",
+            'shopperEmail' => "test@email.com",
+            'shopperLocale' => "pt_BR",
+            'billingAddress' => $this->getExampleAddressStruct(),
+            'deliveryAddress' => $this->getExampleAddressStruct(),
+        );
+
+        $result = $service->paymentLinks($params);
+
+        $this->assertStringContainsString('payByLink.shtml', $result['url']);
+    }
+
+    public static function successPaymentLinksProvider()
+    {
+        return array(
+            array('tests/Resources/Checkout/payment-links-success.json', 200),
+        );
+    }
+
+    /**
+     * @param string $jsonFile
+     * @param int $httpStatus
+     *
+     * @dataProvider invalidPaymentLinksProvider
+     */
+    public function testPaymentLinksInvalid($jsonFile, $httpStatus, $expectedExceptionMessage)
+    {
+        $client = $this->createMockClient($jsonFile, $httpStatus);
+
+        $service = new \Adyen\Service\Checkout($client);
+
+        $params = array(
+            'merchantAccount' => "YourMerchantAccount",
+            'amount' => array('currency' => "BRL", 'value' => 1250),
+            'countryCode' => "BR",
+            'shopperReference' => "YourUniqueShopperId",
+            'shopperEmail' => "test@email.com",
+            'shopperLocale' => "pt_BR",
+            'billingAddress' => $this->getExampleAddressStruct(),
+            'deliveryAddress' => $this->getExampleAddressStruct(),
+        );
+
+        $this->expectException('Adyen\AdyenException');
+        $this->expectExceptionMessage($expectedExceptionMessage);
+
+        $service->paymentLinks($params);
+    }
+
+    public static function invalidPaymentLinksProvider()
+    {
+        return array(
+            array('tests/Resources/Checkout/payment-links-invalid.json', 422, 'Reference Missing'),
+        );
+    }
+
+    private function getExampleAddressStruct()
+    {
+        return array(
+            'street' => "Roque Petroni Jr",
+            'postalCode' => "59000060",
+            'city' => "São Paulo",
+            'houseNumberOrName' => "999",
+            'country' => "BR",
+            'stateOrProvince' => "SP",
+        );
+    }
 }
