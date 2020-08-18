@@ -55,6 +55,7 @@ $client->setUsername("YOUR USERNAME");
 $client->setPassword("YOUR PASSWORD");
 $client->setXApiKey("YOUR API KEY");
 $client->setEnvironment(\Adyen\Environment::TEST);
+$client->setTimeout(30);
 
 $service = new \Adyen\Service\Payment($client);
 
@@ -106,6 +107,7 @@ $client->setUsername("YOUR USERNAME");
 $client->setPassword("YOUR PASSWORD");
 $client->setXApiKey("YOUR API KEY");
 $client->setEnvironment(\Adyen\Environment::TEST);
+$client->setTimeout(30);
 
 // intialize modification service
 $service = new \Adyen\Service\Modification($client);
