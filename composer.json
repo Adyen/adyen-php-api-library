@@ -10,9 +10,11 @@
   "require": {
     "php": ">=5.6",
     "monolog/monolog": ">=1.16",
-    "ext-openssl": "*",
+    "ext-curl": "*",
     "ext-ctype": "*",
-    "ext-mbstring": "*"
+    "ext-json": "*",
+    "ext-mbstring": "*",
+    "ext-openssl": "*"
   },
   "require-dev": {
     "dms/phpunit-arraysubset-asserts": "0.2.0",
@@ -20,7 +22,6 @@
     "phpunit/phpunit": "9.2.6",
     "php-coveralls/php-coveralls": "2.2.0",
     "squizlabs/php_codesniffer": "3.5.6",
-    "ext-json": "*"
   },
   "autoload": {
     "psr-4": {
