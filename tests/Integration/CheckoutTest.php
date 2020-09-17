@@ -177,4 +177,26 @@ class CheckoutTest extends TestCase
         $this->assertEquals($result['resultCode'], 'Success');
         $this->assertEquals($result['balance']['value'], 100);
     }
+
+    public function testOrders()
+    {
+        // create Checkout client
+        $client = $this->createCheckoutAPIClient();
+
+        // initialize service
+        $service = new \Adyen\Service\Checkout($client);
+
+        $params = [
+            'amount'          => [
+                'value'    => 2500,
+                'currency' => 'EUR',
+            ],
+            'merchantAccount' => $this->merchantAccount,
+            'reference'       => 'Your order number',
+        ];
+        $result = $service->orders($params);
+
+        $this->assertEquals($result['resultCode'], 'Success');
+        $this->assertEquals($result['remainingAmount']['value'], 2500);
+    }
 }
