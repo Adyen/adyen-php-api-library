@@ -40,6 +40,11 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
     protected $orders;
 
     /**
+     * @var ResourceModel\Checkout\OrdersCancel
+     */
+    protected $ordersCancel;
+
+    /**
      * @var ResourceModel\Checkout\PaymentMethodsBalance
      */
     protected $paymentMethodsBalance;
@@ -60,6 +65,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
         $this->paymentsDetails = new \Adyen\Service\ResourceModel\Checkout\PaymentsDetails($this);
         $this->paymentLinks = new \Adyen\Service\ResourceModel\Checkout\PaymentLinks($this);
         $this->orders = new \Adyen\Service\ResourceModel\Checkout\Orders($this);
+        $this->ordersCancel = new \Adyen\Service\ResourceModel\Checkout\OrdersCancel($this);
         $this->paymentMethodsBalance = new \Adyen\Service\ResourceModel\Checkout\PaymentMethodsBalance($this);
     }
 
@@ -151,5 +157,16 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
     public function orders($params, $requestOptions = null)
     {
         return $this->orders->request($params, $requestOptions);
+    }
+
+    /**
+     * @param array $params
+     * @param array|null $requestOptions
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+    public function ordersCancel($params, $requestOptions = null)
+    {
+        return $this->ordersCancel->request($params, $requestOptions);
     }
 }
