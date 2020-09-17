@@ -153,4 +153,28 @@ class CheckoutTest extends TestCase
         $secondResult = $service->payments($params, $requestOptions);
         $this->assertEquals($pspReference, $secondResult['pspReference']);
     }
+
+    public function testPaymentMethodsBalance()
+    {
+        // create Checkout client
+        $client = $this->createCheckoutAPIClient();
+
+        // initialize service
+        $service = new \Adyen\Service\Checkout($client);
+
+        $params = [
+            'paymentMethod'   => [
+                'type'       => 'vvvgiftcard',
+                'number'     => '6064364240000000000',
+                'cvc'        => '737373',
+                'holderName' => 'balance EUR 100',
+            ],
+            'merchantAccount' => $this->merchantAccount,
+            'reference'       => 'Your order number',
+        ];
+        $result = $service->paymentMethodsBalance($params);
+
+        $this->assertEquals($result['resultCode'], 'Success');
+        $this->assertEquals($result['balance']['value'], 100);
+    }
 }

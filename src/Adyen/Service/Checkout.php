@@ -34,6 +34,12 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
      */
     protected $paymentLinks;
 
+
+    /**
+     * @var ResourceModel\Checkout\PaymentMethodsBalance
+     */
+    protected $paymentMethodsBalance;
+
     /**
      * Checkout constructor.
      *
@@ -49,6 +55,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
         $this->payments = new \Adyen\Service\ResourceModel\Checkout\Payments($this);
         $this->paymentsDetails = new \Adyen\Service\ResourceModel\Checkout\PaymentsDetails($this);
         $this->paymentLinks = new \Adyen\Service\ResourceModel\Checkout\PaymentLinks($this);
+        $this->paymentMethodsBalance = new \Adyen\Service\ResourceModel\Checkout\PaymentMethodsBalance($this);
     }
 
     /**
@@ -117,5 +124,16 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
     public function paymentLinks($params, $requestOptions = null)
     {
         return $this->paymentLinks->request($params, $requestOptions);
+    }
+
+    /**
+     * @param array $params
+     * @param array|null $requestOptions
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+    public function paymentMethodsBalance($params, $requestOptions = null)
+    {
+        return $this->paymentMethodsBalance->request($params, $requestOptions);
     }
 }
