@@ -21,16 +21,16 @@
  *
  */
 
-namespace Adyen\Unit;
+namespace Adyen\Tests\Unit;
+
+use Adyen\AdyenException;
+use Adyen\Service\Checkout;
 
 class CheckoutTest extends TestCaseMock
 {
     const NO_CHECKOUT_KEY = "Please provide a valid Checkout API Key";
 
     /**
-     * @param $jsonFile Json file location
-     * @param $httpStatus expected http status code
-     *
      * @dataProvider successPaymentMethodsProvider
      */
     public function testPaymentMethodsSuccess($jsonFile, $httpStatus)
@@ -39,7 +39,7 @@ class CheckoutTest extends TestCaseMock
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
         // initialize service
-        $service = new \Adyen\Service\Checkout($client);
+        $service = new Checkout($client);
 
         $params = array('merchantAccount' => "YourMerchantAccount");
         $result = $service->paymentMethods($params);
@@ -55,21 +55,17 @@ class CheckoutTest extends TestCaseMock
     }
 
     /**
-     * @param $jsonFile
-     * @param $httpStatus
-     * @param $expectedExceptionMessage
-     * @throws \Adyen\AdyenException
      * @dataProvider failurePaymentMethodsMissingIdentifierOnLiveProvider
      */
     public function testPaymentMethodsFailureMissingIdentifierOnLive($jsonFile, $httpStatus, $expectedExceptionMessage)
     {
-        $this->expectException('Adyen\AdyenException');
+        $this->expectException(AdyenException::class);
         $this->expectExceptionMessage($expectedExceptionMessage);
         // create Checkout client
         $client = $this->createMockClient($jsonFile, $httpStatus);
         $client->setEnvironment(\Adyen\Environment::LIVE);
 
-        $service = new \Adyen\Service\Checkout($client);
+        $service = new Checkout($client);
         $params = array('merchantAccount' => "YourMerchantAccount");
         $service->paymentMethods($params);
     }
@@ -88,9 +84,6 @@ class CheckoutTest extends TestCaseMock
     }
 
     /**
-     * @param $jsonFile
-     * @param $httpStatus
-     * @param $expectedExceptionMessage
      * @dataProvider failurePaymentMethodsProvider
      */
     public function testPaymentMethodsFailure(
@@ -105,11 +98,11 @@ class CheckoutTest extends TestCaseMock
             $client->setXApiKey("");
         }
         // initialize service
-        $service = new \Adyen\Service\Checkout($client);
+        $service = new Checkout($client);
 
         $params = array('merchantAccount' => "YourMerchantAccount");
 
-        $this->expectException('Adyen\AdyenException');
+        $this->expectException(AdyenException::class);
         $this->expectExceptionMessage($expectedExceptionMessage);
         $service->paymentMethods($params);
     }
@@ -124,11 +117,7 @@ class CheckoutTest extends TestCaseMock
     }
 
     /**
-     * @param $jsonFile
-     * @param $httpStatus
-     *
      * @dataProvider successPaymentsProvider
-     *
      */
     public function testPaymentsSuccess($jsonFile, $httpStatus)
     {
@@ -136,7 +125,7 @@ class CheckoutTest extends TestCaseMock
         $client = $this->createMockClient(__DIR__ . '/../../' . $jsonFile, $httpStatus);
 
         // initialize service
-        $service = new \Adyen\Service\Checkout($client);
+        $service = new Checkout($client);
 
         $params = array(
             'merchantAccount' => "YourMerchantAccount",
@@ -169,11 +158,7 @@ class CheckoutTest extends TestCaseMock
     }
 
     /**
-     * @param $jsonFile
-     * @param $httpStatus
-     * @param $expectedExceptionMessage
      * @dataProvider failurePaymentsProvider
-     *
      */
     public function testPaymentsFailure($jsonFile, $httpStatus, $expectedExceptionMessage)
     {
@@ -181,7 +166,7 @@ class CheckoutTest extends TestCaseMock
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
         // initialize service
-        $service = new \Adyen\Service\Checkout($client);
+        $service = new Checkout($client);
 
         $params = array(
             'merchantAccount' => "YourMerchantAccount",
@@ -199,7 +184,7 @@ class CheckoutTest extends TestCaseMock
 
         $params['reference'] = 'yourownreference';
 
-        $this->expectException('Adyen\AdyenException');
+        $this->expectException(AdyenException::class);
         $this->expectExceptionMessage($expectedExceptionMessage);
         $service->payments($params);
     }
@@ -214,11 +199,7 @@ class CheckoutTest extends TestCaseMock
     }
 
     /**
-     * @param $jsonFile
-     * @param $httpStatus
-     *
      * @dataProvider successPaymentsDetailsProvider
-     *
      */
     public function testPaymentsDetailsSuccess($jsonFile, $httpStatus)
     {
@@ -226,7 +207,7 @@ class CheckoutTest extends TestCaseMock
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
         // initialize service
-        $service = new \Adyen\Service\Checkout($client);
+        $service = new Checkout($client);
 
         $params = array(
             'merchantAccount' => "YourMerchantAccount",
@@ -250,11 +231,7 @@ class CheckoutTest extends TestCaseMock
     }
 
     /**
-     * @param $jsonFile
-     * @param $httpStatus
-     *
      * @dataProvider successPaymentSessionProvider
-     *
      */
     public function testPaymentSessionSuccess($jsonFile, $httpStatus)
     {
@@ -262,7 +239,7 @@ class CheckoutTest extends TestCaseMock
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
         // initialize service
-        $service = new \Adyen\Service\Checkout($client);
+        $service = new Checkout($client);
 
         $params = array(
             'merchantAccount' => "YourMerchantAccount",
@@ -286,11 +263,7 @@ class CheckoutTest extends TestCaseMock
     }
 
     /**
-     * @param $jsonFile
-     * @param $httpStatus
-     *
      * @dataProvider successPaymentsResultProvider
-     *
      */
     public function testPaymentsResultSuccess($jsonFile, $httpStatus)
     {
@@ -298,7 +271,7 @@ class CheckoutTest extends TestCaseMock
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
         // initialize service
-        $service = new \Adyen\Service\Checkout($client);
+        $service = new Checkout($client);
 
         $params = array(
             'payload' => "YourPayload"
@@ -326,7 +299,7 @@ class CheckoutTest extends TestCaseMock
     {
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
-        $service = new \Adyen\Service\Checkout($client);
+        $service = new Checkout($client);
 
         $params = array(
             'merchantAccount' => "YourMerchantAccount",
@@ -362,7 +335,7 @@ class CheckoutTest extends TestCaseMock
     {
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
-        $service = new \Adyen\Service\Checkout($client);
+        $service = new Checkout($client);
 
         $params = array(
             'merchantAccount' => "YourMerchantAccount",
@@ -375,7 +348,7 @@ class CheckoutTest extends TestCaseMock
             'deliveryAddress' => $this->getExampleAddressStruct(),
         );
 
-        $this->expectException('Adyen\AdyenException');
+        $this->expectException(AdyenException::class);
         $this->expectExceptionMessage($expectedExceptionMessage);
 
         $service->paymentLinks($params);

@@ -21,11 +21,13 @@
  *
  */
 
-namespace Adyen\Util;
+namespace Adyen\Tests\Unit\Util;
 
 use Adyen\AdyenException;
+use Adyen\Util\HmacSignature;
+use PHPUnit\Framework\TestCase;
 
-class HmacSignatureTest extends \PHPUnit\Framework\TestCase
+class HmacSignatureTest extends TestCase
 {
     public function testNotificationRequestItemHmac()
     {

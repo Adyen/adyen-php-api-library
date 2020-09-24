@@ -21,17 +21,11 @@
  *
  */
 
-namespace Adyen\Integration;
+namespace Adyen\Tests\Integration;
 
-use Adyen\TestCase;
-use Adyen\Service;
+use Adyen\Service\Payment;
+use Adyen\Tests\TestCase;
 
-/**
- * Created by PhpStorm.
- * User: rikt
- * Date: 11/3/15
- * Time: 10:27 AM
- */
 class CreatePaymentRequestTest extends TestCase
 {
     public function testCreatePaymentSuccess()
@@ -40,7 +34,7 @@ class CreatePaymentRequestTest extends TestCase
         $client = $this->createClient();
 
         // initialize service
-        $service = new Service\Payment($client);
+        $service = new Payment($client);
 
         $json = '{
               "card": {
@@ -82,7 +76,7 @@ class CreatePaymentRequestTest extends TestCase
         $client = $this->createClient();
 
         // initialize service
-        $service = new Service\Payment($client);
+        $service = new Payment($client);
 
         $json = '{
               "amount": {
@@ -131,7 +125,7 @@ class CreatePaymentRequestTest extends TestCase
         $client = $this->createClientWithMerchantAccount();
 
         // initialize service
-        $service = new Service\Payment($client);
+        $service = new Payment($client);
 
         $json = '{
               "card": {
@@ -178,7 +172,7 @@ class CreatePaymentRequestTest extends TestCase
         $this->assertEquals('json', $client->getConfig()->getOutputType());
 
         // initialize service
-        $service = new Service\Payment($client);
+        $service = new Payment($client);
 
         $json = '{
               "card": {
@@ -226,7 +220,7 @@ class CreatePaymentRequestTest extends TestCase
         $client = $this->createClient();
 
         // initialize service
-        $service = new Service\Payment($client);
+        $service = new Payment($client);
 
         $json = '{
               "card": {

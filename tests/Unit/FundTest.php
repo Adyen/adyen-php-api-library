@@ -21,15 +21,14 @@
  *
  */
 
-namespace Adyen\Unit;
+namespace Adyen\Tests\Unit;
+
+use Adyen\Service\Fund;
 
 class FundTest extends TestCaseMock
 {
     /**
-     * @param $jsonFile
-     * @param $httpStatus
      * @dataProvider successAccountHolderBalanceProvider
-     * @throws \Adyen\AdyenException
      */
     public function testAccountHolderBalanceSuccess($jsonFile, $httpStatus)
     {
@@ -37,7 +36,7 @@ class FundTest extends TestCaseMock
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
         // initialize service
-        $service = new \Adyen\Service\Fund($client);
+        $service = new Fund($client);
 
         $params = json_decode(
             '
@@ -63,10 +62,7 @@ class FundTest extends TestCaseMock
     }
 
     /**
-     * @param $jsonFile
-     * @param $httpStatus
      * @dataProvider successAccountHolderTransactionListProvider
-     * @throws \Adyen\AdyenException
      */
     public function testAccountHolderTransactionListSuccess($jsonFile, $httpStatus)
     {
@@ -74,7 +70,7 @@ class FundTest extends TestCaseMock
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
         // initialize service
-        $service = new \Adyen\Service\Fund($client);
+        $service = new Fund($client);
 
         $params = json_decode(
             '
@@ -102,10 +98,7 @@ class FundTest extends TestCaseMock
     }
 
     /**
-     * @param $jsonFile
-     * @param $httpStatus
      * @dataProvider successPayoutAccountHolderProvider
-     * @throws \Adyen\AdyenException
      */
     public function testPayoutAccountHolderSuccess($jsonFile, $httpStatus)
     {
@@ -113,7 +106,7 @@ class FundTest extends TestCaseMock
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
         // initialize service
-        $service = new \Adyen\Service\Fund($client);
+        $service = new Fund($client);
 
         $params = json_decode(
             '
@@ -144,10 +137,7 @@ class FundTest extends TestCaseMock
     }
 
     /**
-     * @param $jsonFile
-     * @param $httpStatus
      * @dataProvider successTransferFundsProvider
-     * @throws \Adyen\AdyenException
      */
     public function testTransferFundsSuccess($jsonFile, $httpStatus)
     {
@@ -155,7 +145,7 @@ class FundTest extends TestCaseMock
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
         // initialize service
-        $service = new \Adyen\Service\Fund($client);
+        $service = new Fund($client);
 
         $params = json_decode(
             '
@@ -188,10 +178,7 @@ class FundTest extends TestCaseMock
     }
 
     /**
-     * @param $jsonFile
-     * @param $httpStatus
      * @dataProvider successSetupBeneficiaryProvider
-     * @throws \Adyen\AdyenException
      */
     public function testSetupBeneficiarySuccess($jsonFile, $httpStatus)
     {
@@ -199,7 +186,7 @@ class FundTest extends TestCaseMock
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
         // initialize service
-        $service = new \Adyen\Service\Fund($client);
+        $service = new Fund($client);
 
         $params = json_decode(
             '
@@ -224,10 +211,7 @@ class FundTest extends TestCaseMock
     }
 
     /**
-     * @param $jsonFile
-     * @param $httpStatus
      * @dataProvider successRefundNotPaidOutTransfersProvider
-     * @throws \Adyen\AdyenException
      */
     public function testRefundNotPaidOutTransfersSuccess($jsonFile, $httpStatus)
     {
@@ -235,7 +219,7 @@ class FundTest extends TestCaseMock
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
         // initialize service
-        $service = new \Adyen\Service\Fund($client);
+        $service = new Fund($client);
 
         $params = json_decode(
             '

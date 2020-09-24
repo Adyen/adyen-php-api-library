@@ -24,7 +24,7 @@
 namespace Adyen\Tests\Integration\Builder;
 
 use Adyen\Service\Builder\Payment;
-use Adyen\TestCase;
+use Adyen\Tests\TestCase;
 
 class PaymentTest extends TestCase
 {

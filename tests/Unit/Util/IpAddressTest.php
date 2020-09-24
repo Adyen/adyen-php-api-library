@@ -21,9 +21,12 @@
  *
  */
 
-namespace Adyen\Util;
+namespace Adyen\Tests\Unit\Util;
 
-class IpAddressTest extends \PHPUnit\Framework\TestCase
+use Adyen\Util\IpAddress;
+use PHPUnit\Framework\TestCase;
+
+class IpAddressTest extends TestCase
 {
 
     public function testGetAdyenIpAddresses()

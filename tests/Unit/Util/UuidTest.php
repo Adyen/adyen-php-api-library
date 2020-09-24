@@ -21,11 +21,12 @@
  *
  */
 
-namespace Adyen\Tests\Util;
+namespace Adyen\Tests\Unit\Util;
 
 use Adyen\Util\Uuid;
+use PHPUnit\Framework\TestCase;
 
-class UuidTest extends \PHPUnit\Framework\TestCase
+class UuidTest extends TestCase
 {
     public function testGenerateV4()
     {

@@ -21,10 +21,10 @@
  *
  */
 
-namespace Adyen\Integration;
+namespace Adyen\Tests\Integration;
 
-use Adyen\TestCase;
-use Adyen\Service;
+use Adyen\Service\Checkout;
+use Adyen\Tests\TestCase;
 use Adyen\Util\Uuid;
 
 class CheckoutTest extends TestCase
@@ -33,7 +33,7 @@ class CheckoutTest extends TestCase
     {
         $client = $this->createCheckoutAPIClient();
 
-        $service = new Service\Checkout($client);
+        $service = new Checkout($client);
 
         $params = array(
             'amount' => array(
@@ -64,7 +64,7 @@ class CheckoutTest extends TestCase
     {
         $client = $this->createCheckoutAPIClient();
 
-        $service = new Service\Checkout($client);
+        $service = new Checkout($client);
 
         $params = array(
             'amount' => 1000,
@@ -94,7 +94,7 @@ class CheckoutTest extends TestCase
         $client = $this->createCheckoutAPIClient();
 
         // initialize service
-        $service = new \Adyen\Service\Checkout($client);
+        $service = new Checkout($client);
 
         $params = array(
             'merchantAccount' => $this->merchantAccount,
@@ -121,7 +121,7 @@ class CheckoutTest extends TestCase
         $client = $this->createCheckoutAPIClient();
 
         // initialize service
-        $service = new \Adyen\Service\Checkout($client);
+        $service = new Checkout($client);
 
         $params = array(
             'merchantAccount' => $this->merchantAccount,

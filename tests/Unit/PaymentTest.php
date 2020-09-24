@@ -21,17 +21,17 @@
  *
  */
 
-namespace Adyen\Unit;
+namespace Adyen\Tests\Unit;
 
+use Adyen\AdyenException;
+use Adyen\ConnectionException;
+use Adyen\Service\Payment;
 use Monolog\Handler\TestHandler;
 use Monolog\Logger;
 
 class PaymentTest extends TestCaseMock
 {
     /**
-     * @param $jsonFile Json file location
-     * @param $httpStatus expected http status code
-     *
      * @dataProvider successAuthoriseProvider
      */
     public function testAuthoriseSuccessInTestEnvironment($jsonFile, $httpStatus)
@@ -47,7 +47,7 @@ class PaymentTest extends TestCaseMock
         $client->setLogger($logger);
 
         // initialize service
-        $service = new \Adyen\Service\Payment($client);
+        $service = new Payment($client);
 
         $json = '{
               "card": {
@@ -81,9 +81,6 @@ class PaymentTest extends TestCaseMock
     }
 
     /**
-     * @param $jsonFile Json file location
-     * @param $httpStatus expected http status code
-     *
      * @dataProvider successAuthoriseProvider
      */
     public function testAuthoriseSuccessInLiveEnvironment($jsonFile, $httpStatus)
@@ -99,7 +96,7 @@ class PaymentTest extends TestCaseMock
         $client->setLogger($logger);
 
         // initialize service
-        $service = new \Adyen\Service\Payment($client);
+        $service = new Payment($client);
 
         $json = '{
               "card": {
@@ -142,20 +139,17 @@ class PaymentTest extends TestCaseMock
 
 
     /**
-     * @param $jsonFile Json file location
-     * @param $httpStatus expected http status code
-     * @param $errno
      * @dataProvider connectionFailureAuthoriseProvider
      */
     public function testAuthoriseConnectionFailure($jsonFile, $httpStatus, $errno)
     {
-        $this->expectException('Adyen\ConnectionException');
+        $this->expectException(ConnectionException::class);
         $this->expectExceptionCode($errno);
         // create client
         $client = $this->createMockClient($jsonFile, $httpStatus, $errno);
 
         // initialize service
-        $service = new \Adyen\Service\Payment($client);
+        $service = new Payment($client);
 
         $json = '{
               "card": {
@@ -189,9 +183,6 @@ class PaymentTest extends TestCaseMock
     }
 
     /**
-     * @param $jsonFile Json file location
-     * @param $httpStatus expected http status code
-     * @param $expectedExceptionMessage
      * @dataProvider resultFailureAuthoriseProvider
      */
     public function testAuthoriseResultFailure($jsonFile, $httpStatus, $expectedExceptionMessage)
@@ -200,7 +191,7 @@ class PaymentTest extends TestCaseMock
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
         // initialize service
-        $service = new \Adyen\Service\Payment($client);
+        $service = new Payment($client);
 
         $json = '{
               "card": {
@@ -220,7 +211,7 @@ class PaymentTest extends TestCaseMock
 
         $params = json_decode($json, true);
 
-        $this->expectException('Adyen\AdyenException');
+        $this->expectException(AdyenException::class);
         $this->expectExceptionMessage($expectedExceptionMessage);
 
         $service->authorise($params);

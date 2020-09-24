@@ -21,7 +21,11 @@
  *
  */
 
-namespace Adyen;
+namespace Adyen\Tests;
+
+use Adyen\AdyenException;
+use Adyen\Client;
+use Adyen\Environment;
 
 class TestCase extends \PHPUnit\Framework\TestCase
 {
@@ -62,7 +66,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * Mock client
      *
-     * @return \Adyen\Client
+     * @return Client
      */
     protected function createClient()
     {
@@ -76,11 +80,11 @@ class TestCase extends \PHPUnit\Framework\TestCase
             !empty($settings['password']) &&
             $settings['password'] != "YOUR PASSWORD"
         ) {
-            $client = new \Adyen\Client();
+            $client = new Client();
             $client->setApplicationName("My Test Application");
             $client->setUsername($settings['username']);
             $client->setPassword($settings['password']);
-            $client->setEnvironment(\Adyen\Environment::TEST);
+            $client->setEnvironment(Environment::TEST);
 
             return $client;
         } else {
@@ -91,15 +95,15 @@ class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * Mock client object without configuring the config/test.ini
      *
-     * @return \Adyen\Client
+     * @return Client
      */
     protected function createClientWithoutTestIni()
     {
         try {
-            $client = new \Adyen\Client();
+            $client = new Client();
             $client->setApplicationName("My Test Application");
-            $client->setEnvironment(\Adyen\Environment::TEST);
-        } catch (\Adyen\AdyenException $exception) {
+            $client->setEnvironment(Environment::TEST);
+        } catch (AdyenException $exception) {
             $this->skipTest($exception->getMessage());
         }
 
@@ -109,7 +113,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * Mock client for payout
      *
-     * @return \Adyen\Client
+     * @return Client
      */
     protected function createPayoutClient()
     {
@@ -123,19 +127,19 @@ class TestCase extends \PHPUnit\Framework\TestCase
                 || $settings['storePayoutUsername'] == ""
                 || $settings['storePayoutPassword'] == "YOUR STORE PAYOUT PASSWORD"
                 || $settings['storePayoutPassword'] == "") {
-                $client = new \Adyen\Client();
+                $client = new Client();
                 $client->setApplicationName("My Test Application");
-                $client->setEnvironment(\Adyen\Environment::TEST);
+                $client->setEnvironment(Environment::TEST);
                 $this->skipTest(
                     "Skipped the test. Configure your WebService Payout Username and Password in the config"
                 );
                 return $client;
             } else {
-                $client = new \Adyen\Client();
+                $client = new Client();
                 $client->setApplicationName("My Test Application");
                 $client->setUsername($settings['storePayoutUsername']);
                 $client->setPassword($settings['storePayoutPassword']);
-                $client->setEnvironment(\Adyen\Environment::TEST);
+                $client->setEnvironment(Environment::TEST);
                 return $client;
             }
         } else {
@@ -146,7 +150,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * Mock client for reviewing payout
      *
-     * @return \Adyen\Client
+     * @return Client
      */
     protected function createReviewPayoutClient()
     {
@@ -160,19 +164,19 @@ class TestCase extends \PHPUnit\Framework\TestCase
                 || $settings['reviewPayoutUsername'] == ""
                 || $settings['reviewPayoutPassword'] == "YOUR REVIEW PAYOUT PASSWORD"
                 || $settings['reviewPayoutPassword'] == "") {
-                $client = new \Adyen\Client();
+                $client = new Client();
                 $client->setApplicationName("My Test Application");
-                $client->setEnvironment(\Adyen\Environment::TEST);
+                $client->setEnvironment(Environment::TEST);
                 $this->skipTest(
                     "Skipped the test. Configure your WebService ReviewPayout Username and Password in the config"
                 );
                 return $client;
             } else {
-                $client = new \Adyen\Client();
+                $client = new Client();
                 $client->setApplicationName("My Test Application");
                 $client->setUsername($settings['reviewPayoutUsername']);
                 $client->setPassword($settings['reviewPayoutPassword']);
-                $client->setEnvironment(\Adyen\Environment::TEST);
+                $client->setEnvironment(Environment::TEST);
                 return $client;
             }
         } else {
@@ -190,9 +194,9 @@ class TestCase extends \PHPUnit\Framework\TestCase
         if (empty($settings['x-api-key']) || $settings['x-api-key'] == 'YOUR X-API KEY') {
             $this->skipTest("Skipped the test. Configure your x-api-key in the config");
         } else {
-            $client = new \Adyen\Client();
+            $client = new Client();
             $client->setApplicationName("My Test Terminal API App");
-            $client->setEnvironment(\Adyen\Environment::TEST);
+            $client->setEnvironment(Environment::TEST);
             $client->setXApiKey($settings['x-api-key']);
             return $client;
         }
@@ -319,7 +323,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
     {
         // it is possible you do not have permission to use full API then switch over to CSE
         if ($e->getMessage() == "Not allowed") {
-            $this->assertEquals('Adyen\AdyenException', get_class($e));
+            $this->assertEquals(AdyenException::class, get_class($e));
             $this->assertEquals('Not allowed', $e->getMessage());
             $this->assertEquals('10', $e->getCode());
             $this->markTestSkipped(
@@ -327,7 +331,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
                 'You do not have the permission to do a full api call. Try to use Client Side Encryption (CSE)'
             );
         } elseif ($e->getMessage() == "Recurring is not enabled") {
-            $this->assertEquals('Adyen\AdyenException', get_class($e));
+            $this->assertEquals(AdyenException::class, get_class($e));
             $this->assertEquals('Recurring is not enabled', $e->getMessage());
             $this->assertEquals('107', $e->getCode());
             $this->markTestSkipped("Skipped the test. You do not have the permission to do a recurring transaction.");

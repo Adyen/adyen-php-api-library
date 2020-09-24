@@ -21,16 +21,14 @@
  *
  */
 
-namespace Adyen\Unit;
+namespace Adyen\Tests\Unit;
+
+use Adyen\Service\CheckoutUtility;
 
 class CheckoutUtilityTest extends TestCaseMock
 {
     /**
-     * @param $jsonFile
-     * @param $httpStatus
-     *
      * @dataProvider successOriginKeysProvider
-     *
      */
     public function testOriginKeysSuccess($jsonFile, $httpStatus)
     {
@@ -38,7 +36,7 @@ class CheckoutUtilityTest extends TestCaseMock
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
         // initialize service
-        $service = new \Adyen\Service\CheckoutUtility($client);
+        $service = new CheckoutUtility($client);
 
         $params = array(
             "originDomains" => array(
