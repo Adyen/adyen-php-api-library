@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "204267395854f04df41f36eba4721368",
+    "content-hash": "b6f13ef780c4b546c62e1c9a4dc5e578",
     "packages": [
         {
             "name": "monolog/monolog",
@@ -281,20 +281,20 @@
         },
         {
             "name": "dms/phpunit-arraysubset-asserts",
-            "version": "v0.2.0",
+            "version": "v0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rdohms/phpunit-arraysubset-asserts.git",
-                "reference": "d33fd352dbe1ca1c7dfe2b9f516ab9a852e3e516"
+                "reference": "8e3673a70019a60df484e36fc3271d63cbdc40ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rdohms/phpunit-arraysubset-asserts/zipball/d33fd352dbe1ca1c7dfe2b9f516ab9a852e3e516",
-                "reference": "d33fd352dbe1ca1c7dfe2b9f516ab9a852e3e516",
+                "url": "https://api.github.com/repos/rdohms/phpunit-arraysubset-asserts/zipball/8e3673a70019a60df484e36fc3271d63cbdc40ea",
+                "reference": "8e3673a70019a60df484e36fc3271d63cbdc40ea",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.3",
+                "php": "^7.3|^8.0",
                 "phpunit/phpunit": "^9.0"
             },
             "require-dev": {
@@ -318,7 +318,7 @@
                 }
             ],
             "description": "This package provides ArraySubset and related asserts once deprecated in PHPUnit 8",
-            "time": "2020-02-12T15:25:06+00:00"
+            "time": "2020-10-03T21:43:40+00:00"
         },
         {
             "name": "doctrine/annotations",
