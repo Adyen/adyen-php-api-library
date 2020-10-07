@@ -45,8 +45,8 @@ class CreatePaymentRequestTest extends TestCase
         $json = '{
               "card": {
                 "number": "4111111111111111",
-                "expiryMonth": "08",
-                "expiryYear": "2018",
+                "expiryMonth": "03",
+                "expiryYear": "2030",
                 "cvc": "737",
                 "holderName": "John Smith"
               },
@@ -91,8 +91,8 @@ class CreatePaymentRequestTest extends TestCase
               },
               "card": {
                 "cvc": "737",
-                "expiryMonth": "08",
-                "expiryYear": "2018",
+                "expiryMonth": "03",
+                "expiryYear": "2030",
                 "holderName": "John Smith",
                 "number": "4111111111111111"
               },
@@ -136,8 +136,8 @@ class CreatePaymentRequestTest extends TestCase
         $json = '{
               "card": {
                 "number": "4111111111111111",
-                "expiryMonth": "08",
-                "expiryYear": "2018",
+                "expiryMonth": "03",
+                "expiryYear": "2030",
                 "cvc": "737",
                 "holderName": "John Smith"
               },
@@ -183,8 +183,8 @@ class CreatePaymentRequestTest extends TestCase
         $json = '{
               "card": {
                 "number": "4111111111111111",
-                "expiryMonth": "08",
-                "expiryYear": "2018",
+                "expiryMonth": "03",
+                "expiryYear": "2030",
                 "cvc": "737",
                 "holderName": "John Smith"
               },
@@ -231,8 +231,8 @@ class CreatePaymentRequestTest extends TestCase
         $json = '{
               "card": {
                 "number": "4111111111111111",
-                "expiryMonth": "08",
-                "expiryYear": "2018",
+                "expiryMonth": "03",
+                "expiryYear": "2030",
                 "cvc": "111",
                 "holderName": "John Smith"
               },

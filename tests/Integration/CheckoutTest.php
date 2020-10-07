@@ -114,8 +114,8 @@ class CheckoutTest extends TestCase
             'paymentMethod' => array(
                 'type' => "scheme",
                 'number' => "4111111111111111",
-                'expiryMonth' => "08",
-                'expiryYear' => "2018",
+                'expiryMonth' => "03",
+                'expiryYear' => "2030",
                 'holderName' => "John Smith",
                 'cvc' => "737"
             ),
@@ -124,7 +124,7 @@ class CheckoutTest extends TestCase
         );
         $result = $service->payments($params);
 
-        $this->assertEquals($result['resultCode'], 'Authorised');
+        $this->assertEquals('Authorised', $result['resultCode']);
     }
 
     public function testPaymentsSuccessWithIdempotencyKey()
@@ -141,8 +141,8 @@ class CheckoutTest extends TestCase
             'paymentMethod' => array(
                 'type' => "scheme",
                 'number' => "4111111111111111",
-                'expiryMonth' => "08",
-                'expiryYear' => "2018",
+                'expiryMonth' => "03",
+                'expiryYear' => "2030",
                 'holderName' => "John Smith",
                 'cvc' => "737"
             ),
@@ -156,14 +156,12 @@ class CheckoutTest extends TestCase
         $requestOptions['idempotencyKey'] = $uuid;
 
         $result = $service->payments($params, $requestOptions);
-        $pspReference = $result['pspReference'];
 
-        $this->assertEquals($result['resultCode'], 'Authorised');
-
+        $this->assertEquals('Authorised', $result['resultCode']);
 
         // create the same request we expect the same pspreference response
         $secondResult = $service->payments($params, $requestOptions);
-        $this->assertEquals($pspReference, $secondResult['pspReference']);
+        $this->assertEquals($result['pspReference'], $secondResult['pspReference']);
     }
 
     public function testPaymentMethodsBalance()
@@ -186,8 +184,8 @@ class CheckoutTest extends TestCase
         ];
         $result = $service->paymentMethodsBalance($params);
 
-        $this->assertEquals($result['resultCode'], 'Success');
-        $this->assertEquals($result['balance']['value'], 100);
+        $this->assertEquals('Success', $result['resultCode']);
+        $this->assertEquals(100, $result['balance']['value']);
     }
 
     public function testOrders()
@@ -208,8 +206,8 @@ class CheckoutTest extends TestCase
         ];
         $result = $service->orders($params);
 
-        $this->assertEquals($result['resultCode'], 'Success');
-        $this->assertEquals($result['remainingAmount']['value'], 2500);
+        $this->assertEquals('Success', $result['resultCode']);
+        $this->assertEquals(2500, $result['remainingAmount']['value']);
         $this->pspReference = $result['pspReference'];
         $this->orderData    = $result['orderData'];
     }
@@ -236,6 +234,6 @@ class CheckoutTest extends TestCase
         ];
         $result = $service->ordersCancel($params);
 
-        $this->assertEquals($result['resultCode'], 'Received');
+        $this->assertEquals('Received', $result['resultCode']);
     }
 }
