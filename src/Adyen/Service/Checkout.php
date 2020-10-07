@@ -136,7 +136,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
     {
         return $this->paymentLinks->request($params, $requestOptions);
     }
-
+  
     /**
      * @param array $params
      * @param array|null $requestOptions
