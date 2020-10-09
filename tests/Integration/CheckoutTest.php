@@ -29,6 +29,18 @@ use Adyen\Util\Uuid;
 
 class CheckoutTest extends TestCase
 {
+    /**
+     * Can hold the last pspReference for cancelling an order
+     * @var string $pspReference
+     */
+    private $pspReference = null;
+
+    /**
+     * Can hold the last orderData for cancelling an order
+     * @var string $orderData
+     */
+    private $orderData = null;
+
     public function testPaymentMethods()
     {
         $client = $this->createCheckoutAPIClient();
@@ -102,8 +114,8 @@ class CheckoutTest extends TestCase
             'paymentMethod' => array(
                 'type' => "scheme",
                 'number' => "4111111111111111",
-                'expiryMonth' => "08",
-                'expiryYear' => "2018",
+                'expiryMonth' => "03",
+                'expiryYear' => "2030",
                 'holderName' => "John Smith",
                 'cvc' => "737"
             ),
@@ -112,7 +124,7 @@ class CheckoutTest extends TestCase
         );
         $result = $service->payments($params);
 
-        $this->assertEquals($result['resultCode'], 'Authorised');
+        $this->assertEquals('Authorised', $result['resultCode']);
     }
 
     public function testPaymentsSuccessWithIdempotencyKey()
@@ -129,8 +141,8 @@ class CheckoutTest extends TestCase
             'paymentMethod' => array(
                 'type' => "scheme",
                 'number' => "4111111111111111",
-                'expiryMonth' => "08",
-                'expiryYear' => "2018",
+                'expiryMonth' => "03",
+                'expiryYear' => "2030",
                 'holderName' => "John Smith",
                 'cvc' => "737"
             ),
@@ -144,13 +156,84 @@ class CheckoutTest extends TestCase
         $requestOptions['idempotencyKey'] = $uuid;
 
         $result = $service->payments($params, $requestOptions);
-        $pspReference = $result['pspReference'];
 
-        $this->assertEquals($result['resultCode'], 'Authorised');
-
+        $this->assertEquals('Authorised', $result['resultCode']);
 
         // create the same request we expect the same pspreference response
         $secondResult = $service->payments($params, $requestOptions);
-        $this->assertEquals($pspReference, $secondResult['pspReference']);
+        $this->assertEquals($result['pspReference'], $secondResult['pspReference']);
+    }
+
+    public function testPaymentMethodsBalance()
+    {
+        // create Checkout client
+        $client = $this->createCheckoutAPIClient();
+
+        // initialize service
+        $service = new \Adyen\Service\Checkout($client);
+
+        $params = [
+            'paymentMethod'   => [
+                'type'       => 'vvvgiftcard',
+                'number'     => '6064364240000000000',
+                'cvc'        => '737373',
+                'holderName' => 'balance EUR 100',
+            ],
+            'merchantAccount' => $this->merchantAccount,
+            'reference'       => 'Your order number',
+        ];
+        $result = $service->paymentMethodsBalance($params);
+
+        $this->assertEquals('Success', $result['resultCode']);
+        $this->assertEquals(100, $result['balance']['value']);
+    }
+
+    public function testOrders()
+    {
+        // create Checkout client
+        $client = $this->createCheckoutAPIClient();
+
+        // initialize service
+        $service = new \Adyen\Service\Checkout($client);
+
+        $params = [
+            'amount'          => [
+                'value'    => 2500,
+                'currency' => 'EUR',
+            ],
+            'merchantAccount' => $this->merchantAccount,
+            'reference'       => 'Your order number',
+        ];
+        $result = $service->orders($params);
+
+        $this->assertEquals('Success', $result['resultCode']);
+        $this->assertEquals(2500, $result['remainingAmount']['value']);
+        $this->pspReference = $result['pspReference'];
+        $this->orderData    = $result['orderData'];
+    }
+
+    public function testOrdersCancel()
+    {
+        // We need to create an order so we can test cancel
+        if ($this->pspReference === null || $this->orderData === null) {
+            $this->testOrders();
+        }
+
+        // create Checkout client
+        $client = $this->createCheckoutAPIClient();
+
+        // initialize service
+        $service = new \Adyen\Service\Checkout($client);
+
+        $params = [
+            'order'           => [
+                'pspReference' => $this->pspReference,
+                'orderData'    => $this->orderData,
+            ],
+            'merchantAccount' => $this->merchantAccount,
+        ];
+        $result = $service->ordersCancel($params);
+
+        $this->assertEquals('Received', $result['resultCode']);
     }
 }
