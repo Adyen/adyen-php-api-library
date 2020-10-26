@@ -16,7 +16,7 @@ class SubmitReferrals extends \Adyen\Service\AbstractResource
      */
     public function __construct($service)
     {
-        $this->endpoint = $service->getClient()->getConfig()->get('endpoint') .
+        $this->endpoint = $service->getClient()->getConfig()->get('endpointCustomerArea') .
             '/ca/services/ReferralCAService/uploadReferralsStructured';
         parent::__construct($service, $this->endpoint);
     }
