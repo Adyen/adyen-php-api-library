@@ -23,7 +23,6 @@
 
 namespace Adyen\Tests\Integration\Builder;
 
-
 use Adyen\Service\Builder\Browser;
 use Adyen\TestCase;
 
@@ -47,7 +46,17 @@ class BrowserTest extends TestCase
         $request = array();
 
         $browser = new Browser();
-        $result = $browser->buildBrowserData("Mozilla/5.0","text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8","1536","723","24","2","nl-NL",true, $request);
+        $result = $browser->buildBrowserData(
+            "Mozilla/5.0",
+            "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "1536",
+            "723",
+            "24",
+            "2",
+            "nl-NL",
+            true,
+            $request
+        );
         $this->assertEquals($result, $expectedResult);
     }
 }
