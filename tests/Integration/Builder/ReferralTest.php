@@ -3,7 +3,7 @@
 namespace Adyen\Tests\Integration\Builder;
 
 use Adyen\Service\Builder\Referral;
-use Adyen\TestCase;
+use Adyen\Tests\TestCase;
 
 class ReferralTest extends TestCase
 {
@@ -123,7 +123,7 @@ class ReferralTest extends TestCase
                 'postalCode' => '1100AB',
                 'stateOrProvince' => 'England',
                 'countryCode' => 'UK'
-            ),
+            )
         );
 
         $expectedResult = array(

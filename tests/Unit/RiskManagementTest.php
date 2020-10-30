@@ -1,6 +1,6 @@
 <?php
 
-namespace Adyen\Unit;
+namespace Adyen\Tests\Unit;
 
 class RiskManagementTest extends TestCaseMock
 {
@@ -46,7 +46,7 @@ class RiskManagementTest extends TestCaseMock
     public static function successSubmitReferralsWithDataProvider()
     {
         return array(
-            array('tests/Resources/RiskManagement/submitReferralsWithData-success.json', 200),
+            array('tests/Resources/RiskManagement/submitReferralsWithData-success.json', 200)
         );
     }
 }
