@@ -21,10 +21,11 @@
  *
  */
 
-namespace Adyen\Integration;
+namespace Adyen\Tests\Integration;
 
-use Adyen\TestCase;
-use Adyen\Service;
+use Adyen\AdyenException;
+use Adyen\Service\DirectoryLookup;
+use Adyen\Tests\TestCase;
 use Adyen\Util\Util;
 
 class DirectoryLookupTest extends TestCase
@@ -36,7 +37,7 @@ class DirectoryLookupTest extends TestCase
         $client = $this->createClient();
 
         // initialize service
-        $service = new Service\DirectoryLookup($client);
+        $service = new DirectoryLookup($client);
         $sessionValidity = date(
             DATE_ATOM,
             mktime(date("H") + 10, date("i"), date("s"), date("m"), date("j"), date("Y"))
@@ -86,7 +87,7 @@ class DirectoryLookupTest extends TestCase
         $client = $this->createClient();
 
         // initialize service
-        $service = new Service\DirectoryLookup($client);
+        $service = new DirectoryLookup($client);
 
         $e = null;
         try {
@@ -94,7 +95,7 @@ class DirectoryLookupTest extends TestCase
         } catch (\Exception $e) {
         }
 
-        $this->assertEquals('Adyen\AdyenException', get_class($e));
+        $this->assertEquals(AdyenException::class, get_class($e));
         $this->assertEquals("The parameters in the request are empty", $e->getMessage());
         $this->assertEquals('0', $e->getCode());
     }
@@ -106,7 +107,7 @@ class DirectoryLookupTest extends TestCase
         $client = $this->createClient();
 
         // initialize service
-        $service = new Service\DirectoryLookup($client);
+        $service = new DirectoryLookup($client);
 
         $sessionValidity = date(
             DATE_ATOM,
@@ -134,7 +135,7 @@ class DirectoryLookupTest extends TestCase
         } catch (\Exception $e) {
         }
 
-        $this->assertEquals('Adyen\AdyenException', get_class($e));
+        $this->assertEquals(AdyenException::class, get_class($e));
         $this->assertEquals("The result is empty, looks like your request is invalid", $e->getMessage());
         $this->assertEquals('0', $e->getCode());
     }

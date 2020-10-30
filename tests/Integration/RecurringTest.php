@@ -21,24 +21,17 @@
  *
  */
 
-/**
- * Created by PhpStorm.
- * User: rikt
- * Date: 11/6/15
- * Time: 1:07 PM
- */
+namespace Adyen\Tests\Integration;
 
-namespace Adyen\Integration;
-
-use Adyen\TestCase;
-use Adyen\Service;
+use Adyen\Contract;
+use Adyen\Service\Recurring;
+use Adyen\Tests\TestCase;
 
 class RecurringTest extends TestCase
 {
     public function testListRecurringContracts()
     {
         // create a payment with a recurring contract
-        require_once __DIR__ . '/CreatePaymentRequestTest.php';
         $test = new CreatePaymentRequestTest();
         $result = $test->testCreatePaymentWithRecurringSuccess();
 
@@ -46,9 +39,9 @@ class RecurringTest extends TestCase
         $client = $this->createClient();
 
         // initialize service
-        $service = new Service\Recurring($client);
+        $service = new Recurring($client);
 
-        $recurring = array('contract' => \Adyen\Contract::RECURRING);
+        $recurring = array('contract' => Contract::RECURRING);
         $params = array(
             'merchantAccount' => $this->getMerchantAccount(),
             'recurring' => $recurring,

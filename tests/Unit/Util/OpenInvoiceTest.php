@@ -21,9 +21,12 @@
  *
  */
 
-namespace Adyen\Util;
+namespace Adyen\Tests\Unit\Util;
 
-class OpenInvoiceTest extends \PHPUnit\Framework\TestCase
+use Adyen\Util\OpenInvoice;
+use PHPUnit\Framework\TestCase;
+
+class OpenInvoiceTest extends TestCase
 {
     public function testGetVatCategory()
     {

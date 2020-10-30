@@ -24,7 +24,7 @@
 namespace Adyen\Tests\Integration\Builder;
 
 use Adyen\Service\Builder\Browser;
-use Adyen\TestCase;
+use Adyen\Tests\TestCase;
 
 class BrowserTest extends TestCase
 {

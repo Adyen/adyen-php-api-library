@@ -21,15 +21,17 @@
  *
  */
 
-namespace Adyen\Tests\Util;
+namespace Adyen\Tests\Unit\Util;
 
+use Adyen\AdyenException;
 use Adyen\Util\Util;
+use PHPUnit\Framework\TestCase;
 
-class UtilTest extends \PHPUnit\Framework\TestCase
+class UtilTest extends TestCase
 {
     public function testSha256Invalid()
     {
-        $this->expectException('Adyen\AdyenException');
+        $this->expectException(AdyenException::class);
         $this->expectExceptionMessage('Invalid HMAC key: INVALID');
         Util::calculateSha256Signature("INVALID", array('key' => 'value'));
     }

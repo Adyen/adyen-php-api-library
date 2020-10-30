@@ -21,24 +21,16 @@
  *
  */
 
-/**
- * Created by PhpStorm.
- * User: rikt
- * Date: 11/6/15
- * Time: 2:39 PM
- */
+namespace Adyen\Tests\Integration;
 
-namespace Adyen\Integration;
-
-use Adyen\TestCase;
-use Adyen\Service;
+use Adyen\Service\Modification;
+use Adyen\Tests\TestCase;
 
 class ModificationTest extends TestCase
 {
     public function testCancelModification()
     {
         // create a payment
-        require_once __DIR__ . '/CreatePaymentRequestTest.php';
         $test = new CreatePaymentRequestTest();
         $result = $test->testCreatePaymentSuccess();
 
@@ -48,7 +40,7 @@ class ModificationTest extends TestCase
         $client = $this->createClient();
 
         // initialize service
-        $service = new Service\Modification($client);
+        $service = new Modification($client);
         $params = array('originalReference' => $pspReference, 'merchantAccount' => $this->merchantAccount);
         $result = $service->cancel($params);
 
@@ -58,7 +50,6 @@ class ModificationTest extends TestCase
     public function testRefundModification()
     {
         // create a payment
-        require_once __DIR__ . '/CreatePaymentRequestTest.php';
         $test = new CreatePaymentRequestTest();
         $result = $test->testCreatePaymentSuccess();
 
@@ -68,7 +59,7 @@ class ModificationTest extends TestCase
         $client = $this->createClient();
 
         // initialize service
-        $service = new Service\Modification($client);
+        $service = new Modification($client);
 
         $modificationAmount = array('currency' => 'EUR', 'value' => '750');
 
@@ -88,7 +79,6 @@ class ModificationTest extends TestCase
     public function testAdjustDecreaseModification()
     {
         // create a payment
-        require_once __DIR__ . '/CreatePaymentRequestTest.php';
         $test = new CreatePaymentRequestTest();
         $result = $test->testCreatePaymentSuccess();
 
@@ -98,7 +88,7 @@ class ModificationTest extends TestCase
         $client = $this->createClient();
 
         // initialize service
-        $service = new Service\Modification($client);
+        $service = new Modification($client);
 
         $params = array(
             "merchantAccount" => $this->merchantAccount,
@@ -115,7 +105,6 @@ class ModificationTest extends TestCase
     public function testAdjustIncreaseModification()
     {
         // create a payment
-        require_once __DIR__ . '/CreatePaymentRequestTest.php';
         $test = new CreatePaymentRequestTest();
         $result = $test->testCreatePaymentSuccess();
 
@@ -125,7 +114,7 @@ class ModificationTest extends TestCase
         $client = $this->createClient();
 
         // initialize service
-        $service = new Service\Modification($client);
+        $service = new Modification($client);
 
         $params = array(
             "merchantAccount" => $this->merchantAccount,

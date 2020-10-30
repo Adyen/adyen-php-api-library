@@ -21,11 +21,10 @@
  *
  */
 
-
 namespace Adyen\Tests\Integration\Builder;
 
 use Adyen\Service\Builder\Customer;
-use Adyen\TestCase;
+use Adyen\Tests\TestCase;
 
 class CustomerTest extends TestCase
 {
