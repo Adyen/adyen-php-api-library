@@ -1,0 +1,8 @@
+{
+  "referralServiceResult":{
+    "success":true
+  },
+  "skippedReferrals":[
+    "jsmith_example.com"
+  ]
+}
