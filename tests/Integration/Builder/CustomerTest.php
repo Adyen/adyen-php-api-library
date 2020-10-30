@@ -24,7 +24,6 @@
 
 namespace Adyen\Tests\Integration\Builder;
 
-
 use Adyen\Service\Builder\Customer;
 use Adyen\TestCase;
 

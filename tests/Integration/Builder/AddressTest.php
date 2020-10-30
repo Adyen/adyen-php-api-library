@@ -23,7 +23,6 @@
 
 namespace Adyen\Tests\Integration\Builder;
 
-
 use Adyen\Service\Builder\Address;
 use Adyen\TestCase;
 
