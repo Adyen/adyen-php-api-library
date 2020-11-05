@@ -15,6 +15,7 @@ The Library supports all APIs under the following services:
 * recurring
 * marketpay
 * Terminal API (Cloud based)
+* Referrals API
 
 ## Requirements
 PHP >=5.6 for production
