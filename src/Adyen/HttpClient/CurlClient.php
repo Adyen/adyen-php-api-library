@@ -309,11 +309,12 @@ class CurlClient implements ClientInterface
             $logger->error($decodeResult['errorCode'] . ': ' . $decodeResult['message']);
             throw new AdyenException(
                 $decodeResult['message'],
-                $decodeResult['errorCode'],
+                $decodeResult['status'],
                 null,
                 $decodeResult['status'],
                 $decodeResult['errorType'],
-                isset($decodeResult['pspReference']) ? $decodeResult['pspReference'] : null
+                isset($decodeResult['pspReference']) ? $decodeResult['pspReference'] : null,
+                $decodeResult['errorCode']
             );
         }
         $logger->error($result);
