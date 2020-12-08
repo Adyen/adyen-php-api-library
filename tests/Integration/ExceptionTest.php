@@ -75,7 +75,7 @@ class ExceptionTest extends TestCase
         // check if exception is correct
         $this->assertEquals(AdyenException::class, get_class($e));
         $this->assertEquals('Invalid contract', $e->getMessage());
-        $this->assertEquals('802', $e->getCode());
+        $this->assertEquals('422', $e->getCode());
     }
 
     public function testExceptionMissingUsernamePassword()
