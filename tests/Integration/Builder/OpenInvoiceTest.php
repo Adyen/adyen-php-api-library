@@ -32,7 +32,6 @@ class OpenInvoiceTest extends TestCase
     {
         $expectedResult = array(
             'id' => "1",
-            'itemId' => "1",
             'description' => "item-description",
             'amountExcludingTax' => 1000,
             'taxAmount' => 21,
