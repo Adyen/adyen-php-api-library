@@ -50,7 +50,6 @@ class OpenInvoice
         // item id is optional
         if (!empty($itemId)) {
             $lineItem['id'] = $itemId;
-            $lineItem['itemId'] = $itemId;
         }
 
         $lineItem['description'] = $description;
