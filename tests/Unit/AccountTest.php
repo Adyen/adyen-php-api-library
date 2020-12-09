@@ -21,15 +21,14 @@
  *
  */
 
-namespace Adyen\Unit;
+namespace Adyen\Tests\Unit;
+
+use Adyen\Service\Account;
 
 class AccountTest extends TestCaseMock
 {
     /**
-     * @param $jsonFile
-     * @param $httpStatus
      * @dataProvider successAccountCreateProvider
-     * @throws \Adyen\AdyenException
      */
     public function testAccountCreateSuccess($jsonFile, $httpStatus)
     {
@@ -37,7 +36,7 @@ class AccountTest extends TestCaseMock
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
         // initialize service
-        $service = new \Adyen\Service\Account($client);
+        $service = new Account($client);
 
         $params = json_decode(
             '

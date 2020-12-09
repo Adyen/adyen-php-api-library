@@ -1,7 +1,11 @@
 <?php
 
-namespace Adyen;
+namespace Adyen\Tests\Unit;
 
+use Adyen\Service;
+use Adyen\Service\AbstractResource;
+use Adyen\Tests\TestCase;
+use Adyen\TransactionType;
 use DMS\PHPUnitExtensions\ArraySubset\Assert;
 
 class AbstractResourceTest extends TestCase
@@ -9,7 +13,7 @@ class AbstractResourceTest extends TestCase
     /**
      * @var string
      */
-    private $className = "Adyen\Service\AbstractResource";
+    private $className = AbstractResource::class;
 
     /**
      * If the allowApplicationInfo is true the applicationInfo Adyen Library should be overwritten with the real values
@@ -33,7 +37,7 @@ class AbstractResourceTest extends TestCase
         // Mock abstract class with mocked client and $paramsToFilter parameters
         $mockedClass = $this->getMockForAbstractClass(
             $this->className,
-            array((new \Adyen\Service($mockedClient)), "", true)
+            array((new Service($mockedClient)), "", true)
         );
 
         // Get private method as testable public method
@@ -72,7 +76,7 @@ class AbstractResourceTest extends TestCase
         // Mock abstract class with mocked client and $paramsToFilter parameters
         $mockedClass = $this->getMockForAbstractClass(
             $this->className,
-            array((new \Adyen\Service($mockedClient)), "", true)
+            array((new Service($mockedClient)), "", true)
         );
 
         // Get private method as testable public method
@@ -104,7 +108,7 @@ class AbstractResourceTest extends TestCase
         // Mock abstract class with mocked client and $paramsToFilter parameters
         $mockedClass = $this->getMockForAbstractClass(
             $this->className,
-            array((new \Adyen\Service($mockedClient)), "", true)
+            array((new Service($mockedClient)), "", true)
         );
 
         // Get private method as testable public method
@@ -137,7 +141,7 @@ class AbstractResourceTest extends TestCase
         // Mock abstract class with mocked client and $paramsToFilter parameters
         $mockedClass = $this->getMockForAbstractClass(
             $this->className,
-            array((new \Adyen\Service($mockedClient)), "", true)
+            array((new Service($mockedClient)), "", true)
         );
 
         // Get private method as testable public method
@@ -180,7 +184,7 @@ class AbstractResourceTest extends TestCase
                                 }
                             },
                             "PaymentData": {
-                                "PaymentType": "' . \Adyen\TransactionType::NORMAL . '"
+                                "PaymentType": "' . TransactionType::NORMAL . '"
                             }
                         }
                     }
@@ -195,7 +199,7 @@ class AbstractResourceTest extends TestCase
         // Mock abstract class with mocked client and $paramsToFilter parameters
         $mockedClass = $this->getMockForAbstractClass(
             $this->className,
-            array((new \Adyen\Service($mockedClient)), "", true)
+            array((new Service($mockedClient)), "", true)
         );
 
         // Get private method as testable public method
@@ -238,7 +242,7 @@ class AbstractResourceTest extends TestCase
                                 }
                             },
                             "PaymentData": {
-                                "PaymentType": "' . \Adyen\TransactionType::NORMAL . '"
+                                "PaymentType": "' . TransactionType::NORMAL . '"
                             }
                         }
                     }
@@ -264,7 +268,7 @@ class AbstractResourceTest extends TestCase
         // Mock abstract class with mocked client and $paramsToFilter parameters
         $mockedClass = $this->getMockForAbstractClass(
             $this->className,
-            array((new \Adyen\Service($mockedClient)), "", true)
+            array((new Service($mockedClient)), "", true)
         );
 
         // Get private method as testable public method
@@ -285,7 +289,6 @@ class AbstractResourceTest extends TestCase
 
     /**
      * @test
-     * @throws AdyenException
      */
     public function handleApplicationInfoInRequestPOSWithBase64AddBase64EncodedApplicationInfo()
     {
@@ -316,7 +319,7 @@ class AbstractResourceTest extends TestCase
                                 }
                             },
                             "PaymentData": {
-                                "PaymentType": "' . \Adyen\TransactionType::NORMAL . '"
+                                "PaymentType": "' . TransactionType::NORMAL . '"
                             }
                         }
                     }
@@ -342,7 +345,7 @@ class AbstractResourceTest extends TestCase
         // Mock abstract class with mocked client and $paramsToFilter parameters
         $mockedClass = $this->getMockForAbstractClass(
             $this->className,
-            array((new \Adyen\Service($mockedClient)), "", true)
+            array((new Service($mockedClient)), "", true)
         );
 
         // Get private method as testable public method

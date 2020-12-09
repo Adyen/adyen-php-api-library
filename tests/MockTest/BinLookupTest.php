@@ -2,15 +2,13 @@
 
 namespace Adyen\Tests\MockTest;
 
-use Adyen\Unit\TestCaseMock;
+use Adyen\Service\BinLookup;
+use Adyen\Tests\Unit\TestCaseMock;
 
 class BinLookupTest extends TestCaseMock
 {
     /**
-     * @param $jsonFile
-     * @param $httpStatus
      * @dataProvider successGetCostEstimateProvider
-     * @throws \Adyen\AdyenException
      */
     public function testEstimateIsSuccessful($jsonFile, $httpStatus)
     {
@@ -18,7 +16,7 @@ class BinLookupTest extends TestCaseMock
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
         // initialize service
-        $service = new \Adyen\Service\BinLookup($client);
+        $service = new BinLookup($client);
 
         $params = array(
             "amount" => array(

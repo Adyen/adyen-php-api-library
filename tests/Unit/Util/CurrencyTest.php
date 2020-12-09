@@ -21,9 +21,12 @@
  *
  */
 
-namespace Adyen\Util;
+namespace Adyen\Tests\Unit\Util;
 
-class CurrencyTest extends \PHPUnit\Framework\TestCase
+use Adyen\Util\Currency;
+use PHPUnit\Framework\TestCase;
+
+class CurrencyTest extends TestCase
 {
     public function testFormatAmountThreeDecimals()
     {

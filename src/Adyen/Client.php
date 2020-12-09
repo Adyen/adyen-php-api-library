@@ -10,7 +10,7 @@ use Monolog\Handler\StreamHandler;
 
 class Client
 {
-    const LIB_VERSION = "8.0.0";
+    const LIB_VERSION = "8.1.0";
     const LIB_NAME = "adyen-php-api-library";
     const USER_AGENT_SUFFIX = "adyen-php-api-library/";
     const ENDPOINT_TEST = "https://pal-test.adyen.com";
@@ -41,6 +41,8 @@ class Client
     const ENDPOINT_FUND_LIVE = "https://cal-live.adyen.com/cal/services/Fund";
     const ENDPOINT_DISPUTE_SERVICE_TEST = "https://ca-test.adyen.com/ca/services/DisputeService";
     const ENDPOINT_DISPUTE_SERVICE_LIVE = "https://ca-live.adyen.com/ca/services/DisputeService";
+    const ENDPOINT_CUSTOMER_AREA_TEST = "https://ca-test.adyen.com";
+    const ENDPOINT_CUSTOMER_AREA_LIVE = "https://ca-live.adyen.com";
 
     /**
      * @var Config|ConfigInterface
@@ -147,6 +149,7 @@ class Client
             $this->config->set('endpointAccount', self::ENDPOINT_ACCOUNT_TEST);
             $this->config->set('endpointFund', self::ENDPOINT_FUND_TEST);
             $this->config->set('endpointDisputeService', self::ENDPOINT_DISPUTE_SERVICE_TEST);
+            $this->config->set('endpointCustomerArea', self::ENDPOINT_CUSTOMER_AREA_TEST);
         } elseif ($environment == \Adyen\Environment::LIVE) {
             $this->config->set('environment', \Adyen\Environment::LIVE);
             $this->config->set('endpointDirectorylookup', self::ENDPOINT_LIVE_DIRECTORY_LOOKUP);
@@ -155,6 +158,7 @@ class Client
             $this->config->set('endpointAccount', self::ENDPOINT_ACCOUNT_LIVE);
             $this->config->set('endpointFund', self::ENDPOINT_FUND_LIVE);
             $this->config->set('endpointDisputeService', self::ENDPOINT_DISPUTE_SERVICE_LIVE);
+            $this->config->set('endpointCustomerArea', self::ENDPOINT_CUSTOMER_AREA_LIVE);
 
             if ($liveEndpointUrlPrefix) {
                 $this->config->set(

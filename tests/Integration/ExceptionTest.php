@@ -21,23 +21,20 @@
  *
  */
 
-/**
- * Created by PhpStorm.
- * User: rikt
- * Date: 11/18/15
- * Time: 12:01 PM
- */
+namespace Adyen\Tests\Integration;
 
-namespace Adyen\Integration;
+use Adyen\AdyenException;
+use Adyen\Client;
+use Adyen\Contract;
+use Adyen\Environment;
+use Adyen\Service\Recurring;
+use Adyen\Tests\TestCase;
 
-use Adyen\TestCase;
-use Adyen\Service;
-
-class ExceptionTest extends \Adyen\TestCase
+class ExceptionTest extends TestCase
 {
     public function testExceptionMissingEnvironmentValue()
     {
-        $client = new \Adyen\Client();
+        $client = new Client();
         $client->setApplicationName("My Test Application");
         $client->setUsername('username');
         $client->setPassword('password');
@@ -45,12 +42,12 @@ class ExceptionTest extends \Adyen\TestCase
 
 
         try {
-            $service = new Service\Recurring($client);
+            $service = new Recurring($client);
         } catch (\Exception $e) {
         }
 
         // should have environment exception
-        $this->assertEquals('Adyen\AdyenException', get_class($e));
+        $this->assertEquals(AdyenException::class, get_class($e));
         $this->assertEquals('The Client does not have a correct environment, use test or live', $e->getMessage());
     }
 
@@ -61,7 +58,7 @@ class ExceptionTest extends \Adyen\TestCase
         $client = $this->createClient();
 
         // initialize service
-        $service = new Service\Recurring($client);
+        $service = new Recurring($client);
 
         $recurring = array('contract' => "WRONG PARAMETER");
         $params = array(
@@ -76,25 +73,25 @@ class ExceptionTest extends \Adyen\TestCase
         }
 
         // check if exception is correct
-        $this->assertEquals('Adyen\AdyenException', get_class($e));
+        $this->assertEquals(AdyenException::class, get_class($e));
         $this->assertEquals('Invalid contract', $e->getMessage());
-        $this->assertEquals('802', $e->getCode());
+        $this->assertEquals('422', $e->getCode());
     }
 
     public function testExceptionMissingUsernamePassword()
     {
         // initialize client
-        $client = new \Adyen\Client();
+        $client = new Client();
         $client->setApplicationName("Adyen PHP Api Library");
         $client->setUsername("");
         $client->setPassword("");
-        $client->setEnvironment(\Adyen\Environment::TEST);
+        $client->setEnvironment(Environment::TEST);
 
         // initialize service
-        $service = new Service\Recurring($client);
+        $service = new Recurring($client);
 
         // in a model form ?
-        $recurring = array('contract' => \Adyen\Contract::RECURRING);
+        $recurring = array('contract' => Contract::RECURRING);
         $params = array(
             'merchantAccount' => $this->getMerchantAccount(),
             'recurring' => $recurring,
@@ -108,9 +105,9 @@ class ExceptionTest extends \Adyen\TestCase
         }
 
         // check if exception is correct
-        $this->assertEquals('Adyen\AdyenException', get_class($e));
+        $this->assertEquals(AdyenException::class, get_class($e));
         $this->assertEquals("HTTP Status Response - Unauthorized", $e->getMessage());
-        $this->assertEquals('0', $e->getCode());
+        $this->assertEquals('401', $e->getCode());
         $this->assertEquals('401', $e->getStatus());
     }
 }

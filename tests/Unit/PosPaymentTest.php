@@ -21,13 +21,13 @@
  *
  */
 
-namespace Adyen\Unit;
+namespace Adyen\Tests\Unit;
+
+use Adyen\Service\PosPayment;
 
 class PosPaymentTest extends TestCaseMock
 {
     /**
-    * @param $jsonFile Json file location
-    * @param $httpStatus expected http status code
     * @dataProvider resultSuccessGetConnectedTerminals
     */
     public function testGetConnectedTerminalsSuccess($jsonFile, $httpStatus)
@@ -36,7 +36,7 @@ class PosPaymentTest extends TestCaseMock
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
         // initialize service
-        $service = new \Adyen\Service\PosPayment($client);
+        $service = new PosPayment($client);
 
         $json = '{
             "merchantAccount": "PME_POS"

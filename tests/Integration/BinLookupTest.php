@@ -21,10 +21,10 @@
  *
  */
 
-namespace Adyen\Integration;
+namespace Adyen\Tests\Integration;
 
-use Adyen\TestCase;
-use Adyen\Service;
+use Adyen\Service\BinLookup;
+use Adyen\Tests\TestCase;
 
 class BinLookupTest extends TestCase
 {
@@ -34,7 +34,7 @@ class BinLookupTest extends TestCase
         $client = $this->createClient();
 
         // initialize service
-        $service = new Service\BinLookup($client);
+        $service = new BinLookup($client);
 
         $json = '{
               "cardNumber": "5454545454545454",
@@ -57,7 +57,7 @@ class BinLookupTest extends TestCase
         $client = $this->createClient();
 
         // initialize service
-        $service = new Service\BinLookup($client);
+        $service = new BinLookup($client);
 
         $json = '{
               "cardNumber": "1111111111111111",

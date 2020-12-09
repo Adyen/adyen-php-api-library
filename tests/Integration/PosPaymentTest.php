@@ -21,10 +21,11 @@
  *
  */
 
-namespace Adyen\Integration;
+namespace Adyen\Tests\Integration;
 
-use Adyen\TestCase;
-use Adyen\Service;
+use Adyen\Service\PosPayment;
+use Adyen\Tests\TestCase;
+use Adyen\TransactionType;
 
 class PosPaymentTest extends TestCase
 {
@@ -38,10 +39,10 @@ class PosPaymentTest extends TestCase
         $client = $this->createTerminalCloudAPIClient();
 
         // initialize service
-        $service = new Service\PosPayment($client);
+        $service = new PosPayment($client);
 
         //Construct request
-        $transactionType = \Adyen\TransactionType::NORMAL;
+        $transactionType = TransactionType::NORMAL;
         $serviceID = date("dHis");
         $timeStamper = date("Y-m-d") . "T" . date("H:i:s+00:00");
 
@@ -101,10 +102,10 @@ class PosPaymentTest extends TestCase
         $client = $this->createTerminalCloudAPIClient();
 
         // initialize service
-        $service = new Service\PosPayment($client);
+        $service = new PosPayment($client);
 
         //Construct request
-        $transactionType = \Adyen\TransactionType::NORMAL;
+        $transactionType = TransactionType::NORMAL;
         $serviceID = date("dHis");
         $timeStamper = date("Y-m-d") . "T" . date("H:i:s+00:00");
 
@@ -164,10 +165,10 @@ class PosPaymentTest extends TestCase
         $client = $this->createTerminalCloudAPIClient();
 
         // initialize service
-        $service = new Service\PosPayment($client);
+        $service = new PosPayment($client);
 
         //Construct request
-        $transactionType = \Adyen\TransactionType::REFUND;
+        $transactionType = TransactionType::REFUND;
         $serviceID = date("dHis");
         $timeStamper = date("Y-m-d") . "T" . date("H:i:s+00:00");
 
@@ -223,7 +224,7 @@ class PosPaymentTest extends TestCase
         $client = $this->createTerminalCloudAPIClient();
 
         // initialize service
-        $service = new Service\PosPayment($client);
+        $service = new PosPayment($client);
 
         //Construct request
         $json = '{
@@ -250,10 +251,10 @@ class PosPaymentTest extends TestCase
         // initialize client
         $client = $this->createTerminalCloudAPIClient();
         // initialize service
-        $service = new Service\PosPayment($client);
+        $service = new PosPayment($client);
 
         //Construct request
-        $transactionType = \Adyen\TransactionType::NORMAL;
+        $transactionType = TransactionType::NORMAL;
         $serviceID = date("dHis");
         $timeStamper = date("Y-m-d") . "T" . date("H:i:s+00:00");
 
@@ -329,13 +330,13 @@ class PosPaymentTest extends TestCase
         // initialize client
         $client = $this->createTerminalCloudAPIClient();
         // initialize service
-        $service = new Service\PosPayment($client);
+        $service = new PosPayment($client);
 
         //Set merchantApplication
         $client->setMerchantApplication("merchantPosApplication", "0.0.test");
 
         //Construct request
-        $transactionType = \Adyen\TransactionType::NORMAL;
+        $transactionType = TransactionType::NORMAL;
         $serviceID = date("dHis");
         $timeStamper = date("Y-m-d") . "T" . date("H:i:s+00:00");
 
@@ -417,10 +418,10 @@ class PosPaymentTest extends TestCase
         $client->setTimeout(1);
 
         // initialize service
-        $service = new Service\PosPayment($client);
+        $service = new PosPayment($client);
 
         //Construct request
-        $transactionType = \Adyen\TransactionType::NORMAL;
+        $transactionType = TransactionType::NORMAL;
         $serviceID = date("dHis");
         $timeStamper = date("Y-m-d") . "T" . date("H:i:s+00:00");
 

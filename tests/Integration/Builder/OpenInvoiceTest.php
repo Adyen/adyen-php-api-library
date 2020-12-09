@@ -24,7 +24,7 @@
 namespace Adyen\Tests\Integration\Builder;
 
 use Adyen\Service\Builder\OpenInvoice;
-use Adyen\TestCase;
+use Adyen\Tests\TestCase;
 
 class OpenInvoiceTest extends TestCase
 {
@@ -32,7 +32,6 @@ class OpenInvoiceTest extends TestCase
     {
         $expectedResult = array(
             'id' => "1",
-            'itemId' => "1",
             'description' => "item-description",
             'amountExcludingTax' => 1000,
             'taxAmount' => 21,
@@ -46,4 +45,3 @@ class OpenInvoiceTest extends TestCase
         $this->assertEquals($result, $expectedResult);
     }
 }
-

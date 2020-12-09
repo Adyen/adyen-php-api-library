@@ -21,16 +21,12 @@
  *
  */
 
-namespace Adyen\Integration;
+namespace Adyen\Tests\Integration;
 
-use Adyen\TestCase;
-use Adyen\Service;
+use Adyen\AdyenException;
+use Adyen\Service\Payout;
+use Adyen\Tests\TestCase;
 
-/**
- * Class PayoutThirdPartyTest
- *
- * @package Adyen\Integration
- */
 class PayoutThirdPartyTest extends TestCase
 {
     protected function setUp(): void
@@ -44,7 +40,7 @@ class PayoutThirdPartyTest extends TestCase
         $client = $this->createPayoutClient();
 
         // initialize service
-        $service = new Service\Payout($client);
+        $service = new Payout($client);
 
         $json = '{
               "bank": {
@@ -74,7 +70,7 @@ class PayoutThirdPartyTest extends TestCase
         }
 
         // check if exception is correct
-        $this->assertEquals('Adyen\AdyenException', get_class($e));
+        $this->assertEquals(AdyenException::class, get_class($e));
         $this->assertEquals('Required field \'reference\' is null', $e->getMessage());
     }
 
@@ -84,7 +80,7 @@ class PayoutThirdPartyTest extends TestCase
         $client = $this->createPayoutClient();
 
         // initialize service
-        $service = new Service\Payout($client);
+        $service = new Payout($client);
 
         $json = '{
               "bank": {
@@ -115,7 +111,7 @@ class PayoutThirdPartyTest extends TestCase
 
 
         // check if exception is correct
-        $this->assertEquals('Adyen\AdyenException', get_class($e));
+        $this->assertEquals(AdyenException::class, get_class($e));
         $this->assertEquals('Invalid iban', $e->getMessage());
     }
     
@@ -125,7 +121,7 @@ class PayoutThirdPartyTest extends TestCase
         $client = $this->createPayoutClient();
     
         // initialize service
-        $service = new Service\Payout($client);
+        $service = new Payout($client);
     
         $json = '{
               "bank": {
@@ -165,7 +161,7 @@ class PayoutThirdPartyTest extends TestCase
         $client = $this->createPayoutClient();
 
         // initialize service
-        $service = new Service\Payout($client);
+        $service = new Payout($client);
 
         $json = '{
               "bank": {
@@ -210,7 +206,7 @@ class PayoutThirdPartyTest extends TestCase
         $client = $this->createPayoutClient();
 
         // initialize service
-        $service = new Service\Payout($client);
+        $service = new Payout($client);
 
         $json = '{
               "amount": {
@@ -251,7 +247,7 @@ class PayoutThirdPartyTest extends TestCase
         $client = $this->createPayoutClient();
 
         // initialize service
-        $service = new Service\Payout($client);
+        $service = new Payout($client);
 
         $json = '{
               "amount": {
@@ -278,7 +274,7 @@ class PayoutThirdPartyTest extends TestCase
         }
 
         // check if exception is correct
-        $this->assertEquals('Adyen\AdyenException', get_class($e));
+        $this->assertEquals(AdyenException::class, get_class($e));
         $this->assertEquals('PaymentDetail not found', $e->getMessage());
     }
 
@@ -290,7 +286,7 @@ class PayoutThirdPartyTest extends TestCase
         $submitted_payout = $this->testSubmitPayoutThirdPartySuccess();
 
         // initialize service
-        $service = new Service\Payout($client);
+        $service = new Payout($client);
 
         $json = '{
               "merchantAccount": "' . $this->merchantAccount .'",
@@ -321,7 +317,7 @@ class PayoutThirdPartyTest extends TestCase
         $client = $this->createReviewPayoutClient();
 
         // initialize service
-        $service = new Service\Payout($client);
+        $service = new Payout($client);
 
         $json = '{
               "merchantAccount": "' . $this->merchantAccount .'",
@@ -337,7 +333,7 @@ class PayoutThirdPartyTest extends TestCase
         }
 
         // check if exception is correct
-        $this->assertEquals('Adyen\AdyenException', get_class($e));
+        $this->assertEquals(AdyenException::class, get_class($e));
         $this->assertEquals(
             'Original pspReference required for this operation',
             $e->getMessage()
@@ -352,7 +348,7 @@ class PayoutThirdPartyTest extends TestCase
         $submitted_payout = $this->testSubmitPayoutThirdPartySuccess();
 
         // initialize service
-        $service = new Service\Payout($client);
+        $service = new Payout($client);
 
         $json = '{
               "merchantAccount": "' . $this->merchantAccount .'",
@@ -379,13 +375,13 @@ class PayoutThirdPartyTest extends TestCase
 
     public function testDeclinePayoutThirdPartyInvalidReference()
     {
-        $this->expectException('Adyen\AdyenException');
+        $this->expectException(AdyenException::class);
         $this->expectExceptionMessage('Original pspReference required for this operation');
         // initialize client
         $client = $this->createReviewPayoutClient();
 
         // initialize service
-        $service = new Service\Payout($client);
+        $service = new Payout($client);
 
         $json = '{
               "merchantAccount": "' . $this->merchantAccount .'",

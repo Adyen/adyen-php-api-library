@@ -1,9 +1,9 @@
 <?php
 
-
 namespace Adyen\Tests\Integration;
 
-use Adyen\TestCase;
+use Adyen\Service\Validator\CheckoutStateDataValidator;
+use Adyen\Tests\TestCase;
 
 class ValidatorTest extends TestCase
 {
@@ -16,7 +16,7 @@ class ValidatorTest extends TestCase
             'WrongData' => 'fake data'
         );
 
-        $checkoutStateDataValidator = new \Adyen\Service\Validator\CheckoutStateDataValidator();
+        $checkoutStateDataValidator = new CheckoutStateDataValidator();
         $result = $checkoutStateDataValidator->getValidatedAdditionalData($params);
 
         $this->assertTrue(array_key_exists('paymentMethod', $result));
