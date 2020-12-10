@@ -39,6 +39,11 @@ class OpenInvoice
     const KLARNA_PAYNOW_PAYMENT_METHOD = 'klarna_paynow';
     const KLARNA_ACCOUNT_PAYMENT_METHOD = 'klarna_account';
 
+    const FACILYPAY = 'facilypay_';
+    const AFFIRM ='affirm';
+    const CLEARPAY = 'clearpay';
+
+
     /**
      * List of open invoice payment methods
      *
@@ -56,6 +61,9 @@ class OpenInvoice
         self::KLARNA_B2B_PAYMENT_METHOD,
         self::KLARNA_PAYNOW_PAYMENT_METHOD,
         self::KLARNA_ACCOUNT_PAYMENT_METHOD,
+        self::AFFIRM,
+        self::CLEARPAY,
+        self::FACILYPAY
     );
 
     /**
@@ -63,6 +71,51 @@ class OpenInvoice
      *
      * @param $paymentMethod
      * @return string 'High'/'None'
+     */
+    public static function getCategoryVat($paymentMethod)
+    {
+        if (mb_substr($paymentMethod, 0, 6) == self::KLARNA_PAYMENT_METHOD ||
+            mb_substr($paymentMethod, 0, 8) == self::AFTERPAY_PAYMENT_METHOD) {
+            return 'High';
+        }
+        return 'None';
+    }
+
+    /**
+     * Returns true if the parameter is a valid open invoice payment method
+     *
+     * @param $paymentMethod
+     * @return bool
+     *
+     */
+    public static function isPaymentMethodOpenInvoice($paymentMethod)
+    {
+        if (in_array(strtolower($paymentMethod), self::$openInvoicePaymentMethods)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Returns true if $paymentMethod is 'afterpaytouch'
+     *
+     * @param $paymentMethod
+     * @return bool
+     */
+    public static function isPaymentMethodAfterPayTouch($paymentMethod)
+    {
+        if (self::AFTERPAYTOUCH_PAYMENT_METHOD === $paymentMethod) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * For Klarna And AfterPay use Vat category High others use none
+     *
+     * @param $paymentMethod
+     * @return string 'High'/'None'
+     * @depecated
      */
     public function getVatCategory($paymentMethod)
     {
@@ -78,6 +131,7 @@ class OpenInvoice
      *
      * @param $paymentMethod
      * @return bool
+     * @depecated
      */
     public function isOpenInvoicePaymentMethod($paymentMethod)
     {
@@ -92,6 +146,7 @@ class OpenInvoice
      *
      * @param $paymentMethod
      * @return bool
+     * @depecated
      */
     public function isAfterPayTouchPaymentMethod($paymentMethod)
     {
