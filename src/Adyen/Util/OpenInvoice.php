@@ -110,7 +110,7 @@ class OpenInvoice
      * @var array
      */
     private static $afterPayTouchPaymentMethods = array(
-        self::AFTERPAYTOUCH_PAYMENT_METHOD,
+        self::AFTERPAYTOUCH,
         self::AFTERPAYTOUCH_AU,
         self::AFTERPAYTOUCH_CA,
         self::AFTERPAYTOUCH_NZ,
