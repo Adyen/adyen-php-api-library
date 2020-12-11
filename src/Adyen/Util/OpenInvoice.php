@@ -35,7 +35,6 @@ class OpenInvoice
     const AFTERPAYTOUCH_CA = "afterpaytouch_CA";
     const AFTERPAYTOUCH_NZ = "afterpaytouch_NZ";
     const AFTERPAYTOUCH_US = "afterpaytouch_US";
-    const AFTERPAYTOUCH_POS = "afterpaytouch_pos";
 
     const RATEPAY = 'ratepay';
     const RATEPAY_DIRECTDEBIT_PAYMENT_METHOD = 'ratepay_directdebit';
