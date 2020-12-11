@@ -114,7 +114,6 @@ class OpenInvoice
         self::AFTERPAYTOUCH_CA,
         self::AFTERPAYTOUCH_NZ,
         self::AFTERPAYTOUCH_US,
-        self::AFTERPAYTOUCH_POS
     );
 
     /**
