@@ -50,6 +50,8 @@ class OpenInvoiceTest extends TestCase
         $this->assertTrue($result);
         $result = $openInvoice->isOpenInvoicePaymentMethod("facilypay_10x");
         $this->assertTrue($result);
+        $result = $openInvoice->isOpenInvoicePaymentMethod("facilypay");
+        $this->assertTrue($result);
     }
 
     public function testIsAfterPayTouchPaymentMethod()
