@@ -29,7 +29,6 @@ class OpenInvoice
     const AFTERPAY_B2B_PAYMENT_METHOD = 'afterpay_b2b';
     const AFTERPAY_DEFAULT_PAYMENT_METHOD = 'afterpay_default';
     const AFTERPAY_DIRECTDEBIT_PAYMENT_METHOD = 'afterpay_directdebit';
-    const AFTERPAYTOUCH_PAYMENT_METHOD = 'afterpaytouch';
 
     const AFTERPAYTOUCH = "afterpaytouch";
     const AFTERPAYTOUCH_AU = "afterpaytouch_AU";
@@ -38,7 +37,7 @@ class OpenInvoice
     const AFTERPAYTOUCH_US = "afterpaytouch_US";
     const AFTERPAYTOUCH_POS = "afterpaytouch_pos";
 
-    const RATEPAY_PAYMENT_METHOD = 'ratepay';
+    const RATEPAY = 'ratepay';
     const RATEPAY_DIRECTDEBIT_PAYMENT_METHOD = 'ratepay_directdebit';
 
     const KLARNA_PAYMENT_METHOD = 'klarna';
@@ -77,8 +76,8 @@ class OpenInvoice
         self::AFTERPAY_B2B_PAYMENT_METHOD,
         self::AFTERPAY_DEFAULT_PAYMENT_METHOD,
         self::AFTERPAY_DIRECTDEBIT_PAYMENT_METHOD,
-        self::AFTERPAYTOUCH_PAYMENT_METHOD,
-        self::RATEPAY_PAYMENT_METHOD,
+        self::AFTERPAYTOUCH,
+        self::RATEPAY,
         self::RATEPAY_DIRECTDEBIT_PAYMENT_METHOD,
         self::KLARNA_PAYMENT_METHOD,
         self::KLARNA_B2B_PAYMENT_METHOD,
@@ -156,7 +155,6 @@ class OpenInvoice
      */
     public function isAfterPayTouchPaymentMethod($paymentMethod)
     {
-        print $paymentMethod;
         if (in_array($paymentMethod, self::$afterPayTouchPaymentMethods)) {
             return true;
         }
