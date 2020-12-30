@@ -33,7 +33,7 @@ class HopTest extends TestCase
         $accountService = new \Adyen\Service\Account($client);
         $hopService = new \Adyen\Service\Hop($client);
 
-        /* Test account holder for the HOP URL test */
+        /* Test account holder for the HOP getOnboardingUrl test */
         $params = $this->getTestAccountHolder();
 
         /*
@@ -53,7 +53,7 @@ class HopTest extends TestCase
          */
         $params = json_decode(
             '{
-                "accountHolderCode":"TestAccountHolderCode2",
+                "accountHolderCode":"TestAccountHolderCode",
                 "returnUrl":"https://your.return-url.com/?submerchant=123",
                 "platformName":"MyShop.com"
             }',
@@ -71,7 +71,7 @@ class HopTest extends TestCase
         return json_decode(
             '
             {
-              "accountHolderCode": "TestAccountHolderCode2",
+              "accountHolderCode": "TestAccountHolderCode",
               "accountHolderDetails": {
                 "email": "john@doe.com",
                 "individualDetails": {
