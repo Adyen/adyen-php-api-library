@@ -28,6 +28,7 @@ class Client
     const API_ACCOUNT_VERSION = "v5";
     const API_FUND_VERSION = "v5";
     const API_DISPUTE_SERVICE_VERSION = "v30";
+    const API_HOP_VERSION = "v6";
     const ENDPOINT_TERMINAL_CLOUD_TEST = "https://terminal-api-test.adyen.com";
     const ENDPOINT_TERMINAL_CLOUD_LIVE = "https://terminal-api-live.adyen.com";
     const ENDPOINT_CHECKOUT_TEST = "https://checkout-test.adyen.com/checkout";
@@ -43,6 +44,8 @@ class Client
     const ENDPOINT_DISPUTE_SERVICE_LIVE = "https://ca-live.adyen.com/ca/services/DisputeService";
     const ENDPOINT_CUSTOMER_AREA_TEST = "https://ca-test.adyen.com";
     const ENDPOINT_CUSTOMER_AREA_LIVE = "https://ca-live.adyen.com";
+    const ENDPOINT_HOP_TEST = "https://cal-test.adyen.com/cal/services/Hop";
+    const ENDPOINT_HOP_LIVE = "https://cal-live.adyen.com/cal/services/Hop";
 
     /**
      * @var Config|ConfigInterface
@@ -150,6 +153,7 @@ class Client
             $this->config->set('endpointFund', self::ENDPOINT_FUND_TEST);
             $this->config->set('endpointDisputeService', self::ENDPOINT_DISPUTE_SERVICE_TEST);
             $this->config->set('endpointCustomerArea', self::ENDPOINT_CUSTOMER_AREA_TEST);
+            $this->config->set('endpointHop', self::ENDPOINT_HOP_TEST);
         } elseif ($environment == \Adyen\Environment::LIVE) {
             $this->config->set('environment', \Adyen\Environment::LIVE);
             $this->config->set('endpointDirectorylookup', self::ENDPOINT_LIVE_DIRECTORY_LOOKUP);
@@ -159,6 +163,7 @@ class Client
             $this->config->set('endpointFund', self::ENDPOINT_FUND_LIVE);
             $this->config->set('endpointDisputeService', self::ENDPOINT_DISPUTE_SERVICE_LIVE);
             $this->config->set('endpointCustomerArea', self::ENDPOINT_CUSTOMER_AREA_LIVE);
+            $this->config->set('endpointHop', self::ENDPOINT_HOP_LIVE);
 
             if ($liveEndpointUrlPrefix) {
                 $this->config->set(
@@ -390,6 +395,16 @@ class Client
     public function getApiFundVersion()
     {
         return self::API_FUND_VERSION;
+    }
+
+    /**
+     * Get the version of the Hop API endpoint
+     *
+     * @return string
+     */
+    public function getApiHopVersion()
+    {
+        return self::API_HOP_VERSION;
     }
 
     /**
