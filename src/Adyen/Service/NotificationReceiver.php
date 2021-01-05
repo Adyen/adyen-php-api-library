@@ -115,15 +115,15 @@ class NotificationReceiver
     /**
      * Checks if notification mode and the store mode configuration matches
      *
-     * @param $notificationMode
-     * @param $testMode bool
+     * @param mixed $notificationMode
+     * @param bool $testMode
      * @return bool
      */
     public function validateNotificationMode($notificationMode, $testMode)
     {
         // Notification mode can be a string or a boolean
-        if (($testMode && ($notificationMode == 'false' || !$notificationMode)) ||
-            (!$testMode && ($notificationMode == 'true' || $notificationMode))
+        if (($testMode && ($notificationMode === 'false' || $notificationMode === false)) ||
+            (!$testMode && ($notificationMode === 'true' || $notificationMode === true))
         ) {
             return true;
         }
