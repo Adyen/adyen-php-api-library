@@ -34,7 +34,7 @@ For more information, refer to our [documentation](https://docs.adyen.com/) or t
 
 ### Legacy version support
 
-If using PHP versions 5.3, 5.4, or 5.5, download our library version [6.3.0](https://github.com/Adyen/adyen-php-api-library/releases/tag/6.0.0).
+If using PHP versions 5.3, 5.4, or 5.5, download our library version [6.3.0](https://github.com/Adyen/adyen-php-api-library/releases/tag/6.3.0).
 
 ## Installation
 
