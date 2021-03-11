@@ -144,7 +144,7 @@ We encourage you to contribute to this repository, so everyone can benefit from 
 Have a look at our [contributing guidelines](https://github.com/Adyen/adyen-php-api-library/blob/develop/CONTRIBUTING.md) to find out how to raise a pull request.
 
 ## Support
-If you have a feature request, or spotted a bug or a technical problem, [create an issue here](https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2FAdyen%2Fadyen-web%2Fissues%2Fnew%2Fchoose).
+If you have a feature request, or spotted a bug or a technical problem, [create an issue here](https://github.com/Adyen/adyen-php-api-library/issues/new/choose).
 
 For other questions, [contact our Support Team](https://www.adyen.help/hc/en-us/requests/new?ticket_form_id=360000705420).
 
