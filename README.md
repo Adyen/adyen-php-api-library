@@ -65,14 +65,14 @@ $client->setXApiKey("YOUR API KEY");
 $client->setEnvironment(\Adyen\Environment::TEST);
 $client->setTimeout(30);
 
-$service = new \Adyen\Service\Payment($client);
+$service = new \Adyen\Service\Checkout($client);
 
 $json = '{
       "card": {
-        "number": "4111111111111111",
-        "expiryMonth": "10",
-        "expiryYear": "2020",
-        "cvc": "737",
+        "encryptedCardNumber" => "test_4111111111111111",
+        "encryptedExpiryMonth" => "test_03",
+        "encryptedExpiryYear" => "test_2030",
+        "encryptedSecurityCode" => "test_737"
         "holderName": "John Smith"
       },
       "amount": {
@@ -85,7 +85,7 @@ $json = '{
 
 $params = json_decode($json, true);
 
-$result = $service->authorise($params);
+$result = $service->payments($params);
 ~~~~
 
 ### General use with API key for live environment
