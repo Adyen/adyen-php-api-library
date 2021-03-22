@@ -173,11 +173,11 @@ class CheckoutTest extends TestCaseMock
             'amount' => array('currency' => "EUR", 'value' => 1000),
             'paymentMethod' => array(
                 'type' => "scheme",
-                'number' => "4111111111111111",
-                'expiryMonth' => "08",
-                'expiryYear' => "2018",
-                'holderName' => "John Smith",
-                'cvc' => "737"
+                'encryptedCardNumber' => 'test_4111111111111111',
+                'encryptedExpiryMonth' => 'test_03',
+                'encryptedExpiryYear' => 'test_2030',
+                'encryptedSecurityCode' => 'test_737',
+                'holderName' => "John Smith"
             ),
             'returnUrl' => "https://your-company.com/..."
         );
