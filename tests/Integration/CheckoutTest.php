@@ -113,11 +113,11 @@ class CheckoutTest extends TestCase
             'amount' => array('currency' => "EUR", 'value' => 1000),
             'paymentMethod' => array(
                 'type' => "scheme",
-                'number' => "4111111111111111",
-                'expiryMonth' => "03",
-                'expiryYear' => "2030",
-                'holderName' => "John Smith",
-                'cvc' => "737"
+                'encryptedCardNumber' => 'test_4111111111111111',
+                'encryptedExpiryMonth' => 'test_03',
+                'encryptedExpiryYear' => 'test_2030',
+                'encryptedSecurityCode' => 'test_737',
+                'holderName' => "John Smith"
             ),
             'reference' => "Your order number",
             'returnUrl' => "https://your-company.com/..."
@@ -140,11 +140,11 @@ class CheckoutTest extends TestCase
             'amount' => array('currency' => "EUR", 'value' => 1000),
             'paymentMethod' => array(
                 'type' => "scheme",
-                'number' => "4111111111111111",
-                'expiryMonth' => "03",
-                'expiryYear' => "2030",
-                'holderName' => "John Smith",
-                'cvc' => "737"
+                'encryptedCardNumber' => 'test_4111111111111111',
+                'encryptedExpiryMonth' => 'test_03',
+                'encryptedExpiryYear' => 'test_2030',
+                'encryptedSecurityCode' => 'test_737',
+                'holderName' => "John Smith"
             ),
             'reference' => "Your order number",
             'returnUrl' => "https://your-company.com/..."
