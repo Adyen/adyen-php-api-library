@@ -1,0 +1,14 @@
+{
+  "invalidFields": [
+    {
+      "errorCode": 91,
+      "errorDescription": "The return url specified is invalid",
+      "fieldType": {
+        "field": "returnUrl",
+        "fieldName": "returnUrl"
+      }
+    }
+  ],
+  "pspReference": "8816163576602761",
+  "resultCode": "Failed"
+}
