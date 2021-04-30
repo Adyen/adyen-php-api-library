@@ -1,0 +1,6 @@
+{
+  "status": 500,
+  "errorCode": "702",
+  "message": "Required field 'accountHolderCode' is null",
+  "errorType": "validation"
+}
