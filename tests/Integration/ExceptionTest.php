@@ -75,7 +75,7 @@ class ExceptionTest extends TestCase
         // check if exception is correct
         $this->assertEquals(AdyenException::class, get_class($e));
         $this->assertEquals('Invalid contract', $e->getMessage());
-        $this->assertEquals('422', $e->getCode());
+        $this->assertEquals('802', $e->getCode());
     }
 
     public function testExceptionMissingUsernamePassword()
@@ -107,7 +107,7 @@ class ExceptionTest extends TestCase
         // check if exception is correct
         $this->assertEquals(AdyenException::class, get_class($e));
         $this->assertEquals("HTTP Status Response - Unauthorized", $e->getMessage());
-        $this->assertEquals('401', $e->getCode());
+        $this->assertEquals('0', $e->getCode());
         $this->assertEquals('401', $e->getStatus());
     }
 }
