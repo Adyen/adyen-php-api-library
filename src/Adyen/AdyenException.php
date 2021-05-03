@@ -50,7 +50,7 @@ class AdyenException extends Exception
         $this->errorType = $errorType;
         $this->pspReference = $pspReference;
         $this->adyenErrorCode = $adyenErrorCode;
-        parent::__construct($message, $code, $previous);
+        parent::__construct($message, (int)$code, $previous);
     }
 
     /**
