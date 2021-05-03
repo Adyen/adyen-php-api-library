@@ -17,7 +17,7 @@
     "monolog/monolog": ">=1.16"
   },
   "require-dev": {
-    "dms/phpunit-arraysubset-asserts": "0.2.1",
+    "dms/phpunit-arraysubset-asserts": "0.3.0",
     "friendsofphp/php-cs-fixer": "*",
     "phpunit/phpunit": "9.5.4",
     "php-coveralls/php-coveralls": "2.4.3",
