@@ -23,12 +23,6 @@
 
 namespace Adyen\Tests\Unit;
 
-use Adyen\AdyenException;
-use Adyen\ConnectionException;
-use Adyen\Service\Payment;
-use Monolog\Handler\TestHandler;
-use Monolog\Logger;
-
 class RecurringTest extends TestCaseMock
 {
     /**
