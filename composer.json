@@ -6,7 +6,7 @@
     "adyen"
   ],
   "homepage": "https://github.com/Adyen/adyen-php-api-library",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "require": {
     "php": ">=5.6",
     "ext-ctype": "*",
