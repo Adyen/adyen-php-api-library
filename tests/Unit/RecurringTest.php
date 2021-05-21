@@ -52,11 +52,11 @@ class RecurringTest extends TestCaseMock
             true
         );
         $result = $service->notifyShopper($params);
-        $this->assertEquals($result['displayedReference'], 'Example displayed reference');
-        $this->assertEquals($result['message'], 'Request processed successfully');
-        $this->assertEquals($result['pspReference'], '8516167336214570');
-        $this->assertEquals($result['resultCode'], 'Success');
-        $this->assertEquals($result['shopperNotificationReference'], 'IA0F7500002462');
+        $this->assertEquals('Example displayed reference', $result['displayedReference']);
+        $this->assertEquals('Request processed successfully', $result['message']);
+        $this->assertEquals('8516167336214570', $result['pspReference']);
+        $this->assertEquals('Success', $result['resultCode']);
+        $this->assertEquals('IA0F7500002462', $result['shopperNotificationReference']);
     }
 
     public static function notifyShopperDataProvider()
