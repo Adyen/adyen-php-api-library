@@ -30,6 +30,10 @@ matrix:
   allow_failures:
     - php: "8.0"
 
+cache:
+  directories:
+    - "${HOME}/.composer/cache"
+
 script:
   - |
     find -L . -path ./vendor -prune -o -path ./tests -prune -o -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l
