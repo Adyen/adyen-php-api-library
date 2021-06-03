@@ -1,15 +1,20 @@
-# ignore config file
-tests/config
-
-# Ignore auto generated files directory
-vendor
-build
-.phpunit.result.cache
-.php_cs.cache
-.vagrant
-
-# ignore Mac OS X file
+# OS
 .DS_Store
+Thumbs.db
 
-# ignore PhpStorm .idea folder
-.idea
+# IDE and local environment
+/.vscode/
+/.vagrant/
+/.idea/
+
+# Packages
+/vendor/
+
+# Application
+/tests/config/
+!/tests/config/test.ini.sample
+
+# Tests
+/build/
+.php_cs.cache
+.phpunit.result.cache
