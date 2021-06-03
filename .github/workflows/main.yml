@@ -19,7 +19,7 @@ jobs:
           fetch-depth: 0
 
       - name: Validate composer.json and composer.lock
-        run: composer validate
+        run: composer validate --strict
 
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
