@@ -71,16 +71,18 @@ class Client
     public function __construct($config = null)
     {
         if ($config === null) {
-            // create config
-            $this->config = new Config();
-        } elseif ($config instanceof ConfigInterface) {
-            $this->config = $config;
-        } else {
+            // Create config
+            $config = new Config();
+        }
+
+        if (! $config instanceof ConfigInterface) {
             throw new \Adyen\AdyenException(
                 'This config object is not supported,' .
                 ' you need to implement the ConfigInterface'
             );
         }
+
+        $this->config = $config;
     }
 
     /**
