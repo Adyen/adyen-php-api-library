@@ -11,7 +11,7 @@ class RefundNotPaidOutTransfers extends \Adyen\Service\AbstractResource
 
     /**
      * RefundNotPaidOutTransfers constructor.
-     * @param $service
+     * @param \Adyen\Service $service
      */
     public function __construct($service)
     {

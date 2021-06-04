@@ -11,7 +11,7 @@ class CloseAccountHolder extends \Adyen\Service\AbstractResource
 
     /**
      * CloseAccountHolder constructor.
-     * @param $service
+     * @param \Adyen\Service $service
      */
     public function __construct($service)
     {

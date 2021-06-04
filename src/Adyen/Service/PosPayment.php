@@ -15,7 +15,7 @@ class PosPayment extends \Adyen\ApiKeyAuthenticatedService
     protected $runTenderAsync;
 
     /**
-     * @var
+     * @var string
      */
     protected $txType;
 
@@ -39,7 +39,7 @@ class PosPayment extends \Adyen\ApiKeyAuthenticatedService
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */
@@ -50,7 +50,7 @@ class PosPayment extends \Adyen\ApiKeyAuthenticatedService
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */
@@ -61,7 +61,7 @@ class PosPayment extends \Adyen\ApiKeyAuthenticatedService
     }
 
     /**
-     * @param $request
+     * @param string $request
      * @return null
      */
     public function getServiceId($request)
@@ -73,7 +73,7 @@ class PosPayment extends \Adyen\ApiKeyAuthenticatedService
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */

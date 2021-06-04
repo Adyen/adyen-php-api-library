@@ -28,8 +28,8 @@ use Adyen\AdyenException;
 class Sha256Signature
 {
     /**
-     * @param $hmacKey
-     * @param $params
+     * @param string $hmacKey
+     * @param string $params
      * @return string
      * @throws AdyenException
      */

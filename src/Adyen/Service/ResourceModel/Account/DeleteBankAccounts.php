@@ -11,7 +11,7 @@ class DeleteBankAccounts extends \Adyen\Service\AbstractResource
 
     /**
      * DeleteBankAccounts constructor.
-     * @param $service
+     * @param \Adyen\Service $service
      */
     public function __construct($service)
     {

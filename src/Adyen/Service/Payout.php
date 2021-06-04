@@ -83,7 +83,7 @@ class Payout extends Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws AdyenException
      */
@@ -94,7 +94,7 @@ class Payout extends Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws AdyenException
      */
@@ -105,7 +105,7 @@ class Payout extends Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws AdyenException
      */
@@ -116,7 +116,7 @@ class Payout extends Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws AdyenException
      */
@@ -127,7 +127,7 @@ class Payout extends Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws AdyenException
      */
@@ -138,7 +138,7 @@ class Payout extends Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws AdyenException
      */
@@ -149,7 +149,7 @@ class Payout extends Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws AdyenException
      */
@@ -160,7 +160,7 @@ class Payout extends Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws AdyenException
      */
@@ -171,7 +171,7 @@ class Payout extends Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws AdyenException
      */

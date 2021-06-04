@@ -11,7 +11,7 @@ class UpdateAccount extends \Adyen\Service\AbstractResource
 
     /**
      * UpdateAccount constructor.
-     * @param $service
+     * @param \Adyen\Service $service
      */
     public function __construct($service)
     {

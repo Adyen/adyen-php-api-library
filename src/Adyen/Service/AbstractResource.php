@@ -50,7 +50,7 @@ abstract class AbstractResource
     /**
      * Do the request to the Http Client
      *
-     * @param $params
+     * @param string $params
      * @param null $requestOptions
      * @return mixed
      * @throws AdyenException
@@ -92,7 +92,7 @@ abstract class AbstractResource
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws AdyenException
      */
@@ -112,7 +112,7 @@ abstract class AbstractResource
     /**
      * Fill expected but missing parameters with default data
      *
-     * @param $params
+     * @param string $params
      * @return mixed
      */
     private function addDefaultParametersToRequest($params)
@@ -129,7 +129,7 @@ abstract class AbstractResource
      * If allowApplicationInfo is true then it adds applicationInfo to request
      * otherwise removes from the request
      *
-     * @param $params
+     * @param string $params
      * @return mixed
      */
     private function handleApplicationInfoInRequest($params)
@@ -157,7 +157,6 @@ abstract class AbstractResource
             $params['applicationInfo']['merchantApplication']['name'] = $merchantApplication['name'];
         }
 
-
         return $params;
     }
 
@@ -167,7 +166,7 @@ abstract class AbstractResource
      * 2) Adds ApplicationInfo to the array
      * 3) Base64 encodes SaleToAcquirerData
      *
-     * @param $params
+     * @param array $params
      * @return array|null
      */
     private function handleApplicationInfoInRequestPOS(array $params)
@@ -205,15 +204,11 @@ abstract class AbstractResource
     }
 
     /**
-     * @param $data
+     * @param string $data
      * @return bool
      */
     private function isBase64Encoded($data)
     {
-        if (preg_match('%^[a-zA-Z0-9/+]*={0,2}$%', $data) && !empty($data)) {
-            return true;
-        } else {
-            return false;
-        }
+        return preg_match('%^[a-zA-Z0-9/+]*={0,2}$%', $data) && !empty($data);
     }
 }

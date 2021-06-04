@@ -11,7 +11,7 @@ class PayoutAccountHolder extends \Adyen\Service\AbstractResource
 
     /**
      * PayoutAccountHolder constructor.
-     * @param $service
+     * @param \Adyen\Service $service
      */
     public function __construct($service)
     {

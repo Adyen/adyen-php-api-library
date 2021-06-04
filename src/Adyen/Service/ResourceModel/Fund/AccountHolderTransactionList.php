@@ -11,7 +11,7 @@ class AccountHolderTransactionList extends \Adyen\Service\AbstractResource
 
     /**
      * AccountHolderTransactionList constructor.
-     * @param $service
+     * @param \Adyen\Service $service
      */
     public function __construct($service)
     {

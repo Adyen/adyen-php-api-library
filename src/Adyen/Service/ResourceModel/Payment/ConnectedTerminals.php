@@ -12,7 +12,7 @@ class ConnectedTerminals extends \Adyen\Service\AbstractResource
     /**
      * ConnectedTerminals constructor.
      *
-     * @param $service
+     * @param \Adyen\Service $service
      */
     public function __construct($service)
     {

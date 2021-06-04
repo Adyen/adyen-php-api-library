@@ -11,7 +11,7 @@ class GetNotificationConfigurationList extends \Adyen\Service\AbstractResource
 
     /**
      * GetNotificationConfigurationList constructor.
-     * @param $service
+     * @param \Adyen\Service $service
      */
     public function __construct($service)
     {

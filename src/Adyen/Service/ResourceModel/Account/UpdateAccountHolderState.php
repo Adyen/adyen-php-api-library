@@ -11,7 +11,7 @@ class UpdateAccountHolderState extends \Adyen\Service\AbstractResource
 
     /**
      * UpdateAccountHolderState constructor.
-     * @param $service
+     * @param \Adyen\Service $service
      */
     public function __construct($service)
     {

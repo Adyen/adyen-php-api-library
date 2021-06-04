@@ -39,7 +39,7 @@ class Recurring extends \Adyen\Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */
@@ -50,7 +50,7 @@ class Recurring extends \Adyen\Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */
@@ -60,7 +60,7 @@ class Recurring extends \Adyen\Service
         return $result;
     }
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */

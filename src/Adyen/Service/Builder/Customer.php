@@ -32,7 +32,7 @@ class Customer
     /**
      * Builds the customer related data
      *
-     * @param $isOpenInvoicePaymentMethod
+     * @param string $isOpenInvoicePaymentMethod
      * @param string $email
      * @param string $phoneNumber
      * @param string $gender
@@ -106,12 +106,12 @@ class Customer
     /**
      * Builds customer related data listed in the parameter list for open invoice payment methods
      *
-     * @param $email
-     * @param $telephoneNumber
-     * @param $gender
-     * @param $dateOfBirth
-     * @param $firstName
-     * @param $lastName
+     * @param string $email
+     * @param string $telephoneNumber
+     * @param string $gender
+     * @param string $dateOfBirth
+     * @param string $firstName
+     * @param string $lastName
      * @param array $request
      * @return array
      */
@@ -164,12 +164,12 @@ class Customer
     /**
      * Builds customer related data listed in the parameter list for not open invoice payment methods
      *
-     * @param $email
-     * @param $telephoneNumber
-     * @param $gender
-     * @param $dateOfBirth
-     * @param $firstName
-     * @param $lastName
+     * @param string $email
+     * @param string $telephoneNumber
+     * @param string $gender
+     * @param string $dateOfBirth
+     * @param string $firstName
+     * @param string $lastName
      * @param array $request
      * @return array
      */

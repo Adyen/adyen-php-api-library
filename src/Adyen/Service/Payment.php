@@ -34,7 +34,7 @@ class Payment extends \Adyen\Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @param null $requestOptions
      * @return mixed
      * @throws \Adyen\AdyenException
@@ -46,7 +46,7 @@ class Payment extends \Adyen\Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @param null $requestOptions
      * @return mixed
      * @throws \Adyen\AdyenException
@@ -58,7 +58,7 @@ class Payment extends \Adyen\Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @param null $requestOptions
      * @return mixed
      * @throws \Adyen\AdyenException

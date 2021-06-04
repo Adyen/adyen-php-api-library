@@ -44,8 +44,8 @@ class CurlClient implements ClientInterface
      * Json API request to Adyen
      *
      * @param \Adyen\Service $service
-     * @param $requestUrl
-     * @param $params
+     * @param string $requestUrl
+     * @param string $params
      * @return mixed
      * @throws AdyenException
      */
@@ -177,8 +177,8 @@ class CurlClient implements ClientInterface
      * Request to Adyen with query string used for Directory Lookup
      *
      * @param \Adyen\Service $service
-     * @param $requestUrl
-     * @param $params
+     * @param string $requestUrl
+     * @param string $params
      * @return mixed
      * @throws AdyenException
      */
@@ -263,10 +263,10 @@ class CurlClient implements ClientInterface
     /**
      * Handle Curl exceptions
      *
-     * @param $url
-     * @param $errno
-     * @param $message
-     * @param $logger
+     * @param string $url
+     * @param string $errno
+     * @param string $message
+     * @param \Psr\Log\LoggerInterface $logger
      * @throws \Adyen\ConnectionException
      */
     protected function handleCurlError($url, $errno, $message, $logger)
@@ -298,8 +298,8 @@ class CurlClient implements ClientInterface
     /**
      * Handle result errors from Adyen
      *
-     * @param $result
-     * @param $logger
+     * @param string $result
+     * @param \Psr\Log\LoggerInterface $logger
      * @throws AdyenException
      */
     protected function handleResultError($result, $logger)
@@ -325,7 +325,7 @@ class CurlClient implements ClientInterface
      * Logs the API request, removing sensitive data
      *
      * @param \Psr\Log\LoggerInterface $logger
-     * @param string requestUrl
+     * @param string $requestUrl
      * @param string $environment
      * @param array $params
      */
@@ -346,7 +346,6 @@ class CurlClient implements ClientInterface
      * Logs the API request, removing sensitive data
      *
      * @param \Psr\Log\LoggerInterface $logger
-     * @param string requestUrl
      * @param string $environment
      * @param array $params
      */
@@ -361,9 +360,8 @@ class CurlClient implements ClientInterface
     }
 
     /**
-     * @param $value
-     * @param $key
-     * @param $param
+     * @param array|string $paramsToMaskList
+     * @param array $params
      */
     private function maskParametersRecursive($paramsToMaskList, $params)
     {
@@ -391,7 +389,7 @@ class CurlClient implements ClientInterface
      * If the value is longer than 6 char then 3 asterisks are appended to the first 6 char of the value
      * If the value is shorter than 6 char then replace all the chars with asterisks
      *
-     * @param $parameter
+     * @param string $parameter
      * @return string
      */
     private function maskParameter($parameter)
@@ -412,7 +410,7 @@ class CurlClient implements ClientInterface
     /**
      * Execute curl, return the result and the http response code
      *
-     * @param $ch
+     * @param string $ch
      * @return array
      */
     protected function curlRequest($ch)
@@ -425,7 +423,7 @@ class CurlClient implements ClientInterface
     /**
      * Retrieve curl error number and message
      *
-     * @param $ch
+     * @param string $ch
      * @return array
      */
     protected function curlError($ch)

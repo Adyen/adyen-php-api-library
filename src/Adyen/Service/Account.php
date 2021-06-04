@@ -101,7 +101,7 @@ class Account extends \Adyen\Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */
@@ -111,7 +111,7 @@ class Account extends \Adyen\Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */
@@ -121,7 +121,7 @@ class Account extends \Adyen\Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */
@@ -131,7 +131,7 @@ class Account extends \Adyen\Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */
@@ -141,7 +141,7 @@ class Account extends \Adyen\Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */
@@ -151,7 +151,7 @@ class Account extends \Adyen\Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */
@@ -161,7 +161,7 @@ class Account extends \Adyen\Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */
@@ -171,7 +171,7 @@ class Account extends \Adyen\Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */
@@ -181,7 +181,7 @@ class Account extends \Adyen\Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */
@@ -191,7 +191,7 @@ class Account extends \Adyen\Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */
@@ -201,7 +201,7 @@ class Account extends \Adyen\Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */
@@ -211,7 +211,7 @@ class Account extends \Adyen\Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */
@@ -221,7 +221,7 @@ class Account extends \Adyen\Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */
@@ -231,7 +231,7 @@ class Account extends \Adyen\Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */

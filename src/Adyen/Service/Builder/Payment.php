@@ -26,11 +26,11 @@ namespace Adyen\Service\Builder;
 class Payment
 {
     /**
-     * @param $currencyIso
-     * @param $formattedValue
-     * @param $reference
-     * @param $merchantAccount
-     * @param $returnUrl
+     * @param string $currencyIso
+     * @param string $formattedValue
+     * @param string $reference
+     * @param string $merchantAccount
+     * @param string $returnUrl
      * @param array $request
      * @return array
      */
@@ -55,7 +55,7 @@ class Payment
     }
 
     /**
-     * @param $paymentMethodType
+     * @param string $paymentMethodType
      * @param string $issuer
      * @param array $request
      * @return array
@@ -72,7 +72,7 @@ class Payment
     }
 
     /**
-     * @param $origin
+     * @param string $origin
      * @param array $request
      * @return array
      */

@@ -18,6 +18,7 @@ class Disable extends \Adyen\Service\AbstractResource
     {
         $this->endpoint = $service->getClient()->getConfig()->get('endpoint') .
             '/pal/servlet/Recurring/' . $service->getClient()->getApiRecurringVersion() . '/disable';
+
         parent::__construct($service, $this->endpoint);
     }
 }

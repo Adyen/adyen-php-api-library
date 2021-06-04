@@ -11,7 +11,7 @@ class DeleteShareholders extends \Adyen\Service\AbstractResource
 
     /**
      * DeleteShareholders constructor.
-     * @param $service
+     * @param \Adyen\Service $service
      */
     public function __construct($service)
     {

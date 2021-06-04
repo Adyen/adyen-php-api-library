@@ -7,7 +7,7 @@ class AbstractCheckoutResource extends AbstractResource
     /**
      * Return Checkout endpoint
      *
-     * @param $service
+     * @param \Adyen\Service $service
      * @return mixed
      * @throws \Adyen\AdyenException
      */

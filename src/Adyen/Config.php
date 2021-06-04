@@ -67,7 +67,7 @@ class Config implements ConfigInterface
     }
 
     /**
-     * @return mixed|null
+     * @return mixed
      */
     public function getUsername()
     {
@@ -75,7 +75,7 @@ class Config implements ConfigInterface
     }
 
     /**
-     * @return mixed|null
+     * @return mixed
      */
     public function getPassword()
     {
@@ -85,7 +85,7 @@ class Config implements ConfigInterface
     /**
      * Get the Checkout API Key from the Adyen Customer Area
      *
-     * @return mixed|null
+     * @return mixed
      */
     public function getXApiKey()
     {
@@ -95,7 +95,7 @@ class Config implements ConfigInterface
     /**
      * Get the http proxy configuration
      *
-     * @return mixed|null
+     * @return mixed
      */
     public function getHttpProxy()
     {
@@ -103,7 +103,7 @@ class Config implements ConfigInterface
     }
 
     /**
-     * @return mixed|string
+     * @return mixed
      */
     public function getInputType()
     {
@@ -115,7 +115,7 @@ class Config implements ConfigInterface
     }
 
     /**
-     * @return mixed|string
+     * @return mixed
      */
     public function getOutputType()
     {
@@ -127,7 +127,7 @@ class Config implements ConfigInterface
     }
 
     /**
-     * @return mixed|null
+     * @return mixed
      */
     public function getTimeout()
     {
@@ -135,7 +135,7 @@ class Config implements ConfigInterface
     }
 
     /**
-     * @return mixed|null
+     * @return mixed
      */
     public function getMerchantAccount()
     {
@@ -143,7 +143,7 @@ class Config implements ConfigInterface
     }
 
     /**
-     * @return mixed|null
+     * @return mixed
      */
     public function getAdyenPaymentSource()
     {
@@ -151,7 +151,7 @@ class Config implements ConfigInterface
     }
 
     /**
-     * @return array|null an array with 'name' and 'version'
+     * @return array|null An array with 'name' and 'version'
      */
     public function getMerchantApplication()
     {
@@ -159,7 +159,7 @@ class Config implements ConfigInterface
     }
 
     /**
-     * @return mixed|null
+     * @return mixed
      */
     public function getExternalPlatform()
     {

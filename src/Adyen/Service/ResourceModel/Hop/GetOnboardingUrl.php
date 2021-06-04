@@ -11,7 +11,7 @@ class GetOnboardingUrl extends \Adyen\Service\AbstractResource
 
     /**
      * GetOnboardingUrl constructor.
-     * @param $service
+     * @param \Adyen\Service $service
      */
     public function __construct($service)
     {

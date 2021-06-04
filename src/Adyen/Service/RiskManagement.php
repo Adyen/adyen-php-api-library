@@ -22,7 +22,7 @@ class RiskManagement extends \Adyen\Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @param null $requestOptions
      * @return mixed
      * @throws \Adyen\AdyenException

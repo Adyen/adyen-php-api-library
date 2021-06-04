@@ -11,7 +11,7 @@ class SuspendAccountHolder extends \Adyen\Service\AbstractResource
 
     /**
      * SuspendAccountHolder constructor.
-     * @param $service
+     * @param \Adyen\Service $service
      */
     public function __construct($service)
     {

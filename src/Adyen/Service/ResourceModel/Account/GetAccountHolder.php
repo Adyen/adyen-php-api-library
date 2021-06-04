@@ -11,7 +11,7 @@ class GetAccountHolder extends \Adyen\Service\AbstractResource
 
     /**
      * GetAccountHolder constructor.
-     * @param $service
+     * @param \Adyen\Service $service
      */
     public function __construct($service)
     {

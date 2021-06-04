@@ -22,7 +22,7 @@ class CheckoutUtility extends \Adyen\ApiKeyAuthenticatedService
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */

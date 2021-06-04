@@ -48,8 +48,8 @@ class NotificationReceiver
 
     /**
      * Checks if the hmac key is valid
-     * @param $response
-     * @param $hmacKey
+     * @param string $response
+     * @param string $hmacKey
      * @return bool
      * @throws AdyenException
      * @throws HMACKeyValidationException
@@ -68,10 +68,10 @@ class NotificationReceiver
     }
 
     /**
-     * @param $response
-     * @param $merchantAccount
-     * @param $notificationUsername
-     * @param $notificationPassword
+     * @param string $response
+     * @param string $merchantAccount
+     * @param string $notificationUsername
+     * @param string $notificationPassword
      * @return bool
      * @throws AuthenticationException
      * @throws MerchantAccountCodeException
@@ -133,7 +133,7 @@ class NotificationReceiver
     /**
      * If notification is a test notification from Adyen Customer Area
      *
-     * @param $pspReference
+     * @param string $pspReference
      * @return bool
      */
     public function isTestNotification($pspReference)
@@ -150,7 +150,7 @@ class NotificationReceiver
     /**
      * Check if notification is a report notification
      *
-     * @param $eventCode
+     * @param string $eventCode
      * @return bool
      */
     public function isReportNotification($eventCode)
@@ -165,7 +165,7 @@ class NotificationReceiver
     /**
      * Add '[accepted]' into $acceptedMessage if empty
      *
-     * @param $acceptedMessage
+     * @param string $acceptedMessage
      * @return string
      */
     public function returnAccepted($acceptedMessage)

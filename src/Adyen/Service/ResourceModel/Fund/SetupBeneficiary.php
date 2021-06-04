@@ -11,7 +11,7 @@ class SetupBeneficiary extends \Adyen\Service\AbstractResource
 
     /**
      * SetupBeneficiary constructor.
-     * @param $service
+     * @param \Adyen\Service $service
      */
     public function __construct($service)
     {

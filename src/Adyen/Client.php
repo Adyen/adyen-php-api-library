@@ -8,6 +8,9 @@ use Psr\Log\LoggerInterface;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
+/**
+ * @template TConfig of ConfigInterface
+ */
 class Client
 {
     const LIB_VERSION = "10.1.0";
@@ -49,11 +52,13 @@ class Client
 
     /**
      * @var Config|ConfigInterface
+     * @phpstan-var TConfig
      */
     private $config;
 
     /**
      * @var ClientInterface|null
+     * @phpstan-var TConfig|null
      */
     private $httpClient;
 
@@ -66,6 +71,7 @@ class Client
      * Client constructor.
      *
      * @param ConfigInterface|null $config
+     * @phpstan-param TConfig|null $config
      * @throws AdyenException
      */
     public function __construct($config = null)
@@ -87,6 +93,7 @@ class Client
 
     /**
      * @return Config|ConfigInterface
+     * @phpstan-return TConfig
      */
     public function getConfig()
     {
@@ -96,7 +103,7 @@ class Client
     /**
      * Set Username of Web Service User
      *
-     * @param $username
+     * @param string $username
      */
     public function setUsername($username)
     {
@@ -106,7 +113,7 @@ class Client
     /**
      * Set Password of Web Service User
      *
-     * @param $password
+     * @param string $password
      */
     public function setPassword($password)
     {
@@ -116,7 +123,7 @@ class Client
     /**
      * Set x-api-key for Web Service Client
      *
-     * @param $xApiKey
+     * @param string $xApiKey
      */
     public function setXApiKey($xApiKey)
     {
@@ -191,7 +198,7 @@ class Client
     /**
      * Set Request URl
      *
-     * @param $url
+     * @param string $url
      */
     public function setRequestUrl($url)
     {
@@ -201,7 +208,7 @@ class Client
     /**
      * Set directory lookup URL
      *
-     * @param $url
+     * @param string $url
      */
     public function setDirectoryLookupUrl($url)
     {
@@ -209,7 +216,7 @@ class Client
     }
 
     /**
-     * @param $merchantAccount
+     * @param string $merchantAccount
      */
     public function setMerchantAccount($merchantAccount)
     {
@@ -217,7 +224,7 @@ class Client
     }
 
     /**
-     * @param $applicationName
+     * @param string $applicationName
      */
     public function setApplicationName($applicationName)
     {
@@ -264,7 +271,7 @@ class Client
     /**
      * Type can be json or array
      *
-     * @param $value
+     * @param string $value
      */
     public function setInputType($value)
     {
@@ -274,7 +281,7 @@ class Client
     /**
      * Type can be json or array
      *
-     * @param $value
+     * @param string $value
      */
     public function setOutputType($value)
     {
@@ -282,7 +289,7 @@ class Client
     }
 
     /**
-     * @param $value
+     * @param string $value
      */
     public function setTimeout($value)
     {

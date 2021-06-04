@@ -29,7 +29,7 @@ class BinLookup extends \Adyen\Service
 
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */
@@ -42,7 +42,7 @@ class BinLookup extends \Adyen\Service
     /**
      * /getCostEstimate endpoint handler
      *
-     * @param $params
+     * @param string $params
      *
      * @return mixed
      * @throws \Adyen\AdyenException

@@ -11,7 +11,7 @@ class GetUploadedDocuments extends \Adyen\Service\AbstractResource
 
     /**
      * GetUploadedDocuments constructor.
-     * @param $service
+     * @param \Adyen\Service $service
      */
     public function __construct($service)
     {

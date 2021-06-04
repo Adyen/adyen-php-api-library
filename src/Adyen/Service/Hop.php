@@ -28,7 +28,7 @@ class Hop extends \Adyen\Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */
@@ -38,7 +38,7 @@ class Hop extends \Adyen\Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */

@@ -11,7 +11,7 @@ class GetPciQuestionnaireUrl extends \Adyen\Service\AbstractResource
 
     /**
      * GetPciQuestionnaireUrl constructor.
-     * @param $service
+     * @param \Adyen\Service $service
      */
     public function __construct($service)
     {

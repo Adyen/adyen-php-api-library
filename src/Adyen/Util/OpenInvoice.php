@@ -123,7 +123,7 @@ class OpenInvoice
     /**
      * For Klarna And AfterPay use Vat category High others use none
      *
-     * @param $paymentMethod
+     * @param string $paymentMethod
      * @return string 'High'/'None'
      */
     public function getVatCategory($paymentMethod)
@@ -138,7 +138,7 @@ class OpenInvoice
     /**
      * Returns true if the parameter is a valid open invoice payment method
      *
-     * @param $paymentMethod
+     * @param string $paymentMethod
      * @return bool
      */
     public function isOpenInvoicePaymentMethod($paymentMethod)
@@ -152,7 +152,7 @@ class OpenInvoice
     /**
      * Returns true if $paymentMethod is 'afterpaytouch'
      *
-     * @param $paymentMethod
+     * @param string $paymentMethod
      * @return bool
      */
     public function isAfterPayTouchPaymentMethod($paymentMethod)

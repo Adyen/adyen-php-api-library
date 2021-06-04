@@ -11,7 +11,8 @@ class UpdateNotificationConfiguration extends \Adyen\Service\AbstractResource
 
     /**
      * UpdateNotificationConfiguration constructor.
-     * @param $service\
+     *
+     * @param \Adyen\Service $service
      */
     public function __construct($service)
     {

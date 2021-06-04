@@ -53,7 +53,7 @@ class Fund extends \Adyen\Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */
@@ -63,7 +63,7 @@ class Fund extends \Adyen\Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */
@@ -73,7 +73,7 @@ class Fund extends \Adyen\Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */
@@ -83,7 +83,7 @@ class Fund extends \Adyen\Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */
@@ -93,7 +93,7 @@ class Fund extends \Adyen\Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */
@@ -103,7 +103,7 @@ class Fund extends \Adyen\Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */

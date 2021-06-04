@@ -22,7 +22,7 @@ class DirectoryLookup extends \Adyen\Service
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */

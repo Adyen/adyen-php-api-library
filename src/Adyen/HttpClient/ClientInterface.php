@@ -6,16 +6,16 @@ interface ClientInterface
 {
     /**
      * @param \Adyen\Service $service
-     * @param $requestUrl
-     * @param $params
+     * @param string $requestUrl
+     * @param string $params
      * @return mixed
      */
     public function requestJson(\Adyen\Service $service, $requestUrl, $params);
 
     /**
      * @param \Adyen\Service $service
-     * @param $requestUrl
-     * @param $params
+     * @param string $requestUrl
+     * @param string $params
      * @return mixed
      */
     public function requestPost(\Adyen\Service $service, $requestUrl, $params);

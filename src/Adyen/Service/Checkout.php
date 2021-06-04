@@ -70,7 +70,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */
@@ -81,7 +81,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */
@@ -92,7 +92,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */
@@ -103,7 +103,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @param null $requestOptions
      * @return mixed
      * @throws \Adyen\AdyenException
@@ -115,7 +115,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
     }
 
     /**
-     * @param $params
+     * @param string $params
      * @param null $requestOptions
      * @return mixed
      * @throws \Adyen\AdyenException
