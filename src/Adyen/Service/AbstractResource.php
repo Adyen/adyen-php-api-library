@@ -129,12 +129,12 @@ abstract class AbstractResource
      * If allowApplicationInfo is true then it adds applicationInfo to request
      * otherwise removes from the request
      *
-     * @param string $params
+     * @param array $params
      * @return mixed
      */
     private function handleApplicationInfoInRequest($params)
     {
-        // add/overwrite applicationInfo adyenLibrary even if it's already set
+        // Add/overwrite applicationInfo adyenLibrary even if it's already set
         $params['applicationInfo']['adyenLibrary']['name'] = $this->service->getClient()->getLibraryName();
         $params['applicationInfo']['adyenLibrary']['version'] = $this->service->getClient()->getLibraryVersion();
 
