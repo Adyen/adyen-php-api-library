@@ -68,7 +68,7 @@ class NotificationReceiver
     }
 
     /**
-     * @param string $response
+     * @param array $response
      * @param string $merchantAccount
      * @param string $notificationUsername
      * @param string $notificationPassword
@@ -122,12 +122,8 @@ class NotificationReceiver
     public function validateNotificationMode($notificationMode, $testMode)
     {
         // Notification mode can be a string or a boolean
-        if (($testMode && ($notificationMode === 'false' || $notificationMode === false)) ||
-            (!$testMode && ($notificationMode === 'true' || $notificationMode === true))
-        ) {
-            return true;
-        }
-        return false;
+        return ($testMode && ($notificationMode === 'false' || $notificationMode === false)) ||
+            (!$testMode && ($notificationMode === 'true' || $notificationMode === true);
     }
 
     /**
@@ -138,13 +134,8 @@ class NotificationReceiver
      */
     public function isTestNotification($pspReference)
     {
-        if (strpos(strtolower($pspReference), 'test_') !== false
-            || strpos(strtolower($pspReference), 'testnotification_') !== false
-        ) {
-            return true;
-        }
-
-        return false;
+        return strpos(strtolower($pspReference), 'test_') !== false
+            || strpos(strtolower($pspReference), 'testnotification_') !== false;
     }
 
     /**
@@ -155,11 +146,7 @@ class NotificationReceiver
      */
     public function isReportNotification($eventCode)
     {
-        if (strpos($eventCode, 'REPORT_') !== false) {
-            return true;
-        }
-
-        return false;
+        return strpos($eventCode, 'REPORT_') !== false;
     }
 
     /**
@@ -170,9 +157,8 @@ class NotificationReceiver
      */
     public function returnAccepted($acceptedMessage)
     {
-        if (empty($acceptedMessage)) {
-            $acceptedMessage = '[accepted]';
-        }
-        return $acceptedMessage;
+        return empty($acceptedMessage)
+            ? '[accepted]'
+            : $acceptedMessage;
     }
 }
