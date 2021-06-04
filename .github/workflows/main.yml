@@ -53,6 +53,7 @@ jobs:
         run: find -L . -path ./vendor -prune -o -path ./tests -prune -o -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l
 
       - name: SonarCloud integration
+        if: ${{ secrets.SONAR_TOKEN }}
         uses: sonarsource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
