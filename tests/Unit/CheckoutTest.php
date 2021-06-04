@@ -28,7 +28,7 @@ use Adyen\Service\Checkout;
 
 class CheckoutTest extends TestCaseMock
 {
-    const NO_CHECKOUT_KEY = "Please provide a valid Checkout API Key";
+    const NO_CHECKOUT_KEY = 'Please provide a valid Checkout API Key';
 
     /**
      * @dataProvider successPaymentMethodsProvider
@@ -41,7 +41,7 @@ class CheckoutTest extends TestCaseMock
         // initialize service
         $service = new Checkout($client);
 
-        $params = array('merchantAccount' => "YourMerchantAccount");
+        $params = array('merchantAccount' => 'YourMerchantAccount');
         $result = $service->paymentMethods($params);
 
         $this->assertArrayHasKey('paymentMethods', $result);
@@ -66,7 +66,7 @@ class CheckoutTest extends TestCaseMock
         $client->setEnvironment(\Adyen\Environment::LIVE);
 
         $service = new Checkout($client);
-        $params = array('merchantAccount' => "YourMerchantAccount");
+        $params = array('merchantAccount' => 'YourMerchantAccount');
         $service->paymentMethods($params);
     }
 
@@ -95,12 +95,12 @@ class CheckoutTest extends TestCaseMock
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
         if ($expectedExceptionMessage == self::NO_CHECKOUT_KEY) {
-            $client->setXApiKey("");
+            $client->setXApiKey('');
         }
         // initialize service
         $service = new Checkout($client);
 
-        $params = array('merchantAccount' => "YourMerchantAccount");
+        $params = array('merchantAccount' => 'YourMerchantAccount');
 
         $this->expectException(AdyenException::class);
         $this->expectExceptionMessage($expectedExceptionMessage);
@@ -110,8 +110,8 @@ class CheckoutTest extends TestCaseMock
     public static function failurePaymentMethodsProvider()
     {
         return array(
-            array('tests/Resources/Checkout/invalid-merchant-account.json', 403, "Invalid Merchant Account"),
-            array('tests/Resources/Checkout/payment-methods-forbidden.json', null, "Forbidden"),
+            array('tests/Resources/Checkout/invalid-merchant-account.json', 403, 'Invalid Merchant Account'),
+            array('tests/Resources/Checkout/payment-methods-forbidden.json', null, 'Forbidden'),
             array(null, null, self::NO_CHECKOUT_KEY)
         );
     }
@@ -128,18 +128,18 @@ class CheckoutTest extends TestCaseMock
         $service = new Checkout($client);
 
         $params = array(
-            'merchantAccount' => "YourMerchantAccount",
-            'amount' => array('currency' => "EUR", 'value' => 1000),
+            'merchantAccount' => 'YourMerchantAccount',
+            'amount' => array('currency' => 'EUR', 'value' => 1000),
             'paymentMethod' => array(
-                'type' => "scheme",
-                'number' => "4111111111111111",
-                'expiryMonth' => "08",
-                'expiryYear' => "2018",
-                'holderName' => "John Smith",
-                'cvc' => "737"
+                'type' => 'scheme',
+                'number' => '4111111111111111',
+                'expiryMonth' => '08',
+                'expiryYear' => '2018',
+                'holderName' => 'John Smith',
+                'cvc' => '737'
             ),
-            'reference' => "Your order number",
-            'returnUrl' => "https://your-company.com/...",
+            'reference' => 'Your order number',
+            'returnUrl' => 'https://your-company.com/...',
             'additionalData' => array(
                 'executeThreeD' => true
             )
@@ -169,17 +169,17 @@ class CheckoutTest extends TestCaseMock
         $service = new Checkout($client);
 
         $params = array(
-            'merchantAccount' => "YourMerchantAccount",
-            'amount' => array('currency' => "EUR", 'value' => 1000),
+            'merchantAccount' => 'YourMerchantAccount',
+            'amount' => array('currency' => 'EUR', 'value' => 1000),
             'paymentMethod' => array(
-                'type' => "scheme",
+                'type' => 'scheme',
                 'encryptedCardNumber' => 'test_4111111111111111',
                 'encryptedExpiryMonth' => 'test_03',
                 'encryptedExpiryYear' => 'test_2030',
                 'encryptedSecurityCode' => 'test_737',
-                'holderName' => "John Smith"
+                'holderName' => 'John Smith'
             ),
-            'returnUrl' => "https://your-company.com/..."
+            'returnUrl' => 'https://your-company.com/...'
         );
 
         $params['reference'] = 'yourownreference';
@@ -193,8 +193,8 @@ class CheckoutTest extends TestCaseMock
     public static function failurePaymentsProvider()
     {
         return array(
-            array('tests/Resources/Checkout/invalid-merchant-account.json', 403, "Invalid Merchant Account"),
-            array('tests/Resources/Checkout/payments-forbidden.json', null, "Forbidden")
+            array('tests/Resources/Checkout/invalid-merchant-account.json', 403, 'Invalid Merchant Account'),
+            array('tests/Resources/Checkout/payments-forbidden.json', null, 'Forbidden')
         );
     }
 
@@ -210,7 +210,7 @@ class CheckoutTest extends TestCaseMock
         $service = new Checkout($client);
 
         $params = array(
-            'merchantAccount' => "YourMerchantAccount",
+            'merchantAccount' => 'YourMerchantAccount',
             'paymentData' => 'Ab02b4c0!BQABAgCJN1wRZuGJmq8dMncmypvknj9s7l5Tj...',
             'details' => array(
                 'MD' => 'sdfsdfsdf...',
@@ -242,17 +242,17 @@ class CheckoutTest extends TestCaseMock
         $service = new Checkout($client);
 
         $params = array(
-            'merchantAccount' => "YourMerchantAccount",
-            'amount' => array('currency' => "EUR", 'value' => 1000),
-            'countryCode' => "NL",
-            'reference' => "Your order number",
-            'returnUrl' => "https://your-company.com/",
-            "sdkVersion" => "1.3.0"
+            'merchantAccount' => 'YourMerchantAccount',
+            'amount' => array('currency' => 'EUR', 'value' => 1000),
+            'countryCode' => 'NL',
+            'reference' => 'Your order number',
+            'returnUrl' => 'https://your-company.com/',
+            'sdkVersion' => '1.3.0'
         );
 
         $result = $service->paymentSession($params);
 
-        $this->assertArrayHasKey("paymentSession", $result);
+        $this->assertArrayHasKey('paymentSession', $result);
     }
 
     public static function successPaymentSessionProvider()
@@ -274,7 +274,7 @@ class CheckoutTest extends TestCaseMock
         $service = new Checkout($client);
 
         $params = array(
-            'payload' => "YourPayload"
+            'payload' => 'YourPayload'
         );
 
         $result = $service->paymentsResult($params);
@@ -302,13 +302,13 @@ class CheckoutTest extends TestCaseMock
         $service = new Checkout($client);
 
         $params = array(
-            'merchantAccount' => "YourMerchantAccount",
+            'merchantAccount' => 'YourMerchantAccount',
             'reference' => '12345',
-            'amount' => array('currency' => "BRL", 'value' => 1250),
-            'countryCode' => "BR",
-            'shopperReference' => "YourUniqueShopperId",
-            'shopperEmail' => "test@email.com",
-            'shopperLocale' => "pt_BR",
+            'amount' => array('currency' => 'BRL', 'value' => 1250),
+            'countryCode' => 'BR',
+            'shopperReference' => 'YourUniqueShopperId',
+            'shopperEmail' => 'test@email.com',
+            'shopperLocale' => 'pt_BR',
             'billingAddress' => $this->getExampleAddressStruct(),
             'deliveryAddress' => $this->getExampleAddressStruct(),
         );
@@ -338,12 +338,12 @@ class CheckoutTest extends TestCaseMock
         $service = new Checkout($client);
 
         $params = array(
-            'merchantAccount' => "YourMerchantAccount",
-            'amount' => array('currency' => "BRL", 'value' => 1250),
-            'countryCode' => "BR",
-            'shopperReference' => "YourUniqueShopperId",
-            'shopperEmail' => "test@email.com",
-            'shopperLocale' => "pt_BR",
+            'merchantAccount' => 'YourMerchantAccount',
+            'amount' => array('currency' => 'BRL', 'value' => 1250),
+            'countryCode' => 'BR',
+            'shopperReference' => 'YourUniqueShopperId',
+            'shopperEmail' => 'test@email.com',
+            'shopperLocale' => 'pt_BR',
             'billingAddress' => $this->getExampleAddressStruct(),
             'deliveryAddress' => $this->getExampleAddressStruct(),
         );
@@ -364,12 +364,12 @@ class CheckoutTest extends TestCaseMock
     private function getExampleAddressStruct()
     {
         return array(
-            'street' => "Roque Petroni Jr",
-            'postalCode' => "59000060",
-            'city' => "São Paulo",
-            'houseNumberOrName' => "999",
-            'country' => "BR",
-            'stateOrProvince' => "SP",
+            'street' => 'Roque Petroni Jr',
+            'postalCode' => '59000060',
+            'city' => 'São Paulo',
+            'houseNumberOrName' => '999',
+            'country' => 'BR',
+            'stateOrProvince' => 'SP',
         );
     }
 }

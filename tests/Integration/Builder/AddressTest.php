@@ -32,15 +32,15 @@ class AddressTest extends TestCase
     {
         $expectedResult = array(
             'billingAddress' => array(
-                'street' => "Blauwbrug",
-                'houseNumberOrName' => "33",
-                'postalCode' => "1334aa",
-                'city' => "Amsterdam",
-                'country' => "NL"
+                'street' => 'Blauwbrug',
+                'houseNumberOrName' => '33',
+                'postalCode' => '1334aa',
+                'city' => 'Amsterdam',
+                'country' => 'NL'
             )
         );
         $address = new Address();
-        $result = $address->buildBillingAddress("Blauwbrug", "33", "1334aa", "Amsterdam", "", "NL");
+        $result = $address->buildBillingAddress('Blauwbrug', '33', '1334aa', 'Amsterdam', '', 'NL');
         $this->assertEquals($result, $expectedResult);
     }
 
@@ -48,15 +48,15 @@ class AddressTest extends TestCase
     {
         $expectedResult = array(
             'deliveryAddress' => array(
-                'street' => "straat",
-                'houseNumberOrName' => "33",
-                'postalCode' => "1333aa",
-                'city' => "Leiden",
-                'country' => "NL"
+                'street' => 'straat',
+                'houseNumberOrName' => '33',
+                'postalCode' => '1333aa',
+                'city' => 'Leiden',
+                'country' => 'NL'
             )
         );
         $address = new Address();
-        $result = $address->buildDeliveryAddress("straat", "33", "1333aa", "Leiden", "", "NL");
+        $result = $address->buildDeliveryAddress('straat', '33', '1333aa', 'Leiden', '', 'NL');
         $this->assertEquals($result, $expectedResult);
     }
 }

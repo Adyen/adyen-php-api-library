@@ -47,13 +47,13 @@ class BrowserTest extends TestCase
 
         $browser = new Browser();
         $result = $browser->buildBrowserData(
-            "Mozilla/5.0",
-            "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-            "1536",
-            "723",
-            "24",
-            "2",
-            "nl-NL",
+            'Mozilla/5.0',
+            'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            '1536',
+            '723',
+            '24',
+            '2',
+            'nl-NL',
             true,
             $request
         );

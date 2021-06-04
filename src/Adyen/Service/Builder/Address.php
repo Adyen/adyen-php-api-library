@@ -145,37 +145,37 @@ class Address
     ) {
         $address = array();
         if (!empty($street)) {
-            $address["street"] = $street;
+            $address['street'] = $street;
         } else {
-            $address["street"] = self::$defaultStreet;
+            $address['street'] = self::$defaultStreet;
         }
 
         if (!empty($houseNumberOrName)) {
-            $address["houseNumberOrName"] = $houseNumberOrName;
+            $address['houseNumberOrName'] = $houseNumberOrName;
         } else {
-            $address["houseNumberOrName"] = self::$defaultHouseNumberOrName;
+            $address['houseNumberOrName'] = self::$defaultHouseNumberOrName;
         }
 
         if (!empty($postalCode)) {
-            $address["postalCode"] = $postalCode;
+            $address['postalCode'] = $postalCode;
         } else {
-            $address["postalCode"] = self::$defaultPostalCode;
+            $address['postalCode'] = self::$defaultPostalCode;
         }
 
         if (!empty($city)) {
-            $address["city"] = $city;
+            $address['city'] = $city;
         } else {
-            $address["city"] = self::$defaultCity;
+            $address['city'] = self::$defaultCity;
         }
 
         if (!empty($stateOrProvince)) {
-            $address["stateOrProvince"] = $stateOrProvince;
+            $address['stateOrProvince'] = $stateOrProvince;
         }
 
         if (!empty($country)) {
-            $address["country"] = $country;
+            $address['country'] = $country;
         } else {
-            $address["country"] = self::$defaultCountry;
+            $address['country'] = self::$defaultCountry;
         }
 
         // Assigns the address to billing or delivery address depends on the $addressType parameter

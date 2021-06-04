@@ -76,19 +76,19 @@ class TestCase extends \PHPUnit\Framework\TestCase
         // validate username, password and MERCHANTAccount
 
         if (!empty($settings['username']) &&
-            $settings['username'] != "YOUR USERNAME" &&
+            $settings['username'] != 'YOUR USERNAME' &&
             !empty($settings['password']) &&
-            $settings['password'] != "YOUR PASSWORD"
+            $settings['password'] != 'YOUR PASSWORD'
         ) {
             $client = new Client();
-            $client->setApplicationName("My Test Application");
+            $client->setApplicationName('My Test Application');
             $client->setUsername($settings['username']);
             $client->setPassword($settings['password']);
             $client->setEnvironment(Environment::TEST);
 
             return $client;
         } else {
-            $this->skipTest("Skipped the test. Configure your WebService Username and Password in the config");
+            $this->skipTest('Skipped the test. Configure your WebService Username and Password in the config');
         }
     }
 
@@ -101,7 +101,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
     {
         try {
             $client = new Client();
-            $client->setApplicationName("My Test Application");
+            $client->setApplicationName('My Test Application');
             $client->setEnvironment(Environment::TEST);
         } catch (AdyenException $exception) {
             $this->skipTest($exception->getMessage());
@@ -123,27 +123,27 @@ class TestCase extends \PHPUnit\Framework\TestCase
         // validate username, password and MERCHANTAccount
 
         if (isset($settings['storePayoutUsername']) && isset($settings['storePayoutPassword'])) {
-            if ($settings['storePayoutUsername'] == "YOUR STORE PAYOUT USERNAME"
-                || $settings['storePayoutUsername'] == ""
-                || $settings['storePayoutPassword'] == "YOUR STORE PAYOUT PASSWORD"
-                || $settings['storePayoutPassword'] == "") {
+            if ($settings['storePayoutUsername'] == 'YOUR STORE PAYOUT USERNAME'
+                || $settings['storePayoutUsername'] == ''
+                || $settings['storePayoutPassword'] == 'YOUR STORE PAYOUT PASSWORD'
+                || $settings['storePayoutPassword'] == '') {
                 $client = new Client();
-                $client->setApplicationName("My Test Application");
+                $client->setApplicationName('My Test Application');
                 $client->setEnvironment(Environment::TEST);
                 $this->skipTest(
-                    "Skipped the test. Configure your WebService Payout Username and Password in the config"
+                    'Skipped the test. Configure your WebService Payout Username and Password in the config'
                 );
                 return $client;
             } else {
                 $client = new Client();
-                $client->setApplicationName("My Test Application");
+                $client->setApplicationName('My Test Application');
                 $client->setUsername($settings['storePayoutUsername']);
                 $client->setPassword($settings['storePayoutPassword']);
                 $client->setEnvironment(Environment::TEST);
                 return $client;
             }
         } else {
-            $this->skipTest("Skipped the test. Configure your WebService Payout Username and Password in the config");
+            $this->skipTest('Skipped the test. Configure your WebService Payout Username and Password in the config');
         }
     }
 
@@ -160,20 +160,20 @@ class TestCase extends \PHPUnit\Framework\TestCase
         // validate username, password and MERCHANTAccount
 
         if (isset($settings['reviewPayoutUsername']) && isset($settings['reviewPayoutPassword'])) {
-            if ($settings['reviewPayoutUsername'] == "YOUR REVIEW PAYOUT USERNAME"
-                || $settings['reviewPayoutUsername'] == ""
-                || $settings['reviewPayoutPassword'] == "YOUR REVIEW PAYOUT PASSWORD"
-                || $settings['reviewPayoutPassword'] == "") {
+            if ($settings['reviewPayoutUsername'] == 'YOUR REVIEW PAYOUT USERNAME'
+                || $settings['reviewPayoutUsername'] == ''
+                || $settings['reviewPayoutPassword'] == 'YOUR REVIEW PAYOUT PASSWORD'
+                || $settings['reviewPayoutPassword'] == '') {
                 $client = new Client();
-                $client->setApplicationName("My Test Application");
+                $client->setApplicationName('My Test Application');
                 $client->setEnvironment(Environment::TEST);
                 $this->skipTest(
-                    "Skipped the test. Configure your WebService ReviewPayout Username and Password in the config"
+                    'Skipped the test. Configure your WebService ReviewPayout Username and Password in the config'
                 );
                 return $client;
             } else {
                 $client = new Client();
-                $client->setApplicationName("My Test Application");
+                $client->setApplicationName('My Test Application');
                 $client->setUsername($settings['reviewPayoutUsername']);
                 $client->setPassword($settings['reviewPayoutPassword']);
                 $client->setEnvironment(Environment::TEST);
@@ -181,7 +181,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
             }
         } else {
             $this->skipTest(
-                "Skipped the test. Configure your WebService ReviewPayout Username and Password in the config"
+                'Skipped the test. Configure your WebService ReviewPayout Username and Password in the config'
             );
         }
     }
@@ -192,10 +192,10 @@ class TestCase extends \PHPUnit\Framework\TestCase
         $settings = $this->settings;
 
         if (empty($settings['x-api-key']) || $settings['x-api-key'] == 'YOUR X-API KEY') {
-            $this->skipTest("Skipped the test. Configure your x-api-key in the config");
+            $this->skipTest('Skipped the test. Configure your x-api-key in the config');
         } else {
             $client = new Client();
-            $client->setApplicationName("My Test Terminal API App");
+            $client->setApplicationName('My Test Terminal API App');
             $client->setEnvironment(Environment::TEST);
             $client->setXApiKey($settings['x-api-key']);
             return $client;
@@ -210,7 +210,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
         $settings = $this->settings;
 
         if (empty($settings['merchantAccount']) || $settings['merchantAccount'] == 'YOUR MERCHANTACCOUNT') {
-            $this->skipTest("Skipped the test. Configure your MerchantAccount in the config");
+            $this->skipTest('Skipped the test. Configure your MerchantAccount in the config');
             return null;
         }
 
@@ -226,7 +226,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
         $settings = $this->settings;
 
         if (empty($settings['x-api-key']) || $settings['x-api-key'] == 'YOUR X-API KEY') {
-            $this->skipTest("Skipped the test. Configure your x-api-key");
+            $this->skipTest('Skipped the test. Configure your x-api-key');
         } else {
             $client->setXApiKey($settings['x-api-key']);
             return $client;
@@ -315,14 +315,14 @@ class TestCase extends \PHPUnit\Framework\TestCase
     protected function needSkinCode()
     {
         if (!$this->skinCode) {
-            $this->skipTest("Skipped the test. Configure your SkinCode in the config");
+            $this->skipTest('Skipped the test. Configure your SkinCode in the config');
         }
     }
     
     public function validateApiPermission($e)
     {
         // it is possible you do not have permission to use full API then switch over to CSE
-        if ($e->getMessage() == "Not allowed") {
+        if ($e->getMessage() == 'Not allowed') {
             $this->assertEquals(AdyenException::class, get_class($e));
             $this->assertEquals('Not allowed', $e->getMessage());
             $this->assertEquals('10', $e->getCode());
@@ -330,11 +330,11 @@ class TestCase extends \PHPUnit\Framework\TestCase
                 'Skipped the test. ' .
                 'You do not have the permission to do a full api call. Try to use Client Side Encryption (CSE)'
             );
-        } elseif ($e->getMessage() == "Recurring is not enabled") {
+        } elseif ($e->getMessage() == 'Recurring is not enabled') {
             $this->assertEquals(AdyenException::class, get_class($e));
             $this->assertEquals('Recurring is not enabled', $e->getMessage());
             $this->assertEquals('107', $e->getCode());
-            $this->markTestSkipped("Skipped the test. You do not have the permission to do a recurring transaction.");
+            $this->markTestSkipped('Skipped the test. You do not have the permission to do a recurring transaction.');
         }
     }
 

@@ -77,7 +77,7 @@ class CurlClient implements ClientInterface
         $this->curlSetHttpProxy($ch, $httpProxy);
 
         //create a custom User-Agent
-        $userAgent = $config->get('applicationName') . " " .
+        $userAgent = $config->get('applicationName') . ' ' .
             \Adyen\Client::USER_AGENT_SUFFIX . $client->getLibraryVersion();
 
         //Set the content type to application/json and use the defined userAgent
@@ -96,12 +96,12 @@ class CurlClient implements ClientInterface
             //Set the content type to application/json and use the defined userAgent along with the x-api-key
             $headers[] = 'x-api-key: ' . $xApiKey;
         } elseif ($service->requiresApiKey()) {
-            $msg = "Please provide a valid Checkout API Key";
+            $msg = 'Please provide a valid Checkout API Key';
             throw new AdyenException($msg);
         } else {
             //Set the basic auth credentials
             curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-            curl_setopt($ch, CURLOPT_USERPWD, $username . ":" . $password);
+            curl_setopt($ch, CURLOPT_USERPWD, $username . ':' . $password);
         }
 
         //Set the timeout
@@ -158,18 +158,18 @@ class CurlClient implements ClientInterface
         }
 
         $urlParts = parse_url($httpProxy);
-        if ($urlParts == false || !array_key_exists("host", $urlParts)) {
-            throw new AdyenException("Invalid proxy configuration " . $httpProxy);
+        if ($urlParts == false || !array_key_exists('host', $urlParts)) {
+            throw new AdyenException('Invalid proxy configuration ' . $httpProxy);
         }
 
-        $proxy = $urlParts["host"];
-        if (isset($urlParts["port"])) {
-            $proxy .= ":" . $urlParts["port"];
+        $proxy = $urlParts['host'];
+        if (isset($urlParts['port'])) {
+            $proxy .= ':' . $urlParts['port'];
         }
         curl_setopt($ch, CURLOPT_PROXY, $proxy);
 
-        if (isset($urlParts["user"])) {
-            curl_setopt($ch, CURLOPT_PROXYUSERPWD, $urlParts["user"] . ":" . $urlParts["pass"]);
+        if (isset($urlParts['user'])) {
+            curl_setopt($ch, CURLOPT_PROXYUSERPWD, $urlParts['user'] . ':' . $urlParts['pass']);
         }
     }
 
@@ -205,12 +205,12 @@ class CurlClient implements ClientInterface
 
         // set authorisation
         curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-        curl_setopt($ch, CURLOPT_USERPWD, $username . ":" . $password);
+        curl_setopt($ch, CURLOPT_USERPWD, $username . ':' . $password);
         curl_setopt($ch, CURLOPT_POST, count($params));
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
 
         // set a custom User-Agent
-        $userAgent = $config->get('applicationName') . " " .
+        $userAgent = $config->get('applicationName') . ' ' .
             \Adyen\Client::USER_AGENT_SUFFIX . $client->getLibraryVersion();
 
         //Set the content type to application/json and use the defined userAgent
@@ -250,7 +250,7 @@ class CurlClient implements ClientInterface
             $result = json_decode($result, true);
 
             if (!$result) {
-                $msg = "The result is empty, looks like your request is invalid";
+                $msg = 'The result is empty, looks like your request is invalid';
                 $logger->error($msg);
                 throw new AdyenException($msg);
             }
@@ -273,22 +273,22 @@ class CurlClient implements ClientInterface
     {
         switch ($errno) {
             case CURLE_OK:
-                $msg = "Probably your Web Service username and/or password is incorrect";
+                $msg = 'Probably your Web Service username and/or password is incorrect';
                 break;
             case CURLE_COULDNT_RESOLVE_HOST:
             case CURLE_OPERATION_TIMEOUTED:
                 $msg = "Could not connect to Adyen ($url).  Please check your "
-                    . "internet connection and try again.";
+                    . 'internet connection and try again.';
                 break;
             case CURLE_SSL_CACERT:
             case CURLE_SSL_PEER_CERTIFICATE:
                 $msg = "Could not verify Adyen's SSL certificate.  Please make sure "
-                    . "that your network is not intercepting certificates.  "
+                    . 'that your network is not intercepting certificates.  '
                     . "(Try going to $url in your browser.)  "
-                    . "If this problem persists,";
+                    . 'If this problem persists,';
                 break;
             default:
-                $msg = "Unexpected error communicating with Adyen.";
+                $msg = 'Unexpected error communicating with Adyen.';
         }
         $msg .= "\n(Network error [errno $errno]: $message)";
         $logger->error($msg);
@@ -332,7 +332,7 @@ class CurlClient implements ClientInterface
     private function logRequest(\Psr\Log\LoggerInterface $logger, $requestUrl, $environment, $params)
     {
         // log the requestUr, params and json request
-        $logger->info("Request url to Adyen: " . $requestUrl);
+        $logger->info('Request url to Adyen: ' . $requestUrl);
 
         // Filter sensitive data from logs when live
         if (\Adyen\Environment::LIVE == $environment) {

@@ -40,7 +40,7 @@ class DirectoryLookupTest extends TestCase
         $service = new DirectoryLookup($client);
         $sessionValidity = date(
             DATE_ATOM,
-            mktime(date("H") + 10, date("i"), date("s"), date("m"), date("j"), date("Y"))
+            mktime(date('H') + 10, date('i'), date('s'), date('m'), date('j'), date('Y'))
         );
 
         $json = '{
@@ -62,7 +62,7 @@ class DirectoryLookupTest extends TestCase
         $hmacKey = $this->hmacSignature;
 
         // add signature in request
-        $params["merchantSig"] = Util::calculateSha256Signature($hmacKey, $params);
+        $params['merchantSig'] = Util::calculateSha256Signature($hmacKey, $params);
 
         // convert the result into an array
         $result = $service->directoryLookup($params);
@@ -91,12 +91,12 @@ class DirectoryLookupTest extends TestCase
 
         $e = null;
         try {
-            $result = $service->directoryLookup("");
+            $result = $service->directoryLookup('');
         } catch (\Exception $e) {
         }
 
         $this->assertEquals(AdyenException::class, get_class($e));
-        $this->assertEquals("The parameters in the request are empty", $e->getMessage());
+        $this->assertEquals('The parameters in the request are empty', $e->getMessage());
         $this->assertEquals('0', $e->getCode());
     }
 
@@ -111,7 +111,7 @@ class DirectoryLookupTest extends TestCase
 
         $sessionValidity = date(
             DATE_ATOM,
-            mktime(date("H") + 10, date("i"), date("s"), date("m"), date("j"), date("Y"))
+            mktime(date('H') + 10, date('i'), date('s'), date('m'), date('j'), date('Y'))
         );
 
         $json = '{
@@ -136,7 +136,7 @@ class DirectoryLookupTest extends TestCase
         }
 
         $this->assertEquals(AdyenException::class, get_class($e));
-        $this->assertEquals("The result is empty, looks like your request is invalid", $e->getMessage());
+        $this->assertEquals('The result is empty, looks like your request is invalid', $e->getMessage());
         $this->assertEquals('0', $e->getCode());
     }
 }

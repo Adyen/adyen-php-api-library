@@ -33,14 +33,14 @@ class PaymentTest extends TestCase
         $expectedResult = array(
             'amount' => array(
                 'value' => 1000,
-                'currency' => "EUR"
+                'currency' => 'EUR'
             ),
-            'reference' => "12345",
-            'merchantAccount' => "TestMerchantAccount",
-            'returnUrl' => "http://url"
+            'reference' => '12345',
+            'merchantAccount' => 'TestMerchantAccount',
+            'returnUrl' => 'http://url'
         );
         $payment = new Payment();
-        $result = $payment->buildPaymentData("EUR", 1000, "12345", "TestMerchantAccount", "http://url");
+        $result = $payment->buildPaymentData('EUR', 1000, '12345', 'TestMerchantAccount', 'http://url');
         $this->assertEquals($result, $expectedResult);
     }
 

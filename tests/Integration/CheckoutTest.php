@@ -49,7 +49,7 @@ class CheckoutTest extends TestCase
 
         $params = array(
             'amount' => array(
-                'currency' => "EUR",
+                'currency' => 'EUR',
                 'value' => 1000
             ),
             'countryCode' => 'NL',
@@ -110,17 +110,17 @@ class CheckoutTest extends TestCase
 
         $params = array(
             'merchantAccount' => $this->merchantAccount,
-            'amount' => array('currency' => "EUR", 'value' => 1000),
+            'amount' => array('currency' => 'EUR', 'value' => 1000),
             'paymentMethod' => array(
-                'type' => "scheme",
+                'type' => 'scheme',
                 'encryptedCardNumber' => 'test_4111111111111111',
                 'encryptedExpiryMonth' => 'test_03',
                 'encryptedExpiryYear' => 'test_2030',
                 'encryptedSecurityCode' => 'test_737',
-                'holderName' => "John Smith"
+                'holderName' => 'John Smith'
             ),
-            'reference' => "Your order number",
-            'returnUrl' => "https://your-company.com/..."
+            'reference' => 'Your order number',
+            'returnUrl' => 'https://your-company.com/...'
         );
         $result = $service->payments($params);
 
@@ -137,17 +137,17 @@ class CheckoutTest extends TestCase
 
         $params = array(
             'merchantAccount' => $this->merchantAccount,
-            'amount' => array('currency' => "EUR", 'value' => 1000),
+            'amount' => array('currency' => 'EUR', 'value' => 1000),
             'paymentMethod' => array(
-                'type' => "scheme",
+                'type' => 'scheme',
                 'encryptedCardNumber' => 'test_4111111111111111',
                 'encryptedExpiryMonth' => 'test_03',
                 'encryptedExpiryYear' => 'test_2030',
                 'encryptedSecurityCode' => 'test_737',
-                'holderName' => "John Smith"
+                'holderName' => 'John Smith'
             ),
-            'reference' => "Your order number",
-            'returnUrl' => "https://your-company.com/..."
+            'reference' => 'Your order number',
+            'returnUrl' => 'https://your-company.com/...'
         );
 
         // create idempotency-key

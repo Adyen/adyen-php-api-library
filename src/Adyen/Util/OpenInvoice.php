@@ -30,11 +30,11 @@ class OpenInvoice
     const AFTERPAY_DEFAULT_PAYMENT_METHOD = 'afterpay_default';
     const AFTERPAY_DIRECTDEBIT_PAYMENT_METHOD = 'afterpay_directdebit';
 
-    const AFTERPAYTOUCH = "afterpaytouch";
-    const AFTERPAYTOUCH_AU = "afterpaytouch_AU";
-    const AFTERPAYTOUCH_CA = "afterpaytouch_CA";
-    const AFTERPAYTOUCH_NZ = "afterpaytouch_NZ";
-    const AFTERPAYTOUCH_US = "afterpaytouch_US";
+    const AFTERPAYTOUCH = 'afterpaytouch';
+    const AFTERPAYTOUCH_AU = 'afterpaytouch_AU';
+    const AFTERPAYTOUCH_CA = 'afterpaytouch_CA';
+    const AFTERPAYTOUCH_NZ = 'afterpaytouch_NZ';
+    const AFTERPAYTOUCH_US = 'afterpaytouch_US';
 
     const RATEPAY = 'ratepay';
     const RATEPAY_DIRECTDEBIT_PAYMENT_METHOD = 'ratepay_directdebit';

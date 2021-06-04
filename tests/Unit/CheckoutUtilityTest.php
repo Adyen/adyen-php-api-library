@@ -39,10 +39,10 @@ class CheckoutUtilityTest extends TestCaseMock
         $service = new CheckoutUtility($client);
 
         $params = array(
-            "originDomains" => array(
-                "https://www.your-domain1.com",
-                "https://www.your-domain2.com",
-                "https://www.your-domain3.com"
+            'originDomains' => array(
+                'https://www.your-domain1.com',
+                'https://www.your-domain2.com',
+                'https://www.your-domain3.com'
             )
         );
 

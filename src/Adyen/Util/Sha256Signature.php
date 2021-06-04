@@ -37,7 +37,7 @@ class Sha256Signature
     {
         // validate if hmacKey is provided
         if (empty($hmacKey)) {
-            throw new AdyenException("You did not provide a HMAC key");
+            throw new AdyenException('You did not provide a HMAC key');
         }
 
         // validate if hmacKey contains only hexadecimal chars to be packed with H*
@@ -46,11 +46,11 @@ class Sha256Signature
         }
 
         if (empty($params)) {
-            throw new AdyenException("You did not provide any parameters");
+            throw new AdyenException('You did not provide any parameters');
         }
 
         if (!is_array($params)) {
-            throw new AdyenException("Parameters should be an array");
+            throw new AdyenException('Parameters should be an array');
         }
 
         // The character escape function
@@ -63,10 +63,10 @@ class Sha256Signature
         ksort($params, SORT_STRING);
 
         // Generate the signing data string
-        $signData = implode(":", array_map($escapeVal, array_merge(array_keys($params), array_values($params))));
+        $signData = implode(':', array_map($escapeVal, array_merge(array_keys($params), array_values($params))));
 
         // base64-encode the binary result of the HMAC computation
-        $merchantSig = base64_encode(hash_hmac('sha256', $signData, pack("H*", $hmacKey), true));
+        $merchantSig = base64_encode(hash_hmac('sha256', $signData, pack('H*', $hmacKey), true));
         return $merchantSig;
     }
 }

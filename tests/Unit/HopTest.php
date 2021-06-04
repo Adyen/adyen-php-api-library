@@ -57,7 +57,7 @@ class HopTest extends TestCaseMock
         $service = new Hop($client);
 
         $params = [
-            'accountHolderCod' => "YourAccountHolderCode",
+            'accountHolderCod' => 'YourAccountHolderCode',
         ];
 
         $service->getOnboardingUrl($params);
@@ -110,7 +110,7 @@ class HopTest extends TestCaseMock
         $service = new Hop($client);
 
         $params = [
-            'acountHolderCode' => "YourAccountHolderCode",
+            'acountHolderCode' => 'YourAccountHolderCode',
         ];
 
         $service->getPciQuestionnaireUrl($params);
@@ -155,11 +155,11 @@ class HopTest extends TestCaseMock
     private function getInvalidFieldResponse()
     {
         return [
-            "errorCode" => 91,
-            "errorDescription" => "The return url specified is invalid",
-            "fieldType" => [
-                "field" => "returnUrl",
-                "fieldName" => "returnUrl"
+            'errorCode' => 91,
+            'errorDescription' => 'The return url specified is invalid',
+            'fieldType' => [
+                'field' => 'returnUrl',
+                'fieldName' => 'returnUrl'
             ]
         ];
     }

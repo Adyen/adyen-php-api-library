@@ -19,22 +19,22 @@ class BinLookupTest extends TestCaseMock
         $service = new BinLookup($client);
 
         $params = array(
-            "amount" => array(
-                "value" => 1234,
-                "currency" => "EUR"
+            'amount' => array(
+                'value' => 1234,
+                'currency' => 'EUR'
             ),
-            "assumptions" => array(
-                "assumeLevel3Data" => true,
-                "assume3DSecureAuthenticated" => true
+            'assumptions' => array(
+                'assumeLevel3Data' => true,
+                'assume3DSecureAuthenticated' => true
             ),
-            "cardNumber" => "4111111111111111",
-            "merchantAccount" => "TestMerchant",
-            "merchantDetails" => array(
-                "countryCode" => "NL",
-                "mcc" => "7411",
-                "enrolledIn3DSecure" => true
+            'cardNumber' => '4111111111111111',
+            'merchantAccount' => 'TestMerchant',
+            'merchantDetails' => array(
+                'countryCode' => 'NL',
+                'mcc' => '7411',
+                'enrolledIn3DSecure' => true
             ),
-            "shopperInteraction" => "Ecommerce"
+            'shopperInteraction' => 'Ecommerce'
 
         );
 

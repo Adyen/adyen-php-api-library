@@ -32,4 +32,5 @@
     <arg value="p"/>
 
     <rule ref="PSR2"/>
+    <rule ref="Squiz.Strings.DoubleQuoteUsage.NotRequired"/>
 </ruleset>

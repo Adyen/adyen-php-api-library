@@ -51,7 +51,7 @@ class RecurringTest extends TestCase
         $result = $service->listRecurringDetails($params);
 
         // last email is the one used in the request
-        $this->assertEquals($result['lastKnownShopperEmail'], "test@test.nl");
+        $this->assertEquals($result['lastKnownShopperEmail'], 'test@test.nl');
 
         $cardInResults = false;
         foreach ($result['details'] as $detail) {

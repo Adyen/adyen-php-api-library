@@ -64,10 +64,10 @@ class ModificationTest extends TestCase
         $modificationAmount = array('currency' => 'EUR', 'value' => '750');
 
         $params = array(
-            "merchantAccount" => $this->merchantAccount,
-            "modificationAmount" => $modificationAmount,
-            "reference" => $pspReference.'_refund',
-            "originalReference" => $pspReference
+            'merchantAccount' => $this->merchantAccount,
+            'modificationAmount' => $modificationAmount,
+            'reference' => $pspReference.'_refund',
+            'originalReference' => $pspReference
         );
 
         $result = $service->refund($params);
@@ -91,10 +91,10 @@ class ModificationTest extends TestCase
         $service = new Modification($client);
 
         $params = array(
-            "merchantAccount" => $this->merchantAccount,
-            "modificationAmount" => array('currency' => 'EUR', 'value' => '750'),
-            "reference" => $pspReference.'_adjustAuthorisation',
-            "originalReference" => $pspReference
+            'merchantAccount' => $this->merchantAccount,
+            'modificationAmount' => array('currency' => 'EUR', 'value' => '750'),
+            'reference' => $pspReference.'_adjustAuthorisation',
+            'originalReference' => $pspReference
         );
         
         $result = $service->adjustAuthorisation($params);
@@ -117,10 +117,10 @@ class ModificationTest extends TestCase
         $service = new Modification($client);
 
         $params = array(
-            "merchantAccount" => $this->merchantAccount,
-            "modificationAmount" => array('currency' => 'EUR', 'value' => '1600'),
-            "reference" => $pspReference.'_adjustAuthorisation',
-            "originalReference" => $pspReference
+            'merchantAccount' => $this->merchantAccount,
+            'modificationAmount' => array('currency' => 'EUR', 'value' => '1600'),
+            'reference' => $pspReference.'_adjustAuthorisation',
+            'originalReference' => $pspReference
         );
         
         $result = $service->adjustAuthorisation($params);

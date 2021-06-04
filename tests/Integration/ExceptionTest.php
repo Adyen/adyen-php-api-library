@@ -35,7 +35,7 @@ class ExceptionTest extends TestCase
     public function testExceptionMissingEnvironmentValue()
     {
         $client = new Client();
-        $client->setApplicationName("My Test Application");
+        $client->setApplicationName('My Test Application');
         $client->setUsername('username');
         $client->setPassword('password');
         // do not set environment to test exception
@@ -60,7 +60,7 @@ class ExceptionTest extends TestCase
         // initialize service
         $service = new Recurring($client);
 
-        $recurring = array('contract' => "WRONG PARAMETER");
+        $recurring = array('contract' => 'WRONG PARAMETER');
         $params = array(
             'merchantAccount' => $this->getMerchantAccount(),
             'recurring' => $recurring,
@@ -82,9 +82,9 @@ class ExceptionTest extends TestCase
     {
         // initialize client
         $client = new Client();
-        $client->setApplicationName("Adyen PHP Api Library");
-        $client->setUsername("");
-        $client->setPassword("");
+        $client->setApplicationName('Adyen PHP Api Library');
+        $client->setUsername('');
+        $client->setPassword('');
         $client->setEnvironment(Environment::TEST);
 
         // initialize service
@@ -106,7 +106,7 @@ class ExceptionTest extends TestCase
 
         // check if exception is correct
         $this->assertEquals(AdyenException::class, get_class($e));
-        $this->assertEquals("HTTP Status Response - Unauthorized", $e->getMessage());
+        $this->assertEquals('HTTP Status Response - Unauthorized', $e->getMessage());
         $this->assertEquals('401', $e->getCode());
         $this->assertEquals('401', $e->getStatus());
     }

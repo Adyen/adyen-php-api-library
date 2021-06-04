@@ -175,10 +175,10 @@ class PaymentTest extends TestCaseMock
     public static function connectionFailureAuthoriseProvider()
     {
         return array(
-            array(null, null, CURLE_OK, "Probably your Web Service username and/or password is incorrect"),
-            array(null, null, CURLE_OPERATION_TIMEOUTED, "Could not connect to Adyen"),
+            array(null, null, CURLE_OK, 'Probably your Web Service username and/or password is incorrect'),
+            array(null, null, CURLE_OPERATION_TIMEOUTED, 'Could not connect to Adyen'),
             array(null, null, CURLE_SSL_CACERT, "Could not verify Adyen's SSL certificate"),
-            array(null, null, 12345, "Unexpected error communicating with Adyen.")
+            array(null, null, 12345, 'Unexpected error communicating with Adyen.')
         );
     }
 
@@ -220,7 +220,7 @@ class PaymentTest extends TestCaseMock
     public static function resultFailureAuthoriseProvider()
     {
         return array(
-            array('tests/Resources/Payment/invalid-merchant-account.json', 403, "Invalid Merchant Account")
+            array('tests/Resources/Payment/invalid-merchant-account.json', 403, 'Invalid Merchant Account')
         );
     }
 }

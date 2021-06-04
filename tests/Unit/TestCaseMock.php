@@ -36,9 +36,9 @@ class TestCaseMock extends TestCase
     protected function createMockClient($jsonFile, $httpStatus, $errno = null, $environment = Environment::TEST)
     {
         $client = new Client();
-        $client->setApplicationName("My Test Application");
+        $client->setApplicationName('My Test Application');
         $client->setEnvironment($environment);
-        $client->setXApiKey("MockAPIKey");
+        $client->setXApiKey('MockAPIKey');
 
         $json = null;
         if ($jsonFile != null) {

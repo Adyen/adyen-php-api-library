@@ -38,7 +38,7 @@ class AdyenException extends Exception
      * @param string|null $adyenErrorCode
      */
     public function __construct(
-        $message = "",
+        $message = '',
         $code = 0,
         Exception $previous = null,
         $status = null,

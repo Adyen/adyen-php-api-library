@@ -10,42 +10,42 @@ use Monolog\Handler\StreamHandler;
 
 class Client
 {
-    const LIB_VERSION = "10.1.0";
-    const LIB_NAME = "adyen-php-api-library";
-    const USER_AGENT_SUFFIX = "adyen-php-api-library/";
-    const ENDPOINT_TEST = "https://pal-test.adyen.com";
-    const ENDPOINT_LIVE = "https://pal-live.adyen.com";
-    const ENDPOINT_LIVE_SUFFIX = "-pal-live.adyenpayments.com";
-    const ENDPOINT_TEST_DIRECTORY_LOOKUP = "https://test.adyen.com/hpp/directory/v2.shtml";
-    const ENDPOINT_LIVE_DIRECTORY_LOOKUP = "https://live.adyen.com/hpp/directory/v2.shtml";
-    const API_PAYMENT_VERSION = "v51";
-    const API_BIN_LOOKUP_VERSION = "v50";
-    const API_PAYOUT_VERSION = "v51";
-    const API_RECURRING_VERSION = "v49";
-    const API_CHECKOUT_VERSION = "v67";
-    const API_CHECKOUT_UTILITY_VERSION = "v1";
-    const API_NOTIFICATION_VERSION = "v5";
-    const API_ACCOUNT_VERSION = "v5";
-    const API_FUND_VERSION = "v5";
-    const API_DISPUTE_SERVICE_VERSION = "v30";
-    const API_HOP_VERSION = "v5";
-    const ENDPOINT_TERMINAL_CLOUD_TEST = "https://terminal-api-test.adyen.com";
-    const ENDPOINT_TERMINAL_CLOUD_LIVE = "https://terminal-api-live.adyen.com";
-    const ENDPOINT_CHECKOUT_TEST = "https://checkout-test.adyen.com/checkout";
-    const ENDPOINT_CHECKOUT_LIVE_SUFFIX = "-checkout-live.adyenpayments.com/checkout";
-    const ENDPOINT_PROTOCOL = "https://";
-    const ENDPOINT_NOTIFICATION_TEST = "https://cal-test.adyen.com/cal/services/Notification";
-    const ENDPOINT_NOTIFICATION_LIVE = "https://cal-live.adyen.com/cal/services/Notification";
-    const ENDPOINT_ACCOUNT_TEST = "https://cal-test.adyen.com/cal/services/Account";
-    const ENDPOINT_ACCOUNT_LIVE = "https://cal-live.adyen.com/cal/services/Account";
-    const ENDPOINT_FUND_TEST = "https://cal-test.adyen.com/cal/services/Fund";
-    const ENDPOINT_FUND_LIVE = "https://cal-live.adyen.com/cal/services/Fund";
-    const ENDPOINT_DISPUTE_SERVICE_TEST = "https://ca-test.adyen.com/ca/services/DisputeService";
-    const ENDPOINT_DISPUTE_SERVICE_LIVE = "https://ca-live.adyen.com/ca/services/DisputeService";
-    const ENDPOINT_CUSTOMER_AREA_TEST = "https://ca-test.adyen.com";
-    const ENDPOINT_CUSTOMER_AREA_LIVE = "https://ca-live.adyen.com";
-    const ENDPOINT_HOP_TEST = "https://cal-test.adyen.com/cal/services/Hop";
-    const ENDPOINT_HOP_LIVE = "https://cal-live.adyen.com/cal/services/Hop";
+    const LIB_VERSION = '10.1.0';
+    const LIB_NAME = 'adyen-php-api-library';
+    const USER_AGENT_SUFFIX = 'adyen-php-api-library/';
+    const ENDPOINT_TEST = 'https://pal-test.adyen.com';
+    const ENDPOINT_LIVE = 'https://pal-live.adyen.com';
+    const ENDPOINT_LIVE_SUFFIX = '-pal-live.adyenpayments.com';
+    const ENDPOINT_TEST_DIRECTORY_LOOKUP = 'https://test.adyen.com/hpp/directory/v2.shtml';
+    const ENDPOINT_LIVE_DIRECTORY_LOOKUP = 'https://live.adyen.com/hpp/directory/v2.shtml';
+    const API_PAYMENT_VERSION = 'v51';
+    const API_BIN_LOOKUP_VERSION = 'v50';
+    const API_PAYOUT_VERSION = 'v51';
+    const API_RECURRING_VERSION = 'v49';
+    const API_CHECKOUT_VERSION = 'v67';
+    const API_CHECKOUT_UTILITY_VERSION = 'v1';
+    const API_NOTIFICATION_VERSION = 'v5';
+    const API_ACCOUNT_VERSION = 'v5';
+    const API_FUND_VERSION = 'v5';
+    const API_DISPUTE_SERVICE_VERSION = 'v30';
+    const API_HOP_VERSION = 'v5';
+    const ENDPOINT_TERMINAL_CLOUD_TEST = 'https://terminal-api-test.adyen.com';
+    const ENDPOINT_TERMINAL_CLOUD_LIVE = 'https://terminal-api-live.adyen.com';
+    const ENDPOINT_CHECKOUT_TEST = 'https://checkout-test.adyen.com/checkout';
+    const ENDPOINT_CHECKOUT_LIVE_SUFFIX = '-checkout-live.adyenpayments.com/checkout';
+    const ENDPOINT_PROTOCOL = 'https://';
+    const ENDPOINT_NOTIFICATION_TEST = 'https://cal-test.adyen.com/cal/services/Notification';
+    const ENDPOINT_NOTIFICATION_LIVE = 'https://cal-live.adyen.com/cal/services/Notification';
+    const ENDPOINT_ACCOUNT_TEST = 'https://cal-test.adyen.com/cal/services/Account';
+    const ENDPOINT_ACCOUNT_LIVE = 'https://cal-live.adyen.com/cal/services/Account';
+    const ENDPOINT_FUND_TEST = 'https://cal-test.adyen.com/cal/services/Fund';
+    const ENDPOINT_FUND_LIVE = 'https://cal-live.adyen.com/cal/services/Fund';
+    const ENDPOINT_DISPUTE_SERVICE_TEST = 'https://ca-test.adyen.com/ca/services/DisputeService';
+    const ENDPOINT_DISPUTE_SERVICE_LIVE = 'https://ca-live.adyen.com/ca/services/DisputeService';
+    const ENDPOINT_CUSTOMER_AREA_TEST = 'https://ca-test.adyen.com';
+    const ENDPOINT_CUSTOMER_AREA_LIVE = 'https://ca-live.adyen.com';
+    const ENDPOINT_HOP_TEST = 'https://cal-test.adyen.com/cal/services/Hop';
+    const ENDPOINT_HOP_LIVE = 'https://cal-live.adyen.com/cal/services/Hop';
 
     /**
      * @var Config|ConfigInterface
@@ -180,7 +180,7 @@ class Client
             }
         } else {
             // environment does not exist
-            $msg = "This environment does not exist, use " .
+            $msg = 'This environment does not exist, use ' .
                 \Adyen\Environment::TEST . ' or ' . \Adyen\Environment::LIVE;
             throw new \Adyen\AdyenException($msg);
         }
@@ -229,7 +229,7 @@ class Client
      * @param string $version
      * @param string $integrator
      */
-    public function setExternalPlatform($name, $version, $integrator = "")
+    public function setExternalPlatform($name, $version, $integrator = '')
     {
         $this->config->set(
             'externalPlatform',

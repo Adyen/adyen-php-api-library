@@ -34,19 +34,19 @@ class Sha256SignatureTest extends TestCase
         $this->expectException(AdyenException::class);
         $this->expectExceptionMessage('Invalid HMAC key: INVALID');
         $signature = new Sha256Signature();
-        $signature->generate("INVALID", array('key' => 'value'));
+        $signature->generate('INVALID', array('key' => 'value'));
     }
 
     public function testSha256()
     {
         $signatureGenerator = new Sha256Signature();
         try {
-            $signature = $signatureGenerator->generate("123ABC", array(
+            $signature = $signatureGenerator->generate('123ABC', array(
                 'akey' => 'val\\ue',
                 'ckey' => 'val:ue',
                 'bkey' => '1'
             ));
-            $this->assertEquals("YtbpYcrdbvk0RSVwTwENMzomS0LYtiItMwXhI5tohXs=", $signature);
+            $this->assertEquals('YtbpYcrdbvk0RSVwTwENMzomS0LYtiItMwXhI5tohXs=', $signature);
         } catch (AdyenException $e) {
             $this->fail('Unexpected exception');
         }

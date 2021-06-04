@@ -47,7 +47,7 @@ class Payment
             'value' => $formattedValue
         );
 
-        $request["reference"] = $reference;
+        $request['reference'] = $reference;
         $request['merchantAccount'] = $merchantAccount;
         $request['returnUrl'] = $returnUrl;
 

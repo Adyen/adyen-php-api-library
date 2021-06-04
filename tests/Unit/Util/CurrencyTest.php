@@ -32,7 +32,7 @@ class CurrencyTest extends TestCase
     {
         $currencySanitizer = new Currency();
         $amount = 15.021;
-        $currency = "TND";
+        $currency = 'TND';
         $formattedAmount = $currencySanitizer->sanitize($amount, $currency);
         $this->assertEquals(15021, $formattedAmount);
     }
@@ -41,7 +41,7 @@ class CurrencyTest extends TestCase
     {
         $currencySanitizer = new Currency();
         $amount = 15.02;
-        $currency = "EUR";
+        $currency = 'EUR';
         $formattedAmount = $currencySanitizer->sanitize($amount, $currency);
         $this->assertEquals(1502, $formattedAmount);
     }
@@ -50,7 +50,7 @@ class CurrencyTest extends TestCase
     {
         $currencySanitizer = new Currency();
         $amount = 15021;
-        $currency = "IDR";
+        $currency = 'IDR';
         $formattedAmount = $currencySanitizer->sanitize($amount, $currency);
         $this->assertEquals(15021, $formattedAmount);
     }

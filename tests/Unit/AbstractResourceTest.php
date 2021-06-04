@@ -23,10 +23,10 @@ class AbstractResourceTest extends TestCase
     public function testHandleApplicationInfoInRequestShouldOverwriteApplicationInfoAdyenLibraryParams()
     {
         $params = array(
-            "applicationInfo" => array(
-                "adyenLibrary" => array(
-                    "name" => "test",
-                    "version" => "test"
+            'applicationInfo' => array(
+                'adyenLibrary' => array(
+                    'name' => 'test',
+                    'version' => 'test'
                 )
             )
         );
@@ -37,11 +37,11 @@ class AbstractResourceTest extends TestCase
         // Mock abstract class with mocked client and $paramsToFilter parameters
         $mockedClass = $this->getMockForAbstractClass(
             $this->className,
-            array((new Service($mockedClient)), "", true)
+            array((new Service($mockedClient)), '', true)
         );
 
         // Get private method as testable public method
-        $method = $this->getMethod($this->className, "handleApplicationInfoInRequest");
+        $method = $this->getMethod($this->className, 'handleApplicationInfoInRequest');
 
         // Test against function
         $result = $method->invokeArgs($mockedClass, array($params));
@@ -60,10 +60,10 @@ class AbstractResourceTest extends TestCase
         $params = array();
 
         $expectedArraySubset = array(
-            "applicationInfo" => array(
-                "adyenPaymentSource" => array(
-                    "name" => "name-test",
-                    "version" => "version-test"
+            'applicationInfo' => array(
+                'adyenPaymentSource' => array(
+                    'name' => 'name-test',
+                    'version' => 'version-test'
                 )
             )
         );
@@ -71,21 +71,21 @@ class AbstractResourceTest extends TestCase
         // Mock client without the Test ini settings
         $mockedClient = $this->createClientWithoutTestIni();
 
-        $mockedClient->setAdyenPaymentSource("name-test", "version-test");
+        $mockedClient->setAdyenPaymentSource('name-test', 'version-test');
 
         // Mock abstract class with mocked client and $paramsToFilter parameters
         $mockedClass = $this->getMockForAbstractClass(
             $this->className,
-            array((new Service($mockedClient)), "", true)
+            array((new Service($mockedClient)), '', true)
         );
 
         // Get private method as testable public method
-        $method = $this->getMethod($this->className, "handleApplicationInfoInRequest");
+        $method = $this->getMethod($this->className, 'handleApplicationInfoInRequest');
 
         // Test against function
         $result = $method->invokeArgs($mockedClass, array($params));
 
-        $this->assertArrayHasKey("applicationInfo", $result);
+        $this->assertArrayHasKey('applicationInfo', $result);
 
         Assert::assertArraySubset($expectedArraySubset, $result);
     }
@@ -103,23 +103,23 @@ class AbstractResourceTest extends TestCase
         // Mock client without the Test ini settings
         $mockedClient = $this->createClientWithoutTestIni();
 
-        $mockedClient->setExternalPlatform("name-test", "version-test", "integrator-test");
+        $mockedClient->setExternalPlatform('name-test', 'version-test', 'integrator-test');
 
         // Mock abstract class with mocked client and $paramsToFilter parameters
         $mockedClass = $this->getMockForAbstractClass(
             $this->className,
-            array((new Service($mockedClient)), "", true)
+            array((new Service($mockedClient)), '', true)
         );
 
         // Get private method as testable public method
-        $method = $this->getMethod($this->className, "handleApplicationInfoInRequest");
+        $method = $this->getMethod($this->className, 'handleApplicationInfoInRequest');
 
         // Test against function
         $result = $method->invokeArgs($mockedClass, array($params));
 
-        $this->assertArrayHasKey("applicationInfo", $result);
-        $this->assertArrayHasKey("externalPlatform", $result["applicationInfo"]);
-        $this->assertArrayHasKey("integrator", $result["applicationInfo"]["externalPlatform"]);
+        $this->assertArrayHasKey('applicationInfo', $result);
+        $this->assertArrayHasKey('externalPlatform', $result['applicationInfo']);
+        $this->assertArrayHasKey('integrator', $result['applicationInfo']['externalPlatform']);
     }
 
     /**
@@ -136,23 +136,23 @@ class AbstractResourceTest extends TestCase
         // Mock client without the Test ini settings
         $mockedClient = $this->createClientWithoutTestIni();
 
-        $mockedClient->setExternalPlatform("name-test", "version-test");
+        $mockedClient->setExternalPlatform('name-test', 'version-test');
 
         // Mock abstract class with mocked client and $paramsToFilter parameters
         $mockedClass = $this->getMockForAbstractClass(
             $this->className,
-            array((new Service($mockedClient)), "", true)
+            array((new Service($mockedClient)), '', true)
         );
 
         // Get private method as testable public method
-        $method = $this->getMethod($this->className, "handleApplicationInfoInRequest");
+        $method = $this->getMethod($this->className, 'handleApplicationInfoInRequest');
 
         // Test against function
         $result = $method->invokeArgs($mockedClass, array($params));
 
-        $this->assertArrayHasKey("applicationInfo", $result);
-        $this->assertArrayHasKey("externalPlatform", $result["applicationInfo"]);
-        $this->assertArrayNotHasKey("integrator", $result["applicationInfo"]["externalPlatform"]);
+        $this->assertArrayHasKey('applicationInfo', $result);
+        $this->assertArrayHasKey('externalPlatform', $result['applicationInfo']);
+        $this->assertArrayNotHasKey('integrator', $result['applicationInfo']['externalPlatform']);
     }
 
     public function testHandleApplicationInfoInRequestPOSShouldAddBase64EncodedApplicationInfo()
@@ -164,15 +164,15 @@ class AbstractResourceTest extends TestCase
                             "MessageClass": "Service",
                             "MessageCategory": "Payment",
                             "SaleID": "PosTestLibrary",
-                            "POIID": "' . "POS-432123" . '",
+                            "POIID": "' . 'POS-432123' . '",
                             "ProtocolVersion": "3.0",
-                            "ServiceID": "' . "serviceID" . '"
+                            "ServiceID": "' . 'serviceID' . '"
                         },
                         "PaymentRequest": {
                             "SaleData": {
                                 "SaleTransactionID": {
                                     "TransactionID": "POSauth",
-                                    "TimeStamp": "' . "time" . '"
+                                    "TimeStamp": "' . 'time' . '"
                                 },
                                 "TokenRequestedType": "Customer",
                                 "SaleReferenceID": "SalesRefABC"
@@ -199,18 +199,18 @@ class AbstractResourceTest extends TestCase
         // Mock abstract class with mocked client and $paramsToFilter parameters
         $mockedClass = $this->getMockForAbstractClass(
             $this->className,
-            array((new Service($mockedClient)), "", true)
+            array((new Service($mockedClient)), '', true)
         );
 
         // Get private method as testable public method
-        $method = $this->getMethod($this->className, "handleApplicationInfoInRequestPOS");
+        $method = $this->getMethod($this->className, 'handleApplicationInfoInRequestPOS');
 
         // Test against function
         $result = $method->invokeArgs($mockedClass, array($params));
         $resultDecoded = base64_decode($result['SaleToPOIRequest']['PaymentRequest']['SaleData']['SaleToAcquirerData']);
         $resultArray = json_decode($resultDecoded, true);
-        $this->assertArrayHasKey("applicationInfo", $resultArray);
-        $this->assertArrayHasKey("adyenLibrary", $resultArray['applicationInfo']);
+        $this->assertArrayHasKey('applicationInfo', $resultArray);
+        $this->assertArrayHasKey('adyenLibrary', $resultArray['applicationInfo']);
     }
 
     public function testHandleApplicationInfoInRequestPOSQueryStringSaleToAcquirerDataAddBase64EncodedApplicationInfo()
@@ -222,15 +222,15 @@ class AbstractResourceTest extends TestCase
                             "MessageClass": "Service",
                             "MessageCategory": "Payment",
                             "SaleID": "PosTestLibrary",
-                            "POIID": "' . "POS-432123" . '",
+                            "POIID": "' . 'POS-432123' . '",
                             "ProtocolVersion": "3.0",
-                            "ServiceID": "' . "serviceID" . '"
+                            "ServiceID": "' . 'serviceID' . '"
                         },
                         "PaymentRequest": {
                             "SaleData": {
                                 "SaleTransactionID": {
                                     "TransactionID": "POSauthWithOneclickQuerystring",
-                                    "TimeStamp": "' . "time" . '"
+                                    "TimeStamp": "' . 'time' . '"
                                 },
                                 "TokenRequestedType": "Customer",
                                 "SaleReferenceID": "SalesRefABC"
@@ -252,9 +252,9 @@ class AbstractResourceTest extends TestCase
         $params = json_decode($json, true); //Create associative array for passing along
 
         $recurringDetails = array(
-            'shopperEmail' => "save@oneclick.card",
+            'shopperEmail' => 'save@oneclick.card',
             'shopperReference' => strval(300),
-            'recurringContract' => "ONECLICK"
+            'recurringContract' => 'ONECLICK'
         );
 
         // Add RecurringDetails using querystring
@@ -268,11 +268,11 @@ class AbstractResourceTest extends TestCase
         // Mock abstract class with mocked client and $paramsToFilter parameters
         $mockedClass = $this->getMockForAbstractClass(
             $this->className,
-            array((new Service($mockedClient)), "", true)
+            array((new Service($mockedClient)), '', true)
         );
 
         // Get private method as testable public method
-        $method = $this->getMethod($this->className, "handleApplicationInfoInRequestPOS");
+        $method = $this->getMethod($this->className, 'handleApplicationInfoInRequestPOS');
 
         // Test against function
         $result = $method->invokeArgs($mockedClass, array($params));
@@ -280,11 +280,11 @@ class AbstractResourceTest extends TestCase
         // Base64 decode the result and verify if all fields are still present
         $resultDecoded = base64_decode($result['SaleToPOIRequest']['PaymentRequest']['SaleData']['SaleToAcquirerData']);
         $resultArray = json_decode($resultDecoded, true);
-        $this->assertArrayHasKey("recurringContract", $resultArray);
-        $this->assertArrayHasKey("shopperEmail", $resultArray);
-        $this->assertArrayHasKey("shopperReference", $resultArray);
-        $this->assertArrayHasKey("applicationInfo", $resultArray);
-        $this->assertArrayHasKey("adyenLibrary", $resultArray['applicationInfo']);
+        $this->assertArrayHasKey('recurringContract', $resultArray);
+        $this->assertArrayHasKey('shopperEmail', $resultArray);
+        $this->assertArrayHasKey('shopperReference', $resultArray);
+        $this->assertArrayHasKey('applicationInfo', $resultArray);
+        $this->assertArrayHasKey('adyenLibrary', $resultArray['applicationInfo']);
     }
 
     /**
@@ -299,15 +299,15 @@ class AbstractResourceTest extends TestCase
                             "MessageClass": "Service",
                             "MessageCategory": "Payment",
                             "SaleID": "PosTestLibrary",
-                            "POIID": "' . "POS-432123" . '",
+                            "POIID": "' . 'POS-432123' . '",
                             "ProtocolVersion": "3.0",
-                            "ServiceID": "' . "serviceID" . '"
+                            "ServiceID": "' . 'serviceID' . '"
                         },
                         "PaymentRequest": {
                             "SaleData": {
                                 "SaleTransactionID": {
                                     "TransactionID": "POSauthWithOneclickBase64",
-                                    "TimeStamp": "' . "time" . '"
+                                    "TimeStamp": "' . 'time' . '"
                                 },
                                 "TokenRequestedType": "Customer",
                                 "SaleReferenceID": "SalesRefABC"
@@ -329,9 +329,9 @@ class AbstractResourceTest extends TestCase
         $params = json_decode($json, true); //Create associative array for passing along
 
         $recurringDetails = array(
-            'shopperEmail' => "save@oneclick.card",
+            'shopperEmail' => 'save@oneclick.card',
             'shopperReference' => strval(300),
-            'recurringContract' => "ONECLICK"
+            'recurringContract' => 'ONECLICK'
         );
 
         // Add RecurringDetails using base64
@@ -345,11 +345,11 @@ class AbstractResourceTest extends TestCase
         // Mock abstract class with mocked client and $paramsToFilter parameters
         $mockedClass = $this->getMockForAbstractClass(
             $this->className,
-            array((new Service($mockedClient)), "", true)
+            array((new Service($mockedClient)), '', true)
         );
 
         // Get private method as testable public method
-        $method = $this->getMethod($this->className, "handleApplicationInfoInRequestPOS");
+        $method = $this->getMethod($this->className, 'handleApplicationInfoInRequestPOS');
 
         // Test against function
         $result = $method->invokeArgs($mockedClass, array($params));
@@ -357,10 +357,10 @@ class AbstractResourceTest extends TestCase
         // Base64 decode the result and verify if all fields are still present
         $resultDecoded = base64_decode($result['SaleToPOIRequest']['PaymentRequest']['SaleData']['SaleToAcquirerData']);
         $resultArray = json_decode($resultDecoded, true);
-        $this->assertArrayHasKey("recurringContract", $resultArray);
-        $this->assertArrayHasKey("shopperEmail", $resultArray);
-        $this->assertArrayHasKey("shopperReference", $resultArray);
-        $this->assertArrayHasKey("applicationInfo", $resultArray);
-        $this->assertArrayHasKey("adyenLibrary", $resultArray['applicationInfo']);
+        $this->assertArrayHasKey('recurringContract', $resultArray);
+        $this->assertArrayHasKey('shopperEmail', $resultArray);
+        $this->assertArrayHasKey('shopperReference', $resultArray);
+        $this->assertArrayHasKey('applicationInfo', $resultArray);
+        $this->assertArrayHasKey('adyenLibrary', $resultArray['applicationInfo']);
     }
 }

@@ -32,7 +32,7 @@ class PosPaymentTest extends TestCase
     public function testCreatePosPaymentSuccess()
     {
         if (empty($this->settings['POIID']) || $this->settings['POIID'] == 'UNIQUETERMINALID') {
-            $this->skipTest("Skipped the test. Configure your POIID in the config");
+            $this->skipTest('Skipped the test. Configure your POIID in the config');
         }
 
         // initialize client
@@ -43,8 +43,8 @@ class PosPaymentTest extends TestCase
 
         //Construct request
         $transactionType = TransactionType::NORMAL;
-        $serviceID = date("dHis");
-        $timeStamper = date("Y-m-d") . "T" . date("H:i:s+00:00");
+        $serviceID = date('dHis');
+        $timeStamper = date('Y-m-d') . 'T' . date('H:i:s+00:00');
 
         $json = '{
                     "SaleToPOIRequest": {
@@ -95,7 +95,7 @@ class PosPaymentTest extends TestCase
     public function testCreatePosPaymentDeclined()
     {
         if (empty($this->settings['POIID']) || $this->settings['POIID'] == 'UNIQUETERMINALID') {
-            $this->skipTest("Skipped the test. Configure your POIID in the config");
+            $this->skipTest('Skipped the test. Configure your POIID in the config');
         }
 
         // initialize client
@@ -106,8 +106,8 @@ class PosPaymentTest extends TestCase
 
         //Construct request
         $transactionType = TransactionType::NORMAL;
-        $serviceID = date("dHis");
-        $timeStamper = date("Y-m-d") . "T" . date("H:i:s+00:00");
+        $serviceID = date('dHis');
+        $timeStamper = date('Y-m-d') . 'T' . date('H:i:s+00:00');
 
         $json = '{
                     "SaleToPOIRequest": {
@@ -158,7 +158,7 @@ class PosPaymentTest extends TestCase
     public function testCreatePosEMVRefundSuccess()
     {
         if (empty($this->settings['POIID']) || $this->settings['POIID'] == 'UNIQUETERMINALID') {
-            $this->skipTest("Skipped the test. Configure your POIID in the config");
+            $this->skipTest('Skipped the test. Configure your POIID in the config');
         }
 
         // initialize client
@@ -169,8 +169,8 @@ class PosPaymentTest extends TestCase
 
         //Construct request
         $transactionType = TransactionType::REFUND;
-        $serviceID = date("dHis");
-        $timeStamper = date("Y-m-d") . "T" . date("H:i:s+00:00");
+        $serviceID = date('dHis');
+        $timeStamper = date('Y-m-d') . 'T' . date('H:i:s+00:00');
 
         $json = '{
                     "SaleToPOIRequest": {
@@ -245,7 +245,7 @@ class PosPaymentTest extends TestCase
     public function testCreatePosPaymentSuccessWithOneclickQuerystring()
     {
         if (empty($this->settings['POIID']) || $this->settings['POIID'] == 'UNIQUETERMINALID') {
-            $this->skipTest("Skipped the test. Configure your POIID in the config");
+            $this->skipTest('Skipped the test. Configure your POIID in the config');
         }
 
         // initialize client
@@ -255,8 +255,8 @@ class PosPaymentTest extends TestCase
 
         //Construct request
         $transactionType = TransactionType::NORMAL;
-        $serviceID = date("dHis");
-        $timeStamper = date("Y-m-d") . "T" . date("H:i:s+00:00");
+        $serviceID = date('dHis');
+        $timeStamper = date('Y-m-d') . 'T' . date('H:i:s+00:00');
 
         $json = '{
                     "SaleToPOIRequest": {
@@ -295,9 +295,9 @@ class PosPaymentTest extends TestCase
         $params = json_decode($json, true); //Create associative array for passing along
 
         $recurringDetails = array(
-            'shopperEmail' => "save@oneclick.card",
+            'shopperEmail' => 'save@oneclick.card',
             'shopperReference' => strval(300),
-            'recurringContract' => "ONECLICK"
+            'recurringContract' => 'ONECLICK'
         );
         $params['SaleToPOIRequest']['PaymentRequest']['SaleData']['SaleToAcquirerData'] = http_build_query(
             $recurringDetails
@@ -324,7 +324,7 @@ class PosPaymentTest extends TestCase
     public function testCreatePosPaymentSuccessWithOneclickBase64()
     {
         if (empty($this->settings['POIID']) || $this->settings['POIID'] == 'UNIQUETERMINALID') {
-            $this->skipTest("Skipped the test. Configure your POIID in the config");
+            $this->skipTest('Skipped the test. Configure your POIID in the config');
         }
 
         // initialize client
@@ -333,12 +333,12 @@ class PosPaymentTest extends TestCase
         $service = new PosPayment($client);
 
         //Set merchantApplication
-        $client->setMerchantApplication("merchantPosApplication", "0.0.test");
+        $client->setMerchantApplication('merchantPosApplication', '0.0.test');
 
         //Construct request
         $transactionType = TransactionType::NORMAL;
-        $serviceID = date("dHis");
-        $timeStamper = date("Y-m-d") . "T" . date("H:i:s+00:00");
+        $serviceID = date('dHis');
+        $timeStamper = date('Y-m-d') . 'T' . date('H:i:s+00:00');
 
         $json = '{
                     "SaleToPOIRequest": {
@@ -377,9 +377,9 @@ class PosPaymentTest extends TestCase
         $params = json_decode($json, true); //Create associative array for passing along
 
         $recurringDetails = array(
-            'shopperEmail' => "save@oneclick.card",
+            'shopperEmail' => 'save@oneclick.card',
             'shopperReference' => strval(301),
-            'recurringContract' => "ONECLICK"
+            'recurringContract' => 'ONECLICK'
         );
         $params['SaleToPOIRequest']['PaymentRequest']['SaleData']['SaleToAcquirerData'] = base64_encode(
             json_encode($recurringDetails)
@@ -410,7 +410,7 @@ class PosPaymentTest extends TestCase
     public function testPosPaymentFailTimeout()
     {
         if (empty($this->settings['POIID']) || $this->settings['POIID'] == 'UNIQUETERMINALID') {
-            $this->skipTest("Skipped the test. Configure your POIID in the config");
+            $this->skipTest('Skipped the test. Configure your POIID in the config');
         }
 
         // initialize client
@@ -422,8 +422,8 @@ class PosPaymentTest extends TestCase
 
         //Construct request
         $transactionType = TransactionType::NORMAL;
-        $serviceID = date("dHis");
-        $timeStamper = date("Y-m-d") . "T" . date("H:i:s+00:00");
+        $serviceID = date('dHis');
+        $timeStamper = date('Y-m-d') . 'T' . date('H:i:s+00:00');
 
         $json = '{
                     "SaleToPOIRequest": {

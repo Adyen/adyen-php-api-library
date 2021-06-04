@@ -41,7 +41,7 @@ class Util
     {
         // validate if hmacKey is provided
         if (empty($hmacKey)) {
-            throw new \Adyen\AdyenException("You did not provide a HMAC key");
+            throw new \Adyen\AdyenException('You did not provide a HMAC key');
         }
 
         // validate if hmacKey contains only hexadecimal chars to be packed with H*
@@ -50,7 +50,7 @@ class Util
         }
 
         if (empty($params)) {
-            throw new \Adyen\AdyenException("You did not provide any parameters");
+            throw new \Adyen\AdyenException('You did not provide any parameters');
         }
 
         // The character escape function
@@ -62,10 +62,10 @@ class Util
         ksort($params, SORT_STRING);
 
         // Generate the signing data string
-        $signData = implode(":", array_map($escapeval, array_merge(array_keys($params), array_values($params))));
+        $signData = implode(':', array_map($escapeval, array_merge(array_keys($params), array_values($params))));
 
         // base64-encode the binary result of the HMAC computation
-        $merchantSig = base64_encode(hash_hmac('sha256', $signData, pack("H*", $hmacKey), true));
+        $merchantSig = base64_encode(hash_hmac('sha256', $signData, pack('H*', $hmacKey), true));
         return $merchantSig;
     }
 
@@ -79,30 +79,30 @@ class Util
     public static function formatAmount($amount, $currency)
     {
         switch ($currency) {
-            case "CVE":
-            case "DJF":
-            case "GNF":
-            case "IDR":
-            case "JPY":
-            case "KMF":
-            case "KRW":
-            case "PYG":
-            case "RWF":
-            case "UGX":
-            case "VND":
-            case "VUV":
-            case "XAF":
-            case "XOF":
-            case "XPF":
+            case 'CVE':
+            case 'DJF':
+            case 'GNF':
+            case 'IDR':
+            case 'JPY':
+            case 'KMF':
+            case 'KRW':
+            case 'PYG':
+            case 'RWF':
+            case 'UGX':
+            case 'VND':
+            case 'VUV':
+            case 'XAF':
+            case 'XOF':
+            case 'XPF':
                 $format = 0;
                 break;
-            case "BHD":
-            case "IQD":
-            case "JOD":
-            case "KWD":
-            case "LYD":
-            case "OMR":
-            case "TND":
+            case 'BHD':
+            case 'IQD':
+            case 'JOD':
+            case 'KWD':
+            case 'LYD':
+            case 'OMR':
+            case 'TND':
                 $format = 3;
                 break;
             default:
@@ -123,7 +123,7 @@ class Util
     {
         // validate if hmacKey is provided
         if (empty($hmacKey)) {
-            throw new \Adyen\AdyenException("You did not provide a HMAC key");
+            throw new \Adyen\AdyenException('You did not provide a HMAC key');
         }
 
         // validate if hmacKey contains only hexadecimal chars to be packed with H*
@@ -132,13 +132,13 @@ class Util
         }
 
         if (empty($params)) {
-            throw new \Adyen\AdyenException("You did not provide any parameters");
+            throw new \Adyen\AdyenException('You did not provide any parameters');
         }
 
         $dataToSign = self::getNotificationDataToSign($params);
 
         // base64-encode the binary result of the HMAC computation
-        $merchantSig = base64_encode(hash_hmac('sha256', $dataToSign, pack("H*", $hmacKey), true));
+        $merchantSig = base64_encode(hash_hmac('sha256', $dataToSign, pack('H*', $hmacKey), true));
         return $merchantSig;
     }
 
@@ -149,14 +149,14 @@ class Util
      */
     public static function getNotificationDataToSign($params)
     {
-        $pspReference = (!empty($params['pspReference'])) ? $params['pspReference'] : "";
-        $originalReference = (!empty($params['originalReference'])) ? $params['originalReference'] : "";
-        $merchantAccountCode = (!empty($params['merchantAccountCode'])) ? $params['merchantAccountCode'] : "";
-        $merchantReference = (!empty($params['merchantReference'])) ? $params['merchantReference'] : "";
-        $value = (!empty($params['amount']['value'])) ? $params['amount']['value'] : "";
-        $currency = (!empty($params['amount']['currency'])) ? $params['amount']['currency'] : "";
-        $eventCode = (!empty($params['eventCode'])) ? $params['eventCode'] : "";
-        $success = (!empty($params['success'])) ? $params['success'] : "";
+        $pspReference = (!empty($params['pspReference'])) ? $params['pspReference'] : '';
+        $originalReference = (!empty($params['originalReference'])) ? $params['originalReference'] : '';
+        $merchantAccountCode = (!empty($params['merchantAccountCode'])) ? $params['merchantAccountCode'] : '';
+        $merchantReference = (!empty($params['merchantReference'])) ? $params['merchantReference'] : '';
+        $value = (!empty($params['amount']['value'])) ? $params['amount']['value'] : '';
+        $currency = (!empty($params['amount']['currency'])) ? $params['amount']['currency'] : '';
+        $eventCode = (!empty($params['eventCode'])) ? $params['eventCode'] : '';
+        $success = (!empty($params['success'])) ? $params['success'] : '';
 
         $dataToSign = array(
             $pspReference,
@@ -174,7 +174,7 @@ class Util
             return str_replace(':', '\\:', str_replace('\\', '\\\\', $val));
         };
 
-        $dataToSign = implode(":", array_map($escapeval, array_values($dataToSign)));
+        $dataToSign = implode(':', array_map($escapeval, array_values($dataToSign)));
 
         return $dataToSign;
     }
@@ -188,11 +188,11 @@ class Util
      */
     public static function isValidNotificationHMAC($params, $hmacKey)
     {
-        if (empty($params["additionalData"]) || empty($params["additionalData"]["hmacSignature"])) {
-            throw new \Adyen\AdyenException("You did not provide hmacSignature in additionalData");
+        if (empty($params['additionalData']) || empty($params['additionalData']['hmacSignature'])) {
+            throw new \Adyen\AdyenException('You did not provide hmacSignature in additionalData');
         }
-        $merchantSign = $params["additionalData"]["hmacSignature"];
-        unset($params["additionalData"]);
+        $merchantSign = $params['additionalData']['hmacSignature'];
+        unset($params['additionalData']);
         $expectedSign = Util::calculateNotificationHMAC($params, $hmacKey);
 
         return $expectedSign == $merchantSign;

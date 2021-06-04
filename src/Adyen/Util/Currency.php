@@ -34,30 +34,30 @@ class Currency
     public function sanitize($amount, $currency)
     {
         switch ($currency) {
-            case "CVE":
-            case "DJF":
-            case "GNF":
-            case "IDR":
-            case "JPY":
-            case "KMF":
-            case "KRW":
-            case "PYG":
-            case "RWF":
-            case "UGX":
-            case "VND":
-            case "VUV":
-            case "XAF":
-            case "XOF":
-            case "XPF":
+            case 'CVE':
+            case 'DJF':
+            case 'GNF':
+            case 'IDR':
+            case 'JPY':
+            case 'KMF':
+            case 'KRW':
+            case 'PYG':
+            case 'RWF':
+            case 'UGX':
+            case 'VND':
+            case 'VUV':
+            case 'XAF':
+            case 'XOF':
+            case 'XPF':
                 $decimals = 0;
                 break;
-            case "BHD":
-            case "IQD":
-            case "JOD":
-            case "KWD":
-            case "LYD":
-            case "OMR":
-            case "TND":
+            case 'BHD':
+            case 'IQD':
+            case 'JOD':
+            case 'KWD':
+            case 'LYD':
+            case 'OMR':
+            case 'TND':
                 $decimals = 3;
                 break;
             default:

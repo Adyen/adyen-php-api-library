@@ -34,19 +34,19 @@ class RefundTest extends TestCase
             'originalReference' => '812345679',
             'modificationAmount' => array(
                 'value' => 10000,
-                'currency' => "EUR"
+                'currency' => 'EUR'
             ),
-            'reference' => "12345",
-            'merchantAccount' => "TestMerchantAccount"
+            'reference' => '12345',
+            'merchantAccount' => 'TestMerchantAccount'
         );
 
         $refund = new Refund();
         $result = $refund->buildRefundRequest(
             100,
-            "12345",
-            "812345679",
-            "EUR",
-            "TestMerchantAccount"
+            '12345',
+            '812345679',
+            'EUR',
+            'TestMerchantAccount'
         );
         $this->assertEquals($result, $expectedResult);
     }
