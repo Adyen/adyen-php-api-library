@@ -28,7 +28,7 @@ use Adyen\Util\Currency;
 class Refund
 {
     /**
-     * @param string $orderAmount
+     * @param float $orderAmount
      * @param string $orderId
      * @param string $originalPspReference
      * @param string $currency

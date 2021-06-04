@@ -45,7 +45,7 @@ class CurlClient implements ClientInterface
      *
      * @param \Adyen\Service $service
      * @param string $requestUrl
-     * @param string $params
+     * @param array $params
      * @return mixed
      * @throws AdyenException
      */
@@ -178,7 +178,7 @@ class CurlClient implements ClientInterface
      *
      * @param \Adyen\Service $service
      * @param string $requestUrl
-     * @param string $params
+     * @param array $params
      * @return mixed
      * @throws AdyenException
      */
@@ -264,7 +264,7 @@ class CurlClient implements ClientInterface
      * Handle Curl exceptions
      *
      * @param string $url
-     * @param string $errno
+     * @param int $errno
      * @param string $message
      * @param \Psr\Log\LoggerInterface $logger
      * @throws \Adyen\ConnectionException
@@ -410,7 +410,7 @@ class CurlClient implements ClientInterface
     /**
      * Execute curl, return the result and the http response code
      *
-     * @param string $ch
+     * @param resource $ch
      * @return array
      */
     protected function curlRequest($ch)
@@ -423,7 +423,7 @@ class CurlClient implements ClientInterface
     /**
      * Retrieve curl error number and message
      *
-     * @param string $ch
+     * @param resource $ch
      * @return array
      */
     protected function curlError($ch)

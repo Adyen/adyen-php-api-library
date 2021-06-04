@@ -32,7 +32,7 @@ class Util
 {
     /**
      * @param string $hmacKey
-     * @param string $params
+     * @param array $params
      * @return string
      * @throws \Adyen\AdyenException
      * @deprecated
@@ -71,7 +71,7 @@ class Util
 
     /**
      * Return the formatted currency. Adyen accepts the currency in multiple formats.
-     * @param string $amount
+     * @param float $amount
      * @param string $currency
      * @return int
      * @deprecated
@@ -113,7 +113,7 @@ class Util
     }
 
     /**
-     * @param string $params
+     * @param array $params
      * @param string $hmacKey
      * @return string
      * @throws \Adyen\AdyenException

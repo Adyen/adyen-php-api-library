@@ -50,7 +50,7 @@ abstract class AbstractResource
     /**
      * Do the request to the Http Client
      *
-     * @param string $params
+     * @param string|array $params
      * @param null $requestOptions
      * @return mixed
      * @throws AdyenException
@@ -92,7 +92,7 @@ abstract class AbstractResource
     }
 
     /**
-     * @param string $params
+     * @param array $params
      * @return mixed
      * @throws AdyenException
      */
