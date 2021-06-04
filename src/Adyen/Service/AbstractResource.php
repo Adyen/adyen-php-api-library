@@ -112,7 +112,7 @@ abstract class AbstractResource
     /**
      * Fill expected but missing parameters with default data
      *
-     * @param string $params
+     * @param array $params
      * @return mixed
      */
     private function addDefaultParametersToRequest($params)

@@ -32,11 +32,11 @@ class Config implements ConfigInterface
     /**
      * Config constructor.
      *
-     * @param null $params
+     * @param array|null $params
      */
     public function __construct($params = null)
     {
-        if ($params && is_array($params)) {
+        if (is_array($params)) {
             foreach ($params as $key => $param) {
                 $this->data[$key] = $param;
             }

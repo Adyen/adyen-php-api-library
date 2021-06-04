@@ -48,7 +48,7 @@ class NotificationReceiver
 
     /**
      * Checks if the hmac key is valid
-     * @param string $response
+     * @param array $response
      * @param string $hmacKey
      * @return bool
      * @throws AdyenException
@@ -123,7 +123,7 @@ class NotificationReceiver
     {
         // Notification mode can be a string or a boolean
         return ($testMode && ($notificationMode === 'false' || $notificationMode === false)) ||
-            (!$testMode && ($notificationMode === 'true' || $notificationMode === true);
+            (!$testMode && ($notificationMode === 'true' || $notificationMode === true));
     }
 
     /**

@@ -143,7 +143,7 @@ class Util
     }
 
     /**
-     * @param string $params
+     * @param array $params
      * @return array|string
      * @deprecated
      */

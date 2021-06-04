@@ -29,7 +29,7 @@ class Sha256Signature
 {
     /**
      * @param string $hmacKey
-     * @param string $params
+     * @param mixed $params
      * @return string
      * @throws AdyenException
      */

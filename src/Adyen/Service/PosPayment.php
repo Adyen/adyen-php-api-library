@@ -61,25 +61,23 @@ class PosPayment extends \Adyen\ApiKeyAuthenticatedService
     }
 
     /**
-     * @param string $request
-     * @return null
+     * @param array $request
+     * @return mixed
      */
     public function getServiceId($request)
     {
-        if (isset($request['SaleToPOIRequest']['MessageHeader']['ServiceID'])) {
-            return $request['SaleToPOIRequest']['MessageHeader']['ServiceID'];
-        }
-        return null;
+        return isset($request['SaleToPOIRequest']['MessageHeader']['ServiceID'])
+            ? $request['SaleToPOIRequest']['MessageHeader']['ServiceID']
+            : null;
     }
 
     /**
-     * @param string $params
+     * @param array $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */
     public function getConnectedTerminals($params)
     {
-        $result = $this->connectedTerminals->request($params);
-        return $result;
+        return $this->connectedTerminals->request($params);
     }
 }
