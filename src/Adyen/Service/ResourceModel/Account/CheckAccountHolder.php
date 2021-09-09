@@ -4,7 +4,7 @@ namespace Adyen\Service\ResourceModel\Account;
 
 use Adyen\Service;
 
-class CheckAccountHolder  extends \Adyen\Service\AbstractResource
+class CheckAccountHolder extends \Adyen\Service\AbstractResource
 {
     /**
      * @var string
