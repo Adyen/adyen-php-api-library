@@ -275,7 +275,6 @@ class CheckoutTest extends TestCase
             'reference' => '123456',
             'donationToken' => $paymentResult['donationToken'],
             'donationOriginalPspReference' => $paymentResult['pspReference'],
-            'donationAccount' => $this->merchantAccount,
             'returnUrl' => "https://your-company.com/...",
             'shopperInteraction' => "Ecommerce"
         );
