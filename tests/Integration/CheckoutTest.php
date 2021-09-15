@@ -236,4 +236,52 @@ class CheckoutTest extends TestCase
 
         $this->assertEquals('Received', $result['resultCode']);
     }
+
+    public function testDonationsSuccess()
+    {
+        // create Checkout client
+        $client = $this->createCheckoutAPIClient();
+
+        // initialize service
+        $service = new Checkout($client);
+        // the transaction from which the donation token is generated.
+        $params = array(
+            'merchantAccount' => $this->merchantAccount,
+            'amount' => array('currency' => "EUR", 'value' => 1000),
+            'paymentMethod' => array(
+                'type' => "scheme",
+                'encryptedCardNumber' => 'test_4111111111111111',
+                'encryptedExpiryMonth' => 'test_03',
+                'encryptedExpiryYear' => 'test_2030',
+                'encryptedSecurityCode' => 'test_737',
+                'holderName' => "John Smith"
+            ),
+            'reference' => "Your order number",
+            'returnUrl' => "https://your-company.com/..."
+        );
+        $paymentResult = $service->payments($params);
+
+        $params = array(
+            'merchantAccount' => $this->merchantAccount,
+            'amount' => array('currency' => "BRL", 'value' => 1000),
+            'paymentMethod' => array(
+                'type' => "scheme",
+                'encryptedCardNumber' => 'test_4111111111111111',
+                'encryptedExpiryMonth' => 'test_03',
+                'encryptedExpiryYear' => 'test_2030',
+                'encryptedSecurityCode' => 'test_737',
+                'holderName' => "John Smith"
+            ),
+            'reference' => '123456',
+            'donationToken' => $paymentResult['donationToken'],
+            'donationOriginalPspReference' => $paymentResult['pspReference'],
+            'donationAccount' => $this->merchantAccount,
+            'returnUrl' => "https://your-company.com/...",
+            'shopperInteraction' => "Ecommerce"
+        );
+
+        $result = $service->donations($params);
+
+        $this->assertEquals('[donation-received]', $result['response']);
+    }
 }
