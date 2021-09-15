@@ -361,6 +361,51 @@ class CheckoutTest extends TestCaseMock
         );
     }
 
+    /**
+     * @param string $jsonFile
+     * @param int $httpStatus
+     *
+     * @dataProvider successDonationsProvider
+     */
+    public function testDonationsSuccess($jsonFile, $httpStatus)
+    {
+        $client = $this->createMockClient($jsonFile, $httpStatus);
+
+        $service = new Checkout($client);
+
+        $params = array(
+            'amount' => array('currency' => "BRL", 'value' => 1250),
+            'reference' => '12345',
+            'merchantAccount' => "YourMerchantAccount",
+            'paymentMethod' => array(
+                'type' => "scheme",
+                'encryptedCardNumber' => 'test_4111111111111111',
+                'encryptedExpiryMonth' => 'test_03',
+                'encryptedExpiryYear' => 'test_2030',
+                'encryptedSecurityCode' => 'test_737',
+                'holderName' => "John Smith"
+            ),
+            'donationToken' => "YOUR_DONATION_TOKEN",
+            'donationOriginalPspReference' => "991559660454807J",
+            'donationAccount' => "CHARITY_ACCOUNT",
+            'returnUrl' => "https://your-company.com/...",
+            'merchantAccount' => "YOUR_MERCHANT_ACCOUNT",
+            'shopperInteraction' => "Ecommerce"
+        );
+
+        $result = $service->donations($params);
+        $this->assertStringContainsString($result['additionalData']['merchantReference'], 'YOUR_DONATION_REFERENCE');
+        $this->assertStringContainsString($result['pspReference'], '853589530367661E');
+        $this->assertStringContainsString($result['response'], '[donation-received]');
+    }
+
+    public static function successDonationsProvider()
+    {
+        return array(
+            array('tests/Resources/Checkout/donations-success.json', 200),
+        );
+    }
+
     private function getExampleAddressStruct()
     {
         return array(

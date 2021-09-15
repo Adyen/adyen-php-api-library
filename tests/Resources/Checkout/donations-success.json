@@ -1,0 +1,7 @@
+{
+  "additionalData": {
+    "merchantReference": "YOUR_DONATION_REFERENCE"
+  },
+  "pspReference": "853589530367661E",
+  "response": "[donation-received]"
+}
