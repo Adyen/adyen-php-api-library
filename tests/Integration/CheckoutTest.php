@@ -260,26 +260,8 @@ class CheckoutTest extends TestCase
             'returnUrl' => "https://your-company.com/..."
         );
         $paymentResult = $service->payments($params);
+        $this->assertEquals('Authorised', $paymentResult['resultCode']);
 
-        $donationsParams = array(
-            'merchantAccount' => $this->merchantAccount,
-            'amount' => array('currency' => "EUR", 'value' => 1000),
-            'paymentMethod' => array(
-                'type' => "scheme",
-                'encryptedCardNumber' => 'test_4111111111111111',
-                'encryptedExpiryMonth' => 'test_03',
-                'encryptedExpiryYear' => 'test_2030',
-                'encryptedSecurityCode' => 'test_737',
-                'holderName' => "John Smith"
-            ),
-            'reference' => "Your order number",
-            'donationToken' => $paymentResult['donationToken'],
-            'donationOriginalPspReference' => $paymentResult['pspReference'],
-            'donationAccount' => $this->merchantAccount,
-            'returnUrl' => "https://your-company.com/...",
-            'shopperInteraction' => "Ecommerce"
-        );
-        $result = $service->donations($donationsParams);
-        $this->assertEquals('Authorised', $result['payment']['resultCode']);
+
     }
 }
