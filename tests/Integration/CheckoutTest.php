@@ -279,9 +279,8 @@ class CheckoutTest extends TestCase
             'returnUrl' => "https://your-company.com/...",
             'shopperInteraction' => "Ecommerce"
         );
-
         $result = $service->donations($params);
 
-        $this->assertEquals('[donation-received]', $result['response']);
+        $this->assertEquals('Authorised', $result['resultCode']);
     }
 }
