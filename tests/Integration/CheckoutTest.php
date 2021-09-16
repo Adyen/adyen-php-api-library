@@ -263,7 +263,7 @@ class CheckoutTest extends TestCase
 
         $params = array(
             'merchantAccount' => $this->merchantAccount,
-            'amount' => array('currency' => "BRL", 'value' => 1000),
+            'amount' => array('currency' => "EUR", 'value' => 1000),
             'paymentMethod' => array(
                 'type' => "scheme",
                 'encryptedCardNumber' => 'test_4111111111111111',
@@ -272,10 +272,10 @@ class CheckoutTest extends TestCase
                 'encryptedSecurityCode' => 'test_737',
                 'holderName' => "John Smith"
             ),
-            'reference' => '123456',
+            'reference' => "Your order number",
             'donationToken' => $paymentResult['donationToken'],
             'donationOriginalPspReference' => $paymentResult['pspReference'],
-            'donationAccount' => 'AdyenGivingDemo',
+            'donationAccount' => $this->merchantAccount,
             'returnUrl' => "https://your-company.com/...",
             'shopperInteraction' => "Ecommerce"
         );
