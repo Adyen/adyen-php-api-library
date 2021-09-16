@@ -261,7 +261,7 @@ class CheckoutTest extends TestCase
         );
         $paymentResult = $service->payments($params);
 
-        $params = array(
+        $donationsParams = array(
             'merchantAccount' => $this->merchantAccount,
             'amount' => array('currency' => "EUR", 'value' => 1000),
             'paymentMethod' => array(
@@ -279,8 +279,7 @@ class CheckoutTest extends TestCase
             'returnUrl' => "https://your-company.com/...",
             'shopperInteraction' => "Ecommerce"
         );
-        $result = $service->donations($params);
-
-        $this->assertEquals('Authorised', $result['resultCode']);
+        $result = $service->donations($donationsParams);
+        $this->assertEquals('Authorised', $result['payment']['resultCode']);
     }
 }
