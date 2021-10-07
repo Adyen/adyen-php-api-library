@@ -29,6 +29,9 @@ use Adyen\Util\Uuid;
 
 class CheckoutTest extends TestCase
 {
+
+    const RETURN_URL = "https://your-company.com/...";
+
     /**
      * Can hold the last pspReference for cancelling an order
      * @var string $pspReference
@@ -120,7 +123,7 @@ class CheckoutTest extends TestCase
                 'holderName' => "John Smith"
             ),
             'reference' => "Your order number",
-            'returnUrl' => "https://your-company.com/..."
+            'returnUrl' => self::RETURN_URL
         );
         $result = $service->payments($params);
 
@@ -147,7 +150,7 @@ class CheckoutTest extends TestCase
                 'holderName' => "John Smith"
             ),
             'reference' => "Your order number",
-            'returnUrl' => "https://your-company.com/..."
+            'returnUrl' => self::RETURN_URL
         );
 
         // create idempotency-key
@@ -252,7 +255,7 @@ class CheckoutTest extends TestCase
             ),
             'countryCode' => 'NL',
             'merchantAccount' => $this->merchantAccount,
-            'returnUrl' => "https://your-company.com/..."
+            'returnUrl' => self::RETURN_URL
         );
         $result = $service->sessions($params);
 
