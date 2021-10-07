@@ -236,4 +236,32 @@ class CheckoutTest extends TestCase
 
         $this->assertEquals('Received', $result['resultCode']);
     }
+
+    public function testSessions()
+    {
+        // create Checkout client
+        $client = $this->createCheckoutAPIClient();
+
+        // initialize service
+        $service = new \Adyen\Service\Checkout($client);
+
+        $params = array(
+            'amount' => array(
+                'currency' => "EUR",
+                'value' => 1000
+            ),
+            'countryCode' => 'NL',
+            'merchantAccount' => $this->merchantAccount,
+            'returnUrl' => "https://your-company.com/..."
+        );
+        $result = $service->sessions($params);
+
+        // Sessions data received
+        $this->assertNotEmpty($result['sessionData']);
+        $this->assertNotEmpty($result['id']);
+
+        // Payment params are the same as response data
+        $keyIntersect = array_intersect_key($params, $result);
+        $this->assertEquals($params, $keyIntersect);
+    }
 }
