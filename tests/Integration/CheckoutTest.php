@@ -29,6 +29,10 @@ use Adyen\Util\Uuid;
 
 class CheckoutTest extends TestCase
 {
+
+    const HOLDER_NAME = "John Smith";
+    const RETURN_URL = "https://your-company.com/...";
+
     /**
      * Can hold the last pspReference for cancelling an order
      * @var string $pspReference
@@ -285,4 +289,33 @@ class CheckoutTest extends TestCase
         $result = $service->donations($donationsParams);
         $this->assertEquals('Authorised', $result['payment']['resultCode']);
     }
+  
+    public function testSessions()
+    {
+        // create Checkout client
+        $client = $this->createCheckoutAPIClient();
+
+        // initialize service
+        $service = new \Adyen\Service\Checkout($client);
+
+        $params = array(
+            'amount' => array(
+                'currency' => "EUR",
+                'value' => 1000
+            ),
+            'countryCode' => 'NL',
+            'merchantAccount' => $this->merchantAccount,
+            'returnUrl' => self::RETURN_URL
+        );
+        $result = $service->sessions($params);
+
+        // Sessions data received
+        $this->assertNotEmpty($result['sessionData']);
+        $this->assertNotEmpty($result['id']);
+
+        // Payment params are the same as response data
+        $keyIntersect = array_intersect_key($params, $result);
+        $this->assertEquals($params, $keyIntersect);
+    }
+  
 }

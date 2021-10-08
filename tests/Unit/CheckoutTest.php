@@ -418,4 +418,72 @@ class CheckoutTest extends TestCaseMock
             'stateOrProvince' => "SP",
         );
     }
+
+    /**
+     * @param string $jsonFile
+     * @param int $httpStatus
+     *
+     * @dataProvider successSessionsProvider
+     */
+    public function testSessionsSuccess($jsonFile, $httpStatus)
+    {
+        $client = $this->createMockClient($jsonFile, $httpStatus);
+
+        $service = new Checkout($client);
+
+        $params = array (
+            'merchantAccount' => 'YOUR_MERCHANT_ACCOUNT',
+            'amount' =>
+                array (
+                    'value' => 100,
+                    'currency' => 'EUR',
+                ),
+            'returnUrl' => 'https://your-company.com/checkout?shopperOrder=12xy..',
+            'reference' => 'YOUR_PAYMENT_REFERENCE',
+            'countryCode' => 'NL',
+        );
+
+        $result = $service->sessions($params);
+
+        $this->assertNotNull($result['sessionData']);
+    }
+
+    public static function successSessionsProvider()
+    {
+        return array(
+            array('tests/Resources/Checkout/sessions-success.json', 200),
+        );
+    }
+
+    /**
+     * @param string $jsonFile
+     * @param int $httpStatus
+     *
+     * @dataProvider invalidSessionsProvider
+     */
+    public function testSessionsInvalid($jsonFile, $httpStatus, $expectedExceptionMessage)
+    {
+        $client = $this->createMockClient($jsonFile, $httpStatus);
+
+        $service = new Checkout($client);
+
+        $params = array (
+            'merchantAccount' => 'YOUR_MERCHANT_ACCOUNT',
+            'returnUrl' => 'https://your-company.com/checkout?shopperOrder=12xy..',
+            'reference' => 'YOUR_PAYMENT_REFERENCE',
+            'countryCode' => 'NL',
+        );
+
+        $this->expectException(AdyenException::class);
+        $this->expectExceptionMessage($expectedExceptionMessage);
+
+        $service->sessions($params);
+    }
+
+    public static function invalidSessionsProvider()
+    {
+        return array(
+            array('tests/Resources/Checkout/sessions-invalid.json', 422, 'Required field \'amount\' is null'),
+        );
+    }
 }

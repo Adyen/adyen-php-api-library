@@ -53,6 +53,11 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
      * @var ResourceModel\Checkout\Donations
      */
     protected $donations;
+  
+    /**
+     * @var ResourceModel\Checkout\Sessions
+     */
+    protected $sessions;
 
     /**
      * Checkout constructor.
@@ -73,6 +78,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
         $this->ordersCancel = new \Adyen\Service\ResourceModel\Checkout\OrdersCancel($this);
         $this->paymentMethodsBalance = new \Adyen\Service\ResourceModel\Checkout\PaymentMethodsBalance($this);
         $this->donations = new \Adyen\Service\ResourceModel\Checkout\Donations($this);
+        $this->sessions = new \Adyen\Service\ResourceModel\Checkout\Sessions($this);
     }
 
     /**
@@ -177,7 +183,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
     }
 
     /**
-     * @param $params
+     * @param array $params
      * @param array|null $requestOptions
      * @return mixed
      * @throws \Adyen\AdyenException
@@ -185,5 +191,16 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
     public function donations($params, $requestOptions = null)
     {
         return $this->donations->request($params, $requestOptions);
+    }
+
+    /**
+     * @param array $params
+     * @param array|null $requestOptions
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+    public function sessions($params, $requestOptions = null)
+    {
+        return $this->sessions->request($params, $requestOptions);
     }
 }
