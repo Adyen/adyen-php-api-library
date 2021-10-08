@@ -41,6 +41,9 @@ class CheckoutTest extends TestCase
      */
     private $orderData = null;
 
+    const HOLDER_NAME = "John Smith";
+    const RETURN_URL ="https://your-company.com/...";
+
     public function testPaymentMethods()
     {
         $client = $this->createCheckoutAPIClient();
@@ -117,10 +120,10 @@ class CheckoutTest extends TestCase
                 'encryptedExpiryMonth' => 'test_03',
                 'encryptedExpiryYear' => 'test_2030',
                 'encryptedSecurityCode' => 'test_737',
-                'holderName' => "John Smith"
+                'holderName' => self::HOLDER_NAME
             ),
             'reference' => "Your order number",
-            'returnUrl' => "https://your-company.com/..."
+            'returnUrl' => self::RETURN_URL
         );
         $result = $service->payments($params);
 
@@ -144,10 +147,10 @@ class CheckoutTest extends TestCase
                 'encryptedExpiryMonth' => 'test_03',
                 'encryptedExpiryYear' => 'test_2030',
                 'encryptedSecurityCode' => 'test_737',
-                'holderName' => "John Smith"
+                'holderName' => self::HOLDER_NAME
             ),
             'reference' => "Your order number",
-            'returnUrl' => "https://your-company.com/..."
+            'returnUrl' => self::RETURN_URL
         );
 
         // create idempotency-key
@@ -254,10 +257,10 @@ class CheckoutTest extends TestCase
                 'encryptedExpiryMonth' => 'test_03',
                 'encryptedExpiryYear' => 'test_2030',
                 'encryptedSecurityCode' => 'test_737',
-                'holderName' => "John Smith"
+                'holderName' => self::HOLDER_NAME
             ),
             'reference' => "Your order number",
-            'returnUrl' => "https://your-company.com/..."
+            'returnUrl' => self::RETURN_URL
         );
         $paymentResult = $service->payments($params);
 
@@ -270,13 +273,13 @@ class CheckoutTest extends TestCase
                 'encryptedExpiryMonth' => 'test_03',
                 'encryptedExpiryYear' => 'test_2030',
                 'encryptedSecurityCode' => 'test_737',
-                'holderName' => "John Smith"
+                'holderName' => self::HOLDER_NAME
             ),
             'reference' => "Your order number",
             'donationToken' => $paymentResult['donationToken'],
             'donationOriginalPspReference' => $paymentResult['pspReference'],
             'donationAccount' => $this->merchantAccount,
-            'returnUrl' => "https://your-company.com/...",
+            'returnUrl' => self::RETURN_URL,
             'shopperInteraction' => "Ecommerce"
         );
         $result = $service->donations($donationsParams);
