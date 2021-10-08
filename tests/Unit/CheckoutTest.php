@@ -29,7 +29,8 @@ use Adyen\Service\Checkout;
 class CheckoutTest extends TestCaseMock
 {
     const NO_CHECKOUT_KEY = "Please provide a valid Checkout API Key";
-
+    const HOLDER_NAME = "John Smith";
+    const RETURN_URL = "https://your-company.com/...";
     /**
      * @dataProvider successPaymentMethodsProvider
      */
@@ -135,11 +136,11 @@ class CheckoutTest extends TestCaseMock
                 'number' => "4111111111111111",
                 'expiryMonth' => "08",
                 'expiryYear' => "2018",
-                'holderName' => "John Smith",
+                'holderName' => self::HOLDER_NAME,
                 'cvc' => "737"
             ),
             'reference' => "Your order number",
-            'returnUrl' => "https://your-company.com/...",
+            'returnUrl' => self::RETURN_URL,
             'additionalData' => array(
                 'executeThreeD' => true
             )
@@ -177,9 +178,9 @@ class CheckoutTest extends TestCaseMock
                 'encryptedExpiryMonth' => 'test_03',
                 'encryptedExpiryYear' => 'test_2030',
                 'encryptedSecurityCode' => 'test_737',
-                'holderName' => "John Smith"
+                'holderName' => self::HOLDER_NAME
             ),
-            'returnUrl' => "https://your-company.com/..."
+            'returnUrl' => self::RETURN_URL
         );
 
         $params['reference'] = 'yourownreference';
@@ -246,7 +247,7 @@ class CheckoutTest extends TestCaseMock
             'amount' => array('currency' => "EUR", 'value' => 1000),
             'countryCode' => "NL",
             'reference' => "Your order number",
-            'returnUrl' => "https://your-company.com/",
+            'returnUrl' => self::RETURN_URL,
             "sdkVersion" => "1.3.0"
         );
 
@@ -383,12 +384,12 @@ class CheckoutTest extends TestCaseMock
                 'encryptedExpiryMonth' => 'test_03',
                 'encryptedExpiryYear' => 'test_2030',
                 'encryptedSecurityCode' => 'test_737',
-                'holderName' => "John Smith"
+                'holderName' => self::HOLDER_NAME
             ),
             'donationToken' => "YOUR_DONATION_TOKEN",
             'donationOriginalPspReference' => "991559660454807J",
             'donationAccount' => "CHARITY_ACCOUNT",
-            'returnUrl' => "https://your-company.com/...",
+            'returnUrl' => self::RETURN_URL,
             'merchantAccount' => "YOUR_MERCHANT_ACCOUNT",
             'shopperInteraction' => "Ecommerce"
         );
