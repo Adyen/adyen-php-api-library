@@ -4,6 +4,10 @@ namespace Adyen\Service;
 
 class Account extends \Adyen\Service
 {
+    /**
+     * @var ResourceModel\Account\CheckAccountHolder
+     */
+    protected $checkAccountHolder;
 
     /**
      * @var ResourceModel\Account\CreateAccount
@@ -84,6 +88,7 @@ class Account extends \Adyen\Service
     {
         parent::__construct($client);
 
+        $this->checkAccountHolder = new \Adyen\Service\ResourceModel\Account\CheckAccountHolder($this);
         $this->createAccount = new \Adyen\Service\ResourceModel\Account\CreateAccount($this);
         $this->createAccountHolder = new \Adyen\Service\ResourceModel\Account\CreateAccountHolder($this);
         $this->updateAccountHolder = new \Adyen\Service\ResourceModel\Account\UpdateAccountHolder($this);
@@ -102,6 +107,16 @@ class Account extends \Adyen\Service
 
     /**
      * @param string $params
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+    public function checkAccountHolder($params)
+    {
+        return $this->checkAccountHolder->request($params);
+    }
+
+    /**
+     * @param $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */
