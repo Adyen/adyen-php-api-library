@@ -314,5 +314,4 @@ class CheckoutTest extends TestCase
         $keyIntersect = array_intersect_key($params, $result);
         $this->assertEquals($params, $keyIntersect);
     }
-  
 }
