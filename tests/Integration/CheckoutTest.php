@@ -29,6 +29,9 @@ use Adyen\Util\Uuid;
 
 class CheckoutTest extends TestCase
 {
+
+    const RETURN_URL = "https://your-company.com/...";
+
     /**
      * Can hold the last pspReference for cancelling an order
      * @var string $pspReference
@@ -120,7 +123,7 @@ class CheckoutTest extends TestCase
                 'holderName' => "John Smith"
             ),
             'reference' => "Your order number",
-            'returnUrl' => "https://your-company.com/..."
+            'returnUrl' => self::RETURN_URL
         );
         $result = $service->payments($params);
 
@@ -147,7 +150,7 @@ class CheckoutTest extends TestCase
                 'holderName' => "John Smith"
             ),
             'reference' => "Your order number",
-            'returnUrl' => "https://your-company.com/..."
+            'returnUrl' => self::RETURN_URL
         );
 
         // create idempotency-key
@@ -235,5 +238,33 @@ class CheckoutTest extends TestCase
         $result = $service->ordersCancel($params);
 
         $this->assertEquals('Received', $result['resultCode']);
+    }
+
+    public function testSessions()
+    {
+        // create Checkout client
+        $client = $this->createCheckoutAPIClient();
+
+        // initialize service
+        $service = new \Adyen\Service\Checkout($client);
+
+        $params = array(
+            'amount' => array(
+                'currency' => "EUR",
+                'value' => 1000
+            ),
+            'countryCode' => 'NL',
+            'merchantAccount' => $this->merchantAccount,
+            'returnUrl' => self::RETURN_URL
+        );
+        $result = $service->sessions($params);
+
+        // Sessions data received
+        $this->assertNotEmpty($result['sessionData']);
+        $this->assertNotEmpty($result['id']);
+
+        // Payment params are the same as response data
+        $keyIntersect = array_intersect_key($params, $result);
+        $this->assertEquals($params, $keyIntersect);
     }
 }
