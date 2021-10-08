@@ -45,9 +45,6 @@ class CheckoutTest extends TestCase
      */
     private $orderData = null;
 
-    const HOLDER_NAME = "John Smith";
-    const RETURN_URL ="https://your-company.com/...";
-
     public function testPaymentMethods()
     {
         $client = $this->createCheckoutAPIClient();
