@@ -27,7 +27,7 @@ jobs:
         run: composer validate --strict
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-dev
+        run: composer install --prefer-dist --no-progress
 
       - name: Run integration tests
         run: vendor/bin/phpunit --testsuite=integration --no-coverage
