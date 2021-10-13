@@ -29,6 +29,10 @@ use Adyen\Util\Uuid;
 
 class CheckoutTest extends TestCase
 {
+
+    const HOLDER_NAME = "John Smith";
+    const RETURN_URL = "https://your-company.com/...";
+
     /**
      * Can hold the last pspReference for cancelling an order
      * @var string $pspReference
@@ -117,10 +121,10 @@ class CheckoutTest extends TestCase
                 'encryptedExpiryMonth' => 'test_03',
                 'encryptedExpiryYear' => 'test_2030',
                 'encryptedSecurityCode' => 'test_737',
-                'holderName' => "John Smith"
+                'holderName' => self::HOLDER_NAME
             ),
             'reference' => "Your order number",
-            'returnUrl' => "https://your-company.com/..."
+            'returnUrl' => self::RETURN_URL
         );
         $result = $service->payments($params);
 
@@ -144,10 +148,10 @@ class CheckoutTest extends TestCase
                 'encryptedExpiryMonth' => 'test_03',
                 'encryptedExpiryYear' => 'test_2030',
                 'encryptedSecurityCode' => 'test_737',
-                'holderName' => "John Smith"
+                'holderName' => self::HOLDER_NAME
             ),
             'reference' => "Your order number",
-            'returnUrl' => "https://your-company.com/..."
+            'returnUrl' => self::RETURN_URL
         );
 
         // create idempotency-key
@@ -235,5 +239,79 @@ class CheckoutTest extends TestCase
         $result = $service->ordersCancel($params);
 
         $this->assertEquals('Received', $result['resultCode']);
+    }
+
+    public function testDonationsSuccess()
+    {
+        // create Checkout client
+        $client = $this->createCheckoutAPIClient();
+
+        // initialize service
+        $service = new Checkout($client);
+        // the transaction from which the donation token is generated.
+        $params = array(
+            'merchantAccount' => $this->merchantAccount,
+            'amount' => array('currency' => "EUR", 'value' => 1000),
+            'paymentMethod' => array(
+                'type' => "scheme",
+                'encryptedCardNumber' => 'test_4111111111111111',
+                'encryptedExpiryMonth' => 'test_03',
+                'encryptedExpiryYear' => 'test_2030',
+                'encryptedSecurityCode' => 'test_737',
+                'holderName' => self::HOLDER_NAME
+            ),
+            'reference' => "Your order number",
+            'returnUrl' => self::RETURN_URL
+        );
+        $paymentResult = $service->payments($params);
+
+        $donationsParams = array(
+            'merchantAccount' => $this->merchantAccount,
+            'amount' => array('currency' => "EUR", 'value' => 1000),
+            'paymentMethod' => array(
+                'type' => "scheme",
+                'encryptedCardNumber' => 'test_4111111111111111',
+                'encryptedExpiryMonth' => 'test_03',
+                'encryptedExpiryYear' => 'test_2030',
+                'encryptedSecurityCode' => 'test_737',
+                'holderName' => self::HOLDER_NAME
+            ),
+            'reference' => "Your order number",
+            'donationToken' => $paymentResult['donationToken'],
+            'donationOriginalPspReference' => $paymentResult['pspReference'],
+            'donationAccount' => $this->merchantAccount,
+            'returnUrl' => self::RETURN_URL,
+            'shopperInteraction' => "Ecommerce"
+        );
+        $result = $service->donations($donationsParams);
+        $this->assertEquals('Authorised', $result['payment']['resultCode']);
+    }
+  
+    public function testSessions()
+    {
+        // create Checkout client
+        $client = $this->createCheckoutAPIClient();
+
+        // initialize service
+        $service = new \Adyen\Service\Checkout($client);
+
+        $params = array(
+            'amount' => array(
+                'currency' => "EUR",
+                'value' => 1000
+            ),
+            'countryCode' => 'NL',
+            'merchantAccount' => $this->merchantAccount,
+            'returnUrl' => self::RETURN_URL
+        );
+        $result = $service->sessions($params);
+
+        // Sessions data received
+        $this->assertNotEmpty($result['sessionData']);
+        $this->assertNotEmpty($result['id']);
+
+        // Payment params are the same as response data
+        $keyIntersect = array_intersect_key($params, $result);
+        $this->assertEquals($params, $keyIntersect);
     }
 }
