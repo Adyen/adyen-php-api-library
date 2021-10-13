@@ -26,15 +26,14 @@ For more information, refer to our [documentation](https://docs.adyen.com/) or t
 
 - [Adyen test account](https://docs.adyen.com/get-started-with-adyen)
 - [API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key). For testing, your API credential needs to have the [API PCI Payments role](https://docs.adyen.com/development-resources/api-credentials#roles).
-- PHP 5.6 or later for production
-- PHP 7.3 or later for development
+- PHP 7.3 or later
 - cURL with SSL support.
 - The JSON PHP extension.
 - See [composer require list](https://github.com/Adyen/adyen-php-api-library/blob/develop/composer.json#L10) for the complete list of dependencies
 
 ### Legacy version support
 
-If using PHP versions 5.3, 5.4, or 5.5, download our library version [6.3.0](https://github.com/Adyen/adyen-php-api-library/releases/tag/6.3.0).
+If using PHP versions 7.2 or lower, download our library version [6.3.0](https://github.com/Adyen/adyen-php-api-library/releases/tag/6.3.0).
 
 ## Installation
 
