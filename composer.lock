@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "315bd779dbf4047e5d6b18f2c2520f18",
+    "content-hash": "eb447da82d5d2ea11d9e3a3cb1fa9a2a",
     "packages": [
         {
             "name": "monolog/monolog",
@@ -3130,11 +3130,6 @@
                 "phpcs",
                 "standards"
             ],
-            "support": {
-                "issues": "https://github.com/squizlabs/PHP_CodeSniffer/issues",
-                "source": "https://github.com/squizlabs/PHP_CodeSniffer",
-                "wiki": "https://github.com/squizlabs/PHP_CodeSniffer/wiki"
-            },
             "time": "2021-10-11T04:00:11+00:00"
         },
         {
