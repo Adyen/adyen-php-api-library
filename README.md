@@ -1,7 +1,5 @@
 # Adyen APIs Library for PHP
 
-[![Build Status](https://api.travis-ci.org/Adyen/adyen-php-api-library.svg?branch=master)](https://travis-ci.org/Adyen/adyen-php-api-library)
-
 This is the officially supported PHP library for using Adyen's APIs.
 
 ## Integration
