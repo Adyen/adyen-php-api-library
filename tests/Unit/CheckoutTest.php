@@ -29,7 +29,8 @@ use Adyen\Service\Checkout;
 class CheckoutTest extends TestCaseMock
 {
     const NO_CHECKOUT_KEY = "Please provide a valid Checkout API Key";
-
+    const HOLDER_NAME = "John Smith";
+    const RETURN_URL = "https://your-company.com/...";
     /**
      * @dataProvider successPaymentMethodsProvider
      */
@@ -135,11 +136,11 @@ class CheckoutTest extends TestCaseMock
                 'number' => "4111111111111111",
                 'expiryMonth' => "08",
                 'expiryYear' => "2018",
-                'holderName' => "John Smith",
+                'holderName' => self::HOLDER_NAME,
                 'cvc' => "737"
             ),
             'reference' => "Your order number",
-            'returnUrl' => "https://your-company.com/...",
+            'returnUrl' => self::RETURN_URL,
             'additionalData' => array(
                 'executeThreeD' => true
             )
@@ -177,9 +178,9 @@ class CheckoutTest extends TestCaseMock
                 'encryptedExpiryMonth' => 'test_03',
                 'encryptedExpiryYear' => 'test_2030',
                 'encryptedSecurityCode' => 'test_737',
-                'holderName' => "John Smith"
+                'holderName' => self::HOLDER_NAME
             ),
-            'returnUrl' => "https://your-company.com/..."
+            'returnUrl' => self::RETURN_URL
         );
 
         $params['reference'] = 'yourownreference';
@@ -246,7 +247,7 @@ class CheckoutTest extends TestCaseMock
             'amount' => array('currency' => "EUR", 'value' => 1000),
             'countryCode' => "NL",
             'reference' => "Your order number",
-            'returnUrl' => "https://your-company.com/",
+            'returnUrl' => self::RETURN_URL,
             "sdkVersion" => "1.3.0"
         );
 
@@ -358,6 +359,51 @@ class CheckoutTest extends TestCaseMock
     {
         return array(
             array('tests/Resources/Checkout/payment-links-invalid.json', 422, 'Reference Missing'),
+        );
+    }
+
+    /**
+     * @param string $jsonFile
+     * @param int $httpStatus
+     *
+     * @dataProvider successDonationsProvider
+     */
+    public function testDonationsSuccess($jsonFile, $httpStatus)
+    {
+        $client = $this->createMockClient($jsonFile, $httpStatus);
+
+        $service = new Checkout($client);
+
+        $params = array(
+            'amount' => array('currency' => "BRL", 'value' => 1250),
+            'reference' => '12345',
+            'merchantAccount' => "YourMerchantAccount",
+            'paymentMethod' => array(
+                'type' => "scheme",
+                'encryptedCardNumber' => 'test_4111111111111111',
+                'encryptedExpiryMonth' => 'test_03',
+                'encryptedExpiryYear' => 'test_2030',
+                'encryptedSecurityCode' => 'test_737',
+                'holderName' => self::HOLDER_NAME
+            ),
+            'donationToken' => "YOUR_DONATION_TOKEN",
+            'donationOriginalPspReference' => "991559660454807J",
+            'donationAccount' => "CHARITY_ACCOUNT",
+            'returnUrl' => self::RETURN_URL,
+            'merchantAccount' => "YOUR_MERCHANT_ACCOUNT",
+            'shopperInteraction' => "Ecommerce"
+        );
+
+        $result = $service->donations($params);
+        $this->assertStringContainsString($result['additionalData']['merchantReference'], 'YOUR_DONATION_REFERENCE');
+        $this->assertStringContainsString($result['pspReference'], '853589530367661E');
+        $this->assertStringContainsString($result['response'], '[donation-received]');
+    }
+
+    public static function successDonationsProvider()
+    {
+        return array(
+            array('tests/Resources/Checkout/donations-success.json', 200),
         );
     }
 

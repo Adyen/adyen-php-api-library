@@ -1,13 +1,11 @@
 # Adyen APIs Library for PHP
 
-[![Build Status](https://api.travis-ci.org/Adyen/adyen-php-api-library.svg?branch=main)](https://travis-ci.org/Adyen/adyen-php-api-library)
-
 This is the officially supported PHP library for using Adyen's APIs.
 
 ## Integration
 The library supports all APIs under the following services:
 
-* [Checkout API](https://docs.adyen.com/api-explorer/#/CheckoutService/v67/overview): Our latest integration for accepting online payments. Current supported version: **v67**
+* [Checkout API](https://docs.adyen.com/api-explorer/#/CheckoutService/v68/overview): Our latest integration for accepting online payments. Current supported version: **v68**
 * [Payments API](https://docs.adyen.com/api-explorer/#/Payment/v51/overview): Our classic integration for online payments. Current supported version: **v51**
 * [Recurring API](https://docs.adyen.com/api-explorer/#/Recurring/v49/overview): Endpoints for managing saved payment details. Current supported version: **v49**
 * [Payouts API](https://docs.adyen.com/api-explorer/#/Payout/v51/overview): Endpoints for sending funds to your customers. Current supported version: **v51**
@@ -17,7 +15,7 @@ The library supports all APIs under the following services:
   * [Notification Configuration API](https://docs.adyen.com/api-explorer/#/NotificationConfigurationService/v5/overview) Current supported version: **v5**
 * [Cloud-based Terminal API](https://docs.adyen.com/point-of-sale/terminal-api-reference): Our point-of-sale integration.
 * [Referrals API](https://docs.adyen.com/risk-management/automate-submitting-referrals/referrals-api-reference): Endpoints to [automate submitting referrals](https://docs.adyen.com/risk-management/automate-submitting-referrals) for Adyen risk rules.
-
+* [HOP API](https://docs.adyen.com/api-explorer/#/Hop/v5/overview): Adyen for Platforms Hosted Onboarding API. Current supported version: **v5**
 
 For more information, refer to our [documentation](https://docs.adyen.com/) or the [API Explorer](https://docs.adyen.com/api-explorer/).
 
@@ -26,15 +24,14 @@ For more information, refer to our [documentation](https://docs.adyen.com/) or t
 
 - [Adyen test account](https://docs.adyen.com/get-started-with-adyen)
 - [API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key). For testing, your API credential needs to have the [API PCI Payments role](https://docs.adyen.com/development-resources/api-credentials#roles).
-- PHP 5.6 or later for production
-- PHP 7.3 or later for development
+- PHP 7.3 or later
 - cURL with SSL support.
 - The JSON PHP extension.
 - See [composer require list](https://github.com/Adyen/adyen-php-api-library/blob/develop/composer.json#L10) for the complete list of dependencies
 
 ### Legacy version support
 
-If using PHP versions 5.3, 5.4, or 5.5, download our library version [6.3.0](https://github.com/Adyen/adyen-php-api-library/releases/tag/6.3.0).
+If using PHP versions 7.2 or lower, download our library version [6.3.0](https://github.com/Adyen/adyen-php-api-library/releases/tag/6.3.0).
 
 ## Installation
 
