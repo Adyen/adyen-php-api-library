@@ -1,6 +1,6 @@
 # Adyen APIs Library for PHP
 
-[![Build Status](https://api.travis-ci.org/Adyen/adyen-php-api-library.svg?branch=master)](https://travis-ci.org/Adyen/adyen-php-api-library)
+[![Build Status](https://api.travis-ci.org/Adyen/adyen-php-api-library.svg?branch=main)](https://travis-ci.org/Adyen/adyen-php-api-library)
 
 This is the officially supported PHP library for using Adyen's APIs.
 
@@ -149,7 +149,7 @@ If you have a feature request, or spotted a bug or a technical problem, [create 
 For other questions, [contact our Support Team](https://www.adyen.help/hc/en-us/requests/new?ticket_form_id=360000705420).
 
 ## Licence
-This repository is available under the [MIT license](https://github.com/Adyen/adyen-php-api-library/blob/master/LICENSE).
+This repository is available under the [MIT license](https://github.com/Adyen/adyen-php-api-library/blob/main/LICENSE).
 
 ## See also
 * [Example integration](https://github.com/adyen-examples/adyen-php-online-payments)
