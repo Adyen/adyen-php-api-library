@@ -66,10 +66,10 @@ $service = new \Adyen\Service\Checkout($client);
 
 $json = '{
       "card": {
-        "encryptedCardNumber" => "test_4111111111111111",
-        "encryptedExpiryMonth" => "test_03",
-        "encryptedExpiryYear" => "test_2030",
-        "encryptedSecurityCode" => "test_737"
+        "encryptedCardNumber": "test_4111111111111111",
+        "encryptedExpiryMonth": "test_03",
+        "encryptedExpiryYear": "test_2030",
+        "encryptedSecurityCode": "test_737",
         "holderName": "John Smith"
       },
       "amount": {
