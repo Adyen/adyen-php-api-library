@@ -10,7 +10,7 @@ use Monolog\Handler\StreamHandler;
 
 class Client
 {
-    const LIB_VERSION = "11.0.0";
+    const LIB_VERSION = "11.1.0";
     const LIB_NAME = "adyen-php-api-library";
     const USER_AGENT_SUFFIX = "adyen-php-api-library/";
     const ENDPOINT_TEST = "https://pal-test.adyen.com";
@@ -24,11 +24,11 @@ class Client
     const API_RECURRING_VERSION = "v49";
     const API_CHECKOUT_VERSION = "v68";
     const API_CHECKOUT_UTILITY_VERSION = "v1";
-    const API_NOTIFICATION_VERSION = "v5";
-    const API_ACCOUNT_VERSION = "v5";
-    const API_FUND_VERSION = "v5";
+    const API_NOTIFICATION_VERSION = "v6";
+    const API_ACCOUNT_VERSION = "v6";
+    const API_FUND_VERSION = "v6";
     const API_DISPUTE_SERVICE_VERSION = "v30";
-    const API_HOP_VERSION = "v5";
+    const API_HOP_VERSION = "v6";
     const ENDPOINT_TERMINAL_CLOUD_TEST = "https://terminal-api-test.adyen.com";
     const ENDPOINT_TERMINAL_CLOUD_LIVE = "https://terminal-api-live.adyen.com";
     const ENDPOINT_CHECKOUT_TEST = "https://checkout-test.adyen.com/checkout";
