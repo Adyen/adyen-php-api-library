@@ -19,4 +19,14 @@ interface ClientInterface
      * @return mixed
      */
     public function requestPost(\Adyen\Service $service, $requestUrl, $params);
+
+    /**
+     * @param \Adyen\Service $service
+     * @param $requestUrl
+     * @param $params
+     * @param $method
+     * @return mixed
+     */
+    public function requestHttp(\Adyen\Service $service, $requestUrl, $params, $method);
+
 }

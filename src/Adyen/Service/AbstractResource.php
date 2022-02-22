@@ -5,6 +5,8 @@ namespace Adyen\Service;
 use Adyen\AdyenException;
 use Adyen\Service;
 
+use function PHPUnit\Framework\throwException;
+
 abstract class AbstractResource
 {
     /**
@@ -107,6 +109,30 @@ abstract class AbstractResource
 
         $curlClient = $this->service->getClient()->getHttpClient();
         return $curlClient->requestPost($this->service, $this->endpoint, $params);
+    }
+
+    /**
+     * @param array $params list of parameters for the request
+     * @param string $method HTTP method ('get', 'post', etc.)
+     * @return mixed
+     * @throws AdyenException
+     */
+    public function requestHttp($params, $method)
+    {
+        // check if paramenters has a value
+        if (!$params) {
+            $msg = 'The parameters in the request are empty';
+            $this->service->getClient()->getLogger()->error($msg);
+            throw new AdyenException($msg);
+        }
+        // check if rest api method has a value
+        if (!$method) {
+            $msg = 'The rest api method is empty';
+            $this->service->getClient()->getLogger()->error($msg);
+            throw new AdyenException($msg);
+        }
+        $curlClient = $this->service->getClient()->getHttpClient();
+        return $curlClient->requestHttp($this->service, $this->endpoint, $params, $method);
     }
 
     /**
