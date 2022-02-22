@@ -56,6 +56,35 @@ class CurlClient implements ClientInterface
     }
 
     /**
+     * Set httpProxy in the current curl configuration
+     *
+     * @param resource $ch
+     * @param string $httpProxy
+     * @throws AdyenException
+     */
+    public function curlSetHttpProxy($ch, $httpProxy)
+    {
+        if (empty($httpProxy)) {
+            return;
+        }
+
+        $urlParts = parse_url($httpProxy);
+        if ($urlParts == false || !array_key_exists("host", $urlParts)) {
+            throw new AdyenException("Invalid proxy configuration " . $httpProxy);
+        }
+
+        $proxy = $urlParts["host"];
+        if (isset($urlParts["port"])) {
+            $proxy .= ":" . $urlParts["port"];
+        }
+        curl_setopt($ch, CURLOPT_PROXY, $proxy);
+
+        if (isset($urlParts["user"])) {
+            curl_setopt($ch, CURLOPT_PROXYUSERPWD, $urlParts["user"] . ":" . $urlParts["pass"]);
+        }
+    }
+
+    /**
      * Request to Adyen with query string used for Directory Lookup
      *
      * @param \Adyen\Service $service
