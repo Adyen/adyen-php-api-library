@@ -23,18 +23,16 @@
 
 namespace Adyen\Tests\Unit;
 
-
 use Adyen\AdyenException;
 use Adyen\Service\Management;
 
 class ManagementTest
 {
-
     public function testMerchantAccountSuccess($jsonFile, $httpStatus)
     {
         // create Checkout client
         $client = $this->createMockClient($jsonFile, $httpStatus);
-        $params= [];
+        $params = [];
         // initialize service
         try {
             $management = new Management($client);
@@ -43,4 +41,3 @@ class ManagementTest
         }
     }
 }
-
