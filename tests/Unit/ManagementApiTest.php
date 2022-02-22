@@ -23,7 +23,10 @@
 
 namespace Adyen\Tests\Unit;
 
-class ManagementApi
+use Adyen\Service\ResourceModel\ManagementApi;
+
+class ManagementApiTest
 {
+
 
 }
