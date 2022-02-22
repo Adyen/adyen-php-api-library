@@ -29,6 +29,8 @@ abstract class AbstractResource
      */
     protected $allowApplicationInfoPOS;
 
+    protected $managementEndpoint;
+
     /**
      * AbstractResource constructor.
      *
@@ -47,6 +49,8 @@ abstract class AbstractResource
         $this->endpoint = $endpoint;
         $this->allowApplicationInfo = $allowApplicationInfo;
         $this->allowApplicationInfoPOS = $allowApplicationInfoPOS;
+        $this->managementEndpoint = $service->getClient()->getConfig()->get('endpointManagementApi') .
+            '/' . $service->getClient()->getManagementApiVersion();
     }
 
     /**
@@ -117,22 +121,22 @@ abstract class AbstractResource
      * @return mixed
      * @throws AdyenException
      */
-    public function requestHttp($params, $method)
+    public function requestHttp($params, $url, $method)
     {
-        // check if paramenters has a value
-        if (!$params) {
-            $msg = 'The parameters in the request are empty';
-            $this->service->getClient()->getLogger()->error($msg);
-            throw new AdyenException($msg);
-        }
         // check if rest api method has a value
         if (!$method) {
             $msg = 'The rest api method is empty';
             $this->service->getClient()->getLogger()->error($msg);
             throw new AdyenException($msg);
         }
+        // check if rest api method has a value
+        if (!$url) {
+            $msg = 'The rest api url endpoint is empty';
+            $this->service->getClient()->getLogger()->error($msg);
+            throw new AdyenException($msg);
+        }
         $curlClient = $this->service->getClient()->getHttpClient();
-        return $curlClient->requestHttp($this->service, $this->endpoint, $params, $method);
+        return $curlClient->requestHttp($this->service, $url, $params, $method);
     }
 
     /**

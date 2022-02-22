@@ -4,6 +4,10 @@ namespace Adyen\HttpClient;
 
 interface ClientInterface
 {
+    const HTTP_METHOD_GET = 'get';
+    const HTTP_METHOD_POST = 'post';
+    const HTTP_METHOD_DELETE = 'delete';
+
     /**
      * @param \Adyen\Service $service
      * @param $requestUrl

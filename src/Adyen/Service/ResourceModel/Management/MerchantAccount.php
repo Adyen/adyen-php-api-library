@@ -1,9 +1,9 @@
 <?php
 
 
-namespace Adyen\Service\ResourceModel\ManagementApi;
+namespace Adyen\Service\ResourceModel\Management;
 
-class MerchantsAccount extends \Adyen\Service\AbstractResource
+class MerchantAccount extends \Adyen\Service\AbstractResource
 {
     /**
      * @var string
@@ -24,8 +24,16 @@ class MerchantsAccount extends \Adyen\Service\AbstractResource
      */
     public function __construct($service)
     {
-        $this->endpoint = $service->getClient()->getConfig()->get('endpointManagementApi') .
-            '/' . $service->getClient()->getManagementApiVersion() . '/merchants';
         parent::__construct($service, $this->endpoint);
+    }
+
+    /**
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+    public function list()
+    {
+        $url = $this->managementEndpoint . "/merchants";
+        return $this->requestHttp(null, $url, 'get');
     }
 }

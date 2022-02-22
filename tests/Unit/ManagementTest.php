@@ -23,10 +23,24 @@
 
 namespace Adyen\Tests\Unit;
 
-use Adyen\Service\ResourceModel\ManagementApi;
 
-class ManagementApiTest
+use Adyen\AdyenException;
+use Adyen\Service\Management;
+
+class ManagementTest
 {
 
-
+    public function testMerchantAccountSuccess($jsonFile, $httpStatus)
+    {
+        // create Checkout client
+        $client = $this->createMockClient($jsonFile, $httpStatus);
+        $params= [];
+        // initialize service
+        try {
+            $management = new Management($client);
+            $management->merchantAccount->list();
+        } catch (AdyenException $e) {
+        }
+    }
 }
+

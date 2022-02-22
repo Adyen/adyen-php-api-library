@@ -365,14 +365,14 @@ class CurlClient implements ClientInterface
         //Initiate cURL.
         $ch = curl_init($requestUrl);
 
-        if ($method === 'get') {
+        if ($method === self::HTTP_METHOD_GET) {
             curl_setopt($ch, CURLOPT_HTTPGET, 1);
-        } elseif ($method === 'post') {
+        } elseif ($method === self::HTTP_METHOD_POST) {
             //Tell cURL that we want to send a POST request.
             curl_setopt($ch, CURLOPT_POST, 1);
             //Attach our encoded JSON string to the POST fields.
             curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonRequest);
-        } elseif ('delete' === $method) {
+        } elseif ($method === self::HTTP_METHOD_DELETE) {
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
         }
 
