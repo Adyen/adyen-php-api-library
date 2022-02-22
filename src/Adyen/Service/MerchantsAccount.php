@@ -15,7 +15,7 @@ class MerchantsAccount extends \Adyen\Service
      * @param \Adyen\Client $client
      * @throws \Adyen\AdyenException
      */
-    public function MerchantsAccount(\Adyen\Client $client)
+    public function merchantsAccount(\Adyen\Client $client)
     {
         parent::__construct($client);
         $this->merchantsAccount = new \Adyen\Service\ResourceModel\ManagementApi\MerchantsAccount($this);

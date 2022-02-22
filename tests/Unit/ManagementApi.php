@@ -21,9 +21,7 @@
  *
  */
 
-
 namespace Adyen\Tests\Unit;
-
 
 class ManagementApi
 {
