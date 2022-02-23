@@ -9,6 +9,12 @@ use Adyen\Tests\TestCase;
 
 class ManagementTest extends TestCase
 {
+    const LINKS = '_links';
+    const DATA = 'data';
+    const ITEMS_TOTAL = 'itemsTotal';
+    const YOUR_MERCHANT_ACCOUNT = 'YOUR MERCHANT ACCOUNT';
+    const SKIP_TEST_MESSAGE = '"Skipped the test. Configure your MerchantAccount in the config"';
+
     /**
      * Get /merchants
      * @throws \Adyen\AdyenException
@@ -20,10 +26,10 @@ class ManagementTest extends TestCase
         $management = new Management($client);
         $response = $management->merchantAccount->list();
         $this->assertNotEmpty($response);
-        $this->assertNotEmpty($response['_links']);
-        $this->assertNotEmpty($response['data']);
-        $this->assertNotEmpty($response['itemsTotal']);
-        $this->assertTrue($this->count($response['data']) > 0);
+        $this->assertNotEmpty($response[self::LINKS]);
+        $this->assertNotEmpty($response[self::DATA]);
+        $this->assertNotEmpty($response[self::ITEMS_TOTAL]);
+        $this->assertTrue($this->count($response[self::DATA]) > 0);
     }
 
     /**
@@ -33,8 +39,9 @@ class ManagementTest extends TestCase
      */
     public function testGetMerchantById()
     {
-        if (empty($this->settings['merchantAccount']) || $this->settings['merchantAccount'] == 'YOUR MERCHANTACCOUNT') {
-            $this->skipTest("Skipped the test. Configure your MerchantAccount in the config");
+        if (empty($this->settings['merchantAccount']) ||
+            $this->settings['merchantAccount'] == self::YOUR_MERCHANT_ACCOUNT) {
+            $this->skipTest(self::SKIP_TEST_MESSAGE);
             return null;
         }
         $merchantId = $this->settings['merchantAccount'];
@@ -79,9 +86,9 @@ class ManagementTest extends TestCase
         $management = new Management($client);
         $response = $management->companyAccount->list();
         $this->assertNotEmpty($response);
-        $this->assertNotEmpty($response['_links']);
+        $this->assertNotEmpty($response[self::LINKS]);
         $this->assertNotEmpty($response['data']);
-        $this->assertNotEmpty($response['itemsTotal']);
+        $this->assertNotEmpty($response[self::ITEMS_TOTAL]);
         $this->assertTrue($this->count($response['data']) > 0);
     }
 
@@ -118,9 +125,9 @@ class ManagementTest extends TestCase
         $companyId = $companies["data"][0]["id"];
         $response = $management->companyWebhooks->retrieve($companyId);
         $this->assertNotEmpty($response);
-        $this->assertNotEmpty($response['_links']);
+        $this->assertNotEmpty($response[self::LINKS]);
         $this->assertNotEmpty($response['data']);
-        $this->assertNotEmpty($response['itemsTotal']);
+        $this->assertNotEmpty($response[self::ITEMS_TOTAL]);
         $this->assertNotEmpty($response['pagesTotal']);
         $this->assertTrue($this->count($response['data']) > 0);
     }
@@ -132,8 +139,9 @@ class ManagementTest extends TestCase
      */
     public function testCreateMerchantWebhooks()
     {
-        if (empty($this->settings['merchantAccount']) || $this->settings['merchantAccount'] == 'YOUR MERCHANTACCOUNT') {
-            $this->skipTest("Skipped the test. Configure your MerchantAccount in the config");
+        if (empty($this->settings['merchantAccount']) ||
+            $this->settings['merchantAccount'] == self::YOUR_MERCHANT_ACCOUNT) {
+            $this->skipTest(self::SKIP_TEST_MESSAGE);
             return null;
         }
         $client = $this->createCheckoutAPIClient();
@@ -165,8 +173,9 @@ class ManagementTest extends TestCase
      */
     public function testGenerateHmac()
     {
-        if (empty($this->settings['merchantAccount']) || $this->settings['merchantAccount'] == 'YOUR MERCHANTACCOUNT') {
-            $this->skipTest("Skipped the test. Configure your MerchantAccount in the config");
+        if (empty($this->settings['merchantAccount']) ||
+            $this->settings['merchantAccount'] == self::YOUR_MERCHANT_ACCOUNT) {
+            $this->skipTest(self::SKIP_TEST_MESSAGE);
             return null;
         }
         $client = $this->createCheckoutAPIClient();
