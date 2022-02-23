@@ -3,7 +3,7 @@
 
 namespace Adyen\Service\ResourceModel\Management;
 
-class MerchantAccount extends \Adyen\Service\AbstractResource
+class CompanyAccount extends \Adyen\Service\AbstractResource
 {
     /**
      * @var string
@@ -18,7 +18,7 @@ class MerchantAccount extends \Adyen\Service\AbstractResource
     protected $allowApplicationInfo = false;
 
     /**
-     * MerchantAccount constructor.
+     * CompanyAccount constructor.
      *
      * @param \Adyen\Service $service
      */
@@ -33,7 +33,17 @@ class MerchantAccount extends \Adyen\Service\AbstractResource
      */
     public function list()
     {
-        $url = $this->managementEndpoint . "/merchants";
+        $url = $this->managementEndpoint . "/companies";
+        return $this->requestHttp(null, $url, 'get');
+    }
+
+    /**
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+    public function retrieve($companyId)
+    {
+        $url = $this->managementEndpoint . "/companies/" . $companyId;
         return $this->requestHttp(null, $url, 'get');
     }
 }

@@ -1,9 +1,8 @@
 <?php
 
-
 namespace Adyen\Service\ResourceModel\Management;
 
-class MerchantAccount extends \Adyen\Service\AbstractResource
+class CompanyWebhooks extends \Adyen\Service\AbstractResource
 {
     /**
      * @var string
@@ -18,7 +17,7 @@ class MerchantAccount extends \Adyen\Service\AbstractResource
     protected $allowApplicationInfo = false;
 
     /**
-     * MerchantAccount constructor.
+     * CompanyWebhooks constructor.
      *
      * @param \Adyen\Service $service
      */
@@ -28,12 +27,13 @@ class MerchantAccount extends \Adyen\Service\AbstractResource
     }
 
     /**
+     * @param $companyId
      * @return mixed
      * @throws \Adyen\AdyenException
      */
-    public function list()
+    public function retrieve($params, $companyId)
     {
-        $url = $this->managementEndpoint . "/merchants";
-        return $this->requestHttp(null, $url, 'get');
+        $url = $this->managementEndpoint . "/companies/" . $companyId . "/webhooks";
+        return $this->requestHttp($params, $url, 'get');
     }
 }

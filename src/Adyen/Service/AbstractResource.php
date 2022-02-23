@@ -98,48 +98,6 @@ abstract class AbstractResource
     }
 
     /**
-     * @param $params
-     * @return mixed
-     * @throws AdyenException
-     */
-    public function requestPost($params)
-    {
-        // check if paramenters has a value
-        if (!$params) {
-            $msg = 'The parameters in the request are empty';
-            $this->service->getClient()->getLogger()->error($msg);
-            throw new AdyenException($msg);
-        }
-
-        $curlClient = $this->service->getClient()->getHttpClient();
-        return $curlClient->requestPost($this->service, $this->endpoint, $params);
-    }
-
-    /**
-     * @param array $params list of parameters for the request
-     * @param string $method HTTP method ('get', 'post', etc.)
-     * @return mixed
-     * @throws AdyenException
-     */
-    public function requestHttp($params, $url, $method)
-    {
-        // check if rest api method has a value
-        if (!$method) {
-            $msg = 'The rest api method is empty';
-            $this->service->getClient()->getLogger()->error($msg);
-            throw new AdyenException($msg);
-        }
-        // check if rest api method has a value
-        if (!$url) {
-            $msg = 'The rest api url endpoint is empty';
-            $this->service->getClient()->getLogger()->error($msg);
-            throw new AdyenException($msg);
-        }
-        $curlClient = $this->service->getClient()->getHttpClient();
-        return $curlClient->requestHttp($this->service, $url, $params, $method);
-    }
-
-    /**
      * Fill expected but missing parameters with default data
      *
      * @param $params
@@ -245,5 +203,48 @@ abstract class AbstractResource
         } else {
             return false;
         }
+    }
+
+    /**
+     * @param $params
+     * @return mixed
+     * @throws AdyenException
+     */
+    public function requestPost($params)
+    {
+        // check if paramenters has a value
+        if (!$params) {
+            $msg = 'The parameters in the request are empty';
+            $this->service->getClient()->getLogger()->error($msg);
+            throw new AdyenException($msg);
+        }
+
+        $curlClient = $this->service->getClient()->getHttpClient();
+        return $curlClient->requestPost($this->service, $this->endpoint, $params);
+    }
+
+    /**
+     * @param $params
+     * @param $url
+     * @param $method
+     * @return mixed
+     * @throws AdyenException
+     */
+    public function requestHttp($params, $url, $method)
+    {
+        // check if rest api method has a value
+        if (!$method) {
+            $msg = 'The rest api method is empty';
+            $this->service->getClient()->getLogger()->error($msg);
+            throw new AdyenException($msg);
+        }
+        // check if rest api method has a value
+        if (!$url) {
+            $msg = 'The rest api url endpoint is empty';
+            $this->service->getClient()->getLogger()->error($msg);
+            throw new AdyenException($msg);
+        }
+        $curlClient = $this->service->getClient()->getHttpClient();
+        return $curlClient->requestHttp($this->service, $url, $params, $method);
     }
 }

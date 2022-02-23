@@ -3,7 +3,7 @@
 
 namespace Adyen\Service\ResourceModel\Management;
 
-class MerchantAccount extends \Adyen\Service\AbstractResource
+class MerchantClientKey extends \Adyen\Service\AbstractResource
 {
     /**
      * @var string
@@ -18,7 +18,7 @@ class MerchantAccount extends \Adyen\Service\AbstractResource
     protected $allowApplicationInfo = false;
 
     /**
-     * MerchantAccount constructor.
+     * MerchantClientKey constructor.
      *
      * @param \Adyen\Service $service
      */
@@ -28,12 +28,16 @@ class MerchantAccount extends \Adyen\Service\AbstractResource
     }
 
     /**
+     * @param $params
+     * @param $merchantId
+     * @param $apiCredentialId
      * @return mixed
      * @throws \Adyen\AdyenException
      */
-    public function list()
+    public function create($params, $merchantId, $apiCredentialId)
     {
-        $url = $this->managementEndpoint . "/merchants";
-        return $this->requestHttp(null, $url, 'get');
+        $url = $this->managementEndpoint . "/merchants/" . $merchantId . "/apiCredentials/"
+            . $apiCredentialId . "/generateClientKey";
+        return $this->requestHttp($params, $url, 'post');
     }
 }
