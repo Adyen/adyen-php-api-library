@@ -31,9 +31,9 @@ class CompanyWebhooks extends \Adyen\Service\AbstractResource
      * @return mixed
      * @throws \Adyen\AdyenException
      */
-    public function retrieve($params, $companyId)
+    public function retrieve($companyId)
     {
         $url = $this->managementEndpoint . "/companies/" . $companyId . "/webhooks";
-        return $this->requestHttp($params, $url, 'get');
+        return $this->requestHttp(null, $url, 'get');
     }
 }
