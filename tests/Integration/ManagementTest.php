@@ -27,6 +27,27 @@ class ManagementTest extends TestCase
     }
 
     /**
+     * Get /merchants/{merchantId}
+     *
+     * @throws \Adyen\AdyenException
+     */
+    public function testGetMerchantById()
+    {
+        if (empty($this->settings['merchantAccount']) || $this->settings['merchantAccount'] == 'YOUR MERCHANTACCOUNT') {
+            $this->skipTest("Skipped the test. Configure your MerchantAccount in the config");
+            return null;
+        }
+        $merchantId = $this->settings['merchantAccount'];
+        $client = $this->createCheckoutAPIClient();
+        $management = new Management($client);
+        $merchant = $management->merchantAccount->get($merchantId);
+        $this->assertNotEmpty($merchant);
+        $this->assertNotEmpty($merchant['id']);
+        $this->assertEquals("Active", $merchant['status']);
+        $this->assertEquals($merchantId, $merchant['id']);
+    }
+
+    /**
      * Get /me
      *
      * @throws \Adyen\AdyenException
@@ -105,6 +126,8 @@ class ManagementTest extends TestCase
     }
 
     /**
+     * Post /merchants/{merchantId}/webhooks/
+     *
      * @throws \Adyen\AdyenException
      */
     public function testCreateMerchantWebhooks()
@@ -136,6 +159,8 @@ class ManagementTest extends TestCase
     }
 
     /**
+     * Post /merchants/{merchantId}/webhooks/{webhookId}/generateHmac
+     *
      * @throws \Adyen\AdyenException
      */
     public function testGenerateHmac()
