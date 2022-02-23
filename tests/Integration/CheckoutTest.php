@@ -127,7 +127,7 @@ class CheckoutTest extends TestCase
             'returnUrl' => self::RETURN_URL
         );
         $result = $service->payments($params);
-
+        var_dump($result);
         $this->assertEquals('Authorised', $result['resultCode']);
     }
 
