@@ -17,12 +17,7 @@ class MerchantAccount extends \Adyen\Service\AbstractResource
      */
     protected $allowApplicationInfo = false;
 
-    /**
-     * MerchantAccount constructor.
-     *
-     * @param \Adyen\Service $service
-     */
-    public function __construct($service)
+    public function __construct(\Adyen\Service $service)
     {
         parent::__construct($service, $this->endpoint);
     }
