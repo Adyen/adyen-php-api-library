@@ -15,7 +15,7 @@ class ManagementTest extends TestCase
      */
     public function testGetMerchants()
     {
-        $client = $this->createClient();
+        $client = $this->createCheckoutAPIClient();
 
         $management = new Management($client);
         $response = $management->merchantAccount->list();
@@ -33,7 +33,7 @@ class ManagementTest extends TestCase
      */
     public function testGetMe()
     {
-        $client = $this->createClient();
+        $client = $this->createCheckoutAPIClient();
 
         $management = new Management($client);
         $response = $management->me->retrieve();
@@ -53,7 +53,7 @@ class ManagementTest extends TestCase
      */
     public function testGetCompanies()
     {
-        $client = $this->createClient();
+        $client = $this->createCheckoutAPIClient();
 
         $management = new Management($client);
         $response = $management->companyAccount->list();
@@ -71,7 +71,7 @@ class ManagementTest extends TestCase
      */
     public function testGetCompanyById()
     {
-        $client = $this->createClient();
+        $client = $this->createCheckoutAPIClient();
 
         $management = new Management($client);
         $companies = $management->companyAccount->list();
@@ -90,7 +90,7 @@ class ManagementTest extends TestCase
      */
     public function testGetCompanyWebhooksById()
     {
-        $client = $this->createClient();
+        $client = $this->createCheckoutAPIClient();
 
         $management = new Management($client);
         $companies = $management->companyAccount->list();
@@ -102,5 +102,36 @@ class ManagementTest extends TestCase
         $this->assertNotEmpty($response['itemsTotal']);
         $this->assertNotEmpty($response['pagesTotal']);
         $this->assertTrue($this->count($response['data']) > 0);
+    }
+
+    /**
+     * @throws \Adyen\AdyenException
+     */
+    public function testCreateMerchantWebhooks()
+    {
+        if (empty($this->settings['merchantAccount']) || $this->settings['merchantAccount'] == 'YOUR MERCHANTACCOUNT') {
+            $this->skipTest("Skipped the test. Configure your MerchantAccount in the config");
+            return null;
+        }
+        $client = $this->createCheckoutAPIClient();
+        $management = new Management($client);
+        $params = array(
+            "type" => "standard",
+            "url" => "https://magento2-devx.ataberkylmz.com/",
+            "username" => "myuser",
+            "password" => "mypassword",
+            "active" => "true",
+            "sslVersion" => "TLSv1.2",
+            "communicationFormat" => "soap",
+            "acceptsExpiredCertificate" => "false",
+            "acceptsSelfSignedCertificate" => "true",
+            "acceptsUntrustedRootCertificate" => "true",
+            "populateSoapActionHeader" => "false"
+        );
+        $response = $management->merchantWebhooks->create($params, $this->settings['merchantAccount']);
+        $this->assertNotEmpty($response);
+        $this->assertNotEmpty($response['id']);
+        $this->assertNotEmpty($response['type']);
+        $this->assertTrue($response['active']);
     }
 }

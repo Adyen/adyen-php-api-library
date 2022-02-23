@@ -49,8 +49,8 @@ abstract class AbstractResource
         $this->endpoint = $endpoint;
         $this->allowApplicationInfo = $allowApplicationInfo;
         $this->allowApplicationInfoPOS = $allowApplicationInfoPOS;
-        $this->managementEndpoint = $service->getClient()->getConfig()->get('endpointManagementApi') .
-            '/' . $service->getClient()->getManagementApiVersion();
+        $this->managementEndpoint = $service->getClient()->getConfig()->get('endpointManagementApi')
+            . $service->getClient()->getManagementApiVersion();
     }
 
     /**
