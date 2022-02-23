@@ -14,7 +14,7 @@ class ManagementTest extends TestCase
      */
     public function testGetMerchants()
     {
-        $client = $this->createCheckoutAPIClient();
+        $client = $this->createClient();
 
         $management = new Management($client);
         $merchantList = $management->merchantAccount->list();
