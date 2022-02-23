@@ -134,4 +134,39 @@ class ManagementTest extends TestCase
         $this->assertNotEmpty($response['type']);
         $this->assertTrue($response['active']);
     }
+
+    /**
+     * @throws \Adyen\AdyenException
+     */
+    public function testGenerateHmac()
+    {
+        if (empty($this->settings['merchantAccount']) || $this->settings['merchantAccount'] == 'YOUR MERCHANTACCOUNT') {
+            $this->skipTest("Skipped the test. Configure your MerchantAccount in the config");
+            return null;
+        }
+        $client = $this->createCheckoutAPIClient();
+        $management = new Management($client);
+        $params = array(
+            "type" => "standard",
+            "url" => "https://magento2-devx.ataberkylmz.com/",
+            "username" => "myuser",
+            "password" => "mypassword",
+            "active" => "true",
+            "sslVersion" => "TLSv1.2",
+            "communicationFormat" => "soap",
+            "acceptsExpiredCertificate" => "false",
+            "acceptsSelfSignedCertificate" => "true",
+            "acceptsUntrustedRootCertificate" => "true",
+            "populateSoapActionHeader" => "false"
+        );
+        $createWebhooksResponse = $management->merchantWebhooks->create($params, $this->settings['merchantAccount']);
+        $webhookId = $createWebhooksResponse['id'];
+        $response = $management->merchantWebhooks->generateHmac(
+            $params,
+            $this->settings['merchantAccount'],
+            $webhookId
+        );
+        $this->assertNotEmpty($response);
+        $this->assertNotEmpty($response['hmacKey']);
+    }
 }
