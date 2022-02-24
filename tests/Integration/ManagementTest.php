@@ -4,7 +4,6 @@
 namespace Adyen\Tests\Integration;
 
 use Adyen\Service\Management;
-use Adyen\Service\ResourceModel\Management\MerchantAccount;
 use Adyen\Tests\TestCase;
 
 class ManagementTest extends TestCase
@@ -15,16 +14,24 @@ class ManagementTest extends TestCase
     const YOUR_MERCHANT_ACCOUNT = 'YOUR MERCHANT ACCOUNT';
     const SKIP_TEST_MESSAGE = '"Skipped the test. Configure your MerchantAccount in the config"';
 
+    protected $management;
+
+    /**
+     * @throws \Adyen\AdyenException
+     */
+    public function setUp(): void
+    {
+        $client = $this->createCheckoutAPIClient();
+        $this->management = new Management($client);
+    }
+
     /**
      * Get /merchants
      * @throws \Adyen\AdyenException
      */
     public function testGetMerchants()
     {
-        $client = $this->createCheckoutAPIClient();
-
-        $management = new Management($client);
-        $response = $management->merchantAccount->list();
+        $response = $this->management->merchantAccount->list();
         $this->assertNotEmpty($response);
         $this->assertNotEmpty($response[self::LINKS]);
         $this->assertNotEmpty($response[self::DATA]);
@@ -45,9 +52,8 @@ class ManagementTest extends TestCase
             return null;
         }
         $merchantId = $this->settings['merchantAccount'];
-        $client = $this->createCheckoutAPIClient();
-        $management = new Management($client);
-        $merchant = $management->merchantAccount->get($merchantId);
+
+        $merchant = $this->management->merchantAccount->get($merchantId);
         $this->assertNotEmpty($merchant);
         $this->assertNotEmpty($merchant['id']);
         $this->assertEquals("Active", $merchant['status']);
@@ -61,10 +67,7 @@ class ManagementTest extends TestCase
      */
     public function testGetMe()
     {
-        $client = $this->createCheckoutAPIClient();
-
-        $management = new Management($client);
-        $response = $management->me->retrieve();
+        $response = $this->management->me->retrieve();
         $this->assertNotEmpty($response);
         $this->assertNotEmpty($response['id']);
         $this->assertNotEmpty($response['username']);
@@ -81,10 +84,7 @@ class ManagementTest extends TestCase
      */
     public function testGetCompanies()
     {
-        $client = $this->createCheckoutAPIClient();
-
-        $management = new Management($client);
-        $response = $management->companyAccount->list();
+        $response = $this->management->companyAccount->list();
         $this->assertNotEmpty($response);
         $this->assertNotEmpty($response[self::LINKS]);
         $this->assertNotEmpty($response['data']);
@@ -99,12 +99,9 @@ class ManagementTest extends TestCase
      */
     public function testGetCompanyById()
     {
-        $client = $this->createCheckoutAPIClient();
-
-        $management = new Management($client);
-        $companies = $management->companyAccount->list();
+        $companies = $this->management->companyAccount->list();
         $companyId = $companies["data"][0]["id"];
-        $response = $management->companyAccount->retrieve($companyId);
+        $response = $this->management->companyAccount->retrieve($companyId);
         $this->assertNotEmpty($response);
         $this->assertNotEmpty($response['id']);
         $this->assertNotEmpty($response['name']);
@@ -118,12 +115,9 @@ class ManagementTest extends TestCase
      */
     public function testGetCompanyWebhooksById()
     {
-        $client = $this->createCheckoutAPIClient();
-
-        $management = new Management($client);
-        $companies = $management->companyAccount->list();
+        $companies = $this->management->companyAccount->list();
         $companyId = $companies["data"][0]["id"];
-        $response = $management->companyWebhooks->retrieve($companyId);
+        $response = $this->management->companyWebhooks->retrieve($companyId);
         $this->assertNotEmpty($response);
         $this->assertNotEmpty($response[self::LINKS]);
         $this->assertNotEmpty($response['data']);
@@ -144,8 +138,6 @@ class ManagementTest extends TestCase
             $this->skipTest(self::SKIP_TEST_MESSAGE);
             return null;
         }
-        $client = $this->createCheckoutAPIClient();
-        $management = new Management($client);
         $params = array(
             "type" => "standard",
             "url" => "https://magento2-devx.ataberkylmz.com/",
@@ -159,7 +151,7 @@ class ManagementTest extends TestCase
             "acceptsUntrustedRootCertificate" => "true",
             "populateSoapActionHeader" => "false"
         );
-        $response = $management->merchantWebhooks->create($params, $this->settings['merchantAccount']);
+        $response = $this->management->merchantWebhooks->create($params, $this->settings['merchantAccount']);
         $this->assertNotEmpty($response);
         $this->assertNotEmpty($response['id']);
         $this->assertNotEmpty($response['type']);
@@ -178,8 +170,6 @@ class ManagementTest extends TestCase
             $this->skipTest(self::SKIP_TEST_MESSAGE);
             return null;
         }
-        $client = $this->createCheckoutAPIClient();
-        $management = new Management($client);
         $params = array(
             "type" => "standard",
             "url" => "https://magento2-devx.ataberkylmz.com/",
@@ -193,9 +183,10 @@ class ManagementTest extends TestCase
             "acceptsUntrustedRootCertificate" => "true",
             "populateSoapActionHeader" => "false"
         );
-        $createWebhooksResponse = $management->merchantWebhooks->create($params, $this->settings['merchantAccount']);
+        $createWebhooksResponse = $this->management->
+        merchantWebhooks->create($params, $this->settings['merchantAccount']);
         $webhookId = $createWebhooksResponse['id'];
-        $response = $management->merchantWebhooks->generateHmac(
+        $response = $this->management->merchantWebhooks->generateHmac(
             $params,
             $this->settings['merchantAccount'],
             $webhookId
