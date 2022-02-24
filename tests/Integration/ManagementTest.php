@@ -140,7 +140,7 @@ class ManagementTest extends TestCase
         }
         $params = array(
             "type" => "standard",
-            "url" => "https://magento2-devx.ataberkylmz.com/",
+            "url" => "https://testwebsite.com/",
             "username" => "myuser",
             "password" => "mypassword",
             "active" => "true",
