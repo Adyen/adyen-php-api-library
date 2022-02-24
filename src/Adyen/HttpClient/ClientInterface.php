@@ -31,5 +31,5 @@ interface ClientInterface
      * @param $method
      * @return mixed
      */
-    public function requestHttp(\Adyen\Service $service, $requestUrl, $params, $method);
+    public function requestHttp(\Adyen\Service $service, $requestUrl, $params, $method, $requestOptions = null);
 }

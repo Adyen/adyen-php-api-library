@@ -234,13 +234,13 @@ abstract class AbstractResource
     {
         // check if rest api method has a value
         if (!$method) {
-            $msg = 'The rest api method is empty';
+            $msg = 'The REST API method is empty';
             $this->service->getClient()->getLogger()->error($msg);
             throw new AdyenException($msg);
         }
         // check if rest api method has a value
         if (!$url) {
-            $msg = 'The rest api url endpoint is empty';
+            $msg = 'The REST API endpoint is empty';
             $this->service->getClient()->getLogger()->error($msg);
             throw new AdyenException($msg);
         }
