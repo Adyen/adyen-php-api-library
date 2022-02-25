@@ -230,7 +230,7 @@ abstract class AbstractResource
      * @return mixed
      * @throws AdyenException
      */
-    public function requestHttp($params, $url, $method)
+    public function requestHttp($url, $method = 'get', array $params = null)
     {
         // check if rest api method has a value
         if (!$method) {
