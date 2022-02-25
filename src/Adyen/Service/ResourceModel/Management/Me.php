@@ -6,11 +6,6 @@ namespace Adyen\Service\ResourceModel\Management;
 class Me extends \Adyen\Service\AbstractResource
 {
     /**
-     * @var string
-     */
-    protected $endpoint;
-
-    /**
      * Include applicationInfo key in the request parameters
      *
      * @var bool
@@ -34,6 +29,6 @@ class Me extends \Adyen\Service\AbstractResource
     public function retrieve()
     {
         $url = $this->managementEndpoint . "/me";
-        return $this->requestHttp(null, $url, 'get');
+        return $this->requestHttp($url, 'get');
     }
 }

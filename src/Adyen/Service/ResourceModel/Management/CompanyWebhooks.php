@@ -5,11 +5,6 @@ namespace Adyen\Service\ResourceModel\Management;
 class CompanyWebhooks extends \Adyen\Service\AbstractResource
 {
     /**
-     * @var string
-     */
-    protected $endpoint;
-
-    /**
      * Include applicationInfo key in the request parameters
      *
      * @var bool
@@ -34,6 +29,6 @@ class CompanyWebhooks extends \Adyen\Service\AbstractResource
     public function retrieve($companyId)
     {
         $url = $this->managementEndpoint . "/companies/" . $companyId . "/webhooks";
-        return $this->requestHttp(null, $url, 'get');
+        return $this->requestHttp($url, 'get');
     }
 }

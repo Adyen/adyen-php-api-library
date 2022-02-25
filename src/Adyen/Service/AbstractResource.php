@@ -5,8 +5,6 @@ namespace Adyen\Service;
 use Adyen\AdyenException;
 use Adyen\Service;
 
-use function PHPUnit\Framework\throwException;
-
 abstract class AbstractResource
 {
     /**
@@ -29,6 +27,9 @@ abstract class AbstractResource
      */
     protected $allowApplicationInfoPOS;
 
+    /**
+     * @var string
+     */
     protected $managementEndpoint;
 
     /**
@@ -224,9 +225,9 @@ abstract class AbstractResource
     }
 
     /**
-     * @param $params
      * @param $url
      * @param $method
+     * @param array|null $params
      * @return mixed
      * @throws AdyenException
      */

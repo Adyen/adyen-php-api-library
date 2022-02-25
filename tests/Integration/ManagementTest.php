@@ -151,7 +151,7 @@ class ManagementTest extends TestCase
             "acceptsUntrustedRootCertificate" => "true",
             "populateSoapActionHeader" => "false"
         );
-        $response = $this->management->merchantWebhooks->create($params, $this->settings['merchantAccount']);
+        $response = $this->management->merchantWebhooks->create($this->settings['merchantAccount'], $params);
         $this->assertNotEmpty($response);
         $this->assertNotEmpty($response['id']);
         $this->assertNotEmpty($response['type']);
@@ -184,12 +184,12 @@ class ManagementTest extends TestCase
             "populateSoapActionHeader" => "false"
         );
         $createWebhooksResponse = $this->management->
-        merchantWebhooks->create($params, $this->settings['merchantAccount']);
+        merchantWebhooks->create($this->settings['merchantAccount'], $params);
         $webhookId = $createWebhooksResponse['id'];
         $response = $this->management->merchantWebhooks->generateHmac(
-            $params,
             $this->settings['merchantAccount'],
-            $webhookId
+            $webhookId,
+            $params
         );
         $this->assertNotEmpty($response);
         $this->assertNotEmpty($response['hmacKey']);

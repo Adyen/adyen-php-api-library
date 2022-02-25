@@ -6,11 +6,6 @@ namespace Adyen\Service\ResourceModel\Management;
 class MerchantClientKey extends \Adyen\Service\AbstractResource
 {
     /**
-     * @var string
-     */
-    protected $endpoint;
-
-    /**
      * Include applicationInfo key in the request parameters
      *
      * @var bool
@@ -34,10 +29,10 @@ class MerchantClientKey extends \Adyen\Service\AbstractResource
      * @return mixed
      * @throws \Adyen\AdyenException
      */
-    public function create($params, $merchantId, $apiCredentialId)
+    public function create($merchantId, $apiCredentialId, $params)
     {
         $url = $this->managementEndpoint . "/merchants/" . $merchantId . "/apiCredentials/"
             . $apiCredentialId . "/generateClientKey";
-        return $this->requestHttp($params, $url, 'post');
+        return $this->requestHttp($url, 'post', $params);
     }
 }
