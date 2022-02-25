@@ -12,16 +12,6 @@ class CompanyWebhooks extends \Adyen\Service\AbstractResource
     protected $allowApplicationInfo = false;
 
     /**
-     * CompanyWebhooks constructor.
-     *
-     * @param \Adyen\Service $service
-     */
-    public function __construct($service)
-    {
-        parent::__construct($service, $this->endpoint);
-    }
-
-    /**
      * @param $companyId
      * @return mixed
      * @throws \Adyen\AdyenException

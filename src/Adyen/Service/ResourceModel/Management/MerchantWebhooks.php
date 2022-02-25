@@ -13,16 +13,6 @@ class MerchantWebhooks extends \Adyen\Service\AbstractResource
     protected $allowApplicationInfo = false;
 
     /**
-     * MerchantWebhooks constructor.
-     *
-     * @param \Adyen\Service $service
-     */
-    public function __construct($service)
-    {
-        parent::__construct($service, $this->endpoint);
-    }
-
-    /**
      * @param $merchantId
      * @param $params
      * @return mixed

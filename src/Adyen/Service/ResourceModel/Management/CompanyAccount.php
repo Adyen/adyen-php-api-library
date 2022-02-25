@@ -13,16 +13,6 @@ class CompanyAccount extends \Adyen\Service\AbstractResource
     protected $allowApplicationInfo = false;
 
     /**
-     * CompanyAccount constructor.
-     *
-     * @param \Adyen\Service $service
-     */
-    public function __construct($service)
-    {
-        parent::__construct($service, $this->endpoint);
-    }
-
-    /**
      * @return mixed
      * @throws \Adyen\AdyenException
      */

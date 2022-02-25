@@ -51,11 +51,11 @@ class Management extends \Adyen\Service
     public function __construct(\Adyen\Client $client)
     {
         parent::__construct($client);
-        $this->merchantAccount = new MerchantAccount($this);
-        $this->me = new Me($this);
-        $this->companyAccount = new CompanyAccount($this);
-        $this->merchantClientKey = new MerchantClientKey($this);
-        $this->merchantWebhooks = new MerchantWebhooks($this);
-        $this->companyWebhooks = new CompanyWebhooks($this);
+        $this->merchantAccount = new MerchantAccount($this, null);
+        $this->me = new Me($this, null);
+        $this->companyAccount = new CompanyAccount($this, null);
+        $this->merchantClientKey = new MerchantClientKey($this, null);
+        $this->merchantWebhooks = new MerchantWebhooks($this, null);
+        $this->companyWebhooks = new CompanyWebhooks($this, null);
     }
 }

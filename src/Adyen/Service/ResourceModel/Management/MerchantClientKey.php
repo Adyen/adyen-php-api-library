@@ -13,16 +13,6 @@ class MerchantClientKey extends \Adyen\Service\AbstractResource
     protected $allowApplicationInfo = false;
 
     /**
-     * MerchantClientKey constructor.
-     *
-     * @param \Adyen\Service $service
-     */
-    public function __construct($service)
-    {
-        parent::__construct($service, $this->endpoint);
-    }
-
-    /**
      * @param $params
      * @param $merchantId
      * @param $apiCredentialId
