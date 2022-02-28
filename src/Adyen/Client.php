@@ -46,6 +46,9 @@ class Client
     const ENDPOINT_CUSTOMER_AREA_LIVE = "https://ca-live.adyen.com";
     const ENDPOINT_HOP_TEST = "https://cal-test.adyen.com/cal/services/Hop";
     const ENDPOINT_HOP_LIVE = "https://cal-live.adyen.com/cal/services/Hop";
+    const MANAGEMENT_API_TEST = "https://management-test.adyen.com/";
+    const MANAGEMENT_API_LIVE = "https://management-live.adyen.com/";
+    const MANAGEMENT_API = "v1";
 
     /**
      * @var Config|ConfigInterface
@@ -156,6 +159,7 @@ class Client
             $this->config->set('endpointDisputeService', self::ENDPOINT_DISPUTE_SERVICE_TEST);
             $this->config->set('endpointCustomerArea', self::ENDPOINT_CUSTOMER_AREA_TEST);
             $this->config->set('endpointHop', self::ENDPOINT_HOP_TEST);
+            $this->config->set('endpointManagementApi', self::MANAGEMENT_API_TEST);
         } elseif ($environment == \Adyen\Environment::LIVE) {
             $this->config->set('environment', \Adyen\Environment::LIVE);
             $this->config->set('endpointDirectorylookup', self::ENDPOINT_LIVE_DIRECTORY_LOOKUP);
@@ -166,6 +170,7 @@ class Client
             $this->config->set('endpointDisputeService', self::ENDPOINT_DISPUTE_SERVICE_LIVE);
             $this->config->set('endpointCustomerArea', self::ENDPOINT_CUSTOMER_AREA_LIVE);
             $this->config->set('endpointHop', self::ENDPOINT_HOP_LIVE);
+            $this->config->set('endpointManagementApi', self::MANAGEMENT_API_LIVE);
 
             if ($liveEndpointUrlPrefix) {
                 $this->config->set(
@@ -417,6 +422,16 @@ class Client
     public function getDisputeServiceVersion()
     {
         return self::API_DISPUTE_SERVICE_VERSION;
+    }
+
+    /**
+     * Get the version of the management API endpoint
+     *
+     * @return string
+     */
+    public function getManagementApiVersion()
+    {
+        return self::MANAGEMENT_API;
     }
 
     /**
