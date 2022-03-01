@@ -40,6 +40,7 @@ class CurlClient implements ClientInterface
             'paywithgoogle.token'
         )
     );
+
     /**
      * Json API request to Adyen
      *
@@ -51,97 +52,7 @@ class CurlClient implements ClientInterface
      */
     public function requestJson(\Adyen\Service $service, $requestUrl, $params, $requestOptions = null)
     {
-        $client = $service->getClient();
-        $config = $client->getConfig();
-        $logger = $client->getLogger();
-        $username = $config->getUsername();
-        $password = $config->getPassword();
-        $xApiKey = $config->getXApiKey();
-        $httpProxy = $config->getHttpProxy();
-        $environment = $config->getEnvironment();
-
-        $jsonRequest = json_encode($params);
-
-        // log the request
-        $this->logRequest($logger, $requestUrl, $environment, $params);
-
-        //Initiate cURL.
-        $ch = curl_init($requestUrl);
-
-        //Tell cURL that we want to send a POST request.
-        curl_setopt($ch, CURLOPT_POST, 1);
-
-        //Attach our encoded JSON string to the POST fields.
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonRequest);
-
-        $this->curlSetHttpProxy($ch, $httpProxy);
-
-        //create a custom User-Agent
-        $userAgent = $config->get('applicationName') . " " .
-            \Adyen\Client::USER_AGENT_SUFFIX . $client->getLibraryVersion();
-
-        //Set the content type to application/json and use the defined userAgent
-        $headers = array(
-            'Content-Type: application/json',
-            'User-Agent: ' . $userAgent
-        );
-
-        // if idempotency key is provided as option include into request
-        if (!empty($requestOptions['idempotencyKey'])) {
-            $headers[] = 'Idempotency-Key: ' . $requestOptions['idempotencyKey'];
-        }
-
-        // set authorisation credentials according to support & availability
-        if (!empty($xApiKey)) {
-            //Set the content type to application/json and use the defined userAgent along with the x-api-key
-            $headers[] = 'x-api-key: ' . $xApiKey;
-        } elseif ($service->requiresApiKey()) {
-            $msg = "Please provide a valid Checkout API Key";
-            throw new AdyenException($msg);
-        } else {
-            //Set the basic auth credentials
-            curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-            curl_setopt($ch, CURLOPT_USERPWD, $username . ":" . $password);
-        }
-
-        //Set the timeout
-        if ($config->getTimeout() != null) {
-            curl_setopt($ch, CURLOPT_TIMEOUT, $config->getTimeout());
-        }
-
-        //Set the headers
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-
-        // return the result
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-        //Execute the request
-        list($result, $httpStatus) = $this->curlRequest($ch);
-
-        // log the response
-        $decodedResult = json_decode($result, true);
-        $this->logResponse($logger, $environment, $decodedResult);
-
-        // Get errors
-        list($errno, $message) = $this->curlError($ch);
-
-        curl_close($ch);
-
-        $resultOKHttpStatusCodes = array(200, 201, 202, 204);
-
-        if (!in_array($httpStatus, $resultOKHttpStatusCodes) && $result) {
-            $this->handleResultError($result, $logger);
-        } elseif (!$result) {
-            $this->handleCurlError($requestUrl, $errno, $message, $logger);
-        }
-
-        // result in array or json
-        if ($config->getOutputType() == 'array') {
-            // transform to PHP Array
-            $result = json_decode($result, true);
-        }
-
-        return $result;
+        return $this->requestHttp($service, $requestUrl, $params, 'post', $requestOptions);
     }
 
     /**
@@ -433,5 +344,105 @@ class CurlClient implements ClientInterface
         $errno = curl_errno($ch);
         $message = curl_error($ch);
         return array($errno, $message);
+    }
+
+    public function requestHttp(\Adyen\Service $service, $requestUrl, $params, $method, $requestOptions = null)
+    {
+        $client = $service->getClient();
+        $config = $client->getConfig();
+        $logger = $client->getLogger();
+        $username = $config->getUsername();
+        $password = $config->getPassword();
+        $xApiKey = $config->getXApiKey();
+        $httpProxy = $config->getHttpProxy();
+        $environment = $config->getEnvironment();
+
+        $jsonRequest = json_encode($params);
+
+        // log the request
+        $this->logRequest($logger, $requestUrl, $environment, $params);
+
+        //Initiate cURL.
+        $ch = curl_init($requestUrl);
+
+        if ($method === self::HTTP_METHOD_GET) {
+            curl_setopt($ch, CURLOPT_HTTPGET, 1);
+        } elseif ($method === self::HTTP_METHOD_POST) {
+            //Tell cURL that we want to send a POST request.
+            curl_setopt($ch, CURLOPT_POST, 1);
+            //Attach our encoded JSON string to the POST fields.
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonRequest);
+        } elseif ($method === self::HTTP_METHOD_DELETE) {
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+        }
+
+        $this->curlSetHttpProxy($ch, $httpProxy);
+
+        //create a custom User-Agent
+        $userAgent = $config->get('applicationName') . " " .
+            \Adyen\Client::USER_AGENT_SUFFIX . $client->getLibraryVersion();
+
+        //Set the content type to application/json and use the defined userAgent
+        $headers = array(
+            'Content-Type: application/json',
+            'User-Agent: ' . $userAgent
+        );
+
+        // if idempotency key is provided as option include into request
+        if (!empty($requestOptions['idempotencyKey'])) {
+            $headers[] = 'Idempotency-Key: ' . $requestOptions['idempotencyKey'];
+        }
+
+        // set authorisation credentials according to support & availability
+        if (!empty($xApiKey)) {
+            //Set the content type to application/json and use the defined userAgent along with the x-api-key
+            $headers[] = 'x-api-key: ' . $xApiKey;
+        } elseif ($service->requiresApiKey()) {
+            $msg = "Please provide a valid Checkout API Key";
+            throw new AdyenException($msg);
+        } else {
+            //Set the basic auth credentials
+            curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+            curl_setopt($ch, CURLOPT_USERPWD, $username . ":" . $password);
+        }
+
+        //Set the timeout
+        if ($config->getTimeout() != null) {
+            curl_setopt($ch, CURLOPT_TIMEOUT, $config->getTimeout());
+        }
+
+        //Set the headers
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+        // return the result
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+        //Execute the request
+        list($result, $httpStatus) = $this->curlRequest($ch);
+
+        // log the response
+        $decodedResult = json_decode($result, true);
+        $this->logResponse($logger, $environment, $decodedResult);
+
+        // Get errors
+        list($errno, $message) = $this->curlError($ch);
+
+        curl_close($ch);
+
+        $resultOKHttpStatusCodes = array(200, 201, 202, 204);
+
+        if (!in_array($httpStatus, $resultOKHttpStatusCodes) && $result) {
+            $this->handleResultError($result, $logger);
+        } elseif (!$result) {
+            $this->handleCurlError($requestUrl, $errno, $message, $logger);
+        }
+
+        // result in array or json
+        if ($config->getOutputType() == 'array') {
+            // transform to PHP Array
+            $result = json_decode($result, true);
+        }
+
+        return $result;
     }
 }

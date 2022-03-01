@@ -28,6 +28,11 @@ abstract class AbstractResource
     protected $allowApplicationInfoPOS;
 
     /**
+     * @var string
+     */
+    protected $managementEndpoint;
+
+    /**
      * AbstractResource constructor.
      *
      * @param Service $service
@@ -45,6 +50,8 @@ abstract class AbstractResource
         $this->endpoint = $endpoint;
         $this->allowApplicationInfo = $allowApplicationInfo;
         $this->allowApplicationInfoPOS = $allowApplicationInfoPOS;
+        $this->managementEndpoint = $service->getClient()->getConfig()->get('endpointManagementApi')
+            . $service->getClient()->getManagementApiVersion();
     }
 
     /**
@@ -91,24 +98,6 @@ abstract class AbstractResource
 
         $curlClient = $this->service->getClient()->getHttpClient();
         return $curlClient->requestJson($this->service, $this->endpoint, $params, $requestOptions);
-    }
-
-    /**
-     * @param $params
-     * @return mixed
-     * @throws AdyenException
-     */
-    public function requestPost($params)
-    {
-        // check if parameters has a value
-        if (!$params) {
-            $msg = 'The parameters in the request are empty';
-            $this->service->getClient()->getLogger()->error($msg);
-            throw new AdyenException($msg);
-        }
-
-        $curlClient = $this->service->getClient()->getHttpClient();
-        return $curlClient->requestPost($this->service, $this->endpoint, $params);
     }
 
     /**
@@ -232,5 +221,48 @@ abstract class AbstractResource
             },
             $this->endpoint
         );
+    }
+      
+    /*  
+     * @param $params
+     * @return mixed
+     * @throws AdyenException
+     */
+    public function requestPost($params)
+    {
+        // check if paramenters has a value
+        if (!$params) {
+            $msg = 'The parameters in the request are empty';
+            $this->service->getClient()->getLogger()->error($msg);
+            throw new AdyenException($msg);
+        }
+
+        $curlClient = $this->service->getClient()->getHttpClient();
+        return $curlClient->requestPost($this->service, $this->endpoint, $params);
+    }
+
+    /**
+     * @param $url
+     * @param $method
+     * @param array|null $params
+     * @return mixed
+     * @throws AdyenException
+     */
+    public function requestHttp($url, $method = 'get', array $params = null)
+    {
+        // check if rest api method has a value
+        if (!$method) {
+            $msg = 'The REST API method is empty';
+            $this->service->getClient()->getLogger()->error($msg);
+            throw new AdyenException($msg);
+        }
+        // check if rest api method has a value
+        if (!$url) {
+            $msg = 'The REST API endpoint is empty';
+            $this->service->getClient()->getLogger()->error($msg);
+            throw new AdyenException($msg);
+        }
+        $curlClient = $this->service->getClient()->getHttpClient();
+        return $curlClient->requestHttp($this->service, $url, $params, $method);
     }
 }

@@ -10,12 +10,12 @@ The library supports all APIs under the following services:
 * [Recurring API](https://docs.adyen.com/api-explorer/#/Recurring/v49/overview): Endpoints for managing saved payment details. Current supported version: **v49**
 * [Payouts API](https://docs.adyen.com/api-explorer/#/Payout/v51/overview): Endpoints for sending funds to your customers. Current supported version: **v51**
 * [Platforms APIs](https://docs.adyen.com/platforms/api): Set of APIs when using Adyen for Platforms. 
-  * [Account API](https://docs.adyen.com/api-explorer/#/Account/v5/overview) Current supported version: **v5**
-  * [Fund API](https://docs.adyen.com/api-explorer/#/Fund/v5/overview) Current supported version: **v5**
-  * [Notification Configuration API](https://docs.adyen.com/api-explorer/#/NotificationConfigurationService/v5/overview) Current supported version: **v5**
+  * [Account API](https://docs.adyen.com/api-explorer/#/Account/v6/overview) Current supported version: **v6**
+  * [Fund API](https://docs.adyen.com/api-explorer/#/Fund/v6/overview) Current supported version: **v6**
+  * [Notification Configuration API](https://docs.adyen.com/api-explorer/#/NotificationConfigurationService/v6/overview) Current supported version: **v6**
+  * [Hosted Onboarding API](https://docs.adyen.com/api-explorer/#/Hop/v6/overview) Current supported version: **v6**
 * [Cloud-based Terminal API](https://docs.adyen.com/point-of-sale/terminal-api-reference): Our point-of-sale integration.
 * [Referrals API](https://docs.adyen.com/risk-management/automate-submitting-referrals/referrals-api-reference): Endpoints to [automate submitting referrals](https://docs.adyen.com/risk-management/automate-submitting-referrals) for Adyen risk rules.
-* [HOP API](https://docs.adyen.com/api-explorer/#/Hop/v5/overview): Adyen for Platforms Hosted Onboarding API. Current supported version: **v5**
 
 For more information, refer to our [documentation](https://docs.adyen.com/) or the [API Explorer](https://docs.adyen.com/api-explorer/).
 
@@ -66,10 +66,10 @@ $service = new \Adyen\Service\Checkout($client);
 
 $json = '{
       "card": {
-        "encryptedCardNumber" => "test_4111111111111111",
-        "encryptedExpiryMonth" => "test_03",
-        "encryptedExpiryYear" => "test_2030",
-        "encryptedSecurityCode" => "test_737"
+        "encryptedCardNumber": "test_4111111111111111",
+        "encryptedExpiryMonth": "test_03",
+        "encryptedExpiryYear": "test_2030",
+        "encryptedSecurityCode": "test_737",
         "holderName": "John Smith"
       },
       "amount": {
