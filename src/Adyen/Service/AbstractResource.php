@@ -223,7 +223,7 @@ abstract class AbstractResource
         );
     }
       
-    /*  
+    /**
      * @param $params
      * @return mixed
      * @throws AdyenException
