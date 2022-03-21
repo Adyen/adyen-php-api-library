@@ -23,7 +23,6 @@
 
 namespace Adyen\Tests\Unit\Util;
 
-
 use Adyen\Util\ManualCapture;
 use PHPUnit\Framework\TestCase;
 
