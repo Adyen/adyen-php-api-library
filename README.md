@@ -11,7 +11,7 @@ The library supports all APIs under the following services:
 * [Payouts API](https://docs.adyen.com/api-explorer/#/Payout/v51/overview): Endpoints for sending funds to your customers. Current supported version: 
 **v51**
 * [Management API](https://docs.adyen.com/api-explorer/#/ManagementService/v1/overview): Configure and manage your Adyen company and merchant accounts, stores, and payment terminals. Current supported version: **v1**
- * [My API credentials](https://docs.adyen.com/api-explorer/#/ManagementService/v1/get/me): Returns your API credential details based on the API Key you used in the request.
+  * [My API credentials](https://docs.adyen.com/api-explorer/#/ManagementService/v1/get/me): Returns your API credential details based on the API Key you used in the request.
   * [Account - Merchant level](https://docs.adyen.com/api-explorer/#/ManagementService/v1/get/merchants): Returns the list of merchant accounts that your API credential has access to. The list is grouped into pages as defined by the query parameters. Current supported version: **v1**
   * [API key - Merchant level](https://docs.adyen.com/api-explorer/#/ManagementService/v1/post/merchants/{merchantId}/apiCredentials/{apiCredentialId}/generateApiKey): Returns a new API key for the API credential. You can use the new API key a few minutes after generating it. The old API key stops working 24 hours after generating a new one. Current supported version: **v1**
   * [Account - Company level](https://docs.adyen.com/api-explorer/#/ManagementService/v1/get/companies) Returns the list of company accounts that your API credential has access to. The list is grouped into pages as defined by the query parameters. Current supported version: **v1**
