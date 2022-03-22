@@ -129,6 +129,7 @@ class CheckoutTest extends TestCase
         $result = $service->payments($params);
 
         $this->assertEquals('Authorised', $result['resultCode']);
+        $this->pspReference = $result['pspReference'];
     }
 
     public function testPaymentsSuccessWithIdempotencyKey()
@@ -313,5 +314,48 @@ class CheckoutTest extends TestCase
         // Payment params are the same as response data
         $keyIntersect = array_intersect_key($params, $result);
         $this->assertEquals($params, $keyIntersect);
+    }
+
+    public function testRefunds()
+    {
+        $this->testPaymentsSuccess();
+
+        // create Checkout client
+        $client = $this->createCheckoutAPIClient();
+
+        // initialize service
+        $service = new \Adyen\Service\Checkout($client);
+
+        $params = array(
+            "paymentPspReference" => $this->pspReference,
+            "amount" => [
+                "currency" => "USD",
+                "value" => 100
+            ]
+        );
+
+        $result = $service->refunds($params);
+
+        $this->assertEquals('received', $result['status']);
+    }
+
+    public function testReversals()
+    {
+        $this->testPaymentsSuccess();
+
+        // create Checkout client
+        $client = $this->createCheckoutAPIClient();
+
+        // initialize service
+        $service = new \Adyen\Service\Checkout($client);
+
+        $params = array(
+            "paymentPspReference" => $this->pspReference,
+            "merchantAccount" => $this->merchantAccount,
+        );
+
+        $result = $service->reversals($params);
+
+        $this->assertEquals('received', $result['status']);
     }
 }
