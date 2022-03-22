@@ -18,7 +18,7 @@ jobs:
           tools: composer:v1
 
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           # Disabling shallow clone to improve relevancy of SonarCloud reporting
           fetch-depth: 0
