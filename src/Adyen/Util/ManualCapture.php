@@ -35,73 +35,66 @@ class ManualCapture
         $this->openInvoice = new OpenInvoice();
     }
 
+    private static $paymentMethods = array(
+        'cup',
+        'cartebancaire',
+        'visa',
+        'visadankort',
+        'mc',
+        'uatp',
+        'amex',
+        'maestro',
+        'maestrouk',
+        'diners',
+        'discover',
+        'jcb',
+        'laser',
+        'paypal',
+        'sepadirectdebit',
+        'dankort',
+        'elo',
+        'hipercard',
+        'mc_applepay',
+        'visa_applepay',
+        'amex_applepay',
+        'discover_applepay',
+        'maestro_applepay',
+        'paywithgoogle',
+        'svs',
+        'givex',
+        'valuelink',
+        'twint',
+        'carnet',
+        'pix',
+        'klarna',
+        'oney',
+        'affirm',
+        'bright',
+        'amazonpay',
+        'applepay',
+        'googlepay',
+        'mobilepay',
+        'vipps'
+    );
+
     public function isManualCaptureSupported($notificationPaymentMethod): bool
     {
         $manualCaptureAllowed = false;
-        // For all openinvoice methods manual capture is the default
+        //For all openinvoice methods manual capture is the default
         if ($this->openInvoice->isOpenInvoicePaymentMethod($notificationPaymentMethod)) {
             return true;
         }
 
-        switch ($notificationPaymentMethod) {
-            case 'cup':
-            case 'cartebancaire':
-            case 'visa':
-            case 'visadankort':
-            case 'mc':
-            case 'uatp':
-            case 'amex':
-            case 'maestro':
-            case 'maestrouk':
-            case 'diners':
-            case 'discover':
-            case 'jcb':
-            case 'laser':
-            case 'paypal':
-            case 'sepadirectdebit':
-            case 'dankort':
-            case 'elo':
-            case 'hipercard':
-            case 'mc_applepay':
-            case 'visa_applepay':
-            case 'amex_applepay':
-            case 'discover_applepay':
-            case 'maestro_applepay':
-            case 'paywithgoogle':
-            case 'svs':
-            case 'givex':
-            case 'valuelink':
-            case 'twint':
-            case 'carnet':
-            case 'pix':
-            case 'klarna':
-            case 'oney':
-            case 'affirm':
-            case 'bright':
-            case 'amazonpay':
-            case 'applepay':
-            case 'googlepay':
-            case 'mobilepay':
-            case 'vipps':
-                $manualCaptureAllowed = true;
-                break;
-            default:
-                break;
+        //Check for payment methods with no variants
+        if (in_array($notificationPaymentMethod, self::$paymentMethods)) {
+            return true;
         }
+        //Regex pattern for payment methods with variants
+        $paymentMethodsWithVariants = '/^afterpay|^boleto|^clearpay|^ratepay|^zip/';
 
-        $paymentMethodsWithVariants = array(
-            'boleto',
-            'clearpay',
-            'afterpay',
-            'ratepay',
-            'zip',
-        );
-
-        //check the payment methods with variants
-        foreach ($paymentMethodsWithVariants as $paymentMethod) {
-            if (str_contains($notificationPaymentMethod, $paymentMethod)) {
-                $manualCaptureAllowed = true;
-            }
+        //Check the payment methods with variants
+        if (preg_match($paymentMethodsWithVariants, $notificationPaymentMethod)) {
+            $manualCaptureAllowed = true;
         }
         return $manualCaptureAllowed;
     }

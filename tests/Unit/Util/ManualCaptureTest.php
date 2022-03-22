@@ -50,12 +50,25 @@ class ManualCaptureTest extends TestCase
             ['ratepay', true],
             ['ratepay_AT', true],
             ['ratepay_CH', true],
+            ['paypal', true],
+            ['amazonpay', true],
             ['ratepay_directdebit', true],
             ['ratepay_directdebit_AT', true],
             ['ratepay_directdebit_NL', true],
             ['zip', true],
             ['zip_AU', true],
-            ['zip_CA', true]
+            ['zip_CA', true],
+            ['abrapetite', false],
+            ['abrapetite_credit', false],
+            ['abrapetite_prepaid', false],
+            ['authreferral_card', false],
+            ['authreferral_mc', false],
+            ['bankTransfer', false],
+            ['bankTransfer_CA', false],
+            ['bankTransfer_CY', false],
+            ['bankTransfer_US', false],
+            ['doku', false],
+            ['doku_card', false]
         ];
     }
 
