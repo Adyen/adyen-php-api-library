@@ -83,6 +83,8 @@ abstract class AbstractResource
 
         $params = $this->addDefaultParametersToRequest($params);
 
+        $this->replacePathParameters($params);
+
         if ($this->allowApplicationInfo) {
             $params = $this->handleApplicationInfoInRequest($params);
         } elseif ($this->allowApplicationInfoPOS) {
@@ -206,6 +208,21 @@ abstract class AbstractResource
         }
     }
 
+    /**
+     * @param $data
+     * @return void
+     */
+    private function replacePathParameters($data)
+    {
+        $this->endpoint = preg_replace_callback(
+            '/{([a-zA-Z]+)}/',
+            function ($matches) use ($data) {
+                return $data[$matches[1]] ?? $matches[0];
+            },
+            $this->endpoint
+        );
+    }
+      
     /**
      * @param $params
      * @return mixed
