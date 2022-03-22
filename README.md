@@ -8,7 +8,14 @@ The library supports all APIs under the following services:
 * [Checkout API](https://docs.adyen.com/api-explorer/#/CheckoutService/v68/overview): Our latest integration for accepting online payments. Current supported version: **v68**
 * [Payments API](https://docs.adyen.com/api-explorer/#/Payment/v51/overview): Our classic integration for online payments. Current supported version: **v51**
 * [Recurring API](https://docs.adyen.com/api-explorer/#/Recurring/v49/overview): Endpoints for managing saved payment details. Current supported version: **v49**
-* [Payouts API](https://docs.adyen.com/api-explorer/#/Payout/v51/overview): Endpoints for sending funds to your customers. Current supported version: **v51**
+* [Payouts API](https://docs.adyen.com/api-explorer/#/Payout/v51/overview): Endpoints for sending funds to your customers. Current supported version: 
+**v51**
+* [Management API](https://docs.adyen.com/api-explorer/#/ManagementService/v1/overview): Configure and manage your Adyen company and merchant accounts, stores, and payment terminals. Current supported version: **v1**
+  * [My API credentials](https://docs.adyen.com/api-explorer/#/ManagementService/v1/get/me): Returns your API credential details based on the API Key you used in the request. 
+  * [Account - Merchant level](https://docs.adyen.com/api-explorer/#/ManagementService/v1/get/merchants): Returns the list of merchant accounts that your API credential has access to. The list is grouped into pages as defined by the query parameters. 
+  * [API key - Merchant level](https://docs.adyen.com/api-explorer/#/ManagementService/v1/post/merchants/{merchantId}/apiCredentials/{apiCredentialId}/generateApiKey): Returns a new API key for the API credential. You can use the new API key a few minutes after generating it. The old API key stops working 24 hours after generating a new one. 
+  * [Account - Company level](https://docs.adyen.com/api-explorer/#/ManagementService/v1/get/companies) Returns the list of company accounts that your API credential has access to. The list is grouped into pages as defined by the query parameters. 
+  * [Webhooks - Merchant level](https://docs.adyen.com/api-explorer/#/ManagementService/v1/post/merchants/{merchantId}/webhooks/{webhookId}/generateHmac) Returns an HMAC key for the webhook identified in the path. This key allows you to check the integrity and the origin of the notifications you receive.By creating an HMAC key, you start receiving HMAC-signed notifications from Adyen. Find out more about how to verify HMAC signatures.
 * [Platforms APIs](https://docs.adyen.com/platforms/api): Set of APIs when using Adyen for Platforms. 
   * [Account API](https://docs.adyen.com/api-explorer/#/Account/v6/overview) Current supported version: **v6**
   * [Fund API](https://docs.adyen.com/api-explorer/#/Fund/v6/overview) Current supported version: **v6**
