@@ -60,6 +60,16 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
     protected $sessions;
 
     /**
+     * @var ResourceModel\Checkout\Refunds
+     */
+    protected $refunds;
+
+    /**
+     * @var ResourceModel\Checkout\Reversals
+     */
+    protected $reversals;
+
+    /**
      * Checkout constructor.
      *
      * @param \Adyen\Client $client
@@ -79,6 +89,8 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
         $this->paymentMethodsBalance = new \Adyen\Service\ResourceModel\Checkout\PaymentMethodsBalance($this);
         $this->donations = new \Adyen\Service\ResourceModel\Checkout\Donations($this);
         $this->sessions = new \Adyen\Service\ResourceModel\Checkout\Sessions($this);
+        $this->refunds = new \Adyen\Service\ResourceModel\Checkout\Refunds($this);
+        $this->reversals = new \Adyen\Service\ResourceModel\Checkout\Reversals($this);
     }
 
     /**
@@ -202,5 +214,27 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
     public function sessions($params, $requestOptions = null)
     {
         return $this->sessions->request($params, $requestOptions);
+    }
+
+    /**
+     * @param array $params
+     * @param array|null $requestOptions
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+    public function refunds($params, $requestOptions = null)
+    {
+        return $this->refunds->request($params, $requestOptions);
+    }
+
+    /**
+     * @param array $params
+     * @param array|null $requestOptions
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+    public function reversals($params, $requestOptions = null)
+    {
+        return $this->reversals->request($params, $requestOptions);
     }
 }

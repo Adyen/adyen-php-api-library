@@ -8,14 +8,23 @@ The library supports all APIs under the following services:
 * [Checkout API](https://docs.adyen.com/api-explorer/#/CheckoutService/v68/overview): Our latest integration for accepting online payments. Current supported version: **v68**
 * [Payments API](https://docs.adyen.com/api-explorer/#/Payment/v51/overview): Our classic integration for online payments. Current supported version: **v51**
 * [Recurring API](https://docs.adyen.com/api-explorer/#/Recurring/v49/overview): Endpoints for managing saved payment details. Current supported version: **v49**
-* [Payouts API](https://docs.adyen.com/api-explorer/#/Payout/v51/overview): Endpoints for sending funds to your customers. Current supported version: **v51**
+* [Payouts API](https://docs.adyen.com/api-explorer/#/Payout/v51/overview): Endpoints for sending funds to your customers. Current supported version: 
+**v51**
+* [Management API](https://docs.adyen.com/api-explorer/#/ManagementService/v1/overview): Configure and manage your Adyen company and merchant accounts, stores, and payment terminals. Current supported version: **v1**
+  * [My API credentials](https://docs.adyen.com/api-explorer/#/ManagementService/v1/get/me): Returns your API credential details based on the API Key you used in the request. 
+  * [Account - Merchant level](https://docs.adyen.com/api-explorer/#/ManagementService/v1/get/merchants): Returns the list of merchant accounts that your API credential has access to. The list is grouped into pages as defined by the query parameters. 
+  * [API key - Merchant level](https://docs.adyen.com/api-explorer/#/ManagementService/v1/post/merchants/{merchantId}/apiCredentials/{apiCredentialId}/generateApiKey): Returns a new API key for the API credential. You can use the new API key a few minutes after generating it. The old API key stops working 24 hours after generating a new one. 
+  * [Account - Company level](https://docs.adyen.com/api-explorer/#/ManagementService/v1/get/companies) Returns the list of company accounts that your API credential has access to. The list is grouped into pages as defined by the query parameters. 
+  * [Webhooks - Merchant level](https://docs.adyen.com/api-explorer/#/ManagementService/v1/post/merchants/{merchantId}/webhooks/{webhookId}/generateHmac) Returns an HMAC key for the webhook identified in the path. This key allows you to check the integrity and the origin of the notifications you receive.By creating an HMAC key, you start receiving HMAC-signed notifications from Adyen. Find out more about how to verify HMAC signatures.
 * [Platforms APIs](https://docs.adyen.com/platforms/api): Set of APIs when using Adyen for Platforms. 
-  * [Account API](https://docs.adyen.com/api-explorer/#/Account/v5/overview) Current supported version: **v5**
-  * [Fund API](https://docs.adyen.com/api-explorer/#/Fund/v5/overview) Current supported version: **v5**
-  * [Notification Configuration API](https://docs.adyen.com/api-explorer/#/NotificationConfigurationService/v5/overview) Current supported version: **v5**
+  * [Account API](https://docs.adyen.com/api-explorer/#/Account/v6/overview) Current supported version: **v6**
+  * [Fund API](https://docs.adyen.com/api-explorer/#/Fund/v6/overview) Current supported version: **v6**
+  * [Notification Configuration API](https://docs.adyen.com/api-explorer/#/NotificationConfigurationService/v6/overview) Current supported version: **v6**
+  * [Hosted Onboarding API](https://docs.adyen.com/api-explorer/#/Hop/v6/overview) Current supported version: **v6**
 * [Cloud-based Terminal API](https://docs.adyen.com/point-of-sale/terminal-api-reference): Our point-of-sale integration.
 * [Referrals API](https://docs.adyen.com/risk-management/automate-submitting-referrals/referrals-api-reference): Endpoints to [automate submitting referrals](https://docs.adyen.com/risk-management/automate-submitting-referrals) for Adyen risk rules.
-* [HOP API](https://docs.adyen.com/api-explorer/#/Hop/v5/overview): Adyen for Platforms Hosted Onboarding API. Current supported version: **v5**
+* [Refunds API](https://docs.adyen.com/api-explorer/#/CheckoutService/v68/post/payments/{paymentPspReference}/refunds): Refunds a payment that has been captured, and returns a unique reference for this request. Current supported version: **v68**
+* [Reversals API](https://docs.adyen.com/api-explorer/#/CheckoutService/v68/post/payments/{paymentPspReference}/reversals): Refunds a payment if it has already been captured, and cancels a payment if it has not yet been captured. Current supported version: **v68**
 
 For more information, refer to our [documentation](https://docs.adyen.com/) or the [API Explorer](https://docs.adyen.com/api-explorer/).
 
@@ -66,10 +75,10 @@ $service = new \Adyen\Service\Checkout($client);
 
 $json = '{
       "card": {
-        "encryptedCardNumber" => "test_4111111111111111",
-        "encryptedExpiryMonth" => "test_03",
-        "encryptedExpiryYear" => "test_2030",
-        "encryptedSecurityCode" => "test_737"
+        "encryptedCardNumber": "test_4111111111111111",
+        "encryptedExpiryMonth": "test_03",
+        "encryptedExpiryYear": "test_2030",
+        "encryptedSecurityCode": "test_737",
         "holderName": "John Smith"
       },
       "amount": {
@@ -146,7 +155,7 @@ If you have a feature request, or spotted a bug or a technical problem, [create 
 For other questions, [contact our Support Team](https://www.adyen.help/hc/en-us/requests/new?ticket_form_id=360000705420).
 
 ## Licence
-This repository is available under the [MIT license](https://github.com/Adyen/adyen-php-api-library/blob/master/LICENSE).
+This repository is available under the [MIT license](https://github.com/Adyen/adyen-php-api-library/blob/main/LICENSE).
 
 ## See also
 * [Example integration](https://github.com/adyen-examples/adyen-php-online-payments)
