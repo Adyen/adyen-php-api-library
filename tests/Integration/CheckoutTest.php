@@ -358,4 +358,28 @@ class CheckoutTest extends TestCase
 
         $this->assertEquals('received', $result['status']);
     }
+
+    public function testCaptures()
+    {
+        $this->testPaymentsSuccess();
+
+        // create Checkout client
+        $client = $this->createCheckoutAPIClient();
+
+        // initialize service
+        $service = new \Adyen\Service\Checkout($client);
+
+        $params = array(
+            'paymentPspReference' => $this->pspReference,
+            'merchantAccount' => $this->merchantAccount,
+            'amount' => [
+                'currency' => "EUR",
+                'value' => 1000
+            ]
+        );
+
+        $result = $service->captures($params);
+
+        $this->assertEquals('received', $result['status']);
+    }
 }
