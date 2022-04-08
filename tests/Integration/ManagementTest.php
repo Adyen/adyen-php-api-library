@@ -188,8 +188,7 @@ class ManagementTest extends TestCase
         $webhookId = $createWebhooksResponse['id'];
         $response = $this->management->merchantWebhooks->generateHmac(
             $this->settings['merchantAccount'],
-            $webhookId,
-            $params
+            $webhookId
         );
         $this->assertNotEmpty($response);
         $this->assertNotEmpty($response['hmacKey']);
