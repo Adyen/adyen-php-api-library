@@ -372,6 +372,11 @@ class CurlClient implements ClientInterface
             curl_setopt($ch, CURLOPT_POST, 1);
             //Attach our encoded JSON string to the POST fields.
             curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonRequest);
+        } elseif ($method === self::HTTP_METHOD_PATCH) {
+            //Tell cURL that we want to send a PATCH request.
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PATCH');
+            //Attach our encoded JSON string to the PATCH fields.
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonRequest);
         } elseif ($method === self::HTTP_METHOD_DELETE) {
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
         }

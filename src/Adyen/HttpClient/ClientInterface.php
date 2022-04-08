@@ -6,6 +6,7 @@ interface ClientInterface
 {
     const HTTP_METHOD_GET = 'get';
     const HTTP_METHOD_POST = 'post';
+    const HTTP_METHOD_PATCH = 'patch';
     const HTTP_METHOD_DELETE = 'delete';
 
     /**
