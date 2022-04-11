@@ -3,6 +3,7 @@
 
 namespace Adyen\Service;
 
+use Adyen\Service\ResourceModel\Management\AllowedOrigins;
 use Adyen\Service\ResourceModel\Management\CompanyAccount;
 use Adyen\Service\ResourceModel\Management\CompanyWebhooks;
 use Adyen\Service\ResourceModel\Management\Me;
@@ -42,6 +43,11 @@ class Management extends \Adyen\Service
      */
     public $companyWebhooks;
 
+    /**
+     * @var AllowedOrigins
+     */
+    public $allowedOrigins;
+
 
     /**
      * Management constructor.
@@ -57,5 +63,6 @@ class Management extends \Adyen\Service
         $this->merchantClientKey = new MerchantClientKey($this, null);
         $this->merchantWebhooks = new MerchantWebhooks($this, null);
         $this->companyWebhooks = new CompanyWebhooks($this, null);
+        $this->allowedOrigins = new AllowedOrigins($this, null);
     }
 }
