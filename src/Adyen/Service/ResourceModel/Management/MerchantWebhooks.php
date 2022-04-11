@@ -3,6 +3,8 @@
 
 namespace Adyen\Service\ResourceModel\Management;
 
+use Adyen\AdyenException;
+
 class MerchantWebhooks extends \Adyen\Service\AbstractResource
 {
     /**
@@ -16,7 +18,7 @@ class MerchantWebhooks extends \Adyen\Service\AbstractResource
      * @param $merchantId
      * @param $params
      * @return mixed
-     * @throws \Adyen\AdyenException
+     * @throws AdyenException
      */
     public function create($merchantId, $params)
     {
@@ -29,11 +31,23 @@ class MerchantWebhooks extends \Adyen\Service\AbstractResource
      * @param $webhookId
      * @param $params
      * @return mixed
-     * @throws \Adyen\AdyenException
+     * @throws AdyenException
      */
-    public function generateHmac($merchantId, $webhookId, $params)
+    public function update($merchantId, $webhookId, $params)
+    {
+        $url = $this->managementEndpoint . "/merchants/" . $merchantId . "/webhooks/" . $webhookId;
+        return $this->requestHttp($url, 'patch', $params);
+    }
+
+    /**
+     * @param $merchantId
+     * @param $webhookId
+     * @return mixed
+     * @throws AdyenException
+     */
+    public function generateHmac($merchantId, $webhookId)
     {
         $url = $this->managementEndpoint . "/merchants/" . $merchantId . "/webhooks/" . $webhookId . "/generateHmac";
-        return $this->requestHttp($url, 'post', $params);
+        return $this->requestHttp($url, 'post');
     }
 }
