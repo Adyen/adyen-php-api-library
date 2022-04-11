@@ -218,14 +218,17 @@ class ManagementTest extends TestCase
     }
 
     /**
+     * Post /me/allowedOrigins
+     *
      * @throws \Adyen\AdyenException
      */
     public function testCreateAllowedOrigins()
     {
         $params = array(
-            "domain" => "https://test-website.com/");
+            "domain" => "https://test-website.com/"
+        );
         try {
-            $response = $this->management->allowedOrigins->create($params);
+            $this->management->allowedOrigins->create($params);
         } catch (\Exception $e) {
             $this->validateException($e);
         }
