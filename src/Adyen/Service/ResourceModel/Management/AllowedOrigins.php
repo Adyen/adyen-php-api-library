@@ -22,7 +22,7 @@ class AllowedOrigins extends \Adyen\Service\AbstractResource
      */
     public function list()
     {
-        $url = $this->managementEndpoint . self::ALLOWED_ORIGIN_URL;
+        $url = $this->managementEndpoint . self::ALLOWED_ORIGINS;
         return $this->requestHttp($url, 'get');
     }
 
@@ -33,7 +33,7 @@ class AllowedOrigins extends \Adyen\Service\AbstractResource
      */
     public function create($params)
     {
-        $url = $this->managementEndpoint . self::ALLOWED_ORIGIN_URL;
+        $url = $this->managementEndpoint . self::ALLOWED_ORIGINS;
         return $this->requestHttp($url, 'post', $params);
     }
 }
