@@ -6,6 +6,10 @@ namespace Adyen\Service\ResourceModel\Management;
 class AllowedOrigins extends \Adyen\Service\AbstractResource
 {
     /**
+     * Allowed origins endpoint
+     */
+    const ALLOWED_ORIGINS = '/me/allowedOrigins';
+    /**
      * Include applicationInfo key in the request parameters
      *
      * @var bool
@@ -18,7 +22,7 @@ class AllowedOrigins extends \Adyen\Service\AbstractResource
      */
     public function list()
     {
-        $url = $this->managementEndpoint . "/me/allowedOrigins";
+        $url = $this->managementEndpoint . self::ALLOWED_ORIGIN_URL;
         return $this->requestHttp($url, 'get');
     }
 
@@ -29,7 +33,7 @@ class AllowedOrigins extends \Adyen\Service\AbstractResource
      */
     public function create($params)
     {
-        $url = $this->managementEndpoint . "/me/allowedOrigins";
+        $url = $this->managementEndpoint . self::ALLOWED_ORIGIN_URL;
         return $this->requestHttp($url, 'post', $params);
     }
 }
