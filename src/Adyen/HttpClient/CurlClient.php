@@ -73,7 +73,11 @@ class CurlClient implements ClientInterface
             throw new AdyenException("Invalid proxy configuration " . $httpProxy);
         }
 
-        $proxy = $urlParts["host"];
+        $proxy = "";
+        if (isset($urlParts["schema"])) {
+            $proxy = $urlParts["schema"] . "://";
+        }
+        $proxy .= $urlParts["host"];
         if (isset($urlParts["port"])) {
             $proxy .= ":" . $urlParts["port"];
         }
