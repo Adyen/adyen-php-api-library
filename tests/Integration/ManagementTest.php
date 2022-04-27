@@ -3,6 +3,7 @@
 
 namespace Adyen\Tests\Integration;
 
+use Adyen\AdyenException;
 use Adyen\Service\Management;
 use Adyen\Tests\TestCase;
 
@@ -188,10 +189,59 @@ class ManagementTest extends TestCase
         $webhookId = $createWebhooksResponse['id'];
         $response = $this->management->merchantWebhooks->generateHmac(
             $this->settings['merchantAccount'],
-            $webhookId,
-            $params
+            $webhookId
         );
         $this->assertNotEmpty($response);
         $this->assertNotEmpty($response['hmacKey']);
+    }
+
+
+    /**
+     * Get /me/allowedOrigins
+     *
+     * @throws \Adyen\AdyenException
+     */
+    public function testListAllowedOrigins()
+    {
+        $response = $this->management->allowedOrigins->list();
+        if ($response['data']) {
+            $this->assertNotEmpty($response['data']);
+            $this->assertNotEmpty($response['data'][0]['id']);
+            $this->assertNotEmpty($response['data'][0]['domain']);
+            $this->assertNotEmpty($response['data'][0]['_links']['self']['href']);
+        } else {
+            $this->assertNotEmpty($response);
+            $this->assertNotEmpty($response['id']);
+            $this->assertNotEmpty($response['domain']);
+            $this->assertNotEmpty($response['_links']['self']['href']);
+        }
+    }
+
+    /**
+     * Post /me/allowedOrigins
+     *
+     * @throws \Adyen\AdyenException
+     */
+    public function testCreateAllowedOrigins()
+    {
+        $params = array(
+            "domain" => "https://test-website.com/"
+        );
+        try {
+            $this->management->allowedOrigins->create($params);
+        } catch (\Exception $e) {
+            $this->validateException($e);
+        }
+    }
+
+    /**
+     * @param $e
+     */
+    private function validateException($e)
+    {
+        $ex = json_decode($e->getMessage(), true);
+        $this->assertEquals(AdyenException::class, get_class($e));
+        $this->assertEquals("Invalid allowed origin information provided.", $ex['title']);
+        $this->assertEquals('422', $ex['status']);
     }
 }
