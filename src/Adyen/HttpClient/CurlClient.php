@@ -74,8 +74,8 @@ class CurlClient implements ClientInterface
         }
 
         $proxy = "";
-        if (isset($urlParts["schema"])) {
-            $proxy = $urlParts["schema"] . "://";
+        if (isset($urlParts["scheme"])) {
+            $proxy = $urlParts["scheme"] . "://";
         }
         $proxy .= $urlParts["host"];
         if (isset($urlParts["port"])) {
