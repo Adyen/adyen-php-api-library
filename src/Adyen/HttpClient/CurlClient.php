@@ -85,6 +85,28 @@ class CurlClient implements ClientInterface
     }
 
     /**
+     * Set the path to a custom CA bundle in the current curl configuration.
+     *
+     * @param resource $ch
+     * @param string $certFilePath
+     * @throws AdyenException
+     */
+    public function curlSetSslVerify($ch, $certFilePath)
+    {
+        if (empty($certFilePath)) {
+            return;
+        }
+
+        if (!file_exists($certFilePath)) {
+            throw new AdyenException("SSL CA bundle not found: {$certFilePath}");
+        }
+
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+        curl_setopt($ch, CURLOPT_CAINFO, $certFilePath);
+    }
+
+    /**
      * Request to Adyen with query string used for Directory Lookup
      *
      * @param \Adyen\Service $service
@@ -102,6 +124,7 @@ class CurlClient implements ClientInterface
         $password = $config->getPassword();
         $httpProxy = $config->getHttpProxy();
         $environment = $config->getEnvironment();
+        $sslVerify = $config->getSslVerify();
 
         // log the request
         $this->logRequest($logger, $requestUrl, $environment, $params);
@@ -113,6 +136,7 @@ class CurlClient implements ClientInterface
         curl_setopt($ch, CURLOPT_POST, 1);
 
         $this->curlSetHttpProxy($ch, $httpProxy);
+        $this->curlSetSslVerify($ch, $sslVerify);
 
         // set authorisation
         curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
@@ -356,6 +380,7 @@ class CurlClient implements ClientInterface
         $xApiKey = $config->getXApiKey();
         $httpProxy = $config->getHttpProxy();
         $environment = $config->getEnvironment();
+        $sslVerify = $config->getSslVerify();
 
         $jsonRequest = json_encode($params);
 
@@ -382,6 +407,7 @@ class CurlClient implements ClientInterface
         }
 
         $this->curlSetHttpProxy($ch, $httpProxy);
+        $this->curlSetSslVerify($ch, $sslVerify);
 
         //create a custom User-Agent
         $userAgent = $config->get('applicationName') . " " .
