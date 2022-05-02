@@ -13,12 +13,16 @@ class MerchantAccount extends \Adyen\Service\AbstractResource
     protected $allowApplicationInfo = false;
 
     /**
+     * @param array|null $queryParams
      * @return mixed
      * @throws \Adyen\AdyenException
      */
-    public function list()
+    public function list(array $queryParams = null)
     {
         $url = $this->managementEndpoint . "/merchants";
+        if (!empty($queryParams)) {
+            $url .= '?' . http_build_query($queryParams);
+        }
         return $this->requestHttp($url, 'get');
     }
 

@@ -37,7 +37,21 @@ class ManagementTest extends TestCase
         $this->assertNotEmpty($response[self::LINKS]);
         $this->assertNotEmpty($response[self::DATA]);
         $this->assertNotEmpty($response[self::ITEMS_TOTAL]);
-        $this->assertTrue($this->count($response[self::DATA]) > 0);
+        $this->assertTrue($response[self::DATA] > 0);
+    }
+
+    /**
+     * Get /merchants with query parameters
+     * @throws \Adyen\AdyenException
+     */
+    public function testGetMerchantsWithQueryParameters()
+    {
+        $response = $this->management->merchantAccount->list(array("pageSize"=> 2));
+        $this->assertNotEmpty($response);
+        $this->assertNotEmpty($response[self::LINKS]);
+        $this->assertNotEmpty($response[self::DATA]);
+        $this->assertNotEmpty($response[self::ITEMS_TOTAL]);
+        $this->assertTrue(count($response[self::DATA]) == 2);
     }
 
     /**
