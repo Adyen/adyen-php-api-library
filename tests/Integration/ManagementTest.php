@@ -37,7 +37,7 @@ class ManagementTest extends TestCase
         $this->assertNotEmpty($response[self::LINKS]);
         $this->assertNotEmpty($response[self::DATA]);
         $this->assertNotEmpty($response[self::ITEMS_TOTAL]);
-        $this->assertTrue($response[self::DATA] > 0);
+        $this->assertTrue(count($response[self::DATA]) > 0);
     }
 
     /**
