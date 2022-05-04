@@ -3,6 +3,7 @@
 
 namespace Adyen\Tests\Integration;
 
+use Adyen\AdyenException;
 use Adyen\Service\Management;
 use Adyen\Tests\TestCase;
 
@@ -36,7 +37,21 @@ class ManagementTest extends TestCase
         $this->assertNotEmpty($response[self::LINKS]);
         $this->assertNotEmpty($response[self::DATA]);
         $this->assertNotEmpty($response[self::ITEMS_TOTAL]);
-        $this->assertTrue($this->count($response[self::DATA]) > 0);
+        $this->assertTrue(count($response[self::DATA]) > 0);
+    }
+
+    /**
+     * Get /merchants with query parameters
+     * @throws \Adyen\AdyenException
+     */
+    public function testGetMerchantsWithQueryParameters()
+    {
+        $response = $this->management->merchantAccount->list(array("pageSize"=> 2));
+        $this->assertNotEmpty($response);
+        $this->assertNotEmpty($response[self::LINKS]);
+        $this->assertNotEmpty($response[self::DATA]);
+        $this->assertNotEmpty($response[self::ITEMS_TOTAL]);
+        $this->assertEquals(2, count($response[self::DATA]));
     }
 
     /**
@@ -192,5 +207,55 @@ class ManagementTest extends TestCase
         );
         $this->assertNotEmpty($response);
         $this->assertNotEmpty($response['hmacKey']);
+    }
+
+
+    /**
+     * Get /me/allowedOrigins
+     *
+     * @throws \Adyen\AdyenException
+     */
+    public function testListAllowedOrigins()
+    {
+        $response = $this->management->allowedOrigins->list();
+        if ($response['data']) {
+            $this->assertNotEmpty($response['data']);
+            $this->assertNotEmpty($response['data'][0]['id']);
+            $this->assertNotEmpty($response['data'][0]['domain']);
+            $this->assertNotEmpty($response['data'][0]['_links']['self']['href']);
+        } else {
+            $this->assertNotEmpty($response);
+            $this->assertNotEmpty($response['id']);
+            $this->assertNotEmpty($response['domain']);
+            $this->assertNotEmpty($response['_links']['self']['href']);
+        }
+    }
+
+    /**
+     * Post /me/allowedOrigins
+     *
+     * @throws \Adyen\AdyenException
+     */
+    public function testCreateAllowedOrigins()
+    {
+        $params = array(
+            "domain" => "https://test-website.com/"
+        );
+        try {
+            $this->management->allowedOrigins->create($params);
+        } catch (\Exception $e) {
+            $this->validateException($e);
+        }
+    }
+
+    /**
+     * @param $e
+     */
+    private function validateException($e)
+    {
+        $ex = json_decode($e->getMessage(), true);
+        $this->assertEquals(AdyenException::class, get_class($e));
+        $this->assertEquals("Invalid allowed origin information provided.", $ex['title']);
+        $this->assertEquals('422', $ex['status']);
     }
 }

@@ -3,8 +3,12 @@
 
 namespace Adyen\Service\ResourceModel\Management;
 
-class CompanyAccount extends \Adyen\Service\AbstractResource
+class AllowedOrigins extends \Adyen\Service\AbstractResource
 {
+    /**
+     * Allowed origins endpoint
+     */
+    const ALLOWED_ORIGINS = '/me/allowedOrigins';
     /**
      * Include applicationInfo key in the request parameters
      *
@@ -19,17 +23,18 @@ class CompanyAccount extends \Adyen\Service\AbstractResource
      */
     public function list(array $queryParams = [])
     {
-        $url = $this->managementEndpoint . "/companies";
+        $url = $this->managementEndpoint . self::ALLOWED_ORIGINS;
         return $this->requestHttp($url, 'get', $queryParams);
     }
 
     /**
+     * @param $params
      * @return mixed
      * @throws \Adyen\AdyenException
      */
-    public function retrieve($companyId)
+    public function create($params)
     {
-        $url = $this->managementEndpoint . "/companies/" . $companyId;
-        return $this->requestHttp($url, 'get');
+        $url = $this->managementEndpoint . self::ALLOWED_ORIGINS;
+        return $this->requestHttp($url, 'post', $params);
     }
 }
