@@ -209,6 +209,33 @@ class ManagementTest extends TestCase
         $this->assertNotEmpty($response['hmacKey']);
     }
 
+    /**
+     * post /merchants/{id}/webhooks/{webhookId}/test
+     *
+     * @throws \Adyen\AdyenException
+     */
+    public function testMerchantWebhooksTest()
+    {
+        if (empty($this->settings['merchantAccount']) ||
+            $this->settings['merchantAccount'] == self::YOUR_MERCHANT_ACCOUNT) {
+            $this->skipTest(self::SKIP_TEST_MESSAGE);
+            return null;
+        }
+        $listWebhooksResponse = $this->management->merchantWebhooks->list($this->settings['merchantAccount']);
+        $this->assertNotEmpty($listWebhooksResponse);
+
+        if (isset($listWebhooksResponse['data'][0]['id'])) {
+            $params = ['types' => ['AUTHORISATION']];
+            $testWebhook = $this->management->merchantWebhooks->test(
+                $this->settings['merchantAccount'],
+                $listWebhooksResponse['data'][0]['id'],
+                $params
+            );
+            $this->assertNotEmpty($testWebhook);
+        } else {
+            $this->fail("Unable to retrieve the webhooks");
+        }
+    }
 
     /**
      * Get /me/allowedOrigins

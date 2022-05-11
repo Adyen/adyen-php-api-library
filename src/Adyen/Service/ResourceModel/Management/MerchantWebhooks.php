@@ -16,6 +16,17 @@ class MerchantWebhooks extends \Adyen\Service\AbstractResource
 
     /**
      * @param $merchantId
+     * @return mixed
+     * @throws AdyenException
+     */
+    public function list($merchantId)
+    {
+        $url = $this->managementEndpoint . "/merchants/" . $merchantId . "/webhooks";
+        return $this->requestHttp($url, 'get');
+    }
+
+    /**
+     * @param $merchantId
      * @param $params
      * @return mixed
      * @throws AdyenException
@@ -49,5 +60,18 @@ class MerchantWebhooks extends \Adyen\Service\AbstractResource
     {
         $url = $this->managementEndpoint . "/merchants/" . $merchantId . "/webhooks/" . $webhookId . "/generateHmac";
         return $this->requestHttp($url, 'post');
+    }
+
+    /**
+     * @param $merchantId
+     * @param $webhookId
+     * @param $params
+     * @return mixed
+     * @throws AdyenException
+     */
+    public function test($merchantId, $webhookId, $params)
+    {
+        $url = $this->managementEndpoint . "/merchants/" . $merchantId . "/webhooks/" . $webhookId . "/test";
+        return $this->requestHttp($url, 'post', $params);
     }
 }
