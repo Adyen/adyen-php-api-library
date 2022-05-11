@@ -62,7 +62,8 @@ class MerchantWebhooks extends AbstractResource
      */
     public function generateHmac($merchantId, $webhookId)
     {
-        $url = $this->managementEndpoint . self::MERCHANTS . $merchantId . self::WEBHOOKS . "/" . $webhookId . "/generateHmac";
+        $url = $this->managementEndpoint . self::MERCHANTS . $merchantId . self::WEBHOOKS . "/"
+            . $webhookId . "/generateHmac";
         return $this->requestHttp($url, 'post');
     }
 
