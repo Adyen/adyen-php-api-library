@@ -4,9 +4,13 @@
 namespace Adyen\Service\ResourceModel\Management;
 
 use Adyen\AdyenException;
+use Adyen\Service\AbstractResource;
 
-class MerchantWebhooks extends \Adyen\Service\AbstractResource
+class MerchantWebhooks extends AbstractResource
 {
+    const MERCHANTS = "/merchants/";
+    const WEBHOOKS = "/webhooks";
+
     /**
      * Include applicationInfo key in the request parameters
      *
@@ -21,7 +25,7 @@ class MerchantWebhooks extends \Adyen\Service\AbstractResource
      */
     public function list($merchantId)
     {
-        $url = $this->managementEndpoint . "/merchants/" . $merchantId . "/webhooks";
+        $url = $this->managementEndpoint . self::MERCHANTS . $merchantId . self::WEBHOOKS;
         return $this->requestHttp($url, 'get');
     }
 
@@ -33,7 +37,7 @@ class MerchantWebhooks extends \Adyen\Service\AbstractResource
      */
     public function create($merchantId, $params)
     {
-        $url = $this->managementEndpoint . "/merchants/" . $merchantId . "/webhooks";
+        $url = $this->managementEndpoint . self::MERCHANTS . $merchantId . self::WEBHOOKS;
         return $this->requestHttp($url, 'post', $params);
     }
 
@@ -46,7 +50,7 @@ class MerchantWebhooks extends \Adyen\Service\AbstractResource
      */
     public function update($merchantId, $webhookId, $params)
     {
-        $url = $this->managementEndpoint . "/merchants/" . $merchantId . "/webhooks/" . $webhookId;
+        $url = $this->managementEndpoint . self::MERCHANTS . $merchantId . self::WEBHOOKS . "/" . $webhookId;
         return $this->requestHttp($url, 'patch', $params);
     }
 
@@ -58,7 +62,7 @@ class MerchantWebhooks extends \Adyen\Service\AbstractResource
      */
     public function generateHmac($merchantId, $webhookId)
     {
-        $url = $this->managementEndpoint . "/merchants/" . $merchantId . "/webhooks/" . $webhookId . "/generateHmac";
+        $url = $this->managementEndpoint . self::MERCHANTS . $merchantId . self::WEBHOOKS . "/" . $webhookId . "/generateHmac";
         return $this->requestHttp($url, 'post');
     }
 
@@ -71,7 +75,7 @@ class MerchantWebhooks extends \Adyen\Service\AbstractResource
      */
     public function test($merchantId, $webhookId, $params)
     {
-        $url = $this->managementEndpoint . "/merchants/" . $merchantId . "/webhooks/" . $webhookId . "/test";
+        $url = $this->managementEndpoint . self::MERCHANTS . $merchantId . self::WEBHOOKS . "/" . $webhookId . "/test";
         return $this->requestHttp($url, 'post', $params);
     }
 }
