@@ -10,7 +10,6 @@ use Adyen\Service\ResourceModel\Management\Me;
 use Adyen\Service\ResourceModel\Management\MerchantAccount;
 use Adyen\Service\ResourceModel\Management\MerchantClientKey;
 use Adyen\Service\ResourceModel\Management\MerchantWebhooks;
-use Adyen\Service\ResourceModel\Management\PaymentMethods;
 
 class Management extends \Adyen\Service
 {
