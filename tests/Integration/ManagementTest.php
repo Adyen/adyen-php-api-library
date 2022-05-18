@@ -7,6 +7,8 @@ use Adyen\AdyenException;
 use Adyen\Service\Management;
 use Adyen\Tests\TestCase;
 
+use function PHPUnit\Framework\assertTrue;
+
 class ManagementTest extends TestCase
 {
     const LINKS = '_links';
@@ -273,6 +275,18 @@ class ManagementTest extends TestCase
         } catch (\Exception $e) {
             $this->validateException($e);
         }
+    }
+
+    /**
+     * Get /merchants/{id}/paymentMethodSettings
+     */
+    public function testGetPaymentMethodSettings()
+    {
+        $response = $this->management->paymentMethods->list($this->settings['merchantAccount']);
+        $this->assertNotEmpty($response['data']);
+        $this->assertNotEmpty($response['data'][0]['PaymentMethod']);
+        $this->assertNotEmpty($response['data'][0]['PaymentMethod']['id']);
+        $this->assertNotEmpty($response['data'][0]['PaymentMethod']['type']);
     }
 
     /**

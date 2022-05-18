@@ -10,6 +10,7 @@ use Adyen\Service\ResourceModel\Management\Me;
 use Adyen\Service\ResourceModel\Management\MerchantAccount;
 use Adyen\Service\ResourceModel\Management\MerchantClientKey;
 use Adyen\Service\ResourceModel\Management\MerchantWebhooks;
+use Adyen\Service\ResourceModel\Management\PaymentMethods;
 
 class Management extends \Adyen\Service
 {
@@ -48,6 +49,10 @@ class Management extends \Adyen\Service
      */
     public $allowedOrigins;
 
+    /**
+     * @var PaymentMethods
+     */
+    public $paymentMethods;
 
     /**
      * Management constructor.
@@ -64,5 +69,6 @@ class Management extends \Adyen\Service
         $this->merchantWebhooks = new MerchantWebhooks($this, null);
         $this->companyWebhooks = new CompanyWebhooks($this, null);
         $this->allowedOrigins = new AllowedOrigins($this, null);
+        $this->paymentMethods = new PaymentMethods($this, null);
     }
 }
