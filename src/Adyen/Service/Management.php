@@ -48,6 +48,7 @@ class Management extends \Adyen\Service
      */
     public $allowedOrigins;
 
+
     /**
      * Management constructor.
      * @param \Adyen\Client $client
