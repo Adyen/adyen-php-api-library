@@ -50,11 +50,6 @@ class Management extends \Adyen\Service
     public $allowedOrigins;
 
     /**
-     * @var PaymentMethods
-     */
-    public $paymentMethods;
-
-    /**
      * Management constructor.
      * @param \Adyen\Client $client
      * @throws \Adyen\AdyenException
@@ -69,6 +64,5 @@ class Management extends \Adyen\Service
         $this->merchantWebhooks = new MerchantWebhooks($this, null);
         $this->companyWebhooks = new CompanyWebhooks($this, null);
         $this->allowedOrigins = new AllowedOrigins($this, null);
-        $this->paymentMethods = new PaymentMethods($this, null);
     }
 }

@@ -282,7 +282,7 @@ class ManagementTest extends TestCase
      */
     public function testGetPaymentMethodSettings()
     {
-        $response = $this->management->paymentMethods->list($this->settings['merchantAccount']);
+        $response = $this->management->merchantAccount->paymentMethodSettings($this->settings['merchantAccount']);
         $this->assertNotEmpty($response['data']);
         $this->assertNotEmpty($response['data'][0]['PaymentMethod']);
         $this->assertNotEmpty($response['data'][0]['PaymentMethod']['id']);
