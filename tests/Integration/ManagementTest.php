@@ -7,8 +7,6 @@ use Adyen\AdyenException;
 use Adyen\Service\Management;
 use Adyen\Tests\TestCase;
 
-use function PHPUnit\Framework\assertTrue;
-
 class ManagementTest extends TestCase
 {
     const LINKS = '_links';
