@@ -61,8 +61,6 @@ class CheckoutTest extends TestCase
             'merchantAccount' => $this->merchantAccount,
         );
 
-        echo $this->merchantAccount;
-
         $result = $service->paymentMethods($params);
 
         $this->assertIsArray($result);
@@ -129,6 +127,8 @@ class CheckoutTest extends TestCase
             'returnUrl' => self::RETURN_URL
         );
         $result = $service->payments($params);
+
+        echo $result['pspReference'];
 
         $this->assertEquals('Authorised', $result['resultCode']);
         $this->pspReference = $result['pspReference'];
