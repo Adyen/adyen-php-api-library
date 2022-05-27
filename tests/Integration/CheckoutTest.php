@@ -128,8 +128,6 @@ class CheckoutTest extends TestCase
         );
         $result = $service->payments($params);
 
-        echo $result['pspReference'];
-
         $this->assertEquals('Authorised', $result['resultCode']);
         $this->pspReference = $result['pspReference'];
     }
