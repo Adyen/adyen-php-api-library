@@ -61,6 +61,8 @@ class CheckoutTest extends TestCase
             'merchantAccount' => $this->merchantAccount,
         );
 
+        echo $this->merchantAccount;
+
         $result = $service->paymentMethods($params);
 
         $this->assertIsArray($result);
