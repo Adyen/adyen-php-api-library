@@ -55,8 +55,7 @@ class TestCaseMock extends TestCase
             ->willReturnCallback(function (Service $service, $requestUrl, $params) use ($json, $client, $errno) {
                 if (!is_null($json)) {
                     $result = json_decode($json, true);
-                }
-                else {
+                } else {
                     $result = null;
                 }
                 if ($client->getLogger()) {
