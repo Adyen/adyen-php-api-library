@@ -53,7 +53,12 @@ class TestCaseMock extends TestCase
             ->willReturn(array($errno, null));
         $curlClient->method('requestJson')
             ->willReturnCallback(function (Service $service, $requestUrl, $params) use ($json, $client, $errno) {
-                $result = json_decode($json, true);
+                if (!is_null($json)) {
+                    $result = json_decode($json, true);
+                }
+                else {
+                    $result = null;
+                }
                 if ($client->getLogger()) {
                     $client->getLogger()->info(json_encode($params));
                     $client->getLogger()->info($json);
