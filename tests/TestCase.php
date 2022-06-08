@@ -228,7 +228,8 @@ class TestCase extends \PHPUnit\Framework\TestCase
 
     protected function getDonationAccount()
     {
-        if (empty($this->settings['donationAccount']) || $this->settings['donationAccount'] == 'YOUR DONATION MERCHANT ACCOUNT') {
+        if (empty($this->settings['donationAccount']) ||
+                $this->settings['donationAccount'] == 'YOUR DONATION MERCHANT ACCOUNT') {
             return null;
         }
 
