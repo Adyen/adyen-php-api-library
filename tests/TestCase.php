@@ -30,6 +30,7 @@ use Adyen\Environment;
 class TestCase extends \PHPUnit\Framework\TestCase
 {
     protected $merchantAccount;
+    protected $donationAccount;
     protected $skinCode;
     protected $hmacSignature;
 
@@ -45,6 +46,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
         parent::__construct($name, $data, $dataName);
         $this->settings = $this->loadConfig();
         $this->merchantAccount = $this->getMerchantAccount();
+        $this->donationAccount = $this->getDonationAccount();
         $this->skinCode = $this->getSkinCode();
         $this->hmacSignature = $this->getHmacSignature();
 
@@ -242,6 +244,17 @@ class TestCase extends \PHPUnit\Framework\TestCase
         }
 
         return $settings['merchantAccount'];
+    }
+
+    protected function getDonationAccount()
+    {
+        $settings = $this->settings;
+
+        if (empty($settings['donationAccount']) || $settings['donationAccount'] == 'YOUR DONATION MERCHANT ACCOUNT') {
+            return null;
+        }
+
+        return $settings['donationAccount'];
     }
 
     protected function getSkinCode()
