@@ -228,7 +228,7 @@ class PosPaymentTest extends TestCase
 
         //Construct request
         $json = '{
-                    "merchantAccount": "' . $this->getSettings['merchantAccount'] . '"
+                    "merchantAccount": "' . $this->settings['merchantAccount'] . '"
                 }';
 
         $params = json_decode($json, true); //Create associative array for passing along
