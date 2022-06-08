@@ -2,6 +2,7 @@
 username = YOUR USERNAME
 password = "YOUR PASSWORD"
 merchantAccount = YOUR MERCHANT ACCOUNT
+donationAccount = YOUR DONATION MERCHANT ACCOUNT
 skinCode = YOUR SKIN CODE
 hmacSignature = YOUR HMAC SIGNATURE
 x-api-key = YOUR X-API KEY
