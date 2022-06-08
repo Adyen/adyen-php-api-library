@@ -300,6 +300,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
             'password' => getenv('INTEGRATION_PASSWORD'),
             'x-api-key' => getenv('INTEGRATION_X_API_KEY'),
             'merchantAccount' => getenv('INTEGRATION_MERCHANT_ACCOUNT'),
+            'donationAccount' => getenv('INTEGRATION_DONATION_ACCOUNT'),
             'skinCode' => getenv('INTEGRATION_SKIN_CODE'),
             'hmacSignature' => getenv('INTEGRATION_HMAC_SIGNATURE'),
             'storePayoutUsername' => getenv('INTEGRATION_STORE_PAYOUT_USERNAME'),
