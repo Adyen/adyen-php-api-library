@@ -248,13 +248,13 @@ class TestCase extends \PHPUnit\Framework\TestCase
 
     protected function getDonationAccount()
     {
-        $settings = $this->settings;
+        $testSettings = $this->settings;
 
-        if (empty($settings['donationAccount']) || $settings['donationAccount'] == 'YOUR DONATION MERCHANT ACCOUNT') {
+        if (empty($testSettings['donationAccount']) || $testSettings['donationAccount'] == 'YOUR DONATION MERCHANT ACCOUNT') {
             return null;
         }
 
-        return $settings['donationAccount'];
+        return $testSettings['donationAccount'];
     }
 
     protected function getSkinCode()
