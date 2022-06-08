@@ -39,12 +39,12 @@ class TestCase extends \PHPUnit\Framework\TestCase
      *
      * @var array
      */
-    protected $settings;
+    protected $getSettings;
 
     public function __construct($name = null, array $data = [], $dataName = '')
     {
         parent::__construct($name, $data, $dataName);
-        $this->settings = $this->loadConfig();
+        $this->getSettings = $this->loadConfig();
         $this->merchantAccount = $this->getMerchantAccount();
         $this->donationAccount = $this->getDonationAccount();
         $this->skinCode = $this->getSkinCode();
@@ -73,7 +73,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
     protected function createClient()
     {
         // load settings from .ini file
-        $settings = $this->settings;
+        $settings = $this->getSettings;
 
         // validate username, password and MERCHANTAccount
 
@@ -120,7 +120,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
     protected function createPayoutClient()
     {
         // load settings from .ini file
-        $settings = $this->settings;
+        $settings = $this->getSettings;
 
         // validate username, password and MERCHANTAccount
 
@@ -157,7 +157,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
     protected function createReviewPayoutClient()
     {
         // load settings from .ini file
-        $settings = $this->settings;
+        $settings = $this->getSettings;
 
         // validate username, password and MERCHANTAccount
 
@@ -191,7 +191,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
     protected function createTerminalCloudAPIClient()
     {
         // load settings from .ini file
-        $settings = $this->settings;
+        $settings = $this->getSettings;
 
         if (empty($settings['x-api-key']) || $settings['x-api-key'] == 'YOUR X-API KEY') {
             $this->skipTest("Skipped the test. Configure your x-api-key in the config");
@@ -209,7 +209,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
         $client = $this->createClient();
 
         // load settings from .ini file
-        $settings = $this->settings;
+        $settings = $this->getSettings;
 
         if (empty($settings['merchantAccount']) || $settings['merchantAccount'] == 'YOUR MERCHANTACCOUNT') {
             $this->skipTest("Skipped the test. Configure your MerchantAccount in the config");
@@ -225,7 +225,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
         $client = $this->createClientWithMerchantAccount();
 
         // load settings from .ini file
-        $settings = $this->settings;
+        $settings = $this->getSettings;
 
         if (empty($settings['x-api-key']) || $settings['x-api-key'] == 'YOUR X-API KEY') {
             $this->skipTest("Skipped the test. Configure your x-api-key");
@@ -237,7 +237,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
 
     protected function getMerchantAccount()
     {
-        $settings = $this->settings;
+        $settings = $this->getSettings;
 
         if (empty($settings['merchantAccount']) || $settings['merchantAccount'] == 'YOUR MERCHANTACCOUNT') {
             return null;
@@ -248,18 +248,18 @@ class TestCase extends \PHPUnit\Framework\TestCase
 
     protected function getDonationAccount()
     {
-        $testSettings = $this->settings;
+        $settings = $this->getSettings;
 
-        if (empty($testSettings['donationAccount']) || $testSettings['donationAccount'] == 'YOUR DONATION MERCHANT ACCOUNT') {
+        if (empty($settings['donationAccount']) || $settings['donationAccount'] == 'YOUR DONATION MERCHANT ACCOUNT') {
             return null;
         }
 
-        return $testSettings['donationAccount'];
+        return $settings['donationAccount'];
     }
 
     protected function getSkinCode()
     {
-        $settings = $this->settings;
+        $settings = $this->getSettings;
 
         if (empty($settings['skinCode']) || $settings['skinCode'] == 'YOUR SKIN CODE') {
             return null;
@@ -270,7 +270,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
 
     protected function getHmacSignature()
     {
-        $settings = $this->settings;
+        $settings = $this->getSettings;
 
         if (empty($settings['hmacSignature'])|| $settings['hmacSignature'] == 'YOUR HMAC SIGNATURE') {
             return null;
@@ -281,7 +281,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
 
     protected function getPOIID()
     {
-        $settings = $this->settings;
+        $settings = $this->getSettings;
 
         if (empty($settings['POIID']) || $settings['POIID'] == 'MODEL-SERIALNUMBER') {
             return null;
