@@ -280,7 +280,7 @@ class CheckoutTest extends TestCase
             'reference' => "Your order number",
             'donationToken' => $paymentResult['donationToken'],
             'donationOriginalPspReference' => $paymentResult['pspReference'],
-            'donationAccount' => "AdyenGivingDemo",
+            'donationAccount' => $this->donationAccount,
             'returnUrl' => self::RETURN_URL,
             'shopperInteraction' => "Ecommerce"
         );
