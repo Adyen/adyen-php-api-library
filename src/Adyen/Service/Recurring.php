@@ -30,6 +30,7 @@ class Recurring extends \Adyen\Service
         parent::__construct($client);
         $this->listRecurringDetails = new \Adyen\Service\ResourceModel\Recurring\ListRecurringDetails($this);
         $this->notifyShopper = new \Adyen\Service\ResourceModel\Recurring\NotifyShopper($this);
+        $this->scheduleAccountUpdater = new \Adyen\Service\ResourceModel\Recurring\ScheduleAccountUpdater($this);
 
         $this->disable = new \Adyen\Service\ResourceModel\Recurring\Disable(
             $this,
@@ -67,6 +68,16 @@ class Recurring extends \Adyen\Service
     public function disable($params)
     {
         $result = $this->disable->request($params);
+        return $result;
+    }
+    /**
+     * @param $params
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+    public function disable($params)
+    {
+        $result = $this->scheduleAccountUpdater->request($params);
         return $result;
     }
 }
