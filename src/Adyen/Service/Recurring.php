@@ -75,7 +75,7 @@ class Recurring extends \Adyen\Service
      * @return mixed
      * @throws \Adyen\AdyenException
      */
-    public function disable($params)
+    public function scheduleAccountUpdater($params)
     {
         $result = $this->scheduleAccountUpdater->request($params);
         return $result;
