@@ -20,6 +20,11 @@ class Recurring extends \Adyen\Service
     protected $notifyShopper;
 
     /**
+     * @var ResourceModel\Recurring\ScheduleAccountUpdater
+     */
+    protected $scheduleAccountUpdater;
+
+    /**
      * Recurring constructor.
      *
      * @param \Adyen\Client $client

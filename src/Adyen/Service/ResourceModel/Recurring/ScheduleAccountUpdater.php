@@ -17,7 +17,7 @@ class ScheduleAccountUpdater extends \Adyen\Service\AbstractResource
     public function __construct($service)
     {
         $this->endpoint = $service->getClient()->getConfig()->get('endpoint') .
-            '/pal/servlet/Recurring/' . $service->getClient()->getApiRecurringVersion() . '/ScheduleAccountUpdater';
+            '/pal/servlet/Recurring/' . $service->getClient()->getApiRecurringVersion() . '/scheduleAccountUpdater';
         parent::__construct($service, $this->endpoint);
     }
 }
