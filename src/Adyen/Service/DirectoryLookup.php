@@ -2,6 +2,11 @@
 
 namespace Adyen\Service;
 
+/**
+ * Class DirectoryLookup
+ * @deprecated
+ * @package Adyen\Service
+ */
 class DirectoryLookup extends \Adyen\Service
 {
     /**
@@ -23,6 +28,7 @@ class DirectoryLookup extends \Adyen\Service
 
     /**
      * @param $params
+     * @deprecated
      * @return mixed
      * @throws \Adyen\AdyenException
      */
