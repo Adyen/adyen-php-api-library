@@ -65,4 +65,41 @@ class RecurringTest extends TestCaseMock
             array('tests/Resources/Recurring/notifyShopper-success.json', 200)
         );
     }
+
+    /**
+     * @param $jsonFile
+     * @param $httpStatus
+     * @dataProvider scheduleAccountUpdaterDataProvider
+     * @throws \Adyen\AdyenException
+     */
+    public function testScheduleAccountUpdaterSuccess($jsonFile, $httpStatus)
+    {
+        $client = $this->createMockClient($jsonFile, $httpStatus);
+        $service = new \Adyen\Service\Recurring($client);
+
+        $params = json_decode(
+            '{
+              "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+              "reference": "YOUR_REFERENCE",
+              "card": {
+                "expiryMonth": "03",
+                "expiryYear": "2030",
+                "holderName": "Adyen Test",
+                "number": "4111111111111111"
+              }
+            }',
+            true
+        );
+
+        $result = $service->scheduleAccountUpdater($params);
+        $this->assertEquals('8516167336214570', $result['pspReference']);
+        $this->assertEquals('Success', $result['result']);
+    }
+
+    public static function scheduleAccountUpdaterDataProvider()
+    {
+        return array(
+            array('tests/Resources/Recurring/scheduleAccountUpdater-success.json', 200)
+        );
+    }
 }
