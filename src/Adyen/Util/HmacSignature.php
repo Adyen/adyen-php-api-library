@@ -102,7 +102,7 @@ class HmacSignature
         unset($params["additionalData"]);
         $expectedSign = $this->calculateNotificationHMAC($hmacKey, $params);
 
-        return $expectedSign == $merchantSign;
+        return hash_equals($expectedSign, $merchantSign);
     }
     /**
      * Returns true when the event code support HMAC validation
