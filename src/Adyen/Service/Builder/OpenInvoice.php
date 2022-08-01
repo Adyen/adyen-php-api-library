@@ -35,7 +35,9 @@ class OpenInvoice
      * @param int $numberOfItems
      * @param string $vatCategory
      * @param string $itemId
-     * @return mixed
+     * @param string|null $productUrl
+     * @param string|null $imageUrl
+     * @return array
      */
     public function buildOpenInvoiceLineItem(
         $description,
@@ -44,7 +46,9 @@ class OpenInvoice
         $itemVatPercentage,
         $numberOfItems,
         $vatCategory,
-        $itemId
+        $itemId,
+        $productUrl = null,
+        $imageUrl = null
     ) {
         $lineItem = array();
         // item id is optional
@@ -58,6 +62,14 @@ class OpenInvoice
         $lineItem['taxPercentage'] = $itemVatPercentage;
         $lineItem['quantity'] = $numberOfItems;
         $lineItem['taxCategory'] = $vatCategory;
+
+        if (!is_null($productUrl)) {
+            $lineItem['productUrl'] = $productUrl;
+        }
+
+        if (!is_null($imageUrl)) {
+            $lineItem['imageUrl'] = $imageUrl;
+        }
 
         return $lineItem;
     }
