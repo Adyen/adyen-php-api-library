@@ -1,8 +1,6 @@
 $script = <<-SCRIPT
-sudo yum install epel-release yum-utils -y
-sudo yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm -y
-sudo yum-config-manager --enable remi-php73
-sudo yum install unzip wget php php-common php-opcache php-mcrypt php-cli php-curl php-xml php-mbstring php-pecl-xdebug -y
+sudo apt-get update
+sudo apt-get install unzip wget nano php7.4 php7.4-common php7.4-opcache php7.4-cli php7.4-curl php7.4-xml php7.4-mbstring php7.4-xdebug -y
 cd /home/vagrant/adyen-php-api-library
 echo "Installing composer"
 sh bin/composer-installer.sh
@@ -19,9 +17,13 @@ fi
 SCRIPT
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "centos/7"
+  config.vm.box = "mpasternak/focal64-arm"
+  config.vm.network "private_network", ip: "192.168.58.30"
+  config.vm.provider :parallels do |v|
+      v.memory = "4096"
+      v.cpus = 2
+  end
   config.vm.synced_folder '.', '/home/vagrant/adyen-php-api-library', disabled: false
-  config.vm.synced_folder '.', '/vagrant', disabled: true
   config.vm.network :forwarded_port, guest:3000, host: 3000
   config.vm.provision "shell", inline: $script
 end
