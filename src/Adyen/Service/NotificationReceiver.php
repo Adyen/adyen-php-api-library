@@ -123,7 +123,7 @@ class NotificationReceiver
     {
         // Notification mode can be a string or a boolean
         return ($testMode && ($notificationMode === 'false' || $notificationMode === false))
-            || (!$testMode && ($notificationMode === 'true' || $notificationMode === true);
+            || (!$testMode && ($notificationMode === 'true' || $notificationMode === true));
     }
 
     /**
