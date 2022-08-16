@@ -201,11 +201,7 @@ abstract class AbstractResource
      */
     private function isBase64Encoded($data)
     {
-        if (preg_match('%^[a-zA-Z0-9/+]*={0,2}$%', $data) && !empty($data)) {
-            return true;
-        } else {
-            return false;
-        }
+        return preg_match('%^[a-zA-Z0-9/+]*={0,2}$%', $data) && !empty($data);
     }
 
     /**
