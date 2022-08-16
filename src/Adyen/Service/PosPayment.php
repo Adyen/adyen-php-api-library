@@ -15,11 +15,6 @@ class PosPayment extends \Adyen\ApiKeyAuthenticatedService
     protected $runTenderAsync;
 
     /**
-     * @var
-     */
-    protected $txType;
-
-    /**
      * @var ResourceModel\Payment\ConnectedTerminals
      */
     protected $connectedTerminals;
@@ -62,7 +57,7 @@ class PosPayment extends \Adyen\ApiKeyAuthenticatedService
 
     /**
      * @param $request
-     * @return null
+     * @return string|null
      */
     public function getServiceId($request)
     {

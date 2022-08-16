@@ -37,11 +37,7 @@ class Recurring extends \Adyen\Service
         $this->notifyShopper = new \Adyen\Service\ResourceModel\Recurring\NotifyShopper($this);
         $this->scheduleAccountUpdater = new \Adyen\Service\ResourceModel\Recurring\ScheduleAccountUpdater($this);
 
-        $this->disable = new \Adyen\Service\ResourceModel\Recurring\Disable(
-            $this,
-            $this->getClient()->getConfig()->get('endpoint') . '/disable',
-            array('merchantAccount', 'shopperReference')
-        );
+        $this->disable = new \Adyen\Service\ResourceModel\Recurring\Disable($this);
     }
 
     /**

@@ -236,7 +236,7 @@ class CurlClient implements ClientInterface
      * Logs the API request, removing sensitive data
      *
      * @param \Psr\Log\LoggerInterface $logger
-     * @param string requestUrl
+     * @param string $requestUrl
      * @param string $environment
      * @param array $params
      */
@@ -257,7 +257,6 @@ class CurlClient implements ClientInterface
      * Logs the API request, removing sensitive data
      *
      * @param \Psr\Log\LoggerInterface $logger
-     * @param string requestUrl
      * @param string $environment
      * @param array $params
      */

@@ -97,7 +97,7 @@ abstract class AbstractResource
         }
 
         $curlClient = $this->service->getClient()->getHttpClient();
-        return $curlClient->requestJson($this->service, $this->endpoint, $params, $requestOptions);
+        return $curlClient->requestJson($this->service, $this->endpoint, $params);
     }
 
     /**
@@ -159,7 +159,7 @@ abstract class AbstractResource
      * 3) Base64 encodes SaleToAcquirerData
      *
      * @param $params
-     * @return array|null
+     * @return array
      */
     private function handleApplicationInfoInRequestPOS(array $params)
     {
