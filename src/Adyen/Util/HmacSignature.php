@@ -154,9 +154,6 @@ class HmacSignature
             "CANCEL_AUTORESCUE",
             "AUTORESCUE"
         );
-        if (array_key_exists(self::EVENT_CODE, $response) && in_array($response[self::EVENT_CODE], $eventCodes)) {
-            return true;
-        }
-        return false;
+        return array_key_exists(self::EVENT_CODE, $response) && in_array($response[self::EVENT_CODE], $eventCodes);
     }
 }
