@@ -243,7 +243,10 @@ class CurlClient implements ClientInterface
     private function logRequest(\Psr\Log\LoggerInterface $logger, $requestUrl, $environment, $params)
     {
         // log the requestUr, params and json request
-        $logger->info("Request url to Adyen: " . $requestUrl);
+        $logger->info("Request url to Adyen: " . $requestUrl, [
+			'originalReference' => $params['originalReference'],
+			'orderIncrementId' => $params['reference']
+		]);
 
         // Filter sensitive data from logs when live
         if (\Adyen\Environment::LIVE == $environment) {
