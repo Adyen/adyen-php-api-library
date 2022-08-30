@@ -28,46 +28,43 @@ class OpenInvoice
     /**
      * Build invoice line items for open invoice payment methods
      *
-     * @param string $description
-     * @param float $itemAmount
-     * @param float $itemVatAmount
-     * @param float $itemVatPercentage
-     * @param int $numberOfItems
-     * @param string $vatCategory
      * @param string $itemId
-     * @param string|null $productUrl
+     * @param string $description
+     * @param string $itemCategory
+     * @param int $amountExcludingTax
+     * @param int $amountIncludingTax
+     * @param int $taxAmount
+     * @param int $taxPercentage
+     * @param int $quantity
+     * @param string $productUrl
      * @param string|null $imageUrl
      * @return array
      */
     public function buildOpenInvoiceLineItem(
-        $description,
-        $itemAmount,
-        $itemVatAmount,
-        $itemVatPercentage,
-        $numberOfItems,
-        $vatCategory,
-        $itemId,
-        $productUrl = null,
-        $imageUrl = null
-    ) {
+        string $itemId,
+        string $description,
+        string $itemCategory,
+        int $amountExcludingTax,
+        int $amountIncludingTax,
+        int $taxAmount,
+        int $taxPercentage,
+        int $quantity,
+        string $productUrl,
+        string $imageUrl = null
+    ): array {
         $lineItem = array();
-        // item id is optional
-        if (!empty($itemId)) {
-            $lineItem['id'] = $itemId;
-        }
 
+        $lineItem['id'] = $itemId;
         $lineItem['description'] = $description;
-        $lineItem['amountExcludingTax'] = $itemAmount;
-        $lineItem['taxAmount'] = $itemVatAmount;
-        $lineItem['taxPercentage'] = $itemVatPercentage;
-        $lineItem['quantity'] = $numberOfItems;
-        $lineItem['taxCategory'] = $vatCategory;
+        $lineItem['itemCategory'] = $itemCategory;
+        $lineItem['amountExcludingTax'] = $amountExcludingTax;
+        $lineItem['amountIncludingTax'] = $amountIncludingTax;
+        $lineItem['taxAmount'] = $taxAmount;
+        $lineItem['taxPercentage'] = $taxPercentage;
+        $lineItem['quantity'] = $quantity;
+        $lineItem['productUrl'] = $productUrl;
 
-        if (!is_null($productUrl)) {
-            $lineItem['productUrl'] = $productUrl;
-        }
-
-        if (!is_null($imageUrl)) {
+        if (isset($imageUrl)) {
             $lineItem['imageUrl'] = $imageUrl;
         }
 

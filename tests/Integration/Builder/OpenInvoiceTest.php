@@ -31,17 +31,32 @@ class OpenInvoiceTest extends TestCase
     public function testBuildOpenInvoiceLineItem()
     {
         $expectedResult = array(
-            'id' => "1",
-            'description' => "item-description",
+            'id' => '1',
+            'description' => 'item-description',
+            'itemCategory' => 'product-category',
             'amountExcludingTax' => 1000,
-            'taxAmount' => 21,
-            'taxPercentage' => 10,
+            'amountIncludingTax' => 1210,
+            'taxAmount' => 210,
+            'taxPercentage' => 21,
             'quantity' => 10,
-            'taxCategory' => "vat"
-
+            'productUrl' => 'http://localhost/producturl.html',
+            'imageUrl' => 'http://localhost/imageurl.jpg'
         );
+
         $openInvoice = new OpenInvoice();
-        $result = $openInvoice->buildOpenInvoiceLineItem("item-description", 1000, 21, 10, 10, "vat", "1");
+        $result = $openInvoice->buildOpenInvoiceLineItem(
+            '1',
+            'item-description',
+            'product-category',
+            1000,
+            1210,
+            210,
+            21,
+            10,
+            'http://localhost/producturl.html',
+            'http://localhost/imageurl.jpg'
+        );
+
         $this->assertEquals($result, $expectedResult);
     }
 }
