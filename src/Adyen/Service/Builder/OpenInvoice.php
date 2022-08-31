@@ -28,44 +28,64 @@ class OpenInvoice
     /**
      * Build invoice line items for open invoice payment methods
      *
-     * @param string $itemId
+     * Deprecation warning!
+     * `taxCategory` parameter was deprecated in Checkout API v69.
+     * Argument $vatCategory was kept in order to preserve backward compatibility,
+     * but will be removed in the next major release.
+     *
      * @param string $description
-     * @param string $itemCategory
-     * @param int $amountExcludingTax
-     * @param int $amountIncludingTax
-     * @param int $taxAmount
-     * @param int $taxPercentage
-     * @param int $quantity
-     * @param string $productUrl
+     * @param int $itemAmount
+     * @param int $itemVatAmount
+     * @param int $itemVatPercentage
+     * @param int $numberOfItems
+     * @param string $vatCategory
+     * @param string $itemId
+     * @param string|null $productUrl
      * @param string|null $imageUrl
+     * @param int|null $amountIncludingTax
+     * @param int|null $itemCategory
+     *
      * @return array
      */
     public function buildOpenInvoiceLineItem(
-        string $itemId,
-        string $description,
-        string $itemCategory,
-        int $amountExcludingTax,
-        int $amountIncludingTax,
-        int $taxAmount,
-        int $taxPercentage,
-        int $quantity,
-        string $productUrl,
-        string $imageUrl = null
+        $description,
+        $itemAmount,
+        $itemVatAmount,
+        $itemVatPercentage,
+        $numberOfItems,
+        $vatCategory,
+        $itemId,
+        $productUrl = null,
+        $imageUrl = null,
+        $amountIncludingTax = null,
+        $itemCategory = null
     ): array {
         $lineItem = array();
+        // item id is optional
+        if (!empty($itemId)) {
+            $lineItem['id'] = $itemId;
+        }
 
-        $lineItem['id'] = $itemId;
         $lineItem['description'] = $description;
-        $lineItem['itemCategory'] = $itemCategory;
-        $lineItem['amountExcludingTax'] = $amountExcludingTax;
-        $lineItem['amountIncludingTax'] = $amountIncludingTax;
-        $lineItem['taxAmount'] = $taxAmount;
-        $lineItem['taxPercentage'] = $taxPercentage;
-        $lineItem['quantity'] = $quantity;
-        $lineItem['productUrl'] = $productUrl;
+        $lineItem['amountExcludingTax'] = $itemAmount;
+        $lineItem['taxAmount'] = $itemVatAmount;
+        $lineItem['taxPercentage'] = $itemVatPercentage;
+        $lineItem['quantity'] = $numberOfItems;
+
+        if (isset($productUrl)) {
+            $lineItem['productUrl'] = $productUrl;
+        }
 
         if (isset($imageUrl)) {
             $lineItem['imageUrl'] = $imageUrl;
+        }
+
+        if (isset($amountIncludingTax)) {
+            $lineItem['amountIncludingTax'] = $amountIncludingTax;
+        }
+
+        if (isset($itemCategory)) {
+            $lineItem['itemCategory'] = $itemCategory;
         }
 
         return $lineItem;
