@@ -36,9 +36,9 @@ class PosPayment extends \Adyen\ApiKeyAuthenticatedService
     public function __construct(\Adyen\Client $client)
     {
         parent::__construct($client);
-        $region = $this->getClient()->getConfig('region');
+        $region = $this->getClient()->getConfig()->get('region');
 
-        if (isset($region) && $this->getClient()->getConfig('environment') == \Adyen\Environment::LIVE) {
+        if (isset($region) && $this->getClient()->getConfig()->get('environment') == \Adyen\Environment::LIVE) {
             switch ($region) {
                 case Region::US:
                     $this->getClient()->getConfig()->set(
