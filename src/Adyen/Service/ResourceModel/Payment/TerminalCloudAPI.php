@@ -2,9 +2,6 @@
 
 namespace Adyen\Service\ResourceModel\Payment;
 
-use Adyen\Client;
-use Adyen\Region;
-
 class TerminalCloudAPI extends \Adyen\Service\AbstractResource
 {
     /**
@@ -34,30 +31,11 @@ class TerminalCloudAPI extends \Adyen\Service\AbstractResource
      */
     public function __construct($service, $asynchronous)
     {
-        $region = $service->getClient()->getConfig('region');
-
-        if (isset($region) && $service->getClient()->getConfig('environment') == \Adyen\Environment::LIVE) {
-            switch ($region) {
-                case Region::US:
-                    $endpointUrl = Client::ENDPOINT_TERMINAL_CLOUD_US_LIVE;
-                    break;
-                case Region::AU:
-                    $endpointUrl = Client::ENDPOINT_TERMINAL_CLOUD_AU_LIVE;
-                    break;
-                case Region::EU:
-                default:
-                    $endpointUrl = Client::ENDPOINT_TERMINAL_CLOUD_LIVE;
-            }
-        } else {
-            $endpointUrl = $service->getClient()->getConfig()->get('endpointTerminalCloud');
-        }
-
         if ($asynchronous) {
-            $this->endpoint = $endpointUrl . '/async';
+            $this->endpoint = $service->getClient()->getConfig()->get('endpointTerminalCloud') . '/async';
         } else {
-            $this->endpoint = $endpointUrl . '/sync';
+            $this->endpoint = $service->getClient()->getConfig()->get('endpointTerminalCloud') . '/sync';
         }
-
         parent::__construct($service, $this->endpoint, $this->allowApplicationInfo, $this->allowApplicationInfoPOS);
     }
 }
