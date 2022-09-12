@@ -31,6 +31,8 @@ class Client
     const API_HOP_VERSION = "v6";
     const ENDPOINT_TERMINAL_CLOUD_TEST = "https://terminal-api-test.adyen.com";
     const ENDPOINT_TERMINAL_CLOUD_LIVE = "https://terminal-api-live.adyen.com";
+    const ENDPOINT_TERMINAL_CLOUD_US_LIVE = "https://terminal-api-live-us.adyen.com";
+    const ENDPOINT_TERMINAL_CLOUD_AU_LIVE = "https://terminal-api-live-au.adyen.com";
     const ENDPOINT_CHECKOUT_TEST = "https://checkout-test.adyen.com/checkout";
     const ENDPOINT_CHECKOUT_LIVE_SUFFIX = "-checkout-live.adyenpayments.com/checkout";
     const ENDPOINT_PROTOCOL = "https://";
@@ -492,5 +494,18 @@ class Client
         $logger->pushHandler(new StreamHandler('php://stderr', Logger::NOTICE));
 
         return $logger;
+    }
+
+    /**
+     * @param string $region
+     * @return void
+     */
+    public function setRegion(string $region): void
+    {
+        if (!array_key_exists($region, Region::TERMINAL_API_ENDPOINTS_MAPPING)) {
+            throw new AdyenException('Trying to set invalid region!');
+        }
+
+        $this->config->set('region', $region);
     }
 }
