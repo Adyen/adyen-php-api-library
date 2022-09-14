@@ -502,7 +502,7 @@ class Client
      */
     public function setRegion(string $region): void
     {
-        if (!array_key_exists($region, Region::VALID_REGIONS)) {
+        if (!in_array($region, Region::VALID_REGIONS)) {
             throw new AdyenException('Trying to set an invalid region!');
         }
 
