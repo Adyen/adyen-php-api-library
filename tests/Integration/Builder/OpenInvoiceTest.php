@@ -37,11 +37,25 @@ class OpenInvoiceTest extends TestCase
             'taxAmount' => 21,
             'taxPercentage' => 10,
             'quantity' => 10,
-            'taxCategory' => "vat"
-
+            'productUrl' => 'product-url',
+            'imageUrl' => 'image-url',
+            'amountIncludingTax' => 1021,
+            'itemCategory' => 'test-category'
         );
         $openInvoice = new OpenInvoice();
-        $result = $openInvoice->buildOpenInvoiceLineItem("item-description", 1000, 21, 10, 10, "vat", "1");
+        $result = $openInvoice->buildOpenInvoiceLineItem(
+            "item-description",
+            1000,
+            21,
+            10,
+            10,
+            "vat",
+            "1",
+            'product-url',
+            'image-url',
+            1021,
+            'test-category'
+        );
         $this->assertEquals($result, $expectedResult);
     }
 }

@@ -287,7 +287,7 @@ class CheckoutTest extends TestCase
         $result = $service->donations($donationsParams);
         $this->assertEquals('Authorised', $result['payment']['resultCode']);
     }
-  
+
     public function testSessions()
     {
         // create Checkout client
@@ -399,6 +399,26 @@ class CheckoutTest extends TestCase
         );
 
         $result = $service->cancels($params);
+
+        $this->assertEquals('received', $result['status']);
+    }
+
+    public function testTechnicalCancels()
+    {
+        $this->testPaymentsSuccess();
+
+        // create Checkout client
+        $client = $this->createCheckoutAPIClient();
+
+        // initialize service
+        $service = new \Adyen\Service\Checkout($client);
+
+        $params = array(
+            'paymentReference' => 'Your order number',
+            'merchantAccount' => $this->merchantAccount,
+        );
+
+        $result = $service->technicalCancels($params);
 
         $this->assertEquals('received', $result['status']);
     }
