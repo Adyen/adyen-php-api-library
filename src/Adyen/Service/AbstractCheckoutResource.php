@@ -10,6 +10,9 @@ class AbstractCheckoutResource extends AbstractResource
      * @param $service
      * @return mixed
      * @throws \Adyen\AdyenException
+     *
+     * @deprecated Please do not use Logger as we will deprecate this in the
+     *             future for improvements on the library
      */
     public function getCheckoutEndpoint($service)
     {

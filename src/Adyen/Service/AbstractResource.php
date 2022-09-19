@@ -61,6 +61,9 @@ abstract class AbstractResource
      * @param null $requestOptions
      * @return mixed
      * @throws AdyenException
+     *
+     * @deprecated Please do not use Logger as we will deprecate this in the
+     *             future for improvements on the library
      */
     public function request($params, $requestOptions = null)
     {
@@ -223,6 +226,9 @@ abstract class AbstractResource
      * @param $params
      * @return mixed
      * @throws AdyenException
+     *
+     * @deprecated Please do not use Logger as we will deprecate this in the
+     *             future for improvements on the library
      */
     public function requestPost($params)
     {
@@ -243,6 +249,9 @@ abstract class AbstractResource
      * @param array|null $params
      * @return mixed
      * @throws AdyenException
+     *
+     * @deprecated Please do not use Logger as we will deprecate this in the
+     *             future for improvements on the library
      */
     public function requestHttp($url, $method = 'get', array $params = null)
     {
