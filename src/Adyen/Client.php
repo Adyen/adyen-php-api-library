@@ -502,8 +502,8 @@ class Client
      */
     public function setRegion(string $region): void
     {
-        if (!array_key_exists($region, Region::TERMINAL_API_ENDPOINTS_MAPPING)) {
-            throw new AdyenException('Trying to set invalid region!');
+        if (!in_array($region, Region::VALID_REGIONS)) {
+            throw new AdyenException('Trying to set an invalid region!');
         }
 
         $this->config->set('region', $region);
