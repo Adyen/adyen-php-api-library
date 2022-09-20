@@ -53,7 +53,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
      * @var ResourceModel\Checkout\Donations
      */
     protected $donations;
-  
+
     /**
      * @var ResourceModel\Checkout\Sessions
      */
@@ -80,6 +80,11 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
     protected $cancels;
 
     /**
+     * @var ResourceModel\Checkout\TechnicalCancels
+     */
+    protected $technicalCancels;
+
+    /**
      * Checkout constructor.
      *
      * @param \Adyen\Client $client
@@ -103,6 +108,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
         $this->reversals = new \Adyen\Service\ResourceModel\Checkout\Reversals($this);
         $this->captures = new \Adyen\Service\ResourceModel\Checkout\Captures($this);
         $this->cancels = new \Adyen\Service\ResourceModel\Checkout\Cancels($this);
+        $this->technicalCancels = new \Adyen\Service\ResourceModel\Checkout\TechnicalCancels($this);
     }
 
     /**
@@ -270,5 +276,16 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
     public function cancels($params, $requestOptions = null)
     {
         return $this->cancels->request($params, $requestOptions);
+    }
+
+    /**
+     * @param array $params
+     * @param array|null $requestOptions
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+    public function technicalCancels($params, $requestOptions = null)
+    {
+        return $this->technicalCancels->request($params, $requestOptions);
     }
 }

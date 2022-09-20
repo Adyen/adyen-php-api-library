@@ -28,15 +28,23 @@ class OpenInvoice
     /**
      * Build invoice line items for open invoice payment methods
      *
+     * Deprecation warning!
+     * `taxCategory` parameter was deprecated in Checkout API v69.
+     * Argument $vatCategory was kept in order to preserve backward compatibility,
+     * but will be removed in the next major release.
+     *
      * @param string $description
-     * @param float $itemAmount
-     * @param float $itemVatAmount
-     * @param float $itemVatPercentage
+     * @param int $itemAmount
+     * @param int $itemVatAmount
+     * @param int $itemVatPercentage
      * @param int $numberOfItems
      * @param string $vatCategory
      * @param string $itemId
      * @param string|null $productUrl
      * @param string|null $imageUrl
+     * @param int|null $amountIncludingTax
+     * @param int|null $itemCategory
+     *
      * @return array
      */
     public function buildOpenInvoiceLineItem(
@@ -48,8 +56,10 @@ class OpenInvoice
         $vatCategory,
         $itemId,
         $productUrl = null,
-        $imageUrl = null
-    ) {
+        $imageUrl = null,
+        $amountIncludingTax = null,
+        $itemCategory = null
+    ): array {
         $lineItem = array();
         // item id is optional
         if (!empty($itemId)) {
@@ -61,14 +71,21 @@ class OpenInvoice
         $lineItem['taxAmount'] = $itemVatAmount;
         $lineItem['taxPercentage'] = $itemVatPercentage;
         $lineItem['quantity'] = $numberOfItems;
-        $lineItem['taxCategory'] = $vatCategory;
 
-        if (!is_null($productUrl)) {
+        if (isset($productUrl)) {
             $lineItem['productUrl'] = $productUrl;
         }
 
-        if (!is_null($imageUrl)) {
+        if (isset($imageUrl)) {
             $lineItem['imageUrl'] = $imageUrl;
+        }
+
+        if (isset($amountIncludingTax)) {
+            $lineItem['amountIncludingTax'] = $amountIncludingTax;
+        }
+
+        if (isset($itemCategory)) {
+            $lineItem['itemCategory'] = $itemCategory;
         }
 
         return $lineItem;
