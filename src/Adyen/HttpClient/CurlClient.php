@@ -92,9 +92,6 @@ class CurlClient implements ClientInterface
      * @param $params
      * @return mixed
      * @throws AdyenException
-     *
-     * @deprecated Please do not use Logger as we will deprecate this in the
-     *             future for improvements on the library
      */
     public function requestPost(\Adyen\Service $service, $requestUrl, $params)
     {
@@ -348,11 +345,6 @@ class CurlClient implements ClientInterface
         $message = curl_error($ch);
         return array($errno, $message);
     }
-
-    /**
-     * @deprecated Please do not use Logger as we will deprecate this in the
-     *             future for improvements on the library
-     */
 
     public function requestHttp(\Adyen\Service $service, $requestUrl, $params, $method, $requestOptions = null)
     {

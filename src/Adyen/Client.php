@@ -507,6 +507,7 @@ class Client
     /**
      * @param string $region
      * @return void
+     * @throws AdyenException
      */
     public function setRegion(string $region): void
     {
