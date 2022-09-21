@@ -471,7 +471,6 @@ class Client
      * @deprecated Please do not use Logger as we will deprecate this in the
      *             future for improvements on the library
      */
-
     public function setLogger(LoggerInterface $logger)
     {
         $this->logger = $logger;
