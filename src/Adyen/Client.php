@@ -10,7 +10,7 @@ use Monolog\Handler\StreamHandler;
 
 class Client
 {
-    const LIB_VERSION = "13.0.3";
+    const LIB_VERSION = "13.0.4";
     const LIB_NAME = "adyen-php-api-library";
     const USER_AGENT_SUFFIX = "adyen-php-api-library/";
     const ENDPOINT_TEST = "https://pal-test.adyen.com";
@@ -467,6 +467,9 @@ class Client
      * Set the Logger object
      *
      * @param LoggerInterface $logger
+     *
+     * @deprecated Please do not use Logger as we will deprecate this in the
+     *             future for improvements on the library
      */
     public function setLogger(LoggerInterface $logger)
     {
@@ -475,6 +478,9 @@ class Client
 
     /**
      * @return LoggerInterface
+     *
+     * @deprecated Please do not use Logger as we will deprecate this in the
+     *             future for improvements on the library
      */
     public function getLogger()
     {
@@ -499,11 +505,12 @@ class Client
     /**
      * @param string $region
      * @return void
+     * @throws AdyenException
      */
     public function setRegion(string $region): void
     {
-        if (!array_key_exists($region, Region::TERMINAL_API_ENDPOINTS_MAPPING)) {
-            throw new AdyenException('Trying to set invalid region!');
+        if (!in_array($region, Region::VALID_REGIONS)) {
+            throw new AdyenException('Trying to set an invalid region!');
         }
 
         $this->config->set('region', $region);
