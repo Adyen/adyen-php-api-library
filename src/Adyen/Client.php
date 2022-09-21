@@ -493,7 +493,6 @@ class Client
 
     /**
      * @return Logger
-     *
      */
     protected function createDefaultLogger()
     {
