@@ -8,27 +8,32 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
      * @var ResourceModel\Checkout\PaymentSession
      */
     protected $paymentSession;
-
+    
+    /**
+     * @var ResourceModel\Checkout\Sessions
+     */
+    protected $sessions;
+    
     /**
      * @var ResourceModel\Checkout\PaymentsResult
      */
     protected $paymentsResult;
-
+    
     /**
      * @var ResourceModel\Checkout\PaymentMethods
      */
     protected $paymentMethods;
-
+    
     /**
      * @var ResourceModel\Checkout\Payments
      */
     protected $payments;
-
+    
     /**
      * @var ResourceModel\Checkout\PaymentsDetails
      */
     protected $paymentsDetails;
-
+    
     /**
      * Checkout constructor.
      *
@@ -43,8 +48,20 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
         $this->paymentMethods = new \Adyen\Service\ResourceModel\Checkout\PaymentMethods($this);
         $this->payments = new \Adyen\Service\ResourceModel\Checkout\Payments($this);
         $this->paymentsDetails = new \Adyen\Service\ResourceModel\Checkout\PaymentsDetails($this);
+        $this->sessions = new \Adyen\Service\ResourceModel\Checkout\Sessions($this);
     }
-
+    
+    /**
+     * @param array $params
+     * @param array|null $requestOptions
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+    public function sessions($params, $requestOptions = null)
+    {
+        return $this->sessions->request($params, $requestOptions);
+    }
+    
     /**
      * @param $params
      * @return mixed
@@ -55,7 +72,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
         $result = $this->paymentSession->request($params);
         return $result;
     }
-
+    
     /**
      * @param $params
      * @return mixed
@@ -66,7 +83,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
         $result = $this->paymentsResult->request($params);
         return $result;
     }
-
+    
     /**
      * @param $params
      * @return mixed
@@ -77,7 +94,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
         $result = $this->paymentMethods->request($params);
         return $result;
     }
-
+    
     /**
      * @param $params
      * @param null $requestOptions
@@ -89,7 +106,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
         $result = $this->payments->request($params, $requestOptions);
         return $result;
     }
-
+    
     /**
      * @param $params
      * @param null $requestOptions
