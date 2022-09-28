@@ -467,6 +467,9 @@ class Client
      * Set the Logger object
      *
      * @param LoggerInterface $logger
+     *
+     * @deprecated Please do not use Logger as we will deprecate this in the
+     *             future for improvements on the library
      */
     public function setLogger(LoggerInterface $logger)
     {
@@ -475,6 +478,9 @@ class Client
 
     /**
      * @return LoggerInterface
+     *
+     * @deprecated Please do not use Logger as we will deprecate this in the
+     *             future for improvements on the library
      */
     public function getLogger()
     {
@@ -499,6 +505,7 @@ class Client
     /**
      * @param string $region
      * @return void
+     * @throws AdyenException
      */
     public function setRegion(string $region): void
     {
