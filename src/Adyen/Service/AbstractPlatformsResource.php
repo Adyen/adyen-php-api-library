@@ -6,8 +6,9 @@ use Adyen\PlatformsService;
 
 class AbstractPlatformsResource extends AbstractResource
 {
-    /** @var string baseUrl */
     protected $baseUrl;
+    protected $allowApplicationInfo = false;
+    protected $allowApplicationInfoPOS = false;
 
     public function __construct(PlatformsService $service)
     {
@@ -15,8 +16,7 @@ class AbstractPlatformsResource extends AbstractResource
 
         parent::__construct(
             $service,
-            $this->baseUrl,
-            true
+            $this->baseUrl
         );
     }
 
@@ -28,7 +28,7 @@ class AbstractPlatformsResource extends AbstractResource
      */
     public function simulateEndpoint(string $version, string $endpoint, callable $callback)
     {
-        $this->endpoint = sprintf('%s/%s/%s', $this->baseUrl, $version, $endpoint);
+        $this->endpoint = sprintf('%s/%s%s', $this->baseUrl, $version, $endpoint);
         $response = $callback();
         $this->endpoint = $this->baseUrl;
         return $response;

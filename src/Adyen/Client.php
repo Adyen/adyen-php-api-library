@@ -34,8 +34,8 @@ class Client
     const API_PLATFORMS_TRANSFERS_VERSION = "v3";
     const ENDPOINT_TERMINAL_CLOUD_TEST = "https://terminal-api-test.adyen.com";
     const ENDPOINT_TERMINAL_CLOUD_LIVE = "https://terminal-api-live.adyen.com";
-    const ENDPOINT_PLATFORMS_LEM_TEST = "https://kyc-api-test.adyen.com/lem";
-    const ENDPOINT_PLATFORMS_LEM_LIVE = "https://kyc-api-live.adyen.com/lem";
+    const ENDPOINT_PLATFORMS_LEM_TEST = "https://kyc-test.adyen.com/lem";
+    const ENDPOINT_PLATFORMS_LEM_LIVE = "https://kyc-live.adyen.com/lem";
     const ENDPOINT_PLATFORMS_CONFIGURATION_TEST = "https://balanceplatform-api-test.adyen.com/bcl";
     const ENDPOINT_PLATFORMS_CONFIGURATION_LIVE = "https://balanceplatform-api-live.adyen.com/bcl";
     const ENDPOINT_PLATFORMS_TRANSFERS_TEST = "https://balanceplatform-api-test.adyen.com/btl";
