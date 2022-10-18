@@ -30,7 +30,7 @@ class Configuration extends PlatformsService
     {
         parent::__construct(
             $client,
-            $this->getClient()->getConfig()->get('endpointPlatformsConfiguration')
+            $client->getConfig()->get('endpointPlatformsConfiguration')
         );
 
         $this->balancePlatforms = new BalancePlatforms($this);

@@ -30,7 +30,7 @@ class LegalEntityManagement extends PlatformsService
     {
         parent::__construct(
             $client,
-            $this->getClient()->getConfig()->get('endpointPlatformsLem')
+            $client->getConfig()->get('endpointPlatformsLem')
         );
 
         $this->legalEntities = new LegalEntities($this);
