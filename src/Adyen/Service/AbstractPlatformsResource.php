@@ -19,4 +19,18 @@ class AbstractPlatformsResource extends AbstractResource
             true
         );
     }
+
+    /**
+     * @param string $version
+     * @param string $endpoint
+     * @param callable $callback
+     * @return mixed
+     */
+    public function simulateEndpoint(string $version, string $endpoint, callable $callback)
+    {
+        $this->endpoint = sprintf('%s/%s/%s', $this->baseUrl, $version, $endpoint);
+        $response = $callback();
+        $this->endpoint = $this->baseUrl;
+        return $response;
+    }
 }

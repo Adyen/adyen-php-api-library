@@ -101,6 +101,88 @@ abstract class AbstractResource
     }
 
     /**
+     * Do the request to the Http Client
+     *
+     * @param $params
+     * @param null $requestOptions
+     * @return mixed
+     * @throws AdyenException
+     */
+    public function requestPatch($params, $requestOptions = null)
+    {
+        // convert to PHP Array if type is inputType is json
+        if ($this->service->getClient()->getConfig()->getInputType() == 'json') {
+            $params = json_decode($params, true);
+            if ($params === null && json_last_error() !== JSON_ERROR_NONE) {
+                $msg = 'The parameters in the request expect valid JSON but JSON error code found: ' .
+                    json_last_error();
+                $this->service->getClient()->getLogger()->error($msg);
+                throw new AdyenException($msg);
+            }
+        }
+
+        if (!is_array($params)) {
+            $msg = 'The parameter is not valid array';
+            $this->service->getClient()->getLogger()->error($msg);
+            throw new AdyenException($msg);
+        }
+
+        $params = $this->addDefaultParametersToRequest($params);
+
+        $this->replacePathParameters($params);
+
+        if ($this->allowApplicationInfo) {
+            $params = $this->handleApplicationInfoInRequest($params);
+        } elseif ($this->allowApplicationInfoPOS) {
+            $params = $this->handleApplicationInfoInRequestPOS($params);
+        } else {
+            // remove if exists
+            if (isset($params['applicationInfo'])) {
+                unset($params['applicationInfo']);
+            }
+        }
+
+        $curlClient = $this->service->getClient()->getHttpClient();
+        return $curlClient->requestHttp($this->service, $this->endpoint, $params, 'patch', $requestOptions);
+    }
+
+    /**
+     * Do the request to the Http Client
+     *
+     * @param $params
+     * @param null $requestOptions
+     * @return mixed
+     * @throws AdyenException
+     */
+    public function requestGet($params, $requestOptions = null)
+    {
+        $params = $this->addDefaultParametersToRequest($params);
+
+        $this->replacePathParameters($params);
+
+        $curlClient = $this->service->getClient()->getHttpClient();
+        return $curlClient->requestHttp($this->service, $this->endpoint, $params, 'get', $requestOptions);
+    }
+
+    /**
+     * Do the request to the Http Client
+     *
+     * @param $params
+     * @param null $requestOptions
+     * @return mixed
+     * @throws AdyenException
+     */
+    public function requestDelete($params, $requestOptions = null)
+    {
+        $params = $this->addDefaultParametersToRequest($params);
+
+        $this->replacePathParameters($params);
+
+        $curlClient = $this->service->getClient()->getHttpClient();
+        return $curlClient->requestHttp($this->service, $this->endpoint, $params, 'delete', $requestOptions);
+    }
+
+    /**
      * Fill expected but missing parameters with default data
      *
      * @param $params
