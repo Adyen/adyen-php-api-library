@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Adyen\Service\ResourceModel\LegalEntityManagement;
 
 use Adyen\AdyenException;
