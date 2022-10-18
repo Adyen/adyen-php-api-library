@@ -29,8 +29,17 @@ class Client
     const API_FUND_VERSION = "v6";
     const API_DISPUTE_SERVICE_VERSION = "v30";
     const API_HOP_VERSION = "v6";
+    const API_PLATFORMS_LEM_VERSION = "v2";
+    const API_PLATFORMS_CONFIGURATION_VERSION = "v1";
+    const API_PLATFORMS_TRANSFERS_VERSION = "v3";
     const ENDPOINT_TERMINAL_CLOUD_TEST = "https://terminal-api-test.adyen.com";
     const ENDPOINT_TERMINAL_CLOUD_LIVE = "https://terminal-api-live.adyen.com";
+    const ENDPOINT_PLATFORMS_LEM_TEST = "https://balanceplatform-api-test.adyen.com/lem";
+    const ENDPOINT_PLATFORMS_LEM_LIVE = "https://balanceplatform-api-live.adyen.com/lem";
+    const ENDPOINT_PLATFORMS_CONFIGURATION_TEST = "https://balanceplatform-api-test.adyen.com/bcl";
+    const ENDPOINT_PLATFORMS_CONFIGURATION_LIVE = "https://balanceplatform-api-live.adyen.com/bcl";
+    const ENDPOINT_PLATFORMS_TRANSFERS_TEST = "https://balanceplatform-api-test.adyen.com/btl";
+    const ENDPOINT_PLATFORMS_TRANSFERS_LIVE = "https://balanceplatform-api-live.adyen.com/btl";
     const ENDPOINT_TERMINAL_CLOUD_US_LIVE = "https://terminal-api-live-us.adyen.com";
     const ENDPOINT_TERMINAL_CLOUD_AU_LIVE = "https://terminal-api-live-au.adyen.com";
     const ENDPOINT_CHECKOUT_TEST = "https://checkout-test.adyen.com/checkout";
@@ -162,6 +171,9 @@ class Client
             $this->config->set('endpointCustomerArea', self::ENDPOINT_CUSTOMER_AREA_TEST);
             $this->config->set('endpointHop', self::ENDPOINT_HOP_TEST);
             $this->config->set('endpointManagementApi', self::MANAGEMENT_API_TEST);
+            $this->config->set('endpointPlatformsLem', self::ENDPOINT_PLATFORMS_LEM_TEST);
+            $this->config->set('endpointPlatformsConfiguration', self::ENDPOINT_PLATFORMS_CONFIGURATION_TEST);
+            $this->config->set('endpointPlatformsTransfers', self::ENDPOINT_PLATFORMS_TRANSFERS_TEST);
         } elseif ($environment == \Adyen\Environment::LIVE) {
             $this->config->set('environment', \Adyen\Environment::LIVE);
             $this->config->set('endpointDirectorylookup', self::ENDPOINT_LIVE_DIRECTORY_LOOKUP);
@@ -173,6 +185,9 @@ class Client
             $this->config->set('endpointCustomerArea', self::ENDPOINT_CUSTOMER_AREA_LIVE);
             $this->config->set('endpointHop', self::ENDPOINT_HOP_LIVE);
             $this->config->set('endpointManagementApi', self::MANAGEMENT_API_LIVE);
+            $this->config->set('endpointPlatformsLem', self::ENDPOINT_PLATFORMS_LEM_LIVE);
+            $this->config->set('endpointPlatformsConfiguration', self::ENDPOINT_PLATFORMS_CONFIGURATION_LIVE);
+            $this->config->set('endpointPlatformsTransfers', self::ENDPOINT_PLATFORMS_TRANSFERS_LIVE);
 
             if ($liveEndpointUrlPrefix) {
                 $this->config->set(
@@ -434,6 +449,36 @@ class Client
     public function getManagementApiVersion()
     {
         return self::MANAGEMENT_API;
+    }
+
+    /**
+     * Get the version of the Platforms Legal Entity Management API endpoint
+     *
+     * @return string
+     */
+    public function getPlatformsLemVersion()
+    {
+        return self::API_PLATFORMS_LEM_VERSION;
+    }
+
+    /**
+     * Get the version of the Platforms Configuration API endpoint
+     *
+     * @return string
+     */
+    public function getPlatformsConfigurationVersion()
+    {
+        return self::API_PLATFORMS_CONFIGURATION_VERSION;
+    }
+
+    /**
+     * Get the version of the Platforms Transfers API endpoint
+     *
+     * @return string
+     */
+    public function getPlatformsTransfersVersion()
+    {
+        return self::API_PLATFORMS_TRANSFERS_VERSION;
     }
 
     /**
