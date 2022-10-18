@@ -93,9 +93,19 @@ class LegalEntityManagement extends PlatformsService
      * @return mixed
      * @throws AdyenException
      */
+    public function deleteDocuments($params)
+    {
+        return $this->documents->delete($params);
+    }
+
+    /**
+     * @param array $params
+     * @return mixed
+     * @throws AdyenException
+     */
     public function findDocuments($params)
     {
-        return $this->legalEntities->find($params);
+        return $this->documents->find($params);
     }
 
     /**
