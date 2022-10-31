@@ -23,7 +23,7 @@ class Transfers extends PlatformsService
     {
         parent::__construct(
             $client,
-            $client->getConfig()->get('endpointPlatformsLem')
+            $client->getConfig()->get('endpointPlatformsTransfers')
         );
 
         $this->transfers = new ResourceModel\Transfers\Transfers($this);
