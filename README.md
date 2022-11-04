@@ -88,6 +88,7 @@ $json = '{
         "currency": "EUR"
       },
       "reference": "payment-test",
+      "returnUrl": "https://your-company.com/...",
       "merchantAccount": "YOUR MERCHANT ACCOUNT"
 }';
 
@@ -129,6 +130,7 @@ $json = '{
         "currency": "EUR"
       },
       "reference": "payment-test",
+      "returnUrl": "https://your-company.com/...",
       "merchantAccount": "YOUR MERCHANT ACCOUNT"
 }';
 
