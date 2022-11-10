@@ -6,6 +6,11 @@ namespace Adyen\Service\ResourceModel\Management;
 class StoreAccount extends \Adyen\Service\AbstractResource
 {
     /**
+     * @var string
+     */
+    protected $endpoint;
+
+    /**
      * Include applicationInfo key in the request parameters
      *
      * @var bool
@@ -17,10 +22,12 @@ class StoreAccount extends \Adyen\Service\AbstractResource
      * @return mixed
      * @throws \Adyen\AdyenException
      */
-    public function list(array $queryParams = [])
+    public function list($service)
     {
-        $url = $this->managementEndpoint . "/stores";
-        return $this->requestHttp($url, 'get', $queryParams);
+        // $url = $this->managementEndpoint . "/stores";
+        // return $this->requestHttp($url, 'get', $queryParams);
+        $this->endpoint = $this->managementEndpoint . "/stores";
+        parent::__construct($service, $this->endpoint, $this->allowApplicationInfo);
     }
 
     /**
