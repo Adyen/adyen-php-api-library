@@ -10,6 +10,7 @@ use Adyen\Service\ResourceModel\Management\Me;
 use Adyen\Service\ResourceModel\Management\MerchantAccount;
 use Adyen\Service\ResourceModel\Management\MerchantClientKey;
 use Adyen\Service\ResourceModel\Management\MerchantWebhooks;
+use Adyen\Service\ResourceModel\Management\StoreAccount;
 
 class Management extends \Adyen\Service
 {
@@ -60,6 +61,7 @@ class Management extends \Adyen\Service
         $this->merchantAccount = new MerchantAccount($this, null);
         $this->me = new Me($this, null);
         $this->companyAccount = new CompanyAccount($this, null);
+        $this->storeAccount = new StoreAccount($this, null);
         $this->merchantClientKey = new MerchantClientKey($this, null);
         $this->merchantWebhooks = new MerchantWebhooks($this, null);
         $this->companyWebhooks = new CompanyWebhooks($this, null);
