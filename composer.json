@@ -1,5 +1,5 @@
 {
-  "name": "thedigital/php-api-library",
+  "name": "adyen/php-api-library",
   "type": "library",
   "description": "A PHP client library for accessing Adyen APIs",
   "keywords": [
