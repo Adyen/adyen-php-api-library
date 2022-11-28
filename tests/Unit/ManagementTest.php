@@ -392,5 +392,4 @@ class ManagementTest extends TestCaseMock
             array('tests/Resources/Management/get-payment-method-settings-success.json', 200),
         );
     }
-
 }
