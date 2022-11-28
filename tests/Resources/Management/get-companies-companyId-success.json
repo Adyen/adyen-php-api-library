@@ -1,0 +1,25 @@
+{
+  "id" : "YOUR_COMPANY_ACCOUNT",
+  "name" : "YOUR_SHOP_NAME",
+  "status" : "Active",
+  "dataCenters" : [
+    {
+      "name" : "default",
+      "livePrefix" : ""
+    }
+  ],
+  "_links" : {
+    "self" : {
+      "href" : "https://management-test.adyen.com/v1/companies/YOUR_COMPANY_ACCOUNT"
+    },
+    "apiCredentials" : {
+      "href" : "https://management-test.adyen.com/v1/companies/YOUR_COMPANY_ACCOUNT/apiCredentials"
+    },
+    "users" : {
+      "href" : "https://management-test.adyen.com/v1/companies/YOUR_COMPANY_ACCOUNT/users"
+    },
+    "webhooks" : {
+      "href" : "https://management-test.adyen.com/v1/companies/YOUR_COMPANY_ACCOUNT/webhooks"
+    }
+  }
+}
