@@ -21,7 +21,7 @@
  *
  */
 
-namespace Adyen\Tests\Integration\Builder;
+namespace Adyen\Tests\Builder;
 
 use Adyen\Service\Builder\Payment;
 use Adyen\Tests\TestCase;

@@ -66,32 +66,6 @@ class TestCase extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Mock client
-     *
-     * @return Client
-     */
-    protected function createClient()
-    {
-        // validate username, password and MERCHANTAccount
-
-        if (!empty($this->settings['username']) &&
-            $this->settings['username'] != "YOUR USERNAME" &&
-            !empty($this->settings['password']) &&
-            $this->settings['password'] != "YOUR PASSWORD"
-        ) {
-            $client = new Client();
-            $client->setApplicationName("My Test Application");
-            $client->setUsername($this->settings['username']);
-            $client->setPassword($this->settings['password']);
-            $client->setEnvironment(Environment::TEST);
-
-            return $client;
-        } else {
-            $this->skipTest("Skipped the test. Configure your WebService Username and Password in the config");
-        }
-    }
-
-    /**
      * Mock client object without configuring the config/test.ini
      *
      * @return Client
