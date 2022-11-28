@@ -37,10 +37,10 @@ class PaymentTest extends TestCase
             ),
             'reference' => "12345",
             'merchantAccount' => "TestMerchantAccount",
-            'returnUrl' => "http://url"
+            'returnUrl' => "https://url"
         );
         $payment = new Payment();
-        $result = $payment->buildPaymentData("EUR", 1000, "12345", "TestMerchantAccount", "http://url");
+        $result = $payment->buildPaymentData("EUR", 1000, "12345", "TestMerchantAccount", "https://url");
         $this->assertEquals($result, $expectedResult);
     }
 
