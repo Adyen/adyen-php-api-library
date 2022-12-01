@@ -368,6 +368,7 @@ class ManagementTest extends TestCaseMock
 
     /**
      * Get /merchants/{id}/paymentMethodSettings
+     * @throws \Adyen\AdyenException
      * @dataProvider successGetPaymentMethodSettingsProvider
      */
     public function testGetPaymentMethodSettings($jsonFile, $httpStatus)
