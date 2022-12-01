@@ -21,41 +21,40 @@
  *
  */
 
-namespace Adyen\Tests\Integration\Builder;
+namespace Adyen\Tests\Builder;
 
-use Adyen\Service\Builder\Browser;
+use Adyen\Service\Builder\OpenInvoice;
 use Adyen\Tests\TestCase;
 
-class BrowserTest extends TestCase
+class OpenInvoiceTest extends TestCase
 {
-    public function testBuildBrowserData()
+    public function testBuildOpenInvoiceLineItem()
     {
-
         $expectedResult = array(
-            'browserInfo' => array(
-                'userAgent' => 'Mozilla/5.0',
-                'acceptHeader' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-                'screenWidth' => '1536',
-                'screenHeight' => '723',
-                'colorDepth' => '24',
-                'timeZoneOffset' => '2',
-                'language' => 'nl-NL',
-                'javaEnabled'=>true
-            )
+            'id' => "1",
+            'description' => "item-description",
+            'amountExcludingTax' => 1000,
+            'taxAmount' => 21,
+            'taxPercentage' => 10,
+            'quantity' => 10,
+            'productUrl' => 'product-url',
+            'imageUrl' => 'image-url',
+            'amountIncludingTax' => 1021,
+            'itemCategory' => 'test-category'
         );
-        $request = array();
-
-        $browser = new Browser();
-        $result = $browser->buildBrowserData(
-            "Mozilla/5.0",
-            "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-            "1536",
-            "723",
-            "24",
-            "2",
-            "nl-NL",
-            true,
-            $request
+        $openInvoice = new OpenInvoice();
+        $result = $openInvoice->buildOpenInvoiceLineItem(
+            "item-description",
+            1000,
+            21,
+            10,
+            10,
+            "vat",
+            "1",
+            'product-url',
+            'image-url',
+            1021,
+            'test-category'
         );
         $this->assertEquals($result, $expectedResult);
     }
