@@ -21,42 +21,42 @@
  *
  */
 
-namespace Adyen\Tests\Integration\Builder;
+namespace Adyen\Tests\Builder;
 
-use Adyen\Service\Builder\Address;
+use Adyen\Service\Builder\Browser;
 use Adyen\Tests\TestCase;
 
-class AddressTest extends TestCase
+class BrowserTest extends TestCase
 {
-    public function testBuildBillingAddress()
+    public function testBuildBrowserData()
     {
-        $expectedResult = array(
-            'billingAddress' => array(
-                'street' => "Blauwbrug",
-                'houseNumberOrName' => "33",
-                'postalCode' => "1334aa",
-                'city' => "Amsterdam",
-                'country' => "NL"
-            )
-        );
-        $address = new Address();
-        $result = $address->buildBillingAddress("Blauwbrug", "33", "1334aa", "Amsterdam", "", "NL");
-        $this->assertEquals($result, $expectedResult);
-    }
 
-    public function testBuildDeliveryAddress()
-    {
         $expectedResult = array(
-            'deliveryAddress' => array(
-                'street' => "straat",
-                'houseNumberOrName' => "33",
-                'postalCode' => "1333aa",
-                'city' => "Leiden",
-                'country' => "NL"
+            'browserInfo' => array(
+                'userAgent' => 'Mozilla/5.0',
+                'acceptHeader' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                'screenWidth' => '1536',
+                'screenHeight' => '723',
+                'colorDepth' => '24',
+                'timeZoneOffset' => '2',
+                'language' => 'nl-NL',
+                'javaEnabled'=>true
             )
         );
-        $address = new Address();
-        $result = $address->buildDeliveryAddress("straat", "33", "1333aa", "Leiden", "", "NL");
+        $request = array();
+
+        $browser = new Browser();
+        $result = $browser->buildBrowserData(
+            "Mozilla/5.0",
+            "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "1536",
+            "723",
+            "24",
+            "2",
+            "nl-NL",
+            true,
+            $request
+        );
         $this->assertEquals($result, $expectedResult);
     }
 }

@@ -1,0 +1,31 @@
+{
+  "id": "1234565789",
+  "username": "123444444444@Demo",
+  "clientKey": "test_QFDASF431FDA4213SFA2341",
+  "allowedIpAddresses": [],
+  "roles": [
+    "Management API - Users read and write",
+    "Management API - Accounts read"
+  ],
+  "active": true,
+  "allowedOrigins": [
+    {
+      "id": "1234565789",
+      "domain": "https://test-ecommerce:8080",
+      "_links": {
+        "self": {
+          "href": "https://management-test.adyen.com/v1/me/allowedOrigins/S2-1234565789"
+        }
+      }
+    }
+  ],
+  "_links": {
+    "self": {
+      "href": "https://management-test.adyen.com/v1/me"
+    },
+    "allowedOrigins": {
+      "href": "https://management-test.adyen.com/v1/me/allowedOrigins"
+    }
+  },
+  "companyName": "Demo"
+}
