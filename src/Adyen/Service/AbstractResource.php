@@ -42,10 +42,11 @@ abstract class AbstractResource
      */
     public function __construct(
         Service $service,
-        $endpoint,
-        $allowApplicationInfo = false,
-        $allowApplicationInfoPOS = false
-    ) {
+                $endpoint,
+                $allowApplicationInfo = false,
+                $allowApplicationInfoPOS = false
+    )
+    {
         $this->service = $service;
         $this->endpoint = $endpoint;
         $this->allowApplicationInfo = $allowApplicationInfo;
@@ -290,17 +291,21 @@ abstract class AbstractResource
      * @param $data
      * @return void
      */
-    private function replacePathParameters($data)
+    private function replacePathParameters(&$data)
     {
         $this->endpoint = preg_replace_callback(
             '/{([a-zA-Z]+)}/',
-            function ($matches) use ($data) {
-                return $data[$matches[1]] ?? $matches[0];
+            function ($matches) use (&$data) {
+                $value = $data[$matches[1]] ?? $matches[0];
+                if (isset($data[$matches[1]])) {
+                    unset($data[$matches[1]]);
+                }
+                return $value;
             },
             $this->endpoint
         );
     }
-      
+
     /**
      * @param $params
      * @return mixed
