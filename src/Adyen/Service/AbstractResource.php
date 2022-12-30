@@ -259,6 +259,31 @@ abstract class AbstractResource
             throw new AdyenException($msg);
         }
         $curlClient = $this->service->getClient()->getHttpClient();
+        return $curlClient->requestHttp($this->service, $url, $params, $method);
+    }
+
+    /**
+     * @param $url
+     * @param $method
+     * @param array|null $params
+     * @return mixed
+     * @throws AdyenException
+     */
+    public function requestHttpResource($url, $method = 'get', array $params = null)
+    {
+        // check if rest api method has a value
+        if (!$method) {
+            $msg = 'The REST API method is empty';
+            $this->service->getClient()->getLogger()->error($msg);
+            throw new AdyenException($msg);
+        }
+        // check if rest api method has a value
+        if (!$url) {
+            $msg = 'The REST API endpoint is empty';
+            $this->service->getClient()->getLogger()->error($msg);
+            throw new AdyenException($msg);
+        }
+        $curlClient = $this->service->getClient()->getHttpClient();
         return $curlClient->requestHttp($this->service, $this->endpoint . $url, $params, $method);
     }
 }

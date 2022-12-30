@@ -184,9 +184,9 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
      * @return mixed
      * @throws \Adyen\AdyenException
      */
-    public function getPaymentLinks($linkId)
+    public function retrievePaymentLinks($linkId)
     {
-        return $this->paymentLinks->requestHttp('/'. $linkId, 'get');
+        return $this->paymentLinks->requestHttpResource('/'. $linkId, 'get');
     }
 
     /**
@@ -194,9 +194,9 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
      * @return mixed
      * @throws \Adyen\AdyenException
      */
-    public function patchPaymentLinks($linkId, $params)
+    public function updatePaymentLinks($linkId, $params)
     {
-        return $this->paymentLinks->requestHttp('/'. $linkId, 'patch', $params);
+        return $this->paymentLinks->requestHttpResource('/'. $linkId, 'patch', $params);
     }
 
     /**

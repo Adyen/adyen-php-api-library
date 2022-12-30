@@ -294,7 +294,7 @@ class CheckoutTest extends TestCaseMock
      * @param string $jsonFile
      * @param int $httpStatus
      *
-     * @dataProvider successPaymentLinksProvider
+     * @dataProvider successPaymentsLinkProvider
      */
     public function testPaymentLinksSuccess($jsonFile, $httpStatus)
     {
@@ -319,10 +319,62 @@ class CheckoutTest extends TestCaseMock
         $this->assertStringContainsString('payByLink.shtml', $result['url']);
     }
 
-    public static function successPaymentLinksProvider()
+    public static function successPaymentsLinkProvider()
     {
         return array(
-            array('tests/Resources/Checkout/payment-links-success.json', 200),
+            array('tests/Resources/Checkout/payment-links-success.json', 200)
+        );
+    }
+
+    /**
+     * @param string $jsonFile
+     * @param int $httpStatus
+     *
+     * @dataProvider expiredPaymentsLinkProvider
+     */
+    public function testPaymentLinksExpired($jsonFile, $httpStatus)
+    {
+        $client = $this->createMockClient($jsonFile, $httpStatus);
+
+        $service = new Checkout($client);
+
+        $params = array(
+            'status' => "expired"
+        );
+
+        $result = $service->updatepaymentLinks('linkid', $params);
+
+        $this->assertEquals('expired', $result['status']);
+    }
+
+    public static function expiredPaymentsLinkProvider()
+    {
+        return array(
+            array('tests/Resources/Checkout/payment-links-expired.json', 200)
+        );
+    }
+
+    /**
+     * @param string $jsonFile
+     * @param int $httpStatus
+     *
+     * @dataProvider updatePaymentsLinkProvider
+     */
+    public function testPaymentLinksRetrieveSuccess($jsonFile, $httpStatus)
+    {
+        $client = $this->createMockClient($jsonFile, $httpStatus);
+
+        $service = new Checkout($client);
+
+        $result = $service->retrievePaymentLinks('linkId');
+
+        $this->assertStringContainsString('payByLink.shtml', $result['url']);
+    }
+
+    public static function updatePaymentsLinkProvider()
+    {
+        return array(
+            array('tests/Resources/Checkout/payment-links-success.json', 200)
         );
     }
 
