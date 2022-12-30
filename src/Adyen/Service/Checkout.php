@@ -180,6 +180,26 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
     }
 
     /**
+     * @param string $linkId
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+    public function getPaymentLinks($linkId)
+    {
+        return $this->paymentLinks->requestHttp('/'. $linkId, 'get');
+    }
+
+    /**
+     * @param string $linkId
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+    public function patchPaymentLinks($linkId, $params)
+    {
+        return $this->paymentLinks->requestHttp('/'. $linkId, 'patch', $params);
+    }
+
+    /**
      * @param array $params
      * @param array|null $requestOptions
      * @return mixed

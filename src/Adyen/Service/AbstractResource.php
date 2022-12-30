@@ -259,6 +259,6 @@ abstract class AbstractResource
             throw new AdyenException($msg);
         }
         $curlClient = $this->service->getClient()->getHttpClient();
-        return $curlClient->requestHttp($this->service, $url, $params, $method);
+        return $curlClient->requestHttp($this->service, $this->endpoint . $url, $params, $method);
     }
 }
