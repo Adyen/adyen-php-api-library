@@ -314,7 +314,7 @@ class CheckoutTest extends TestCaseMock
             'deliveryAddress' => $this->getExampleAddressStruct(),
         );
 
-        $result = $service->paymentLinks($params);
+        $result = $service->paymentLinks->create($params);
 
         $this->assertStringContainsString('payByLink.shtml', $result['url']);
     }
@@ -342,7 +342,7 @@ class CheckoutTest extends TestCaseMock
             'status' => "expired"
         );
 
-        $result = $service->updatepaymentLinks('linkid', $params);
+        $result = $service->paymentLinks->update('linkid', $params);
 
         $this->assertEquals('expired', $result['status']);
     }
@@ -366,7 +366,7 @@ class CheckoutTest extends TestCaseMock
 
         $service = new Checkout($client);
 
-        $result = $service->retrievePaymentLinks('linkId');
+        $result = $service->paymentLinks->retrieve('linkId');
 
         $this->assertStringContainsString('payByLink.shtml', $result['url']);
     }
@@ -404,7 +404,7 @@ class CheckoutTest extends TestCaseMock
         $this->expectException(AdyenException::class);
         $this->expectExceptionMessage($expectedExceptionMessage);
 
-        $service->paymentLinks($params);
+        $service->paymentLinks->create($params);
     }
 
     public static function invalidPaymentLinksProvider()

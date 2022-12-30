@@ -9,6 +9,8 @@ class PaymentLinks extends \Adyen\Service\AbstractCheckoutResource
      */
     protected $endpoint;
 
+    const PAYMENTLINK = '/paymentLinks';
+
     /**
      * Include applicationInfo key in the request parameters
      *
@@ -16,14 +18,21 @@ class PaymentLinks extends \Adyen\Service\AbstractCheckoutResource
      */
     protected $allowApplicationInfo = true;
 
-    /**
-     * @param \Adyen\Service $service
-     * @throws \Adyen\AdyenException
-     */
-    public function __construct($service)
+    public function create($params)
     {
-        $this->endpoint = $this->getCheckoutEndpoint($service) .
-            '/' . $service->getClient()->getApiCheckoutVersion() . '/paymentLinks';
-        parent::__construct($service, $this->endpoint, $this->allowApplicationInfo);
+        $url = $this->checkoutEndpoint . self::PAYMENTLINK;
+        return $this->requestHttp($url, 'post', $params);
+    }
+
+    public function update($linkId, $params)
+    {
+        $url = $this->checkoutEndpoint . self::PAYMENTLINK . "/" . $linkId;
+        return $this->requestHttp($url, 'patch', $params);
+    }
+
+    public function retrieve($linkId)
+    {
+        $url = $this->checkoutEndpoint . self::PAYMENTLINK . '/' .$linkId;
+        return $this->requestHttp($url);
     }
 }

@@ -32,6 +32,8 @@ abstract class AbstractResource
      */
     protected $managementEndpoint;
 
+    protected $checkoutEndpoint;
+
     /**
      * AbstractResource constructor.
      *
@@ -50,6 +52,8 @@ abstract class AbstractResource
         $this->endpoint = $endpoint;
         $this->allowApplicationInfo = $allowApplicationInfo;
         $this->allowApplicationInfoPOS = $allowApplicationInfoPOS;
+        $this->checkoutEndpoint = $service->getClient()->getConfig()->get('endpointCheckout') . '/'
+            . $service->getClient()->getApiCheckoutVersion();
         $this->managementEndpoint = $service->getClient()->getConfig()->get('endpointManagementApi')
             . $service->getClient()->getManagementApiVersion();
     }
@@ -260,30 +264,5 @@ abstract class AbstractResource
         }
         $curlClient = $this->service->getClient()->getHttpClient();
         return $curlClient->requestHttp($this->service, $url, $params, $method);
-    }
-
-    /**
-     * @param $url
-     * @param $method
-     * @param array|null $params
-     * @return mixed
-     * @throws AdyenException
-     */
-    public function requestHttpResource($url, $method = 'get', array $params = null)
-    {
-        // check if rest api method has a value
-        if (!$method) {
-            $msg = 'The REST API method is empty';
-            $this->service->getClient()->getLogger()->error($msg);
-            throw new AdyenException($msg);
-        }
-        // check if rest api method has a value
-        if (!$url) {
-            $msg = 'The REST API endpoint is empty';
-            $this->service->getClient()->getLogger()->error($msg);
-            throw new AdyenException($msg);
-        }
-        $curlClient = $this->service->getClient()->getHttpClient();
-        return $curlClient->requestHttp($this->service, $this->endpoint . $url, $params, $method);
     }
 }
