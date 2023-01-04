@@ -23,7 +23,7 @@ The library supports all APIs under the following services:
   * [Fund API](https://docs.adyen.com/api-explorer/#/Fund/v6/overview) Current supported version: **v6**
   * [Notification Configuration API](https://docs.adyen.com/api-explorer/#/NotificationConfigurationService/v6/overview) Current supported version: **v6**
   * [Hosted Onboarding API](https://docs.adyen.com/api-explorer/#/Hop/v6/overview) Current supported version: **v6**
-* [Cloud-based Terminal API](https://docs.adyen.com/point-of-sale/terminal-api-reference): Our point-of-sale integration.
+* [Cloud-based Terminal API](https://docs.adyen.com/point-of-sale/design-your-integration/terminal-api): Our point-of-sale integration.
 * [Referrals API](https://docs.adyen.com/risk-management/automate-submitting-referrals/referrals-api-reference): Endpoints to [automate submitting referrals](https://docs.adyen.com/risk-management/automate-submitting-referrals) for Adyen risk rules.
 * [Refunds API](https://docs.adyen.com/api-explorer/#/CheckoutService/v68/post/payments/{paymentPspReference}/refunds): Refunds a payment that has been captured, and returns a unique reference for this request. Current supported version: **v68**
 * [Reversals API](https://docs.adyen.com/api-explorer/#/CheckoutService/v68/post/payments/{paymentPspReference}/reversals): Refunds a payment if it has already been captured, and cancels a payment if it has not yet been captured. Current supported version: **v68**
