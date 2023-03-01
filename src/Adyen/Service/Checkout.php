@@ -2,6 +2,12 @@
 
 namespace Adyen\Service;
 
+use Adyen\AdyenException;
+use Adyen\Model\Checkout\CreateCheckoutSessionRequest;
+use Adyen\Model\Checkout\CreateCheckoutSessionResponse;
+use Adyen\Model\Checkout\ObjectSerializer;
+use Adyen\Model\Checkout\ModelInterface;
+
 class Checkout extends \Adyen\ApiKeyAuthenticatedService
 {
     /**
@@ -88,7 +94,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
      * Checkout constructor.
      *
      * @param \Adyen\Client $client
-     * @throws \Adyen\AdyenException
+     * @throws AdyenException
      */
     public function __construct(\Adyen\Client $client)
     {
@@ -114,7 +120,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
     /**
      * @param $params
      * @return mixed
-     * @throws \Adyen\AdyenException
+     * @throws AdyenException
      */
     public function paymentSession($params)
     {
@@ -125,7 +131,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
     /**
      * @param $params
      * @return mixed
-     * @throws \Adyen\AdyenException
+     * @throws AdyenException
      */
     public function paymentsResult($params)
     {
@@ -136,7 +142,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
     /**
      * @param $params
      * @return mixed
-     * @throws \Adyen\AdyenException
+     * @throws AdyenException
      */
     public function paymentMethods($params)
     {
@@ -148,7 +154,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
      * @param $params
      * @param null $requestOptions
      * @return mixed
-     * @throws \Adyen\AdyenException
+     * @throws AdyenException
      */
     public function payments($params, $requestOptions = null)
     {
@@ -160,7 +166,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
      * @param $params
      * @param null $requestOptions
      * @return mixed
-     * @throws \Adyen\AdyenException
+     * @throws AdyenException
      */
     public function paymentsDetails($params, $requestOptions = null)
     {
@@ -172,7 +178,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
      * @param array $params
      * @param array|null $requestOptions
      * @return mixed
-     * @throws \Adyen\AdyenException
+     * @throws AdyenException
      */
     public function paymentLinks($params, $requestOptions = null)
     {
@@ -183,7 +189,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
      * @param array $params
      * @param array|null $requestOptions
      * @return mixed
-     * @throws \Adyen\AdyenException
+     * @throws AdyenException
      */
     public function paymentMethodsBalance($params, $requestOptions = null)
     {
@@ -194,7 +200,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
      * @param array $params
      * @param array|null $requestOptions
      * @return mixed
-     * @throws \Adyen\AdyenException
+     * @throws AdyenException
      */
     public function orders($params, $requestOptions = null)
     {
@@ -205,7 +211,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
      * @param array $params
      * @param array|null $requestOptions
      * @return mixed
-     * @throws \Adyen\AdyenException
+     * @throws AdyenException
      */
     public function ordersCancel($params, $requestOptions = null)
     {
@@ -216,7 +222,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
      * @param array $params
      * @param array|null $requestOptions
      * @return mixed
-     * @throws \Adyen\AdyenException
+     * @throws AdyenException
      */
     public function donations($params, $requestOptions = null)
     {
@@ -224,10 +230,23 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
     }
 
     /**
+     * @param CreateCheckoutSessionRequest $createCheckoutSessionRequest
+     * @param array|null $requestOptions
+     * @return mixed
+     * @throws AdyenException
+     */
+    public function sessionsTypes(CreateCheckoutSessionRequest $createCheckoutSessionRequest, $requestOptions = null): CreateCheckoutSessionResponse
+    {
+        $jsonRequest = (array)$createCheckoutSessionRequest->jsonSerialize();
+        $jsonResponse = $this->sessions($jsonRequest, $requestOptions);
+        return ObjectSerializer::deserialize($jsonResponse, '\Adyen\Model\Checkout\CreateCheckoutSessionResponse', []);
+    }
+
+    /**
      * @param array $params
      * @param array|null $requestOptions
      * @return mixed
-     * @throws \Adyen\AdyenException
+     * @throws AdyenException
      */
     public function sessions($params, $requestOptions = null)
     {
@@ -238,7 +257,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
      * @param array $params
      * @param array|null $requestOptions
      * @return mixed
-     * @throws \Adyen\AdyenException
+     * @throws AdyenException
      */
     public function refunds($params, $requestOptions = null)
     {
@@ -249,7 +268,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
      * @param array $params
      * @param array|null $requestOptions
      * @return mixed
-     * @throws \Adyen\AdyenException
+     * @throws AdyenException
      */
     public function reversals($params, $requestOptions = null)
     {
@@ -260,7 +279,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
      * @param array $params
      * @param array|null $requestOptions
      * @return mixed
-     * @throws \Adyen\AdyenException
+     * @throws AdyenException
      */
     public function captures($params, $requestOptions = null)
     {
@@ -271,7 +290,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
      * @param array $params
      * @param array|null $requestOptions
      * @return mixed
-     * @throws \Adyen\AdyenException
+     * @throws AdyenException
      */
     public function cancels($params, $requestOptions = null)
     {
@@ -282,7 +301,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
      * @param array $params
      * @param array|null $requestOptions
      * @return mixed
-     * @throws \Adyen\AdyenException
+     * @throws AdyenException
      */
     public function technicalCancels($params, $requestOptions = null)
     {
