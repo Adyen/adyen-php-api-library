@@ -451,30 +451,6 @@ class CheckoutTest extends TestCaseMock
         $this->assertNotNull($result['sessionData']);
     }
 
-    /**
-     * @param string $jsonFile
-     * @param int $httpStatus
-     *
-     * @dataProvider successSessionsProvider
-     */
-    public function testSessionsTypesSuccess($jsonFile, $httpStatus)
-    {
-        $client = $this->createMockClient($jsonFile, $httpStatus);
-
-        $service = new Checkout($client);
-
-        $request = new CreateCheckoutSessionRequest();
-        $request->setAmount(new Amount(["currency"=>"EUR", "amount"=>10]))
-            ->setMerchantAccount("TestMerchantAccount")
-            ->setCountryCode("NL")
-            ->setReference("reference123456789")
-            ->setReturnUrl("https://your-company.com/checkout?shopperOrder=12xy..");
-
-        $response = $service->sessionsTypes($request);
-        $this->assertEquals($response->getMerchantAccount(), 'YOUR_MERCHANT_ACCOUNT');
-        $this->assertEquals($response->getExpiresAt()->format('Y-m-d H:i:s'), "2021-10-07 17:10:07");
-    }
-
     public static function successSessionsProvider()
     {
         return array(
