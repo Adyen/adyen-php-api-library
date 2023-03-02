@@ -61,6 +61,10 @@ jobs:
       - name: SonarCloud integration
         if: ${{ env.SONAR_TOKEN }}
         uses: sonarsource/sonarcloud-github-action@master
+        with:
+          projectBaseDir: my-custom-directory
+          args: >
+            -Dsonar.test.exclusions=./Adyen/Model
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
