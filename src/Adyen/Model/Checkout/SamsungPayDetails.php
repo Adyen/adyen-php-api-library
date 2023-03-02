@@ -77,7 +77,7 @@ class SamsungPayDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'checkout_attempt_id' => false,
         'funding_source' => false,
         'recurring_detail_reference' => false,
@@ -91,7 +91,7 @@ class SamsungPayDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

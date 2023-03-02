@@ -93,7 +93,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'requested_test_error_response_code' => false,
         'authorisation_type' => false,
         'custom_routing_flag' => false,
@@ -115,7 +115,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

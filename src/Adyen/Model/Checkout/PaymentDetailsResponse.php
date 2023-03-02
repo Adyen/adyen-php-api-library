@@ -95,7 +95,7 @@ class PaymentDetailsResponse implements ModelInterface, ArrayAccess, \JsonSerial
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'additional_data' => false,
         'amount' => false,
         'donation_token' => false,
@@ -118,7 +118,7 @@ class PaymentDetailsResponse implements ModelInterface, ArrayAccess, \JsonSerial
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

@@ -143,7 +143,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'acct_info' => false,
         'acct_type' => false,
         'acquirer_bin' => false,
@@ -190,7 +190,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

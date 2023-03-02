@@ -73,7 +73,7 @@ class ThreeDSRequestData implements ModelInterface, ArrayAccess, \JsonSerializab
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'challenge_window_size' => false,
         'data_only' => false,
         'native_three_ds' => false,
@@ -85,7 +85,7 @@ class ThreeDSRequestData implements ModelInterface, ArrayAccess, \JsonSerializab
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

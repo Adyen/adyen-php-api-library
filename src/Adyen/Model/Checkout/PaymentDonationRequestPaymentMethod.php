@@ -162,7 +162,7 @@ class PaymentDonationRequestPaymentMethod implements ModelInterface, ArrayAccess
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'bank_account_number' => false,
         'bank_location_id' => false,
         'checkout_attempt_id' => false,
@@ -218,7 +218,7 @@ class PaymentDonationRequestPaymentMethod implements ModelInterface, ArrayAccess
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

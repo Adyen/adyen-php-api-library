@@ -75,7 +75,7 @@ class CheckoutSDKAction implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'payment_data' => false,
         'payment_method_type' => false,
         'sdk_data' => false,
@@ -88,7 +88,7 @@ class CheckoutSDKAction implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

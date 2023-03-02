@@ -73,7 +73,7 @@ class GiropayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'checkout_attempt_id' => false,
         'recurring_detail_reference' => false,
         'stored_payment_method_id' => false,
@@ -85,7 +85,7 @@ class GiropayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

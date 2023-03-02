@@ -67,7 +67,7 @@ class DetailsRequestAuthenticationData implements ModelInterface, ArrayAccess, \
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'authentication_only' => false
     ];
 
@@ -76,7 +76,7 @@ class DetailsRequestAuthenticationData implements ModelInterface, ArrayAccess, \
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

@@ -83,7 +83,7 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'enhanced_scheme_data_customer_reference' => false,
         'enhanced_scheme_data_employee_name' => false,
         'enhanced_scheme_data_job_description' => false,
@@ -100,7 +100,7 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

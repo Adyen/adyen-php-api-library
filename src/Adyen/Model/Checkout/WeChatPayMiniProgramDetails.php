@@ -73,7 +73,7 @@ class WeChatPayMiniProgramDetails implements ModelInterface, ArrayAccess, \JsonS
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'app_id' => false,
         'checkout_attempt_id' => false,
         'openid' => false,
@@ -85,7 +85,7 @@ class WeChatPayMiniProgramDetails implements ModelInterface, ArrayAccess, \JsonS
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

@@ -71,7 +71,7 @@ class AdditionalDataRetry implements ModelInterface, ArrayAccess, \JsonSerializa
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'retry_chain_attempt_number' => false,
         'retry_order_attempt_number' => false,
         'retry_skip_retry' => false
@@ -82,7 +82,7 @@ class AdditionalDataRetry implements ModelInterface, ArrayAccess, \JsonSerializa
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

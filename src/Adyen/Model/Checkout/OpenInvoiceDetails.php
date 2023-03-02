@@ -79,7 +79,7 @@ class OpenInvoiceDetails implements ModelInterface, ArrayAccess, \JsonSerializab
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'billing_address' => false,
         'checkout_attempt_id' => false,
         'delivery_address' => false,
@@ -94,7 +94,7 @@ class OpenInvoiceDetails implements ModelInterface, ArrayAccess, \JsonSerializab
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

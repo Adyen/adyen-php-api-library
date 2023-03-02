@@ -95,7 +95,7 @@ class AdditionalDataRiskStandalone implements ModelInterface, ArrayAccess, \Json
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'pay_pal_country_code' => false,
         'pay_pal_email_id' => false,
         'pay_pal_first_name' => false,
@@ -118,7 +118,7 @@ class AdditionalDataRiskStandalone implements ModelInterface, ArrayAccess, \Json
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

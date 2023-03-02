@@ -67,7 +67,7 @@ class AdditionalDataOpi implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'opi_include_trans_token' => false
     ];
 
@@ -76,7 +76,7 @@ class AdditionalDataOpi implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

@@ -73,7 +73,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'checkout_attempt_id' => false,
         'shopper_email' => false,
         'telephone_number' => false,
@@ -85,7 +85,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

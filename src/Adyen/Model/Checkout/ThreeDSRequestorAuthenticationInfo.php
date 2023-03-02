@@ -71,7 +71,7 @@ class ThreeDSRequestorAuthenticationInfo implements ModelInterface, ArrayAccess,
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'three_ds_req_auth_data' => false,
         'three_ds_req_auth_method' => false,
         'three_ds_req_auth_timestamp' => false
@@ -82,7 +82,7 @@ class ThreeDSRequestorAuthenticationInfo implements ModelInterface, ArrayAccess,
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

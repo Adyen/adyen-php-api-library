@@ -71,7 +71,7 @@ class ResponseAdditionalDataNetworkTokens implements ModelInterface, ArrayAccess
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'network_token_available' => false,
         'network_token_bin' => false,
         'network_token_token_summary' => false
@@ -82,7 +82,7 @@ class ResponseAdditionalDataNetworkTokens implements ModelInterface, ArrayAccess
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

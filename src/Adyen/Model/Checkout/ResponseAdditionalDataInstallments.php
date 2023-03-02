@@ -89,7 +89,7 @@ class ResponseAdditionalDataInstallments implements ModelInterface, ArrayAccess,
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'installment_payment_data_installment_type' => false,
         'installment_payment_data_option_item_nr_annual_percentage_rate' => false,
         'installment_payment_data_option_item_nr_first_installment_amount' => false,
@@ -109,7 +109,7 @@ class ResponseAdditionalDataInstallments implements ModelInterface, ArrayAccess,
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

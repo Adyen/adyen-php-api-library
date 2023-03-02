@@ -77,7 +77,7 @@ class PayWithGoogleDetails implements ModelInterface, ArrayAccess, \JsonSerializ
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'checkout_attempt_id' => false,
         'funding_source' => false,
         'google_pay_token' => false,
@@ -91,7 +91,7 @@ class PayWithGoogleDetails implements ModelInterface, ArrayAccess, \JsonSerializ
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

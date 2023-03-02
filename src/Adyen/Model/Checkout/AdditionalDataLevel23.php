@@ -99,7 +99,7 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'enhanced_scheme_data_customer_reference' => false,
         'enhanced_scheme_data_destination_country_code' => false,
         'enhanced_scheme_data_destination_postal_code' => false,
@@ -124,7 +124,7 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

@@ -97,7 +97,7 @@ class AcctInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'ch_acc_age_ind' => false,
         'ch_acc_change' => false,
         'ch_acc_change_ind' => false,
@@ -121,7 +121,7 @@ class AcctInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

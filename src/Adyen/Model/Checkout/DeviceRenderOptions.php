@@ -69,7 +69,7 @@ class DeviceRenderOptions implements ModelInterface, ArrayAccess, \JsonSerializa
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'sdk_interface' => false,
         'sdk_ui_type' => false
     ];
@@ -79,7 +79,7 @@ class DeviceRenderOptions implements ModelInterface, ArrayAccess, \JsonSerializa
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

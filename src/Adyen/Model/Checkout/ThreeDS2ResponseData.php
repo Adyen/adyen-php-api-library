@@ -103,7 +103,7 @@ class ThreeDS2ResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'acs_challenge_mandated' => false,
         'acs_operator_id' => false,
         'acs_reference_number' => false,
@@ -130,7 +130,7 @@ class ThreeDS2ResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

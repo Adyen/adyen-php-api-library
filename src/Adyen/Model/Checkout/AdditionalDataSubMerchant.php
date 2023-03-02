@@ -85,7 +85,7 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'sub_merchant_number_of_sub_sellers' => false,
         'sub_merchant_sub_seller_sub_seller_nr_city' => false,
         'sub_merchant_sub_seller_sub_seller_nr_country' => false,
@@ -103,7 +103,7 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

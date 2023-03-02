@@ -103,7 +103,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'account_age_indicator' => false,
         'account_change_date' => false,
         'account_change_indicator' => false,
@@ -130,7 +130,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

@@ -77,7 +77,7 @@ class AdditionalData3DSecure implements ModelInterface, ArrayAccess, \JsonSerial
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'allow3_ds2' => false,
         'challenge_window_size' => false,
         'execute_three_d' => false,
@@ -91,7 +91,7 @@ class AdditionalData3DSecure implements ModelInterface, ArrayAccess, \JsonSerial
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

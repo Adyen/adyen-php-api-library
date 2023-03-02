@@ -99,7 +99,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'lodging_check_in_date' => false,
         'lodging_check_out_date' => false,
         'lodging_customer_service_toll_free_number' => false,
@@ -124,7 +124,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

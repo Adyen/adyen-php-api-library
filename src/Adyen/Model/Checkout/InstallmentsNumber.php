@@ -67,7 +67,7 @@ class InstallmentsNumber implements ModelInterface, ArrayAccess, \JsonSerializab
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'max_number_of_installments' => false
     ];
 
@@ -76,7 +76,7 @@ class InstallmentsNumber implements ModelInterface, ArrayAccess, \JsonSerializab
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

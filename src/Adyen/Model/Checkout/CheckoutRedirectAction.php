@@ -75,7 +75,7 @@ class CheckoutRedirectAction implements ModelInterface, ArrayAccess, \JsonSerial
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'data' => false,
         'method' => false,
         'payment_method_type' => false,
@@ -88,7 +88,7 @@ class CheckoutRedirectAction implements ModelInterface, ArrayAccess, \JsonSerial
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

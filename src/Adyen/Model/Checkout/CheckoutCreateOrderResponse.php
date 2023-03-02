@@ -85,7 +85,7 @@ class CheckoutCreateOrderResponse implements ModelInterface, ArrayAccess, \JsonS
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'additional_data' => false,
         'amount' => false,
         'expires_at' => false,
@@ -103,7 +103,7 @@ class CheckoutCreateOrderResponse implements ModelInterface, ArrayAccess, \JsonS
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

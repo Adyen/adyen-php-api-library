@@ -101,7 +101,7 @@ class AdditionalDataOpenInvoice implements ModelInterface, ArrayAccess, \JsonSer
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'openinvoicedata_merchant_data' => false,
         'openinvoicedata_number_of_lines' => false,
         'openinvoicedata_recipient_first_name' => false,
@@ -127,7 +127,7 @@ class AdditionalDataOpenInvoice implements ModelInterface, ArrayAccess, \JsonSer
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

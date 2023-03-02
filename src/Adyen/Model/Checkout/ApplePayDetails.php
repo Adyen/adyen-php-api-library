@@ -77,7 +77,7 @@ class ApplePayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'apple_pay_token' => false,
         'checkout_attempt_id' => false,
         'funding_source' => false,
@@ -91,7 +91,7 @@ class ApplePayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

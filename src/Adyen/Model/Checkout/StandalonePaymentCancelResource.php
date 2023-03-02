@@ -75,7 +75,7 @@ class StandalonePaymentCancelResource implements ModelInterface, ArrayAccess, \J
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'merchant_account' => false,
         'payment_reference' => false,
         'psp_reference' => false,
@@ -88,7 +88,7 @@ class StandalonePaymentCancelResource implements ModelInterface, ArrayAccess, \J
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

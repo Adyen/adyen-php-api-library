@@ -77,7 +77,7 @@ class ResponseAdditionalDataBillingAddress implements ModelInterface, ArrayAcces
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'billing_address_city' => false,
         'billing_address_country' => false,
         'billing_address_house_number_or_name' => false,
@@ -91,7 +91,7 @@ class ResponseAdditionalDataBillingAddress implements ModelInterface, ArrayAcces
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

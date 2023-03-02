@@ -81,7 +81,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'card_bin' => false,
         'card_holder_name' => false,
         'card_issuing_bank' => false,
@@ -97,7 +97,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

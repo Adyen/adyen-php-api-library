@@ -46,7 +46,6 @@ $(services): target/spec $(openapi-generator-jar)
 	mv $(output)/lib/$@ $(models)/$@
 	mv $(output)/lib/ObjectSerializer.php $(models)/$@
 
-#		--model-package $(subst /,.,com.adyen.model.$@)
 # Checkout spec (and patch version)
 target/spec:
 	git clone https://github.com/Adyen/adyen-openapi.git target/spec

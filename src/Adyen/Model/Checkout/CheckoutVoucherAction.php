@@ -105,7 +105,7 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'alternative_reference' => false,
         'collection_institution_number' => false,
         'download_url' => false,
@@ -133,7 +133,7 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

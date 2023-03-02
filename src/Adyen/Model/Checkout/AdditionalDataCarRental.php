@@ -111,7 +111,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'car_rental_check_out_date' => false,
         'car_rental_customer_service_toll_free_number' => false,
         'car_rental_days_rented' => false,
@@ -142,7 +142,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

@@ -73,7 +73,7 @@ class CheckoutCreateOrderRequest implements ModelInterface, ArrayAccess, \JsonSe
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'amount' => false,
         'expires_at' => false,
         'merchant_account' => false,
@@ -85,7 +85,7 @@ class CheckoutCreateOrderRequest implements ModelInterface, ArrayAccess, \JsonSe
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

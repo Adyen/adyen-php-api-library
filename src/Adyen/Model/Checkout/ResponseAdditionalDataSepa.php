@@ -71,7 +71,7 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'sepadirectdebit_date_of_signature' => false,
         'sepadirectdebit_mandate_id' => false,
         'sepadirectdebit_sequence_type' => false
@@ -82,7 +82,7 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

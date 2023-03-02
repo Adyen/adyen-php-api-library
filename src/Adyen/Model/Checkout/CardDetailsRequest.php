@@ -75,7 +75,7 @@ class CardDetailsRequest implements ModelInterface, ArrayAccess, \JsonSerializab
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'card_number' => false,
         'country_code' => false,
         'encrypted_card_number' => false,
@@ -88,7 +88,7 @@ class CardDetailsRequest implements ModelInterface, ArrayAccess, \JsonSerializab
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

@@ -73,7 +73,7 @@ class MasterpassDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'checkout_attempt_id' => false,
         'funding_source' => false,
         'masterpass_transaction_id' => false,
@@ -85,7 +85,7 @@ class MasterpassDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

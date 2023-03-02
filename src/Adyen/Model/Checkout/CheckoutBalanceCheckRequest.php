@@ -153,7 +153,7 @@ class CheckoutBalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonS
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'account_info' => false,
         'additional_amount' => false,
         'additional_data' => false,
@@ -205,7 +205,7 @@ class CheckoutBalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonS
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

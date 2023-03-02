@@ -81,7 +81,7 @@ class AdditionalDataRatepay implements ModelInterface, ArrayAccess, \JsonSeriali
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'ratepay_installment_amount' => false,
         'ratepay_interest_rate' => false,
         'ratepay_last_installment_amount' => false,
@@ -97,7 +97,7 @@ class AdditionalDataRatepay implements ModelInterface, ArrayAccess, \JsonSeriali
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

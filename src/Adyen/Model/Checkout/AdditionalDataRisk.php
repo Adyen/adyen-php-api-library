@@ -107,7 +107,7 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'riskdata__custom_field_name' => false,
         'riskdata_basket_item_item_nr_amount_per_item' => false,
         'riskdata_basket_item_item_nr_brand' => false,
@@ -136,7 +136,7 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

@@ -71,7 +71,7 @@ class ListStoredPaymentMethodsResponse implements ModelInterface, ArrayAccess, \
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'merchant_account' => false,
         'shopper_reference' => false,
         'stored_payment_methods' => false
@@ -82,7 +82,7 @@ class ListStoredPaymentMethodsResponse implements ModelInterface, ArrayAccess, \
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

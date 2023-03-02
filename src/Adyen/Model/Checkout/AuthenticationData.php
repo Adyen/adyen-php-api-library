@@ -71,7 +71,7 @@ class AuthenticationData implements ModelInterface, ArrayAccess, \JsonSerializab
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'attempt_authentication' => false,
         'authentication_only' => false,
         'three_ds_request_data' => false
@@ -82,7 +82,7 @@ class AuthenticationData implements ModelInterface, ArrayAccess, \JsonSerializab
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

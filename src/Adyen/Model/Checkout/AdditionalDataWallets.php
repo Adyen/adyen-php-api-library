@@ -77,7 +77,7 @@ class AdditionalDataWallets implements ModelInterface, ArrayAccess, \JsonSeriali
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'androidpay_token' => false,
         'masterpass_transaction_id' => false,
         'payment_token' => false,
@@ -91,7 +91,7 @@ class AdditionalDataWallets implements ModelInterface, ArrayAccess, \JsonSeriali
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization

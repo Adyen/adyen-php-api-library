@@ -79,7 +79,7 @@ class UpiCollectDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var boolean[]
       */
-    protected static array $openAPINullables = [
+    protected static $openAPINullables = [
         'billing_sequence_number' => false,
         'checkout_attempt_id' => false,
         'recurring_detail_reference' => false,
@@ -94,7 +94,7 @@ class UpiCollectDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var boolean[]
       */
-    protected array $openAPINullablesSetToNull = [];
+    protected $openAPINullablesSetToNull = [];
 
     /**
      * Array of property to type mappings. Used for (de)serialization
