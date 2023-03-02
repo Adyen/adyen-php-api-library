@@ -63,7 +63,8 @@ jobs:
         uses: sonarsource/sonarcloud-github-action@master
         with:
           args: >
-            -Dsonar.test.exclusions=./Adyen/Model/**
+            -Dsonar.sources=src/
+            -Dsonar.sources.exclusions=src/Adyen/Model/**
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
