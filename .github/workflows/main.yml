@@ -62,7 +62,7 @@ jobs:
         if: ${{ env.SONAR_TOKEN }}
         uses: sonarsource/sonarcloud-github-action@master
         with:
-          projectBaseDir: my-custom-directory
+          projectBaseDir: adyen-php-api-library
           args: >
             -Dsonar.test.exclusions=./Adyen/Model
         env:
