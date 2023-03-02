@@ -75,9 +75,9 @@ class DetailsRequest implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'authentication_data' => false,
-		'details' => false,
-		'payment_data' => false,
-		'three_ds_authentication_only' => false
+        'details' => false,
+        'payment_data' => false,
+        'three_ds_authentication_only' => false
     ];
 
     /**
@@ -485,7 +485,7 @@ class DetailsRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -511,5 +511,3 @@ class DetailsRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

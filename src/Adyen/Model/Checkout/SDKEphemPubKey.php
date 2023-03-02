@@ -75,9 +75,9 @@ class SDKEphemPubKey implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'crv' => false,
-		'kty' => false,
-		'x' => false,
-		'y' => false
+        'kty' => false,
+        'x' => false,
+        'y' => false
     ];
 
     /**
@@ -472,7 +472,7 @@ class SDKEphemPubKey implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -498,5 +498,3 @@ class SDKEphemPubKey implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -71,7 +71,7 @@ class CardBrandDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'supported' => false,
-		'type' => false
+        'type' => false
     ];
 
     /**
@@ -404,7 +404,7 @@ class CardBrandDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -430,5 +430,3 @@ class CardBrandDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

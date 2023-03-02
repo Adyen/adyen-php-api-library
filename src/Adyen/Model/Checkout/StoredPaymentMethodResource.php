@@ -101,22 +101,22 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
       */
     protected static array $openAPINullables = [
         'brand' => false,
-		'expiry_month' => false,
-		'expiry_year' => false,
-		'external_response_code' => false,
-		'external_token_reference' => false,
-		'holder_name' => false,
-		'iban' => false,
-		'id' => false,
-		'issuer_name' => false,
-		'last_four' => false,
-		'name' => false,
-		'network_tx_reference' => false,
-		'owner_name' => false,
-		'shopper_email' => false,
-		'shopper_reference' => false,
-		'supported_recurring_processing_models' => false,
-		'type' => false
+        'expiry_month' => false,
+        'expiry_year' => false,
+        'external_response_code' => false,
+        'external_token_reference' => false,
+        'holder_name' => false,
+        'iban' => false,
+        'id' => false,
+        'issuer_name' => false,
+        'last_four' => false,
+        'name' => false,
+        'network_tx_reference' => false,
+        'owner_name' => false,
+        'shopper_email' => false,
+        'shopper_reference' => false,
+        'supported_recurring_processing_models' => false,
+        'type' => false
     ];
 
     /**
@@ -914,7 +914,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -940,5 +940,3 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -81,12 +81,12 @@ class CheckoutThreeDS2Action implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static array $openAPINullables = [
         'authorisation_token' => false,
-		'payment_data' => false,
-		'payment_method_type' => false,
-		'subtype' => false,
-		'token' => false,
-		'type' => false,
-		'url' => false
+        'payment_data' => false,
+        'payment_method_type' => false,
+        'subtype' => false,
+        'token' => false,
+        'type' => false,
+        'url' => false
     ];
 
     /**
@@ -609,7 +609,7 @@ class CheckoutThreeDS2Action implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -635,5 +635,3 @@ class CheckoutThreeDS2Action implements ModelInterface, ArrayAccess, \JsonSerial
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

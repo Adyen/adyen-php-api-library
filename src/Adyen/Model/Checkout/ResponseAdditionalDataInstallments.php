@@ -91,17 +91,17 @@ class ResponseAdditionalDataInstallments implements ModelInterface, ArrayAccess,
       */
     protected static array $openAPINullables = [
         'installment_payment_data_installment_type' => false,
-		'installment_payment_data_option_item_nr_annual_percentage_rate' => false,
-		'installment_payment_data_option_item_nr_first_installment_amount' => false,
-		'installment_payment_data_option_item_nr_installment_fee' => false,
-		'installment_payment_data_option_item_nr_interest_rate' => false,
-		'installment_payment_data_option_item_nr_maximum_number_of_installments' => false,
-		'installment_payment_data_option_item_nr_minimum_number_of_installments' => false,
-		'installment_payment_data_option_item_nr_number_of_installments' => false,
-		'installment_payment_data_option_item_nr_subsequent_installment_amount' => false,
-		'installment_payment_data_option_item_nr_total_amount_due' => false,
-		'installment_payment_data_payment_options' => false,
-		'installments_value' => false
+        'installment_payment_data_option_item_nr_annual_percentage_rate' => false,
+        'installment_payment_data_option_item_nr_first_installment_amount' => false,
+        'installment_payment_data_option_item_nr_installment_fee' => false,
+        'installment_payment_data_option_item_nr_interest_rate' => false,
+        'installment_payment_data_option_item_nr_maximum_number_of_installments' => false,
+        'installment_payment_data_option_item_nr_minimum_number_of_installments' => false,
+        'installment_payment_data_option_item_nr_number_of_installments' => false,
+        'installment_payment_data_option_item_nr_subsequent_installment_amount' => false,
+        'installment_payment_data_option_item_nr_total_amount_due' => false,
+        'installment_payment_data_payment_options' => false,
+        'installments_value' => false
     ];
 
     /**
@@ -744,7 +744,7 @@ class ResponseAdditionalDataInstallments implements ModelInterface, ArrayAccess,
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -770,5 +770,3 @@ class ResponseAdditionalDataInstallments implements ModelInterface, ArrayAccess,
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

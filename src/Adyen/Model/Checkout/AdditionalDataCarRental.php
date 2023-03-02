@@ -113,28 +113,28 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static array $openAPINullables = [
         'car_rental_check_out_date' => false,
-		'car_rental_customer_service_toll_free_number' => false,
-		'car_rental_days_rented' => false,
-		'car_rental_fuel_charges' => false,
-		'car_rental_insurance_charges' => false,
-		'car_rental_location_city' => false,
-		'car_rental_location_country' => false,
-		'car_rental_location_state_province' => false,
-		'car_rental_no_show_indicator' => false,
-		'car_rental_one_way_drop_off_charges' => false,
-		'car_rental_rate' => false,
-		'car_rental_rate_indicator' => false,
-		'car_rental_rental_agreement_number' => false,
-		'car_rental_rental_class_id' => false,
-		'car_rental_renter_name' => false,
-		'car_rental_return_city' => false,
-		'car_rental_return_country' => false,
-		'car_rental_return_date' => false,
-		'car_rental_return_location_id' => false,
-		'car_rental_return_state_province' => false,
-		'car_rental_tax_exempt_indicator' => false,
-		'travel_entertainment_auth_data_duration' => false,
-		'travel_entertainment_auth_data_market' => false
+        'car_rental_customer_service_toll_free_number' => false,
+        'car_rental_days_rented' => false,
+        'car_rental_fuel_charges' => false,
+        'car_rental_insurance_charges' => false,
+        'car_rental_location_city' => false,
+        'car_rental_location_country' => false,
+        'car_rental_location_state_province' => false,
+        'car_rental_no_show_indicator' => false,
+        'car_rental_one_way_drop_off_charges' => false,
+        'car_rental_rate' => false,
+        'car_rental_rate_indicator' => false,
+        'car_rental_rental_agreement_number' => false,
+        'car_rental_rental_class_id' => false,
+        'car_rental_renter_name' => false,
+        'car_rental_return_city' => false,
+        'car_rental_return_country' => false,
+        'car_rental_return_date' => false,
+        'car_rental_return_location_id' => false,
+        'car_rental_return_state_province' => false,
+        'car_rental_tax_exempt_indicator' => false,
+        'travel_entertainment_auth_data_duration' => false,
+        'travel_entertainment_auth_data_market' => false
     ];
 
     /**
@@ -1118,7 +1118,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -1144,5 +1144,3 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

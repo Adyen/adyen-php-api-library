@@ -239,7 +239,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
     {
         $jsonRequest = (array)$createCheckoutSessionRequest->jsonSerialize();
         $jsonResponse = $this->sessions($jsonRequest, $requestOptions);
-        return ObjectSerializer::deserialize($jsonResponse, '\Adyen\Model\Checkout\CreateCheckoutSessionResponse', []);
+        return ObjectSerializer::deserialize($jsonResponse, CreateCheckoutSessionResponse::class, []);
     }
 
     /**

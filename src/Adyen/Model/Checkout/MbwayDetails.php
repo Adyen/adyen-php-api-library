@@ -75,9 +75,9 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'checkout_attempt_id' => false,
-		'shopper_email' => false,
-		'telephone_number' => false,
-		'type' => false
+        'shopper_email' => false,
+        'telephone_number' => false,
+        'type' => false
     ];
 
     /**
@@ -369,7 +369,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets shopper_email
      *
-     * @param string $shopper_email 
+     * @param string $shopper_email
      *
      * @return self
      */
@@ -396,7 +396,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets telephone_number
      *
-     * @param string $telephone_number 
+     * @param string $telephone_number
      *
      * @return self
      */
@@ -510,7 +510,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -536,5 +536,3 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

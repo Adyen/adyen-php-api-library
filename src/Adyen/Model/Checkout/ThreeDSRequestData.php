@@ -75,9 +75,9 @@ class ThreeDSRequestData implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static array $openAPINullables = [
         'challenge_window_size' => false,
-		'data_only' => false,
-		'native_three_ds' => false,
-		'three_ds_version' => false
+        'data_only' => false,
+        'native_three_ds' => false,
+        'three_ds_version' => false
     ];
 
     /**
@@ -612,7 +612,7 @@ class ThreeDSRequestData implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -638,5 +638,3 @@ class ThreeDSRequestData implements ModelInterface, ArrayAccess, \JsonSerializab
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

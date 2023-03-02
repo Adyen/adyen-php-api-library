@@ -79,11 +79,11 @@ class EcontextVoucherDetails implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static array $openAPINullables = [
         'checkout_attempt_id' => false,
-		'first_name' => false,
-		'last_name' => false,
-		'shopper_email' => false,
-		'telephone_number' => false,
-		'type' => false
+        'first_name' => false,
+        'last_name' => false,
+        'shopper_email' => false,
+        'telephone_number' => false,
+        'type' => false
     ];
 
     /**
@@ -589,7 +589,7 @@ class EcontextVoucherDetails implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -615,5 +615,3 @@ class EcontextVoucherDetails implements ModelInterface, ArrayAccess, \JsonSerial
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

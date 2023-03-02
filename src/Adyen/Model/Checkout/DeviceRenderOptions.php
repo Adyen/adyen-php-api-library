@@ -71,7 +71,7 @@ class DeviceRenderOptions implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static array $openAPINullables = [
         'sdk_interface' => false,
-		'sdk_ui_type' => false
+        'sdk_ui_type' => false
     ];
 
     /**
@@ -470,7 +470,7 @@ class DeviceRenderOptions implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -496,5 +496,3 @@ class DeviceRenderOptions implements ModelInterface, ArrayAccess, \JsonSerializa
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

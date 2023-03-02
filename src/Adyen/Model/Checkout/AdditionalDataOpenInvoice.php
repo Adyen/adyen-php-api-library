@@ -103,23 +103,23 @@ class AdditionalDataOpenInvoice implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static array $openAPINullables = [
         'openinvoicedata_merchant_data' => false,
-		'openinvoicedata_number_of_lines' => false,
-		'openinvoicedata_recipient_first_name' => false,
-		'openinvoicedata_recipient_last_name' => false,
-		'openinvoicedata_line_item_nr_currency_code' => false,
-		'openinvoicedata_line_item_nr_description' => false,
-		'openinvoicedata_line_item_nr_item_amount' => false,
-		'openinvoicedata_line_item_nr_item_id' => false,
-		'openinvoicedata_line_item_nr_item_vat_amount' => false,
-		'openinvoicedata_line_item_nr_item_vat_percentage' => false,
-		'openinvoicedata_line_item_nr_number_of_items' => false,
-		'openinvoicedata_line_item_nr_return_shipping_company' => false,
-		'openinvoicedata_line_item_nr_return_tracking_number' => false,
-		'openinvoicedata_line_item_nr_return_tracking_uri' => false,
-		'openinvoicedata_line_item_nr_shipping_company' => false,
-		'openinvoicedata_line_item_nr_shipping_method' => false,
-		'openinvoicedata_line_item_nr_tracking_number' => false,
-		'openinvoicedata_line_item_nr_tracking_uri' => false
+        'openinvoicedata_number_of_lines' => false,
+        'openinvoicedata_recipient_first_name' => false,
+        'openinvoicedata_recipient_last_name' => false,
+        'openinvoicedata_line_item_nr_currency_code' => false,
+        'openinvoicedata_line_item_nr_description' => false,
+        'openinvoicedata_line_item_nr_item_amount' => false,
+        'openinvoicedata_line_item_nr_item_id' => false,
+        'openinvoicedata_line_item_nr_item_vat_amount' => false,
+        'openinvoicedata_line_item_nr_item_vat_percentage' => false,
+        'openinvoicedata_line_item_nr_number_of_items' => false,
+        'openinvoicedata_line_item_nr_return_shipping_company' => false,
+        'openinvoicedata_line_item_nr_return_tracking_number' => false,
+        'openinvoicedata_line_item_nr_return_tracking_uri' => false,
+        'openinvoicedata_line_item_nr_shipping_company' => false,
+        'openinvoicedata_line_item_nr_shipping_method' => false,
+        'openinvoicedata_line_item_nr_tracking_number' => false,
+        'openinvoicedata_line_item_nr_tracking_uri' => false
     ];
 
     /**
@@ -948,7 +948,7 @@ class AdditionalDataOpenInvoice implements ModelInterface, ArrayAccess, \JsonSer
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -974,5 +974,3 @@ class AdditionalDataOpenInvoice implements ModelInterface, ArrayAccess, \JsonSer
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

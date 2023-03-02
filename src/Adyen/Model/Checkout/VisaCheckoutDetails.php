@@ -75,9 +75,9 @@ class VisaCheckoutDetails implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static array $openAPINullables = [
         'checkout_attempt_id' => false,
-		'funding_source' => false,
-		'type' => false,
-		'visa_checkout_call_id' => false
+        'funding_source' => false,
+        'type' => false,
+        'visa_checkout_call_id' => false
     ];
 
     /**
@@ -539,7 +539,7 @@ class VisaCheckoutDetails implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -565,5 +565,3 @@ class VisaCheckoutDetails implements ModelInterface, ArrayAccess, \JsonSerializa
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

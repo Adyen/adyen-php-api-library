@@ -381,7 +381,7 @@ class PaymentVerificationRequest implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -407,5 +407,3 @@ class PaymentVerificationRequest implements ModelInterface, ArrayAccess, \JsonSe
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

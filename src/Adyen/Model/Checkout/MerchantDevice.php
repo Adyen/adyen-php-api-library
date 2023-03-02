@@ -73,8 +73,8 @@ class MerchantDevice implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'os' => false,
-		'os_version' => false,
-		'reference' => false
+        'os_version' => false,
+        'reference' => false
     ];
 
     /**
@@ -438,7 +438,7 @@ class MerchantDevice implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -464,5 +464,3 @@ class MerchantDevice implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

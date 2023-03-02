@@ -77,10 +77,10 @@ class CreatePaymentCaptureRequest implements ModelInterface, ArrayAccess, \JsonS
       */
     protected static array $openAPINullables = [
         'amount' => false,
-		'line_items' => false,
-		'merchant_account' => false,
-		'reference' => false,
-		'splits' => false
+        'line_items' => false,
+        'merchant_account' => false,
+        'reference' => false,
+        'splits' => false
     ];
 
     /**
@@ -512,7 +512,7 @@ class CreatePaymentCaptureRequest implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -538,5 +538,3 @@ class CreatePaymentCaptureRequest implements ModelInterface, ArrayAccess, \JsonS
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

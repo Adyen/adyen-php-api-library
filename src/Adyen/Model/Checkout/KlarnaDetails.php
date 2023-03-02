@@ -81,12 +81,12 @@ class KlarnaDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'billing_address' => false,
-		'checkout_attempt_id' => false,
-		'delivery_address' => false,
-		'personal_details' => false,
-		'recurring_detail_reference' => false,
-		'stored_payment_method_id' => false,
-		'type' => false
+        'checkout_attempt_id' => false,
+        'delivery_address' => false,
+        'personal_details' => false,
+        'recurring_detail_reference' => false,
+        'stored_payment_method_id' => false,
+        'type' => false
     ];
 
     /**
@@ -623,7 +623,7 @@ class KlarnaDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -649,5 +649,3 @@ class KlarnaDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

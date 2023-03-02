@@ -71,7 +71,7 @@ class ResponsePaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static array $openAPINullables = [
         'brand' => false,
-		'type' => false
+        'type' => false
     ];
 
     /**
@@ -404,7 +404,7 @@ class ResponsePaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -430,5 +430,3 @@ class ResponsePaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

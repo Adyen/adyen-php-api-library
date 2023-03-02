@@ -97,20 +97,20 @@ class AdditionalDataRiskStandalone implements ModelInterface, ArrayAccess, \Json
       */
     protected static array $openAPINullables = [
         'pay_pal_country_code' => false,
-		'pay_pal_email_id' => false,
-		'pay_pal_first_name' => false,
-		'pay_pal_last_name' => false,
-		'pay_pal_payer_id' => false,
-		'pay_pal_phone' => false,
-		'pay_pal_protection_eligibility' => false,
-		'pay_pal_transaction_id' => false,
-		'avs_result_raw' => false,
-		'bin' => false,
-		'cvc_result_raw' => false,
-		'risk_token' => false,
-		'three_d_authenticated' => false,
-		'three_d_offered' => false,
-		'token_data_type' => false
+        'pay_pal_email_id' => false,
+        'pay_pal_first_name' => false,
+        'pay_pal_last_name' => false,
+        'pay_pal_payer_id' => false,
+        'pay_pal_phone' => false,
+        'pay_pal_protection_eligibility' => false,
+        'pay_pal_transaction_id' => false,
+        'avs_result_raw' => false,
+        'bin' => false,
+        'cvc_result_raw' => false,
+        'risk_token' => false,
+        'three_d_authenticated' => false,
+        'three_d_offered' => false,
+        'token_data_type' => false
     ];
 
     /**
@@ -846,7 +846,7 @@ class AdditionalDataRiskStandalone implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -872,5 +872,3 @@ class AdditionalDataRiskStandalone implements ModelInterface, ArrayAccess, \Json
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

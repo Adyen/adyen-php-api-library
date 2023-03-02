@@ -87,15 +87,15 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static array $openAPINullables = [
         'sub_merchant_number_of_sub_sellers' => false,
-		'sub_merchant_sub_seller_sub_seller_nr_city' => false,
-		'sub_merchant_sub_seller_sub_seller_nr_country' => false,
-		'sub_merchant_sub_seller_sub_seller_nr_id' => false,
-		'sub_merchant_sub_seller_sub_seller_nr_mcc' => false,
-		'sub_merchant_sub_seller_sub_seller_nr_name' => false,
-		'sub_merchant_sub_seller_sub_seller_nr_postal_code' => false,
-		'sub_merchant_sub_seller_sub_seller_nr_state' => false,
-		'sub_merchant_sub_seller_sub_seller_nr_street' => false,
-		'sub_merchant_sub_seller_sub_seller_nr_tax_id' => false
+        'sub_merchant_sub_seller_sub_seller_nr_city' => false,
+        'sub_merchant_sub_seller_sub_seller_nr_country' => false,
+        'sub_merchant_sub_seller_sub_seller_nr_id' => false,
+        'sub_merchant_sub_seller_sub_seller_nr_mcc' => false,
+        'sub_merchant_sub_seller_sub_seller_nr_name' => false,
+        'sub_merchant_sub_seller_sub_seller_nr_postal_code' => false,
+        'sub_merchant_sub_seller_sub_seller_nr_state' => false,
+        'sub_merchant_sub_seller_sub_seller_nr_street' => false,
+        'sub_merchant_sub_seller_sub_seller_nr_tax_id' => false
     ];
 
     /**
@@ -676,7 +676,7 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -702,5 +702,3 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

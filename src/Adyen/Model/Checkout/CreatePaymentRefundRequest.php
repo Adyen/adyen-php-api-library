@@ -79,11 +79,11 @@ class CreatePaymentRefundRequest implements ModelInterface, ArrayAccess, \JsonSe
       */
     protected static array $openAPINullables = [
         'amount' => false,
-		'line_items' => false,
-		'merchant_account' => false,
-		'merchant_refund_reason' => false,
-		'reference' => false,
-		'splits' => false
+        'line_items' => false,
+        'merchant_account' => false,
+        'merchant_refund_reason' => false,
+        'reference' => false,
+        'splits' => false
     ];
 
     /**
@@ -586,7 +586,7 @@ class CreatePaymentRefundRequest implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -612,5 +612,3 @@ class CreatePaymentRefundRequest implements ModelInterface, ArrayAccess, \JsonSe
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -79,11 +79,11 @@ class ServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'additional_data' => false,
-		'error_code' => false,
-		'error_type' => false,
-		'message' => false,
-		'psp_reference' => false,
-		'status' => false
+        'error_code' => false,
+        'error_type' => false,
+        'message' => false,
+        'psp_reference' => false,
+        'status' => false
     ];
 
     /**
@@ -540,7 +540,7 @@ class ServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -566,5 +566,3 @@ class ServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -105,24 +105,24 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'account_age_indicator' => false,
-		'account_change_date' => false,
-		'account_change_indicator' => false,
-		'account_creation_date' => false,
-		'account_type' => false,
-		'add_card_attempts_day' => false,
-		'delivery_address_usage_date' => false,
-		'delivery_address_usage_indicator' => false,
-		'home_phone' => false,
-		'mobile_phone' => false,
-		'password_change_date' => false,
-		'password_change_indicator' => false,
-		'past_transactions_day' => false,
-		'past_transactions_year' => false,
-		'payment_account_age' => false,
-		'payment_account_indicator' => false,
-		'purchases_last6_months' => false,
-		'suspicious_activity' => false,
-		'work_phone' => false
+        'account_change_date' => false,
+        'account_change_indicator' => false,
+        'account_creation_date' => false,
+        'account_type' => false,
+        'add_card_attempts_day' => false,
+        'delivery_address_usage_date' => false,
+        'delivery_address_usage_indicator' => false,
+        'home_phone' => false,
+        'mobile_phone' => false,
+        'password_change_date' => false,
+        'password_change_indicator' => false,
+        'past_transactions_day' => false,
+        'past_transactions_year' => false,
+        'payment_account_age' => false,
+        'payment_account_indicator' => false,
+        'purchases_last6_months' => false,
+        'suspicious_activity' => false,
+        'work_phone' => false
     ];
 
     /**
@@ -1220,7 +1220,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -1246,5 +1246,3 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

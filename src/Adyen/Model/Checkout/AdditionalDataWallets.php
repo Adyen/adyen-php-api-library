@@ -79,11 +79,11 @@ class AdditionalDataWallets implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static array $openAPINullables = [
         'androidpay_token' => false,
-		'masterpass_transaction_id' => false,
-		'payment_token' => false,
-		'paywithgoogle_token' => false,
-		'samsungpay_token' => false,
-		'visacheckout_call_id' => false
+        'masterpass_transaction_id' => false,
+        'payment_token' => false,
+        'paywithgoogle_token' => false,
+        'samsungpay_token' => false,
+        'visacheckout_call_id' => false
     ];
 
     /**
@@ -540,7 +540,7 @@ class AdditionalDataWallets implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -566,5 +566,3 @@ class AdditionalDataWallets implements ModelInterface, ArrayAccess, \JsonSeriali
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

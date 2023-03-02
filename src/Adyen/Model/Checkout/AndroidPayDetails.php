@@ -71,7 +71,7 @@ class AndroidPayDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static array $openAPINullables = [
         'checkout_attempt_id' => false,
-		'type' => false
+        'type' => false
     ];
 
     /**
@@ -436,7 +436,7 @@ class AndroidPayDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -462,5 +462,3 @@ class AndroidPayDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

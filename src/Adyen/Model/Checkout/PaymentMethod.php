@@ -85,14 +85,14 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'brand' => false,
-		'brands' => false,
-		'configuration' => false,
-		'funding_source' => false,
-		'group' => false,
-		'input_details' => false,
-		'issuers' => false,
-		'name' => false,
-		'type' => false
+        'brands' => false,
+        'configuration' => false,
+        'funding_source' => false,
+        'group' => false,
+        'input_details' => false,
+        'issuers' => false,
+        'name' => false,
+        'type' => false
     ];
 
     /**
@@ -676,7 +676,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -702,5 +702,3 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

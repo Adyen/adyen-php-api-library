@@ -83,13 +83,13 @@ class AdditionalDataRatepay implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static array $openAPINullables = [
         'ratepay_installment_amount' => false,
-		'ratepay_interest_rate' => false,
-		'ratepay_last_installment_amount' => false,
-		'ratepay_payment_firstday' => false,
-		'ratepaydata_delivery_date' => false,
-		'ratepaydata_due_date' => false,
-		'ratepaydata_invoice_date' => false,
-		'ratepaydata_invoice_id' => false
+        'ratepay_interest_rate' => false,
+        'ratepay_last_installment_amount' => false,
+        'ratepay_payment_firstday' => false,
+        'ratepaydata_delivery_date' => false,
+        'ratepaydata_due_date' => false,
+        'ratepaydata_invoice_date' => false,
+        'ratepaydata_invoice_id' => false
     ];
 
     /**
@@ -608,7 +608,7 @@ class AdditionalDataRatepay implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -634,5 +634,3 @@ class AdditionalDataRatepay implements ModelInterface, ArrayAccess, \JsonSeriali
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

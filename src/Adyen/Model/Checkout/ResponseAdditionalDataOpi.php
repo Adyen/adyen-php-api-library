@@ -370,7 +370,7 @@ class ResponseAdditionalDataOpi implements ModelInterface, ArrayAccess, \JsonSer
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -396,5 +396,3 @@ class ResponseAdditionalDataOpi implements ModelInterface, ArrayAccess, \JsonSer
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-
