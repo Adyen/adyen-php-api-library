@@ -235,8 +235,10 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
      * @return mixed
      * @throws AdyenException
      */
-    public function sessionsTypes(CreateCheckoutSessionRequest $createCheckoutSessionRequest, $requestOptions = null): CreateCheckoutSessionResponse
-    {
+    public function sessionsTypes(
+        CreateCheckoutSessionRequest $createCheckoutSessionRequest,
+        $requestOptions = null
+    ): CreateCheckoutSessionResponse {
         $jsonRequest = (array)$createCheckoutSessionRequest->jsonSerialize();
         $jsonResponse = $this->sessions($jsonRequest, $requestOptions);
         return ObjectSerializer::deserialize($jsonResponse, CreateCheckoutSessionResponse::class, []);
