@@ -24,10 +24,7 @@
 namespace Adyen\Tests\Unit;
 
 use Adyen\AdyenException;
-use Adyen\Model\Checkout\Amount;
-use Adyen\Model\Checkout\CreateCheckoutSessionRequest;
 use Adyen\Service\Checkout;
-use Cassandra\Date;
 
 class CheckoutTest extends TestCaseMock
 {

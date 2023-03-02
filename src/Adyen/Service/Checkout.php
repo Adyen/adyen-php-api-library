@@ -3,10 +3,6 @@
 namespace Adyen\Service;
 
 use Adyen\AdyenException;
-use Adyen\Model\Checkout\CreateCheckoutSessionRequest;
-use Adyen\Model\Checkout\CreateCheckoutSessionResponse;
-use Adyen\Model\Checkout\ObjectSerializer;
-use Adyen\Model\Checkout\ModelInterface;
 
 class Checkout extends \Adyen\ApiKeyAuthenticatedService
 {
