@@ -4,14 +4,14 @@ openapi-generator-jar:=target/openapi-generator-cli.jar
 openapi-generator-cli:=java -jar $(openapi-generator-jar)
 
 generator:=php
-services:=Checkout
+services:=Transfers
 models:=src/Adyen/Model
 output:=target/out
 
 # Generate models (for each service)
 models: $(services)
 
-binlookup: spec=BinLookupService-v52
+Binlookup: spec=BinLookupService-v52
 Checkout: spec=CheckoutService-v70
 storedValue: spec=StoredValueService-v46
 posterminalmanagement: spec=TfmAPIService-v1
@@ -21,7 +21,8 @@ payout: spec=PayoutService-v68
 management: spec=ManagementService-v1
 management: resourceClass=Management
 balanceplatform: spec=BalancePlatformService-v2
-transfers: spec=TransferService-v3
+Transfers: spec=TransferService-v3
+Transfers: service=transfers
 legalentitymanagement: spec=LegalEntityService-v2
 # Classic Platforms
 marketpay/account: spec=AccountService-v6
@@ -45,6 +46,26 @@ $(services): target/spec $(openapi-generator-jar)
 		--additional-properties packageName=Adyen\\Model\\$@
 	mv $(output)/lib/$@ $(models)/$@
 	mv $(output)/lib/ObjectSerializer.php $(models)/$@
+
+Checkout: target/spec $(openapi-generator-jar)
+	rm -rf $(models)/$@ $(output)
+	$(openapi-generator-cli) generate \
+		-i target/spec/json/$(spec).json \
+		-g $(generator) \
+		-o $(output) \
+		-c ./templates/config.yaml \
+		--model-package Model\\$@ \
+		--api-package Service\\$@ \
+		--reserved-words-mappings configuration=configuration \
+		--ignore-file-override ./.openapi-generator-ignore \
+		--skip-validate-spec \
+		--additional-properties invokerPackage=Adyen \
+		--additional-properties packageName=Adyen
+	rm -rf src/Adyen/Service/$@ src/Adyen/Model/$@
+	mv $(output)/lib/Model/$@ $(models)/$@
+	mv $(output)/lib//ObjectSerializer.php $(models)/$@
+	mkdir src/Adyen/Service/$@
+	mv $(output)/lib/Service/* src/Adyen/Service
 
 # Checkout spec (and patch version)
 target/spec:

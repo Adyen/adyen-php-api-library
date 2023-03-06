@@ -1,0 +1,49 @@
+<?php
+{{>partial_header}}
+namespace {{apiPackage}};
+
+use Adyen\AdyenException;
+use Adyen\Client;
+use Adyen\Service;
+use {{modelPackage}}\ObjectSerializer;
+
+{{#operations}}
+class {{classname}} extends Service
+{
+    /**
+     * Checkout constructor.
+     *
+     * @param \Adyen\Client $client
+     * @throws AdyenException
+     */
+    public function __construct(Client $client)
+    {
+        parent::__construct($client);
+        $this->baseURL = $client->getConfig()->get('endpointCheckout') . "/" . $client->getApiCheckoutVersion();
+    }
+{{#operation}}
+
+    /**
+    {{#summary}}
+    * {{.}}
+    {{/summary}}
+    *
+    {{#description}}
+    * Description: {{.}}
+    *
+    {{/description}}
+    {{#allParams}}* @param {{{dataType}}} ${{#lambda.camelcase}}{{paramName}}{{/lambda.camelcase}}
+    {{/allParams}}* @param array $requestOptions
+    {{#returnType}}* @return {{returnType}}{{/returnType}}
+    * @throws AdyenException
+    */
+    public function {{#lambda.camelcase}}{{vendorExtensions.x-methodName}}{{/lambda.camelcase}}({{>api_parameters}}){{#returnType}}: {{{.}}}{{/returnType}}
+    {
+        $endpoint = $this->baseURL . {{#hasPathParams}}str_replace({{/hasPathParams}}{{#pathParams}}['{' . '{{baseName}}' . '}'{{#last}}, {{/last}}], [${{baseName}}{{#last}}, {{/last}}], {{/pathParams}}"{{{path}}}"{{#hasPathParams}}){{/hasPathParams}};
+        $service = new Service($this->getClient());
+        {{#returnType}}$response = {{/returnType}}$service->requestHttp($endpoint, strtolower('{{httpMethod}}'), {{#bodyParam}}(array) ${{#lambda.camelcase}}{{paramName}}{{/lambda.camelcase}}->jsonSerialize(){{/bodyParam}}{{^bodyParam}}null{{/bodyParam}}, $requestOptions);
+        {{#returnType}}return ObjectSerializer::deserialize($response, {{returnType}}::class);{{/returnType}}
+    }
+{{/operation}}
+}
+{{/operations}}
