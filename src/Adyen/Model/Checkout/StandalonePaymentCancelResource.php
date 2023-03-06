@@ -76,10 +76,10 @@ class StandalonePaymentCancelResource implements ModelInterface, ArrayAccess, \J
       */
     protected static $openAPINullables = [
         'merchant_account' => false,
-		'payment_reference' => false,
-		'psp_reference' => false,
-		'reference' => false,
-		'status' => false
+        'payment_reference' => false,
+        'psp_reference' => false,
+        'reference' => false,
+        'status' => false
     ];
 
     /**
@@ -549,7 +549,7 @@ class StandalonePaymentCancelResource implements ModelInterface, ArrayAccess, \J
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -575,5 +575,3 @@ class StandalonePaymentCancelResource implements ModelInterface, ArrayAccess, \J
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

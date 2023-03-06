@@ -72,8 +72,8 @@ class FraudCheckResult implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'account_score' => false,
-		'check_id' => false,
-		'name' => false
+        'check_id' => false,
+        'name' => false
     ];
 
     /**
@@ -446,7 +446,7 @@ class FraudCheckResult implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -472,5 +472,3 @@ class FraudCheckResult implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

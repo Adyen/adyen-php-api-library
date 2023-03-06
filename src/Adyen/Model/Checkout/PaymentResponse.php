@@ -96,20 +96,20 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'action' => false,
-		'additional_data' => false,
-		'amount' => false,
-		'donation_token' => false,
-		'fraud_result' => false,
-		'merchant_reference' => false,
-		'order' => false,
-		'payment_method' => false,
-		'psp_reference' => false,
-		'refusal_reason' => false,
-		'refusal_reason_code' => false,
-		'result_code' => false,
-		'three_ds2_response_data' => false,
-		'three_ds2_result' => false,
-		'three_ds_payment_data' => false
+        'additional_data' => false,
+        'amount' => false,
+        'donation_token' => false,
+        'fraud_result' => false,
+        'merchant_reference' => false,
+        'order' => false,
+        'payment_method' => false,
+        'psp_reference' => false,
+        'refusal_reason' => false,
+        'refusal_reason_code' => false,
+        'result_code' => false,
+        'three_ds2_response_data' => false,
+        'three_ds2_result' => false,
+        'three_ds_payment_data' => false
     ];
 
     /**
@@ -901,7 +901,7 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -927,5 +927,3 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

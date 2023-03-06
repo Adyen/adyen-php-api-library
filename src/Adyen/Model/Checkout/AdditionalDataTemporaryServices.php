@@ -84,14 +84,14 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
       */
     protected static $openAPINullables = [
         'enhanced_scheme_data_customer_reference' => false,
-		'enhanced_scheme_data_employee_name' => false,
-		'enhanced_scheme_data_job_description' => false,
-		'enhanced_scheme_data_regular_hours_rate' => false,
-		'enhanced_scheme_data_regular_hours_worked' => false,
-		'enhanced_scheme_data_request_name' => false,
-		'enhanced_scheme_data_temp_start_date' => false,
-		'enhanced_scheme_data_temp_week_ending' => false,
-		'enhanced_scheme_data_total_tax_amount' => false
+        'enhanced_scheme_data_employee_name' => false,
+        'enhanced_scheme_data_job_description' => false,
+        'enhanced_scheme_data_regular_hours_rate' => false,
+        'enhanced_scheme_data_regular_hours_worked' => false,
+        'enhanced_scheme_data_request_name' => false,
+        'enhanced_scheme_data_temp_start_date' => false,
+        'enhanced_scheme_data_temp_week_ending' => false,
+        'enhanced_scheme_data_total_tax_amount' => false
     ];
 
     /**
@@ -641,7 +641,7 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -667,5 +667,3 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

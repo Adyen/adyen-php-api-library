@@ -76,10 +76,10 @@ class ResponseAdditionalData3DSecure implements ModelInterface, ArrayAccess, \Js
       */
     protected static $openAPINullables = [
         'card_holder_info' => false,
-		'cavv' => false,
-		'cavv_algorithm' => false,
-		'sca_exemption_requested' => false,
-		'threeds2_card_enrolled' => false
+        'cavv' => false,
+        'cavv_algorithm' => false,
+        'sca_exemption_requested' => false,
+        'threeds2_card_enrolled' => false
     ];
 
     /**
@@ -505,7 +505,7 @@ class ResponseAdditionalData3DSecure implements ModelInterface, ArrayAccess, \Js
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -531,5 +531,3 @@ class ResponseAdditionalData3DSecure implements ModelInterface, ArrayAccess, \Js
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

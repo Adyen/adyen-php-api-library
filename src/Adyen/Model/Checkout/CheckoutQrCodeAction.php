@@ -78,11 +78,11 @@ class CheckoutQrCodeAction implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPINullables = [
         'expires_at' => false,
-		'payment_data' => false,
-		'payment_method_type' => false,
-		'qr_code_data' => false,
-		'type' => false,
-		'url' => false
+        'payment_data' => false,
+        'payment_method_type' => false,
+        'qr_code_data' => false,
+        'type' => false,
+        'url' => false
     ];
 
     /**
@@ -574,7 +574,7 @@ class CheckoutQrCodeAction implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -600,5 +600,3 @@ class CheckoutQrCodeAction implements ModelInterface, ArrayAccess, \JsonSerializ
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -82,13 +82,13 @@ class Mandate implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'amount' => false,
-		'amount_rule' => false,
-		'billing_attempts_rule' => false,
-		'billing_day' => false,
-		'ends_at' => false,
-		'frequency' => false,
-		'remarks' => false,
-		'starts_at' => false
+        'amount_rule' => false,
+        'billing_attempts_rule' => false,
+        'billing_day' => false,
+        'ends_at' => false,
+        'frequency' => false,
+        'remarks' => false,
+        'starts_at' => false
     ];
 
     /**
@@ -732,7 +732,7 @@ class Mandate implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -758,5 +758,3 @@ class Mandate implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

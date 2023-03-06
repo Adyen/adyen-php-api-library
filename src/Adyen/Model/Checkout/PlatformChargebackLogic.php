@@ -70,7 +70,7 @@ class PlatformChargebackLogic implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static $openAPINullables = [
         'behavior' => false,
-		'target_account' => false
+        'target_account' => false
     ];
 
     /**
@@ -439,7 +439,7 @@ class PlatformChargebackLogic implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -465,5 +465,3 @@ class PlatformChargebackLogic implements ModelInterface, ArrayAccess, \JsonSeria
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

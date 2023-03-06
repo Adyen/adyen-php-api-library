@@ -72,8 +72,8 @@ class ShopperInput implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'billing_address' => false,
-		'delivery_address' => false,
-		'personal_details' => false
+        'delivery_address' => false,
+        'personal_details' => false
     ];
 
     /**
@@ -545,7 +545,7 @@ class ShopperInput implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -571,5 +571,3 @@ class ShopperInput implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

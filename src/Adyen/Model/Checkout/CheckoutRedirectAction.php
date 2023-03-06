@@ -76,10 +76,10 @@ class CheckoutRedirectAction implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPINullables = [
         'data' => false,
-		'method' => false,
-		'payment_method_type' => false,
-		'type' => false,
-		'url' => false
+        'method' => false,
+        'payment_method_type' => false,
+        'type' => false,
+        'url' => false
     ];
 
     /**
@@ -540,7 +540,7 @@ class CheckoutRedirectAction implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -566,5 +566,3 @@ class CheckoutRedirectAction implements ModelInterface, ArrayAccess, \JsonSerial
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

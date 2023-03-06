@@ -148,46 +148,46 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static $openAPINullables = [
         'allowed_payment_methods' => false,
-		'amount' => false,
-		'billing_address' => false,
-		'blocked_payment_methods' => false,
-		'capture_delay_hours' => false,
-		'country_code' => false,
-		'date_of_birth' => false,
-		'deliver_at' => false,
-		'delivery_address' => false,
-		'description' => false,
-		'expires_at' => false,
-		'id' => false,
-		'installment_options' => false,
-		'line_items' => false,
-		'manual_capture' => false,
-		'mcc' => false,
-		'merchant_account' => false,
-		'merchant_order_reference' => false,
-		'metadata' => false,
-		'recurring_processing_model' => false,
-		'reference' => false,
-		'required_shopper_fields' => false,
-		'return_url' => false,
-		'reusable' => false,
-		'risk_data' => false,
-		'shopper_email' => false,
-		'shopper_locale' => false,
-		'shopper_name' => false,
-		'shopper_reference' => false,
-		'shopper_statement' => false,
-		'show_remove_payment_method_button' => false,
-		'social_security_number' => false,
-		'split_card_funding_sources' => false,
-		'splits' => false,
-		'status' => false,
-		'store' => false,
-		'store_payment_method_mode' => false,
-		'telephone_number' => false,
-		'theme_id' => false,
-		'updated_at' => false,
-		'url' => false
+        'amount' => false,
+        'billing_address' => false,
+        'blocked_payment_methods' => false,
+        'capture_delay_hours' => false,
+        'country_code' => false,
+        'date_of_birth' => false,
+        'deliver_at' => false,
+        'delivery_address' => false,
+        'description' => false,
+        'expires_at' => false,
+        'id' => false,
+        'installment_options' => false,
+        'line_items' => false,
+        'manual_capture' => false,
+        'mcc' => false,
+        'merchant_account' => false,
+        'merchant_order_reference' => false,
+        'metadata' => false,
+        'recurring_processing_model' => false,
+        'reference' => false,
+        'required_shopper_fields' => false,
+        'return_url' => false,
+        'reusable' => false,
+        'risk_data' => false,
+        'shopper_email' => false,
+        'shopper_locale' => false,
+        'shopper_name' => false,
+        'shopper_reference' => false,
+        'shopper_statement' => false,
+        'show_remove_payment_method_button' => false,
+        'social_security_number' => false,
+        'split_card_funding_sources' => false,
+        'splits' => false,
+        'status' => false,
+        'store' => false,
+        'store_payment_method_mode' => false,
+        'telephone_number' => false,
+        'theme_id' => false,
+        'updated_at' => false,
+        'url' => false
     ];
 
     /**
@@ -1889,7 +1889,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -1915,5 +1915,3 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

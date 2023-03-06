@@ -100,22 +100,22 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static $openAPINullables = [
         'md' => false,
-		'pa_req' => false,
-		'pa_res' => false,
-		'billing_token' => false,
-		'cupsecureplus_smscode' => false,
-		'facilitator_access_token' => false,
-		'one_time_passcode' => false,
-		'order_id' => false,
-		'payer_id' => false,
-		'payload' => false,
-		'payment_id' => false,
-		'payment_status' => false,
-		'redirect_result' => false,
-		'result_code' => false,
-		'three_ds_result' => false,
-		'threeds2_challenge_result' => false,
-		'threeds2_fingerprint' => false
+        'pa_req' => false,
+        'pa_res' => false,
+        'billing_token' => false,
+        'cupsecureplus_smscode' => false,
+        'facilitator_access_token' => false,
+        'one_time_passcode' => false,
+        'order_id' => false,
+        'payer_id' => false,
+        'payload' => false,
+        'payment_id' => false,
+        'payment_status' => false,
+        'redirect_result' => false,
+        'result_code' => false,
+        'three_ds_result' => false,
+        'threeds2_challenge_result' => false,
+        'threeds2_fingerprint' => false
     ];
 
     /**
@@ -969,7 +969,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -995,5 +995,3 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-
