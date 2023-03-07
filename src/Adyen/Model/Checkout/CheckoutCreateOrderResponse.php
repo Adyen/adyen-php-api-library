@@ -86,15 +86,15 @@ class CheckoutCreateOrderResponse implements ModelInterface, ArrayAccess, \JsonS
       */
     protected static $openAPINullables = [
         'additional_data' => false,
-        'amount' => false,
-        'expires_at' => false,
-        'fraud_result' => false,
-        'order_data' => false,
-        'psp_reference' => false,
-        'reference' => false,
-        'refusal_reason' => false,
-        'remaining_amount' => false,
-        'result_code' => false
+		'amount' => false,
+		'expires_at' => false,
+		'fraud_result' => false,
+		'order_data' => false,
+		'psp_reference' => false,
+		'reference' => false,
+		'refusal_reason' => false,
+		'remaining_amount' => false,
+		'result_code' => false
     ];
 
     /**
@@ -722,7 +722,7 @@ class CheckoutCreateOrderResponse implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -748,3 +748,5 @@ class CheckoutCreateOrderResponse implements ModelInterface, ArrayAccess, \JsonS
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

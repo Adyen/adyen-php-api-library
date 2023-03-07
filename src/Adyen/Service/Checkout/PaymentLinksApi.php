@@ -24,7 +24,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
 class PaymentLinksApi extends Service
 {
     /**
-     * Checkout constructor.
+     * PaymentLinksApi constructor.
      *
      * @param \Adyen\Client $client
      * @throws AdyenException
@@ -45,9 +45,8 @@ class PaymentLinksApi extends Service
     */
     public function getPaymentLink(string $linkId, $requestOptions = null): \Adyen\Model\Checkout\PaymentLinkResponse
     {
-        $endpoint = $this->baseURL . str_replace(['{' . 'linkId' . '}'], [$linkId], "/paymentLinks/{linkId}");
-        $service = new Service($this->getClient());
-        $response = $service->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
+        $endpoint = $this->baseURL . str_replace(['{linkId}'], [$linkId], "/paymentLinks/{linkId}");
+        $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\PaymentLinkResponse::class);
     }
 
@@ -62,9 +61,8 @@ class PaymentLinksApi extends Service
     */
     public function updatePaymentLink(string $linkId, \Adyen\Model\Checkout\UpdatePaymentLinkRequest $updatePaymentLinkRequest, $requestOptions = null): \Adyen\Model\Checkout\PaymentLinkResponse
     {
-        $endpoint = $this->baseURL . str_replace(['{' . 'linkId' . '}'], [$linkId], "/paymentLinks/{linkId}");
-        $service = new Service($this->getClient());
-        $response = $service->requestHttp($endpoint, strtolower('PATCH'), (array) $updatePaymentLinkRequest->jsonSerialize(), $requestOptions);
+        $endpoint = $this->baseURL . str_replace(['{linkId}'], [$linkId], "/paymentLinks/{linkId}");
+        $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $updatePaymentLinkRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\PaymentLinkResponse::class);
     }
 
@@ -80,8 +78,7 @@ class PaymentLinksApi extends Service
     public function createPaymentLink(\Adyen\Model\Checkout\CreatePaymentLinkRequest $createPaymentLinkRequest, $requestOptions = null): \Adyen\Model\Checkout\PaymentLinkResponse
     {
         $endpoint = $this->baseURL . "/paymentLinks";
-        $service = new Service($this->getClient());
-        $response = $service->requestHttp($endpoint, strtolower('POST'), (array) $createPaymentLinkRequest->jsonSerialize(), $requestOptions);
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $createPaymentLinkRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\PaymentLinkResponse::class);
     }
 }

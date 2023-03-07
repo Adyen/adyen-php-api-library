@@ -80,12 +80,12 @@ class UpiCollectDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPINullables = [
         'billing_sequence_number' => false,
-        'checkout_attempt_id' => false,
-        'recurring_detail_reference' => false,
-        'shopper_notification_reference' => false,
-        'stored_payment_method_id' => false,
-        'type' => false,
-        'virtual_payment_address' => false
+		'checkout_attempt_id' => false,
+		'recurring_detail_reference' => false,
+		'shopper_notification_reference' => false,
+		'stored_payment_method_id' => false,
+		'type' => false,
+		'virtual_payment_address' => false
     ];
 
     /**
@@ -613,7 +613,7 @@ class UpiCollectDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -639,3 +639,5 @@ class UpiCollectDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

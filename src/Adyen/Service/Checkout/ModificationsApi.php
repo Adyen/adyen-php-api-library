@@ -24,7 +24,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
 class ModificationsApi extends Service
 {
     /**
-     * Checkout constructor.
+     * ModificationsApi constructor.
      *
      * @param \Adyen\Client $client
      * @throws AdyenException
@@ -47,8 +47,7 @@ class ModificationsApi extends Service
     public function cancelAuthorisedPayment(\Adyen\Model\Checkout\CreateStandalonePaymentCancelRequest $createStandalonePaymentCancelRequest, $requestOptions = null): \Adyen\Model\Checkout\StandalonePaymentCancelResource
     {
         $endpoint = $this->baseURL . "/cancels";
-        $service = new Service($this->getClient());
-        $response = $service->requestHttp($endpoint, strtolower('POST'), (array) $createStandalonePaymentCancelRequest->jsonSerialize(), $requestOptions);
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $createStandalonePaymentCancelRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\StandalonePaymentCancelResource::class);
     }
 
@@ -64,9 +63,8 @@ class ModificationsApi extends Service
     */
     public function updateAuthorisedAmount(string $paymentPspReference, \Adyen\Model\Checkout\CreatePaymentAmountUpdateRequest $createPaymentAmountUpdateRequest, $requestOptions = null): \Adyen\Model\Checkout\PaymentAmountUpdateResource
     {
-        $endpoint = $this->baseURL . str_replace(['{' . 'paymentPspReference' . '}'], [$paymentPspReference], "/payments/{paymentPspReference}/amountUpdates");
-        $service = new Service($this->getClient());
-        $response = $service->requestHttp($endpoint, strtolower('POST'), (array) $createPaymentAmountUpdateRequest->jsonSerialize(), $requestOptions);
+        $endpoint = $this->baseURL . str_replace(['{paymentPspReference}'], [$paymentPspReference], "/payments/{paymentPspReference}/amountUpdates");
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $createPaymentAmountUpdateRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\PaymentAmountUpdateResource::class);
     }
 
@@ -82,9 +80,8 @@ class ModificationsApi extends Service
     */
     public function cancelAuthorisedPaymentByPspReference(string $paymentPspReference, \Adyen\Model\Checkout\CreatePaymentCancelRequest $createPaymentCancelRequest, $requestOptions = null): \Adyen\Model\Checkout\PaymentCancelResource
     {
-        $endpoint = $this->baseURL . str_replace(['{' . 'paymentPspReference' . '}'], [$paymentPspReference], "/payments/{paymentPspReference}/cancels");
-        $service = new Service($this->getClient());
-        $response = $service->requestHttp($endpoint, strtolower('POST'), (array) $createPaymentCancelRequest->jsonSerialize(), $requestOptions);
+        $endpoint = $this->baseURL . str_replace(['{paymentPspReference}'], [$paymentPspReference], "/payments/{paymentPspReference}/cancels");
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $createPaymentCancelRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\PaymentCancelResource::class);
     }
 
@@ -100,9 +97,8 @@ class ModificationsApi extends Service
     */
     public function captureAuthorisedPayment(string $paymentPspReference, \Adyen\Model\Checkout\CreatePaymentCaptureRequest $createPaymentCaptureRequest, $requestOptions = null): \Adyen\Model\Checkout\PaymentCaptureResource
     {
-        $endpoint = $this->baseURL . str_replace(['{' . 'paymentPspReference' . '}'], [$paymentPspReference], "/payments/{paymentPspReference}/captures");
-        $service = new Service($this->getClient());
-        $response = $service->requestHttp($endpoint, strtolower('POST'), (array) $createPaymentCaptureRequest->jsonSerialize(), $requestOptions);
+        $endpoint = $this->baseURL . str_replace(['{paymentPspReference}'], [$paymentPspReference], "/payments/{paymentPspReference}/captures");
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $createPaymentCaptureRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\PaymentCaptureResource::class);
     }
 
@@ -118,9 +114,8 @@ class ModificationsApi extends Service
     */
     public function refundCapturedPayment(string $paymentPspReference, \Adyen\Model\Checkout\CreatePaymentRefundRequest $createPaymentRefundRequest, $requestOptions = null): \Adyen\Model\Checkout\PaymentRefundResource
     {
-        $endpoint = $this->baseURL . str_replace(['{' . 'paymentPspReference' . '}'], [$paymentPspReference], "/payments/{paymentPspReference}/refunds");
-        $service = new Service($this->getClient());
-        $response = $service->requestHttp($endpoint, strtolower('POST'), (array) $createPaymentRefundRequest->jsonSerialize(), $requestOptions);
+        $endpoint = $this->baseURL . str_replace(['{paymentPspReference}'], [$paymentPspReference], "/payments/{paymentPspReference}/refunds");
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $createPaymentRefundRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\PaymentRefundResource::class);
     }
 
@@ -136,9 +131,8 @@ class ModificationsApi extends Service
     */
     public function refundOrCancelPayment(string $paymentPspReference, \Adyen\Model\Checkout\CreatePaymentReversalRequest $createPaymentReversalRequest, $requestOptions = null): \Adyen\Model\Checkout\PaymentReversalResource
     {
-        $endpoint = $this->baseURL . str_replace(['{' . 'paymentPspReference' . '}'], [$paymentPspReference], "/payments/{paymentPspReference}/reversals");
-        $service = new Service($this->getClient());
-        $response = $service->requestHttp($endpoint, strtolower('POST'), (array) $createPaymentReversalRequest->jsonSerialize(), $requestOptions);
+        $endpoint = $this->baseURL . str_replace(['{paymentPspReference}'], [$paymentPspReference], "/payments/{paymentPspReference}/reversals");
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $createPaymentReversalRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\PaymentReversalResource::class);
     }
 }

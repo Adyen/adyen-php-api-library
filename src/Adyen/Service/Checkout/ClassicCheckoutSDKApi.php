@@ -24,7 +24,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
 class ClassicCheckoutSDKApi extends Service
 {
     /**
-     * Checkout constructor.
+     * ClassicCheckoutSDKApi constructor.
      *
      * @param \Adyen\Client $client
      * @throws AdyenException
@@ -47,8 +47,7 @@ class ClassicCheckoutSDKApi extends Service
     public function paymentSession(\Adyen\Model\Checkout\PaymentSetupRequest $paymentSetupRequest, $requestOptions = null): \Adyen\Model\Checkout\PaymentSetupResponse
     {
         $endpoint = $this->baseURL . "/paymentSession";
-        $service = new Service($this->getClient());
-        $response = $service->requestHttp($endpoint, strtolower('POST'), (array) $paymentSetupRequest->jsonSerialize(), $requestOptions);
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $paymentSetupRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\PaymentSetupResponse::class);
     }
 
@@ -64,8 +63,7 @@ class ClassicCheckoutSDKApi extends Service
     public function verifyPaymentResult(\Adyen\Model\Checkout\PaymentVerificationRequest $paymentVerificationRequest, $requestOptions = null): \Adyen\Model\Checkout\PaymentVerificationResponse
     {
         $endpoint = $this->baseURL . "/payments/result";
-        $service = new Service($this->getClient());
-        $response = $service->requestHttp($endpoint, strtolower('POST'), (array) $paymentVerificationRequest->jsonSerialize(), $requestOptions);
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $paymentVerificationRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\PaymentVerificationResponse::class);
     }
 }

@@ -11,7 +11,7 @@ use {{modelPackage}}\ObjectSerializer;
 class {{classname}} extends Service
 {
     /**
-     * Checkout constructor.
+     * {{classname}} constructor.
      *
      * @param \Adyen\Client $client
      * @throws AdyenException
@@ -39,9 +39,8 @@ class {{classname}} extends Service
     */
     public function {{#lambda.camelcase}}{{vendorExtensions.x-methodName}}{{/lambda.camelcase}}({{>api_parameters}}){{#returnType}}: {{{.}}}{{/returnType}}
     {
-        $endpoint = $this->baseURL . {{#hasPathParams}}str_replace({{/hasPathParams}}{{#pathParams}}['{' . '{{baseName}}' . '}'{{#last}}, {{/last}}], [${{baseName}}{{#last}}, {{/last}}], {{/pathParams}}"{{{path}}}"{{#hasPathParams}}){{/hasPathParams}};
-        $service = new Service($this->getClient());
-        {{#returnType}}$response = {{/returnType}}$service->requestHttp($endpoint, strtolower('{{httpMethod}}'), {{#bodyParam}}(array) ${{#lambda.camelcase}}{{paramName}}{{/lambda.camelcase}}->jsonSerialize(){{/bodyParam}}{{^bodyParam}}null{{/bodyParam}}, $requestOptions);
+        $endpoint = $this->baseURL . {{#hasPathParams}}str_replace({{/hasPathParams}}{{#pathParams}}['{{>left_bracket}}{{baseName}}{{>right_bracket}}'{{#last}}, {{/last}}], [${{baseName}}{{#last}}, {{/last}}], {{/pathParams}}"{{{path}}}"{{#hasPathParams}}){{/hasPathParams}};
+        {{#returnType}}$response = {{/returnType}}$this->requestHttp($endpoint, strtolower('{{httpMethod}}'), {{#bodyParam}}(array) ${{#lambda.camelcase}}{{paramName}}{{/lambda.camelcase}}->jsonSerialize(){{/bodyParam}}{{^bodyParam}}null{{/bodyParam}}, $requestOptions);
         {{#returnType}}return ObjectSerializer::deserialize($response, {{returnType}}::class);{{/returnType}}
     }
 {{/operation}}

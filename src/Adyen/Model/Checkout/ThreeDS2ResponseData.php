@@ -104,24 +104,24 @@ class ThreeDS2ResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPINullables = [
         'acs_challenge_mandated' => false,
-        'acs_operator_id' => false,
-        'acs_reference_number' => false,
-        'acs_signed_content' => false,
-        'acs_trans_id' => false,
-        'acs_url' => false,
-        'authentication_type' => false,
-        'card_holder_info' => false,
-        'cavv_algorithm' => false,
-        'challenge_indicator' => false,
-        'ds_reference_number' => false,
-        'ds_trans_id' => false,
-        'exemption_indicator' => false,
-        'message_version' => false,
-        'risk_score' => false,
-        'sdk_ephem_pub_key' => false,
-        'three_ds_server_trans_id' => false,
-        'trans_status' => false,
-        'trans_status_reason' => false
+		'acs_operator_id' => false,
+		'acs_reference_number' => false,
+		'acs_signed_content' => false,
+		'acs_trans_id' => false,
+		'acs_url' => false,
+		'authentication_type' => false,
+		'card_holder_info' => false,
+		'cavv_algorithm' => false,
+		'challenge_indicator' => false,
+		'ds_reference_number' => false,
+		'ds_trans_id' => false,
+		'exemption_indicator' => false,
+		'message_version' => false,
+		'risk_score' => false,
+		'sdk_ephem_pub_key' => false,
+		'three_ds_server_trans_id' => false,
+		'trans_status' => false,
+		'trans_status_reason' => false
     ];
 
     /**
@@ -981,7 +981,7 @@ class ThreeDS2ResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -1007,3 +1007,5 @@ class ThreeDS2ResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

@@ -72,8 +72,8 @@ class AmazonPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'amazon_pay_token' => false,
-        'checkout_attempt_id' => false,
-        'type' => false
+		'checkout_attempt_id' => false,
+		'type' => false
     ];
 
     /**
@@ -469,7 +469,7 @@ class AmazonPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -495,3 +495,5 @@ class AmazonPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

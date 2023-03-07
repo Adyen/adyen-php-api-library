@@ -86,15 +86,15 @@ class FundRecipient implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'billing_address' => false,
-        'payment_method' => false,
-        'shopper_email' => false,
-        'shopper_name' => false,
-        'shopper_reference' => false,
-        'stored_payment_method_id' => false,
-        'sub_merchant' => false,
-        'telephone_number' => false,
-        'wallet_identifier' => false,
-        'wallet_owner_tax_id' => false
+		'payment_method' => false,
+		'shopper_email' => false,
+		'shopper_name' => false,
+		'shopper_reference' => false,
+		'stored_payment_method_id' => false,
+		'sub_merchant' => false,
+		'telephone_number' => false,
+		'wallet_identifier' => false,
+		'wallet_owner_tax_id' => false
     ];
 
     /**
@@ -675,7 +675,7 @@ class FundRecipient implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -701,3 +701,5 @@ class FundRecipient implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

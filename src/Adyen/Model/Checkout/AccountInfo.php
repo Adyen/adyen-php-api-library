@@ -104,24 +104,24 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'account_age_indicator' => false,
-        'account_change_date' => false,
-        'account_change_indicator' => false,
-        'account_creation_date' => false,
-        'account_type' => false,
-        'add_card_attempts_day' => false,
-        'delivery_address_usage_date' => false,
-        'delivery_address_usage_indicator' => false,
-        'home_phone' => false,
-        'mobile_phone' => false,
-        'password_change_date' => false,
-        'password_change_indicator' => false,
-        'past_transactions_day' => false,
-        'past_transactions_year' => false,
-        'payment_account_age' => false,
-        'payment_account_indicator' => false,
-        'purchases_last6_months' => false,
-        'suspicious_activity' => false,
-        'work_phone' => false
+		'account_change_date' => false,
+		'account_change_indicator' => false,
+		'account_creation_date' => false,
+		'account_type' => false,
+		'add_card_attempts_day' => true,
+		'delivery_address_usage_date' => false,
+		'delivery_address_usage_indicator' => false,
+		'home_phone' => false,
+		'mobile_phone' => false,
+		'password_change_date' => false,
+		'password_change_indicator' => false,
+		'past_transactions_day' => true,
+		'past_transactions_year' => true,
+		'payment_account_age' => false,
+		'payment_account_indicator' => false,
+		'purchases_last6_months' => true,
+		'suspicious_activity' => false,
+		'work_phone' => false
     ];
 
     /**
@@ -761,9 +761,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAddCardAttemptsDay($add_card_attempts_day)
     {
-        if (is_null($add_card_attempts_day)) {
-            throw new \InvalidArgumentException('non-nullable add_card_attempts_day cannot be null');
-        }
+        // Do nothing for nullable integers
         $this->container['add_card_attempts_day'] = $add_card_attempts_day;
 
         return $this;
@@ -974,9 +972,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPastTransactionsDay($past_transactions_day)
     {
-        if (is_null($past_transactions_day)) {
-            throw new \InvalidArgumentException('non-nullable past_transactions_day cannot be null');
-        }
+        // Do nothing for nullable integers
         $this->container['past_transactions_day'] = $past_transactions_day;
 
         return $this;
@@ -1001,9 +997,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPastTransactionsYear($past_transactions_year)
     {
-        if (is_null($past_transactions_year)) {
-            throw new \InvalidArgumentException('non-nullable past_transactions_year cannot be null');
-        }
+        // Do nothing for nullable integers
         $this->container['past_transactions_year'] = $past_transactions_year;
 
         return $this;
@@ -1092,9 +1086,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPurchasesLast6Months($purchases_last6_months)
     {
-        if (is_null($purchases_last6_months)) {
-            throw new \InvalidArgumentException('non-nullable purchases_last6_months cannot be null');
-        }
+        // Do nothing for nullable integers
         $this->container['purchases_last6_months'] = $purchases_last6_months;
 
         return $this;
@@ -1219,7 +1211,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -1245,3 +1237,5 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

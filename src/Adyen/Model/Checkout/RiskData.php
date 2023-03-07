@@ -74,9 +74,9 @@ class RiskData implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'client_data' => false,
-        'custom_fields' => false,
-        'fraud_offset' => false,
-        'profile_reference' => false
+		'custom_fields' => false,
+		'fraud_offset' => true,
+		'profile_reference' => false
     ];
 
     /**
@@ -373,9 +373,7 @@ class RiskData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFraudOffset($fraud_offset)
     {
-        if (is_null($fraud_offset)) {
-            throw new \InvalidArgumentException('non-nullable fraud_offset cannot be null');
-        }
+        // Do nothing for nullable integers
         $this->container['fraud_offset'] = $fraud_offset;
 
         return $this;
@@ -471,7 +469,7 @@ class RiskData implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -497,3 +495,5 @@ class RiskData implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

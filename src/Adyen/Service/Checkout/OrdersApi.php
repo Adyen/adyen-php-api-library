@@ -24,7 +24,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
 class OrdersApi extends Service
 {
     /**
-     * Checkout constructor.
+     * OrdersApi constructor.
      *
      * @param \Adyen\Client $client
      * @throws AdyenException
@@ -47,8 +47,7 @@ class OrdersApi extends Service
     public function createOrder(\Adyen\Model\Checkout\CheckoutCreateOrderRequest $checkoutCreateOrderRequest, $requestOptions = null): \Adyen\Model\Checkout\CheckoutCreateOrderResponse
     {
         $endpoint = $this->baseURL . "/orders";
-        $service = new Service($this->getClient());
-        $response = $service->requestHttp($endpoint, strtolower('POST'), (array) $checkoutCreateOrderRequest->jsonSerialize(), $requestOptions);
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $checkoutCreateOrderRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\CheckoutCreateOrderResponse::class);
     }
 
@@ -64,8 +63,7 @@ class OrdersApi extends Service
     public function cancelOrder(\Adyen\Model\Checkout\CheckoutCancelOrderRequest $checkoutCancelOrderRequest, $requestOptions = null): \Adyen\Model\Checkout\CheckoutCancelOrderResponse
     {
         $endpoint = $this->baseURL . "/orders/cancel";
-        $service = new Service($this->getClient());
-        $response = $service->requestHttp($endpoint, strtolower('POST'), (array) $checkoutCancelOrderRequest->jsonSerialize(), $requestOptions);
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $checkoutCancelOrderRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\CheckoutCancelOrderResponse::class);
     }
 
@@ -81,8 +79,7 @@ class OrdersApi extends Service
     public function getBalanceOfGiftCard(\Adyen\Model\Checkout\CheckoutBalanceCheckRequest $checkoutBalanceCheckRequest, $requestOptions = null): \Adyen\Model\Checkout\CheckoutBalanceCheckResponse
     {
         $endpoint = $this->baseURL . "/paymentMethods/balance";
-        $service = new Service($this->getClient());
-        $response = $service->requestHttp($endpoint, strtolower('POST'), (array) $checkoutBalanceCheckRequest->jsonSerialize(), $requestOptions);
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $checkoutBalanceCheckRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\CheckoutBalanceCheckResponse::class);
     }
 }

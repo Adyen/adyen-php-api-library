@@ -121,32 +121,32 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPINullables = [
         'payment_data' => false,
-        'payment_method_type' => false,
-        'type' => false,
-        'url' => false,
-        'expires_at' => false,
-        'qr_code_data' => false,
-        'data' => false,
-        'method' => false,
-        'sdk_data' => false,
-        'authorisation_token' => false,
-        'subtype' => false,
-        'token' => false,
-        'alternative_reference' => false,
-        'collection_institution_number' => false,
-        'download_url' => false,
-        'entity' => false,
-        'initial_amount' => false,
-        'instructions_url' => false,
-        'issuer' => false,
-        'masked_telephone_number' => false,
-        'merchant_name' => false,
-        'merchant_reference' => false,
-        'reference' => false,
-        'shopper_email' => false,
-        'shopper_name' => false,
-        'surcharge' => false,
-        'total_amount' => false
+		'payment_method_type' => false,
+		'type' => false,
+		'url' => false,
+		'expires_at' => false,
+		'qr_code_data' => false,
+		'data' => false,
+		'method' => false,
+		'sdk_data' => false,
+		'authorisation_token' => false,
+		'subtype' => false,
+		'token' => false,
+		'alternative_reference' => false,
+		'collection_institution_number' => false,
+		'download_url' => false,
+		'entity' => false,
+		'initial_amount' => false,
+		'instructions_url' => false,
+		'issuer' => false,
+		'masked_telephone_number' => false,
+		'merchant_name' => false,
+		'merchant_reference' => false,
+		'reference' => false,
+		'shopper_email' => false,
+		'shopper_name' => false,
+		'surcharge' => false,
+		'total_amount' => false
     ];
 
     /**
@@ -1289,7 +1289,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -1315,3 +1315,5 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

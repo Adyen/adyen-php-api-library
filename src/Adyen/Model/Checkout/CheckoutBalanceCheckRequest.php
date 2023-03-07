@@ -154,49 +154,49 @@ class CheckoutBalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonS
       */
     protected static $openAPINullables = [
         'account_info' => false,
-        'additional_amount' => false,
-        'additional_data' => false,
-        'amount' => false,
-        'application_info' => false,
-        'billing_address' => false,
-        'browser_info' => false,
-        'capture_delay_hours' => false,
-        'date_of_birth' => false,
-        'dcc_quote' => false,
-        'delivery_address' => false,
-        'delivery_date' => false,
-        'device_fingerprint' => false,
-        'fraud_offset' => false,
-        'installments' => false,
-        'localized_shopper_statement' => false,
-        'mcc' => false,
-        'merchant_account' => false,
-        'merchant_order_reference' => false,
-        'merchant_risk_indicator' => false,
-        'metadata' => false,
-        'order_reference' => false,
-        'payment_method' => false,
-        'recurring' => false,
-        'recurring_processing_model' => false,
-        'reference' => false,
-        'selected_brand' => false,
-        'selected_recurring_detail_reference' => false,
-        'session_id' => false,
-        'shopper_email' => false,
-        'shopper_ip' => false,
-        'shopper_interaction' => false,
-        'shopper_locale' => false,
-        'shopper_name' => false,
-        'shopper_reference' => false,
-        'shopper_statement' => false,
-        'social_security_number' => false,
-        'splits' => false,
-        'store' => false,
-        'telephone_number' => false,
-        'three_ds2_request_data' => false,
-        'three_ds_authentication_only' => false,
-        'totals_group' => false,
-        'trusted_shopper' => false
+		'additional_amount' => false,
+		'additional_data' => false,
+		'amount' => false,
+		'application_info' => false,
+		'billing_address' => false,
+		'browser_info' => false,
+		'capture_delay_hours' => true,
+		'date_of_birth' => false,
+		'dcc_quote' => false,
+		'delivery_address' => false,
+		'delivery_date' => false,
+		'device_fingerprint' => false,
+		'fraud_offset' => true,
+		'installments' => false,
+		'localized_shopper_statement' => false,
+		'mcc' => false,
+		'merchant_account' => false,
+		'merchant_order_reference' => false,
+		'merchant_risk_indicator' => false,
+		'metadata' => false,
+		'order_reference' => false,
+		'payment_method' => false,
+		'recurring' => false,
+		'recurring_processing_model' => false,
+		'reference' => false,
+		'selected_brand' => false,
+		'selected_recurring_detail_reference' => false,
+		'session_id' => false,
+		'shopper_email' => false,
+		'shopper_ip' => false,
+		'shopper_interaction' => false,
+		'shopper_locale' => false,
+		'shopper_name' => false,
+		'shopper_reference' => false,
+		'shopper_statement' => false,
+		'social_security_number' => false,
+		'splits' => false,
+		'store' => false,
+		'telephone_number' => false,
+		'three_ds2_request_data' => false,
+		'three_ds_authentication_only' => false,
+		'totals_group' => false,
+		'trusted_shopper' => false
     ];
 
     /**
@@ -874,9 +874,7 @@ class CheckoutBalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setCaptureDelayHours($capture_delay_hours)
     {
-        if (is_null($capture_delay_hours)) {
-            throw new \InvalidArgumentException('non-nullable capture_delay_hours cannot be null');
-        }
+        // Do nothing for nullable integers
         $this->container['capture_delay_hours'] = $capture_delay_hours;
 
         return $this;
@@ -1040,9 +1038,7 @@ class CheckoutBalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setFraudOffset($fraud_offset)
     {
-        if (is_null($fraud_offset)) {
-            throw new \InvalidArgumentException('non-nullable fraud_offset cannot be null');
-        }
+        // Do nothing for nullable integers
         $this->container['fraud_offset'] = $fraud_offset;
 
         return $this;
@@ -1957,7 +1953,7 @@ class CheckoutBalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -1983,3 +1979,5 @@ class CheckoutBalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonS
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

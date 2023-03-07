@@ -174,59 +174,59 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPINullables = [
         'account_info' => false,
-        'additional_amount' => false,
-        'additional_data' => false,
-        'allowed_payment_methods' => false,
-        'amount' => false,
-        'application_info' => false,
-        'authentication_data' => false,
-        'billing_address' => false,
-        'blocked_payment_methods' => false,
-        'capture_delay_hours' => false,
-        'channel' => false,
-        'company' => false,
-        'country_code' => false,
-        'date_of_birth' => false,
-        'deliver_at' => false,
-        'delivery_address' => false,
-        'enable_one_click' => false,
-        'enable_pay_out' => false,
-        'enable_recurring' => false,
-        'expires_at' => false,
-        'fund_origin' => false,
-        'fund_recipient' => false,
-        'installment_options' => false,
-        'line_items' => false,
-        'mandate' => false,
-        'mcc' => false,
-        'merchant_account' => false,
-        'merchant_order_reference' => false,
-        'metadata' => false,
-        'mpi_data' => false,
-        'recurring_expiry' => false,
-        'recurring_frequency' => false,
-        'recurring_processing_model' => false,
-        'redirect_from_issuer_method' => false,
-        'redirect_to_issuer_method' => false,
-        'reference' => false,
-        'return_url' => false,
-        'risk_data' => false,
-        'shopper_email' => false,
-        'shopper_ip' => false,
-        'shopper_interaction' => false,
-        'shopper_locale' => false,
-        'shopper_name' => false,
-        'shopper_reference' => false,
-        'shopper_statement' => false,
-        'social_security_number' => false,
-        'split_card_funding_sources' => false,
-        'splits' => false,
-        'store' => false,
-        'store_payment_method' => false,
-        'store_payment_method_mode' => false,
-        'telephone_number' => false,
-        'three_ds_authentication_only' => false,
-        'trusted_shopper' => false
+		'additional_amount' => false,
+		'additional_data' => false,
+		'allowed_payment_methods' => false,
+		'amount' => false,
+		'application_info' => false,
+		'authentication_data' => false,
+		'billing_address' => false,
+		'blocked_payment_methods' => false,
+		'capture_delay_hours' => true,
+		'channel' => false,
+		'company' => false,
+		'country_code' => false,
+		'date_of_birth' => false,
+		'deliver_at' => false,
+		'delivery_address' => false,
+		'enable_one_click' => false,
+		'enable_pay_out' => false,
+		'enable_recurring' => false,
+		'expires_at' => false,
+		'fund_origin' => false,
+		'fund_recipient' => false,
+		'installment_options' => false,
+		'line_items' => false,
+		'mandate' => false,
+		'mcc' => false,
+		'merchant_account' => false,
+		'merchant_order_reference' => false,
+		'metadata' => false,
+		'mpi_data' => false,
+		'recurring_expiry' => false,
+		'recurring_frequency' => false,
+		'recurring_processing_model' => false,
+		'redirect_from_issuer_method' => false,
+		'redirect_to_issuer_method' => false,
+		'reference' => false,
+		'return_url' => false,
+		'risk_data' => false,
+		'shopper_email' => false,
+		'shopper_ip' => false,
+		'shopper_interaction' => false,
+		'shopper_locale' => false,
+		'shopper_name' => false,
+		'shopper_reference' => false,
+		'shopper_statement' => false,
+		'social_security_number' => false,
+		'split_card_funding_sources' => false,
+		'splits' => false,
+		'store' => false,
+		'store_payment_method' => false,
+		'store_payment_method_mode' => false,
+		'telephone_number' => false,
+		'three_ds_authentication_only' => false,
+		'trusted_shopper' => false
     ];
 
     /**
@@ -1030,9 +1030,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setCaptureDelayHours($capture_delay_hours)
     {
-        if (is_null($capture_delay_hours)) {
-            throw new \InvalidArgumentException('non-nullable capture_delay_hours cannot be null');
-        }
+        // Do nothing for nullable integers
         $this->container['capture_delay_hours'] = $capture_delay_hours;
 
         return $this;
@@ -2329,7 +2327,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -2355,3 +2353,5 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

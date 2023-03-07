@@ -67,7 +67,7 @@ class InstallmentsNumber implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'max_number_of_installments' => false
+        'max_number_of_installments' => true
     ];
 
     /**
@@ -301,9 +301,7 @@ class InstallmentsNumber implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setMaxNumberOfInstallments($max_number_of_installments)
     {
-        if (is_null($max_number_of_installments)) {
-            throw new \InvalidArgumentException('non-nullable max_number_of_installments cannot be null');
-        }
+        // Do nothing for nullable integers
         $this->container['max_number_of_installments'] = $max_number_of_installments;
 
         return $this;
@@ -372,7 +370,7 @@ class InstallmentsNumber implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -398,3 +396,5 @@ class InstallmentsNumber implements ModelInterface, ArrayAccess, \JsonSerializab
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

@@ -78,11 +78,11 @@ class AdditionalData3DSecure implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPINullables = [
         'allow3_ds2' => false,
-        'challenge_window_size' => false,
-        'execute_three_d' => false,
-        'mpi_implementation_type' => false,
-        'sca_exemption' => false,
-        'three_ds_version' => false
+		'challenge_window_size' => false,
+		'execute_three_d' => false,
+		'mpi_implementation_type' => false,
+		'sca_exemption' => false,
+		'three_ds_version' => false
     ];
 
     /**
@@ -583,7 +583,7 @@ class AdditionalData3DSecure implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -609,3 +609,5 @@ class AdditionalData3DSecure implements ModelInterface, ArrayAccess, \JsonSerial
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

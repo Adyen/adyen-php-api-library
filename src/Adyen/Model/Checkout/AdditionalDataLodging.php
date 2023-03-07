@@ -100,22 +100,22 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPINullables = [
         'lodging_check_in_date' => false,
-        'lodging_check_out_date' => false,
-        'lodging_customer_service_toll_free_number' => false,
-        'lodging_fire_safety_act_indicator' => false,
-        'lodging_folio_cash_advances' => false,
-        'lodging_folio_number' => false,
-        'lodging_food_beverage_charges' => false,
-        'lodging_no_show_indicator' => false,
-        'lodging_prepaid_expenses' => false,
-        'lodging_property_phone_number' => false,
-        'lodging_room1_number_of_nights' => false,
-        'lodging_room1_rate' => false,
-        'lodging_room1_tax' => false,
-        'lodging_total_room_tax' => false,
-        'lodging_total_tax' => false,
-        'travel_entertainment_auth_data_duration' => false,
-        'travel_entertainment_auth_data_market' => false
+		'lodging_check_out_date' => false,
+		'lodging_customer_service_toll_free_number' => false,
+		'lodging_fire_safety_act_indicator' => false,
+		'lodging_folio_cash_advances' => false,
+		'lodging_folio_number' => false,
+		'lodging_food_beverage_charges' => false,
+		'lodging_no_show_indicator' => false,
+		'lodging_prepaid_expenses' => false,
+		'lodging_property_phone_number' => false,
+		'lodging_room1_number_of_nights' => false,
+		'lodging_room1_rate' => false,
+		'lodging_room1_tax' => false,
+		'lodging_total_room_tax' => false,
+		'lodging_total_tax' => false,
+		'travel_entertainment_auth_data_duration' => false,
+		'travel_entertainment_auth_data_market' => false
     ];
 
     /**
@@ -913,7 +913,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -939,3 +939,5 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

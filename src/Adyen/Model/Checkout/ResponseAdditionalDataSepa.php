@@ -72,8 +72,8 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
       */
     protected static $openAPINullables = [
         'sepadirectdebit_date_of_signature' => false,
-        'sepadirectdebit_mandate_id' => false,
-        'sepadirectdebit_sequence_type' => false
+		'sepadirectdebit_mandate_id' => false,
+		'sepadirectdebit_sequence_type' => false
     ];
 
     /**
@@ -437,7 +437,7 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -463,3 +463,5 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

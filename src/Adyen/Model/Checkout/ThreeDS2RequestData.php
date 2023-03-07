@@ -144,44 +144,44 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static $openAPINullables = [
         'acct_info' => false,
-        'acct_type' => false,
-        'acquirer_bin' => false,
-        'acquirer_merchant_id' => false,
-        'addr_match' => false,
-        'authentication_only' => false,
-        'challenge_indicator' => false,
-        'device_channel' => false,
-        'device_render_options' => false,
-        'home_phone' => false,
-        'mcc' => false,
-        'merchant_name' => false,
-        'message_version' => false,
-        'mobile_phone' => false,
-        'notification_url' => false,
-        'pay_token_ind' => false,
-        'payment_authentication_use_case' => false,
-        'purchase_instal_data' => false,
-        'recurring_expiry' => false,
-        'recurring_frequency' => false,
-        'sdk_app_id' => false,
-        'sdk_enc_data' => false,
-        'sdk_ephem_pub_key' => false,
-        'sdk_max_timeout' => false,
-        'sdk_reference_number' => false,
-        'sdk_trans_id' => false,
-        'sdk_version' => false,
-        'three_ds_comp_ind' => false,
-        'three_ds_requestor_authentication_ind' => false,
-        'three_ds_requestor_authentication_info' => false,
-        'three_ds_requestor_challenge_ind' => false,
-        'three_ds_requestor_id' => false,
-        'three_ds_requestor_name' => false,
-        'three_ds_requestor_prior_authentication_info' => false,
-        'three_ds_requestor_url' => false,
-        'trans_type' => false,
-        'transaction_type' => false,
-        'white_list_status' => false,
-        'work_phone' => false
+		'acct_type' => false,
+		'acquirer_bin' => false,
+		'acquirer_merchant_id' => false,
+		'addr_match' => false,
+		'authentication_only' => false,
+		'challenge_indicator' => false,
+		'device_channel' => false,
+		'device_render_options' => false,
+		'home_phone' => false,
+		'mcc' => false,
+		'merchant_name' => false,
+		'message_version' => false,
+		'mobile_phone' => false,
+		'notification_url' => false,
+		'pay_token_ind' => false,
+		'payment_authentication_use_case' => false,
+		'purchase_instal_data' => false,
+		'recurring_expiry' => false,
+		'recurring_frequency' => false,
+		'sdk_app_id' => false,
+		'sdk_enc_data' => false,
+		'sdk_ephem_pub_key' => false,
+		'sdk_max_timeout' => true,
+		'sdk_reference_number' => false,
+		'sdk_trans_id' => false,
+		'sdk_version' => false,
+		'three_ds_comp_ind' => false,
+		'three_ds_requestor_authentication_ind' => false,
+		'three_ds_requestor_authentication_info' => false,
+		'three_ds_requestor_challenge_ind' => false,
+		'three_ds_requestor_id' => false,
+		'three_ds_requestor_name' => false,
+		'three_ds_requestor_prior_authentication_info' => false,
+		'three_ds_requestor_url' => false,
+		'trans_type' => false,
+		'transaction_type' => false,
+		'white_list_status' => false,
+		'work_phone' => false
     ];
 
     /**
@@ -1453,9 +1453,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setSdkMaxTimeout($sdk_max_timeout)
     {
-        if (is_null($sdk_max_timeout)) {
-            throw new \InvalidArgumentException('non-nullable sdk_max_timeout cannot be null');
-        }
+        // Do nothing for nullable integers
         $this->container['sdk_max_timeout'] = $sdk_max_timeout;
 
         return $this;
@@ -1966,7 +1964,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -1992,3 +1990,5 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

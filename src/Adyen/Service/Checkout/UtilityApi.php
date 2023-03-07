@@ -24,7 +24,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
 class UtilityApi extends Service
 {
     /**
-     * Checkout constructor.
+     * UtilityApi constructor.
      *
      * @param \Adyen\Client $client
      * @throws AdyenException
@@ -47,8 +47,7 @@ class UtilityApi extends Service
     public function getApplePaySession(\Adyen\Model\Checkout\CreateApplePaySessionRequest $createApplePaySessionRequest, $requestOptions = null): \Adyen\Model\Checkout\ApplePaySessionResponse
     {
         $endpoint = $this->baseURL . "/applePay/sessions";
-        $service = new Service($this->getClient());
-        $response = $service->requestHttp($endpoint, strtolower('POST'), (array) $createApplePaySessionRequest->jsonSerialize(), $requestOptions);
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $createApplePaySessionRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\ApplePaySessionResponse::class);
     }
 
@@ -64,8 +63,7 @@ class UtilityApi extends Service
     public function createOriginkeyValuesForDomains(\Adyen\Model\Checkout\CheckoutUtilityRequest $checkoutUtilityRequest, $requestOptions = null): \Adyen\Model\Checkout\CheckoutUtilityResponse
     {
         $endpoint = $this->baseURL . "/originKeys";
-        $service = new Service($this->getClient());
-        $response = $service->requestHttp($endpoint, strtolower('POST'), (array) $checkoutUtilityRequest->jsonSerialize(), $requestOptions);
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $checkoutUtilityRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\CheckoutUtilityResponse::class);
     }
 }

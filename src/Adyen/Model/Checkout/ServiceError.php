@@ -78,11 +78,11 @@ class ServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'additional_data' => false,
-        'error_code' => false,
-        'error_type' => false,
-        'message' => false,
-        'psp_reference' => false,
-        'status' => false
+		'error_code' => false,
+		'error_type' => false,
+		'message' => false,
+		'psp_reference' => false,
+		'status' => true
     ];
 
     /**
@@ -468,9 +468,7 @@ class ServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
+        // Do nothing for nullable integers
         $this->container['status'] = $status;
 
         return $this;
@@ -539,7 +537,7 @@ class ServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -565,3 +563,5 @@ class ServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

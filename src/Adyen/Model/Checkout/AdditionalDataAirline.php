@@ -122,33 +122,33 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPINullables = [
         'airline_agency_invoice_number' => false,
-        'airline_agency_plan_name' => false,
-        'airline_airline_code' => false,
-        'airline_airline_designator_code' => false,
-        'airline_boarding_fee' => false,
-        'airline_computerized_reservation_system' => false,
-        'airline_customer_reference_number' => false,
-        'airline_document_type' => false,
-        'airline_flight_date' => false,
-        'airline_leg_carrier_code' => false,
-        'airline_leg_class_of_travel' => false,
-        'airline_leg_date_of_travel' => false,
-        'airline_leg_depart_airport' => false,
-        'airline_leg_depart_tax' => false,
-        'airline_leg_destination_code' => false,
-        'airline_leg_fare_base_code' => false,
-        'airline_leg_flight_number' => false,
-        'airline_leg_stop_over_code' => false,
-        'airline_passenger_date_of_birth' => false,
-        'airline_passenger_first_name' => false,
-        'airline_passenger_last_name' => false,
-        'airline_passenger_telephone_number' => false,
-        'airline_passenger_traveller_type' => false,
-        'airline_passenger_name' => false,
-        'airline_ticket_issue_address' => false,
-        'airline_ticket_number' => false,
-        'airline_travel_agency_code' => false,
-        'airline_travel_agency_name' => false
+		'airline_agency_plan_name' => false,
+		'airline_airline_code' => false,
+		'airline_airline_designator_code' => false,
+		'airline_boarding_fee' => false,
+		'airline_computerized_reservation_system' => false,
+		'airline_customer_reference_number' => false,
+		'airline_document_type' => false,
+		'airline_flight_date' => false,
+		'airline_leg_carrier_code' => false,
+		'airline_leg_class_of_travel' => false,
+		'airline_leg_date_of_travel' => false,
+		'airline_leg_depart_airport' => false,
+		'airline_leg_depart_tax' => false,
+		'airline_leg_destination_code' => false,
+		'airline_leg_fare_base_code' => false,
+		'airline_leg_flight_number' => false,
+		'airline_leg_stop_over_code' => false,
+		'airline_passenger_date_of_birth' => false,
+		'airline_passenger_first_name' => false,
+		'airline_passenger_last_name' => false,
+		'airline_passenger_telephone_number' => false,
+		'airline_passenger_traveller_type' => false,
+		'airline_passenger_name' => false,
+		'airline_ticket_issue_address' => false,
+		'airline_ticket_number' => false,
+		'airline_travel_agency_code' => false,
+		'airline_travel_agency_name' => false
     ];
 
     /**
@@ -1290,7 +1290,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -1316,3 +1316,5 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

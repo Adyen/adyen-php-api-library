@@ -94,19 +94,19 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPINullables = [
         'address_match' => false,
-        'delivery_address_indicator' => false,
-        'delivery_email' => false,
-        'delivery_email_address' => false,
-        'delivery_timeframe' => false,
-        'gift_card_amount' => false,
-        'gift_card_count' => false,
-        'gift_card_curr' => false,
-        'pre_order_date' => false,
-        'pre_order_purchase' => false,
-        'pre_order_purchase_ind' => false,
-        'reorder_items' => false,
-        'reorder_items_ind' => false,
-        'ship_indicator' => false
+		'delivery_address_indicator' => false,
+		'delivery_email' => false,
+		'delivery_email_address' => false,
+		'delivery_timeframe' => false,
+		'gift_card_amount' => false,
+		'gift_card_count' => true,
+		'gift_card_curr' => false,
+		'pre_order_date' => false,
+		'pre_order_purchase' => false,
+		'pre_order_purchase_ind' => false,
+		'reorder_items' => false,
+		'reorder_items_ind' => false,
+		'ship_indicator' => false
     ];
 
     /**
@@ -643,9 +643,7 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setGiftCardCount($gift_card_count)
     {
-        if (is_null($gift_card_count)) {
-            throw new \InvalidArgumentException('non-nullable gift_card_count cannot be null');
-        }
+        // Do nothing for nullable integers
         $this->container['gift_card_count'] = $gift_card_count;
 
         return $this;
@@ -903,7 +901,7 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -929,3 +927,5 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

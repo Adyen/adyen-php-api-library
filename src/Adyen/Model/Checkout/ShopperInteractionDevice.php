@@ -72,8 +72,8 @@ class ShopperInteractionDevice implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static $openAPINullables = [
         'locale' => false,
-        'os' => false,
-        'os_version' => false
+		'os' => false,
+		'os_version' => false
     ];
 
     /**
@@ -437,7 +437,7 @@ class ShopperInteractionDevice implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -463,3 +463,5 @@ class ShopperInteractionDevice implements ModelInterface, ArrayAccess, \JsonSeri
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

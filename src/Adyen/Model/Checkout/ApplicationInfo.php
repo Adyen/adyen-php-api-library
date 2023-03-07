@@ -78,11 +78,11 @@ class ApplicationInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'adyen_library' => false,
-        'adyen_payment_source' => false,
-        'external_platform' => false,
-        'merchant_application' => false,
-        'merchant_device' => false,
-        'shopper_interaction_device' => false
+		'adyen_payment_source' => false,
+		'external_platform' => false,
+		'merchant_application' => false,
+		'merchant_device' => false,
+		'shopper_interaction_device' => false
     ];
 
     /**
@@ -539,7 +539,7 @@ class ApplicationInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -565,3 +565,5 @@ class ApplicationInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

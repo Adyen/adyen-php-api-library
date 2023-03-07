@@ -73,10 +73,10 @@ class InstallmentOption implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'max_value' => false,
-        'plans' => false,
-        'preselected_value' => false,
-        'values' => false
+        'max_value' => true,
+		'plans' => false,
+		'preselected_value' => true,
+		'values' => false
     ];
 
     /**
@@ -334,9 +334,7 @@ class InstallmentOption implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setMaxValue($max_value)
     {
-        if (is_null($max_value)) {
-            throw new \InvalidArgumentException('non-nullable max_value cannot be null');
-        }
+        // Do nothing for nullable integers
         $this->container['max_value'] = $max_value;
 
         return $this;
@@ -397,9 +395,7 @@ class InstallmentOption implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setPreselectedValue($preselected_value)
     {
-        if (is_null($preselected_value)) {
-            throw new \InvalidArgumentException('non-nullable preselected_value cannot be null');
-        }
+        // Do nothing for nullable integers
         $this->container['preselected_value'] = $preselected_value;
 
         return $this;
@@ -495,7 +491,7 @@ class InstallmentOption implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -521,3 +517,5 @@ class InstallmentOption implements ModelInterface, ArrayAccess, \JsonSerializabl
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

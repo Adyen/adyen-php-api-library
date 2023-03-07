@@ -71,9 +71,9 @@ class FraudCheckResult implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'account_score' => false,
-        'check_id' => false,
-        'name' => false
+        'account_score' => true,
+		'check_id' => true,
+		'name' => false
     ];
 
     /**
@@ -321,9 +321,7 @@ class FraudCheckResult implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAccountScore($account_score)
     {
-        if (is_null($account_score)) {
-            throw new \InvalidArgumentException('non-nullable account_score cannot be null');
-        }
+        // Do nothing for nullable integers
         $this->container['account_score'] = $account_score;
 
         return $this;
@@ -348,9 +346,7 @@ class FraudCheckResult implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCheckId($check_id)
     {
-        if (is_null($check_id)) {
-            throw new \InvalidArgumentException('non-nullable check_id cannot be null');
-        }
+        // Do nothing for nullable integers
         $this->container['check_id'] = $check_id;
 
         return $this;
@@ -446,7 +442,7 @@ class FraudCheckResult implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -472,3 +468,5 @@ class FraudCheckResult implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

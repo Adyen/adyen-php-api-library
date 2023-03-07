@@ -24,7 +24,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
 class PaymentsApi extends Service
 {
     /**
-     * Checkout constructor.
+     * PaymentsApi constructor.
      *
      * @param \Adyen\Client $client
      * @throws AdyenException
@@ -47,8 +47,7 @@ class PaymentsApi extends Service
     public function listBrandsOnCard(\Adyen\Model\Checkout\CardDetailsRequest $cardDetailsRequest, $requestOptions = null): \Adyen\Model\Checkout\CardDetailsResponse
     {
         $endpoint = $this->baseURL . "/cardDetails";
-        $service = new Service($this->getClient());
-        $response = $service->requestHttp($endpoint, strtolower('POST'), (array) $cardDetailsRequest->jsonSerialize(), $requestOptions);
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $cardDetailsRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\CardDetailsResponse::class);
     }
 
@@ -64,8 +63,7 @@ class PaymentsApi extends Service
     public function donations(\Adyen\Model\Checkout\PaymentDonationRequest $paymentDonationRequest, $requestOptions = null): \Adyen\Model\Checkout\DonationResponse
     {
         $endpoint = $this->baseURL . "/donations";
-        $service = new Service($this->getClient());
-        $response = $service->requestHttp($endpoint, strtolower('POST'), (array) $paymentDonationRequest->jsonSerialize(), $requestOptions);
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $paymentDonationRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\DonationResponse::class);
     }
 
@@ -81,8 +79,7 @@ class PaymentsApi extends Service
     public function paymentMethods(\Adyen\Model\Checkout\PaymentMethodsRequest $paymentMethodsRequest, $requestOptions = null): \Adyen\Model\Checkout\PaymentMethodsResponse
     {
         $endpoint = $this->baseURL . "/paymentMethods";
-        $service = new Service($this->getClient());
-        $response = $service->requestHttp($endpoint, strtolower('POST'), (array) $paymentMethodsRequest->jsonSerialize(), $requestOptions);
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $paymentMethodsRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\PaymentMethodsResponse::class);
     }
 
@@ -98,8 +95,7 @@ class PaymentsApi extends Service
     public function payments(\Adyen\Model\Checkout\PaymentRequest $paymentRequest, $requestOptions = null): \Adyen\Model\Checkout\PaymentResponse
     {
         $endpoint = $this->baseURL . "/payments";
-        $service = new Service($this->getClient());
-        $response = $service->requestHttp($endpoint, strtolower('POST'), (array) $paymentRequest->jsonSerialize(), $requestOptions);
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $paymentRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\PaymentResponse::class);
     }
 
@@ -115,8 +111,7 @@ class PaymentsApi extends Service
     public function paymentsDetails(\Adyen\Model\Checkout\DetailsRequest $detailsRequest, $requestOptions = null): \Adyen\Model\Checkout\PaymentDetailsResponse
     {
         $endpoint = $this->baseURL . "/payments/details";
-        $service = new Service($this->getClient());
-        $response = $service->requestHttp($endpoint, strtolower('POST'), (array) $detailsRequest->jsonSerialize(), $requestOptions);
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $detailsRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\PaymentDetailsResponse::class);
     }
 
@@ -132,8 +127,7 @@ class PaymentsApi extends Service
     public function sessions(\Adyen\Model\Checkout\CreateCheckoutSessionRequest $createCheckoutSessionRequest, $requestOptions = null): \Adyen\Model\Checkout\CreateCheckoutSessionResponse
     {
         $endpoint = $this->baseURL . "/sessions";
-        $service = new Service($this->getClient());
-        $response = $service->requestHttp($endpoint, strtolower('POST'), (array) $createCheckoutSessionRequest->jsonSerialize(), $requestOptions);
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $createCheckoutSessionRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\CreateCheckoutSessionResponse::class);
     }
 }

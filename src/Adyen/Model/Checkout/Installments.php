@@ -70,7 +70,7 @@ class Installments implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'plan' => false,
-        'value' => false
+		'value' => true
     ];
 
     /**
@@ -369,9 +369,7 @@ class Installments implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setValue($value)
     {
-        if (is_null($value)) {
-            throw new \InvalidArgumentException('non-nullable value cannot be null');
-        }
+        // Do nothing for nullable integers
         $this->container['value'] = $value;
 
         return $this;
@@ -440,7 +438,7 @@ class Installments implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -466,3 +464,5 @@ class Installments implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

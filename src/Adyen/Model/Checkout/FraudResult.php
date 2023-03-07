@@ -69,8 +69,8 @@ class FraudResult implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'account_score' => false,
-        'results' => false
+        'account_score' => true,
+		'results' => false
     ];
 
     /**
@@ -308,9 +308,7 @@ class FraudResult implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAccountScore($account_score)
     {
-        if (is_null($account_score)) {
-            throw new \InvalidArgumentException('non-nullable account_score cannot be null');
-        }
+        // Do nothing for nullable integers
         $this->container['account_score'] = $account_score;
 
         return $this;
@@ -406,7 +404,7 @@ class FraudResult implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -432,3 +430,5 @@ class FraudResult implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

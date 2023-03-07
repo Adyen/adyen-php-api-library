@@ -176,60 +176,60 @@ class PaymentSetupRequest implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static $openAPINullables = [
         'additional_data' => false,
-        'allowed_payment_methods' => false,
-        'amount' => false,
-        'application_info' => false,
-        'billing_address' => false,
-        'blocked_payment_methods' => false,
-        'capture_delay_hours' => false,
-        'channel' => false,
-        'checkout_attempt_id' => false,
-        'company' => false,
-        'configuration' => false,
-        'conversion_id' => false,
-        'country_code' => false,
-        'date_of_birth' => false,
-        'dcc_quote' => false,
-        'delivery_address' => false,
-        'delivery_date' => false,
-        'enable_one_click' => false,
-        'enable_pay_out' => false,
-        'enable_recurring' => false,
-        'entity_type' => false,
-        'fraud_offset' => false,
-        'installments' => false,
-        'line_items' => false,
-        'localized_shopper_statement' => false,
-        'mandate' => false,
-        'mcc' => false,
-        'merchant_account' => false,
-        'merchant_order_reference' => false,
-        'metadata' => false,
-        'order_reference' => false,
-        'origin' => false,
-        'platform_chargeback_logic' => false,
-        'recurring_expiry' => false,
-        'recurring_frequency' => false,
-        'reference' => false,
-        'return_url' => false,
-        'risk_data' => false,
-        'sdk_version' => false,
-        'session_validity' => false,
-        'shopper_email' => false,
-        'shopper_ip' => false,
-        'shopper_interaction' => false,
-        'shopper_locale' => false,
-        'shopper_name' => false,
-        'shopper_reference' => false,
-        'shopper_statement' => false,
-        'social_security_number' => false,
-        'splits' => false,
-        'store' => false,
-        'store_payment_method' => false,
-        'telephone_number' => false,
-        'three_ds_authentication_only' => false,
-        'token' => false,
-        'trusted_shopper' => false
+		'allowed_payment_methods' => false,
+		'amount' => false,
+		'application_info' => false,
+		'billing_address' => false,
+		'blocked_payment_methods' => false,
+		'capture_delay_hours' => true,
+		'channel' => false,
+		'checkout_attempt_id' => false,
+		'company' => false,
+		'configuration' => false,
+		'conversion_id' => false,
+		'country_code' => false,
+		'date_of_birth' => false,
+		'dcc_quote' => false,
+		'delivery_address' => false,
+		'delivery_date' => false,
+		'enable_one_click' => false,
+		'enable_pay_out' => false,
+		'enable_recurring' => false,
+		'entity_type' => false,
+		'fraud_offset' => true,
+		'installments' => false,
+		'line_items' => false,
+		'localized_shopper_statement' => false,
+		'mandate' => false,
+		'mcc' => false,
+		'merchant_account' => false,
+		'merchant_order_reference' => false,
+		'metadata' => false,
+		'order_reference' => false,
+		'origin' => false,
+		'platform_chargeback_logic' => false,
+		'recurring_expiry' => false,
+		'recurring_frequency' => false,
+		'reference' => false,
+		'return_url' => false,
+		'risk_data' => false,
+		'sdk_version' => false,
+		'session_validity' => false,
+		'shopper_email' => false,
+		'shopper_ip' => false,
+		'shopper_interaction' => false,
+		'shopper_locale' => false,
+		'shopper_name' => false,
+		'shopper_reference' => false,
+		'shopper_statement' => false,
+		'social_security_number' => false,
+		'splits' => false,
+		'store' => false,
+		'store_payment_method' => false,
+		'telephone_number' => false,
+		'three_ds_authentication_only' => false,
+		'token' => false,
+		'trusted_shopper' => false
     ];
 
     /**
@@ -943,9 +943,7 @@ class PaymentSetupRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setCaptureDelayHours($capture_delay_hours)
     {
-        if (is_null($capture_delay_hours)) {
-            throw new \InvalidArgumentException('non-nullable capture_delay_hours cannot be null');
-        }
+        // Do nothing for nullable integers
         $this->container['capture_delay_hours'] = $capture_delay_hours;
 
         return $this;
@@ -1368,9 +1366,7 @@ class PaymentSetupRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setFraudOffset($fraud_offset)
     {
-        if (is_null($fraud_offset)) {
-            throw new \InvalidArgumentException('non-nullable fraud_offset cannot be null');
-        }
+        // Do nothing for nullable integers
         $this->container['fraud_offset'] = $fraud_offset;
 
         return $this;
@@ -2353,7 +2349,7 @@ class PaymentSetupRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -2379,3 +2375,5 @@ class PaymentSetupRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

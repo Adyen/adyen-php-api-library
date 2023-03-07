@@ -74,9 +74,9 @@ class ThreeDSRequestorPriorAuthenticationInfo implements ModelInterface, ArrayAc
       */
     protected static $openAPINullables = [
         'three_ds_req_prior_auth_data' => false,
-        'three_ds_req_prior_auth_method' => false,
-        'three_ds_req_prior_auth_timestamp' => false,
-        'three_ds_req_prior_ref' => false
+		'three_ds_req_prior_auth_method' => false,
+		'three_ds_req_prior_auth_timestamp' => false,
+		'three_ds_req_prior_ref' => false
     ];
 
     /**
@@ -554,7 +554,7 @@ class ThreeDSRequestorPriorAuthenticationInfo implements ModelInterface, ArrayAc
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -580,3 +580,5 @@ class ThreeDSRequestorPriorAuthenticationInfo implements ModelInterface, ArrayAc
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

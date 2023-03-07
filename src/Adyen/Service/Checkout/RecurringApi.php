@@ -24,7 +24,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
 class RecurringApi extends Service
 {
     /**
-     * Checkout constructor.
+     * RecurringApi constructor.
      *
      * @param \Adyen\Client $client
      * @throws AdyenException
@@ -47,9 +47,8 @@ class RecurringApi extends Service
     */
     public function deleteTokenForStoredPaymentDetails(string $recurringId, $requestOptions = null): \Adyen\Model\Checkout\StoredPaymentMethodResource
     {
-        $endpoint = $this->baseURL . str_replace(['{' . 'recurringId' . '}'], [$recurringId], "/storedPaymentMethods/{recurringId}");
-        $service = new Service($this->getClient());
-        $response = $service->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
+        $endpoint = $this->baseURL . str_replace(['{recurringId}'], [$recurringId], "/storedPaymentMethods/{recurringId}");
+        $response = $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\StoredPaymentMethodResource::class);
     }
 
@@ -65,8 +64,7 @@ class RecurringApi extends Service
     public function getTokensForStoredPaymentDetails($requestOptions = null): \Adyen\Model\Checkout\ListStoredPaymentMethodsResponse
     {
         $endpoint = $this->baseURL . "/storedPaymentMethods";
-        $service = new Service($this->getClient());
-        $response = $service->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
+        $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\ListStoredPaymentMethodsResponse::class);
     }
 }

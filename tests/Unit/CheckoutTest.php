@@ -24,6 +24,7 @@
 namespace Adyen\Tests\Unit;
 
 use Adyen\AdyenException;
+use Adyen\Model\Checkout\PaymentMethodsRequest;
 use Adyen\Service\Checkout;
 
 class CheckoutTest extends TestCaseMock
@@ -40,12 +41,13 @@ class CheckoutTest extends TestCaseMock
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
         // initialize service
-        $service = new Checkout($client);
+        $service = new Checkout\PaymentsApi($client);
 
         $params = array('merchantAccount' => "YourMerchantAccount");
-        $result = $service->paymentMethods($params);
-
-        $this->assertArrayHasKey('paymentMethods', $result);
+        $result = $service->paymentMethods(new PaymentMethodsRequest($params));
+        $var = new PaymentMethodsRequest($params);
+        var_dump($var->listInvalidProperties());
+        self::assertEquals($result->getPaymentMethods()[0]->getName(), "ACH Direct Debit");
     }
 
     public static function successPaymentMethodsProvider()

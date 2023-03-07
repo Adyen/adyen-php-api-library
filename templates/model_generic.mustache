@@ -37,7 +37,7 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        {{#vars}}'{{name}}' => {{#isNullable}}true{{/isNullable}}{{^isNullable}}false{{/isNullable}}{{^-last}},
+        {{#vars}}'{{name}}' => {{#isNullable}}true{{/isNullable}}{{^isNullable}}{{^isInteger}}false{{/isInteger}}{{/isNullable}}{{^isNullable}}{{#isInteger}}true{{/isInteger}}{{/isNullable}}{{^-last}},
 		{{/-last}}{{/vars}}
     ];
 
@@ -393,16 +393,23 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
             $index = array_search('{{name}}', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         {{/isNullable}}
         {{^isNullable}}
+        {{#isInteger}}
+        // Do nothing for nullable integers
+        {{/isInteger}}
+        {{/isNullable}}
+        {{^isNullable}}
+        {{^isInteger}}
         if (is_null(${{name}})) {
             throw new \InvalidArgumentException('non-nullable {{name}} cannot be null');
         }
+        {{/isInteger}}
         {{/isNullable}}
         {{#isEnum}}
         $allowedValues = $this->{{getter}}AllowableValues();

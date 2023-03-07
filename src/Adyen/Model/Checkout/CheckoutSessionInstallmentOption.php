@@ -72,8 +72,8 @@ class CheckoutSessionInstallmentOption implements ModelInterface, ArrayAccess, \
       */
     protected static $openAPINullables = [
         'plans' => false,
-        'preselected_value' => false,
-        'values' => false
+		'preselected_value' => true,
+		'values' => false
     ];
 
     /**
@@ -363,9 +363,7 @@ class CheckoutSessionInstallmentOption implements ModelInterface, ArrayAccess, \
      */
     public function setPreselectedValue($preselected_value)
     {
-        if (is_null($preselected_value)) {
-            throw new \InvalidArgumentException('non-nullable preselected_value cannot be null');
-        }
+        // Do nothing for nullable integers
         $this->container['preselected_value'] = $preselected_value;
 
         return $this;
@@ -461,7 +459,7 @@ class CheckoutSessionInstallmentOption implements ModelInterface, ArrayAccess, \
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -487,3 +485,5 @@ class CheckoutSessionInstallmentOption implements ModelInterface, ArrayAccess, \
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

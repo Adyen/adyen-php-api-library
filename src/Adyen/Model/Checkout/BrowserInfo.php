@@ -84,14 +84,14 @@ class BrowserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'accept_header' => false,
-        'color_depth' => false,
-        'java_enabled' => false,
-        'java_script_enabled' => false,
-        'language' => false,
-        'screen_height' => false,
-        'screen_width' => false,
-        'time_zone_offset' => false,
-        'user_agent' => false
+		'color_depth' => true,
+		'java_enabled' => false,
+		'java_script_enabled' => false,
+		'language' => false,
+		'screen_height' => true,
+		'screen_width' => true,
+		'time_zone_offset' => true,
+		'user_agent' => false
     ];
 
     /**
@@ -405,9 +405,7 @@ class BrowserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setColorDepth($color_depth)
     {
-        if (is_null($color_depth)) {
-            throw new \InvalidArgumentException('non-nullable color_depth cannot be null');
-        }
+        // Do nothing for nullable integers
         $this->container['color_depth'] = $color_depth;
 
         return $this;
@@ -513,9 +511,7 @@ class BrowserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setScreenHeight($screen_height)
     {
-        if (is_null($screen_height)) {
-            throw new \InvalidArgumentException('non-nullable screen_height cannot be null');
-        }
+        // Do nothing for nullable integers
         $this->container['screen_height'] = $screen_height;
 
         return $this;
@@ -540,9 +536,7 @@ class BrowserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setScreenWidth($screen_width)
     {
-        if (is_null($screen_width)) {
-            throw new \InvalidArgumentException('non-nullable screen_width cannot be null');
-        }
+        // Do nothing for nullable integers
         $this->container['screen_width'] = $screen_width;
 
         return $this;
@@ -567,9 +561,7 @@ class BrowserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTimeZoneOffset($time_zone_offset)
     {
-        if (is_null($time_zone_offset)) {
-            throw new \InvalidArgumentException('non-nullable time_zone_offset cannot be null');
-        }
+        // Do nothing for nullable integers
         $this->container['time_zone_offset'] = $time_zone_offset;
 
         return $this;
@@ -665,7 +657,7 @@ class BrowserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -691,3 +683,5 @@ class BrowserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+
