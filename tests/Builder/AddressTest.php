@@ -21,41 +21,42 @@
  *
  */
 
-namespace Adyen\Tests\Integration\Builder;
+namespace Adyen\Tests\Builder;
 
-use Adyen\Service\Builder\OpenInvoice;
+use Adyen\Service\Builder\Address;
 use Adyen\Tests\TestCase;
 
-class OpenInvoiceTest extends TestCase
+class AddressTest extends TestCase
 {
-    public function testBuildOpenInvoiceLineItem()
+    public function testBuildBillingAddress()
     {
         $expectedResult = array(
-            'id' => "1",
-            'description' => "item-description",
-            'amountExcludingTax' => 1000,
-            'taxAmount' => 21,
-            'taxPercentage' => 10,
-            'quantity' => 10,
-            'productUrl' => 'product-url',
-            'imageUrl' => 'image-url',
-            'amountIncludingTax' => 1021,
-            'itemCategory' => 'test-category'
+            'billingAddress' => array(
+                'street' => "Blauwbrug",
+                'houseNumberOrName' => "33",
+                'postalCode' => "1334aa",
+                'city' => "Amsterdam",
+                'country' => "NL"
+            )
         );
-        $openInvoice = new OpenInvoice();
-        $result = $openInvoice->buildOpenInvoiceLineItem(
-            "item-description",
-            1000,
-            21,
-            10,
-            10,
-            "vat",
-            "1",
-            'product-url',
-            'image-url',
-            1021,
-            'test-category'
+        $address = new Address();
+        $result = $address->buildBillingAddress("Blauwbrug", "33", "1334aa", "Amsterdam", "", "NL");
+        $this->assertEquals($result, $expectedResult);
+    }
+
+    public function testBuildDeliveryAddress()
+    {
+        $expectedResult = array(
+            'deliveryAddress' => array(
+                'street' => "straat",
+                'houseNumberOrName' => "33",
+                'postalCode' => "1333aa",
+                'city' => "Leiden",
+                'country' => "NL"
+            )
         );
+        $address = new Address();
+        $result = $address->buildDeliveryAddress("straat", "33", "1333aa", "Leiden", "", "NL");
         $this->assertEquals($result, $expectedResult);
     }
 }

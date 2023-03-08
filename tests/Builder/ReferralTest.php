@@ -1,6 +1,6 @@
 <?php
 
-namespace Adyen\Tests\Integration\Builder;
+namespace Adyen\Tests\Builder;
 
 use Adyen\Service\Builder\Referral;
 use Adyen\Tests\TestCase;

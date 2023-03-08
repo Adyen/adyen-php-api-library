@@ -1,6 +1,6 @@
 <?php
 
-namespace Adyen\Tests\Integration;
+namespace Adyen\Tests\Unit;
 
 use Adyen\Service\Validator\CheckoutStateDataValidator;
 use Adyen\Tests\TestCase;
