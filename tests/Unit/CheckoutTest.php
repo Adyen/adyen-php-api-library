@@ -486,4 +486,32 @@ class CheckoutTest extends TestCaseMock
             array('tests/Resources/Checkout/sessions-invalid.json', 422, 'Required field \'amount\' is null'),
         );
     }
+
+    /**
+     * @param string $jsonFile
+     * @param int $httpStatus
+     *
+     * @dataProvider successCardDetailsProvider
+     */
+    public function testCardDetailsSuccess($jsonFile, $httpStatus)
+    {
+        $client = $this->createMockClient($jsonFile, $httpStatus);
+
+        $service = new Checkout($client);
+        $params = array (
+            "merchantAccount" => "YOUR_MERCHANT_ACCOUNT",
+            "cardNumber" => "411111",
+        );
+
+        $result = $service->cardDetails($params);
+
+        $this->assertNotNull($result['brands']);
+    }
+
+    public static function successCardDetailsProvider()
+    {
+        return array(
+            array('tests/Resources/Checkout/cardDetails-success.json', 200),
+        );
+    }
 }
