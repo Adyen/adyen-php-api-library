@@ -44,6 +44,27 @@ class Service
     }
 
     /**
+     * @throws AdyenException
+     */
+    protected function requestHttp($url, $method = 'get', array $bodyParams = null, $requestOptions = null)
+    {
+        // check if rest api method has a value
+        if (!$method) {
+            $msg = 'The REST API method is empty';
+            $this->getClient()->getLogger()->error($msg);
+            throw new AdyenException($msg);
+        }
+        // check if rest api method has a value
+        if (!$url) {
+            $msg = 'The REST API endpoint is empty';
+            $this->getClient()->getLogger()->error($msg);
+            throw new AdyenException($msg);
+        }
+        $curlClient = $this->getClient()->getHttpClient();
+        return $curlClient->requestHttpRest($this, $url, $bodyParams, $method, $requestOptions);
+    }
+
+    /**
      * @return bool
      */
     public function requiresApiKey()
