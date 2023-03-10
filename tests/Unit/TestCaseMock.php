@@ -58,7 +58,7 @@ class TestCaseMock extends TestCase
                 } else {
                     $result = null;
                 }
-                if ($client->getLogger()) {
+                if ($client->getLogger() && !is_null($json)) {
                     $client->getLogger()->info(json_encode($params));
                     $client->getLogger()->info($json);
                 }

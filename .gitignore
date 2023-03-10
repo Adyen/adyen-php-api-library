@@ -9,6 +9,7 @@ Thumbs.db
 
 # Packages
 /vendor/
+composer.lock
 
 # Application
 /tests/config/
