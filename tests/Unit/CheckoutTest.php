@@ -514,4 +514,60 @@ class CheckoutTest extends TestCaseMock
             array('tests/Resources/Checkout/cardDetails-success.json', 200),
         );
     }
+
+    /**
+     * @param string $jsonFile
+     * @param int $httpStatus
+     *
+     * @dataProvider successGetStoredPaymentMethodsProvider
+     */
+    public function testGetStoredPaymentMethodsSuccess($jsonFile, $httpStatus)
+    {
+        $client = $this->createMockClient($jsonFile, $httpStatus);
+
+        $service = new Checkout($client);
+        $queryParams = array (
+            "merchantAccount" => "YOUR_MERCHANT_ACCOUNT",
+            "shopperReference" => "411111",
+        );
+
+        $result = $service->getStoredPaymentMethods($queryParams);
+
+        $this->assertNotNull($result['storedPaymentMethods']);
+    }
+
+    public static function successGetStoredPaymentMethodsProvider()
+    {
+        return array(
+            array('tests/Resources/Checkout/getStoredPaymentMethods-success.json', 200),
+        );
+    }
+
+    /**
+     * @param string $jsonFile
+     * @param int $httpStatus
+     *
+     * @dataProvider successDeleteStoredPaymentMethodsProvider
+     */
+    public function testDeleteStoredPaymentMethodsSuccess($jsonFile, $httpStatus)
+    {
+        $client = $this->createMockClient($jsonFile, $httpStatus);
+
+        $service = new Checkout($client);
+        $queryParams = array (
+            "merchantAccount" => "YOUR_MERCHANT_ACCOUNT",
+            "shopperReference" => "411111",
+        );
+
+        $result = $service->deleteStoredPaymentMethods("123", $queryParams);
+
+        $this->assertNotNull($result['brand']);
+    }
+
+    public static function successDeleteStoredPaymentMethodsProvider()
+    {
+        return array(
+            array('tests/Resources/Checkout/deleteStoredPaymentMethods-success.json', 200),
+        );
+    }
 }
