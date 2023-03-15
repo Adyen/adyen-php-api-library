@@ -362,7 +362,7 @@ class CurlClient implements ClientInterface
         // log the request
         $this->logRequest($logger, $requestUrl, $environment, $params);
         //Check if there are url query params to construct the url
-        if ($method === self::HTTP_METHOD_GET && !empty($params)) {
+        if (!empty($params)) {
             $requestUrl .= '?' . http_build_query($params);
         }
         //Initiate cURL.
