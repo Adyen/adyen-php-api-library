@@ -2,7 +2,7 @@
 
 This is the officially supported PHP library for using Adyen's APIs.
 
-[![version](https://img.shields.io/badge/version-13.0.5-blue.svg)](https://docs.adyen.com/development-resources/libraries)
+[![version](https://img.shields.io/badge/version-14.0.0-blue.svg)](https://docs.adyen.com/development-resources/libraries)
 
 ## Integration
 The library supports all APIs under the following services:
@@ -76,18 +76,19 @@ $client->setTimeout(30);
 $service = new \Adyen\Service\Checkout($client);
 
 $json = '{
-      "card": {
+      "paymentMethod": {
+        "type": "scheme",
         "encryptedCardNumber": "test_4111111111111111",
         "encryptedExpiryMonth": "test_03",
         "encryptedExpiryYear": "test_2030",
-        "encryptedSecurityCode": "test_737",
-        "holderName": "John Smith"
+        "encryptedSecurityCode": "test_737"
       },
       "amount": {
         "value": 1500,
         "currency": "EUR"
       },
       "reference": "payment-test",
+      "returnUrl": "https://your-company.com/...",
       "merchantAccount": "YOUR MERCHANT ACCOUNT"
 }';
 
@@ -117,18 +118,19 @@ $client->setTimeout(30);
 $service = new \Adyen\Service\Payment($client);
 
 $json = '{
-      "card": {
-        "number": "4111111111111111",
-        "expiryMonth": "10",
-        "expiryYear": "2020",
-        "cvc": "737",
-        "holderName": "John Smith"
+      "paymentMethod": {
+        "type": "scheme",
+        "encryptedCardNumber": "test_4111111111111111",
+        "encryptedExpiryMonth": "test_03",
+        "encryptedExpiryYear": "test_2030",
+        "encryptedSecurityCode": "test_737"
       },
       "amount": {
         "value": 1500,
         "currency": "EUR"
       },
       "reference": "payment-test",
+      "returnUrl": "https://your-company.com/...",
       "merchantAccount": "YOUR MERCHANT ACCOUNT"
 }';
 
