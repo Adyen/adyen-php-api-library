@@ -39,7 +39,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
     /**
      * @var ResourceModel\Checkout\PaymentLinks
      */
-    protected $paymentLinks;
+    public $paymentLinks;
 
     /**
      * @var ResourceModel\Checkout\Orders
