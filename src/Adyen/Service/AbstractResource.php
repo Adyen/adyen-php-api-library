@@ -32,8 +32,6 @@ abstract class AbstractResource
      */
     protected $managementEndpoint;
 
-    protected $checkoutEndpoint;
-
     /**
      * @var string
      */
