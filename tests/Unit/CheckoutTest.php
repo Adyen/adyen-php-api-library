@@ -314,7 +314,7 @@ class CheckoutTest extends TestCaseMock
             'deliveryAddress' => $this->getExampleAddressStruct(),
         );
 
-        $result = $service->paymentLinks->create($params);
+        $result = $service->paymentLinks($params);
 
         $this->assertStringContainsString('payByLink.shtml', $result['url']);
     }
@@ -336,7 +336,7 @@ class CheckoutTest extends TestCaseMock
             'status' => "expired"
         );
 
-        $result = $service->paymentLinks->update('linkid', $params);
+        $result = $service->updatePaymentLinks('linkid', $params);
 
         $this->assertEquals('expired', $result['status']);
     }
@@ -347,7 +347,7 @@ class CheckoutTest extends TestCaseMock
 
         $service = new Checkout($client);
 
-        $result = $service->paymentLinks->retrieve('linkId');
+        $result = $service->retrievePaymentLinks('linkId');
 
         $this->assertStringContainsString('payByLink.shtml', $result['url']);
     }
@@ -372,7 +372,7 @@ class CheckoutTest extends TestCaseMock
         $this->expectException(AdyenException::class);
         $this->expectExceptionMessage('Reference Missing');
 
-        $service->paymentLinks->create($params);
+        $service->paymentLinks($params);
     }
 
     /**

@@ -39,7 +39,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
     /**
      * @var ResourceModel\Checkout\PaymentLinks
      */
-    public $paymentLinks;
+    protected $paymentLinks;
 
     /**
      * @var ResourceModel\Checkout\Orders
@@ -204,7 +204,40 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
      */
     public function paymentLinks($params, $requestOptions = null)
     {
-        return $this->paymentLinks->request($params, $requestOptions);
+        return $this->paymentLinks->create($params, $requestOptions);
+    }
+
+    /**
+     * @param array $params
+     * @param array|null $requestOptions
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+    public function retrievePaymentLinks($linkId)
+    {
+        return $this->paymentLinks->retrieve($linkId);
+    }
+
+    /**
+     * @param array $params
+     * @param array|null $requestOptions
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+    public function updatePaymentLinks($linkId, $params)
+    {
+        return $this->paymentLinks->update($linkId, $params);
+    }
+
+    /**
+     * @param array $params
+     * @param array|null $requestOptions
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+    public function createPaymentLinks($params, $requestOptions = null)
+    {
+        return $this->paymentLinks->create($params, $requestOptions);
     }
 
     /**

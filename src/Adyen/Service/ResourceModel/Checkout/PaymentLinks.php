@@ -18,10 +18,10 @@ class PaymentLinks extends \Adyen\Service\AbstractCheckoutResource
      */
     protected $allowApplicationInfo = true;
 
-    public function create($params)
+    public function create($params, $requestOptions)
     {
         $url = $this->checkoutEndpoint . self::PAYMENTLINK;
-        return $this->requestHttp($url, 'post', $params);
+        return $this->requestHttp($url, 'post', $params, $requestOptions);
     }
 
     public function update($linkId, $params)
