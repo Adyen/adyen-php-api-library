@@ -112,7 +112,7 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
         $this->paymentMethods = new \Adyen\Service\ResourceModel\Checkout\PaymentMethods($this);
         $this->payments = new \Adyen\Service\ResourceModel\Checkout\Payments($this);
         $this->paymentsDetails = new \Adyen\Service\ResourceModel\Checkout\PaymentsDetails($this);
-        $this->paymentLinks = new \Adyen\Service\ResourceModel\Checkout\PaymentLinks($this);
+        $this->paymentLinks = new \Adyen\Service\ResourceModel\Checkout\PaymentLinks($this, null);
         $this->orders = new \Adyen\Service\ResourceModel\Checkout\Orders($this);
         $this->ordersCancel = new \Adyen\Service\ResourceModel\Checkout\OrdersCancel($this);
         $this->paymentMethodsBalance = new \Adyen\Service\ResourceModel\Checkout\PaymentMethodsBalance($this);
@@ -204,7 +204,29 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
      */
     public function paymentLinks($params, $requestOptions = null)
     {
-        return $this->paymentLinks->request($params, $requestOptions);
+        return $this->paymentLinks->create($params, $requestOptions);
+    }
+
+    /**
+     * @param array $params
+     * @param array|null $requestOptions
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+    public function retrievePaymentLinks($linkId)
+    {
+        return $this->paymentLinks->retrieve($linkId);
+    }
+
+    /**
+     * @param array $params
+     * @param array|null $requestOptions
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+    public function updatePaymentLinks($linkId, $params)
+    {
+        return $this->paymentLinks->update($linkId, $params);
     }
 
     /**

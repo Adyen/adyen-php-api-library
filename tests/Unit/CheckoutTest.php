@@ -294,7 +294,7 @@ class CheckoutTest extends TestCaseMock
      * @param string $jsonFile
      * @param int $httpStatus
      *
-     * @dataProvider successPaymentLinksProvider
+     * @dataProvider successPaymentsLinkProvider
      */
     public function testPaymentLinksSuccess($jsonFile, $httpStatus)
     {
@@ -319,22 +319,42 @@ class CheckoutTest extends TestCaseMock
         $this->assertStringContainsString('payByLink.shtml', $result['url']);
     }
 
-    public static function successPaymentLinksProvider()
+    public static function successPaymentsLinkProvider()
     {
         return array(
-            array('tests/Resources/Checkout/payment-links-success.json', 200),
+            array('tests/Resources/Checkout/payment-links-success.json', 200)
         );
     }
 
-    /**
-     * @param string $jsonFile
-     * @param int $httpStatus
-     *
-     * @dataProvider invalidPaymentLinksProvider
-     */
-    public function testPaymentLinksInvalid($jsonFile, $httpStatus, $expectedExceptionMessage)
+    public function testPaymentLinksExpired()
     {
-        $client = $this->createMockClient($jsonFile, $httpStatus);
+        $client = $this->createMockClient('tests/Resources/Checkout/payment-links-expired.json', 200);
+
+        $service = new Checkout($client);
+
+        $params = array(
+            'status' => "expired"
+        );
+
+        $result = $service->updatePaymentLinks('linkid', $params);
+
+        $this->assertEquals('expired', $result['status']);
+    }
+
+    public function testPaymentLinksRetrieveSuccess()
+    {
+        $client = $this->createMockClient('tests/Resources/Checkout/payment-links-success.json', 200);
+
+        $service = new Checkout($client);
+
+        $result = $service->retrievePaymentLinks('linkId');
+
+        $this->assertStringContainsString('payByLink.shtml', $result['url']);
+    }
+
+    public function testPaymentLinksInvalid()
+    {
+        $client = $this->createMockClient('tests/Resources/Checkout/payment-links-invalid.json', 422);
 
         $service = new Checkout($client);
 
@@ -350,16 +370,9 @@ class CheckoutTest extends TestCaseMock
         );
 
         $this->expectException(AdyenException::class);
-        $this->expectExceptionMessage($expectedExceptionMessage);
+        $this->expectExceptionMessage('Reference Missing');
 
         $service->paymentLinks($params);
-    }
-
-    public static function invalidPaymentLinksProvider()
-    {
-        return array(
-            array('tests/Resources/Checkout/payment-links-invalid.json', 422, 'Reference Missing'),
-        );
     }
 
     /**
