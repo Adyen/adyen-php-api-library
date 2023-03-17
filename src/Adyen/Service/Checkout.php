@@ -235,17 +235,6 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
      * @return mixed
      * @throws \Adyen\AdyenException
      */
-    public function createPaymentLinks($params, $requestOptions = null)
-    {
-        return $this->paymentLinks->create($params, $requestOptions);
-    }
-
-    /**
-     * @param array $params
-     * @param array|null $requestOptions
-     * @return mixed
-     * @throws \Adyen\AdyenException
-     */
     public function paymentMethodsBalance($params, $requestOptions = null)
     {
         return $this->paymentMethodsBalance->request($params, $requestOptions);
