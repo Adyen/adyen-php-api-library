@@ -186,7 +186,6 @@ class Client
                     'endpointCheckout',
                     self::ENDPOINT_PROTOCOL . $liveEndpointUrlPrefix . self::ENDPOINT_CHECKOUT_LIVE_SUFFIX
                 );
-
             } else {
                 $this->config->set('endpoint', self::ENDPOINT_LIVE);
                 $this->config->set('endpointCheckout', null); // not supported please specify unique identifier
