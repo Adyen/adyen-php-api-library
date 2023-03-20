@@ -10,7 +10,7 @@ use Monolog\Handler\StreamHandler;
 
 class Client
 {
-    const LIB_VERSION = "14.0.0";
+    const LIB_VERSION = "13.0.5";
     const LIB_NAME = "adyen-php-api-library";
     const USER_AGENT_SUFFIX = "adyen-php-api-library/";
     const ENDPOINT_TEST = "https://pal-test.adyen.com";
@@ -162,6 +162,7 @@ class Client
             $this->config->set('endpointCustomerArea', self::ENDPOINT_CUSTOMER_AREA_TEST);
             $this->config->set('endpointHop', self::ENDPOINT_HOP_TEST);
             $this->config->set('endpointManagementApi', self::MANAGEMENT_API_TEST);
+            $this->config->set('enableLive', false);
         } elseif ($environment == \Adyen\Environment::LIVE) {
             $this->config->set('environment', \Adyen\Environment::LIVE);
             $this->config->set('endpointDirectorylookup', self::ENDPOINT_LIVE_DIRECTORY_LOOKUP);
@@ -173,8 +174,10 @@ class Client
             $this->config->set('endpointCustomerArea', self::ENDPOINT_CUSTOMER_AREA_LIVE);
             $this->config->set('endpointHop', self::ENDPOINT_HOP_LIVE);
             $this->config->set('endpointManagementApi', self::MANAGEMENT_API_LIVE);
+            $this->config->set('enableLive', true);
 
             if ($liveEndpointUrlPrefix) {
+                $this->config->set('prefix', $liveEndpointUrlPrefix);
                 $this->config->set(
                     'endpoint',
                     self::ENDPOINT_PROTOCOL . $liveEndpointUrlPrefix . self::ENDPOINT_LIVE_SUFFIX
@@ -183,6 +186,7 @@ class Client
                     'endpointCheckout',
                     self::ENDPOINT_PROTOCOL . $liveEndpointUrlPrefix . self::ENDPOINT_CHECKOUT_LIVE_SUFFIX
                 );
+
             } else {
                 $this->config->set('endpoint', self::ENDPOINT_LIVE);
                 $this->config->set('endpointCheckout', null); // not supported please specify unique identifier
