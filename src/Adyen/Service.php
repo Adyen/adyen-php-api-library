@@ -71,4 +71,23 @@ class Service
     {
         return $this->requiresApiKey;
     }
+
+    /**
+     * @param string $url
+     * @return string
+     */
+    protected function createBaseUrl(string $url): string
+    {
+        $config = $this->getClient()->getConfig();
+        if ($this->getClient()->getConfig()->get('enableLive')){
+            // replace test in string with live
+            $url = str_replace('test', 'live', $url);
+
+            // add live url prefix if needed
+            if (str_contains($url, "checkout") || str_contains($url, "pal")){
+                $url = substr_replace($url, $config->get('prefix') . '-', 8, 0);
+            }
+        }
+        return $url;
+    }
 }

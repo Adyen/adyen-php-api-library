@@ -25,17 +25,8 @@ class {{classname}} extends Service
     {
         parent::__construct($client);
 
-        $this->baseURL = "{{{basePath}}}";
-
-        if ($client->getConfig()->get('enableLive')){
-            // replace test in string with live
-            $this->baseURL = str_replace('test', 'live', $this->baseURL);
-
-            // add live url prefix if needed
-            if (str_contains($this->baseURL, "checkout") || str_contains($this->baseURL, "pal")){
-                $this->baseURL = substr_replace($this->baseURL, $client->getConfig()->get('prefix') . '-', 8, 0);
-            }
-        }
+        // Create the baseUrl based on live/test and optional live-url-prefix
+        $this->baseURL = $this->createBaseUrl("{{{basePath}}}");
     }
 {{#operation}}
 
