@@ -36,9 +36,11 @@ class ServiceTest extends TestCaseMock
         $service = new Service($client);
         try {
             $url = $service->createBaseUrl("https://checkout-test.adyen.com/[version]/[method]");
-        } catch(AdyenException $e) {
-            assertEquals("Please add your checkout live URL prefix from CA under Developers > API URLs > Prefix",
-                $e->getMessage());
+        } catch (AdyenException $e) {
+            assertEquals(
+                "Please add your checkout live URL prefix from CA under Developers > API URLs > Prefix",
+                $e->getMessage()
+            );
         }
     }
 
