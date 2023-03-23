@@ -2,6 +2,8 @@
 
 namespace Adyen;
 
+use PHPUnit\Util\Exception;
+
 class Service
 {
     /**
@@ -79,19 +81,26 @@ class Service
     /**
      * @param string $url
      * @return string
+     * @throws AdyenException
      */
     protected function createBaseUrl(string $url): string
     {
         $config = $this->getClient()->getConfig();
         if ($this->getClient()->getConfig()->getEnvironment() === \Adyen\Environment::LIVE) {
-            // Replace test in string with live
-            $url = str_replace('test', 'live', $url);
+            // Replace 'test' in string with 'live'
+            $url = str_replace('-test', '-live', $url);
 
-            // Add live url prefix if needed (that is url contains pal/checkout
-            if (strpos($url, "checkout") !== false || strpos($url, "pal") !== false) {
-                // We inject (length = 0) a string (=prefix) in the url (on position/offset 8), which is directly after
-                // the "https://"
-                $url = substr_replace($url, $config->get('prefix') . '-', 8, 0);
+
+            // Add live url prefix if needed (that is url contains pal/checkout)
+            if (strpos($url, "checkout-") !== false || strpos($url, "pal-") !== false) {
+                // Check prefix is not empty and if so throw error
+                if ($config->get('prefix') == null) {
+                    throw new \Adyen\AdyenException("Please add your live URL prefix from CA under Developers > API URLs > Prefix");
+                }
+                // We inject the prefix formatted like "https://{PREFIX}-"
+                $url = str_replace("https://", "https://" . $config->get('prefix') . '-', $url);
+                // Replaces the adyen in url with adyenpayments
+                $url = str_replace(".adyen.com/", ".adyenpayments.com/", $url);
             }
         }
         return $url;
