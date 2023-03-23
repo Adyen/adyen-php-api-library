@@ -83,25 +83,34 @@ class Service
      * @return string
      * @throws AdyenException
      */
-    protected function createBaseUrl(string $url): string
+    public function createBaseUrl(string $url): string
     {
         $config = $this->getClient()->getConfig();
         if ($this->getClient()->getConfig()->getEnvironment() === \Adyen\Environment::LIVE) {
-            // Replace 'test' in string with 'live'
-            $url = str_replace('-test', '-live', $url);
 
-
-            // Add live url prefix if needed (that is url contains pal/checkout)
-            if (strpos($url, "checkout-") !== false || strpos($url, "pal-") !== false) {
+            // Add live url prefix for pal/servlet endpoints
+            if (strpos($url, "pal-") !== false) {
                 // Check prefix is not empty and if so throw error
                 if ($config->get('prefix') == null) {
                     throw new \Adyen\AdyenException("Please add your live URL prefix from CA under Developers > API URLs > Prefix");
                 }
                 // We inject the prefix formatted like "https://{PREFIX}-"
-                $url = str_replace("https://", "https://" . $config->get('prefix') . '-', $url);
-                // Replaces the adyen in url with adyenpayments
-                $url = str_replace(".adyen.com/", ".adyenpayments.com/", $url);
+                $url = str_replace("https://pal-test.adyen.com/pal/servlet/",
+                    "https://" . $config->get('prefix') . '-pal-live.adyenpayments.com/pal/servlet/' , $url);
             }
+            // Add live url prefix for checkout
+            if (strpos($url, "checkout-") !== false) {
+                if ($config->get('prefix') == null) {
+                    throw new \Adyen\AdyenException("Please add your checkout live URL prefix from CA under Developers > API URLs > Prefix");
+                }
+
+                // We inject the live prefix like "https://{PREFIX}-"
+                $url = str_replace("https://checkout-test.adyen.com/",
+                    "https://" . $config->get('prefix') . '-checkout-live.adyenpayments.com/checkout/' , $url);
+            }
+
+            // Replace 'test' in string with 'live' for the other endpoints
+            $url = str_replace('-test', '-live', $url);
         }
         return $url;
     }
