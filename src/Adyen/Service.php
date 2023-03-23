@@ -84,11 +84,13 @@ class Service
     {
         $config = $this->getClient()->getConfig();
         if ($this->getClient()->getConfig()->getEnvironment() === \Adyen\Environment::LIVE) {
-            // replace test in string with live
+            // Replace test in string with live
             $url = str_replace('test', 'live', $url);
 
-            // add live url prefix if needed
+            // Add live url prefix if needed (that is url contains pal/checkout
             if (strpos($url, "checkout") !== false || strpos($url, "pal") !== false) {
+                // We inject (length = 0) a string (=prefix) in the url (on position/offset 8), which is directly after
+                // the "https://"
                 $url = substr_replace($url, $config->get('prefix') . '-', 8, 0);
             }
         }
