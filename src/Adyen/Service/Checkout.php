@@ -294,4 +294,15 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
     {
         return $this->technicalCancels->request($params, $requestOptions);
     }
+
+    /**
+     * @param array $params
+     * @param array|null $requestOptions
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+    public function amountUpdates($params, $requestOptions = null)
+    {
+        return $this->amountUpdates->request($params, $requestOptions);
+    }
 }
