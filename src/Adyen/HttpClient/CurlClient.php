@@ -455,8 +455,13 @@ class CurlClient implements ClientInterface
     }
 
     // This method implements Restfull requests where the query params are stored in requestOptions as an array.
-    public function requestHttpRest(\Adyen\Service $service, $requestUrl, $bodyParams, $method, $requestOptions = null)
-    {
+    public function requestHttpRest(
+        \Adyen\Service $service,
+        string $requestUrl,
+        $bodyParams,
+        string $method,
+        $requestOptions = null
+    ): array {
         $client = $service->getClient();
         $config = $client->getConfig();
         $logger = $client->getLogger();

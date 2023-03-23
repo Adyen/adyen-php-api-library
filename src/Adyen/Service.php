@@ -46,8 +46,12 @@ class Service
     /**
      * @throws AdyenException
      */
-    protected function requestHttp($url, $method = 'get', array $bodyParams = null, $requestOptions = null)
-    {
+    protected function requestHttp(
+        string $url,
+        string $method = 'get',
+        array $bodyParams = null,
+        array $requestOptions = null
+    ): array {
         // check if rest api method has a value
         if (!$method) {
             $msg = 'The REST API method is empty';
@@ -79,12 +83,12 @@ class Service
     protected function createBaseUrl(string $url): string
     {
         $config = $this->getClient()->getConfig();
-        if ($this->getClient()->getConfig()->get('enableLive')) {
+        if ($this->getClient()->getConfig()->getEnvironment() === \Adyen\Environment::LIVE) {
             // replace test in string with live
             $url = str_replace('test', 'live', $url);
 
             // add live url prefix if needed
-            if (str_contains($url, "checkout") || str_contains($url, "pal")) {
+            if (strpos($url, "checkout") !== false || strpos($url, "pal") !== false) {
                 $url = substr_replace($url, $config->get('prefix') . '-', 8, 0);
             }
         }

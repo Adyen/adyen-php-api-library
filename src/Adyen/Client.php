@@ -162,7 +162,6 @@ class Client
             $this->config->set('endpointCustomerArea', self::ENDPOINT_CUSTOMER_AREA_TEST);
             $this->config->set('endpointHop', self::ENDPOINT_HOP_TEST);
             $this->config->set('endpointManagementApi', self::MANAGEMENT_API_TEST);
-            $this->config->set('enableLive', false);
         } elseif ($environment == \Adyen\Environment::LIVE) {
             $this->config->set('environment', \Adyen\Environment::LIVE);
             $this->config->set('endpointDirectorylookup', self::ENDPOINT_LIVE_DIRECTORY_LOOKUP);
@@ -174,7 +173,6 @@ class Client
             $this->config->set('endpointCustomerArea', self::ENDPOINT_CUSTOMER_AREA_LIVE);
             $this->config->set('endpointHop', self::ENDPOINT_HOP_LIVE);
             $this->config->set('endpointManagementApi', self::MANAGEMENT_API_LIVE);
-            $this->config->set('enableLive', true);
 
             if ($liveEndpointUrlPrefix) {
                 $this->config->set('prefix', $liveEndpointUrlPrefix);
