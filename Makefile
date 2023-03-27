@@ -53,9 +53,9 @@ $(modelGen): target/spec $(openapi-generator-jar)
 # Service Generation; split up in to templates based on the size of the service. That is, some services have no subgroups and are thus generated in one single file, others are grouped in a directory.
 
 Services:=BalancePlatform Checkout StoredValue Payments Payout Management LegalEntityManagement Transfers
-SmallServices:=BalanceControl BinLookup DataProtection StoredValue POSTerminalManagement Recurring
+SingleFileServices:=BalanceControl BinLookup DataProtection StoredValue POSTerminalManagement Recurring
 
-all: $(Services) $(SmallServices))
+all: $(Services) $(SingleFileServices))
 
 $(Services): target/spec $(openapi-generator-jar)
 	rm -rf $(models)/$@ $(output)
@@ -77,7 +77,7 @@ $(Services): target/spec $(openapi-generator-jar)
 	mkdir src/Adyen/Service/$@
 	mv $(output)/lib/Service/* src/Adyen/Service
 
-$(SmallServices): target/spec $(openapi-generator-jar)
+$(SingleFileServices): target/spec $(openapi-generator-jar)
 	rm -rf $(models)/$@ $(output)
 	$(openapi-generator-cli) generate \
 		-i target/spec/json/$(spec).json \
