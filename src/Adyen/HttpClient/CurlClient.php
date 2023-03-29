@@ -7,9 +7,9 @@ use Adyen\AdyenException;
 class CurlClient implements ClientInterface
 {
 
-    private $UserAgent = 'User-Agent: ';
+    private $userAgentConst = 'User-Agent: ';
 
-    private $ContentType = 'Content-Type: application/json';
+    private $contentType = 'Content-Type: application/json';
 
     // List of parameters that needs to be masked with the same array structure as it appears in
     // the response array
@@ -132,7 +132,7 @@ class CurlClient implements ClientInterface
         //Set the content type to application/json and use the defined userAgent
         $headers = array(
             'Content-Type: application/x-www-form-urlencoded',
-            $this->UserAgent . $userAgent
+            $this->userAgentConst . $userAgent
         );
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
@@ -397,8 +397,8 @@ class CurlClient implements ClientInterface
 
         //Set the content type to application/json and use the defined userAgent
         $headers = array(
-            $this->ContentType,
-            $this->UserAgent . $userAgent
+            $this->contentType,
+            $this->userAgentConst . $userAgent
         );
 
         // if idempotency key is provided as option include into request
@@ -514,8 +514,8 @@ class CurlClient implements ClientInterface
 
         //Set the content type to application/json and use the defined userAgent
         $headers = array(
-            $this->ContentType,
-            $this->UserAgent . $userAgent
+            $this->contentType,
+            $this->userAgentConst . $userAgent
         );
 
         // if idempotency key is provided as option include into request
