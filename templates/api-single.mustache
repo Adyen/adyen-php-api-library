@@ -1,6 +1,6 @@
 <?php
 {{>partial_header}}
-namespace {{apiPackage}};
+namespace Adyen\Service;
 
 use Adyen\AdyenException;
 use Adyen\Client;
@@ -8,7 +8,7 @@ use Adyen\Service;
 use {{modelPackage}}\ObjectSerializer;
 
 {{#operations}}
-class {{classname}} extends Service
+class {{customApi}}Api extends Service
 {
     /**
      * @var array|string|string[]
@@ -16,7 +16,7 @@ class {{classname}} extends Service
     private $baseURL;
 
     /**
-     * {{classname}} constructor.
+     * {{packageName}}Service constructor.
      *
      * @param \Adyen\Client $client
      * @throws AdyenException
@@ -24,7 +24,6 @@ class {{classname}} extends Service
     public function __construct(Client $client)
     {
         parent::__construct($client);
-
         // Create the baseUrl based on live/test and optional live-url-prefix
         $this->baseURL = $this->createBaseUrl("{{{basePath}}}");
     }
