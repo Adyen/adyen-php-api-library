@@ -84,14 +84,14 @@ class BrowserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'accept_header' => false,
-		'color_depth' => true,
-		'java_enabled' => false,
-		'java_script_enabled' => false,
-		'language' => false,
-		'screen_height' => true,
-		'screen_width' => true,
-		'time_zone_offset' => true,
-		'user_agent' => false
+        'color_depth' => true,
+        'java_enabled' => false,
+        'java_script_enabled' => false,
+        'language' => false,
+        'screen_height' => true,
+        'screen_width' => true,
+        'time_zone_offset' => true,
+        'user_agent' => false
     ];
 
     /**
@@ -657,7 +657,7 @@ class BrowserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

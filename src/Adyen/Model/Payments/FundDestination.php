@@ -84,14 +84,14 @@ class FundDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'additional_data' => false,
-		'billing_address' => false,
-		'card' => false,
-		'selected_recurring_detail_reference' => false,
-		'shopper_email' => false,
-		'shopper_name' => false,
-		'shopper_reference' => false,
-		'sub_merchant' => false,
-		'telephone_number' => false
+        'billing_address' => false,
+        'card' => false,
+        'selected_recurring_detail_reference' => false,
+        'shopper_email' => false,
+        'shopper_name' => false,
+        'shopper_reference' => false,
+        'sub_merchant' => false,
+        'telephone_number' => false
     ];
 
     /**
@@ -641,7 +641,7 @@ class FundDestination implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

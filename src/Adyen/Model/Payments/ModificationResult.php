@@ -72,8 +72,8 @@ class ModificationResult implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPINullables = [
         'additional_data' => false,
-		'psp_reference' => false,
-		'response' => false
+        'psp_reference' => false,
+        'response' => false
     ];
 
     /**
@@ -488,7 +488,7 @@ class ModificationResult implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

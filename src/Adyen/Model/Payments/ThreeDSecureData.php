@@ -90,17 +90,17 @@ class ThreeDSecureData implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'authentication_response' => false,
-		'cavv' => false,
-		'cavv_algorithm' => false,
-		'challenge_cancel' => false,
-		'directory_response' => false,
-		'ds_trans_id' => false,
-		'eci' => false,
-		'risk_score' => false,
-		'three_ds_version' => false,
-		'token_authentication_verification_value' => false,
-		'trans_status_reason' => false,
-		'xid' => false
+        'cavv' => false,
+        'cavv_algorithm' => false,
+        'challenge_cancel' => false,
+        'directory_response' => false,
+        'ds_trans_id' => false,
+        'eci' => false,
+        'risk_score' => false,
+        'three_ds_version' => false,
+        'token_authentication_verification_value' => false,
+        'trans_status_reason' => false,
+        'xid' => false
     ];
 
     /**
@@ -868,7 +868,7 @@ class ThreeDSecureData implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

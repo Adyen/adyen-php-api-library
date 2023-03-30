@@ -84,14 +84,14 @@ class CancelOrRefundRequest implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPINullables = [
         'additional_data' => false,
-		'merchant_account' => false,
-		'mpi_data' => false,
-		'original_merchant_reference' => false,
-		'original_reference' => false,
-		'platform_chargeback_logic' => false,
-		'reference' => false,
-		'tender_reference' => false,
-		'unique_terminal_id' => false
+        'merchant_account' => false,
+        'mpi_data' => false,
+        'original_merchant_reference' => false,
+        'original_reference' => false,
+        'platform_chargeback_logic' => false,
+        'reference' => false,
+        'tender_reference' => false,
+        'unique_terminal_id' => false
     ];
 
     /**
@@ -647,7 +647,7 @@ class CancelOrRefundRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -88,16 +88,16 @@ class PaymentResult implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'additional_data' => false,
-		'auth_code' => false,
-		'dcc_amount' => false,
-		'dcc_signature' => false,
-		'fraud_result' => false,
-		'issuer_url' => false,
-		'md' => false,
-		'pa_request' => false,
-		'psp_reference' => false,
-		'refusal_reason' => false,
-		'result_code' => false
+        'auth_code' => false,
+        'dcc_amount' => false,
+        'dcc_signature' => false,
+        'fraud_result' => false,
+        'issuer_url' => false,
+        'md' => false,
+        'pa_request' => false,
+        'psp_reference' => false,
+        'refusal_reason' => false,
+        'result_code' => false
     ];
 
     /**
@@ -764,7 +764,7 @@ class PaymentResult implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
