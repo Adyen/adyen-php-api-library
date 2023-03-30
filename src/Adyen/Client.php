@@ -34,7 +34,7 @@ class Client
     const ENDPOINT_TERMINAL_CLOUD_US_LIVE = "https://terminal-api-live-us.adyen.com";
     const ENDPOINT_TERMINAL_CLOUD_AU_LIVE = "https://terminal-api-live-au.adyen.com";
     const ENDPOINT_CHECKOUT_TEST = "https://checkout-test.adyen.com";
-    const ENDPOINT_CHECKOUT_LIVE_SUFFIX = "-checkout-live.adyenpayments.com";
+    const ENDPOINT_CHECKOUT_LIVE_SUFFIX = "-checkout-live.adyenpayments.com/checkout";
     const ENDPOINT_PROTOCOL = "https://";
     const ENDPOINT_NOTIFICATION_TEST = "https://cal-test.adyen.com/cal/services/Notification";
     const ENDPOINT_NOTIFICATION_LIVE = "https://cal-live.adyen.com/cal/services/Notification";
