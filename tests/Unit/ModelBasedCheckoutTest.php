@@ -1,25 +1,4 @@
 <?php
-/**
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen API Library for PHP
- *
- * Copyright (c) 2020 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- *
- */
 
 namespace Adyen\Tests\Unit;
 
@@ -41,7 +20,6 @@ use Adyen\Service\Checkout\RecurringApi;
 
 class ModelBasedCheckoutTest extends TestCaseMock
 {
-    const NO_CHECKOUT_KEY = "Please provide a valid Checkout API Key";
     const HOLDER_NAME = "John Smith";
     const RETURN_URL = "https://your-company.com/...";
     /**
@@ -268,7 +246,7 @@ class ModelBasedCheckoutTest extends TestCaseMock
         $result = $service->sessions(new CreateCheckoutSessionRequest());
 
         $this->assertNotNull($result->getSessionData());
-        $this->assertEquals($result->getId(), "CS16116100127511AF");
+        $this->assertEquals("CS16116100127511AF", $result->getId());
     }
     public static function successSessionsProvider()
     {
@@ -316,7 +294,7 @@ class ModelBasedCheckoutTest extends TestCaseMock
         $result = $service->getTokensForStoredPaymentDetails();
 
         $this->assertNotNull($result->getStoredPaymentMethods());
-        $this->assertEquals($result->getMerchantAccount(), "merchantAccount");
+        $this->assertEquals("merchantAccount", $result->getMerchantAccount());
     }
 
     public static function successGetStoredPaymentMethodsProvider()
@@ -337,15 +315,11 @@ class ModelBasedCheckoutTest extends TestCaseMock
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
         $service = new RecurringApi($client);
-        $queryParams = array (
-            "merchantAccount" => "YOUR_MERCHANT_ACCOUNT",
-            "shopperReference" => "411111",
-        );
 
         $result = $service->deleteTokenForStoredPaymentDetails("123");
 
-        $this->assertEquals($result->getId(), "CS16116100127511AF");
-        $this->assertEquals($result->getNetworkTxReference(), "networkRef");
+        $this->assertEquals("CS16116100127511AF", $result->getId());
+        $this->assertEquals("networkRef", $result->getNetworkTxReference());
     }
 
     public static function successDeleteStoredPaymentMethodsProvider()
@@ -388,7 +362,7 @@ class ModelBasedCheckoutTest extends TestCaseMock
         $paymentRequest->setAmount($amount)
             ->setPaymentMethod($paymentMethod);
 
-        $this->assertEquals($paymentRequest->getPaymentMethod()->getType(), "applepay");
+        $this->assertEquals("applepay", $paymentRequest->getPaymentMethod()->getType());
     }
 
     /**
@@ -405,10 +379,10 @@ class ModelBasedCheckoutTest extends TestCaseMock
         $action = $result->getAction();
 
         $this->assertNotNull($action);
-        $this->assertEquals($action->getUrl(), "url");
-        $this->assertEquals($action->getPaymentMethodType(), "ideal");
-        $this->assertEquals($action->getType(), "redirect");
-        $this->assertEquals($action->getMethod(), "GET");
+        $this->assertEquals("url", $action->getUrl());
+        $this->assertEquals("ideal", $action->getPaymentMethodType());
+        $this->assertEquals("redirect", $action->getType());
+        $this->assertEquals( "GET", $action->getMethod());
     }
 
     public static function successPaymentsProviderAction()
