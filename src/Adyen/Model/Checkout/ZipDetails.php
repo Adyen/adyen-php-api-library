@@ -76,10 +76,10 @@ class ZipDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'checkout_attempt_id' => false,
-		'click_and_collect' => false,
-		'recurring_detail_reference' => false,
-		'stored_payment_method_id' => false,
-		'type' => false
+        'click_and_collect' => false,
+        'recurring_detail_reference' => false,
+        'stored_payment_method_id' => false,
+        'type' => false
     ];
 
     /**
@@ -540,7 +540,7 @@ class ZipDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

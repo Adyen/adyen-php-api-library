@@ -100,22 +100,22 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPINullables = [
         'enhanced_scheme_data_customer_reference' => false,
-		'enhanced_scheme_data_destination_country_code' => false,
-		'enhanced_scheme_data_destination_postal_code' => false,
-		'enhanced_scheme_data_destination_state_province_code' => false,
-		'enhanced_scheme_data_duty_amount' => false,
-		'enhanced_scheme_data_freight_amount' => false,
-		'enhanced_scheme_data_item_detail_line_item_nr_commodity_code' => false,
-		'enhanced_scheme_data_item_detail_line_item_nr_description' => false,
-		'enhanced_scheme_data_item_detail_line_item_nr_discount_amount' => false,
-		'enhanced_scheme_data_item_detail_line_item_nr_product_code' => false,
-		'enhanced_scheme_data_item_detail_line_item_nr_quantity' => false,
-		'enhanced_scheme_data_item_detail_line_item_nr_total_amount' => false,
-		'enhanced_scheme_data_item_detail_line_item_nr_unit_of_measure' => false,
-		'enhanced_scheme_data_item_detail_line_item_nr_unit_price' => false,
-		'enhanced_scheme_data_order_date' => false,
-		'enhanced_scheme_data_ship_from_postal_code' => false,
-		'enhanced_scheme_data_total_tax_amount' => false
+        'enhanced_scheme_data_destination_country_code' => false,
+        'enhanced_scheme_data_destination_postal_code' => false,
+        'enhanced_scheme_data_destination_state_province_code' => false,
+        'enhanced_scheme_data_duty_amount' => false,
+        'enhanced_scheme_data_freight_amount' => false,
+        'enhanced_scheme_data_item_detail_line_item_nr_commodity_code' => false,
+        'enhanced_scheme_data_item_detail_line_item_nr_description' => false,
+        'enhanced_scheme_data_item_detail_line_item_nr_discount_amount' => false,
+        'enhanced_scheme_data_item_detail_line_item_nr_product_code' => false,
+        'enhanced_scheme_data_item_detail_line_item_nr_quantity' => false,
+        'enhanced_scheme_data_item_detail_line_item_nr_total_amount' => false,
+        'enhanced_scheme_data_item_detail_line_item_nr_unit_of_measure' => false,
+        'enhanced_scheme_data_item_detail_line_item_nr_unit_price' => false,
+        'enhanced_scheme_data_order_date' => false,
+        'enhanced_scheme_data_ship_from_postal_code' => false,
+        'enhanced_scheme_data_total_tax_amount' => false
     ];
 
     /**
@@ -913,7 +913,7 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -70,7 +70,7 @@ class CheckoutOrder implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'order_data' => false,
-		'psp_reference' => false
+        'psp_reference' => false
     ];
 
     /**
@@ -409,7 +409,7 @@ class CheckoutOrder implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

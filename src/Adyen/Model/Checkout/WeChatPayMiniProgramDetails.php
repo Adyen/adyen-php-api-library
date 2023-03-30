@@ -74,9 +74,9 @@ class WeChatPayMiniProgramDetails implements ModelInterface, ArrayAccess, \JsonS
       */
     protected static $openAPINullables = [
         'app_id' => false,
-		'checkout_attempt_id' => false,
-		'openid' => false,
-		'type' => false
+        'checkout_attempt_id' => false,
+        'openid' => false,
+        'type' => false
     ];
 
     /**
@@ -502,7 +502,7 @@ class WeChatPayMiniProgramDetails implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

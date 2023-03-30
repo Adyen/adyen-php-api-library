@@ -74,9 +74,9 @@ class InstallmentOption implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPINullables = [
         'max_value' => true,
-		'plans' => false,
-		'preselected_value' => true,
-		'values' => false
+        'plans' => false,
+        'preselected_value' => true,
+        'values' => false
     ];
 
     /**
@@ -490,7 +490,7 @@ class InstallmentOption implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

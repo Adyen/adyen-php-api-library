@@ -163,53 +163,53 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPINullables = [
         'bank_account_number' => false,
-		'bank_location_id' => false,
-		'checkout_attempt_id' => false,
-		'encrypted_bank_account_number' => false,
-		'encrypted_bank_location_id' => false,
-		'owner_name' => false,
-		'recurring_detail_reference' => false,
-		'stored_payment_method_id' => false,
-		'type' => false,
-		'billing_address' => false,
-		'delivery_address' => false,
-		'personal_details' => false,
-		'amazon_pay_token' => false,
-		'apple_pay_token' => false,
-		'funding_source' => false,
-		'holder_name' => false,
-		'issuer' => false,
-		'blik_code' => false,
-		'brand' => false,
-		'cupsecureplus_smscode' => false,
-		'cvc' => false,
-		'encrypted_card_number' => false,
-		'encrypted_expiry_month' => false,
-		'encrypted_expiry_year' => false,
-		'encrypted_security_code' => false,
-		'expiry_month' => false,
-		'expiry_year' => false,
-		'network_payment_reference' => false,
-		'number' => false,
-		'shopper_notification_reference' => false,
-		'three_ds2_sdk_version' => false,
-		'first_name' => false,
-		'last_name' => false,
-		'shopper_email' => false,
-		'telephone_number' => false,
-		'google_pay_token' => false,
-		'masterpass_transaction_id' => false,
-		'order_id' => false,
-		'payer_id' => false,
-		'subtype' => false,
-		'virtual_payment_address' => false,
-		'samsung_pay_token' => false,
-		'iban' => false,
-		'billing_sequence_number' => false,
-		'visa_checkout_call_id' => false,
-		'app_id' => false,
-		'openid' => false,
-		'click_and_collect' => false
+        'bank_location_id' => false,
+        'checkout_attempt_id' => false,
+        'encrypted_bank_account_number' => false,
+        'encrypted_bank_location_id' => false,
+        'owner_name' => false,
+        'recurring_detail_reference' => false,
+        'stored_payment_method_id' => false,
+        'type' => false,
+        'billing_address' => false,
+        'delivery_address' => false,
+        'personal_details' => false,
+        'amazon_pay_token' => false,
+        'apple_pay_token' => false,
+        'funding_source' => false,
+        'holder_name' => false,
+        'issuer' => false,
+        'blik_code' => false,
+        'brand' => false,
+        'cupsecureplus_smscode' => false,
+        'cvc' => false,
+        'encrypted_card_number' => false,
+        'encrypted_expiry_month' => false,
+        'encrypted_expiry_year' => false,
+        'encrypted_security_code' => false,
+        'expiry_month' => false,
+        'expiry_year' => false,
+        'network_payment_reference' => false,
+        'number' => false,
+        'shopper_notification_reference' => false,
+        'three_ds2_sdk_version' => false,
+        'first_name' => false,
+        'last_name' => false,
+        'shopper_email' => false,
+        'telephone_number' => false,
+        'google_pay_token' => false,
+        'masterpass_transaction_id' => false,
+        'order_id' => false,
+        'payer_id' => false,
+        'subtype' => false,
+        'virtual_payment_address' => false,
+        'samsung_pay_token' => false,
+        'iban' => false,
+        'billing_sequence_number' => false,
+        'visa_checkout_call_id' => false,
+        'app_id' => false,
+        'openid' => false,
+        'click_and_collect' => false
     ];
 
     /**
@@ -1564,7 +1564,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets shopper_email
      *
-     * @param string $shopper_email 
+     * @param string $shopper_email
      *
      * @return self
      */
@@ -1591,7 +1591,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets telephone_number
      *
-     * @param string $telephone_number 
+     * @param string $telephone_number
      *
      * @return self
      */
@@ -2019,7 +2019,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

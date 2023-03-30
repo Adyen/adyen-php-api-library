@@ -94,19 +94,19 @@ class ThreeDS2Result implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'authentication_value' => false,
-		'cavv_algorithm' => false,
-		'challenge_cancel' => false,
-		'challenge_indicator' => false,
-		'ds_trans_id' => false,
-		'eci' => false,
-		'exemption_indicator' => false,
-		'message_version' => false,
-		'risk_score' => false,
-		'three_ds_server_trans_id' => false,
-		'timestamp' => false,
-		'trans_status' => false,
-		'trans_status_reason' => false,
-		'white_list_status' => false
+        'cavv_algorithm' => false,
+        'challenge_cancel' => false,
+        'challenge_indicator' => false,
+        'ds_trans_id' => false,
+        'eci' => false,
+        'exemption_indicator' => false,
+        'message_version' => false,
+        'risk_score' => false,
+        'three_ds_server_trans_id' => false,
+        'timestamp' => false,
+        'trans_status' => false,
+        'trans_status_reason' => false,
+        'white_list_status' => false
     ];
 
     /**
@@ -928,7 +928,7 @@ class ThreeDS2Result implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

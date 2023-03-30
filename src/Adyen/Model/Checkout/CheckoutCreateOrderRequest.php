@@ -74,9 +74,9 @@ class CheckoutCreateOrderRequest implements ModelInterface, ArrayAccess, \JsonSe
       */
     protected static $openAPINullables = [
         'amount' => false,
-		'expires_at' => false,
-		'merchant_account' => false,
-		'reference' => false
+        'expires_at' => false,
+        'merchant_account' => false,
+        'reference' => false
     ];
 
     /**
@@ -480,7 +480,7 @@ class CheckoutCreateOrderRequest implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

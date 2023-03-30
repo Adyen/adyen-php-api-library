@@ -72,8 +72,8 @@ class BillDeskDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'checkout_attempt_id' => false,
-		'issuer' => false,
-		'type' => false
+        'issuer' => false,
+        'type' => false
     ];
 
     /**
@@ -480,7 +480,7 @@ class BillDeskDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

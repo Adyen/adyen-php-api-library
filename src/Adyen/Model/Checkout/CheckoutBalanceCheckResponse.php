@@ -80,12 +80,12 @@ class CheckoutBalanceCheckResponse implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPINullables = [
         'additional_data' => false,
-		'balance' => false,
-		'fraud_result' => false,
-		'psp_reference' => false,
-		'refusal_reason' => false,
-		'result_code' => false,
-		'transaction_limit' => false
+        'balance' => false,
+        'fraud_result' => false,
+        'psp_reference' => false,
+        'refusal_reason' => false,
+        'result_code' => false,
+        'transaction_limit' => false
     ];
 
     /**
@@ -614,7 +614,7 @@ class CheckoutBalanceCheckResponse implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

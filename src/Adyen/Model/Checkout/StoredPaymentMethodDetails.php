@@ -74,9 +74,9 @@ class StoredPaymentMethodDetails implements ModelInterface, ArrayAccess, \JsonSe
       */
     protected static $openAPINullables = [
         'checkout_attempt_id' => false,
-		'recurring_detail_reference' => false,
-		'stored_payment_method_id' => false,
-		'type' => false
+        'recurring_detail_reference' => false,
+        'stored_payment_method_id' => false,
+        'type' => false
     ];
 
     /**
@@ -534,7 +534,7 @@ class StoredPaymentMethodDetails implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

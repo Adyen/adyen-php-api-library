@@ -86,15 +86,15 @@ class PaymentVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
       */
     protected static $openAPINullables = [
         'additional_data' => false,
-		'fraud_result' => false,
-		'merchant_reference' => false,
-		'order' => false,
-		'psp_reference' => false,
-		'refusal_reason' => false,
-		'refusal_reason_code' => false,
-		'result_code' => false,
-		'service_error' => false,
-		'shopper_locale' => false
+        'fraud_result' => false,
+        'merchant_reference' => false,
+        'order' => false,
+        'psp_reference' => false,
+        'refusal_reason' => false,
+        'refusal_reason_code' => false,
+        'result_code' => false,
+        'service_error' => false,
+        'shopper_locale' => false
     ];
 
     /**
@@ -736,7 +736,7 @@ class PaymentVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

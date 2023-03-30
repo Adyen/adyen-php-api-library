@@ -100,22 +100,22 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'amount_excluding_tax' => false,
-		'amount_including_tax' => false,
-		'brand' => false,
-		'color' => false,
-		'description' => false,
-		'id' => false,
-		'image_url' => false,
-		'item_category' => false,
-		'manufacturer' => false,
-		'product_url' => false,
-		'quantity' => false,
-		'receiver_email' => false,
-		'size' => false,
-		'sku' => false,
-		'tax_amount' => false,
-		'tax_percentage' => false,
-		'upc' => false
+        'amount_including_tax' => false,
+        'brand' => false,
+        'color' => false,
+        'description' => false,
+        'id' => false,
+        'image_url' => false,
+        'item_category' => false,
+        'manufacturer' => false,
+        'product_url' => false,
+        'quantity' => false,
+        'receiver_email' => false,
+        'size' => false,
+        'sku' => false,
+        'tax_amount' => false,
+        'tax_percentage' => false,
+        'upc' => false
     ];
 
     /**
@@ -913,7 +913,7 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

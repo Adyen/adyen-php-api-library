@@ -72,8 +72,8 @@ class ListStoredPaymentMethodsResponse implements ModelInterface, ArrayAccess, \
       */
     protected static $openAPINullables = [
         'merchant_account' => false,
-		'shopper_reference' => false,
-		'stored_payment_methods' => false
+        'shopper_reference' => false,
+        'stored_payment_methods' => false
     ];
 
     /**
@@ -437,7 +437,7 @@ class ListStoredPaymentMethodsResponse implements ModelInterface, ArrayAccess, \
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

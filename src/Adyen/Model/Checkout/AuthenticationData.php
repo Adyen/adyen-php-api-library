@@ -72,8 +72,8 @@ class AuthenticationData implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPINullables = [
         'attempt_authentication' => false,
-		'authentication_only' => false,
-		'three_ds_request_data' => false
+        'authentication_only' => false,
+        'three_ds_request_data' => false
     ];
 
     /**
@@ -470,7 +470,7 @@ class AuthenticationData implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

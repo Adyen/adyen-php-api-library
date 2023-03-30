@@ -383,7 +383,7 @@ class ModelBasedCheckoutTest extends TestCaseMock
         $this->assertEquals("url", $action->getUrl());
         $this->assertEquals("ideal", $action->getPaymentMethodType());
         $this->assertEquals("redirect", $action->getType());
-        $this->assertEquals( "GET", $action->getMethod());
+        $this->assertEquals("GET", $action->getMethod());
     }
 
     public static function successPaymentsProviderAction()
