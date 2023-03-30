@@ -155,7 +155,7 @@ class CurlClient implements ClientInterface
 
         if (!in_array($httpStatus, $resultOKHttpStatusCodes) && $result) {
             $this->handleResultError($result, $logger);
-        } elseif (!$result) {
+        } elseif (!in_array($httpStatus, $resultOKHttpStatusCodes) && !$result) {
             $this->handleCurlError($requestUrl, $errno, $message, $logger);
         }
 
@@ -445,7 +445,7 @@ class CurlClient implements ClientInterface
 
         if (!in_array($httpStatus, $resultOKHttpStatusCodes) && $result) {
             $this->handleResultError($result, $logger);
-        } elseif (!$result) {
+        } elseif (!in_array($httpStatus, $resultOKHttpStatusCodes) && !$result) {
             $this->handleCurlError($requestUrl, $errno, $message, $logger);
         }
 
@@ -562,7 +562,7 @@ class CurlClient implements ClientInterface
 
         if (!in_array($httpStatus, $resultOKHttpStatusCodes) && $result) {
             $this->handleResultError($result, $logger);
-        } elseif (!$result) {
+        } elseif (!in_array($httpStatus, $resultOKHttpStatusCodes) && !$result) {
             $this->handleCurlError($requestUrl, $errno, $message, $logger);
         }
 
