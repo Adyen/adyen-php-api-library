@@ -368,6 +368,26 @@ class ModelBasedCheckoutTest extends TestCaseMock
         $this->assertEquals($paymentRequest->getPaymentMethod()->getType(), "directEbanking");
     }
 
+    public function testPaymentDonationPaymentMethodOverload()
+    {
+        $amount = new Amount();
+        $amount->setValue(100)->setCurrency("EUR");
+
+        $paymentMethod = new PaymentDonationRequestPaymentMethod();
+        $paymentMethod->setType("applepay");
+        $paymentMethod->setApplePayToken("applepaytoken");
+        $paymentMethod->setGooglePayToken("googlepay");
+        $paymentMethod->setAmazonPayToken("token");
+        $paymentMethod->setBlikCode("blik");
+        // Merchants are able to set all kinds of specific paymentmethod params all in the same paymentMethod class,
+        // which means they need to rely on the API/docs/explorer to tell them the correct format.
+        $paymentRequest = new PaymentRequest();
+        $paymentRequest->setAmount($amount)
+            ->setPaymentMethod($paymentMethod);
+
+        $this->assertEquals($paymentRequest->getPaymentMethod()->getType(), "applepay");
+    }
+
     /**
      * @dataProvider successPaymentsProviderAction
      */
