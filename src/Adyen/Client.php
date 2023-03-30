@@ -33,8 +33,8 @@ class Client
     const ENDPOINT_TERMINAL_CLOUD_LIVE = "https://terminal-api-live.adyen.com";
     const ENDPOINT_TERMINAL_CLOUD_US_LIVE = "https://terminal-api-live-us.adyen.com";
     const ENDPOINT_TERMINAL_CLOUD_AU_LIVE = "https://terminal-api-live-au.adyen.com";
-    const ENDPOINT_CHECKOUT_TEST = "https://checkout-test.adyen.com/checkout";
-    const ENDPOINT_CHECKOUT_LIVE_SUFFIX = "-checkout-live.adyenpayments.com/checkout";
+    const ENDPOINT_CHECKOUT_TEST = "https://checkout-test.adyen.com";
+    const ENDPOINT_CHECKOUT_LIVE_SUFFIX = "-checkout-live.adyenpayments.com";
     const ENDPOINT_PROTOCOL = "https://";
     const ENDPOINT_NOTIFICATION_TEST = "https://cal-test.adyen.com/cal/services/Notification";
     const ENDPOINT_NOTIFICATION_LIVE = "https://cal-live.adyen.com/cal/services/Notification";
@@ -48,8 +48,8 @@ class Client
     const ENDPOINT_CUSTOMER_AREA_LIVE = "https://ca-live.adyen.com";
     const ENDPOINT_HOP_TEST = "https://cal-test.adyen.com/cal/services/Hop";
     const ENDPOINT_HOP_LIVE = "https://cal-live.adyen.com/cal/services/Hop";
-    const MANAGEMENT_API_TEST = "https://management-test.adyen.com/";
-    const MANAGEMENT_API_LIVE = "https://management-live.adyen.com/";
+    const MANAGEMENT_API_TEST = "https://management-test.adyen.com";
+    const MANAGEMENT_API_LIVE = "https://management-live.adyen.com";
     const MANAGEMENT_API = "v1";
 
     /**
