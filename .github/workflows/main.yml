@@ -65,6 +65,7 @@ jobs:
           args: >
             -Dsonar.sources=src/
             -Dsonar.exclusions=src/Adyen/Model/**
+            -Dsonar.exclusions=src/Adyen/Service/Checkout/**
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
