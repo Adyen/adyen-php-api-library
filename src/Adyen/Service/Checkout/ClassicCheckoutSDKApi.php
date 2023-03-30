@@ -51,17 +51,10 @@ class ClassicCheckoutSDKApi extends Service
     * @return \Adyen\Model\Checkout\PaymentSetupResponse
     * @throws AdyenException
     */
-    public function paymentSession(
-        \Adyen\Model\Checkout\PaymentSetupRequest $paymentSetupRequest,
-        array $requestOptions = null
-    ): \Adyen\Model\Checkout\PaymentSetupResponse {
+    public function paymentSession(\Adyen\Model\Checkout\PaymentSetupRequest $paymentSetupRequest, array $requestOptions = null): \Adyen\Model\Checkout\PaymentSetupResponse
+    {
         $endpoint = $this->baseURL . "/paymentSession";
-        $response = $this->requestHttp(
-            $endpoint,
-            strtolower('POST'),
-            (array) $paymentSetupRequest->jsonSerialize(),
-            $requestOptions
-        );
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $paymentSetupRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\PaymentSetupResponse::class);
     }
 
@@ -74,17 +67,10 @@ class ClassicCheckoutSDKApi extends Service
     * @return \Adyen\Model\Checkout\PaymentVerificationResponse
     * @throws AdyenException
     */
-    public function verifyPaymentResult(
-        \Adyen\Model\Checkout\PaymentVerificationRequest $paymentVerificationRequest,
-        array $requestOptions = null
-    ): \Adyen\Model\Checkout\PaymentVerificationResponse {
+    public function verifyPaymentResult(\Adyen\Model\Checkout\PaymentVerificationRequest $paymentVerificationRequest, array $requestOptions = null): \Adyen\Model\Checkout\PaymentVerificationResponse
+    {
         $endpoint = $this->baseURL . "/payments/result";
-        $response = $this->requestHttp(
-            $endpoint,
-            strtolower('POST'),
-            (array) $paymentVerificationRequest->jsonSerialize(),
-            $requestOptions
-        );
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $paymentVerificationRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\PaymentVerificationResponse::class);
     }
 }

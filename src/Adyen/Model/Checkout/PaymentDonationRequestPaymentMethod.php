@@ -501,47 +501,6 @@ class PaymentDonationRequestPaymentMethod implements ModelInterface, ArrayAccess
         return self::$openAPIModelName;
     }
 
-    public const TYPE_ZIP = 'zip';
-    public const TYPE_ZIP_POS = 'zip_pos';
-    public const FUNDING_SOURCE_DEBIT = 'debit';
-    public const SUBTYPE_REDIRECT = 'redirect';
-    public const SUBTYPE_SDK = 'sdk';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_ZIP,
-            self::TYPE_ZIP_POS,
-        ];
-    }
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getFundingSourceAllowableValues()
-    {
-        return [
-            self::FUNDING_SOURCE_DEBIT,
-        ];
-    }
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getSubtypeAllowableValues()
-    {
-        return [
-            self::SUBTYPE_REDIRECT,
-            self::SUBTYPE_SDK,
-        ];
-    }
     /**
      * Associative array for storing property values
      *

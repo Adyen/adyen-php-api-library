@@ -381,19 +381,6 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         return self::$openAPIModelName;
     }
 
-    public const TYPE_VOUCHER = 'voucher';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_VOUCHER,
-        ];
-    }
     /**
      * Associative array for storing property values
      *

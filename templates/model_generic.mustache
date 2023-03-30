@@ -192,6 +192,7 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
         return self::$openAPIModelName;
     }
 
+    {{^oneOf}}
     {{#vars}}
     {{#isEnum}}
     {{#allowableValues}}
@@ -218,6 +219,7 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
     }
     {{/isEnum}}
     {{/vars}}
+    {{/oneOf}}
     {{^parentSchema}}
     /**
      * Associative array for storing property values
