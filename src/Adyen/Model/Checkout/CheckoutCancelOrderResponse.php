@@ -70,7 +70,7 @@ class CheckoutCancelOrderResponse implements ModelInterface, ArrayAccess, \JsonS
       */
     protected static $openAPINullables = [
         'psp_reference' => false,
-        'result_code' => false
+		'result_code' => false
     ];
 
     /**
@@ -440,7 +440,7 @@ class CheckoutCancelOrderResponse implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

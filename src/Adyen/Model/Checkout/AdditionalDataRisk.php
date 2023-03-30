@@ -108,26 +108,26 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPINullables = [
         'riskdata__custom_field_name' => false,
-        'riskdata_basket_item_item_nr_amount_per_item' => false,
-        'riskdata_basket_item_item_nr_brand' => false,
-        'riskdata_basket_item_item_nr_category' => false,
-        'riskdata_basket_item_item_nr_color' => false,
-        'riskdata_basket_item_item_nr_currency' => false,
-        'riskdata_basket_item_item_nr_item_id' => false,
-        'riskdata_basket_item_item_nr_manufacturer' => false,
-        'riskdata_basket_item_item_nr_product_title' => false,
-        'riskdata_basket_item_item_nr_quantity' => false,
-        'riskdata_basket_item_item_nr_receiver_email' => false,
-        'riskdata_basket_item_item_nr_size' => false,
-        'riskdata_basket_item_item_nr_sku' => false,
-        'riskdata_basket_item_item_nr_upc' => false,
-        'riskdata_promotions_promotion_item_nr_promotion_code' => false,
-        'riskdata_promotions_promotion_item_nr_promotion_discount_amount' => false,
-        'riskdata_promotions_promotion_item_nr_promotion_discount_currency' => false,
-        'riskdata_promotions_promotion_item_nr_promotion_discount_percentage' => false,
-        'riskdata_promotions_promotion_item_nr_promotion_name' => false,
-        'riskdata_risk_profile_reference' => false,
-        'riskdata_skip_risk' => false
+		'riskdata_basket_item_item_nr_amount_per_item' => false,
+		'riskdata_basket_item_item_nr_brand' => false,
+		'riskdata_basket_item_item_nr_category' => false,
+		'riskdata_basket_item_item_nr_color' => false,
+		'riskdata_basket_item_item_nr_currency' => false,
+		'riskdata_basket_item_item_nr_item_id' => false,
+		'riskdata_basket_item_item_nr_manufacturer' => false,
+		'riskdata_basket_item_item_nr_product_title' => false,
+		'riskdata_basket_item_item_nr_quantity' => false,
+		'riskdata_basket_item_item_nr_receiver_email' => false,
+		'riskdata_basket_item_item_nr_size' => false,
+		'riskdata_basket_item_item_nr_sku' => false,
+		'riskdata_basket_item_item_nr_upc' => false,
+		'riskdata_promotions_promotion_item_nr_promotion_code' => false,
+		'riskdata_promotions_promotion_item_nr_promotion_discount_amount' => false,
+		'riskdata_promotions_promotion_item_nr_promotion_discount_currency' => false,
+		'riskdata_promotions_promotion_item_nr_promotion_discount_percentage' => false,
+		'riskdata_promotions_promotion_item_nr_promotion_name' => false,
+		'riskdata_risk_profile_reference' => false,
+		'riskdata_skip_risk' => false
     ];
 
     /**
@@ -1049,7 +1049,7 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

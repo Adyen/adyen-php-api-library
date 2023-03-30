@@ -76,10 +76,10 @@ class CreatePaymentAmountUpdateRequest implements ModelInterface, ArrayAccess, \
       */
     protected static $openAPINullables = [
         'amount' => false,
-        'industry_usage' => false,
-        'merchant_account' => false,
-        'reference' => false,
-        'splits' => false
+		'industry_usage' => false,
+		'merchant_account' => false,
+		'reference' => false,
+		'splits' => false
     ];
 
     /**
@@ -546,7 +546,7 @@ class CreatePaymentAmountUpdateRequest implements ModelInterface, ArrayAccess, \
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

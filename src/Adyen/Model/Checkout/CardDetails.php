@@ -104,24 +104,24 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'brand' => false,
-        'checkout_attempt_id' => false,
-        'cupsecureplus_smscode' => false,
-        'cvc' => false,
-        'encrypted_card_number' => false,
-        'encrypted_expiry_month' => false,
-        'encrypted_expiry_year' => false,
-        'encrypted_security_code' => false,
-        'expiry_month' => false,
-        'expiry_year' => false,
-        'funding_source' => false,
-        'holder_name' => false,
-        'network_payment_reference' => false,
-        'number' => false,
-        'recurring_detail_reference' => false,
-        'shopper_notification_reference' => false,
-        'stored_payment_method_id' => false,
-        'three_ds2_sdk_version' => false,
-        'type' => false
+		'checkout_attempt_id' => false,
+		'cupsecureplus_smscode' => false,
+		'cvc' => false,
+		'encrypted_card_number' => false,
+		'encrypted_expiry_month' => false,
+		'encrypted_expiry_year' => false,
+		'encrypted_security_code' => false,
+		'expiry_month' => false,
+		'expiry_year' => false,
+		'funding_source' => false,
+		'holder_name' => false,
+		'network_payment_reference' => false,
+		'number' => false,
+		'recurring_detail_reference' => false,
+		'shopper_notification_reference' => false,
+		'stored_payment_method_id' => false,
+		'three_ds2_sdk_version' => false,
+		'type' => false
     ];
 
     /**
@@ -1055,7 +1055,7 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

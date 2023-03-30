@@ -84,14 +84,14 @@ class AchDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'bank_account_number' => false,
-        'bank_location_id' => false,
-        'checkout_attempt_id' => false,
-        'encrypted_bank_account_number' => false,
-        'encrypted_bank_location_id' => false,
-        'owner_name' => false,
-        'recurring_detail_reference' => false,
-        'stored_payment_method_id' => false,
-        'type' => false
+		'bank_location_id' => false,
+		'checkout_attempt_id' => false,
+		'encrypted_bank_account_number' => false,
+		'encrypted_bank_location_id' => false,
+		'owner_name' => false,
+		'recurring_detail_reference' => false,
+		'stored_payment_method_id' => false,
+		'type' => false
     ];
 
     /**
@@ -677,7 +677,7 @@ class AchDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -98,21 +98,21 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPINullables = [
         'requested_test_error_response_code' => false,
-        'allow_partial_auth' => false,
-        'authorisation_type' => false,
-        'custom_routing_flag' => false,
-        'industry_usage' => false,
-        'manual_capture' => false,
-        'network_tx_reference' => false,
-        'overwrite_brand' => false,
-        'sub_merchant_city' => false,
-        'sub_merchant_country' => false,
-        'sub_merchant_id' => false,
-        'sub_merchant_name' => false,
-        'sub_merchant_postal_code' => false,
-        'sub_merchant_state' => false,
-        'sub_merchant_street' => false,
-        'sub_merchant_tax_id' => false
+		'allow_partial_auth' => false,
+		'authorisation_type' => false,
+		'custom_routing_flag' => false,
+		'industry_usage' => false,
+		'manual_capture' => false,
+		'network_tx_reference' => false,
+		'overwrite_brand' => false,
+		'sub_merchant_city' => false,
+		'sub_merchant_country' => false,
+		'sub_merchant_id' => false,
+		'sub_merchant_name' => false,
+		'sub_merchant_postal_code' => false,
+		'sub_merchant_state' => false,
+		'sub_merchant_street' => false,
+		'sub_merchant_tax_id' => false
     ];
 
     /**
@@ -912,7 +912,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

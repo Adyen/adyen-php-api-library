@@ -80,12 +80,12 @@ class DonationResponse implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'amount' => false,
-        'donation_account' => false,
-        'id' => false,
-        'merchant_account' => false,
-        'payment' => false,
-        'reference' => false,
-        'status' => false
+		'donation_account' => false,
+		'id' => false,
+		'merchant_account' => false,
+		'payment' => false,
+		'reference' => false,
+		'status' => false
     ];
 
     /**
@@ -608,7 +608,7 @@ class DonationResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

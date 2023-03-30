@@ -72,8 +72,8 @@ class CheckoutSessionInstallmentOption implements ModelInterface, ArrayAccess, \
       */
     protected static $openAPINullables = [
         'plans' => false,
-        'preselected_value' => true,
-        'values' => false
+		'preselected_value' => true,
+		'values' => false
     ];
 
     /**
@@ -458,7 +458,7 @@ class CheckoutSessionInstallmentOption implements ModelInterface, ArrayAccess, \
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

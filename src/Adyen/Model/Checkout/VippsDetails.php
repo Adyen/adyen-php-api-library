@@ -76,10 +76,10 @@ class VippsDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'checkout_attempt_id' => false,
-        'recurring_detail_reference' => false,
-        'stored_payment_method_id' => false,
-        'telephone_number' => false,
-        'type' => false
+		'recurring_detail_reference' => false,
+		'stored_payment_method_id' => false,
+		'telephone_number' => false,
+		'type' => false
     ];
 
     /**
@@ -427,7 +427,7 @@ class VippsDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets telephone_number
      *
-     * @param string $telephone_number
+     * @param string $telephone_number 
      *
      * @return self
      */
@@ -541,7 +541,7 @@ class VippsDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

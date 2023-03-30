@@ -70,7 +70,7 @@ class CheckoutCancelOrderRequest implements ModelInterface, ArrayAccess, \JsonSe
       */
     protected static $openAPINullables = [
         'merchant_account' => false,
-        'order' => false
+		'order' => false
     ];
 
     /**
@@ -409,7 +409,7 @@ class CheckoutCancelOrderRequest implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

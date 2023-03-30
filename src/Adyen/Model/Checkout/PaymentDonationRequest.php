@@ -87,7 +87,7 @@ class PaymentDonationRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'order' => '\Adyen\Model\Checkout\CheckoutOrder',
         'order_reference' => 'string',
         'origin' => 'string',
-        'payment_method' => '\Adyen\Model\Checkout\PaymentDonationRequestPaymentMethod',
+        'payment_method' => '\Adyen\Model\Checkout\CheckoutPaymentMethod',
         'platform_chargeback_logic' => '\Adyen\Model\Checkout\PlatformChargebackLogic',
         'recurring_expiry' => 'string',
         'recurring_frequency' => 'string',
@@ -198,71 +198,71 @@ class PaymentDonationRequest implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPINullables = [
         'account_info' => false,
-        'additional_data' => false,
-        'amount' => false,
-        'application_info' => false,
-        'authentication_data' => false,
-        'billing_address' => false,
-        'browser_info' => false,
-        'capture_delay_hours' => true,
-        'channel' => false,
-        'checkout_attempt_id' => false,
-        'company' => false,
-        'conversion_id' => false,
-        'country_code' => false,
-        'date_of_birth' => false,
-        'dcc_quote' => false,
-        'delivery_address' => false,
-        'delivery_date' => false,
-        'device_fingerprint' => false,
-        'donation_account' => false,
-        'donation_original_psp_reference' => false,
-        'donation_token' => false,
-        'enable_one_click' => false,
-        'enable_pay_out' => false,
-        'enable_recurring' => false,
-        'entity_type' => false,
-        'fraud_offset' => true,
-        'industry_usage' => false,
-        'installments' => false,
-        'line_items' => false,
-        'localized_shopper_statement' => false,
-        'mandate' => false,
-        'mcc' => false,
-        'merchant_account' => false,
-        'merchant_order_reference' => false,
-        'merchant_risk_indicator' => false,
-        'metadata' => false,
-        'mpi_data' => false,
-        'order' => false,
-        'order_reference' => false,
-        'origin' => false,
-        'payment_method' => false,
-        'platform_chargeback_logic' => false,
-        'recurring_expiry' => false,
-        'recurring_frequency' => false,
-        'recurring_processing_model' => false,
-        'redirect_from_issuer_method' => false,
-        'redirect_to_issuer_method' => false,
-        'reference' => false,
-        'return_url' => false,
-        'risk_data' => false,
-        'session_validity' => false,
-        'shopper_email' => false,
-        'shopper_ip' => false,
-        'shopper_interaction' => false,
-        'shopper_locale' => false,
-        'shopper_name' => false,
-        'shopper_reference' => false,
-        'shopper_statement' => false,
-        'social_security_number' => false,
-        'splits' => false,
-        'store' => false,
-        'store_payment_method' => false,
-        'telephone_number' => false,
-        'three_ds2_request_data' => false,
-        'three_ds_authentication_only' => false,
-        'trusted_shopper' => false
+		'additional_data' => false,
+		'amount' => false,
+		'application_info' => false,
+		'authentication_data' => false,
+		'billing_address' => false,
+		'browser_info' => false,
+		'capture_delay_hours' => true,
+		'channel' => false,
+		'checkout_attempt_id' => false,
+		'company' => false,
+		'conversion_id' => false,
+		'country_code' => false,
+		'date_of_birth' => false,
+		'dcc_quote' => false,
+		'delivery_address' => false,
+		'delivery_date' => false,
+		'device_fingerprint' => false,
+		'donation_account' => false,
+		'donation_original_psp_reference' => false,
+		'donation_token' => false,
+		'enable_one_click' => false,
+		'enable_pay_out' => false,
+		'enable_recurring' => false,
+		'entity_type' => false,
+		'fraud_offset' => true,
+		'industry_usage' => false,
+		'installments' => false,
+		'line_items' => false,
+		'localized_shopper_statement' => false,
+		'mandate' => false,
+		'mcc' => false,
+		'merchant_account' => false,
+		'merchant_order_reference' => false,
+		'merchant_risk_indicator' => false,
+		'metadata' => false,
+		'mpi_data' => false,
+		'order' => false,
+		'order_reference' => false,
+		'origin' => false,
+		'payment_method' => false,
+		'platform_chargeback_logic' => false,
+		'recurring_expiry' => false,
+		'recurring_frequency' => false,
+		'recurring_processing_model' => false,
+		'redirect_from_issuer_method' => false,
+		'redirect_to_issuer_method' => false,
+		'reference' => false,
+		'return_url' => false,
+		'risk_data' => false,
+		'session_validity' => false,
+		'shopper_email' => false,
+		'shopper_ip' => false,
+		'shopper_interaction' => false,
+		'shopper_locale' => false,
+		'shopper_name' => false,
+		'shopper_reference' => false,
+		'shopper_statement' => false,
+		'social_security_number' => false,
+		'splits' => false,
+		'store' => false,
+		'store_payment_method' => false,
+		'telephone_number' => false,
+		'three_ds2_request_data' => false,
+		'three_ds_authentication_only' => false,
+		'trusted_shopper' => false
     ];
 
     /**
@@ -1986,7 +1986,7 @@ class PaymentDonationRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets payment_method
      *
-     * @return \Adyen\Model\Checkout\PaymentDonationRequestPaymentMethod
+     * @return \Adyen\Model\Checkout\CheckoutPaymentMethod
      */
     public function getPaymentMethod()
     {
@@ -1996,7 +1996,7 @@ class PaymentDonationRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets payment_method
      *
-     * @param \Adyen\Model\Checkout\PaymentDonationRequestPaymentMethod $payment_method payment_method
+     * @param \Adyen\Model\Checkout\CheckoutPaymentMethod $payment_method payment_method
      *
      * @return self
      */
@@ -2770,7 +2770,7 @@ class PaymentDonationRequest implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

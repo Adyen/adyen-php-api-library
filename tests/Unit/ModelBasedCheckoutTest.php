@@ -4,6 +4,7 @@ namespace Adyen\Tests\Unit;
 
 use Adyen\Model\Checkout\Amount;
 use Adyen\Model\Checkout\CardDetailsRequest;
+use Adyen\Model\Checkout\CheckoutPaymentMethod;
 use Adyen\Model\Checkout\CreateCheckoutSessionRequest;
 use Adyen\Model\Checkout\CreatePaymentLinkRequest;
 use Adyen\Model\Checkout\DetailsRequest;
@@ -329,12 +330,12 @@ class ModelBasedCheckoutTest extends TestCaseMock
         );
     }
 
-    public function testPaymentDonationPaymentMethodSerialization()
+    public function testPaymentMethodSerialization()
     {
         $amount = new Amount();
         $amount->setValue(100)->setCurrency("EUR");
 
-        $paymentMethod = new PaymentDonationRequestPaymentMethod();
+        $paymentMethod = new CheckoutPaymentMethod();
         $paymentMethod->setType("directEbanking");
         $paymentRequest = new PaymentRequest();
         $paymentRequest->setAmount($amount)
@@ -345,12 +346,12 @@ class ModelBasedCheckoutTest extends TestCaseMock
         $this->assertEquals($paymentRequest->getPaymentMethod()->getType(), "directEbanking");
     }
 
-    public function testPaymentDonationPaymentMethodOverload()
+    public function testPaymentMethodOverload()
     {
         $amount = new Amount();
         $amount->setValue(100)->setCurrency("EUR");
 
-        $paymentMethod = new PaymentDonationRequestPaymentMethod();
+        $paymentMethod = new CheckoutPaymentMethod();
         $paymentMethod->setType("applepay");
         $paymentMethod->setApplePayToken("applepaytoken");
         $paymentMethod->setGooglePayToken("googlepay");

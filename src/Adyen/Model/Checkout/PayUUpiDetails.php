@@ -78,11 +78,11 @@ class PayUUpiDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'checkout_attempt_id' => false,
-        'recurring_detail_reference' => false,
-        'shopper_notification_reference' => false,
-        'stored_payment_method_id' => false,
-        'type' => false,
-        'virtual_payment_address' => false
+		'recurring_detail_reference' => false,
+		'shopper_notification_reference' => false,
+		'stored_payment_method_id' => false,
+		'type' => false,
+		'virtual_payment_address' => false
     ];
 
     /**
@@ -575,7 +575,7 @@ class PayUUpiDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

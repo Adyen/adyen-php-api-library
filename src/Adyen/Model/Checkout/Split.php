@@ -76,10 +76,10 @@ class Split implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'account' => false,
-        'amount' => false,
-        'description' => false,
-        'reference' => false,
-        'type' => false
+		'amount' => false,
+		'description' => false,
+		'reference' => false,
+		'type' => false
     ];
 
     /**
@@ -560,7 +560,7 @@ class Split implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
