@@ -215,7 +215,10 @@ class ModelBasedCheckoutTest extends TestCaseMock
 
         $result = $service->paymentLinks(new CreatePaymentLinkRequest());
 
-        $this->assertEquals('https://checkoutshopper-test.adyen.com/checkoutshopper/payByLink.shtml?d=PL0A6D6846DB347E59', $result->getUrl());
+        $this->assertEquals(
+            'https://checkoutshopper-test.adyen.com/checkoutshopper/payByLink.shtml?d=PL0A6D6846DB347E59',
+            $result->getUrl()
+        );
     }
 
     public static function successPaymentsLinkProvider()
