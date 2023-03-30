@@ -70,7 +70,7 @@ class NotificationUrl implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'local_urls' => false,
-		'public_urls' => false
+        'public_urls' => false
     ];
 
     /**
@@ -403,7 +403,7 @@ class NotificationUrl implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

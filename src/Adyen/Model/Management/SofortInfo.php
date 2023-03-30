@@ -70,7 +70,7 @@ class SofortInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'currency_code' => false,
-		'logo' => false
+        'logo' => false
     ];
 
     /**
@@ -409,7 +409,7 @@ class SofortInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

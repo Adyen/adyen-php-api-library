@@ -76,10 +76,10 @@ class Contact implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'email' => false,
-		'first_name' => false,
-		'infix' => false,
-		'last_name' => false,
-		'phone_number' => false
+        'first_name' => false,
+        'infix' => false,
+        'last_name' => false,
+        'phone_number' => false
     ];
 
     /**
@@ -505,7 +505,7 @@ class Contact implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

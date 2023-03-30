@@ -48,14 +48,13 @@ class PayoutSettingsMerchantLevelApi extends Service
     * @param string $merchantId
     * @param string $payoutSettingsId
     * @param array $requestOptions
-    
+
     * @throws AdyenException
     */
     public function deletePayoutSetting(string $merchantId, string $payoutSettingsId, array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{payoutSettingsId}'], [$merchantId, $payoutSettingsId], "/merchants/{merchantId}/payoutSettings/{payoutSettingsId}");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
-        
     }
 
     /**

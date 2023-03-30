@@ -82,13 +82,13 @@ class UpdateMerchantUserRequest implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static $openAPINullables = [
         'account_groups' => false,
-		'active' => false,
-		'authn_apps_to_add' => false,
-		'authn_apps_to_remove' => false,
-		'email' => false,
-		'name' => false,
-		'roles' => false,
-		'time_zone_code' => false
+        'active' => false,
+        'authn_apps_to_add' => false,
+        'authn_apps_to_remove' => false,
+        'email' => false,
+        'name' => false,
+        'roles' => false,
+        'time_zone_code' => false
     ];
 
     /**
@@ -607,7 +607,7 @@ class UpdateMerchantUserRequest implements ModelInterface, ArrayAccess, \JsonSer
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

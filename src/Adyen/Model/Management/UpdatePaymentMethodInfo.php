@@ -78,11 +78,11 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static $openAPINullables = [
         'countries' => false,
-		'currencies' => false,
-		'custom_routing_flags' => false,
-		'enabled' => false,
-		'shopper_statement' => false,
-		'store_ids' => false
+        'currencies' => false,
+        'custom_routing_flags' => false,
+        'enabled' => false,
+        'shopper_statement' => false,
+        'store_ids' => false
     ];
 
     /**
@@ -539,7 +539,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

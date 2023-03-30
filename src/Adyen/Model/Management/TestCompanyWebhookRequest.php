@@ -72,8 +72,8 @@ class TestCompanyWebhookRequest implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static $openAPINullables = [
         'merchant_ids' => false,
-		'notification' => false,
-		'types' => false
+        'notification' => false,
+        'types' => false
     ];
 
     /**
@@ -437,7 +437,7 @@ class TestCompanyWebhookRequest implements ModelInterface, ArrayAccess, \JsonSer
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

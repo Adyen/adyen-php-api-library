@@ -78,11 +78,11 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPINullables = [
         'address' => false,
-		'business_line_ids' => false,
-		'description' => false,
-		'external_reference_id' => false,
-		'split_configuration' => false,
-		'status' => false
+        'business_line_ids' => false,
+        'description' => false,
+        'external_reference_id' => false,
+        'split_configuration' => false,
+        'status' => false
     ];
 
     /**
@@ -574,7 +574,7 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

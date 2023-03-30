@@ -74,9 +74,9 @@ class Nexo implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'display_urls' => false,
-		'encryption_key' => false,
-		'event_urls' => false,
-		'nexo_event_urls' => false
+        'encryption_key' => false,
+        'event_urls' => false,
+        'nexo_event_urls' => false
     ];
 
     /**
@@ -473,7 +473,7 @@ class Nexo implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

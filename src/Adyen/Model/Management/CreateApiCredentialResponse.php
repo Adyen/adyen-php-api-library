@@ -88,16 +88,16 @@ class CreateApiCredentialResponse implements ModelInterface, ArrayAccess, \JsonS
       */
     protected static $openAPINullables = [
         '_links' => false,
-		'active' => false,
-		'allowed_ip_addresses' => false,
-		'allowed_origins' => false,
-		'api_key' => false,
-		'client_key' => false,
-		'description' => false,
-		'id' => false,
-		'password' => false,
-		'roles' => false,
-		'username' => false
+        'active' => false,
+        'allowed_ip_addresses' => false,
+        'allowed_origins' => false,
+        'api_key' => false,
+        'client_key' => false,
+        'description' => false,
+        'id' => false,
+        'password' => false,
+        'roles' => false,
+        'username' => false
     ];
 
     /**
@@ -733,7 +733,7 @@ class CreateApiCredentialResponse implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -74,9 +74,9 @@ class CreateCompanyApiCredentialRequest implements ModelInterface, ArrayAccess, 
       */
     protected static $openAPINullables = [
         'allowed_origins' => false,
-		'associated_merchant_accounts' => false,
-		'description' => false,
-		'roles' => false
+        'associated_merchant_accounts' => false,
+        'description' => false,
+        'roles' => false
     ];
 
     /**
@@ -471,7 +471,7 @@ class CreateCompanyApiCredentialRequest implements ModelInterface, ArrayAccess, 
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

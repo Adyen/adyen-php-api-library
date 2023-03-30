@@ -70,7 +70,7 @@ class StoreSplitConfiguration implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static $openAPINullables = [
         'balance_account_id' => false,
-		'split_configuration_id' => false
+        'split_configuration_id' => false
     ];
 
     /**
@@ -403,7 +403,7 @@ class StoreSplitConfiguration implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

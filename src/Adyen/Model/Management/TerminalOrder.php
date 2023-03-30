@@ -82,13 +82,13 @@ class TerminalOrder implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'billing_entity' => false,
-		'customer_order_reference' => false,
-		'id' => false,
-		'items' => false,
-		'order_date' => false,
-		'shipping_location' => false,
-		'status' => false,
-		'tracking_url' => false
+        'customer_order_reference' => false,
+        'id' => false,
+        'items' => false,
+        'order_date' => false,
+        'shipping_location' => false,
+        'status' => false,
+        'tracking_url' => false
     ];
 
     /**
@@ -607,7 +607,7 @@ class TerminalOrder implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

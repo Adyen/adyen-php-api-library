@@ -74,9 +74,9 @@ class Passcodes implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'admin_menu_pin' => false,
-		'refund_pin' => false,
-		'screen_lock_pin' => false,
-		'tx_menu_pin' => false
+        'refund_pin' => false,
+        'screen_lock_pin' => false,
+        'tx_menu_pin' => false
     ];
 
     /**
@@ -471,7 +471,7 @@ class Passcodes implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

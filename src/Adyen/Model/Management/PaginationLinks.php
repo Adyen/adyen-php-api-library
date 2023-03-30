@@ -76,10 +76,10 @@ class PaginationLinks implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'first' => false,
-		'last' => false,
-		'next' => false,
-		'prev' => false,
-		'self' => false
+        'last' => false,
+        'next' => false,
+        'prev' => false,
+        'self' => false
     ];
 
     /**
@@ -514,7 +514,7 @@ class PaginationLinks implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

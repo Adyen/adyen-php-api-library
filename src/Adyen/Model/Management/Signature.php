@@ -74,9 +74,9 @@ class Signature implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'ask_signature_on_screen' => false,
-		'device_name' => false,
-		'device_slogan' => false,
-		'skip_signature' => false
+        'device_name' => false,
+        'device_slogan' => false,
+        'skip_signature' => false
     ];
 
     /**
@@ -471,7 +471,7 @@ class Signature implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

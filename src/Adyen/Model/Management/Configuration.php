@@ -72,8 +72,8 @@ class Configuration implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'brand' => false,
-		'currencies' => false,
-		'sources' => false
+        'currencies' => false,
+        'sources' => false
     ];
 
     /**
@@ -443,7 +443,7 @@ class Configuration implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

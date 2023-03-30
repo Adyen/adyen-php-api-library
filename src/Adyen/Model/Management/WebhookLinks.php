@@ -76,10 +76,10 @@ class WebhookLinks implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'company' => false,
-		'generate_hmac' => false,
-		'merchant' => false,
-		'self' => false,
-		'test_webhook' => false
+        'generate_hmac' => false,
+        'merchant' => false,
+        'self' => false,
+        'test_webhook' => false
     ];
 
     /**
@@ -514,7 +514,7 @@ class WebhookLinks implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

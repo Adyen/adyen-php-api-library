@@ -104,24 +104,24 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPINullables = [
         'apple_pay' => false,
-		'bcmc' => false,
-		'business_line_id' => false,
-		'cartes_bancaires' => false,
-		'countries' => false,
-		'currencies' => false,
-		'custom_routing_flags' => false,
-		'giro_pay' => false,
-		'google_pay' => false,
-		'klarna' => false,
-		'meal_voucher_fr' => false,
-		'paypal' => false,
-		'reference' => false,
-		'shopper_interaction' => false,
-		'sofort' => false,
-		'store_id' => false,
-		'swish' => false,
-		'type' => false,
-		'vipps' => false
+        'bcmc' => false,
+        'business_line_id' => false,
+        'cartes_bancaires' => false,
+        'countries' => false,
+        'currencies' => false,
+        'custom_routing_flags' => false,
+        'giro_pay' => false,
+        'google_pay' => false,
+        'klarna' => false,
+        'meal_voucher_fr' => false,
+        'paypal' => false,
+        'reference' => false,
+        'shopper_interaction' => false,
+        'sofort' => false,
+        'store_id' => false,
+        'swish' => false,
+        'type' => false,
+        'vipps' => false
     ];
 
     /**
@@ -1143,7 +1143,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

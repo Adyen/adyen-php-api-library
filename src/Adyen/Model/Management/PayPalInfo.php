@@ -72,8 +72,8 @@ class PayPalInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'direct_capture' => false,
-		'payer_id' => false,
-		'subject' => false
+        'payer_id' => false,
+        'subject' => false
     ];
 
     /**
@@ -443,7 +443,7 @@ class PayPalInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

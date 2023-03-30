@@ -72,8 +72,8 @@ class Key implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'identifier' => false,
-		'passphrase' => false,
-		'version' => true
+        'passphrase' => false,
+        'version' => true
     ];
 
     /**
@@ -435,7 +435,7 @@ class Key implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

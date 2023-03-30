@@ -70,7 +70,7 @@ class Surcharge implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'ask_confirmation' => false,
-		'configurations' => false
+        'configurations' => false
     ];
 
     /**
@@ -403,7 +403,7 @@ class Surcharge implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

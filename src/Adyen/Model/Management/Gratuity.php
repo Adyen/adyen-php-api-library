@@ -74,9 +74,9 @@ class Gratuity implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'allow_custom_amount' => false,
-		'currency' => false,
-		'predefined_tip_entries' => false,
-		'use_predefined_tip_entries' => false
+        'currency' => false,
+        'predefined_tip_entries' => false,
+        'use_predefined_tip_entries' => false
     ];
 
     /**
@@ -471,7 +471,7 @@ class Gratuity implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

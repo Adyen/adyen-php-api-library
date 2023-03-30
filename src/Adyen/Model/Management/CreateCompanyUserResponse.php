@@ -86,15 +86,15 @@ class CreateCompanyUserResponse implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static $openAPINullables = [
         '_links' => false,
-		'account_groups' => false,
-		'active' => false,
-		'associated_merchant_accounts' => false,
-		'email' => false,
-		'id' => false,
-		'name' => false,
-		'roles' => false,
-		'time_zone_code' => false,
-		'username' => false
+        'account_groups' => false,
+        'active' => false,
+        'associated_merchant_accounts' => false,
+        'email' => false,
+        'id' => false,
+        'name' => false,
+        'roles' => false,
+        'time_zone_code' => false,
+        'username' => false
     ];
 
     /**
@@ -690,7 +690,7 @@ class CreateCompanyUserResponse implements ModelInterface, ArrayAccess, \JsonSer
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

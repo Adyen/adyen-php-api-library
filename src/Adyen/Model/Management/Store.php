@@ -90,17 +90,17 @@ class Store implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         '_links' => false,
-		'address' => false,
-		'business_line_ids' => false,
-		'description' => false,
-		'external_reference_id' => false,
-		'id' => false,
-		'merchant_id' => false,
-		'phone_number' => false,
-		'reference' => false,
-		'shopper_statement' => false,
-		'split_configuration' => false,
-		'status' => false
+        'address' => false,
+        'business_line_ids' => false,
+        'description' => false,
+        'external_reference_id' => false,
+        'id' => false,
+        'merchant_id' => false,
+        'phone_number' => false,
+        'reference' => false,
+        'shopper_statement' => false,
+        'split_configuration' => false,
+        'status' => false
     ];
 
     /**
@@ -778,7 +778,7 @@ class Store implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

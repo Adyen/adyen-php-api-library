@@ -76,10 +76,10 @@ class BillingEntity implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'address' => false,
-		'email' => false,
-		'id' => false,
-		'name' => false,
-		'tax_id' => false
+        'email' => false,
+        'id' => false,
+        'name' => false,
+        'tax_id' => false
     ];
 
     /**
@@ -505,7 +505,7 @@ class BillingEntity implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -70,7 +70,7 @@ class PayAtTable implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'authentication_method' => false,
-		'enable_pay_at_table' => false
+        'enable_pay_at_table' => false
     ];
 
     /**
@@ -436,7 +436,7 @@ class PayAtTable implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

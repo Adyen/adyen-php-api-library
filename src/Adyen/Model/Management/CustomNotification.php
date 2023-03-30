@@ -80,12 +80,12 @@ class CustomNotification implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPINullables = [
         'amount' => false,
-		'event_code' => false,
-		'event_date' => false,
-		'merchant_reference' => false,
-		'payment_method' => false,
-		'reason' => false,
-		'success' => false
+        'event_code' => false,
+        'event_date' => false,
+        'merchant_reference' => false,
+        'payment_method' => false,
+        'reason' => false,
+        'success' => false
     ];
 
     /**
@@ -573,7 +573,7 @@ class CustomNotification implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -70,7 +70,7 @@ class EventUrl implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'event_local_urls' => false,
-		'event_public_urls' => false
+        'event_public_urls' => false
     ];
 
     /**
@@ -403,7 +403,7 @@ class EventUrl implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

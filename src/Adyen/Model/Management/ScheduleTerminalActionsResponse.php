@@ -82,13 +82,13 @@ class ScheduleTerminalActionsResponse implements ModelInterface, ArrayAccess, \J
       */
     protected static $openAPINullables = [
         'action_details' => false,
-		'items' => false,
-		'scheduled_at' => false,
-		'store_id' => false,
-		'terminal_ids' => false,
-		'terminals_with_errors' => false,
-		'total_errors' => true,
-		'total_scheduled' => true
+        'items' => false,
+        'scheduled_at' => false,
+        'store_id' => false,
+        'terminal_ids' => false,
+        'terminals_with_errors' => false,
+        'total_errors' => true,
+        'total_scheduled' => true
     ];
 
     /**
@@ -605,7 +605,7 @@ class ScheduleTerminalActionsResponse implements ModelInterface, ArrayAccess, \J
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

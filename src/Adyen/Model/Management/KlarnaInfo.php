@@ -74,9 +74,9 @@ class KlarnaInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'auto_capture' => false,
-		'dispute_email' => false,
-		'region' => false,
-		'support_email' => false
+        'dispute_email' => false,
+        'region' => false,
+        'support_email' => false
     ];
 
     /**
@@ -514,7 +514,7 @@ class KlarnaInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

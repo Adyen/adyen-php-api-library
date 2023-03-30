@@ -90,17 +90,17 @@ class CreateCompanyApiCredentialResponse implements ModelInterface, ArrayAccess,
       */
     protected static $openAPINullables = [
         '_links' => false,
-		'active' => false,
-		'allowed_ip_addresses' => false,
-		'allowed_origins' => false,
-		'api_key' => false,
-		'associated_merchant_accounts' => false,
-		'client_key' => false,
-		'description' => false,
-		'id' => false,
-		'password' => false,
-		'roles' => false,
-		'username' => false
+        'active' => false,
+        'allowed_ip_addresses' => false,
+        'allowed_origins' => false,
+        'api_key' => false,
+        'associated_merchant_accounts' => false,
+        'client_key' => false,
+        'description' => false,
+        'id' => false,
+        'password' => false,
+        'roles' => false,
+        'username' => false
     ];
 
     /**
@@ -770,7 +770,7 @@ class CreateCompanyApiCredentialResponse implements ModelInterface, ArrayAccess,
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -74,9 +74,9 @@ class ListStoresResponse implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPINullables = [
         '_links' => false,
-		'data' => false,
-		'items_total' => true,
-		'pages_total' => true
+        'data' => false,
+        'items_total' => true,
+        'pages_total' => true
     ];
 
     /**
@@ -473,7 +473,7 @@ class ListStoresResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

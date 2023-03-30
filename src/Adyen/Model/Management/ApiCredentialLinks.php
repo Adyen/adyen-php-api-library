@@ -78,11 +78,11 @@ class ApiCredentialLinks implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPINullables = [
         'allowed_origins' => false,
-		'company' => false,
-		'generate_api_key' => false,
-		'generate_client_key' => false,
-		'merchant' => false,
-		'self' => false
+        'company' => false,
+        'generate_api_key' => false,
+        'generate_client_key' => false,
+        'merchant' => false,
+        'self' => false
     ];
 
     /**
@@ -542,7 +542,7 @@ class ApiCredentialLinks implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -70,7 +70,7 @@ class InstallAndroidCertificateDetails implements ModelInterface, ArrayAccess, \
       */
     protected static $openAPINullables = [
         'certificate_id' => false,
-		'type' => false
+        'type' => false
     ];
 
     /**
@@ -434,7 +434,7 @@ class InstallAndroidCertificateDetails implements ModelInterface, ArrayAccess, \
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

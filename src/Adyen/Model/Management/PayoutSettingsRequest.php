@@ -72,8 +72,8 @@ class PayoutSettingsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPINullables = [
         'enabled' => false,
-		'enabled_from_date' => false,
-		'transfer_instrument_id' => false
+        'enabled_from_date' => false,
+        'transfer_instrument_id' => false
     ];
 
     /**
@@ -440,7 +440,7 @@ class PayoutSettingsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

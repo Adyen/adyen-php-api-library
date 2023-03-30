@@ -72,8 +72,8 @@ class AdditionalSettingsResponse implements ModelInterface, ArrayAccess, \JsonSe
       */
     protected static $openAPINullables = [
         'exclude_event_codes' => false,
-		'include_event_codes' => false,
-		'properties' => false
+        'include_event_codes' => false,
+        'properties' => false
     ];
 
     /**
@@ -437,7 +437,7 @@ class AdditionalSettingsResponse implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

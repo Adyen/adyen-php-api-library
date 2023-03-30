@@ -74,9 +74,9 @@ class MerchantLinks implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'api_credentials' => false,
-		'self' => false,
-		'users' => false,
-		'webhooks' => false
+        'self' => false,
+        'users' => false,
+        'webhooks' => false
     ];
 
     /**
@@ -474,7 +474,7 @@ class MerchantLinks implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

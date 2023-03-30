@@ -76,10 +76,10 @@ class TerminalProduct implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'description' => false,
-		'id' => false,
-		'items_included' => false,
-		'name' => false,
-		'price' => false
+        'id' => false,
+        'items_included' => false,
+        'name' => false,
+        'price' => false
     ];
 
     /**
@@ -505,7 +505,7 @@ class TerminalProduct implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

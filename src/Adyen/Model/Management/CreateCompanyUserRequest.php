@@ -82,13 +82,13 @@ class CreateCompanyUserRequest implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static $openAPINullables = [
         'account_groups' => false,
-		'associated_merchant_accounts' => false,
-		'authn_apps' => false,
-		'email' => false,
-		'name' => false,
-		'roles' => false,
-		'time_zone_code' => false,
-		'username' => false
+        'associated_merchant_accounts' => false,
+        'authn_apps' => false,
+        'email' => false,
+        'name' => false,
+        'roles' => false,
+        'time_zone_code' => false,
+        'username' => false
     ];
 
     /**
@@ -616,7 +616,7 @@ class CreateCompanyUserRequest implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

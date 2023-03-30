@@ -80,12 +80,12 @@ class CreateMerchantResponse implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPINullables = [
         'business_line_id' => false,
-		'company_id' => false,
-		'description' => false,
-		'id' => false,
-		'legal_entity_id' => false,
-		'pricing_plan' => false,
-		'reference' => false
+        'company_id' => false,
+        'description' => false,
+        'id' => false,
+        'legal_entity_id' => false,
+        'pricing_plan' => false,
+        'reference' => false
     ];
 
     /**
@@ -573,7 +573,7 @@ class CreateMerchantResponse implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

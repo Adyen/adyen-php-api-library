@@ -72,8 +72,8 @@ class Opi implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'enable_pay_at_table' => false,
-		'pay_at_table_store_number' => false,
-		'pay_at_table_url' => false
+        'pay_at_table_store_number' => false,
+        'pay_at_table_url' => false
     ];
 
     /**
@@ -437,7 +437,7 @@ class Opi implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

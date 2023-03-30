@@ -84,14 +84,14 @@ class UpdateCompanyUserRequest implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static $openAPINullables = [
         'account_groups' => false,
-		'active' => false,
-		'associated_merchant_accounts' => false,
-		'authn_apps_to_add' => false,
-		'authn_apps_to_remove' => false,
-		'email' => false,
-		'name' => false,
-		'roles' => false,
-		'time_zone_code' => false
+        'active' => false,
+        'associated_merchant_accounts' => false,
+        'authn_apps_to_add' => false,
+        'authn_apps_to_remove' => false,
+        'email' => false,
+        'name' => false,
+        'roles' => false,
+        'time_zone_code' => false
     ];
 
     /**
@@ -641,7 +641,7 @@ class UpdateCompanyUserRequest implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

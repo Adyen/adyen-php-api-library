@@ -47,14 +47,13 @@ class MyAPICredentialApi extends Service
     *
     * @param string $originId
     * @param array $requestOptions
-    
+
     * @throws AdyenException
     */
     public function removeAllowedOrigin(string $originId, array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{originId}'], [$originId], "/me/allowedOrigins/{originId}");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
-        
     }
 
     /**

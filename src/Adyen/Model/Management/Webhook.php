@@ -110,27 +110,27 @@ class Webhook implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         '_links' => false,
-		'accepts_expired_certificate' => false,
-		'accepts_self_signed_certificate' => false,
-		'accepts_untrusted_root_certificate' => false,
-		'account_reference' => false,
-		'active' => false,
-		'additional_settings' => false,
-		'certificate_alias' => false,
-		'communication_format' => false,
-		'description' => false,
-		'filter_merchant_account_type' => false,
-		'filter_merchant_accounts' => false,
-		'has_error' => false,
-		'has_password' => false,
-		'hmac_key_check_value' => false,
-		'id' => false,
-		'network_type' => false,
-		'populate_soap_action_header' => false,
-		'ssl_version' => false,
-		'type' => false,
-		'url' => false,
-		'username' => false
+        'accepts_expired_certificate' => false,
+        'accepts_self_signed_certificate' => false,
+        'accepts_untrusted_root_certificate' => false,
+        'account_reference' => false,
+        'active' => false,
+        'additional_settings' => false,
+        'certificate_alias' => false,
+        'communication_format' => false,
+        'description' => false,
+        'filter_merchant_account_type' => false,
+        'filter_merchant_accounts' => false,
+        'has_error' => false,
+        'has_password' => false,
+        'hmac_key_check_value' => false,
+        'id' => false,
+        'network_type' => false,
+        'populate_soap_action_header' => false,
+        'ssl_version' => false,
+        'type' => false,
+        'url' => false,
+        'username' => false
     ];
 
     /**
@@ -1243,7 +1243,7 @@ class Webhook implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

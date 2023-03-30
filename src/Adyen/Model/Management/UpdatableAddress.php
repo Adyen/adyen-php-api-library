@@ -78,11 +78,11 @@ class UpdatableAddress implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'city' => false,
-		'line1' => false,
-		'line2' => false,
-		'line3' => false,
-		'postal_code' => false,
-		'state_or_province' => false
+        'line1' => false,
+        'line2' => false,
+        'line3' => false,
+        'postal_code' => false,
+        'state_or_province' => false
     ];
 
     /**
@@ -539,7 +539,7 @@ class UpdatableAddress implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

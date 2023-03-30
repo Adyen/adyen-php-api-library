@@ -74,9 +74,9 @@ class Url implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'encrypted' => false,
-		'password' => false,
-		'url' => false,
-		'username' => false
+        'password' => false,
+        'url' => false,
+        'username' => false
     ];
 
     /**
@@ -471,7 +471,7 @@ class Url implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

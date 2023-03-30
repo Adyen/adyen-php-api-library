@@ -74,9 +74,9 @@ class ShippingLocation implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'address' => false,
-		'contact' => false,
-		'id' => false,
-		'name' => false
+        'contact' => false,
+        'id' => false,
+        'name' => false
     ];
 
     /**
@@ -471,7 +471,7 @@ class ShippingLocation implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

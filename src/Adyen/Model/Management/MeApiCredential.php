@@ -88,16 +88,16 @@ class MeApiCredential implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         '_links' => false,
-		'active' => false,
-		'allowed_ip_addresses' => false,
-		'allowed_origins' => false,
-		'associated_merchant_accounts' => false,
-		'client_key' => false,
-		'company_name' => false,
-		'description' => false,
-		'id' => false,
-		'roles' => false,
-		'username' => false
+        'active' => false,
+        'allowed_ip_addresses' => false,
+        'allowed_origins' => false,
+        'associated_merchant_accounts' => false,
+        'client_key' => false,
+        'company_name' => false,
+        'description' => false,
+        'id' => false,
+        'roles' => false,
+        'username' => false
     ];
 
     /**
@@ -727,7 +727,7 @@ class MeApiCredential implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

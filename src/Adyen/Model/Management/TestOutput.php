@@ -78,11 +78,11 @@ class TestOutput implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'merchant_id' => false,
-		'output' => false,
-		'request_sent' => false,
-		'response_code' => false,
-		'response_time' => false,
-		'status' => false
+        'output' => false,
+        'request_sent' => false,
+        'response_code' => false,
+        'response_time' => false,
+        'status' => false
     ];
 
     /**
@@ -542,7 +542,7 @@ class TestOutput implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

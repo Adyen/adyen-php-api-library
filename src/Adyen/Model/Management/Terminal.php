@@ -110,27 +110,27 @@ class Terminal implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'assigned' => false,
-		'bluetooth_ip' => false,
-		'bluetooth_mac' => false,
-		'city' => false,
-		'company_account' => false,
-		'country_code' => false,
-		'device_model' => false,
-		'ethernet_ip' => false,
-		'ethernet_mac' => false,
-		'firmware_version' => false,
-		'iccid' => false,
-		'id' => false,
-		'last_activity_date_time' => false,
-		'last_transaction_date_time' => false,
-		'link_negotiation' => false,
-		'serial_number' => false,
-		'sim_status' => false,
-		'status' => false,
-		'store_status' => false,
-		'wifi_ip' => false,
-		'wifi_mac' => false,
-		'wifi_ssid' => false
+        'bluetooth_ip' => false,
+        'bluetooth_mac' => false,
+        'city' => false,
+        'company_account' => false,
+        'country_code' => false,
+        'device_model' => false,
+        'ethernet_ip' => false,
+        'ethernet_mac' => false,
+        'firmware_version' => false,
+        'iccid' => false,
+        'id' => false,
+        'last_activity_date_time' => false,
+        'last_transaction_date_time' => false,
+        'link_negotiation' => false,
+        'serial_number' => false,
+        'sim_status' => false,
+        'status' => false,
+        'store_status' => false,
+        'wifi_ip' => false,
+        'wifi_mac' => false,
+        'wifi_ssid' => false
     ];
 
     /**
@@ -1083,7 +1083,7 @@ class Terminal implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

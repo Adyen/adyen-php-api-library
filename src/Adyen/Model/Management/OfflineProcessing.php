@@ -70,7 +70,7 @@ class OfflineProcessing implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPINullables = [
         'chip_floor_limit' => true,
-		'offline_swipe_limits' => false
+        'offline_swipe_limits' => false
     ];
 
     /**
@@ -401,7 +401,7 @@ class OfflineProcessing implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

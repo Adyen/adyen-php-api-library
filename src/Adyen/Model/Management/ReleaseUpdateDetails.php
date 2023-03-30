@@ -70,7 +70,7 @@ class ReleaseUpdateDetails implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPINullables = [
         'type' => false,
-		'update_at_first_maintenance_call' => false
+        'update_at_first_maintenance_call' => false
     ];
 
     /**
@@ -434,7 +434,7 @@ class ReleaseUpdateDetails implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

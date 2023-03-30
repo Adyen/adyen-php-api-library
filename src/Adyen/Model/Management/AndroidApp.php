@@ -80,12 +80,12 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'description' => false,
-		'id' => false,
-		'label' => false,
-		'package_name' => false,
-		'status' => false,
-		'version_code' => true,
-		'version_name' => false
+        'id' => false,
+        'label' => false,
+        'package_name' => false,
+        'status' => false,
+        'version_code' => true,
+        'version_name' => false
     ];
 
     /**
@@ -577,7 +577,7 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -49,14 +49,13 @@ class AllowedOriginsCompanyLevelApi extends Service
     * @param string $apiCredentialId
     * @param string $originId
     * @param array $requestOptions
-    
+
     * @throws AdyenException
     */
     public function deleteAllowedOrigin(string $companyId, string $apiCredentialId, string $originId, array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}', '{apiCredentialId}', '{originId}'], [$companyId, $apiCredentialId, $originId], "/companies/{companyId}/apiCredentials/{apiCredentialId}/allowedOrigins/{originId}");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
-        
     }
 
     /**

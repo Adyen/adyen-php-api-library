@@ -70,7 +70,7 @@ class TerminalActionScheduleDetail implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPINullables = [
         'id' => false,
-		'terminal_id' => false
+        'terminal_id' => false
     ];
 
     /**
@@ -403,7 +403,7 @@ class TerminalActionScheduleDetail implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

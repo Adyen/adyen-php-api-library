@@ -72,8 +72,8 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPINullables = [
         'conecs_id' => false,
-		'siret' => false,
-		'sub_types' => false
+        'siret' => false,
+        'sub_types' => false
     ];
 
     /**
@@ -446,7 +446,7 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
