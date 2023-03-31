@@ -78,11 +78,11 @@ class TransactionRuleInterval implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static $openAPINullables = [
         'day_of_month' => true,
-		'day_of_week' => false,
-		'duration' => false,
-		'time_of_day' => false,
-		'time_zone' => false,
-		'type' => false
+        'day_of_week' => false,
+        'duration' => false,
+        'time_of_day' => false,
+        'time_zone' => false,
+        'type' => false
     ];
 
     /**
@@ -626,7 +626,7 @@ class TransactionRuleInterval implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
