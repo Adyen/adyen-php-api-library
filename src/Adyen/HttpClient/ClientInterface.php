@@ -46,6 +46,6 @@ interface ClientInterface
         string $requestUrl,
         $bodyParams,
         string $method,
-        $requestOptions = null
+        string $idempotencyKey = null
     );
 }

@@ -7,6 +7,7 @@ use Adyen\HttpClient\ClientInterface;
 class UrlCheckClient implements ClientInterface
 {
     public $url;
+    public $idempotencyKey;
 
     public function requestJson(\Adyen\Service $service, $requestUrl, $params)
     {
@@ -23,9 +24,10 @@ class UrlCheckClient implements ClientInterface
         // TODO: Implement requestHttp() method.
     }
 
-    public function requestHttpRest(\Adyen\Service $service, string $requestUrl, $bodyParams, string $method, $requestOptions = null)
+    public function requestHttpRest(\Adyen\Service $service, string $requestUrl, $bodyParams, string $method, $idempotencyKey = null)
     {
         $this->url = $requestUrl;
+        $this->idempotencyKey = $idempotencyKey;
         return array();
     }
 }

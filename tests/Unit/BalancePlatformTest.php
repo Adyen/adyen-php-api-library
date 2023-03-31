@@ -13,6 +13,8 @@ use Adyen\Service\BalancePlatform\BalanceAccountsApi;
 use Adyen\Service\BalancePlatform\BankAccountValidationApi;
 use Adyen\Service\BalancePlatform\PaymentInstrumentGroupsApi;
 use Adyen\Service\BalancePlatform\PlatformApi;
+use PharIo\Manifest\Url;
+use function PHPUnit\Framework\assertEquals;
 
 class BalancePlatformTest extends TestCaseMock
 {
@@ -24,10 +26,25 @@ class BalancePlatformTest extends TestCaseMock
         // create Checkout client
         $client = $this->createMockClient('tests/Resources/BalancePlatform/get-all-account-holders.json', 200);
         $service = new PlatformApi($client);
-        $response = $service->getAllAccountHoldersUnderBalancePlatform("id", array(''=> 100));
+        $response = $service->getAllAccountHoldersUnderBalancePlatform("id", array('offset'=> 1, 'limit'=>10));
         $accountHolder = $response->getAccountHolders()[0];
         self::assertEquals('LE3227C223222D5D8S5S33M4M', $accountHolder->getLegalEntityId());
         self::assertEquals(AccountHolder::STATUS_ACTIVE, $accountHolder->getStatus());
+    }
+
+    /**
+     * @throws AdyenException
+     */
+    public function testgetAllAccountHoldersUrlCheck()
+    {
+        // create Checkout client
+        $urlClient = new UrlCheckClient();
+        $client = $this->createMockClient('tests/Resources/BalancePlatform/get-all-account-holders.json', 200);
+        $client->setHttpClient($urlClient);
+        $service = new PlatformApi($client);
+        $service->getAllAccountHoldersUnderBalancePlatform("id", array('offset'=> 1, 'limit'=>10, 'idempotencyKey'=> '0192837450917834'));
+        $this->assertEquals('https://balanceplatform-api-test.adyen.com/bcl/v2/balancePlatforms/id/accountHolders?offset=1&limit=10', $urlClient->url);
+        $this->assertEquals('0192837450917834', $urlClient->idempotencyKey);
     }
 
     /**
