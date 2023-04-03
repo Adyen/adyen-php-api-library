@@ -46,7 +46,7 @@ class TransactionRulesApi extends Service
     * Delete a transaction rule
     *
     * @param string $transactionRuleId
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['idempotencyKey' => 'v']
     * @return \Adyen\Model\BalancePlatform\TransactionRule
     * @throws AdyenException
     */
@@ -61,7 +61,7 @@ class TransactionRulesApi extends Service
     * Get a transaction rule
     *
     * @param string $transactionRuleId
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['idempotencyKey' => 'v']
     * @return \Adyen\Model\BalancePlatform\TransactionRuleResponse
     * @throws AdyenException
     */
@@ -77,7 +77,7 @@ class TransactionRulesApi extends Service
     *
     * @param string $transactionRuleId
     * @param \Adyen\Model\BalancePlatform\TransactionRuleInfo $transactionRuleInfo
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['idempotencyKey' => 'v']
     * @return \Adyen\Model\BalancePlatform\TransactionRule
     * @throws AdyenException
     */
@@ -92,7 +92,7 @@ class TransactionRulesApi extends Service
     * Create a transaction rule
     *
     * @param \Adyen\Model\BalancePlatform\TransactionRuleInfo $transactionRuleInfo
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['idempotencyKey' => 'v']
     * @return \Adyen\Model\BalancePlatform\TransactionRule
     * @throws AdyenException
     */

@@ -68,14 +68,12 @@ class Service
         }
         $curlClient = $this->getClient()->getHttpClient();
 
-        // Create query params and retrieve idempotency
-        $idempotencyKey = $requestOptions['idempotencyKey'] ?? null;
-        unset($requestOptions['idempotencyKey']);
-        if (!empty($requestOptions)) {
-            $url .= '?' . http_build_query($requestOptions);
+        // Retrieve queryParams from requestOptions and add to URL
+        if (!empty($requestOptions['queryParams'])) {
+            $url .= '?' . http_build_query($requestOptions['queryParams']);
         }
 
-        return $curlClient->requestHttpRest($this, $url, $bodyParams, $method, $idempotencyKey);
+        return $curlClient->requestHttp($this, $url, $bodyParams, $method, $requestOptions);
     }
 
     /**

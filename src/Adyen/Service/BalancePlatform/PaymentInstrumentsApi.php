@@ -46,7 +46,7 @@ class PaymentInstrumentsApi extends Service
     * Get a payment instrument
     *
     * @param string $id
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['idempotencyKey' => 'v']
     * @return \Adyen\Model\BalancePlatform\PaymentInstrument
     * @throws AdyenException
     */
@@ -61,7 +61,7 @@ class PaymentInstrumentsApi extends Service
     * Get the PAN of a payment instrument
     *
     * @param string $id
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['idempotencyKey' => 'v']
     * @return \Adyen\Model\BalancePlatform\PaymentInstrumentRevealInfo
     * @throws AdyenException
     */
@@ -76,7 +76,7 @@ class PaymentInstrumentsApi extends Service
     * Get all transaction rules for a payment instrument
     *
     * @param string $id
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['idempotencyKey' => 'v']
     * @return \Adyen\Model\BalancePlatform\TransactionRulesResponse
     * @throws AdyenException
     */
@@ -92,7 +92,7 @@ class PaymentInstrumentsApi extends Service
     *
     * @param string $id
     * @param \Adyen\Model\BalancePlatform\PaymentInstrumentUpdateRequest $paymentInstrumentUpdateRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['idempotencyKey' => 'v']
     * @return \Adyen\Model\BalancePlatform\UpdatePaymentInstrument
     * @throws AdyenException
     */
@@ -107,7 +107,7 @@ class PaymentInstrumentsApi extends Service
     * Create a payment instrument
     *
     * @param \Adyen\Model\BalancePlatform\PaymentInstrumentInfo $paymentInstrumentInfo
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['idempotencyKey' => 'v']
     * @return \Adyen\Model\BalancePlatform\PaymentInstrument
     * @throws AdyenException
     */

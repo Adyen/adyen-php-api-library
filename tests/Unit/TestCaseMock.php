@@ -83,7 +83,7 @@ class TestCaseMock extends TestCase
 
     protected $requestUrl;
 
-    protected function createMockClientUrl($jsonFile, $httpStatus, $environment = Environment::TEST)
+    protected function createMockClientUrl($jsonFile, $environment = Environment::TEST)
     {
         $client = new Client();
         $client->setApplicationName("My Test Application");
@@ -96,9 +96,9 @@ class TestCaseMock extends TestCase
         }
 
         $curlClient = $this->getMockBuilder(get_class(new CurlClient()))
-            ->onlyMethods(array('requestHttpRest'))
+            ->onlyMethods(array('requestHttp'))
             ->getMock();
-        $curlClient->method('requestHttpRest')
+        $curlClient->method('requestHttp')
             ->willReturnCallback(function (Service $service, $requestUrl, $params) use ($json) {
 
                 $this->requestUrl = $requestUrl;

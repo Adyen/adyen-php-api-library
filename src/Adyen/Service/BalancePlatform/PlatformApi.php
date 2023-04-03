@@ -46,7 +46,7 @@ class PlatformApi extends Service
     * Get a balance platform
     *
     * @param string $id
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['idempotencyKey' => 'v']
     * @return \Adyen\Model\BalancePlatform\BalancePlatform
     * @throws AdyenException
     */
@@ -61,9 +61,7 @@ class PlatformApi extends Service
     * Get all account holders under a balance platform
     *
     * @param string $id
-    * @param int $offset
-    * @param int $limit
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['queryParams' => ['offset'=> 'v', 'limit'=> 'v'], 'idempotencyKey' => 'v']
     * @return \Adyen\Model\BalancePlatform\PaginatedAccountHoldersResponse
     * @throws AdyenException
     */

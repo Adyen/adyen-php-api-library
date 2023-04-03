@@ -46,7 +46,7 @@ class AccountHoldersApi extends Service
     * Get an account holder
     *
     * @param string $id
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['idempotencyKey' => 'v']
     * @return \Adyen\Model\BalancePlatform\AccountHolder
     * @throws AdyenException
     */
@@ -61,9 +61,7 @@ class AccountHoldersApi extends Service
     * Get all balance accounts of an account holder
     *
     * @param string $id
-    * @param int $offset
-    * @param int $limit
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['queryParams' => ['offset'=> 'v', 'limit'=> 'v'], 'idempotencyKey' => 'v']
     * @return \Adyen\Model\BalancePlatform\PaginatedBalanceAccountsResponse
     * @throws AdyenException
     */
@@ -79,7 +77,7 @@ class AccountHoldersApi extends Service
     *
     * @param string $id
     * @param \Adyen\Model\BalancePlatform\AccountHolder $accountHolder
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['idempotencyKey' => 'v']
     * @return \Adyen\Model\BalancePlatform\AccountHolder
     * @throws AdyenException
     */
@@ -94,7 +92,7 @@ class AccountHoldersApi extends Service
     * Create an account holder
     *
     * @param \Adyen\Model\BalancePlatform\AccountHolderInfo $accountHolderInfo
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['idempotencyKey' => 'v']
     * @return \Adyen\Model\BalancePlatform\AccountHolder
     * @throws AdyenException
     */

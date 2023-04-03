@@ -72,8 +72,8 @@ class SGLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPINullables = [
         'account_number' => false,
-        'bic' => false,
-        'type' => false
+		'bic' => false,
+		'type' => false
     ];
 
     /**
@@ -474,7 +474,7 @@ class SGLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

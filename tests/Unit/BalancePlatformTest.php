@@ -30,7 +30,8 @@ class BalancePlatformTest extends TestCaseMock
             200
         );
         $service = new PlatformApi($client);
-        $response = $service->getAllAccountHoldersUnderBalancePlatform("id", array('offset'=> 1, 'limit'=>10));
+        $response = $service->getAllAccountHoldersUnderBalancePlatform("id", ['queryParams' => array('offset'=> 1,
+        'limit'=>10)]);
         $accountHolder = $response->getAccountHolders()[0];
         self::assertEquals('LE3227C223222D5D8S5S33M4M', $accountHolder->getLegalEntityId());
         self::assertEquals(AccountHolder::STATUS_ACTIVE, $accountHolder->getStatus());
@@ -43,13 +44,12 @@ class BalancePlatformTest extends TestCaseMock
     {
         // create Checkout client
         $client = $this->createMockClientUrl(
-            'tests/Resources/BalancePlatform/get-all-account-holders.json',
-            200
+            'tests/Resources/BalancePlatform/get-all-account-holders.json'
         );
         $service = new PlatformApi($client);
         $response = $service->getAllAccountHoldersUnderBalancePlatform(
             "id",
-            array('offset'=> 1, 'limit'=>10, 'idempotencyKey'=> '0192837450917834')
+            ['queryParams' => array('offset'=> 1, 'limit'=>10), 'idempotencyKey' => '01928734']
         );
         $this->assertEquals(
             'https://balanceplatform-api-test.adyen.com/bcl/v2/balancePlatforms/id/accountHolders?offset=1&limit=10',
@@ -124,9 +124,7 @@ class BalancePlatformTest extends TestCaseMock
     public function testGetSweepUrlCheckTest()
     {
         $client = $this->createMockClientUrl(
-            'tests/Resources/BalancePlatform/update-accountholder.json',
-            200
-        );
+            'tests/Resources/BalancePlatform/update-accountholder.json');
         $service = new BalanceAccountsApi($client);
         $service->getSweep('balanceAccountId', 'sweepId');
         self::assertEquals(
@@ -139,7 +137,6 @@ class BalancePlatformTest extends TestCaseMock
     {
         $client = $this->createMockClientUrl(
             'tests/Resources/BalancePlatform/update-accountholder.json',
-            200,
             Environment::LIVE
         );
         $service = new BalanceAccountsApi($client);

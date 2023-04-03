@@ -47,23 +47,22 @@ class BalanceAccountsApi extends Service
     *
     * @param string $balanceAccountId
     * @param string $sweepId
-    * @param array $requestOptions
-
+    * @param array|null $requestOptions ['idempotencyKey' => 'v']
+    
     * @throws AdyenException
     */
     public function deleteSweep(string $balanceAccountId, string $sweepId, array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{balanceAccountId}', '{sweepId}'], [$balanceAccountId, $sweepId], "/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
+        
     }
 
     /**
     * Get all sweeps for a balance account
     *
     * @param string $balanceAccountId
-    * @param int $offset
-    * @param int $limit
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['queryParams' => ['offset'=> 'v', 'limit'=> 'v'], 'idempotencyKey' => 'v']
     * @return \Adyen\Model\BalancePlatform\BalanceSweepConfigurationsResponse
     * @throws AdyenException
     */
@@ -79,7 +78,7 @@ class BalanceAccountsApi extends Service
     *
     * @param string $balanceAccountId
     * @param string $sweepId
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['idempotencyKey' => 'v']
     * @return \Adyen\Model\BalancePlatform\SweepConfigurationV2
     * @throws AdyenException
     */
@@ -94,7 +93,7 @@ class BalanceAccountsApi extends Service
     * Get a balance account
     *
     * @param string $id
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['idempotencyKey' => 'v']
     * @return \Adyen\Model\BalancePlatform\BalanceAccount
     * @throws AdyenException
     */
@@ -109,9 +108,7 @@ class BalanceAccountsApi extends Service
     * Get all payment instruments for a balance account
     *
     * @param string $id
-    * @param int $offset
-    * @param int $limit
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['queryParams' => ['offset'=> 'v', 'limit'=> 'v'], 'idempotencyKey' => 'v']
     * @return \Adyen\Model\BalancePlatform\PaginatedPaymentInstrumentsResponse
     * @throws AdyenException
     */
@@ -128,7 +125,7 @@ class BalanceAccountsApi extends Service
     * @param string $balanceAccountId
     * @param string $sweepId
     * @param \Adyen\Model\BalancePlatform\SweepConfigurationV2 $sweepConfigurationV2
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['idempotencyKey' => 'v']
     * @return \Adyen\Model\BalancePlatform\SweepConfigurationV2
     * @throws AdyenException
     */
@@ -144,7 +141,7 @@ class BalanceAccountsApi extends Service
     *
     * @param string $id
     * @param \Adyen\Model\BalancePlatform\BalanceAccountUpdateRequest $balanceAccountUpdateRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['idempotencyKey' => 'v']
     * @return \Adyen\Model\BalancePlatform\BalanceAccount
     * @throws AdyenException
     */
@@ -159,7 +156,7 @@ class BalanceAccountsApi extends Service
     * Create a balance account
     *
     * @param \Adyen\Model\BalancePlatform\BalanceAccountInfo $balanceAccountInfo
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['idempotencyKey' => 'v']
     * @return \Adyen\Model\BalancePlatform\BalanceAccount
     * @throws AdyenException
     */
@@ -175,7 +172,7 @@ class BalanceAccountsApi extends Service
     *
     * @param string $balanceAccountId
     * @param \Adyen\Model\BalancePlatform\SweepConfigurationV2 $sweepConfigurationV2
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['idempotencyKey' => 'v']
     * @return \Adyen\Model\BalancePlatform\SweepConfigurationV2
     * @throws AdyenException
     */

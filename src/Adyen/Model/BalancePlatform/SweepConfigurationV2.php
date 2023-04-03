@@ -92,18 +92,18 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPINullables = [
         'category' => false,
-        'counterparty' => false,
-        'currency' => false,
-        'description' => false,
-        'id' => false,
-        'priorities' => false,
-        'reason' => false,
-        'schedule' => false,
-        'status' => false,
-        'sweep_amount' => false,
-        'target_amount' => false,
-        'trigger_amount' => false,
-        'type' => false
+		'counterparty' => false,
+		'currency' => false,
+		'description' => false,
+		'id' => false,
+		'priorities' => false,
+		'reason' => false,
+		'schedule' => false,
+		'status' => false,
+		'sweep_amount' => false,
+		'target_amount' => false,
+		'trigger_amount' => false,
+		'type' => false
     ];
 
     /**
@@ -978,7 +978,7 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
