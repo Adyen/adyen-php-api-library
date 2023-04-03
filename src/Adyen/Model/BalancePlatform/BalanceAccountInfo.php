@@ -76,10 +76,10 @@ class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPINullables = [
         'account_holder_id' => false,
-        'default_currency_code' => false,
-        'description' => false,
-        'reference' => false,
-        'time_zone' => false
+		'default_currency_code' => false,
+		'description' => false,
+		'reference' => false,
+		'time_zone' => false
     ];
 
     /**
@@ -508,7 +508,7 @@ class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

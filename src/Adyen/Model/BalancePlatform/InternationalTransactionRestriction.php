@@ -70,7 +70,7 @@ class InternationalTransactionRestriction implements ModelInterface, ArrayAccess
       */
     protected static $openAPINullables = [
         'operation' => false,
-        'value' => false
+		'value' => false
     ];
 
     /**
@@ -406,7 +406,7 @@ class InternationalTransactionRestriction implements ModelInterface, ArrayAccess
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -46,7 +46,7 @@ class PaymentInstrumentGroupsApi extends Service
     * Get a payment instrument group
     *
     * @param string $id
-    * @param array|null $requestOptions ['idempotencyKey' => 'v']
+    * @param array|null $requestOptions ['idempotencyKey' => string]
     * @return \Adyen\Model\BalancePlatform\PaymentInstrumentGroup
     * @throws AdyenException
     */
@@ -61,7 +61,7 @@ class PaymentInstrumentGroupsApi extends Service
     * Get all transaction rules for a payment instrument group
     *
     * @param string $id
-    * @param array|null $requestOptions ['idempotencyKey' => 'v']
+    * @param array|null $requestOptions ['idempotencyKey' => string]
     * @return \Adyen\Model\BalancePlatform\TransactionRulesResponse
     * @throws AdyenException
     */
@@ -76,7 +76,7 @@ class PaymentInstrumentGroupsApi extends Service
     * Create a payment instrument group
     *
     * @param \Adyen\Model\BalancePlatform\PaymentInstrumentGroupInfo $paymentInstrumentGroupInfo
-    * @param array|null $requestOptions ['idempotencyKey' => 'v']
+    * @param array|null $requestOptions ['idempotencyKey' => string]
     * @return \Adyen\Model\BalancePlatform\PaymentInstrumentGroup
     * @throws AdyenException
     */

@@ -70,7 +70,7 @@ class MatchingTransactionsRestriction implements ModelInterface, ArrayAccess, \J
       */
     protected static $openAPINullables = [
         'operation' => false,
-        'value' => true
+		'value' => true
     ];
 
     /**
@@ -404,7 +404,7 @@ class MatchingTransactionsRestriction implements ModelInterface, ArrayAccess, \J
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

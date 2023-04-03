@@ -46,15 +46,14 @@ class BankAccountValidationApi extends Service
     * Validate a bank account
     *
     * @param \Adyen\Model\BalancePlatform\BankAccountIdentificationValidationRequest $bankAccountIdentificationValidationRequest
-    * @param array|null $requestOptions ['idempotencyKey' => 'v']
+    * @param array|null $requestOptions ['idempotencyKey' => string]
     * @return void
     * @throws AdyenException
     */
-    public function validateBankAccountIdentification(
-        \Adyen\Model\BalancePlatform\BankAccountIdentificationValidationRequest
-        $bankAccountIdentificationValidationRequest,
-        array $requestOptions = null
-    ): void {
+    public function validateBankAccountIdentification
+    (\Adyen\Model\BalancePlatform\BankAccountIdentificationValidationRequest
+     $bankAccountIdentificationValidationRequest, array $requestOptions = null): void
+    {
         $endpoint = $this->baseURL . "/validateBankAccountIdentification";
         $this->requestHttp($endpoint, strtolower('POST'), (array) $bankAccountIdentificationValidationRequest->jsonSerialize(), $requestOptions);
     }

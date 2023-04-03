@@ -47,21 +47,22 @@ class BalanceAccountsApi extends Service
     *
     * @param string $balanceAccountId
     * @param string $sweepId
-    * @param array|null $requestOptions ['idempotencyKey' => 'v']
-
+    * @param array|null $requestOptions ['idempotencyKey' => string]
+    
     * @throws AdyenException
     */
     public function deleteSweep(string $balanceAccountId, string $sweepId, array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{balanceAccountId}', '{sweepId}'], [$balanceAccountId, $sweepId], "/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
+        
     }
 
     /**
     * Get all sweeps for a balance account
     *
     * @param string $balanceAccountId
-    * @param array|null $requestOptions ['queryParams' => ['offset'=> 'v', 'limit'=> 'v'], 'idempotencyKey' => 'v']
+    * @param array|null $requestOptions ['queryParams' => ['offset'=> int, 'limit'=> int], 'idempotencyKey' => string]
     * @return \Adyen\Model\BalancePlatform\BalanceSweepConfigurationsResponse
     * @throws AdyenException
     */
@@ -77,7 +78,7 @@ class BalanceAccountsApi extends Service
     *
     * @param string $balanceAccountId
     * @param string $sweepId
-    * @param array|null $requestOptions ['idempotencyKey' => 'v']
+    * @param array|null $requestOptions ['idempotencyKey' => string]
     * @return \Adyen\Model\BalancePlatform\SweepConfigurationV2
     * @throws AdyenException
     */
@@ -92,7 +93,7 @@ class BalanceAccountsApi extends Service
     * Get a balance account
     *
     * @param string $id
-    * @param array|null $requestOptions ['idempotencyKey' => 'v']
+    * @param array|null $requestOptions ['idempotencyKey' => string]
     * @return \Adyen\Model\BalancePlatform\BalanceAccount
     * @throws AdyenException
     */
@@ -107,7 +108,7 @@ class BalanceAccountsApi extends Service
     * Get all payment instruments for a balance account
     *
     * @param string $id
-    * @param array|null $requestOptions ['queryParams' => ['offset'=> 'v', 'limit'=> 'v'], 'idempotencyKey' => 'v']
+    * @param array|null $requestOptions ['queryParams' => ['offset'=> int, 'limit'=> int], 'idempotencyKey' => string]
     * @return \Adyen\Model\BalancePlatform\PaginatedPaymentInstrumentsResponse
     * @throws AdyenException
     */
@@ -124,7 +125,7 @@ class BalanceAccountsApi extends Service
     * @param string $balanceAccountId
     * @param string $sweepId
     * @param \Adyen\Model\BalancePlatform\SweepConfigurationV2 $sweepConfigurationV2
-    * @param array|null $requestOptions ['idempotencyKey' => 'v']
+    * @param array|null $requestOptions ['idempotencyKey' => string]
     * @return \Adyen\Model\BalancePlatform\SweepConfigurationV2
     * @throws AdyenException
     */
@@ -140,7 +141,7 @@ class BalanceAccountsApi extends Service
     *
     * @param string $id
     * @param \Adyen\Model\BalancePlatform\BalanceAccountUpdateRequest $balanceAccountUpdateRequest
-    * @param array|null $requestOptions ['idempotencyKey' => 'v']
+    * @param array|null $requestOptions ['idempotencyKey' => string]
     * @return \Adyen\Model\BalancePlatform\BalanceAccount
     * @throws AdyenException
     */
@@ -155,7 +156,7 @@ class BalanceAccountsApi extends Service
     * Create a balance account
     *
     * @param \Adyen\Model\BalancePlatform\BalanceAccountInfo $balanceAccountInfo
-    * @param array|null $requestOptions ['idempotencyKey' => 'v']
+    * @param array|null $requestOptions ['idempotencyKey' => string]
     * @return \Adyen\Model\BalancePlatform\BalanceAccount
     * @throws AdyenException
     */
@@ -171,7 +172,7 @@ class BalanceAccountsApi extends Service
     *
     * @param string $balanceAccountId
     * @param \Adyen\Model\BalancePlatform\SweepConfigurationV2 $sweepConfigurationV2
-    * @param array|null $requestOptions ['idempotencyKey' => 'v']
+    * @param array|null $requestOptions ['idempotencyKey' => string]
     * @return \Adyen\Model\BalancePlatform\SweepConfigurationV2
     * @throws AdyenException
     */

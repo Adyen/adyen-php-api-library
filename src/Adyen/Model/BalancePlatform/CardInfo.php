@@ -80,12 +80,12 @@ class CardInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'authentication' => false,
-        'brand' => false,
-        'brand_variant' => false,
-        'cardholder_name' => false,
-        'configuration' => false,
-        'delivery_contact' => false,
-        'form_factor' => false
+		'brand' => false,
+		'brand_variant' => false,
+		'cardholder_name' => false,
+		'configuration' => false,
+		'delivery_contact' => false,
+		'form_factor' => false
     ];
 
     /**
@@ -620,7 +620,7 @@ class CardInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

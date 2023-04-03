@@ -72,8 +72,8 @@ class BalanceSweepConfigurationsResponse implements ModelInterface, ArrayAccess,
       */
     protected static $openAPINullables = [
         'has_next' => false,
-        'has_previous' => false,
-        'sweeps' => false
+		'has_previous' => false,
+		'sweeps' => false
     ];
 
     /**
@@ -446,7 +446,7 @@ class BalanceSweepConfigurationsResponse implements ModelInterface, ArrayAccess,
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

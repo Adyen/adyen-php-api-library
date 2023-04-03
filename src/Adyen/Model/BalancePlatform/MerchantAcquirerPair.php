@@ -70,7 +70,7 @@ class MerchantAcquirerPair implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPINullables = [
         'acquirer_id' => false,
-        'merchant_id' => false
+		'merchant_id' => false
     ];
 
     /**
@@ -403,7 +403,7 @@ class MerchantAcquirerPair implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

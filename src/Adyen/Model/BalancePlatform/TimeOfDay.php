@@ -70,7 +70,7 @@ class TimeOfDay implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'end_time' => false,
-        'start_time' => false
+		'start_time' => false
     ];
 
     /**
@@ -403,7 +403,7 @@ class TimeOfDay implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

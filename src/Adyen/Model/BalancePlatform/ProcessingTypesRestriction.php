@@ -70,7 +70,7 @@ class ProcessingTypesRestriction implements ModelInterface, ArrayAccess, \JsonSe
       */
     protected static $openAPINullables = [
         'operation' => false,
-        'value' => false
+		'value' => false
     ];
 
     /**
@@ -441,7 +441,7 @@ class ProcessingTypesRestriction implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

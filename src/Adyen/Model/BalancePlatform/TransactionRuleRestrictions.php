@@ -94,19 +94,19 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
       */
     protected static $openAPINullables = [
         'active_network_tokens' => false,
-        'brand_variants' => false,
-        'countries' => false,
-        'day_of_week' => false,
-        'different_currencies' => false,
-        'entry_modes' => false,
-        'international_transaction' => false,
-        'matching_transactions' => false,
-        'mccs' => false,
-        'merchant_names' => false,
-        'merchants' => false,
-        'processing_types' => false,
-        'time_of_day' => false,
-        'total_amount' => false
+		'brand_variants' => false,
+		'countries' => false,
+		'day_of_week' => false,
+		'different_currencies' => false,
+		'entry_modes' => false,
+		'international_transaction' => false,
+		'matching_transactions' => false,
+		'mccs' => false,
+		'merchant_names' => false,
+		'merchants' => false,
+		'processing_types' => false,
+		'time_of_day' => false,
+		'total_amount' => false
     ];
 
     /**
@@ -811,7 +811,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
