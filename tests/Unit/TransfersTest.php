@@ -11,7 +11,7 @@ use function PHPUnit\Framework\assertEquals;
 
 class TransfersTest extends TestCaseMock
 {
-    function testTransferFunds()
+    public function testTransferFunds()
     {
         $client = $this->createMockClientUrl('tests/Resources/Tranfers/transfer-funds.json', 200);
         $service = new TransfersApi($client);
@@ -21,7 +21,7 @@ class TransfersTest extends TestCaseMock
         assertEquals('https://balanceplatform-api-test.adyen.com/btl/v3/transfers', $this->requestUrl);
     }
 
-    function testGetAllTransactions()
+    public function testGetAllTransactions()
     {
         $client = $this->createMockClientUrl('tests/Resources/Tranfers/all-transactions-get.json', 200);
         $service = new TransactionsApi($client);
