@@ -33,4 +33,19 @@ interface ClientInterface
      * @return mixed
      */
     public function requestHttp(\Adyen\Service $service, $requestUrl, $params, $method, $requestOptions = null);
+
+    /**
+     * @param \Adyen\Service $service
+     * @param $requestUrl
+     * @param $bodyParams
+     * @param $method
+     * @return mixed
+     */
+    public function requestHttpRest(
+        \Adyen\Service $service,
+        string $requestUrl,
+        $bodyParams,
+        string $method,
+        string $idempotencyKey = null
+    );
 }

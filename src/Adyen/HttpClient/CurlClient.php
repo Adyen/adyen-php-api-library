@@ -464,7 +464,7 @@ class CurlClient implements ClientInterface
         string $requestUrl,
         $bodyParams,
         string $method,
-        $requestOptions = null
+        string $idempotencyKey = null
     ): array {
         $client = $service->getClient();
         $config = $client->getConfig();
@@ -481,11 +481,7 @@ class CurlClient implements ClientInterface
         $this->logRequest($logger, $requestUrl, $environment, $bodyParams);
 
         //Check if there are url query params to construct the url
-        $queryParams = $requestOptions;
-        unset($queryParams['idempotencyKey']);
-        if (!empty($queryParams)) {
-            $requestUrl .= '?' . http_build_query($queryParams);
-        }
+
         //Initiate cURL.
         $ch = curl_init($requestUrl);
 
@@ -518,8 +514,8 @@ class CurlClient implements ClientInterface
         );
 
         // if idempotency key is provided as option include into request
-        if (!empty($requestOptions['idempotencyKey'])) {
-            $headers[] = 'Idempotency-Key: ' . $requestOptions['idempotencyKey'];
+        if (!$idempotencyKey) {
+            $headers[] = 'Idempotency-Key: ' . $idempotencyKey;
         }
 
         // set authorisation credentials according to support & availability

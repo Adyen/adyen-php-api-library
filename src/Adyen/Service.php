@@ -67,7 +67,15 @@ class Service
             throw new AdyenException($msg);
         }
         $curlClient = $this->getClient()->getHttpClient();
-        return $curlClient->requestHttpRest($this, $url, $bodyParams, $method, $requestOptions);
+
+        // Create query params and retrieve idempotency
+        $idempotencyKey = $requestOptions['idempotencyKey'] ?? null;
+        unset($requestOptions['idempotencyKey']);
+        if (!empty($requestOptions)) {
+            $url .= '?' . http_build_query($requestOptions);
+        }
+
+        return $curlClient->requestHttpRest($this, $url, $bodyParams, $method, $idempotencyKey);
     }
 
     /**
