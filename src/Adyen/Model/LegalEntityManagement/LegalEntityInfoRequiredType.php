@@ -80,12 +80,12 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
       */
     protected static $openAPINullables = [
         'capabilities' => false,
-		'entity_associations' => false,
-		'individual' => false,
-		'organization' => false,
-		'reference' => false,
-		'sole_proprietorship' => false,
-		'type' => false
+        'entity_associations' => false,
+        'individual' => false,
+        'organization' => false,
+        'reference' => false,
+        'sole_proprietorship' => false,
+        'type' => false
     ];
 
     /**
@@ -615,7 +615,7 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

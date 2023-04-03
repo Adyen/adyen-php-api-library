@@ -72,8 +72,8 @@ class StockData implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'market_identifier' => false,
-		'stock_number' => false,
-		'ticker_symbol' => false
+        'stock_number' => false,
+        'ticker_symbol' => false
     ];
 
     /**
@@ -437,7 +437,7 @@ class StockData implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

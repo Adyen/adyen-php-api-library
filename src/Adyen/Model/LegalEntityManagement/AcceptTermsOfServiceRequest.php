@@ -70,7 +70,7 @@ class AcceptTermsOfServiceRequest implements ModelInterface, ArrayAccess, \JsonS
       */
     protected static $openAPINullables = [
         'accepted_by' => false,
-		'ip_address' => false
+        'ip_address' => false
     ];
 
     /**
@@ -403,7 +403,7 @@ class AcceptTermsOfServiceRequest implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

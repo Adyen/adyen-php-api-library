@@ -78,11 +78,11 @@ class VerificationError implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPINullables = [
         'capabilities' => false,
-		'code' => false,
-		'message' => false,
-		'remediating_actions' => false,
-		'sub_errors' => false,
-		'type' => false
+        'code' => false,
+        'message' => false,
+        'remediating_actions' => false,
+        'sub_errors' => false,
+        'type' => false
     ];
 
     /**
@@ -693,7 +693,7 @@ class VerificationError implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

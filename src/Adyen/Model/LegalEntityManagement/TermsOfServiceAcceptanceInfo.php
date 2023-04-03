@@ -76,10 +76,10 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPINullables = [
         'accepted_by' => false,
-		'accepted_for' => false,
-		'created_at' => false,
-		'id' => false,
-		'type' => false
+        'accepted_for' => false,
+        'created_at' => false,
+        'id' => false,
+        'type' => false
     ];
 
     /**
@@ -548,7 +548,7 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

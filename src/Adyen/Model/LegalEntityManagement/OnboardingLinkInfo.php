@@ -74,9 +74,9 @@ class OnboardingLinkInfo implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPINullables = [
         'locale' => false,
-		'redirect_url' => false,
-		'settings' => false,
-		'theme_id' => false
+        'redirect_url' => false,
+        'settings' => false,
+        'theme_id' => false
     ];
 
     /**
@@ -471,7 +471,7 @@ class OnboardingLinkInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

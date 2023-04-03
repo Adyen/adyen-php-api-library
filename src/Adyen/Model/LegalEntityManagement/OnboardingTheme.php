@@ -76,10 +76,10 @@ class OnboardingTheme implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'created_at' => false,
-		'description' => false,
-		'id' => false,
-		'properties' => false,
-		'updated_at' => false
+        'description' => false,
+        'id' => false,
+        'properties' => false,
+        'updated_at' => false
     ];
 
     /**
@@ -514,7 +514,7 @@ class OnboardingTheme implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -47,14 +47,13 @@ class BusinessLinesApi extends Service
     *
     * @param string $id
     * @param array $requestOptions
-    
+
     * @throws AdyenException
     */
     public function deleteBusinessLine(string $id, array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/businessLines/{id}");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
-        
     }
 
     /**

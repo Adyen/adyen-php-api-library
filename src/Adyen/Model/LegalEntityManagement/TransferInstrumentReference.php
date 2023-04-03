@@ -72,8 +72,8 @@ class TransferInstrumentReference implements ModelInterface, ArrayAccess, \JsonS
       */
     protected static $openAPINullables = [
         'account_identifier' => false,
-		'id' => false,
-		'real_last_four' => false
+        'id' => false,
+        'real_last_four' => false
     ];
 
     /**
@@ -443,7 +443,7 @@ class TransferInstrumentReference implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

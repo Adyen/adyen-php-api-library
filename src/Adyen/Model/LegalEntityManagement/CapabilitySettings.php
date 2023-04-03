@@ -76,10 +76,10 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPINullables = [
         'amount_per_industry' => false,
-		'authorized_card_users' => false,
-		'funding_source' => false,
-		'interval' => false,
-		'max_amount' => false
+        'authorized_card_users' => false,
+        'funding_source' => false,
+        'interval' => false,
+        'max_amount' => false
     ];
 
     /**
@@ -565,7 +565,7 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

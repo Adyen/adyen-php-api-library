@@ -76,10 +76,10 @@ class VerificationErrorRecursive implements ModelInterface, ArrayAccess, \JsonSe
       */
     protected static $openAPINullables = [
         'capabilities' => false,
-		'code' => false,
-		'message' => false,
-		'type' => false,
-		'remediating_actions' => false
+        'code' => false,
+        'message' => false,
+        'type' => false,
+        'remediating_actions' => false
     ];
 
     /**
@@ -659,7 +659,7 @@ class VerificationErrorRecursive implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

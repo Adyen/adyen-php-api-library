@@ -72,8 +72,8 @@ class OnboardingThemes implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'next' => false,
-		'previous' => false,
-		'themes' => false
+        'previous' => false,
+        'themes' => false
     ];
 
     /**
@@ -440,7 +440,7 @@ class OnboardingThemes implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

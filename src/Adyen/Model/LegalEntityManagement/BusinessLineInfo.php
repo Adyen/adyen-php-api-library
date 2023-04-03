@@ -82,13 +82,13 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'capability' => false,
-		'industry_code' => false,
-		'legal_entity_id' => false,
-		'sales_channels' => false,
-		'service' => false,
-		'source_of_funds' => false,
-		'web_data' => false,
-		'web_data_exemption' => false
+        'industry_code' => false,
+        'legal_entity_id' => false,
+        'sales_channels' => false,
+        'service' => false,
+        'source_of_funds' => false,
+        'web_data' => false,
+        'web_data_exemption' => false
     ];
 
     /**
@@ -653,7 +653,7 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

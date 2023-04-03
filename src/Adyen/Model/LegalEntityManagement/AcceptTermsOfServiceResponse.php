@@ -78,11 +78,11 @@ class AcceptTermsOfServiceResponse implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPINullables = [
         'accepted_by' => false,
-		'id' => false,
-		'ip_address' => false,
-		'language' => false,
-		'terms_of_service_document_id' => false,
-		'type' => false
+        'id' => false,
+        'ip_address' => false,
+        'language' => false,
+        'terms_of_service_document_id' => false,
+        'type' => false
     ];
 
     /**
@@ -582,7 +582,7 @@ class AcceptTermsOfServiceResponse implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

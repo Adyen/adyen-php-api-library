@@ -74,9 +74,9 @@ class SupportingEntityCapability implements ModelInterface, ArrayAccess, \JsonSe
       */
     protected static $openAPINullables = [
         'allowed' => false,
-		'id' => false,
-		'requested' => false,
-		'verification_status' => false
+        'id' => false,
+        'requested' => false,
+        'verification_status' => false
     ];
 
     /**
@@ -471,7 +471,7 @@ class SupportingEntityCapability implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

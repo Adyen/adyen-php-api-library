@@ -70,7 +70,7 @@ class OwnerEntity implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'id' => false,
-		'type' => false
+        'type' => false
     ];
 
     /**
@@ -409,7 +409,7 @@ class OwnerEntity implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

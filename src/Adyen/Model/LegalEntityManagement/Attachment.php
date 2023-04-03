@@ -76,10 +76,10 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'content' => false,
-		'content_type' => false,
-		'filename' => false,
-		'page_name' => false,
-		'page_type' => false
+        'content_type' => false,
+        'filename' => false,
+        'page_name' => false,
+        'page_type' => false
     ];
 
     /**
@@ -512,7 +512,7 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
