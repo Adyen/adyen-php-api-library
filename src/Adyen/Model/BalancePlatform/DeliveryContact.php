@@ -78,11 +78,11 @@ class DeliveryContact implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'address' => false,
-		'email' => false,
-		'full_phone_number' => false,
-		'name' => false,
-		'phone_number' => false,
-		'web_address' => false
+        'email' => false,
+        'full_phone_number' => false,
+        'name' => false,
+        'phone_number' => false,
+        'web_address' => false
     ];
 
     /**
@@ -545,7 +545,7 @@ class DeliveryContact implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

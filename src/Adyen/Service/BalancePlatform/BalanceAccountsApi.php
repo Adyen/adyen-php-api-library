@@ -48,14 +48,13 @@ class BalanceAccountsApi extends Service
     * @param string $balanceAccountId
     * @param string $sweepId
     * @param array|null $requestOptions ['idempotencyKey' => string]
-    
+
     * @throws AdyenException
     */
     public function deleteSweep(string $balanceAccountId, string $sweepId, array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{balanceAccountId}', '{sweepId}'], [$balanceAccountId, $sweepId], "/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
-        
     }
 
     /**

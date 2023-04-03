@@ -72,8 +72,8 @@ class SweepCounterparty implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPINullables = [
         'balance_account_id' => false,
-		'merchant_account' => false,
-		'transfer_instrument_id' => false
+        'merchant_account' => false,
+        'transfer_instrument_id' => false
     ];
 
     /**
@@ -437,7 +437,7 @@ class SweepCounterparty implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

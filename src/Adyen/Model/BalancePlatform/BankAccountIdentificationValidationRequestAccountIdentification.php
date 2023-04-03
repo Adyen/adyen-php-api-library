@@ -93,18 +93,18 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
       */
     protected static $openAPINullables = [
         'account_number' => false,
-		'bsb_code' => false,
-		'type' => false,
-		'account_type' => false,
-		'institution_number' => false,
-		'transit_number' => false,
-		'bank_code' => false,
-		'iban' => false,
-		'additional_bank_identification' => false,
-		'bic' => false,
-		'clearing_number' => false,
-		'sort_code' => false,
-		'routing_number' => false
+        'bsb_code' => false,
+        'type' => false,
+        'account_type' => false,
+        'institution_number' => false,
+        'transit_number' => false,
+        'bank_code' => false,
+        'iban' => false,
+        'additional_bank_identification' => false,
+        'bic' => false,
+        'clearing_number' => false,
+        'sort_code' => false,
+        'routing_number' => false
     ];
 
     /**
@@ -812,7 +812,7 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

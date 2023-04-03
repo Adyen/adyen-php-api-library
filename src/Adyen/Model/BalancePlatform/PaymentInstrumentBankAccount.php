@@ -77,10 +77,10 @@ class PaymentInstrumentBankAccount implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPINullables = [
         'iban' => false,
-		'type' => false,
-		'account_number' => false,
-		'account_type' => false,
-		'routing_number' => false
+        'type' => false,
+        'account_number' => false,
+        'account_type' => false,
+        'routing_number' => false
     ];
 
     /**
@@ -519,7 +519,7 @@ class PaymentInstrumentBankAccount implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
