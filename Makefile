@@ -55,7 +55,7 @@ $(modelGen): target/spec $(openapi-generator-jar)
 Services:=BalancePlatform Checkout StoredValue Payments Payout Management LegalEntityManagement Transfers
 SingleFileServices:=BalanceControl BinLookup DataProtection StoredValue POSTerminalManagement Recurring
 
-all: $(Services) $(SingleFileServices))
+all: $(Services) $(SingleFileServices)
 
 $(Services): target/spec $(openapi-generator-jar)
 	rm -rf $(models)/$@ $(output)
@@ -66,6 +66,7 @@ $(Services): target/spec $(openapi-generator-jar)
 		-t ./templates \
 		--model-package Model\\$@ \
 		--api-package Service\\$@ \
+		--inline-schema-name-mappings BankAccountInfo_accountIdentification=BankAccount \
 		--reserved-words-mappings configuration=configuration \
 		--ignore-file-override ./.openapi-generator-ignore \
 		--skip-validate-spec \
