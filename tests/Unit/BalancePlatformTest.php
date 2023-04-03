@@ -124,7 +124,8 @@ class BalancePlatformTest extends TestCaseMock
     public function testGetSweepUrlCheckTest()
     {
         $client = $this->createMockClientUrl(
-            'tests/Resources/BalancePlatform/update-accountholder.json');
+            'tests/Resources/BalancePlatform/update-accountholder.json'
+        );
         $service = new BalanceAccountsApi($client);
         $service->getSweep('balanceAccountId', 'sweepId');
         self::assertEquals(

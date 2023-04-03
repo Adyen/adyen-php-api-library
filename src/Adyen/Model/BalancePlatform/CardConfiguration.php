@@ -94,19 +94,19 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPINullables = [
         'activation' => false,
-		'activation_url' => false,
-		'bulk_address' => false,
-		'card_image_id' => false,
-		'carrier' => false,
-		'carrier_image_id' => false,
-		'configuration_profile_id' => false,
-		'currency' => false,
-		'envelope' => false,
-		'insert' => false,
-		'language' => false,
-		'logo_image_id' => false,
-		'pin_mailer' => false,
-		'shipment_method' => false
+        'activation_url' => false,
+        'bulk_address' => false,
+        'card_image_id' => false,
+        'carrier' => false,
+        'carrier_image_id' => false,
+        'configuration_profile_id' => false,
+        'currency' => false,
+        'envelope' => false,
+        'insert' => false,
+        'language' => false,
+        'logo_image_id' => false,
+        'pin_mailer' => false,
+        'shipment_method' => false
     ];
 
     /**
@@ -814,7 +814,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

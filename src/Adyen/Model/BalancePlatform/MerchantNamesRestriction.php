@@ -70,7 +70,7 @@ class MerchantNamesRestriction implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static $openAPINullables = [
         'operation' => false,
-		'value' => false
+        'value' => false
     ];
 
     /**
@@ -406,7 +406,7 @@ class MerchantNamesRestriction implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

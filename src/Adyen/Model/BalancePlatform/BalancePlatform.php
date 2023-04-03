@@ -72,8 +72,8 @@ class BalancePlatform implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'description' => false,
-		'id' => false,
-		'status' => false
+        'id' => false,
+        'status' => false
     ];
 
     /**
@@ -440,7 +440,7 @@ class BalancePlatform implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

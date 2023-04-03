@@ -70,7 +70,7 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static $openAPINullables = [
         'iban' => false,
-		'type' => false
+        'type' => false
     ];
 
     /**
@@ -440,7 +440,7 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

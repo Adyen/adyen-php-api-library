@@ -92,18 +92,18 @@ class TransactionRuleInfo implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static $openAPINullables = [
         'aggregation_level' => false,
-		'description' => false,
-		'end_date' => false,
-		'entity_key' => false,
-		'interval' => false,
-		'outcome_type' => false,
-		'reference' => false,
-		'request_type' => false,
-		'rule_restrictions' => false,
-		'score' => true,
-		'start_date' => false,
-		'status' => false,
-		'type' => false
+        'description' => false,
+        'end_date' => false,
+        'entity_key' => false,
+        'interval' => false,
+        'outcome_type' => false,
+        'reference' => false,
+        'request_type' => false,
+        'rule_restrictions' => false,
+        'score' => true,
+        'start_date' => false,
+        'status' => false,
+        'type' => false
     ];
 
     /**
@@ -931,7 +931,7 @@ class TransactionRuleInfo implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

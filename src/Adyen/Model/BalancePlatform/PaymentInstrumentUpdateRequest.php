@@ -76,10 +76,10 @@ class PaymentInstrumentUpdateRequest implements ModelInterface, ArrayAccess, \Js
       */
     protected static $openAPINullables = [
         'balance_account_id' => false,
-		'card' => false,
-		'status' => false,
-		'status_comment' => false,
-		'status_reason' => false
+        'card' => false,
+        'status' => false,
+        'status_comment' => false,
+        'status_reason' => false
     ];
 
     /**
@@ -587,7 +587,7 @@ class PaymentInstrumentUpdateRequest implements ModelInterface, ArrayAccess, \Js
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
