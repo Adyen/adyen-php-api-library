@@ -72,8 +72,8 @@ class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPINullables = [
         'account_number' => false,
-		'sort_code' => false,
-		'type' => false
+        'sort_code' => false,
+        'type' => false
     ];
 
     /**
@@ -477,7 +477,7 @@ class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -78,11 +78,11 @@ class NameLocation implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'city' => false,
-		'country' => false,
-		'country_of_origin' => false,
-		'name' => false,
-		'raw_data' => false,
-		'state' => false
+        'country' => false,
+        'country_of_origin' => false,
+        'name' => false,
+        'raw_data' => false,
+        'state' => false
     ];
 
     /**
@@ -539,7 +539,7 @@ class NameLocation implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

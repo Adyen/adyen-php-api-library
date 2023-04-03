@@ -76,10 +76,10 @@ class PartyIdentification2 implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPINullables = [
         'address' => false,
-		'first_name' => false,
-		'full_name' => false,
-		'last_name' => false,
-		'type' => false
+        'first_name' => false,
+        'full_name' => false,
+        'last_name' => false,
+        'type' => false
     ];
 
     /**
@@ -543,7 +543,7 @@ class PartyIdentification2 implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

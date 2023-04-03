@@ -95,19 +95,19 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
       */
     protected static $openAPINullables = [
         'account_number' => false,
-		'bsb_code' => false,
-		'type' => false,
-		'bank_code' => false,
-		'branch_number' => false,
-		'institution_number' => false,
-		'transit_number' => false,
-		'iban' => false,
-		'additional_bank_identification' => false,
-		'bic' => false,
-		'clearing_number' => false,
-		'sort_code' => false,
-		'account_type' => false,
-		'routing_number' => false
+        'bsb_code' => false,
+        'type' => false,
+        'bank_code' => false,
+        'branch_number' => false,
+        'institution_number' => false,
+        'transit_number' => false,
+        'iban' => false,
+        'additional_bank_identification' => false,
+        'bic' => false,
+        'clearing_number' => false,
+        'sort_code' => false,
+        'account_type' => false,
+        'routing_number' => false
     ];
 
     /**
@@ -849,7 +849,7 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

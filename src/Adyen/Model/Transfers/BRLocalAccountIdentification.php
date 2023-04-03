@@ -74,9 +74,9 @@ class BRLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPINullables = [
         'account_number' => false,
-		'bank_code' => false,
-		'branch_number' => false,
-		'type' => false
+        'bank_code' => false,
+        'branch_number' => false,
+        'type' => false
     ];
 
     /**
@@ -514,7 +514,7 @@ class BRLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

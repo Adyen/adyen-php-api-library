@@ -84,14 +84,14 @@ class RestServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'detail' => false,
-		'error_code' => false,
-		'instance' => false,
-		'invalid_fields' => false,
-		'request_id' => false,
-		'response' => false,
-		'status' => true,
-		'title' => false,
-		'type' => false
+        'error_code' => false,
+        'instance' => false,
+        'invalid_fields' => false,
+        'request_id' => false,
+        'response' => false,
+        'status' => true,
+        'title' => false,
+        'type' => false
     ];
 
     /**
@@ -654,7 +654,7 @@ class RestServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
