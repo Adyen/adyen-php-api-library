@@ -1,0 +1,21 @@
+{
+  "brand": "string",
+  "expiryMonth": "string",
+  "expiryYear": "string",
+  "externalResponseCode": "string",
+  "externalTokenReference": "string",
+  "holderName": "string",
+  "iban": "string",
+  "id": "CS16116100127511AF",
+  "issuerName": "string",
+  "lastFour": "string",
+  "name": "string",
+  "networkTxReference": "networkRef",
+  "ownerName": "string",
+  "shopperEmail": "string",
+  "shopperReference": "string",
+  "supportedRecurringProcessingModels": [
+    "string"
+  ],
+  "type": "string"
+}
