@@ -67,7 +67,13 @@ class Service
             throw new AdyenException($msg);
         }
         $curlClient = $this->getClient()->getHttpClient();
-        return $curlClient->requestHttpRest($this, $url, $bodyParams, $method, $requestOptions);
+
+        // Retrieve queryParams from requestOptions and add to URL
+        if (!empty($requestOptions['queryParams'])) {
+            $url .= '?' . http_build_query($requestOptions['queryParams']);
+        }
+
+        return $curlClient->requestHttp($this, $url, $bodyParams, $method, $requestOptions);
     }
 
     /**

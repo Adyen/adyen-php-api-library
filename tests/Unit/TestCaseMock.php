@@ -80,4 +80,38 @@ class TestCaseMock extends TestCase
         $client->setHttpClient($curlClient);
         return $client;
     }
+
+    protected $requestUrl;
+
+    protected function createMockClientUrl($jsonFile, $environment = Environment::TEST)
+    {
+        $client = new Client();
+        $client->setApplicationName("My Test Application");
+        $client->setEnvironment($environment);
+        $client->setXApiKey("MockAPIKey");
+
+        $json = null;
+        if ($jsonFile != null) {
+            $json = file_get_contents($jsonFile, true);
+        }
+
+        $curlClient = $this->getMockBuilder(get_class(new CurlClient()))
+            ->onlyMethods(array('requestHttp'))
+            ->getMock();
+        $curlClient->method('requestHttp')
+            ->willReturnCallback(function (Service $service, $requestUrl, $params) use ($json) {
+
+                $this->requestUrl = $requestUrl;
+
+                if (!is_null($json)) {
+                    $result = json_decode($json, true);
+                } else {
+                    $result = null;
+                }
+                return $result;
+            });
+
+        $client->setHttpClient($curlClient);
+        return $client;
+    }
 }

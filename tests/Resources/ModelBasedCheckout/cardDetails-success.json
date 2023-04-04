@@ -1,0 +1,12 @@
+{
+  "brands" : [
+    {
+      "type" : "visa",
+      "supported" : true
+    },
+    {
+      "type" : "cartebancaire",
+      "supported" : true
+    }
+  ]
+}
