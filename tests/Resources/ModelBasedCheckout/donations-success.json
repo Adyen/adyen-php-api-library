@@ -1,0 +1,20 @@
+{
+  "id": "UNIQUE_RESOURCE_ID",
+  "status": "completed",
+  "donationAccount": "CHARITY_ACCOUNT",
+  "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+  "amount": {
+    "currency": "EUR",
+    "value": 1000
+  },
+  "reference": "YOUR_DONATION_REFERENCE",
+  "payment": {
+    "pspReference": "8535762347980628",
+    "resultCode": "Authorised",
+    "amount": {
+      "currency": "EUR",
+      "value": 1000
+    },
+    "merchantReference": "YOUR_DONATION_REFERENCE"
+  }
+}

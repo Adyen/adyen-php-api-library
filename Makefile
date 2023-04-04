@@ -39,6 +39,7 @@ $(modelGen): target/spec $(openapi-generator-jar)
 			-g $(generator) \
 			-o $(output) \
 			-t ./templates \
+			--inline-schema-name-mappings PaymentDonationRequest_paymentMethod=CheckoutPaymentMethod \
 			--model-package Model\\$@ \
 			--api-package Service\\$@ \
 			--reserved-words-mappings configuration=configuration \
@@ -64,6 +65,7 @@ $(Services): target/spec $(openapi-generator-jar)
 		-g $(generator) \
 		-o $(output) \
 		-t ./templates \
+	  	--inline-schema-name-mappings PaymentDonationRequest_paymentMethod=CheckoutPaymentMethod \
 		--model-package Model\\$@ \
 		--api-package Service\\$@ \
 		--inline-schema-name-mappings BankAccountInfo_accountIdentification=BankAccount \
@@ -87,6 +89,7 @@ $(SingleFileServices): target/spec $(openapi-generator-jar)
 		-c templates/config.yaml \
 		--model-package Model\\$@ \
 		--api-package Service\\$@ \
+		--inline-schema-name-mappings PaymentDonationRequest_paymentMethod=CheckoutPaymentMethod \
 		--reserved-words-mappings configuration=configuration \
 		--ignore-file-override ./.openapi-generator-ignore \
 		--skip-validate-spec \

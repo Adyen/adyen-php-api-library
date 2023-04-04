@@ -1,0 +1,16 @@
+{
+  "balancePlatform": "YOUR_BALANCE_PLATFORM",
+  "description": "Liable account holder used for international payments and payouts",
+  "legalEntityId": "LE322JV223222F5GKQZZ9DS99",
+  "reference": "S.Eller-001",
+  "capabilities": {
+    "receivePayments": {
+      "enabled": false,
+      "requested": true,
+      "allowed": false,
+      "verificationStatus": "pending"
+    }
+  },
+  "id": "AH3227C223222C5GKR23686TF",
+  "status": "active"
+}
