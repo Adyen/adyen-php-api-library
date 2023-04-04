@@ -78,11 +78,11 @@ class ScheduleAccountUpdaterRequest implements ModelInterface, ArrayAccess, \Jso
       */
     protected static $openAPINullables = [
         'additional_data' => false,
-		'card' => false,
-		'merchant_account' => false,
-		'reference' => false,
-		'selected_recurring_detail_reference' => false,
-		'shopper_reference' => false
+        'card' => false,
+        'merchant_account' => false,
+        'reference' => false,
+        'selected_recurring_detail_reference' => false,
+        'shopper_reference' => false
     ];
 
     /**
@@ -545,7 +545,7 @@ class ScheduleAccountUpdaterRequest implements ModelInterface, ArrayAccess, \Jso
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

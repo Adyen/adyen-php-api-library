@@ -84,14 +84,14 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'bank_account_number' => false,
-		'bank_city' => false,
-		'bank_location_id' => false,
-		'bank_name' => false,
-		'bic' => false,
-		'country_code' => false,
-		'iban' => false,
-		'owner_name' => false,
-		'tax_id' => false
+        'bank_city' => false,
+        'bank_location_id' => false,
+        'bank_name' => false,
+        'bic' => false,
+        'country_code' => false,
+        'iban' => false,
+        'owner_name' => false,
+        'tax_id' => false
     ];
 
     /**
@@ -641,7 +641,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

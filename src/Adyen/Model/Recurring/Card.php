@@ -82,13 +82,13 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'cvc' => false,
-		'expiry_month' => false,
-		'expiry_year' => false,
-		'holder_name' => false,
-		'issue_number' => false,
-		'number' => false,
-		'start_month' => false,
-		'start_year' => false
+        'expiry_month' => false,
+        'expiry_year' => false,
+        'holder_name' => false,
+        'issue_number' => false,
+        'number' => false,
+        'start_month' => false,
+        'start_year' => false
     ];
 
     /**
@@ -613,7 +613,7 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

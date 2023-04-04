@@ -74,9 +74,9 @@ class DisableRequest implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'contract' => false,
-		'merchant_account' => false,
-		'recurring_detail_reference' => false,
-		'shopper_reference' => false
+        'merchant_account' => false,
+        'recurring_detail_reference' => false,
+        'shopper_reference' => false
     ];
 
     /**
@@ -477,7 +477,7 @@ class DisableRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

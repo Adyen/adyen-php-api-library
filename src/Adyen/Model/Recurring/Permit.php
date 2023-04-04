@@ -76,10 +76,10 @@ class Permit implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'partner_id' => false,
-		'profile_reference' => false,
-		'restriction' => false,
-		'result_key' => false,
-		'valid_till_date' => false
+        'profile_reference' => false,
+        'restriction' => false,
+        'result_key' => false,
+        'valid_till_date' => false
     ];
 
     /**
@@ -505,7 +505,7 @@ class Permit implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

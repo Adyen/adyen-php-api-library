@@ -74,9 +74,9 @@ class CreatePermitRequest implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static $openAPINullables = [
         'merchant_account' => false,
-		'permits' => false,
-		'recurring_detail_reference' => false,
-		'shopper_reference' => false
+        'permits' => false,
+        'recurring_detail_reference' => false,
+        'shopper_reference' => false
     ];
 
     /**
@@ -483,7 +483,7 @@ class CreatePermitRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

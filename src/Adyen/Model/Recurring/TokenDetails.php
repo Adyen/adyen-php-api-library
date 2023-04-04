@@ -70,7 +70,7 @@ class TokenDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'token_data' => false,
-		'token_data_type' => false
+        'token_data_type' => false
     ];
 
     /**
@@ -403,7 +403,7 @@ class TokenDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -70,7 +70,7 @@ class DisablePermitResult implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static $openAPINullables = [
         'psp_reference' => false,
-		'status' => false
+        'status' => false
     ];
 
     /**
@@ -403,7 +403,7 @@ class DisablePermitResult implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

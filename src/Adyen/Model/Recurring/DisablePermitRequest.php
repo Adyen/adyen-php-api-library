@@ -70,7 +70,7 @@ class DisablePermitRequest implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPINullables = [
         'merchant_account' => false,
-		'token' => false
+        'token' => false
     ];
 
     /**
@@ -409,7 +409,7 @@ class DisablePermitRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

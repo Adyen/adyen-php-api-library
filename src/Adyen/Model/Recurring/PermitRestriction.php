@@ -72,8 +72,8 @@ class PermitRestriction implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPINullables = [
         'max_amount' => false,
-		'single_transaction_limit' => false,
-		'single_use' => false
+        'single_transaction_limit' => false,
+        'single_use' => false
     ];
 
     /**
@@ -437,7 +437,7 @@ class PermitRestriction implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

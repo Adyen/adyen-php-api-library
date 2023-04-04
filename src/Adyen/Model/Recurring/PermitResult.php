@@ -70,7 +70,7 @@ class PermitResult implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'result_key' => false,
-		'token' => false
+        'token' => false
     ];
 
     /**
@@ -403,7 +403,7 @@ class PermitResult implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

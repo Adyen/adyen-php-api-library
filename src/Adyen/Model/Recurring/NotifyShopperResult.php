@@ -80,12 +80,12 @@ class NotifyShopperResult implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static $openAPINullables = [
         'displayed_reference' => false,
-		'message' => false,
-		'psp_reference' => false,
-		'reference' => false,
-		'result_code' => false,
-		'shopper_notification_reference' => false,
-		'stored_payment_method_id' => false
+        'message' => false,
+        'psp_reference' => false,
+        'reference' => false,
+        'result_code' => false,
+        'shopper_notification_reference' => false,
+        'stored_payment_method_id' => false
     ];
 
     /**
@@ -573,7 +573,7 @@ class NotifyShopperResult implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

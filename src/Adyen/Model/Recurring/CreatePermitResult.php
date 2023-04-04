@@ -70,7 +70,7 @@ class CreatePermitResult implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPINullables = [
         'permit_result_list' => false,
-		'psp_reference' => false
+        'psp_reference' => false
     ];
 
     /**
@@ -403,7 +403,7 @@ class CreatePermitResult implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
