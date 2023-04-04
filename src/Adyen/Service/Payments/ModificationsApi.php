@@ -46,7 +46,7 @@ class ModificationsApi extends Service
     * Change the authorised amount
     *
     * @param \Adyen\Model\Payments\AdjustAuthorisationRequest $adjustAuthorisationRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Payments\ModificationResult
     * @throws AdyenException
     */
@@ -61,7 +61,7 @@ class ModificationsApi extends Service
     * Cancel an authorisation
     *
     * @param \Adyen\Model\Payments\CancelRequest $cancelRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Payments\ModificationResult
     * @throws AdyenException
     */
@@ -76,7 +76,7 @@ class ModificationsApi extends Service
     * Cancel or refund a payment
     *
     * @param \Adyen\Model\Payments\CancelOrRefundRequest $cancelOrRefundRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Payments\ModificationResult
     * @throws AdyenException
     */
@@ -91,7 +91,7 @@ class ModificationsApi extends Service
     * Capture an authorisation
     *
     * @param \Adyen\Model\Payments\CaptureRequest $captureRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Payments\ModificationResult
     * @throws AdyenException
     */
@@ -106,7 +106,7 @@ class ModificationsApi extends Service
     * Create a donation
     *
     * @param \Adyen\Model\Payments\DonationRequest $donationRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Payments\ModificationResult
     * @throws AdyenException
     */
@@ -121,7 +121,7 @@ class ModificationsApi extends Service
     * Refund a captured payment
     *
     * @param \Adyen\Model\Payments\RefundRequest $refundRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Payments\ModificationResult
     * @throws AdyenException
     */
@@ -136,7 +136,7 @@ class ModificationsApi extends Service
     * Cancel an authorisation using your reference
     *
     * @param \Adyen\Model\Payments\TechnicalCancelRequest $technicalCancelRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Payments\ModificationResult
     * @throws AdyenException
     */
@@ -151,7 +151,7 @@ class ModificationsApi extends Service
     * Cancel an in-person refund
     *
     * @param \Adyen\Model\Payments\VoidPendingRefundRequest $voidPendingRefundRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Payments\ModificationResult
     * @throws AdyenException
     */

@@ -46,7 +46,7 @@ class GeneralApi extends Service
     * Create an authorisation
     *
     * @param \Adyen\Model\Payments\PaymentRequest $paymentRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Payments\PaymentResult
     * @throws AdyenException
     */
@@ -61,7 +61,7 @@ class GeneralApi extends Service
     * Complete a 3DS authorisation
     *
     * @param \Adyen\Model\Payments\PaymentRequest3d $paymentRequest3d
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Payments\PaymentResult
     * @throws AdyenException
     */
@@ -76,7 +76,7 @@ class GeneralApi extends Service
     * Complete a 3DS2 authorisation
     *
     * @param \Adyen\Model\Payments\PaymentRequest3ds2 $paymentRequest3ds2
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Payments\PaymentResult
     * @throws AdyenException
     */
@@ -91,7 +91,7 @@ class GeneralApi extends Service
     * Get the 3DS authentication result
     *
     * @param \Adyen\Model\Payments\AuthenticationResultRequest $authenticationResultRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Payments\AuthenticationResultResponse
     * @throws AdyenException
     */
@@ -106,7 +106,7 @@ class GeneralApi extends Service
     * Get the 3DS2 authentication result
     *
     * @param \Adyen\Model\Payments\ThreeDS2ResultRequest $threeDs2ResultRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Payments\ThreeDS2ResultResponse
     * @throws AdyenException
     */
