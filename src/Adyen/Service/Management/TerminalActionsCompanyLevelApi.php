@@ -46,9 +46,7 @@ class TerminalActionsCompanyLevelApi extends Service
     * Get a list of Android apps
     *
     * @param string $companyId
-    * @param int $pageNumber
-    * @param int $pageSize
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['queryParams' => ['pageNumber'=> int, 'pageSize'=> int]]
     * @return \Adyen\Model\Management\AndroidAppsResponse
     * @throws AdyenException
     */
@@ -63,9 +61,7 @@ class TerminalActionsCompanyLevelApi extends Service
     * Get a list of Android certificates
     *
     * @param string $companyId
-    * @param int $pageNumber
-    * @param int $pageSize
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['queryParams' => ['pageNumber'=> int, 'pageSize'=> int]]
     * @return \Adyen\Model\Management\AndroidCertificatesResponse
     * @throws AdyenException
     */
@@ -80,11 +76,7 @@ class TerminalActionsCompanyLevelApi extends Service
     * Get a list of terminal actions
     *
     * @param string $companyId
-    * @param int $pageNumber
-    * @param int $pageSize
-    * @param string $status
-    * @param string $type
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['queryParams' => ['pageNumber'=> int, 'pageSize'=> int, 'status'=> string, 'type'=> string]]
     * @return \Adyen\Model\Management\ListExternalTerminalActionsResponse
     * @throws AdyenException
     */
@@ -100,7 +92,7 @@ class TerminalActionsCompanyLevelApi extends Service
     *
     * @param string $companyId
     * @param string $actionId
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\ExternalTerminalAction
     * @throws AdyenException
     */

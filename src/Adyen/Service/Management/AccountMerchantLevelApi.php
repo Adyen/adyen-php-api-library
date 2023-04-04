@@ -45,9 +45,7 @@ class AccountMerchantLevelApi extends Service
     /**
     * Get a list of merchant accounts
     *
-    * @param int $pageNumber
-    * @param int $pageSize
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['queryParams' => ['pageNumber'=> int, 'pageSize'=> int]]
     * @return \Adyen\Model\Management\ListMerchantResponse
     * @throws AdyenException
     */
@@ -62,7 +60,7 @@ class AccountMerchantLevelApi extends Service
     * Get a merchant account
     *
     * @param string $merchantId
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\Merchant
     * @throws AdyenException
     */
@@ -77,7 +75,7 @@ class AccountMerchantLevelApi extends Service
     * Create a merchant account
     *
     * @param \Adyen\Model\Management\CreateMerchantRequest $createMerchantRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\CreateMerchantResponse
     * @throws AdyenException
     */
@@ -92,7 +90,7 @@ class AccountMerchantLevelApi extends Service
     * Request to activate a merchant account
     *
     * @param string $merchantId
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\RequestActivationResponse
     * @throws AdyenException
     */

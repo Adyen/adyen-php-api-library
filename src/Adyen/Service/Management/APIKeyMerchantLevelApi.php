@@ -47,7 +47,7 @@ class APIKeyMerchantLevelApi extends Service
     *
     * @param string $merchantId
     * @param string $apiCredentialId
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\GenerateApiKeyResponse
     * @throws AdyenException
     */

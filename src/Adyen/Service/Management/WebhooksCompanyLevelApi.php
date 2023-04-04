@@ -47,7 +47,7 @@ class WebhooksCompanyLevelApi extends Service
     *
     * @param string $companyId
     * @param string $webhookId
-    * @param array $requestOptions
+    * @param array|null $requestOptions
 
     * @throws AdyenException
     */
@@ -61,9 +61,7 @@ class WebhooksCompanyLevelApi extends Service
     * List all webhooks
     *
     * @param string $companyId
-    * @param int $pageNumber
-    * @param int $pageSize
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['queryParams' => ['pageNumber'=> int, 'pageSize'=> int]]
     * @return \Adyen\Model\Management\ListWebhooksResponse
     * @throws AdyenException
     */
@@ -79,7 +77,7 @@ class WebhooksCompanyLevelApi extends Service
     *
     * @param string $companyId
     * @param string $webhookId
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\Webhook
     * @throws AdyenException
     */
@@ -96,7 +94,7 @@ class WebhooksCompanyLevelApi extends Service
     * @param string $companyId
     * @param string $webhookId
     * @param \Adyen\Model\Management\UpdateCompanyWebhookRequest $updateCompanyWebhookRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\Webhook
     * @throws AdyenException
     */
@@ -112,7 +110,7 @@ class WebhooksCompanyLevelApi extends Service
     *
     * @param string $companyId
     * @param \Adyen\Model\Management\CreateCompanyWebhookRequest $createCompanyWebhookRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\Webhook
     * @throws AdyenException
     */
@@ -128,7 +126,7 @@ class WebhooksCompanyLevelApi extends Service
     *
     * @param string $companyId
     * @param string $webhookId
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\GenerateHmacKeyResponse
     * @throws AdyenException
     */
@@ -145,7 +143,7 @@ class WebhooksCompanyLevelApi extends Service
     * @param string $companyId
     * @param string $webhookId
     * @param \Adyen\Model\Management\TestCompanyWebhookRequest $testCompanyWebhookRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\TestWebhookResponse
     * @throws AdyenException
     */

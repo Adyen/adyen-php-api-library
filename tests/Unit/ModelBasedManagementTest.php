@@ -40,16 +40,17 @@ class ModelBasedManagementTest extends TestCaseMock
     public function testGetMerchantsWithQueryParameters($jsonFile, $httpStatus)
     {
         // create Checkout client
-        $client = $this->createMockClient($jsonFile, $httpStatus);
+        $client = $this->createMockClientUrl($jsonFile);
 
         // initialize service
         $service = new Management\AccountMerchantLevelApi($client);
-        $response = $service->listMerchantAccounts(array("pageSize"=> 2));
+        $response = $service->listMerchantAccounts(array('queryParams' => array("pageSize"=> 2)));
 
         $this->assertNotEmpty($response);
         $this->assertNotEmpty($response->getLinks());
         $this->assertNotEmpty($response->getData());
         $this->assertNotEmpty($response->getItemsTotal());
+        self::assertEquals('https://management-test.adyen.com/v1/merchants?pageSize=2', $this->requestUrl);
     }
 
     /**
@@ -68,10 +69,10 @@ class ModelBasedManagementTest extends TestCaseMock
      * @throws \Adyen\AdyenException
      * @dataProvider successGenerateHmacProviders
      */
-    public function testGenerateHmac($jsonFile, $httpStatus)
+    public function testGenerateHmac($jsonFile)
     {
         // create Checkout client
-        $client = $this->createMockClient($jsonFile, $httpStatus);
+        $client = $this->createMockClientUrl($jsonFile, Environment::LIVE);
         // initialize service
         $service = new Management\WebhooksMerchantLevelApi($client);
         $response = $service->generateHmacKey(
@@ -80,6 +81,10 @@ class ModelBasedManagementTest extends TestCaseMock
         );
         $this->assertNotEmpty(json_encode($response->jsonSerialize()));
         $this->assertEquals("AG4345BV33J78K17F4F963516FA42AC8813EWS3J8F41E902", $response->getHmacKey());
+        $this->assertEquals(
+            'https://management-live.adyen.com/v1/merchants/merchantAccount/webhooks/webhookId/generateHmac',
+            $this->requestUrl
+        );
     }
 
     /**
@@ -88,7 +93,7 @@ class ModelBasedManagementTest extends TestCaseMock
     public static function successGenerateHmacProviders() : array
     {
         return array(
-            array('tests/Resources/ModelBasedManagement/post-merchants-webhooks-generateHmac-success.json', 200),
+            array('tests/Resources/ModelBasedManagement/post-merchants-webhooks-generateHmac-success.json'),
         );
     }
 
@@ -96,7 +101,7 @@ class ModelBasedManagementTest extends TestCaseMock
      * Patch /terminals/{terminalId}/terminalLogos
      *
      * @throws \Adyen\AdyenException
-     * @dataProvider testUpdateTerminalLogosProviders
+     * @dataProvider successUpdateTerminalLogosProviders
      */
     public function testUpdateTerminalLogos($jsonFile, $httpStatus)
     {
@@ -115,7 +120,7 @@ class ModelBasedManagementTest extends TestCaseMock
     /**
      * @return array
      */
-    public static function testUpdateTerminalLogosProviders() : array
+    public static function successUpdateTerminalLogosProviders() : array
     {
         return array(
             array('tests/Resources/ModelBasedManagement/terminal-logo.json', 200),

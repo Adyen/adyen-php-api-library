@@ -46,7 +46,7 @@ class TerminalActionsTerminalLevelApi extends Service
     * Create a terminal action
     *
     * @param \Adyen\Model\Management\ScheduleTerminalActionsRequest $scheduleTerminalActionsRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\ScheduleTerminalActionsResponse
     * @throws AdyenException
     */

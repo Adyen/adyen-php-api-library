@@ -46,10 +46,7 @@ class UsersCompanyLevelApi extends Service
     * Get a list of users
     *
     * @param string $companyId
-    * @param int $pageNumber
-    * @param int $pageSize
-    * @param string $username
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['queryParams' => ['pageNumber'=> int, 'pageSize'=> int, 'username'=> string]]
     * @return \Adyen\Model\Management\ListCompanyUsersResponse
     * @throws AdyenException
     */
@@ -65,7 +62,7 @@ class UsersCompanyLevelApi extends Service
     *
     * @param string $companyId
     * @param string $userId
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\CompanyUser
     * @throws AdyenException
     */
@@ -82,7 +79,7 @@ class UsersCompanyLevelApi extends Service
     * @param string $companyId
     * @param string $userId
     * @param \Adyen\Model\Management\UpdateCompanyUserRequest $updateCompanyUserRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\CompanyUser
     * @throws AdyenException
     */
@@ -98,7 +95,7 @@ class UsersCompanyLevelApi extends Service
     *
     * @param string $companyId
     * @param \Adyen\Model\Management\CreateCompanyUserRequest $createCompanyUserRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\CreateCompanyUserResponse
     * @throws AdyenException
     */

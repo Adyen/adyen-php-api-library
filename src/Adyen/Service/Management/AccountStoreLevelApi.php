@@ -46,10 +46,7 @@ class AccountStoreLevelApi extends Service
     * Get a list of stores
     *
     * @param string $merchantId
-    * @param int $pageNumber
-    * @param int $pageSize
-    * @param string $reference
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['queryParams' => ['pageNumber'=> int, 'pageSize'=> int, 'reference'=> string]]
     * @return \Adyen\Model\Management\ListStoresResponse
     * @throws AdyenException
     */
@@ -65,7 +62,7 @@ class AccountStoreLevelApi extends Service
     *
     * @param string $merchantId
     * @param string $storeId
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\Store
     * @throws AdyenException
     */
@@ -79,11 +76,7 @@ class AccountStoreLevelApi extends Service
     /**
     * Get a list of stores
     *
-    * @param int $pageNumber
-    * @param int $pageSize
-    * @param string $reference
-    * @param string $merchantId
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['queryParams' => ['pageNumber'=> int, 'pageSize'=> int, 'reference'=> string, 'merchantId'=> string]]
     * @return \Adyen\Model\Management\ListStoresResponse
     * @throws AdyenException
     */
@@ -98,7 +91,7 @@ class AccountStoreLevelApi extends Service
     * Get a store
     *
     * @param string $storeId
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\Store
     * @throws AdyenException
     */
@@ -115,7 +108,7 @@ class AccountStoreLevelApi extends Service
     * @param string $merchantId
     * @param string $storeId
     * @param \Adyen\Model\Management\UpdateStoreRequest $updateStoreRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\Store
     * @throws AdyenException
     */
@@ -131,7 +124,7 @@ class AccountStoreLevelApi extends Service
     *
     * @param string $storeId
     * @param \Adyen\Model\Management\UpdateStoreRequest $updateStoreRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\Store
     * @throws AdyenException
     */
@@ -147,7 +140,7 @@ class AccountStoreLevelApi extends Service
     *
     * @param string $merchantId
     * @param \Adyen\Model\Management\StoreCreationRequest $storeCreationRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\Store
     * @throws AdyenException
     */
@@ -162,7 +155,7 @@ class AccountStoreLevelApi extends Service
     * Create a store
     *
     * @param \Adyen\Model\Management\StoreCreationWithMerchantCodeRequest $storeCreationWithMerchantCodeRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\Store
     * @throws AdyenException
     */

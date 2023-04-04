@@ -46,10 +46,7 @@ class UsersMerchantLevelApi extends Service
     * Get a list of users
     *
     * @param string $merchantId
-    * @param int $pageNumber
-    * @param int $pageSize
-    * @param string $username
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['queryParams' => ['pageNumber'=> int, 'pageSize'=> int, 'username'=> string]]
     * @return \Adyen\Model\Management\ListMerchantUsersResponse
     * @throws AdyenException
     */
@@ -65,7 +62,7 @@ class UsersMerchantLevelApi extends Service
     *
     * @param string $merchantId
     * @param string $userId
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\User
     * @throws AdyenException
     */
@@ -82,7 +79,7 @@ class UsersMerchantLevelApi extends Service
     * @param string $merchantId
     * @param string $userId
     * @param \Adyen\Model\Management\UpdateMerchantUserRequest $updateMerchantUserRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\User
     * @throws AdyenException
     */
@@ -98,7 +95,7 @@ class UsersMerchantLevelApi extends Service
     *
     * @param string $merchantId
     * @param \Adyen\Model\Management\CreateMerchantUserRequest $createMerchantUserRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\CreateUserResponse
     * @throws AdyenException
     */

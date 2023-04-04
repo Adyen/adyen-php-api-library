@@ -46,9 +46,7 @@ class APICredentialsMerchantLevelApi extends Service
     * Get a list of API credentials
     *
     * @param string $merchantId
-    * @param int $pageNumber
-    * @param int $pageSize
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['queryParams' => ['pageNumber'=> int, 'pageSize'=> int]]
     * @return \Adyen\Model\Management\ListMerchantApiCredentialsResponse
     * @throws AdyenException
     */
@@ -64,7 +62,7 @@ class APICredentialsMerchantLevelApi extends Service
     *
     * @param string $merchantId
     * @param string $apiCredentialId
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\ApiCredential
     * @throws AdyenException
     */
@@ -81,7 +79,7 @@ class APICredentialsMerchantLevelApi extends Service
     * @param string $merchantId
     * @param string $apiCredentialId
     * @param \Adyen\Model\Management\UpdateMerchantApiCredentialRequest $updateMerchantApiCredentialRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\ApiCredential
     * @throws AdyenException
     */
@@ -97,7 +95,7 @@ class APICredentialsMerchantLevelApi extends Service
     *
     * @param string $merchantId
     * @param \Adyen\Model\Management\CreateMerchantApiCredentialRequest $createMerchantApiCredentialRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\CreateApiCredentialResponse
     * @throws AdyenException
     */

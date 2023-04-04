@@ -47,7 +47,8 @@ class GooglePayInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'merchant_id' => 'string'
+        'merchant_id' => 'string',
+        'reuse_merchant_id' => 'bool'
     ];
 
     /**
@@ -58,7 +59,8 @@ class GooglePayInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'merchant_id' => null
+        'merchant_id' => null,
+        'reuse_merchant_id' => null
     ];
 
     /**
@@ -67,7 +69,8 @@ class GooglePayInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'merchant_id' => false
+        'merchant_id' => false,
+        'reuse_merchant_id' => false
     ];
 
     /**
@@ -156,7 +159,8 @@ class GooglePayInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'merchant_id' => 'merchantId'
+        'merchant_id' => 'merchantId',
+        'reuse_merchant_id' => 'reuseMerchantId'
     ];
 
     /**
@@ -165,7 +169,8 @@ class GooglePayInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'merchant_id' => 'setMerchantId'
+        'merchant_id' => 'setMerchantId',
+        'reuse_merchant_id' => 'setReuseMerchantId'
     ];
 
     /**
@@ -174,7 +179,8 @@ class GooglePayInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'merchant_id' => 'getMerchantId'
+        'merchant_id' => 'getMerchantId',
+        'reuse_merchant_id' => 'getReuseMerchantId'
     ];
 
     /**
@@ -235,6 +241,7 @@ class GooglePayInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('merchant_id', $data ?? [], null);
+        $this->setIfExists('reuse_merchant_id', $data ?? [], null);
     }
 
     /**
@@ -264,6 +271,9 @@ class GooglePayInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['merchant_id'] === null) {
+            $invalidProperties[] = "'merchant_id' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -282,7 +292,7 @@ class GooglePayInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets merchant_id
      *
-     * @return string|null
+     * @return string
      */
     public function getMerchantId()
     {
@@ -292,7 +302,7 @@ class GooglePayInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets merchant_id
      *
-     * @param string|null $merchant_id Google Pay [Merchant ID](https://support.google.com/paymentscenter/answer/7163092?hl=en). Character length and limitations: 16 alphanumeric characters or 20 numeric characters.
+     * @param string $merchant_id Google Pay [Merchant ID](https://support.google.com/paymentscenter/answer/7163092?hl=en). Character length and limitations: 16 alphanumeric characters or 20 numeric characters.
      *
      * @return self
      */
@@ -302,6 +312,33 @@ class GooglePayInfo implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable merchant_id cannot be null');
         }
         $this->container['merchant_id'] = $merchant_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets reuse_merchant_id
+     *
+     * @return bool|null
+     */
+    public function getReuseMerchantId()
+    {
+        return $this->container['reuse_merchant_id'];
+    }
+
+    /**
+     * Sets reuse_merchant_id
+     *
+     * @param bool|null $reuse_merchant_id Indicates whether the Google Pay Merchant ID is used for several merchant accounts. Default value: **false**.
+     *
+     * @return self
+     */
+    public function setReuseMerchantId($reuse_merchant_id)
+    {
+        if (is_null($reuse_merchant_id)) {
+            throw new \InvalidArgumentException('non-nullable reuse_merchant_id cannot be null');
+        }
+        $this->container['reuse_merchant_id'] = $reuse_merchant_id;
 
         return $this;
     }

@@ -46,7 +46,7 @@ class TerminalSettingsTerminalLevelApi extends Service
     * Get the terminal logo
     *
     * @param string $terminalId
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\Logo
     * @throws AdyenException
     */
@@ -61,7 +61,7 @@ class TerminalSettingsTerminalLevelApi extends Service
     * Get terminal settings
     *
     * @param string $terminalId
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\TerminalSettings
     * @throws AdyenException
     */
@@ -77,7 +77,7 @@ class TerminalSettingsTerminalLevelApi extends Service
     *
     * @param string $terminalId
     * @param \Adyen\Model\Management\Logo $logo
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\Logo
     * @throws AdyenException
     */
@@ -93,7 +93,7 @@ class TerminalSettingsTerminalLevelApi extends Service
     *
     * @param string $terminalId
     * @param \Adyen\Model\Management\TerminalSettings $terminalSettings
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\TerminalSettings
     * @throws AdyenException
     */

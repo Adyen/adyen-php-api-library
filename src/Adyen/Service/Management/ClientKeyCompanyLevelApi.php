@@ -47,7 +47,7 @@ class ClientKeyCompanyLevelApi extends Service
     *
     * @param string $companyId
     * @param string $apiCredentialId
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\GenerateClientKeyResponse
     * @throws AdyenException
     */

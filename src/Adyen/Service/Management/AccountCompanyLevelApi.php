@@ -45,9 +45,7 @@ class AccountCompanyLevelApi extends Service
     /**
     * Get a list of company accounts
     *
-    * @param int $pageNumber
-    * @param int $pageSize
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['queryParams' => ['pageNumber'=> int, 'pageSize'=> int]]
     * @return \Adyen\Model\Management\ListCompanyResponse
     * @throws AdyenException
     */
@@ -62,7 +60,7 @@ class AccountCompanyLevelApi extends Service
     * Get a company account
     *
     * @param string $companyId
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\Company
     * @throws AdyenException
     */
@@ -77,9 +75,7 @@ class AccountCompanyLevelApi extends Service
     * Get a list of merchant accounts
     *
     * @param string $companyId
-    * @param int $pageNumber
-    * @param int $pageSize
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['queryParams' => ['pageNumber'=> int, 'pageSize'=> int]]
     * @return \Adyen\Model\Management\ListMerchantResponse
     * @throws AdyenException
     */

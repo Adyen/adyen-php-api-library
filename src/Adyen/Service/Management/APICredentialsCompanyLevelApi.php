@@ -46,9 +46,7 @@ class APICredentialsCompanyLevelApi extends Service
     * Get a list of API credentials
     *
     * @param string $companyId
-    * @param int $pageNumber
-    * @param int $pageSize
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['queryParams' => ['pageNumber'=> int, 'pageSize'=> int]]
     * @return \Adyen\Model\Management\ListCompanyApiCredentialsResponse
     * @throws AdyenException
     */
@@ -64,7 +62,7 @@ class APICredentialsCompanyLevelApi extends Service
     *
     * @param string $companyId
     * @param string $apiCredentialId
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\CompanyApiCredential
     * @throws AdyenException
     */
@@ -81,7 +79,7 @@ class APICredentialsCompanyLevelApi extends Service
     * @param string $companyId
     * @param string $apiCredentialId
     * @param \Adyen\Model\Management\UpdateCompanyApiCredentialRequest $updateCompanyApiCredentialRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\CompanyApiCredential
     * @throws AdyenException
     */
@@ -97,7 +95,7 @@ class APICredentialsCompanyLevelApi extends Service
     *
     * @param string $companyId
     * @param \Adyen\Model\Management\CreateCompanyApiCredentialRequest $createCompanyApiCredentialRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\CreateCompanyApiCredentialResponse
     * @throws AdyenException
     */

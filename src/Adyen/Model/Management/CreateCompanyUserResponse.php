@@ -51,6 +51,7 @@ class CreateCompanyUserResponse implements ModelInterface, ArrayAccess, \JsonSer
         'account_groups' => 'string[]',
         'active' => 'bool',
         'associated_merchant_accounts' => 'string[]',
+        'authn_apps' => 'string[]',
         'email' => 'string',
         'id' => 'string',
         'name' => '\Adyen\Model\Management\Name',
@@ -71,6 +72,7 @@ class CreateCompanyUserResponse implements ModelInterface, ArrayAccess, \JsonSer
         'account_groups' => null,
         'active' => null,
         'associated_merchant_accounts' => null,
+        'authn_apps' => null,
         'email' => null,
         'id' => null,
         'name' => null,
@@ -89,6 +91,7 @@ class CreateCompanyUserResponse implements ModelInterface, ArrayAccess, \JsonSer
         'account_groups' => false,
         'active' => false,
         'associated_merchant_accounts' => false,
+        'authn_apps' => false,
         'email' => false,
         'id' => false,
         'name' => false,
@@ -187,6 +190,7 @@ class CreateCompanyUserResponse implements ModelInterface, ArrayAccess, \JsonSer
         'account_groups' => 'accountGroups',
         'active' => 'active',
         'associated_merchant_accounts' => 'associatedMerchantAccounts',
+        'authn_apps' => 'authnApps',
         'email' => 'email',
         'id' => 'id',
         'name' => 'name',
@@ -205,6 +209,7 @@ class CreateCompanyUserResponse implements ModelInterface, ArrayAccess, \JsonSer
         'account_groups' => 'setAccountGroups',
         'active' => 'setActive',
         'associated_merchant_accounts' => 'setAssociatedMerchantAccounts',
+        'authn_apps' => 'setAuthnApps',
         'email' => 'setEmail',
         'id' => 'setId',
         'name' => 'setName',
@@ -223,6 +228,7 @@ class CreateCompanyUserResponse implements ModelInterface, ArrayAccess, \JsonSer
         'account_groups' => 'getAccountGroups',
         'active' => 'getActive',
         'associated_merchant_accounts' => 'getAssociatedMerchantAccounts',
+        'authn_apps' => 'getAuthnApps',
         'email' => 'getEmail',
         'id' => 'getId',
         'name' => 'getName',
@@ -292,6 +298,7 @@ class CreateCompanyUserResponse implements ModelInterface, ArrayAccess, \JsonSer
         $this->setIfExists('account_groups', $data ?? [], null);
         $this->setIfExists('active', $data ?? [], null);
         $this->setIfExists('associated_merchant_accounts', $data ?? [], null);
+        $this->setIfExists('authn_apps', $data ?? [], null);
         $this->setIfExists('email', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
@@ -461,6 +468,33 @@ class CreateCompanyUserResponse implements ModelInterface, ArrayAccess, \JsonSer
             throw new \InvalidArgumentException('non-nullable associated_merchant_accounts cannot be null');
         }
         $this->container['associated_merchant_accounts'] = $associated_merchant_accounts;
+
+        return $this;
+    }
+
+    /**
+     * Gets authn_apps
+     *
+     * @return string[]|null
+     */
+    public function getAuthnApps()
+    {
+        return $this->container['authn_apps'];
+    }
+
+    /**
+     * Sets authn_apps
+     *
+     * @param string[]|null $authn_apps Set of authn apps available to this user
+     *
+     * @return self
+     */
+    public function setAuthnApps($authn_apps)
+    {
+        if (is_null($authn_apps)) {
+            throw new \InvalidArgumentException('non-nullable authn_apps cannot be null');
+        }
+        $this->container['authn_apps'] = $authn_apps;
 
         return $this;
     }

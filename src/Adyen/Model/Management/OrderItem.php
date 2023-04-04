@@ -48,6 +48,7 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'id' => 'string',
+        'installments' => 'int',
         'name' => 'string',
         'quantity' => 'int'
     ];
@@ -61,6 +62,7 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'id' => null,
+        'installments' => 'int64',
         'name' => null,
         'quantity' => 'int32'
     ];
@@ -72,6 +74,7 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'id' => false,
+        'installments' => false,
         'name' => false,
         'quantity' => true
     ];
@@ -163,6 +166,7 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'id' => 'id',
+        'installments' => 'installments',
         'name' => 'name',
         'quantity' => 'quantity'
     ];
@@ -174,6 +178,7 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'id' => 'setId',
+        'installments' => 'setInstallments',
         'name' => 'setName',
         'quantity' => 'setQuantity'
     ];
@@ -185,6 +190,7 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'id' => 'getId',
+        'installments' => 'getInstallments',
         'name' => 'getName',
         'quantity' => 'getQuantity'
     ];
@@ -247,6 +253,7 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('installments', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('quantity', $data ?? [], null);
     }
@@ -316,6 +323,33 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
         $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets installments
+     *
+     * @return int|null
+     */
+    public function getInstallments()
+    {
+        return $this->container['installments'];
+    }
+
+    /**
+     * Sets installments
+     *
+     * @param int|null $installments The number of installments for the specified product `id`.
+     *
+     * @return self
+     */
+    public function setInstallments($installments)
+    {
+        if (is_null($installments)) {
+            throw new \InvalidArgumentException('non-nullable installments cannot be null');
+        }
+        $this->container['installments'] = $installments;
 
         return $this;
     }

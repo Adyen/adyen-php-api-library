@@ -47,7 +47,7 @@ class PayoutSettingsMerchantLevelApi extends Service
     *
     * @param string $merchantId
     * @param string $payoutSettingsId
-    * @param array $requestOptions
+    * @param array|null $requestOptions
 
     * @throws AdyenException
     */
@@ -61,7 +61,7 @@ class PayoutSettingsMerchantLevelApi extends Service
     * Get a list of payout settings
     *
     * @param string $merchantId
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\PayoutSettingsResponse
     * @throws AdyenException
     */
@@ -77,7 +77,7 @@ class PayoutSettingsMerchantLevelApi extends Service
     *
     * @param string $merchantId
     * @param string $payoutSettingsId
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\PayoutSettings
     * @throws AdyenException
     */
@@ -94,7 +94,7 @@ class PayoutSettingsMerchantLevelApi extends Service
     * @param string $merchantId
     * @param string $payoutSettingsId
     * @param \Adyen\Model\Management\UpdatePayoutSettingsRequest $updatePayoutSettingsRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\PayoutSettings
     * @throws AdyenException
     */
@@ -110,7 +110,7 @@ class PayoutSettingsMerchantLevelApi extends Service
     *
     * @param string $merchantId
     * @param \Adyen\Model\Management\PayoutSettingsRequest $payoutSettingsRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\PayoutSettings
     * @throws AdyenException
     */

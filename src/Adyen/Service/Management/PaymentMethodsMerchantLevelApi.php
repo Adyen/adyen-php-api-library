@@ -46,11 +46,7 @@ class PaymentMethodsMerchantLevelApi extends Service
     * Get all payment methods
     *
     * @param string $merchantId
-    * @param string $storeId
-    * @param string $businessLineId
-    * @param int $pageSize
-    * @param int $pageNumber
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['queryParams' => ['storeId'=> string, 'businessLineId'=> string, 'pageSize'=> int, 'pageNumber'=> int]]
     * @return \Adyen\Model\Management\PaymentMethodResponse
     * @throws AdyenException
     */
@@ -66,7 +62,7 @@ class PaymentMethodsMerchantLevelApi extends Service
     *
     * @param string $merchantId
     * @param string $paymentMethodId
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\PaymentMethod
     * @throws AdyenException
     */
@@ -82,7 +78,7 @@ class PaymentMethodsMerchantLevelApi extends Service
     *
     * @param string $merchantId
     * @param string $paymentMethodId
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\ApplePayInfo
     * @throws AdyenException
     */
@@ -99,7 +95,7 @@ class PaymentMethodsMerchantLevelApi extends Service
     * @param string $merchantId
     * @param string $paymentMethodId
     * @param \Adyen\Model\Management\UpdatePaymentMethodInfo $updatePaymentMethodInfo
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\PaymentMethod
     * @throws AdyenException
     */
@@ -115,7 +111,7 @@ class PaymentMethodsMerchantLevelApi extends Service
     *
     * @param string $merchantId
     * @param \Adyen\Model\Management\PaymentMethodSetupInfo $paymentMethodSetupInfo
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\PaymentMethod
     * @throws AdyenException
     */
@@ -132,7 +128,7 @@ class PaymentMethodsMerchantLevelApi extends Service
     * @param string $merchantId
     * @param string $paymentMethodId
     * @param \Adyen\Model\Management\ApplePayInfo $applePayInfo
-    * @param array $requestOptions
+    * @param array|null $requestOptions
 
     * @throws AdyenException
     */

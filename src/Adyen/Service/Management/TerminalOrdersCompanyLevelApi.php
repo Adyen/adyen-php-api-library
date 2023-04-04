@@ -46,8 +46,7 @@ class TerminalOrdersCompanyLevelApi extends Service
     * Get a list of billing entities
     *
     * @param string $companyId
-    * @param string $name
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['queryParams' => ['name'=> string]]
     * @return \Adyen\Model\Management\BillingEntitiesResponse
     * @throws AdyenException
     */
@@ -62,10 +61,7 @@ class TerminalOrdersCompanyLevelApi extends Service
     * Get a list of shipping locations
     *
     * @param string $companyId
-    * @param string $name
-    * @param int $offset
-    * @param int $limit
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['queryParams' => ['name'=> string, 'offset'=> int, 'limit'=> int]]
     * @return \Adyen\Model\Management\ShippingLocationsResponse
     * @throws AdyenException
     */
@@ -80,7 +76,7 @@ class TerminalOrdersCompanyLevelApi extends Service
     * Get a list of terminal models
     *
     * @param string $companyId
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\TerminalModelsResponse
     * @throws AdyenException
     */
@@ -95,11 +91,7 @@ class TerminalOrdersCompanyLevelApi extends Service
     * Get a list of orders
     *
     * @param string $companyId
-    * @param string $customerOrderReference
-    * @param string $status
-    * @param int $offset
-    * @param int $limit
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['queryParams' => ['customerOrderReference'=> string, 'status'=> string, 'offset'=> int, 'limit'=> int]]
     * @return \Adyen\Model\Management\TerminalOrdersResponse
     * @throws AdyenException
     */
@@ -115,7 +107,7 @@ class TerminalOrdersCompanyLevelApi extends Service
     *
     * @param string $companyId
     * @param string $orderId
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\TerminalOrder
     * @throws AdyenException
     */
@@ -130,11 +122,7 @@ class TerminalOrdersCompanyLevelApi extends Service
     * Get a list of terminal products
     *
     * @param string $companyId
-    * @param string $country
-    * @param string $terminalModelId
-    * @param int $offset
-    * @param int $limit
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['queryParams' => ['country'=> string, 'terminalModelId'=> string, 'offset'=> int, 'limit'=> int]]
     * @return \Adyen\Model\Management\TerminalProductsResponse
     * @throws AdyenException
     */
@@ -151,7 +139,7 @@ class TerminalOrdersCompanyLevelApi extends Service
     * @param string $companyId
     * @param string $orderId
     * @param \Adyen\Model\Management\TerminalOrderRequest $terminalOrderRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\TerminalOrder
     * @throws AdyenException
     */
@@ -167,7 +155,7 @@ class TerminalOrdersCompanyLevelApi extends Service
     *
     * @param string $companyId
     * @param \Adyen\Model\Management\ShippingLocation $shippingLocation
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\ShippingLocation
     * @throws AdyenException
     */
@@ -183,7 +171,7 @@ class TerminalOrdersCompanyLevelApi extends Service
     *
     * @param string $companyId
     * @param \Adyen\Model\Management\TerminalOrderRequest $terminalOrderRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\TerminalOrder
     * @throws AdyenException
     */
@@ -199,7 +187,7 @@ class TerminalOrdersCompanyLevelApi extends Service
     *
     * @param string $companyId
     * @param string $orderId
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\TerminalOrder
     * @throws AdyenException
     */

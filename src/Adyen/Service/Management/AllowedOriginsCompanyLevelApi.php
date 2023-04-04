@@ -48,7 +48,7 @@ class AllowedOriginsCompanyLevelApi extends Service
     * @param string $companyId
     * @param string $apiCredentialId
     * @param string $originId
-    * @param array $requestOptions
+    * @param array|null $requestOptions
 
     * @throws AdyenException
     */
@@ -63,7 +63,7 @@ class AllowedOriginsCompanyLevelApi extends Service
     *
     * @param string $companyId
     * @param string $apiCredentialId
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\AllowedOriginsResponse
     * @throws AdyenException
     */
@@ -80,7 +80,7 @@ class AllowedOriginsCompanyLevelApi extends Service
     * @param string $companyId
     * @param string $apiCredentialId
     * @param string $originId
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\AllowedOrigin
     * @throws AdyenException
     */
@@ -97,7 +97,7 @@ class AllowedOriginsCompanyLevelApi extends Service
     * @param string $companyId
     * @param string $apiCredentialId
     * @param \Adyen\Model\Management\AllowedOrigin $allowedOrigin
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\AllowedOriginsResponse
     * @throws AdyenException
     */

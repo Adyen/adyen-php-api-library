@@ -46,7 +46,7 @@ class MyAPICredentialApi extends Service
     * Remove allowed origin
     *
     * @param string $originId
-    * @param array $requestOptions
+    * @param array|null $requestOptions
 
     * @throws AdyenException
     */
@@ -59,7 +59,7 @@ class MyAPICredentialApi extends Service
     /**
     * Get API credential details
     *
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\MeApiCredential
     * @throws AdyenException
     */
@@ -73,7 +73,7 @@ class MyAPICredentialApi extends Service
     /**
     * Get allowed origins
     *
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\AllowedOriginsResponse
     * @throws AdyenException
     */
@@ -88,7 +88,7 @@ class MyAPICredentialApi extends Service
     * Get allowed origin details
     *
     * @param string $originId
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\AllowedOrigin
     * @throws AdyenException
     */
@@ -103,7 +103,7 @@ class MyAPICredentialApi extends Service
     * Add allowed origin
     *
     * @param \Adyen\Model\Management\CreateAllowedOriginRequest $createAllowedOriginRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Management\AllowedOrigin
     * @throws AdyenException
     */
