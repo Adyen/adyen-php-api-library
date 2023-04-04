@@ -46,8 +46,8 @@ class DocumentsApi extends Service
     * Delete a document
     *
     * @param string $id
-    * @param array $requestOptions
-    * @return object
+    * @param array|null $requestOptions
+    * @return void
     * @throws AdyenException
     */
     public function deleteDocument(string $id, array $requestOptions = null): void
@@ -60,7 +60,7 @@ class DocumentsApi extends Service
     * Get a document
     *
     * @param string $id
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\LegalEntityManagement\Document
     * @throws AdyenException
     */
@@ -76,7 +76,7 @@ class DocumentsApi extends Service
     *
     * @param string $id
     * @param \Adyen\Model\LegalEntityManagement\Document $document
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\LegalEntityManagement\Document
     * @throws AdyenException
     */
@@ -91,7 +91,7 @@ class DocumentsApi extends Service
     * Upload a document for verification checks
     *
     * @param \Adyen\Model\LegalEntityManagement\Document $document
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\LegalEntityManagement\Document
     * @throws AdyenException
     */

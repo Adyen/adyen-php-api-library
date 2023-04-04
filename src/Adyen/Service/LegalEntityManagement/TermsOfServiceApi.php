@@ -46,7 +46,7 @@ class TermsOfServiceApi extends Service
     * Get Terms of Service information for a legal entity
     *
     * @param string $id
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\LegalEntityManagement\GetTermsOfServiceAcceptanceInfosResponse
     * @throws AdyenException
     */
@@ -61,7 +61,7 @@ class TermsOfServiceApi extends Service
     * Get Terms of Service status
     *
     * @param string $id
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\LegalEntityManagement\CalculateTermsOfServiceStatusResponse
     * @throws AdyenException
     */
@@ -78,7 +78,7 @@ class TermsOfServiceApi extends Service
     * @param string $id
     * @param string $termsofservicedocumentid
     * @param \Adyen\Model\LegalEntityManagement\AcceptTermsOfServiceRequest $acceptTermsOfServiceRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\LegalEntityManagement\AcceptTermsOfServiceResponse
     * @throws AdyenException
     */
@@ -94,7 +94,7 @@ class TermsOfServiceApi extends Service
     *
     * @param string $id
     * @param \Adyen\Model\LegalEntityManagement\GetTermsOfServiceDocumentRequest $getTermsOfServiceDocumentRequest
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\LegalEntityManagement\GetTermsOfServiceDocumentResponse
     * @throws AdyenException
     */

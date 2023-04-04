@@ -45,7 +45,7 @@ class HostedOnboardingApi extends Service
     /**
     * Get a list of hosted onboarding page themes
     *
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\LegalEntityManagement\OnboardingThemes
     * @throws AdyenException
     */
@@ -60,7 +60,7 @@ class HostedOnboardingApi extends Service
     * Get an onboarding link theme
     *
     * @param string $id
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\LegalEntityManagement\OnboardingTheme
     * @throws AdyenException
     */
@@ -76,7 +76,7 @@ class HostedOnboardingApi extends Service
     *
     * @param string $id
     * @param \Adyen\Model\LegalEntityManagement\OnboardingLinkInfo $onboardingLinkInfo
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\LegalEntityManagement\OnboardingLink
     * @throws AdyenException
     */

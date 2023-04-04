@@ -46,7 +46,7 @@ class LegalEntitiesApi extends Service
     * Get a legal entity
     *
     * @param string $id
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\LegalEntityManagement\LegalEntity
     * @throws AdyenException
     */
@@ -61,7 +61,7 @@ class LegalEntitiesApi extends Service
     * Get all business lines under a legal entity
     *
     * @param string $id
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\LegalEntityManagement\BusinessLines
     * @throws AdyenException
     */
@@ -77,7 +77,7 @@ class LegalEntitiesApi extends Service
     *
     * @param string $id
     * @param \Adyen\Model\LegalEntityManagement\LegalEntityInfo $legalEntityInfo
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\LegalEntityManagement\LegalEntity
     * @throws AdyenException
     */
@@ -92,7 +92,7 @@ class LegalEntitiesApi extends Service
     * Create a legal entity
     *
     * @param \Adyen\Model\LegalEntityManagement\LegalEntityInfoRequiredType $legalEntityInfoRequiredType
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\LegalEntityManagement\LegalEntity
     * @throws AdyenException
     */
@@ -107,7 +107,7 @@ class LegalEntitiesApi extends Service
     * Check a legal entity&#39;s verification errors
     *
     * @param string $id
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\LegalEntityManagement\VerificationErrors
     * @throws AdyenException
     */

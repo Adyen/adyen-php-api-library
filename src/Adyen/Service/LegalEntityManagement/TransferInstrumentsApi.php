@@ -46,7 +46,7 @@ class TransferInstrumentsApi extends Service
     * Delete a transfer instrument
     *
     * @param string $id
-    * @param array $requestOptions
+    * @param array|null $requestOptions
 
     * @throws AdyenException
     */
@@ -60,7 +60,7 @@ class TransferInstrumentsApi extends Service
     * Get a transfer instrument
     *
     * @param string $id
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\LegalEntityManagement\TransferInstrument
     * @throws AdyenException
     */
@@ -76,7 +76,7 @@ class TransferInstrumentsApi extends Service
     *
     * @param string $id
     * @param \Adyen\Model\LegalEntityManagement\TransferInstrumentInfo $transferInstrumentInfo
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\LegalEntityManagement\TransferInstrument
     * @throws AdyenException
     */
@@ -91,7 +91,7 @@ class TransferInstrumentsApi extends Service
     * Create a transfer instrument
     *
     * @param \Adyen\Model\LegalEntityManagement\TransferInstrumentInfo $transferInstrumentInfo
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\LegalEntityManagement\TransferInstrument
     * @throws AdyenException
     */

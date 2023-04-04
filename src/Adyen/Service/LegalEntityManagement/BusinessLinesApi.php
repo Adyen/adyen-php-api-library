@@ -46,7 +46,7 @@ class BusinessLinesApi extends Service
     * Delete a business line
     *
     * @param string $id
-    * @param array $requestOptions
+    * @param array|null $requestOptions
 
     * @throws AdyenException
     */
@@ -60,7 +60,7 @@ class BusinessLinesApi extends Service
     * Get a business line
     *
     * @param string $id
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\LegalEntityManagement\BusinessLine
     * @throws AdyenException
     */
@@ -76,7 +76,7 @@ class BusinessLinesApi extends Service
     *
     * @param string $id
     * @param \Adyen\Model\LegalEntityManagement\BusinessLineInfoUpdate $businessLineInfoUpdate
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\LegalEntityManagement\BusinessLine
     * @throws AdyenException
     */
@@ -91,7 +91,7 @@ class BusinessLinesApi extends Service
     * Create a business line
     *
     * @param \Adyen\Model\LegalEntityManagement\BusinessLineInfo $businessLineInfo
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\LegalEntityManagement\BusinessLine
     * @throws AdyenException
     */

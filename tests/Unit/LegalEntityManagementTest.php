@@ -17,8 +17,7 @@ class LegalEntityManagementTest extends TestCaseMock
     public function testGetAllBusinessLinesUnderLegalEntity()
     {
         $client = $this->createMockClientUrl(
-            'tests/Resources/LegalEntityManagement/business-lines-under-entity.json',
-            200
+            'tests/Resources/LegalEntityManagement/business-lines-under-entity.json'
         );
         $service = new LegalEntitiesApi($client);
         $response = $service->getAllBusinessLinesUnderLegalEntity('Id');
@@ -36,8 +35,7 @@ class LegalEntityManagementTest extends TestCaseMock
     public function testDeleteDocuments()
     {
         $client = $this->createMockClientUrl(
-            'tests/Resources/LegalEntityManagement/business-lines-under-entity.json',
-            200
+            'tests/Resources/LegalEntityManagement/business-lines-under-entity.json'
         );
         $service = new DocumentsApi($client);
         $service->deleteDocument('Id');
@@ -50,8 +48,7 @@ class LegalEntityManagementTest extends TestCaseMock
     public function testGetTermsOfServiceDocument()
     {
         $client = $this->createMockClientUrl(
-            'tests/Resources/LegalEntityManagement/terms-of-service-document-post.json',
-            200
+            'tests/Resources/LegalEntityManagement/terms-of-service-document-post.json'
         );
         $service = new TermsOfServiceApi($client);
         $response = $service->getTermsOfServiceDocument('id', new GetTermsOfServiceDocumentRequest());
@@ -66,8 +63,7 @@ class LegalEntityManagementTest extends TestCaseMock
     public function testUpdateTransferInstrument()
     {
         $client = $this->createMockClientUrl(
-            'tests/Resources/LegalEntityManagement/transfer-instrument-patch.json',
-            200
+            'tests/Resources/LegalEntityManagement/transfer-instrument-patch.json'
         );
         $service = new TransferInstrumentsApi($client);
         $response = $service->updateTransferInstrument('id', new TransferInstrumentInfo());
