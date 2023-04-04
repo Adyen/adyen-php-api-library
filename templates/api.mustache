@@ -39,8 +39,13 @@ class {{classname}} extends Service
     * Description: {{.}}
     *
     {{/description}}
-    {{#allParams}}* @param {{{dataType}}} ${{#lambda.camelcase}}{{paramName}}{{/lambda.camelcase}}
-    {{/allParams}}* @param array $requestOptions
+    {{#pathParams}}
+    * @param {{{dataType}}} ${{#lambda.camelcase}}{{paramName}}{{/lambda.camelcase}}
+    {{/pathParams}}
+    {{#bodyParams}}
+    * @param {{{dataType}}} ${{#lambda.camelcase}}{{paramName}}{{/lambda.camelcase}}
+    {{/bodyParams}}
+    * @param array|null $requestOptions{{#hasQueryParams}} ['queryParams' => [{{#queryParams}}'{{#lambda.camelcase}}{{paramName}}{{/lambda.camelcase}}'=> {{{dataType}}}{{^-last}}, {{/-last}}{{/queryParams}}]]{{/hasQueryParams}}
     {{#returnType}}* @return {{returnType}}{{/returnType}}
     * @throws AdyenException
     */

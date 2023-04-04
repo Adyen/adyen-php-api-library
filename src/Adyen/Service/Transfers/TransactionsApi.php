@@ -18,7 +18,6 @@ namespace Adyen\Service\Transfers;
 
 use Adyen\AdyenException;
 use Adyen\Client;
-use Adyen\Model\Transfers\Transaction;
 use Adyen\Service;
 use Adyen\Model\Transfers\ObjectSerializer;
 
@@ -46,15 +45,7 @@ class TransactionsApi extends Service
     /**
     * Get all transactions
     *
-    * @param \DateTime $createdSince
-    * @param \DateTime $createdUntil
-    * @param string $balancePlatform
-    * @param string $paymentInstrumentId
-    * @param string $accountHolderId
-    * @param string $balanceAccountId
-    * @param string $cursor
-    * @param int $limit
-    * @param array $requestOptions
+    * @param array|null $requestOptions ['queryParams' => ['balancePlatform'=> string, 'paymentInstrumentId'=> string, 'accountHolderId'=> string, 'balanceAccountId'=> string, 'cursor'=> string, 'createdSince'=> \DateTime, 'createdUntil'=> \DateTime, 'limit'=> int]]
     * @return \Adyen\Model\Transfers\TransactionSearchResponse
     * @throws AdyenException
     */
@@ -69,7 +60,7 @@ class TransactionsApi extends Service
     * Get a transaction
     *
     * @param string $id
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Transfers\Transaction
     * @throws AdyenException
     */

@@ -46,7 +46,7 @@ class TransfersApi extends Service
     * Transfer funds
     *
     * @param \Adyen\Model\Transfers\TransferInfo $transferInfo
-    * @param array $requestOptions
+    * @param array|null $requestOptions
     * @return \Adyen\Model\Transfers\Transfer
     * @throws AdyenException
     */

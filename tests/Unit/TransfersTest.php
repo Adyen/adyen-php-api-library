@@ -13,7 +13,7 @@ class TransfersTest extends TestCaseMock
 {
     public function testTransferFunds()
     {
-        $client = $this->createMockClientUrl('tests/Resources/Tranfers/transfer-funds.json', 200);
+        $client = $this->createMockClientUrl('tests/Resources/Tranfers/transfer-funds.json');
         $service = new TransfersApi($client);
         $response = $service->transferFunds(new TransferInfo());
         assertEquals('1W1UG35U8A9J5ZLG', $response->getId());
@@ -23,10 +23,10 @@ class TransfersTest extends TestCaseMock
 
     public function testGetAllTransactions()
     {
-        $client = $this->createMockClientUrl('tests/Resources/Tranfers/all-transactions-get.json', 200);
+        $client = $this->createMockClientUrl('tests/Resources/Tranfers/all-transactions-get.json');
         $service = new TransactionsApi($client);
-        $response = $service->getAllTransactions(array('createdSince' => '2021-05-30T15:07:40Z', 'balancePlatform' =>
-        'balancePlatform', 'accountHolderId' => 'accountHolderId'));
+        $response = $service->getAllTransactions(['queryParams' => array('createdSince' => '2021-05-30T15:07:40Z', 'balancePlatform' =>
+        'balancePlatform', 'accountHolderId' => 'accountHolderId')]);
         assertEquals(Transaction::CATEGORY_INTERNAL, $response->getData()[0]->getCategory());
         assertEquals(
             'https://balanceplatform-api-test.adyen.com/btl/v3/transactions?createdSince=2021-05-30T15%3A07%3A40Z&balancePlatform=balancePlatform&accountHolderId=accountHolderId',
