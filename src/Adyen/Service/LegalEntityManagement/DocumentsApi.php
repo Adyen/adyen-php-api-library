@@ -45,14 +45,13 @@ class DocumentsApi extends Service
     *
     * @param string $id
     * @param array|null $requestOptions
-    * @return object
+    * @return void
     * @throws AdyenException
     */
-    public function deleteDocument(string $id, array $requestOptions = null): object
+    public function deleteDocument(string $id, array $requestOptions = null): void
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/documents/{id}");
-        $response = $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
-        return ObjectSerializer::deserialize($response, object::class);
+        $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
     }
 
     /**
