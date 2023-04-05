@@ -7,6 +7,7 @@ use Adyen\Model\Transfers\Transfer;
 use Adyen\Model\Transfers\TransferInfo;
 use Adyen\Service\Transfers\TransactionsApi;
 use Adyen\Service\Transfers\TransfersApi;
+use DateTime;
 use function PHPUnit\Framework\assertEquals;
 
 class TransfersTest extends TestCaseMock
@@ -30,6 +31,23 @@ class TransfersTest extends TestCaseMock
         assertEquals(Transaction::CATEGORY_INTERNAL, $response->getData()[0]->getCategory());
         assertEquals(
             'https://balanceplatform-api-test.adyen.com/btl/v3/transactions?createdSince=2021-05-30T15%3A07%3A40Z&balancePlatform=balancePlatform&accountHolderId=accountHolderId',
+            $this->requestUrl
+        );
+    }
+
+    public function testGetAllTransactionsDateTime()
+    {
+        $client = $this->createMockClientUrl('tests/Resources/Tranfers/all-transactions-get.json');
+        $service = new TransactionsApi($client);
+
+        $date = new DateTime("2021-05-30T15:07:40Z");
+        $queryPararms = ['queryParams' => array('createdSince' => $date, 'balancePlatform' =>
+            'balancePlatform', 'accountHolderId' => 'accountHolderId')];
+
+        $response = $service->getAllTransactions($queryPararms);
+        assertEquals(Transaction::CATEGORY_INTERNAL, $response->getData()[0]->getCategory());
+        assertEquals(
+            'https://balanceplatform-api-test.adyen.com/btl/v3/transactions?createdSince=2021-05-30+15%3A07%3A40%2B0000&balancePlatform=balancePlatform&accountHolderId=accountHolderId',
             $this->requestUrl
         );
     }
