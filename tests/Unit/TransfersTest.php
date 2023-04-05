@@ -47,7 +47,7 @@ class TransfersTest extends TestCaseMock
         $response = $service->getAllTransactions($queryPararms);
         assertEquals(Transaction::CATEGORY_INTERNAL, $response->getData()[0]->getCategory());
         assertEquals(
-            'https://balanceplatform-api-test.adyen.com/btl/v3/transactions?createdSince=2021-05-30+15%3A07%3A40%2B0000&balancePlatform=balancePlatform&accountHolderId=accountHolderId',
+            'https://balanceplatform-api-test.adyen.com/btl/v3/transactions?createdSince=2021-05-30T15%3A07%3A40%2B00%3A00&balancePlatform=balancePlatform&accountHolderId=accountHolderId',
             $this->requestUrl
         );
     }

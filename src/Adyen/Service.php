@@ -75,8 +75,8 @@ class Service
             // catch DateTime objects and convert them to string
             $queryParams = array_map(
                 function ($val) {
-                    if (is_object($val) && get_class($val) == \DateTime::class) {
-                        return $val->format('Y-m-d H:i:sO');
+                    if ($val instanceof \DateTime) {
+                        return $val->format('c');
                     }
                     return $val;
                 },
