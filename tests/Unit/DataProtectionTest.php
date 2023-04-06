@@ -85,23 +85,18 @@ class DataProtectionTest extends TestCaseMock
      */
     public function testRequestSubjectErasureLiveEndpoint()
     {
-        $client = new Client(new Config());
-        $client->setEnvironment(Environment::LIVE);
-        $http = $this->createMock(ClientInterface::class);
-        $client->setHttpClient($http);
+        $client = $this->createMockClientUrl(
+            'tests/Resources/DataProtection/post-request-subject-erasure-success.json',
+            Environment::LIVE
+        );
         $service = new DataProtectionApi($client);
-        $http->expects($this->once())
-            ->method('requestHttp')
-            ->with(
-                $service,
-                'https://ca-live.adyen.com/ca/services/DataProtectionService/v1/requestSubjectErasure',
-                [],
-                'post',
-                null
-            )
-            ->willReturn([]);
         $request = new SubjectErasureByPspReferenceRequest();
 
         $service->requestSubjectErasure($request);
+
+        $this->assertEquals(
+            'https://ca-live.adyen.com/ca/services/DataProtectionService/v1/requestSubjectErasure',
+            $this->requestUrl
+        );
     }
 }
