@@ -1,0 +1,10 @@
+{
+  "currentBalance": {
+    "currency": "str",
+    "value": 0
+  },
+  "pspReference": "string",
+  "refusalReason": "string",
+  "resultCode": "NotEnoughBalance",
+  "thirdPartyRefusalReason": "string"
+}
