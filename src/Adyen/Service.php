@@ -70,7 +70,6 @@ class Service
 
         // Retrieve queryParams from requestOptions and add to URL (and catch the DateTime values)
         if (!empty($requestOptions['queryParams'])) {
-
             $queryParams = $requestOptions['queryParams'];
             // catch DateTime objects and convert them to string
             $queryParams = array_map(
