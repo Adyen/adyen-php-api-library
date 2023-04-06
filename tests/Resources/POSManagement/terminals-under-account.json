@@ -1,0 +1,19 @@
+{
+  "companyAccount": "YOUR_COMPANY_ACCOUNT",
+  "merchantAccounts": [
+    {
+      "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+      "inStoreTerminals": [
+        "P400Plus-275479597"
+      ],
+      "stores": [
+        {
+          "store": "YOUR_STORE",
+          "inStoreTerminals": [
+            "M400-401972715"
+          ]
+        }
+      ]
+    }
+  ]
+}
