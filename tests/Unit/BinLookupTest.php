@@ -11,7 +11,7 @@ class BinLookupTest extends TestCaseMock
     public function testGet3DSAvailability()
     {
         // create Checkout client
-        $client = $this->createMockClientUrl('tests/Resources/BinLookup/3ds-availability.json', );
+        $client = $this->createMockClientUrl('tests/Resources/BinLookup/3ds-availability.json');
 
         // initialize service
         $service = new \Adyen\Service\BinLookupApi($client);
@@ -23,7 +23,7 @@ class BinLookupTest extends TestCaseMock
     public function testGetCostEstimate()
     {
         // create Checkout client
-        $client = $this->createMockClientUrl('tests/Resources/BinLookup/getCostEstimate-success.json', );
+        $client = $this->createMockClientUrl('tests/Resources/BinLookup/getCostEstimate-success.json');
 
         // initialize service
         $service = new \Adyen\Service\BinLookupApi($client);
