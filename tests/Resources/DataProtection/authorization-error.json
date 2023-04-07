@@ -1,0 +1,6 @@
+{
+  "status": 403,
+  "errorCode": "010",
+  "message": "Not allowed",
+  "errorType": "security"
+}
