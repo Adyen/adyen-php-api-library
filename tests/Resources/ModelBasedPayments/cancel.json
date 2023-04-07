@@ -1,0 +1,9 @@
+{
+  "additionalData": {
+    "additionalProp1": "string",
+    "additionalProp2": "string",
+    "additionalProp3": "string"
+  },
+  "pspReference": "string",
+  "response": "[capture-received]"
+}
