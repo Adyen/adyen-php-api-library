@@ -57,10 +57,8 @@ abstract class AbstractResource
         $this->allowApplicationInfoPOS = $allowApplicationInfoPOS;
         $this->checkoutEndpoint = $service->getClient()->getConfig()->get('endpointCheckout') . '/'
             . $service->getClient()->getApiCheckoutVersion();
-        $this->managementEndpoint = $service->getClient()->getConfig()->get('endpointManagementApi')
+        $this->managementEndpoint = $service->getClient()->getConfig()->get('endpointManagementApi') . '/'
             . $service->getClient()->getManagementApiVersion();
-        $this->checkoutEndpoint = $service->getClient()->getConfig()->get('endpointCheckout')
-            . $service->getClient()->getApiCheckoutVersion();
     }
 
     /**
