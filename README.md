@@ -27,6 +27,7 @@ The library supports all APIs under the following services:
 * [Referrals API](https://docs.adyen.com/risk-management/automate-submitting-referrals/referrals-api-reference): Endpoints to [automate submitting referrals](https://docs.adyen.com/risk-management/automate-submitting-referrals) for Adyen risk rules.
 * [Refunds API](https://docs.adyen.com/api-explorer/#/CheckoutService/v68/post/payments/{paymentPspReference}/refunds): Refunds a payment that has been captured, and returns a unique reference for this request. Current supported version: **v68**
 * [Reversals API](https://docs.adyen.com/api-explorer/#/CheckoutService/v68/post/payments/{paymentPspReference}/reversals): Refunds a payment if it has already been captured, and cancels a payment if it has not yet been captured. Current supported version: **v68**
+* [Data Protection API](https://docs.adyen.com/development-resources/data-protection-api): Use our API to comply with GDPR's right to erasure mandate. Current supported version: **v1**
 
 For more information, refer to our [documentation](https://docs.adyen.com/) or the [API Explorer](https://docs.adyen.com/api-explorer/).
 
