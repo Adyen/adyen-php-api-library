@@ -4,7 +4,7 @@ openapi-generator-jar:=target/openapi-generator-cli.jar
 openapi-generator-cli:=java -jar $(openapi-generator-jar)
 
 generator:=php
-modelGen:=BalancePlatform Checkout StoredValue Payments Payout Management LegalEntityManagement Transfers BalanceControl BinLookup DataProtection StoredValue POSTerminalManagement Recurring
+modelGen:=BalancePlatform Checkout StoredValue Payments Payout Management LegalEntityManagement Transfers BalanceControl BinLookup StoredValue POSTerminalManagement Recurring
 models:=src/Adyen/Model
 output:=target/out
 
@@ -43,7 +43,6 @@ $(modelGen): target/spec $(openapi-generator-jar)
 			--model-package Model\\$@ \
 			--api-package Service\\$@ \
 			--reserved-words-mappings configuration=configuration \
-			--ignore-file-override ./.openapi-generator-ignore \
 			--skip-validate-spec \
 			--additional-properties invokerPackage=Adyen \
 			--additional-properties packageName=Adyen
@@ -70,13 +69,12 @@ $(Services): target/spec $(openapi-generator-jar)
 		--api-package Service\\$@ \
 		--inline-schema-name-mappings BankAccountInfo_accountIdentification=BankAccount \
 		--reserved-words-mappings configuration=configuration \
-		--ignore-file-override ./.openapi-generator-ignore \
 		--skip-validate-spec \
 		--additional-properties invokerPackage=Adyen \
 		--additional-properties packageName=Adyen
 	rm -rf src/Adyen/Service/$@ src/Adyen/Model/$@
 	mv $(output)/lib/Model/$@ $(models)/$@
-	mv $(output)/lib//ObjectSerializer.php $(models)/$@
+	mv $(output)/lib/ObjectSerializer.php $(models)/$@
 	mkdir src/Adyen/Service/$@
 	mv $(output)/lib/Service/* src/Adyen/Service
 
@@ -91,15 +89,15 @@ $(SingleFileServices): target/spec $(openapi-generator-jar)
 		--api-package Service\\$@ \
 		--inline-schema-name-mappings PaymentDonationRequest_paymentMethod=CheckoutPaymentMethod \
 		--reserved-words-mappings configuration=configuration \
-		--ignore-file-override ./.openapi-generator-ignore \
 		--skip-validate-spec \
 		--additional-properties customApi=$@ \
 		--additional-properties invokerPackage=Adyen \
 		--additional-properties packageName=Adyen
 	rm -rf src/Adyen/Service/$@Api src/Adyen/Model/$@
 	mv $(output)/lib/Model/$@ $(models)/$@
-	mv $(output)/lib//ObjectSerializer.php $(models)/$@
+	mv $(output)/lib/ObjectSerializer.php $(models)/$@
 	mv $(output)/lib/Service/$@/GeneralApiSingle.php src/Adyen/Service/$@Api.php
+	vendor/bin/phpcbf $(models)/$@ src/Adyen/Service/$@Api.php || true
 
 # Checkout spec (and patch version)
 target/spec:
