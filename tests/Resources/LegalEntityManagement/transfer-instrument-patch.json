@@ -1,0 +1,93 @@
+{
+  "bankAccount": {
+    "accountIdentification": {
+      "accountNumber": "string",
+      "bsbCode": "string",
+      "type": "auLocal"
+    },
+    "countryCode": "string"
+  },
+  "capabilities": {
+    "additionalProp1": {
+      "allowed": true,
+      "id": "string",
+      "requested": true,
+      "verificationStatus": "string"
+    },
+    "additionalProp2": {
+      "allowed": true,
+      "id": "string",
+      "requested": true,
+      "verificationStatus": "string"
+    },
+    "additionalProp3": {
+      "allowed": true,
+      "id": "string",
+      "requested": true,
+      "verificationStatus": "string"
+    }
+  },
+  "documentDetails": [
+    {
+      "active": true,
+      "description": "string",
+      "fileName": "string",
+      "id": "string",
+      "modificationDate": "2023-04-03T09:46:26.482Z",
+      "type": "string"
+    }
+  ],
+  "id": "SE322JV223222F5GVGMLNB83F",
+  "legalEntityId": "string",
+  "problems": [
+    {
+      "entity": {
+        "documents": [
+          "string"
+        ],
+        "id": "string",
+        "owner": {
+          "documents": [
+            "string"
+          ],
+          "id": "string",
+          "type": "BankAccount"
+        },
+        "type": "BankAccount"
+      },
+      "verificationErrors": [
+        {
+          "capabilities": [
+            "acceptExternalFunding"
+          ],
+          "code": "string",
+          "message": "string",
+          "remediatingActions": [
+            {
+              "code": "string",
+              "message": "string"
+            }
+          ],
+          "subErrors": [
+            {
+              "capabilities": [
+                "acceptExternalFunding"
+              ],
+              "code": "string",
+              "message": "string",
+              "type": "dataMissing",
+              "remediatingActions": [
+                {
+                  "code": "string",
+                  "message": "string"
+                }
+              ]
+            }
+          ],
+          "type": "dataMissing"
+        }
+      ]
+    }
+  ],
+  "type": "bankAccount"
+}
