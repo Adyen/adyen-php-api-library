@@ -68,9 +68,21 @@ class Service
         }
         $curlClient = $this->getClient()->getHttpClient();
 
-        // Retrieve queryParams from requestOptions and add to URL
+        // Retrieve queryParams from requestOptions and add to URL (and catch the DateTime values)
         if (!empty($requestOptions['queryParams'])) {
-            $url .= '?' . http_build_query($requestOptions['queryParams']);
+            $queryParams = $requestOptions['queryParams'];
+            // catch DateTime objects and convert them to string
+            $queryParams = array_map(
+                function ($val) {
+                    if ($val instanceof \DateTime) {
+                        return $val->format('c');
+                    }
+                    return $val;
+                },
+                $queryParams
+            );
+
+            $url .= '?' . http_build_query($queryParams);
         }
 
         return $curlClient->requestHttp($this, $url, $bodyParams, $method, $requestOptions);
