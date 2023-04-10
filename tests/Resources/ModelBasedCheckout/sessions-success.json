@@ -1,0 +1,13 @@
+{
+  "amount": {
+    "currency": "EUR",
+    "value": 100
+  },
+  "countryCode": "NL",
+  "expiresAt": "2021-10-07T17:10:07+02:00",
+  "id": "CS16116100127511AF",
+  "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+  "reference": "YOUR_PAYMENT_REFERENCE",
+  "returnUrl": "https://your-company.com/checkout?shopperOrder=12xy..",
+  "sessionData": "Ab02b4c0!BQABAgCkkdoH3sSbxaKW4DJPeqCo4nZ0L/YZbdvjoejgicrby+fv4zoa9ayczylZX25ZsG7NzE3Esf4iyHsvMnPz8DtFLgeEPlEV494WcY+p6Eaq9drJUciqschlRFDoVuNxv064s4JVRUQU9wzIOiPyZJCdWti4HN0u5mR7Eo2IoYJAbZdfWNketQGG9S5RNgRInMuyg1rtdQaeWGvGGZaWZbg48kJtCUol1tokF1LpDHjehENbsN1SJ8KPULqu4kRKG+RPTFzpWc+VygOqlaGo8baDbLbZfq0dTNEti/CNJGAP0hbx79BfJ2pfVpsQVrCY6J6mkqnGnosweinQwYnCH5wGcekZ89BCzkl8ZxzUI8cfAbubbs8hLefOEaqKyaKO1kOPbd+fs4kKFNqAmdB0MU86DuTommmR0ZPkTvWaa+c0b2YYtcoemCj7dVazRU6AQYCAG3Byhyx5fNwl/brPOEzWNdAIhwWdXbYLDlrb5bYxHYFKn08OeOqDQU/k4qOR9wJd0itrdeUU8g8c/7WCrnHWB/eCpZ+DbedfsRddGPPeTMFJCD3nntGEvrCbFJKZD1d1URZ95KqY9tbiPvnidSF7vAvail2t+T6xyJMaWu5u6yN6OS0o6hTxncvNvkvgwaDLeEAnb6kHvvUASU2rqBWtTW1uUfcLj+acIeu41qqUBRBJ1V34wlVnZ9ORNWcMyO0nAEp7ImtleSI6IkFGMEFBQTEwM0NBNTM3RUFFRDg3QzI0REQ1MzkwOUI4MEE3OEE5MjNFMzgyM0Q2OERBQ0M5NEI5RkY4MzA1REMifTv2bEojZ8Avv+Ib5c+vZx9vfWyuEEb694m4InmAr8YR+emAqk79XNhMaO5KO+H4e/A6t9lvgNywwGEnS0TzWoNUawCOORQRN3Ebx2MGkhRUnOXIQLucZqW5ibd/7Mw0i8D0q1JY3l5kUdSJHjfqw0+k8fVnPirdaawNsr3StEBZb/kBM39gh49a1xXOnMnenGenD4fcmVjGx0+PKZ3s5ItVm9bMfgbyjQQQmer+VPVu8mp9yoezaobFJFnRUn6THt+gUxny9A1Jl6NWGsrZZ4nt0k3/Wf2ixcWbBk9P3tg9X28FGAGpplS2jcP2Tt2NPClEIMbqh3mY3XWKMniXtRH992qBrAccJ2vN07zwu1U+lYrTr0wsI2oby2lyhZrHhCgeXWi+9aD74kZqzg6sXd4f4u4fbreXT/bxuPk="
+}
