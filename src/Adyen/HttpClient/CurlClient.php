@@ -9,6 +9,8 @@ class CurlClient implements ClientInterface
 
     const USER_AGENT = 'User-Agent: ';
     const CONTENT_TYPE = 'Content-Type: application/json';
+    const LIBRARY_NAME = "adyen-library-name: ";
+    const LIBRARY_VERSION = "adyen-library-version: ";
 
     // List of parameters that needs to be masked with the same array structure as it appears in
     // the response array
@@ -129,8 +131,8 @@ class CurlClient implements ClientInterface
             \Adyen\Client::USER_AGENT_SUFFIX . $client->getLibraryVersion();
 
         // Add application info in headers
-        $libraryName = "adyen-library-name: " . $client->getLibraryName();
-        $libraryVersion = "adyen-library-version: " . $client->getLibraryVersion();
+        $libraryName = self::LIBRARY_NAME . $client->getLibraryName();
+        $libraryVersion = self::LIBRARY_VERSION . $client->getLibraryVersion();
 
         // Set the content type to application/json and use the defined userAgent
         $headers = array(
@@ -398,8 +400,8 @@ class CurlClient implements ClientInterface
             \Adyen\Client::USER_AGENT_SUFFIX . $client->getLibraryVersion();
 
         // Add application info in headers
-        $libraryName = "adyen-library-name: " . $client->getLibraryName();
-        $libraryVersion = "adyen-library-version: " . $client->getLibraryVersion();
+        $libraryName = self::LIBRARY_NAME . $client->getLibraryName();
+        $libraryVersion = self::LIBRARY_VERSION . $client->getLibraryVersion();
 
         // Set the content type to application/json and use the defined userAgent
         $headers = array(
