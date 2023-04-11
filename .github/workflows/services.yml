@@ -17,7 +17,7 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
       - name: Run PHP Code Sniffer
-        run: vendor/bin/phpcbf
+        run: vendor/bin/phpcbf src/Adyen/Service/** src/Adyen/Model/** || true
       - name: Set PR variables
         id: vars
         run: |
