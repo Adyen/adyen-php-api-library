@@ -67,6 +67,7 @@ $(Services): target/spec $(openapi-generator-jar)
 	  	--inline-schema-name-mappings PaymentDonationRequest_paymentMethod=CheckoutPaymentMethod \
 		--model-package Model\\$@ \
 		--api-package Service\\$@ \
+		--inline-schema-name-mappings BankAccountInfo_accountIdentification=BankAccount \
 		--reserved-words-mappings configuration=configuration \
 		--skip-validate-spec \
 		--additional-properties invokerPackage=Adyen \
