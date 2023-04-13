@@ -1,0 +1,40 @@
+name: PHP Library Models and Services
+
+on: [ workflow_dispatch ]
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    name: Generate Models
+    steps:
+      - uses: actions/checkout@v3
+      - run: make all
+      - name: Setup PHP 
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+          tools: composer:v1
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+      - name: Run PHP Code Sniffer
+        run: vendor/bin/phpcbf src/Adyen/Service/** src/Adyen/Model/** || true
+      - name: Set PR variables
+        id: vars
+        run: |
+          cd target/spec
+          echo ::set-output name=pr_title::"Update models+services"
+          echo ::set-output name=pr_body::"OpenAPI spec or templates produced new models and services on $(date +%d-%m-%Y) \
+            by [commit](https://github.com/Adyen/adyen-openapi/commit/$(git rev-parse HEAD))."
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.ADYEN_AUTOMATION_BOT_ACCESS_TOKEN }}
+          committer: ${{ secrets.ADYEN_AUTOMATION_BOT_EMAIL }}
+          author: ${{ secrets.ADYEN_AUTOMATION_BOT_EMAIL }}
+          base: develop
+          branch: automation/services
+          title: ${{ steps.vars.outputs.pr_title }}
+          body: ${{ steps.vars.outputs.pr_body }}
+          add-paths: |
+            src/Adyen/Model
+            src/Adyen/Service
