@@ -4,7 +4,7 @@ openapi-generator-jar:=target/openapi-generator-cli.jar
 openapi-generator-cli:=java -jar $(openapi-generator-jar)
 
 generator:=php
-modelGen:=BalancePlatform Checkout StoredValue Payments Payout Management LegalEntityManagement Transfers BalanceControl BinLookup StoredValue POSTerminalManagement Recurring
+modelGen:=BalanceControl BalancePlatform Checkout StoredValue Payments Payout Management LegalEntityManagement Transfers BinLookup StoredValue POSTerminalManagement Recurring
 models:=src/Adyen/Model
 output:=target/out
 
