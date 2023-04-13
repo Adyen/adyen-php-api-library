@@ -117,6 +117,8 @@ $client->setUsername("YOUR USERNAME");
 $client->setPassword("YOUR PASSWORD");
 $client->setEnvironment(\Adyen\Environment::TEST);
 $client->setTimeout(30);
+
+...
 ~~~~
 ### Example integration
 
