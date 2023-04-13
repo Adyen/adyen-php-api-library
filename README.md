@@ -121,22 +121,22 @@ $client->setTimeout(30);
 ...
 ~~~~
 
-### Instantiating the request objects through an array (for easy migration)
+### Instantiating the request objects through the arrayAccess implementation (for easy migration)
 ~~~~ php
 ...
 
 $service = new \Adyen\Service\Checkout\PaymentsApi($client);
 
 $params = array(
-    'merchant_account' => "YourMerchantAccount",
+    'merchantAccount' => "YourMerchantAccount",
     'reference' => '12345',
     'amount' => array('currency' => "BRL", 'value' => 1250),
-    'country_code' => "BR",
-    'shopper_reference' => "YourUniqueShopperId",
-    'shopper_email' => "test@email.com",
-    'shopper_locale' => "pt_BR",
-    'billing_address' => array(...),
-    'delivery_address' => array(...),
+    'countryCode' => "BR",
+    'shopperReference' => "YourUniqueShopperId",
+    'shopperEmail' => "test@email.com",
+    'shopperLocale' => "pt_BR",
+    'billingAddress' => array(...),
+    'deliveryAddress' => array(...),
 );
 $createPaymentLinkRequest = new CreatePaymentLinkRequest($params);
 
@@ -144,7 +144,7 @@ $result = $service->paymentLinks($createPaymentLinkRequest);
 
 $paymentLink = $result->getUrl(); // or use $result['url'] if you want to use arrayAccess
 ~~~~
-Take in account that the array parameters are converted to snake case to prevent you from confusing it with the getter/setters.
+
 ### Example integration
 
 For a closer look at how our PHP library works, clone our [Laravel example integration](https://github.com/adyen-examples/adyen-php-online-payments). This includes commented code, highlighting key features and concepts, and examples of API calls that can be made using the library.
