@@ -58,7 +58,7 @@ class WebhookReceiver
     public function isAuthenticated($response, $merchantAccount, $webhookUsername, $webhookPassword)
     {
         $submittedMerchantAccount = $response['merchantAccountCode'];
-
+        $isValidRequest = true;
         $isTestWebhook = $this->isTestWebhook($response['pspReference']);
         if (empty($submittedMerchantAccount) || empty($merchantAccount)) {
             if ($isTestWebhook) {
@@ -66,29 +66,30 @@ class WebhookReceiver
                     'merchantAccountCode is empty in settings or in the webhook'
                 );
             }
-            return false;
+            $isValidRequest = false;
         }
         // validate username and password
         if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])) {
             if ($isTestWebhook) {
-                $message = 'Authentication failed: PHP_AUTH_USER or PHP_AUTH_PW are empty.';
-                throw new AuthenticationException($message);
+                throw new AuthenticationException(
+                    'Authentication failed: PHP_AUTH_USER or PHP_AUTH_PW are empty.'
+                );
             }
-            return false;
+            $isValidRequest = false;
         }
 
         $usernameIsValid = hash_equals($webhookUsername, $_SERVER['PHP_AUTH_USER']);
         $passwordIsValid = hash_equals($webhookPassword, $_SERVER['PHP_AUTH_PW']);
-        if ($usernameIsValid && $passwordIsValid) {
-            return true;
+        if (!$usernameIsValid || !$passwordIsValid) {
+            if ($isTestWebhook) {
+                throw new AuthenticationException(
+                    'username and\or password are not the same as in settings'
+                );
+            }
+            $isValidRequest = false;
         }
 
-        // If webhook is test check if fields are correct if not return error
-        if ($isTestWebhook) {
-            $message = 'username and\or password are not the same as in settings';
-            throw new AuthenticationException($message);
-        }
-        return false;
+        return  $isValidRequest;
     }
 
     /**
