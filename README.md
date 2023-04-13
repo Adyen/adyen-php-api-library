@@ -66,6 +66,7 @@ Alternatively, you can download the [release on GitHub](https://github.com/Adyen
 Set up the client as a singleton resource; you'll use it for the API calls that you make to Adyen:
 
 ~~~~ php
+
 $client = new \Adyen\Client();
 
 $client->setXApiKey("YOUR API KEY");
@@ -109,6 +110,14 @@ $client->setTimeout(30);
 ...
 ~~~~
 
+### General use with basic auth
+~~~~ php
+$client = new \Adyen\Client();
+$client->setUsername("YOUR USERNAME");
+$client->setPassword("YOUR PASSWORD");
+$client->setEnvironment(\Adyen\Environment::TEST);
+$client->setTimeout(30);
+~~~~
 ### Example integration
 
 For a closer look at how our PHP library works, clone our [Laravel example integration](https://github.com/adyen-examples/adyen-php-online-payments). This includes commented code, highlighting key features and concepts, and examples of API calls that can be made using the library.
