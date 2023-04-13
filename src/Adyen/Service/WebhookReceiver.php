@@ -1,25 +1,4 @@
 <?php
-/**
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen API Library for PHP
- *
- * Copyright (c) 2020 Adyen N.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- *
- */
 
 namespace Adyen\Service;
 
@@ -29,7 +8,7 @@ use Adyen\Exception\HMACKeyValidationException;
 use Adyen\Exception\MerchantAccountCodeException;
 use Adyen\Util\HmacSignature;
 
-class NotificationReceiver
+class WebhookReceiver
 {
     /**
      * @var HmacSignature
@@ -37,7 +16,7 @@ class NotificationReceiver
     private $hmacSignature;
 
     /**
-     * NotificationReceiver constructor.
+     * WebhookReceiver constructor.
      * @param HmacSignature $hmacSignature
      */
     public function __construct(
@@ -56,9 +35,9 @@ class NotificationReceiver
      */
     public function validateHmac($response, $hmacKey)
     {
-        $isTestNotification = $this->isTestNotification($response['pspReference']);
-        if (!$this->hmacSignature->isValidNotificationHMAC($hmacKey, $response)) {
-            if ($isTestNotification) {
+        $isTestWebhook = $this->isTestWebhook($response['pspReference']);
+        if (!$this->hmacSignature->isValidWebhookHMAC($hmacKey, $response)) {
+            if ($isTestWebhook) {
                 $message = 'HMAC key validation failed';
                 throw new HMACKeyValidationException($message);
             }
@@ -70,42 +49,42 @@ class NotificationReceiver
     /**
      * @param $response
      * @param $merchantAccount
-     * @param $notificationUsername
-     * @param $notificationPassword
+     * @param $webhookUsername
+     * @param $webhookPassword
      * @return bool
      * @throws AuthenticationException
      * @throws MerchantAccountCodeException
      */
-    public function isAuthenticated($response, $merchantAccount, $notificationUsername, $notificationPassword)
+    public function isAuthenticated($response, $merchantAccount, $webhookUsername, $webhookPassword)
     {
         $submittedMerchantAccount = $response['merchantAccountCode'];
 
-        $isTestNotification = $this->isTestNotification($response['pspReference']);
+        $isTestWebhook = $this->isTestWebhook($response['pspReference']);
         if (empty($submittedMerchantAccount) || empty($merchantAccount)) {
-            if ($isTestNotification) {
+            if ($isTestWebhook) {
                 throw new MerchantAccountCodeException(
-                    'merchantAccountCode is empty in settings or in the notification'
+                    'merchantAccountCode is empty in settings or in the webhook'
                 );
             }
             return false;
         }
         // validate username and password
         if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])) {
-            if ($isTestNotification) {
+            if ($isTestWebhook) {
                 $message = 'Authentication failed: PHP_AUTH_USER or PHP_AUTH_PW are empty.';
                 throw new AuthenticationException($message);
             }
             return false;
         }
 
-        $usernameIsValid = hash_equals($notificationUsername, $_SERVER['PHP_AUTH_USER']);
-        $passwordIsValid = hash_equals($notificationPassword, $_SERVER['PHP_AUTH_PW']);
+        $usernameIsValid = hash_equals($webhookUsername, $_SERVER['PHP_AUTH_USER']);
+        $passwordIsValid = hash_equals($webhookPassword, $_SERVER['PHP_AUTH_PW']);
         if ($usernameIsValid && $passwordIsValid) {
             return true;
         }
 
-        // If notification is test check if fields are correct if not return error
-        if ($isTestNotification) {
+        // If webhook is test check if fields are correct if not return error
+        if ($isTestWebhook) {
             $message = 'username and\or password are not the same as in settings';
             throw new AuthenticationException($message);
         }
@@ -113,38 +92,38 @@ class NotificationReceiver
     }
 
     /**
-     * Checks if notification mode and the store mode configuration matches
+     * Checks if webhook mode and the store mode configuration matches
      *
-     * @param mixed $notificationMode
+     * @param mixed $webhookMode
      * @param bool $testMode
      * @return bool
      */
-    public function validateNotificationMode($notificationMode, $testMode)
+    public function validateWebhookMode($webhookMode, $testMode)
     {
-        // Notification mode can be a string or a boolean
-        return ($testMode && ($notificationMode === 'false' || $notificationMode === false))
-            || (!$testMode && ($notificationMode === 'true' || $notificationMode === true));
+        // Webhook mode can be a string or a boolean
+        return ($testMode && ($webhookMode === 'false' || $webhookMode === false))
+            || (!$testMode && ($webhookMode === 'true' || $webhookMode === true));
     }
 
     /**
-     * If notification is a test notification from Adyen Customer Area
+     * If webhook is a test webhook from Adyen Customer Area
      *
      * @param $pspReference
      * @return bool
      */
-    public function isTestNotification($pspReference)
+    public function isTestWebhook($pspReference)
     {
         return strpos(strtolower($pspReference), 'test_') !== false
-            || strpos(strtolower($pspReference), 'testnotification_') !== false;
+            || strpos(strtolower($pspReference), 'testwebhook_') !== false;
     }
 
     /**
-     * Check if notification is a report notification
+     * Check if webhook is a report webhook
      *
      * @param $eventCode
      * @return bool
      */
-    public function isReportNotification($eventCode)
+    public function isReportWebhook($eventCode)
     {
         return strpos($eventCode, 'REPORT_') !== false;
     }
