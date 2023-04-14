@@ -4,7 +4,7 @@ openapi-generator-jar:=target/openapi-generator-cli.jar
 openapi-generator-cli:=java -jar $(openapi-generator-jar)
 
 generator:=php
-modelGen:=BalancePlatform Checkout StoredValue Payments Payout Management LegalEntityManagement Transfers BalanceControl BinLookup StoredValue POSTerminalManagement Recurring
+modelGen:=BalanceControl BalancePlatform Checkout StoredValue Payments Payout Management LegalEntityManagement Transfers BinLookup StoredValue POSTerminalManagement Recurring
 models:=src/Adyen/Model
 output:=target/out
 
@@ -97,7 +97,6 @@ $(SingleFileServices): target/spec $(openapi-generator-jar)
 	mv $(output)/lib/Model/$@ $(models)/$@
 	mv $(output)/lib/ObjectSerializer.php $(models)/$@
 	mv $(output)/lib/Service/$@/GeneralApiSingle.php src/Adyen/Service/$@Api.php
-	vendor/bin/phpcbf $(models)/$@ src/Adyen/Service/$@Api.php || true
 
 # Checkout spec (and patch version)
 target/spec:
