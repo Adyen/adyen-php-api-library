@@ -44,9 +44,9 @@ class SubjectErasureByPspReferenceRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'force_erasure' => 'bool',
-        'merchant_account' => 'string',
-        'psp_reference' => 'string'
+        'forceErasure' => 'bool',
+        'merchantAccount' => 'string',
+        'pspReference' => 'string'
     ];
 
     /**
@@ -57,9 +57,9 @@ class SubjectErasureByPspReferenceRequest implements ModelInterface, ArrayAccess
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'force_erasure' => null,
-        'merchant_account' => null,
-        'psp_reference' => null
+        'forceErasure' => null,
+        'merchantAccount' => null,
+        'pspReference' => null
     ];
 
     /**
@@ -68,9 +68,9 @@ class SubjectErasureByPspReferenceRequest implements ModelInterface, ArrayAccess
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'force_erasure' => false,
-        'merchant_account' => false,
-        'psp_reference' => false
+        'forceErasure' => false,
+        'merchantAccount' => false,
+        'pspReference' => false
     ];
 
     /**
@@ -159,9 +159,9 @@ class SubjectErasureByPspReferenceRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'force_erasure' => 'forceErasure',
-        'merchant_account' => 'merchantAccount',
-        'psp_reference' => 'pspReference'
+        'forceErasure' => 'forceErasure',
+        'merchantAccount' => 'merchantAccount',
+        'pspReference' => 'pspReference'
     ];
 
     /**
@@ -170,9 +170,9 @@ class SubjectErasureByPspReferenceRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'force_erasure' => 'setForceErasure',
-        'merchant_account' => 'setMerchantAccount',
-        'psp_reference' => 'setPspReference'
+        'forceErasure' => 'setForceErasure',
+        'merchantAccount' => 'setMerchantAccount',
+        'pspReference' => 'setPspReference'
     ];
 
     /**
@@ -181,9 +181,9 @@ class SubjectErasureByPspReferenceRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'force_erasure' => 'getForceErasure',
-        'merchant_account' => 'getMerchantAccount',
-        'psp_reference' => 'getPspReference'
+        'forceErasure' => 'getForceErasure',
+        'merchantAccount' => 'getMerchantAccount',
+        'pspReference' => 'getPspReference'
     ];
 
     /**
@@ -243,9 +243,9 @@ class SubjectErasureByPspReferenceRequest implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('force_erasure', $data ?? [], null);
-        $this->setIfExists('merchant_account', $data ?? [], null);
-        $this->setIfExists('psp_reference', $data ?? [], null);
+        $this->setIfExists('forceErasure', $data ?? [], null);
+        $this->setIfExists('merchantAccount', $data ?? [], null);
+        $this->setIfExists('pspReference', $data ?? [], null);
     }
 
     /**
@@ -291,82 +291,82 @@ class SubjectErasureByPspReferenceRequest implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets force_erasure
+     * Gets forceErasure
      *
      * @return bool|null
      */
     public function getForceErasure()
     {
-        return $this->container['force_erasure'];
+        return $this->container['forceErasure'];
     }
 
     /**
-     * Sets force_erasure
+     * Sets forceErasure
      *
-     * @param bool|null $force_erasure Set this to **true** if you want to delete shopper-related data, even if the shopper has an existing recurring transaction. This only deletes the shopper-related data for the specific payment, but does not cancel the existing recurring transaction.
+     * @param bool|null $forceErasure Set this to **true** if you want to delete shopper-related data, even if the shopper has an existing recurring transaction. This only deletes the shopper-related data for the specific payment, but does not cancel the existing recurring transaction.
      *
      * @return self
      */
-    public function setForceErasure($force_erasure)
+    public function setForceErasure($forceErasure)
     {
-        if (is_null($force_erasure)) {
-            throw new \InvalidArgumentException('non-nullable force_erasure cannot be null');
+        if (is_null($forceErasure)) {
+            throw new \InvalidArgumentException('non-nullable forceErasure cannot be null');
         }
-        $this->container['force_erasure'] = $force_erasure;
+        $this->container['forceErasure'] = $forceErasure;
 
         return $this;
     }
 
     /**
-     * Gets merchant_account
+     * Gets merchantAccount
      *
      * @return string|null
      */
     public function getMerchantAccount()
     {
-        return $this->container['merchant_account'];
+        return $this->container['merchantAccount'];
     }
 
     /**
-     * Sets merchant_account
+     * Sets merchantAccount
      *
-     * @param string|null $merchant_account Your merchant account
+     * @param string|null $merchantAccount Your merchant account
      *
      * @return self
      */
-    public function setMerchantAccount($merchant_account)
+    public function setMerchantAccount($merchantAccount)
     {
-        if (is_null($merchant_account)) {
-            throw new \InvalidArgumentException('non-nullable merchant_account cannot be null');
+        if (is_null($merchantAccount)) {
+            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
         }
-        $this->container['merchant_account'] = $merchant_account;
+        $this->container['merchantAccount'] = $merchantAccount;
 
         return $this;
     }
 
     /**
-     * Gets psp_reference
+     * Gets pspReference
      *
      * @return string|null
      */
     public function getPspReference()
     {
-        return $this->container['psp_reference'];
+        return $this->container['pspReference'];
     }
 
     /**
-     * Sets psp_reference
+     * Sets pspReference
      *
-     * @param string|null $psp_reference The PSP reference of the payment. We will delete all shopper-related data for this payment.
+     * @param string|null $pspReference The PSP reference of the payment. We will delete all shopper-related data for this payment.
      *
      * @return self
      */
-    public function setPspReference($psp_reference)
+    public function setPspReference($pspReference)
     {
-        if (is_null($psp_reference)) {
-            throw new \InvalidArgumentException('non-nullable psp_reference cannot be null');
+        if (is_null($pspReference)) {
+            throw new \InvalidArgumentException('non-nullable pspReference cannot be null');
         }
-        $this->container['psp_reference'] = $psp_reference;
+        $this->container['pspReference'] = $pspReference;
 
         return $this;
     }

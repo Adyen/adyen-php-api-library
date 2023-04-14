@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * PaginatedPaymentInstrumentsResponse Class Doc Comment
+ * BalanceAccountBase Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\BalancePlatform\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class PaginatedPaymentInstrumentsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class BalanceAccountBase implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class PaginatedPaymentInstrumentsResponse implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PaginatedPaymentInstrumentsResponse';
+    protected static $openAPIModelName = 'BalanceAccountBase';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,9 +44,13 @@ class PaginatedPaymentInstrumentsResponse implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'hasNext' => 'bool',
-        'hasPrevious' => 'bool',
-        'paymentInstruments' => '\Adyen\Model\BalancePlatform\PaymentInstrument[]'
+        'accountHolderId' => 'string',
+        'defaultCurrencyCode' => 'string',
+        'description' => 'string',
+        'id' => 'string',
+        'reference' => 'string',
+        'status' => 'string',
+        'timeZone' => 'string'
     ];
 
     /**
@@ -57,9 +61,13 @@ class PaginatedPaymentInstrumentsResponse implements ModelInterface, ArrayAccess
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'hasNext' => null,
-        'hasPrevious' => null,
-        'paymentInstruments' => null
+        'accountHolderId' => null,
+        'defaultCurrencyCode' => null,
+        'description' => null,
+        'id' => null,
+        'reference' => null,
+        'status' => null,
+        'timeZone' => null
     ];
 
     /**
@@ -68,9 +76,13 @@ class PaginatedPaymentInstrumentsResponse implements ModelInterface, ArrayAccess
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'hasNext' => false,
-        'hasPrevious' => false,
-        'paymentInstruments' => false
+        'accountHolderId' => false,
+        'defaultCurrencyCode' => false,
+        'description' => false,
+        'id' => false,
+        'reference' => false,
+        'status' => false,
+        'timeZone' => false
     ];
 
     /**
@@ -159,9 +171,13 @@ class PaginatedPaymentInstrumentsResponse implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'hasNext' => 'hasNext',
-        'hasPrevious' => 'hasPrevious',
-        'paymentInstruments' => 'paymentInstruments'
+        'accountHolderId' => 'accountHolderId',
+        'defaultCurrencyCode' => 'defaultCurrencyCode',
+        'description' => 'description',
+        'id' => 'id',
+        'reference' => 'reference',
+        'status' => 'status',
+        'timeZone' => 'timeZone'
     ];
 
     /**
@@ -170,9 +186,13 @@ class PaginatedPaymentInstrumentsResponse implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'hasNext' => 'setHasNext',
-        'hasPrevious' => 'setHasPrevious',
-        'paymentInstruments' => 'setPaymentInstruments'
+        'accountHolderId' => 'setAccountHolderId',
+        'defaultCurrencyCode' => 'setDefaultCurrencyCode',
+        'description' => 'setDescription',
+        'id' => 'setId',
+        'reference' => 'setReference',
+        'status' => 'setStatus',
+        'timeZone' => 'setTimeZone'
     ];
 
     /**
@@ -181,9 +201,13 @@ class PaginatedPaymentInstrumentsResponse implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'hasNext' => 'getHasNext',
-        'hasPrevious' => 'getHasPrevious',
-        'paymentInstruments' => 'getPaymentInstruments'
+        'accountHolderId' => 'getAccountHolderId',
+        'defaultCurrencyCode' => 'getDefaultCurrencyCode',
+        'description' => 'getDescription',
+        'id' => 'getId',
+        'reference' => 'getReference',
+        'status' => 'getStatus',
+        'timeZone' => 'getTimeZone'
     ];
 
     /**
@@ -227,7 +251,25 @@ class PaginatedPaymentInstrumentsResponse implements ModelInterface, ArrayAccess
         return self::$openAPIModelName;
     }
 
+    public const STATUS_ACTIVE = 'active';
+    public const STATUS_CLOSED = 'closed';
+    public const STATUS_INACTIVE = 'inactive';
+    public const STATUS_SUSPENDED = 'suspended';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getStatusAllowableValues()
+    {
+        return [
+            self::STATUS_ACTIVE,
+            self::STATUS_CLOSED,
+            self::STATUS_INACTIVE,
+            self::STATUS_SUSPENDED,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -243,9 +285,13 @@ class PaginatedPaymentInstrumentsResponse implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('hasNext', $data ?? [], null);
-        $this->setIfExists('hasPrevious', $data ?? [], null);
-        $this->setIfExists('paymentInstruments', $data ?? [], null);
+        $this->setIfExists('accountHolderId', $data ?? [], null);
+        $this->setIfExists('defaultCurrencyCode', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('reference', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('timeZone', $data ?? [], null);
     }
 
     /**
@@ -275,15 +321,21 @@ class PaginatedPaymentInstrumentsResponse implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['hasNext'] === null) {
-            $invalidProperties[] = "'hasNext' can't be null";
+        if ($this->container['accountHolderId'] === null) {
+            $invalidProperties[] = "'accountHolderId' can't be null";
         }
-        if ($this->container['hasPrevious'] === null) {
-            $invalidProperties[] = "'hasPrevious' can't be null";
+        if ($this->container['id'] === null) {
+            $invalidProperties[] = "'id' can't be null";
         }
-        if ($this->container['paymentInstruments'] === null) {
-            $invalidProperties[] = "'paymentInstruments' can't be null";
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'status', must be one of '%s'",
+                $this->container['status'],
+                implode("', '", $allowedValues)
+            );
         }
+
         return $invalidProperties;
     }
 
@@ -300,82 +352,200 @@ class PaginatedPaymentInstrumentsResponse implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets hasNext
+     * Gets accountHolderId
      *
-     * @return bool
+     * @return string
      */
-    public function getHasNext()
+    public function getAccountHolderId()
     {
-        return $this->container['hasNext'];
+        return $this->container['accountHolderId'];
     }
 
     /**
-     * Sets hasNext
+     * Sets accountHolderId
      *
-     * @param bool $hasNext Indicates whether there are more items on the next page.
+     * @param string $accountHolderId The unique identifier of the [account holder](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/accountHolders__resParam_id) associated with the balance account.
      *
      * @return self
      */
-    public function setHasNext($hasNext)
+    public function setAccountHolderId($accountHolderId)
     {
-        if (is_null($hasNext)) {
-            throw new \InvalidArgumentException('non-nullable hasNext cannot be null');
+        if (is_null($accountHolderId)) {
+            throw new \InvalidArgumentException('non-nullable accountHolderId cannot be null');
         }
-        $this->container['hasNext'] = $hasNext;
+        $this->container['accountHolderId'] = $accountHolderId;
 
         return $this;
     }
 
     /**
-     * Gets hasPrevious
+     * Gets defaultCurrencyCode
      *
-     * @return bool
+     * @return string|null
      */
-    public function getHasPrevious()
+    public function getDefaultCurrencyCode()
     {
-        return $this->container['hasPrevious'];
+        return $this->container['defaultCurrencyCode'];
     }
 
     /**
-     * Sets hasPrevious
+     * Sets defaultCurrencyCode
      *
-     * @param bool $hasPrevious Indicates whether there are more items on the previous page.
+     * @param string|null $defaultCurrencyCode The default three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) of the balance account. The default value is **EUR**.
      *
      * @return self
      */
-    public function setHasPrevious($hasPrevious)
+    public function setDefaultCurrencyCode($defaultCurrencyCode)
     {
-        if (is_null($hasPrevious)) {
-            throw new \InvalidArgumentException('non-nullable hasPrevious cannot be null');
+        if (is_null($defaultCurrencyCode)) {
+            throw new \InvalidArgumentException('non-nullable defaultCurrencyCode cannot be null');
         }
-        $this->container['hasPrevious'] = $hasPrevious;
+        $this->container['defaultCurrencyCode'] = $defaultCurrencyCode;
 
         return $this;
     }
 
     /**
-     * Gets paymentInstruments
+     * Gets description
      *
-     * @return \Adyen\Model\BalancePlatform\PaymentInstrument[]
+     * @return string|null
      */
-    public function getPaymentInstruments()
+    public function getDescription()
     {
-        return $this->container['paymentInstruments'];
+        return $this->container['description'];
     }
 
     /**
-     * Sets paymentInstruments
+     * Sets description
      *
-     * @param \Adyen\Model\BalancePlatform\PaymentInstrument[] $paymentInstruments List of payment instruments associated with the balance account.
+     * @param string|null $description A human-readable description of the balance account, maximum 300 characters. You can use this parameter to distinguish between multiple balance accounts under an account holder.
      *
      * @return self
      */
-    public function setPaymentInstruments($paymentInstruments)
+    public function setDescription($description)
     {
-        if (is_null($paymentInstruments)) {
-            throw new \InvalidArgumentException('non-nullable paymentInstruments cannot be null');
+        if (is_null($description)) {
+            throw new \InvalidArgumentException('non-nullable description cannot be null');
         }
-        $this->container['paymentInstruments'] = $paymentInstruments;
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets id
+     *
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param string $id The unique identifier of the balance account.
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        }
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets reference
+     *
+     * @return string|null
+     */
+    public function getReference()
+    {
+        return $this->container['reference'];
+    }
+
+    /**
+     * Sets reference
+     *
+     * @param string|null $reference Your reference for the balance account, maximum 150 characters.
+     *
+     * @return self
+     */
+    public function setReference($reference)
+    {
+        if (is_null($reference)) {
+            throw new \InvalidArgumentException('non-nullable reference cannot be null');
+        }
+        $this->container['reference'] = $reference;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return string|null
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     *
+     * @param string|null $status The status of the balance account, set to **active** by default.
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        }
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!in_array($status, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    $status,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets timeZone
+     *
+     * @return string|null
+     */
+    public function getTimeZone()
+    {
+        return $this->container['timeZone'];
+    }
+
+    /**
+     * Sets timeZone
+     *
+     * @param string|null $timeZone The [time zone](https://www.iana.org/time-zones) of the balance account. For example, **Europe/Amsterdam**. Defaults to the time zone of the account holder if no time zone is set. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+     *
+     * @return self
+     */
+    public function setTimeZone($timeZone)
+    {
+        if (is_null($timeZone)) {
+            throw new \InvalidArgumentException('non-nullable timeZone cannot be null');
+        }
+        $this->container['timeZone'] = $timeZone;
 
         return $this;
     }
