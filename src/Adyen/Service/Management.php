@@ -51,7 +51,7 @@ class Management extends \Adyen\Service
 
     /**
      * Management constructor.
-     * 
+     *
      * @deprecated Please consider using the model based services instead (suffix -Api.php)
      * @param \Adyen\Client $client
      * @throws \Adyen\AdyenException
