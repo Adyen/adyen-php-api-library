@@ -44,6 +44,7 @@ $(modelGen): target/spec $(openapi-generator-jar)
 			--api-package Service\\$@ \
 			--reserved-words-mappings configuration=configuration \
 			--skip-validate-spec \
+			--additional-properties variableNamingConvention=camelCase \
 			--additional-properties invokerPackage=Adyen \
 			--additional-properties packageName=Adyen
 		rm -rf src/Adyen/Service/$@ src/Adyen/Model/$@
@@ -70,6 +71,7 @@ $(Services): target/spec $(openapi-generator-jar)
 		--inline-schema-name-mappings BankAccountInfo_accountIdentification=BankAccount \
 		--reserved-words-mappings configuration=configuration \
 		--skip-validate-spec \
+		--additional-properties variableNamingConvention=camelCase \
 		--additional-properties invokerPackage=Adyen \
 		--additional-properties packageName=Adyen
 	rm -rf src/Adyen/Service/$@ src/Adyen/Model/$@
@@ -90,6 +92,7 @@ $(SingleFileServices): target/spec $(openapi-generator-jar)
 		--inline-schema-name-mappings PaymentDonationRequest_paymentMethod=CheckoutPaymentMethod \
 		--reserved-words-mappings configuration=configuration \
 		--skip-validate-spec \
+		--additional-properties variableNamingConvention=camelCase \
 		--additional-properties customApi=$@ \
 		--additional-properties invokerPackage=Adyen \
 		--additional-properties packageName=Adyen
