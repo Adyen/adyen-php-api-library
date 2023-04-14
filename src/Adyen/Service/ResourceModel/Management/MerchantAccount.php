@@ -58,4 +58,16 @@ class MerchantAccount extends \Adyen\Service\AbstractResource
         $url = $this->managementEndpoint . "/merchants/" . $merchantId . "/paymentMethodSettings/" . $paymentMethodId . "/addApplePayDomains";
         return $this->requestHttp($url, 'post', $queryParams);
     }
+
+    /**
+     * @param $merchantId
+     * @param $paymentMethodId
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+    public function getApplePayDomains($merchantId, $paymentMethodId, array $queryParams = [])
+    {
+        $url = $this->managementEndpoint . "/merchants/" . $merchantId . "/paymentMethodSettings/" . $paymentMethodId . "/getApplePayDomains";
+        return $this->requestHttp($url, 'get', $queryParams);
+    }
 }
