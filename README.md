@@ -1,33 +1,31 @@
-# Adyen APIs Library for PHP
+# Adyen PHP API Library
 
 This is the officially supported PHP library for using Adyen's APIs.
 
 [![version](https://img.shields.io/badge/version-14.0.1-blue.svg)](https://docs.adyen.com/development-resources/libraries)
 
-## Integration
+## Supported API versions
 The library supports all APIs under the following services:
 
-* [Checkout API](https://docs.adyen.com/api-explorer/#/CheckoutService/v69/overview): Our latest integration for accepting online payments. Current supported version: **v69**
-* [Payments API](https://docs.adyen.com/api-explorer/#/Payment/v51/overview): Our classic integration for online payments. Current supported version: **v51**
-* [Recurring API](https://docs.adyen.com/api-explorer/#/Recurring/v49/overview): Endpoints for managing saved payment details. Current supported version: **v49**
-* [Payouts API](https://docs.adyen.com/api-explorer/#/Payout/v51/overview): Endpoints for sending funds to your customers. Current supported version: 
-**v51**
-* [Management API](https://docs.adyen.com/api-explorer/#/ManagementService/v1/overview): Configure and manage your Adyen company and merchant accounts, stores, and payment terminals. Current supported version: **v1**
-  * [My API credentials](https://docs.adyen.com/api-explorer/#/ManagementService/v1/get/me): Returns your API credential details based on the API Key you used in the request. 
-  * [Account - Merchant level](https://docs.adyen.com/api-explorer/#/ManagementService/v1/get/merchants): Returns the list of merchant accounts that your API credential has access to. The list is grouped into pages as defined by the query parameters. 
-  * [API key - Merchant level](https://docs.adyen.com/api-explorer/#/ManagementService/v1/post/merchants/{merchantId}/apiCredentials/{apiCredentialId}/generateApiKey): Returns a new API key for the API credential. You can use the new API key a few minutes after generating it. The old API key stops working 24 hours after generating a new one. 
-  * [Account - Company level](https://docs.adyen.com/api-explorer/#/ManagementService/v1/get/companies) Returns the list of company accounts that your API credential has access to. The list is grouped into pages as defined by the query parameters. 
-  * [Webhooks - Merchant level](https://docs.adyen.com/api-explorer/#/ManagementService/v1/post/merchants/{merchantId}/webhooks/{webhookId}/generateHmac) Returns an HMAC key for the webhook identified in the path. This key allows you to check the integrity and the origin of the notifications you receive.By creating an HMAC key, you start receiving HMAC-signed notifications from Adyen. Find out more about how to verify HMAC signatures.
-* [Platforms APIs](https://docs.adyen.com/platforms/api): Set of APIs when using Adyen for Platforms. 
-  * [Account API](https://docs.adyen.com/api-explorer/#/Account/v6/overview) Current supported version: **v6**
-  * [Fund API](https://docs.adyen.com/api-explorer/#/Fund/v6/overview) Current supported version: **v6**
-  * [Notification Configuration API](https://docs.adyen.com/api-explorer/#/NotificationConfigurationService/v6/overview) Current supported version: **v6**
-  * [Hosted Onboarding API](https://docs.adyen.com/api-explorer/#/Hop/v6/overview) Current supported version: **v6**
-* [Cloud-based Terminal API](https://docs.adyen.com/point-of-sale/terminal-api-reference): Our point-of-sale integration.
-* [Referrals API](https://docs.adyen.com/risk-management/automate-submitting-referrals/referrals-api-reference): Endpoints to [automate submitting referrals](https://docs.adyen.com/risk-management/automate-submitting-referrals) for Adyen risk rules.
-* [Refunds API](https://docs.adyen.com/api-explorer/#/CheckoutService/v68/post/payments/{paymentPspReference}/refunds): Refunds a payment that has been captured, and returns a unique reference for this request. Current supported version: **v68**
-* [Reversals API](https://docs.adyen.com/api-explorer/#/CheckoutService/v68/post/payments/{paymentPspReference}/reversals): Refunds a payment if it has already been captured, and cancels a payment if it has not yet been captured. Current supported version: **v68**
-* [Data Protection API](https://docs.adyen.com/development-resources/data-protection-api): Use our API to comply with GDPR's right to erasure mandate. Current supported version: **v1**
+| API                                                                                                        | Description                                                                                                                                                                                                                                                       | Service Name                                                        | Supported version                                                |
+|------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------|------------------------------------------------------------------|
+| [Checkout API](https://docs.adyen.com/api-explorer/#/CheckoutService/v70/overview)                         | Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  | [Checkout](src/Adyen/Service/Checkout)                                  | **v70**                                                          |
+| [Payments API](https://docs.adyen.com/api-explorer/#/Payment/v68/overview)                                 | A set of API endpoints that allow you to initiate, settle, and modify payments on the Adyen payments platform. You can use the API to accept card payments (including One-Click and 3D Secure), bank transfers, ewallets, and many other payment methods.| [Payments](src/Adyen/Service/Payments)                                  | **v68**                                                          |
+| [Recurring API](https://docs.adyen.com/api-explorer/#/Recurring/v68/overview)                              | The Recurring APIs allow you to manage and remove your tokens or saved payment details. Tokens should be created with validation during a payment request.                                                                                                        | [Recurring](src/Adyen/Service/RecurringApi.php)                      | **v68**                                                          |
+| [Payouts API](https://docs.adyen.com/api-explorer/#/Payout/v68/overview)                                   | A set of API endpoints that allow you to store payout details, confirm, or decline a payout.                                                                                                                                                                      | [Payout](src/Adyen/Service/Payout)                                    | **v68**                                                          |
+| [Adyen BinLookup API](https://docs.adyen.com/api-explorer/#/BinLookup/v54/overview)                        | Endpoints for retrieving information, such as cost estimates, and 3D Secure supported version based on a given BIN. Current supported version                                                                                                                     | [BinLookup](src/Adyen/Service/BinLookupApi.php)                      | **v54**                                                          |
+| [Stored Value API](https://docs.adyen.com/payment-methods/gift-cards/stored-value-api)                     | Manage both online and point-of-sale gift cards and other stored-value cards.                                                                                                                     | [StoredValue](src/Adyen/Service/StoredValueApi.php)                  | **v46**                                                          |
+| [Legal Entity Management API](https://docs.adyen.com/api-explorer/legalentity/3/overview)                  | The Legal Entity Management API enables you to manage legal entities that contain information required for verification                                                                                                                                           | [LegalEntityManagement](src/Adyen/Service/LegalEntityManagement)        | **v3**                                                           |
+| [Transfers API](https://docs.adyen.com/api-explorer/transfers/3/overview)                                  | The Transfers API provides endpoints that you can use to get information about all your transactions, move funds within your balance platform or send funds from your balance platform to a transfer instrument.                                                  | [Transfers](src/Adyen/Service/Transfers)                                | **v3**                                                           |
+| [Balance Control API](https://docs.adyen.com/api-explorer/BalanceControl/1/overview)                       | The Balance Control API lets you transfer funds between merchant accounts that belong to the same legal entity and are under the same company account.                                                  | [BalanceControl](src/Adyen/Service/BalanceControlApi.php)            | **v1**                                                           |
+| [Data Protection API](https://docs.adyen.com/development-resources/data-protection-api)                               | Our Data Protection API allows you to process Subject Erasure Requests as mandated in General Data Protection Regulation (GDPR).                                                                                                                                                                                                                                         | [DataProtection](src/Adyen/Service/DataProtectionApi.php)            | **v1**                                                           |
+| [Hosted Onboarding API](https://docs.adyen.com/api-explorer/#/Hop/v1/overview)                             | The Hosted onboarding API provides endpoints that you can use to generate links to Adyen-hosted pages, such as an onboarding page or a PCI compliance questionnaire. You can provide these links to your account holders so that they can complete their onboarding.                                                                                                                                                                                                                                         | [HostedOnboardingPages](src/Adyen/Service/Hop.php)     | **v1**                                                           |
+| [Account API](https://docs.adyen.com/api-explorer/#/Account/v5/overview)                                   | The Account API provides endpoints for managing account-related entities on your platform. These related entities include account holders, accounts, bank accounts, shareholders, and verification-related documents. The management operations include actions such as creation, retrieval, updating, and deletion of them.                                                                                                                                                                                                                                         | [Account](src/Adyen/Service/Account.php)                                 | **v5**                                                           |
+| [Fund API](https://docs.adyen.com/api-explorer/#/Fund/v5/overview)                                         | The Fund API provides endpoints for managing the funds in the accounts on your platform. These management operations include, for example, the transfer of funds from one account to another, the payout of funds to an account holder, and the retrieval of balances in an account.                                                                                                                                                                                                                                         | [Fund](src/Adyen/Service/Fund.php)                                       | **v5**                                                           |
+| [Terminal API (Cloud communications)](https://docs.adyen.com/point-of-sale/choose-your-architecture/cloud) | Our point-of-sale integration.                                                                                                                                                                                                                                    | [Cloud-based Terminal API](src/Adyen/Service/PosPayment.php)     | Cloud-based Terminal API |      |
+| [Terminal API (Local communications)](https://docs.adyen.com/point-of-sale/choose-your-architecture/local) | Our point-of-sale integration.                                                                                                                                                                                                                                    | [Local-based Terminal API](src/Adyen/Service/PosPayment.php)     | Local-based Terminal API |      |
+| [POS Terminal Management API](https://docs.adyen.com/api-explorer/#/postfmapi/v1/overview)                 | This API provides endpoints for managing your point-of-sale (POS) payment terminals. You can use the API to obtain information about a specific terminal, retrieve overviews of your terminals and stores, and assign terminals to a merchant account or store.                                                                                                                                                                                                       | [POSTerminalManagement](src/Adyen/Service/POSTerminalManagementApi.php) | **v1**                                                           |
+
 
 For more information, refer to our [documentation](https://docs.adyen.com/) or the [API Explorer](https://docs.adyen.com/api-explorer/).
 
@@ -68,34 +66,38 @@ Alternatively, you can download the [release on GitHub](https://github.com/Adyen
 Set up the client as a singleton resource; you'll use it for the API calls that you make to Adyen:
 
 ~~~~ php
+
 $client = new \Adyen\Client();
 
 $client->setXApiKey("YOUR API KEY");
 $client->setEnvironment(\Adyen\Environment::TEST);
 $client->setTimeout(30);
 
-$service = new \Adyen\Service\Checkout($client);
+$service = new \Adyen\Service\Checkout\PaymentsApi($client);
 
-$json = '{
-      "paymentMethod": {
-        "type": "scheme",
-        "encryptedCardNumber": "test_4111111111111111",
-        "encryptedExpiryMonth": "test_03",
-        "encryptedExpiryYear": "test_2030",
-        "encryptedSecurityCode": "test_737"
-      },
-      "amount": {
-        "value": 1500,
-        "currency": "EUR"
-      },
-      "reference": "payment-test",
-      "returnUrl": "https://your-company.com/...",
-      "merchantAccount": "YOUR MERCHANT ACCOUNT"
-}';
+// Create PaymentMethod object
+$paymentMethod = new CheckoutPaymentMethod();
+$paymentMethod
+    ->setType("scheme")
+    ->setEncryptedBankAccountNumber("test_4111111111111111")
+    ->setEncryptedExpiryMonth("test_03")
+    ->setEncryptedExpiryYear("test_2030")
+    ->setEncryptedSecurityCode("test_737");
+// Creating Amount Object
+$amount = new Amount();
+$amount
+    ->setValue(1500)
+    ->setCurrency("EUR");
+// Create the actual Payments Request
+$paymentRequest = new PaymentRequest();
+$paymentRequest
+    ->setMerchantAccount("YOUR MERCHANT ACCOUNT")
+    ->setPaymentMethod($paymentMethod)
+    ->setAmount($amount)
+    ->setReference("payment-test")
+    ->setReturnUrl("https://your-company.com/...");
 
-$params = json_decode($json, true);
-
-$result = $service->payments($params);
+$result = $service->payments($paymentRequest);
 ~~~~
 
 ### General use with API key for live environment
@@ -116,28 +118,31 @@ $client->setPassword("YOUR PASSWORD");
 $client->setEnvironment(\Adyen\Environment::TEST);
 $client->setTimeout(30);
 
-$service = new \Adyen\Service\Payment($client);
+...
+~~~~
 
-$json = '{
-      "paymentMethod": {
-        "type": "scheme",
-        "encryptedCardNumber": "test_4111111111111111",
-        "encryptedExpiryMonth": "test_03",
-        "encryptedExpiryYear": "test_2030",
-        "encryptedSecurityCode": "test_737"
-      },
-      "amount": {
-        "value": 1500,
-        "currency": "EUR"
-      },
-      "reference": "payment-test",
-      "returnUrl": "https://your-company.com/...",
-      "merchantAccount": "YOUR MERCHANT ACCOUNT"
-}';
+### Instantiating the request objects through the arrayAccess implementation (for easy migration)
+~~~~ php
+...
 
-$params = json_decode($json, true);
+$service = new \Adyen\Service\Checkout\PaymentsApi($client);
 
-$result = $service->authorise($params);
+$params = array(
+    'merchantAccount' => "YourMerchantAccount",
+    'reference' => '12345',
+    'amount' => array('currency' => "BRL", 'value' => 1250),
+    'countryCode' => "BR",
+    'shopperReference' => "YourUniqueShopperId",
+    'shopperEmail' => "test@email.com",
+    'shopperLocale' => "pt_BR",
+    'billingAddress' => array(...),
+    'deliveryAddress' => array(...),
+);
+$createPaymentLinkRequest = new CreatePaymentLinkRequest($params);
+
+$result = $service->paymentLinks($createPaymentLinkRequest);
+
+$paymentLink = $result->getUrl(); // or use $result['url'] if you want to use arrayAccess
 ~~~~
 
 ### Example integration
