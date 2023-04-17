@@ -1,3 +1,5 @@
+![php](https://user-images.githubusercontent.com/93914435/232437001-0f773227-f5ad-4495-9e5b-cad819a04fff.png)
+
 # Adyen PHP API Library
 
 This is the officially supported PHP library for using Adyen's APIs.
