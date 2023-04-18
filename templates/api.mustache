@@ -11,11 +11,6 @@ use {{modelPackage}}\ObjectSerializer;
 class {{classname}} extends Service
 {
     /**
-     * @var array|string|string[]
-     */
-    private $baseURL;
-
-    /**
      * {{classname}} constructor.
      *
      * @param \Adyen\Client $client
@@ -24,9 +19,7 @@ class {{classname}} extends Service
     public function __construct(Client $client)
     {
         parent::__construct($client);
-
-        // Create the baseUrl based on live/test and optional live-url-prefix
-        $this->baseURL = $this->createBaseUrl("{{{basePath}}}");
+        $this->baseURL = $client->getConfig()->get('endpointCheckout') . "/" . $client->getApiCheckoutVersion();
     }
 {{#operation}}
 
@@ -39,19 +32,14 @@ class {{classname}} extends Service
     * Description: {{.}}
     *
     {{/description}}
-    {{#pathParams}}
-    * @param {{{dataType}}} ${{#lambda.camelcase}}{{paramName}}{{/lambda.camelcase}}
-    {{/pathParams}}
-    {{#bodyParams}}
-    * @param {{{dataType}}} ${{#lambda.camelcase}}{{paramName}}{{/lambda.camelcase}}
-    {{/bodyParams}}
-    * @param array|null $requestOptions{{#hasQueryParams}} ['queryParams' => [{{#queryParams}}'{{#lambda.camelcase}}{{paramName}}{{/lambda.camelcase}}'=> {{{dataType}}}{{^-last}}, {{/-last}}{{/queryParams}}]]{{/hasQueryParams}}
+    {{#allParams}}* @param {{{dataType}}} ${{#lambda.camelcase}}{{paramName}}{{/lambda.camelcase}}
+    {{/allParams}}* @param array $requestOptions
     {{#returnType}}* @return {{returnType}}{{/returnType}}
     * @throws AdyenException
     */
     public function {{#lambda.camelcase}}{{vendorExtensions.x-methodName}}{{/lambda.camelcase}}({{>api_parameters}}){{#returnType}}: {{{.}}}{{/returnType}}
     {
-        $endpoint = $this->baseURL . {{#hasPathParams}}str_replace([{{#pathParams}}'{{>left_bracket}}{{baseName}}{{>right_bracket}}'{{^-last}}, {{/-last}}{{/pathParams}}], [{{#pathParams}}${{baseName}}{{^-last}}, {{/-last}}{{/pathParams}}], {{/hasPathParams}}"{{{path}}}"{{#hasPathParams}}){{/hasPathParams}};
+        $endpoint = $this->baseURL . {{#hasPathParams}}str_replace({{/hasPathParams}}{{#pathParams}}['{{>left_bracket}}{{baseName}}{{>right_bracket}}'{{#last}}, {{/last}}], [${{baseName}}{{#last}}, {{/last}}], {{/pathParams}}"{{{path}}}"{{#hasPathParams}}){{/hasPathParams}};
         {{#returnType}}$response = {{/returnType}}$this->requestHttp($endpoint, strtolower('{{httpMethod}}'), {{#bodyParam}}(array) ${{#lambda.camelcase}}{{paramName}}{{/lambda.camelcase}}->jsonSerialize(){{/bodyParam}}{{^bodyParam}}null{{/bodyParam}}, $requestOptions);
         {{#returnType}}return ObjectSerializer::deserialize($response, {{returnType}}::class);{{/returnType}}
     }

@@ -1,4 +1,0 @@
-{
-  "resultCode": "RedirectShopper",
-  "action": {"type":"redirect","method":"GET","paymentMethodType":"ideal","url":"url"}
-}
