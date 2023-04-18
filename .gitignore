@@ -19,3 +19,6 @@ composer.lock
 /build/
 .php_cs.cache
 .phpunit.result.cache
+
+# Automation
+/target/

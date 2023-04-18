@@ -10,7 +10,7 @@ use Monolog\Handler\StreamHandler;
 
 class Client
 {
-    const LIB_VERSION = "14.0.1";
+    const LIB_VERSION = "15.0.0-beta";
     const LIB_NAME = "adyen-php-api-library";
     const USER_AGENT_SUFFIX = "adyen-php-api-library/";
     const ENDPOINT_TEST = "https://pal-test.adyen.com";
@@ -175,6 +175,7 @@ class Client
             $this->config->set('endpointManagementApi', self::MANAGEMENT_API_LIVE);
 
             if ($liveEndpointUrlPrefix) {
+                $this->config->set('prefix', $liveEndpointUrlPrefix);
                 $this->config->set(
                     'endpoint',
                     self::ENDPOINT_PROTOCOL . $liveEndpointUrlPrefix . self::ENDPOINT_LIVE_SUFFIX
