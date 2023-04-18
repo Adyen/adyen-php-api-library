@@ -192,7 +192,6 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
         return self::$openAPIModelName;
     }
 
-    {{^oneOf}}
     {{#vars}}
     {{#isEnum}}
     {{#allowableValues}}
@@ -217,9 +216,9 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
             {{/-last}}{{/enumVars}}{{/allowableValues}}
         ];
     }
+
     {{/isEnum}}
     {{/vars}}
-    {{/oneOf}}
     {{^parentSchema}}
     /**
      * Associative array for storing property values
@@ -291,7 +290,6 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
         {{/required}}
         {{#isEnum}}
         {{^isContainer}}
-        {{^oneOf}}
         $allowedValues = $this->{{getter}}AllowableValues();
         if (!is_null($this->container['{{name}}']) && !in_array($this->container['{{name}}'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -300,7 +298,6 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
                 implode("', '", $allowedValues)
             );
         }
-        {{/oneOf}}
 
         {{/isContainer}}
         {{/isEnum}}
@@ -370,7 +367,6 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
         }
         {{/isInteger}}
         {{/isNullable}}
-        {{^oneOf}}
         {{#isEnum}}
         $allowedValues = $this->{{getter}}AllowableValues();
         {{^isContainer}}
@@ -395,7 +391,6 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
         }
         {{/isContainer}}
         {{/isEnum}}
-        {{/oneOf}}
         $this->container['{{name}}'] = ${{name}};
 
         return $this;

@@ -1,9 +1,0 @@
-{
-  "amount": {
-    "currency": "BRL",
-    "value": 1250
-  },
-  "expiresAt": "2020-06-30T08:23:18Z",
-  "reference": "YOUR_ORDER_NUMBER",
-  "url": "https://checkoutshopper-test.adyen.com/checkoutshopper/payByLink.shtml?d=PL0A6D6846DB347E59"
-}

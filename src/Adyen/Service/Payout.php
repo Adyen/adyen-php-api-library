@@ -65,7 +65,6 @@ class Payout extends Service
     /**
      * Payout constructor.
      *
-     * @deprecated Please consider using the model based services instead (suffix -Api.php)
      * @param Client $client
      * @throws AdyenException
      */

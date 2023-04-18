@@ -101,7 +101,6 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
     /**
      * Checkout constructor.
      *
-     * @deprecated Please consider using the model based services instead (suffix -Api.php)
      * @param \Adyen\Client $client
      * @throws \Adyen\AdyenException
      */
