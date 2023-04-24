@@ -10,7 +10,7 @@ use Monolog\Handler\StreamHandler;
 
 class Client
 {
-    const LIB_VERSION = "14.0.0";
+    const LIB_VERSION = "15.0.0-beta";
     const LIB_NAME = "adyen-php-api-library";
     const USER_AGENT_SUFFIX = "adyen-php-api-library/";
     const ENDPOINT_TEST = "https://pal-test.adyen.com";
@@ -33,7 +33,7 @@ class Client
     const ENDPOINT_TERMINAL_CLOUD_LIVE = "https://terminal-api-live.adyen.com";
     const ENDPOINT_TERMINAL_CLOUD_US_LIVE = "https://terminal-api-live-us.adyen.com";
     const ENDPOINT_TERMINAL_CLOUD_AU_LIVE = "https://terminal-api-live-au.adyen.com";
-    const ENDPOINT_CHECKOUT_TEST = "https://checkout-test.adyen.com/checkout";
+    const ENDPOINT_CHECKOUT_TEST = "https://checkout-test.adyen.com";
     const ENDPOINT_CHECKOUT_LIVE_SUFFIX = "-checkout-live.adyenpayments.com/checkout";
     const ENDPOINT_PROTOCOL = "https://";
     const ENDPOINT_NOTIFICATION_TEST = "https://cal-test.adyen.com/cal/services/Notification";
@@ -48,8 +48,8 @@ class Client
     const ENDPOINT_CUSTOMER_AREA_LIVE = "https://ca-live.adyen.com";
     const ENDPOINT_HOP_TEST = "https://cal-test.adyen.com/cal/services/Hop";
     const ENDPOINT_HOP_LIVE = "https://cal-live.adyen.com/cal/services/Hop";
-    const MANAGEMENT_API_TEST = "https://management-test.adyen.com/";
-    const MANAGEMENT_API_LIVE = "https://management-live.adyen.com/";
+    const MANAGEMENT_API_TEST = "https://management-test.adyen.com";
+    const MANAGEMENT_API_LIVE = "https://management-live.adyen.com";
     const MANAGEMENT_API = "v1";
 
     /**
@@ -175,6 +175,7 @@ class Client
             $this->config->set('endpointManagementApi', self::MANAGEMENT_API_LIVE);
 
             if ($liveEndpointUrlPrefix) {
+                $this->config->set('prefix', $liveEndpointUrlPrefix);
                 $this->config->set(
                     'endpoint',
                     self::ENDPOINT_PROTOCOL . $liveEndpointUrlPrefix . self::ENDPOINT_LIVE_SUFFIX

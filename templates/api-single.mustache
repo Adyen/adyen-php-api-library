@@ -1,0 +1,59 @@
+<?php
+{{>partial_header}}
+namespace Adyen\Service;
+
+use Adyen\AdyenException;
+use Adyen\Client;
+use Adyen\Service;
+use {{modelPackage}}\ObjectSerializer;
+
+{{#operations}}
+class {{customApi}}Api extends Service
+{
+    /**
+     * @var array|string|string[]
+     */
+    private $baseURL;
+
+    /**
+     * {{packageName}}Service constructor.
+     *
+     * @param \Adyen\Client $client
+     * @throws AdyenException
+     */
+    public function __construct(Client $client)
+    {
+        parent::__construct($client);
+        // Create the baseUrl based on live/test and optional live-url-prefix
+        $this->baseURL = $this->createBaseUrl("{{{basePath}}}");
+    }
+{{#operation}}
+
+    /**
+    {{#summary}}
+    * {{.}}
+    {{/summary}}
+    *
+    {{#description}}
+    * Description: {{.}}
+    *
+    {{/description}}
+    {{#pathParams}}
+    * @param {{{dataType}}} ${{#lambda.camelcase}}{{paramName}}{{/lambda.camelcase}}
+    {{/pathParams}}
+    {{#bodyParams}}
+    * @param {{{dataType}}} ${{#lambda.camelcase}}{{paramName}}{{/lambda.camelcase}}
+    {{/bodyParams}}
+    * @param array|null $requestOptions{{#hasQueryParams}} ['queryParams' => [{{#queryParams}}'{{#lambda.camelcase}}{{paramName}}{{/lambda.camelcase}}'=> {{{dataType}}}{{^-last}}, {{/-last}}{{/queryParams}}]]{{/hasQueryParams}}
+    {{#returnType}}* @return {{returnType}}{{/returnType}}
+    * @throws AdyenException
+    */
+    public function {{#lambda.camelcase}}{{vendorExtensions.x-methodName}}{{/lambda.camelcase}}({{>api_parameters}}){{#returnType}}: {{{.}}}{{/returnType}}
+    {
+        $endpoint = $this->baseURL . {{#hasPathParams}}str_replace([{{#pathParams}}'{{>left_bracket}}{{baseName}}{{>right_bracket}}'{{^-last}}, {{/-last}}{{/pathParams}}], [{{#pathParams}}${{baseName}}{{^-last}}, {{/-last}}{{/pathParams}}], {{/hasPathParams}}"{{{path}}}"{{#hasPathParams}}){{/hasPathParams}};
+        {{#returnType}}$response = {{/returnType}}$this->requestHttp($endpoint, strtolower('{{httpMethod}}'), {{#bodyParam}}(array) ${{#lambda.camelcase}}{{paramName}}{{/lambda.camelcase}}->jsonSerialize(){{/bodyParam}}{{^bodyParam}}null{{/bodyParam}}, $requestOptions);
+        {{#returnType}}return ObjectSerializer::deserialize($response, {{returnType}}::class);{{/returnType}}
+    }
+{{/operation}}
+}
+{{/operations}}

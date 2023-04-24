@@ -1,0 +1,20 @@
+{
+	"resultCode": "RedirectShopper",
+	"details": [{
+		"key": "MD",
+		"type": "text"
+	}, {
+		"key": "PaRes",
+		"type": "text"
+	}],
+	"paymentData": "Ab02b4c0!BQABAgBnicwOBkouhPP08Qjg5E5clc0bGyemR...",
+	"redirect": {
+		"data": {
+			"PaReq": "eNpVUttygjAU\/BXbDyAXQZE5ZoZKZ+oD1lp97jDhjNKR...",
+			"TermUrl": "https:\/\/your-company.com\/...",
+			"MD": "djIhd29JYnByWUlsYkRuWndGakdkd0F5dz09IWSjFITvzeJZYp37u..."
+		},
+		"method": "POST",
+		"url": "https:\/\/test.adyen.com\/hpp\/3d\/validate.shtml"
+	}
+}

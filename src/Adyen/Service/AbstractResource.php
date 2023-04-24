@@ -57,10 +57,8 @@ abstract class AbstractResource
         $this->allowApplicationInfoPOS = $allowApplicationInfoPOS;
         $this->checkoutEndpoint = $service->getClient()->getConfig()->get('endpointCheckout') . '/'
             . $service->getClient()->getApiCheckoutVersion();
-        $this->managementEndpoint = $service->getClient()->getConfig()->get('endpointManagementApi')
+        $this->managementEndpoint = $service->getClient()->getConfig()->get('endpointManagementApi') . '/'
             . $service->getClient()->getManagementApiVersion();
-        $this->checkoutEndpoint = $service->getClient()->getConfig()->get('endpointCheckout')
-            . $service->getClient()->getApiCheckoutVersion();
     }
 
     /**
@@ -267,6 +265,11 @@ abstract class AbstractResource
             $this->service->getClient()->getLogger()->error($msg);
             throw new AdyenException($msg);
         }
+        // build query param in url for get/delete
+        if (in_array($method, ['get', 'delete'])  && !empty($params)) {
+            $url .= '?' . http_build_query($params);
+        }
+
         $curlClient = $this->service->getClient()->getHttpClient();
         return $curlClient->requestHttp($this->service, $url, $params, $method);
     }
