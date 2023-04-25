@@ -51,6 +51,7 @@ class ManualCapture
         'laser',
         'paypal',
         'sepadirectdebit',
+        'ach',
         'dankort',
         'elo',
         'hipercard',
