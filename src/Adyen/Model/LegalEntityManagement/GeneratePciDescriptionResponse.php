@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\LegalEntityManagement\ObjectSerializer;
 
 /**
- * CalculateTermsOfServiceStatusResponse Class Doc Comment
+ * GeneratePciDescriptionResponse Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\LegalEntityManagement\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class CalculateTermsOfServiceStatusResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class GeneratePciDescriptionResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class CalculateTermsOfServiceStatusResponse implements ModelInterface, ArrayAcce
       *
       * @var string
       */
-    protected static $openAPIModelName = 'CalculateTermsOfServiceStatusResponse';
+    protected static $openAPIModelName = 'GeneratePciDescriptionResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,7 +44,9 @@ class CalculateTermsOfServiceStatusResponse implements ModelInterface, ArrayAcce
       * @var string[]
       */
     protected static $openAPITypes = [
-        'termsOfServiceTypes' => 'string[]'
+        'content' => 'string',
+        'language' => 'string',
+        'pciTemplateReferences' => 'string[]'
     ];
 
     /**
@@ -55,7 +57,9 @@ class CalculateTermsOfServiceStatusResponse implements ModelInterface, ArrayAcce
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'termsOfServiceTypes' => null
+        'content' => 'byte',
+        'language' => null,
+        'pciTemplateReferences' => null
     ];
 
     /**
@@ -64,7 +68,9 @@ class CalculateTermsOfServiceStatusResponse implements ModelInterface, ArrayAcce
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'termsOfServiceTypes' => false
+        'content' => false,
+        'language' => false,
+        'pciTemplateReferences' => false
     ];
 
     /**
@@ -153,7 +159,9 @@ class CalculateTermsOfServiceStatusResponse implements ModelInterface, ArrayAcce
      * @var string[]
      */
     protected static $attributeMap = [
-        'termsOfServiceTypes' => 'termsOfServiceTypes'
+        'content' => 'content',
+        'language' => 'language',
+        'pciTemplateReferences' => 'pciTemplateReferences'
     ];
 
     /**
@@ -162,7 +170,9 @@ class CalculateTermsOfServiceStatusResponse implements ModelInterface, ArrayAcce
      * @var string[]
      */
     protected static $setters = [
-        'termsOfServiceTypes' => 'setTermsOfServiceTypes'
+        'content' => 'setContent',
+        'language' => 'setLanguage',
+        'pciTemplateReferences' => 'setPciTemplateReferences'
     ];
 
     /**
@@ -171,7 +181,9 @@ class CalculateTermsOfServiceStatusResponse implements ModelInterface, ArrayAcce
      * @var string[]
      */
     protected static $getters = [
-        'termsOfServiceTypes' => 'getTermsOfServiceTypes'
+        'content' => 'getContent',
+        'language' => 'getLanguage',
+        'pciTemplateReferences' => 'getPciTemplateReferences'
     ];
 
     /**
@@ -215,31 +227,7 @@ class CalculateTermsOfServiceStatusResponse implements ModelInterface, ArrayAcce
         return self::$openAPIModelName;
     }
 
-    public const TERMS_OF_SERVICE_TYPES_ADYEN_ACCOUNT = 'adyenAccount';
-    public const TERMS_OF_SERVICE_TYPES_ADYEN_CAPITAL = 'adyenCapital';
-    public const TERMS_OF_SERVICE_TYPES_ADYEN_CARD = 'adyenCard';
-    public const TERMS_OF_SERVICE_TYPES_ADYEN_FOR_PLATFORMS_ADVANCED = 'adyenForPlatformsAdvanced';
-    public const TERMS_OF_SERVICE_TYPES_ADYEN_FOR_PLATFORMS_MANAGE = 'adyenForPlatformsManage';
-    public const TERMS_OF_SERVICE_TYPES_ADYEN_FRANCHISEE = 'adyenFranchisee';
-    public const TERMS_OF_SERVICE_TYPES_ADYEN_ISSUING = 'adyenIssuing';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTermsOfServiceTypesAllowableValues()
-    {
-        return [
-            self::TERMS_OF_SERVICE_TYPES_ADYEN_ACCOUNT,
-            self::TERMS_OF_SERVICE_TYPES_ADYEN_CAPITAL,
-            self::TERMS_OF_SERVICE_TYPES_ADYEN_CARD,
-            self::TERMS_OF_SERVICE_TYPES_ADYEN_FOR_PLATFORMS_ADVANCED,
-            self::TERMS_OF_SERVICE_TYPES_ADYEN_FOR_PLATFORMS_MANAGE,
-            self::TERMS_OF_SERVICE_TYPES_ADYEN_FRANCHISEE,
-            self::TERMS_OF_SERVICE_TYPES_ADYEN_ISSUING,
-        ];
-    }
     /**
      * Associative array for storing property values
      *
@@ -255,7 +243,9 @@ class CalculateTermsOfServiceStatusResponse implements ModelInterface, ArrayAcce
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('termsOfServiceTypes', $data ?? [], null);
+        $this->setIfExists('content', $data ?? [], null);
+        $this->setIfExists('language', $data ?? [], null);
+        $this->setIfExists('pciTemplateReferences', $data ?? [], null);
     }
 
     /**
@@ -301,37 +291,82 @@ class CalculateTermsOfServiceStatusResponse implements ModelInterface, ArrayAcce
 
 
     /**
-     * Gets termsOfServiceTypes
+     * Gets content
      *
-     * @return string[]|null
+     * @return string|null
      */
-    public function getTermsOfServiceTypes()
+    public function getContent()
     {
-        return $this->container['termsOfServiceTypes'];
+        return $this->container['content'];
     }
 
     /**
-     * Sets termsOfServiceTypes
+     * Sets content
      *
-     * @param string[]|null $termsOfServiceTypes The type of Terms of Service that the legal entity needs to accept. If empty, no Terms of Service needs to be accepted.
+     * @param string|null $content The generated questionnaires in a base64 encoded format.
      *
      * @return self
      */
-    public function setTermsOfServiceTypes($termsOfServiceTypes)
+    public function setContent($content)
     {
-        if (is_null($termsOfServiceTypes)) {
-            throw new \InvalidArgumentException('non-nullable termsOfServiceTypes cannot be null');
+        if (is_null($content)) {
+            throw new \InvalidArgumentException('non-nullable content cannot be null');
         }
-        $allowedValues = $this->getTermsOfServiceTypesAllowableValues();
-        if (array_diff($termsOfServiceTypes, $allowedValues)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value for 'termsOfServiceTypes', must be one of '%s'",
-                    implode("', '", $allowedValues)
-                )
-            );
+        $this->container['content'] = $content;
+
+        return $this;
+    }
+
+    /**
+     * Gets language
+     *
+     * @return string|null
+     */
+    public function getLanguage()
+    {
+        return $this->container['language'];
+    }
+
+    /**
+     * Sets language
+     *
+     * @param string|null $language The two-letter [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code for the questionnaire. For example, **en**.
+     *
+     * @return self
+     */
+    public function setLanguage($language)
+    {
+        if (is_null($language)) {
+            throw new \InvalidArgumentException('non-nullable language cannot be null');
         }
-        $this->container['termsOfServiceTypes'] = $termsOfServiceTypes;
+        $this->container['language'] = $language;
+
+        return $this;
+    }
+
+    /**
+     * Gets pciTemplateReferences
+     *
+     * @return string[]|null
+     */
+    public function getPciTemplateReferences()
+    {
+        return $this->container['pciTemplateReferences'];
+    }
+
+    /**
+     * Sets pciTemplateReferences
+     *
+     * @param string[]|null $pciTemplateReferences The array of Adyen-generated unique identifiers for the questionnaires.
+     *
+     * @return self
+     */
+    public function setPciTemplateReferences($pciTemplateReferences)
+    {
+        if (is_null($pciTemplateReferences)) {
+            throw new \InvalidArgumentException('non-nullable pciTemplateReferences cannot be null');
+        }
+        $this->container['pciTemplateReferences'] = $pciTemplateReferences;
 
         return $this;
     }

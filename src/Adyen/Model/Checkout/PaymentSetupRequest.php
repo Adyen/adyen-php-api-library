@@ -44,6 +44,7 @@ class PaymentSetupRequest implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var string[]
       */
     protected static $openAPITypes = [
+        'additionalAmount' => '\Adyen\Model\Checkout\Amount',
         'additionalData' => 'array<string,string>',
         'allowedPaymentMethods' => 'string[]',
         'amount' => '\Adyen\Model\Checkout\Amount',
@@ -109,6 +110,7 @@ class PaymentSetupRequest implements ModelInterface, ArrayAccess, \JsonSerializa
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'additionalAmount' => null,
         'additionalData' => null,
         'allowedPaymentMethods' => null,
         'amount' => null,
@@ -172,6 +174,7 @@ class PaymentSetupRequest implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'additionalAmount' => false,
         'additionalData' => false,
         'allowedPaymentMethods' => false,
         'amount' => false,
@@ -315,6 +318,7 @@ class PaymentSetupRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $attributeMap = [
+        'additionalAmount' => 'additionalAmount',
         'additionalData' => 'additionalData',
         'allowedPaymentMethods' => 'allowedPaymentMethods',
         'amount' => 'amount',
@@ -378,6 +382,7 @@ class PaymentSetupRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $setters = [
+        'additionalAmount' => 'setAdditionalAmount',
         'additionalData' => 'setAdditionalData',
         'allowedPaymentMethods' => 'setAllowedPaymentMethods',
         'amount' => 'setAmount',
@@ -441,6 +446,7 @@ class PaymentSetupRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $getters = [
+        'additionalAmount' => 'getAdditionalAmount',
         'additionalData' => 'getAdditionalData',
         'allowedPaymentMethods' => 'getAllowedPaymentMethods',
         'amount' => 'getAmount',
@@ -603,6 +609,7 @@ class PaymentSetupRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('additionalAmount', $data ?? [], null);
         $this->setIfExists('additionalData', $data ?? [], null);
         $this->setIfExists('allowedPaymentMethods', $data ?? [], null);
         $this->setIfExists('amount', $data ?? [], null);
@@ -745,6 +752,33 @@ class PaymentSetupRequest implements ModelInterface, ArrayAccess, \JsonSerializa
 
 
     /**
+     * Gets additionalAmount
+     *
+     * @return \Adyen\Model\Checkout\Amount|null
+     */
+    public function getAdditionalAmount()
+    {
+        return $this->container['additionalAmount'];
+    }
+
+    /**
+     * Sets additionalAmount
+     *
+     * @param \Adyen\Model\Checkout\Amount|null $additionalAmount additionalAmount
+     *
+     * @return self
+     */
+    public function setAdditionalAmount($additionalAmount)
+    {
+        if (is_null($additionalAmount)) {
+            throw new \InvalidArgumentException('non-nullable additionalAmount cannot be null');
+        }
+        $this->container['additionalAmount'] = $additionalAmount;
+
+        return $this;
+    }
+
+    /**
      * Gets additionalData
      *
      * @return array<string,string>|null
@@ -784,7 +818,7 @@ class PaymentSetupRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets allowedPaymentMethods
      *
-     * @param string[]|null $allowedPaymentMethods List of payment methods to be presented to the shopper. To refer to payment methods, use their `paymentMethod.type`from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: `\"allowedPaymentMethods\":[\"ideal\",\"giropay\"]`
+     * @param string[]|null $allowedPaymentMethods List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"allowedPaymentMethods\":[\"ideal\",\"giropay\"]`
      *
      * @return self
      */
@@ -892,7 +926,7 @@ class PaymentSetupRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets blockedPaymentMethods
      *
-     * @param string[]|null $blockedPaymentMethods List of payment methods to be hidden from the shopper. To refer to payment methods, use their `paymentMethod.type`from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: `\"blockedPaymentMethods\":[\"ideal\",\"giropay\"]`
+     * @param string[]|null $blockedPaymentMethods List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"blockedPaymentMethods\":[\"ideal\",\"giropay\"]`
      *
      * @return self
      */
@@ -981,7 +1015,7 @@ class PaymentSetupRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets checkoutAttemptId
      *
-     * @param string|null $checkoutAttemptId Checkout attempt ID that corresponds to the Id generated for tracking user payment journey.
+     * @param string|null $checkoutAttemptId Checkout attempt ID that corresponds to the Id generated by the client SDK for tracking user payment journey.
      *
      * @return self
      */
@@ -1053,6 +1087,7 @@ class PaymentSetupRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      * Gets conversionId
      *
      * @return string|null
+     * @deprecated
      */
     public function getConversionId()
     {
@@ -1062,9 +1097,10 @@ class PaymentSetupRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets conversionId
      *
-     * @param string|null $conversionId Conversion ID that corresponds to the Id generated for tracking user payment journey.
+     * @param string|null $conversionId Conversion ID that corresponds to the Id generated by the client SDK for tracking user payment journey.
      *
      * @return self
+     * @deprecated
      */
     public function setConversionId($conversionId)
     {
@@ -1394,7 +1430,7 @@ class PaymentSetupRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets lineItems
      *
-     * @param \Adyen\Model\Checkout\LineItem[]|null $lineItems Price and product information about the purchased items, to be included on the invoice sent to the shopper. > This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, Zip and Atome.
+     * @param \Adyen\Model\Checkout\LineItem[]|null $lineItems Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). > This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip.
      *
      * @return self
      */
@@ -1421,7 +1457,7 @@ class PaymentSetupRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets localizedShopperStatement
      *
-     * @param array<string,string>|null $localizedShopperStatement This field allows merchants to use dynamic shopper statement in local character sets. The local shopper statement field can be supplied in markets where localized merchant descriptors are used. Currently, Adyen only supports this in the Japanese market .The available character sets at the moment are: * Processing in Japan: **ja-Kana** The character set **ja-Kana** supports UTF-8 based Katakana and alphanumeric and special characters. Merchants should send the Katakana shopperStatement in full-width characters.  An example request would be: > {   \"shopperStatement\" : \"ADYEN - SELLER-A\",   \"localizedShopperStatement\" : {     \"ja-Kana\" : \"ADYEN - セラーA\"   } } We recommend merchants to always supply the field localizedShopperStatement in addition to the field shopperStatement.It is issuer dependent whether the localized shopper statement field is supported. In the case of non-domestic transactions (e.g. US-issued cards processed in JP) the field `shopperStatement` is used to modify the statement of the shopper. Adyen handles the complexity of ensuring the correct descriptors are assigned.
+     * @param array<string,string>|null $localizedShopperStatement This field allows merchants to use dynamic shopper statement in local character sets. The local shopper statement field can be supplied in markets where localized merchant descriptors are used. Currently, Adyen only supports this in the Japanese market .The available character sets at the moment are: * Processing in Japan: **ja-Kana** The character set **ja-Kana** supports UTF-8 based Katakana and alphanumeric and special characters. Merchants can use half-width or full-width characters. An example request would be: > {   \"shopperStatement\" : \"ADYEN - SELLER-A\",   \"localizedShopperStatement\" : {     \"ja-Kana\" : \"ADYEN - セラーA\"   } } We recommend merchants to always supply the field localizedShopperStatement in addition to the field shopperStatement.It is issuer dependent whether the localized shopper statement field is supported. In the case of non-domestic transactions (e.g. US-issued cards processed in JP) the field `shopperStatement` is used to modify the statement of the shopper. Adyen handles the complexity of ensuring the correct descriptors are assigned. Please note, this field can be used for only Visa and Mastercard transactions.
      *
      * @return self
      */

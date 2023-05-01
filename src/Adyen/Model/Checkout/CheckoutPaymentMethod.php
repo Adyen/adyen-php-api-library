@@ -1480,7 +1480,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets threeDS2SdkVersion
      *
-     * @param string|null $threeDS2SdkVersion Version of the 3D Secure 2 mobile SDK.
+     * @param string|null $threeDS2SdkVersion Required for mobile integrations. Version of the 3D Secure 2 mobile SDK.
      *
      * @return self
      */

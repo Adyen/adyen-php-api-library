@@ -44,13 +44,16 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'accountHolder' => '\Adyen\Model\Transfers\ResourceReference',
         'amount' => '\Adyen\Model\Transfers\Amount',
+        'balanceAccount' => '\Adyen\Model\Transfers\ResourceReference',
         'balanceAccountId' => 'string',
         'category' => 'string',
         'counterparty' => '\Adyen\Model\Transfers\CounterpartyV3',
         'description' => 'string',
         'direction' => 'string',
         'id' => 'string',
+        'paymentInstrument' => '\Adyen\Model\Transfers\PaymentInstrument',
         'paymentInstrumentId' => 'string',
         'priority' => 'string',
         'reason' => 'string',
@@ -67,13 +70,16 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'accountHolder' => null,
         'amount' => null,
+        'balanceAccount' => null,
         'balanceAccountId' => null,
         'category' => null,
         'counterparty' => null,
         'description' => null,
         'direction' => null,
         'id' => null,
+        'paymentInstrument' => null,
         'paymentInstrumentId' => null,
         'priority' => null,
         'reason' => null,
@@ -88,13 +94,16 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'accountHolder' => false,
         'amount' => false,
+        'balanceAccount' => false,
         'balanceAccountId' => false,
         'category' => false,
         'counterparty' => false,
         'description' => false,
         'direction' => false,
         'id' => false,
+        'paymentInstrument' => false,
         'paymentInstrumentId' => false,
         'priority' => false,
         'reason' => false,
@@ -189,13 +198,16 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'accountHolder' => 'accountHolder',
         'amount' => 'amount',
+        'balanceAccount' => 'balanceAccount',
         'balanceAccountId' => 'balanceAccountId',
         'category' => 'category',
         'counterparty' => 'counterparty',
         'description' => 'description',
         'direction' => 'direction',
         'id' => 'id',
+        'paymentInstrument' => 'paymentInstrument',
         'paymentInstrumentId' => 'paymentInstrumentId',
         'priority' => 'priority',
         'reason' => 'reason',
@@ -210,13 +222,16 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'accountHolder' => 'setAccountHolder',
         'amount' => 'setAmount',
+        'balanceAccount' => 'setBalanceAccount',
         'balanceAccountId' => 'setBalanceAccountId',
         'category' => 'setCategory',
         'counterparty' => 'setCounterparty',
         'description' => 'setDescription',
         'direction' => 'setDirection',
         'id' => 'setId',
+        'paymentInstrument' => 'setPaymentInstrument',
         'paymentInstrumentId' => 'setPaymentInstrumentId',
         'priority' => 'setPriority',
         'reason' => 'setReason',
@@ -231,13 +246,16 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'accountHolder' => 'getAccountHolder',
         'amount' => 'getAmount',
+        'balanceAccount' => 'getBalanceAccount',
         'balanceAccountId' => 'getBalanceAccountId',
         'category' => 'getCategory',
         'counterparty' => 'getCounterparty',
         'description' => 'getDescription',
         'direction' => 'getDirection',
         'id' => 'getId',
+        'paymentInstrument' => 'getPaymentInstrument',
         'paymentInstrumentId' => 'getPaymentInstrumentId',
         'priority' => 'getPriority',
         'reason' => 'getReason',
@@ -527,13 +545,16 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('accountHolder', $data ?? [], null);
         $this->setIfExists('amount', $data ?? [], null);
+        $this->setIfExists('balanceAccount', $data ?? [], null);
         $this->setIfExists('balanceAccountId', $data ?? [], null);
         $this->setIfExists('category', $data ?? [], null);
         $this->setIfExists('counterparty', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('direction', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('paymentInstrument', $data ?? [], null);
         $this->setIfExists('paymentInstrumentId', $data ?? [], null);
         $this->setIfExists('priority', $data ?? [], null);
         $this->setIfExists('reason', $data ?? [], null);
@@ -642,6 +663,33 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
+     * Gets accountHolder
+     *
+     * @return \Adyen\Model\Transfers\ResourceReference|null
+     */
+    public function getAccountHolder()
+    {
+        return $this->container['accountHolder'];
+    }
+
+    /**
+     * Sets accountHolder
+     *
+     * @param \Adyen\Model\Transfers\ResourceReference|null $accountHolder accountHolder
+     *
+     * @return self
+     */
+    public function setAccountHolder($accountHolder)
+    {
+        if (is_null($accountHolder)) {
+            throw new \InvalidArgumentException('non-nullable accountHolder cannot be null');
+        }
+        $this->container['accountHolder'] = $accountHolder;
+
+        return $this;
+    }
+
+    /**
      * Gets amount
      *
      * @return \Adyen\Model\Transfers\Amount
@@ -669,9 +717,37 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets balanceAccount
+     *
+     * @return \Adyen\Model\Transfers\ResourceReference|null
+     */
+    public function getBalanceAccount()
+    {
+        return $this->container['balanceAccount'];
+    }
+
+    /**
+     * Sets balanceAccount
+     *
+     * @param \Adyen\Model\Transfers\ResourceReference|null $balanceAccount balanceAccount
+     *
+     * @return self
+     */
+    public function setBalanceAccount($balanceAccount)
+    {
+        if (is_null($balanceAccount)) {
+            throw new \InvalidArgumentException('non-nullable balanceAccount cannot be null');
+        }
+        $this->container['balanceAccount'] = $balanceAccount;
+
+        return $this;
+    }
+
+    /**
      * Gets balanceAccountId
      *
      * @return string|null
+     * @deprecated
      */
     public function getBalanceAccountId()
     {
@@ -684,6 +760,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param string|null $balanceAccountId The unique identifier of the source [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id).
      *
      * @return self
+     * @deprecated
      */
     public function setBalanceAccountId($balanceAccountId)
     {
@@ -772,7 +849,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets description
      *
-     * @param string|null $description A human-readable description for the transfer. You can use alphanumeric characters and hyphens. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.
+     * @param string|null $description Your description for the transfer. It is used by most banks as the transfer description. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.  Supported characters: **[a-z] [A-Z] [0-9] / - ?** **: ( ) . , ' + Space**  Supported characters for **regular** and **fast** transfers to a US counterparty: **[a-z] [A-Z] [0-9] & $ % # @** **~ = + - _ ' \" ! ?**
      *
      * @return self
      */
@@ -851,9 +928,37 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets paymentInstrument
+     *
+     * @return \Adyen\Model\Transfers\PaymentInstrument|null
+     */
+    public function getPaymentInstrument()
+    {
+        return $this->container['paymentInstrument'];
+    }
+
+    /**
+     * Sets paymentInstrument
+     *
+     * @param \Adyen\Model\Transfers\PaymentInstrument|null $paymentInstrument paymentInstrument
+     *
+     * @return self
+     */
+    public function setPaymentInstrument($paymentInstrument)
+    {
+        if (is_null($paymentInstrument)) {
+            throw new \InvalidArgumentException('non-nullable paymentInstrument cannot be null');
+        }
+        $this->container['paymentInstrument'] = $paymentInstrument;
+
+        return $this;
+    }
+
+    /**
      * Gets paymentInstrumentId
      *
      * @return string|null
+     * @deprecated
      */
     public function getPaymentInstrumentId()
     {
@@ -863,9 +968,10 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets paymentInstrumentId
      *
-     * @param string|null $paymentInstrumentId The unique identifier of the source [payment instrument](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/paymentInstruments__resParam_id).
+     * @param string|null $paymentInstrumentId The unique identifier of the [payment instrument](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) used in the transfer.
      *
      * @return self
+     * @deprecated
      */
     public function setPaymentInstrumentId($paymentInstrumentId)
     {

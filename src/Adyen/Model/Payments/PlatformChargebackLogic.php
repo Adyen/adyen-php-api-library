@@ -45,6 +45,7 @@ class PlatformChargebackLogic implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static $openAPITypes = [
         'behavior' => 'string',
+        'costAllocationAccount' => 'string',
         'targetAccount' => 'string'
     ];
 
@@ -57,6 +58,7 @@ class PlatformChargebackLogic implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static $openAPIFormats = [
         'behavior' => null,
+        'costAllocationAccount' => null,
         'targetAccount' => null
     ];
 
@@ -67,6 +69,7 @@ class PlatformChargebackLogic implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static $openAPINullables = [
         'behavior' => false,
+        'costAllocationAccount' => false,
         'targetAccount' => false
     ];
 
@@ -157,6 +160,7 @@ class PlatformChargebackLogic implements ModelInterface, ArrayAccess, \JsonSeria
      */
     protected static $attributeMap = [
         'behavior' => 'behavior',
+        'costAllocationAccount' => 'costAllocationAccount',
         'targetAccount' => 'targetAccount'
     ];
 
@@ -167,6 +171,7 @@ class PlatformChargebackLogic implements ModelInterface, ArrayAccess, \JsonSeria
      */
     protected static $setters = [
         'behavior' => 'setBehavior',
+        'costAllocationAccount' => 'setCostAllocationAccount',
         'targetAccount' => 'setTargetAccount'
     ];
 
@@ -177,6 +182,7 @@ class PlatformChargebackLogic implements ModelInterface, ArrayAccess, \JsonSeria
      */
     protected static $getters = [
         'behavior' => 'getBehavior',
+        'costAllocationAccount' => 'getCostAllocationAccount',
         'targetAccount' => 'getTargetAccount'
     ];
 
@@ -254,6 +260,7 @@ class PlatformChargebackLogic implements ModelInterface, ArrayAccess, \JsonSeria
     public function __construct(array $data = null)
     {
         $this->setIfExists('behavior', $data ?? [], null);
+        $this->setIfExists('costAllocationAccount', $data ?? [], null);
         $this->setIfExists('targetAccount', $data ?? [], null);
     }
 
@@ -341,6 +348,33 @@ class PlatformChargebackLogic implements ModelInterface, ArrayAccess, \JsonSeria
             );
         }
         $this->container['behavior'] = $behavior;
+
+        return $this;
+    }
+
+    /**
+     * Gets costAllocationAccount
+     *
+     * @return string|null
+     */
+    public function getCostAllocationAccount()
+    {
+        return $this->container['costAllocationAccount'];
+    }
+
+    /**
+     * Sets costAllocationAccount
+     *
+     * @param string|null $costAllocationAccount costAllocationAccount
+     *
+     * @return self
+     */
+    public function setCostAllocationAccount($costAllocationAccount)
+    {
+        if (is_null($costAllocationAccount)) {
+            throw new \InvalidArgumentException('non-nullable costAllocationAccount cannot be null');
+        }
+        $this->container['costAllocationAccount'] = $costAllocationAccount;
 
         return $this;
     }

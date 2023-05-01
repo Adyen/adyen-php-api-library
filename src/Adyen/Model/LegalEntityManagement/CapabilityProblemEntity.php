@@ -335,7 +335,7 @@ class CapabilityProblemEntity implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets documents
      *
-     * @param string[]|null $documents documents
+     * @param string[]|null $documents List of document IDs corresponding to the verification errors from capabilities.
      *
      * @return self
      */

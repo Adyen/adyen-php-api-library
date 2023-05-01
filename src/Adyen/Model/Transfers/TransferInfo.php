@@ -53,7 +53,8 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'paymentInstrumentId' => 'string',
         'priority' => 'string',
         'reference' => 'string',
-        'referenceForBeneficiary' => 'string'
+        'referenceForBeneficiary' => 'string',
+        'ultimateParty' => '\Adyen\Model\Transfers\UltimatePartyIdentification'
     ];
 
     /**
@@ -73,7 +74,8 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'paymentInstrumentId' => null,
         'priority' => null,
         'reference' => null,
-        'referenceForBeneficiary' => null
+        'referenceForBeneficiary' => null,
+        'ultimateParty' => null
     ];
 
     /**
@@ -91,7 +93,8 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'paymentInstrumentId' => false,
         'priority' => false,
         'reference' => false,
-        'referenceForBeneficiary' => false
+        'referenceForBeneficiary' => false,
+        'ultimateParty' => false
     ];
 
     /**
@@ -189,7 +192,8 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'paymentInstrumentId' => 'paymentInstrumentId',
         'priority' => 'priority',
         'reference' => 'reference',
-        'referenceForBeneficiary' => 'referenceForBeneficiary'
+        'referenceForBeneficiary' => 'referenceForBeneficiary',
+        'ultimateParty' => 'ultimateParty'
     ];
 
     /**
@@ -207,7 +211,8 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'paymentInstrumentId' => 'setPaymentInstrumentId',
         'priority' => 'setPriority',
         'reference' => 'setReference',
-        'referenceForBeneficiary' => 'setReferenceForBeneficiary'
+        'referenceForBeneficiary' => 'setReferenceForBeneficiary',
+        'ultimateParty' => 'setUltimateParty'
     ];
 
     /**
@@ -225,7 +230,8 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'paymentInstrumentId' => 'getPaymentInstrumentId',
         'priority' => 'getPriority',
         'reference' => 'getReference',
-        'referenceForBeneficiary' => 'getReferenceForBeneficiary'
+        'referenceForBeneficiary' => 'getReferenceForBeneficiary',
+        'ultimateParty' => 'getUltimateParty'
     ];
 
     /**
@@ -337,6 +343,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('priority', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
         $this->setIfExists('referenceForBeneficiary', $data ?? [], null);
+        $this->setIfExists('ultimateParty', $data ?? [], null);
     }
 
     /**
@@ -539,7 +546,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets description
      *
-     * @param string|null $description A human-readable description for the transfer. You can use alphanumeric characters and hyphens. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.
+     * @param string|null $description Your description for the transfer. It is used by most banks as the transfer description. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.  Supported characters: **[a-z] [A-Z] [0-9] / - ?** **: ( ) . , ' + Space**  Supported characters for **regular** and **fast** transfers to a US counterparty: **[a-z] [A-Z] [0-9] & $ % # @** **~ = + - _ ' \" ! ?**
      *
      * @return self
      */
@@ -694,6 +701,33 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable referenceForBeneficiary cannot be null');
         }
         $this->container['referenceForBeneficiary'] = $referenceForBeneficiary;
+
+        return $this;
+    }
+
+    /**
+     * Gets ultimateParty
+     *
+     * @return \Adyen\Model\Transfers\UltimatePartyIdentification|null
+     */
+    public function getUltimateParty()
+    {
+        return $this->container['ultimateParty'];
+    }
+
+    /**
+     * Sets ultimateParty
+     *
+     * @param \Adyen\Model\Transfers\UltimatePartyIdentification|null $ultimateParty ultimateParty
+     *
+     * @return self
+     */
+    public function setUltimateParty($ultimateParty)
+    {
+        if (is_null($ultimateParty)) {
+            throw new \InvalidArgumentException('non-nullable ultimateParty cannot be null');
+        }
+        $this->container['ultimateParty'] = $ultimateParty;
 
         return $this;
     }
