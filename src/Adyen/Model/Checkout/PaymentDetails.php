@@ -251,13 +251,11 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_UPI_QR = 'upi_qr';
     public const TYPE_PAYTM = 'paytm';
     public const TYPE_MOLPAY_EBANKING_VN = 'molpay_ebanking_VN';
-    public const TYPE_OPENBANKING_UK = 'openbanking_UK';
     public const TYPE_PAYBYBANK = 'paybybank';
     public const TYPE_EBANKING_FI = 'ebanking_FI';
     public const TYPE_MOLPAY_EBANKING_MY = 'molpay_ebanking_MY';
     public const TYPE_MOLPAY_EBANKING_DIRECT_MY = 'molpay_ebanking_direct_MY';
     public const TYPE_SWISH = 'swish';
-    public const TYPE_TWINT = 'twint';
     public const TYPE_WALLEY = 'walley';
     public const TYPE_WALLEY_B2B = 'walley_b2b';
     public const TYPE_PIX = 'pix';
@@ -307,7 +305,6 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_MAYBANK2U_MAE = 'maybank2u_mae';
     public const TYPE_DUITNOW = 'duitnow';
     public const TYPE_PROMPTPAY = 'promptpay';
-    public const TYPE_TWINT_POS = 'twint_pos';
     public const TYPE_ALIPAY_HK = 'alipay_hk';
     public const TYPE_ALIPAY_HK_WEB = 'alipay_hk_web';
     public const TYPE_ALIPAY_HK_WAP = 'alipay_hk_wap';
@@ -352,13 +349,11 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_UPI_QR,
             self::TYPE_PAYTM,
             self::TYPE_MOLPAY_EBANKING_VN,
-            self::TYPE_OPENBANKING_UK,
             self::TYPE_PAYBYBANK,
             self::TYPE_EBANKING_FI,
             self::TYPE_MOLPAY_EBANKING_MY,
             self::TYPE_MOLPAY_EBANKING_DIRECT_MY,
             self::TYPE_SWISH,
-            self::TYPE_TWINT,
             self::TYPE_WALLEY,
             self::TYPE_WALLEY_B2B,
             self::TYPE_PIX,
@@ -408,7 +403,6 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_MAYBANK2U_MAE,
             self::TYPE_DUITNOW,
             self::TYPE_PROMPTPAY,
-            self::TYPE_TWINT_POS,
             self::TYPE_ALIPAY_HK,
             self::TYPE_ALIPAY_HK_WEB,
             self::TYPE_ALIPAY_HK_WAP,

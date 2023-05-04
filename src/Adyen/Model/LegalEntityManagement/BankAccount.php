@@ -48,6 +48,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         'accountNumber' => 'string',
         'bsbCode' => 'string',
         'type' => 'string',
+        'accountType' => 'string',
         'institutionNumber' => 'string',
         'transitNumber' => 'string',
         'bankCode' => 'string',
@@ -56,7 +57,6 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         'bic' => 'string',
         'clearingNumber' => 'string',
         'sortCode' => 'string',
-        'accountType' => 'string',
         'routingNumber' => 'string'
     ];
 
@@ -71,6 +71,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         'accountNumber' => null,
         'bsbCode' => null,
         'type' => null,
+        'accountType' => null,
         'institutionNumber' => null,
         'transitNumber' => null,
         'bankCode' => null,
@@ -79,7 +80,6 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         'bic' => null,
         'clearingNumber' => null,
         'sortCode' => null,
-        'accountType' => null,
         'routingNumber' => null
     ];
 
@@ -92,6 +92,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         'accountNumber' => false,
         'bsbCode' => false,
         'type' => false,
+        'accountType' => false,
         'institutionNumber' => false,
         'transitNumber' => false,
         'bankCode' => false,
@@ -100,7 +101,6 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         'bic' => false,
         'clearingNumber' => false,
         'sortCode' => false,
-        'accountType' => false,
         'routingNumber' => false
     ];
 
@@ -193,6 +193,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         'accountNumber' => 'accountNumber',
         'bsbCode' => 'bsbCode',
         'type' => 'type',
+        'accountType' => 'accountType',
         'institutionNumber' => 'institutionNumber',
         'transitNumber' => 'transitNumber',
         'bankCode' => 'bankCode',
@@ -201,7 +202,6 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         'bic' => 'bic',
         'clearingNumber' => 'clearingNumber',
         'sortCode' => 'sortCode',
-        'accountType' => 'accountType',
         'routingNumber' => 'routingNumber'
     ];
 
@@ -214,6 +214,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         'accountNumber' => 'setAccountNumber',
         'bsbCode' => 'setBsbCode',
         'type' => 'setType',
+        'accountType' => 'setAccountType',
         'institutionNumber' => 'setInstitutionNumber',
         'transitNumber' => 'setTransitNumber',
         'bankCode' => 'setBankCode',
@@ -222,7 +223,6 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         'bic' => 'setBic',
         'clearingNumber' => 'setClearingNumber',
         'sortCode' => 'setSortCode',
-        'accountType' => 'setAccountType',
         'routingNumber' => 'setRoutingNumber'
     ];
 
@@ -235,6 +235,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         'accountNumber' => 'getAccountNumber',
         'bsbCode' => 'getBsbCode',
         'type' => 'getType',
+        'accountType' => 'getAccountType',
         'institutionNumber' => 'getInstitutionNumber',
         'transitNumber' => 'getTransitNumber',
         'bankCode' => 'getBankCode',
@@ -243,7 +244,6 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         'bic' => 'getBic',
         'clearingNumber' => 'getClearingNumber',
         'sortCode' => 'getSortCode',
-        'accountType' => 'getAccountType',
         'routingNumber' => 'getRoutingNumber'
     ];
 
@@ -306,6 +306,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('accountNumber', $data ?? [], null);
         $this->setIfExists('bsbCode', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], 'usLocal');
+        $this->setIfExists('accountType', $data ?? [], 'checking');
         $this->setIfExists('institutionNumber', $data ?? [], null);
         $this->setIfExists('transitNumber', $data ?? [], null);
         $this->setIfExists('bankCode', $data ?? [], null);
@@ -314,7 +315,6 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('bic', $data ?? [], null);
         $this->setIfExists('clearingNumber', $data ?? [], null);
         $this->setIfExists('sortCode', $data ?? [], null);
-        $this->setIfExists('accountType', $data ?? [], 'checking');
         $this->setIfExists('routingNumber', $data ?? [], null);
     }
 
@@ -355,6 +355,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = "'type' can't be null";
         }
 
+
         if ($this->container['institutionNumber'] === null) {
             $invalidProperties[] = "'institutionNumber' can't be null";
         }
@@ -376,7 +377,6 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['sortCode'] === null) {
             $invalidProperties[] = "'sortCode' can't be null";
         }
-
         if ($this->container['routingNumber'] === null) {
             $invalidProperties[] = "'routingNumber' can't be null";
         }
@@ -472,6 +472,33 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
         $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets accountType
+     *
+     * @return string|null
+     */
+    public function getAccountType()
+    {
+        return $this->container['accountType'];
+    }
+
+    /**
+     * Sets accountType
+     *
+     * @param string|null $accountType The bank account type.  Possible values: **checking** or **savings**. Defaults to **checking**.
+     *
+     * @return self
+     */
+    public function setAccountType($accountType)
+    {
+        if (is_null($accountType)) {
+            throw new \InvalidArgumentException('non-nullable accountType cannot be null');
+        }
+        $this->container['accountType'] = $accountType;
 
         return $this;
     }
@@ -688,33 +715,6 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable sortCode cannot be null');
         }
         $this->container['sortCode'] = $sortCode;
-
-        return $this;
-    }
-
-    /**
-     * Gets accountType
-     *
-     * @return string|null
-     */
-    public function getAccountType()
-    {
-        return $this->container['accountType'];
-    }
-
-    /**
-     * Sets accountType
-     *
-     * @param string|null $accountType The bank account type.  Possible values: **checking** or **savings**. Defaults to **checking**.
-     *
-     * @return self
-     */
-    public function setAccountType($accountType)
-    {
-        if (is_null($accountType)) {
-            throw new \InvalidArgumentException('non-nullable accountType cannot be null');
-        }
-        $this->container['accountType'] = $accountType;
 
         return $this;
     }

@@ -310,12 +310,6 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['expiryYear'] === null) {
-            $invalidProperties[] = "'expiryYear' can't be null";
-        }
-        if ($this->container['holderName'] === null) {
-            $invalidProperties[] = "'holderName' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -388,7 +382,7 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets expiryYear
      *
-     * @return string
+     * @return string|null
      */
     public function getExpiryYear()
     {
@@ -398,7 +392,7 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets expiryYear
      *
-     * @param string $expiryYear The card expiry year. Format: 4 digits. For example: 2020
+     * @param string|null $expiryYear The card expiry year. Format: 4 digits. For example: 2020
      *
      * @return self
      */
@@ -415,7 +409,7 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets holderName
      *
-     * @return string
+     * @return string|null
      */
     public function getHolderName()
     {
@@ -425,7 +419,7 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets holderName
      *
-     * @param string $holderName The name of the cardholder, as printed on the card.
+     * @param string|null $holderName The name of the cardholder, as printed on the card.
      *
      * @return self
      */

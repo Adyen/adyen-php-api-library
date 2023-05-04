@@ -905,7 +905,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets allowedPaymentMethods
      *
-     * @param string[]|null $allowedPaymentMethods List of payment methods to be presented to the shopper. To refer to payment methods, use their `paymentMethod.type`from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: `\"allowedPaymentMethods\":[\"ideal\",\"giropay\"]`
+     * @param string[]|null $allowedPaymentMethods List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"allowedPaymentMethods\":[\"ideal\",\"giropay\"]`
      *
      * @return self
      */
@@ -1040,7 +1040,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets blockedPaymentMethods
      *
-     * @param string[]|null $blockedPaymentMethods List of payment methods to be hidden from the shopper. To refer to payment methods, use their `paymentMethod.type`from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: `\"blockedPaymentMethods\":[\"ideal\",\"giropay\"]`
+     * @param string[]|null $blockedPaymentMethods List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"blockedPaymentMethods\":[\"ideal\",\"giropay\"]`
      *
      * @return self
      */
@@ -2348,6 +2348,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
      * Gets threeDSAuthenticationOnly
      *
      * @return bool|null
+     * @deprecated
      */
     public function getThreeDSAuthenticationOnly()
     {
@@ -2360,6 +2361,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
      * @param bool|null $threeDSAuthenticationOnly If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.
      *
      * @return self
+     * @deprecated
      */
     public function setThreeDSAuthenticationOnly($threeDSAuthenticationOnly)
     {
