@@ -45,7 +45,7 @@ class CheckoutCancelOrderRequest implements ModelInterface, ArrayAccess, \JsonSe
       */
     protected static $openAPITypes = [
         'merchantAccount' => 'string',
-        'order' => '\Adyen\Model\Checkout\CheckoutOrder'
+        'order' => '\Adyen\Model\Checkout\EncryptedOrderData'
     ];
 
     /**
@@ -319,7 +319,7 @@ class CheckoutCancelOrderRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets order
      *
-     * @return \Adyen\Model\Checkout\CheckoutOrder
+     * @return \Adyen\Model\Checkout\EncryptedOrderData
      */
     public function getOrder()
     {
@@ -329,7 +329,7 @@ class CheckoutCancelOrderRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets order
      *
-     * @param \Adyen\Model\Checkout\CheckoutOrder $order order
+     * @param \Adyen\Model\Checkout\EncryptedOrderData $order order
      *
      * @return self
      */

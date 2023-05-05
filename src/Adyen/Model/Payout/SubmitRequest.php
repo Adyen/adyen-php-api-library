@@ -71,7 +71,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'additionalData' => null,
         'amount' => null,
-        'dateOfBirth' => 'date-time',
+        'dateOfBirth' => 'date',
         'entityType' => null,
         'fraudOffset' => 'int32',
         'merchantAccount' => null,

@@ -46,7 +46,8 @@ class TransferInstrumentReference implements ModelInterface, ArrayAccess, \JsonS
     protected static $openAPITypes = [
         'accountIdentifier' => 'string',
         'id' => 'string',
-        'realLastFour' => 'string'
+        'realLastFour' => 'string',
+        'trustedSource' => 'bool'
     ];
 
     /**
@@ -59,7 +60,8 @@ class TransferInstrumentReference implements ModelInterface, ArrayAccess, \JsonS
     protected static $openAPIFormats = [
         'accountIdentifier' => null,
         'id' => null,
-        'realLastFour' => null
+        'realLastFour' => null,
+        'trustedSource' => null
     ];
 
     /**
@@ -70,7 +72,8 @@ class TransferInstrumentReference implements ModelInterface, ArrayAccess, \JsonS
     protected static $openAPINullables = [
         'accountIdentifier' => false,
         'id' => false,
-        'realLastFour' => false
+        'realLastFour' => false,
+        'trustedSource' => false
     ];
 
     /**
@@ -161,7 +164,8 @@ class TransferInstrumentReference implements ModelInterface, ArrayAccess, \JsonS
     protected static $attributeMap = [
         'accountIdentifier' => 'accountIdentifier',
         'id' => 'id',
-        'realLastFour' => 'realLastFour'
+        'realLastFour' => 'realLastFour',
+        'trustedSource' => 'trustedSource'
     ];
 
     /**
@@ -172,7 +176,8 @@ class TransferInstrumentReference implements ModelInterface, ArrayAccess, \JsonS
     protected static $setters = [
         'accountIdentifier' => 'setAccountIdentifier',
         'id' => 'setId',
-        'realLastFour' => 'setRealLastFour'
+        'realLastFour' => 'setRealLastFour',
+        'trustedSource' => 'setTrustedSource'
     ];
 
     /**
@@ -183,7 +188,8 @@ class TransferInstrumentReference implements ModelInterface, ArrayAccess, \JsonS
     protected static $getters = [
         'accountIdentifier' => 'getAccountIdentifier',
         'id' => 'getId',
-        'realLastFour' => 'getRealLastFour'
+        'realLastFour' => 'getRealLastFour',
+        'trustedSource' => 'getTrustedSource'
     ];
 
     /**
@@ -246,6 +252,7 @@ class TransferInstrumentReference implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('accountIdentifier', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('realLastFour', $data ?? [], null);
+        $this->setIfExists('trustedSource', $data ?? [], null);
     }
 
     /**
@@ -373,6 +380,33 @@ class TransferInstrumentReference implements ModelInterface, ArrayAccess, \JsonS
             throw new \InvalidArgumentException('non-nullable realLastFour cannot be null');
         }
         $this->container['realLastFour'] = $realLastFour;
+
+        return $this;
+    }
+
+    /**
+     * Gets trustedSource
+     *
+     * @return bool|null
+     */
+    public function getTrustedSource()
+    {
+        return $this->container['trustedSource'];
+    }
+
+    /**
+     * Sets trustedSource
+     *
+     * @param bool|null $trustedSource Identifies if the TI was created from a trusted source.
+     *
+     * @return self
+     */
+    public function setTrustedSource($trustedSource)
+    {
+        if (is_null($trustedSource)) {
+            throw new \InvalidArgumentException('non-nullable trustedSource cannot be null');
+        }
+        $this->container['trustedSource'] = $trustedSource;
 
         return $this;
     }

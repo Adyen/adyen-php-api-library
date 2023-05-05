@@ -401,7 +401,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets lodgingCheckInDate
      *
-     * @param string|null $lodgingCheckInDate The arrival date. * Date format: `yyyyMMdd`
+     * @param string|null $lodgingCheckInDate The arrival date. * Date format: **yyyyMmDd**. For example, for 2023 April 22, **20230422**.
      *
      * @return self
      */
@@ -428,7 +428,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets lodgingCheckOutDate
      *
-     * @param string|null $lodgingCheckOutDate The departure date. * Date format: `yyyyMMdd`
+     * @param string|null $lodgingCheckOutDate The departure date. * Date format: **yyyyMmDd**. For example, for 2023 April 22, **20230422**.
      *
      * @return self
      */
@@ -455,7 +455,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets lodgingCustomerServiceTollFreeNumber
      *
-     * @param string|null $lodgingCustomerServiceTollFreeNumber The toll free phone number for the hotel/lodgings. * Format: Alphanumeric * maxLength: 17
+     * @param string|null $lodgingCustomerServiceTollFreeNumber The toll-free phone number for the lodging. * Format: alphanumeric. * Max length: 17 characters. * For US numbers: must start with 3 digits and be at least 10 characters in length. Otherwise, the capture can fail.
      *
      * @return self
      */
@@ -482,7 +482,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets lodgingFireSafetyActIndicator
      *
-     * @param string|null $lodgingFireSafetyActIndicator Identifies that the facility complies with the Hotel and Motel Fire Safety Act of 1990. Values can be: 'Y' or 'N'. * Format: Alphabetic * maxLength: 1
+     * @param string|null $lodgingFireSafetyActIndicator Identifies that the facility complies with the Hotel and Motel Fire Safety Act of 1990. Values can be: 'Y' or 'N'. * Format: alphabetic. * Max length: 1 character.
      *
      * @return self
      */
@@ -509,7 +509,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets lodgingFolioCashAdvances
      *
-     * @param string|null $lodgingFolioCashAdvances The folio cash advances. * Format: Numeric * maxLength: 12
+     * @param string|null $lodgingFolioCashAdvances The folio cash advances. * Format: numeric. * Max length: 12 characters.
      *
      * @return self
      */
@@ -536,7 +536,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets lodgingFolioNumber
      *
-     * @param string|null $lodgingFolioNumber Card acceptor’s internal invoice or billing ID reference number. * Format: Alphanumeric * maxLength: 25
+     * @param string|null $lodgingFolioNumber The card acceptor’s internal invoice or billing ID reference number. * Format: alphanumeric. * Max length: 25 characters.
      *
      * @return self
      */
@@ -563,7 +563,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets lodgingFoodBeverageCharges
      *
-     * @param string|null $lodgingFoodBeverageCharges Any charges for food and beverages associated with the booking. * Format: Numeric * maxLength: 12
+     * @param string|null $lodgingFoodBeverageCharges The additional charges for food and beverages associated with the booking. * Format: numeric. * Max length: 12 characters.
      *
      * @return self
      */
@@ -590,7 +590,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets lodgingNoShowIndicator
      *
-     * @param string|null $lodgingNoShowIndicator Indicates if the customer was a \"no-show\" (neither keeps nor cancels their booking).  Value should be Y or N. * Format: Numeric * maxLength: 1
+     * @param string|null $lodgingNoShowIndicator Indicates if the customer didn't check in for their booking.  Possible values:   * **Y**: the customer didn't check in.   **N**: the customer checked in.
      *
      * @return self
      */
@@ -617,7 +617,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets lodgingPrepaidExpenses
      *
-     * @param string|null $lodgingPrepaidExpenses Prepaid expenses for the booking. * Format: Numeric * maxLength: 12
+     * @param string|null $lodgingPrepaidExpenses The prepaid expenses for the booking. * Format: numeric. * Max length: 12 characters.
      *
      * @return self
      */
@@ -644,7 +644,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets lodgingPropertyPhoneNumber
      *
-     * @param string|null $lodgingPropertyPhoneNumber Identifies specific lodging property location by its local phone number. * Format: Alphanumeric * maxLength: 17
+     * @param string|null $lodgingPropertyPhoneNumber Identifies the location of the lodging by its local phone number. * Format: alphanumeric. * Max length: 17 characters. * For US numbers: must start with 3 digits and be at least 10 characters in length. Otherwise, the capture can fail.
      *
      * @return self
      */
@@ -671,7 +671,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets lodgingRoom1NumberOfNights
      *
-     * @param string|null $lodgingRoom1NumberOfNights Total number of nights the room will be rented. * Format: Numeric * maxLength: 4
+     * @param string|null $lodgingRoom1NumberOfNights The total number of nights the room is booked for. * Format: numeric. * Max length: 4 characters.
      *
      * @return self
      */
@@ -698,7 +698,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets lodgingRoom1Rate
      *
-     * @param string|null $lodgingRoom1Rate The rate of the room. * Format: Numeric * maxLength: 12
+     * @param string|null $lodgingRoom1Rate The rate of the room. * Format: numeric. * Max length: 12 characters. * Must be in [minor units](https://docs.adyen.com/development-resources/currency-codes).
      *
      * @return self
      */
@@ -725,7 +725,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets lodgingRoom1Tax
      *
-     * @param string|null $lodgingRoom1Tax The total amount of tax to be paid. * Format: Numeric * maxLength: 12
+     * @param string|null $lodgingRoom1Tax The total amount of tax to be paid. * Format: numeric. * Max length: 12 chracters. * Must be in [minor units](https://docs.adyen.com/development-resources/currency-codes).
      *
      * @return self
      */
@@ -752,7 +752,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets lodgingTotalRoomTax
      *
-     * @param string|null $lodgingTotalRoomTax Total room tax amount. * Format: Numeric * maxLength: 12
+     * @param string|null $lodgingTotalRoomTax The total room tax amount. * Format: numeric. * Max length: 12 characters. * Must be in [minor units](https://docs.adyen.com/development-resources/currency-codes).
      *
      * @return self
      */
@@ -779,7 +779,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets lodgingTotalTax
      *
-     * @param string|null $lodgingTotalTax Total tax amount. * Format: Numeric * maxLength: 12
+     * @param string|null $lodgingTotalTax The total tax amount. * Format: numeric. * Max length: 12 characters. * Must be in [minor units](https://docs.adyen.com/development-resources/currency-codes).
      *
      * @return self
      */
@@ -806,7 +806,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets travelEntertainmentAuthDataDuration
      *
-     * @param string|null $travelEntertainmentAuthDataDuration Number of nights. This should be included in the auth message. * Format: Numeric * maxLength: 2
+     * @param string|null $travelEntertainmentAuthDataDuration The number of nights. This should be included in the auth message. * Format: numeric. * Max length: 2 characters.
      *
      * @return self
      */
@@ -833,7 +833,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets travelEntertainmentAuthDataMarket
      *
-     * @param string|null $travelEntertainmentAuthDataMarket Indicates what market-specific dataset will be submitted or is being submitted. Value should be \"H\" for Hotel. This should be included in the auth message.  * Format: Alphanumeric * maxLength: 1
+     * @param string|null $travelEntertainmentAuthDataMarket Indicates what market-specific dataset will be submitted or is being submitted. Value should be \"H\" for Hotel. This should be included in the auth message.  * Format: alphanumeric. * Max length: 1 character.
      *
      * @return self
      */

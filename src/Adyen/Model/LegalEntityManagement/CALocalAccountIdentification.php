@@ -45,6 +45,7 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPITypes = [
         'accountNumber' => 'string',
+        'accountType' => 'string',
         'institutionNumber' => 'string',
         'transitNumber' => 'string',
         'type' => 'string'
@@ -59,6 +60,7 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPIFormats = [
         'accountNumber' => null,
+        'accountType' => null,
         'institutionNumber' => null,
         'transitNumber' => null,
         'type' => null
@@ -71,6 +73,7 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPINullables = [
         'accountNumber' => false,
+        'accountType' => false,
         'institutionNumber' => false,
         'transitNumber' => false,
         'type' => false
@@ -163,6 +166,7 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      */
     protected static $attributeMap = [
         'accountNumber' => 'accountNumber',
+        'accountType' => 'accountType',
         'institutionNumber' => 'institutionNumber',
         'transitNumber' => 'transitNumber',
         'type' => 'type'
@@ -175,6 +179,7 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      */
     protected static $setters = [
         'accountNumber' => 'setAccountNumber',
+        'accountType' => 'setAccountType',
         'institutionNumber' => 'setInstitutionNumber',
         'transitNumber' => 'setTransitNumber',
         'type' => 'setType'
@@ -187,6 +192,7 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      */
     protected static $getters = [
         'accountNumber' => 'getAccountNumber',
+        'accountType' => 'getAccountType',
         'institutionNumber' => 'getInstitutionNumber',
         'transitNumber' => 'getTransitNumber',
         'type' => 'getType'
@@ -233,8 +239,22 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
         return self::$openAPIModelName;
     }
 
+    public const ACCOUNT_TYPE_CHECKING = 'checking';
+    public const ACCOUNT_TYPE_SAVINGS = 'savings';
     public const TYPE_CA_LOCAL = 'caLocal';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getAccountTypeAllowableValues()
+    {
+        return [
+            self::ACCOUNT_TYPE_CHECKING,
+            self::ACCOUNT_TYPE_SAVINGS,
+        ];
+    }
     /**
      * Gets allowable values of the enum
      *
@@ -262,6 +282,7 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     public function __construct(array $data = null)
     {
         $this->setIfExists('accountNumber', $data ?? [], null);
+        $this->setIfExists('accountType', $data ?? [], 'checking');
         $this->setIfExists('institutionNumber', $data ?? [], null);
         $this->setIfExists('transitNumber', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], 'caLocal');
@@ -297,6 +318,15 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
         if ($this->container['accountNumber'] === null) {
             $invalidProperties[] = "'accountNumber' can't be null";
         }
+        $allowedValues = $this->getAccountTypeAllowableValues();
+        if (!is_null($this->container['accountType']) && !in_array($this->container['accountType'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'accountType', must be one of '%s'",
+                $this->container['accountType'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         if ($this->container['institutionNumber'] === null) {
             $invalidProperties[] = "'institutionNumber' can't be null";
         }
@@ -353,6 +383,43 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
             throw new \InvalidArgumentException('non-nullable accountNumber cannot be null');
         }
         $this->container['accountNumber'] = $accountNumber;
+
+        return $this;
+    }
+
+    /**
+     * Gets accountType
+     *
+     * @return string|null
+     */
+    public function getAccountType()
+    {
+        return $this->container['accountType'];
+    }
+
+    /**
+     * Sets accountType
+     *
+     * @param string|null $accountType The bank account type.  Possible values: **checking** or **savings**. Defaults to **checking**.
+     *
+     * @return self
+     */
+    public function setAccountType($accountType)
+    {
+        if (is_null($accountType)) {
+            throw new \InvalidArgumentException('non-nullable accountType cannot be null');
+        }
+        $allowedValues = $this->getAccountTypeAllowableValues();
+        if (!in_array($accountType, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'accountType', must be one of '%s'",
+                    $accountType,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['accountType'] = $accountType;
 
         return $this;
     }

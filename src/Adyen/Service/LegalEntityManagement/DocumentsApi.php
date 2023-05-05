@@ -44,7 +44,7 @@ class DocumentsApi extends Service
     *
     * @param string $id
     * @param array|null $requestOptions
-    * @return void
+    * @return object
     * @throws AdyenException
     */
     public function deleteDocument(string $id, array $requestOptions = null): void

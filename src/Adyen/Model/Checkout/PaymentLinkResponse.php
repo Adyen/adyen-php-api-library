@@ -46,6 +46,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $openAPITypes = [
         'allowedPaymentMethods' => 'string[]',
         'amount' => '\Adyen\Model\Checkout\Amount',
+        'applicationInfo' => '\Adyen\Model\Checkout\ApplicationInfo',
         'billingAddress' => '\Adyen\Model\Checkout\Address',
         'blockedPaymentMethods' => 'string[]',
         'captureDelayHours' => 'int',
@@ -97,6 +98,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $openAPIFormats = [
         'allowedPaymentMethods' => null,
         'amount' => null,
+        'applicationInfo' => null,
         'billingAddress' => null,
         'blockedPaymentMethods' => null,
         'captureDelayHours' => 'int32',
@@ -146,6 +148,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $openAPINullables = [
         'allowedPaymentMethods' => false,
         'amount' => false,
+        'applicationInfo' => false,
         'billingAddress' => false,
         'blockedPaymentMethods' => false,
         'captureDelayHours' => true,
@@ -275,6 +278,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $attributeMap = [
         'allowedPaymentMethods' => 'allowedPaymentMethods',
         'amount' => 'amount',
+        'applicationInfo' => 'applicationInfo',
         'billingAddress' => 'billingAddress',
         'blockedPaymentMethods' => 'blockedPaymentMethods',
         'captureDelayHours' => 'captureDelayHours',
@@ -324,6 +328,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $setters = [
         'allowedPaymentMethods' => 'setAllowedPaymentMethods',
         'amount' => 'setAmount',
+        'applicationInfo' => 'setApplicationInfo',
         'billingAddress' => 'setBillingAddress',
         'blockedPaymentMethods' => 'setBlockedPaymentMethods',
         'captureDelayHours' => 'setCaptureDelayHours',
@@ -373,6 +378,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $getters = [
         'allowedPaymentMethods' => 'getAllowedPaymentMethods',
         'amount' => 'getAmount',
+        'applicationInfo' => 'getApplicationInfo',
         'billingAddress' => 'getBillingAddress',
         'blockedPaymentMethods' => 'getBlockedPaymentMethods',
         'captureDelayHours' => 'getCaptureDelayHours',
@@ -545,6 +551,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $this->setIfExists('allowedPaymentMethods', $data ?? [], null);
         $this->setIfExists('amount', $data ?? [], null);
+        $this->setIfExists('applicationInfo', $data ?? [], null);
         $this->setIfExists('billingAddress', $data ?? [], null);
         $this->setIfExists('blockedPaymentMethods', $data ?? [], null);
         $this->setIfExists('captureDelayHours', $data ?? [], null);
@@ -686,7 +693,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets allowedPaymentMethods
      *
-     * @param string[]|null $allowedPaymentMethods List of payment methods to be presented to the shopper. To refer to payment methods, use their `paymentMethod.type` from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: `\"allowedPaymentMethods\":[\"ideal\",\"giropay\"]`
+     * @param string[]|null $allowedPaymentMethods List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"allowedPaymentMethods\":[\"ideal\",\"giropay\"]`
      *
      * @return self
      */
@@ -723,6 +730,33 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
             throw new \InvalidArgumentException('non-nullable amount cannot be null');
         }
         $this->container['amount'] = $amount;
+
+        return $this;
+    }
+
+    /**
+     * Gets applicationInfo
+     *
+     * @return \Adyen\Model\Checkout\ApplicationInfo|null
+     */
+    public function getApplicationInfo()
+    {
+        return $this->container['applicationInfo'];
+    }
+
+    /**
+     * Sets applicationInfo
+     *
+     * @param \Adyen\Model\Checkout\ApplicationInfo|null $applicationInfo applicationInfo
+     *
+     * @return self
+     */
+    public function setApplicationInfo($applicationInfo)
+    {
+        if (is_null($applicationInfo)) {
+            throw new \InvalidArgumentException('non-nullable applicationInfo cannot be null');
+        }
+        $this->container['applicationInfo'] = $applicationInfo;
 
         return $this;
     }
@@ -767,7 +801,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets blockedPaymentMethods
      *
-     * @param string[]|null $blockedPaymentMethods List of payment methods to be hidden from the shopper. To refer to payment methods, use their `paymentMethod.type` from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: `\"blockedPaymentMethods\":[\"ideal\",\"giropay\"]`
+     * @param string[]|null $blockedPaymentMethods List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"blockedPaymentMethods\":[\"ideal\",\"giropay\"]`
      *
      * @return self
      */

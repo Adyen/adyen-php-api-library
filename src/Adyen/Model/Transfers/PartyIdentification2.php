@@ -49,6 +49,7 @@ class PartyIdentification2 implements ModelInterface, ArrayAccess, \JsonSerializ
         'firstName' => 'string',
         'fullName' => 'string',
         'lastName' => 'string',
+        'reference' => 'string',
         'type' => 'string'
     ];
 
@@ -65,6 +66,7 @@ class PartyIdentification2 implements ModelInterface, ArrayAccess, \JsonSerializ
         'firstName' => null,
         'fullName' => null,
         'lastName' => null,
+        'reference' => null,
         'type' => null
     ];
 
@@ -79,6 +81,7 @@ class PartyIdentification2 implements ModelInterface, ArrayAccess, \JsonSerializ
         'firstName' => false,
         'fullName' => false,
         'lastName' => false,
+        'reference' => false,
         'type' => false
     ];
 
@@ -173,6 +176,7 @@ class PartyIdentification2 implements ModelInterface, ArrayAccess, \JsonSerializ
         'firstName' => 'firstName',
         'fullName' => 'fullName',
         'lastName' => 'lastName',
+        'reference' => 'reference',
         'type' => 'type'
     ];
 
@@ -187,6 +191,7 @@ class PartyIdentification2 implements ModelInterface, ArrayAccess, \JsonSerializ
         'firstName' => 'setFirstName',
         'fullName' => 'setFullName',
         'lastName' => 'setLastName',
+        'reference' => 'setReference',
         'type' => 'setType'
     ];
 
@@ -201,6 +206,7 @@ class PartyIdentification2 implements ModelInterface, ArrayAccess, \JsonSerializ
         'firstName' => 'getFirstName',
         'fullName' => 'getFullName',
         'lastName' => 'getLastName',
+        'reference' => 'getReference',
         'type' => 'getType'
     ];
 
@@ -282,6 +288,7 @@ class PartyIdentification2 implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('firstName', $data ?? [], null);
         $this->setIfExists('fullName', $data ?? [], null);
         $this->setIfExists('lastName', $data ?? [], null);
+        $this->setIfExists('reference', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], 'unknown');
     }
 
@@ -379,7 +386,7 @@ class PartyIdentification2 implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets dateOfBirth
      *
-     * @param \DateTime|null $dateOfBirth The date of birth of the individual. Format: [ISO-8601](https://www.w3.org/TR/NOTE-datetime); example: YYYY-MM-DD Allowed only when `type` is **individual**.
+     * @param \DateTime|null $dateOfBirth The date of birth of the individual in [ISO-8601](https://www.w3.org/TR/NOTE-datetime) format. For example, **YYYY-MM-DD**.  Allowed only when `type` is **individual**.
      *
      * @return self
      */
@@ -406,7 +413,7 @@ class PartyIdentification2 implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets firstName
      *
-     * @param string|null $firstName First name of the individual. Allowed only when `type` is **individual**.
+     * @param string|null $firstName First name of the individual.  Allowed only when `type` is **individual**.
      *
      * @return self
      */
@@ -460,7 +467,7 @@ class PartyIdentification2 implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets lastName
      *
-     * @param string|null $lastName Last name of the individual. Allowed only when `type` is **individual**.
+     * @param string|null $lastName Last name of the individual.  Allowed only when `type` is **individual**.
      *
      * @return self
      */
@@ -470,6 +477,33 @@ class PartyIdentification2 implements ModelInterface, ArrayAccess, \JsonSerializ
             throw new \InvalidArgumentException('non-nullable lastName cannot be null');
         }
         $this->container['lastName'] = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Gets reference
+     *
+     * @return string|null
+     */
+    public function getReference()
+    {
+        return $this->container['reference'];
+    }
+
+    /**
+     * Sets reference
+     *
+     * @param string|null $reference Your unique reference of the party. This should be consistent for all transfers initiated to/from the same party/counterparty. e.g Your client's unique wallet or payee ID
+     *
+     * @return self
+     */
+    public function setReference($reference)
+    {
+        if (is_null($reference)) {
+            throw new \InvalidArgumentException('non-nullable reference cannot be null');
+        }
+        $this->container['reference'] = $reference;
 
         return $this;
     }
