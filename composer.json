@@ -14,7 +14,7 @@
     "ext-json": "*",
     "ext-mbstring": "*",
     "ext-openssl": "*",
-    "monolog/monolog": "^1.16 || ^2.0 || ^3.0"
+    "monolog/monolog": "^1.16 || ^2.0 || ^3"
   },
   "require-dev": {
     "dms/phpunit-arraysubset-asserts": "0.4.0",
