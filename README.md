@@ -156,6 +156,9 @@ For the test cases you need the PCI permission enabled on you account. There are
 By default the test will then be skipped. If you have these permissions fill in your account details in the config/test.ini file to let the test work.
 To make the automatic testing cases work for your account change the credentials in the config/test.ini file.
 
+## Feedback
+We value your input! Help us enhance our API Libraries and improve the integration experience by providing your feedback. Please take a moment to fill out [our feedback form](https://forms.gle/A4EERrR6CWgKWe5r9) to share your thoughts, suggestions or ideas.
+
 ## Contributing
 
 We encourage you to contribute to this repository, so everyone can benefit from new features, bug fixes, and any other improvements.
