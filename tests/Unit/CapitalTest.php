@@ -15,6 +15,4 @@ class CapitalTest extends TestCaseMock
         $result = $service->getCapitalAccount();
         $this->assertEquals(0, $result->getGrants()[0]->getAmount()->getValue());
     }
-
-
 }
