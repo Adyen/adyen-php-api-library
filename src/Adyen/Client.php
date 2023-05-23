@@ -29,7 +29,6 @@ class Client
     const API_FUND_VERSION = "v6";
     const API_DISPUTE_SERVICE_VERSION = "v30";
     const API_HOP_VERSION = "v6";
-    const API_CAPITAL_VERSION = "v3";
     const ENDPOINT_TERMINAL_CLOUD_TEST = "https://terminal-api-test.adyen.com";
     const ENDPOINT_TERMINAL_CLOUD_LIVE = "https://terminal-api-live.adyen.com";
     const ENDPOINT_TERMINAL_CLOUD_US_LIVE = "https://terminal-api-live-us.adyen.com";
