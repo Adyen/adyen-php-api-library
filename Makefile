@@ -24,6 +24,7 @@ Payout: spec=PayoutService-v68
 Management: spec=ManagementService-v1
 LegalEntityManagement: spec=LegalEntityService-v3
 Transfers: spec=TransferService-v3
+Capital: spec=GrantService-v3
 
 # Classic Platforms
 marketpay/account: spec=AccountService-v6
@@ -54,7 +55,7 @@ $(modelGen): target/spec $(openapi-generator-jar)
 # Service Generation; split up in to templates based on the size of the service. That is, some services have no subgroups and are thus generated in one single file, others are grouped in a directory.
 
 Services:=BalancePlatform Checkout StoredValue Payments Payout Management LegalEntityManagement Transfers
-SingleFileServices:=BalanceControl BinLookup DataProtection StoredValue POSTerminalManagement Recurring
+SingleFileServices:=BalanceControl BinLookup DataProtection StoredValue POSTerminalManagement Recurring Capital
 
 all: $(Services) $(SingleFileServices)
 
@@ -99,7 +100,7 @@ $(SingleFileServices): target/spec $(openapi-generator-jar)
 	rm -rf src/Adyen/Service/$@Api src/Adyen/Model/$@
 	mv $(output)/lib/Model/$@ $(models)/$@
 	mv $(output)/lib/ObjectSerializer.php $(models)/$@
-	mv $(output)/lib/Service/$@/GeneralApiSingle.php src/Adyen/Service/$@Api.php
+	mv $(output)/lib/Service/$@/*ApiSingle.php src/Adyen/Service/$@Api.php
 
 # Checkout spec (and patch version)
 target/spec:

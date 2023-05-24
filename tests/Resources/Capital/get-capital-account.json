@@ -1,0 +1,44 @@
+{
+    "grants": [
+      {
+        "amount": {
+          "currency": "str",
+          "value": 0
+        },
+        "balances": {
+          "currency": "string",
+          "fee": 0,
+          "principal": 0,
+          "total": 0
+        },
+        "counterparty": {
+          "accountHolderId": "string",
+          "balanceAccountId": "string",
+          "transferInstrumentId": "string"
+        },
+        "fee": {
+          "amount": {
+            "currency": "str",
+            "value": 0
+          }
+        },
+        "grantAccountId": "987654321",
+        "grantOfferId": "string",
+        "id": "string",
+        "repayment": {
+          "basisPoints": 0,
+          "term": {
+            "estimatedDays": 0,
+            "maximumDays": 0
+          },
+          "threshold": {
+            "amount": {
+              "currency": "str",
+              "value": 0
+            }
+          }
+        },
+        "status": "Pending"
+      }
+    ]
+  }
