@@ -14,5 +14,9 @@ class CapitalTest extends TestCaseMock
 
         $result = $service->getCapitalAccount();
         $this->assertEquals(0, $result->getGrants()[0]->getAmount()->getValue());
+        self::assertEquals(
+            'https://balanceplatform-api-test.adyen.com/btl/v3/grants',
+            $this->requestUrl
+        );
     }
 }
