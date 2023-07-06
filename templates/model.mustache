@@ -1,0 +1,31 @@
+<?php
+{{#models}}
+{{#model}}
+
+{{>partial_header}}
+
+namespace {{modelPackage}};
+{{^isEnum}}
+{{^parentSchema}}
+
+use \ArrayAccess;
+{{/parentSchema}}
+{{/isEnum}}
+use {{modelPackage}}\ObjectSerializer;
+
+/**
+ * {{classname}} Class Doc Comment
+ *
+ * @category Class
+{{#description}}
+ * @description {{.}}
+{{/description}}
+ * @package  {{packageName}}
+ * @author   OpenAPI Generator team
+ * @link     https://openapi-generator.tech
+{{^isEnum}}
+ * @implements \ArrayAccess<string, mixed>
+{{/isEnum}}
+ */
+{{#isEnum}}{{>model_enum}}{{/isEnum}}{{^isEnum}}{{>model_generic}}{{/isEnum}}
+{{/model}}{{/models}}

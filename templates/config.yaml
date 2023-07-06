@@ -1,0 +1,6 @@
+templateDir: ./templates
+files:
+  api-single.mustache:
+    folder: api
+    templateType: API
+    destinationFilename: Single.php
