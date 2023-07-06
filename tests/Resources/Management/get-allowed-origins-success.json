@@ -1,0 +1,22 @@
+{
+  "data": [
+    {
+      "id": "S2-23444444444",
+      "domain": "https://www.testore.com",
+      "_links": {
+        "self": {
+          "href": "https://management-test.adyen.com/v1/me/allowedOrigins/S2-23444444444"
+        }
+      }
+    },
+    {
+      "id": "S2-23444444444",
+      "domain": "https://www.test.store",
+      "_links": {
+        "self": {
+          "href": "https://management-test.adyen.com/v1/me/allowedOrigins/23444444444"
+        }
+      }
+    }
+  ]
+}

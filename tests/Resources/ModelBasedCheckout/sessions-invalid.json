@@ -1,0 +1,6 @@
+{
+  "status": 422,
+  "errorCode": "702",
+  "message": "Required field 'amount' is null",
+  "errorType": "validation"
+}

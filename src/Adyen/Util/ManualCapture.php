@@ -51,6 +51,7 @@ class ManualCapture
         'laser',
         'paypal',
         'sepadirectdebit',
+        'ach',
         'dankort',
         'elo',
         'hipercard',
@@ -59,7 +60,13 @@ class ManualCapture
         'amex_applepay',
         'discover_applepay',
         'maestro_applepay',
+        'cartebancaire_applepay',
         'paywithgoogle',
+        'mc_googlepay',
+        'visa_googlepay',
+        'amex_googlepay',
+        'discover_googlepay',
+        'maestro_googlepay',
         'svs',
         'givex',
         'valuelink',
@@ -74,7 +81,9 @@ class ManualCapture
         'applepay',
         'googlepay',
         'mobilepay',
-        'vipps'
+        'vipps',
+        'walley',
+        'walley_b2b'
     );
 
     public function isManualCaptureSupported($notificationPaymentMethod): bool
