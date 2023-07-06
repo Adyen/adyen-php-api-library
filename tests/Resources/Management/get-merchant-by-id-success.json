@@ -1,0 +1,32 @@
+{
+  "id": "TestMerchant1",
+  "name": "TestMerchant1",
+  "companyId": "Demo",
+  "captureDelay": "manual",
+  "defaultShopperInteraction": "Ecommerce",
+  "status": "Active",
+  "shopWebAddress": "https://adyen03-TestMerchant1.store/Sites-Site",
+  "merchantCity": "Amsterdam",
+  "primarySettlementCurrency": "EUR",
+  "dataCenters": [
+    {
+      "name": "default",
+      "livePrefix": ""
+    }
+  ],
+  "_links": {
+    "self": {
+      "href": "https://management-test.adyen.com/v1/merchants/TestMerchant1"
+    },
+    "apiCredentials": {
+      "href": "https://management-test.adyen.com/v1/merchants/TestMerchant1/apiCredentials"
+    },
+    "users": {
+      "href": "https://management-test.adyen.com/v1/merchants/TestMerchant1/users"
+    },
+    "webhooks": {
+      "href": "https://management-test.adyen.com/v1/merchants/TestMerchant1/webhooks"
+    }
+  },
+  "description": "TestMerchant1"
+}

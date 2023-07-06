@@ -1,0 +1,112 @@
+{
+  "_links" : {
+    "first" : {
+      "href" : "https://management-test.adyen.com/v1/companies/YOUR_COMPANY_ACCOUNT/webhooks?pageNumber=1&pageSize=10"
+    },
+    "last" : {
+      "href" : "https://management-test.adyen.com/v1/companies/YOUR_COMPANY_ACCOUNT/webhooks?pageNumber=1&pageSize=10"
+    },
+    "self" : {
+      "href" : "https://management-test.adyen.com/v1/companies/YOUR_COMPANY_ACCOUNT/webhooks?pageNumber=1&pageSize=10"
+    }
+  },
+  "itemsTotal" : 1,
+  "pagesTotal" : 1,
+  "data" : [
+    {
+      "id" : "S2-4A3B33202A46",
+      "type" : "standard",
+      "url" : "YOUR_WEBHOOK_URL",
+      "description" : "Webhook for YOUR_COMPANY_ACCOUNT - YOUR_COMPANY_CODE",
+      "filterMerchantAccountType" : "allAccounts",
+      "username" : "adyen",
+      "hasPassword" : true,
+      "active" : true,
+      "hasError" : false,
+      "sslVersion" : "TLSv1.2",
+      "communicationFormat" : "json",
+      "acceptsExpiredCertificate" : false,
+      "acceptsSelfSignedCertificate" : false,
+      "acceptsUntrustedRootCertificate" : false,
+      "populateSoapActionHeader" : false,
+      "additionalSettings" : {
+        "properties" : {
+          "includePosTerminalInfo" : false,
+          "includeARN" : false,
+          "includePosDetails" : false,
+          "includeCardInfoForRecurringContractNotification" : false,
+          "includeRiskData" : false,
+          "includeRiskExperimentReference" : false,
+          "includeSoapSecurityHeader" : false,
+          "includeContactlessWalletTokenInformation" : false,
+          "includeAcquirerReference" : false,
+          "includeRiskProfileReference" : false,
+          "includeOriginalMerchantReferenceCancelOrRefundNotification" : false,
+          "includeNfcTokenInformation" : false,
+          "includeSubvariant" : false,
+          "includeThreeDSVersion" : false,
+          "includeInstallmentsInfo" : false,
+          "includeAliasInfo" : false,
+          "includeShopperCountry" : false,
+          "includeRawThreeDSecureResult" : false,
+          "includeAirlineData" : false,
+          "includeGrossCurrencyChargebackDetails" : false,
+          "includeThreeDSecureResult" : false,
+          "includeMetadataIn3DSecurePaymentNotification" : false,
+          "includeOriginalReferenceForChargebackReversed" : false,
+          "addAcquirerResult" : false,
+          "includeDeliveryAddress" : false,
+          "includeRetryAttempts" : false,
+          "includeExtraCosts" : false,
+          "includeCardHolderName" : false,
+          "includeShopperDetail" : false,
+          "includeBankAccountDetails" : false,
+          "includeMandateDetails" : false,
+          "includeAuthAmountForDynamicZeroAuth" : false,
+          "includeIssuerCountry" : false,
+          "includeAcquirerErrorDetails" : false,
+          "includeCoBrandedWith" : false,
+          "includeShopperInteraction" : false,
+          "includeDeviceAndBrowserInfo" : false,
+          "addRawAcquirerResult" : false,
+          "includeCardBin" : false,
+          "includeFundingSource" : false,
+          "includeThreeDS2ChallengeInformation" : false,
+          "includeRiskProfile" : false,
+          "includeRealtimeAccountUpdaterStatus" : false,
+          "includeDunningProjectData" : false,
+          "includePaymentResultInOrderClosedNotification" : false,
+          "includeCardBinDetails" : false,
+          "includeNotesInManualReviewNotifications" : false,
+          "includeZeroAuthFlag" : false,
+          "addCaptureReferenceToDisputeNotification" : false,
+          "includePayPalDetails" : false,
+          "includeRawThreeDSecureDetailsResult" : false,
+          "includeBankVerificationResults" : false,
+          "includeCaptureDelayHours" : false,
+          "addPaymentAccountReference" : false,
+          "includePayULatamDetails" : false,
+          "includeStore" : false,
+          "returnAvsData" : false,
+          "includeWeChatPayOpenid" : false,
+          "includeCustomRoutingFlagging" : false,
+          "includeTokenisedPaymentMetaData" : false
+        }
+      },
+      "_links" : {
+        "self" : {
+          "href" : "https://management-test.adyen.com/v1/companies/YOUR_COMPANY_ACCOUNT/webhooks/S2-4A3B33202A46"
+        },
+        "company" : {
+          "href" : "https://management-test.adyen.com/v1/companies/YOUR_COMPANY_ACCOUNT"
+        },
+        "generateHmac" : {
+          "href" : "https://management-test.adyen.com/v1/companies/YOUR_COMPANY_ACCOUNT/webhooks/S2-4A3B33202A46/generateHmac"
+        },
+        "testWebhook" : {
+          "href" : "https://management-test.adyen.com/v1/companies/YOUR_COMPANY_ACCOUNT/webhooks/S2-4A3B33202A46/test"
+        }
+      }
+    }
+  ]
+}

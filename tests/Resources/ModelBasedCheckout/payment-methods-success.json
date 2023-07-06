@@ -1,0 +1,278 @@
+{
+  "paymentMethods": [{
+    "name": "AliPay",
+    "type": "alipay"
+  }, {
+    "details": [{
+      "key": "additionalData.card.encrypted.json",
+      "type": "cardToken"
+    }],
+    "name": "Credit Card",
+    "type": "scheme"
+  }, {
+    "name": "Bank Transfer (DE)",
+    "type": "bankTransfer_DE"
+  }, {
+    "name": "Bank Transfer (GB)",
+    "type": "bankTransfer_GB"
+  }, {
+    "name": "SEPA Bank Transfer",
+    "type": "bankTransfer_IBAN"
+  }, {
+    "name": "Bank Transfer (NL)",
+    "type": "bankTransfer_NL"
+  }, {
+    "name": "Bank Transfer (PL)",
+    "type": "bankTransfer_PL"
+  }, {
+    "name": "Bank Transfer (SE)",
+    "type": "bankTransfer_SE"
+  }, {
+    "details": [{
+      "key": "additionalData.card.encrypted.json",
+      "type": "cardToken"
+    }],
+    "name": "Bancontact card",
+    "type": "bcmc"
+  }, {
+    "name": "Cash-Ticket",
+    "type": "cashticket"
+  }, {
+    "name": "DineroMail",
+    "type": "dineromail"
+  }, {
+    "name": "Online bank transfer.",
+    "type": "directEbanking"
+  }, {
+    "name": "Eenmalige machtiging",
+    "type": "directdebit_NL"
+  }, {
+    "details": [{
+      "items": [{
+        "id": "11",
+        "name": "Bank transfer \/ postal"
+      }, {
+        "id": "74",
+        "name": "Banki Sp\u00f3\u0142dzielcze"
+      }, {
+        "id": "73",
+        "name": "BLIK"
+      }, {
+        "id": "32",
+        "name": "BNP Paribas"
+      }, {
+        "id": "16",
+        "name": "Credit Agricole"
+      }, {
+        "id": "83",
+        "name": "EnveloBank"
+      }, {
+        "id": "55",
+        "name": "erata - dotpay installment"
+      }, {
+        "id": "93",
+        "name": "eSKOK"
+      }, {
+        "id": "56",
+        "name": "eurobank p\u0142atno\u015bci online"
+      }, {
+        "id": "76",
+        "name": "Getin Bank PBL"
+      }, {
+        "id": "81",
+        "name": "Idea Cloud"
+      }, {
+        "id": "7",
+        "name": "ING Corporate customers"
+      }, {
+        "id": "35",
+        "name": "Kantor Polski"
+      }, {
+        "id": "44",
+        "name": "Millennium - P\u0142atno\u015bci Internetowe"
+      }, {
+        "id": "10",
+        "name": "Millennium Corporate customers"
+      }, {
+        "id": "68",
+        "name": "mRaty"
+      }, {
+        "id": "1",
+        "name": "mTransfer"
+      }, {
+        "id": "80",
+        "name": "Noble Pay"
+      }, {
+        "id": "50",
+        "name": "Pay Way Toyota Bank"
+      }, {
+        "id": "45",
+        "name": "Pay with Alior Bank"
+      }, {
+        "id": "65",
+        "name": "Paylink Idea Bank"
+      }, {
+        "id": "36",
+        "name": "Pekao24Przelew"
+      }, {
+        "id": "70",
+        "name": "Pocztowy24"
+      }, {
+        "id": "6",
+        "name": "Przelew24"
+      }, {
+        "id": "46",
+        "name": "P\u0142ac\u0119 z Citi Handlowy"
+      }, {
+        "id": "38",
+        "name": "P\u0142ac\u0119 z ING"
+      }, {
+        "id": "2",
+        "name": "P\u0142ac\u0119 z Inteligo"
+      }, {
+        "id": "4",
+        "name": "P\u0142ac\u0119 z iPKO"
+      }, {
+        "id": "72",
+        "name": "P\u0142ac\u0119 z Orange"
+      }, {
+        "id": "66",
+        "name": "P\u0142ac\u0119 z PBS"
+      }, {
+        "id": "75",
+        "name": "P\u0142ac\u0119 z Plus Bank"
+      }, {
+        "id": "51",
+        "name": "P\u0142a\u0107 z BO\u015a"
+      }, {
+        "id": "48",
+        "name": "R-Przelew"
+      }, {
+        "id": "88",
+        "name": "Raiffeisen"
+      }, {
+        "id": "52",
+        "name": "SkyCash"
+      }, {
+        "id": "58",
+        "name": "Szybkie Platnosci Internetowe z Deutsche Bank PBC"
+      }, {
+        "id": "60",
+        "name": "T-Mobile us\u0142ugi bankowe"
+      }, {
+        "id": "21",
+        "name": "VIA - Moje Rachunki"
+      }, {
+        "id": "84",
+        "name": "Volkswagen Bank direct"
+      }, {
+        "id": "31",
+        "name": "Zaplac w Zabce i we Freshmarket"
+      }, {
+        "id": "24",
+        "name": "mPay"
+      }],
+      "key": "issuer",
+      "type": "select"
+    }],
+    "name": "Local Polish Payment Methods",
+    "type": "dotpay"
+  }, {
+    "name": "Finnish E-Banking",
+    "type": "ebanking_FI"
+  }, {
+    "name": "Lastschrift (ELV)",
+    "type": "elv"
+  }, {
+    "name": "Nationale Entertainment Card",
+    "type": "entertainmentcard"
+  }, {
+    "details": [{
+      "key": "bic",
+      "type": "text"
+    }],
+    "name": "GiroPay",
+    "type": "giropay"
+  }, {
+    "details": [{
+      "items": [{
+        "id": "1121",
+        "name": "Test Issuer"
+      }, {
+        "id": "1154",
+        "name": "Test Issuer 5"
+      }, {
+        "id": "1153",
+        "name": "Test Issuer 4"
+      }, {
+        "id": "1152",
+        "name": "Test Issuer 3"
+      }, {
+        "id": "1151",
+        "name": "Test Issuer 2"
+      }, {
+        "id": "1162",
+        "name": "Test Issuer Cancelled"
+      }, {
+        "id": "1161",
+        "name": "Test Issuer Pending"
+      }, {
+        "id": "1160",
+        "name": "Test Issuer Refused"
+      }, {
+        "id": "1159",
+        "name": "Test Issuer 10"
+      }, {
+        "id": "1158",
+        "name": "Test Issuer 9"
+      }, {
+        "id": "1157",
+        "name": "Test Issuer 8"
+      }, {
+        "id": "1156",
+        "name": "Test Issuer 7"
+      }, {
+        "id": "1155",
+        "name": "Test Issuer 6"
+      }],
+      "key": "idealIssuer",
+      "type": "select"
+    }],
+    "name": "iDEAL",
+    "type": "ideal"
+  }, {
+    "name": "Phone Payment",
+    "type": "ivr"
+  }, {
+    "name": "Landline phone",
+    "type": "ivrLandline"
+  }, {
+    "name": "Mobile phone",
+    "type": "ivrMobile"
+  }, {
+    "name": "Moneybookers",
+    "type": "moneybookers"
+  }, {
+    "name": "Invoice",
+    "type": "openinvoice"
+  }, {
+    "name": "Paysafecard",
+    "type": "paysafecard"
+  }, {
+    "details": [{
+      "key": "sepa.ownerName",
+      "type": "text"
+    }, {
+      "key": "sepa.ibanNumber",
+      "type": "text"
+    }],
+    "name": "SEPA Direct Debit",
+    "type": "sepadirectdebit"
+  }, {
+    "name": "Premium SMS",
+    "type": "sms"
+  }, {
+    "name": "Your Gift",
+    "type": "yourgift"
+  }]
+}

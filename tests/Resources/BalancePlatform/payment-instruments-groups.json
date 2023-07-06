@@ -1,0 +1,12 @@
+{
+  "balancePlatform": "balancePlatform",
+  "description": "string",
+  "id": "LE3227C223222D5D8S5S33M4M",
+  "properties": {
+    "additionalProp1": "string",
+    "additionalProp2": "string",
+    "additionalProp3": "string"
+  },
+  "reference": "string",
+  "txVariant": "string"
+}
