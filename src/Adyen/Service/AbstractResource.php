@@ -33,6 +33,11 @@ abstract class AbstractResource
     protected $managementEndpoint;
 
     /**
+     * @var string
+     */
+    protected $checkoutEndpoint;
+
+    /**
      * AbstractResource constructor.
      *
      * @param Service $service
@@ -50,7 +55,9 @@ abstract class AbstractResource
         $this->endpoint = $endpoint;
         $this->allowApplicationInfo = $allowApplicationInfo;
         $this->allowApplicationInfoPOS = $allowApplicationInfoPOS;
-        $this->managementEndpoint = $service->getClient()->getConfig()->get('endpointManagementApi')
+        $this->checkoutEndpoint = $service->getClient()->getConfig()->get('endpointCheckout') . '/'
+            . $service->getClient()->getApiCheckoutVersion();
+        $this->managementEndpoint = $service->getClient()->getConfig()->get('endpointManagementApi') . '/'
             . $service->getClient()->getManagementApiVersion();
     }
 
@@ -201,11 +208,7 @@ abstract class AbstractResource
      */
     private function isBase64Encoded($data)
     {
-        if (preg_match('%^[a-zA-Z0-9/+]*={0,2}$%', $data) && !empty($data)) {
-            return true;
-        } else {
-            return false;
-        }
+        return preg_match('%^[a-zA-Z0-9/+]*={0,2}$%', $data) && !empty($data);
     }
 
     /**
@@ -262,6 +265,11 @@ abstract class AbstractResource
             $this->service->getClient()->getLogger()->error($msg);
             throw new AdyenException($msg);
         }
+        // build query param in url for get/delete
+        if (in_array($method, ['get', 'delete'])  && !empty($params)) {
+            $url .= '?' . http_build_query($params);
+        }
+
         $curlClient = $this->service->getClient()->getHttpClient();
         return $curlClient->requestHttp($this->service, $url, $params, $method);
     }

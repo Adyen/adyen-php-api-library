@@ -9,6 +9,7 @@ Thumbs.db
 
 # Packages
 /vendor/
+composer.lock
 
 # Application
 /tests/config/
@@ -18,3 +19,6 @@ Thumbs.db
 /build/
 .php_cs.cache
 .phpunit.result.cache
+
+# Automation
+/target/

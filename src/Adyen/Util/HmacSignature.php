@@ -102,7 +102,7 @@ class HmacSignature
         unset($params["additionalData"]);
         $expectedSign = $this->calculateNotificationHMAC($hmacKey, $params);
 
-        return $expectedSign == $merchantSign;
+        return hash_equals($expectedSign, $merchantSign);
     }
     /**
      * Returns true when the event code support HMAC validation
@@ -154,9 +154,6 @@ class HmacSignature
             "CANCEL_AUTORESCUE",
             "AUTORESCUE"
         );
-        if (array_key_exists(self::EVENT_CODE, $response) && in_array($response[self::EVENT_CODE], $eventCodes)) {
-            return true;
-        }
-        return false;
+        return array_key_exists(self::EVENT_CODE, $response) && in_array($response[self::EVENT_CODE], $eventCodes);
     }
 }

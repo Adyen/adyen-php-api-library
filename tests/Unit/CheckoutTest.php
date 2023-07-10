@@ -294,7 +294,7 @@ class CheckoutTest extends TestCaseMock
      * @param string $jsonFile
      * @param int $httpStatus
      *
-     * @dataProvider successPaymentLinksProvider
+     * @dataProvider successPaymentsLinkProvider
      */
     public function testPaymentLinksSuccess($jsonFile, $httpStatus)
     {
@@ -319,22 +319,42 @@ class CheckoutTest extends TestCaseMock
         $this->assertStringContainsString('payByLink.shtml', $result['url']);
     }
 
-    public static function successPaymentLinksProvider()
+    public static function successPaymentsLinkProvider()
     {
         return array(
-            array('tests/Resources/Checkout/payment-links-success.json', 200),
+            array('tests/Resources/Checkout/payment-links-success.json', 200)
         );
     }
 
-    /**
-     * @param string $jsonFile
-     * @param int $httpStatus
-     *
-     * @dataProvider invalidPaymentLinksProvider
-     */
-    public function testPaymentLinksInvalid($jsonFile, $httpStatus, $expectedExceptionMessage)
+    public function testPaymentLinksExpired()
     {
-        $client = $this->createMockClient($jsonFile, $httpStatus);
+        $client = $this->createMockClient('tests/Resources/Checkout/payment-links-expired.json', 200);
+
+        $service = new Checkout($client);
+
+        $params = array(
+            'status' => "expired"
+        );
+
+        $result = $service->updatePaymentLinks('linkid', $params);
+
+        $this->assertEquals('expired', $result['status']);
+    }
+
+    public function testPaymentLinksRetrieveSuccess()
+    {
+        $client = $this->createMockClient('tests/Resources/Checkout/payment-links-success.json', 200);
+
+        $service = new Checkout($client);
+
+        $result = $service->retrievePaymentLinks('linkId');
+
+        $this->assertStringContainsString('payByLink.shtml', $result['url']);
+    }
+
+    public function testPaymentLinksInvalid()
+    {
+        $client = $this->createMockClient('tests/Resources/Checkout/payment-links-invalid.json', 422);
 
         $service = new Checkout($client);
 
@@ -350,16 +370,9 @@ class CheckoutTest extends TestCaseMock
         );
 
         $this->expectException(AdyenException::class);
-        $this->expectExceptionMessage($expectedExceptionMessage);
+        $this->expectExceptionMessage('Reference Missing');
 
         $service->paymentLinks($params);
-    }
-
-    public static function invalidPaymentLinksProvider()
-    {
-        return array(
-            array('tests/Resources/Checkout/payment-links-invalid.json', 422, 'Reference Missing'),
-        );
     }
 
     /**
@@ -484,6 +497,90 @@ class CheckoutTest extends TestCaseMock
     {
         return array(
             array('tests/Resources/Checkout/sessions-invalid.json', 422, 'Required field \'amount\' is null'),
+        );
+    }
+
+    /**
+     * @param string $jsonFile
+     * @param int $httpStatus
+     *
+     * @dataProvider successCardDetailsProvider
+     */
+    public function testCardDetailsSuccess($jsonFile, $httpStatus)
+    {
+        $client = $this->createMockClient($jsonFile, $httpStatus);
+
+        $service = new Checkout($client);
+        $params = array (
+            "merchantAccount" => "YOUR_MERCHANT_ACCOUNT",
+            "cardNumber" => "411111",
+        );
+
+        $result = $service->cardDetails($params);
+
+        $this->assertNotNull($result['brands']);
+    }
+
+    public static function successCardDetailsProvider()
+    {
+        return array(
+            array('tests/Resources/Checkout/cardDetails-success.json', 200),
+        );
+    }
+
+    /**
+     * @param string $jsonFile
+     * @param int $httpStatus
+     *
+     * @dataProvider successGetStoredPaymentMethodsProvider
+     */
+    public function testGetStoredPaymentMethodsSuccess($jsonFile, $httpStatus)
+    {
+        $client = $this->createMockClient($jsonFile, $httpStatus);
+
+        $service = new Checkout($client);
+        $queryParams = array (
+            "merchantAccount" => "YOUR_MERCHANT_ACCOUNT",
+            "shopperReference" => "411111",
+        );
+
+        $result = $service->getStoredPaymentMethods($queryParams);
+
+        $this->assertNotNull($result['storedPaymentMethods']);
+    }
+
+    public static function successGetStoredPaymentMethodsProvider()
+    {
+        return array(
+            array('tests/Resources/Checkout/getStoredPaymentMethods-success.json', 200),
+        );
+    }
+
+    /**
+     * @param string $jsonFile
+     * @param int $httpStatus
+     *
+     * @dataProvider successDeleteStoredPaymentMethodsProvider
+     */
+    public function testDeleteStoredPaymentMethodsSuccess($jsonFile, $httpStatus)
+    {
+        $client = $this->createMockClient($jsonFile, $httpStatus);
+
+        $service = new Checkout($client);
+        $queryParams = array (
+            "merchantAccount" => "YOUR_MERCHANT_ACCOUNT",
+            "shopperReference" => "411111",
+        );
+
+        $result = $service->deleteStoredPaymentMethods("123", $queryParams);
+
+        $this->assertNotNull($result['brand']);
+    }
+
+    public static function successDeleteStoredPaymentMethodsProvider()
+    {
+        return array(
+            array('tests/Resources/Checkout/deleteStoredPaymentMethods-success.json', 200),
         );
     }
 }

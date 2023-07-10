@@ -2,17 +2,14 @@
 
 namespace Adyen\Service;
 
+use Adyen\Service\ResourceModel\Checkout\Recurring;
+
 class Checkout extends \Adyen\ApiKeyAuthenticatedService
 {
     /**
-     * @var ResourceModel\Checkout\PaymentSession
+     * @var ResourceModel\Checkout\Sessions
      */
-    protected $paymentSession;
-
-    /**
-     * @var ResourceModel\Checkout\PaymentsResult
-     */
-    protected $paymentsResult;
+    protected $sessions;
 
     /**
      * @var ResourceModel\Checkout\PaymentMethods
@@ -28,6 +25,16 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
      * @var ResourceModel\Checkout\PaymentsDetails
      */
     protected $paymentsDetails;
+
+    /**
+     * @var ResourceModel\Checkout\Donations
+     */
+    protected $donations;
+
+    /**
+     * @var ResourceModel\Checkout\CardDetails
+     */
+    protected $cardDetails;
 
     /**
      * @var ResourceModel\Checkout\PaymentLinks
@@ -50,16 +57,6 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
     protected $paymentMethodsBalance;
 
     /**
-     * @var ResourceModel\Checkout\Donations
-     */
-    protected $donations;
-  
-    /**
-     * @var ResourceModel\Checkout\Sessions
-     */
-    protected $sessions;
-
-    /**
      * @var ResourceModel\Checkout\Refunds
      */
     protected $refunds;
@@ -80,8 +77,31 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
     protected $cancels;
 
     /**
+     * @var ResourceModel\Checkout\TechnicalCancels
+     */
+    protected $technicalCancels;
+
+    /**
+     * @var ResourceModel\Checkout\Recurring
+     */
+    protected $recurring;
+
+    /**
+     * @var ResourceModel\Checkout\PaymentSession
+     * @deprecated
+     */
+    protected $paymentSession;
+
+    /**
+     * @var ResourceModel\Checkout\PaymentsResult
+     * @deprecated
+     */
+    protected $paymentsResult;
+
+    /**
      * Checkout constructor.
      *
+     * @deprecated Please consider using the model based services instead (suffix -Api.php)
      * @param \Adyen\Client $client
      * @throws \Adyen\AdyenException
      */
@@ -93,16 +113,19 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
         $this->paymentMethods = new \Adyen\Service\ResourceModel\Checkout\PaymentMethods($this);
         $this->payments = new \Adyen\Service\ResourceModel\Checkout\Payments($this);
         $this->paymentsDetails = new \Adyen\Service\ResourceModel\Checkout\PaymentsDetails($this);
-        $this->paymentLinks = new \Adyen\Service\ResourceModel\Checkout\PaymentLinks($this);
+        $this->paymentLinks = new \Adyen\Service\ResourceModel\Checkout\PaymentLinks($this, null);
         $this->orders = new \Adyen\Service\ResourceModel\Checkout\Orders($this);
         $this->ordersCancel = new \Adyen\Service\ResourceModel\Checkout\OrdersCancel($this);
         $this->paymentMethodsBalance = new \Adyen\Service\ResourceModel\Checkout\PaymentMethodsBalance($this);
         $this->donations = new \Adyen\Service\ResourceModel\Checkout\Donations($this);
         $this->sessions = new \Adyen\Service\ResourceModel\Checkout\Sessions($this);
+        $this->cardDetails = new \Adyen\Service\ResourceModel\Checkout\CardDetails($this);
         $this->refunds = new \Adyen\Service\ResourceModel\Checkout\Refunds($this);
         $this->reversals = new \Adyen\Service\ResourceModel\Checkout\Reversals($this);
         $this->captures = new \Adyen\Service\ResourceModel\Checkout\Captures($this);
         $this->cancels = new \Adyen\Service\ResourceModel\Checkout\Cancels($this);
+        $this->technicalCancels = new \Adyen\Service\ResourceModel\Checkout\TechnicalCancels($this);
+        $this->recurring = new Recurring($this, null);
     }
 
     /**
@@ -163,6 +186,18 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
     }
 
     /**
+     * @param $params
+     * @param null $requestOptions
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+    public function cardDetails($params, $requestOptions = null)
+    {
+        $result = $this->cardDetails->request($params, $requestOptions);
+        return $result;
+    }
+
+    /**
      * @param array $params
      * @param array|null $requestOptions
      * @return mixed
@@ -170,7 +205,29 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
      */
     public function paymentLinks($params, $requestOptions = null)
     {
-        return $this->paymentLinks->request($params, $requestOptions);
+        return $this->paymentLinks->create($params, $requestOptions);
+    }
+
+    /**
+     * @param array $params
+     * @param array|null $requestOptions
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+    public function retrievePaymentLinks($linkId)
+    {
+        return $this->paymentLinks->retrieve($linkId);
+    }
+
+    /**
+     * @param array $params
+     * @param array|null $requestOptions
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+    public function updatePaymentLinks($linkId, $params)
+    {
+        return $this->paymentLinks->update($linkId, $params);
     }
 
     /**
@@ -270,5 +327,38 @@ class Checkout extends \Adyen\ApiKeyAuthenticatedService
     public function cancels($params, $requestOptions = null)
     {
         return $this->cancels->request($params, $requestOptions);
+    }
+
+    /**
+     * @param array $params
+     * @param array|null $requestOptions
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+    public function technicalCancels($params, $requestOptions = null)
+    {
+        return $this->technicalCancels->request($params, $requestOptions);
+    }
+
+    /**
+     * @param array $params
+     * @param array|null $requestOptions
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+    public function getStoredPaymentMethods(array $queryParams = [])
+    {
+        return $this->recurring->retrieve($queryParams);
+    }
+
+    /**
+     * @param array $params
+     * @param array|null $requestOptions
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+    public function deleteStoredPaymentMethods($recurringId, array $queryParams = [])
+    {
+        return $this->recurring->delete($recurringId, $queryParams);
     }
 }

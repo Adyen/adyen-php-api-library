@@ -6,6 +6,12 @@ use Adyen\AdyenException;
 
 class CurlClient implements ClientInterface
 {
+
+    const USER_AGENT = 'User-Agent: ';
+    const CONTENT_TYPE = 'Content-Type: application/json';
+    const LIBRARY_NAME = "adyen-library-name: ";
+    const LIBRARY_VERSION = "adyen-library-version: ";
+
     // List of parameters that needs to be masked with the same array structure as it appears in
     // the response array
     private static $responseParamsToMask = array(
@@ -130,13 +136,13 @@ class CurlClient implements ClientInterface
         $environment = $config->getEnvironment();
         $sslVerify = $config->getSslVerify();
 
-        // log the request
+        // Log the request
         $this->logRequest($logger, $requestUrl, $environment, $params);
 
-        //Initiate cURL.
+        // Initiate cURL.
         $ch = curl_init($requestUrl);
 
-        //Tell cURL that we want to send a POST request.
+        // Tell cURL that we want to send a POST request.
         curl_setopt($ch, CURLOPT_POST, 1);
 
         $this->curlSetHttpProxy($ch, $httpProxy);
@@ -152,21 +158,27 @@ class CurlClient implements ClientInterface
         $userAgent = $config->get('applicationName') . " " .
             \Adyen\Client::USER_AGENT_SUFFIX . $client->getLibraryVersion();
 
-        //Set the content type to application/json and use the defined userAgent
+        // Add application info in headers
+        $libraryName = self::LIBRARY_NAME . $client->getLibraryName();
+        $libraryVersion = self::LIBRARY_VERSION . $client->getLibraryVersion();
+
+        // Set the content type to application/json and use the defined userAgent
         $headers = array(
             'Content-Type: application/x-www-form-urlencoded',
-            'User-Agent: ' . $userAgent
+            self::USER_AGENT . $userAgent,
+            $libraryName,
+            $libraryVersion
         );
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-        // return the result
+        // Return the result
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-        //Execute the request
+        // Execute the request
         list($result, $httpStatus) = $this->curlRequest($ch);
 
-        // log the response
+        // Log the response
         $decodedResult = json_decode($result, true);
         $this->logResponse($logger, $environment, $decodedResult);
 
@@ -183,9 +195,9 @@ class CurlClient implements ClientInterface
             $this->handleCurlError($requestUrl, $errno, $message, $logger);
         }
 
-        // result in array or json
+        // Result in array or json
         if ($config->getOutputType() == 'array') {
-            // transform to PHP Array
+            // Transform to PHP Array
             $result = json_decode($result, true);
 
             if (!$result) {
@@ -388,23 +400,23 @@ class CurlClient implements ClientInterface
 
         $jsonRequest = json_encode($params);
 
-        // log the request
+        // Log the request
         $this->logRequest($logger, $requestUrl, $environment, $params);
 
-        //Initiate cURL.
+        // Initiate cURL.
         $ch = curl_init($requestUrl);
 
         if ($method === self::HTTP_METHOD_GET) {
             curl_setopt($ch, CURLOPT_HTTPGET, 1);
         } elseif ($method === self::HTTP_METHOD_POST) {
-            //Tell cURL that we want to send a POST request.
+            // Tell cURL that we want to send a POST request.
             curl_setopt($ch, CURLOPT_POST, 1);
-            //Attach our encoded JSON string to the POST fields.
+            // Attach our encoded JSON string to the POST fields.
             curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonRequest);
         } elseif ($method === self::HTTP_METHOD_PATCH) {
-            //Tell cURL that we want to send a PATCH request.
+            // Tell cURL that we want to send a PATCH request.
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PATCH');
-            //Attach our encoded JSON string to the PATCH fields.
+            // Attach our encoded JSON string to the PATCH fields.
             curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonRequest);
         } elseif ($method === self::HTTP_METHOD_DELETE) {
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
@@ -413,22 +425,28 @@ class CurlClient implements ClientInterface
         $this->curlSetHttpProxy($ch, $httpProxy);
         $this->curlSetSslVerify($ch, $sslVerify);
 
-        //create a custom User-Agent
+        // Create a custom User-Agent
         $userAgent = $config->get('applicationName') . " " .
             \Adyen\Client::USER_AGENT_SUFFIX . $client->getLibraryVersion();
 
-        //Set the content type to application/json and use the defined userAgent
+        // Add application info in headers
+        $libraryName = self::LIBRARY_NAME . $client->getLibraryName();
+        $libraryVersion = self::LIBRARY_VERSION . $client->getLibraryVersion();
+
+        // Set the content type to application/json and use the defined userAgent
         $headers = array(
-            'Content-Type: application/json',
-            'User-Agent: ' . $userAgent
+            self::CONTENT_TYPE,
+            self::USER_AGENT . $userAgent,
+            $libraryName,
+            $libraryVersion
         );
 
-        // if idempotency key is provided as option include into request
+        // If idempotency key is provided as option include into request
         if (!empty($requestOptions['idempotencyKey'])) {
             $headers[] = 'Idempotency-Key: ' . $requestOptions['idempotencyKey'];
         }
 
-        // set authorisation credentials according to support & availability
+        // Set authorisation credentials according to support & availability
         if (!empty($xApiKey)) {
             //Set the content type to application/json and use the defined userAgent along with the x-api-key
             $headers[] = 'x-api-key: ' . $xApiKey;
@@ -441,21 +459,21 @@ class CurlClient implements ClientInterface
             curl_setopt($ch, CURLOPT_USERPWD, $username . ":" . $password);
         }
 
-        //Set the timeout
+        // Set the timeout
         if ($config->getTimeout() != null) {
             curl_setopt($ch, CURLOPT_TIMEOUT, $config->getTimeout());
         }
 
-        //Set the headers
+        // Set the headers
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-        // return the result
+        // Return the result
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-        //Execute the request
+        // Execute the request
         list($result, $httpStatus) = $this->curlRequest($ch);
 
-        // log the response
+        // Log the response
         $decodedResult = json_decode($result, true);
         $this->logResponse($logger, $environment, $decodedResult);
 
@@ -464,17 +482,17 @@ class CurlClient implements ClientInterface
 
         curl_close($ch);
 
-        $resultOKHttpStatusCodes = array(200, 201, 202, 204);
+        $hasFailed = !in_array($httpStatus, array(200, 201, 202, 204));
 
-        if (!in_array($httpStatus, $resultOKHttpStatusCodes) && $result) {
+        if ($hasFailed && $result) {
             $this->handleResultError($result, $logger);
-        } elseif (!$result) {
+        } elseif ($hasFailed && !$result) {
             $this->handleCurlError($requestUrl, $errno, $message, $logger);
         }
 
-        // result in array or json
+        // Result in array or json
         if ($config->getOutputType() == 'array') {
-            // transform to PHP Array
+            // Transform to PHP Array
             $result = json_decode($result, true);
         }
 

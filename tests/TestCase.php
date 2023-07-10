@@ -30,6 +30,7 @@ use Adyen\Environment;
 class TestCase extends \PHPUnit\Framework\TestCase
 {
     protected $merchantAccount;
+    protected $donationAccount;
     protected $skinCode;
     protected $hmacSignature;
 
@@ -45,6 +46,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
         parent::__construct($name, $data, $dataName);
         $this->settings = $this->loadConfig();
         $this->merchantAccount = $this->getMerchantAccount();
+        $this->donationAccount = $this->getDonationAccount();
         $this->skinCode = $this->getSkinCode();
         $this->hmacSignature = $this->getHmacSignature();
 
@@ -60,35 +62,6 @@ class TestCase extends \PHPUnit\Framework\TestCase
         // Check default timezone if not set use a default value for that
         if (!ini_get('date.timezone')) {
             ini_set('date.timezone', 'Europe/Amsterdam');
-        }
-    }
-
-    /**
-     * Mock client
-     *
-     * @return Client
-     */
-    protected function createClient()
-    {
-        // load settings from .ini file
-        $settings = $this->settings;
-
-        // validate username, password and MERCHANTAccount
-
-        if (!empty($settings['username']) &&
-            $settings['username'] != "YOUR USERNAME" &&
-            !empty($settings['password']) &&
-            $settings['password'] != "YOUR PASSWORD"
-        ) {
-            $client = new Client();
-            $client->setApplicationName("My Test Application");
-            $client->setUsername($settings['username']);
-            $client->setPassword($settings['password']);
-            $client->setEnvironment(Environment::TEST);
-
-            return $client;
-        } else {
-            $this->skipTest("Skipped the test. Configure your WebService Username and Password in the config");
         }
     }
 
@@ -117,16 +90,13 @@ class TestCase extends \PHPUnit\Framework\TestCase
      */
     protected function createPayoutClient()
     {
-        // load settings from .ini file
-        $settings = $this->settings;
-
         // validate username, password and MERCHANTAccount
 
-        if (isset($settings['storePayoutUsername']) && isset($settings['storePayoutPassword'])) {
-            if ($settings['storePayoutUsername'] == "YOUR STORE PAYOUT USERNAME"
-                || $settings['storePayoutUsername'] == ""
-                || $settings['storePayoutPassword'] == "YOUR STORE PAYOUT PASSWORD"
-                || $settings['storePayoutPassword'] == "") {
+        if (isset($this->settings['storePayoutUsername']) && isset($this->settings['storePayoutPassword'])) {
+            if ($this->settings['storePayoutUsername'] == "YOUR STORE PAYOUT USERNAME"
+                || $this->settings['storePayoutUsername'] == ""
+                || $this->settings['storePayoutPassword'] == "YOUR STORE PAYOUT PASSWORD"
+                || $this->settings['storePayoutPassword'] == "") {
                 $client = new Client();
                 $client->setApplicationName("My Test Application");
                 $client->setEnvironment(Environment::TEST);
@@ -137,8 +107,8 @@ class TestCase extends \PHPUnit\Framework\TestCase
             } else {
                 $client = new Client();
                 $client->setApplicationName("My Test Application");
-                $client->setUsername($settings['storePayoutUsername']);
-                $client->setPassword($settings['storePayoutPassword']);
+                $client->setUsername($this->settings['storePayoutUsername']);
+                $client->setPassword($this->settings['storePayoutPassword']);
                 $client->setEnvironment(Environment::TEST);
                 return $client;
             }
@@ -154,16 +124,13 @@ class TestCase extends \PHPUnit\Framework\TestCase
      */
     protected function createReviewPayoutClient()
     {
-        // load settings from .ini file
-        $settings = $this->settings;
-
         // validate username, password and MERCHANTAccount
 
-        if (isset($settings['reviewPayoutUsername']) && isset($settings['reviewPayoutPassword'])) {
-            if ($settings['reviewPayoutUsername'] == "YOUR REVIEW PAYOUT USERNAME"
-                || $settings['reviewPayoutUsername'] == ""
-                || $settings['reviewPayoutPassword'] == "YOUR REVIEW PAYOUT PASSWORD"
-                || $settings['reviewPayoutPassword'] == "") {
+        if (isset($this->settings['reviewPayoutUsername']) && isset($this->settings['reviewPayoutPassword'])) {
+            if ($this->settings['reviewPayoutUsername'] == "YOUR REVIEW PAYOUT USERNAME"
+                || $this->settings['reviewPayoutUsername'] == ""
+                || $this->settings['reviewPayoutPassword'] == "YOUR REVIEW PAYOUT PASSWORD"
+                || $this->settings['reviewPayoutPassword'] == "") {
                 $client = new Client();
                 $client->setApplicationName("My Test Application");
                 $client->setEnvironment(Environment::TEST);
@@ -174,8 +141,8 @@ class TestCase extends \PHPUnit\Framework\TestCase
             } else {
                 $client = new Client();
                 $client->setApplicationName("My Test Application");
-                $client->setUsername($settings['reviewPayoutUsername']);
-                $client->setPassword($settings['reviewPayoutPassword']);
+                $client->setUsername($this->settings['reviewPayoutUsername']);
+                $client->setPassword($this->settings['reviewPayoutPassword']);
                 $client->setEnvironment(Environment::TEST);
                 return $client;
             }
@@ -188,16 +155,13 @@ class TestCase extends \PHPUnit\Framework\TestCase
 
     protected function createTerminalCloudAPIClient()
     {
-        // load settings from .ini file
-        $settings = $this->settings;
-
-        if (empty($settings['x-api-key']) || $settings['x-api-key'] == 'YOUR X-API KEY') {
+        if (empty($this->settings['x-api-key']) || $this->settings['x-api-key'] == 'YOUR X-API KEY') {
             $this->skipTest("Skipped the test. Configure your x-api-key in the config");
         } else {
             $client = new Client();
             $client->setApplicationName("My Test Terminal API App");
             $client->setEnvironment(Environment::TEST);
-            $client->setXApiKey($settings['x-api-key']);
+            $client->setXApiKey($this->settings['x-api-key']);
             return $client;
         }
     }
@@ -206,15 +170,12 @@ class TestCase extends \PHPUnit\Framework\TestCase
     {
         $client = $this->createClient();
 
-        // load settings from .ini file
-        $settings = $this->settings;
-
-        if (empty($settings['merchantAccount']) || $settings['merchantAccount'] == 'YOUR MERCHANTACCOUNT') {
+        if (empty($this->settings['merchantAccount']) || $this->settings['merchantAccount'] == 'YOUR MERCHANTACCOUNT') {
             $this->skipTest("Skipped the test. Configure your MerchantAccount in the config");
             return null;
         }
 
-        $client->setMerchantAccount($settings['merchantAccount']);
+        $client->setMerchantAccount($this->settings['merchantAccount']);
         return $client;
     }
 
@@ -222,59 +183,58 @@ class TestCase extends \PHPUnit\Framework\TestCase
     {
         $client = $this->createClientWithMerchantAccount();
 
-        // load settings from .ini file
-        $settings = $this->settings;
-
-        if (empty($settings['x-api-key']) || $settings['x-api-key'] == 'YOUR X-API KEY') {
+        if (empty($this->settings['x-api-key']) || $this->settings['x-api-key'] == 'YOUR X-API KEY') {
             $this->skipTest("Skipped the test. Configure your x-api-key");
         } else {
-            $client->setXApiKey($settings['x-api-key']);
+            $client->setXApiKey($this->settings['x-api-key']);
             return $client;
         }
     }
 
     protected function getMerchantAccount()
     {
-        $settings = $this->settings;
-
-        if (empty($settings['merchantAccount']) || $settings['merchantAccount'] == 'YOUR MERCHANTACCOUNT') {
+        if (empty($this->settings['merchantAccount']) || $this->settings['merchantAccount'] == 'YOUR MERCHANTACCOUNT') {
             return null;
         }
 
-        return $settings['merchantAccount'];
+        return $this->settings['merchantAccount'];
+    }
+
+    protected function getDonationAccount()
+    {
+        if (empty($this->settings['donationAccount']) ||
+                $this->settings['donationAccount'] == 'YOUR DONATION MERCHANT ACCOUNT') {
+            return null;
+        }
+
+        return $this->settings['donationAccount'];
     }
 
     protected function getSkinCode()
     {
-        $settings = $this->settings;
-
-        if (empty($settings['skinCode']) || $settings['skinCode'] == 'YOUR SKIN CODE') {
+        if (empty($this->settings['skinCode']) || $this->settings['skinCode'] == 'YOUR SKIN CODE') {
             return null;
         }
 
-        return $settings['skinCode'];
+        return $this->settings['skinCode'];
     }
 
     protected function getHmacSignature()
     {
-        $settings = $this->settings;
-
-        if (empty($settings['hmacSignature'])|| $settings['hmacSignature'] == 'YOUR HMAC SIGNATURE') {
+        if (empty($this->settings['hmacSignature'])|| $this->settings['hmacSignature'] == 'YOUR HMAC SIGNATURE') {
             return null;
         }
 
-        return $settings['hmacSignature'];
+        return $this->settings['hmacSignature'];
     }
 
     protected function getPOIID()
     {
-        $settings = $this->settings;
-
-        if (empty($settings['POIID']) || $settings['POIID'] == 'MODEL-SERIALNUMBER') {
+        if (empty($this->settings['POIID']) || $this->settings['POIID'] == 'MODEL-SERIALNUMBER') {
             return null;
         }
 
-        return $settings['POIID'];
+        return $this->settings['POIID'];
     }
 
     protected function loadConfig()
@@ -287,6 +247,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
             'password' => getenv('INTEGRATION_PASSWORD'),
             'x-api-key' => getenv('INTEGRATION_X_API_KEY'),
             'merchantAccount' => getenv('INTEGRATION_MERCHANT_ACCOUNT'),
+            'donationAccount' => getenv('INTEGRATION_DONATION_ACCOUNT'),
             'skinCode' => getenv('INTEGRATION_SKIN_CODE'),
             'hmacSignature' => getenv('INTEGRATION_HMAC_SIGNATURE'),
             'storePayoutUsername' => getenv('INTEGRATION_STORE_PAYOUT_USERNAME'),

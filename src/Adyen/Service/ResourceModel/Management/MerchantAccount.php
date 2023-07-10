@@ -13,13 +13,14 @@ class MerchantAccount extends \Adyen\Service\AbstractResource
     protected $allowApplicationInfo = false;
 
     /**
+     * @param array $queryParams
      * @return mixed
      * @throws \Adyen\AdyenException
      */
-    public function list()
+    public function list(array $queryParams = [])
     {
         $url = $this->managementEndpoint . "/merchants";
-        return $this->requestHttp($url, 'get');
+        return $this->requestHttp($url, 'get', $queryParams);
     }
 
     /**
@@ -31,5 +32,17 @@ class MerchantAccount extends \Adyen\Service\AbstractResource
     {
         $url = $this->managementEndpoint . "/merchants/" . $merchantId;
         return $this->requestHttp($url, 'get');
+    }
+
+    /**
+     * @param $merchantId
+     * @param array $queryParams
+     * @return mixed
+     * @throws \Adyen\AdyenException
+     */
+    public function paymentMethodSettings($merchantId, array $queryParams = [])
+    {
+        $url = $this->managementEndpoint . "/merchants/" . $merchantId . "/paymentMethodSettings";
+        return $this->requestHttp($url, 'get', $queryParams);
     }
 }

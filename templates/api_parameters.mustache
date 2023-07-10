@@ -1,0 +1,2 @@
+{{! Path and body are required, followed by optional query string and request options }}
+{{#pathParams}}{{{dataType}}} ${{baseName}}, {{/pathParams}}{{#bodyParams}}{{{dataType}}} ${{#lambda.camelcase}}{{paramName}}{{/lambda.camelcase}}, {{/bodyParams}}array $requestOptions = null

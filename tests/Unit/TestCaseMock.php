@@ -1,17 +1,5 @@
 <?php
 /**
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
  *
  * Adyen API Library for PHP
  *
@@ -33,7 +21,12 @@ use PHPUnit\Framework\TestCase;
 
 class TestCaseMock extends TestCase
 {
-    protected function createMockClient($jsonFile, $httpStatus, $errno = null, $environment = Environment::TEST)
+    protected $requestUrl;
+
+    /**
+     * @throws AdyenException
+     */
+    protected function createMockClient($jsonFile, $httpStatus, $errno = null, $environment = Environment::TEST): Client
     {
         $client = new Client();
         $client->setApplicationName("My Test Application");
@@ -44,7 +37,7 @@ class TestCaseMock extends TestCase
         if ($jsonFile != null) {
             $json = file_get_contents($jsonFile, true);
         }
-        $curlClient = $this->getMockBuilder(get_class(new CurlClient()))
+        $curlClient = $this->getMockBuilder(CurlClient::class)
             ->onlyMethods(array('curlRequest', 'curlError', 'requestJson'))
             ->getMock();
         $curlClient->method('curlRequest')
@@ -53,8 +46,12 @@ class TestCaseMock extends TestCase
             ->willReturn(array($errno, null));
         $curlClient->method('requestJson')
             ->willReturnCallback(function (Service $service, $requestUrl, $params) use ($json, $client, $errno) {
-                $result = json_decode($json, true);
-                if ($client->getLogger()) {
+                if (!is_null($json)) {
+                    $result = json_decode($json, true);
+                } else {
+                    $result = null;
+                }
+                if ($client->getLogger() && isset($json)) {
                     $client->getLogger()->info(json_encode($params));
                     $client->getLogger()->info($json);
                 }
@@ -67,8 +64,43 @@ class TestCaseMock extends TestCase
                 if (!$client->getConfig()->getXApiKey()) {
                     throw new AdyenException('Please provide a valid Checkout API Key');
                 }
-                if (isset($errno) && $errno !== null) {
+                if (isset($errno)) {
                     throw new ConnectionException('', $errno);
+                }
+                return $result;
+            });
+
+        $client->setHttpClient($curlClient);
+        return $client;
+    }
+
+    /**
+     * @throws AdyenException
+     */
+    protected function createMockClientUrl($jsonFile, $environment = Environment::TEST): Client
+    {
+        $client = new Client();
+        $client->setApplicationName("My Test Application");
+        $client->setEnvironment($environment);
+        $client->setXApiKey("MockAPIKey");
+
+        $json = null;
+        if ($jsonFile != null) {
+            $json = file_get_contents($jsonFile, true);
+        }
+
+        $curlClient = $this->getMockBuilder(CurlClient::class)
+            ->onlyMethods(array('requestHttp'))
+            ->getMock();
+        $curlClient->method('requestHttp')
+            ->willReturnCallback(function (Service $service, $requestUrl, $params) use ($json) {
+
+                $this->requestUrl = $requestUrl;
+
+                if (!is_null($json)) {
+                    $result = json_decode($json, true);
+                } else {
+                    $result = null;
                 }
                 return $result;
             });
