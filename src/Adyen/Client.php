@@ -139,6 +139,16 @@ class Client
     }
 
     /**
+     * Set the path to a CA bundle file that enables verification using a custom certificate
+     *
+     * @param string $certFilePath
+     */
+    public function setSslVerify($certFilePath)
+    {
+        $this->config->set('ssl-verify', $certFilePath);
+    }
+
+    /**
      * Set environment to connect to test or live platform of Adyen
      * For live please specify the unique identifier.
      *

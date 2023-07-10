@@ -103,6 +103,16 @@ class Config implements ConfigInterface
     }
 
     /**
+     * Get the path to a CA bundle file that enables verification using a custom certificate
+     *
+     * @return mixed|null
+     */
+    public function getSslVerify()
+    {
+        return !empty($this->data['ssl-verify']) ? $this->data['ssl-verify'] : null;
+    }
+
+    /**
      * @return mixed|string
      */
     public function getInputType()
