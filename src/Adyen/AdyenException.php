@@ -31,7 +31,7 @@ class AdyenException extends Exception
      *
      * @param string $message
      * @param int $code
-     * @param Exception|null $previous
+     * @param \Throwable|null $previous
      * @param string|null $status
      * @param string|null $errorType
      * @param string|null $pspReference
@@ -40,7 +40,7 @@ class AdyenException extends Exception
     public function __construct(
         $message = "",
         $code = 0,
-        Exception $previous = null,
+        \Throwable $previous = null,
         $status = null,
         $errorType = null,
         $pspReference = null,
