@@ -25,6 +25,8 @@ namespace Adyen\Tests\Unit;
 
 use Adyen\AdyenException;
 use Adyen\Service\Checkout;
+use function PHPUnit\Framework\assertContains;
+use function PHPUnit\Framework\assertEquals;
 
 class CheckoutTest extends TestCaseMock
 {
@@ -582,5 +584,14 @@ class CheckoutTest extends TestCaseMock
         return array(
             array('tests/Resources/Checkout/deleteStoredPaymentMethods-success.json', 200),
         );
+    }
+
+    public function testDoublePathParamSubstitution()
+    {
+        $client = $this->createMockClientUrl('tests/Resources/ModelBasedCheckout/sessions-success.json');
+        $resource = new Checkout($client);
+        $resource->captures(array('paymentPspReference' => 'pspRef1'));
+        $resource->captures(array('paymentPspReference' => 'pspRef2'));
+        assertEquals($this->requestUrl, 'https://checkout-test.adyen.com/v70/payments/pspRef2/captures');
     }
 }
