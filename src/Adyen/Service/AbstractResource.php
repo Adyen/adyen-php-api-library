@@ -89,8 +89,7 @@ abstract class AbstractResource
         }
 
         $params = $this->addDefaultParametersToRequest($params);
-
-        $this->replacePathParameters($params);
+        $updatedEndpoint = $this->replacePathParameters($params);
 
         if ($this->allowApplicationInfo) {
             $params = $this->handleApplicationInfoInRequest($params);
@@ -104,7 +103,7 @@ abstract class AbstractResource
         }
 
         $curlClient = $this->service->getClient()->getHttpClient();
-        return $curlClient->requestJson($this->service, $this->endpoint, $params, $requestOptions);
+        return $curlClient->requestJson($this->service, $updatedEndpoint, $params, $requestOptions);
     }
 
     /**
@@ -185,12 +184,12 @@ abstract class AbstractResource
             parse_str($saleToAcquirerData, $queryString);
             $queryStringValues = array_values($queryString);
 
-            //check if querystring is nonempty and contains a value
-            if (!empty($queryString) && !empty($queryStringValues[0])) {
-                $saleToAcquirerData = $queryString;
-            } elseif ($this->isBase64Encoded($saleToAcquirerData)) {
+            // Check if $saleToAcquirerData is base64 encoded or querystring is nonempty and contains a value
+            if ($this->isBase64Encoded($saleToAcquirerData)) {
                 //If SaleToAcquirerData is a base64encoded string decode it and convert it to array
                 $saleToAcquirerData = json_decode(base64_decode($saleToAcquirerData, true), true);
+            } elseif (!empty($queryString) && !empty($queryStringValues[0])) {
+                $saleToAcquirerData = $queryString;
             }
         }
 
@@ -213,11 +212,11 @@ abstract class AbstractResource
 
     /**
      * @param $data
-     * @return void
+     * @return string
      */
     private function replacePathParameters($data)
     {
-        $this->endpoint = preg_replace_callback(
+        return preg_replace_callback(
             '/{([a-zA-Z]+)}/',
             function ($matches) use ($data) {
                 return $data[$matches[1]] ?? $matches[0];
