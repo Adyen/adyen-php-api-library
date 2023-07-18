@@ -1,5 +1,6 @@
-on: ["push", "pull_request"]
 name: Main Workflow
+
+on: ["pull_request"]
 
 jobs:
   run:
