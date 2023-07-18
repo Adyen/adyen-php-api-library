@@ -124,4 +124,12 @@ clean:
 	git clean -f -d $(models)
 
 
-.PHONY: templates models $(services)
+## Releases
+
+version:
+	perl -lne 'print "currentVersion=$$1" if /LIB_VERSION = "(.+)";/' < src/Adyen/Client.php >> "$$GITHUB_OUTPUT"
+
+bump:
+	perl -i -pe 's/$$ENV{"CURRENT_VERSION"}/$$ENV{"NEXT_VERSION"}/' src/Adyen/Client.php
+
+.PHONY: templates models $(services) version bump

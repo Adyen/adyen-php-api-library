@@ -1,0 +1,15 @@
+name: Release request
+
+on:
+    workflow_dispatch:
+    push:
+      branches:
+        - develop
+
+jobs:
+  release:
+    permissions:
+      contents: write
+      pull-requests: write
+    uses: Adyen/adyen-dotnet-api-library/.github/workflows/lib-release.yml@develop
+    secrets: inherit
