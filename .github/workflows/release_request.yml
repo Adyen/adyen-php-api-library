@@ -11,5 +11,5 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-    uses: Adyen/adyen-dotnet-api-library/.github/workflows/lib-release.yml@develop
+    uses: Adyen/adyen-node-api-library/.github/workflows/lib-release.yml@develop
     secrets: inherit
