@@ -10,7 +10,7 @@ jobs:
   gh_release:
     permissions:
       contents: write
-    uses: Adyen/adyen-dotnet-api-library/.github/workflows/lib-gh-release.yml@develop
+    uses: Adyen/adyen-node-api-library/.github/workflows/lib-gh-release.yml@develop
     with:
       project-name: PHP
     secrets: inherit
