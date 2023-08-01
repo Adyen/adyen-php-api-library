@@ -5,8 +5,7 @@ namespace Adyen;
 use Adyen\HttpClient\ClientInterface;
 use Adyen\HttpClient\CurlClient;
 use Psr\Log\LoggerInterface;
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
+use Psr\Log\NullLogger;
 
 class Client
 {
@@ -496,21 +495,10 @@ class Client
     public function getLogger()
     {
         if ($this->logger === null) {
-            $this->logger = $this->createDefaultLogger();
+            $this->logger = new NullLogger();
         }
 
         return $this->logger;
-    }
-
-    /**
-     * @return Logger
-     */
-    protected function createDefaultLogger()
-    {
-        $logger = new Logger('adyen-php-api-library');
-        $logger->pushHandler(new StreamHandler('php://stderr', Logger::NOTICE));
-
-        return $logger;
     }
 
     /**

@@ -2,8 +2,6 @@
 
 namespace Adyen\Tests\Unit;
 
-use Adyen\AdyenException;
-use Adyen\ConnectionException;
 use Adyen\Model\Payments\AdjustAuthorisationRequest;
 use Adyen\Model\Payments\CancelRequest;
 use Adyen\Model\Payments\PaymentRequest;
@@ -11,8 +9,6 @@ use Adyen\Model\Payments\PaymentRequest3d;
 use Adyen\Model\Payments\PaymentRequest3ds2;
 use Adyen\Service\Payments\GeneralApi;
 use Adyen\Service\Payments\ModificationsApi;
-use Monolog\Handler\TestHandler;
-use Monolog\Logger;
 
 class ModelBasedPaymentsTest extends TestCaseMock
 {
