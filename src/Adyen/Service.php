@@ -2,7 +2,7 @@
 
 namespace Adyen;
 
-use PHPUnit\Util\Exception;
+use DateTime;
 
 class Service
 {
@@ -22,16 +22,14 @@ class Service
      * @param Client $client
      * @throws AdyenException
      */
-    public function __construct(\Adyen\Client $client)
+    public function __construct(Client $client)
     {
-        $msg = null;
-
         // validate if client has all the configuration we need
         if (!$client->getConfig()->get('environment')) {
             // throw exception
             $msg = 'The Client does not have a correct environment, use ' .
-                \Adyen\Environment::TEST . ' or ' . \Adyen\Environment::LIVE;
-            throw new \Adyen\AdyenException($msg);
+                Environment::TEST . ' or ' . Environment::LIVE;
+            throw new AdyenException($msg);
         }
 
         $this->client = $client;
@@ -40,13 +38,19 @@ class Service
     /**
      * @return Client
      */
-    public function getClient()
+    public function getClient(): Client
     {
         return $this->client;
     }
 
     /**
+     * @param string $url
+     * @param string $method
+     * @param array|null $bodyParams
+     * @param array|null $requestOptions
+     * @return array
      * @throws AdyenException
+     * @throws ConnectionException
      */
     protected function requestHttp(
         string $url,
@@ -57,13 +61,11 @@ class Service
         // check if rest api method has a value
         if (!$method) {
             $msg = 'The REST API method is empty';
-            $this->getClient()->getLogger()->error($msg);
             throw new AdyenException($msg);
         }
         // check if rest api method has a value
         if (!$url) {
             $msg = 'The REST API endpoint is empty';
-            $this->getClient()->getLogger()->error($msg);
             throw new AdyenException($msg);
         }
         $curlClient = $this->getClient()->getHttpClient();
@@ -74,7 +76,7 @@ class Service
             // catch DateTime objects and convert them to string
             $queryParams = array_map(
                 function ($val) {
-                    if ($val instanceof \DateTime) {
+                    if ($val instanceof DateTime) {
                         return $val->format('c');
                     }
                     return $val;
@@ -91,7 +93,7 @@ class Service
     /**
      * @return bool
      */
-    public function requiresApiKey()
+    public function requiresApiKey(): bool
     {
         return $this->requiresApiKey;
     }
@@ -104,12 +106,12 @@ class Service
     public function createBaseUrl(string $url): string
     {
         $config = $this->getClient()->getConfig();
-        if ($this->getClient()->getConfig()->getEnvironment() === \Adyen\Environment::LIVE) {
+        if ($this->getClient()->getConfig()->getEnvironment() === Environment::LIVE) {
             // Add live url prefix for pal/servlet endpoints
             if (strpos($url, "pal-") !== false) {
                 // Check prefix is not empty and if so throw error
                 if ($config->get('prefix') == null) {
-                    throw new \Adyen\AdyenException(
+                    throw new AdyenException(
                         "Please add your live URL prefix from CA under Developers > API URLs > Prefix"
                     );
                 }
@@ -124,7 +126,7 @@ class Service
             // Add live url prefix for checkout
             if (strpos($url, "checkout-") !== false) {
                 if ($config->get('prefix') == null) {
-                    throw new \Adyen\AdyenException(
+                    throw new AdyenException(
                         "Please add your checkout live URL prefix from CA under Developers > API URLs > Prefix"
                     );
                 }

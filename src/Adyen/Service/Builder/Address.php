@@ -23,6 +23,9 @@
 
 namespace Adyen\Service\Builder;
 
+/**
+ * @deprecated
+ */
 class Address
 {
     /**

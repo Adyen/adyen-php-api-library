@@ -23,6 +23,9 @@
 
 namespace Adyen\Util;
 
+/**
+ * @deprecated
+ */
 class OpenInvoice
 {
     const AFTERPAY_PAYMENT_METHOD = 'afterpay';

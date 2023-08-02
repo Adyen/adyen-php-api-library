@@ -23,6 +23,9 @@
 
 namespace Adyen\Util;
 
+/**
+ * @deprecated
+ */
 class ManualCapture
 {
     private $openInvoice;
