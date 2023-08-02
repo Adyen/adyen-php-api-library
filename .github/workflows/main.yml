@@ -16,7 +16,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-version }}
-          tools: composer:v1
+          tools: composer:v2
 
       - name: Checkout
         uses: actions/checkout@v3
