@@ -46,14 +46,11 @@ class BinLookupApi extends Service
     * @return \Adyen\Model\BinLookup\ThreeDSAvailabilityResponse
     * @throws AdyenException
     */
-    public function get3dsAvailability(
-        \Adyen\Model\BinLookup\ThreeDSAvailabilityRequest $threeDSAvailabilityRequest,
-        array $requestOptions = null):
-    \Adyen\Model\BinLookup\ThreeDSAvailabilityResponse
+    public function get3dsAvailability(\Adyen\Model\BinLookup\ThreeDSAvailabilityRequest $threeDSAvailabilityRequest, array $requestOptions = null): \Adyen\Model\BinLookup\ThreeDSAvailabilityResponse
     {
         $endpoint = $this->baseURL . "/get3dsAvailability";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $threeDSAvailabilityRequest->jsonSerialize(), $requestOptions);
-        return ObjectSerializer::deserialize($response, ThreeDSAvailabilityResponse::class);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\BinLookup\ThreeDSAvailabilityResponse::class);
     }
 
     /**
