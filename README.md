@@ -28,6 +28,16 @@ The library supports all APIs under the following services:
 | [Terminal API (Local communications)](https://docs.adyen.com/point-of-sale/choose-your-architecture/local) | Our point-of-sale integration.                                                                                                                                                                                                                                    | [Local-based Terminal API](src/Adyen/Service/PosPayment.php)     | Local-based Terminal API |      |
 | [POS Terminal Management API](https://docs.adyen.com/api-explorer/postfmapi/1/overview)                 | This API provides endpoints for managing your point-of-sale (POS) payment terminals. You can use the API to obtain information about a specific terminal, retrieve overviews of your terminals and stores, and assign terminals to a merchant account or store.                                                                                                                                                                                                       | [POSTerminalManagement](src/Adyen/Service/POSTerminalManagementApi.php) | **v1**                                                           |
 
+## Supported Webhook versions
+The library supports all webhooks under the following model directories:
+
+| Webhooks                                                                                          | Description                                                                                                                                                                             | Model Name                                                         | Supported Version |
+|---------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------|-------------------|
+| [Configuration Webhooks](https://docs.adyen.com/api-explorer/balanceplatform-webhooks/1/overview) | You can use these webhooks to build your implementation. For example, you can use this information to update internal statuses when the status of a capability is changed.              | [ConfigurationNotification](src/Adyen/Model/ConfigurationWebhooks) | **v1**            |
+| [Transfer Webhooks](https://docs.adyen.com/api-explorer/transfer-webhooks/3/overview)             | You can use these webhooks to build your implementation. For example, you can use this information to update balances in your own dashboards or to keep track of incoming funds.        | [TransferNotification](src/Adyen/Model/TransferWebhooks)           | **v3**            |
+| [Report Webhooks](https://docs.adyen.com/api-explorer/report-webhooks/1/overview)                 | You can download reports programmatically by making an HTTP GET request, or manually from your Balance Platform Customer Area                                                           | [ReportNotification](src/Adyen/Model/ReportWebhooks)               | **v1**            |
+| [Notification Webhooks](https://docs.adyen.com/api-explorer/Webhooks/1/overview)                  | We use webhooks to send you updates about payment status updates, newly available reports, and other events that you can subscribe to. For more information, refer to our documentation | [Notification](src/Adyen/Service/Notification.php)                 | **v1**            |
+For more information, refer to our [documentation](https://docs.adyen.com/) or the [API Explorer](https://docs.adyen.com/api-explorer/).
 
 For more information, refer to our [documentation](https://docs.adyen.com/) or the [API Explorer](https://docs.adyen.com/api-explorer/).
 
@@ -145,6 +155,18 @@ $createPaymentLinkRequest = new CreatePaymentLinkRequest($params);
 $result = $service->paymentLinks($createPaymentLinkRequest);
 
 $paymentLink = $result->getUrl(); // or use $result['url'] if you want to use arrayAccess
+~~~~
+### Using Banking Webhooks
+~~~~ php
+...
+
+$jsonString = 'webhook_payload';
+$isValid = $hmac->validateHMAC("YOUR_HMAC_KEY", "YOUR_HMAC_SIGN", $jsonString);
+
+if ($isValid) {
+    $webhookParser = new BankingWebhookParser($jsonString);
+    $result = $webhookParser->getGenericWebhook();
+}
 ~~~~
 
 ### Example integration

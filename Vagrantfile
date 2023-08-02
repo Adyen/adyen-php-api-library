@@ -17,7 +17,7 @@ fi
 SCRIPT
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "mpasternak/focal64-arm"
+  config.vm.box = "jeffnoxon/ubuntu-20.04-arm64"
   config.vm.network "private_network", ip: "192.168.58.30"
   config.vm.provider :parallels do |v|
       v.memory = "4096"
