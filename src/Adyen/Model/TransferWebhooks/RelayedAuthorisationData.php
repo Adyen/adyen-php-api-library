@@ -67,7 +67,7 @@ class RelayedAuthorisationData implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static $openAPINullables = [
         'metadata' => false,
-		'reference' => false
+        'reference' => false
     ];
 
     /**
@@ -400,7 +400,7 @@ class RelayedAuthorisationData implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

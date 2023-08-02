@@ -67,7 +67,7 @@ class PaymentInstrumentNotificationData implements ModelInterface, ArrayAccess, 
       */
     protected static $openAPINullables = [
         'balancePlatform' => false,
-		'paymentInstrument' => false
+        'paymentInstrument' => false
     ];
 
     /**
@@ -400,7 +400,7 @@ class PaymentInstrumentNotificationData implements ModelInterface, ArrayAccess, 
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

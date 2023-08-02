@@ -85,16 +85,16 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'balancePlatform' => false,
-		'capabilities' => false,
-		'contactDetails' => false,
-		'description' => false,
-		'id' => false,
-		'legalEntityId' => false,
-		'metadata' => false,
-		'primaryBalanceAccount' => false,
-		'reference' => false,
-		'status' => false,
-		'timeZone' => false
+        'capabilities' => false,
+        'contactDetails' => false,
+        'description' => false,
+        'id' => false,
+        'legalEntityId' => false,
+        'metadata' => false,
+        'primaryBalanceAccount' => false,
+        'reference' => false,
+        'status' => false,
+        'timeZone' => false
     ];
 
     /**
@@ -749,7 +749,7 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

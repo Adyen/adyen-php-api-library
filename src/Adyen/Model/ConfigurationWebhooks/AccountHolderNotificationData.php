@@ -67,7 +67,7 @@ class AccountHolderNotificationData implements ModelInterface, ArrayAccess, \Jso
       */
     protected static $openAPINullables = [
         'accountHolder' => false,
-		'balancePlatform' => false
+        'balancePlatform' => false
     ];
 
     /**
@@ -400,7 +400,7 @@ class AccountHolderNotificationData implements ModelInterface, ArrayAccess, \Jso
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

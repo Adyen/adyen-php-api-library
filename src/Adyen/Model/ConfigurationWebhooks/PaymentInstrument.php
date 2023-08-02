@@ -83,15 +83,15 @@ class PaymentInstrument implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPINullables = [
         'balanceAccountId' => false,
-		'bankAccount' => false,
-		'card' => false,
-		'description' => false,
-		'id' => false,
-		'issuingCountryCode' => false,
-		'paymentInstrumentGroupId' => false,
-		'reference' => false,
-		'status' => false,
-		'type' => false
+        'bankAccount' => false,
+        'card' => false,
+        'description' => false,
+        'id' => false,
+        'issuingCountryCode' => false,
+        'paymentInstrumentGroupId' => false,
+        'reference' => false,
+        'status' => false,
+        'type' => false
     ];
 
     /**
@@ -764,7 +764,7 @@ class PaymentInstrument implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

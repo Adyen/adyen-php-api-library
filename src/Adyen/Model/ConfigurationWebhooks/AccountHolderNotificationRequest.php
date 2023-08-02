@@ -69,8 +69,8 @@ class AccountHolderNotificationRequest implements ModelInterface, ArrayAccess, \
       */
     protected static $openAPINullables = [
         'data' => false,
-		'environment' => false,
-		'type' => false
+        'environment' => false,
+        'type' => false
     ];
 
     /**
@@ -476,7 +476,7 @@ class AccountHolderNotificationRequest implements ModelInterface, ArrayAccess, \
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

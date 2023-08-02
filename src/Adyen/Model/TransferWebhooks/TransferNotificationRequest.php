@@ -69,8 +69,8 @@ class TransferNotificationRequest implements ModelInterface, ArrayAccess, \JsonS
       */
     protected static $openAPINullables = [
         'data' => false,
-		'environment' => false,
-		'type' => false
+        'environment' => false,
+        'type' => false
     ];
 
     /**
@@ -473,7 +473,7 @@ class TransferNotificationRequest implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

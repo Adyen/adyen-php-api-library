@@ -69,8 +69,8 @@ class TransactionRuleReference implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static $openAPINullables = [
         'description' => false,
-		'id' => false,
-		'reference' => false
+        'id' => false,
+        'reference' => false
     ];
 
     /**
@@ -434,7 +434,7 @@ class TransactionRuleReference implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -79,13 +79,13 @@ class CardOrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'balancePlatform' => false,
-		'card' => false,
-		'cardOrderItemId' => false,
-		'creationDate' => false,
-		'id' => false,
-		'paymentInstrumentId' => false,
-		'pin' => false,
-		'shippingMethod' => false
+        'card' => false,
+        'cardOrderItemId' => false,
+        'creationDate' => false,
+        'id' => false,
+        'paymentInstrumentId' => false,
+        'pin' => false,
+        'shippingMethod' => false
     ];
 
     /**
@@ -604,7 +604,7 @@ class CardOrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

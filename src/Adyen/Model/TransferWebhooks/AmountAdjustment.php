@@ -69,8 +69,8 @@ class AmountAdjustment implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'amount' => false,
-		'amountAdjustmentType' => false,
-		'basepoints' => true
+        'amountAdjustmentType' => false,
+        'basepoints' => true
     ];
 
     /**
@@ -469,7 +469,7 @@ class AmountAdjustment implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

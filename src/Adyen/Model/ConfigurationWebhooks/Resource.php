@@ -69,8 +69,8 @@ class Resource implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'balancePlatform' => false,
-		'creationDate' => false,
-		'id' => false
+        'creationDate' => false,
+        'id' => false
     ];
 
     /**
@@ -434,7 +434,7 @@ class Resource implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

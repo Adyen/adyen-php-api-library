@@ -69,8 +69,8 @@ class SweepConfigurationNotificationData implements ModelInterface, ArrayAccess,
       */
     protected static $openAPINullables = [
         'accountId' => false,
-		'balancePlatform' => false,
-		'sweep' => false
+        'balancePlatform' => false,
+        'sweep' => false
     ];
 
     /**
@@ -434,7 +434,7 @@ class SweepConfigurationNotificationData implements ModelInterface, ArrayAccess,
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

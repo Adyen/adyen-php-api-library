@@ -69,8 +69,8 @@ class PersonalData implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'dateOfBirth' => false,
-		'idNumber' => false,
-		'nationality' => false
+        'idNumber' => false,
+        'nationality' => false
     ];
 
     /**
@@ -434,7 +434,7 @@ class PersonalData implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

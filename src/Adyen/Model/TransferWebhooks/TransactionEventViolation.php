@@ -69,8 +69,8 @@ class TransactionEventViolation implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static $openAPINullables = [
         'reason' => false,
-		'transactionRule' => false,
-		'transactionRuleSource' => false
+        'transactionRule' => false,
+        'transactionRuleSource' => false
     ];
 
     /**
@@ -434,7 +434,7 @@ class TransactionEventViolation implements ModelInterface, ArrayAccess, \JsonSer
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -67,7 +67,7 @@ class TransferNotificationValidationFact implements ModelInterface, ArrayAccess,
       */
     protected static $openAPINullables = [
         'result' => false,
-		'type' => false
+        'type' => false
     ];
 
     /**
@@ -400,7 +400,7 @@ class TransferNotificationValidationFact implements ModelInterface, ArrayAccess,
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

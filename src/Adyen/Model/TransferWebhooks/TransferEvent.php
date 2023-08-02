@@ -89,18 +89,18 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'amount' => false,
-		'amountAdjustments' => false,
-		'bookingDate' => false,
-		'estimatedArrivalTime' => false,
-		'id' => false,
-		'mutations' => false,
-		'originalAmount' => false,
-		'reason' => false,
-		'status' => false,
-		'transactionId' => false,
-		'type' => false,
-		'updateDate' => false,
-		'valueDate' => false
+        'amountAdjustments' => false,
+        'bookingDate' => false,
+        'estimatedArrivalTime' => false,
+        'id' => false,
+        'mutations' => false,
+        'originalAmount' => false,
+        'reason' => false,
+        'status' => false,
+        'transactionId' => false,
+        'type' => false,
+        'updateDate' => false,
+        'valueDate' => false
     ];
 
     /**
@@ -1019,7 +1019,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

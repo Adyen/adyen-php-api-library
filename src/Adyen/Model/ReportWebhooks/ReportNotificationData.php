@@ -77,12 +77,12 @@ class ReportNotificationData implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPINullables = [
         'accountHolder' => false,
-		'balanceAccount' => false,
-		'balancePlatform' => false,
-		'creationDate' => false,
-		'downloadUrl' => false,
-		'fileName' => false,
-		'reportType' => false
+        'balanceAccount' => false,
+        'balancePlatform' => false,
+        'creationDate' => false,
+        'downloadUrl' => false,
+        'fileName' => false,
+        'reportType' => false
     ];
 
     /**
@@ -579,7 +579,7 @@ class ReportNotificationData implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -67,7 +67,7 @@ class CronSweepSchedule implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPINullables = [
         'cronExpression' => false,
-		'type' => false
+        'type' => false
     ];
 
     /**
@@ -442,7 +442,7 @@ class CronSweepSchedule implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

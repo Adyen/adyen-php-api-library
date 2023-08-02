@@ -68,7 +68,7 @@ class SweepConfigurationSchedule implements ModelInterface, ArrayAccess, \JsonSe
       */
     protected static $openAPINullables = [
         'cronExpression' => false,
-		'type' => false
+        'type' => false
     ];
 
     /**
@@ -404,7 +404,7 @@ class SweepConfigurationSchedule implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

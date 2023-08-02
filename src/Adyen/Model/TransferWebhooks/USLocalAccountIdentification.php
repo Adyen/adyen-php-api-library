@@ -71,9 +71,9 @@ class USLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPINullables = [
         'accountNumber' => false,
-		'accountType' => false,
-		'routingNumber' => false,
-		'type' => false
+        'accountType' => false,
+        'routingNumber' => false,
+        'type' => false
     ];
 
     /**
@@ -541,7 +541,7 @@ class USLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

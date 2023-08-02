@@ -71,9 +71,9 @@ class TransactionRulesResult implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPINullables = [
         'advice' => false,
-		'allRulesPassed' => false,
-		'failedTransactionRules' => false,
-		'score' => true
+        'allRulesPassed' => false,
+        'failedTransactionRules' => false,
+        'score' => true
     ];
 
     /**
@@ -466,7 +466,7 @@ class TransactionRulesResult implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

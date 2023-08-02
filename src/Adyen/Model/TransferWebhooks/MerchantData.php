@@ -71,9 +71,9 @@ class MerchantData implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'mcc' => false,
-		'merchantId' => false,
-		'nameLocation' => false,
-		'postalCode' => false
+        'merchantId' => false,
+        'nameLocation' => false,
+        'postalCode' => false
     ];
 
     /**
@@ -468,7 +468,7 @@ class MerchantData implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

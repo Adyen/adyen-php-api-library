@@ -67,7 +67,7 @@ class TransferNotificationTransferTracking implements ModelInterface, ArrayAcces
       */
     protected static $openAPINullables = [
         'estimatedArrivalTime' => false,
-		'status' => false
+        'status' => false
     ];
 
     /**
@@ -431,7 +431,7 @@ class TransferNotificationTransferTracking implements ModelInterface, ArrayAcces
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

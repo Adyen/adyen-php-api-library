@@ -67,7 +67,7 @@ class TransactionRuleSource implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPINullables = [
         'id' => false,
-		'type' => false
+        'type' => false
     ];
 
     /**
@@ -400,7 +400,7 @@ class TransactionRuleSource implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

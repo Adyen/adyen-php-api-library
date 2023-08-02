@@ -67,7 +67,7 @@ class BalanceAccountNotificationData implements ModelInterface, ArrayAccess, \Js
       */
     protected static $openAPINullables = [
         'balanceAccount' => false,
-		'balancePlatform' => false
+        'balancePlatform' => false
     ];
 
     /**
@@ -400,7 +400,7 @@ class BalanceAccountNotificationData implements ModelInterface, ArrayAccess, \Js
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

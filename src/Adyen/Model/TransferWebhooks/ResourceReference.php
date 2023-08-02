@@ -69,8 +69,8 @@ class ResourceReference implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPINullables = [
         'description' => false,
-		'id' => false,
-		'reference' => false
+        'id' => false,
+        'reference' => false
     ];
 
     /**
@@ -434,7 +434,7 @@ class ResourceReference implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -131,39 +131,39 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'accountHolder' => false,
-		'amount' => false,
-		'balanceAccount' => false,
-		'balanceAccountId' => false,
-		'balancePlatform' => false,
-		'balances' => false,
-		'category' => false,
-		'counterparty' => false,
-		'creationDate' => false,
-		'description' => false,
-		'direction' => false,
-		'events' => false,
-		'id' => false,
-		'modificationMerchantReference' => false,
-		'modificationPspReference' => false,
-		'panEntryMode' => false,
-		'paymentInstrument' => false,
-		'paymentInstrumentId' => false,
-		'paymentMerchantReference' => false,
-		'platformPaymentType' => false,
-		'priority' => false,
-		'processingType' => false,
-		'pspPaymentReference' => false,
-		'reason' => false,
-		'reference' => false,
-		'referenceForBeneficiary' => false,
-		'relayedAuthorisationData' => false,
-		'sequenceNumber' => true,
-		'status' => false,
-		'tracking' => false,
-		'transactionId' => false,
-		'transactionRulesResult' => false,
-		'type' => false,
-		'validationFacts' => false
+        'amount' => false,
+        'balanceAccount' => false,
+        'balanceAccountId' => false,
+        'balancePlatform' => false,
+        'balances' => false,
+        'category' => false,
+        'counterparty' => false,
+        'creationDate' => false,
+        'description' => false,
+        'direction' => false,
+        'events' => false,
+        'id' => false,
+        'modificationMerchantReference' => false,
+        'modificationPspReference' => false,
+        'panEntryMode' => false,
+        'paymentInstrument' => false,
+        'paymentInstrumentId' => false,
+        'paymentMerchantReference' => false,
+        'platformPaymentType' => false,
+        'priority' => false,
+        'processingType' => false,
+        'pspPaymentReference' => false,
+        'reason' => false,
+        'reference' => false,
+        'referenceForBeneficiary' => false,
+        'relayedAuthorisationData' => false,
+        'sequenceNumber' => true,
+        'status' => false,
+        'tracking' => false,
+        'transactionId' => false,
+        'transactionRulesResult' => false,
+        'type' => false,
+        'validationFacts' => false
     ];
 
     /**
@@ -2052,7 +2052,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

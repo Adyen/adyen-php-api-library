@@ -71,9 +71,9 @@ class CardOrderItemDeliveryStatus implements ModelInterface, ArrayAccess, \JsonS
       */
     protected static $openAPINullables = [
         'status' => false,
-		'statusError' => false,
-		'statusErrorMessage' => false,
-		'trackingNumber' => false
+        'statusError' => false,
+        'statusErrorMessage' => false,
+        'trackingNumber' => false
     ];
 
     /**
@@ -511,7 +511,7 @@ class CardOrderItemDeliveryStatus implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
