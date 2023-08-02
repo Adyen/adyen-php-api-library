@@ -2,6 +2,9 @@
 
 namespace Adyen\Service;
 
+/**
+ * @deprecated Please consider using the BalancePlatform services instead
+ */
 class Account extends \Adyen\Service
 {
     /**
@@ -86,6 +89,7 @@ class Account extends \Adyen\Service
 
     /**
      * Account constructor.
+     * 
      * @param \Adyen\Client $client
      * @throws \Adyen\AdyenException
      */

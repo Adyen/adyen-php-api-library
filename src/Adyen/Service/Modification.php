@@ -2,6 +2,9 @@
 
 namespace Adyen\Service;
 
+/**
+ * @deprecated Please consider using the model based services instead (suffix -Api.php)
+ */
 class Modification extends \Adyen\Service
 {
     /**
@@ -37,7 +40,6 @@ class Modification extends \Adyen\Service
     /**
      * Modification constructor.
      *
-     * @deprecated Please consider using the model based services instead (suffix -Api.php)
      * @param \Adyen\Client $client
      * @throws \Adyen\AdyenException
      */

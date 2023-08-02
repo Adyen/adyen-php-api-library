@@ -2,6 +2,9 @@
 
 namespace Adyen\Service;
 
+/**
+ * @deprecated Please consider using the model based services instead (suffix -Api.php)
+ */
 class CheckoutUtility extends \Adyen\ApiKeyAuthenticatedService
 {
     /**
@@ -12,7 +15,6 @@ class CheckoutUtility extends \Adyen\ApiKeyAuthenticatedService
     /**
      * CheckoutUtility constructor.
      *
-     * @deprecated Please consider using the model based services instead (suffix -Api.php)
      * @param \Adyen\Client $client
      * @throws \Adyen\AdyenException
      */

@@ -2,6 +2,9 @@
 
 namespace Adyen\Service;
 
+/**
+ * @deprecated Please consider using the Transfers services instead
+ */
 class Fund extends \Adyen\Service
 {
 
@@ -37,6 +40,7 @@ class Fund extends \Adyen\Service
 
     /**
      * Fund constructor.
+     * 
      * @param \Adyen\Client $client
      * @throws \Adyen\AdyenException
      */
