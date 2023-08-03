@@ -19,7 +19,7 @@ class Hop extends \Adyen\Service
 
     /**
      * Hop constructor.
-     * 
+     *
      * @param \Adyen\Client $client
      * @throws \Adyen\AdyenException
      */

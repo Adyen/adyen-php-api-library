@@ -40,7 +40,7 @@ class Fund extends \Adyen\Service
 
     /**
      * Fund constructor.
-     * 
+     *
      * @param \Adyen\Client $client
      * @throws \Adyen\AdyenException
      */
