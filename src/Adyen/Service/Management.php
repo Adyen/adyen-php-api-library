@@ -13,6 +13,7 @@ use Adyen\Service\ResourceModel\Management\MerchantWebhooks;
 
 /**
  * @deprecated Please consider using the model based services instead (suffix -Api.php)
+ * @see \Adyen\Service\Management\
  */
 class Management extends \Adyen\Service
 {

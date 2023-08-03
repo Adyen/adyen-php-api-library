@@ -3,8 +3,9 @@
 namespace Adyen\Service;
 
 /**
- * @deprecated Please consider using the BalancePlatform services instead
- * @see Adyen\Service\BalancePlatform\AccountHoldersApi
+ * @deprecated Please consider using the BalancePlatform and LegalEntityManagement services instead
+ * @see \Adyen\Service\BalancePlatform\
+ * @see \Adyen\Service\LegalEntityManagement\
  */
 class Account extends \Adyen\Service
 {

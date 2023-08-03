@@ -6,6 +6,7 @@ use Adyen\Service\ResourceModel\Checkout\Recurring;
 
 /**
  * @deprecated Please consider using the model based services instead (suffix -Api.php)
+ * @see \Adyen\Service\Checkout\
  */
 class Checkout extends \Adyen\ApiKeyAuthenticatedService
 {

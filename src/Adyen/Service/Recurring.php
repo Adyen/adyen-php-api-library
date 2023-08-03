@@ -4,6 +4,7 @@ namespace Adyen\Service;
 
 /**
  * @deprecated Please consider using the model based services instead (suffix -Api.php)
+ * @see \Adyen\Service\RecurringApi
  */
 class Recurring extends \Adyen\Service
 {

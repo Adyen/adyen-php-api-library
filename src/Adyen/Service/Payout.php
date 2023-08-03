@@ -17,6 +17,7 @@ use Adyen\Service\ResourceModel\Payout\ThirdParty\SubmitThirdParty;
 
 /**
  * @deprecated Please consider using the model based services instead (suffix -Api.php)
+ * @see \Adyen\Service\Payout\
  */
 class Payout extends Service
 {

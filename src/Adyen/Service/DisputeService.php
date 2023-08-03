@@ -7,9 +7,6 @@ use Adyen\Service\ResourceModel\DisputeService\DeleteDisputeDefenseDocument;
 use Adyen\Service\ResourceModel\DisputeService\RetrieveApplicableDefenseReasons;
 use Adyen\Service\ResourceModel\DisputeService\SupplyDefenseDocument;
 
-/**
- * @deprecated Please consider using the model based services instead (suffix -Api.php)
- */
 class DisputeService extends \Adyen\Service
 {
     /**

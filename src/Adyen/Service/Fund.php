@@ -3,7 +3,9 @@
 namespace Adyen\Service;
 
 /**
- * @deprecated Please consider using the Transfers services instead
+ * @deprecated Please consider using the BalancePlatform and Transfers services instead
+ * @see \Adyen\Service\BalancePlatform\
+ * @see \Adyen\Service\Transfers\
  */
 class Fund extends \Adyen\Service
 {
