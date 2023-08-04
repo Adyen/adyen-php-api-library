@@ -2,6 +2,10 @@
 
 namespace Adyen\Service;
 
+/**
+ * @deprecated Please consider using the LegalEntityManagement services instead
+ * @see \Adyen\Service\LegalEntityManagement\
+ */
 class Hop extends \Adyen\Service
 {
     /**
@@ -16,6 +20,7 @@ class Hop extends \Adyen\Service
 
     /**
      * Hop constructor.
+     *
      * @param \Adyen\Client $client
      * @throws \Adyen\AdyenException
      */
