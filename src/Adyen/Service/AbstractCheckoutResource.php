@@ -2,6 +2,8 @@
 
 namespace Adyen\Service;
 
+use Adyen\AdyenException;
+
 class AbstractCheckoutResource extends AbstractResource
 {
     /**
@@ -9,18 +11,16 @@ class AbstractCheckoutResource extends AbstractResource
      *
      * @param $service
      * @return mixed
-     * @throws \Adyen\AdyenException
+     * @throws AdyenException
      */
     public function getCheckoutEndpoint($service)
     {
         // check if endpoint is set
         if ($service->getClient()->getConfig()->get('endpointCheckout') == null) {
-            $logger = $service->getClient()->getLogger();
             $msg = 'Please provide your unique live url prefix on the' .
                 ' setEnvironment() call on the Client or provide endpointCheckout' .
                 ' in your config object.';
-            $logger->error($msg);
-            throw new \Adyen\AdyenException($msg);
+            throw new AdyenException($msg);
         }
 
         return $service->getClient()->getConfig()->get('endpointCheckout');

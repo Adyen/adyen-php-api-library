@@ -26,8 +26,6 @@ namespace Adyen\Tests\Unit;
 use Adyen\AdyenException;
 use Adyen\ConnectionException;
 use Adyen\Service\Payment;
-use Monolog\Handler\TestHandler;
-use Monolog\Logger;
 
 class PaymentTest extends TestCaseMock
 {
@@ -38,13 +36,6 @@ class PaymentTest extends TestCaseMock
     {
         // create client
         $client = $this->createMockClient($jsonFile, $httpStatus);
-
-        $handler = new TestHandler();
-
-        $logger = new Logger('test', array($handler));
-
-        // Stub Logger to prevent full card data being logged
-        $client->setLogger($logger);
 
         // initialize service
         $service = new Payment($client);
@@ -74,10 +65,6 @@ class PaymentTest extends TestCaseMock
 
         $this->assertArrayHasKey('resultCode', $result);
         $this->assertEquals('Authorised', $result['resultCode']);
-
-        $this->assertTrue($handler->hasInfoThatContains('4111111111111111'));
-        $this->assertTrue($handler->hasInfoThatContains('737'));
-        $this->assertTrue($handler->hasInfoThatContains('adyenjs....'));
     }
 
     /**
@@ -87,13 +74,6 @@ class PaymentTest extends TestCaseMock
     {
         // create client
         $client = $this->createMockClient($jsonFile, $httpStatus, null, \Adyen\Environment::LIVE);
-
-        $handler = new TestHandler();
-
-        $logger = new Logger('test', array($handler));
-
-        // Stub Logger to prevent full card data being logged
-        $client->setLogger($logger);
 
         // initialize service
         $service = new Payment($client);
@@ -123,11 +103,6 @@ class PaymentTest extends TestCaseMock
 
         $this->assertArrayHasKey('resultCode', $result);
         $this->assertEquals('Authorised', $result['resultCode']);
-
-        $this->markTestSkipped('Move this checks to integration test');
-        $this->assertFalse($handler->hasInfoThatContains('4111111111111111'));
-        $this->assertFalse($handler->hasInfoThatContains('737'));
-        $this->assertFalse($handler->hasInfoThatContains('adyenjs_0897248234342242524232...'));
     }
 
     public static function successAuthoriseProvider()
