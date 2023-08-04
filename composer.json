@@ -13,8 +13,7 @@
     "ext-curl": "*",
     "ext-json": "*",
     "ext-mbstring": "*",
-    "ext-openssl": "*",
-    "monolog/monolog": "^1.16 || ^2.0 || ^3.0"
+    "ext-openssl": "*"
   },
   "require-dev": {
     "dms/phpunit-arraysubset-asserts": "0.5.0",

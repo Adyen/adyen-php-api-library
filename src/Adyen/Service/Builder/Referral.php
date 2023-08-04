@@ -2,6 +2,9 @@
 
 namespace Adyen\Service\Builder;
 
+/**
+ * @deprecated
+ */
 class Referral
 {
     const ACTION_BLOCK = 'block';

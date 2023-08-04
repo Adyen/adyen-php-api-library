@@ -2,6 +2,9 @@
 
 namespace Adyen\Service\Validator;
 
+/**
+ * @deprecated
+ */
 class CheckoutStateDataValidator
 {
     protected $stateDataRootKeys = array(
