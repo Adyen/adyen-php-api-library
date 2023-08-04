@@ -51,10 +51,6 @@ class TestCaseMock extends TestCase
                 } else {
                     $result = null;
                 }
-                if ($client->getLogger() && isset($json)) {
-                    $client->getLogger()->info(json_encode($params));
-                    $client->getLogger()->info($json);
-                }
                 if (isset($result['errorCode'])) {
                     throw new AdyenException($result['message']);
                 }
