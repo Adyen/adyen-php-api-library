@@ -6,6 +6,7 @@ Thumbs.db
 /.vscode/
 /.vagrant/
 /.idea/
+Vagrantfile
 
 # Packages
 /vendor/
