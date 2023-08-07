@@ -47,12 +47,12 @@ class ThreeDS2Result implements ModelInterface, ArrayAccess, \JsonSerializable
         'authenticationValue' => 'string',
         'cavvAlgorithm' => 'string',
         'challengeCancel' => 'string',
-        'challengeIndicator' => 'string',
         'dsTransID' => 'string',
         'eci' => 'string',
         'exemptionIndicator' => 'string',
         'messageVersion' => 'string',
         'riskScore' => 'string',
+        'threeDSRequestorChallengeInd' => 'string',
         'threeDSServerTransID' => 'string',
         'timestamp' => 'string',
         'transStatus' => 'string',
@@ -71,12 +71,12 @@ class ThreeDS2Result implements ModelInterface, ArrayAccess, \JsonSerializable
         'authenticationValue' => null,
         'cavvAlgorithm' => null,
         'challengeCancel' => null,
-        'challengeIndicator' => null,
         'dsTransID' => null,
         'eci' => null,
         'exemptionIndicator' => null,
         'messageVersion' => null,
         'riskScore' => null,
+        'threeDSRequestorChallengeInd' => null,
         'threeDSServerTransID' => null,
         'timestamp' => null,
         'transStatus' => null,
@@ -93,12 +93,12 @@ class ThreeDS2Result implements ModelInterface, ArrayAccess, \JsonSerializable
         'authenticationValue' => false,
         'cavvAlgorithm' => false,
         'challengeCancel' => false,
-        'challengeIndicator' => false,
         'dsTransID' => false,
         'eci' => false,
         'exemptionIndicator' => false,
         'messageVersion' => false,
         'riskScore' => false,
+        'threeDSRequestorChallengeInd' => false,
         'threeDSServerTransID' => false,
         'timestamp' => false,
         'transStatus' => false,
@@ -195,12 +195,12 @@ class ThreeDS2Result implements ModelInterface, ArrayAccess, \JsonSerializable
         'authenticationValue' => 'authenticationValue',
         'cavvAlgorithm' => 'cavvAlgorithm',
         'challengeCancel' => 'challengeCancel',
-        'challengeIndicator' => 'challengeIndicator',
         'dsTransID' => 'dsTransID',
         'eci' => 'eci',
         'exemptionIndicator' => 'exemptionIndicator',
         'messageVersion' => 'messageVersion',
         'riskScore' => 'riskScore',
+        'threeDSRequestorChallengeInd' => 'threeDSRequestorChallengeInd',
         'threeDSServerTransID' => 'threeDSServerTransID',
         'timestamp' => 'timestamp',
         'transStatus' => 'transStatus',
@@ -217,12 +217,12 @@ class ThreeDS2Result implements ModelInterface, ArrayAccess, \JsonSerializable
         'authenticationValue' => 'setAuthenticationValue',
         'cavvAlgorithm' => 'setCavvAlgorithm',
         'challengeCancel' => 'setChallengeCancel',
-        'challengeIndicator' => 'setChallengeIndicator',
         'dsTransID' => 'setDsTransID',
         'eci' => 'setEci',
         'exemptionIndicator' => 'setExemptionIndicator',
         'messageVersion' => 'setMessageVersion',
         'riskScore' => 'setRiskScore',
+        'threeDSRequestorChallengeInd' => 'setThreeDSRequestorChallengeInd',
         'threeDSServerTransID' => 'setThreeDSServerTransID',
         'timestamp' => 'setTimestamp',
         'transStatus' => 'setTransStatus',
@@ -239,12 +239,12 @@ class ThreeDS2Result implements ModelInterface, ArrayAccess, \JsonSerializable
         'authenticationValue' => 'getAuthenticationValue',
         'cavvAlgorithm' => 'getCavvAlgorithm',
         'challengeCancel' => 'getChallengeCancel',
-        'challengeIndicator' => 'getChallengeIndicator',
         'dsTransID' => 'getDsTransID',
         'eci' => 'getEci',
         'exemptionIndicator' => 'getExemptionIndicator',
         'messageVersion' => 'getMessageVersion',
         'riskScore' => 'getRiskScore',
+        'threeDSRequestorChallengeInd' => 'getThreeDSRequestorChallengeInd',
         'threeDSServerTransID' => 'getThreeDSServerTransID',
         'timestamp' => 'getTimestamp',
         'transStatus' => 'getTransStatus',
@@ -300,14 +300,16 @@ class ThreeDS2Result implements ModelInterface, ArrayAccess, \JsonSerializable
     public const CHALLENGE_CANCEL__05 = '05';
     public const CHALLENGE_CANCEL__06 = '06';
     public const CHALLENGE_CANCEL__07 = '07';
-    public const CHALLENGE_INDICATOR_NO_PREFERENCE = 'noPreference';
-    public const CHALLENGE_INDICATOR_REQUEST_NO_CHALLENGE = 'requestNoChallenge';
-    public const CHALLENGE_INDICATOR_REQUEST_CHALLENGE = 'requestChallenge';
-    public const CHALLENGE_INDICATOR_REQUEST_CHALLENGE_AS_MANDATE = 'requestChallengeAsMandate';
     public const EXEMPTION_INDICATOR_LOW_VALUE = 'lowValue';
     public const EXEMPTION_INDICATOR_SECURE_CORPORATE = 'secureCorporate';
     public const EXEMPTION_INDICATOR_TRUSTED_BENEFICIARY = 'trustedBeneficiary';
     public const EXEMPTION_INDICATOR_TRANSACTION_RISK_ANALYSIS = 'transactionRiskAnalysis';
+    public const THREE_DS_REQUESTOR_CHALLENGE_IND__01 = '01';
+    public const THREE_DS_REQUESTOR_CHALLENGE_IND__02 = '02';
+    public const THREE_DS_REQUESTOR_CHALLENGE_IND__03 = '03';
+    public const THREE_DS_REQUESTOR_CHALLENGE_IND__04 = '04';
+    public const THREE_DS_REQUESTOR_CHALLENGE_IND__05 = '05';
+    public const THREE_DS_REQUESTOR_CHALLENGE_IND__06 = '06';
 
     /**
      * Gets allowable values of the enum
@@ -331,20 +333,6 @@ class ThreeDS2Result implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return string[]
      */
-    public function getChallengeIndicatorAllowableValues()
-    {
-        return [
-            self::CHALLENGE_INDICATOR_NO_PREFERENCE,
-            self::CHALLENGE_INDICATOR_REQUEST_NO_CHALLENGE,
-            self::CHALLENGE_INDICATOR_REQUEST_CHALLENGE,
-            self::CHALLENGE_INDICATOR_REQUEST_CHALLENGE_AS_MANDATE,
-        ];
-    }
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
     public function getExemptionIndicatorAllowableValues()
     {
         return [
@@ -352,6 +340,22 @@ class ThreeDS2Result implements ModelInterface, ArrayAccess, \JsonSerializable
             self::EXEMPTION_INDICATOR_SECURE_CORPORATE,
             self::EXEMPTION_INDICATOR_TRUSTED_BENEFICIARY,
             self::EXEMPTION_INDICATOR_TRANSACTION_RISK_ANALYSIS,
+        ];
+    }
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getThreeDSRequestorChallengeIndAllowableValues()
+    {
+        return [
+            self::THREE_DS_REQUESTOR_CHALLENGE_IND__01,
+            self::THREE_DS_REQUESTOR_CHALLENGE_IND__02,
+            self::THREE_DS_REQUESTOR_CHALLENGE_IND__03,
+            self::THREE_DS_REQUESTOR_CHALLENGE_IND__04,
+            self::THREE_DS_REQUESTOR_CHALLENGE_IND__05,
+            self::THREE_DS_REQUESTOR_CHALLENGE_IND__06,
         ];
     }
     /**
@@ -372,12 +376,12 @@ class ThreeDS2Result implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('authenticationValue', $data ?? [], null);
         $this->setIfExists('cavvAlgorithm', $data ?? [], null);
         $this->setIfExists('challengeCancel', $data ?? [], null);
-        $this->setIfExists('challengeIndicator', $data ?? [], null);
         $this->setIfExists('dsTransID', $data ?? [], null);
         $this->setIfExists('eci', $data ?? [], null);
         $this->setIfExists('exemptionIndicator', $data ?? [], null);
         $this->setIfExists('messageVersion', $data ?? [], null);
         $this->setIfExists('riskScore', $data ?? [], null);
+        $this->setIfExists('threeDSRequestorChallengeInd', $data ?? [], null);
         $this->setIfExists('threeDSServerTransID', $data ?? [], null);
         $this->setIfExists('timestamp', $data ?? [], null);
         $this->setIfExists('transStatus', $data ?? [], null);
@@ -421,20 +425,20 @@ class ThreeDS2Result implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
-        $allowedValues = $this->getChallengeIndicatorAllowableValues();
-        if (!is_null($this->container['challengeIndicator']) && !in_array($this->container['challengeIndicator'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'challengeIndicator', must be one of '%s'",
-                $this->container['challengeIndicator'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         $allowedValues = $this->getExemptionIndicatorAllowableValues();
         if (!is_null($this->container['exemptionIndicator']) && !in_array($this->container['exemptionIndicator'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'exemptionIndicator', must be one of '%s'",
                 $this->container['exemptionIndicator'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getThreeDSRequestorChallengeIndAllowableValues();
+        if (!is_null($this->container['threeDSRequestorChallengeInd']) && !in_array($this->container['threeDSRequestorChallengeInd'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'threeDSRequestorChallengeInd', must be one of '%s'",
+                $this->container['threeDSRequestorChallengeInd'],
                 implode("', '", $allowedValues)
             );
         }
@@ -541,43 +545,6 @@ class ThreeDS2Result implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['challengeCancel'] = $challengeCancel;
-
-        return $this;
-    }
-
-    /**
-     * Gets challengeIndicator
-     *
-     * @return string|null
-     */
-    public function getChallengeIndicator()
-    {
-        return $this->container['challengeIndicator'];
-    }
-
-    /**
-     * Sets challengeIndicator
-     *
-     * @param string|null $challengeIndicator Specifies a preference for receiving a challenge from the issuer. Allowed values: * `noPreference` * `requestNoChallenge` * `requestChallenge` * `requestChallengeAsMandate`
-     *
-     * @return self
-     */
-    public function setChallengeIndicator($challengeIndicator)
-    {
-        if (is_null($challengeIndicator)) {
-            throw new \InvalidArgumentException('non-nullable challengeIndicator cannot be null');
-        }
-        $allowedValues = $this->getChallengeIndicatorAllowableValues();
-        if (!in_array($challengeIndicator, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'challengeIndicator', must be one of '%s'",
-                    $challengeIndicator,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['challengeIndicator'] = $challengeIndicator;
 
         return $this;
     }
@@ -723,6 +690,43 @@ class ThreeDS2Result implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable riskScore cannot be null');
         }
         $this->container['riskScore'] = $riskScore;
+
+        return $this;
+    }
+
+    /**
+     * Gets threeDSRequestorChallengeInd
+     *
+     * @return string|null
+     */
+    public function getThreeDSRequestorChallengeInd()
+    {
+        return $this->container['threeDSRequestorChallengeInd'];
+    }
+
+    /**
+     * Sets threeDSRequestorChallengeInd
+     *
+     * @param string|null $threeDSRequestorChallengeInd Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed) * **06** — Data Only
+     *
+     * @return self
+     */
+    public function setThreeDSRequestorChallengeInd($threeDSRequestorChallengeInd)
+    {
+        if (is_null($threeDSRequestorChallengeInd)) {
+            throw new \InvalidArgumentException('non-nullable threeDSRequestorChallengeInd cannot be null');
+        }
+        $allowedValues = $this->getThreeDSRequestorChallengeIndAllowableValues();
+        if (!in_array($threeDSRequestorChallengeInd, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'threeDSRequestorChallengeInd', must be one of '%s'",
+                    $threeDSRequestorChallengeInd,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['threeDSRequestorChallengeInd'] = $threeDSRequestorChallengeInd;
 
         return $this;
     }

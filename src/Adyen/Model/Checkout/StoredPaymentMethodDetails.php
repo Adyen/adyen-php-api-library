@@ -248,9 +248,9 @@ class StoredPaymentMethodDetails implements ModelInterface, ArrayAccess, \JsonSe
     public const TYPE_GRABPAY_PH = 'grabpay_PH';
     public const TYPE_OXXO = 'oxxo';
     public const TYPE_GCASH = 'gcash';
+    public const TYPE_DANA = 'dana';
     public const TYPE_KAKAOPAY = 'kakaopay';
     public const TYPE_TRUEMONEY = 'truemoney';
-    public const TYPE_TWINT_POS = 'twint_pos';
 
     /**
      * Gets allowable values of the enum
@@ -275,9 +275,9 @@ class StoredPaymentMethodDetails implements ModelInterface, ArrayAccess, \JsonSe
             self::TYPE_GRABPAY_PH,
             self::TYPE_OXXO,
             self::TYPE_GCASH,
+            self::TYPE_DANA,
             self::TYPE_KAKAOPAY,
             self::TYPE_TRUEMONEY,
-            self::TYPE_TWINT_POS,
         ];
     }
     /**

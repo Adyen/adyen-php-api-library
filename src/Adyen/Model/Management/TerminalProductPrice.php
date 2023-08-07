@@ -45,7 +45,7 @@ class TerminalProductPrice implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPITypes = [
         'currency' => 'string',
-        'value' => 'object'
+        'value' => 'float'
     ];
 
     /**
@@ -57,7 +57,7 @@ class TerminalProductPrice implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPIFormats = [
         'currency' => null,
-        'value' => null
+        'value' => 'double'
     ];
 
     /**
@@ -313,7 +313,7 @@ class TerminalProductPrice implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets value
      *
-     * @return object|null
+     * @return float|null
      */
     public function getValue()
     {
@@ -323,7 +323,7 @@ class TerminalProductPrice implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets value
      *
-     * @param object|null $value value
+     * @param float|null $value The price of the item.
      *
      * @return self
      */

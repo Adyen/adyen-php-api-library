@@ -55,6 +55,21 @@ class TermsOfServiceApi extends Service
     }
 
     /**
+    * Get Terms of Service status
+    *
+    * @param string $id
+    * @param array|null $requestOptions
+    * @return \Adyen\Model\LegalEntityManagement\CalculateTermsOfServiceStatusResponse
+    * @throws AdyenException
+    */
+    public function getTermsOfServiceStatus(string $id, array $requestOptions = null): \Adyen\Model\LegalEntityManagement\CalculateTermsOfServiceStatusResponse
+    {
+        $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/legalEntities/{id}/termsOfServiceStatus");
+        $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\LegalEntityManagement\CalculateTermsOfServiceStatusResponse::class);
+    }
+
+    /**
     * Accept Terms of Service
     *
     * @param string $id

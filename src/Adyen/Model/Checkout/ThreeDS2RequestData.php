@@ -581,7 +581,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('homePhone', $data ?? [], null);
         $this->setIfExists('mcc', $data ?? [], null);
         $this->setIfExists('merchantName', $data ?? [], null);
-        $this->setIfExists('messageVersion', $data ?? [], '2.1.0');
+        $this->setIfExists('messageVersion', $data ?? [], null);
         $this->setIfExists('mobilePhone', $data ?? [], null);
         $this->setIfExists('notificationURL', $data ?? [], null);
         $this->setIfExists('payTokenInd', $data ?? [], null);

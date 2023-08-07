@@ -236,6 +236,7 @@ class CapabilityProblemEntity implements ModelInterface, ArrayAccess, \JsonSeria
     public const TYPE_BANK_ACCOUNT = 'BankAccount';
     public const TYPE_DOCUMENT = 'Document';
     public const TYPE_LEGAL_ENTITY = 'LegalEntity';
+    public const TYPE_PRODUCT = 'product';
 
     /**
      * Gets allowable values of the enum
@@ -248,6 +249,7 @@ class CapabilityProblemEntity implements ModelInterface, ArrayAccess, \JsonSeria
             self::TYPE_BANK_ACCOUNT,
             self::TYPE_DOCUMENT,
             self::TYPE_LEGAL_ENTITY,
+            self::TYPE_PRODUCT,
         ];
     }
     /**

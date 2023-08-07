@@ -293,6 +293,7 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
     public const STATUS_REASON_OTHER = 'other';
     public const STATUS_REASON_STOLEN = 'stolen';
     public const STATUS_REASON_SUSPECTED_FRAUD = 'suspectedFraud';
+    public const STATUS_REASON_TRANSACTION_RULE = 'transactionRule';
     public const TYPE_BANK_ACCOUNT = 'bankAccount';
     public const TYPE_CARD = 'card';
 
@@ -326,6 +327,7 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
             self::STATUS_REASON_OTHER,
             self::STATUS_REASON_STOLEN,
             self::STATUS_REASON_SUSPECTED_FRAUD,
+            self::STATUS_REASON_TRANSACTION_RULE,
         ];
     }
     /**
@@ -743,7 +745,7 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets statusReason
      *
-     * @param string|null $statusReason The reason for updating the status of the payment instrument.  Possible values: **lost**, **stolen**, **damaged**, **suspectedFraud**, **expired**, **endOfLife**, **accountClosure**, **other**. If the reason is **other**, you must also send the `statusComment` parameter describing the status change.
+     * @param string|null $statusReason The reason for the status of the payment instrument.  Possible values: **accountClosure**, **damaged**, **endOfLife**, **expired**, **lost**, **stolen**, **suspectedFraud**, **transactionRule**, **other**. If the reason is **other**, you must also send the `statusComment` parameter describing the status change.
      *
      * @return self
      */

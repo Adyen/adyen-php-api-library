@@ -49,15 +49,15 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'paymentMethodType' => 'string',
         'type' => 'string',
         'url' => 'string',
+        'authorisationToken' => 'string',
+        'token' => 'string',
         'data' => 'array<string,string>',
         'method' => 'string',
         'nativeRedirectData' => 'string',
         'expiresAt' => 'string',
         'qrCodeData' => 'string',
         'sdkData' => 'array<string,string>',
-        'authorisationToken' => 'string',
         'subtype' => 'string',
-        'token' => 'string',
         'alternativeReference' => 'string',
         'collectionInstitutionNumber' => 'string',
         'downloadUrl' => 'string',
@@ -68,6 +68,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'maskedTelephoneNumber' => 'string',
         'merchantName' => 'string',
         'merchantReference' => 'string',
+        'passCreationToken' => 'string',
         'reference' => 'string',
         'shopperEmail' => 'string',
         'shopperName' => 'string',
@@ -87,15 +88,15 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'paymentMethodType' => null,
         'type' => null,
         'url' => null,
+        'authorisationToken' => null,
+        'token' => null,
         'data' => null,
         'method' => null,
         'nativeRedirectData' => null,
         'expiresAt' => null,
         'qrCodeData' => null,
         'sdkData' => null,
-        'authorisationToken' => null,
         'subtype' => null,
-        'token' => null,
         'alternativeReference' => null,
         'collectionInstitutionNumber' => null,
         'downloadUrl' => null,
@@ -106,6 +107,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'maskedTelephoneNumber' => null,
         'merchantName' => null,
         'merchantReference' => null,
+        'passCreationToken' => null,
         'reference' => null,
         'shopperEmail' => null,
         'shopperName' => null,
@@ -123,15 +125,15 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'paymentMethodType' => false,
         'type' => false,
         'url' => false,
+        'authorisationToken' => false,
+        'token' => false,
         'data' => false,
         'method' => false,
         'nativeRedirectData' => false,
         'expiresAt' => false,
         'qrCodeData' => false,
         'sdkData' => false,
-        'authorisationToken' => false,
         'subtype' => false,
-        'token' => false,
         'alternativeReference' => false,
         'collectionInstitutionNumber' => false,
         'downloadUrl' => false,
@@ -142,6 +144,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'maskedTelephoneNumber' => false,
         'merchantName' => false,
         'merchantReference' => false,
+        'passCreationToken' => false,
         'reference' => false,
         'shopperEmail' => false,
         'shopperName' => false,
@@ -239,15 +242,15 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'paymentMethodType' => 'paymentMethodType',
         'type' => 'type',
         'url' => 'url',
+        'authorisationToken' => 'authorisationToken',
+        'token' => 'token',
         'data' => 'data',
         'method' => 'method',
         'nativeRedirectData' => 'nativeRedirectData',
         'expiresAt' => 'expiresAt',
         'qrCodeData' => 'qrCodeData',
         'sdkData' => 'sdkData',
-        'authorisationToken' => 'authorisationToken',
         'subtype' => 'subtype',
-        'token' => 'token',
         'alternativeReference' => 'alternativeReference',
         'collectionInstitutionNumber' => 'collectionInstitutionNumber',
         'downloadUrl' => 'downloadUrl',
@@ -258,6 +261,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'maskedTelephoneNumber' => 'maskedTelephoneNumber',
         'merchantName' => 'merchantName',
         'merchantReference' => 'merchantReference',
+        'passCreationToken' => 'passCreationToken',
         'reference' => 'reference',
         'shopperEmail' => 'shopperEmail',
         'shopperName' => 'shopperName',
@@ -275,15 +279,15 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'paymentMethodType' => 'setPaymentMethodType',
         'type' => 'setType',
         'url' => 'setUrl',
+        'authorisationToken' => 'setAuthorisationToken',
+        'token' => 'setToken',
         'data' => 'setData',
         'method' => 'setMethod',
         'nativeRedirectData' => 'setNativeRedirectData',
         'expiresAt' => 'setExpiresAt',
         'qrCodeData' => 'setQrCodeData',
         'sdkData' => 'setSdkData',
-        'authorisationToken' => 'setAuthorisationToken',
         'subtype' => 'setSubtype',
-        'token' => 'setToken',
         'alternativeReference' => 'setAlternativeReference',
         'collectionInstitutionNumber' => 'setCollectionInstitutionNumber',
         'downloadUrl' => 'setDownloadUrl',
@@ -294,6 +298,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'maskedTelephoneNumber' => 'setMaskedTelephoneNumber',
         'merchantName' => 'setMerchantName',
         'merchantReference' => 'setMerchantReference',
+        'passCreationToken' => 'setPassCreationToken',
         'reference' => 'setReference',
         'shopperEmail' => 'setShopperEmail',
         'shopperName' => 'setShopperName',
@@ -311,15 +316,15 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'paymentMethodType' => 'getPaymentMethodType',
         'type' => 'getType',
         'url' => 'getUrl',
+        'authorisationToken' => 'getAuthorisationToken',
+        'token' => 'getToken',
         'data' => 'getData',
         'method' => 'getMethod',
         'nativeRedirectData' => 'getNativeRedirectData',
         'expiresAt' => 'getExpiresAt',
         'qrCodeData' => 'getQrCodeData',
         'sdkData' => 'getSdkData',
-        'authorisationToken' => 'getAuthorisationToken',
         'subtype' => 'getSubtype',
-        'token' => 'getToken',
         'alternativeReference' => 'getAlternativeReference',
         'collectionInstitutionNumber' => 'getCollectionInstitutionNumber',
         'downloadUrl' => 'getDownloadUrl',
@@ -330,6 +335,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'maskedTelephoneNumber' => 'getMaskedTelephoneNumber',
         'merchantName' => 'getMerchantName',
         'merchantReference' => 'getMerchantReference',
+        'passCreationToken' => 'getPassCreationToken',
         'reference' => 'getReference',
         'shopperEmail' => 'getShopperEmail',
         'shopperName' => 'getShopperName',
@@ -397,15 +403,15 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('paymentMethodType', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('url', $data ?? [], null);
+        $this->setIfExists('authorisationToken', $data ?? [], null);
+        $this->setIfExists('token', $data ?? [], null);
         $this->setIfExists('data', $data ?? [], null);
         $this->setIfExists('method', $data ?? [], null);
         $this->setIfExists('nativeRedirectData', $data ?? [], null);
         $this->setIfExists('expiresAt', $data ?? [], null);
         $this->setIfExists('qrCodeData', $data ?? [], null);
         $this->setIfExists('sdkData', $data ?? [], null);
-        $this->setIfExists('authorisationToken', $data ?? [], null);
         $this->setIfExists('subtype', $data ?? [], null);
-        $this->setIfExists('token', $data ?? [], null);
         $this->setIfExists('alternativeReference', $data ?? [], null);
         $this->setIfExists('collectionInstitutionNumber', $data ?? [], null);
         $this->setIfExists('downloadUrl', $data ?? [], null);
@@ -416,6 +422,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('maskedTelephoneNumber', $data ?? [], null);
         $this->setIfExists('merchantName', $data ?? [], null);
         $this->setIfExists('merchantReference', $data ?? [], null);
+        $this->setIfExists('passCreationToken', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
         $this->setIfExists('shopperEmail', $data ?? [], null);
         $this->setIfExists('shopperName', $data ?? [], null);
@@ -573,6 +580,60 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
             throw new \InvalidArgumentException('non-nullable url cannot be null');
         }
         $this->container['url'] = $url;
+
+        return $this;
+    }
+
+    /**
+     * Gets authorisationToken
+     *
+     * @return string|null
+     */
+    public function getAuthorisationToken()
+    {
+        return $this->container['authorisationToken'];
+    }
+
+    /**
+     * Sets authorisationToken
+     *
+     * @param string|null $authorisationToken A token needed to authorise a payment.
+     *
+     * @return self
+     */
+    public function setAuthorisationToken($authorisationToken)
+    {
+        if (is_null($authorisationToken)) {
+            throw new \InvalidArgumentException('non-nullable authorisationToken cannot be null');
+        }
+        $this->container['authorisationToken'] = $authorisationToken;
+
+        return $this;
+    }
+
+    /**
+     * Gets token
+     *
+     * @return string|null
+     */
+    public function getToken()
+    {
+        return $this->container['token'];
+    }
+
+    /**
+     * Sets token
+     *
+     * @param string|null $token A token to pass to the 3DS2 Component to get the fingerprint.
+     *
+     * @return self
+     */
+    public function setToken($token)
+    {
+        if (is_null($token)) {
+            throw new \InvalidArgumentException('non-nullable token cannot be null');
+        }
+        $this->container['token'] = $token;
 
         return $this;
     }
@@ -740,33 +801,6 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Gets authorisationToken
-     *
-     * @return string|null
-     */
-    public function getAuthorisationToken()
-    {
-        return $this->container['authorisationToken'];
-    }
-
-    /**
-     * Sets authorisationToken
-     *
-     * @param string|null $authorisationToken A token needed to authorise a payment.
-     *
-     * @return self
-     */
-    public function setAuthorisationToken($authorisationToken)
-    {
-        if (is_null($authorisationToken)) {
-            throw new \InvalidArgumentException('non-nullable authorisationToken cannot be null');
-        }
-        $this->container['authorisationToken'] = $authorisationToken;
-
-        return $this;
-    }
-
-    /**
      * Gets subtype
      *
      * @return string|null
@@ -789,33 +823,6 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
             throw new \InvalidArgumentException('non-nullable subtype cannot be null');
         }
         $this->container['subtype'] = $subtype;
-
-        return $this;
-    }
-
-    /**
-     * Gets token
-     *
-     * @return string|null
-     */
-    public function getToken()
-    {
-        return $this->container['token'];
-    }
-
-    /**
-     * Sets token
-     *
-     * @param string|null $token A token to pass to the 3DS2 Component to get the fingerprint.
-     *
-     * @return self
-     */
-    public function setToken($token)
-    {
-        if (is_null($token)) {
-            throw new \InvalidArgumentException('non-nullable token cannot be null');
-        }
-        $this->container['token'] = $token;
 
         return $this;
     }
@@ -1086,6 +1093,33 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
             throw new \InvalidArgumentException('non-nullable merchantReference cannot be null');
         }
         $this->container['merchantReference'] = $merchantReference;
+
+        return $this;
+    }
+
+    /**
+     * Gets passCreationToken
+     *
+     * @return string|null
+     */
+    public function getPassCreationToken()
+    {
+        return $this->container['passCreationToken'];
+    }
+
+    /**
+     * Sets passCreationToken
+     *
+     * @param string|null $passCreationToken A base64 encoded signature of all properties
+     *
+     * @return self
+     */
+    public function setPassCreationToken($passCreationToken)
+    {
+        if (is_null($passCreationToken)) {
+            throw new \InvalidArgumentException('non-nullable passCreationToken cannot be null');
+        }
+        $this->container['passCreationToken'] = $passCreationToken;
 
         return $this;
     }

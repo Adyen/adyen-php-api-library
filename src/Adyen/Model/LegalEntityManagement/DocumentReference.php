@@ -49,6 +49,7 @@ class DocumentReference implements ModelInterface, ArrayAccess, \JsonSerializabl
         'fileName' => 'string',
         'id' => 'string',
         'modificationDate' => '\DateTime',
+        'pages' => '\Adyen\Model\LegalEntityManagement\DocumentPage[]',
         'type' => 'string'
     ];
 
@@ -65,6 +66,7 @@ class DocumentReference implements ModelInterface, ArrayAccess, \JsonSerializabl
         'fileName' => null,
         'id' => null,
         'modificationDate' => 'date-time',
+        'pages' => null,
         'type' => null
     ];
 
@@ -79,6 +81,7 @@ class DocumentReference implements ModelInterface, ArrayAccess, \JsonSerializabl
         'fileName' => false,
         'id' => false,
         'modificationDate' => false,
+        'pages' => false,
         'type' => false
     ];
 
@@ -173,6 +176,7 @@ class DocumentReference implements ModelInterface, ArrayAccess, \JsonSerializabl
         'fileName' => 'fileName',
         'id' => 'id',
         'modificationDate' => 'modificationDate',
+        'pages' => 'pages',
         'type' => 'type'
     ];
 
@@ -187,6 +191,7 @@ class DocumentReference implements ModelInterface, ArrayAccess, \JsonSerializabl
         'fileName' => 'setFileName',
         'id' => 'setId',
         'modificationDate' => 'setModificationDate',
+        'pages' => 'setPages',
         'type' => 'setType'
     ];
 
@@ -201,6 +206,7 @@ class DocumentReference implements ModelInterface, ArrayAccess, \JsonSerializabl
         'fileName' => 'getFileName',
         'id' => 'getId',
         'modificationDate' => 'getModificationDate',
+        'pages' => 'getPages',
         'type' => 'getType'
     ];
 
@@ -266,6 +272,7 @@ class DocumentReference implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('fileName', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('modificationDate', $data ?? [], null);
+        $this->setIfExists('pages', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -442,6 +449,33 @@ class DocumentReference implements ModelInterface, ArrayAccess, \JsonSerializabl
             throw new \InvalidArgumentException('non-nullable modificationDate cannot be null');
         }
         $this->container['modificationDate'] = $modificationDate;
+
+        return $this;
+    }
+
+    /**
+     * Gets pages
+     *
+     * @return \Adyen\Model\LegalEntityManagement\DocumentPage[]|null
+     */
+    public function getPages()
+    {
+        return $this->container['pages'];
+    }
+
+    /**
+     * Sets pages
+     *
+     * @param \Adyen\Model\LegalEntityManagement\DocumentPage[]|null $pages List of document pages
+     *
+     * @return self
+     */
+    public function setPages($pages)
+    {
+        if (is_null($pages)) {
+            throw new \InvalidArgumentException('non-nullable pages cannot be null');
+        }
+        $this->container['pages'] = $pages;
 
         return $this;
     }

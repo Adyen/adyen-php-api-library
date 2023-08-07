@@ -50,6 +50,7 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'string',
         'id' => 'string',
         'legalEntityId' => 'string',
+        'metadata' => 'array<string,string>',
         'primaryBalanceAccount' => 'string',
         'reference' => 'string',
         'status' => 'string',
@@ -71,6 +72,7 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => null,
         'id' => null,
         'legalEntityId' => null,
+        'metadata' => null,
         'primaryBalanceAccount' => null,
         'reference' => null,
         'status' => null,
@@ -90,6 +92,7 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => false,
         'id' => false,
         'legalEntityId' => false,
+        'metadata' => false,
         'primaryBalanceAccount' => false,
         'reference' => false,
         'status' => false,
@@ -189,6 +192,7 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'description',
         'id' => 'id',
         'legalEntityId' => 'legalEntityId',
+        'metadata' => 'metadata',
         'primaryBalanceAccount' => 'primaryBalanceAccount',
         'reference' => 'reference',
         'status' => 'status',
@@ -208,6 +212,7 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'setDescription',
         'id' => 'setId',
         'legalEntityId' => 'setLegalEntityId',
+        'metadata' => 'setMetadata',
         'primaryBalanceAccount' => 'setPrimaryBalanceAccount',
         'reference' => 'setReference',
         'status' => 'setStatus',
@@ -227,6 +232,7 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'getDescription',
         'id' => 'getId',
         'legalEntityId' => 'getLegalEntityId',
+        'metadata' => 'getMetadata',
         'primaryBalanceAccount' => 'getPrimaryBalanceAccount',
         'reference' => 'getReference',
         'status' => 'getStatus',
@@ -315,6 +321,7 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('legalEntityId', $data ?? [], null);
+        $this->setIfExists('metadata', $data ?? [], null);
         $this->setIfExists('primaryBalanceAccount', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
@@ -542,6 +549,33 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets metadata
+     *
+     * @return array<string,string>|null
+     */
+    public function getMetadata()
+    {
+        return $this->container['metadata'];
+    }
+
+    /**
+     * Sets metadata
+     *
+     * @param array<string,string>|null $metadata A set of key and value pairs for general use by the merchant. The keys do not have specific names and may be used for storing miscellaneous data as desired. > Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.
+     *
+     * @return self
+     */
+    public function setMetadata($metadata)
+    {
+        if (is_null($metadata)) {
+            throw new \InvalidArgumentException('non-nullable metadata cannot be null');
+        }
+        $this->container['metadata'] = $metadata;
+
+        return $this;
+    }
+
+    /**
      * Gets primaryBalanceAccount
      *
      * @return string|null
@@ -645,7 +679,7 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets timeZone
      *
-     * @param string|null $timeZone The [time zone](https://www.iana.org/time-zones) of the account holder. For example, **Europe/Amsterdam**. Defaults to the time zone of the balance platform if no time zone is set. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+     * @param string|null $timeZone The time zone of the account holder. For example, **Europe/Amsterdam**. Defaults to the time zone of the balance platform if no time zone is set. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
      *
      * @return self
      */

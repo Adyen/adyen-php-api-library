@@ -42,14 +42,14 @@ class RecurringApi extends Service
     /**
     * Delete a token for stored payment details
     *
-    * @param string $recurringId
+    * @param string $storedPaymentMethodId
     * @param array|null $requestOptions ['queryParams' => ['shopperReference'=> string, 'merchantAccount'=> string]]
     * @return \Adyen\Model\Checkout\StoredPaymentMethodResource
     * @throws AdyenException
     */
-    public function deleteTokenForStoredPaymentDetails(string $recurringId, array $requestOptions = null): \Adyen\Model\Checkout\StoredPaymentMethodResource
+    public function deleteTokenForStoredPaymentDetails(string $storedPaymentMethodId, array $requestOptions = null): \Adyen\Model\Checkout\StoredPaymentMethodResource
     {
-        $endpoint = $this->baseURL . str_replace(['{recurringId}'], [$recurringId], "/storedPaymentMethods/{recurringId}");
+        $endpoint = $this->baseURL . str_replace(['{storedPaymentMethodId}'], [$storedPaymentMethodId], "/storedPaymentMethods/{storedPaymentMethodId}");
         $response = $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\StoredPaymentMethodResource::class);
     }

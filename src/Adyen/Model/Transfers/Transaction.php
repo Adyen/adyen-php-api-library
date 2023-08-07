@@ -318,9 +318,11 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     public const CATEGORY_BANK = 'bank';
+    public const CATEGORY_CARD = 'card';
     public const CATEGORY_GRANTS = 'grants';
     public const CATEGORY_INTERNAL = 'internal';
     public const CATEGORY_ISSUED_CARD = 'issuedCard';
+    public const CATEGORY_MIGRATION = 'migration';
     public const CATEGORY_PLATFORM_PAYMENT = 'platformPayment';
     public const STATUS_BOOKED = 'booked';
     public const STATUS_PENDING = 'pending';
@@ -331,6 +333,7 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_BANK_TRANSFER = 'bankTransfer';
     public const TYPE_CAPTURE = 'capture';
     public const TYPE_CAPTURE_REVERSAL = 'captureReversal';
+    public const TYPE_CARD_TRANSFER = 'cardTransfer';
     public const TYPE_CHARGEBACK = 'chargeback';
     public const TYPE_CHARGEBACK_REVERSAL = 'chargebackReversal';
     public const TYPE_DEPOSIT_CORRECTION = 'depositCorrection';
@@ -360,9 +363,11 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return [
             self::CATEGORY_BANK,
+            self::CATEGORY_CARD,
             self::CATEGORY_GRANTS,
             self::CATEGORY_INTERNAL,
             self::CATEGORY_ISSUED_CARD,
+            self::CATEGORY_MIGRATION,
             self::CATEGORY_PLATFORM_PAYMENT,
         ];
     }
@@ -393,6 +398,7 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_BANK_TRANSFER,
             self::TYPE_CAPTURE,
             self::TYPE_CAPTURE_REVERSAL,
+            self::TYPE_CARD_TRANSFER,
             self::TYPE_CHARGEBACK,
             self::TYPE_CHARGEBACK_REVERSAL,
             self::TYPE_DEPOSIT_CORRECTION,

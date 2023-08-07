@@ -251,6 +251,7 @@ class PaymentInstrumentUpdateRequest implements ModelInterface, ArrayAccess, \Js
     public const STATUS_REASON_OTHER = 'other';
     public const STATUS_REASON_STOLEN = 'stolen';
     public const STATUS_REASON_SUSPECTED_FRAUD = 'suspectedFraud';
+    public const STATUS_REASON_TRANSACTION_RULE = 'transactionRule';
 
     /**
      * Gets allowable values of the enum
@@ -282,6 +283,7 @@ class PaymentInstrumentUpdateRequest implements ModelInterface, ArrayAccess, \Js
             self::STATUS_REASON_OTHER,
             self::STATUS_REASON_STOLEN,
             self::STATUS_REASON_SUSPECTED_FRAUD,
+            self::STATUS_REASON_TRANSACTION_RULE,
         ];
     }
     /**

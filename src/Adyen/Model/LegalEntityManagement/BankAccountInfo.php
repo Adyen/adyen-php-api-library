@@ -46,7 +46,8 @@ class BankAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'accountIdentification' => '\Adyen\Model\LegalEntityManagement\BankAccount',
         'accountType' => 'string',
-        'countryCode' => 'string'
+        'countryCode' => 'string',
+        'trustedSource' => 'bool'
     ];
 
     /**
@@ -59,7 +60,8 @@ class BankAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'accountIdentification' => null,
         'accountType' => null,
-        'countryCode' => null
+        'countryCode' => null,
+        'trustedSource' => null
     ];
 
     /**
@@ -70,7 +72,8 @@ class BankAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPINullables = [
         'accountIdentification' => false,
         'accountType' => false,
-        'countryCode' => false
+        'countryCode' => false,
+        'trustedSource' => false
     ];
 
     /**
@@ -161,7 +164,8 @@ class BankAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'accountIdentification' => 'accountIdentification',
         'accountType' => 'accountType',
-        'countryCode' => 'countryCode'
+        'countryCode' => 'countryCode',
+        'trustedSource' => 'trustedSource'
     ];
 
     /**
@@ -172,7 +176,8 @@ class BankAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'accountIdentification' => 'setAccountIdentification',
         'accountType' => 'setAccountType',
-        'countryCode' => 'setCountryCode'
+        'countryCode' => 'setCountryCode',
+        'trustedSource' => 'setTrustedSource'
     ];
 
     /**
@@ -183,7 +188,8 @@ class BankAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'accountIdentification' => 'getAccountIdentification',
         'accountType' => 'getAccountType',
-        'countryCode' => 'getCountryCode'
+        'countryCode' => 'getCountryCode',
+        'trustedSource' => 'getTrustedSource'
     ];
 
     /**
@@ -246,6 +252,7 @@ class BankAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('accountIdentification', $data ?? [], null);
         $this->setIfExists('accountType', $data ?? [], null);
         $this->setIfExists('countryCode', $data ?? [], null);
+        $this->setIfExists('trustedSource', $data ?? [], null);
     }
 
     /**
@@ -369,6 +376,33 @@ class BankAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable countryCode cannot be null');
         }
         $this->container['countryCode'] = $countryCode;
+
+        return $this;
+    }
+
+    /**
+     * Gets trustedSource
+     *
+     * @return bool|null
+     */
+    public function getTrustedSource()
+    {
+        return $this->container['trustedSource'];
+    }
+
+    /**
+     * Sets trustedSource
+     *
+     * @param bool|null $trustedSource Identifies if the bank account was created through [instant bank verification](https://docs.adyen.com/release-notes/platforms-and-financial-products#releaseNote=2023-05-08-hosted-onboarding).
+     *
+     * @return self
+     */
+    public function setTrustedSource($trustedSource)
+    {
+        if (is_null($trustedSource)) {
+            throw new \InvalidArgumentException('non-nullable trustedSource cannot be null');
+        }
+        $this->container['trustedSource'] = $trustedSource;
 
         return $this;
     }

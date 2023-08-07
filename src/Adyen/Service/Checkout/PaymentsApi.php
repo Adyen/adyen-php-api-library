@@ -40,6 +40,21 @@ class PaymentsApi extends Service
     }
 
     /**
+    * Get the result of a payment session
+    *
+    * @param string $sessionId
+    * @param array|null $requestOptions ['queryParams' => ['sessionResult'=> string]]
+    * @return \Adyen\Model\Checkout\SessionResultResponse
+    * @throws AdyenException
+    */
+    public function getResultOfPaymentSession(string $sessionId, array $requestOptions = null): \Adyen\Model\Checkout\SessionResultResponse
+    {
+        $endpoint = $this->baseURL . str_replace(['{sessionId}'], [$sessionId], "/sessions/{sessionId}");
+        $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\SessionResultResponse::class);
+    }
+
+    /**
     * Get the list of brands on the card
     *
     * @param \Adyen\Model\Checkout\CardDetailsRequest $cardDetailsRequest
@@ -57,16 +72,16 @@ class PaymentsApi extends Service
     /**
     * Start a transaction for donations
     *
-    * @param \Adyen\Model\Checkout\PaymentDonationRequest $paymentDonationRequest
+    * @param \Adyen\Model\Checkout\DonationPaymentRequest $donationPaymentRequest
     * @param array|null $requestOptions
-    * @return \Adyen\Model\Checkout\DonationResponse
+    * @return \Adyen\Model\Checkout\DonationPaymentResponse
     * @throws AdyenException
     */
-    public function donations(\Adyen\Model\Checkout\PaymentDonationRequest $paymentDonationRequest, array $requestOptions = null): \Adyen\Model\Checkout\DonationResponse
+    public function donations(\Adyen\Model\Checkout\DonationPaymentRequest $donationPaymentRequest, array $requestOptions = null): \Adyen\Model\Checkout\DonationPaymentResponse
     {
         $endpoint = $this->baseURL . "/donations";
-        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $paymentDonationRequest->jsonSerialize(), $requestOptions);
-        return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\DonationResponse::class);
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $donationPaymentRequest->jsonSerialize(), $requestOptions);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\DonationPaymentResponse::class);
     }
 
     /**
@@ -102,15 +117,15 @@ class PaymentsApi extends Service
     /**
     * Submit details for a payment
     *
-    * @param \Adyen\Model\Checkout\DetailsRequest $detailsRequest
+    * @param \Adyen\Model\Checkout\PaymentDetailsRequest $paymentDetailsRequest
     * @param array|null $requestOptions
     * @return \Adyen\Model\Checkout\PaymentDetailsResponse
     * @throws AdyenException
     */
-    public function paymentsDetails(\Adyen\Model\Checkout\DetailsRequest $detailsRequest, array $requestOptions = null): \Adyen\Model\Checkout\PaymentDetailsResponse
+    public function paymentsDetails(\Adyen\Model\Checkout\PaymentDetailsRequest $paymentDetailsRequest, array $requestOptions = null): \Adyen\Model\Checkout\PaymentDetailsResponse
     {
         $endpoint = $this->baseURL . "/payments/details";
-        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $detailsRequest->jsonSerialize(), $requestOptions);
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $paymentDetailsRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\PaymentDetailsResponse::class);
     }
 

@@ -397,7 +397,7 @@ class TransferInstrumentReference implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets trustedSource
      *
-     * @param bool|null $trustedSource Identifies if the TI was created from a trusted source.
+     * @param bool|null $trustedSource Identifies if the bank account was created through [instant bank verification](https://docs.adyen.com/release-notes/platforms-and-financial-products#releaseNote=2023-05-08-hosted-onboarding).
      *
      * @return self
      */

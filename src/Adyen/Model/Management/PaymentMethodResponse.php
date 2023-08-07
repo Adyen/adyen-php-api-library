@@ -45,7 +45,7 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPITypes = [
         'links' => '\Adyen\Model\Management\PaginationLinks',
-        'data' => '\Adyen\Model\Management\PaymentMethod[]',
+        'data' => '\Adyen\Model\Management\PaymentMethodWrapper[]',
         'itemsTotal' => 'int',
         'pagesTotal' => 'int',
         'typesWithErrors' => 'string[]'
@@ -259,7 +259,6 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public const TYPES_WITH_ERRORS_ELOCREDIT = 'elocredit';
     public const TYPES_WITH_ERRORS_ELODEBIT = 'elodebit';
     public const TYPES_WITH_ERRORS_GIROCARD = 'girocard';
-    public const TYPES_WITH_ERRORS_GIROPAY = 'giropay';
     public const TYPES_WITH_ERRORS_GOOGLEPAY = 'googlepay';
     public const TYPES_WITH_ERRORS_HIPER = 'hiper';
     public const TYPES_WITH_ERRORS_HIPERCARD = 'hipercard';
@@ -277,10 +276,13 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public const TYPES_WITH_ERRORS_MOBILEPAY = 'mobilepay';
     public const TYPES_WITH_ERRORS_MULTIBANCO = 'multibanco';
     public const TYPES_WITH_ERRORS_ONLINE_BANKING_PL = 'onlineBanking_PL';
+    public const TYPES_WITH_ERRORS_PAYBYBANK = 'paybybank';
     public const TYPES_WITH_ERRORS_PAYPAL = 'paypal';
     public const TYPES_WITH_ERRORS_PAYSHOP = 'payshop';
     public const TYPES_WITH_ERRORS_SWISH = 'swish';
     public const TYPES_WITH_ERRORS_TRUSTLY = 'trustly';
+    public const TYPES_WITH_ERRORS_TWINT = 'twint';
+    public const TYPES_WITH_ERRORS_TWINT_POS = 'twint_pos';
     public const TYPES_WITH_ERRORS_VIPPS = 'vipps';
     public const TYPES_WITH_ERRORS_VISA = 'visa';
     public const TYPES_WITH_ERRORS_VISADEBIT = 'visadebit';
@@ -316,7 +318,6 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             self::TYPES_WITH_ERRORS_ELOCREDIT,
             self::TYPES_WITH_ERRORS_ELODEBIT,
             self::TYPES_WITH_ERRORS_GIROCARD,
-            self::TYPES_WITH_ERRORS_GIROPAY,
             self::TYPES_WITH_ERRORS_GOOGLEPAY,
             self::TYPES_WITH_ERRORS_HIPER,
             self::TYPES_WITH_ERRORS_HIPERCARD,
@@ -334,10 +335,13 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             self::TYPES_WITH_ERRORS_MOBILEPAY,
             self::TYPES_WITH_ERRORS_MULTIBANCO,
             self::TYPES_WITH_ERRORS_ONLINE_BANKING_PL,
+            self::TYPES_WITH_ERRORS_PAYBYBANK,
             self::TYPES_WITH_ERRORS_PAYPAL,
             self::TYPES_WITH_ERRORS_PAYSHOP,
             self::TYPES_WITH_ERRORS_SWISH,
             self::TYPES_WITH_ERRORS_TRUSTLY,
+            self::TYPES_WITH_ERRORS_TWINT,
+            self::TYPES_WITH_ERRORS_TWINT_POS,
             self::TYPES_WITH_ERRORS_VIPPS,
             self::TYPES_WITH_ERRORS_VISA,
             self::TYPES_WITH_ERRORS_VISADEBIT,
@@ -446,7 +450,7 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets data
      *
-     * @return \Adyen\Model\Management\PaymentMethod[]|null
+     * @return \Adyen\Model\Management\PaymentMethodWrapper[]|null
      */
     public function getData()
     {
@@ -456,7 +460,7 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets data
      *
-     * @param \Adyen\Model\Management\PaymentMethod[]|null $data Payment methods details.
+     * @param \Adyen\Model\Management\PaymentMethodWrapper[]|null $data Payment methods details.
      *
      * @return self
      */

@@ -44,7 +44,10 @@ class ListTerminalsResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\Adyen\Model\Management\Terminal[]'
+        'links' => '\Adyen\Model\Management\PaginationLinks',
+        'data' => '\Adyen\Model\Management\Terminal[]',
+        'itemsTotal' => 'int',
+        'pagesTotal' => 'int'
     ];
 
     /**
@@ -55,7 +58,10 @@ class ListTerminalsResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'data' => null
+        'links' => null,
+        'data' => null,
+        'itemsTotal' => 'int32',
+        'pagesTotal' => 'int32'
     ];
 
     /**
@@ -64,7 +70,10 @@ class ListTerminalsResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'data' => false
+        'links' => false,
+        'data' => false,
+        'itemsTotal' => true,
+        'pagesTotal' => true
     ];
 
     /**
@@ -153,7 +162,10 @@ class ListTerminalsResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $attributeMap = [
-        'data' => 'data'
+        'links' => '_links',
+        'data' => 'data',
+        'itemsTotal' => 'itemsTotal',
+        'pagesTotal' => 'pagesTotal'
     ];
 
     /**
@@ -162,7 +174,10 @@ class ListTerminalsResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $setters = [
-        'data' => 'setData'
+        'links' => 'setLinks',
+        'data' => 'setData',
+        'itemsTotal' => 'setItemsTotal',
+        'pagesTotal' => 'setPagesTotal'
     ];
 
     /**
@@ -171,7 +186,10 @@ class ListTerminalsResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $getters = [
-        'data' => 'getData'
+        'links' => 'getLinks',
+        'data' => 'getData',
+        'itemsTotal' => 'getItemsTotal',
+        'pagesTotal' => 'getPagesTotal'
     ];
 
     /**
@@ -231,7 +249,10 @@ class ListTerminalsResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('links', $data ?? [], null);
         $this->setIfExists('data', $data ?? [], null);
+        $this->setIfExists('itemsTotal', $data ?? [], null);
+        $this->setIfExists('pagesTotal', $data ?? [], null);
     }
 
     /**
@@ -261,6 +282,12 @@ class ListTerminalsResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         $invalidProperties = [];
 
+        if ($this->container['itemsTotal'] === null) {
+            $invalidProperties[] = "'itemsTotal' can't be null";
+        }
+        if ($this->container['pagesTotal'] === null) {
+            $invalidProperties[] = "'pagesTotal' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -275,6 +302,33 @@ class ListTerminalsResponse implements ModelInterface, ArrayAccess, \JsonSeriali
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets links
+     *
+     * @return \Adyen\Model\Management\PaginationLinks|null
+     */
+    public function getLinks()
+    {
+        return $this->container['links'];
+    }
+
+    /**
+     * Sets links
+     *
+     * @param \Adyen\Model\Management\PaginationLinks|null $links links
+     *
+     * @return self
+     */
+    public function setLinks($links)
+    {
+        if (is_null($links)) {
+            throw new \InvalidArgumentException('non-nullable links cannot be null');
+        }
+        $this->container['links'] = $links;
+
+        return $this;
+    }
 
     /**
      * Gets data
@@ -299,6 +353,56 @@ class ListTerminalsResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             throw new \InvalidArgumentException('non-nullable data cannot be null');
         }
         $this->container['data'] = $data;
+
+        return $this;
+    }
+
+    /**
+     * Gets itemsTotal
+     *
+     * @return int
+     */
+    public function getItemsTotal()
+    {
+        return $this->container['itemsTotal'];
+    }
+
+    /**
+     * Sets itemsTotal
+     *
+     * @param int $itemsTotal Total number of items.
+     *
+     * @return self
+     */
+    public function setItemsTotal($itemsTotal)
+    {
+        // Do nothing for nullable integers
+        $this->container['itemsTotal'] = $itemsTotal;
+
+        return $this;
+    }
+
+    /**
+     * Gets pagesTotal
+     *
+     * @return int
+     */
+    public function getPagesTotal()
+    {
+        return $this->container['pagesTotal'];
+    }
+
+    /**
+     * Sets pagesTotal
+     *
+     * @param int $pagesTotal Total number of pages.
+     *
+     * @return self
+     */
+    public function setPagesTotal($pagesTotal)
+    {
+        // Do nothing for nullable integers
+        $this->container['pagesTotal'] = $pagesTotal;
 
         return $this;
     }

@@ -46,12 +46,12 @@ class AccountHolderCapability implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $openAPITypes = [
         'allowed' => 'bool',
         'allowedLevel' => 'string',
-        'allowedSettings' => '\Adyen\Model\BalancePlatform\JSONObject',
+        'allowedSettings' => '\Adyen\Model\BalancePlatform\CapabilitySettings',
         'enabled' => 'bool',
         'problems' => 'object[]',
         'requested' => 'bool',
         'requestedLevel' => 'string',
-        'requestedSettings' => '\Adyen\Model\BalancePlatform\JSONObject',
+        'requestedSettings' => '\Adyen\Model\BalancePlatform\CapabilitySettings',
         'transferInstruments' => '\Adyen\Model\BalancePlatform\AccountSupportingEntityCapability[]',
         'verificationStatus' => 'string'
     ];
@@ -487,7 +487,7 @@ class AccountHolderCapability implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets allowedSettings
      *
-     * @return \Adyen\Model\BalancePlatform\JSONObject|null
+     * @return \Adyen\Model\BalancePlatform\CapabilitySettings|null
      */
     public function getAllowedSettings()
     {
@@ -497,7 +497,7 @@ class AccountHolderCapability implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets allowedSettings
      *
-     * @param \Adyen\Model\BalancePlatform\JSONObject|null $allowedSettings allowedSettings
+     * @param \Adyen\Model\BalancePlatform\CapabilitySettings|null $allowedSettings allowedSettings
      *
      * @return self
      */
@@ -632,7 +632,7 @@ class AccountHolderCapability implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets requestedSettings
      *
-     * @return \Adyen\Model\BalancePlatform\JSONObject|null
+     * @return \Adyen\Model\BalancePlatform\CapabilitySettings|null
      */
     public function getRequestedSettings()
     {
@@ -642,7 +642,7 @@ class AccountHolderCapability implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets requestedSettings
      *
-     * @param \Adyen\Model\BalancePlatform\JSONObject|null $requestedSettings requestedSettings
+     * @param \Adyen\Model\BalancePlatform\CapabilitySettings|null $requestedSettings requestedSettings
      *
      * @return self
      */

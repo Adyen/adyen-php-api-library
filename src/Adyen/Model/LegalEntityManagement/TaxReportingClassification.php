@@ -434,7 +434,7 @@ class TaxReportingClassification implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets financialInstitutionNumber
      *
-     * @param string|null $financialInstitutionNumber The Global Intermediary Identification Number (GIIN) required for FATCA.
+     * @param string|null $financialInstitutionNumber The Global Intermediary Identification Number (GIIN) required for FATCA. Only required if the organization is a US financial institution and the `businessType` is **financialInstitution**.
      *
      * @return self
      */

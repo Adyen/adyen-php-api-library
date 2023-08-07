@@ -354,7 +354,7 @@ class Address2 implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets country
      *
-     * @param string $country The two-character ISO 3166-1 alpha-2 country code. For example, **US**. >If you don't know the country or are not collecting the country from the shopper, provide `country` as `ZZ`.
+     * @param string $country The two-character ISO 3166-1 alpha-2 country code. For example, **US**, **NL**, or **GB**.
      *
      * @return self
      */
