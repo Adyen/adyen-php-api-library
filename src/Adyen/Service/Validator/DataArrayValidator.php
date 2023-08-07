@@ -3,6 +3,9 @@
 
 namespace Adyen\Service\Validator;
 
+/**
+ * @deprecated
+ */
 class DataArrayValidator
 {
     /**

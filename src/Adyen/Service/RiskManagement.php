@@ -2,6 +2,9 @@
 
 namespace Adyen\Service;
 
+/**
+ * @deprecated
+ */
 class RiskManagement extends \Adyen\Service
 {
     /**

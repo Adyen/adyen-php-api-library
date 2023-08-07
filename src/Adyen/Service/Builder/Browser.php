@@ -23,6 +23,9 @@
 
 namespace Adyen\Service\Builder;
 
+/**
+ * @deprecated
+ */
 class Browser
 {
     const BROWSER_INFO = 'browserInfo';

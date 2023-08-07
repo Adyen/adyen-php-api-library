@@ -1,0 +1,23 @@
+name: Release request
+
+on:
+    workflow_dispatch:
+      inputs:
+        prerelease:
+          required: false
+          type: boolean
+          default: false
+          description: "This release will be labeled as non-production ready"
+    push:
+      branches:
+        - develop
+
+jobs:
+  release:
+    permissions:
+      contents: write
+      pull-requests: write
+    uses: Adyen/adyen-node-api-library/.github/workflows/lib-release.yml@develop
+    with:
+      prerelease: ${{ inputs.prerelease || false }}
+    secrets: inherit

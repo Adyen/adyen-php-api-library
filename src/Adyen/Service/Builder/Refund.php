@@ -25,6 +25,9 @@ namespace Adyen\Service\Builder;
 
 use Adyen\Util\Currency;
 
+/**
+ * @deprecated
+ */
 class Refund
 {
     /**

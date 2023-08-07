@@ -1,25 +1,4 @@
 <?php
-/**
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen API Library for PHP
- *
- * Copyright (c) 2019 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- *
- */
 
 namespace Adyen\Util;
 
@@ -28,6 +7,27 @@ use Adyen\AdyenException;
 class HmacSignature
 {
     const EVENT_CODE = "eventCode";
+
+    /**
+     * @param string $hmacKey Can be found in Customer Area
+     * @param string $hmacSign Can be found in the Webhook headers
+     * @param string $webhook The response from Adyen
+     * @return bool
+     * @throws AdyenException
+     */
+    public function validateHMAC(string $hmacKey, string $hmacSign, string $webhook): bool
+    {
+        if (!ctype_xdigit($hmacSign)) {
+            throw new AdyenException("Invalid HMAC key: $hmacKey");
+        }
+        $expectedSign = base64_encode(hash_hmac(
+            'sha256',
+            $webhook,
+            pack("H*", $hmacSign),
+            true
+        ));
+        return hash_equals($expectedSign, $hmacKey);
+    }
     /**
      * @param string $hmacKey Can be found in Customer Area
      * @param array $params The response from Adyen
@@ -51,6 +51,7 @@ class HmacSignature
         }
 
         $dataToSign = self::getNotificationDataToSign($params);
+
 
         // base64-encode the binary result of the HMAC computation
         $merchantSig = base64_encode(hash_hmac('sha256', $dataToSign, pack("H*", $hmacKey), true));
