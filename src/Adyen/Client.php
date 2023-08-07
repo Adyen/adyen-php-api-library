@@ -7,7 +7,7 @@ use Adyen\HttpClient\CurlClient;
 
 class Client
 {
-    const LIB_VERSION = "15.0.0-beta";
+    const LIB_VERSION = "15.0.0";
     const LIB_NAME = "adyen-php-api-library";
     const USER_AGENT_SUFFIX = "adyen-php-api-library/";
     const ENDPOINT_TEST = "https://pal-test.adyen.com";
