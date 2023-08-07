@@ -47,7 +47,8 @@ class Nexo implements ModelInterface, ArrayAccess, \JsonSerializable
         'displayUrls' => '\Adyen\Model\Management\NotificationUrl',
         'encryptionKey' => '\Adyen\Model\Management\Key',
         'eventUrls' => '\Adyen\Model\Management\EventUrl',
-        'nexoEventUrls' => 'string[]'
+        'nexoEventUrls' => 'string[]',
+        'notification' => '\Adyen\Model\Management\Notification'
     ];
 
     /**
@@ -61,7 +62,8 @@ class Nexo implements ModelInterface, ArrayAccess, \JsonSerializable
         'displayUrls' => null,
         'encryptionKey' => null,
         'eventUrls' => null,
-        'nexoEventUrls' => null
+        'nexoEventUrls' => null,
+        'notification' => null
     ];
 
     /**
@@ -73,7 +75,8 @@ class Nexo implements ModelInterface, ArrayAccess, \JsonSerializable
         'displayUrls' => false,
         'encryptionKey' => false,
         'eventUrls' => false,
-        'nexoEventUrls' => false
+        'nexoEventUrls' => false,
+        'notification' => false
     ];
 
     /**
@@ -165,7 +168,8 @@ class Nexo implements ModelInterface, ArrayAccess, \JsonSerializable
         'displayUrls' => 'displayUrls',
         'encryptionKey' => 'encryptionKey',
         'eventUrls' => 'eventUrls',
-        'nexoEventUrls' => 'nexoEventUrls'
+        'nexoEventUrls' => 'nexoEventUrls',
+        'notification' => 'notification'
     ];
 
     /**
@@ -177,7 +181,8 @@ class Nexo implements ModelInterface, ArrayAccess, \JsonSerializable
         'displayUrls' => 'setDisplayUrls',
         'encryptionKey' => 'setEncryptionKey',
         'eventUrls' => 'setEventUrls',
-        'nexoEventUrls' => 'setNexoEventUrls'
+        'nexoEventUrls' => 'setNexoEventUrls',
+        'notification' => 'setNotification'
     ];
 
     /**
@@ -189,7 +194,8 @@ class Nexo implements ModelInterface, ArrayAccess, \JsonSerializable
         'displayUrls' => 'getDisplayUrls',
         'encryptionKey' => 'getEncryptionKey',
         'eventUrls' => 'getEventUrls',
-        'nexoEventUrls' => 'getNexoEventUrls'
+        'nexoEventUrls' => 'getNexoEventUrls',
+        'notification' => 'getNotification'
     ];
 
     /**
@@ -253,6 +259,7 @@ class Nexo implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('encryptionKey', $data ?? [], null);
         $this->setIfExists('eventUrls', $data ?? [], null);
         $this->setIfExists('nexoEventUrls', $data ?? [], null);
+        $this->setIfExists('notification', $data ?? [], null);
     }
 
     /**
@@ -403,6 +410,33 @@ class Nexo implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable nexoEventUrls cannot be null');
         }
         $this->container['nexoEventUrls'] = $nexoEventUrls;
+
+        return $this;
+    }
+
+    /**
+     * Gets notification
+     *
+     * @return \Adyen\Model\Management\Notification|null
+     */
+    public function getNotification()
+    {
+        return $this->container['notification'];
+    }
+
+    /**
+     * Sets notification
+     *
+     * @param \Adyen\Model\Management\Notification|null $notification notification
+     *
+     * @return self
+     */
+    public function setNotification($notification)
+    {
+        if (is_null($notification)) {
+            throw new \InvalidArgumentException('non-nullable notification cannot be null');
+        }
+        $this->container['notification'] = $notification;
 
         return $this;
     }

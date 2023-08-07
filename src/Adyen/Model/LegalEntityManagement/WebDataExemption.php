@@ -216,6 +216,7 @@ class WebDataExemption implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     public const REASON_NO_ONLINE_PRESENCE = 'noOnlinePresence';
+    public const REASON_NOT_COLLECTED_DURING_ONBOARDING = 'notCollectedDuringOnboarding';
 
     /**
      * Gets allowable values of the enum
@@ -226,6 +227,7 @@ class WebDataExemption implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return [
             self::REASON_NO_ONLINE_PRESENCE,
+            self::REASON_NOT_COLLECTED_DURING_ONBOARDING,
         ];
     }
     /**

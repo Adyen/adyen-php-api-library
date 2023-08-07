@@ -264,6 +264,7 @@ class IdentificationData implements ModelInterface, ArrayAccess, \JsonSerializab
     public const TYPE_PROOF_OF_ORGANIZATION_TAX_INFO = 'proofOfOrganizationTaxInfo';
     public const TYPE_PROOF_OF_INDUSTRY = 'proofOfIndustry';
     public const TYPE_CONSTITUTIONAL_DOCUMENT = 'constitutionalDocument';
+    public const TYPE_PROOF_OF_FUNDING_OR_WEALTH_SOURCE = 'proofOfFundingOrWealthSource';
 
     /**
      * Gets allowable values of the enum
@@ -286,6 +287,7 @@ class IdentificationData implements ModelInterface, ArrayAccess, \JsonSerializab
             self::TYPE_PROOF_OF_ORGANIZATION_TAX_INFO,
             self::TYPE_PROOF_OF_INDUSTRY,
             self::TYPE_CONSTITUTIONAL_DOCUMENT,
+            self::TYPE_PROOF_OF_FUNDING_OR_WEALTH_SOURCE,
         ];
     }
     /**
@@ -545,7 +547,7 @@ class IdentificationData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets type
      *
-     * @param string $type Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  When providing ID numbers: * For **individual**, the `type` values can be **driversLicense**, **identityCard**, **nationalIdNumber**, or **passport**.  When uploading photo IDs: * For **individual**, the `type` values can be **identityCard**, **driversLicense**, or **passport**.  When uploading other documents: * For **organization**, the `type` values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, or **proofOfIndustry**.   * For **individual**, the `type` values can be **identityCard**, **driversLicense**, **passport**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, or **proofOfIndividualTaxId**.  * For **soleProprietorship**, the `type` values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
+     * @param string $type Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  * For **organization**, the `type` values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, **proofOfIndustry**, or **proofOfFundingOrWealthSource**.  * For **individual**, the `type` values can be **identityCard**, **driversLicense**, **passport**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, **proofOfIndividualTaxId**, or **proofOfFundingOrWealthSource**.  * For **soleProprietorship**, the `type` values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
      *
      * @return self
      */

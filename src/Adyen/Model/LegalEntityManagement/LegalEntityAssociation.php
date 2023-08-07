@@ -388,7 +388,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets entityType
      *
-     * @param string|null $entityType The legal entity type of associated legal entity.   For example, **organization**, **soleProprietorship** or **individual**.
+     * @param string|null $entityType The legal entity type of associated legal entity.  For example, **organization**, **soleProprietorship** or **individual**.
      *
      * @return self
      */
@@ -496,7 +496,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets type
      *
-     * @param string $type Defines the relationship of the legal entity to the current legal entity.   Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **signatory**, or **ultimateParentCompany**.   Possible values for sole proprietorships: **soleProprietorship**.
+     * @param string $type Defines the relationship of the legal entity to the current legal entity.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **director**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.
      *
      * @return self
      */

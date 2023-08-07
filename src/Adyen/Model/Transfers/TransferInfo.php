@@ -279,6 +279,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     public const CATEGORY_INTERNAL = 'internal';
     public const CATEGORY_ISSUED_CARD = 'issuedCard';
     public const CATEGORY_PLATFORM_PAYMENT = 'platformPayment';
+    public const CATEGORY_CARD = 'card';
     public const PRIORITY_CROSS_BORDER = 'crossBorder';
     public const PRIORITY_DIRECT_DEBIT = 'directDebit';
     public const PRIORITY_FAST = 'fast';
@@ -299,6 +300,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
             self::CATEGORY_INTERNAL,
             self::CATEGORY_ISSUED_CARD,
             self::CATEGORY_PLATFORM_PAYMENT,
+            self::CATEGORY_CARD,
         ];
     }
     /**
@@ -691,7 +693,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets referenceForBeneficiary
      *
-     * @param string|null $referenceForBeneficiary A reference that is sent to the recipient. This reference is also sent in all notification webhooks related to the transfer, so you can use it to track statuses for both the source and recipient of funds.   Supported characters: **a-z**, **A-Z**, **0-9**. The maximum length depends on the `category`.  - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others.
+     * @param string|null $referenceForBeneficiary A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both the source and recipient of funds.   Supported characters: **a-z**, **A-Z**, **0-9**. The maximum length depends on the `category`.  - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others.
      *
      * @return self
      */

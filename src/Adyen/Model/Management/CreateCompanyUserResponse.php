@@ -47,8 +47,8 @@ class CreateCompanyUserResponse implements ModelInterface, ArrayAccess, \JsonSer
         'links' => '\Adyen\Model\Management\Links',
         'accountGroups' => 'string[]',
         'active' => 'bool',
+        'apps' => 'string[]',
         'associatedMerchantAccounts' => 'string[]',
-        'authnApps' => 'string[]',
         'email' => 'string',
         'id' => 'string',
         'name' => '\Adyen\Model\Management\Name',
@@ -68,8 +68,8 @@ class CreateCompanyUserResponse implements ModelInterface, ArrayAccess, \JsonSer
         'links' => null,
         'accountGroups' => null,
         'active' => null,
+        'apps' => null,
         'associatedMerchantAccounts' => null,
-        'authnApps' => null,
         'email' => null,
         'id' => null,
         'name' => null,
@@ -87,8 +87,8 @@ class CreateCompanyUserResponse implements ModelInterface, ArrayAccess, \JsonSer
         'links' => false,
         'accountGroups' => false,
         'active' => false,
+        'apps' => false,
         'associatedMerchantAccounts' => false,
-        'authnApps' => false,
         'email' => false,
         'id' => false,
         'name' => false,
@@ -186,8 +186,8 @@ class CreateCompanyUserResponse implements ModelInterface, ArrayAccess, \JsonSer
         'links' => '_links',
         'accountGroups' => 'accountGroups',
         'active' => 'active',
+        'apps' => 'apps',
         'associatedMerchantAccounts' => 'associatedMerchantAccounts',
-        'authnApps' => 'authnApps',
         'email' => 'email',
         'id' => 'id',
         'name' => 'name',
@@ -205,8 +205,8 @@ class CreateCompanyUserResponse implements ModelInterface, ArrayAccess, \JsonSer
         'links' => 'setLinks',
         'accountGroups' => 'setAccountGroups',
         'active' => 'setActive',
+        'apps' => 'setApps',
         'associatedMerchantAccounts' => 'setAssociatedMerchantAccounts',
-        'authnApps' => 'setAuthnApps',
         'email' => 'setEmail',
         'id' => 'setId',
         'name' => 'setName',
@@ -224,8 +224,8 @@ class CreateCompanyUserResponse implements ModelInterface, ArrayAccess, \JsonSer
         'links' => 'getLinks',
         'accountGroups' => 'getAccountGroups',
         'active' => 'getActive',
+        'apps' => 'getApps',
         'associatedMerchantAccounts' => 'getAssociatedMerchantAccounts',
-        'authnApps' => 'getAuthnApps',
         'email' => 'getEmail',
         'id' => 'getId',
         'name' => 'getName',
@@ -294,8 +294,8 @@ class CreateCompanyUserResponse implements ModelInterface, ArrayAccess, \JsonSer
         $this->setIfExists('links', $data ?? [], null);
         $this->setIfExists('accountGroups', $data ?? [], null);
         $this->setIfExists('active', $data ?? [], null);
+        $this->setIfExists('apps', $data ?? [], null);
         $this->setIfExists('associatedMerchantAccounts', $data ?? [], null);
-        $this->setIfExists('authnApps', $data ?? [], null);
         $this->setIfExists('email', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
@@ -443,6 +443,33 @@ class CreateCompanyUserResponse implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
+     * Gets apps
+     *
+     * @return string[]|null
+     */
+    public function getApps()
+    {
+        return $this->container['apps'];
+    }
+
+    /**
+     * Sets apps
+     *
+     * @param string[]|null $apps Set of apps available to this user
+     *
+     * @return self
+     */
+    public function setApps($apps)
+    {
+        if (is_null($apps)) {
+            throw new \InvalidArgumentException('non-nullable apps cannot be null');
+        }
+        $this->container['apps'] = $apps;
+
+        return $this;
+    }
+
+    /**
      * Gets associatedMerchantAccounts
      *
      * @return string[]|null
@@ -465,33 +492,6 @@ class CreateCompanyUserResponse implements ModelInterface, ArrayAccess, \JsonSer
             throw new \InvalidArgumentException('non-nullable associatedMerchantAccounts cannot be null');
         }
         $this->container['associatedMerchantAccounts'] = $associatedMerchantAccounts;
-
-        return $this;
-    }
-
-    /**
-     * Gets authnApps
-     *
-     * @return string[]|null
-     */
-    public function getAuthnApps()
-    {
-        return $this->container['authnApps'];
-    }
-
-    /**
-     * Sets authnApps
-     *
-     * @param string[]|null $authnApps Set of authn apps available to this user
-     *
-     * @return self
-     */
-    public function setAuthnApps($authnApps)
-    {
-        if (is_null($authnApps)) {
-            throw new \InvalidArgumentException('non-nullable authnApps cannot be null');
-        }
-        $this->container['authnApps'] = $authnApps;
 
         return $this;
     }

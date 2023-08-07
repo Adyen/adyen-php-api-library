@@ -50,6 +50,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
         'balanceAccountId' => 'string',
         'category' => 'string',
         'counterparty' => '\Adyen\Model\Transfers\CounterpartyV3',
+        'creationDate' => '\DateTime',
         'description' => 'string',
         'direction' => 'string',
         'id' => 'string',
@@ -76,6 +77,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
         'balanceAccountId' => null,
         'category' => null,
         'counterparty' => null,
+        'creationDate' => 'date-time',
         'description' => null,
         'direction' => null,
         'id' => null,
@@ -100,6 +102,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
         'balanceAccountId' => false,
         'category' => false,
         'counterparty' => false,
+        'creationDate' => false,
         'description' => false,
         'direction' => false,
         'id' => false,
@@ -204,6 +207,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
         'balanceAccountId' => 'balanceAccountId',
         'category' => 'category',
         'counterparty' => 'counterparty',
+        'creationDate' => 'creationDate',
         'description' => 'description',
         'direction' => 'direction',
         'id' => 'id',
@@ -228,6 +232,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
         'balanceAccountId' => 'setBalanceAccountId',
         'category' => 'setCategory',
         'counterparty' => 'setCounterparty',
+        'creationDate' => 'setCreationDate',
         'description' => 'setDescription',
         'direction' => 'setDirection',
         'id' => 'setId',
@@ -252,6 +257,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
         'balanceAccountId' => 'getBalanceAccountId',
         'category' => 'getCategory',
         'counterparty' => 'getCounterparty',
+        'creationDate' => 'getCreationDate',
         'description' => 'getDescription',
         'direction' => 'getDirection',
         'id' => 'getId',
@@ -348,7 +354,9 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_CAPTURE_REVERSAL_PENDING = 'captureReversalPending';
     public const STATUS_CAPTURE_REVERSED = 'captureReversed';
     public const STATUS_CAPTURED = 'captured';
+    public const STATUS_CAPTURED_EXTERNALLY = 'capturedExternally';
     public const STATUS_CHARGEBACK = 'chargeback';
+    public const STATUS_CHARGEBACK_EXTERNALLY = 'chargebackExternally';
     public const STATUS_CHARGEBACK_PENDING = 'chargebackPending';
     public const STATUS_CHARGEBACK_REVERSAL_PENDING = 'chargebackReversalPending';
     public const STATUS_CHARGEBACK_REVERSED = 'chargebackReversed';
@@ -385,6 +393,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_REFUND_REVERSAL_PENDING = 'refundReversalPending';
     public const STATUS_REFUND_REVERSED = 'refundReversed';
     public const STATUS_REFUNDED = 'refunded';
+    public const STATUS_REFUNDED_EXTERNALLY = 'refundedExternally';
     public const STATUS_REFUSED = 'refused';
     public const STATUS_RESERVE_ADJUSTMENT = 'reserveAdjustment';
     public const STATUS_RESERVE_ADJUSTMENT_PENDING = 'reserveAdjustmentPending';
@@ -484,7 +493,9 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_CAPTURE_REVERSAL_PENDING,
             self::STATUS_CAPTURE_REVERSED,
             self::STATUS_CAPTURED,
+            self::STATUS_CAPTURED_EXTERNALLY,
             self::STATUS_CHARGEBACK,
+            self::STATUS_CHARGEBACK_EXTERNALLY,
             self::STATUS_CHARGEBACK_PENDING,
             self::STATUS_CHARGEBACK_REVERSAL_PENDING,
             self::STATUS_CHARGEBACK_REVERSED,
@@ -521,6 +532,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_REFUND_REVERSAL_PENDING,
             self::STATUS_REFUND_REVERSED,
             self::STATUS_REFUNDED,
+            self::STATUS_REFUNDED_EXTERNALLY,
             self::STATUS_REFUSED,
             self::STATUS_RESERVE_ADJUSTMENT,
             self::STATUS_RESERVE_ADJUSTMENT_PENDING,
@@ -551,6 +563,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('balanceAccountId', $data ?? [], null);
         $this->setIfExists('category', $data ?? [], null);
         $this->setIfExists('counterparty', $data ?? [], null);
+        $this->setIfExists('creationDate', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('direction', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
@@ -837,6 +850,33 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets creationDate
+     *
+     * @return \DateTime|null
+     */
+    public function getCreationDate()
+    {
+        return $this->container['creationDate'];
+    }
+
+    /**
+     * Sets creationDate
+     *
+     * @param \DateTime|null $creationDate The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
+     *
+     * @return self
+     */
+    public function setCreationDate($creationDate)
+    {
+        if (is_null($creationDate)) {
+            throw new \InvalidArgumentException('non-nullable creationDate cannot be null');
+        }
+        $this->container['creationDate'] = $creationDate;
+
+        return $this;
+    }
+
+    /**
      * Gets description
      *
      * @return string|null
@@ -1097,7 +1137,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets referenceForBeneficiary
      *
-     * @param string|null $referenceForBeneficiary A reference that is sent to the recipient. This reference is also sent in all notification webhooks related to the transfer, so you can use it to track statuses for both the source and recipient of funds.   Supported characters: **a-z**, **A-Z**, **0-9**. The maximum length depends on the `category`.  - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others.
+     * @param string|null $referenceForBeneficiary A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both the source and recipient of funds.   Supported characters: **a-z**, **A-Z**, **0-9**. The maximum length depends on the `category`.  - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others.
      *
      * @return self
      */

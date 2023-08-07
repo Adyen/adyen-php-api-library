@@ -44,7 +44,8 @@ class Hardware implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'displayMaximumBackLight' => 'int'
+        'displayMaximumBackLight' => 'int',
+        'restartHour' => 'int'
     ];
 
     /**
@@ -55,7 +56,8 @@ class Hardware implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'displayMaximumBackLight' => 'int32'
+        'displayMaximumBackLight' => 'int32',
+        'restartHour' => 'int32'
     ];
 
     /**
@@ -64,7 +66,8 @@ class Hardware implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'displayMaximumBackLight' => true
+        'displayMaximumBackLight' => true,
+        'restartHour' => true
     ];
 
     /**
@@ -153,7 +156,8 @@ class Hardware implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'displayMaximumBackLight' => 'displayMaximumBackLight'
+        'displayMaximumBackLight' => 'displayMaximumBackLight',
+        'restartHour' => 'restartHour'
     ];
 
     /**
@@ -162,7 +166,8 @@ class Hardware implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'displayMaximumBackLight' => 'setDisplayMaximumBackLight'
+        'displayMaximumBackLight' => 'setDisplayMaximumBackLight',
+        'restartHour' => 'setRestartHour'
     ];
 
     /**
@@ -171,7 +176,8 @@ class Hardware implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'displayMaximumBackLight' => 'getDisplayMaximumBackLight'
+        'displayMaximumBackLight' => 'getDisplayMaximumBackLight',
+        'restartHour' => 'getRestartHour'
     ];
 
     /**
@@ -232,6 +238,7 @@ class Hardware implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('displayMaximumBackLight', $data ?? [], null);
+        $this->setIfExists('restartHour', $data ?? [], null);
     }
 
     /**
@@ -297,6 +304,31 @@ class Hardware implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         // Do nothing for nullable integers
         $this->container['displayMaximumBackLight'] = $displayMaximumBackLight;
+
+        return $this;
+    }
+
+    /**
+     * Gets restartHour
+     *
+     * @return int|null
+     */
+    public function getRestartHour()
+    {
+        return $this->container['restartHour'];
+    }
+
+    /**
+     * Sets restartHour
+     *
+     * @param int|null $restartHour The hour (0 - 23) in which the device will reboot, reboot will happen in the timezone of the device
+     *
+     * @return self
+     */
+    public function setRestartHour($restartHour)
+    {
+        // Do nothing for nullable integers
+        $this->container['restartHour'] = $restartHour;
 
         return $this;
     }

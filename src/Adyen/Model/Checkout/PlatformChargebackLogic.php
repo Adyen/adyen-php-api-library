@@ -328,7 +328,7 @@ class PlatformChargebackLogic implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets behavior
      *
-     * @param string|null $behavior behavior
+     * @param string|null $behavior The method of handling the chargeback.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**, **deductAccordingToSplitRatio**.
      *
      * @return self
      */
@@ -365,7 +365,7 @@ class PlatformChargebackLogic implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets costAllocationAccount
      *
-     * @param string|null $costAllocationAccount costAllocationAccount
+     * @param string|null $costAllocationAccount The unique identifier of the balance account to which the chargeback fees are booked. By default, the chargeback fees are booked to your liable balance account.
      *
      * @return self
      */
@@ -392,7 +392,7 @@ class PlatformChargebackLogic implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets targetAccount
      *
-     * @param string|null $targetAccount targetAccount
+     * @param string|null $targetAccount The unique identifier of the balance account against which the disputed amount is booked.  Required if `behavior` is **deductFromOneBalanceAccount**.
      *
      * @return self
      */

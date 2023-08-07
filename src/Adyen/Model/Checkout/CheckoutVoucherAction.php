@@ -55,6 +55,7 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'maskedTelephoneNumber' => 'string',
         'merchantName' => 'string',
         'merchantReference' => 'string',
+        'passCreationToken' => 'string',
         'paymentData' => 'string',
         'paymentMethodType' => 'string',
         'reference' => 'string',
@@ -85,6 +86,7 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'maskedTelephoneNumber' => null,
         'merchantName' => null,
         'merchantReference' => null,
+        'passCreationToken' => null,
         'paymentData' => null,
         'paymentMethodType' => null,
         'reference' => null,
@@ -113,6 +115,7 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'maskedTelephoneNumber' => false,
         'merchantName' => false,
         'merchantReference' => false,
+        'passCreationToken' => false,
         'paymentData' => false,
         'paymentMethodType' => false,
         'reference' => false,
@@ -221,6 +224,7 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'maskedTelephoneNumber' => 'maskedTelephoneNumber',
         'merchantName' => 'merchantName',
         'merchantReference' => 'merchantReference',
+        'passCreationToken' => 'passCreationToken',
         'paymentData' => 'paymentData',
         'paymentMethodType' => 'paymentMethodType',
         'reference' => 'reference',
@@ -249,6 +253,7 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'maskedTelephoneNumber' => 'setMaskedTelephoneNumber',
         'merchantName' => 'setMerchantName',
         'merchantReference' => 'setMerchantReference',
+        'passCreationToken' => 'setPassCreationToken',
         'paymentData' => 'setPaymentData',
         'paymentMethodType' => 'setPaymentMethodType',
         'reference' => 'setReference',
@@ -277,6 +282,7 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'maskedTelephoneNumber' => 'getMaskedTelephoneNumber',
         'merchantName' => 'getMerchantName',
         'merchantReference' => 'getMerchantReference',
+        'passCreationToken' => 'getPassCreationToken',
         'paymentData' => 'getPaymentData',
         'paymentMethodType' => 'getPaymentMethodType',
         'reference' => 'getReference',
@@ -368,6 +374,7 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('maskedTelephoneNumber', $data ?? [], null);
         $this->setIfExists('merchantName', $data ?? [], null);
         $this->setIfExists('merchantReference', $data ?? [], null);
+        $this->setIfExists('passCreationToken', $data ?? [], null);
         $this->setIfExists('paymentData', $data ?? [], null);
         $this->setIfExists('paymentMethodType', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
@@ -726,6 +733,33 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
             throw new \InvalidArgumentException('non-nullable merchantReference cannot be null');
         }
         $this->container['merchantReference'] = $merchantReference;
+
+        return $this;
+    }
+
+    /**
+     * Gets passCreationToken
+     *
+     * @return string|null
+     */
+    public function getPassCreationToken()
+    {
+        return $this->container['passCreationToken'];
+    }
+
+    /**
+     * Sets passCreationToken
+     *
+     * @param string|null $passCreationToken A base64 encoded signature of all properties
+     *
+     * @return self
+     */
+    public function setPassCreationToken($passCreationToken)
+    {
+        if (is_null($passCreationToken)) {
+            throw new \InvalidArgumentException('non-nullable passCreationToken cannot be null');
+        }
+        $this->container['passCreationToken'] = $passCreationToken;
 
         return $this;
     }

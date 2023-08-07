@@ -47,7 +47,7 @@ class RestServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
         'detail' => 'string',
         'errorCode' => 'string',
         'instance' => 'string',
-        'invalidFields' => '\Adyen\Model\Management\InvalidField[]',
+        'invalidFields' => '\Adyen\Model\Management\InvalidFieldWrapper[]',
         'requestId' => 'string',
         'response' => '\Adyen\Model\Management\JSONObject',
         'status' => 'int',
@@ -431,7 +431,7 @@ class RestServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets invalidFields
      *
-     * @return \Adyen\Model\Management\InvalidField[]|null
+     * @return \Adyen\Model\Management\InvalidFieldWrapper[]|null
      */
     public function getInvalidFields()
     {
@@ -441,7 +441,7 @@ class RestServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets invalidFields
      *
-     * @param \Adyen\Model\Management\InvalidField[]|null $invalidFields Detailed explanation of each validation error, when applicable.
+     * @param \Adyen\Model\Management\InvalidFieldWrapper[]|null $invalidFields Detailed explanation of each validation error, when applicable.
      *
      * @return self
      */

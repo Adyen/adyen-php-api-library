@@ -56,7 +56,6 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
         'lodgingPropertyPhoneNumber' => 'string',
         'lodgingRoom1NumberOfNights' => 'string',
         'lodgingRoom1Rate' => 'string',
-        'lodgingRoom1Tax' => 'string',
         'lodgingTotalRoomTax' => 'string',
         'lodgingTotalTax' => 'string',
         'travelEntertainmentAuthDataDuration' => 'string',
@@ -83,7 +82,6 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
         'lodgingPropertyPhoneNumber' => null,
         'lodgingRoom1NumberOfNights' => null,
         'lodgingRoom1Rate' => null,
-        'lodgingRoom1Tax' => null,
         'lodgingTotalRoomTax' => null,
         'lodgingTotalTax' => null,
         'travelEntertainmentAuthDataDuration' => null,
@@ -108,7 +106,6 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
         'lodgingPropertyPhoneNumber' => false,
         'lodgingRoom1NumberOfNights' => false,
         'lodgingRoom1Rate' => false,
-        'lodgingRoom1Tax' => false,
         'lodgingTotalRoomTax' => false,
         'lodgingTotalTax' => false,
         'travelEntertainmentAuthDataDuration' => false,
@@ -213,7 +210,6 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
         'lodgingPropertyPhoneNumber' => 'lodging.propertyPhoneNumber',
         'lodgingRoom1NumberOfNights' => 'lodging.room1.numberOfNights',
         'lodgingRoom1Rate' => 'lodging.room1.rate',
-        'lodgingRoom1Tax' => 'lodging.room1.tax',
         'lodgingTotalRoomTax' => 'lodging.totalRoomTax',
         'lodgingTotalTax' => 'lodging.totalTax',
         'travelEntertainmentAuthDataDuration' => 'travelEntertainmentAuthData.duration',
@@ -238,7 +234,6 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
         'lodgingPropertyPhoneNumber' => 'setLodgingPropertyPhoneNumber',
         'lodgingRoom1NumberOfNights' => 'setLodgingRoom1NumberOfNights',
         'lodgingRoom1Rate' => 'setLodgingRoom1Rate',
-        'lodgingRoom1Tax' => 'setLodgingRoom1Tax',
         'lodgingTotalRoomTax' => 'setLodgingTotalRoomTax',
         'lodgingTotalTax' => 'setLodgingTotalTax',
         'travelEntertainmentAuthDataDuration' => 'setTravelEntertainmentAuthDataDuration',
@@ -263,7 +258,6 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
         'lodgingPropertyPhoneNumber' => 'getLodgingPropertyPhoneNumber',
         'lodgingRoom1NumberOfNights' => 'getLodgingRoom1NumberOfNights',
         'lodgingRoom1Rate' => 'getLodgingRoom1Rate',
-        'lodgingRoom1Tax' => 'getLodgingRoom1Tax',
         'lodgingTotalRoomTax' => 'getLodgingTotalRoomTax',
         'lodgingTotalTax' => 'getLodgingTotalTax',
         'travelEntertainmentAuthDataDuration' => 'getTravelEntertainmentAuthDataDuration',
@@ -339,7 +333,6 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('lodgingPropertyPhoneNumber', $data ?? [], null);
         $this->setIfExists('lodgingRoom1NumberOfNights', $data ?? [], null);
         $this->setIfExists('lodgingRoom1Rate', $data ?? [], null);
-        $this->setIfExists('lodgingRoom1Tax', $data ?? [], null);
         $this->setIfExists('lodgingTotalRoomTax', $data ?? [], null);
         $this->setIfExists('lodgingTotalTax', $data ?? [], null);
         $this->setIfExists('travelEntertainmentAuthDataDuration', $data ?? [], null);
@@ -455,7 +448,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets lodgingCustomerServiceTollFreeNumber
      *
-     * @param string|null $lodgingCustomerServiceTollFreeNumber The toll-free phone number for the lodging. * Format: alphanumeric. * Max length: 17 characters. * For US numbers: must start with 3 digits and be at least 10 characters in length. Otherwise, the capture can fail.
+     * @param string|null $lodgingCustomerServiceTollFreeNumber The toll-free phone number for the lodging. * Format: numeric * Max length: 17 characters. * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not be all zeros * Must not contain any special characters such as + or -
      *
      * @return self
      */
@@ -482,7 +475,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets lodgingFireSafetyActIndicator
      *
-     * @param string|null $lodgingFireSafetyActIndicator Identifies that the facility complies with the Hotel and Motel Fire Safety Act of 1990. Values can be: 'Y' or 'N'. * Format: alphabetic. * Max length: 1 character.
+     * @param string|null $lodgingFireSafetyActIndicator Identifies that the facility complies with the Hotel and Motel Fire Safety Act of 1990. Must be 'Y' or 'N'. * Format: alphabetic * Max length: 1 character
      *
      * @return self
      */
@@ -509,7 +502,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets lodgingFolioCashAdvances
      *
-     * @param string|null $lodgingFolioCashAdvances The folio cash advances. * Format: numeric. * Max length: 12 characters.
+     * @param string|null $lodgingFolioCashAdvances The folio cash advances, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters
      *
      * @return self
      */
@@ -536,7 +529,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets lodgingFolioNumber
      *
-     * @param string|null $lodgingFolioNumber The card acceptor’s internal invoice or billing ID reference number. * Format: alphanumeric. * Max length: 25 characters.
+     * @param string|null $lodgingFolioNumber The card acceptor’s internal invoice or billing ID reference number. * Max length: 25 characters. * Must not start with a space * Must not be all zeros
      *
      * @return self
      */
@@ -563,7 +556,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets lodgingFoodBeverageCharges
      *
-     * @param string|null $lodgingFoodBeverageCharges The additional charges for food and beverages associated with the booking. * Format: numeric. * Max length: 12 characters.
+     * @param string|null $lodgingFoodBeverageCharges Any charges for food and beverages associated with the booking, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters
      *
      * @return self
      */
@@ -590,7 +583,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets lodgingNoShowIndicator
      *
-     * @param string|null $lodgingNoShowIndicator Indicates if the customer didn't check in for their booking.  Possible values:   * **Y**: the customer didn't check in.   **N**: the customer checked in.
+     * @param string|null $lodgingNoShowIndicator Indicates if the customer didn't check in for their booking.  Possible values:  * **Y**: the customer didn't check in  * **N**: the customer checked in
      *
      * @return self
      */
@@ -617,7 +610,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets lodgingPrepaidExpenses
      *
-     * @param string|null $lodgingPrepaidExpenses The prepaid expenses for the booking. * Format: numeric. * Max length: 12 characters.
+     * @param string|null $lodgingPrepaidExpenses The prepaid expenses for the booking. * Format: numeric * Max length: 12 characters
      *
      * @return self
      */
@@ -644,7 +637,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets lodgingPropertyPhoneNumber
      *
-     * @param string|null $lodgingPropertyPhoneNumber Identifies the location of the lodging by its local phone number. * Format: alphanumeric. * Max length: 17 characters. * For US numbers: must start with 3 digits and be at least 10 characters in length. Otherwise, the capture can fail.
+     * @param string|null $lodgingPropertyPhoneNumber The lodging property location's phone number. * Format: numeric. * Min length: 10 characters * Max length: 17 characters * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not be all zeros * Must not contain any special characters such as + or -
      *
      * @return self
      */
@@ -671,7 +664,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets lodgingRoom1NumberOfNights
      *
-     * @param string|null $lodgingRoom1NumberOfNights The total number of nights the room is booked for. * Format: numeric. * Max length: 4 characters.
+     * @param string|null $lodgingRoom1NumberOfNights The total number of nights the room is booked for. * Format: numeric * Must be a number between 0 and 99 * Max length: 4 characters
      *
      * @return self
      */
@@ -698,7 +691,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets lodgingRoom1Rate
      *
-     * @param string|null $lodgingRoom1Rate The rate of the room. * Format: numeric. * Max length: 12 characters. * Must be in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+     * @param string|null $lodgingRoom1Rate The rate for the room, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters * Must not be a negative number
      *
      * @return self
      */
@@ -708,33 +701,6 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
             throw new \InvalidArgumentException('non-nullable lodgingRoom1Rate cannot be null');
         }
         $this->container['lodgingRoom1Rate'] = $lodgingRoom1Rate;
-
-        return $this;
-    }
-
-    /**
-     * Gets lodgingRoom1Tax
-     *
-     * @return string|null
-     */
-    public function getLodgingRoom1Tax()
-    {
-        return $this->container['lodgingRoom1Tax'];
-    }
-
-    /**
-     * Sets lodgingRoom1Tax
-     *
-     * @param string|null $lodgingRoom1Tax The total amount of tax to be paid. * Format: numeric. * Max length: 12 chracters. * Must be in [minor units](https://docs.adyen.com/development-resources/currency-codes).
-     *
-     * @return self
-     */
-    public function setLodgingRoom1Tax($lodgingRoom1Tax)
-    {
-        if (is_null($lodgingRoom1Tax)) {
-            throw new \InvalidArgumentException('non-nullable lodgingRoom1Tax cannot be null');
-        }
-        $this->container['lodgingRoom1Tax'] = $lodgingRoom1Tax;
 
         return $this;
     }
@@ -752,7 +718,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets lodgingTotalRoomTax
      *
-     * @param string|null $lodgingTotalRoomTax The total room tax amount. * Format: numeric. * Max length: 12 characters. * Must be in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+     * @param string|null $lodgingTotalRoomTax The total room tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters * Must not be a negative number
      *
      * @return self
      */
@@ -779,7 +745,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets lodgingTotalTax
      *
-     * @param string|null $lodgingTotalTax The total tax amount. * Format: numeric. * Max length: 12 characters. * Must be in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+     * @param string|null $lodgingTotalTax The total tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters * Must not be a negative number
      *
      * @return self
      */
@@ -806,7 +772,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets travelEntertainmentAuthDataDuration
      *
-     * @param string|null $travelEntertainmentAuthDataDuration The number of nights. This should be included in the auth message. * Format: numeric. * Max length: 2 characters.
+     * @param string|null $travelEntertainmentAuthDataDuration The number of nights. This should be included in the auth message. * Format: numeric * Max length: 4 characters
      *
      * @return self
      */
@@ -833,7 +799,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets travelEntertainmentAuthDataMarket
      *
-     * @param string|null $travelEntertainmentAuthDataMarket Indicates what market-specific dataset will be submitted or is being submitted. Value should be \"H\" for Hotel. This should be included in the auth message.  * Format: alphanumeric. * Max length: 1 character.
+     * @param string|null $travelEntertainmentAuthDataMarket Indicates what market-specific dataset will be submitted. Must be 'H' for Hotel. This should be included in the auth message.  * Format: alphanumeric * Max length: 1 character
      *
      * @return self
      */

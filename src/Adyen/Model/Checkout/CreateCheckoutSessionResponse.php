@@ -76,6 +76,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'metadata' => 'array<string,string>',
         'mode' => 'string',
         'mpiData' => '\Adyen\Model\Checkout\ThreeDSecureData',
+        'platformChargebackLogic' => '\Adyen\Model\Checkout\PlatformChargebackLogic',
         'recurringExpiry' => 'string',
         'recurringFrequency' => 'string',
         'recurringProcessingModel' => 'string',
@@ -124,7 +125,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'channel' => null,
         'company' => null,
         'countryCode' => null,
-        'dateOfBirth' => 'date',
+        'dateOfBirth' => 'date-time',
         'deliverAt' => 'date-time',
         'deliveryAddress' => null,
         'enableOneClick' => null,
@@ -143,6 +144,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'metadata' => null,
         'mode' => null,
         'mpiData' => null,
+        'platformChargebackLogic' => null,
         'recurringExpiry' => null,
         'recurringFrequency' => null,
         'recurringProcessingModel' => null,
@@ -208,6 +210,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'metadata' => false,
         'mode' => false,
         'mpiData' => false,
+        'platformChargebackLogic' => false,
         'recurringExpiry' => false,
         'recurringFrequency' => false,
         'recurringProcessingModel' => false,
@@ -353,6 +356,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'metadata' => 'metadata',
         'mode' => 'mode',
         'mpiData' => 'mpiData',
+        'platformChargebackLogic' => 'platformChargebackLogic',
         'recurringExpiry' => 'recurringExpiry',
         'recurringFrequency' => 'recurringFrequency',
         'recurringProcessingModel' => 'recurringProcessingModel',
@@ -418,6 +422,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'metadata' => 'setMetadata',
         'mode' => 'setMode',
         'mpiData' => 'setMpiData',
+        'platformChargebackLogic' => 'setPlatformChargebackLogic',
         'recurringExpiry' => 'setRecurringExpiry',
         'recurringFrequency' => 'setRecurringFrequency',
         'recurringProcessingModel' => 'setRecurringProcessingModel',
@@ -483,6 +488,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'metadata' => 'getMetadata',
         'mode' => 'getMode',
         'mpiData' => 'getMpiData',
+        'platformChargebackLogic' => 'getPlatformChargebackLogic',
         'recurringExpiry' => 'getRecurringExpiry',
         'recurringFrequency' => 'getRecurringFrequency',
         'recurringProcessingModel' => 'getRecurringProcessingModel',
@@ -679,6 +685,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         $this->setIfExists('metadata', $data ?? [], null);
         $this->setIfExists('mode', $data ?? [], 'embedded');
         $this->setIfExists('mpiData', $data ?? [], null);
+        $this->setIfExists('platformChargebackLogic', $data ?? [], null);
         $this->setIfExists('recurringExpiry', $data ?? [], null);
         $this->setIfExists('recurringFrequency', $data ?? [], null);
         $this->setIfExists('recurringProcessingModel', $data ?? [], null);
@@ -1183,7 +1190,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets dateOfBirth
      *
-     * @param \DateTime|null $dateOfBirth The shopper's date of birth.  Format [ISO-8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DD
+     * @param \DateTime|null $dateOfBirth The shopper's date of birth in [ISO8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
      *
      * @return self
      */
@@ -1689,6 +1696,33 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
             throw new \InvalidArgumentException('non-nullable mpiData cannot be null');
         }
         $this->container['mpiData'] = $mpiData;
+
+        return $this;
+    }
+
+    /**
+     * Gets platformChargebackLogic
+     *
+     * @return \Adyen\Model\Checkout\PlatformChargebackLogic|null
+     */
+    public function getPlatformChargebackLogic()
+    {
+        return $this->container['platformChargebackLogic'];
+    }
+
+    /**
+     * Sets platformChargebackLogic
+     *
+     * @param \Adyen\Model\Checkout\PlatformChargebackLogic|null $platformChargebackLogic platformChargebackLogic
+     *
+     * @return self
+     */
+    public function setPlatformChargebackLogic($platformChargebackLogic)
+    {
+        if (is_null($platformChargebackLogic)) {
+            throw new \InvalidArgumentException('non-nullable platformChargebackLogic cannot be null');
+        }
+        $this->container['platformChargebackLogic'] = $platformChargebackLogic;
 
         return $this;
     }
@@ -2212,7 +2246,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets splits
      *
-     * @param \Adyen\Model\Checkout\Split[]|null $splits An array of objects specifying how the payment should be split when using [Adyen for Platforms](https://docs.adyen.com/platforms/processing-payments#providing-split-information) or [Issuing](https://docs.adyen.com/issuing/manage-funds#split).
+     * @param \Adyen\Model\Checkout\Split[]|null $splits An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/marketplaces-and-platforms/processing-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/marketplaces-and-platforms/classic/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split).
      *
      * @return self
      */
@@ -2239,7 +2273,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets store
      *
-     * @param string|null $store The ecommerce or point-of-sale store that is processing the payment.
+     * @param string|null $store The ecommerce or point-of-sale store that is processing the payment. Used in:  * [Partner platform integrations](https://docs.adyen.com/marketplaces-and-platforms/classic/platforms-for-partners#route-payments) for the [Classic Platforms integration](https://docs.adyen.com/marketplaces-and-platforms/classic). * [Platform setup integrations](https://docs.adyen.com/marketplaces-and-platforms/additional-for-platform-setup/route-payment-to-store) for the [Balance Platform](https://docs.adyen.com/marketplaces-and-platforms).
      *
      * @return self
      */

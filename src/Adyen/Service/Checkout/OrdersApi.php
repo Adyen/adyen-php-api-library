@@ -42,45 +42,45 @@ class OrdersApi extends Service
     /**
     * Create an order
     *
-    * @param \Adyen\Model\Checkout\CheckoutCreateOrderRequest $checkoutCreateOrderRequest
+    * @param \Adyen\Model\Checkout\CreateOrderRequest $createOrderRequest
     * @param array|null $requestOptions
-    * @return \Adyen\Model\Checkout\CheckoutCreateOrderResponse
+    * @return \Adyen\Model\Checkout\CreateOrderResponse
     * @throws AdyenException
     */
-    public function orders(\Adyen\Model\Checkout\CheckoutCreateOrderRequest $checkoutCreateOrderRequest, array $requestOptions = null): \Adyen\Model\Checkout\CheckoutCreateOrderResponse
+    public function orders(\Adyen\Model\Checkout\CreateOrderRequest $createOrderRequest, array $requestOptions = null): \Adyen\Model\Checkout\CreateOrderResponse
     {
         $endpoint = $this->baseURL . "/orders";
-        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $checkoutCreateOrderRequest->jsonSerialize(), $requestOptions);
-        return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\CheckoutCreateOrderResponse::class);
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $createOrderRequest->jsonSerialize(), $requestOptions);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\CreateOrderResponse::class);
     }
 
     /**
     * Cancel an order
     *
-    * @param \Adyen\Model\Checkout\CheckoutCancelOrderRequest $checkoutCancelOrderRequest
+    * @param \Adyen\Model\Checkout\CancelOrderRequest $cancelOrderRequest
     * @param array|null $requestOptions
-    * @return \Adyen\Model\Checkout\CheckoutCancelOrderResponse
+    * @return \Adyen\Model\Checkout\CancelOrderResponse
     * @throws AdyenException
     */
-    public function cancelOrder(\Adyen\Model\Checkout\CheckoutCancelOrderRequest $checkoutCancelOrderRequest, array $requestOptions = null): \Adyen\Model\Checkout\CheckoutCancelOrderResponse
+    public function cancelOrder(\Adyen\Model\Checkout\CancelOrderRequest $cancelOrderRequest, array $requestOptions = null): \Adyen\Model\Checkout\CancelOrderResponse
     {
         $endpoint = $this->baseURL . "/orders/cancel";
-        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $checkoutCancelOrderRequest->jsonSerialize(), $requestOptions);
-        return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\CheckoutCancelOrderResponse::class);
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $cancelOrderRequest->jsonSerialize(), $requestOptions);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\CancelOrderResponse::class);
     }
 
     /**
     * Get the balance of a gift card
     *
-    * @param \Adyen\Model\Checkout\CheckoutBalanceCheckRequest $checkoutBalanceCheckRequest
+    * @param \Adyen\Model\Checkout\BalanceCheckRequest $balanceCheckRequest
     * @param array|null $requestOptions
-    * @return \Adyen\Model\Checkout\CheckoutBalanceCheckResponse
+    * @return \Adyen\Model\Checkout\BalanceCheckResponse
     * @throws AdyenException
     */
-    public function getBalanceOfGiftCard(\Adyen\Model\Checkout\CheckoutBalanceCheckRequest $checkoutBalanceCheckRequest, array $requestOptions = null): \Adyen\Model\Checkout\CheckoutBalanceCheckResponse
+    public function getBalanceOfGiftCard(\Adyen\Model\Checkout\BalanceCheckRequest $balanceCheckRequest, array $requestOptions = null): \Adyen\Model\Checkout\BalanceCheckResponse
     {
         $endpoint = $this->baseURL . "/paymentMethods/balance";
-        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $checkoutBalanceCheckRequest->jsonSerialize(), $requestOptions);
-        return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\CheckoutBalanceCheckResponse::class);
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $balanceCheckRequest->jsonSerialize(), $requestOptions);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\BalanceCheckResponse::class);
     }
 }

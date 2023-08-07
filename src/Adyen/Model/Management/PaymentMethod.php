@@ -44,11 +44,13 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'afterpayTouch' => '\Adyen\Model\Management\AfterpayTouchInfo',
         'allowed' => 'bool',
         'applePay' => '\Adyen\Model\Management\ApplePayInfo',
         'bcmc' => '\Adyen\Model\Management\BcmcInfo',
         'businessLineId' => 'string',
         'cartesBancaires' => '\Adyen\Model\Management\CartesBancairesInfo',
+        'clearpay' => '\Adyen\Model\Management\ClearpayInfo',
         'countries' => 'string[]',
         'currencies' => 'string[]',
         'customRoutingFlags' => 'string[]',
@@ -64,6 +66,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'sofort' => '\Adyen\Model\Management\SofortInfo',
         'storeId' => 'string',
         'swish' => '\Adyen\Model\Management\SwishInfo',
+        'twint' => '\Adyen\Model\Management\TwintInfo',
         'type' => 'string',
         'verificationStatus' => 'string',
         'vipps' => '\Adyen\Model\Management\VippsInfo'
@@ -77,11 +80,13 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'afterpayTouch' => null,
         'allowed' => null,
         'applePay' => null,
         'bcmc' => null,
         'businessLineId' => null,
         'cartesBancaires' => null,
+        'clearpay' => null,
         'countries' => null,
         'currencies' => null,
         'customRoutingFlags' => null,
@@ -97,6 +102,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'sofort' => null,
         'storeId' => null,
         'swish' => null,
+        'twint' => null,
         'type' => null,
         'verificationStatus' => null,
         'vipps' => null
@@ -108,11 +114,13 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'afterpayTouch' => false,
         'allowed' => false,
         'applePay' => false,
         'bcmc' => false,
         'businessLineId' => false,
         'cartesBancaires' => false,
+        'clearpay' => false,
         'countries' => false,
         'currencies' => false,
         'customRoutingFlags' => false,
@@ -128,6 +136,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'sofort' => false,
         'storeId' => false,
         'swish' => false,
+        'twint' => false,
         'type' => false,
         'verificationStatus' => false,
         'vipps' => false
@@ -219,11 +228,13 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'afterpayTouch' => 'afterpayTouch',
         'allowed' => 'allowed',
         'applePay' => 'applePay',
         'bcmc' => 'bcmc',
         'businessLineId' => 'businessLineId',
         'cartesBancaires' => 'cartesBancaires',
+        'clearpay' => 'clearpay',
         'countries' => 'countries',
         'currencies' => 'currencies',
         'customRoutingFlags' => 'customRoutingFlags',
@@ -239,6 +250,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'sofort' => 'sofort',
         'storeId' => 'storeId',
         'swish' => 'swish',
+        'twint' => 'twint',
         'type' => 'type',
         'verificationStatus' => 'verificationStatus',
         'vipps' => 'vipps'
@@ -250,11 +262,13 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'afterpayTouch' => 'setAfterpayTouch',
         'allowed' => 'setAllowed',
         'applePay' => 'setApplePay',
         'bcmc' => 'setBcmc',
         'businessLineId' => 'setBusinessLineId',
         'cartesBancaires' => 'setCartesBancaires',
+        'clearpay' => 'setClearpay',
         'countries' => 'setCountries',
         'currencies' => 'setCurrencies',
         'customRoutingFlags' => 'setCustomRoutingFlags',
@@ -270,6 +284,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'sofort' => 'setSofort',
         'storeId' => 'setStoreId',
         'swish' => 'setSwish',
+        'twint' => 'setTwint',
         'type' => 'setType',
         'verificationStatus' => 'setVerificationStatus',
         'vipps' => 'setVipps'
@@ -281,11 +296,13 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'afterpayTouch' => 'getAfterpayTouch',
         'allowed' => 'getAllowed',
         'applePay' => 'getApplePay',
         'bcmc' => 'getBcmc',
         'businessLineId' => 'getBusinessLineId',
         'cartesBancaires' => 'getCartesBancaires',
+        'clearpay' => 'getClearpay',
         'countries' => 'getCountries',
         'currencies' => 'getCurrencies',
         'customRoutingFlags' => 'getCustomRoutingFlags',
@@ -301,6 +318,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'sofort' => 'getSofort',
         'storeId' => 'getStoreId',
         'swish' => 'getSwish',
+        'twint' => 'getTwint',
         'type' => 'getType',
         'verificationStatus' => 'getVerificationStatus',
         'vipps' => 'getVipps'
@@ -381,11 +399,13 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('afterpayTouch', $data ?? [], null);
         $this->setIfExists('allowed', $data ?? [], null);
         $this->setIfExists('applePay', $data ?? [], null);
         $this->setIfExists('bcmc', $data ?? [], null);
         $this->setIfExists('businessLineId', $data ?? [], null);
         $this->setIfExists('cartesBancaires', $data ?? [], null);
+        $this->setIfExists('clearpay', $data ?? [], null);
         $this->setIfExists('countries', $data ?? [], null);
         $this->setIfExists('currencies', $data ?? [], null);
         $this->setIfExists('customRoutingFlags', $data ?? [], null);
@@ -401,6 +421,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('sofort', $data ?? [], null);
         $this->setIfExists('storeId', $data ?? [], null);
         $this->setIfExists('swish', $data ?? [], null);
+        $this->setIfExists('twint', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('verificationStatus', $data ?? [], null);
         $this->setIfExists('vipps', $data ?? [], null);
@@ -459,6 +480,33 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets afterpayTouch
+     *
+     * @return \Adyen\Model\Management\AfterpayTouchInfo|null
+     */
+    public function getAfterpayTouch()
+    {
+        return $this->container['afterpayTouch'];
+    }
+
+    /**
+     * Sets afterpayTouch
+     *
+     * @param \Adyen\Model\Management\AfterpayTouchInfo|null $afterpayTouch afterpayTouch
+     *
+     * @return self
+     */
+    public function setAfterpayTouch($afterpayTouch)
+    {
+        if (is_null($afterpayTouch)) {
+            throw new \InvalidArgumentException('non-nullable afterpayTouch cannot be null');
+        }
+        $this->container['afterpayTouch'] = $afterpayTouch;
+
+        return $this;
+    }
 
     /**
      * Gets allowed
@@ -591,6 +639,33 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable cartesBancaires cannot be null');
         }
         $this->container['cartesBancaires'] = $cartesBancaires;
+
+        return $this;
+    }
+
+    /**
+     * Gets clearpay
+     *
+     * @return \Adyen\Model\Management\ClearpayInfo|null
+     */
+    public function getClearpay()
+    {
+        return $this->container['clearpay'];
+    }
+
+    /**
+     * Sets clearpay
+     *
+     * @param \Adyen\Model\Management\ClearpayInfo|null $clearpay clearpay
+     *
+     * @return self
+     */
+    public function setClearpay($clearpay)
+    {
+        if (is_null($clearpay)) {
+            throw new \InvalidArgumentException('non-nullable clearpay cannot be null');
+        }
+        $this->container['clearpay'] = $clearpay;
 
         return $this;
     }
@@ -996,6 +1071,33 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable swish cannot be null');
         }
         $this->container['swish'] = $swish;
+
+        return $this;
+    }
+
+    /**
+     * Gets twint
+     *
+     * @return \Adyen\Model\Management\TwintInfo|null
+     */
+    public function getTwint()
+    {
+        return $this->container['twint'];
+    }
+
+    /**
+     * Sets twint
+     *
+     * @param \Adyen\Model\Management\TwintInfo|null $twint twint
+     *
+     * @return self
+     */
+    public function setTwint($twint)
+    {
+        if (is_null($twint)) {
+            throw new \InvalidArgumentException('non-nullable twint cannot be null');
+        }
+        $this->container['twint'] = $twint;
 
         return $this;
     }

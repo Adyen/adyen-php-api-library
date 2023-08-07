@@ -345,7 +345,7 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
     /**
      * Sets enhancedSchemeDataCustomerReference
      *
-     * @param string|null $enhancedSchemeDataCustomerReference Customer code, if supplied by a customer. * Encoding: ASCII * maxLength: 25
+     * @param string|null $enhancedSchemeDataCustomerReference The customer code, if supplied by a customer. * Encoding: ASCII * maxLength: 25
      *
      * @return self
      */
@@ -372,7 +372,7 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
     /**
      * Sets enhancedSchemeDataEmployeeName
      *
-     * @param string|null $enhancedSchemeDataEmployeeName Name or ID associated with the individual working in a temporary capacity. * maxLength: 40
+     * @param string|null $enhancedSchemeDataEmployeeName The name or ID of the person working in a temporary capacity. * maxLength: 40 * Must not be all zeros * Must not be all spaces
      *
      * @return self
      */
@@ -399,7 +399,7 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
     /**
      * Sets enhancedSchemeDataJobDescription
      *
-     * @param string|null $enhancedSchemeDataJobDescription Description of the job or task of the individual working in a temporary capacity. * maxLength: 40
+     * @param string|null $enhancedSchemeDataJobDescription The job description of the person working in a temporary capacity. * maxLength: 40 * Must not be all zeros * Must not be all spaces
      *
      * @return self
      */
@@ -426,7 +426,7 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
     /**
      * Sets enhancedSchemeDataRegularHoursRate
      *
-     * @param string|null $enhancedSchemeDataRegularHoursRate Amount paid per regular hours worked, minor units. * maxLength: 7
+     * @param string|null $enhancedSchemeDataRegularHoursRate The amount paid for regular hours worked, [minor units](https://docs.adyen.com/development-resources/currency-codes). * maxLength: 7 * Must not be empty * Can be all zeros
      *
      * @return self
      */
@@ -453,7 +453,7 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
     /**
      * Sets enhancedSchemeDataRegularHoursWorked
      *
-     * @param string|null $enhancedSchemeDataRegularHoursWorked Amount of time worked during a normal operation for the task or job. * maxLength: 7
+     * @param string|null $enhancedSchemeDataRegularHoursWorked The hours worked. * maxLength: 7 * Must not be empty * Can be all zeros
      *
      * @return self
      */
@@ -480,7 +480,7 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
     /**
      * Sets enhancedSchemeDataRequestName
      *
-     * @param string|null $enhancedSchemeDataRequestName Name of the individual requesting temporary services. * maxLength: 40
+     * @param string|null $enhancedSchemeDataRequestName The name of the person requesting temporary services. * maxLength: 40 * Must not be all zeros * Must not be all spaces
      *
      * @return self
      */
@@ -507,7 +507,7 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
     /**
      * Sets enhancedSchemeDataTempStartDate
      *
-     * @param string|null $enhancedSchemeDataTempStartDate Date for the beginning of the pay period. * Format: ddMMyy * maxLength: 6
+     * @param string|null $enhancedSchemeDataTempStartDate The billing period start date. * Format: ddMMyy * maxLength: 6
      *
      * @return self
      */
@@ -534,7 +534,7 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
     /**
      * Sets enhancedSchemeDataTempWeekEnding
      *
-     * @param string|null $enhancedSchemeDataTempWeekEnding Date of the end of the billing cycle. * Format: ddMMyy * maxLength: 6
+     * @param string|null $enhancedSchemeDataTempWeekEnding The billing period end date. * Format: ddMMyy * maxLength: 6
      *
      * @return self
      */
@@ -561,7 +561,7 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
     /**
      * Sets enhancedSchemeDataTotalTaxAmount
      *
-     * @param string|null $enhancedSchemeDataTotalTaxAmount Total tax amount, in minor units. For example, 2000 means USD 20.00 * maxLength: 12
+     * @param string|null $enhancedSchemeDataTotalTaxAmount The total tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes). For example, 2000 means USD 20.00 * maxLength: 12
      *
      * @return self
      */

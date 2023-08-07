@@ -357,7 +357,7 @@ class CreateMerchantApiCredentialRequest implements ModelInterface, ArrayAccess,
     /**
      * Sets roles
      *
-     * @param string[]|null $roles List of [roles](https://docs.adyen.com/development-resources/api-credentials#roles-1) for the API credential.
+     * @param string[]|null $roles List of [roles](https://docs.adyen.com/development-resources/api-credentials#roles-1) for the API credential. Only roles assigned to 'ws@Company.<CompanyName>' can be assigned to other API credentials.
      *
      * @return self
      */

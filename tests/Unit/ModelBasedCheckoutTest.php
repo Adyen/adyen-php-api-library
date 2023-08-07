@@ -8,8 +8,11 @@ use Adyen\Model\Checkout\CheckoutPaymentMethod;
 use Adyen\Model\Checkout\CreateCheckoutSessionRequest;
 use Adyen\Model\Checkout\CreatePaymentLinkRequest;
 use Adyen\Model\Checkout\DetailsRequest;
+use Adyen\Model\Checkout\DonationPaymentRequest;
+use Adyen\Model\Checkout\PaymentDetailsRequest;
 use Adyen\Model\Checkout\PaymentDonationRequest;
 use Adyen\Model\Checkout\PaymentDonationRequestPaymentMethod;
+use Adyen\Model\Checkout\PaymentLinkRequest;
 use Adyen\Model\Checkout\PaymentMethodsRequest;
 use Adyen\Model\Checkout\PaymentRequest;
 use Adyen\Model\Checkout\PaymentSetupRequest;
@@ -109,7 +112,7 @@ class ModelBasedCheckoutTest extends TestCaseMock
             ),
         );
 
-        $result = $service->paymentsDetails(new DetailsRequest($params));
+        $result = $service->paymentsDetails(new PaymentDetailsRequest($params));
 
         $this->assertContains($result->getResultCode(), array('Authorised'));
     }
@@ -192,7 +195,7 @@ class ModelBasedCheckoutTest extends TestCaseMock
 
         $service = new PaymentLinksApi($client);
 
-        $result = $service->paymentLinks(new CreatePaymentLinkRequest());
+        $result = $service->paymentLinks(new PaymentLinkRequest());
 
         $this->assertEquals(
             'https://checkoutshopper-test.adyen.com/checkoutshopper/payByLink.shtml?d=PL0A6D6846DB347E59',
@@ -219,7 +222,7 @@ class ModelBasedCheckoutTest extends TestCaseMock
 
         $service = new PaymentsApi($client);
 
-        $result = $service->donations(new PaymentDonationRequest());
+        $result = $service->donations(new DonationPaymentRequest());
         $this->assertStringContainsString($result->getReference(), 'YOUR_DONATION_REFERENCE');
         $this->assertStringContainsString($result->getId(), 'UNIQUE_RESOURCE_ID');
         $this->assertStringContainsString($result->getDonationAccount(), 'CHARITY_ACCOUNT');

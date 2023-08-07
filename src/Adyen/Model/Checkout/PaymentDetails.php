@@ -256,17 +256,15 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_MOLPAY_EBANKING_MY = 'molpay_ebanking_MY';
     public const TYPE_MOLPAY_EBANKING_DIRECT_MY = 'molpay_ebanking_direct_MY';
     public const TYPE_SWISH = 'swish';
+    public const TYPE_PIX = 'pix';
     public const TYPE_WALLEY = 'walley';
     public const TYPE_WALLEY_B2B = 'walley_b2b';
-    public const TYPE_PIX = 'pix';
-    public const TYPE_BIZUM = 'bizum';
     public const TYPE_ALMA = 'alma';
     public const TYPE_MOLPAY_FPX = 'molpay_fpx';
     public const TYPE_KONBINI = 'konbini';
     public const TYPE_DIRECT_EBANKING = 'directEbanking';
     public const TYPE_BOLETOBANCARIO = 'boletobancario';
     public const TYPE_NETELLER = 'neteller';
-    public const TYPE_DANA = 'dana';
     public const TYPE_PAYSAFECARD = 'paysafecard';
     public const TYPE_CASHTICKET = 'cashticket';
     public const TYPE_IKANO = 'ikano';
@@ -305,6 +303,7 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_MAYBANK2U_MAE = 'maybank2u_mae';
     public const TYPE_DUITNOW = 'duitnow';
     public const TYPE_PROMPTPAY = 'promptpay';
+    public const TYPE_TWINT_POS = 'twint_pos';
     public const TYPE_ALIPAY_HK = 'alipay_hk';
     public const TYPE_ALIPAY_HK_WEB = 'alipay_hk_web';
     public const TYPE_ALIPAY_HK_WAP = 'alipay_hk_wap';
@@ -354,17 +353,15 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_MOLPAY_EBANKING_MY,
             self::TYPE_MOLPAY_EBANKING_DIRECT_MY,
             self::TYPE_SWISH,
+            self::TYPE_PIX,
             self::TYPE_WALLEY,
             self::TYPE_WALLEY_B2B,
-            self::TYPE_PIX,
-            self::TYPE_BIZUM,
             self::TYPE_ALMA,
             self::TYPE_MOLPAY_FPX,
             self::TYPE_KONBINI,
             self::TYPE_DIRECT_EBANKING,
             self::TYPE_BOLETOBANCARIO,
             self::TYPE_NETELLER,
-            self::TYPE_DANA,
             self::TYPE_PAYSAFECARD,
             self::TYPE_CASHTICKET,
             self::TYPE_IKANO,
@@ -403,6 +400,7 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_MAYBANK2U_MAE,
             self::TYPE_DUITNOW,
             self::TYPE_PROMPTPAY,
+            self::TYPE_TWINT_POS,
             self::TYPE_ALIPAY_HK,
             self::TYPE_ALIPAY_HK_WEB,
             self::TYPE_ALIPAY_HK_WAP,

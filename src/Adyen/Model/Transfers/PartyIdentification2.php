@@ -386,7 +386,7 @@ class PartyIdentification2 implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets dateOfBirth
      *
-     * @param \DateTime|null $dateOfBirth The date of birth of the individual in [ISO-8601](https://www.w3.org/TR/NOTE-datetime) format. For example, **YYYY-MM-DD**.  Allowed only when `type` is **individual**.
+     * @param \DateTime|null $dateOfBirth The date of birth of the individual in [ISO-8601](https://www.w3.org/TR/NOTE-datetime) format. For example, **YYYY-MM-DD**. Should not be before January 1, 1900.  Allowed only when `type` is **individual**.
      *
      * @return self
      */
@@ -494,7 +494,7 @@ class PartyIdentification2 implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets reference
      *
-     * @param string|null $reference Your unique reference of the party. This should be consistent for all transfers initiated to/from the same party/counterparty. e.g Your client's unique wallet or payee ID
+     * @param string|null $reference A unique reference to identify the party or counterparty involved in transfers. This identifier ensures consistency and uniqueness throughout all transactions initiated to and from the same party. For example, your client's unique wallet or payee ID.
      *
      * @return self
      */

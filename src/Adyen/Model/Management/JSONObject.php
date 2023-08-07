@@ -44,7 +44,7 @@ class JSONObject implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'paths' => '\Adyen\Model\Management\JSONPath[]',
+        'paths' => '\Adyen\Model\Management\JSONPathWrapper[]',
         'rootPath' => '\Adyen\Model\Management\JSONPath'
     ];
 
@@ -286,7 +286,7 @@ class JSONObject implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets paths
      *
-     * @return \Adyen\Model\Management\JSONPath[]|null
+     * @return \Adyen\Model\Management\JSONPathWrapper[]|null
      */
     public function getPaths()
     {
@@ -296,7 +296,7 @@ class JSONObject implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets paths
      *
-     * @param \Adyen\Model\Management\JSONPath[]|null $paths paths
+     * @param \Adyen\Model\Management\JSONPathWrapper[]|null $paths paths
      *
      * @return self
      */

@@ -55,7 +55,8 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
         'reference' => 'string',
         'soleProprietorship' => '\Adyen\Model\LegalEntityManagement\SoleProprietorship',
         'transferInstruments' => '\Adyen\Model\LegalEntityManagement\TransferInstrumentReference[]',
-        'type' => 'string'
+        'type' => 'string',
+        'verificationDeadlines' => '\Adyen\Model\LegalEntityManagement\VerificationDeadline[]'
     ];
 
     /**
@@ -77,7 +78,8 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
         'reference' => null,
         'soleProprietorship' => null,
         'transferInstruments' => null,
-        'type' => null
+        'type' => null,
+        'verificationDeadlines' => null
     ];
 
     /**
@@ -97,7 +99,8 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
         'reference' => false,
         'soleProprietorship' => false,
         'transferInstruments' => false,
-        'type' => false
+        'type' => false,
+        'verificationDeadlines' => false
     ];
 
     /**
@@ -197,7 +200,8 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
         'reference' => 'reference',
         'soleProprietorship' => 'soleProprietorship',
         'transferInstruments' => 'transferInstruments',
-        'type' => 'type'
+        'type' => 'type',
+        'verificationDeadlines' => 'verificationDeadlines'
     ];
 
     /**
@@ -217,7 +221,8 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
         'reference' => 'setReference',
         'soleProprietorship' => 'setSoleProprietorship',
         'transferInstruments' => 'setTransferInstruments',
-        'type' => 'setType'
+        'type' => 'setType',
+        'verificationDeadlines' => 'setVerificationDeadlines'
     ];
 
     /**
@@ -237,7 +242,8 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
         'reference' => 'getReference',
         'soleProprietorship' => 'getSoleProprietorship',
         'transferInstruments' => 'getTransferInstruments',
-        'type' => 'getType'
+        'type' => 'getType',
+        'verificationDeadlines' => 'getVerificationDeadlines'
     ];
 
     /**
@@ -329,6 +335,7 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('soleProprietorship', $data ?? [], null);
         $this->setIfExists('transferInstruments', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('verificationDeadlines', $data ?? [], null);
     }
 
     /**
@@ -717,6 +724,33 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets verificationDeadlines
+     *
+     * @return \Adyen\Model\LegalEntityManagement\VerificationDeadline[]|null
+     */
+    public function getVerificationDeadlines()
+    {
+        return $this->container['verificationDeadlines'];
+    }
+
+    /**
+     * Sets verificationDeadlines
+     *
+     * @param \Adyen\Model\LegalEntityManagement\VerificationDeadline[]|null $verificationDeadlines List of verification deadlines and the capabilities that will be disallowed if verification errors are not resolved.
+     *
+     * @return self
+     */
+    public function setVerificationDeadlines($verificationDeadlines)
+    {
+        if (is_null($verificationDeadlines)) {
+            throw new \InvalidArgumentException('non-nullable verificationDeadlines cannot be null');
+        }
+        $this->container['verificationDeadlines'] = $verificationDeadlines;
 
         return $this;
     }

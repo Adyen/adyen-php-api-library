@@ -47,6 +47,7 @@ class TerminalOrderRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'billingEntityId' => 'string',
         'customerOrderReference' => 'string',
         'items' => '\Adyen\Model\Management\OrderItem[]',
+        'orderType' => 'string',
         'shippingLocationId' => 'string',
         'taxId' => 'string'
     ];
@@ -62,6 +63,7 @@ class TerminalOrderRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'billingEntityId' => null,
         'customerOrderReference' => null,
         'items' => null,
+        'orderType' => null,
         'shippingLocationId' => null,
         'taxId' => null
     ];
@@ -75,6 +77,7 @@ class TerminalOrderRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'billingEntityId' => false,
         'customerOrderReference' => false,
         'items' => false,
+        'orderType' => false,
         'shippingLocationId' => false,
         'taxId' => false
     ];
@@ -168,6 +171,7 @@ class TerminalOrderRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'billingEntityId' => 'billingEntityId',
         'customerOrderReference' => 'customerOrderReference',
         'items' => 'items',
+        'orderType' => 'orderType',
         'shippingLocationId' => 'shippingLocationId',
         'taxId' => 'taxId'
     ];
@@ -181,6 +185,7 @@ class TerminalOrderRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'billingEntityId' => 'setBillingEntityId',
         'customerOrderReference' => 'setCustomerOrderReference',
         'items' => 'setItems',
+        'orderType' => 'setOrderType',
         'shippingLocationId' => 'setShippingLocationId',
         'taxId' => 'setTaxId'
     ];
@@ -194,6 +199,7 @@ class TerminalOrderRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'billingEntityId' => 'getBillingEntityId',
         'customerOrderReference' => 'getCustomerOrderReference',
         'items' => 'getItems',
+        'orderType' => 'getOrderType',
         'shippingLocationId' => 'getShippingLocationId',
         'taxId' => 'getTaxId'
     ];
@@ -258,6 +264,7 @@ class TerminalOrderRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('billingEntityId', $data ?? [], null);
         $this->setIfExists('customerOrderReference', $data ?? [], null);
         $this->setIfExists('items', $data ?? [], null);
+        $this->setIfExists('orderType', $data ?? [], null);
         $this->setIfExists('shippingLocationId', $data ?? [], null);
         $this->setIfExists('taxId', $data ?? [], null);
     }
@@ -381,6 +388,33 @@ class TerminalOrderRequest implements ModelInterface, ArrayAccess, \JsonSerializ
             throw new \InvalidArgumentException('non-nullable items cannot be null');
         }
         $this->container['items'] = $items;
+
+        return $this;
+    }
+
+    /**
+     * Gets orderType
+     *
+     * @return string|null
+     */
+    public function getOrderType()
+    {
+        return $this->container['orderType'];
+    }
+
+    /**
+     * Sets orderType
+     *
+     * @param string|null $orderType Type of order
+     *
+     * @return self
+     */
+    public function setOrderType($orderType)
+    {
+        if (is_null($orderType)) {
+            throw new \InvalidArgumentException('non-nullable orderType cannot be null');
+        }
+        $this->container['orderType'] = $orderType;
 
         return $this;
     }

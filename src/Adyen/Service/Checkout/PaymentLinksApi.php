@@ -73,15 +73,15 @@ class PaymentLinksApi extends Service
     /**
     * Create a payment link
     *
-    * @param \Adyen\Model\Checkout\CreatePaymentLinkRequest $createPaymentLinkRequest
+    * @param \Adyen\Model\Checkout\PaymentLinkRequest $paymentLinkRequest
     * @param array|null $requestOptions
     * @return \Adyen\Model\Checkout\PaymentLinkResponse
     * @throws AdyenException
     */
-    public function paymentLinks(\Adyen\Model\Checkout\CreatePaymentLinkRequest $createPaymentLinkRequest, array $requestOptions = null): \Adyen\Model\Checkout\PaymentLinkResponse
+    public function paymentLinks(\Adyen\Model\Checkout\PaymentLinkRequest $paymentLinkRequest, array $requestOptions = null): \Adyen\Model\Checkout\PaymentLinkResponse
     {
         $endpoint = $this->baseURL . "/paymentLinks";
-        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $createPaymentLinkRequest->jsonSerialize(), $requestOptions);
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $paymentLinkRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\PaymentLinkResponse::class);
     }
 }
