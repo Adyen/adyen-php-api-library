@@ -23,6 +23,10 @@
 
 namespace Adyen\Tests\Unit;
 
+use Adyen\Model\BalancePlatform\Balance;
+use Adyen\Model\ConfigurationWebhooks\BalanceAccountNotificationRequest;
+use Adyen\Model\ConfigurationWebhooks\SweepConfigurationNotificationRequest;
+use Adyen\Service\BankingWebhookParser;
 use Adyen\Service\Notification;
 
 class NotificationTest extends TestCaseMock
@@ -255,5 +259,22 @@ class NotificationTest extends TestCaseMock
         return array(
             array('tests/Resources/Notification/test-success.json', 200),
         );
+    }
+
+    public function testBankingWebhookParser()
+    {
+        $jsonString = '{ "data": {"balancePlatform":"YOUR_BALANCE_PLATFORM","accountHolder":{"contactDetails":{"address":{"country":"NL","houseNumberOrName":"274","postalCode":"1020CD","street":"Brannan Street"},"email": "s.hopper@example.com","phone": {"number": "+315551231234","type": "Mobile"}},"description": "S.Hopper - Staff 123","id": "AH00000000000000000000001","status": "Active"}},"environment": "test","type": "balancePlatform.accountHolder.created"}';
+        $webhookParser = new BankingWebhookParser($jsonString);
+        $result = $webhookParser->getAccountHolderNotificationRequest();
+        self::assertEquals("test", $result->getEnvironment());
+    }
+
+    public function testBankingWebhookParserBalanceAccount()
+    {
+        $jsonString = '{"data":{"balancePlatform":"Integration_tools_test","accountId":"BA32272223222H5HVKTBK4MLB","sweep":{"id":"SWPC42272223222H5HVKV6H8C64DP5","schedule":{"type":"balance"},"status":"active","targetAmount":{"currency":"EUR","value":0},"triggerAmount":{"currency":"EUR","value":0},"type":"pull","counterparty":{"balanceAccountId":"BA3227C223222H5HVKT3H9WLC"},"currency":"EUR"}},"environment":"test","type":"balancePlatform.balanceAccountSweep.updated"}';
+        $webhookParser = new BankingWebhookParser($jsonString);
+        $result = $webhookParser->getGenericWebhook();
+        self::assertEquals(SweepConfigurationNotificationRequest::class, get_class($result));
+        self::assertEquals("test", $result->getEnvironment());
     }
 }
