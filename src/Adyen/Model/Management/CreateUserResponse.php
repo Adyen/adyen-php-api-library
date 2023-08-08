@@ -47,7 +47,7 @@ class CreateUserResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'links' => '\Adyen\Model\Management\Links',
         'accountGroups' => 'string[]',
         'active' => 'bool',
-        'authnApps' => 'string[]',
+        'apps' => 'string[]',
         'email' => 'string',
         'id' => 'string',
         'name' => '\Adyen\Model\Management\Name',
@@ -67,7 +67,7 @@ class CreateUserResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'links' => null,
         'accountGroups' => null,
         'active' => null,
-        'authnApps' => null,
+        'apps' => null,
         'email' => null,
         'id' => null,
         'name' => null,
@@ -85,7 +85,7 @@ class CreateUserResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'links' => false,
         'accountGroups' => false,
         'active' => false,
-        'authnApps' => false,
+        'apps' => false,
         'email' => false,
         'id' => false,
         'name' => false,
@@ -183,7 +183,7 @@ class CreateUserResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'links' => '_links',
         'accountGroups' => 'accountGroups',
         'active' => 'active',
-        'authnApps' => 'authnApps',
+        'apps' => 'apps',
         'email' => 'email',
         'id' => 'id',
         'name' => 'name',
@@ -201,7 +201,7 @@ class CreateUserResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'links' => 'setLinks',
         'accountGroups' => 'setAccountGroups',
         'active' => 'setActive',
-        'authnApps' => 'setAuthnApps',
+        'apps' => 'setApps',
         'email' => 'setEmail',
         'id' => 'setId',
         'name' => 'setName',
@@ -219,7 +219,7 @@ class CreateUserResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'links' => 'getLinks',
         'accountGroups' => 'getAccountGroups',
         'active' => 'getActive',
-        'authnApps' => 'getAuthnApps',
+        'apps' => 'getApps',
         'email' => 'getEmail',
         'id' => 'getId',
         'name' => 'getName',
@@ -288,7 +288,7 @@ class CreateUserResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('links', $data ?? [], null);
         $this->setIfExists('accountGroups', $data ?? [], null);
         $this->setIfExists('active', $data ?? [], null);
-        $this->setIfExists('authnApps', $data ?? [], null);
+        $this->setIfExists('apps', $data ?? [], null);
         $this->setIfExists('email', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
@@ -436,28 +436,28 @@ class CreateUserResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
-     * Gets authnApps
+     * Gets apps
      *
      * @return string[]|null
      */
-    public function getAuthnApps()
+    public function getApps()
     {
-        return $this->container['authnApps'];
+        return $this->container['apps'];
     }
 
     /**
-     * Sets authnApps
+     * Sets apps
      *
-     * @param string[]|null $authnApps Set of authn apps available to this user
+     * @param string[]|null $apps Set of apps available to this user
      *
      * @return self
      */
-    public function setAuthnApps($authnApps)
+    public function setApps($apps)
     {
-        if (is_null($authnApps)) {
-            throw new \InvalidArgumentException('non-nullable authnApps cannot be null');
+        if (is_null($apps)) {
+            throw new \InvalidArgumentException('non-nullable apps cannot be null');
         }
-        $this->container['authnApps'] = $authnApps;
+        $this->container['apps'] = $apps;
 
         return $this;
     }

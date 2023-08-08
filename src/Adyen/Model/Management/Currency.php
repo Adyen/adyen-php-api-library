@@ -46,7 +46,7 @@ class Currency implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'amount' => 'int',
         'currencyCode' => 'string',
-        'percentage' => 'object'
+        'percentage' => 'float'
     ];
 
     /**
@@ -59,7 +59,7 @@ class Currency implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'amount' => 'int32',
         'currencyCode' => null,
-        'percentage' => null
+        'percentage' => 'double'
     ];
 
     /**
@@ -348,7 +348,7 @@ class Currency implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets percentage
      *
-     * @return object|null
+     * @return float|null
      */
     public function getPercentage()
     {
@@ -358,7 +358,7 @@ class Currency implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets percentage
      *
-     * @param object|null $percentage percentage
+     * @param float|null $percentage Surcharge percentage per transaction. The maximum number of decimal places is two. For example, **1%** or **2.27%**.
      *
      * @return self
      */

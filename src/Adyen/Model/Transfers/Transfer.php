@@ -44,13 +44,17 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'accountHolder' => '\Adyen\Model\Transfers\ResourceReference',
         'amount' => '\Adyen\Model\Transfers\Amount',
+        'balanceAccount' => '\Adyen\Model\Transfers\ResourceReference',
         'balanceAccountId' => 'string',
         'category' => 'string',
         'counterparty' => '\Adyen\Model\Transfers\CounterpartyV3',
+        'creationDate' => '\DateTime',
         'description' => 'string',
         'direction' => 'string',
         'id' => 'string',
+        'paymentInstrument' => '\Adyen\Model\Transfers\PaymentInstrument',
         'paymentInstrumentId' => 'string',
         'priority' => 'string',
         'reason' => 'string',
@@ -67,13 +71,17 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'accountHolder' => null,
         'amount' => null,
+        'balanceAccount' => null,
         'balanceAccountId' => null,
         'category' => null,
         'counterparty' => null,
+        'creationDate' => 'date-time',
         'description' => null,
         'direction' => null,
         'id' => null,
+        'paymentInstrument' => null,
         'paymentInstrumentId' => null,
         'priority' => null,
         'reason' => null,
@@ -88,13 +96,17 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'accountHolder' => false,
         'amount' => false,
+        'balanceAccount' => false,
         'balanceAccountId' => false,
         'category' => false,
         'counterparty' => false,
+        'creationDate' => false,
         'description' => false,
         'direction' => false,
         'id' => false,
+        'paymentInstrument' => false,
         'paymentInstrumentId' => false,
         'priority' => false,
         'reason' => false,
@@ -189,13 +201,17 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'accountHolder' => 'accountHolder',
         'amount' => 'amount',
+        'balanceAccount' => 'balanceAccount',
         'balanceAccountId' => 'balanceAccountId',
         'category' => 'category',
         'counterparty' => 'counterparty',
+        'creationDate' => 'creationDate',
         'description' => 'description',
         'direction' => 'direction',
         'id' => 'id',
+        'paymentInstrument' => 'paymentInstrument',
         'paymentInstrumentId' => 'paymentInstrumentId',
         'priority' => 'priority',
         'reason' => 'reason',
@@ -210,13 +226,17 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'accountHolder' => 'setAccountHolder',
         'amount' => 'setAmount',
+        'balanceAccount' => 'setBalanceAccount',
         'balanceAccountId' => 'setBalanceAccountId',
         'category' => 'setCategory',
         'counterparty' => 'setCounterparty',
+        'creationDate' => 'setCreationDate',
         'description' => 'setDescription',
         'direction' => 'setDirection',
         'id' => 'setId',
+        'paymentInstrument' => 'setPaymentInstrument',
         'paymentInstrumentId' => 'setPaymentInstrumentId',
         'priority' => 'setPriority',
         'reason' => 'setReason',
@@ -231,13 +251,17 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'accountHolder' => 'getAccountHolder',
         'amount' => 'getAmount',
+        'balanceAccount' => 'getBalanceAccount',
         'balanceAccountId' => 'getBalanceAccountId',
         'category' => 'getCategory',
         'counterparty' => 'getCounterparty',
+        'creationDate' => 'getCreationDate',
         'description' => 'getDescription',
         'direction' => 'getDirection',
         'id' => 'getId',
+        'paymentInstrument' => 'getPaymentInstrument',
         'paymentInstrumentId' => 'getPaymentInstrumentId',
         'priority' => 'getPriority',
         'reason' => 'getReason',
@@ -330,7 +354,9 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_CAPTURE_REVERSAL_PENDING = 'captureReversalPending';
     public const STATUS_CAPTURE_REVERSED = 'captureReversed';
     public const STATUS_CAPTURED = 'captured';
+    public const STATUS_CAPTURED_EXTERNALLY = 'capturedExternally';
     public const STATUS_CHARGEBACK = 'chargeback';
+    public const STATUS_CHARGEBACK_EXTERNALLY = 'chargebackExternally';
     public const STATUS_CHARGEBACK_PENDING = 'chargebackPending';
     public const STATUS_CHARGEBACK_REVERSAL_PENDING = 'chargebackReversalPending';
     public const STATUS_CHARGEBACK_REVERSED = 'chargebackReversed';
@@ -367,6 +393,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_REFUND_REVERSAL_PENDING = 'refundReversalPending';
     public const STATUS_REFUND_REVERSED = 'refundReversed';
     public const STATUS_REFUNDED = 'refunded';
+    public const STATUS_REFUNDED_EXTERNALLY = 'refundedExternally';
     public const STATUS_REFUSED = 'refused';
     public const STATUS_RESERVE_ADJUSTMENT = 'reserveAdjustment';
     public const STATUS_RESERVE_ADJUSTMENT_PENDING = 'reserveAdjustmentPending';
@@ -466,7 +493,9 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_CAPTURE_REVERSAL_PENDING,
             self::STATUS_CAPTURE_REVERSED,
             self::STATUS_CAPTURED,
+            self::STATUS_CAPTURED_EXTERNALLY,
             self::STATUS_CHARGEBACK,
+            self::STATUS_CHARGEBACK_EXTERNALLY,
             self::STATUS_CHARGEBACK_PENDING,
             self::STATUS_CHARGEBACK_REVERSAL_PENDING,
             self::STATUS_CHARGEBACK_REVERSED,
@@ -503,6 +532,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_REFUND_REVERSAL_PENDING,
             self::STATUS_REFUND_REVERSED,
             self::STATUS_REFUNDED,
+            self::STATUS_REFUNDED_EXTERNALLY,
             self::STATUS_REFUSED,
             self::STATUS_RESERVE_ADJUSTMENT,
             self::STATUS_RESERVE_ADJUSTMENT_PENDING,
@@ -527,13 +557,17 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('accountHolder', $data ?? [], null);
         $this->setIfExists('amount', $data ?? [], null);
+        $this->setIfExists('balanceAccount', $data ?? [], null);
         $this->setIfExists('balanceAccountId', $data ?? [], null);
         $this->setIfExists('category', $data ?? [], null);
         $this->setIfExists('counterparty', $data ?? [], null);
+        $this->setIfExists('creationDate', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('direction', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('paymentInstrument', $data ?? [], null);
         $this->setIfExists('paymentInstrumentId', $data ?? [], null);
         $this->setIfExists('priority', $data ?? [], null);
         $this->setIfExists('reason', $data ?? [], null);
@@ -642,6 +676,33 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
+     * Gets accountHolder
+     *
+     * @return \Adyen\Model\Transfers\ResourceReference|null
+     */
+    public function getAccountHolder()
+    {
+        return $this->container['accountHolder'];
+    }
+
+    /**
+     * Sets accountHolder
+     *
+     * @param \Adyen\Model\Transfers\ResourceReference|null $accountHolder accountHolder
+     *
+     * @return self
+     */
+    public function setAccountHolder($accountHolder)
+    {
+        if (is_null($accountHolder)) {
+            throw new \InvalidArgumentException('non-nullable accountHolder cannot be null');
+        }
+        $this->container['accountHolder'] = $accountHolder;
+
+        return $this;
+    }
+
+    /**
      * Gets amount
      *
      * @return \Adyen\Model\Transfers\Amount
@@ -669,9 +730,37 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets balanceAccount
+     *
+     * @return \Adyen\Model\Transfers\ResourceReference|null
+     */
+    public function getBalanceAccount()
+    {
+        return $this->container['balanceAccount'];
+    }
+
+    /**
+     * Sets balanceAccount
+     *
+     * @param \Adyen\Model\Transfers\ResourceReference|null $balanceAccount balanceAccount
+     *
+     * @return self
+     */
+    public function setBalanceAccount($balanceAccount)
+    {
+        if (is_null($balanceAccount)) {
+            throw new \InvalidArgumentException('non-nullable balanceAccount cannot be null');
+        }
+        $this->container['balanceAccount'] = $balanceAccount;
+
+        return $this;
+    }
+
+    /**
      * Gets balanceAccountId
      *
      * @return string|null
+     * @deprecated
      */
     public function getBalanceAccountId()
     {
@@ -684,6 +773,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param string|null $balanceAccountId The unique identifier of the source [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id).
      *
      * @return self
+     * @deprecated
      */
     public function setBalanceAccountId($balanceAccountId)
     {
@@ -760,6 +850,33 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets creationDate
+     *
+     * @return \DateTime|null
+     */
+    public function getCreationDate()
+    {
+        return $this->container['creationDate'];
+    }
+
+    /**
+     * Sets creationDate
+     *
+     * @param \DateTime|null $creationDate The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
+     *
+     * @return self
+     */
+    public function setCreationDate($creationDate)
+    {
+        if (is_null($creationDate)) {
+            throw new \InvalidArgumentException('non-nullable creationDate cannot be null');
+        }
+        $this->container['creationDate'] = $creationDate;
+
+        return $this;
+    }
+
+    /**
      * Gets description
      *
      * @return string|null
@@ -772,7 +889,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets description
      *
-     * @param string|null $description A human-readable description for the transfer. You can use alphanumeric characters and hyphens. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.
+     * @param string|null $description Your description for the transfer. It is used by most banks as the transfer description. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.  Supported characters: **[a-z] [A-Z] [0-9] / - ?** **: ( ) . , ' + Space**  Supported characters for **regular** and **fast** transfers to a US counterparty: **[a-z] [A-Z] [0-9] & $ % # @** **~ = + - _ ' \" ! ?**
      *
      * @return self
      */
@@ -851,9 +968,37 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets paymentInstrument
+     *
+     * @return \Adyen\Model\Transfers\PaymentInstrument|null
+     */
+    public function getPaymentInstrument()
+    {
+        return $this->container['paymentInstrument'];
+    }
+
+    /**
+     * Sets paymentInstrument
+     *
+     * @param \Adyen\Model\Transfers\PaymentInstrument|null $paymentInstrument paymentInstrument
+     *
+     * @return self
+     */
+    public function setPaymentInstrument($paymentInstrument)
+    {
+        if (is_null($paymentInstrument)) {
+            throw new \InvalidArgumentException('non-nullable paymentInstrument cannot be null');
+        }
+        $this->container['paymentInstrument'] = $paymentInstrument;
+
+        return $this;
+    }
+
+    /**
      * Gets paymentInstrumentId
      *
      * @return string|null
+     * @deprecated
      */
     public function getPaymentInstrumentId()
     {
@@ -863,9 +1008,10 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets paymentInstrumentId
      *
-     * @param string|null $paymentInstrumentId The unique identifier of the source [payment instrument](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/paymentInstruments__resParam_id).
+     * @param string|null $paymentInstrumentId The unique identifier of the [payment instrument](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) used in the transfer.
      *
      * @return self
+     * @deprecated
      */
     public function setPaymentInstrumentId($paymentInstrumentId)
     {
@@ -991,7 +1137,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets referenceForBeneficiary
      *
-     * @param string|null $referenceForBeneficiary A reference that is sent to the recipient. This reference is also sent in all notification webhooks related to the transfer, so you can use it to track statuses for both the source and recipient of funds.   Supported characters: **a-z**, **A-Z**, **0-9**. The maximum length depends on the `category`.  - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others.
+     * @param string|null $referenceForBeneficiary A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both the source and recipient of funds.   Supported characters: **a-z**, **A-Z**, **0-9**. The maximum length depends on the `category`.  - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others.
      *
      * @return self
      */

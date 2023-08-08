@@ -418,7 +418,7 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets packageName
      *
-     * @param string|null $packageName The package name of the app.
+     * @param string|null $packageName The package name that uniquely identifies the Android app.
      *
      * @return self
      */
@@ -472,7 +472,7 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets versionCode
      *
-     * @param int|null $versionCode The internal version number of the app.
+     * @param int|null $versionCode The version number of the app.
      *
      * @return self
      */

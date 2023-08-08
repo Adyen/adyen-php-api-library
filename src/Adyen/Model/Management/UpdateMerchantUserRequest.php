@@ -46,8 +46,6 @@ class UpdateMerchantUserRequest implements ModelInterface, ArrayAccess, \JsonSer
     protected static $openAPITypes = [
         'accountGroups' => 'string[]',
         'active' => 'bool',
-        'authnAppsToAdd' => 'string[]',
-        'authnAppsToRemove' => 'string[]',
         'email' => 'string',
         'name' => '\Adyen\Model\Management\Name2',
         'roles' => 'string[]',
@@ -64,8 +62,6 @@ class UpdateMerchantUserRequest implements ModelInterface, ArrayAccess, \JsonSer
     protected static $openAPIFormats = [
         'accountGroups' => null,
         'active' => null,
-        'authnAppsToAdd' => null,
-        'authnAppsToRemove' => null,
         'email' => null,
         'name' => null,
         'roles' => null,
@@ -80,8 +76,6 @@ class UpdateMerchantUserRequest implements ModelInterface, ArrayAccess, \JsonSer
     protected static $openAPINullables = [
         'accountGroups' => false,
         'active' => false,
-        'authnAppsToAdd' => false,
-        'authnAppsToRemove' => false,
         'email' => false,
         'name' => false,
         'roles' => false,
@@ -176,8 +170,6 @@ class UpdateMerchantUserRequest implements ModelInterface, ArrayAccess, \JsonSer
     protected static $attributeMap = [
         'accountGroups' => 'accountGroups',
         'active' => 'active',
-        'authnAppsToAdd' => 'authnAppsToAdd',
-        'authnAppsToRemove' => 'authnAppsToRemove',
         'email' => 'email',
         'name' => 'name',
         'roles' => 'roles',
@@ -192,8 +184,6 @@ class UpdateMerchantUserRequest implements ModelInterface, ArrayAccess, \JsonSer
     protected static $setters = [
         'accountGroups' => 'setAccountGroups',
         'active' => 'setActive',
-        'authnAppsToAdd' => 'setAuthnAppsToAdd',
-        'authnAppsToRemove' => 'setAuthnAppsToRemove',
         'email' => 'setEmail',
         'name' => 'setName',
         'roles' => 'setRoles',
@@ -208,8 +198,6 @@ class UpdateMerchantUserRequest implements ModelInterface, ArrayAccess, \JsonSer
     protected static $getters = [
         'accountGroups' => 'getAccountGroups',
         'active' => 'getActive',
-        'authnAppsToAdd' => 'getAuthnAppsToAdd',
-        'authnAppsToRemove' => 'getAuthnAppsToRemove',
         'email' => 'getEmail',
         'name' => 'getName',
         'roles' => 'getRoles',
@@ -275,8 +263,6 @@ class UpdateMerchantUserRequest implements ModelInterface, ArrayAccess, \JsonSer
     {
         $this->setIfExists('accountGroups', $data ?? [], null);
         $this->setIfExists('active', $data ?? [], null);
-        $this->setIfExists('authnAppsToAdd', $data ?? [], null);
-        $this->setIfExists('authnAppsToRemove', $data ?? [], null);
         $this->setIfExists('email', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('roles', $data ?? [], null);
@@ -375,60 +361,6 @@ class UpdateMerchantUserRequest implements ModelInterface, ArrayAccess, \JsonSer
             throw new \InvalidArgumentException('non-nullable active cannot be null');
         }
         $this->container['active'] = $active;
-
-        return $this;
-    }
-
-    /**
-     * Gets authnAppsToAdd
-     *
-     * @return string[]|null
-     */
-    public function getAuthnAppsToAdd()
-    {
-        return $this->container['authnAppsToAdd'];
-    }
-
-    /**
-     * Sets authnAppsToAdd
-     *
-     * @param string[]|null $authnAppsToAdd Set of authn apps to add to this user
-     *
-     * @return self
-     */
-    public function setAuthnAppsToAdd($authnAppsToAdd)
-    {
-        if (is_null($authnAppsToAdd)) {
-            throw new \InvalidArgumentException('non-nullable authnAppsToAdd cannot be null');
-        }
-        $this->container['authnAppsToAdd'] = $authnAppsToAdd;
-
-        return $this;
-    }
-
-    /**
-     * Gets authnAppsToRemove
-     *
-     * @return string[]|null
-     */
-    public function getAuthnAppsToRemove()
-    {
-        return $this->container['authnAppsToRemove'];
-    }
-
-    /**
-     * Sets authnAppsToRemove
-     *
-     * @param string[]|null $authnAppsToRemove Set of authn apps to remove from this user
-     *
-     * @return self
-     */
-    public function setAuthnAppsToRemove($authnAppsToRemove)
-    {
-        if (is_null($authnAppsToRemove)) {
-            throw new \InvalidArgumentException('non-nullable authnAppsToRemove cannot be null');
-        }
-        $this->container['authnAppsToRemove'] = $authnAppsToRemove;
 
         return $this;
     }

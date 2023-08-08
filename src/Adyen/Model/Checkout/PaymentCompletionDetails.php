@@ -47,6 +47,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
         'mD' => 'string',
         'paReq' => 'string',
         'paRes' => 'string',
+        'authorizationToken' => 'string',
         'billingToken' => 'string',
         'cupsecureplusSmscode' => 'string',
         'facilitatorAccessToken' => 'string',
@@ -74,6 +75,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
         'mD' => null,
         'paReq' => null,
         'paRes' => null,
+        'authorizationToken' => null,
         'billingToken' => null,
         'cupsecureplusSmscode' => null,
         'facilitatorAccessToken' => null,
@@ -99,6 +101,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
         'mD' => false,
         'paReq' => false,
         'paRes' => false,
+        'authorizationToken' => false,
         'billingToken' => false,
         'cupsecureplusSmscode' => false,
         'facilitatorAccessToken' => false,
@@ -204,6 +207,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
         'mD' => 'MD',
         'paReq' => 'PaReq',
         'paRes' => 'PaRes',
+        'authorizationToken' => 'authorization_token',
         'billingToken' => 'billingToken',
         'cupsecureplusSmscode' => 'cupsecureplus.smscode',
         'facilitatorAccessToken' => 'facilitatorAccessToken',
@@ -229,6 +233,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
         'mD' => 'setMD',
         'paReq' => 'setPaReq',
         'paRes' => 'setPaRes',
+        'authorizationToken' => 'setAuthorizationToken',
         'billingToken' => 'setBillingToken',
         'cupsecureplusSmscode' => 'setCupsecureplusSmscode',
         'facilitatorAccessToken' => 'setFacilitatorAccessToken',
@@ -254,6 +259,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
         'mD' => 'getMD',
         'paReq' => 'getPaReq',
         'paRes' => 'getPaRes',
+        'authorizationToken' => 'getAuthorizationToken',
         'billingToken' => 'getBillingToken',
         'cupsecureplusSmscode' => 'getCupsecureplusSmscode',
         'facilitatorAccessToken' => 'getFacilitatorAccessToken',
@@ -330,6 +336,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
         $this->setIfExists('mD', $data ?? [], null);
         $this->setIfExists('paReq', $data ?? [], null);
         $this->setIfExists('paRes', $data ?? [], null);
+        $this->setIfExists('authorizationToken', $data ?? [], null);
         $this->setIfExists('billingToken', $data ?? [], null);
         $this->setIfExists('cupsecureplusSmscode', $data ?? [], null);
         $this->setIfExists('facilitatorAccessToken', $data ?? [], null);
@@ -465,6 +472,33 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
             throw new \InvalidArgumentException('non-nullable paRes cannot be null');
         }
         $this->container['paRes'] = $paRes;
+
+        return $this;
+    }
+
+    /**
+     * Gets authorizationToken
+     *
+     * @return string|null
+     */
+    public function getAuthorizationToken()
+    {
+        return $this->container['authorizationToken'];
+    }
+
+    /**
+     * Sets authorizationToken
+     *
+     * @param string|null $authorizationToken authorizationToken
+     *
+     * @return self
+     */
+    public function setAuthorizationToken($authorizationToken)
+    {
+        if (is_null($authorizationToken)) {
+            throw new \InvalidArgumentException('non-nullable authorizationToken cannot be null');
+        }
+        $this->container['authorizationToken'] = $authorizationToken;
 
         return $this;
     }

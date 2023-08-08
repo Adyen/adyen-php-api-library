@@ -44,7 +44,7 @@ class DeliveryContact implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'address' => '\Adyen\Model\BalancePlatform\Address2',
+        'address' => '\Adyen\Model\BalancePlatform\DeliveryAddress',
         'email' => 'string',
         'fullPhoneNumber' => 'string',
         'name' => '\Adyen\Model\BalancePlatform\Name',
@@ -320,7 +320,7 @@ class DeliveryContact implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets address
      *
-     * @return \Adyen\Model\BalancePlatform\Address2
+     * @return \Adyen\Model\BalancePlatform\DeliveryAddress
      */
     public function getAddress()
     {
@@ -330,7 +330,7 @@ class DeliveryContact implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets address
      *
-     * @param \Adyen\Model\BalancePlatform\Address2 $address address
+     * @param \Adyen\Model\BalancePlatform\DeliveryAddress $address address
      *
      * @return self
      */

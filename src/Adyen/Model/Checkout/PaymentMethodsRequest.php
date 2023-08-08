@@ -51,7 +51,7 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'channel' => 'string',
         'countryCode' => 'string',
         'merchantAccount' => 'string',
-        'order' => '\Adyen\Model\Checkout\CheckoutOrder',
+        'order' => '\Adyen\Model\Checkout\EncryptedOrderData',
         'shopperLocale' => 'string',
         'shopperReference' => 'string',
         'splitCardFundingSources' => 'bool',
@@ -421,7 +421,7 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets allowedPaymentMethods
      *
-     * @param string[]|null $allowedPaymentMethods List of payment methods to be presented to the shopper. To refer to payment methods, use their `paymentMethod.type` from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: `\"allowedPaymentMethods\":[\"ideal\",\"giropay\"]`
+     * @param string[]|null $allowedPaymentMethods List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"allowedPaymentMethods\":[\"ideal\",\"giropay\"]`
      *
      * @return self
      */
@@ -475,7 +475,7 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets blockedPaymentMethods
      *
-     * @param string[]|null $blockedPaymentMethods List of payment methods to be hidden from the shopper. To refer to payment methods, use their `paymentMethod.type` from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: `\"blockedPaymentMethods\":[\"ideal\",\"giropay\"]`
+     * @param string[]|null $blockedPaymentMethods List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"blockedPaymentMethods\":[\"ideal\",\"giropay\"]`
      *
      * @return self
      */
@@ -583,7 +583,7 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets order
      *
-     * @return \Adyen\Model\Checkout\CheckoutOrder|null
+     * @return \Adyen\Model\Checkout\EncryptedOrderData|null
      */
     public function getOrder()
     {
@@ -593,7 +593,7 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets order
      *
-     * @param \Adyen\Model\Checkout\CheckoutOrder|null $order order
+     * @param \Adyen\Model\Checkout\EncryptedOrderData|null $order order
      *
      * @return self
      */
@@ -701,7 +701,7 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets store
      *
-     * @param string|null $store The ecommerce or point-of-sale store that is processing the payment. Used in [partner model integrations](https://docs.adyen.com/marketplaces-and-platforms/classic/platforms-for-partners#route-payments) for Adyen for Platforms.
+     * @param string|null $store The ecommerce or point-of-sale store that is processing the payment. Used in:  * [Partner platform integrations](https://docs.adyen.com/marketplaces-and-platforms/classic/platforms-for-partners#route-payments) for the [Classic Platforms integration](https://docs.adyen.com/marketplaces-and-platforms/classic). * [Platform setup integrations](https://docs.adyen.com/marketplaces-and-platforms/additional-for-platform-setup/route-payment-to-store) for the [Balance Platform](https://docs.adyen.com/marketplaces-and-platforms).
      *
      * @return self
      */

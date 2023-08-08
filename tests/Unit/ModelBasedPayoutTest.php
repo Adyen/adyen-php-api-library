@@ -20,7 +20,7 @@ class ModelBasedPayoutTest extends TestCaseMock
         // initialize service
         $service = new InstantPayoutsApi($client);
 
-        $result = $service->makeInstantCardPayout(new PayoutRequest());
+        $result = $service->payout(new PayoutRequest());
         $this->assertEquals(PayoutResponse::RESULT_CODE_AUTHENTICATION_FINISHED, $result->getResultCode());
     }
 
@@ -32,7 +32,7 @@ class ModelBasedPayoutTest extends TestCaseMock
         // initialize service
         $service = new ReviewingApi($client);
 
-        $result = $service->confirmPayout(new ModifyRequest());
+        $result = $service->confirmThirdParty(new ModifyRequest());
         $this->assertEquals('[payout-confirm-received]', $result->getResponse());
     }
 
@@ -44,7 +44,7 @@ class ModelBasedPayoutTest extends TestCaseMock
         // initialize service
         $service = new InitializationApi($client);
 
-        $result = $service->storePayoutDetails(new StoreDetailRequest());
+        $result = $service->storeDetail(new StoreDetailRequest());
         $this->assertEquals('Success', $result->getResultCode());
     }
 }

@@ -268,6 +268,9 @@ class AcceptTermsOfServiceRequest implements ModelInterface, ArrayAccess, \JsonS
     {
         $invalidProperties = [];
 
+        if ($this->container['acceptedBy'] === null) {
+            $invalidProperties[] = "'acceptedBy' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -286,7 +289,7 @@ class AcceptTermsOfServiceRequest implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets acceptedBy
      *
-     * @return string|null
+     * @return string
      */
     public function getAcceptedBy()
     {
@@ -296,7 +299,7 @@ class AcceptTermsOfServiceRequest implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets acceptedBy
      *
-     * @param string|null $acceptedBy The unique identifier of the user accepting the Terms of Service.
+     * @param string $acceptedBy The individual legal entity ID of the user accepting the Terms of Service. This can also be the legal entity ID of the signatory for an organization.
      *
      * @return self
      */

@@ -3,6 +3,9 @@
 namespace Adyen\HttpClient;
 
 use Adyen\AdyenException;
+use Adyen\Client;
+use Adyen\ConnectionException;
+use Adyen\Service;
 
 class CurlClient implements ClientInterface
 {
@@ -12,51 +15,18 @@ class CurlClient implements ClientInterface
     const LIBRARY_NAME = "adyen-library-name: ";
     const LIBRARY_VERSION = "adyen-library-version: ";
 
-    // List of parameters that needs to be masked with the same array structure as it appears in
-    // the response array
-    private static $responseParamsToMask = array(
-        'paymentData',
-        'action' => array(
-            'paymentData'
-        )
-    );
-
-    // List of parameters that needs to be masked with the same array structure as it appears in
-    // the request array
-
-    private static $requestParamsToMask = array(
-        'paymentData',
-        'card' => array(
-            'number',
-            'cvc'
-        ),
-        'additionalData' => array(
-            'card.encrypted.json'
-        ),
-        'paymentMethod' => array(
-            'number',
-            'expiryMonth',
-            'expiryYear',
-            'cvc',
-            'encryptedCardNumber',
-            'encryptedExpiryMonth',
-            'encryptedExpiryYear',
-            'encryptedSecurityCode',
-            'applepay.token',
-            'paywithgoogle.token'
-        )
-    );
-
     /**
      * Json API request to Adyen
      *
-     * @param \Adyen\Service $service
+     * @param Service $service
      * @param $requestUrl
      * @param $params
+     * @param null $requestOptions
      * @return mixed
      * @throws AdyenException
+     * @throws ConnectionException
      */
-    public function requestJson(\Adyen\Service $service, $requestUrl, $params, $requestOptions = null)
+    public function requestJson(Service $service, $requestUrl, $params, $requestOptions = null)
     {
         return $this->requestHttp($service, $requestUrl, $params, 'post', $requestOptions);
     }
@@ -65,21 +35,25 @@ class CurlClient implements ClientInterface
      * Set httpProxy in the current curl configuration
      *
      * @param resource $ch
-     * @param string $httpProxy
+     * @param string|null $httpProxy
      * @throws AdyenException
      */
-    public function curlSetHttpProxy($ch, $httpProxy)
+    public function curlSetHttpProxy($ch, ?string $httpProxy)
     {
         if (empty($httpProxy)) {
             return;
         }
 
         $urlParts = parse_url($httpProxy);
-        if ($urlParts == false || !array_key_exists("host", $urlParts)) {
+        if (!$urlParts || !array_key_exists("host", $urlParts)) {
             throw new AdyenException("Invalid proxy configuration " . $httpProxy);
         }
 
-        $proxy = $urlParts["host"];
+        $proxy = "";
+        if (isset($urlParts["scheme"])) {
+            $proxy = $urlParts["scheme"] . "://";
+        }
+        $proxy .= $urlParts["host"];
         if (isset($urlParts["port"])) {
             $proxy .= ":" . $urlParts["port"];
         }
@@ -91,26 +65,45 @@ class CurlClient implements ClientInterface
     }
 
     /**
+     * Set the path to a custom CA bundle in the current curl configuration.
+     *
+     * @param resource $ch
+     * @param string|null $certFilePath
+     * @throws AdyenException
+     */
+    public function curlSetSslVerify($ch, ?string $certFilePath)
+    {
+        if (empty($certFilePath)) {
+            return;
+        }
+
+        if (!file_exists($certFilePath)) {
+            throw new AdyenException("SSL CA bundle not found: $certFilePath");
+        }
+
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+        curl_setopt($ch, CURLOPT_CAINFO, $certFilePath);
+    }
+
+    /**
      * Request to Adyen with query string used for Directory Lookup
      *
-     * @param \Adyen\Service $service
+     * @param Service $service
      * @param $requestUrl
      * @param $params
      * @return mixed
      * @throws AdyenException
+     * @throws ConnectionException
      */
-    public function requestPost(\Adyen\Service $service, $requestUrl, $params)
+    public function requestPost(Service $service, $requestUrl, $params)
     {
         $client = $service->getClient();
         $config = $client->getConfig();
-        $logger = $client->getLogger();
         $username = $config->getUsername();
         $password = $config->getPassword();
         $httpProxy = $config->getHttpProxy();
-        $environment = $config->getEnvironment();
-
-        // Log the request
-        $this->logRequest($logger, $requestUrl, $environment, $params);
+        $sslVerify = $config->getSslVerify();
 
         // Initiate cURL.
         $ch = curl_init($requestUrl);
@@ -119,6 +112,7 @@ class CurlClient implements ClientInterface
         curl_setopt($ch, CURLOPT_POST, 1);
 
         $this->curlSetHttpProxy($ch, $httpProxy);
+        $this->curlSetSslVerify($ch, $sslVerify);
 
         // set authorisation
         curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
@@ -128,7 +122,7 @@ class CurlClient implements ClientInterface
 
         // set a custom User-Agent
         $userAgent = $config->get('applicationName') . " " .
-            \Adyen\Client::USER_AGENT_SUFFIX . $client->getLibraryVersion();
+            Client::USER_AGENT_SUFFIX . $client->getLibraryVersion();
 
         // Add application info in headers
         $libraryName = self::LIBRARY_NAME . $client->getLibraryName();
@@ -148,23 +142,19 @@ class CurlClient implements ClientInterface
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
         // Execute the request
-        list($result, $httpStatus) = $this->curlRequest($ch);
-
-        // Log the response
-        $decodedResult = json_decode($result, true);
-        $this->logResponse($logger, $environment, $decodedResult);
+        [$result, $httpStatus] = $this->curlRequest($ch);
 
         // Get errors
-        list($errno, $message) = $this->curlError($ch);
+        [$errno] = $this->curlError($ch);
 
         curl_close($ch);
 
         $resultOKHttpStatusCodes = array(200, 201, 202, 204);
 
         if (!in_array($httpStatus, $resultOKHttpStatusCodes) && $result) {
-            $this->handleResultError($result, $logger);
+            $this->handleResultError($result);
         } elseif (!$result) {
-            $this->handleCurlError($requestUrl, $errno, $message, $logger);
+            $this->handleCurlError($requestUrl, $errno);
         }
 
         // Result in array or json
@@ -174,7 +164,6 @@ class CurlClient implements ClientInterface
 
             if (!$result) {
                 $msg = "The result is empty, looks like your request is invalid";
-                $logger->error($msg);
                 throw new AdyenException($msg);
             }
         }
@@ -188,11 +177,9 @@ class CurlClient implements ClientInterface
      *
      * @param $url
      * @param $errno
-     * @param $message
-     * @param $logger
-     * @throws \Adyen\ConnectionException
+     * @throws ConnectionException
      */
-    protected function handleCurlError($url, $errno, $message, $logger)
+    protected function handleCurlError($url, $errno)
     {
         switch ($errno) {
             case CURLE_OK:
@@ -213,123 +200,30 @@ class CurlClient implements ClientInterface
             default:
                 $msg = "Unexpected error communicating with Adyen.";
         }
-        $msg .= "\n(Network error [errno $errno]: $message)";
-        $logger->error($msg);
-        throw new \Adyen\ConnectionException($msg, $errno);
+        throw new ConnectionException($msg, $errno);
     }
 
     /**
      * Handle result errors from Adyen
      *
      * @param $result
-     * @param $logger
      * @throws AdyenException
      */
-    protected function handleResultError($result, $logger)
+    protected function handleResultError($result)
     {
         $decodeResult = json_decode($result, true);
         if (isset($decodeResult['message']) && isset($decodeResult['errorCode'])) {
-            $logger->error($decodeResult['errorCode'] . ': ' . $decodeResult['message']);
             throw new AdyenException(
                 $decodeResult['message'],
                 $decodeResult['status'],
                 null,
                 $decodeResult['status'],
                 $decodeResult['errorType'],
-                isset($decodeResult['pspReference']) ? $decodeResult['pspReference'] : null,
+                $decodeResult['pspReference'] ?? null,
                 $decodeResult['errorCode']
             );
         }
-        $logger->error($result);
         throw new AdyenException($result);
-    }
-
-    /**
-     * Logs the API request, removing sensitive data
-     *
-     * @param \Psr\Log\LoggerInterface $logger
-     * @param string requestUrl
-     * @param string $environment
-     * @param array $params
-     */
-    private function logRequest(\Psr\Log\LoggerInterface $logger, $requestUrl, $environment, $params)
-    {
-        // log the requestUr, params and json request
-        $logger->info("Request url to Adyen: " . $requestUrl);
-
-        // Filter sensitive data from logs when live
-        if (\Adyen\Environment::LIVE == $environment) {
-            $params = $this->maskParametersRecursive(self::$requestParamsToMask, $params);
-        }
-
-        $logger->info('JSON Request to Adyen:' . json_encode($params));
-    }
-
-    /**
-     * Logs the API request, removing sensitive data
-     *
-     * @param \Psr\Log\LoggerInterface $logger
-     * @param string requestUrl
-     * @param string $environment
-     * @param array $params
-     */
-    private function logResponse(\Psr\Log\LoggerInterface $logger, $environment, $params)
-    {
-        // Filter sensitive data from logs when live
-        if (\Adyen\Environment::LIVE == $environment) {
-            $params = $this->maskParametersRecursive(self::$responseParamsToMask, $params);
-        }
-
-        $logger->info('JSON Response to Adyen:' . json_encode($params));
-    }
-
-    /**
-     * @param $value
-     * @param $key
-     * @param $param
-     */
-    private function maskParametersRecursive($paramsToMaskList, $params)
-    {
-        if (is_array($paramsToMaskList)) {
-            foreach ($paramsToMaskList as $key => $paramsToMask) {
-                if (is_array($paramsToMask) && isset($params[$key])) {
-                    // if $paramsToMask is an array and $params[$key] exists, $paramsToMask is an array of keys
-                    $params[$key] = $this->maskParametersRecursive($paramsToMask, $params[$key]);
-                } elseif (!is_array($paramsToMask) && isset($params[$paramsToMask])) {
-                    // if $paramsToMask is not an array and $params[$paramsToMask] exists, $params[$paramsToMask] is
-                    // a parameter that needs to be masked
-                    $params[$paramsToMask] = $this->maskParameter($params[$paramsToMask]);
-                }
-            }
-        } else {
-            // in case $paramsToMaskList is not an array then it is a parameter that needs to be masked
-            $params[$paramsToMaskList] = $this->maskParameter($params[$paramsToMaskList]);
-        }
-
-        return $params;
-    }
-
-    /**
-     * Masks the parameter
-     * If the value is longer than 6 char then 3 asterisks are appended to the first 6 char of the value
-     * If the value is shorter than 6 char then replace all the chars with asterisks
-     *
-     * @param $parameter
-     * @return string
-     */
-    private function maskParameter($parameter)
-    {
-        if (empty($parameter)) {
-            return $parameter;
-        }
-
-        if (strlen($parameter) > 6) {
-            $parameter = substr($parameter, 0, 6) . '***';
-        } else {
-            $parameter = str_repeat('*', strlen($parameter));
-        }
-
-        return $parameter;
     }
 
     /**
@@ -338,11 +232,11 @@ class CurlClient implements ClientInterface
      * @param $ch
      * @return array
      */
-    protected function curlRequest($ch)
+    protected function curlRequest($ch): array
     {
         $result = curl_exec($ch);
         $httpStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        return array($result, $httpStatus);
+        return [$result, $httpStatus];
     }
 
     /**
@@ -351,28 +245,28 @@ class CurlClient implements ClientInterface
      * @param $ch
      * @return array
      */
-    protected function curlError($ch)
+    protected function curlError($ch): array
     {
         $errno = curl_errno($ch);
         $message = curl_error($ch);
-        return array($errno, $message);
+        return [$errno, $message];
     }
 
-    public function requestHttp(\Adyen\Service $service, $requestUrl, $params, $method, $requestOptions = null)
+    /**
+     * @throws ConnectionException
+     * @throws AdyenException
+     */
+    public function requestHttp(Service $service, $requestUrl, $params, $method, $requestOptions = null)
     {
         $client = $service->getClient();
         $config = $client->getConfig();
-        $logger = $client->getLogger();
         $username = $config->getUsername();
         $password = $config->getPassword();
         $xApiKey = $config->getXApiKey();
         $httpProxy = $config->getHttpProxy();
-        $environment = $config->getEnvironment();
+        $sslVerify = $config->getSslVerify();
 
         $jsonRequest = json_encode($params);
-
-        // Log the request
-        $this->logRequest($logger, $requestUrl, $environment, $params);
 
         // Initiate cURL.
         $ch = curl_init($requestUrl);
@@ -394,10 +288,11 @@ class CurlClient implements ClientInterface
         }
 
         $this->curlSetHttpProxy($ch, $httpProxy);
+        $this->curlSetSslVerify($ch, $sslVerify);
 
         // Create a custom User-Agent
         $userAgent = $config->get('applicationName') . " " .
-            \Adyen\Client::USER_AGENT_SUFFIX . $client->getLibraryVersion();
+            Client::USER_AGENT_SUFFIX . $client->getLibraryVersion();
 
         // Add application info in headers
         $libraryName = self::LIBRARY_NAME . $client->getLibraryName();
@@ -441,23 +336,19 @@ class CurlClient implements ClientInterface
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
         // Execute the request
-        list($result, $httpStatus) = $this->curlRequest($ch);
-
-        // Log the response
-        $decodedResult = json_decode($result, true);
-        $this->logResponse($logger, $environment, $decodedResult);
+        [$result, $httpStatus] = $this->curlRequest($ch);
 
         // Get errors
-        list($errno, $message) = $this->curlError($ch);
+        [$errno] = $this->curlError($ch);
 
         curl_close($ch);
 
         $hasFailed = !in_array($httpStatus, array(200, 201, 202, 204));
 
         if ($hasFailed && $result) {
-            $this->handleResultError($result, $logger);
+            $this->handleResultError($result);
         } elseif ($hasFailed && !$result) {
-            $this->handleCurlError($requestUrl, $errno, $message, $logger);
+            $this->handleCurlError($requestUrl, $errno);
         }
 
         // Result in array or json

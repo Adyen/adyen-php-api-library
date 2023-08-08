@@ -44,11 +44,11 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
       * @var string[]
       */
     protected static $openAPITypes = [
+        'bcmc' => '\Adyen\Model\Management\BcmcInfo',
+        'cartesBancaires' => '\Adyen\Model\Management\CartesBancairesInfo',
         'countries' => 'string[]',
         'currencies' => 'string[]',
-        'customRoutingFlags' => 'string[]',
         'enabled' => 'bool',
-        'shopperStatement' => '\Adyen\Model\Management\ShopperStatement',
         'storeIds' => 'string[]'
     ];
 
@@ -60,11 +60,11 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'bcmc' => null,
+        'cartesBancaires' => null,
         'countries' => null,
         'currencies' => null,
-        'customRoutingFlags' => null,
         'enabled' => null,
-        'shopperStatement' => null,
         'storeIds' => null
     ];
 
@@ -74,11 +74,11 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'bcmc' => false,
+        'cartesBancaires' => false,
         'countries' => false,
         'currencies' => false,
-        'customRoutingFlags' => false,
         'enabled' => false,
-        'shopperStatement' => false,
         'storeIds' => false
     ];
 
@@ -168,11 +168,11 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $attributeMap = [
+        'bcmc' => 'bcmc',
+        'cartesBancaires' => 'cartesBancaires',
         'countries' => 'countries',
         'currencies' => 'currencies',
-        'customRoutingFlags' => 'customRoutingFlags',
         'enabled' => 'enabled',
-        'shopperStatement' => 'shopperStatement',
         'storeIds' => 'storeIds'
     ];
 
@@ -182,11 +182,11 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $setters = [
+        'bcmc' => 'setBcmc',
+        'cartesBancaires' => 'setCartesBancaires',
         'countries' => 'setCountries',
         'currencies' => 'setCurrencies',
-        'customRoutingFlags' => 'setCustomRoutingFlags',
         'enabled' => 'setEnabled',
-        'shopperStatement' => 'setShopperStatement',
         'storeIds' => 'setStoreIds'
     ];
 
@@ -196,11 +196,11 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $getters = [
+        'bcmc' => 'getBcmc',
+        'cartesBancaires' => 'getCartesBancaires',
         'countries' => 'getCountries',
         'currencies' => 'getCurrencies',
-        'customRoutingFlags' => 'getCustomRoutingFlags',
         'enabled' => 'getEnabled',
-        'shopperStatement' => 'getShopperStatement',
         'storeIds' => 'getStoreIds'
     ];
 
@@ -261,11 +261,11 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('bcmc', $data ?? [], null);
+        $this->setIfExists('cartesBancaires', $data ?? [], null);
         $this->setIfExists('countries', $data ?? [], null);
         $this->setIfExists('currencies', $data ?? [], null);
-        $this->setIfExists('customRoutingFlags', $data ?? [], null);
         $this->setIfExists('enabled', $data ?? [], null);
-        $this->setIfExists('shopperStatement', $data ?? [], null);
         $this->setIfExists('storeIds', $data ?? [], null);
     }
 
@@ -310,6 +310,60 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets bcmc
+     *
+     * @return \Adyen\Model\Management\BcmcInfo|null
+     */
+    public function getBcmc()
+    {
+        return $this->container['bcmc'];
+    }
+
+    /**
+     * Sets bcmc
+     *
+     * @param \Adyen\Model\Management\BcmcInfo|null $bcmc bcmc
+     *
+     * @return self
+     */
+    public function setBcmc($bcmc)
+    {
+        if (is_null($bcmc)) {
+            throw new \InvalidArgumentException('non-nullable bcmc cannot be null');
+        }
+        $this->container['bcmc'] = $bcmc;
+
+        return $this;
+    }
+
+    /**
+     * Gets cartesBancaires
+     *
+     * @return \Adyen\Model\Management\CartesBancairesInfo|null
+     */
+    public function getCartesBancaires()
+    {
+        return $this->container['cartesBancaires'];
+    }
+
+    /**
+     * Sets cartesBancaires
+     *
+     * @param \Adyen\Model\Management\CartesBancairesInfo|null $cartesBancaires cartesBancaires
+     *
+     * @return self
+     */
+    public function setCartesBancaires($cartesBancaires)
+    {
+        if (is_null($cartesBancaires)) {
+            throw new \InvalidArgumentException('non-nullable cartesBancaires cannot be null');
+        }
+        $this->container['cartesBancaires'] = $cartesBancaires;
+
+        return $this;
+    }
 
     /**
      * Gets countries
@@ -366,33 +420,6 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Gets customRoutingFlags
-     *
-     * @return string[]|null
-     */
-    public function getCustomRoutingFlags()
-    {
-        return $this->container['customRoutingFlags'];
-    }
-
-    /**
-     * Sets customRoutingFlags
-     *
-     * @param string[]|null $customRoutingFlags Custom routing flags for acquirer routing.
-     *
-     * @return self
-     */
-    public function setCustomRoutingFlags($customRoutingFlags)
-    {
-        if (is_null($customRoutingFlags)) {
-            throw new \InvalidArgumentException('non-nullable customRoutingFlags cannot be null');
-        }
-        $this->container['customRoutingFlags'] = $customRoutingFlags;
-
-        return $this;
-    }
-
-    /**
      * Gets enabled
      *
      * @return bool|null
@@ -415,33 +442,6 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
             throw new \InvalidArgumentException('non-nullable enabled cannot be null');
         }
         $this->container['enabled'] = $enabled;
-
-        return $this;
-    }
-
-    /**
-     * Gets shopperStatement
-     *
-     * @return \Adyen\Model\Management\ShopperStatement|null
-     */
-    public function getShopperStatement()
-    {
-        return $this->container['shopperStatement'];
-    }
-
-    /**
-     * Sets shopperStatement
-     *
-     * @param \Adyen\Model\Management\ShopperStatement|null $shopperStatement shopperStatement
-     *
-     * @return self
-     */
-    public function setShopperStatement($shopperStatement)
-    {
-        if (is_null($shopperStatement)) {
-            throw new \InvalidArgumentException('non-nullable shopperStatement cannot be null');
-        }
-        $this->container['shopperStatement'] = $shopperStatement;
 
         return $this;
     }

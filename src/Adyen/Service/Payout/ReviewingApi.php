@@ -47,7 +47,7 @@ class ReviewingApi extends Service
     * @return \Adyen\Model\Payout\ModifyResponse
     * @throws AdyenException
     */
-    public function confirmPayout(\Adyen\Model\Payout\ModifyRequest $modifyRequest, array $requestOptions = null): \Adyen\Model\Payout\ModifyResponse
+    public function confirmThirdParty(\Adyen\Model\Payout\ModifyRequest $modifyRequest, array $requestOptions = null): \Adyen\Model\Payout\ModifyResponse
     {
         $endpoint = $this->baseURL . "/confirmThirdParty";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $modifyRequest->jsonSerialize(), $requestOptions);
@@ -62,7 +62,7 @@ class ReviewingApi extends Service
     * @return \Adyen\Model\Payout\ModifyResponse
     * @throws AdyenException
     */
-    public function cancelPayout(\Adyen\Model\Payout\ModifyRequest $modifyRequest, array $requestOptions = null): \Adyen\Model\Payout\ModifyResponse
+    public function declineThirdParty(\Adyen\Model\Payout\ModifyRequest $modifyRequest, array $requestOptions = null): \Adyen\Model\Payout\ModifyResponse
     {
         $endpoint = $this->baseURL . "/declineThirdParty";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $modifyRequest->jsonSerialize(), $requestOptions);

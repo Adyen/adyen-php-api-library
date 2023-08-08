@@ -300,6 +300,7 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_PROOF_OF_ORGANIZATION_TAX_INFO = 'proofOfOrganizationTaxInfo';
     public const TYPE_PROOF_OF_INDUSTRY = 'proofOfIndustry';
     public const TYPE_CONSTITUTIONAL_DOCUMENT = 'constitutionalDocument';
+    public const TYPE_PROOF_OF_FUNDING_OR_WEALTH_SOURCE = 'proofOfFundingOrWealthSource';
 
     /**
      * Gets allowable values of the enum
@@ -322,6 +323,7 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_PROOF_OF_ORGANIZATION_TAX_INFO,
             self::TYPE_PROOF_OF_INDUSTRY,
             self::TYPE_CONSTITUTIONAL_DOCUMENT,
+            self::TYPE_PROOF_OF_FUNDING_OR_WEALTH_SOURCE,
         ];
     }
     /**
@@ -381,14 +383,8 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['attachments'] === null) {
-            $invalidProperties[] = "'attachments' can't be null";
-        }
         if ($this->container['description'] === null) {
             $invalidProperties[] = "'description' can't be null";
-        }
-        if ($this->container['owner'] === null) {
-            $invalidProperties[] = "'owner' can't be null";
         }
         if ($this->container['type'] === null) {
             $invalidProperties[] = "'type' can't be null";
@@ -447,7 +443,7 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets attachments
      *
-     * @return \Adyen\Model\LegalEntityManagement\Attachment[]
+     * @return \Adyen\Model\LegalEntityManagement\Attachment[]|null
      */
     public function getAttachments()
     {
@@ -457,7 +453,7 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets attachments
      *
-     * @param \Adyen\Model\LegalEntityManagement\Attachment[] $attachments Array that contains the document. The array supports multiple attachments for uploading different sides or pages of a document.
+     * @param \Adyen\Model\LegalEntityManagement\Attachment[]|null $attachments Array that contains the document. The array supports multiple attachments for uploading different sides or pages of a document.
      *
      * @return self
      */
@@ -723,7 +719,7 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets owner
      *
-     * @return \Adyen\Model\LegalEntityManagement\OwnerEntity
+     * @return \Adyen\Model\LegalEntityManagement\OwnerEntity|null
      */
     public function getOwner()
     {
@@ -733,7 +729,7 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets owner
      *
-     * @param \Adyen\Model\LegalEntityManagement\OwnerEntity $owner owner
+     * @param \Adyen\Model\LegalEntityManagement\OwnerEntity|null $owner owner
      *
      * @return self
      */
@@ -760,7 +756,7 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      *
-     * @param string $type Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  When providing ID numbers: * For **individual**, the `type` values can be **driversLicense**, **identityCard**, **nationalIdNumber**, or **passport**.  When uploading photo IDs: * For **individual**, the `type` values can be **identityCard**, **driversLicense**, or **passport**.  When uploading other documents: * For **organization**, the `type` values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, or **proofOfIndustry**.   * For **individual**, the `type` values can be **identityCard**, **driversLicense**, **passport**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, or **proofOfIndividualTaxId**.  * For **soleProprietorship**, the `type` values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
+     * @param string $type Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  * For **organization**, the `type` values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, **proofOfIndustry**, or **proofOfFundingOrWealthSource**.  * For **individual**, the `type` values can be **identityCard**, **driversLicense**, **passport**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, **proofOfIndividualTaxId**, or **proofOfFundingOrWealthSource**.  * For **soleProprietorship**, the `type` values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
      *
      * @return self
      */

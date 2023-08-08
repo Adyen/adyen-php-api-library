@@ -481,7 +481,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets airlineAgencyInvoiceNumber
      *
-     * @param string|null $airlineAgencyInvoiceNumber Reference number for the invoice, issued by the agency. * minLength: 1 * maxLength: 6
+     * @param string|null $airlineAgencyInvoiceNumber The reference number for the invoice, issued by the agency. * Encoding: ASCII * minLength: 1 character * maxLength: 6 characters
      *
      * @return self
      */
@@ -508,7 +508,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets airlineAgencyPlanName
      *
-     * @param string|null $airlineAgencyPlanName 2-letter agency plan identifier; alphabetical. * minLength: 2 * maxLength: 2
+     * @param string|null $airlineAgencyPlanName The two-letter agency plan identifier. * Encoding: ASCII * minLength: 2 characters * maxLength: 2 characters
      *
      * @return self
      */
@@ -535,7 +535,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets airlineAirlineCode
      *
-     * @param string|null $airlineAirlineCode [IATA](https://www.iata.org/services/pages/codes.aspx) 3-digit accounting code (PAX); numeric. It identifies the carrier. * Format: IATA 3-digit accounting code (PAX) * Example: KLM = 074 * minLength: 3 * maxLength: 3
+     * @param string|null $airlineAirlineCode The [IATA](https://www.iata.org/services/pages/codes.aspx) 3-digit accounting code (PAX) that identifies the carrier. * Format: IATA 3-digit accounting code (PAX) * Example: KLM = 074 * minLength: 3 characters * maxLength: 3 characters * Must not be all spaces * Must not be all zeros
      *
      * @return self
      */
@@ -562,7 +562,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets airlineAirlineDesignatorCode
      *
-     * @param string|null $airlineAirlineDesignatorCode [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter accounting code (PAX); alphabetical. It identifies the carrier. * Format: [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter airline code * Example: KLM = KL * minLength: 2 * maxLength: 2
+     * @param string|null $airlineAirlineDesignatorCode The [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter accounting code (PAX) that identifies the carrier. * Encoding: ASCII * Example: KLM = KL * minLength: 2 characters * maxLength: 2 characters * Must not be all spaces * Must not be all zeros
      *
      * @return self
      */
@@ -589,7 +589,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets airlineBoardingFee
      *
-     * @param string|null $airlineBoardingFee Chargeable amount for boarding the plane. The transaction amount needs to be represented in minor units according to the [following table](https://docs.adyen.com/development-resources/currency-codes). * minLength: 1 * maxLength: 18
+     * @param string|null $airlineBoardingFee The amount charged for boarding the plane, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Encoding: Numeric * minLength: 1 character * maxLength: 18 characters
      *
      * @return self
      */
@@ -616,7 +616,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets airlineComputerizedReservationSystem
      *
-     * @param string|null $airlineComputerizedReservationSystem The [CRS](https://en.wikipedia.org/wiki/Computer_reservation_system) used to make the reservation and purchase the ticket. * Format: alphanumeric. * minLength: 4 * maxLength: 4
+     * @param string|null $airlineComputerizedReservationSystem The [CRS](https://en.wikipedia.org/wiki/Computer_reservation_system) used to make the reservation and purchase the ticket. * Encoding: ASCII * minLength: 4 characters * maxLength: 4 characters
      *
      * @return self
      */
@@ -643,7 +643,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets airlineCustomerReferenceNumber
      *
-     * @param string|null $airlineCustomerReferenceNumber Reference number; alphanumeric. * minLength: 0 * maxLength: 20
+     * @param string|null $airlineCustomerReferenceNumber The alphanumeric customer reference number. * Encoding: ASCII * maxLength: 20 characters * If you send more than 20 characters, the customer reference number is truncated * Must not be all spaces
      *
      * @return self
      */
@@ -670,7 +670,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets airlineDocumentType
      *
-     * @param string|null $airlineDocumentType Optional 2-digit code; alphanumeric. It identifies the type of product of the transaction. The description of the code may appear on credit card statements. * Format: 2-digit code * Example: Passenger ticket = 01 * minLength: 2 * maxLength: 2
+     * @param string|null $airlineDocumentType A code that identifies the type of item bought. The description of the code can appear on credit card statements. * Encoding: ASCII * Example: Passenger ticket = 01 * minLength: 2 characters * maxLength: 2 characters
      *
      * @return self
      */
@@ -697,7 +697,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets airlineFlightDate
      *
-     * @param string|null $airlineFlightDate Flight departure date. Local time `(HH:mm)` is optional. * Date format: `yyyy-MM-dd` * Date and time format: `yyyy-MM-dd HH:mm` * minLength: 10 * maxLength: 16
+     * @param string|null $airlineFlightDate The flight departure date. Local time `(HH:mm)` is optional. * Date format: `yyyy-MM-dd` * Date and time format: `yyyy-MM-dd HH:mm` * minLength: 10 characters * maxLength: 16 characters
      *
      * @return self
      */
@@ -724,7 +724,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets airlineLegCarrierCode
      *
-     * @param string|null $airlineLegCarrierCode [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter accounting code (PAX); alphabetical. It identifies the carrier. This field is required/mandatory if the airline data includes leg details. * Format: IATA 2-letter airline code * Example: KLM = KL * minLength: 2 * maxLength: 2
+     * @param string|null $airlineLegCarrierCode The [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter accounting code (PAX) that identifies the carrier. This field is required if the airline data includes leg details. * Example: KLM = KL * minLength: 2 characters * maxLength: 2 characters * Must not be all spaces * Must not be all zeros
      *
      * @return self
      */
@@ -751,7 +751,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets airlineLegClassOfTravel
      *
-     * @param string|null $airlineLegClassOfTravel 1-letter travel class identifier; alphabetical. There is no standard; however, the following codes are used rather consistently: * F: first class * J: business class * Y: economy class * W: premium economy  Limitations: * minLength: 1 * maxLength: 1
+     * @param string|null $airlineLegClassOfTravel A one-letter travel class identifier.  The following are common:  * F: first class * J: business class * Y: economy class * W: premium economy  * Encoding: ASCII * minLength: 1 character * maxLength: 1 character * Must not be all spaces * Must not be all zeros
      *
      * @return self
      */
@@ -778,7 +778,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets airlineLegDateOfTravel
      *
-     * @param string|null $airlineLegDateOfTravel Date and time of travel. [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)-compliant. * Format: `yyyy-MM-dd HH:mm` * minLength: 16 * maxLength: 16
+     * @param string|null $airlineLegDateOfTravel Date and time of travel in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format `yyyy-MM-dd HH:mm`. * Encoding: ASCII * minLength: 16 characters * maxLength: 16 characters
      *
      * @return self
      */
@@ -805,7 +805,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets airlineLegDepartAirport
      *
-     * @param string|null $airlineLegDepartAirport Alphabetical identifier of the departure airport. This field is required if the airline data includes leg details. * Format: [IATA](https://www.iata.org/services/pages/codes.aspx) 3-letter airport code. * Example: Amsterdam = AMS * minLength: 3 * maxLength: 3
+     * @param string|null $airlineLegDepartAirport The [IATA](https://www.iata.org/services/pages/codes.aspx) three-letter airport code of the departure airport. This field is required if the airline data includes leg details.  * Encoding: ASCII * Example: Amsterdam = AMS * minLength: 3 characters * maxLength: 3 characters * Must not be all spaces * Must not be all zeros
      *
      * @return self
      */
@@ -832,7 +832,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets airlineLegDepartTax
      *
-     * @param string|null $airlineLegDepartTax [Departure tax](https://en.wikipedia.org/wiki/Departure_tax). Amount charged by a country to an individual upon their leaving. The transaction amount needs to be represented in minor units according to the [following table](https://docs.adyen.com/development-resources/currency-codes). * minLength: 1 * maxLength: 12
+     * @param string|null $airlineLegDepartTax The amount of [departure tax](https://en.wikipedia.org/wiki/Departure_tax) charged, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Encoding: Numeric * minLength: 1 * maxLength: 12 * Must not be all zeros
      *
      * @return self
      */
@@ -859,7 +859,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets airlineLegDestinationCode
      *
-     * @param string|null $airlineLegDestinationCode Alphabetical identifier of the destination/arrival airport. This field is required/mandatory if the airline data includes leg details. * Format: [IATA](https://www.iata.org/services/pages/codes.aspx) 3-letter airport code. * Example: Amsterdam = AMS * minLength: 3 * maxLength: 3
+     * @param string|null $airlineLegDestinationCode The [IATA](https://www.iata.org/services/pages/codes.aspx) 3-letter airport code of the destination airport. This field is required if the airline data includes leg details. * Example: Amsterdam = AMS * Encoding: ASCII * minLength: 3 characters * maxLength: 3 characters * Must not be all spaces * Must not be all zeros
      *
      * @return self
      */
@@ -886,7 +886,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets airlineLegFareBaseCode
      *
-     * @param string|null $airlineLegFareBaseCode [Fare basis code](https://en.wikipedia.org/wiki/Fare_basis_code); alphanumeric. * minLength: 1 * maxLength: 7
+     * @param string|null $airlineLegFareBaseCode The [fare basis code](https://en.wikipedia.org/wiki/Fare_basis_code), alphanumeric. * minLength: 1 character * maxLength: 6 characters * Must not be all spaces * Must not be all zeros
      *
      * @return self
      */
@@ -913,7 +913,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets airlineLegFlightNumber
      *
-     * @param string|null $airlineLegFlightNumber The flight identifier. * minLength: 1 * maxLength: 5
+     * @param string|null $airlineLegFlightNumber The flight identifier. * minLength: 1 character * maxLength: 5 characters * Must not be all spaces * Must not be all zeros
      *
      * @return self
      */
@@ -940,7 +940,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets airlineLegStopOverCode
      *
-     * @param string|null $airlineLegStopOverCode 1-letter code that indicates whether the passenger is entitled to make a stopover. Only two types of characters are allowed: * O: Stopover allowed * X: Stopover not allowed  Limitations: * minLength: 1 * maxLength: 1
+     * @param string|null $airlineLegStopOverCode A one-letter code that indicates whether the passenger is entitled to make a stopover. Can be a space, O if the passenger is entitled to make a stopover, or X if they are not. * Encoding: ASCII * minLength: 1 character * maxLength: 1 character
      *
      * @return self
      */
@@ -967,7 +967,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets airlinePassengerDateOfBirth
      *
-     * @param string|null $airlinePassengerDateOfBirth Date of birth of the passenger.  Date format: `yyyy-MM-dd` * minLength: 10 * maxLength: 10
+     * @param string|null $airlinePassengerDateOfBirth The passenger's date of birth.  Date format: `yyyy-MM-dd` * minLength: 10 * maxLength: 10
      *
      * @return self
      */
@@ -994,7 +994,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets airlinePassengerFirstName
      *
-     * @param string|null $airlinePassengerFirstName Passenger first name/given name. > This field is required/mandatory if the airline data includes passenger details or leg details.
+     * @param string|null $airlinePassengerFirstName The passenger's first name. > This field is required if the airline data includes passenger details or leg details. * Encoding: ASCII
      *
      * @return self
      */
@@ -1021,7 +1021,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets airlinePassengerLastName
      *
-     * @param string|null $airlinePassengerLastName Passenger last name/family name. > This field is required/mandatory if the airline data includes passenger details or leg details.
+     * @param string|null $airlinePassengerLastName The passenger's last name. > This field is required if the airline data includes passenger details or leg details. * Encoding: ASCII
      *
      * @return self
      */
@@ -1048,7 +1048,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets airlinePassengerTelephoneNumber
      *
-     * @param string|null $airlinePassengerTelephoneNumber Telephone number of the passenger, including country code. This is an alphanumeric field that can include the '+' and '-' signs. * minLength: 3 * maxLength: 30
+     * @param string|null $airlinePassengerTelephoneNumber The passenger's telephone number, including country code. This is an alphanumeric field that can include the '+' and '-' signs. * Encoding: ASCII * minLength: 3 characters * maxLength: 30 characters
      *
      * @return self
      */
@@ -1075,7 +1075,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets airlinePassengerTravellerType
      *
-     * @param string|null $airlinePassengerTravellerType Passenger type code (PTC). IATA PTC values are 3-letter alphabetical. Example: ADT, SRC, CNN, INS.  However, several carriers use non-standard codes that can be up to 5 alphanumeric characters. * minLength: 3 * maxLength: 6
+     * @param string|null $airlinePassengerTravellerType The IATA passenger type code (PTC). * Encoding: ASCII * minLength: 3 characters * maxLength: 6 characters
      *
      * @return self
      */
@@ -1102,7 +1102,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets airlinePassengerName
      *
-     * @param string $airlinePassengerName Passenger name, initials, and a title. * Format: last name + first name or initials + title. * Example: *FLYER / MARY MS*. * minLength: 1 * maxLength: 49
+     * @param string $airlinePassengerName The passenger's name, initials, and title. * Format: last name + first name or initials + title * Example: *FLYER / MARY MS* * minLength: 1 character * maxLength: 20 characters * If you send more than 20 characters, the name is truncated * Must not be all spaces * Must not be all zeros
      *
      * @return self
      */
@@ -1129,7 +1129,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets airlineTicketIssueAddress
      *
-     * @param string|null $airlineTicketIssueAddress Address of the place/agency that issued the ticket. * minLength: 0 * maxLength: 16
+     * @param string|null $airlineTicketIssueAddress The address of the organization that issued the ticket. * minLength: 0 characters * maxLength: 16 characters
      *
      * @return self
      */
@@ -1156,7 +1156,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets airlineTicketNumber
      *
-     * @param string|null $airlineTicketNumber The ticket's unique identifier. * minLength: 1 * maxLength: 150
+     * @param string|null $airlineTicketNumber The ticket's unique identifier. * minLength: 1 character * maxLength: 15 characters * Must not be all spaces * Must not be all zeros
      *
      * @return self
      */
@@ -1183,7 +1183,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets airlineTravelAgencyCode
      *
-     * @param string|null $airlineTravelAgencyCode IATA number, also ARC number or ARC/IATA number. Unique identifier number for travel agencies. * minLength: 1 * maxLength: 8
+     * @param string|null $airlineTravelAgencyCode The unique identifier from IATA or ARC for the travel agency that issues the ticket. * Encoding: ASCII * minLength: 1 character * maxLength: 8 characters * Must not be all spaces * Must not be all zeros
      *
      * @return self
      */
@@ -1210,7 +1210,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets airlineTravelAgencyName
      *
-     * @param string|null $airlineTravelAgencyName The name of the travel agency. * minLength: 1 * maxLength: 25
+     * @param string|null $airlineTravelAgencyName The name of the travel agency.  * Encoding: ASCII * minLength: 1 character * maxLength: 25 characters * Must not be all spaces * Must not be all zeros
      *
      * @return self
      */

@@ -26,6 +26,7 @@ namespace Adyen\Util;
 /**
  * Class Uuid
  * @package Adyen\Util
+ * @deprecated
  */
 class Uuid
 {

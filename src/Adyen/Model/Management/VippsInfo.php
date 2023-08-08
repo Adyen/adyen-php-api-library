@@ -326,7 +326,7 @@ class VippsInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets subscriptionCancelUrl
      *
-     * @param string|null $subscriptionCancelUrl Vipps subscription cancel url
+     * @param string|null $subscriptionCancelUrl Vipps subscription cancel url (required in case of [recurring payments](https://docs.adyen.com/online-payments/tokenization))
      *
      * @return self
      */

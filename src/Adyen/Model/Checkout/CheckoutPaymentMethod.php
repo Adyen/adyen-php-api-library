@@ -83,7 +83,9 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'googlePayToken' => 'string',
         'masterpassTransactionId' => 'string',
         'orderID' => 'string',
+        'payeePreferred' => 'string',
         'payerID' => 'string',
+        'payerSelected' => 'string',
         'subtype' => 'string',
         'virtualPaymentAddress' => 'string',
         'samsungPayToken' => 'string',
@@ -141,7 +143,9 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'googlePayToken' => null,
         'masterpassTransactionId' => null,
         'orderID' => null,
+        'payeePreferred' => null,
         'payerID' => null,
+        'payerSelected' => null,
         'subtype' => null,
         'virtualPaymentAddress' => null,
         'samsungPayToken' => null,
@@ -197,7 +201,9 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'googlePayToken' => false,
         'masterpassTransactionId' => false,
         'orderID' => false,
+        'payeePreferred' => false,
         'payerID' => false,
+        'payerSelected' => false,
         'subtype' => false,
         'virtualPaymentAddress' => false,
         'samsungPayToken' => false,
@@ -333,7 +339,9 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'googlePayToken' => 'googlePayToken',
         'masterpassTransactionId' => 'masterpassTransactionId',
         'orderID' => 'orderID',
+        'payeePreferred' => 'payeePreferred',
         'payerID' => 'payerID',
+        'payerSelected' => 'payerSelected',
         'subtype' => 'subtype',
         'virtualPaymentAddress' => 'virtualPaymentAddress',
         'samsungPayToken' => 'samsungPayToken',
@@ -389,7 +397,9 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'googlePayToken' => 'setGooglePayToken',
         'masterpassTransactionId' => 'setMasterpassTransactionId',
         'orderID' => 'setOrderID',
+        'payeePreferred' => 'setPayeePreferred',
         'payerID' => 'setPayerID',
+        'payerSelected' => 'setPayerSelected',
         'subtype' => 'setSubtype',
         'virtualPaymentAddress' => 'setVirtualPaymentAddress',
         'samsungPayToken' => 'setSamsungPayToken',
@@ -445,7 +455,9 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'googlePayToken' => 'getGooglePayToken',
         'masterpassTransactionId' => 'getMasterpassTransactionId',
         'orderID' => 'getOrderID',
+        'payeePreferred' => 'getPayeePreferred',
         'payerID' => 'getPayerID',
+        'payerSelected' => 'getPayerSelected',
         'subtype' => 'getSubtype',
         'virtualPaymentAddress' => 'getVirtualPaymentAddress',
         'samsungPayToken' => 'getSamsungPayToken',
@@ -551,7 +563,9 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('googlePayToken', $data ?? [], null);
         $this->setIfExists('masterpassTransactionId', $data ?? [], null);
         $this->setIfExists('orderID', $data ?? [], null);
+        $this->setIfExists('payeePreferred', $data ?? [], null);
         $this->setIfExists('payerID', $data ?? [], null);
+        $this->setIfExists('payerSelected', $data ?? [], null);
         $this->setIfExists('subtype', $data ?? [], null);
         $this->setIfExists('virtualPaymentAddress', $data ?? [], null);
         $this->setIfExists('samsungPayToken', $data ?? [], null);
@@ -1480,7 +1494,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets threeDS2SdkVersion
      *
-     * @param string|null $threeDS2SdkVersion Version of the 3D Secure 2 mobile SDK.
+     * @param string|null $threeDS2SdkVersion Required for mobile integrations. Version of the 3D Secure 2 mobile SDK.
      *
      * @return self
      */
@@ -1684,6 +1698,33 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
+     * Gets payeePreferred
+     *
+     * @return string|null
+     */
+    public function getPayeePreferred()
+    {
+        return $this->container['payeePreferred'];
+    }
+
+    /**
+     * Sets payeePreferred
+     *
+     * @param string|null $payeePreferred IMMEDIATE_PAYMENT_REQUIRED or UNRESTRICTED
+     *
+     * @return self
+     */
+    public function setPayeePreferred($payeePreferred)
+    {
+        if (is_null($payeePreferred)) {
+            throw new \InvalidArgumentException('non-nullable payeePreferred cannot be null');
+        }
+        $this->container['payeePreferred'] = $payeePreferred;
+
+        return $this;
+    }
+
+    /**
      * Gets payerID
      *
      * @return string|null
@@ -1706,6 +1747,33 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
             throw new \InvalidArgumentException('non-nullable payerID cannot be null');
         }
         $this->container['payerID'] = $payerID;
+
+        return $this;
+    }
+
+    /**
+     * Gets payerSelected
+     *
+     * @return string|null
+     */
+    public function getPayerSelected()
+    {
+        return $this->container['payerSelected'];
+    }
+
+    /**
+     * Sets payerSelected
+     *
+     * @param string|null $payerSelected PAYPAL or PAYPAL_CREDIT
+     *
+     * @return self
+     */
+    public function setPayerSelected($payerSelected)
+    {
+        if (is_null($payerSelected)) {
+            throw new \InvalidArgumentException('non-nullable payerSelected cannot be null');
+        }
+        $this->container['payerSelected'] = $payerSelected;
 
         return $this;
     }

@@ -2,17 +2,17 @@
 
 namespace Adyen;
 
-class Config implements ConfigInterface
+class Config
 {
     /**
      * @var array
      */
-    protected $data = array();
+    protected $data = [];
 
     /**
      * @var array
      */
-    protected $allowedInput = array('array', 'json');
+    protected $allowedInput = ['array', 'json'];
 
     /**
      * @var string
@@ -22,7 +22,7 @@ class Config implements ConfigInterface
     /**
      * @var array
      */
-    protected $allowedOutput = array('array', 'json');
+    protected $allowedOutput = ['array', 'json'];
 
     /**
      * @var string
@@ -36,7 +36,7 @@ class Config implements ConfigInterface
      */
     public function __construct(array $params = null)
     {
-        if ($params && is_array($params)) {
+        if ($params) {
             foreach ($params as $key => $param) {
                 $this->data[$key] = $param;
             }
@@ -50,9 +50,9 @@ class Config implements ConfigInterface
      *
      * @return mixed|null Value of the key or NULL
      */
-    public function get($key)
+    public function get(string $key)
     {
-        return isset($this->data[$key]) ? $this->data[$key] : null;
+        return $this->data[$key] ?? null;
     }
 
     /**
@@ -61,7 +61,7 @@ class Config implements ConfigInterface
      * @param string $key Key to set
      * @param mixed $value Value to set
      */
-    public function set($key, $value)
+    public function set(string $key, $value)
     {
         $this->data[$key] = $value;
     }
@@ -71,7 +71,7 @@ class Config implements ConfigInterface
      */
     public function getUsername()
     {
-        return isset($this->data['username']) ? $this->data['username'] : null;
+        return $this->data['username'] ?? null;
     }
 
     /**
@@ -79,7 +79,7 @@ class Config implements ConfigInterface
      */
     public function getPassword()
     {
-        return isset($this->data['password']) ? $this->data['password'] : null;
+        return $this->data['password'] ?? null;
     }
 
     /**
@@ -100,6 +100,16 @@ class Config implements ConfigInterface
     public function getHttpProxy()
     {
         return !empty($this->data['http-proxy']) ? $this->data['http-proxy'] : null;
+    }
+
+    /**
+     * Get the path to a CA bundle file that enables verification using a custom certificate
+     *
+     * @return mixed|null
+     */
+    public function getSslVerify()
+    {
+        return !empty($this->data['ssl-verify']) ? $this->data['ssl-verify'] : null;
     }
 
     /**
@@ -139,7 +149,7 @@ class Config implements ConfigInterface
      */
     public function getMerchantAccount()
     {
-        return isset($this->data['merchantAccount']) ? $this->data['merchantAccount'] : null;
+        return $this->data['merchantAccount'] ?? null;
     }
 
     /**
@@ -147,15 +157,15 @@ class Config implements ConfigInterface
      */
     public function getAdyenPaymentSource()
     {
-        return isset($this->data['adyenPaymentSource']) ? $this->data['adyenPaymentSource'] : null;
+        return $this->data['adyenPaymentSource'] ?? null;
     }
 
     /**
      * @return array|null an array with 'name' and 'version'
      */
-    public function getMerchantApplication()
+    public function getMerchantApplication(): ?array
     {
-        return isset($this->data['merchantApplication']) ? $this->data['merchantApplication'] : null;
+        return $this->data['merchantApplication'] ?? null;
     }
 
     /**
@@ -163,14 +173,14 @@ class Config implements ConfigInterface
      */
     public function getExternalPlatform()
     {
-        return isset($this->data['externalPlatform']) ? $this->data['externalPlatform'] : null;
+        return $this->data['externalPlatform'] ?? null;
     }
 
     /**
      * @return string|null
      */
-    public function getEnvironment()
+    public function getEnvironment(): ?string
     {
-        return isset($this->data['environment']) ? $this->data['environment'] : null;
+        return $this->data['environment'] ?? null;
     }
 }

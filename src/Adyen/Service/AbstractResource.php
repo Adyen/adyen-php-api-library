@@ -3,6 +3,7 @@
 namespace Adyen\Service;
 
 use Adyen\AdyenException;
+use Adyen\ConnectionException;
 use Adyen\Service;
 
 abstract class AbstractResource
@@ -41,15 +42,15 @@ abstract class AbstractResource
      * AbstractResource constructor.
      *
      * @param Service $service
-     * @param string $endpoint
+     * @param string|null $endpoint
      * @param bool $allowApplicationInfo
      * @param bool $allowApplicationInfoPOS
      */
     public function __construct(
         Service $service,
-        $endpoint,
-        $allowApplicationInfo = false,
-        $allowApplicationInfoPOS = false
+        ?string $endpoint,
+        bool $allowApplicationInfo = false,
+        bool $allowApplicationInfoPOS = false
     ) {
         $this->service = $service;
         $this->endpoint = $endpoint;
@@ -68,6 +69,7 @@ abstract class AbstractResource
      * @param null $requestOptions
      * @return mixed
      * @throws AdyenException
+     * @throws ConnectionException
      */
     public function request($params, $requestOptions = null)
     {
@@ -77,20 +79,17 @@ abstract class AbstractResource
             if ($params === null && json_last_error() !== JSON_ERROR_NONE) {
                 $msg = 'The parameters in the request expect valid JSON but JSON error code found: ' .
                     json_last_error();
-                $this->service->getClient()->getLogger()->error($msg);
                 throw new AdyenException($msg);
             }
         }
 
         if (!is_array($params)) {
             $msg = 'The parameter is not valid array';
-            $this->service->getClient()->getLogger()->error($msg);
             throw new AdyenException($msg);
         }
 
         $params = $this->addDefaultParametersToRequest($params);
-
-        $this->replacePathParameters($params);
+        $updatedEndpoint = $this->replacePathParameters($params);
 
         if ($this->allowApplicationInfo) {
             $params = $this->handleApplicationInfoInRequest($params);
@@ -104,7 +103,7 @@ abstract class AbstractResource
         }
 
         $curlClient = $this->service->getClient()->getHttpClient();
-        return $curlClient->requestJson($this->service, $this->endpoint, $params, $requestOptions);
+        return $curlClient->requestJson($this->service, $updatedEndpoint, $params, $requestOptions);
     }
 
     /**
@@ -128,9 +127,9 @@ abstract class AbstractResource
      * otherwise removes from the request
      *
      * @param $params
-     * @return mixed
+     * @return array
      */
-    private function handleApplicationInfoInRequest($params)
+    private function handleApplicationInfoInRequest($params): array
     {
         // add/overwrite applicationInfo adyenLibrary even if it's already set
         $params['applicationInfo']['adyenLibrary']['name'] = $this->service->getClient()->getLibraryName();
@@ -165,10 +164,10 @@ abstract class AbstractResource
      * 2) Adds ApplicationInfo to the array
      * 3) Base64 encodes SaleToAcquirerData
      *
-     * @param $params
+     * @param array $params
      * @return array|null
      */
-    private function handleApplicationInfoInRequestPOS(array $params)
+    private function handleApplicationInfoInRequestPOS(array $params): ?array
     {
         //If the POS request is not a payment request, do not add application info
         if (empty($params['SaleToPOIRequest']['PaymentRequest'])) {
@@ -181,16 +180,16 @@ abstract class AbstractResource
         if (!empty($params['SaleToPOIRequest']['PaymentRequest']['SaleData']['SaleToAcquirerData'])) {
             $saleToAcquirerData = $params['SaleToPOIRequest']['PaymentRequest']['SaleData']['SaleToAcquirerData'];
 
-            //If SaleToAcquirerData is a querystring convert it to array
+            //If SaleToAcquirerData is a query-string convert it to array
             parse_str($saleToAcquirerData, $queryString);
             $queryStringValues = array_values($queryString);
 
-            //check if querystring is nonempty and contains a value
-            if (!empty($queryString) && !empty($queryStringValues[0])) {
-                $saleToAcquirerData = $queryString;
-            } elseif ($this->isBase64Encoded($saleToAcquirerData)) {
+            // Check if $saleToAcquirerData is base64 encoded or query-string is nonempty and contains a value
+            if ($this->isBase64Encoded($saleToAcquirerData)) {
                 //If SaleToAcquirerData is a base64encoded string decode it and convert it to array
                 $saleToAcquirerData = json_decode(base64_decode($saleToAcquirerData, true), true);
+            } elseif (!empty($queryString) && !empty($queryStringValues[0])) {
+                $saleToAcquirerData = $queryString;
             }
         }
 
@@ -206,18 +205,18 @@ abstract class AbstractResource
      * @param $data
      * @return bool
      */
-    private function isBase64Encoded($data)
+    private function isBase64Encoded($data): bool
     {
         return preg_match('%^[a-zA-Z0-9/+]*={0,2}$%', $data) && !empty($data);
     }
 
     /**
      * @param $data
-     * @return void
+     * @return string
      */
     private function replacePathParameters($data)
     {
-        $this->endpoint = preg_replace_callback(
+        return preg_replace_callback(
             '/{([a-zA-Z]+)}/',
             function ($matches) use ($data) {
                 return $data[$matches[1]] ?? $matches[0];
@@ -225,18 +224,18 @@ abstract class AbstractResource
             $this->endpoint
         );
     }
-      
+
     /**
      * @param $params
      * @return mixed
      * @throws AdyenException
+     * @throws ConnectionException
      */
     public function requestPost($params)
     {
         // check if paramenters has a value
         if (!$params) {
             $msg = 'The parameters in the request are empty';
-            $this->service->getClient()->getLogger()->error($msg);
             throw new AdyenException($msg);
         }
 
@@ -246,23 +245,21 @@ abstract class AbstractResource
 
     /**
      * @param $url
-     * @param $method
+     * @param string $method
      * @param array|null $params
      * @return mixed
-     * @throws AdyenException
+     * @throws AdyenException|ConnectionException
      */
-    public function requestHttp($url, $method = 'get', array $params = null)
+    public function requestHttp($url, string $method = 'get', array $params = null)
     {
         // check if rest api method has a value
         if (!$method) {
             $msg = 'The REST API method is empty';
-            $this->service->getClient()->getLogger()->error($msg);
             throw new AdyenException($msg);
         }
         // check if rest api method has a value
         if (!$url) {
             $msg = 'The REST API endpoint is empty';
-            $this->service->getClient()->getLogger()->error($msg);
             throw new AdyenException($msg);
         }
         // build query param in url for get/delete

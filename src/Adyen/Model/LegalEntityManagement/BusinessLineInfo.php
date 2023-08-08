@@ -257,10 +257,26 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const CAPABILITY_RECEIVE_PAYMENTS = 'receivePayments';
+    public const CAPABILITY_RECEIVE_FROM_PLATFORM_PAYMENTS = 'receiveFromPlatformPayments';
+    public const CAPABILITY_ISSUE_BANK_ACCOUNT = 'issueBankAccount';
     public const SERVICE_PAYMENT_PROCESSING = 'paymentProcessing';
     public const SERVICE_ISSUING = 'issuing';
     public const SERVICE_BANKING = 'banking';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getCapabilityAllowableValues()
+    {
+        return [
+            self::CAPABILITY_RECEIVE_PAYMENTS,
+            self::CAPABILITY_RECEIVE_FROM_PLATFORM_PAYMENTS,
+            self::CAPABILITY_ISSUE_BANK_ACCOUNT,
+        ];
+    }
     /**
      * Gets allowable values of the enum
      *
@@ -326,6 +342,15 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        $allowedValues = $this->getCapabilityAllowableValues();
+        if (!is_null($this->container['capability']) && !in_array($this->container['capability'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'capability', must be one of '%s'",
+                $this->container['capability'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         if ($this->container['industryCode'] === null) {
             $invalidProperties[] = "'industryCode' can't be null";
         }
@@ -373,7 +398,7 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets capability
      *
-     * @param string|null $capability The capability for which you are creating the business line. For example, **receivePayments**.
+     * @param string|null $capability The capability for which you are creating the business line.  Possible values: **receivePayments**, **receiveFromPlatformPayments**, **issueBankAccount**
      *
      * @return self
      * @deprecated
@@ -382,6 +407,16 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         if (is_null($capability)) {
             throw new \InvalidArgumentException('non-nullable capability cannot be null');
+        }
+        $allowedValues = $this->getCapabilityAllowableValues();
+        if (!in_array($capability, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'capability', must be one of '%s'",
+                    $capability,
+                    implode("', '", $allowedValues)
+                )
+            );
         }
         $this->container['capability'] = $capability;
 
@@ -482,7 +517,7 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets service
      *
-     * @param string $service The service for which you are creating the business line.  Possible values:**paymentProcessing**, **issuing**, **banking**
+     * @param string $service The service for which you are creating the business line.  Possible values: **paymentProcessing**, **issuing**, **banking**
      *
      * @return self
      */

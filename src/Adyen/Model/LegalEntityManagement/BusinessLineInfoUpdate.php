@@ -257,10 +257,26 @@ class BusinessLineInfoUpdate implements ModelInterface, ArrayAccess, \JsonSerial
         return self::$openAPIModelName;
     }
 
+    public const CAPABILITY_RECEIVE_PAYMENTS = 'receivePayments';
+    public const CAPABILITY_RECEIVE_FROM_PLATFORM_PAYMENTS = 'receiveFromPlatformPayments';
+    public const CAPABILITY_ISSUE_BANK_ACCOUNT = 'issueBankAccount';
     public const SERVICE_PAYMENT_PROCESSING = 'paymentProcessing';
     public const SERVICE_ISSUING = 'issuing';
     public const SERVICE_BANKING = 'banking';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getCapabilityAllowableValues()
+    {
+        return [
+            self::CAPABILITY_RECEIVE_PAYMENTS,
+            self::CAPABILITY_RECEIVE_FROM_PLATFORM_PAYMENTS,
+            self::CAPABILITY_ISSUE_BANK_ACCOUNT,
+        ];
+    }
     /**
      * Gets allowable values of the enum
      *
@@ -326,9 +342,15 @@ class BusinessLineInfoUpdate implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $invalidProperties = [];
 
-        if ($this->container['service'] === null) {
-            $invalidProperties[] = "'service' can't be null";
+        $allowedValues = $this->getCapabilityAllowableValues();
+        if (!is_null($this->container['capability']) && !in_array($this->container['capability'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'capability', must be one of '%s'",
+                $this->container['capability'],
+                implode("', '", $allowedValues)
+            );
         }
+
         $allowedValues = $this->getServiceAllowableValues();
         if (!is_null($this->container['service']) && !in_array($this->container['service'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -376,6 +398,16 @@ class BusinessLineInfoUpdate implements ModelInterface, ArrayAccess, \JsonSerial
     {
         if (is_null($capability)) {
             throw new \InvalidArgumentException('non-nullable capability cannot be null');
+        }
+        $allowedValues = $this->getCapabilityAllowableValues();
+        if (!in_array($capability, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'capability', must be one of '%s'",
+                    $capability,
+                    implode("', '", $allowedValues)
+                )
+            );
         }
         $this->container['capability'] = $capability;
 
@@ -466,7 +498,7 @@ class BusinessLineInfoUpdate implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets service
      *
-     * @return string
+     * @return string|null
      */
     public function getService()
     {
@@ -476,7 +508,7 @@ class BusinessLineInfoUpdate implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets service
      *
-     * @param string $service The service for which you are creating the business line.  Possible values:**paymentProcessing**, **issuing**, **banking**
+     * @param string|null $service The service for which you are creating the business line.  Possible values: **paymentProcessing**, **issuing**, **banking**
      *
      * @return self
      */

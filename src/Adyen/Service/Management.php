@@ -11,6 +11,10 @@ use Adyen\Service\ResourceModel\Management\MerchantAccount;
 use Adyen\Service\ResourceModel\Management\MerchantClientKey;
 use Adyen\Service\ResourceModel\Management\MerchantWebhooks;
 
+/**
+ * @deprecated Please consider using the model based services instead (suffix -Api.php)
+ * @see \Adyen\Service\Management\
+ */
 class Management extends \Adyen\Service
 {
     /**
@@ -52,7 +56,6 @@ class Management extends \Adyen\Service
     /**
      * Management constructor.
      *
-     * @deprecated Please consider using the model based services instead (suffix -Api.php)
      * @param \Adyen\Client $client
      * @throws \Adyen\AdyenException
      */

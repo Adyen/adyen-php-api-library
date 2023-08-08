@@ -46,7 +46,6 @@ class CreateCompanyUserRequest implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $openAPITypes = [
         'accountGroups' => 'string[]',
         'associatedMerchantAccounts' => 'string[]',
-        'authnApps' => 'string[]',
         'email' => 'string',
         'name' => '\Adyen\Model\Management\Name',
         'roles' => 'string[]',
@@ -64,7 +63,6 @@ class CreateCompanyUserRequest implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $openAPIFormats = [
         'accountGroups' => null,
         'associatedMerchantAccounts' => null,
-        'authnApps' => null,
         'email' => null,
         'name' => null,
         'roles' => null,
@@ -80,7 +78,6 @@ class CreateCompanyUserRequest implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $openAPINullables = [
         'accountGroups' => false,
         'associatedMerchantAccounts' => false,
-        'authnApps' => false,
         'email' => false,
         'name' => false,
         'roles' => false,
@@ -176,7 +173,6 @@ class CreateCompanyUserRequest implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $attributeMap = [
         'accountGroups' => 'accountGroups',
         'associatedMerchantAccounts' => 'associatedMerchantAccounts',
-        'authnApps' => 'authnApps',
         'email' => 'email',
         'name' => 'name',
         'roles' => 'roles',
@@ -192,7 +188,6 @@ class CreateCompanyUserRequest implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $setters = [
         'accountGroups' => 'setAccountGroups',
         'associatedMerchantAccounts' => 'setAssociatedMerchantAccounts',
-        'authnApps' => 'setAuthnApps',
         'email' => 'setEmail',
         'name' => 'setName',
         'roles' => 'setRoles',
@@ -208,7 +203,6 @@ class CreateCompanyUserRequest implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $getters = [
         'accountGroups' => 'getAccountGroups',
         'associatedMerchantAccounts' => 'getAssociatedMerchantAccounts',
-        'authnApps' => 'getAuthnApps',
         'email' => 'getEmail',
         'name' => 'getName',
         'roles' => 'getRoles',
@@ -275,7 +269,6 @@ class CreateCompanyUserRequest implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $this->setIfExists('accountGroups', $data ?? [], null);
         $this->setIfExists('associatedMerchantAccounts', $data ?? [], null);
-        $this->setIfExists('authnApps', $data ?? [], null);
         $this->setIfExists('email', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('roles', $data ?? [], null);
@@ -384,33 +377,6 @@ class CreateCompanyUserRequest implements ModelInterface, ArrayAccess, \JsonSeri
             throw new \InvalidArgumentException('non-nullable associatedMerchantAccounts cannot be null');
         }
         $this->container['associatedMerchantAccounts'] = $associatedMerchantAccounts;
-
-        return $this;
-    }
-
-    /**
-     * Gets authnApps
-     *
-     * @return string[]|null
-     */
-    public function getAuthnApps()
-    {
-        return $this->container['authnApps'];
-    }
-
-    /**
-     * Sets authnApps
-     *
-     * @param string[]|null $authnApps Set of authn apps to add to this user
-     *
-     * @return self
-     */
-    public function setAuthnApps($authnApps)
-    {
-        if (is_null($authnApps)) {
-            throw new \InvalidArgumentException('non-nullable authnApps cannot be null');
-        }
-        $this->container['authnApps'] = $authnApps;
 
         return $this;
     }
@@ -536,7 +502,7 @@ class CreateCompanyUserRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets username
      *
-     * @param string $username The username for this user. Allowed length: 255 alphanumeric characters.
+     * @param string $username The user's email address that will be their username. Must be the same as the one in the `email` field.
      *
      * @return self
      */

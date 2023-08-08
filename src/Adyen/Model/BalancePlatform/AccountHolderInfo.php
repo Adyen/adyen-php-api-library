@@ -49,6 +49,7 @@ class AccountHolderInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
         'contactDetails' => '\Adyen\Model\BalancePlatform\ContactDetails',
         'description' => 'string',
         'legalEntityId' => 'string',
+        'metadata' => 'array<string,string>',
         'reference' => 'string',
         'timeZone' => 'string'
     ];
@@ -66,6 +67,7 @@ class AccountHolderInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
         'contactDetails' => null,
         'description' => null,
         'legalEntityId' => null,
+        'metadata' => null,
         'reference' => null,
         'timeZone' => null
     ];
@@ -81,6 +83,7 @@ class AccountHolderInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
         'contactDetails' => false,
         'description' => false,
         'legalEntityId' => false,
+        'metadata' => false,
         'reference' => false,
         'timeZone' => false
     ];
@@ -176,6 +179,7 @@ class AccountHolderInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
         'contactDetails' => 'contactDetails',
         'description' => 'description',
         'legalEntityId' => 'legalEntityId',
+        'metadata' => 'metadata',
         'reference' => 'reference',
         'timeZone' => 'timeZone'
     ];
@@ -191,6 +195,7 @@ class AccountHolderInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
         'contactDetails' => 'setContactDetails',
         'description' => 'setDescription',
         'legalEntityId' => 'setLegalEntityId',
+        'metadata' => 'setMetadata',
         'reference' => 'setReference',
         'timeZone' => 'setTimeZone'
     ];
@@ -206,6 +211,7 @@ class AccountHolderInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
         'contactDetails' => 'getContactDetails',
         'description' => 'getDescription',
         'legalEntityId' => 'getLegalEntityId',
+        'metadata' => 'getMetadata',
         'reference' => 'getReference',
         'timeZone' => 'getTimeZone'
     ];
@@ -272,6 +278,7 @@ class AccountHolderInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('contactDetails', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('legalEntityId', $data ?? [], null);
+        $this->setIfExists('metadata', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
         $this->setIfExists('timeZone', $data ?? [], null);
     }
@@ -457,6 +464,33 @@ class AccountHolderInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     }
 
     /**
+     * Gets metadata
+     *
+     * @return array<string,string>|null
+     */
+    public function getMetadata()
+    {
+        return $this->container['metadata'];
+    }
+
+    /**
+     * Sets metadata
+     *
+     * @param array<string,string>|null $metadata A set of key and value pairs for general use by the merchant. The keys do not have specific names and may be used for storing miscellaneous data as desired. > Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.
+     *
+     * @return self
+     */
+    public function setMetadata($metadata)
+    {
+        if (is_null($metadata)) {
+            throw new \InvalidArgumentException('non-nullable metadata cannot be null');
+        }
+        $this->container['metadata'] = $metadata;
+
+        return $this;
+    }
+
+    /**
      * Gets reference
      *
      * @return string|null
@@ -496,7 +530,7 @@ class AccountHolderInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets timeZone
      *
-     * @param string|null $timeZone The [time zone](https://www.iana.org/time-zones) of the account holder. For example, **Europe/Amsterdam**. Defaults to the time zone of the balance platform if no time zone is set. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+     * @param string|null $timeZone The time zone of the account holder. For example, **Europe/Amsterdam**. Defaults to the time zone of the balance platform if no time zone is set. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
      *
      * @return self
      */

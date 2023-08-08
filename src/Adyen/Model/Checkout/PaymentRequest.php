@@ -45,6 +45,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'accountInfo' => '\Adyen\Model\Checkout\AccountInfo',
+        'additionalAmount' => '\Adyen\Model\Checkout\Amount',
         'additionalData' => 'array<string,string>',
         'amount' => '\Adyen\Model\Checkout\Amount',
         'applicationInfo' => '\Adyen\Model\Checkout\ApplicationInfo',
@@ -59,6 +60,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'countryCode' => 'string',
         'dateOfBirth' => '\DateTime',
         'dccQuote' => '\Adyen\Model\Checkout\ForexQuote',
+        'deliverAt' => '\DateTime',
         'deliveryAddress' => '\Adyen\Model\Checkout\Address',
         'deliveryDate' => '\DateTime',
         'deviceFingerprint' => 'string',
@@ -67,6 +69,8 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'enableRecurring' => 'bool',
         'entityType' => 'string',
         'fraudOffset' => 'int',
+        'fundOrigin' => '\Adyen\Model\Checkout\FundOrigin',
+        'fundRecipient' => '\Adyen\Model\Checkout\FundRecipient',
         'industryUsage' => 'string',
         'installments' => '\Adyen\Model\Checkout\Installments',
         'lineItems' => '\Adyen\Model\Checkout\LineItem[]',
@@ -78,7 +82,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'merchantRiskIndicator' => '\Adyen\Model\Checkout\MerchantRiskIndicator',
         'metadata' => 'array<string,string>',
         'mpiData' => '\Adyen\Model\Checkout\ThreeDSecureData',
-        'order' => '\Adyen\Model\Checkout\CheckoutOrder',
+        'order' => '\Adyen\Model\Checkout\EncryptedOrderData',
         'orderReference' => 'string',
         'origin' => 'string',
         'paymentMethod' => '\Adyen\Model\Checkout\CheckoutPaymentMethod',
@@ -104,7 +108,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'store' => 'string',
         'storePaymentMethod' => 'bool',
         'telephoneNumber' => 'string',
-        'threeDS2RequestData' => '\Adyen\Model\Checkout\ThreeDS2RequestData',
+        'threeDS2RequestData' => '\Adyen\Model\Checkout\ThreeDS2RequestData2',
         'threeDSAuthenticationOnly' => 'bool',
         'trustedShopper' => 'bool'
     ];
@@ -118,6 +122,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'accountInfo' => null,
+        'additionalAmount' => null,
         'additionalData' => null,
         'amount' => null,
         'applicationInfo' => null,
@@ -130,8 +135,9 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'company' => null,
         'conversionId' => null,
         'countryCode' => null,
-        'dateOfBirth' => 'date',
+        'dateOfBirth' => 'date-time',
         'dccQuote' => null,
+        'deliverAt' => 'date-time',
         'deliveryAddress' => null,
         'deliveryDate' => 'date-time',
         'deviceFingerprint' => null,
@@ -140,6 +146,8 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'enableRecurring' => null,
         'entityType' => null,
         'fraudOffset' => 'int32',
+        'fundOrigin' => null,
+        'fundRecipient' => null,
         'industryUsage' => null,
         'installments' => null,
         'lineItems' => null,
@@ -189,6 +197,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'accountInfo' => false,
+        'additionalAmount' => false,
         'additionalData' => false,
         'amount' => false,
         'applicationInfo' => false,
@@ -203,6 +212,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'countryCode' => false,
         'dateOfBirth' => false,
         'dccQuote' => false,
+        'deliverAt' => false,
         'deliveryAddress' => false,
         'deliveryDate' => false,
         'deviceFingerprint' => false,
@@ -211,6 +221,8 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'enableRecurring' => false,
         'entityType' => false,
         'fraudOffset' => true,
+        'fundOrigin' => false,
+        'fundRecipient' => false,
         'industryUsage' => false,
         'installments' => false,
         'lineItems' => false,
@@ -340,6 +352,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'accountInfo' => 'accountInfo',
+        'additionalAmount' => 'additionalAmount',
         'additionalData' => 'additionalData',
         'amount' => 'amount',
         'applicationInfo' => 'applicationInfo',
@@ -354,6 +367,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'countryCode' => 'countryCode',
         'dateOfBirth' => 'dateOfBirth',
         'dccQuote' => 'dccQuote',
+        'deliverAt' => 'deliverAt',
         'deliveryAddress' => 'deliveryAddress',
         'deliveryDate' => 'deliveryDate',
         'deviceFingerprint' => 'deviceFingerprint',
@@ -362,6 +376,8 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'enableRecurring' => 'enableRecurring',
         'entityType' => 'entityType',
         'fraudOffset' => 'fraudOffset',
+        'fundOrigin' => 'fundOrigin',
+        'fundRecipient' => 'fundRecipient',
         'industryUsage' => 'industryUsage',
         'installments' => 'installments',
         'lineItems' => 'lineItems',
@@ -411,6 +427,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'accountInfo' => 'setAccountInfo',
+        'additionalAmount' => 'setAdditionalAmount',
         'additionalData' => 'setAdditionalData',
         'amount' => 'setAmount',
         'applicationInfo' => 'setApplicationInfo',
@@ -425,6 +442,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'countryCode' => 'setCountryCode',
         'dateOfBirth' => 'setDateOfBirth',
         'dccQuote' => 'setDccQuote',
+        'deliverAt' => 'setDeliverAt',
         'deliveryAddress' => 'setDeliveryAddress',
         'deliveryDate' => 'setDeliveryDate',
         'deviceFingerprint' => 'setDeviceFingerprint',
@@ -433,6 +451,8 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'enableRecurring' => 'setEnableRecurring',
         'entityType' => 'setEntityType',
         'fraudOffset' => 'setFraudOffset',
+        'fundOrigin' => 'setFundOrigin',
+        'fundRecipient' => 'setFundRecipient',
         'industryUsage' => 'setIndustryUsage',
         'installments' => 'setInstallments',
         'lineItems' => 'setLineItems',
@@ -482,6 +502,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'accountInfo' => 'getAccountInfo',
+        'additionalAmount' => 'getAdditionalAmount',
         'additionalData' => 'getAdditionalData',
         'amount' => 'getAmount',
         'applicationInfo' => 'getApplicationInfo',
@@ -496,6 +517,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'countryCode' => 'getCountryCode',
         'dateOfBirth' => 'getDateOfBirth',
         'dccQuote' => 'getDccQuote',
+        'deliverAt' => 'getDeliverAt',
         'deliveryAddress' => 'getDeliveryAddress',
         'deliveryDate' => 'getDeliveryDate',
         'deviceFingerprint' => 'getDeviceFingerprint',
@@ -504,6 +526,8 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'enableRecurring' => 'getEnableRecurring',
         'entityType' => 'getEntityType',
         'fraudOffset' => 'getFraudOffset',
+        'fundOrigin' => 'getFundOrigin',
+        'fundRecipient' => 'getFundRecipient',
         'industryUsage' => 'getIndustryUsage',
         'installments' => 'getInstallments',
         'lineItems' => 'getLineItems',
@@ -684,6 +708,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('accountInfo', $data ?? [], null);
+        $this->setIfExists('additionalAmount', $data ?? [], null);
         $this->setIfExists('additionalData', $data ?? [], null);
         $this->setIfExists('amount', $data ?? [], null);
         $this->setIfExists('applicationInfo', $data ?? [], null);
@@ -698,6 +723,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('countryCode', $data ?? [], null);
         $this->setIfExists('dateOfBirth', $data ?? [], null);
         $this->setIfExists('dccQuote', $data ?? [], null);
+        $this->setIfExists('deliverAt', $data ?? [], null);
         $this->setIfExists('deliveryAddress', $data ?? [], null);
         $this->setIfExists('deliveryDate', $data ?? [], null);
         $this->setIfExists('deviceFingerprint', $data ?? [], null);
@@ -706,6 +732,8 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('enableRecurring', $data ?? [], null);
         $this->setIfExists('entityType', $data ?? [], null);
         $this->setIfExists('fraudOffset', $data ?? [], null);
+        $this->setIfExists('fundOrigin', $data ?? [], null);
+        $this->setIfExists('fundRecipient', $data ?? [], null);
         $this->setIfExists('industryUsage', $data ?? [], null);
         $this->setIfExists('installments', $data ?? [], null);
         $this->setIfExists('lineItems', $data ?? [], null);
@@ -873,6 +901,33 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable accountInfo cannot be null');
         }
         $this->container['accountInfo'] = $accountInfo;
+
+        return $this;
+    }
+
+    /**
+     * Gets additionalAmount
+     *
+     * @return \Adyen\Model\Checkout\Amount|null
+     */
+    public function getAdditionalAmount()
+    {
+        return $this->container['additionalAmount'];
+    }
+
+    /**
+     * Sets additionalAmount
+     *
+     * @param \Adyen\Model\Checkout\Amount|null $additionalAmount additionalAmount
+     *
+     * @return self
+     */
+    public function setAdditionalAmount($additionalAmount)
+    {
+        if (is_null($additionalAmount)) {
+            throw new \InvalidArgumentException('non-nullable additionalAmount cannot be null');
+        }
+        $this->container['additionalAmount'] = $additionalAmount;
 
         return $this;
     }
@@ -1114,7 +1169,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets checkoutAttemptId
      *
-     * @param string|null $checkoutAttemptId Checkout attempt ID that corresponds to the Id generated for tracking user payment journey.
+     * @param string|null $checkoutAttemptId Checkout attempt ID that corresponds to the Id generated by the client SDK for tracking user payment journey.
      *
      * @return self
      */
@@ -1159,6 +1214,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets conversionId
      *
      * @return string|null
+     * @deprecated
      */
     public function getConversionId()
     {
@@ -1168,9 +1224,10 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets conversionId
      *
-     * @param string|null $conversionId Conversion ID that corresponds to the Id generated for tracking user payment journey.
+     * @param string|null $conversionId Conversion ID that corresponds to the Id generated by the client SDK for tracking user payment journey.
      *
      * @return self
+     * @deprecated
      */
     public function setConversionId($conversionId)
     {
@@ -1264,6 +1321,33 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets deliverAt
+     *
+     * @return \DateTime|null
+     */
+    public function getDeliverAt()
+    {
+        return $this->container['deliverAt'];
+    }
+
+    /**
+     * Sets deliverAt
+     *
+     * @param \DateTime|null $deliverAt The date and time the purchased goods should be delivered.  Format [ISO 8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DDThh:mm:ss.sssTZD  Example: 2017-07-17T13:42:40.428+01:00
+     *
+     * @return self
+     */
+    public function setDeliverAt($deliverAt)
+    {
+        if (is_null($deliverAt)) {
+            throw new \InvalidArgumentException('non-nullable deliverAt cannot be null');
+        }
+        $this->container['deliverAt'] = $deliverAt;
+
+        return $this;
+    }
+
+    /**
      * Gets deliveryAddress
      *
      * @return \Adyen\Model\Checkout\Address|null
@@ -1294,6 +1378,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets deliveryDate
      *
      * @return \DateTime|null
+     * @deprecated
      */
     public function getDeliveryDate()
     {
@@ -1306,6 +1391,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param \DateTime|null $deliveryDate The date and time the purchased goods should be delivered.  Format [ISO 8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DDThh:mm:ss.sssTZD  Example: 2017-07-17T13:42:40.428+01:00
      *
      * @return self
+     * @deprecated
      */
     public function setDeliveryDate($deliveryDate)
     {
@@ -1488,6 +1574,60 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets fundOrigin
+     *
+     * @return \Adyen\Model\Checkout\FundOrigin|null
+     */
+    public function getFundOrigin()
+    {
+        return $this->container['fundOrigin'];
+    }
+
+    /**
+     * Sets fundOrigin
+     *
+     * @param \Adyen\Model\Checkout\FundOrigin|null $fundOrigin fundOrigin
+     *
+     * @return self
+     */
+    public function setFundOrigin($fundOrigin)
+    {
+        if (is_null($fundOrigin)) {
+            throw new \InvalidArgumentException('non-nullable fundOrigin cannot be null');
+        }
+        $this->container['fundOrigin'] = $fundOrigin;
+
+        return $this;
+    }
+
+    /**
+     * Gets fundRecipient
+     *
+     * @return \Adyen\Model\Checkout\FundRecipient|null
+     */
+    public function getFundRecipient()
+    {
+        return $this->container['fundRecipient'];
+    }
+
+    /**
+     * Sets fundRecipient
+     *
+     * @param \Adyen\Model\Checkout\FundRecipient|null $fundRecipient fundRecipient
+     *
+     * @return self
+     */
+    public function setFundRecipient($fundRecipient)
+    {
+        if (is_null($fundRecipient)) {
+            throw new \InvalidArgumentException('non-nullable fundRecipient cannot be null');
+        }
+        $this->container['fundRecipient'] = $fundRecipient;
+
+        return $this;
+    }
+
+    /**
      * Gets industryUsage
      *
      * @return string|null
@@ -1564,7 +1704,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets lineItems
      *
-     * @param \Adyen\Model\Checkout\LineItem[]|null $lineItems Price and product information about the purchased items, to be included on the invoice sent to the shopper. > This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, Zip and Atome.
+     * @param \Adyen\Model\Checkout\LineItem[]|null $lineItems Price and product information about the purchased items, to be included on the invoice sent to the shopper. > This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, and Zip.
      *
      * @return self
      */
@@ -1797,7 +1937,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets order
      *
-     * @return \Adyen\Model\Checkout\CheckoutOrder|null
+     * @return \Adyen\Model\Checkout\EncryptedOrderData|null
      */
     public function getOrder()
     {
@@ -1807,7 +1947,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets order
      *
-     * @param \Adyen\Model\Checkout\CheckoutOrder|null $order order
+     * @param \Adyen\Model\Checkout\EncryptedOrderData|null $order order
      *
      * @return self
      */
@@ -1996,7 +2136,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets recurringProcessingModel
      *
-     * @param string|null $recurringProcessingModel Defines a recurring payment type. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount.
+     * @param string|null $recurringProcessingModel Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount.
      *
      * @return self
      */
@@ -2421,7 +2561,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets splits
      *
-     * @param \Adyen\Model\Checkout\Split[]|null $splits An array of objects specifying how the payment should be split when using [Adyen for Platforms](https://docs.adyen.com/marketplaces-and-platforms/processing-payments#providing-split-information) or [Issuing](https://docs.adyen.com/issuing/add-manage-funds#split).
+     * @param \Adyen\Model\Checkout\Split[]|null $splits An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/marketplaces-and-platforms/processing-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/marketplaces-and-platforms/classic/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split).
      *
      * @return self
      */
@@ -2448,7 +2588,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets store
      *
-     * @param string|null $store The ecommerce or point-of-sale store that is processing the payment. Used in [partner model integrations](https://docs.adyen.com/marketplaces-and-platforms/classic/platforms-for-partners#route-payments) for Adyen for Platforms.
+     * @param string|null $store The ecommerce or point-of-sale store that is processing the payment. Used in:  * [Partner platform integrations](https://docs.adyen.com/marketplaces-and-platforms/classic/platforms-for-partners#route-payments) for the [Classic Platforms integration](https://docs.adyen.com/marketplaces-and-platforms/classic). * [Platform setup integrations](https://docs.adyen.com/marketplaces-and-platforms/additional-for-platform-setup/route-payment-to-store) for the [Balance Platform](https://docs.adyen.com/marketplaces-and-platforms).
      *
      * @return self
      */
@@ -2519,7 +2659,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets threeDS2RequestData
      *
-     * @return \Adyen\Model\Checkout\ThreeDS2RequestData|null
+     * @return \Adyen\Model\Checkout\ThreeDS2RequestData2|null
      */
     public function getThreeDS2RequestData()
     {
@@ -2529,7 +2669,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets threeDS2RequestData
      *
-     * @param \Adyen\Model\Checkout\ThreeDS2RequestData|null $threeDS2RequestData threeDS2RequestData
+     * @param \Adyen\Model\Checkout\ThreeDS2RequestData2|null $threeDS2RequestData threeDS2RequestData
      *
      * @return self
      */

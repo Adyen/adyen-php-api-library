@@ -590,7 +590,7 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets itemCategory
      *
-     * @param string|null $itemCategory Item category, used by the RatePay payment method.
+     * @param string|null $itemCategory Item category, used by the payment methods PayPal and Ratepay.
      *
      * @return self
      */

@@ -12,6 +12,11 @@ use Adyen\Service\ResourceModel\Notification\GetNotificationConfigurationList;
 use Adyen\Service\ResourceModel\Notification\TestNotificationConfiguration;
 use Adyen\Service\ResourceModel\Notification\UpdateNotificationConfiguration;
 
+/**
+ * @deprecated Please consider using the model based services instead (suffix -Api.php)
+ * @see \Adyen\Service\BalancePlatform\
+ * @see \Adyen\Service\Transfers\
+ */
 class Notification extends Service
 {
 
@@ -47,6 +52,7 @@ class Notification extends Service
 
     /**
      * Notification constructor.
+     *
      * @param Client $client
      * @throws AdyenException
      */

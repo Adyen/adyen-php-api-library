@@ -46,7 +46,9 @@ class PayPalDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'checkoutAttemptId' => 'string',
         'orderID' => 'string',
+        'payeePreferred' => 'string',
         'payerID' => 'string',
+        'payerSelected' => 'string',
         'recurringDetailReference' => 'string',
         'storedPaymentMethodId' => 'string',
         'subtype' => 'string',
@@ -63,7 +65,9 @@ class PayPalDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'checkoutAttemptId' => null,
         'orderID' => null,
+        'payeePreferred' => null,
         'payerID' => null,
+        'payerSelected' => null,
         'recurringDetailReference' => null,
         'storedPaymentMethodId' => null,
         'subtype' => null,
@@ -78,7 +82,9 @@ class PayPalDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPINullables = [
         'checkoutAttemptId' => false,
         'orderID' => false,
+        'payeePreferred' => false,
         'payerID' => false,
+        'payerSelected' => false,
         'recurringDetailReference' => false,
         'storedPaymentMethodId' => false,
         'subtype' => false,
@@ -173,7 +179,9 @@ class PayPalDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'checkoutAttemptId' => 'checkoutAttemptId',
         'orderID' => 'orderID',
+        'payeePreferred' => 'payeePreferred',
         'payerID' => 'payerID',
+        'payerSelected' => 'payerSelected',
         'recurringDetailReference' => 'recurringDetailReference',
         'storedPaymentMethodId' => 'storedPaymentMethodId',
         'subtype' => 'subtype',
@@ -188,7 +196,9 @@ class PayPalDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'checkoutAttemptId' => 'setCheckoutAttemptId',
         'orderID' => 'setOrderID',
+        'payeePreferred' => 'setPayeePreferred',
         'payerID' => 'setPayerID',
+        'payerSelected' => 'setPayerSelected',
         'recurringDetailReference' => 'setRecurringDetailReference',
         'storedPaymentMethodId' => 'setStoredPaymentMethodId',
         'subtype' => 'setSubtype',
@@ -203,7 +213,9 @@ class PayPalDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'checkoutAttemptId' => 'getCheckoutAttemptId',
         'orderID' => 'getOrderID',
+        'payeePreferred' => 'getPayeePreferred',
         'payerID' => 'getPayerID',
+        'payerSelected' => 'getPayerSelected',
         'recurringDetailReference' => 'getRecurringDetailReference',
         'storedPaymentMethodId' => 'getStoredPaymentMethodId',
         'subtype' => 'getSubtype',
@@ -295,7 +307,9 @@ class PayPalDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('orderID', $data ?? [], null);
+        $this->setIfExists('payeePreferred', $data ?? [], null);
         $this->setIfExists('payerID', $data ?? [], null);
+        $this->setIfExists('payerSelected', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
         $this->setIfExists('subtype', $data ?? [], null);
@@ -420,6 +434,33 @@ class PayPalDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets payeePreferred
+     *
+     * @return string|null
+     */
+    public function getPayeePreferred()
+    {
+        return $this->container['payeePreferred'];
+    }
+
+    /**
+     * Sets payeePreferred
+     *
+     * @param string|null $payeePreferred IMMEDIATE_PAYMENT_REQUIRED or UNRESTRICTED
+     *
+     * @return self
+     */
+    public function setPayeePreferred($payeePreferred)
+    {
+        if (is_null($payeePreferred)) {
+            throw new \InvalidArgumentException('non-nullable payeePreferred cannot be null');
+        }
+        $this->container['payeePreferred'] = $payeePreferred;
+
+        return $this;
+    }
+
+    /**
      * Gets payerID
      *
      * @return string|null
@@ -442,6 +483,33 @@ class PayPalDetails implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable payerID cannot be null');
         }
         $this->container['payerID'] = $payerID;
+
+        return $this;
+    }
+
+    /**
+     * Gets payerSelected
+     *
+     * @return string|null
+     */
+    public function getPayerSelected()
+    {
+        return $this->container['payerSelected'];
+    }
+
+    /**
+     * Sets payerSelected
+     *
+     * @param string|null $payerSelected PAYPAL or PAYPAL_CREDIT
+     *
+     * @return self
+     */
+    public function setPayerSelected($payerSelected)
+    {
+        if (is_null($payerSelected)) {
+            throw new \InvalidArgumentException('non-nullable payerSelected cannot be null');
+        }
+        $this->container['payerSelected'] = $payerSelected;
 
         return $this;
     }

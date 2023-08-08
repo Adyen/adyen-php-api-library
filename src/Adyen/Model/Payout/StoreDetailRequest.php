@@ -74,7 +74,7 @@ class StoreDetailRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'bank' => null,
         'billingAddress' => null,
         'card' => null,
-        'dateOfBirth' => 'date-time',
+        'dateOfBirth' => 'date',
         'entityType' => null,
         'fraudOffset' => 'int32',
         'merchantAccount' => null,

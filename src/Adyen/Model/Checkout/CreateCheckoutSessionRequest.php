@@ -74,6 +74,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
         'merchantOrderReference' => 'string',
         'metadata' => 'array<string,string>',
         'mpiData' => '\Adyen\Model\Checkout\ThreeDSecureData',
+        'platformChargebackLogic' => '\Adyen\Model\Checkout\PlatformChargebackLogic',
         'recurringExpiry' => 'string',
         'recurringFrequency' => 'string',
         'recurringProcessingModel' => 'string',
@@ -138,6 +139,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
         'merchantOrderReference' => null,
         'metadata' => null,
         'mpiData' => null,
+        'platformChargebackLogic' => null,
         'recurringExpiry' => null,
         'recurringFrequency' => null,
         'recurringProcessingModel' => null,
@@ -200,6 +202,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
         'merchantOrderReference' => false,
         'metadata' => false,
         'mpiData' => false,
+        'platformChargebackLogic' => false,
         'recurringExpiry' => false,
         'recurringFrequency' => false,
         'recurringProcessingModel' => false,
@@ -342,6 +345,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
         'merchantOrderReference' => 'merchantOrderReference',
         'metadata' => 'metadata',
         'mpiData' => 'mpiData',
+        'platformChargebackLogic' => 'platformChargebackLogic',
         'recurringExpiry' => 'recurringExpiry',
         'recurringFrequency' => 'recurringFrequency',
         'recurringProcessingModel' => 'recurringProcessingModel',
@@ -404,6 +408,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
         'merchantOrderReference' => 'setMerchantOrderReference',
         'metadata' => 'setMetadata',
         'mpiData' => 'setMpiData',
+        'platformChargebackLogic' => 'setPlatformChargebackLogic',
         'recurringExpiry' => 'setRecurringExpiry',
         'recurringFrequency' => 'setRecurringFrequency',
         'recurringProcessingModel' => 'setRecurringProcessingModel',
@@ -466,6 +471,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
         'merchantOrderReference' => 'getMerchantOrderReference',
         'metadata' => 'getMetadata',
         'mpiData' => 'getMpiData',
+        'platformChargebackLogic' => 'getPlatformChargebackLogic',
         'recurringExpiry' => 'getRecurringExpiry',
         'recurringFrequency' => 'getRecurringFrequency',
         'recurringProcessingModel' => 'getRecurringProcessingModel',
@@ -645,6 +651,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
         $this->setIfExists('merchantOrderReference', $data ?? [], null);
         $this->setIfExists('metadata', $data ?? [], null);
         $this->setIfExists('mpiData', $data ?? [], null);
+        $this->setIfExists('platformChargebackLogic', $data ?? [], null);
         $this->setIfExists('recurringExpiry', $data ?? [], null);
         $this->setIfExists('recurringFrequency', $data ?? [], null);
         $this->setIfExists('recurringProcessingModel', $data ?? [], null);
@@ -855,7 +862,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets allowedPaymentMethods
      *
-     * @param string[]|null $allowedPaymentMethods List of payment methods to be presented to the shopper. To refer to payment methods, use their `paymentMethod.type`from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: `\"allowedPaymentMethods\":[\"ideal\",\"giropay\"]`
+     * @param string[]|null $allowedPaymentMethods List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"allowedPaymentMethods\":[\"ideal\",\"giropay\"]`
      *
      * @return self
      */
@@ -990,7 +997,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets blockedPaymentMethods
      *
-     * @param string[]|null $blockedPaymentMethods List of payment methods to be hidden from the shopper. To refer to payment methods, use their `paymentMethod.type`from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: `\"blockedPaymentMethods\":[\"ideal\",\"giropay\"]`
+     * @param string[]|null $blockedPaymentMethods List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"blockedPaymentMethods\":[\"ideal\",\"giropay\"]`
      *
      * @return self
      */
@@ -1580,6 +1587,33 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
     }
 
     /**
+     * Gets platformChargebackLogic
+     *
+     * @return \Adyen\Model\Checkout\PlatformChargebackLogic|null
+     */
+    public function getPlatformChargebackLogic()
+    {
+        return $this->container['platformChargebackLogic'];
+    }
+
+    /**
+     * Sets platformChargebackLogic
+     *
+     * @param \Adyen\Model\Checkout\PlatformChargebackLogic|null $platformChargebackLogic platformChargebackLogic
+     *
+     * @return self
+     */
+    public function setPlatformChargebackLogic($platformChargebackLogic)
+    {
+        if (is_null($platformChargebackLogic)) {
+            throw new \InvalidArgumentException('non-nullable platformChargebackLogic cannot be null');
+        }
+        $this->container['platformChargebackLogic'] = $platformChargebackLogic;
+
+        return $this;
+    }
+
+    /**
      * Gets recurringExpiry
      *
      * @return string|null
@@ -2071,7 +2105,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets splits
      *
-     * @param \Adyen\Model\Checkout\Split[]|null $splits An array of objects specifying how the payment should be split when using [Adyen for Platforms](https://docs.adyen.com/platforms/processing-payments#providing-split-information) or [Issuing](https://docs.adyen.com/issuing/manage-funds#split).
+     * @param \Adyen\Model\Checkout\Split[]|null $splits An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/marketplaces-and-platforms/processing-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/marketplaces-and-platforms/classic/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split).
      *
      * @return self
      */
@@ -2098,7 +2132,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets store
      *
-     * @param string|null $store The ecommerce or point-of-sale store that is processing the payment.
+     * @param string|null $store The ecommerce or point-of-sale store that is processing the payment. Used in:  * [Partner platform integrations](https://docs.adyen.com/marketplaces-and-platforms/classic/platforms-for-partners#route-payments) for the [Classic Platforms integration](https://docs.adyen.com/marketplaces-and-platforms/classic). * [Platform setup integrations](https://docs.adyen.com/marketplaces-and-platforms/additional-for-platform-setup/route-payment-to-store) for the [Balance Platform](https://docs.adyen.com/marketplaces-and-platforms).
      *
      * @return self
      */
@@ -2207,6 +2241,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      * Gets threeDSAuthenticationOnly
      *
      * @return bool|null
+     * @deprecated
      */
     public function getThreeDSAuthenticationOnly()
     {
@@ -2219,6 +2254,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      * @param bool|null $threeDSAuthenticationOnly If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.
      *
      * @return self
+     * @deprecated
      */
     public function setThreeDSAuthenticationOnly($threeDSAuthenticationOnly)
     {

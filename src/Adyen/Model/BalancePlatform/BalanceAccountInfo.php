@@ -47,6 +47,7 @@ class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializab
         'accountHolderId' => 'string',
         'defaultCurrencyCode' => 'string',
         'description' => 'string',
+        'metadata' => 'array<string,string>',
         'reference' => 'string',
         'timeZone' => 'string'
     ];
@@ -62,6 +63,7 @@ class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializab
         'accountHolderId' => null,
         'defaultCurrencyCode' => null,
         'description' => null,
+        'metadata' => null,
         'reference' => null,
         'timeZone' => null
     ];
@@ -75,6 +77,7 @@ class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializab
         'accountHolderId' => false,
         'defaultCurrencyCode' => false,
         'description' => false,
+        'metadata' => false,
         'reference' => false,
         'timeZone' => false
     ];
@@ -168,6 +171,7 @@ class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializab
         'accountHolderId' => 'accountHolderId',
         'defaultCurrencyCode' => 'defaultCurrencyCode',
         'description' => 'description',
+        'metadata' => 'metadata',
         'reference' => 'reference',
         'timeZone' => 'timeZone'
     ];
@@ -181,6 +185,7 @@ class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializab
         'accountHolderId' => 'setAccountHolderId',
         'defaultCurrencyCode' => 'setDefaultCurrencyCode',
         'description' => 'setDescription',
+        'metadata' => 'setMetadata',
         'reference' => 'setReference',
         'timeZone' => 'setTimeZone'
     ];
@@ -194,6 +199,7 @@ class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializab
         'accountHolderId' => 'getAccountHolderId',
         'defaultCurrencyCode' => 'getDefaultCurrencyCode',
         'description' => 'getDescription',
+        'metadata' => 'getMetadata',
         'reference' => 'getReference',
         'timeZone' => 'getTimeZone'
     ];
@@ -258,6 +264,7 @@ class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('accountHolderId', $data ?? [], null);
         $this->setIfExists('defaultCurrencyCode', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('metadata', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
         $this->setIfExists('timeZone', $data ?? [], null);
     }
@@ -389,6 +396,33 @@ class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
+     * Gets metadata
+     *
+     * @return array<string,string>|null
+     */
+    public function getMetadata()
+    {
+        return $this->container['metadata'];
+    }
+
+    /**
+     * Sets metadata
+     *
+     * @param array<string,string>|null $metadata A set of key and value pairs for general use by the merchant. The keys do not have specific names and may be used for storing miscellaneous data as desired. > Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.
+     *
+     * @return self
+     */
+    public function setMetadata($metadata)
+    {
+        if (is_null($metadata)) {
+            throw new \InvalidArgumentException('non-nullable metadata cannot be null');
+        }
+        $this->container['metadata'] = $metadata;
+
+        return $this;
+    }
+
+    /**
      * Gets reference
      *
      * @return string|null
@@ -428,7 +462,7 @@ class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets timeZone
      *
-     * @param string|null $timeZone The [time zone](https://www.iana.org/time-zones) of the balance account. For example, **Europe/Amsterdam**. Defaults to the time zone of the account holder if no time zone is set. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+     * @param string|null $timeZone The time zone of the balance account. For example, **Europe/Amsterdam**. Defaults to the time zone of the account holder if no time zone is set. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
      *
      * @return self
      */

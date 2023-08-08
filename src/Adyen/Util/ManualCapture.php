@@ -23,6 +23,9 @@
 
 namespace Adyen\Util;
 
+/**
+ * @deprecated
+ */
 class ManualCapture
 {
     private $openInvoice;
@@ -51,6 +54,7 @@ class ManualCapture
         'laser',
         'paypal',
         'sepadirectdebit',
+        'ach',
         'dankort',
         'elo',
         'hipercard',
@@ -63,6 +67,9 @@ class ManualCapture
         'paywithgoogle',
         'mc_googlepay',
         'visa_googlepay',
+        'amex_googlepay',
+        'discover_googlepay',
+        'maestro_googlepay',
         'svs',
         'givex',
         'valuelink',

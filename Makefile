@@ -4,7 +4,7 @@ openapi-generator-jar:=target/openapi-generator-cli.jar
 openapi-generator-cli:=java -jar $(openapi-generator-jar)
 
 generator:=php
-modelGen:=BalanceControl BalancePlatform Checkout StoredValue Payments Payout Management LegalEntityManagement Transfers BinLookup StoredValue POSTerminalManagement Recurring
+modelGen:=BalanceControl BalancePlatform Checkout ConfigurationWebhooks StoredValue Payments Payout Management LegalEntityManagement TransferWebhooks Transfers BinLookup StoredValue POSTerminalManagement Recurring ReportWebhooks
 models:=src/Adyen/Model
 output:=target/out
 
@@ -24,6 +24,10 @@ Payout: spec=PayoutService-v68
 Management: spec=ManagementService-v1
 LegalEntityManagement: spec=LegalEntityService-v3
 Transfers: spec=TransferService-v3
+# BalanceWebhooks
+ConfigurationWebhooks: spec=BalancePlatformConfigurationNotification-v1
+ReportWebhooks: spec=BalancePlatformReportNotification-v1
+TransferWebhooks: spec=BalancePlatformTransferNotification-v3
 
 # Classic Platforms
 marketpay/account: spec=AccountService-v6
@@ -39,7 +43,7 @@ $(modelGen): target/spec $(openapi-generator-jar)
 			-g $(generator) \
 			-o $(output) \
 			-t ./templates \
-			--inline-schema-name-mappings PaymentDonationRequest_paymentMethod=CheckoutPaymentMethod \
+			--inline-schema-name-mappings DonationPaymentRequest_paymentMethod=CheckoutPaymentMethod \
 			--model-package Model\\$@ \
 			--api-package Service\\$@ \
 			--reserved-words-mappings configuration=configuration \
@@ -65,7 +69,7 @@ $(Services): target/spec $(openapi-generator-jar)
 		-g $(generator) \
 		-o $(output) \
 		-t ./templates \
-	  	--inline-schema-name-mappings PaymentDonationRequest_paymentMethod=CheckoutPaymentMethod \
+		--inline-schema-name-mappings DonationPaymentRequest_paymentMethod=CheckoutPaymentMethod \
 		--model-package Model\\$@ \
 		--api-package Service\\$@ \
 		--inline-schema-name-mappings BankAccountInfo_accountIdentification=BankAccount \
@@ -89,7 +93,7 @@ $(SingleFileServices): target/spec $(openapi-generator-jar)
 		-c templates/config.yaml \
 		--model-package Model\\$@ \
 		--api-package Service\\$@ \
-		--inline-schema-name-mappings PaymentDonationRequest_paymentMethod=CheckoutPaymentMethod \
+		--inline-schema-name-mappings DonationPaymentRequest_paymentMethod=CheckoutPaymentMethod \
 		--reserved-words-mappings configuration=configuration \
 		--skip-validate-spec \
 		--additional-properties variableNamingConvention=camelCase \
@@ -99,7 +103,7 @@ $(SingleFileServices): target/spec $(openapi-generator-jar)
 	rm -rf src/Adyen/Service/$@Api src/Adyen/Model/$@
 	mv $(output)/lib/Model/$@ $(models)/$@
 	mv $(output)/lib/ObjectSerializer.php $(models)/$@
-	mv $(output)/lib/Service/$@/GeneralApiSingle.php src/Adyen/Service/$@Api.php
+	mv $(output)/lib/Service/$@/*ApiSingle.php src/Adyen/Service/$@Api.php
 
 # Checkout spec (and patch version)
 target/spec:
@@ -124,4 +128,12 @@ clean:
 	git clean -f -d $(models)
 
 
-.PHONY: templates models $(services)
+## Releases
+
+version:
+	perl -lne 'print "currentVersion=$$1" if /LIB_VERSION = "(.+)";/' < src/Adyen/Client.php >> "$$GITHUB_OUTPUT"
+
+bump:
+	perl -i -pe 's/$$ENV{"CURRENT_VERSION"}/$$ENV{"NEXT_VERSION"}/' src/Adyen/Client.php
+
+.PHONY: templates models $(services) version bump

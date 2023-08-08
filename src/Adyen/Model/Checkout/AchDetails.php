@@ -264,6 +264,7 @@ class AchDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     public const TYPE_ACH = 'ach';
+    public const TYPE_ACH_PLAID = 'ach_plaid';
 
     /**
      * Gets allowable values of the enum
@@ -274,6 +275,7 @@ class AchDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return [
             self::TYPE_ACH,
+            self::TYPE_ACH_PLAID,
         ];
     }
     /**

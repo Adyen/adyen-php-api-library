@@ -311,14 +311,9 @@ class CreateCompanyWebhookRequest implements ModelInterface, ArrayAccess, \JsonS
     public const FILTER_MERCHANT_ACCOUNT_TYPE_ALL_ACCOUNTS = 'allAccounts';
     public const FILTER_MERCHANT_ACCOUNT_TYPE_EXCLUDE_ACCOUNTS = 'excludeAccounts';
     public const FILTER_MERCHANT_ACCOUNT_TYPE_INCLUDE_ACCOUNTS = 'includeAccounts';
-    public const NETWORK_TYPE_LOCAL = 'LOCAL';
-    public const NETWORK_TYPE__PUBLIC = 'PUBLIC';
+    public const NETWORK_TYPE_LOCAL = 'local';
+    public const NETWORK_TYPE__PUBLIC = 'public';
     public const SSL_VERSION_HTTP = 'HTTP';
-    public const SSL_VERSION_SSL = 'SSL';
-    public const SSL_VERSION_SSLV3 = 'SSLv3';
-    public const SSL_VERSION_TLS = 'TLS';
-    public const SSL_VERSION_TLSV1 = 'TLSv1';
-    public const SSL_VERSION_TLSV1_1 = 'TLSv1.1';
     public const SSL_VERSION_TLSV1_2 = 'TLSv1.2';
     public const SSL_VERSION_TLSV1_3 = 'TLSv1.3';
 
@@ -369,11 +364,6 @@ class CreateCompanyWebhookRequest implements ModelInterface, ArrayAccess, \JsonS
     {
         return [
             self::SSL_VERSION_HTTP,
-            self::SSL_VERSION_SSL,
-            self::SSL_VERSION_SSLV3,
-            self::SSL_VERSION_TLS,
-            self::SSL_VERSION_TLSV1,
-            self::SSL_VERSION_TLSV1_1,
             self::SSL_VERSION_TLSV1_2,
             self::SSL_VERSION_TLSV1_3,
         ];

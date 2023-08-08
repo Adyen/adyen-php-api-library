@@ -47,7 +47,7 @@ class InstantPayoutsApi extends Service
     * @return \Adyen\Model\Payout\PayoutResponse
     * @throws AdyenException
     */
-    public function makeInstantCardPayout(\Adyen\Model\Payout\PayoutRequest $payoutRequest, array $requestOptions = null): \Adyen\Model\Payout\PayoutResponse
+    public function payout(\Adyen\Model\Payout\PayoutRequest $payoutRequest, array $requestOptions = null): \Adyen\Model\Payout\PayoutResponse
     {
         $endpoint = $this->baseURL . "/payout";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $payoutRequest->jsonSerialize(), $requestOptions);

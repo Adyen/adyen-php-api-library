@@ -238,6 +238,7 @@ class StoredPaymentMethodDetails implements ModelInterface, ArrayAccess, \JsonSe
     public const TYPE_BCMC_MOBILE_APP = 'bcmc_mobile_app';
     public const TYPE_MOMO_WALLET = 'momo_wallet';
     public const TYPE_MOMO_WALLET_APP = 'momo_wallet_app';
+    public const TYPE_TWINT = 'twint';
     public const TYPE_PAYMAYA_WALLET = 'paymaya_wallet';
     public const TYPE_GRABPAY_SG = 'grabpay_SG';
     public const TYPE_GRABPAY_MY = 'grabpay_MY';
@@ -247,6 +248,7 @@ class StoredPaymentMethodDetails implements ModelInterface, ArrayAccess, \JsonSe
     public const TYPE_GRABPAY_PH = 'grabpay_PH';
     public const TYPE_OXXO = 'oxxo';
     public const TYPE_GCASH = 'gcash';
+    public const TYPE_DANA = 'dana';
     public const TYPE_KAKAOPAY = 'kakaopay';
     public const TYPE_TRUEMONEY = 'truemoney';
 
@@ -263,6 +265,7 @@ class StoredPaymentMethodDetails implements ModelInterface, ArrayAccess, \JsonSe
             self::TYPE_BCMC_MOBILE_APP,
             self::TYPE_MOMO_WALLET,
             self::TYPE_MOMO_WALLET_APP,
+            self::TYPE_TWINT,
             self::TYPE_PAYMAYA_WALLET,
             self::TYPE_GRABPAY_SG,
             self::TYPE_GRABPAY_MY,
@@ -272,6 +275,7 @@ class StoredPaymentMethodDetails implements ModelInterface, ArrayAccess, \JsonSe
             self::TYPE_GRABPAY_PH,
             self::TYPE_OXXO,
             self::TYPE_GCASH,
+            self::TYPE_DANA,
             self::TYPE_KAKAOPAY,
             self::TYPE_TRUEMONEY,
         ];

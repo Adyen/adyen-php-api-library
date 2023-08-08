@@ -45,7 +45,7 @@ class RecurringDetailsResult implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPITypes = [
         'creationDate' => '\DateTime',
-        'details' => '\Adyen\Model\Recurring\RecurringDetail[]',
+        'details' => '\Adyen\Model\Recurring\RecurringDetailWrapper[]',
         'lastKnownShopperEmail' => 'string',
         'shopperReference' => 'string'
     ];
@@ -327,7 +327,7 @@ class RecurringDetailsResult implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets details
      *
-     * @return \Adyen\Model\Recurring\RecurringDetail[]|null
+     * @return \Adyen\Model\Recurring\RecurringDetailWrapper[]|null
      */
     public function getDetails()
     {
@@ -337,7 +337,7 @@ class RecurringDetailsResult implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets details
      *
-     * @param \Adyen\Model\Recurring\RecurringDetail[]|null $details Payment details stored for recurring payments.
+     * @param \Adyen\Model\Recurring\RecurringDetailWrapper[]|null $details Payment details stored for recurring payments.
      *
      * @return self
      */

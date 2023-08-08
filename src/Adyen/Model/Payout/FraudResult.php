@@ -45,7 +45,7 @@ class FraudResult implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'accountScore' => 'int',
-        'results' => '\Adyen\Model\Payout\FraudCheckResult[]'
+        'results' => '\Adyen\Model\Payout\FraudCheckResultWrapper[]'
     ];
 
     /**
@@ -314,7 +314,7 @@ class FraudResult implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets results
      *
-     * @return \Adyen\Model\Payout\FraudCheckResult[]|null
+     * @return \Adyen\Model\Payout\FraudCheckResultWrapper[]|null
      */
     public function getResults()
     {
@@ -324,7 +324,7 @@ class FraudResult implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets results
      *
-     * @param \Adyen\Model\Payout\FraudCheckResult[]|null $results The result of the individual risk checks.
+     * @param \Adyen\Model\Payout\FraudCheckResultWrapper[]|null $results The result of the individual risk checks.
      *
      * @return self
      */

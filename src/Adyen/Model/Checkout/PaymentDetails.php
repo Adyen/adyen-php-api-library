@@ -251,24 +251,20 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_UPI_QR = 'upi_qr';
     public const TYPE_PAYTM = 'paytm';
     public const TYPE_MOLPAY_EBANKING_VN = 'molpay_ebanking_VN';
-    public const TYPE_OPENBANKING_UK = 'openbanking_UK';
     public const TYPE_PAYBYBANK = 'paybybank';
     public const TYPE_EBANKING_FI = 'ebanking_FI';
     public const TYPE_MOLPAY_EBANKING_MY = 'molpay_ebanking_MY';
     public const TYPE_MOLPAY_EBANKING_DIRECT_MY = 'molpay_ebanking_direct_MY';
     public const TYPE_SWISH = 'swish';
-    public const TYPE_TWINT = 'twint';
+    public const TYPE_PIX = 'pix';
     public const TYPE_WALLEY = 'walley';
     public const TYPE_WALLEY_B2B = 'walley_b2b';
-    public const TYPE_PIX = 'pix';
-    public const TYPE_BIZUM = 'bizum';
     public const TYPE_ALMA = 'alma';
     public const TYPE_MOLPAY_FPX = 'molpay_fpx';
     public const TYPE_KONBINI = 'konbini';
     public const TYPE_DIRECT_EBANKING = 'directEbanking';
     public const TYPE_BOLETOBANCARIO = 'boletobancario';
     public const TYPE_NETELLER = 'neteller';
-    public const TYPE_DANA = 'dana';
     public const TYPE_PAYSAFECARD = 'paysafecard';
     public const TYPE_CASHTICKET = 'cashticket';
     public const TYPE_IKANO = 'ikano';
@@ -352,24 +348,20 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_UPI_QR,
             self::TYPE_PAYTM,
             self::TYPE_MOLPAY_EBANKING_VN,
-            self::TYPE_OPENBANKING_UK,
             self::TYPE_PAYBYBANK,
             self::TYPE_EBANKING_FI,
             self::TYPE_MOLPAY_EBANKING_MY,
             self::TYPE_MOLPAY_EBANKING_DIRECT_MY,
             self::TYPE_SWISH,
-            self::TYPE_TWINT,
+            self::TYPE_PIX,
             self::TYPE_WALLEY,
             self::TYPE_WALLEY_B2B,
-            self::TYPE_PIX,
-            self::TYPE_BIZUM,
             self::TYPE_ALMA,
             self::TYPE_MOLPAY_FPX,
             self::TYPE_KONBINI,
             self::TYPE_DIRECT_EBANKING,
             self::TYPE_BOLETOBANCARIO,
             self::TYPE_NETELLER,
-            self::TYPE_DANA,
             self::TYPE_PAYSAFECARD,
             self::TYPE_CASHTICKET,
             self::TYPE_IKANO,

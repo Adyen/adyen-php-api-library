@@ -42,7 +42,7 @@ class TerminalsTerminalLevelApi extends Service
     /**
     * Get a list of terminals
     *
-    * @param array|null $requestOptions ['queryParams' => ['searchQuery'=> string, 'countries'=> string, 'merchantIds'=> string, 'storeIds'=> string, 'brandModels'=> string, 'pageNumber'=> int, 'pageSize'=> int]]
+    * @param array|null $requestOptions ['queryParams' => ['searchQuery'=> string, 'otpQuery'=> string, 'countries'=> string, 'merchantIds'=> string, 'storeIds'=> string, 'brandModels'=> string, 'pageNumber'=> int, 'pageSize'=> int]]
     * @return \Adyen\Model\Management\ListTerminalsResponse
     * @throws AdyenException
     */

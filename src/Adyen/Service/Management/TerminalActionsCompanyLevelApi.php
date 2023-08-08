@@ -43,7 +43,7 @@ class TerminalActionsCompanyLevelApi extends Service
     * Get a list of Android apps
     *
     * @param string $companyId
-    * @param array|null $requestOptions ['queryParams' => ['pageNumber'=> int, 'pageSize'=> int]]
+    * @param array|null $requestOptions ['queryParams' => ['pageNumber'=> int, 'pageSize'=> int, 'packageName'=> string, 'versionCode'=> int]]
     * @return \Adyen\Model\Management\AndroidAppsResponse
     * @throws AdyenException
     */
@@ -58,7 +58,7 @@ class TerminalActionsCompanyLevelApi extends Service
     * Get a list of Android certificates
     *
     * @param string $companyId
-    * @param array|null $requestOptions ['queryParams' => ['pageNumber'=> int, 'pageSize'=> int]]
+    * @param array|null $requestOptions ['queryParams' => ['pageNumber'=> int, 'pageSize'=> int, 'certificateName'=> string]]
     * @return \Adyen\Model\Management\AndroidCertificatesResponse
     * @throws AdyenException
     */

@@ -1,0 +1,16 @@
+name: Github Release
+
+on:
+    workflow_dispatch:
+    push:
+      branches:
+        - main
+
+jobs:
+  gh_release:
+    permissions:
+      contents: write
+    uses: Adyen/adyen-node-api-library/.github/workflows/lib-gh-release.yml@develop
+    with:
+      project-name: PHP
+    secrets: inherit
