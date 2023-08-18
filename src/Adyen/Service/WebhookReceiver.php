@@ -36,7 +36,7 @@ class WebhookReceiver
     public function validateHmac($response, $hmacKey)
     {
         $isTestWebhook = $this->isTestWebhook($response['pspReference']);
-        if (!$this->hmacSignature->isValidWebhookHMAC($hmacKey, $response)) {
+        if (!$this->hmacSignature->isValidNotificationHMAC($hmacKey, $response)) {
             if ($isTestWebhook) {
                 $message = 'HMAC key validation failed';
                 throw new HMACKeyValidationException($message);
