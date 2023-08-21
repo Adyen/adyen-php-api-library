@@ -27,7 +27,7 @@ Transfers: spec=TransferService-v4
 # BalanceWebhooks
 ConfigurationWebhooks: spec=BalancePlatformConfigurationNotification-v1
 ReportWebhooks: spec=BalancePlatformReportNotification-v1
-TransferWebhooks: spec=BalancePlatformTransferNotification-v3
+TransferWebhooks: spec=BalancePlatformTransferNotification-v4
 
 # Classic Platforms
 marketpay/account: spec=AccountService-v6
