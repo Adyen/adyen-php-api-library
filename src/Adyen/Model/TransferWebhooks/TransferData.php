@@ -508,6 +508,10 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_MERCHANT_PAYIN_REVERSED_PENDING = 'merchantPayinReversedPending';
     public const STATUS_MISC_COST = 'miscCost';
     public const STATUS_MISC_COST_PENDING = 'miscCostPending';
+    public const STATUS_OPERATION_AUTHORIZED = 'operationAuthorized';
+    public const STATUS_OPERATION_BOOKED = 'operationBooked';
+    public const STATUS_OPERATION_PENDING = 'operationPending';
+    public const STATUS_OPERATION_RECEIVED = 'operationReceived';
     public const STATUS_PAYMENT_COST = 'paymentCost';
     public const STATUS_PAYMENT_COST_PENDING = 'paymentCostPending';
     public const STATUS_RECEIVED = 'received';
@@ -724,6 +728,10 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_MERCHANT_PAYIN_REVERSED_PENDING,
             self::STATUS_MISC_COST,
             self::STATUS_MISC_COST_PENDING,
+            self::STATUS_OPERATION_AUTHORIZED,
+            self::STATUS_OPERATION_BOOKED,
+            self::STATUS_OPERATION_PENDING,
+            self::STATUS_OPERATION_RECEIVED,
             self::STATUS_PAYMENT_COST,
             self::STATUS_PAYMENT_COST_PENDING,
             self::STATUS_RECEIVED,

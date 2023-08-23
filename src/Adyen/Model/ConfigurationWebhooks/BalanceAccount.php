@@ -50,10 +50,11 @@ class BalanceAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'string',
         'id' => 'string',
         'metadata' => 'array<string,string>',
+        'migratedAccountCode' => 'string',
         'paymentInstruments' => '\Adyen\Model\ConfigurationWebhooks\PaymentInstrumentReference[]',
+        'platformPaymentConfiguration' => '\Adyen\Model\ConfigurationWebhooks\PlatformPaymentConfiguration',
         'reference' => 'string',
         'status' => 'string',
-        'sweepConfigurations' => 'array<string,\Adyen\Model\ConfigurationWebhooks\SweepConfiguration>',
         'timeZone' => 'string'
     ];
 
@@ -71,10 +72,11 @@ class BalanceAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => null,
         'id' => null,
         'metadata' => null,
+        'migratedAccountCode' => null,
         'paymentInstruments' => null,
+        'platformPaymentConfiguration' => null,
         'reference' => null,
         'status' => null,
-        'sweepConfigurations' => null,
         'timeZone' => null
     ];
 
@@ -90,10 +92,11 @@ class BalanceAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => false,
         'id' => false,
         'metadata' => false,
+        'migratedAccountCode' => false,
         'paymentInstruments' => false,
+        'platformPaymentConfiguration' => false,
         'reference' => false,
         'status' => false,
-        'sweepConfigurations' => false,
         'timeZone' => false
     ];
 
@@ -189,10 +192,11 @@ class BalanceAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'description',
         'id' => 'id',
         'metadata' => 'metadata',
+        'migratedAccountCode' => 'migratedAccountCode',
         'paymentInstruments' => 'paymentInstruments',
+        'platformPaymentConfiguration' => 'platformPaymentConfiguration',
         'reference' => 'reference',
         'status' => 'status',
-        'sweepConfigurations' => 'sweepConfigurations',
         'timeZone' => 'timeZone'
     ];
 
@@ -208,10 +212,11 @@ class BalanceAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'setDescription',
         'id' => 'setId',
         'metadata' => 'setMetadata',
+        'migratedAccountCode' => 'setMigratedAccountCode',
         'paymentInstruments' => 'setPaymentInstruments',
+        'platformPaymentConfiguration' => 'setPlatformPaymentConfiguration',
         'reference' => 'setReference',
         'status' => 'setStatus',
-        'sweepConfigurations' => 'setSweepConfigurations',
         'timeZone' => 'setTimeZone'
     ];
 
@@ -227,10 +232,11 @@ class BalanceAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'getDescription',
         'id' => 'getId',
         'metadata' => 'getMetadata',
+        'migratedAccountCode' => 'getMigratedAccountCode',
         'paymentInstruments' => 'getPaymentInstruments',
+        'platformPaymentConfiguration' => 'getPlatformPaymentConfiguration',
         'reference' => 'getReference',
         'status' => 'getStatus',
-        'sweepConfigurations' => 'getSweepConfigurations',
         'timeZone' => 'getTimeZone'
     ];
 
@@ -315,10 +321,11 @@ class BalanceAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('metadata', $data ?? [], null);
+        $this->setIfExists('migratedAccountCode', $data ?? [], null);
         $this->setIfExists('paymentInstruments', $data ?? [], null);
+        $this->setIfExists('platformPaymentConfiguration', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
-        $this->setIfExists('sweepConfigurations', $data ?? [], null);
         $this->setIfExists('timeZone', $data ?? [], null);
     }
 
@@ -527,7 +534,7 @@ class BalanceAccount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets metadata
      *
-     * @param array<string,string>|null $metadata A set of key and value pairs for general use by the merchant. The keys do not have specific names and may be used for storing miscellaneous data as desired. > Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.
+     * @param array<string,string>|null $metadata A set of key and value pairs for general use. The keys do not have specific names and may be used for storing miscellaneous data as desired. > Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.
      *
      * @return self
      */
@@ -537,6 +544,33 @@ class BalanceAccount implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable metadata cannot be null');
         }
         $this->container['metadata'] = $metadata;
+
+        return $this;
+    }
+
+    /**
+     * Gets migratedAccountCode
+     *
+     * @return string|null
+     */
+    public function getMigratedAccountCode()
+    {
+        return $this->container['migratedAccountCode'];
+    }
+
+    /**
+     * Sets migratedAccountCode
+     *
+     * @param string|null $migratedAccountCode The unique identifier of the account of the migrated account holder in the classic integration.
+     *
+     * @return self
+     */
+    public function setMigratedAccountCode($migratedAccountCode)
+    {
+        if (is_null($migratedAccountCode)) {
+            throw new \InvalidArgumentException('non-nullable migratedAccountCode cannot be null');
+        }
+        $this->container['migratedAccountCode'] = $migratedAccountCode;
 
         return $this;
     }
@@ -564,6 +598,33 @@ class BalanceAccount implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable paymentInstruments cannot be null');
         }
         $this->container['paymentInstruments'] = $paymentInstruments;
+
+        return $this;
+    }
+
+    /**
+     * Gets platformPaymentConfiguration
+     *
+     * @return \Adyen\Model\ConfigurationWebhooks\PlatformPaymentConfiguration|null
+     */
+    public function getPlatformPaymentConfiguration()
+    {
+        return $this->container['platformPaymentConfiguration'];
+    }
+
+    /**
+     * Sets platformPaymentConfiguration
+     *
+     * @param \Adyen\Model\ConfigurationWebhooks\PlatformPaymentConfiguration|null $platformPaymentConfiguration platformPaymentConfiguration
+     *
+     * @return self
+     */
+    public function setPlatformPaymentConfiguration($platformPaymentConfiguration)
+    {
+        if (is_null($platformPaymentConfiguration)) {
+            throw new \InvalidArgumentException('non-nullable platformPaymentConfiguration cannot be null');
+        }
+        $this->container['platformPaymentConfiguration'] = $platformPaymentConfiguration;
 
         return $this;
     }
@@ -628,33 +689,6 @@ class BalanceAccount implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Gets sweepConfigurations
-     *
-     * @return array<string,\Adyen\Model\ConfigurationWebhooks\SweepConfiguration>|null
-     */
-    public function getSweepConfigurations()
-    {
-        return $this->container['sweepConfigurations'];
-    }
-
-    /**
-     * Sets sweepConfigurations
-     *
-     * @param array<string,\Adyen\Model\ConfigurationWebhooks\SweepConfiguration>|null $sweepConfigurations Contains key-value pairs that specify configurations for balance sweeps per currency code. A sweep pulls in or pushes out funds based on a defined schedule, amount, and a source (for pulling funds) or a destination (for pushing funds).  The key must be a three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) in uppercase. For example, **EUR**. The value must be an object containing the sweep configuration.
-     *
-     * @return self
-     */
-    public function setSweepConfigurations($sweepConfigurations)
-    {
-        if (is_null($sweepConfigurations)) {
-            throw new \InvalidArgumentException('non-nullable sweepConfigurations cannot be null');
-        }
-        $this->container['sweepConfigurations'] = $sweepConfigurations;
 
         return $this;
     }

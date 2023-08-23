@@ -536,7 +536,7 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
     /**
      * Sets branchNumber
      *
-     * @param string $branchNumber The bank account branch number (without separators or whitespace).
+     * @param string $branchNumber The bank account branch number, without separators or whitespace.
      *
      * @return self
      */

@@ -570,7 +570,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets bankCode
      *
-     * @param string $bankCode The 4-digit bank code (Registreringsnummer) (without separators or whitespace).
+     * @param string $bankCode The 6-digit bank code including the 3-digit bank code and 3-digit branch code, without separators or whitespace.
      *
      * @return self
      */

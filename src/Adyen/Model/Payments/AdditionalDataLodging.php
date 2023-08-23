@@ -664,7 +664,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets lodgingRoom1NumberOfNights
      *
-     * @param string|null $lodgingRoom1NumberOfNights The total number of nights the room is booked for. * Format: numeric * Must be a number between 0 and 99 * Max length: 2 characters
+     * @param string|null $lodgingRoom1NumberOfNights The total number of nights the room is booked for. * Format: numeric * Must be a number between 0 and 99 * Max length: 4 characters
      *
      * @return self
      */
@@ -772,7 +772,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets travelEntertainmentAuthDataDuration
      *
-     * @param string|null $travelEntertainmentAuthDataDuration The number of nights. This should be included in the auth message. * Format: numeric * Max length: 2 characters
+     * @param string|null $travelEntertainmentAuthDataDuration The number of nights. This should be included in the auth message. * Format: numeric * Max length: 4 characters
      *
      * @return self
      */

@@ -49,7 +49,7 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
         'description' => 'string',
         'id' => 'string',
         'reason' => 'string',
-        'schedule' => '\Adyen\Model\ConfigurationWebhooks\SweepConfigurationSchedule',
+        'schedule' => '\Adyen\Model\ConfigurationWebhooks\SweepSchedule',
         'status' => 'string',
         'sweepAmount' => '\Adyen\Model\ConfigurationWebhooks\Amount',
         'targetAmount' => '\Adyen\Model\ConfigurationWebhooks\Amount',
@@ -597,7 +597,7 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets schedule
      *
-     * @return \Adyen\Model\ConfigurationWebhooks\SweepConfigurationSchedule
+     * @return \Adyen\Model\ConfigurationWebhooks\SweepSchedule
      */
     public function getSchedule()
     {
@@ -607,7 +607,7 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets schedule
      *
-     * @param \Adyen\Model\ConfigurationWebhooks\SweepConfigurationSchedule $schedule schedule
+     * @param \Adyen\Model\ConfigurationWebhooks\SweepSchedule $schedule schedule
      *
      * @return self
      */
