@@ -75,11 +75,11 @@ class SamsungPayDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPINullables = [
         'checkoutAttemptId' => false,
-        'fundingSource' => false,
-        'recurringDetailReference' => false,
-        'samsungPayToken' => false,
-        'storedPaymentMethodId' => false,
-        'type' => false
+		'fundingSource' => false,
+		'recurringDetailReference' => false,
+		'samsungPayToken' => false,
+		'storedPaymentMethodId' => false,
+		'type' => false
     ];
 
     /**
@@ -603,7 +603,7 @@ class SamsungPayDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -55,6 +55,21 @@ class PaymentInstrumentsApi extends Service
     }
 
     /**
+    * List network tokens
+    *
+    * @param string $id
+    * @param array|null $requestOptions
+    * @return \Adyen\Model\BalancePlatform\ListNetworkTokensResponse
+    * @throws AdyenException
+    */
+    public function listNetworkTokens(string $id, array $requestOptions = null): \Adyen\Model\BalancePlatform\ListNetworkTokensResponse
+    {
+        $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/paymentInstruments/{id}/networkTokens");
+        $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\BalancePlatform\ListNetworkTokensResponse::class);
+    }
+
+    /**
     * Get the PAN of a payment instrument
     *
     * @param string $id

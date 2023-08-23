@@ -83,15 +83,15 @@ class PaymentCaptureResponse implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPINullables = [
         'amount' => false,
-        'lineItems' => false,
-        'merchantAccount' => false,
-        'paymentPspReference' => false,
-        'platformChargebackLogic' => false,
-        'pspReference' => false,
-        'reference' => false,
-        'splits' => false,
-        'status' => false,
-        'subMerchants' => false
+		'lineItems' => false,
+		'merchantAccount' => false,
+		'paymentPspReference' => false,
+		'platformChargebackLogic' => false,
+		'pspReference' => false,
+		'reference' => false,
+		'splits' => false,
+		'status' => false,
+		'subMerchants' => false
     ];
 
     /**
@@ -718,7 +718,7 @@ class PaymentCaptureResponse implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

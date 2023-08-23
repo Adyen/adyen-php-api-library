@@ -85,16 +85,16 @@ class PayoutResponse implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'additionalData' => false,
-        'authCode' => false,
-        'dccAmount' => false,
-        'dccSignature' => false,
-        'fraudResult' => false,
-        'issuerUrl' => false,
-        'md' => false,
-        'paRequest' => false,
-        'pspReference' => false,
-        'refusalReason' => false,
-        'resultCode' => false
+		'authCode' => false,
+		'dccAmount' => false,
+		'dccSignature' => false,
+		'fraudResult' => false,
+		'issuerUrl' => false,
+		'md' => false,
+		'paRequest' => false,
+		'pspReference' => false,
+		'refusalReason' => false,
+		'resultCode' => false
     ];
 
     /**
@@ -763,7 +763,7 @@ class PayoutResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

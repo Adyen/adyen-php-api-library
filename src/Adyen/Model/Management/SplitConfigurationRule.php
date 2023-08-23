@@ -75,11 +75,11 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPINullables = [
         'currency' => false,
-        'fundingSource' => false,
-        'paymentMethod' => false,
-        'ruleId' => false,
-        'shopperInteraction' => false,
-        'splitLogic' => false
+		'fundingSource' => false,
+		'paymentMethod' => false,
+		'ruleId' => false,
+		'shopperInteraction' => false,
+		'splitLogic' => false
     ];
 
     /**
@@ -622,7 +622,7 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

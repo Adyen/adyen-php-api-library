@@ -67,7 +67,7 @@ class Phone implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'number' => false,
-        'type' => false
+		'type' => false
     ];
 
     /**
@@ -439,7 +439,7 @@ class Phone implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -119,33 +119,33 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPINullables = [
         'airlineAgencyInvoiceNumber' => false,
-        'airlineAgencyPlanName' => false,
-        'airlineAirlineCode' => false,
-        'airlineAirlineDesignatorCode' => false,
-        'airlineBoardingFee' => false,
-        'airlineComputerizedReservationSystem' => false,
-        'airlineCustomerReferenceNumber' => false,
-        'airlineDocumentType' => false,
-        'airlineFlightDate' => false,
-        'airlineLegCarrierCode' => false,
-        'airlineLegClassOfTravel' => false,
-        'airlineLegDateOfTravel' => false,
-        'airlineLegDepartAirport' => false,
-        'airlineLegDepartTax' => false,
-        'airlineLegDestinationCode' => false,
-        'airlineLegFareBaseCode' => false,
-        'airlineLegFlightNumber' => false,
-        'airlineLegStopOverCode' => false,
-        'airlinePassengerDateOfBirth' => false,
-        'airlinePassengerFirstName' => false,
-        'airlinePassengerLastName' => false,
-        'airlinePassengerTelephoneNumber' => false,
-        'airlinePassengerTravellerType' => false,
-        'airlinePassengerName' => false,
-        'airlineTicketIssueAddress' => false,
-        'airlineTicketNumber' => false,
-        'airlineTravelAgencyCode' => false,
-        'airlineTravelAgencyName' => false
+		'airlineAgencyPlanName' => false,
+		'airlineAirlineCode' => false,
+		'airlineAirlineDesignatorCode' => false,
+		'airlineBoardingFee' => false,
+		'airlineComputerizedReservationSystem' => false,
+		'airlineCustomerReferenceNumber' => false,
+		'airlineDocumentType' => false,
+		'airlineFlightDate' => false,
+		'airlineLegCarrierCode' => false,
+		'airlineLegClassOfTravel' => false,
+		'airlineLegDateOfTravel' => false,
+		'airlineLegDepartAirport' => false,
+		'airlineLegDepartTax' => false,
+		'airlineLegDestinationCode' => false,
+		'airlineLegFareBaseCode' => false,
+		'airlineLegFlightNumber' => false,
+		'airlineLegStopOverCode' => false,
+		'airlinePassengerDateOfBirth' => false,
+		'airlinePassengerFirstName' => false,
+		'airlinePassengerLastName' => false,
+		'airlinePassengerTelephoneNumber' => false,
+		'airlinePassengerTravellerType' => false,
+		'airlinePassengerName' => false,
+		'airlineTicketIssueAddress' => false,
+		'airlineTicketNumber' => false,
+		'airlineTravelAgencyCode' => false,
+		'airlineTravelAgencyName' => false
     ];
 
     /**
@@ -1287,7 +1287,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

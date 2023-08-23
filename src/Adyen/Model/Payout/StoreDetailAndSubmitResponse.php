@@ -71,9 +71,9 @@ class StoreDetailAndSubmitResponse implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPINullables = [
         'additionalData' => false,
-        'pspReference' => false,
-        'refusalReason' => false,
-        'resultCode' => false
+		'pspReference' => false,
+		'refusalReason' => false,
+		'resultCode' => false
     ];
 
     /**
@@ -474,7 +474,7 @@ class StoreDetailAndSubmitResponse implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -69,8 +69,8 @@ class PaginatedBalanceAccountsResponse implements ModelInterface, ArrayAccess, \
       */
     protected static $openAPINullables = [
         'balanceAccounts' => false,
-        'hasNext' => false,
-        'hasPrevious' => false
+		'hasNext' => false,
+		'hasPrevious' => false
     ];
 
     /**
@@ -443,7 +443,7 @@ class PaginatedBalanceAccountsResponse implements ModelInterface, ArrayAccess, \
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

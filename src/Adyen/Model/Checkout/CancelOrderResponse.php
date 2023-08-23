@@ -67,7 +67,7 @@ class CancelOrderResponse implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static $openAPINullables = [
         'pspReference' => false,
-        'resultCode' => false
+		'resultCode' => false
     ];
 
     /**
@@ -437,7 +437,7 @@ class CancelOrderResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -75,11 +75,11 @@ class AdditionalData3DSecure implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPINullables = [
         'allow3DS2' => false,
-        'challengeWindowSize' => false,
-        'executeThreeD' => false,
-        'mpiImplementationType' => false,
-        'scaExemption' => false,
-        'threeDSVersion' => false
+		'challengeWindowSize' => false,
+		'executeThreeD' => false,
+		'mpiImplementationType' => false,
+		'scaExemption' => false,
+		'threeDSVersion' => false
     ];
 
     /**
@@ -575,7 +575,7 @@ class AdditionalData3DSecure implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

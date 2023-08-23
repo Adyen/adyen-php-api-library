@@ -69,8 +69,8 @@ class DKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPINullables = [
         'accountNumber' => false,
-        'bankCode' => false,
-        'type' => false
+		'bankCode' => false,
+		'type' => false
     ];
 
     /**
@@ -474,7 +474,7 @@ class DKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

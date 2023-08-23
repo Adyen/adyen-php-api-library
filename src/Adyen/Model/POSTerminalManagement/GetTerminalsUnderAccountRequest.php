@@ -69,8 +69,8 @@ class GetTerminalsUnderAccountRequest implements ModelInterface, ArrayAccess, \J
       */
     protected static $openAPINullables = [
         'companyAccount' => false,
-        'merchantAccount' => false,
-        'store' => false
+		'merchantAccount' => false,
+		'store' => false
     ];
 
     /**
@@ -437,7 +437,7 @@ class GetTerminalsUnderAccountRequest implements ModelInterface, ArrayAccess, \J
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -67,7 +67,7 @@ class GetStoresUnderAccountRequest implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPINullables = [
         'companyAccount' => false,
-        'merchantAccount' => false
+		'merchantAccount' => false
     ];
 
     /**
@@ -403,7 +403,7 @@ class GetStoresUnderAccountRequest implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

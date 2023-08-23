@@ -71,9 +71,9 @@ class ListCompanyUsersResponse implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static $openAPINullables = [
         'links' => false,
-        'data' => false,
-        'itemsTotal' => true,
-        'pagesTotal' => true
+		'data' => false,
+		'itemsTotal' => true,
+		'pagesTotal' => true
     ];
 
     /**
@@ -470,7 +470,7 @@ class ListCompanyUsersResponse implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

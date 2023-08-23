@@ -73,10 +73,10 @@ class GenericIssuerPaymentMethodDetails implements ModelInterface, ArrayAccess, 
       */
     protected static $openAPINullables = [
         'checkoutAttemptId' => false,
-        'issuer' => false,
-        'recurringDetailReference' => false,
-        'storedPaymentMethodId' => false,
-        'type' => false
+		'issuer' => false,
+		'recurringDetailReference' => false,
+		'storedPaymentMethodId' => false,
+		'type' => false
     ];
 
     /**
@@ -547,7 +547,7 @@ class GenericIssuerPaymentMethodDetails implements ModelInterface, ArrayAccess, 
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -83,15 +83,15 @@ class CompanyApiCredential implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPINullables = [
         'links' => false,
-        'active' => false,
-        'allowedIpAddresses' => false,
-        'allowedOrigins' => false,
-        'associatedMerchantAccounts' => false,
-        'clientKey' => false,
-        'description' => false,
-        'id' => false,
-        'roles' => false,
-        'username' => false
+		'active' => false,
+		'allowedIpAddresses' => false,
+		'allowedOrigins' => false,
+		'associatedMerchantAccounts' => false,
+		'clientKey' => false,
+		'description' => false,
+		'id' => false,
+		'roles' => false,
+		'username' => false
     ];
 
     /**
@@ -690,7 +690,7 @@ class CompanyApiCredential implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

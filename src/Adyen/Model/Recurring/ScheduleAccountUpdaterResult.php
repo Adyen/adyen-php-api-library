@@ -67,7 +67,7 @@ class ScheduleAccountUpdaterResult implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPINullables = [
         'pspReference' => false,
-        'result' => false
+		'result' => false
     ];
 
     /**
@@ -406,7 +406,7 @@ class ScheduleAccountUpdaterResult implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -101,24 +101,24 @@ class ThreeDS2ResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPINullables = [
         'acsChallengeMandated' => false,
-        'acsOperatorID' => false,
-        'acsReferenceNumber' => false,
-        'acsSignedContent' => false,
-        'acsTransID' => false,
-        'acsURL' => false,
-        'authenticationType' => false,
-        'cardHolderInfo' => false,
-        'cavvAlgorithm' => false,
-        'challengeIndicator' => false,
-        'dsReferenceNumber' => false,
-        'dsTransID' => false,
-        'exemptionIndicator' => false,
-        'messageVersion' => false,
-        'riskScore' => false,
-        'sdkEphemPubKey' => false,
-        'threeDSServerTransID' => false,
-        'transStatus' => false,
-        'transStatusReason' => false
+		'acsOperatorID' => false,
+		'acsReferenceNumber' => false,
+		'acsSignedContent' => false,
+		'acsTransID' => false,
+		'acsURL' => false,
+		'authenticationType' => false,
+		'cardHolderInfo' => false,
+		'cavvAlgorithm' => false,
+		'challengeIndicator' => false,
+		'dsReferenceNumber' => false,
+		'dsTransID' => false,
+		'exemptionIndicator' => false,
+		'messageVersion' => false,
+		'riskScore' => false,
+		'sdkEphemPubKey' => false,
+		'threeDSServerTransID' => false,
+		'transStatus' => false,
+		'transStatusReason' => false
     ];
 
     /**
@@ -978,7 +978,7 @@ class ThreeDS2ResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

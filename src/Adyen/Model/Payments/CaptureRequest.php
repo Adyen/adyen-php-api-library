@@ -85,16 +85,16 @@ class CaptureRequest implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'additionalData' => false,
-        'merchantAccount' => false,
-        'modificationAmount' => false,
-        'mpiData' => false,
-        'originalMerchantReference' => false,
-        'originalReference' => false,
-        'platformChargebackLogic' => false,
-        'reference' => false,
-        'splits' => false,
-        'tenderReference' => false,
-        'uniqueTerminalId' => false
+		'merchantAccount' => false,
+		'modificationAmount' => false,
+		'mpiData' => false,
+		'originalMerchantReference' => false,
+		'originalReference' => false,
+		'platformChargebackLogic' => false,
+		'reference' => false,
+		'splits' => false,
+		'tenderReference' => false,
+		'uniqueTerminalId' => false
     ];
 
     /**
@@ -715,7 +715,7 @@ class CaptureRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

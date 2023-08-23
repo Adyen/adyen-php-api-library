@@ -69,8 +69,8 @@ class SubjectErasureByPspReferenceRequest implements ModelInterface, ArrayAccess
       */
     protected static $openAPINullables = [
         'forceErasure' => false,
-        'merchantAccount' => false,
-        'pspReference' => false
+		'merchantAccount' => false,
+		'pspReference' => false
     ];
 
     /**
@@ -434,7 +434,7 @@ class SubjectErasureByPspReferenceRequest implements ModelInterface, ArrayAccess
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

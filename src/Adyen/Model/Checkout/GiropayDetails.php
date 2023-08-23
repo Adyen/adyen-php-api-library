@@ -71,9 +71,9 @@ class GiropayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'checkoutAttemptId' => false,
-        'recurringDetailReference' => false,
-        'storedPaymentMethodId' => false,
-        'type' => false
+		'recurringDetailReference' => false,
+		'storedPaymentMethodId' => false,
+		'type' => false
     ];
 
     /**
@@ -501,7 +501,7 @@ class GiropayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

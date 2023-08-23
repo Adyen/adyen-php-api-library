@@ -71,9 +71,9 @@ class PaymentDetailsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPINullables = [
         'authenticationData' => false,
-        'details' => false,
-        'paymentData' => false,
-        'threeDSAuthenticationOnly' => false
+		'details' => false,
+		'paymentData' => false,
+		'threeDSAuthenticationOnly' => false
     ];
 
     /**
@@ -473,7 +473,7 @@ class PaymentDetailsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

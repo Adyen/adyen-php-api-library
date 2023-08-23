@@ -67,7 +67,7 @@ class SessionResultResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPINullables = [
         'id' => false,
-        'status' => false
+		'status' => false
     ];
 
     /**
@@ -441,7 +441,7 @@ class SessionResultResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

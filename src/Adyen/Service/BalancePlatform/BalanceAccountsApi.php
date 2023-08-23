@@ -45,13 +45,14 @@ class BalanceAccountsApi extends Service
     * @param string $balanceAccountId
     * @param string $sweepId
     * @param array|null $requestOptions
-
+    
     * @throws AdyenException
     */
     public function deleteSweep(string $balanceAccountId, string $sweepId, array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{balanceAccountId}', '{sweepId}'], [$balanceAccountId, $sweepId], "/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
+        
     }
 
     /**
@@ -120,15 +121,15 @@ class BalanceAccountsApi extends Service
     *
     * @param string $balanceAccountId
     * @param string $sweepId
-    * @param \Adyen\Model\BalancePlatform\SweepConfigurationV2 $sweepConfigurationV2
+    * @param \Adyen\Model\BalancePlatform\UpdateSweepConfigurationV2 $updateSweepConfigurationV2
     * @param array|null $requestOptions
     * @return \Adyen\Model\BalancePlatform\SweepConfigurationV2
     * @throws AdyenException
     */
-    public function updateSweep(string $balanceAccountId, string $sweepId, \Adyen\Model\BalancePlatform\SweepConfigurationV2 $sweepConfigurationV2, array $requestOptions = null): \Adyen\Model\BalancePlatform\SweepConfigurationV2
+    public function updateSweep(string $balanceAccountId, string $sweepId, \Adyen\Model\BalancePlatform\UpdateSweepConfigurationV2 $updateSweepConfigurationV2, array $requestOptions = null): \Adyen\Model\BalancePlatform\SweepConfigurationV2
     {
         $endpoint = $this->baseURL . str_replace(['{balanceAccountId}', '{sweepId}'], [$balanceAccountId, $sweepId], "/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}");
-        $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $sweepConfigurationV2->jsonSerialize(), $requestOptions);
+        $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $updateSweepConfigurationV2->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\BalancePlatform\SweepConfigurationV2::class);
     }
 

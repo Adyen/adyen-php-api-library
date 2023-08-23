@@ -81,14 +81,14 @@ class BulkAddress implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'city' => false,
-        'company' => false,
-        'country' => false,
-        'email' => false,
-        'houseNumberOrName' => false,
-        'mobile' => false,
-        'postalCode' => false,
-        'stateOrProvince' => false,
-        'street' => false
+		'company' => false,
+		'country' => false,
+		'email' => false,
+		'houseNumberOrName' => false,
+		'mobile' => false,
+		'postalCode' => false,
+		'stateOrProvince' => false,
+		'street' => false
     ];
 
     /**
@@ -641,7 +641,7 @@ class BulkAddress implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

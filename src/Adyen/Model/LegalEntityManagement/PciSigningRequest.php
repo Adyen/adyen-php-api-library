@@ -67,7 +67,7 @@ class PciSigningRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPINullables = [
         'pciTemplateReferences' => false,
-        'signedBy' => false
+		'signedBy' => false
     ];
 
     /**
@@ -406,7 +406,7 @@ class PciSigningRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

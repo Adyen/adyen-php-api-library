@@ -95,21 +95,21 @@ class ReceiptPrinting implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'merchantApproved' => false,
-        'merchantCancelled' => false,
-        'merchantCaptureApproved' => false,
-        'merchantCaptureRefused' => false,
-        'merchantRefundApproved' => false,
-        'merchantRefundRefused' => false,
-        'merchantRefused' => false,
-        'merchantVoid' => false,
-        'shopperApproved' => false,
-        'shopperCancelled' => false,
-        'shopperCaptureApproved' => false,
-        'shopperCaptureRefused' => false,
-        'shopperRefundApproved' => false,
-        'shopperRefundRefused' => false,
-        'shopperRefused' => false,
-        'shopperVoid' => false
+		'merchantCancelled' => false,
+		'merchantCaptureApproved' => false,
+		'merchantCaptureRefused' => false,
+		'merchantRefundApproved' => false,
+		'merchantRefundRefused' => false,
+		'merchantRefused' => false,
+		'merchantVoid' => false,
+		'shopperApproved' => false,
+		'shopperCancelled' => false,
+		'shopperCaptureApproved' => false,
+		'shopperCaptureRefused' => false,
+		'shopperRefundApproved' => false,
+		'shopperRefundRefused' => false,
+		'shopperRefused' => false,
+		'shopperVoid' => false
     ];
 
     /**
@@ -876,7 +876,7 @@ class ReceiptPrinting implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

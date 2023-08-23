@@ -75,11 +75,11 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'homepage' => false,
-        'name' => false,
-        'registrationNumber' => false,
-        'registryLocation' => false,
-        'taxId' => false,
-        'type' => false
+		'name' => false,
+		'registrationNumber' => false,
+		'registryLocation' => false,
+		'taxId' => false,
+		'type' => false
     ];
 
     /**
@@ -536,7 +536,7 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

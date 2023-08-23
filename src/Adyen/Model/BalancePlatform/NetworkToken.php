@@ -79,13 +79,13 @@ class NetworkToken implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'brandVariant' => false,
-        'creationDate' => false,
-        'device' => false,
-        'id' => false,
-        'paymentInstrumentId' => false,
-        'status' => false,
-        'tokenLastFour' => false,
-        'type' => false
+		'creationDate' => false,
+		'device' => false,
+		'id' => false,
+		'paymentInstrumentId' => false,
+		'status' => false,
+		'tokenLastFour' => false,
+		'type' => false
     ];
 
     /**
@@ -641,7 +641,7 @@ class NetworkToken implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

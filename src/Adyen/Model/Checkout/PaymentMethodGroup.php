@@ -69,8 +69,8 @@ class PaymentMethodGroup implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPINullables = [
         'name' => false,
-        'paymentMethodData' => false,
-        'type' => false
+		'paymentMethodData' => false,
+		'type' => false
     ];
 
     /**
@@ -434,7 +434,7 @@ class PaymentMethodGroup implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

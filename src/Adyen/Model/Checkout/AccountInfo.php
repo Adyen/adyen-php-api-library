@@ -101,24 +101,24 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'accountAgeIndicator' => false,
-        'accountChangeDate' => false,
-        'accountChangeIndicator' => false,
-        'accountCreationDate' => false,
-        'accountType' => false,
-        'addCardAttemptsDay' => true,
-        'deliveryAddressUsageDate' => false,
-        'deliveryAddressUsageIndicator' => false,
-        'homePhone' => false,
-        'mobilePhone' => false,
-        'passwordChangeDate' => false,
-        'passwordChangeIndicator' => false,
-        'pastTransactionsDay' => true,
-        'pastTransactionsYear' => true,
-        'paymentAccountAge' => false,
-        'paymentAccountIndicator' => false,
-        'purchasesLast6Months' => true,
-        'suspiciousActivity' => false,
-        'workPhone' => false
+		'accountChangeDate' => false,
+		'accountChangeIndicator' => false,
+		'accountCreationDate' => false,
+		'accountType' => false,
+		'addCardAttemptsDay' => true,
+		'deliveryAddressUsageDate' => false,
+		'deliveryAddressUsageIndicator' => false,
+		'homePhone' => false,
+		'mobilePhone' => false,
+		'passwordChangeDate' => false,
+		'passwordChangeIndicator' => false,
+		'pastTransactionsDay' => true,
+		'pastTransactionsYear' => true,
+		'paymentAccountAge' => false,
+		'paymentAccountIndicator' => false,
+		'purchasesLast6Months' => true,
+		'suspiciousActivity' => false,
+		'workPhone' => false
     ];
 
     /**
@@ -1202,7 +1202,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

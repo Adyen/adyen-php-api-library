@@ -71,9 +71,9 @@ class CapitalGrantAccount implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static $openAPINullables = [
         'balances' => false,
-        'fundingBalanceAccountId' => false,
-        'id' => false,
-        'limits' => false
+		'fundingBalanceAccountId' => false,
+		'id' => false,
+		'limits' => false
     ];
 
     /**
@@ -468,7 +468,7 @@ class CapitalGrantAccount implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -69,8 +69,8 @@ class AdditionalCommission implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPINullables = [
         'balanceAccountId' => false,
-        'fixedAmount' => false,
-        'variablePercentage' => false
+		'fixedAmount' => false,
+		'variablePercentage' => false
     ];
 
     /**
@@ -434,7 +434,7 @@ class AdditionalCommission implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

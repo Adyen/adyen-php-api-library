@@ -83,15 +83,15 @@ class AccountHolderCapability implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static $openAPINullables = [
         'allowed' => false,
-        'allowedLevel' => false,
-        'allowedSettings' => false,
-        'enabled' => false,
-        'problems' => false,
-        'requested' => false,
-        'requestedLevel' => false,
-        'requestedSettings' => false,
-        'transferInstruments' => false,
-        'verificationStatus' => false
+		'allowedLevel' => false,
+		'allowedSettings' => false,
+		'enabled' => false,
+		'problems' => false,
+		'requested' => false,
+		'requestedLevel' => false,
+		'requestedSettings' => false,
+		'transferInstruments' => false,
+		'verificationStatus' => false
     ];
 
     /**
@@ -783,7 +783,7 @@ class AccountHolderCapability implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

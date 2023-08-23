@@ -73,10 +73,10 @@ class BlikDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'blikCode' => false,
-        'checkoutAttemptId' => false,
-        'recurringDetailReference' => false,
-        'storedPaymentMethodId' => false,
-        'type' => false
+		'checkoutAttemptId' => false,
+		'recurringDetailReference' => false,
+		'storedPaymentMethodId' => false,
+		'type' => false
     ];
 
     /**
@@ -535,7 +535,7 @@ class BlikDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

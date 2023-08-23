@@ -73,10 +73,10 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPINullables = [
         'amountPerIndustry' => false,
-        'authorizedCardUsers' => false,
-        'fundingSource' => false,
-        'interval' => false,
-        'maxAmount' => false
+		'authorizedCardUsers' => false,
+		'fundingSource' => false,
+		'interval' => false,
+		'maxAmount' => false
     ];
 
     /**
@@ -358,7 +358,7 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets amountPerIndustry
      *
-     * @param array<string,\Adyen\Model\BalancePlatform\Amount>|null $amountPerIndustry
+     * @param array<string,\Adyen\Model\BalancePlatform\Amount>|null $amountPerIndustry 
      *
      * @return self
      */
@@ -385,7 +385,7 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets authorizedCardUsers
      *
-     * @param bool|null $authorizedCardUsers
+     * @param bool|null $authorizedCardUsers 
      *
      * @return self
      */
@@ -412,7 +412,7 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets fundingSource
      *
-     * @param string[]|null $fundingSource
+     * @param string[]|null $fundingSource 
      *
      * @return self
      */
@@ -448,7 +448,7 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets interval
      *
-     * @param string|null $interval
+     * @param string|null $interval 
      *
      * @return self
      */
@@ -562,7 +562,7 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

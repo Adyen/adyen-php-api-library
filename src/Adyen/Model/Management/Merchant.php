@@ -91,19 +91,19 @@ class Merchant implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'links' => false,
-        'captureDelay' => false,
-        'companyId' => false,
-        'dataCenters' => false,
-        'defaultShopperInteraction' => false,
-        'description' => false,
-        'id' => false,
-        'merchantCity' => false,
-        'name' => false,
-        'pricingPlan' => false,
-        'primarySettlementCurrency' => false,
-        'reference' => false,
-        'shopWebAddress' => false,
-        'status' => false
+		'captureDelay' => false,
+		'companyId' => false,
+		'dataCenters' => false,
+		'defaultShopperInteraction' => false,
+		'description' => false,
+		'id' => false,
+		'merchantCity' => false,
+		'name' => false,
+		'pricingPlan' => false,
+		'primarySettlementCurrency' => false,
+		'reference' => false,
+		'shopWebAddress' => false,
+		'status' => false
     ];
 
     /**
@@ -808,7 +808,7 @@ class Merchant implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

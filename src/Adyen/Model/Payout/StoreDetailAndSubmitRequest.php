@@ -101,24 +101,24 @@ class StoreDetailAndSubmitRequest implements ModelInterface, ArrayAccess, \JsonS
       */
     protected static $openAPINullables = [
         'additionalData' => false,
-        'amount' => false,
-        'bank' => false,
-        'billingAddress' => false,
-        'card' => false,
-        'dateOfBirth' => false,
-        'entityType' => false,
-        'fraudOffset' => true,
-        'merchantAccount' => false,
-        'nationality' => false,
-        'recurring' => false,
-        'reference' => false,
-        'selectedBrand' => false,
-        'shopperEmail' => false,
-        'shopperName' => false,
-        'shopperReference' => false,
-        'shopperStatement' => false,
-        'socialSecurityNumber' => false,
-        'telephoneNumber' => false
+		'amount' => false,
+		'bank' => false,
+		'billingAddress' => false,
+		'card' => false,
+		'dateOfBirth' => false,
+		'entityType' => false,
+		'fraudOffset' => true,
+		'merchantAccount' => false,
+		'nationality' => false,
+		'recurring' => false,
+		'reference' => false,
+		'selectedBrand' => false,
+		'shopperEmail' => false,
+		'shopperName' => false,
+		'shopperReference' => false,
+		'shopperStatement' => false,
+		'socialSecurityNumber' => false,
+		'telephoneNumber' => false
     ];
 
     /**
@@ -1036,7 +1036,7 @@ class StoreDetailAndSubmitRequest implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

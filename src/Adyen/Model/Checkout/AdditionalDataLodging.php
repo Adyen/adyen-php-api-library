@@ -95,21 +95,21 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPINullables = [
         'lodgingCheckInDate' => false,
-        'lodgingCheckOutDate' => false,
-        'lodgingCustomerServiceTollFreeNumber' => false,
-        'lodgingFireSafetyActIndicator' => false,
-        'lodgingFolioCashAdvances' => false,
-        'lodgingFolioNumber' => false,
-        'lodgingFoodBeverageCharges' => false,
-        'lodgingNoShowIndicator' => false,
-        'lodgingPrepaidExpenses' => false,
-        'lodgingPropertyPhoneNumber' => false,
-        'lodgingRoom1NumberOfNights' => false,
-        'lodgingRoom1Rate' => false,
-        'lodgingTotalRoomTax' => false,
-        'lodgingTotalTax' => false,
-        'travelEntertainmentAuthDataDuration' => false,
-        'travelEntertainmentAuthDataMarket' => false
+		'lodgingCheckOutDate' => false,
+		'lodgingCustomerServiceTollFreeNumber' => false,
+		'lodgingFireSafetyActIndicator' => false,
+		'lodgingFolioCashAdvances' => false,
+		'lodgingFolioNumber' => false,
+		'lodgingFoodBeverageCharges' => false,
+		'lodgingNoShowIndicator' => false,
+		'lodgingPrepaidExpenses' => false,
+		'lodgingPropertyPhoneNumber' => false,
+		'lodgingRoom1NumberOfNights' => false,
+		'lodgingRoom1Rate' => false,
+		'lodgingTotalRoomTax' => false,
+		'lodgingTotalTax' => false,
+		'travelEntertainmentAuthDataDuration' => false,
+		'travelEntertainmentAuthDataMarket' => false
     ];
 
     /**
@@ -876,7 +876,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

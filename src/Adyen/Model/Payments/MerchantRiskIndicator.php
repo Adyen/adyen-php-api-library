@@ -91,19 +91,19 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPINullables = [
         'addressMatch' => false,
-        'deliveryAddressIndicator' => false,
-        'deliveryEmail' => false,
-        'deliveryEmailAddress' => false,
-        'deliveryTimeframe' => false,
-        'giftCardAmount' => false,
-        'giftCardCount' => true,
-        'giftCardCurr' => false,
-        'preOrderDate' => false,
-        'preOrderPurchase' => false,
-        'preOrderPurchaseInd' => false,
-        'reorderItems' => false,
-        'reorderItemsInd' => false,
-        'shipIndicator' => false
+		'deliveryAddressIndicator' => false,
+		'deliveryEmail' => false,
+		'deliveryEmailAddress' => false,
+		'deliveryTimeframe' => false,
+		'giftCardAmount' => false,
+		'giftCardCount' => true,
+		'giftCardCurr' => false,
+		'preOrderDate' => false,
+		'preOrderPurchase' => false,
+		'preOrderPurchaseInd' => false,
+		'reorderItems' => false,
+		'reorderItemsInd' => false,
+		'shipIndicator' => false
     ];
 
     /**
@@ -888,7 +888,7 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

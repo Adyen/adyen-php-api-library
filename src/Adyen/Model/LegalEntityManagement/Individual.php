@@ -81,14 +81,14 @@ class Individual implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'birthData' => false,
-        'email' => false,
-        'identificationData' => false,
-        'name' => false,
-        'nationality' => false,
-        'phone' => false,
-        'residentialAddress' => false,
-        'taxInformation' => false,
-        'webData' => false
+		'email' => false,
+		'identificationData' => false,
+		'name' => false,
+		'nationality' => false,
+		'phone' => false,
+		'residentialAddress' => false,
+		'taxInformation' => false,
+		'webData' => false
     ];
 
     /**
@@ -644,7 +644,7 @@ class Individual implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

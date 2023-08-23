@@ -75,11 +75,11 @@ class PayWithGoogleDetails implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPINullables = [
         'checkoutAttemptId' => false,
-        'fundingSource' => false,
-        'googlePayToken' => false,
-        'recurringDetailReference' => false,
-        'storedPaymentMethodId' => false,
-        'type' => false
+		'fundingSource' => false,
+		'googlePayToken' => false,
+		'recurringDetailReference' => false,
+		'storedPaymentMethodId' => false,
+		'type' => false
     ];
 
     /**
@@ -603,7 +603,7 @@ class PayWithGoogleDetails implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

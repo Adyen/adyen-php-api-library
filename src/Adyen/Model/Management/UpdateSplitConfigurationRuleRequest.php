@@ -71,9 +71,9 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
       */
     protected static $openAPINullables = [
         'currency' => false,
-        'fundingSource' => false,
-        'paymentMethod' => false,
-        'shopperInteraction' => false
+		'fundingSource' => false,
+		'paymentMethod' => false,
+		'shopperInteraction' => false
     ];
 
     /**
@@ -477,7 +477,7 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

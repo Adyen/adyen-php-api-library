@@ -81,14 +81,14 @@ class PaymentRefundResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPINullables = [
         'amount' => false,
-        'lineItems' => false,
-        'merchantAccount' => false,
-        'merchantRefundReason' => false,
-        'paymentPspReference' => false,
-        'pspReference' => false,
-        'reference' => false,
-        'splits' => false,
-        'status' => false
+		'lineItems' => false,
+		'merchantAccount' => false,
+		'merchantRefundReason' => false,
+		'paymentPspReference' => false,
+		'pspReference' => false,
+		'reference' => false,
+		'splits' => false,
+		'status' => false
     ];
 
     /**
@@ -723,7 +723,7 @@ class PaymentRefundResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

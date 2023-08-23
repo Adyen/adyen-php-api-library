@@ -71,9 +71,9 @@ class MerchantAccount implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'inStoreTerminals' => false,
-        'inventoryTerminals' => false,
-        'merchantAccount' => false,
-        'stores' => false
+		'inventoryTerminals' => false,
+		'merchantAccount' => false,
+		'stores' => false
     ];
 
     /**
@@ -471,7 +471,7 @@ class MerchantAccount implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

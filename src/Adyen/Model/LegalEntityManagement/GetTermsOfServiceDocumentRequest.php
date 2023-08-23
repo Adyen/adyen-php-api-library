@@ -67,7 +67,7 @@ class GetTermsOfServiceDocumentRequest implements ModelInterface, ArrayAccess, \
       */
     protected static $openAPINullables = [
         'language' => false,
-        'type' => false
+		'type' => false
     ];
 
     /**
@@ -443,7 +443,7 @@ class GetTermsOfServiceDocumentRequest implements ModelInterface, ArrayAccess, \
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

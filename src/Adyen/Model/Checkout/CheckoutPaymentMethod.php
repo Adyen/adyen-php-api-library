@@ -168,57 +168,57 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPINullables = [
         'bankAccountNumber' => false,
-        'bankAccountType' => false,
-        'bankLocationId' => false,
-        'checkoutAttemptId' => false,
-        'encryptedBankAccountNumber' => false,
-        'encryptedBankLocationId' => false,
-        'ownerName' => false,
-        'recurringDetailReference' => false,
-        'storedPaymentMethodId' => false,
-        'type' => false,
-        'billingAddress' => false,
-        'deliveryAddress' => false,
-        'personalDetails' => false,
-        'amazonPayToken' => false,
-        'checkoutSessionId' => false,
-        'applePayToken' => false,
-        'fundingSource' => false,
-        'holderName' => false,
-        'issuer' => false,
-        'blikCode' => false,
-        'brand' => false,
-        'cupsecureplusSmscode' => false,
-        'cvc' => false,
-        'encryptedCardNumber' => false,
-        'encryptedExpiryMonth' => false,
-        'encryptedExpiryYear' => false,
-        'encryptedSecurityCode' => false,
-        'expiryMonth' => false,
-        'expiryYear' => false,
-        'networkPaymentReference' => false,
-        'number' => false,
-        'shopperNotificationReference' => false,
-        'threeDS2SdkVersion' => false,
-        'firstName' => false,
-        'lastName' => false,
-        'shopperEmail' => false,
-        'telephoneNumber' => false,
-        'googlePayToken' => false,
-        'subtype' => false,
-        'masterpassTransactionId' => false,
-        'orderID' => false,
-        'payeePreferred' => false,
-        'payerID' => false,
-        'payerSelected' => false,
-        'virtualPaymentAddress' => false,
-        'samsungPayToken' => false,
-        'iban' => false,
-        'billingSequenceNumber' => false,
-        'visaCheckoutCallId' => false,
-        'appId' => false,
-        'openid' => false,
-        'clickAndCollect' => false
+		'bankAccountType' => false,
+		'bankLocationId' => false,
+		'checkoutAttemptId' => false,
+		'encryptedBankAccountNumber' => false,
+		'encryptedBankLocationId' => false,
+		'ownerName' => false,
+		'recurringDetailReference' => false,
+		'storedPaymentMethodId' => false,
+		'type' => false,
+		'billingAddress' => false,
+		'deliveryAddress' => false,
+		'personalDetails' => false,
+		'amazonPayToken' => false,
+		'checkoutSessionId' => false,
+		'applePayToken' => false,
+		'fundingSource' => false,
+		'holderName' => false,
+		'issuer' => false,
+		'blikCode' => false,
+		'brand' => false,
+		'cupsecureplusSmscode' => false,
+		'cvc' => false,
+		'encryptedCardNumber' => false,
+		'encryptedExpiryMonth' => false,
+		'encryptedExpiryYear' => false,
+		'encryptedSecurityCode' => false,
+		'expiryMonth' => false,
+		'expiryYear' => false,
+		'networkPaymentReference' => false,
+		'number' => false,
+		'shopperNotificationReference' => false,
+		'threeDS2SdkVersion' => false,
+		'firstName' => false,
+		'lastName' => false,
+		'shopperEmail' => false,
+		'telephoneNumber' => false,
+		'googlePayToken' => false,
+		'subtype' => false,
+		'masterpassTransactionId' => false,
+		'orderID' => false,
+		'payeePreferred' => false,
+		'payerID' => false,
+		'payerSelected' => false,
+		'virtualPaymentAddress' => false,
+		'samsungPayToken' => false,
+		'iban' => false,
+		'billingSequenceNumber' => false,
+		'visaCheckoutCallId' => false,
+		'appId' => false,
+		'openid' => false,
+		'clickAndCollect' => false
     ];
 
     /**
@@ -1644,7 +1644,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets shopperEmail
      *
-     * @param string $shopperEmail
+     * @param string $shopperEmail 
      *
      * @return self
      */
@@ -1671,7 +1671,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets telephoneNumber
      *
-     * @param string $telephoneNumber
+     * @param string $telephoneNumber 
      *
      * @return self
      */
@@ -2153,7 +2153,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

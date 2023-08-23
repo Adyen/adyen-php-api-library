@@ -69,8 +69,8 @@ class GeneratePciDescriptionResponse implements ModelInterface, ArrayAccess, \Js
       */
     protected static $openAPINullables = [
         'content' => false,
-        'language' => false,
-        'pciTemplateReferences' => false
+		'language' => false,
+		'pciTemplateReferences' => false
     ];
 
     /**
@@ -434,7 +434,7 @@ class GeneratePciDescriptionResponse implements ModelInterface, ArrayAccess, \Js
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -69,8 +69,8 @@ class ResponseAdditionalDataNetworkTokens implements ModelInterface, ArrayAccess
       */
     protected static $openAPINullables = [
         'networkTokenAvailable' => false,
-        'networkTokenBin' => false,
-        'networkTokenTokenSummary' => false
+		'networkTokenBin' => false,
+		'networkTokenTokenSummary' => false
     ];
 
     /**
@@ -434,7 +434,7 @@ class ResponseAdditionalDataNetworkTokens implements ModelInterface, ArrayAccess
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -81,14 +81,14 @@ class StoredValueLoadRequest implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPINullables = [
         'amount' => false,
-        'loadType' => false,
-        'merchantAccount' => false,
-        'paymentMethod' => false,
-        'recurringDetailReference' => false,
-        'reference' => false,
-        'shopperInteraction' => false,
-        'shopperReference' => false,
-        'store' => false
+		'loadType' => false,
+		'merchantAccount' => false,
+		'paymentMethod' => false,
+		'recurringDetailReference' => false,
+		'reference' => false,
+		'shopperInteraction' => false,
+		'shopperReference' => false,
+		'store' => false
     ];
 
     /**
@@ -720,7 +720,7 @@ class StoredValueLoadRequest implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

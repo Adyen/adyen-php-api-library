@@ -69,8 +69,8 @@ class ApplePaySessionRequest implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPINullables = [
         'displayName' => false,
-        'domainName' => false,
-        'merchantIdentifier' => false
+		'domainName' => false,
+		'merchantIdentifier' => false
     ];
 
     /**
@@ -443,7 +443,7 @@ class ApplePaySessionRequest implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

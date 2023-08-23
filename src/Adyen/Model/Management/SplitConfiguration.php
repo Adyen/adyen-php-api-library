@@ -71,9 +71,9 @@ class SplitConfiguration implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPINullables = [
         'description' => false,
-        'rules' => false,
-        'splitConfigurationId' => false,
-        'stores' => false
+		'rules' => false,
+		'splitConfigurationId' => false,
+		'stores' => false
     ];
 
     /**
@@ -474,7 +474,7 @@ class SplitConfiguration implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

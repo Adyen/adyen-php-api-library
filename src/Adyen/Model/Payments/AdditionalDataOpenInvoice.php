@@ -99,23 +99,23 @@ class AdditionalDataOpenInvoice implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static $openAPINullables = [
         'openinvoicedataMerchantData' => false,
-        'openinvoicedataNumberOfLines' => false,
-        'openinvoicedataRecipientFirstName' => false,
-        'openinvoicedataRecipientLastName' => false,
-        'openinvoicedataLineItemNrCurrencyCode' => false,
-        'openinvoicedataLineItemNrDescription' => false,
-        'openinvoicedataLineItemNrItemAmount' => false,
-        'openinvoicedataLineItemNrItemId' => false,
-        'openinvoicedataLineItemNrItemVatAmount' => false,
-        'openinvoicedataLineItemNrItemVatPercentage' => false,
-        'openinvoicedataLineItemNrNumberOfItems' => false,
-        'openinvoicedataLineItemNrReturnShippingCompany' => false,
-        'openinvoicedataLineItemNrReturnTrackingNumber' => false,
-        'openinvoicedataLineItemNrReturnTrackingUri' => false,
-        'openinvoicedataLineItemNrShippingCompany' => false,
-        'openinvoicedataLineItemNrShippingMethod' => false,
-        'openinvoicedataLineItemNrTrackingNumber' => false,
-        'openinvoicedataLineItemNrTrackingUri' => false
+		'openinvoicedataNumberOfLines' => false,
+		'openinvoicedataRecipientFirstName' => false,
+		'openinvoicedataRecipientLastName' => false,
+		'openinvoicedataLineItemNrCurrencyCode' => false,
+		'openinvoicedataLineItemNrDescription' => false,
+		'openinvoicedataLineItemNrItemAmount' => false,
+		'openinvoicedataLineItemNrItemId' => false,
+		'openinvoicedataLineItemNrItemVatAmount' => false,
+		'openinvoicedataLineItemNrItemVatPercentage' => false,
+		'openinvoicedataLineItemNrNumberOfItems' => false,
+		'openinvoicedataLineItemNrReturnShippingCompany' => false,
+		'openinvoicedataLineItemNrReturnTrackingNumber' => false,
+		'openinvoicedataLineItemNrReturnTrackingUri' => false,
+		'openinvoicedataLineItemNrShippingCompany' => false,
+		'openinvoicedataLineItemNrShippingMethod' => false,
+		'openinvoicedataLineItemNrTrackingNumber' => false,
+		'openinvoicedataLineItemNrTrackingUri' => false
     ];
 
     /**
@@ -944,7 +944,7 @@ class AdditionalDataOpenInvoice implements ModelInterface, ArrayAccess, \JsonSer
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -73,10 +73,10 @@ class UpiIntentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'checkoutAttemptId' => false,
-        'recurringDetailReference' => false,
-        'shopperNotificationReference' => false,
-        'storedPaymentMethodId' => false,
-        'type' => false
+		'recurringDetailReference' => false,
+		'shopperNotificationReference' => false,
+		'storedPaymentMethodId' => false,
+		'type' => false
     ];
 
     /**
@@ -538,7 +538,7 @@ class UpiIntentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

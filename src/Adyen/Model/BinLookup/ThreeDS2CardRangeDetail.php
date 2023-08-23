@@ -75,11 +75,11 @@ class ThreeDS2CardRangeDetail implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static $openAPINullables = [
         'acsInfoInd' => false,
-        'brandCode' => false,
-        'endRange' => false,
-        'startRange' => false,
-        'threeDS2Versions' => false,
-        'threeDSMethodURL' => false
+		'brandCode' => false,
+		'endRange' => false,
+		'startRange' => false,
+		'threeDS2Versions' => false,
+		'threeDSMethodURL' => false
     ];
 
     /**
@@ -536,7 +536,7 @@ class ThreeDS2CardRangeDetail implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

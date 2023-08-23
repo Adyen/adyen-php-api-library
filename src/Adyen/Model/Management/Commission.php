@@ -67,7 +67,7 @@ class Commission implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'fixedAmount' => false,
-        'variablePercentage' => false
+		'variablePercentage' => false
     ];
 
     /**
@@ -400,7 +400,7 @@ class Commission implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

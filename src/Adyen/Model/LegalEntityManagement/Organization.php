@@ -95,21 +95,21 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'dateOfIncorporation' => false,
-        'description' => false,
-        'doingBusinessAs' => false,
-        'email' => false,
-        'legalName' => false,
-        'phone' => false,
-        'principalPlaceOfBusiness' => false,
-        'registeredAddress' => false,
-        'registrationNumber' => false,
-        'stockData' => false,
-        'taxInformation' => false,
-        'taxReportingClassification' => false,
-        'type' => false,
-        'vatAbsenceReason' => false,
-        'vatNumber' => false,
-        'webData' => false
+		'description' => false,
+		'doingBusinessAs' => false,
+		'email' => false,
+		'legalName' => false,
+		'phone' => false,
+		'principalPlaceOfBusiness' => false,
+		'registeredAddress' => false,
+		'registrationNumber' => false,
+		'stockData' => false,
+		'taxInformation' => false,
+		'taxReportingClassification' => false,
+		'type' => false,
+		'vatAbsenceReason' => false,
+		'vatNumber' => false,
+		'webData' => false
     ];
 
     /**
@@ -956,7 +956,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

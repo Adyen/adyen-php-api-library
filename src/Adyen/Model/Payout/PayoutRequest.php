@@ -91,19 +91,19 @@ class PayoutRequest implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'amount' => false,
-        'billingAddress' => false,
-        'card' => false,
-        'fraudOffset' => true,
-        'fundSource' => false,
-        'merchantAccount' => false,
-        'recurring' => false,
-        'reference' => false,
-        'selectedRecurringDetailReference' => false,
-        'shopperEmail' => false,
-        'shopperInteraction' => false,
-        'shopperName' => false,
-        'shopperReference' => false,
-        'telephoneNumber' => false
+		'billingAddress' => false,
+		'card' => false,
+		'fraudOffset' => true,
+		'fundSource' => false,
+		'merchantAccount' => false,
+		'recurring' => false,
+		'reference' => false,
+		'selectedRecurringDetailReference' => false,
+		'shopperEmail' => false,
+		'shopperInteraction' => false,
+		'shopperName' => false,
+		'shopperReference' => false,
+		'telephoneNumber' => false
     ];
 
     /**
@@ -852,7 +852,7 @@ class PayoutRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

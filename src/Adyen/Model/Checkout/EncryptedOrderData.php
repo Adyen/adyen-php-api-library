@@ -67,7 +67,7 @@ class EncryptedOrderData implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPINullables = [
         'orderData' => false,
-        'pspReference' => false
+		'pspReference' => false
     ];
 
     /**
@@ -406,7 +406,7 @@ class EncryptedOrderData implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

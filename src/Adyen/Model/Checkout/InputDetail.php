@@ -81,14 +81,14 @@ class InputDetail implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'configuration' => false,
-        'details' => false,
-        'inputDetails' => false,
-        'itemSearchUrl' => false,
-        'items' => false,
-        'key' => false,
-        'optional' => false,
-        'type' => false,
-        'value' => false
+		'details' => false,
+		'inputDetails' => false,
+		'itemSearchUrl' => false,
+		'items' => false,
+		'key' => false,
+		'optional' => false,
+		'type' => false,
+		'value' => false
     ];
 
     /**
@@ -640,7 +640,7 @@ class InputDetail implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

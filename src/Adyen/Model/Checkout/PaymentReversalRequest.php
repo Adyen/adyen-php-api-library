@@ -67,7 +67,7 @@ class PaymentReversalRequest implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPINullables = [
         'merchantAccount' => false,
-        'reference' => false
+		'reference' => false
     ];
 
     /**
@@ -403,7 +403,7 @@ class PaymentReversalRequest implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

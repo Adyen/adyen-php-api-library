@@ -67,7 +67,7 @@ class UninstallAndroidCertificateDetails implements ModelInterface, ArrayAccess,
       */
     protected static $openAPINullables = [
         'certificateId' => false,
-        'type' => false
+		'type' => false
     ];
 
     /**
@@ -431,7 +431,7 @@ class UninstallAndroidCertificateDetails implements ModelInterface, ArrayAccess,
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

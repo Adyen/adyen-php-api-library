@@ -77,12 +77,12 @@ class DocumentReference implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPINullables = [
         'active' => false,
-        'description' => false,
-        'fileName' => false,
-        'id' => false,
-        'modificationDate' => false,
-        'pages' => false,
-        'type' => false
+		'description' => false,
+		'fileName' => false,
+		'id' => false,
+		'modificationDate' => false,
+		'pages' => false,
+		'type' => false
     ];
 
     /**
@@ -570,7 +570,7 @@ class DocumentReference implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

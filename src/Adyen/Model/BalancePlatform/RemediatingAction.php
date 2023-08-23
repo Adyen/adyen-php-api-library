@@ -67,7 +67,7 @@ class RemediatingAction implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPINullables = [
         'code' => false,
-        'message' => false
+		'message' => false
     ];
 
     /**
@@ -400,7 +400,7 @@ class RemediatingAction implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

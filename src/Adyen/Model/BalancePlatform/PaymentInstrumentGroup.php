@@ -75,11 +75,11 @@ class PaymentInstrumentGroup implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPINullables = [
         'balancePlatform' => false,
-        'description' => false,
-        'id' => false,
-        'properties' => false,
-        'reference' => false,
-        'txVariant' => false
+		'description' => false,
+		'id' => false,
+		'properties' => false,
+		'reference' => false,
+		'txVariant' => false
     ];
 
     /**
@@ -542,7 +542,7 @@ class PaymentInstrumentGroup implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

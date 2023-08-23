@@ -77,12 +77,12 @@ class UltimatePartyIdentification implements ModelInterface, ArrayAccess, \JsonS
       */
     protected static $openAPINullables = [
         'address' => false,
-        'dateOfBirth' => false,
-        'firstName' => false,
-        'fullName' => false,
-        'lastName' => false,
-        'reference' => false,
-        'type' => false
+		'dateOfBirth' => false,
+		'firstName' => false,
+		'fullName' => false,
+		'lastName' => false,
+		'reference' => false,
+		'type' => false
     ];
 
     /**
@@ -608,7 +608,7 @@ class UltimatePartyIdentification implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

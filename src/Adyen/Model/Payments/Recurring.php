@@ -73,10 +73,10 @@ class Recurring implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'contract' => false,
-        'recurringDetailName' => false,
-        'recurringExpiry' => false,
-        'recurringFrequency' => false,
-        'tokenService' => false
+		'recurringDetailName' => false,
+		'recurringExpiry' => false,
+		'recurringFrequency' => false,
+		'tokenService' => false
     ];
 
     /**
@@ -570,7 +570,7 @@ class Recurring implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

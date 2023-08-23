@@ -73,10 +73,10 @@ class CardDetailsRequest implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPINullables = [
         'cardNumber' => false,
-        'countryCode' => false,
-        'encryptedCardNumber' => false,
-        'merchantAccount' => false,
-        'supportedBrands' => false
+		'countryCode' => false,
+		'encryptedCardNumber' => false,
+		'merchantAccount' => false,
+		'supportedBrands' => false
     ];
 
     /**
@@ -508,7 +508,7 @@ class CardDetailsRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

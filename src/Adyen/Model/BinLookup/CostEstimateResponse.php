@@ -73,10 +73,10 @@ class CostEstimateResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPINullables = [
         'cardBin' => false,
-        'costEstimateAmount' => false,
-        'costEstimateReference' => false,
-        'resultCode' => false,
-        'surchargeType' => false
+		'costEstimateAmount' => false,
+		'costEstimateReference' => false,
+		'resultCode' => false,
+		'surchargeType' => false
     ];
 
     /**
@@ -502,7 +502,7 @@ class CostEstimateResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -69,8 +69,8 @@ class ThreeDSRequestorAuthenticationInfo implements ModelInterface, ArrayAccess,
       */
     protected static $openAPINullables = [
         'threeDSReqAuthData' => false,
-        'threeDSReqAuthMethod' => false,
-        'threeDSReqAuthTimestamp' => false
+		'threeDSReqAuthMethod' => false,
+		'threeDSReqAuthTimestamp' => false
     ];
 
     /**
@@ -475,7 +475,7 @@ class ThreeDSRequestorAuthenticationInfo implements ModelInterface, ArrayAccess,
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -81,14 +81,14 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
       */
     protected static $openAPINullables = [
         'enhancedSchemeDataCustomerReference' => false,
-        'enhancedSchemeDataEmployeeName' => false,
-        'enhancedSchemeDataJobDescription' => false,
-        'enhancedSchemeDataRegularHoursRate' => false,
-        'enhancedSchemeDataRegularHoursWorked' => false,
-        'enhancedSchemeDataRequestName' => false,
-        'enhancedSchemeDataTempStartDate' => false,
-        'enhancedSchemeDataTempWeekEnding' => false,
-        'enhancedSchemeDataTotalTaxAmount' => false
+		'enhancedSchemeDataEmployeeName' => false,
+		'enhancedSchemeDataJobDescription' => false,
+		'enhancedSchemeDataRegularHoursRate' => false,
+		'enhancedSchemeDataRegularHoursWorked' => false,
+		'enhancedSchemeDataRequestName' => false,
+		'enhancedSchemeDataTempStartDate' => false,
+		'enhancedSchemeDataTempWeekEnding' => false,
+		'enhancedSchemeDataTotalTaxAmount' => false
     ];
 
     /**
@@ -638,7 +638,7 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

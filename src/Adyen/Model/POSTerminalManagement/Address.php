@@ -75,11 +75,11 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'city' => false,
-        'countryCode' => false,
-        'postalCode' => false,
-        'stateOrProvince' => false,
-        'streetAddress' => false,
-        'streetAddress2' => false
+		'countryCode' => false,
+		'postalCode' => false,
+		'stateOrProvince' => false,
+		'streetAddress' => false,
+		'streetAddress2' => false
     ];
 
     /**
@@ -536,7 +536,7 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -69,8 +69,8 @@ class Counterparty2 implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'accountHolderId' => false,
-        'balanceAccountId' => false,
-        'transferInstrumentId' => false
+		'balanceAccountId' => false,
+		'transferInstrumentId' => false
     ];
 
     /**
@@ -434,7 +434,7 @@ class Counterparty2 implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

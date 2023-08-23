@@ -75,11 +75,11 @@ class CheckoutOrderResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPINullables = [
         'amount' => false,
-        'expiresAt' => false,
-        'orderData' => false,
-        'pspReference' => false,
-        'reference' => false,
-        'remainingAmount' => false
+		'expiresAt' => false,
+		'orderData' => false,
+		'pspReference' => false,
+		'reference' => false,
+		'remainingAmount' => false
     ];
 
     /**
@@ -539,7 +539,7 @@ class CheckoutOrderResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

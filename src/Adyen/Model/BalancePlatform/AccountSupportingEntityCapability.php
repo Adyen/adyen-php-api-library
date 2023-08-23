@@ -77,12 +77,12 @@ class AccountSupportingEntityCapability implements ModelInterface, ArrayAccess, 
       */
     protected static $openAPINullables = [
         'allowed' => false,
-        'allowedLevel' => false,
-        'enabled' => false,
-        'id' => false,
-        'requested' => false,
-        'requestedLevel' => false,
-        'verificationStatus' => false
+		'allowedLevel' => false,
+		'enabled' => false,
+		'id' => false,
+		'requested' => false,
+		'requestedLevel' => false,
+		'verificationStatus' => false
     ];
 
     /**
@@ -681,7 +681,7 @@ class AccountSupportingEntityCapability implements ModelInterface, ArrayAccess, 
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

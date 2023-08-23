@@ -93,20 +93,20 @@ class SubmitRequest implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'additionalData' => false,
-        'amount' => false,
-        'dateOfBirth' => false,
-        'entityType' => false,
-        'fraudOffset' => true,
-        'merchantAccount' => false,
-        'nationality' => false,
-        'recurring' => false,
-        'reference' => false,
-        'selectedRecurringDetailReference' => false,
-        'shopperEmail' => false,
-        'shopperName' => false,
-        'shopperReference' => false,
-        'shopperStatement' => false,
-        'socialSecurityNumber' => false
+		'amount' => false,
+		'dateOfBirth' => false,
+		'entityType' => false,
+		'fraudOffset' => true,
+		'merchantAccount' => false,
+		'nationality' => false,
+		'recurring' => false,
+		'reference' => false,
+		'selectedRecurringDetailReference' => false,
+		'shopperEmail' => false,
+		'shopperName' => false,
+		'shopperReference' => false,
+		'shopperStatement' => false,
+		'socialSecurityNumber' => false
     ];
 
     /**
@@ -894,7 +894,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

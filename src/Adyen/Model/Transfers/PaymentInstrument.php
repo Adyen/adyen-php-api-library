@@ -71,9 +71,9 @@ class PaymentInstrument implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPINullables = [
         'description' => false,
-        'id' => false,
-        'reference' => false,
-        'tokenType' => false
+		'id' => false,
+		'reference' => false,
+		'tokenType' => false
     ];
 
     /**
@@ -468,7 +468,7 @@ class PaymentInstrument implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

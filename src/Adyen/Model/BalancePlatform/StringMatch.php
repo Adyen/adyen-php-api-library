@@ -67,7 +67,7 @@ class StringMatch implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'operation' => false,
-        'value' => false
+		'value' => false
     ];
 
     /**
@@ -437,7 +437,7 @@ class StringMatch implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

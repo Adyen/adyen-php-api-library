@@ -87,17 +87,17 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPINullables = [
         'additionalData' => false,
-        'allowedPaymentMethods' => false,
-        'amount' => false,
-        'blockedPaymentMethods' => false,
-        'channel' => false,
-        'countryCode' => false,
-        'merchantAccount' => false,
-        'order' => false,
-        'shopperLocale' => false,
-        'shopperReference' => false,
-        'splitCardFundingSources' => false,
-        'store' => false
+		'allowedPaymentMethods' => false,
+		'amount' => false,
+		'blockedPaymentMethods' => false,
+		'channel' => false,
+		'countryCode' => false,
+		'merchantAccount' => false,
+		'order' => false,
+		'shopperLocale' => false,
+		'shopperReference' => false,
+		'splitCardFundingSources' => false,
+		'store' => false
     ];
 
     /**
@@ -778,7 +778,7 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

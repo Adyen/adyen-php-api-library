@@ -73,10 +73,10 @@ class ThreeDSAvailabilityResponse implements ModelInterface, ArrayAccess, \JsonS
       */
     protected static $openAPINullables = [
         'binDetails' => false,
-        'dsPublicKeys' => false,
-        'threeDS1Supported' => false,
-        'threeDS2CardRangeDetails' => false,
-        'threeDS2supported' => false
+		'dsPublicKeys' => false,
+		'threeDS1Supported' => false,
+		'threeDS2CardRangeDetails' => false,
+		'threeDS2supported' => false
     ];
 
     /**
@@ -502,7 +502,7 @@ class ThreeDSAvailabilityResponse implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -71,9 +71,9 @@ class Configuration implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'avs' => false,
-        'cardHolderName' => false,
-        'installments' => false,
-        'shopperInput' => false
+		'cardHolderName' => false,
+		'installments' => false,
+		'shopperInput' => false
     ];
 
     /**
@@ -503,7 +503,7 @@ class Configuration implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -67,7 +67,7 @@ class JSONObject implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'paths' => false,
-        'rootPath' => false
+		'rootPath' => false
     ];
 
     /**
@@ -400,7 +400,7 @@ class JSONObject implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

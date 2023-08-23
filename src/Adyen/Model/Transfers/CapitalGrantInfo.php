@@ -69,8 +69,8 @@ class CapitalGrantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'counterparty' => false,
-        'grantAccountId' => false,
-        'grantOfferId' => false
+		'grantAccountId' => false,
+		'grantOfferId' => false
     ];
 
     /**
@@ -440,7 +440,7 @@ class CapitalGrantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

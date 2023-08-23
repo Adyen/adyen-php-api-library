@@ -73,10 +73,10 @@ class AssignTerminalsRequest implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPINullables = [
         'companyAccount' => false,
-        'merchantAccount' => false,
-        'merchantInventory' => false,
-        'store' => false,
-        'terminals' => false
+		'merchantAccount' => false,
+		'merchantInventory' => false,
+		'store' => false,
+		'terminals' => false
     ];
 
     /**
@@ -508,7 +508,7 @@ class AssignTerminalsRequest implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

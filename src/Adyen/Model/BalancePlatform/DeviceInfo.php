@@ -85,16 +85,16 @@ class DeviceInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'cardCaptureTechnology' => false,
-        'deviceName' => false,
-        'formFactor' => false,
-        'imei' => false,
-        'isoDeviceType' => false,
-        'msisdn' => false,
-        'osName' => false,
-        'osVersion' => false,
-        'paymentTypes' => false,
-        'serialNumber' => false,
-        'storageTechnology' => false
+		'deviceName' => false,
+		'formFactor' => false,
+		'imei' => false,
+		'isoDeviceType' => false,
+		'msisdn' => false,
+		'osName' => false,
+		'osVersion' => false,
+		'paymentTypes' => false,
+		'serialNumber' => false,
+		'storageTechnology' => false
     ];
 
     /**
@@ -706,7 +706,7 @@ class DeviceInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

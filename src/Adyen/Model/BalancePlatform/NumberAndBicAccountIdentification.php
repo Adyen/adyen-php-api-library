@@ -71,9 +71,9 @@ class NumberAndBicAccountIdentification implements ModelInterface, ArrayAccess, 
       */
     protected static $openAPINullables = [
         'accountNumber' => false,
-        'additionalBankIdentification' => false,
-        'bic' => false,
-        'type' => false
+		'additionalBankIdentification' => false,
+		'bic' => false,
+		'type' => false
     ];
 
     /**
@@ -508,7 +508,7 @@ class NumberAndBicAccountIdentification implements ModelInterface, ArrayAccess, 
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

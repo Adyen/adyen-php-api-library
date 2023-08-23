@@ -71,9 +71,9 @@ class TaxReportingClassification implements ModelInterface, ArrayAccess, \JsonSe
       */
     protected static $openAPINullables = [
         'businessType' => false,
-        'financialInstitutionNumber' => false,
-        'mainSourceOfIncome' => false,
-        'type' => false
+		'financialInstitutionNumber' => false,
+		'mainSourceOfIncome' => false,
+		'type' => false
     ];
 
     /**
@@ -585,7 +585,7 @@ class TaxReportingClassification implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

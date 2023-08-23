@@ -69,8 +69,8 @@ class AULocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPINullables = [
         'accountNumber' => false,
-        'bsbCode' => false,
-        'type' => false
+		'bsbCode' => false,
+		'type' => false
     ];
 
     /**
@@ -474,7 +474,7 @@ class AULocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -69,8 +69,8 @@ class CreateAllowedOriginRequest implements ModelInterface, ArrayAccess, \JsonSe
       */
     protected static $openAPINullables = [
         'links' => false,
-        'domain' => false,
-        'id' => false
+		'domain' => false,
+		'id' => false
     ];
 
     /**
@@ -437,7 +437,7 @@ class CreateAllowedOriginRequest implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

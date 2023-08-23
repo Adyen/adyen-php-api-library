@@ -71,9 +71,9 @@ class CapitalBalance implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'currency' => false,
-        'fee' => false,
-        'principal' => false,
-        'total' => false
+		'fee' => false,
+		'principal' => false,
+		'total' => false
     ];
 
     /**
@@ -480,7 +480,7 @@ class CapitalBalance implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

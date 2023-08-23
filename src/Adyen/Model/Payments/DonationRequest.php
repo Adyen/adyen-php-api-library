@@ -75,11 +75,11 @@ class DonationRequest implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'donationAccount' => false,
-        'merchantAccount' => false,
-        'modificationAmount' => false,
-        'originalReference' => false,
-        'platformChargebackLogic' => false,
-        'reference' => false
+		'merchantAccount' => false,
+		'modificationAmount' => false,
+		'originalReference' => false,
+		'platformChargebackLogic' => false,
+		'reference' => false
     ];
 
     /**
@@ -545,7 +545,7 @@ class DonationRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

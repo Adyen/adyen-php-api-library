@@ -77,12 +77,12 @@ class AfterpayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'billingAddress' => false,
-        'checkoutAttemptId' => false,
-        'deliveryAddress' => false,
-        'personalDetails' => false,
-        'recurringDetailReference' => false,
-        'storedPaymentMethodId' => false,
-        'type' => false
+		'checkoutAttemptId' => false,
+		'deliveryAddress' => false,
+		'personalDetails' => false,
+		'recurringDetailReference' => false,
+		'storedPaymentMethodId' => false,
+		'type' => false
     ];
 
     /**
@@ -610,7 +610,7 @@ class AfterpayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

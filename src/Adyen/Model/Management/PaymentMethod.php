@@ -115,31 +115,31 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'afterpayTouch' => false,
-        'allowed' => false,
-        'applePay' => false,
-        'bcmc' => false,
-        'businessLineId' => false,
-        'cartesBancaires' => false,
-        'clearpay' => false,
-        'countries' => false,
-        'currencies' => false,
-        'customRoutingFlags' => false,
-        'enabled' => false,
-        'giroPay' => false,
-        'googlePay' => false,
-        'id' => false,
-        'klarna' => false,
-        'mealVoucherFR' => false,
-        'paypal' => false,
-        'reference' => false,
-        'shopperInteraction' => false,
-        'sofort' => false,
-        'storeId' => false,
-        'swish' => false,
-        'twint' => false,
-        'type' => false,
-        'verificationStatus' => false,
-        'vipps' => false
+		'allowed' => false,
+		'applePay' => false,
+		'bcmc' => false,
+		'businessLineId' => false,
+		'cartesBancaires' => false,
+		'clearpay' => false,
+		'countries' => false,
+		'currencies' => false,
+		'customRoutingFlags' => false,
+		'enabled' => false,
+		'giroPay' => false,
+		'googlePay' => false,
+		'id' => false,
+		'klarna' => false,
+		'mealVoucherFR' => false,
+		'paypal' => false,
+		'reference' => false,
+		'shopperInteraction' => false,
+		'sofort' => false,
+		'storeId' => false,
+		'swish' => false,
+		'twint' => false,
+		'type' => false,
+		'verificationStatus' => false,
+		'vipps' => false
     ];
 
     /**
@@ -1256,7 +1256,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

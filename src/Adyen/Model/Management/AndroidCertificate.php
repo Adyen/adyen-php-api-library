@@ -77,12 +77,12 @@ class AndroidCertificate implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPINullables = [
         'description' => false,
-        'extension' => false,
-        'id' => false,
-        'name' => false,
-        'notAfter' => false,
-        'notBefore' => false,
-        'status' => false
+		'extension' => false,
+		'id' => false,
+		'name' => false,
+		'notAfter' => false,
+		'notBefore' => false,
+		'status' => false
     ];
 
     /**
@@ -573,7 +573,7 @@ class AndroidCertificate implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

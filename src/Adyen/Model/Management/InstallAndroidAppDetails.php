@@ -67,7 +67,7 @@ class InstallAndroidAppDetails implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static $openAPINullables = [
         'appId' => false,
-        'type' => false
+		'type' => false
     ];
 
     /**
@@ -431,7 +431,7 @@ class InstallAndroidAppDetails implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

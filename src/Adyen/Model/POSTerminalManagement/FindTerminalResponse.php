@@ -73,10 +73,10 @@ class FindTerminalResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPINullables = [
         'companyAccount' => false,
-        'merchantAccount' => false,
-        'merchantInventory' => false,
-        'store' => false,
-        'terminal' => false
+		'merchantAccount' => false,
+		'merchantInventory' => false,
+		'store' => false,
+		'terminal' => false
     ];
 
     /**
@@ -508,7 +508,7 @@ class FindTerminalResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

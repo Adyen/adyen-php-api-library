@@ -71,9 +71,9 @@ class ListTerminalsResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPINullables = [
         'links' => false,
-        'data' => false,
-        'itemsTotal' => true,
-        'pagesTotal' => true
+		'data' => false,
+		'itemsTotal' => true,
+		'pagesTotal' => true
     ];
 
     /**
@@ -470,7 +470,7 @@ class ListTerminalsResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

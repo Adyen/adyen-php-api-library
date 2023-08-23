@@ -81,14 +81,14 @@ class StoredValueBalanceMergeRequest implements ModelInterface, ArrayAccess, \Js
       */
     protected static $openAPINullables = [
         'amount' => false,
-        'merchantAccount' => false,
-        'paymentMethod' => false,
-        'recurringDetailReference' => false,
-        'reference' => false,
-        'shopperInteraction' => false,
-        'shopperReference' => false,
-        'sourcePaymentMethod' => false,
-        'store' => false
+		'merchantAccount' => false,
+		'paymentMethod' => false,
+		'recurringDetailReference' => false,
+		'reference' => false,
+		'shopperInteraction' => false,
+		'shopperReference' => false,
+		'sourcePaymentMethod' => false,
+		'store' => false
     ];
 
     /**
@@ -687,7 +687,7 @@ class StoredValueBalanceMergeRequest implements ModelInterface, ArrayAccess, \Js
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -75,11 +75,11 @@ class ResponseAdditionalDataBillingAddress implements ModelInterface, ArrayAcces
       */
     protected static $openAPINullables = [
         'billingAddressCity' => false,
-        'billingAddressCountry' => false,
-        'billingAddressHouseNumberOrName' => false,
-        'billingAddressPostalCode' => false,
-        'billingAddressStateOrProvince' => false,
-        'billingAddressStreet' => false
+		'billingAddressCountry' => false,
+		'billingAddressHouseNumberOrName' => false,
+		'billingAddressPostalCode' => false,
+		'billingAddressStateOrProvince' => false,
+		'billingAddressStreet' => false
     ];
 
     /**
@@ -536,7 +536,7 @@ class ResponseAdditionalDataBillingAddress implements ModelInterface, ArrayAcces
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

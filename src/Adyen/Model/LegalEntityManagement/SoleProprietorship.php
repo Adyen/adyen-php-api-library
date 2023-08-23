@@ -81,14 +81,14 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPINullables = [
         'countryOfGoverningLaw' => false,
-        'dateOfIncorporation' => false,
-        'doingBusinessAs' => false,
-        'name' => false,
-        'principalPlaceOfBusiness' => false,
-        'registeredAddress' => false,
-        'registrationNumber' => false,
-        'vatAbsenceReason' => false,
-        'vatNumber' => false
+		'dateOfIncorporation' => false,
+		'doingBusinessAs' => false,
+		'name' => false,
+		'principalPlaceOfBusiness' => false,
+		'registeredAddress' => false,
+		'registrationNumber' => false,
+		'vatAbsenceReason' => false,
+		'vatNumber' => false
     ];
 
     /**
@@ -680,7 +680,7 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

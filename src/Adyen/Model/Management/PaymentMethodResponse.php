@@ -73,10 +73,10 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPINullables = [
         'links' => false,
-        'data' => false,
-        'itemsTotal' => true,
-        'pagesTotal' => true,
-        'typesWithErrors' => false
+		'data' => false,
+		'itemsTotal' => true,
+		'pagesTotal' => true,
+		'typesWithErrors' => false
     ];
 
     /**
@@ -623,7 +623,7 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

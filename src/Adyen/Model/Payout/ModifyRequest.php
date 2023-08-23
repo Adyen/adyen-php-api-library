@@ -69,8 +69,8 @@ class ModifyRequest implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'additionalData' => false,
-        'merchantAccount' => false,
-        'originalReference' => false
+		'merchantAccount' => false,
+		'originalReference' => false
     ];
 
     /**
@@ -440,7 +440,7 @@ class ModifyRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

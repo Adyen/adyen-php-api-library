@@ -87,17 +87,17 @@ class ResponseAdditionalDataInstallments implements ModelInterface, ArrayAccess,
       */
     protected static $openAPINullables = [
         'installmentPaymentDataInstallmentType' => false,
-        'installmentPaymentDataOptionItemNrAnnualPercentageRate' => false,
-        'installmentPaymentDataOptionItemNrFirstInstallmentAmount' => false,
-        'installmentPaymentDataOptionItemNrInstallmentFee' => false,
-        'installmentPaymentDataOptionItemNrInterestRate' => false,
-        'installmentPaymentDataOptionItemNrMaximumNumberOfInstallments' => false,
-        'installmentPaymentDataOptionItemNrMinimumNumberOfInstallments' => false,
-        'installmentPaymentDataOptionItemNrNumberOfInstallments' => false,
-        'installmentPaymentDataOptionItemNrSubsequentInstallmentAmount' => false,
-        'installmentPaymentDataOptionItemNrTotalAmountDue' => false,
-        'installmentPaymentDataPaymentOptions' => false,
-        'installmentsValue' => false
+		'installmentPaymentDataOptionItemNrAnnualPercentageRate' => false,
+		'installmentPaymentDataOptionItemNrFirstInstallmentAmount' => false,
+		'installmentPaymentDataOptionItemNrInstallmentFee' => false,
+		'installmentPaymentDataOptionItemNrInterestRate' => false,
+		'installmentPaymentDataOptionItemNrMaximumNumberOfInstallments' => false,
+		'installmentPaymentDataOptionItemNrMinimumNumberOfInstallments' => false,
+		'installmentPaymentDataOptionItemNrNumberOfInstallments' => false,
+		'installmentPaymentDataOptionItemNrSubsequentInstallmentAmount' => false,
+		'installmentPaymentDataOptionItemNrTotalAmountDue' => false,
+		'installmentPaymentDataPaymentOptions' => false,
+		'installmentsValue' => false
     ];
 
     /**
@@ -740,7 +740,7 @@ class ResponseAdditionalDataInstallments implements ModelInterface, ArrayAccess,
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

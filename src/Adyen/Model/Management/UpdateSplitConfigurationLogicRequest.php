@@ -79,13 +79,13 @@ class UpdateSplitConfigurationLogicRequest implements ModelInterface, ArrayAcces
       */
     protected static $openAPINullables = [
         'additionalCommission' => false,
-        'chargeback' => false,
-        'commission' => false,
-        'paymentFee' => false,
-        'remainder' => false,
-        'splitLogicId' => false,
-        'surcharge' => false,
-        'tip' => false
+		'chargeback' => false,
+		'commission' => false,
+		'paymentFee' => false,
+		'remainder' => false,
+		'splitLogicId' => false,
+		'surcharge' => false,
+		'tip' => false
     ];
 
     /**
@@ -777,7 +777,7 @@ class UpdateSplitConfigurationLogicRequest implements ModelInterface, ArrayAcces
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

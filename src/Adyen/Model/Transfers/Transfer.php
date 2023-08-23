@@ -97,22 +97,22 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'accountHolder' => false,
-        'amount' => false,
-        'balanceAccount' => false,
-        'balanceAccountId' => false,
-        'category' => false,
-        'counterparty' => false,
-        'creationDate' => false,
-        'description' => false,
-        'direction' => false,
-        'id' => false,
-        'paymentInstrument' => false,
-        'paymentInstrumentId' => false,
-        'priority' => false,
-        'reason' => false,
-        'reference' => false,
-        'referenceForBeneficiary' => false,
-        'status' => false
+		'amount' => false,
+		'balanceAccount' => false,
+		'balanceAccountId' => false,
+		'category' => false,
+		'counterparty' => false,
+		'creationDate' => false,
+		'description' => false,
+		'direction' => false,
+		'id' => false,
+		'paymentInstrument' => false,
+		'paymentInstrumentId' => false,
+		'priority' => false,
+		'reason' => false,
+		'reference' => false,
+		'referenceForBeneficiary' => false,
+		'status' => false
     ];
 
     /**
@@ -1259,7 +1259,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

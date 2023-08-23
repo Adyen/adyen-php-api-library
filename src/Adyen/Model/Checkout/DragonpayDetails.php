@@ -71,9 +71,9 @@ class DragonpayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'checkoutAttemptId' => false,
-        'issuer' => false,
-        'shopperEmail' => false,
-        'type' => false
+		'issuer' => false,
+		'shopperEmail' => false,
+		'type' => false
     ];
 
     /**
@@ -511,7 +511,7 @@ class DragonpayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

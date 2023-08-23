@@ -75,11 +75,11 @@ class CheckoutQrCodeAction implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPINullables = [
         'expiresAt' => false,
-        'paymentData' => false,
-        'paymentMethodType' => false,
-        'qrCodeData' => false,
-        'type' => false,
-        'url' => false
+		'paymentData' => false,
+		'paymentMethodType' => false,
+		'qrCodeData' => false,
+		'type' => false,
+		'url' => false
     ];
 
     /**
@@ -570,7 +570,7 @@ class CheckoutQrCodeAction implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

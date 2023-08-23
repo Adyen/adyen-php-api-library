@@ -67,7 +67,7 @@ class AuthenticationResultResponse implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPINullables = [
         'threeDS1Result' => false,
-        'threeDS2Result' => false
+		'threeDS2Result' => false
     ];
 
     /**
@@ -400,7 +400,7 @@ class AuthenticationResultResponse implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

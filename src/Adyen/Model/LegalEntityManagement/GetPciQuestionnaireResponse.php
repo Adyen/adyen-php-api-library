@@ -71,9 +71,9 @@ class GetPciQuestionnaireResponse implements ModelInterface, ArrayAccess, \JsonS
       */
     protected static $openAPINullables = [
         'content' => false,
-        'createdAt' => false,
-        'id' => false,
-        'validUntil' => false
+		'createdAt' => false,
+		'id' => false,
+		'validUntil' => false
     ];
 
     /**
@@ -468,7 +468,7 @@ class GetPciQuestionnaireResponse implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

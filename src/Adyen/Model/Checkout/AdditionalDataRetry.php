@@ -69,8 +69,8 @@ class AdditionalDataRetry implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static $openAPINullables = [
         'retryChainAttemptNumber' => false,
-        'retryOrderAttemptNumber' => false,
-        'retrySkipRetry' => false
+		'retryOrderAttemptNumber' => false,
+		'retrySkipRetry' => false
     ];
 
     /**
@@ -434,7 +434,7 @@ class AdditionalDataRetry implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

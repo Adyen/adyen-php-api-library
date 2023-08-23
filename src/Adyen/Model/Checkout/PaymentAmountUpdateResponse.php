@@ -79,13 +79,13 @@ class PaymentAmountUpdateResponse implements ModelInterface, ArrayAccess, \JsonS
       */
     protected static $openAPINullables = [
         'amount' => false,
-        'industryUsage' => false,
-        'merchantAccount' => false,
-        'paymentPspReference' => false,
-        'pspReference' => false,
-        'reference' => false,
-        'splits' => false,
-        'status' => false
+		'industryUsage' => false,
+		'merchantAccount' => false,
+		'paymentPspReference' => false,
+		'pspReference' => false,
+		'reference' => false,
+		'splits' => false,
+		'status' => false
     ];
 
     /**
@@ -688,7 +688,7 @@ class PaymentAmountUpdateResponse implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

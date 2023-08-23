@@ -122,34 +122,34 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPINullables = [
         'paymentData' => false,
-        'paymentMethodType' => false,
-        'type' => false,
-        'url' => false,
-        'authorisationToken' => false,
-        'token' => false,
-        'data' => false,
-        'method' => false,
-        'nativeRedirectData' => false,
-        'expiresAt' => false,
-        'qrCodeData' => false,
-        'sdkData' => false,
-        'subtype' => false,
-        'alternativeReference' => false,
-        'collectionInstitutionNumber' => false,
-        'downloadUrl' => false,
-        'entity' => false,
-        'initialAmount' => false,
-        'instructionsUrl' => false,
-        'issuer' => false,
-        'maskedTelephoneNumber' => false,
-        'merchantName' => false,
-        'merchantReference' => false,
-        'passCreationToken' => false,
-        'reference' => false,
-        'shopperEmail' => false,
-        'shopperName' => false,
-        'surcharge' => false,
-        'totalAmount' => false
+		'paymentMethodType' => false,
+		'type' => false,
+		'url' => false,
+		'authorisationToken' => false,
+		'token' => false,
+		'data' => false,
+		'method' => false,
+		'nativeRedirectData' => false,
+		'expiresAt' => false,
+		'qrCodeData' => false,
+		'sdkData' => false,
+		'subtype' => false,
+		'alternativeReference' => false,
+		'collectionInstitutionNumber' => false,
+		'downloadUrl' => false,
+		'entity' => false,
+		'initialAmount' => false,
+		'instructionsUrl' => false,
+		'issuer' => false,
+		'maskedTelephoneNumber' => false,
+		'merchantName' => false,
+		'merchantReference' => false,
+		'passCreationToken' => false,
+		'reference' => false,
+		'shopperEmail' => false,
+		'shopperName' => false,
+		'surcharge' => false,
+		'totalAmount' => false
     ];
 
     /**
@@ -1322,7 +1322,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

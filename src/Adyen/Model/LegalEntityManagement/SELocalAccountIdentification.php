@@ -69,8 +69,8 @@ class SELocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPINullables = [
         'accountNumber' => false,
-        'clearingNumber' => false,
-        'type' => false
+		'clearingNumber' => false,
+		'type' => false
     ];
 
     /**
@@ -474,7 +474,7 @@ class SELocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -69,8 +69,8 @@ class RecurringDetailsRequest implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static $openAPINullables = [
         'merchantAccount' => false,
-        'recurring' => false,
-        'shopperReference' => false
+		'recurring' => false,
+		'shopperReference' => false
     ];
 
     /**
@@ -440,7 +440,7 @@ class RecurringDetailsRequest implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

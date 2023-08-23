@@ -95,21 +95,21 @@ class CreateCompanyWebhookRequest implements ModelInterface, ArrayAccess, \JsonS
       */
     protected static $openAPINullables = [
         'acceptsExpiredCertificate' => false,
-        'acceptsSelfSignedCertificate' => false,
-        'acceptsUntrustedRootCertificate' => false,
-        'active' => false,
-        'additionalSettings' => false,
-        'communicationFormat' => false,
-        'description' => false,
-        'filterMerchantAccountType' => false,
-        'filterMerchantAccounts' => false,
-        'networkType' => false,
-        'password' => false,
-        'populateSoapActionHeader' => false,
-        'sslVersion' => false,
-        'type' => false,
-        'url' => false,
-        'username' => false
+		'acceptsSelfSignedCertificate' => false,
+		'acceptsUntrustedRootCertificate' => false,
+		'active' => false,
+		'additionalSettings' => false,
+		'communicationFormat' => false,
+		'description' => false,
+		'filterMerchantAccountType' => false,
+		'filterMerchantAccounts' => false,
+		'networkType' => false,
+		'password' => false,
+		'populateSoapActionHeader' => false,
+		'sslVersion' => false,
+		'type' => false,
+		'url' => false,
+		'username' => false
     ];
 
     /**
@@ -1032,7 +1032,7 @@ class CreateCompanyWebhookRequest implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

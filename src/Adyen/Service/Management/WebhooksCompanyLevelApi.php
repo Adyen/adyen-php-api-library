@@ -45,13 +45,14 @@ class WebhooksCompanyLevelApi extends Service
     * @param string $companyId
     * @param string $webhookId
     * @param array|null $requestOptions
-
+    
     * @throws AdyenException
     */
     public function removeWebhook(string $companyId, string $webhookId, array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}', '{webhookId}'], [$companyId, $webhookId], "/companies/{companyId}/webhooks/{webhookId}");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
+        
     }
 
     /**

@@ -71,9 +71,9 @@ class ThreeDSRequestorPriorAuthenticationInfo implements ModelInterface, ArrayAc
       */
     protected static $openAPINullables = [
         'threeDSReqPriorAuthData' => false,
-        'threeDSReqPriorAuthMethod' => false,
-        'threeDSReqPriorAuthTimestamp' => false,
-        'threeDSReqPriorRef' => false
+		'threeDSReqPriorAuthMethod' => false,
+		'threeDSReqPriorAuthTimestamp' => false,
+		'threeDSReqPriorRef' => false
     ];
 
     /**
@@ -505,7 +505,7 @@ class ThreeDSRequestorPriorAuthenticationInfo implements ModelInterface, ArrayAc
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

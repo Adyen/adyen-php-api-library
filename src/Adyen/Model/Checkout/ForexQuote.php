@@ -87,17 +87,17 @@ class ForexQuote implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'account' => false,
-        'accountType' => false,
-        'baseAmount' => false,
-        'basePoints' => true,
-        'buy' => false,
-        'interbank' => false,
-        'reference' => false,
-        'sell' => false,
-        'signature' => false,
-        'source' => false,
-        'type' => false,
-        'validTill' => false
+		'accountType' => false,
+		'baseAmount' => false,
+		'basePoints' => true,
+		'buy' => false,
+		'interbank' => false,
+		'reference' => false,
+		'sell' => false,
+		'signature' => false,
+		'source' => false,
+		'type' => false,
+		'validTill' => false
     ];
 
     /**
@@ -744,7 +744,7 @@ class ForexQuote implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
