@@ -117,7 +117,7 @@ $client = new \Adyen\Client();
 $client->setXApiKey("YOUR API KEY");
 $client->setEnvironment(\Adyen\Environment::LIVE, 'Your live URL prefix');
 $client->setTimeout(30);
- 
+
 ...
 ~~~~
 

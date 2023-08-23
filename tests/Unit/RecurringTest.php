@@ -39,15 +39,15 @@ class RecurringTest extends TestCaseMock
         $params = json_decode(
             '{
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
-	        "storedPaymentMethodId": "8415995487234100",
-	        "shopperReference": "YOUR_SHOPPER_REFERENCE",
-	        "amount": {
-		        "currency": "INR",
-		        "value": 1000
-	        },
-	        "billingDate": "2021-03-16",
-	        "reference": "Example reference",
-	        "displayedReference": "Example displayed reference"
+            "storedPaymentMethodId": "8415995487234100",
+            "shopperReference": "YOUR_SHOPPER_REFERENCE",
+            "amount": {
+                "currency": "INR",
+                "value": 1000
+            },
+            "billingDate": "2021-03-16",
+            "reference": "Example reference",
+            "displayedReference": "Example displayed reference"
             }',
             true
         );
