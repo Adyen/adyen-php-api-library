@@ -279,7 +279,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
             $this->skipTest("Skipped the test. Configure your SkinCode in the config");
         }
     }
-    
+
     public function validateApiPermission($e)
     {
         // it is possible you do not have permission to use full API then switch over to CSE

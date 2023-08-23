@@ -40,19 +40,19 @@ class ModificationTest extends TestCaseMock
 
         $params = json_decode(
             '
-             {
-                "amount":{
-                    "value":1500,
-                    "currency":"GBP"
-                },
-                "selectedRecurringDetailReference":"8315535507322518",
-                "shopperReference":"myshopperreference",
-                "reference":"myreference",
-                "merchantAccount":"mymerchantaccount",
-                "recurring":{
-                    "contract":"RECURRING"
-                },
-                "shopperInteraction":"ContAuth"
+            {
+              "amount": {
+                "value":1500,
+                "currency":"GBP"
+              },
+              "selectedRecurringDetailReference":"8315535507322518",
+              "shopperReference":"myshopperreference",
+              "reference":"myreference",
+              "merchantAccount":"mymerchantaccount",
+              "recurring":{
+                "contract":"RECURRING"
+              },
+              "shopperInteraction":"ContAuth"
             }',
             true
         );
