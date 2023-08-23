@@ -6,6 +6,7 @@ use Adyen\AdyenException;
 use Adyen\Client;
 use Adyen\Environment;
 use Adyen\Model\BalancePlatform\AccountHolder;
+use Adyen\Model\BalancePlatform\AccountHolderUpdateRequest;
 use Adyen\Model\BalancePlatform\BankAccountIdentificationValidationRequest;
 use Adyen\Model\BalancePlatform\PaymentInstrumentGroupInfo;
 use Adyen\Service\BalancePlatform\AccountHoldersApi;
@@ -85,7 +86,7 @@ class BalancePlatformTest extends TestCaseMock
             200
         );
         $service = new AccountHoldersApi($client);
-        $response = $service->updateAccountHolder("id", new AccountHolder());
+        $response = $service->updateAccountHolder("id", new AccountHolderUpdateRequest());
         self::assertEquals('AH3227C223222C5GKR23686TF', $response->getId());
         self::assertEquals('LE322JV223222F5GKQZZ9DS99', $response->getLegalEntityId());
         self::assertEquals(AccountHolder::STATUS_ACTIVE, $response->getStatus());
