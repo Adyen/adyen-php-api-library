@@ -267,7 +267,6 @@ class TestCase extends \PHPUnit\Framework\TestCase
         return parse_ini_file($this->getTestFilePath(), true);
     }
 
-
     protected function skipTest($msg)
     {
         $this->markTestSkipped($msg);

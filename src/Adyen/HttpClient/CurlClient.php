@@ -171,7 +171,6 @@ class CurlClient implements ClientInterface
         return $result;
     }
 
-
     /**
      * Handle Curl exceptions
      *
