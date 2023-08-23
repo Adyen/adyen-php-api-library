@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\TransferWebhooks;
 
 interface ModelInterface

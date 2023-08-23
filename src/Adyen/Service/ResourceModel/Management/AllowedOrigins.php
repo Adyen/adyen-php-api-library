@@ -1,5 +1,6 @@
 <?php
 
+
 namespace Adyen\Service\ResourceModel\Management;
 
 class AllowedOrigins extends \Adyen\Service\AbstractResource

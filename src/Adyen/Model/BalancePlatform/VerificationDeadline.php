@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\BalancePlatform;
 
 use \ArrayAccess;
@@ -403,6 +404,7 @@ class VerificationDeadline implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets capabilities

@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\BalancePlatform;
 
 use \ArrayAccess;
@@ -220,6 +221,7 @@ class DifferentCurrenciesRestriction implements ModelInterface, ArrayAccess, \Js
         return self::$openAPIModelName;
     }
 
+
     /**
      * Associative array for storing property values
      *
@@ -282,6 +284,7 @@ class DifferentCurrenciesRestriction implements ModelInterface, ArrayAccess, \Js
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets operation

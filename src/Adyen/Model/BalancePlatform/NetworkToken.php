@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\BalancePlatform;
 
 use \ArrayAccess;
@@ -349,6 +350,7 @@ class NetworkToken implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets brandVariant

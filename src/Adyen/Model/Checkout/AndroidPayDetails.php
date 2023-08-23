@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\Checkout;
 
 use \ArrayAccess;
@@ -301,6 +302,7 @@ class AndroidPayDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets checkoutAttemptId

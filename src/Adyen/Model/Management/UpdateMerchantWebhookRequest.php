@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\Management;
 
 use \ArrayAccess;
@@ -430,6 +431,7 @@ class UpdateMerchantWebhookRequest implements ModelInterface, ArrayAccess, \Json
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets acceptsExpiredCertificate

@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\TransferWebhooks;
 
 use \ArrayAccess;
@@ -412,6 +413,7 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets accountNumber

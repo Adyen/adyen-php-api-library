@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\Checkout;
 
 use \ArrayAccess;
@@ -327,6 +328,7 @@ class DragonpayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets checkoutAttemptId

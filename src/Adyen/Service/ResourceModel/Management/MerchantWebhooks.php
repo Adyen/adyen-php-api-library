@@ -1,5 +1,6 @@
 <?php
 
+
 namespace Adyen\Service\ResourceModel\Management;
 
 use Adyen\AdyenException;

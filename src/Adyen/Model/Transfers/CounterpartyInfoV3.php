@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\Transfers;
 
 use \ArrayAccess;
@@ -226,6 +227,7 @@ class CounterpartyInfoV3 implements ModelInterface, ArrayAccess, \JsonSerializab
         return self::$openAPIModelName;
     }
 
+
     /**
      * Associative array for storing property values
      *
@@ -286,6 +288,7 @@ class CounterpartyInfoV3 implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets balanceAccountId

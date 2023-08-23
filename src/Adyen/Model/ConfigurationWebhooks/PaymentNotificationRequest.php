@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\ConfigurationWebhooks;
 
 use \ArrayAccess;
@@ -319,6 +320,7 @@ class PaymentNotificationRequest implements ModelInterface, ArrayAccess, \JsonSe
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets data

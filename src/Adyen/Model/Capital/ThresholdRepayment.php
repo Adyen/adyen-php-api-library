@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\Capital;
 
 use \ArrayAccess;
@@ -214,6 +215,7 @@ class ThresholdRepayment implements ModelInterface, ArrayAccess, \JsonSerializab
         return self::$openAPIModelName;
     }
 
+
     /**
      * Associative array for storing property values
      *
@@ -275,6 +277,7 @@ class ThresholdRepayment implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets amount

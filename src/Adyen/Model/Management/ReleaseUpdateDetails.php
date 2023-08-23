@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\Management;
 
 use \ArrayAccess;
@@ -301,6 +302,7 @@ class ReleaseUpdateDetails implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets type

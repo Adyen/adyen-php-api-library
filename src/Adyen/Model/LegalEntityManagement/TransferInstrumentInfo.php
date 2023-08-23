@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\LegalEntityManagement;
 
 use \ArrayAccess;
@@ -319,6 +320,7 @@ class TransferInstrumentInfo implements ModelInterface, ArrayAccess, \JsonSerial
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets bankAccount

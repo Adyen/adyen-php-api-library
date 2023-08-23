@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\Checkout;
 
 use \ArrayAccess;
@@ -316,6 +317,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
         return self::$openAPIModelName;
     }
 
+
     /**
      * Associative array for storing property values
      *
@@ -391,6 +393,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets mD

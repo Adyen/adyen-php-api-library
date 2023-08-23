@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\LegalEntityManagement;
 
 use \ArrayAccess;
@@ -334,6 +335,7 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets acceptedBy

@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\LegalEntityManagement;
 
 use \ArrayAccess;
@@ -354,6 +355,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = "'type' can't be null";
         }
 
+
         if ($this->container['institutionNumber'] === null) {
             $invalidProperties[] = "'institutionNumber' can't be null";
         }
@@ -391,6 +393,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets accountNumber

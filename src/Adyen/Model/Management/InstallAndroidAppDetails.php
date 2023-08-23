@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\Management;
 
 use \ArrayAccess;
@@ -301,6 +302,7 @@ class InstallAndroidAppDetails implements ModelInterface, ArrayAccess, \JsonSeri
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets appId

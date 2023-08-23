@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\Transfers;
 
 use \ArrayAccess;
@@ -343,6 +344,7 @@ class UltimatePartyIdentification implements ModelInterface, ArrayAccess, \JsonS
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets address

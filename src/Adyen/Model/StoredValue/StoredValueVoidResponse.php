@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\StoredValue;
 
 use \ArrayAccess;
@@ -328,6 +329,7 @@ class StoredValueVoidResponse implements ModelInterface, ArrayAccess, \JsonSeria
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets currentBalance

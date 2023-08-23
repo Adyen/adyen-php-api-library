@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\StoredValue;
 
 use \ArrayAccess;
@@ -368,6 +369,7 @@ class StoredValueBalanceMergeRequest implements ModelInterface, ArrayAccess, \Js
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets amount

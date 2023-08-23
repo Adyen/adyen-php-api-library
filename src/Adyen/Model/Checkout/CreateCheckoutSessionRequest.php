@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\Checkout;
 
 use \ArrayAccess;
@@ -765,6 +766,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets accountInfo

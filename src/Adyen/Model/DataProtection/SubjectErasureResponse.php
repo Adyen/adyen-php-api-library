@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\DataProtection;
 
 use \ArrayAccess;
@@ -300,6 +301,7 @@ class SubjectErasureResponse implements ModelInterface, ArrayAccess, \JsonSerial
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets result

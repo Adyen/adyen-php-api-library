@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\Payout;
 
 use \ArrayAccess;
@@ -232,6 +233,7 @@ class StoreDetailAndSubmitResponse implements ModelInterface, ArrayAccess, \Json
         return self::$openAPIModelName;
     }
 
+
     /**
      * Associative array for storing property values
      *
@@ -299,6 +301,7 @@ class StoreDetailAndSubmitResponse implements ModelInterface, ArrayAccess, \Json
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets additionalData

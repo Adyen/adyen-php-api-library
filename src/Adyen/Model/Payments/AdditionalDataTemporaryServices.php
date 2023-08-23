@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\Payments;
 
 use \ArrayAccess;
@@ -262,6 +263,7 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
         return self::$openAPIModelName;
     }
 
+
     /**
      * Associative array for storing property values
      *
@@ -328,6 +330,7 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets enhancedSchemeDataCustomerReference

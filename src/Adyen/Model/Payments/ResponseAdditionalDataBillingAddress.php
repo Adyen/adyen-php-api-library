@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\Payments;
 
 use \ArrayAccess;
@@ -244,6 +245,7 @@ class ResponseAdditionalDataBillingAddress implements ModelInterface, ArrayAcces
         return self::$openAPIModelName;
     }
 
+
     /**
      * Associative array for storing property values
      *
@@ -307,6 +309,7 @@ class ResponseAdditionalDataBillingAddress implements ModelInterface, ArrayAcces
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets billingAddressCity

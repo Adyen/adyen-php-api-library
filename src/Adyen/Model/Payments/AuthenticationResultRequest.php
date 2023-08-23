@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\Payments;
 
 use \ArrayAccess;
@@ -220,6 +221,7 @@ class AuthenticationResultRequest implements ModelInterface, ArrayAccess, \JsonS
         return self::$openAPIModelName;
     }
 
+
     /**
      * Associative array for storing property values
      *
@@ -285,6 +287,7 @@ class AuthenticationResultRequest implements ModelInterface, ArrayAccess, \JsonS
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets merchantAccount

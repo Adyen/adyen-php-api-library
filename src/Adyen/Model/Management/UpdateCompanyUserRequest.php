@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\Management;
 
 use \ArrayAccess;
@@ -250,6 +251,7 @@ class UpdateCompanyUserRequest implements ModelInterface, ArrayAccess, \JsonSeri
         return self::$openAPIModelName;
     }
 
+
     /**
      * Associative array for storing property values
      *
@@ -314,6 +316,7 @@ class UpdateCompanyUserRequest implements ModelInterface, ArrayAccess, \JsonSeri
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets accountGroups

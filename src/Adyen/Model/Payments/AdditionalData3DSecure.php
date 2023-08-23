@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\Payments;
 
 use \ArrayAccess;
@@ -337,6 +338,7 @@ class AdditionalData3DSecure implements ModelInterface, ArrayAccess, \JsonSerial
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets allow3DS2

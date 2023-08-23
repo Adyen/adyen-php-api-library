@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\TransferWebhooks;
 
 use \ArrayAccess;
@@ -343,6 +344,7 @@ class PartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets address

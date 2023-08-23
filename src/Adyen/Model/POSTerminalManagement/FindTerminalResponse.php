@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\POSTerminalManagement;
 
 use \ArrayAccess;
@@ -238,6 +239,7 @@ class FindTerminalResponse implements ModelInterface, ArrayAccess, \JsonSerializ
         return self::$openAPIModelName;
     }
 
+
     /**
      * Associative array for storing property values
      *
@@ -306,6 +308,7 @@ class FindTerminalResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets companyAccount

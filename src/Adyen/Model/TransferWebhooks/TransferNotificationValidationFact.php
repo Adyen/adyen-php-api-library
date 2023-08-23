@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\TransferWebhooks;
 
 use \ArrayAccess;
@@ -220,6 +221,7 @@ class TransferNotificationValidationFact implements ModelInterface, ArrayAccess,
         return self::$openAPIModelName;
     }
 
+
     /**
      * Associative array for storing property values
      *
@@ -279,6 +281,7 @@ class TransferNotificationValidationFact implements ModelInterface, ArrayAccess,
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets result

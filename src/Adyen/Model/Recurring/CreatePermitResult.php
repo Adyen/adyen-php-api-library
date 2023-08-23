@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\Recurring;
 
 use \ArrayAccess;
@@ -220,6 +221,7 @@ class CreatePermitResult implements ModelInterface, ArrayAccess, \JsonSerializab
         return self::$openAPIModelName;
     }
 
+
     /**
      * Associative array for storing property values
      *
@@ -279,6 +281,7 @@ class CreatePermitResult implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets permitResultList

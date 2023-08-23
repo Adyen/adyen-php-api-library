@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\ConfigurationWebhooks;
 
 use \ArrayAccess;
@@ -315,6 +316,7 @@ class PaymentInstrumentBankAccount implements ModelInterface, ArrayAccess, \Json
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets iban

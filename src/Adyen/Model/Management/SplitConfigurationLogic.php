@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\Management;
 
 use \ArrayAccess;
@@ -445,6 +446,7 @@ class SplitConfigurationLogic implements ModelInterface, ArrayAccess, \JsonSeria
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets additionalCommission

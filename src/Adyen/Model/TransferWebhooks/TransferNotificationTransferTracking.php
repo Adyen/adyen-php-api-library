@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\TransferWebhooks;
 
 use \ArrayAccess;
@@ -301,6 +302,7 @@ class TransferNotificationTransferTracking implements ModelInterface, ArrayAcces
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets estimatedArrivalTime

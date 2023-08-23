@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\StoredValue;
 
 use \ArrayAccess;
@@ -328,6 +329,7 @@ class StoredValueBalanceCheckResponse implements ModelInterface, ArrayAccess, \J
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets currentBalance

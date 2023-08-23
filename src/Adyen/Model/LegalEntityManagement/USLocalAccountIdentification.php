@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\LegalEntityManagement;
 
 use \ArrayAccess;
@@ -347,6 +348,7 @@ class USLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets accountNumber

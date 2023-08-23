@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\LegalEntityManagement;
 
 use \ArrayAccess;
@@ -214,6 +215,7 @@ class GetTermsOfServiceAcceptanceInfosResponse implements ModelInterface, ArrayA
         return self::$openAPIModelName;
     }
 
+
     /**
      * Associative array for storing property values
      *
@@ -272,6 +274,7 @@ class GetTermsOfServiceAcceptanceInfosResponse implements ModelInterface, ArrayA
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets data

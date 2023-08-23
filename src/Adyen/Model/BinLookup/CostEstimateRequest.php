@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\BinLookup;
 
 use \ArrayAccess;
@@ -369,6 +370,7 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets amount

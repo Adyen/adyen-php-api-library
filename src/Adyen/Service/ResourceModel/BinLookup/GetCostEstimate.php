@@ -8,14 +8,15 @@ class GetCostEstimate extends \Adyen\Service\AbstractResource
      * @var string
      */
     protected $endpoint;
-
+    
+    
     /**
      * Include applicationInfo key in the request parameters
      *
      * @var bool
      */
     protected $allowApplicationInfo = false;
-
+    
     /**
      * GetCostEstimate constructor.
      *

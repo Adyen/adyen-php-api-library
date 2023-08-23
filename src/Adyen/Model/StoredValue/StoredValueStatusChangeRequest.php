@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\StoredValue;
 
 use \ArrayAccess;
@@ -391,6 +392,7 @@ class StoredValueStatusChangeRequest implements ModelInterface, ArrayAccess, \Js
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets amount

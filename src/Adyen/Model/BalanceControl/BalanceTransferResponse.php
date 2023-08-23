@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\BalanceControl;
 
 use \ArrayAccess;
@@ -408,6 +409,7 @@ class BalanceTransferResponse implements ModelInterface, ArrayAccess, \JsonSeria
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets amount

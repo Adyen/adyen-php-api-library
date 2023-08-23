@@ -1,5 +1,6 @@
 <?php
 
+
 namespace Adyen\Service\Validator;
 
 /**

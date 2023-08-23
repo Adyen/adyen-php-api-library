@@ -154,6 +154,7 @@ abstract class AbstractResource
             $params['applicationInfo']['merchantApplication']['name'] = $merchantApplication['name'];
         }
 
+
         return $params;
     }
 

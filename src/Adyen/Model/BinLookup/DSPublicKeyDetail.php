@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\BinLookup;
 
 use \ArrayAccess;
@@ -232,6 +233,7 @@ class DSPublicKeyDetail implements ModelInterface, ArrayAccess, \JsonSerializabl
         return self::$openAPIModelName;
     }
 
+
     /**
      * Associative array for storing property values
      *
@@ -293,6 +295,7 @@ class DSPublicKeyDetail implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets brand

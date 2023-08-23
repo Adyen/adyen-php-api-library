@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\ConfigurationWebhooks;
 
 use \ArrayAccess;
@@ -443,6 +444,7 @@ class VerificationError implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets capabilities

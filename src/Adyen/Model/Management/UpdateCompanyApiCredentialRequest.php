@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\Management;
 
 use \ArrayAccess;
@@ -238,6 +239,7 @@ class UpdateCompanyApiCredentialRequest implements ModelInterface, ArrayAccess, 
         return self::$openAPIModelName;
     }
 
+
     /**
      * Associative array for storing property values
      *
@@ -300,6 +302,7 @@ class UpdateCompanyApiCredentialRequest implements ModelInterface, ArrayAccess, 
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets active

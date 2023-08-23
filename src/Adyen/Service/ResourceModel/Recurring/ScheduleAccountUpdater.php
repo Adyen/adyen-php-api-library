@@ -1,5 +1,6 @@
 <?php
 
+
 namespace Adyen\Service\ResourceModel\Recurring;
 
 class ScheduleAccountUpdater extends \Adyen\Service\AbstractResource

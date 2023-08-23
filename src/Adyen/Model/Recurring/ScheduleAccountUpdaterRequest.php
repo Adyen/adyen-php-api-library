@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\Recurring;
 
 use \ArrayAccess;
@@ -244,6 +245,7 @@ class ScheduleAccountUpdaterRequest implements ModelInterface, ArrayAccess, \Jso
         return self::$openAPIModelName;
     }
 
+
     /**
      * Associative array for storing property values
      *
@@ -313,6 +315,7 @@ class ScheduleAccountUpdaterRequest implements ModelInterface, ArrayAccess, \Jso
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets additionalData

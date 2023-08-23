@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\BalancePlatform;
 
 use \ArrayAccess;
@@ -238,6 +239,7 @@ class PaymentInstrumentGroupInfo implements ModelInterface, ArrayAccess, \JsonSe
         return self::$openAPIModelName;
     }
 
+
     /**
      * Associative array for storing property values
      *
@@ -306,6 +308,7 @@ class PaymentInstrumentGroupInfo implements ModelInterface, ArrayAccess, \JsonSe
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets balancePlatform

@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+
 namespace Adyen\Model\Checkout;
 
 use \ArrayAccess;
@@ -268,6 +269,7 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
         return self::$openAPIModelName;
     }
 
+
     /**
      * Associative array for storing property values
      *
@@ -335,6 +337,7 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
 
     /**
      * Gets subMerchantNumberOfSubSellers

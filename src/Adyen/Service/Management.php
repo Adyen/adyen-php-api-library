@@ -1,5 +1,6 @@
 <?php
 
+
 namespace Adyen\Service;
 
 use Adyen\Service\ResourceModel\Management\AllowedOrigins;
@@ -50,6 +51,7 @@ class Management extends \Adyen\Service
      * @var AllowedOrigins
      */
     public $allowedOrigins;
+
 
     /**
      * Management constructor.
