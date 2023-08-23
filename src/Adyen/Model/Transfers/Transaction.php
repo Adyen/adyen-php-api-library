@@ -103,25 +103,25 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'accountHolderId' => false,
-		'amount' => false,
-		'balanceAccountId' => false,
-		'balancePlatform' => false,
-		'bookingDate' => false,
-		'category' => false,
-		'counterparty' => false,
-		'createdAt' => false,
-		'creationDate' => false,
-		'description' => false,
-		'eventId' => false,
-		'id' => false,
-		'instructedAmount' => false,
-		'paymentInstrumentId' => false,
-		'reference' => false,
-		'referenceForBeneficiary' => false,
-		'status' => false,
-		'transferId' => false,
-		'type' => false,
-		'valueDate' => false
+        'amount' => false,
+        'balanceAccountId' => false,
+        'balancePlatform' => false,
+        'bookingDate' => false,
+        'category' => false,
+        'counterparty' => false,
+        'createdAt' => false,
+        'creationDate' => false,
+        'description' => false,
+        'eventId' => false,
+        'id' => false,
+        'instructedAmount' => false,
+        'paymentInstrumentId' => false,
+        'reference' => false,
+        'referenceForBeneficiary' => false,
+        'status' => false,
+        'transferId' => false,
+        'type' => false,
+        'valueDate' => false
     ];
 
     /**
@@ -1204,7 +1204,7 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

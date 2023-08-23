@@ -67,7 +67,7 @@ class WebData implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'webAddress' => false,
-		'webAddressId' => false
+        'webAddressId' => false
     ];
 
     /**
@@ -400,7 +400,7 @@ class WebData implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

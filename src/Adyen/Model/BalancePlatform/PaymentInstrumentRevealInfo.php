@@ -69,8 +69,8 @@ class PaymentInstrumentRevealInfo implements ModelInterface, ArrayAccess, \JsonS
       */
     protected static $openAPINullables = [
         'cvc' => false,
-		'expiration' => false,
-		'pan' => false
+        'expiration' => false,
+        'pan' => false
     ];
 
     /**
@@ -443,7 +443,7 @@ class PaymentInstrumentRevealInfo implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

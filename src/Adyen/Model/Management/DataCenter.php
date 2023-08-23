@@ -67,7 +67,7 @@ class DataCenter implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'livePrefix' => false,
-		'name' => false
+        'name' => false
     ];
 
     /**
@@ -400,7 +400,7 @@ class DataCenter implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

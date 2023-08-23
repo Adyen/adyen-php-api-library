@@ -77,12 +77,12 @@ class OpenInvoiceDetails implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPINullables = [
         'billingAddress' => false,
-		'checkoutAttemptId' => false,
-		'deliveryAddress' => false,
-		'personalDetails' => false,
-		'recurringDetailReference' => false,
-		'storedPaymentMethodId' => false,
-		'type' => false
+        'checkoutAttemptId' => false,
+        'deliveryAddress' => false,
+        'personalDetails' => false,
+        'recurringDetailReference' => false,
+        'storedPaymentMethodId' => false,
+        'type' => false
     ];
 
     /**
@@ -607,7 +607,7 @@ class OpenInvoiceDetails implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -71,9 +71,9 @@ class ThreeDSRequestData implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPINullables = [
         'challengeWindowSize' => false,
-		'dataOnly' => false,
-		'nativeThreeDS' => false,
-		'threeDSVersion' => false
+        'dataOnly' => false,
+        'nativeThreeDS' => false,
+        'threeDSVersion' => false
     ];
 
     /**
@@ -604,7 +604,7 @@ class ThreeDSRequestData implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

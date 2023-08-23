@@ -75,11 +75,11 @@ class CheckoutNativeRedirectAction implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPINullables = [
         'data' => false,
-		'method' => false,
-		'nativeRedirectData' => false,
-		'paymentMethodType' => false,
-		'type' => false,
-		'url' => false
+        'method' => false,
+        'nativeRedirectData' => false,
+        'paymentMethodType' => false,
+        'type' => false,
+        'url' => false
     ];
 
     /**
@@ -570,7 +570,7 @@ class CheckoutNativeRedirectAction implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

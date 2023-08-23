@@ -91,19 +91,19 @@ class StoredPaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static $openAPINullables = [
         'brand' => false,
-		'expiryMonth' => false,
-		'expiryYear' => false,
-		'holderName' => false,
-		'iban' => false,
-		'id' => false,
-		'lastFour' => false,
-		'name' => false,
-		'networkTxReference' => false,
-		'ownerName' => false,
-		'shopperEmail' => false,
-		'supportedRecurringProcessingModels' => false,
-		'supportedShopperInteractions' => false,
-		'type' => false
+        'expiryMonth' => false,
+        'expiryYear' => false,
+        'holderName' => false,
+        'iban' => false,
+        'id' => false,
+        'lastFour' => false,
+        'name' => false,
+        'networkTxReference' => false,
+        'ownerName' => false,
+        'shopperEmail' => false,
+        'supportedRecurringProcessingModels' => false,
+        'supportedShopperInteractions' => false,
+        'type' => false
     ];
 
     /**
@@ -808,7 +808,7 @@ class StoredPaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

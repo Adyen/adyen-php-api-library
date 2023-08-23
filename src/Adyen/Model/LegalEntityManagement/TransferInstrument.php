@@ -77,12 +77,12 @@ class TransferInstrument implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPINullables = [
         'bankAccount' => false,
-		'capabilities' => false,
-		'documentDetails' => false,
-		'id' => false,
-		'legalEntityId' => false,
-		'problems' => false,
-		'type' => false
+        'capabilities' => false,
+        'documentDetails' => false,
+        'id' => false,
+        'legalEntityId' => false,
+        'problems' => false,
+        'type' => false
     ];
 
     /**
@@ -615,7 +615,7 @@ class TransferInstrument implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

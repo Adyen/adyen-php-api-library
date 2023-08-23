@@ -83,15 +83,15 @@ class TechnicalCancelRequest implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPINullables = [
         'additionalData' => false,
-		'merchantAccount' => false,
-		'modificationAmount' => false,
-		'mpiData' => false,
-		'originalMerchantReference' => false,
-		'platformChargebackLogic' => false,
-		'reference' => false,
-		'splits' => false,
-		'tenderReference' => false,
-		'uniqueTerminalId' => false
+        'merchantAccount' => false,
+        'modificationAmount' => false,
+        'mpiData' => false,
+        'originalMerchantReference' => false,
+        'platformChargebackLogic' => false,
+        'reference' => false,
+        'splits' => false,
+        'tenderReference' => false,
+        'uniqueTerminalId' => false
     ];
 
     /**
@@ -678,7 +678,7 @@ class TechnicalCancelRequest implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

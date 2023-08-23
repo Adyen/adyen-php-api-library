@@ -73,10 +73,10 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'available' => false,
-		'balance' => false,
-		'currency' => false,
-		'pending' => false,
-		'reserved' => false
+        'balance' => false,
+        'currency' => false,
+        'pending' => false,
+        'reserved' => false
     ];
 
     /**
@@ -514,7 +514,7 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

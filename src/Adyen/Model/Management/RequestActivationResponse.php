@@ -67,7 +67,7 @@ class RequestActivationResponse implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static $openAPINullables = [
         'companyId' => false,
-		'merchantId' => false
+        'merchantId' => false
     ];
 
     /**
@@ -400,7 +400,7 @@ class RequestActivationResponse implements ModelInterface, ArrayAccess, \JsonSer
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

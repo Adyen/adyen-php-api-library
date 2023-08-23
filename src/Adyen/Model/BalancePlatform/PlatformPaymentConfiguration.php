@@ -67,7 +67,7 @@ class PlatformPaymentConfiguration implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPINullables = [
         'salesDayClosingTime' => false,
-		'settlementDelayDays' => true
+        'settlementDelayDays' => true
     ];
 
     /**
@@ -398,7 +398,7 @@ class PlatformPaymentConfiguration implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -69,8 +69,8 @@ class PaginatedPaymentInstrumentsResponse implements ModelInterface, ArrayAccess
       */
     protected static $openAPINullables = [
         'hasNext' => false,
-		'hasPrevious' => false,
-		'paymentInstruments' => false
+        'hasPrevious' => false,
+        'paymentInstruments' => false
     ];
 
     /**
@@ -443,7 +443,7 @@ class PaginatedPaymentInstrumentsResponse implements ModelInterface, ArrayAccess
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

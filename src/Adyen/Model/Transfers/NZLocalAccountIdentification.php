@@ -71,9 +71,9 @@ class NZLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPINullables = [
         'accountNumber' => false,
-		'accountSuffix' => false,
-		'bankCode' => false,
-		'type' => false
+        'accountSuffix' => false,
+        'bankCode' => false,
+        'type' => false
     ];
 
     /**
@@ -511,7 +511,7 @@ class NZLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

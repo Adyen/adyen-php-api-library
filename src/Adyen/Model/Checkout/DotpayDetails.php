@@ -69,8 +69,8 @@ class DotpayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'checkoutAttemptId' => false,
-		'issuer' => false,
-		'type' => false
+        'issuer' => false,
+        'type' => false
     ];
 
     /**
@@ -468,7 +468,7 @@ class DotpayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

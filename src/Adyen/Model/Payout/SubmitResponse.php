@@ -71,9 +71,9 @@ class SubmitResponse implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'additionalData' => false,
-		'pspReference' => false,
-		'refusalReason' => false,
-		'resultCode' => false
+        'pspReference' => false,
+        'refusalReason' => false,
+        'resultCode' => false
     ];
 
     /**
@@ -474,7 +474,7 @@ class SubmitResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -75,11 +75,11 @@ class Store implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'address' => false,
-		'description' => false,
-		'inStoreTerminals' => false,
-		'merchantAccountCode' => false,
-		'status' => false,
-		'store' => false
+        'description' => false,
+        'inStoreTerminals' => false,
+        'merchantAccountCode' => false,
+        'status' => false,
+        'store' => false
     ];
 
     /**
@@ -539,7 +539,7 @@ class Store implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

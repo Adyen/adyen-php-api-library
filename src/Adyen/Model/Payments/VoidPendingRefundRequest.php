@@ -85,16 +85,16 @@ class VoidPendingRefundRequest implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static $openAPINullables = [
         'additionalData' => false,
-		'merchantAccount' => false,
-		'modificationAmount' => false,
-		'mpiData' => false,
-		'originalMerchantReference' => false,
-		'originalReference' => false,
-		'platformChargebackLogic' => false,
-		'reference' => false,
-		'splits' => false,
-		'tenderReference' => false,
-		'uniqueTerminalId' => false
+        'merchantAccount' => false,
+        'modificationAmount' => false,
+        'mpiData' => false,
+        'originalMerchantReference' => false,
+        'originalReference' => false,
+        'platformChargebackLogic' => false,
+        'reference' => false,
+        'splits' => false,
+        'tenderReference' => false,
+        'uniqueTerminalId' => false
     ];
 
     /**
@@ -709,7 +709,7 @@ class VoidPendingRefundRequest implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

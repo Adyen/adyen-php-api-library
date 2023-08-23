@@ -77,12 +77,12 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'city' => false,
-		'country' => false,
-		'line1' => false,
-		'line2' => false,
-		'line3' => false,
-		'postalCode' => false,
-		'stateOrProvince' => false
+        'country' => false,
+        'line1' => false,
+        'line2' => false,
+        'line3' => false,
+        'postalCode' => false,
+        'stateOrProvince' => false
     ];
 
     /**
@@ -573,7 +573,7 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

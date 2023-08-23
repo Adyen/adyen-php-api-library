@@ -90,18 +90,18 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'accountNumber' => false,
-		'bsbCode' => false,
-		'type' => false,
-		'accountType' => false,
-		'institutionNumber' => false,
-		'transitNumber' => false,
-		'bankCode' => false,
-		'iban' => false,
-		'additionalBankIdentification' => false,
-		'bic' => false,
-		'clearingNumber' => false,
-		'sortCode' => false,
-		'routingNumber' => false
+        'bsbCode' => false,
+        'type' => false,
+        'accountType' => false,
+        'institutionNumber' => false,
+        'transitNumber' => false,
+        'bankCode' => false,
+        'iban' => false,
+        'additionalBankIdentification' => false,
+        'bic' => false,
+        'clearingNumber' => false,
+        'sortCode' => false,
+        'routingNumber' => false
     ];
 
     /**
@@ -809,7 +809,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

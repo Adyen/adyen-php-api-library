@@ -71,9 +71,9 @@ class MasterpassDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPINullables = [
         'checkoutAttemptId' => false,
-		'fundingSource' => false,
-		'masterpassTransactionId' => false,
-		'type' => false
+        'fundingSource' => false,
+        'masterpassTransactionId' => false,
+        'type' => false
     ];
 
     /**
@@ -533,7 +533,7 @@ class MasterpassDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

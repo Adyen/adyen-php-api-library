@@ -69,8 +69,8 @@ class CreateMerchantApiCredentialRequest implements ModelInterface, ArrayAccess,
       */
     protected static $openAPINullables = [
         'allowedOrigins' => false,
-		'description' => false,
-		'roles' => false
+        'description' => false,
+        'roles' => false
     ];
 
     /**
@@ -434,7 +434,7 @@ class CreateMerchantApiCredentialRequest implements ModelInterface, ArrayAccess,
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

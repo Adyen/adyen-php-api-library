@@ -75,11 +75,11 @@ class ThreeDSAvailabilityRequest implements ModelInterface, ArrayAccess, \JsonSe
       */
     protected static $openAPINullables = [
         'additionalData' => false,
-		'brands' => false,
-		'cardNumber' => false,
-		'merchantAccount' => false,
-		'recurringDetailReference' => false,
-		'shopperReference' => false
+        'brands' => false,
+        'cardNumber' => false,
+        'merchantAccount' => false,
+        'recurringDetailReference' => false,
+        'shopperReference' => false
     ];
 
     /**
@@ -539,7 +539,7 @@ class ThreeDSAvailabilityRequest implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

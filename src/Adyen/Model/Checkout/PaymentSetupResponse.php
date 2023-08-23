@@ -67,7 +67,7 @@ class PaymentSetupResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPINullables = [
         'paymentSession' => false,
-		'recurringDetails' => false
+        'recurringDetails' => false
     ];
 
     /**
@@ -402,7 +402,7 @@ class PaymentSetupResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

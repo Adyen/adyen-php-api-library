@@ -67,7 +67,7 @@ class ActiveNetworkTokensRestriction implements ModelInterface, ArrayAccess, \Js
       */
     protected static $openAPINullables = [
         'operation' => false,
-		'value' => true
+        'value' => true
     ];
 
     /**
@@ -401,7 +401,7 @@ class ActiveNetworkTokensRestriction implements ModelInterface, ArrayAccess, \Js
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

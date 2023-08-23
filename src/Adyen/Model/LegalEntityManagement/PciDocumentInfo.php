@@ -69,8 +69,8 @@ class PciDocumentInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'createdAt' => false,
-		'id' => false,
-		'validUntil' => false
+        'id' => false,
+        'validUntil' => false
     ];
 
     /**
@@ -434,7 +434,7 @@ class PciDocumentInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

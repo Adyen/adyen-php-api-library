@@ -79,13 +79,13 @@ class ExternalTerminalAction implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPINullables = [
         'actionType' => false,
-		'config' => false,
-		'confirmedAt' => false,
-		'id' => false,
-		'result' => false,
-		'scheduledAt' => false,
-		'status' => false,
-		'terminalId' => false
+        'config' => false,
+        'confirmedAt' => false,
+        'id' => false,
+        'result' => false,
+        'scheduledAt' => false,
+        'status' => false,
+        'terminalId' => false
     ];
 
     /**
@@ -604,7 +604,7 @@ class ExternalTerminalAction implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

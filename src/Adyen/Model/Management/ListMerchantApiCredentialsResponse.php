@@ -71,9 +71,9 @@ class ListMerchantApiCredentialsResponse implements ModelInterface, ArrayAccess,
       */
     protected static $openAPINullables = [
         'links' => false,
-		'data' => false,
-		'itemsTotal' => true,
-		'pagesTotal' => true
+        'data' => false,
+        'itemsTotal' => true,
+        'pagesTotal' => true
     ];
 
     /**
@@ -470,7 +470,7 @@ class ListMerchantApiCredentialsResponse implements ModelInterface, ArrayAccess,
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

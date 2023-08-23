@@ -93,20 +93,20 @@ class AdditionalDataRiskStandalone implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPINullables = [
         'payPalCountryCode' => false,
-		'payPalEmailId' => false,
-		'payPalFirstName' => false,
-		'payPalLastName' => false,
-		'payPalPayerId' => false,
-		'payPalPhone' => false,
-		'payPalProtectionEligibility' => false,
-		'payPalTransactionId' => false,
-		'avsResultRaw' => false,
-		'bin' => false,
-		'cvcResultRaw' => false,
-		'riskToken' => false,
-		'threeDAuthenticated' => false,
-		'threeDOffered' => false,
-		'tokenDataType' => false
+        'payPalEmailId' => false,
+        'payPalFirstName' => false,
+        'payPalLastName' => false,
+        'payPalPayerId' => false,
+        'payPalPhone' => false,
+        'payPalProtectionEligibility' => false,
+        'payPalTransactionId' => false,
+        'avsResultRaw' => false,
+        'bin' => false,
+        'cvcResultRaw' => false,
+        'riskToken' => false,
+        'threeDAuthenticated' => false,
+        'threeDOffered' => false,
+        'tokenDataType' => false
     ];
 
     /**
@@ -842,7 +842,7 @@ class AdditionalDataRiskStandalone implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

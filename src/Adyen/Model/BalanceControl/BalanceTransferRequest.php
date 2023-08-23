@@ -75,11 +75,11 @@ class BalanceTransferRequest implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPINullables = [
         'amount' => false,
-		'description' => false,
-		'fromMerchant' => false,
-		'reference' => false,
-		'toMerchant' => false,
-		'type' => false
+        'description' => false,
+        'fromMerchant' => false,
+        'reference' => false,
+        'toMerchant' => false,
+        'type' => false
     ];
 
     /**
@@ -589,7 +589,7 @@ class BalanceTransferRequest implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -69,8 +69,8 @@ class CapabilityProblemEntityRecursive implements ModelInterface, ArrayAccess, \
       */
     protected static $openAPINullables = [
         'documents' => false,
-		'id' => false,
-		'type' => false
+        'id' => false,
+        'type' => false
     ];
 
     /**
@@ -471,7 +471,7 @@ class CapabilityProblemEntityRecursive implements ModelInterface, ArrayAccess, \
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

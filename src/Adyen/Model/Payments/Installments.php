@@ -67,7 +67,7 @@ class Installments implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'plan' => false,
-		'value' => true
+        'value' => true
     ];
 
     /**
@@ -434,7 +434,7 @@ class Installments implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

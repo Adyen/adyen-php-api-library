@@ -105,26 +105,26 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPINullables = [
         'alternativeReference' => false,
-		'collectionInstitutionNumber' => false,
-		'downloadUrl' => false,
-		'entity' => false,
-		'expiresAt' => false,
-		'initialAmount' => false,
-		'instructionsUrl' => false,
-		'issuer' => false,
-		'maskedTelephoneNumber' => false,
-		'merchantName' => false,
-		'merchantReference' => false,
-		'passCreationToken' => false,
-		'paymentData' => false,
-		'paymentMethodType' => false,
-		'reference' => false,
-		'shopperEmail' => false,
-		'shopperName' => false,
-		'surcharge' => false,
-		'totalAmount' => false,
-		'type' => false,
-		'url' => false
+        'collectionInstitutionNumber' => false,
+        'downloadUrl' => false,
+        'entity' => false,
+        'expiresAt' => false,
+        'initialAmount' => false,
+        'instructionsUrl' => false,
+        'issuer' => false,
+        'maskedTelephoneNumber' => false,
+        'merchantName' => false,
+        'merchantReference' => false,
+        'passCreationToken' => false,
+        'paymentData' => false,
+        'paymentMethodType' => false,
+        'reference' => false,
+        'shopperEmail' => false,
+        'shopperName' => false,
+        'surcharge' => false,
+        'totalAmount' => false,
+        'type' => false,
+        'url' => false
     ];
 
     /**
@@ -1080,7 +1080,7 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

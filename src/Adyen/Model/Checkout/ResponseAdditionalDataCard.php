@@ -79,13 +79,13 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
       */
     protected static $openAPINullables = [
         'cardBin' => false,
-		'cardHolderName' => false,
-		'cardIssuingBank' => false,
-		'cardIssuingCountry' => false,
-		'cardIssuingCurrency' => false,
-		'cardPaymentMethod' => false,
-		'cardSummary' => false,
-		'issuerBin' => false
+        'cardHolderName' => false,
+        'cardIssuingBank' => false,
+        'cardIssuingCountry' => false,
+        'cardIssuingCurrency' => false,
+        'cardPaymentMethod' => false,
+        'cardSummary' => false,
+        'issuerBin' => false
     ];
 
     /**
@@ -604,7 +604,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

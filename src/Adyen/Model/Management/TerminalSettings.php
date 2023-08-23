@@ -97,22 +97,22 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'cardholderReceipt' => false,
-		'connectivity' => false,
-		'gratuities' => false,
-		'hardware' => false,
-		'nexo' => false,
-		'offlineProcessing' => false,
-		'opi' => false,
-		'passcodes' => false,
-		'payAtTable' => false,
-		'payment' => false,
-		'receiptOptions' => false,
-		'receiptPrinting' => false,
-		'signature' => false,
-		'standalone' => false,
-		'surcharge' => false,
-		'timeouts' => false,
-		'wifiProfiles' => false
+        'connectivity' => false,
+        'gratuities' => false,
+        'hardware' => false,
+        'nexo' => false,
+        'offlineProcessing' => false,
+        'opi' => false,
+        'passcodes' => false,
+        'payAtTable' => false,
+        'payment' => false,
+        'receiptOptions' => false,
+        'receiptPrinting' => false,
+        'signature' => false,
+        'standalone' => false,
+        'surcharge' => false,
+        'timeouts' => false,
+        'wifiProfiles' => false
     ];
 
     /**
@@ -910,7 +910,7 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

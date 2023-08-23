@@ -73,10 +73,10 @@ class CheckoutSDKAction implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPINullables = [
         'paymentData' => false,
-		'paymentMethodType' => false,
-		'sdkData' => false,
-		'type' => false,
-		'url' => false
+        'paymentMethodType' => false,
+        'sdkData' => false,
+        'type' => false,
+        'url' => false
     ];
 
     /**
@@ -538,7 +538,7 @@ class CheckoutSDKAction implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

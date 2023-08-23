@@ -81,14 +81,14 @@ class PayPalDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'checkoutAttemptId' => false,
-		'orderID' => false,
-		'payeePreferred' => false,
-		'payerID' => false,
-		'payerSelected' => false,
-		'recurringDetailReference' => false,
-		'storedPaymentMethodId' => false,
-		'subtype' => false,
-		'type' => false
+        'orderID' => false,
+        'payeePreferred' => false,
+        'payerID' => false,
+        'payerSelected' => false,
+        'recurringDetailReference' => false,
+        'storedPaymentMethodId' => false,
+        'subtype' => false,
+        'type' => false
     ];
 
     /**
@@ -707,7 +707,7 @@ class PayPalDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

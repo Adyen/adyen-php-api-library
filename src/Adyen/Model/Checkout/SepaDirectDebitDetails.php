@@ -75,11 +75,11 @@ class SepaDirectDebitDetails implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPINullables = [
         'checkoutAttemptId' => false,
-		'iban' => false,
-		'ownerName' => false,
-		'recurringDetailReference' => false,
-		'storedPaymentMethodId' => false,
-		'type' => false
+        'iban' => false,
+        'ownerName' => false,
+        'recurringDetailReference' => false,
+        'storedPaymentMethodId' => false,
+        'type' => false
     ];
 
     /**
@@ -577,7 +577,7 @@ class SepaDirectDebitDetails implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

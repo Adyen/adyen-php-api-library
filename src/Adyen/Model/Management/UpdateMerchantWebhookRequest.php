@@ -89,18 +89,18 @@ class UpdateMerchantWebhookRequest implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPINullables = [
         'acceptsExpiredCertificate' => false,
-		'acceptsSelfSignedCertificate' => false,
-		'acceptsUntrustedRootCertificate' => false,
-		'active' => false,
-		'additionalSettings' => false,
-		'communicationFormat' => false,
-		'description' => false,
-		'networkType' => false,
-		'password' => false,
-		'populateSoapActionHeader' => false,
-		'sslVersion' => false,
-		'url' => false,
-		'username' => false
+        'acceptsSelfSignedCertificate' => false,
+        'acceptsUntrustedRootCertificate' => false,
+        'active' => false,
+        'additionalSettings' => false,
+        'communicationFormat' => false,
+        'description' => false,
+        'networkType' => false,
+        'password' => false,
+        'populateSoapActionHeader' => false,
+        'sslVersion' => false,
+        'url' => false,
+        'username' => false
     ];
 
     /**
@@ -877,7 +877,7 @@ class UpdateMerchantWebhookRequest implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

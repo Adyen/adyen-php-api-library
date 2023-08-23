@@ -75,11 +75,11 @@ class CreateMerchantUserRequest implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static $openAPINullables = [
         'accountGroups' => false,
-		'email' => false,
-		'name' => false,
-		'roles' => false,
-		'timeZoneCode' => false,
-		'username' => false
+        'email' => false,
+        'name' => false,
+        'roles' => false,
+        'timeZoneCode' => false,
+        'username' => false
     ];
 
     /**
@@ -545,7 +545,7 @@ class CreateMerchantUserRequest implements ModelInterface, ArrayAccess, \JsonSer
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

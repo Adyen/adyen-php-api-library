@@ -67,7 +67,7 @@ class SplitAmount implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'currency' => false,
-		'value' => false
+        'value' => false
     ];
 
     /**
@@ -403,7 +403,7 @@ class SplitAmount implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

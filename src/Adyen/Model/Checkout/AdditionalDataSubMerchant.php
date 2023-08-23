@@ -83,15 +83,15 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static $openAPINullables = [
         'subMerchantNumberOfSubSellers' => false,
-		'subMerchantSubSellerSubSellerNrCity' => false,
-		'subMerchantSubSellerSubSellerNrCountry' => false,
-		'subMerchantSubSellerSubSellerNrId' => false,
-		'subMerchantSubSellerSubSellerNrMcc' => false,
-		'subMerchantSubSellerSubSellerNrName' => false,
-		'subMerchantSubSellerSubSellerNrPostalCode' => false,
-		'subMerchantSubSellerSubSellerNrState' => false,
-		'subMerchantSubSellerSubSellerNrStreet' => false,
-		'subMerchantSubSellerSubSellerNrTaxId' => false
+        'subMerchantSubSellerSubSellerNrCity' => false,
+        'subMerchantSubSellerSubSellerNrCountry' => false,
+        'subMerchantSubSellerSubSellerNrId' => false,
+        'subMerchantSubSellerSubSellerNrMcc' => false,
+        'subMerchantSubSellerSubSellerNrName' => false,
+        'subMerchantSubSellerSubSellerNrPostalCode' => false,
+        'subMerchantSubSellerSubSellerNrState' => false,
+        'subMerchantSubSellerSubSellerNrStreet' => false,
+        'subMerchantSubSellerSubSellerNrTaxId' => false
     ];
 
     /**
@@ -672,7 +672,7 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

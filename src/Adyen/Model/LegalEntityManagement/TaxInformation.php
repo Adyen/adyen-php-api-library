@@ -69,8 +69,8 @@ class TaxInformation implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'country' => false,
-		'number' => false,
-		'type' => false
+        'number' => false,
+        'type' => false
     ];
 
     /**
@@ -434,7 +434,7 @@ class TaxInformation implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

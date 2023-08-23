@@ -85,16 +85,16 @@ class RecurringDetail implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'brand' => false,
-		'brands' => false,
-		'configuration' => false,
-		'fundingSource' => false,
-		'group' => false,
-		'inputDetails' => false,
-		'issuers' => false,
-		'name' => false,
-		'recurringDetailReference' => false,
-		'storedDetails' => false,
-		'type' => false
+        'brands' => false,
+        'configuration' => false,
+        'fundingSource' => false,
+        'group' => false,
+        'inputDetails' => false,
+        'issuers' => false,
+        'name' => false,
+        'recurringDetailReference' => false,
+        'storedDetails' => false,
+        'type' => false
     ];
 
     /**
@@ -739,7 +739,7 @@ class RecurringDetail implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

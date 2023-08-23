@@ -69,8 +69,8 @@ class PaginatedAccountHoldersResponse implements ModelInterface, ArrayAccess, \J
       */
     protected static $openAPINullables = [
         'accountHolders' => false,
-		'hasNext' => false,
-		'hasPrevious' => false
+        'hasNext' => false,
+        'hasPrevious' => false
     ];
 
     /**
@@ -443,7 +443,7 @@ class PaginatedAccountHoldersResponse implements ModelInterface, ArrayAccess, \J
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

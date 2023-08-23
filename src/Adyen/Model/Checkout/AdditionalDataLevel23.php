@@ -97,22 +97,22 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPINullables = [
         'enhancedSchemeDataCustomerReference' => false,
-		'enhancedSchemeDataDestinationCountryCode' => false,
-		'enhancedSchemeDataDestinationPostalCode' => false,
-		'enhancedSchemeDataDestinationStateProvinceCode' => false,
-		'enhancedSchemeDataDutyAmount' => false,
-		'enhancedSchemeDataFreightAmount' => false,
-		'enhancedSchemeDataItemDetailLineItemNrCommodityCode' => false,
-		'enhancedSchemeDataItemDetailLineItemNrDescription' => false,
-		'enhancedSchemeDataItemDetailLineItemNrDiscountAmount' => false,
-		'enhancedSchemeDataItemDetailLineItemNrProductCode' => false,
-		'enhancedSchemeDataItemDetailLineItemNrQuantity' => false,
-		'enhancedSchemeDataItemDetailLineItemNrTotalAmount' => false,
-		'enhancedSchemeDataItemDetailLineItemNrUnitOfMeasure' => false,
-		'enhancedSchemeDataItemDetailLineItemNrUnitPrice' => false,
-		'enhancedSchemeDataOrderDate' => false,
-		'enhancedSchemeDataShipFromPostalCode' => false,
-		'enhancedSchemeDataTotalTaxAmount' => false
+        'enhancedSchemeDataDestinationCountryCode' => false,
+        'enhancedSchemeDataDestinationPostalCode' => false,
+        'enhancedSchemeDataDestinationStateProvinceCode' => false,
+        'enhancedSchemeDataDutyAmount' => false,
+        'enhancedSchemeDataFreightAmount' => false,
+        'enhancedSchemeDataItemDetailLineItemNrCommodityCode' => false,
+        'enhancedSchemeDataItemDetailLineItemNrDescription' => false,
+        'enhancedSchemeDataItemDetailLineItemNrDiscountAmount' => false,
+        'enhancedSchemeDataItemDetailLineItemNrProductCode' => false,
+        'enhancedSchemeDataItemDetailLineItemNrQuantity' => false,
+        'enhancedSchemeDataItemDetailLineItemNrTotalAmount' => false,
+        'enhancedSchemeDataItemDetailLineItemNrUnitOfMeasure' => false,
+        'enhancedSchemeDataItemDetailLineItemNrUnitPrice' => false,
+        'enhancedSchemeDataOrderDate' => false,
+        'enhancedSchemeDataShipFromPostalCode' => false,
+        'enhancedSchemeDataTotalTaxAmount' => false
     ];
 
     /**
@@ -910,7 +910,7 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

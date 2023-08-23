@@ -67,7 +67,7 @@ class EntryModesRestriction implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPINullables = [
         'operation' => false,
-		'value' => false
+        'value' => false
     ];
 
     /**
@@ -440,7 +440,7 @@ class EntryModesRestriction implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

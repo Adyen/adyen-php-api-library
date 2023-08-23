@@ -67,7 +67,7 @@ class TestWebhookRequest implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPINullables = [
         'notification' => false,
-		'types' => false
+        'types' => false
     ];
 
     /**
@@ -400,7 +400,7 @@ class TestWebhookRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

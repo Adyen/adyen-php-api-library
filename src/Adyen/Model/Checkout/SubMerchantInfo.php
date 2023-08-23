@@ -73,10 +73,10 @@ class SubMerchantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'address' => false,
-		'id' => false,
-		'mcc' => false,
-		'name' => false,
-		'taxId' => false
+        'id' => false,
+        'mcc' => false,
+        'name' => false,
+        'taxId' => false
     ];
 
     /**
@@ -502,7 +502,7 @@ class SubMerchantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

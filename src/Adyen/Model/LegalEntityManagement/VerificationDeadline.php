@@ -69,8 +69,8 @@ class VerificationDeadline implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPINullables = [
         'capabilities' => false,
-		'entityIds' => false,
-		'expiresAt' => false
+        'entityIds' => false,
+        'expiresAt' => false
     ];
 
     /**
@@ -559,7 +559,7 @@ class VerificationDeadline implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

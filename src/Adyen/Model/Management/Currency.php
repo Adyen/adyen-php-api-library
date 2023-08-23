@@ -69,8 +69,8 @@ class Currency implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'amount' => true,
-		'currencyCode' => false,
-		'percentage' => false
+        'currencyCode' => false,
+        'percentage' => false
     ];
 
     /**
@@ -435,7 +435,7 @@ class Currency implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

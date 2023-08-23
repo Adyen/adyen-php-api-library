@@ -83,15 +83,15 @@ class CreateOrderResponse implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static $openAPINullables = [
         'additionalData' => false,
-		'amount' => false,
-		'expiresAt' => false,
-		'fraudResult' => false,
-		'orderData' => false,
-		'pspReference' => false,
-		'reference' => false,
-		'refusalReason' => false,
-		'remainingAmount' => false,
-		'resultCode' => false
+        'amount' => false,
+        'expiresAt' => false,
+        'fraudResult' => false,
+        'orderData' => false,
+        'pspReference' => false,
+        'reference' => false,
+        'refusalReason' => false,
+        'remainingAmount' => false,
+        'resultCode' => false
     ];
 
     /**
@@ -718,7 +718,7 @@ class CreateOrderResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -71,9 +71,9 @@ class CheckoutAwaitAction implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static $openAPINullables = [
         'paymentData' => false,
-		'paymentMethodType' => false,
-		'type' => false,
-		'url' => false
+        'paymentMethodType' => false,
+        'type' => false,
+        'url' => false
     ];
 
     /**
@@ -502,7 +502,7 @@ class CheckoutAwaitAction implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

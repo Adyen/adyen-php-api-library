@@ -79,13 +79,13 @@ class StoredValueIssueRequest implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static $openAPINullables = [
         'amount' => false,
-		'merchantAccount' => false,
-		'paymentMethod' => false,
-		'recurringDetailReference' => false,
-		'reference' => false,
-		'shopperInteraction' => false,
-		'shopperReference' => false,
-		'store' => false
+        'merchantAccount' => false,
+        'paymentMethod' => false,
+        'recurringDetailReference' => false,
+        'reference' => false,
+        'shopperInteraction' => false,
+        'shopperReference' => false,
+        'store' => false
     ];
 
     /**
@@ -650,7 +650,7 @@ class StoredValueIssueRequest implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

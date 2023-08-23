@@ -67,7 +67,7 @@ class PaymentMethodsResponse implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPINullables = [
         'paymentMethods' => false,
-		'storedPaymentMethods' => false
+        'storedPaymentMethods' => false
     ];
 
     /**
@@ -400,7 +400,7 @@ class PaymentMethodsResponse implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

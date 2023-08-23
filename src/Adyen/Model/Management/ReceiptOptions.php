@@ -67,7 +67,7 @@ class ReceiptOptions implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'logo' => false,
-		'qrCodeData' => false
+        'qrCodeData' => false
     ];
 
     /**
@@ -400,7 +400,7 @@ class ReceiptOptions implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

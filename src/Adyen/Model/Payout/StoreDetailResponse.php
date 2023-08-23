@@ -71,9 +71,9 @@ class StoreDetailResponse implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static $openAPINullables = [
         'additionalData' => false,
-		'pspReference' => false,
-		'recurringDetailReference' => false,
-		'resultCode' => false
+        'pspReference' => false,
+        'recurringDetailReference' => false,
+        'resultCode' => false
     ];
 
     /**
@@ -477,7 +477,7 @@ class StoreDetailResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

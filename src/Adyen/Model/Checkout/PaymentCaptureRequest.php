@@ -77,12 +77,12 @@ class PaymentCaptureRequest implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPINullables = [
         'amount' => false,
-		'lineItems' => false,
-		'merchantAccount' => false,
-		'platformChargebackLogic' => false,
-		'reference' => false,
-		'splits' => false,
-		'subMerchants' => false
+        'lineItems' => false,
+        'merchantAccount' => false,
+        'platformChargebackLogic' => false,
+        'reference' => false,
+        'splits' => false,
+        'subMerchants' => false
     ];
 
     /**
@@ -576,7 +576,7 @@ class PaymentCaptureRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

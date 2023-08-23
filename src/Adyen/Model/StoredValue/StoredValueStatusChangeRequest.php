@@ -81,14 +81,14 @@ class StoredValueStatusChangeRequest implements ModelInterface, ArrayAccess, \Js
       */
     protected static $openAPINullables = [
         'amount' => false,
-		'merchantAccount' => false,
-		'paymentMethod' => false,
-		'recurringDetailReference' => false,
-		'reference' => false,
-		'shopperInteraction' => false,
-		'shopperReference' => false,
-		'status' => false,
-		'store' => false
+        'merchantAccount' => false,
+        'paymentMethod' => false,
+        'recurringDetailReference' => false,
+        'reference' => false,
+        'shopperInteraction' => false,
+        'shopperReference' => false,
+        'status' => false,
+        'store' => false
     ];
 
     /**
@@ -720,7 +720,7 @@ class StoredValueStatusChangeRequest implements ModelInterface, ArrayAccess, \Js
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

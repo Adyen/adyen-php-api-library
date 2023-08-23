@@ -67,7 +67,7 @@ class WeChatPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'checkoutAttemptId' => false,
-		'type' => false
+        'type' => false
     ];
 
     /**
@@ -433,7 +433,7 @@ class WeChatPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

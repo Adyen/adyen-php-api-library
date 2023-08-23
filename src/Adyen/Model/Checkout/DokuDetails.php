@@ -73,10 +73,10 @@ class DokuDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'checkoutAttemptId' => false,
-		'firstName' => false,
-		'lastName' => false,
-		'shopperEmail' => false,
-		'type' => false
+        'firstName' => false,
+        'lastName' => false,
+        'shopperEmail' => false,
+        'type' => false
     ];
 
     /**
@@ -561,7 +561,7 @@ class DokuDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

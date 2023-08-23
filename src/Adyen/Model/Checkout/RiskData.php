@@ -71,9 +71,9 @@ class RiskData implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'clientData' => false,
-		'customFields' => false,
-		'fraudOffset' => true,
-		'profileReference' => false
+        'customFields' => false,
+        'fraudOffset' => true,
+        'profileReference' => false
     ];
 
     /**
@@ -466,7 +466,7 @@ class RiskData implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

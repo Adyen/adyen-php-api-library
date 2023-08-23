@@ -75,11 +75,11 @@ class SubInputDetail implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'configuration' => false,
-		'items' => false,
-		'key' => false,
-		'optional' => false,
-		'type' => false,
-		'value' => false
+        'items' => false,
+        'key' => false,
+        'optional' => false,
+        'type' => false,
+        'value' => false
     ];
 
     /**
@@ -536,7 +536,7 @@ class SubInputDetail implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -105,26 +105,26 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPINullables = [
         'riskdataCustomFieldName' => false,
-		'riskdataBasketItemItemNrAmountPerItem' => false,
-		'riskdataBasketItemItemNrBrand' => false,
-		'riskdataBasketItemItemNrCategory' => false,
-		'riskdataBasketItemItemNrColor' => false,
-		'riskdataBasketItemItemNrCurrency' => false,
-		'riskdataBasketItemItemNrItemID' => false,
-		'riskdataBasketItemItemNrManufacturer' => false,
-		'riskdataBasketItemItemNrProductTitle' => false,
-		'riskdataBasketItemItemNrQuantity' => false,
-		'riskdataBasketItemItemNrReceiverEmail' => false,
-		'riskdataBasketItemItemNrSize' => false,
-		'riskdataBasketItemItemNrSku' => false,
-		'riskdataBasketItemItemNrUpc' => false,
-		'riskdataPromotionsPromotionItemNrPromotionCode' => false,
-		'riskdataPromotionsPromotionItemNrPromotionDiscountAmount' => false,
-		'riskdataPromotionsPromotionItemNrPromotionDiscountCurrency' => false,
-		'riskdataPromotionsPromotionItemNrPromotionDiscountPercentage' => false,
-		'riskdataPromotionsPromotionItemNrPromotionName' => false,
-		'riskdataRiskProfileReference' => false,
-		'riskdataSkipRisk' => false
+        'riskdataBasketItemItemNrAmountPerItem' => false,
+        'riskdataBasketItemItemNrBrand' => false,
+        'riskdataBasketItemItemNrCategory' => false,
+        'riskdataBasketItemItemNrColor' => false,
+        'riskdataBasketItemItemNrCurrency' => false,
+        'riskdataBasketItemItemNrItemID' => false,
+        'riskdataBasketItemItemNrManufacturer' => false,
+        'riskdataBasketItemItemNrProductTitle' => false,
+        'riskdataBasketItemItemNrQuantity' => false,
+        'riskdataBasketItemItemNrReceiverEmail' => false,
+        'riskdataBasketItemItemNrSize' => false,
+        'riskdataBasketItemItemNrSku' => false,
+        'riskdataBasketItemItemNrUpc' => false,
+        'riskdataPromotionsPromotionItemNrPromotionCode' => false,
+        'riskdataPromotionsPromotionItemNrPromotionDiscountAmount' => false,
+        'riskdataPromotionsPromotionItemNrPromotionDiscountCurrency' => false,
+        'riskdataPromotionsPromotionItemNrPromotionDiscountPercentage' => false,
+        'riskdataPromotionsPromotionItemNrPromotionName' => false,
+        'riskdataRiskProfileReference' => false,
+        'riskdataSkipRisk' => false
     ];
 
     /**
@@ -1046,7 +1046,7 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

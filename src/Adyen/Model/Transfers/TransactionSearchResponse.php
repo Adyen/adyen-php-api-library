@@ -67,7 +67,7 @@ class TransactionSearchResponse implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static $openAPINullables = [
         'links' => false,
-		'data' => false
+        'data' => false
     ];
 
     /**
@@ -400,7 +400,7 @@ class TransactionSearchResponse implements ModelInterface, ArrayAccess, \JsonSer
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

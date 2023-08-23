@@ -79,13 +79,13 @@ class StoreCreationRequest implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPINullables = [
         'address' => false,
-		'businessLineIds' => false,
-		'description' => false,
-		'externalReferenceId' => false,
-		'phoneNumber' => false,
-		'reference' => false,
-		'shopperStatement' => false,
-		'splitConfiguration' => false
+        'businessLineIds' => false,
+        'description' => false,
+        'externalReferenceId' => false,
+        'phoneNumber' => false,
+        'reference' => false,
+        'shopperStatement' => false,
+        'splitConfiguration' => false
     ];
 
     /**
@@ -616,7 +616,7 @@ class StoreCreationRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

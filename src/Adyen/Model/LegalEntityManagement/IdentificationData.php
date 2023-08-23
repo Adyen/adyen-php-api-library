@@ -77,12 +77,12 @@ class IdentificationData implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPINullables = [
         'cardNumber' => false,
-		'expiryDate' => false,
-		'issuerCountry' => false,
-		'issuerState' => false,
-		'nationalIdExempt' => false,
-		'number' => false,
-		'type' => false
+        'expiryDate' => false,
+        'issuerCountry' => false,
+        'issuerState' => false,
+        'nationalIdExempt' => false,
+        'number' => false,
+        'type' => false
     ];
 
     /**
@@ -634,7 +634,7 @@ class IdentificationData implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

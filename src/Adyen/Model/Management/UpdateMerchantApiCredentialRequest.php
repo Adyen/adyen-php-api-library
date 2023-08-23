@@ -71,9 +71,9 @@ class UpdateMerchantApiCredentialRequest implements ModelInterface, ArrayAccess,
       */
     protected static $openAPINullables = [
         'active' => false,
-		'allowedOrigins' => false,
-		'description' => false,
-		'roles' => false
+        'allowedOrigins' => false,
+        'description' => false,
+        'roles' => false
     ];
 
     /**
@@ -468,7 +468,7 @@ class UpdateMerchantApiCredentialRequest implements ModelInterface, ArrayAccess,
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

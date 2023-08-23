@@ -69,8 +69,8 @@ class Name implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'firstName' => false,
-		'infix' => false,
-		'lastName' => false
+        'infix' => false,
+        'lastName' => false
     ];
 
     /**
@@ -440,7 +440,7 @@ class Name implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

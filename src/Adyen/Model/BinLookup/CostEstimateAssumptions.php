@@ -69,8 +69,8 @@ class CostEstimateAssumptions implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static $openAPINullables = [
         'assume3DSecureAuthenticated' => false,
-		'assumeLevel3Data' => false,
-		'installments' => true
+        'assumeLevel3Data' => false,
+        'installments' => true
     ];
 
     /**
@@ -432,7 +432,7 @@ class CostEstimateAssumptions implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

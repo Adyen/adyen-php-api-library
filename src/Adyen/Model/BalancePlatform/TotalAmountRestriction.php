@@ -67,7 +67,7 @@ class TotalAmountRestriction implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPINullables = [
         'operation' => false,
-		'value' => false
+        'value' => false
     ];
 
     /**
@@ -403,7 +403,7 @@ class TotalAmountRestriction implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -89,18 +89,18 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'attachment' => false,
-		'attachments' => false,
-		'creationDate' => false,
-		'description' => false,
-		'expiryDate' => false,
-		'fileName' => false,
-		'id' => false,
-		'issuerCountry' => false,
-		'issuerState' => false,
-		'modificationDate' => false,
-		'number' => false,
-		'owner' => false,
-		'type' => false
+        'attachments' => false,
+        'creationDate' => false,
+        'description' => false,
+        'expiryDate' => false,
+        'fileName' => false,
+        'id' => false,
+        'issuerCountry' => false,
+        'issuerState' => false,
+        'modificationDate' => false,
+        'number' => false,
+        'owner' => false,
+        'type' => false
     ];
 
     /**
@@ -843,7 +843,7 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -67,7 +67,7 @@ class ThreeDS2ResultRequest implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPINullables = [
         'merchantAccount' => false,
-		'pspReference' => false
+        'pspReference' => false
     ];
 
     /**
@@ -406,7 +406,7 @@ class ThreeDS2ResultRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -77,12 +77,12 @@ class BacsDirectDebitDetails implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPINullables = [
         'bankAccountNumber' => false,
-		'bankLocationId' => false,
-		'checkoutAttemptId' => false,
-		'holderName' => false,
-		'recurringDetailReference' => false,
-		'storedPaymentMethodId' => false,
-		'type' => false
+        'bankLocationId' => false,
+        'checkoutAttemptId' => false,
+        'holderName' => false,
+        'recurringDetailReference' => false,
+        'storedPaymentMethodId' => false,
+        'type' => false
     ];
 
     /**
@@ -603,7 +603,7 @@ class BacsDirectDebitDetails implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

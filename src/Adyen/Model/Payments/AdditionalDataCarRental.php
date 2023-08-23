@@ -109,28 +109,28 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static $openAPINullables = [
         'carRentalCheckOutDate' => false,
-		'carRentalCustomerServiceTollFreeNumber' => false,
-		'carRentalDaysRented' => false,
-		'carRentalFuelCharges' => false,
-		'carRentalInsuranceCharges' => false,
-		'carRentalLocationCity' => false,
-		'carRentalLocationCountry' => false,
-		'carRentalLocationStateProvince' => false,
-		'carRentalNoShowIndicator' => false,
-		'carRentalOneWayDropOffCharges' => false,
-		'carRentalRate' => false,
-		'carRentalRateIndicator' => false,
-		'carRentalRentalAgreementNumber' => false,
-		'carRentalRentalClassId' => false,
-		'carRentalRenterName' => false,
-		'carRentalReturnCity' => false,
-		'carRentalReturnCountry' => false,
-		'carRentalReturnDate' => false,
-		'carRentalReturnLocationId' => false,
-		'carRentalReturnStateProvince' => false,
-		'carRentalTaxExemptIndicator' => false,
-		'travelEntertainmentAuthDataDuration' => false,
-		'travelEntertainmentAuthDataMarket' => false
+        'carRentalCustomerServiceTollFreeNumber' => false,
+        'carRentalDaysRented' => false,
+        'carRentalFuelCharges' => false,
+        'carRentalInsuranceCharges' => false,
+        'carRentalLocationCity' => false,
+        'carRentalLocationCountry' => false,
+        'carRentalLocationStateProvince' => false,
+        'carRentalNoShowIndicator' => false,
+        'carRentalOneWayDropOffCharges' => false,
+        'carRentalRate' => false,
+        'carRentalRateIndicator' => false,
+        'carRentalRentalAgreementNumber' => false,
+        'carRentalRentalClassId' => false,
+        'carRentalRenterName' => false,
+        'carRentalReturnCity' => false,
+        'carRentalReturnCountry' => false,
+        'carRentalReturnDate' => false,
+        'carRentalReturnLocationId' => false,
+        'carRentalReturnStateProvince' => false,
+        'carRentalTaxExemptIndicator' => false,
+        'travelEntertainmentAuthDataDuration' => false,
+        'travelEntertainmentAuthDataMarket' => false
     ];
 
     /**
@@ -1114,7 +1114,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

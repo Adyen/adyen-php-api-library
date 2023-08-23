@@ -75,11 +75,11 @@ class StoredValueBalanceMergeResponse implements ModelInterface, ArrayAccess, \J
       */
     protected static $openAPINullables = [
         'authCode' => false,
-		'currentBalance' => false,
-		'pspReference' => false,
-		'refusalReason' => false,
-		'resultCode' => false,
-		'thirdPartyRefusalReason' => false
+        'currentBalance' => false,
+        'pspReference' => false,
+        'refusalReason' => false,
+        'resultCode' => false,
+        'thirdPartyRefusalReason' => false
     ];
 
     /**
@@ -573,7 +573,7 @@ class StoredValueBalanceMergeResponse implements ModelInterface, ArrayAccess, \J
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

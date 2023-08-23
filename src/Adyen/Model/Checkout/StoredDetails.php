@@ -69,8 +69,8 @@ class StoredDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'bank' => false,
-		'card' => false,
-		'emailAddress' => false
+        'card' => false,
+        'emailAddress' => false
     ];
 
     /**
@@ -434,7 +434,7 @@ class StoredDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

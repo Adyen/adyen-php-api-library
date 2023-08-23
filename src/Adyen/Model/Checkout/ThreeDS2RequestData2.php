@@ -135,41 +135,41 @@ class ThreeDS2RequestData2 implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPINullables = [
         'acctInfo' => false,
-		'acctType' => false,
-		'acquirerBIN' => false,
-		'acquirerMerchantID' => false,
-		'addrMatch' => false,
-		'authenticationOnly' => false,
-		'challengeIndicator' => false,
-		'deviceRenderOptions' => false,
-		'homePhone' => false,
-		'mcc' => false,
-		'merchantName' => false,
-		'messageVersion' => false,
-		'mobilePhone' => false,
-		'notificationURL' => false,
-		'payTokenInd' => false,
-		'paymentAuthenticationUseCase' => false,
-		'purchaseInstalData' => false,
-		'recurringExpiry' => false,
-		'recurringFrequency' => false,
-		'sdkAppID' => false,
-		'sdkEphemPubKey' => false,
-		'sdkMaxTimeout' => true,
-		'sdkReferenceNumber' => false,
-		'sdkTransID' => false,
-		'threeDSCompInd' => false,
-		'threeDSRequestorAuthenticationInd' => false,
-		'threeDSRequestorAuthenticationInfo' => false,
-		'threeDSRequestorChallengeInd' => false,
-		'threeDSRequestorID' => false,
-		'threeDSRequestorName' => false,
-		'threeDSRequestorPriorAuthenticationInfo' => false,
-		'threeDSRequestorURL' => false,
-		'transType' => false,
-		'transactionType' => false,
-		'whiteListStatus' => false,
-		'workPhone' => false
+        'acctType' => false,
+        'acquirerBIN' => false,
+        'acquirerMerchantID' => false,
+        'addrMatch' => false,
+        'authenticationOnly' => false,
+        'challengeIndicator' => false,
+        'deviceRenderOptions' => false,
+        'homePhone' => false,
+        'mcc' => false,
+        'merchantName' => false,
+        'messageVersion' => false,
+        'mobilePhone' => false,
+        'notificationURL' => false,
+        'payTokenInd' => false,
+        'paymentAuthenticationUseCase' => false,
+        'purchaseInstalData' => false,
+        'recurringExpiry' => false,
+        'recurringFrequency' => false,
+        'sdkAppID' => false,
+        'sdkEphemPubKey' => false,
+        'sdkMaxTimeout' => true,
+        'sdkReferenceNumber' => false,
+        'sdkTransID' => false,
+        'threeDSCompInd' => false,
+        'threeDSRequestorAuthenticationInd' => false,
+        'threeDSRequestorAuthenticationInfo' => false,
+        'threeDSRequestorChallengeInd' => false,
+        'threeDSRequestorID' => false,
+        'threeDSRequestorName' => false,
+        'threeDSRequestorPriorAuthenticationInfo' => false,
+        'threeDSRequestorURL' => false,
+        'transType' => false,
+        'transactionType' => false,
+        'whiteListStatus' => false,
+        'workPhone' => false
     ];
 
     /**
@@ -1782,7 +1782,7 @@ class ThreeDS2RequestData2 implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

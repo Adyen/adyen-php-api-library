@@ -69,8 +69,8 @@ class ShopperInput implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'billingAddress' => false,
-		'deliveryAddress' => false,
-		'personalDetails' => false
+        'deliveryAddress' => false,
+        'personalDetails' => false
     ];
 
     /**
@@ -539,7 +539,7 @@ class ShopperInput implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

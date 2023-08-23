@@ -83,15 +83,15 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static $openAPINullables = [
         'amount' => false,
-		'assumptions' => false,
-		'cardNumber' => false,
-		'encryptedCardNumber' => false,
-		'merchantAccount' => false,
-		'merchantDetails' => false,
-		'recurring' => false,
-		'selectedRecurringDetailReference' => false,
-		'shopperInteraction' => false,
-		'shopperReference' => false
+        'assumptions' => false,
+        'cardNumber' => false,
+        'encryptedCardNumber' => false,
+        'merchantAccount' => false,
+        'merchantDetails' => false,
+        'recurring' => false,
+        'selectedRecurringDetailReference' => false,
+        'shopperInteraction' => false,
+        'shopperReference' => false
     ];
 
     /**
@@ -715,7 +715,7 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -73,10 +73,10 @@ class GetTermsOfServiceDocumentResponse implements ModelInterface, ArrayAccess, 
       */
     protected static $openAPINullables = [
         'document' => false,
-		'id' => false,
-		'language' => false,
-		'termsOfServiceDocumentId' => false,
-		'type' => false
+        'id' => false,
+        'language' => false,
+        'termsOfServiceDocumentId' => false,
+        'type' => false
     ];
 
     /**
@@ -545,7 +545,7 @@ class GetTermsOfServiceDocumentResponse implements ModelInterface, ArrayAccess, 
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

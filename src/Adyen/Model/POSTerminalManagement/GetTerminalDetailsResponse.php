@@ -113,30 +113,30 @@ class GetTerminalDetailsResponse implements ModelInterface, ArrayAccess, \JsonSe
       */
     protected static $openAPINullables = [
         'bluetoothIp' => false,
-		'bluetoothMac' => false,
-		'companyAccount' => false,
-		'country' => false,
-		'deviceModel' => false,
-		'dhcpEnabled' => false,
-		'displayLabel' => false,
-		'ethernetIp' => false,
-		'ethernetMac' => false,
-		'firmwareVersion' => false,
-		'iccid' => false,
-		'lastActivityDateTime' => false,
-		'lastTransactionDateTime' => false,
-		'linkNegotiation' => false,
-		'merchantAccount' => false,
-		'merchantInventory' => false,
-		'permanentTerminalId' => false,
-		'serialNumber' => false,
-		'simStatus' => false,
-		'store' => false,
-		'storeDetails' => false,
-		'terminal' => false,
-		'terminalStatus' => false,
-		'wifiIp' => false,
-		'wifiMac' => false
+        'bluetoothMac' => false,
+        'companyAccount' => false,
+        'country' => false,
+        'deviceModel' => false,
+        'dhcpEnabled' => false,
+        'displayLabel' => false,
+        'ethernetIp' => false,
+        'ethernetMac' => false,
+        'firmwareVersion' => false,
+        'iccid' => false,
+        'lastActivityDateTime' => false,
+        'lastTransactionDateTime' => false,
+        'linkNegotiation' => false,
+        'merchantAccount' => false,
+        'merchantInventory' => false,
+        'permanentTerminalId' => false,
+        'serialNumber' => false,
+        'simStatus' => false,
+        'store' => false,
+        'storeDetails' => false,
+        'terminal' => false,
+        'terminalStatus' => false,
+        'wifiIp' => false,
+        'wifiMac' => false
     ];
 
     /**
@@ -1241,7 +1241,7 @@ class GetTerminalDetailsResponse implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

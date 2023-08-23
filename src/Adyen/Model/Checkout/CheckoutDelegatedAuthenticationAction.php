@@ -75,11 +75,11 @@ class CheckoutDelegatedAuthenticationAction implements ModelInterface, ArrayAcce
       */
     protected static $openAPINullables = [
         'authorisationToken' => false,
-		'paymentData' => false,
-		'paymentMethodType' => false,
-		'token' => false,
-		'type' => false,
-		'url' => false
+        'paymentData' => false,
+        'paymentMethodType' => false,
+        'token' => false,
+        'type' => false,
+        'url' => false
     ];
 
     /**
@@ -570,7 +570,7 @@ class CheckoutDelegatedAuthenticationAction implements ModelInterface, ArrayAcce
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

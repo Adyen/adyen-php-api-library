@@ -73,10 +73,10 @@ class IdealDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'checkoutAttemptId' => false,
-		'issuer' => false,
-		'recurringDetailReference' => false,
-		'storedPaymentMethodId' => false,
-		'type' => false
+        'issuer' => false,
+        'recurringDetailReference' => false,
+        'storedPaymentMethodId' => false,
+        'type' => false
     ];
 
     /**
@@ -538,7 +538,7 @@ class IdealDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

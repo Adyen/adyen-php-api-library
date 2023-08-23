@@ -75,11 +75,11 @@ class FundSource implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'additionalData' => false,
-		'billingAddress' => false,
-		'card' => false,
-		'shopperEmail' => false,
-		'shopperName' => false,
-		'telephoneNumber' => false
+        'billingAddress' => false,
+        'card' => false,
+        'shopperEmail' => false,
+        'shopperName' => false,
+        'telephoneNumber' => false
     ];
 
     /**
@@ -536,7 +536,7 @@ class FundSource implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

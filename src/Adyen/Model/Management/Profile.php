@@ -99,23 +99,23 @@ class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'authType' => false,
-		'autoWifi' => false,
-		'bssType' => false,
-		'channel' => true,
-		'defaultProfile' => false,
-		'eap' => false,
-		'eapCaCert' => false,
-		'eapClientCert' => false,
-		'eapClientKey' => false,
-		'eapClientPwd' => false,
-		'eapIdentity' => false,
-		'eapIntermediateCert' => false,
-		'eapPwd' => false,
-		'hiddenSsid' => false,
-		'name' => false,
-		'psk' => false,
-		'ssid' => false,
-		'wsec' => false
+        'autoWifi' => false,
+        'bssType' => false,
+        'channel' => true,
+        'defaultProfile' => false,
+        'eap' => false,
+        'eapCaCert' => false,
+        'eapClientCert' => false,
+        'eapClientKey' => false,
+        'eapClientPwd' => false,
+        'eapIdentity' => false,
+        'eapIntermediateCert' => false,
+        'eapPwd' => false,
+        'hiddenSsid' => false,
+        'name' => false,
+        'psk' => false,
+        'ssid' => false,
+        'wsec' => false
     ];
 
     /**
@@ -954,7 +954,7 @@ class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

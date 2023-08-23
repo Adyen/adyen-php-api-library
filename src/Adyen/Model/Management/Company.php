@@ -77,12 +77,12 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'links' => false,
-		'dataCenters' => false,
-		'description' => false,
-		'id' => false,
-		'name' => false,
-		'reference' => false,
-		'status' => false
+        'dataCenters' => false,
+        'description' => false,
+        'id' => false,
+        'name' => false,
+        'reference' => false,
+        'status' => false
     ];
 
     /**
@@ -570,7 +570,7 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

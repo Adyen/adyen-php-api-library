@@ -89,18 +89,18 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'capabilities' => false,
-		'documentDetails' => false,
-		'documents' => false,
-		'entityAssociations' => false,
-		'id' => false,
-		'individual' => false,
-		'organization' => false,
-		'problems' => false,
-		'reference' => false,
-		'soleProprietorship' => false,
-		'transferInstruments' => false,
-		'type' => false,
-		'verificationDeadlines' => false
+        'documentDetails' => false,
+        'documents' => false,
+        'entityAssociations' => false,
+        'id' => false,
+        'individual' => false,
+        'organization' => false,
+        'problems' => false,
+        'reference' => false,
+        'soleProprietorship' => false,
+        'transferInstruments' => false,
+        'type' => false,
+        'verificationDeadlines' => false
     ];
 
     /**
@@ -818,7 +818,7 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

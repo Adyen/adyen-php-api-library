@@ -85,16 +85,16 @@ class CardBin implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'bin' => false,
-		'commercial' => false,
-		'fundingSource' => false,
-		'fundsAvailability' => false,
-		'issuerBin' => false,
-		'issuingBank' => false,
-		'issuingCountry' => false,
-		'issuingCurrency' => false,
-		'paymentMethod' => false,
-		'payoutEligible' => false,
-		'summary' => false
+        'commercial' => false,
+        'fundingSource' => false,
+        'fundsAvailability' => false,
+        'issuerBin' => false,
+        'issuingBank' => false,
+        'issuingCountry' => false,
+        'issuingCurrency' => false,
+        'paymentMethod' => false,
+        'payoutEligible' => false,
+        'summary' => false
     ];
 
     /**
@@ -706,7 +706,7 @@ class CardBin implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

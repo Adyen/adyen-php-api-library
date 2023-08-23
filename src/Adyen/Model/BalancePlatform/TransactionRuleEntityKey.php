@@ -67,7 +67,7 @@ class TransactionRuleEntityKey implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static $openAPINullables = [
         'entityReference' => false,
-		'entityType' => false
+        'entityType' => false
     ];
 
     /**
@@ -400,7 +400,7 @@ class TransactionRuleEntityKey implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

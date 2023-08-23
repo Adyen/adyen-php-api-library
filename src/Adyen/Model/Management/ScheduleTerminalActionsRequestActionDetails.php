@@ -72,9 +72,9 @@ class ScheduleTerminalActionsRequestActionDetails implements ModelInterface, Arr
       */
     protected static $openAPINullables = [
         'appId' => false,
-		'type' => false,
-		'certificateId' => false,
-		'updateAtFirstMaintenanceCall' => false
+        'type' => false,
+        'certificateId' => false,
+        'updateAtFirstMaintenanceCall' => false
     ];
 
     /**
@@ -469,7 +469,7 @@ class ScheduleTerminalActionsRequestActionDetails implements ModelInterface, Arr
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

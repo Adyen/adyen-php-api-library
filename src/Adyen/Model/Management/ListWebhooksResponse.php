@@ -73,10 +73,10 @@ class ListWebhooksResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPINullables = [
         'links' => false,
-		'accountReference' => false,
-		'data' => false,
-		'itemsTotal' => true,
-		'pagesTotal' => true
+        'accountReference' => false,
+        'data' => false,
+        'itemsTotal' => true,
+        'pagesTotal' => true
     ];
 
     /**
@@ -504,7 +504,7 @@ class ListWebhooksResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

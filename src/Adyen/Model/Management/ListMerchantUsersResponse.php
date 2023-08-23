@@ -71,9 +71,9 @@ class ListMerchantUsersResponse implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static $openAPINullables = [
         'links' => false,
-		'data' => false,
-		'itemsTotal' => true,
-		'pagesTotal' => true
+        'data' => false,
+        'itemsTotal' => true,
+        'pagesTotal' => true
     ];
 
     /**
@@ -470,7 +470,7 @@ class ListMerchantUsersResponse implements ModelInterface, ArrayAccess, \JsonSer
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

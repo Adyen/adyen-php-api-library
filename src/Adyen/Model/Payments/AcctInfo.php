@@ -95,21 +95,21 @@ class AcctInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'chAccAgeInd' => false,
-		'chAccChange' => false,
-		'chAccChangeInd' => false,
-		'chAccPwChange' => false,
-		'chAccPwChangeInd' => false,
-		'chAccString' => false,
-		'nbPurchaseAccount' => false,
-		'paymentAccAge' => false,
-		'paymentAccInd' => false,
-		'provisionAttemptsDay' => false,
-		'shipAddressUsage' => false,
-		'shipAddressUsageInd' => false,
-		'shipNameIndicator' => false,
-		'suspiciousAccActivity' => false,
-		'txnActivityDay' => false,
-		'txnActivityYear' => false
+        'chAccChange' => false,
+        'chAccChangeInd' => false,
+        'chAccPwChange' => false,
+        'chAccPwChangeInd' => false,
+        'chAccString' => false,
+        'nbPurchaseAccount' => false,
+        'paymentAccAge' => false,
+        'paymentAccInd' => false,
+        'provisionAttemptsDay' => false,
+        'shipAddressUsage' => false,
+        'shipAddressUsageInd' => false,
+        'shipNameIndicator' => false,
+        'suspiciousAccActivity' => false,
+        'txnActivityDay' => false,
+        'txnActivityYear' => false
     ];
 
     /**
@@ -1133,7 +1133,7 @@ class AcctInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

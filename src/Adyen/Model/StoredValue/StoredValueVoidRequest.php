@@ -75,11 +75,11 @@ class StoredValueVoidRequest implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPINullables = [
         'merchantAccount' => false,
-		'originalReference' => false,
-		'reference' => false,
-		'store' => false,
-		'tenderReference' => false,
-		'uniqueTerminalId' => false
+        'originalReference' => false,
+        'reference' => false,
+        'store' => false,
+        'tenderReference' => false,
+        'uniqueTerminalId' => false
     ];
 
     /**
@@ -542,7 +542,7 @@ class StoredValueVoidRequest implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

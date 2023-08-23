@@ -71,9 +71,9 @@ class DSPublicKeyDetail implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPINullables = [
         'brand' => false,
-		'directoryServerId' => false,
-		'fromSDKVersion' => false,
-		'publicKey' => false
+        'directoryServerId' => false,
+        'fromSDKVersion' => false,
+        'publicKey' => false
     ];
 
     /**
@@ -468,7 +468,7 @@ class DSPublicKeyDetail implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

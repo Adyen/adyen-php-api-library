@@ -95,21 +95,21 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPINullables = [
         'requestedTestErrorResponseCode' => false,
-		'allowPartialAuth' => false,
-		'authorisationType' => false,
-		'customRoutingFlag' => false,
-		'industryUsage' => false,
-		'manualCapture' => false,
-		'networkTxReference' => false,
-		'overwriteBrand' => false,
-		'subMerchantCity' => false,
-		'subMerchantCountry' => false,
-		'subMerchantID' => false,
-		'subMerchantName' => false,
-		'subMerchantPostalCode' => false,
-		'subMerchantState' => false,
-		'subMerchantStreet' => false,
-		'subMerchantTaxId' => false
+        'allowPartialAuth' => false,
+        'authorisationType' => false,
+        'customRoutingFlag' => false,
+        'industryUsage' => false,
+        'manualCapture' => false,
+        'networkTxReference' => false,
+        'overwriteBrand' => false,
+        'subMerchantCity' => false,
+        'subMerchantCountry' => false,
+        'subMerchantID' => false,
+        'subMerchantName' => false,
+        'subMerchantPostalCode' => false,
+        'subMerchantState' => false,
+        'subMerchantStreet' => false,
+        'subMerchantTaxId' => false
     ];
 
     /**
@@ -909,7 +909,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

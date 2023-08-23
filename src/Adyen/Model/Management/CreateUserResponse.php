@@ -83,15 +83,15 @@ class CreateUserResponse implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPINullables = [
         'links' => false,
-		'accountGroups' => false,
-		'active' => false,
-		'apps' => false,
-		'email' => false,
-		'id' => false,
-		'name' => false,
-		'roles' => false,
-		'timeZoneCode' => false,
-		'username' => false
+        'accountGroups' => false,
+        'active' => false,
+        'apps' => false,
+        'email' => false,
+        'id' => false,
+        'name' => false,
+        'roles' => false,
+        'timeZoneCode' => false,
+        'username' => false
     ];
 
     /**
@@ -687,7 +687,7 @@ class CreateUserResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

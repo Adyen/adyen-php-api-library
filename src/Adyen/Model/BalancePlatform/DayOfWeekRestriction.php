@@ -67,7 +67,7 @@ class DayOfWeekRestriction implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPINullables = [
         'operation' => false,
-		'value' => false
+        'value' => false
     ];
 
     /**
@@ -436,7 +436,7 @@ class DayOfWeekRestriction implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

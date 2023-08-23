@@ -79,13 +79,13 @@ class GrantOffer implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'accountHolderId' => false,
-		'amount' => false,
-		'contractType' => false,
-		'expiresAt' => false,
-		'fee' => false,
-		'id' => false,
-		'repayment' => false,
-		'startsAt' => false
+        'amount' => false,
+        'contractType' => false,
+        'expiresAt' => false,
+        'fee' => false,
+        'id' => false,
+        'repayment' => false,
+        'startsAt' => false
     ];
 
     /**
@@ -640,7 +640,7 @@ class GrantOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

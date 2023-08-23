@@ -75,11 +75,11 @@ class StoredValueLoadResponse implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static $openAPINullables = [
         'authCode' => false,
-		'currentBalance' => false,
-		'pspReference' => false,
-		'refusalReason' => false,
-		'resultCode' => false,
-		'thirdPartyRefusalReason' => false
+        'currentBalance' => false,
+        'pspReference' => false,
+        'refusalReason' => false,
+        'resultCode' => false,
+        'thirdPartyRefusalReason' => false
     ];
 
     /**
@@ -573,7 +573,7 @@ class StoredValueLoadResponse implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

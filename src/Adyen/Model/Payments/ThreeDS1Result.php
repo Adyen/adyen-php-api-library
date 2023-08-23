@@ -75,11 +75,11 @@ class ThreeDS1Result implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'cavv' => false,
-		'cavvAlgorithm' => false,
-		'eci' => false,
-		'threeDAuthenticatedResponse' => false,
-		'threeDOfferedResponse' => false,
-		'xid' => false
+        'cavvAlgorithm' => false,
+        'eci' => false,
+        'threeDAuthenticatedResponse' => false,
+        'threeDOfferedResponse' => false,
+        'xid' => false
     ];
 
     /**
@@ -536,7 +536,7 @@ class ThreeDS1Result implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -75,11 +75,11 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPINullables = [
         'associatorId' => false,
-		'entityType' => false,
-		'jobTitle' => false,
-		'legalEntityId' => false,
-		'name' => false,
-		'type' => false
+        'entityType' => false,
+        'jobTitle' => false,
+        'legalEntityId' => false,
+        'name' => false,
+        'type' => false
     ];
 
     /**
@@ -583,7 +583,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

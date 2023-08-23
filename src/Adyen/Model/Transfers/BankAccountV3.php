@@ -67,7 +67,7 @@ class BankAccountV3 implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'accountHolder' => false,
-		'accountIdentification' => false
+        'accountIdentification' => false
     ];
 
     /**
@@ -406,7 +406,7 @@ class BankAccountV3 implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

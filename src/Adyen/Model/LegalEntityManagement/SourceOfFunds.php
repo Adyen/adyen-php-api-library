@@ -71,9 +71,9 @@ class SourceOfFunds implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'acquiringBusinessLineId' => false,
-		'adyenProcessedFunds' => false,
-		'description' => false,
-		'type' => false
+        'adyenProcessedFunds' => false,
+        'description' => false,
+        'type' => false
     ];
 
     /**
@@ -501,7 +501,7 @@ class SourceOfFunds implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

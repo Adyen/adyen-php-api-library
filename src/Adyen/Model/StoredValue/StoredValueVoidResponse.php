@@ -73,10 +73,10 @@ class StoredValueVoidResponse implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static $openAPINullables = [
         'currentBalance' => false,
-		'pspReference' => false,
-		'refusalReason' => false,
-		'resultCode' => false,
-		'thirdPartyRefusalReason' => false
+        'pspReference' => false,
+        'refusalReason' => false,
+        'resultCode' => false,
+        'thirdPartyRefusalReason' => false
     ];
 
     /**
@@ -539,7 +539,7 @@ class StoredValueVoidResponse implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

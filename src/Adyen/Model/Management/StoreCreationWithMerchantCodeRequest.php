@@ -81,14 +81,14 @@ class StoreCreationWithMerchantCodeRequest implements ModelInterface, ArrayAcces
       */
     protected static $openAPINullables = [
         'address' => false,
-		'businessLineIds' => false,
-		'description' => false,
-		'externalReferenceId' => false,
-		'merchantId' => false,
-		'phoneNumber' => false,
-		'reference' => false,
-		'shopperStatement' => false,
-		'splitConfiguration' => false
+        'businessLineIds' => false,
+        'description' => false,
+        'externalReferenceId' => false,
+        'merchantId' => false,
+        'phoneNumber' => false,
+        'reference' => false,
+        'shopperStatement' => false,
+        'splitConfiguration' => false
     ];
 
     /**
@@ -653,7 +653,7 @@ class StoreCreationWithMerchantCodeRequest implements ModelInterface, ArrayAcces
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

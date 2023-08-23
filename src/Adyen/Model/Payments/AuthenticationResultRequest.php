@@ -67,7 +67,7 @@ class AuthenticationResultRequest implements ModelInterface, ArrayAccess, \JsonS
       */
     protected static $openAPINullables = [
         'merchantAccount' => false,
-		'pspReference' => false
+        'pspReference' => false
     ];
 
     /**
@@ -406,7 +406,7 @@ class AuthenticationResultRequest implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

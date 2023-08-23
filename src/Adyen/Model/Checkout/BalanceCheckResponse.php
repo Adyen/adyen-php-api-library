@@ -77,12 +77,12 @@ class BalanceCheckResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPINullables = [
         'additionalData' => false,
-		'balance' => false,
-		'fraudResult' => false,
-		'pspReference' => false,
-		'refusalReason' => false,
-		'resultCode' => false,
-		'transactionLimit' => false
+        'balance' => false,
+        'fraudResult' => false,
+        'pspReference' => false,
+        'refusalReason' => false,
+        'resultCode' => false,
+        'transactionLimit' => false
     ];
 
     /**
@@ -611,7 +611,7 @@ class BalanceCheckResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
