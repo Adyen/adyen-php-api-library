@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\Recurring;
 
 use \ArrayAccess;
@@ -263,7 +262,6 @@ class NotifyShopperRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -342,7 +340,6 @@ class NotifyShopperRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets amount

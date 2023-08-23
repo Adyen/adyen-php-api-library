@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\Payments;
 
 use \ArrayAccess;
@@ -322,7 +321,6 @@ class ThreeDSRequestorPriorAuthenticationInfo implements ModelInterface, ArrayAc
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets threeDSReqPriorAuthData

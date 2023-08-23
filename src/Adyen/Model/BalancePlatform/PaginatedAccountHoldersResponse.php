@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\BalancePlatform;
 
 use \ArrayAccess;
@@ -227,7 +226,6 @@ class PaginatedAccountHoldersResponse implements ModelInterface, ArrayAccess, \J
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -297,7 +295,6 @@ class PaginatedAccountHoldersResponse implements ModelInterface, ArrayAccess, \J
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets accountHolders

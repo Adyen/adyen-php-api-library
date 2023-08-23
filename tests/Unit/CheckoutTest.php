@@ -192,7 +192,6 @@ class CheckoutTest extends TestCaseMock
         $service->payments($params);
     }
 
-
     public static function failurePaymentsProvider()
     {
         return array(

@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\Management;
 
 use \ArrayAccess;
@@ -251,7 +250,6 @@ class CreateMerchantResponse implements ModelInterface, ArrayAccess, \JsonSerial
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -316,7 +314,6 @@ class CreateMerchantResponse implements ModelInterface, ArrayAccess, \JsonSerial
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets businessLineId

@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\POSTerminalManagement;
 
 use \ArrayAccess;
@@ -215,7 +214,6 @@ class GetTerminalDetailsRequest implements ModelInterface, ArrayAccess, \JsonSer
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -277,7 +275,6 @@ class GetTerminalDetailsRequest implements ModelInterface, ArrayAccess, \JsonSer
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets terminal

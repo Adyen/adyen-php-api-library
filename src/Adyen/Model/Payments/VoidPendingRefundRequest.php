@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\Payments;
 
 use \ArrayAccess;
@@ -275,7 +274,6 @@ class VoidPendingRefundRequest implements ModelInterface, ArrayAccess, \JsonSeri
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -347,7 +345,6 @@ class VoidPendingRefundRequest implements ModelInterface, ArrayAccess, \JsonSeri
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets additionalData

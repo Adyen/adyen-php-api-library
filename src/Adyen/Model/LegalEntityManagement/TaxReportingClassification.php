@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\LegalEntityManagement;
 
 use \ArrayAccess;
@@ -382,7 +381,6 @@ class TaxReportingClassification implements ModelInterface, ArrayAccess, \JsonSe
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets businessType

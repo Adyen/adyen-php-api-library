@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\Payments;
 
 use \ArrayAccess;
@@ -335,7 +334,6 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -414,7 +412,6 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets riskdataCustomFieldName

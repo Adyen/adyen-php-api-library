@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\TransferWebhooks;
 
 use \ArrayAccess;
@@ -317,7 +316,6 @@ class TransferNotificationRequest implements ModelInterface, ArrayAccess, \JsonS
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets data

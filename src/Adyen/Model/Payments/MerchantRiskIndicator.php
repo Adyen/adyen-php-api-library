@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\Payments;
 
 use \ArrayAccess;
@@ -425,7 +424,6 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets addressMatch

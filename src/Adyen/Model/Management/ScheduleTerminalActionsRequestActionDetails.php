@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\Management;
 
 use \ArrayAccess;
@@ -282,7 +281,6 @@ class ScheduleTerminalActionsRequestActionDetails implements ModelInterface, Arr
     {
         $invalidProperties = [];
 
-
         return $invalidProperties;
     }
 
@@ -296,7 +294,6 @@ class ScheduleTerminalActionsRequestActionDetails implements ModelInterface, Arr
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets appId

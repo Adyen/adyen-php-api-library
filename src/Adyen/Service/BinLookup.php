@@ -31,7 +31,6 @@ class BinLookup extends \Adyen\Service
         $this->getCostEstimate = new \Adyen\Service\ResourceModel\BinLookup\GetCostEstimate($this);
     }
 
-
     /**
      * @param $params
      * @return mixed

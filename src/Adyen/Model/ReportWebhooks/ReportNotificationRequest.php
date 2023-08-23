@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\ReportWebhooks;
 
 use \ArrayAccess;
@@ -318,7 +317,6 @@ class ReportNotificationRequest implements ModelInterface, ArrayAccess, \JsonSer
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets data

@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\ReportWebhooks;
 
 interface ModelInterface

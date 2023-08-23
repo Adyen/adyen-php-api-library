@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\Checkout;
 
 use \ArrayAccess;
@@ -636,7 +635,6 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets accountInfo

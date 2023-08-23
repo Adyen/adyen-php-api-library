@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\LegalEntityManagement;
 
 use \ArrayAccess;
@@ -215,7 +214,6 @@ class GetPciQuestionnaireInfosResponse implements ModelInterface, ArrayAccess, \
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -274,7 +272,6 @@ class GetPciQuestionnaireInfosResponse implements ModelInterface, ArrayAccess, \
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets data

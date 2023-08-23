@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\StoredValue;
 
 use \ArrayAccess;
@@ -392,7 +391,6 @@ class StoredValueLoadRequest implements ModelInterface, ArrayAccess, \JsonSerial
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets amount

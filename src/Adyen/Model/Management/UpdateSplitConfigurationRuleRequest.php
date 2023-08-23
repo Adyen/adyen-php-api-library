@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\Management;
 
 use \ArrayAccess;
@@ -233,7 +232,6 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -304,7 +302,6 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets currency

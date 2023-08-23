@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\POSTerminalManagement;
 
 use \ArrayAccess;
@@ -227,7 +226,6 @@ class GetTerminalsUnderAccountRequest implements ModelInterface, ArrayAccess, \J
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -291,7 +289,6 @@ class GetTerminalsUnderAccountRequest implements ModelInterface, ArrayAccess, \J
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets companyAccount

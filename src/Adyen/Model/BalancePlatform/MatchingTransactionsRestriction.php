@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\BalancePlatform;
 
 use \ArrayAccess;
@@ -221,7 +220,6 @@ class MatchingTransactionsRestriction implements ModelInterface, ArrayAccess, \J
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -284,7 +282,6 @@ class MatchingTransactionsRestriction implements ModelInterface, ArrayAccess, \J
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets operation

@@ -40,7 +40,6 @@ The library supports all webhooks under the following model directories:
 
 For more information, refer to our [documentation](https://docs.adyen.com/) or the [API Explorer](https://docs.adyen.com/api-explorer/).
 
-
 ## Prerequisites
 
 - [Adyen test account](https://docs.adyen.com/get-started-with-adyen)

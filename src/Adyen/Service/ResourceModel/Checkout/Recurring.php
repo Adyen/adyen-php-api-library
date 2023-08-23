@@ -18,7 +18,6 @@ class Recurring extends \Adyen\Service\AbstractResource
      */
     protected $allowApplicationInfo = true;
 
-
     public function delete($recurringId, array $queryParams = [])
     {
         $url = $this->checkoutEndpoint . self::STORED_PAYMENT_METHODS . "/" . $recurringId;

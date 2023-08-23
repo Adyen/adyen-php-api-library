@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\POSTerminalManagement;
 
 use \ArrayAccess;
@@ -491,7 +490,6 @@ class GetTerminalDetailsResponse implements ModelInterface, ArrayAccess, \JsonSe
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets bluetoothIp

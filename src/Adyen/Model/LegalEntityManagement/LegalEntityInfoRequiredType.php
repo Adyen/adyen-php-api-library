@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\LegalEntityManagement;
 
 use \ArrayAccess;
@@ -348,7 +347,6 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets capabilities

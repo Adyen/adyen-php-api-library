@@ -52,7 +52,6 @@ class HmacSignature
 
         $dataToSign = self::getNotificationDataToSign($params);
 
-
         // base64-encode the binary result of the HMAC computation
         $merchantSig = base64_encode(hash_hmac('sha256', $dataToSign, pack("H*", $hmacKey), true));
         return $merchantSig;

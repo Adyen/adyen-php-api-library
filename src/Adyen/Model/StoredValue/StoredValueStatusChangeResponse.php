@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\StoredValue;
 
 use \ArrayAccess;
@@ -336,7 +335,6 @@ class StoredValueStatusChangeResponse implements ModelInterface, ArrayAccess, \J
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets authCode

@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\Checkout;
 
 use \ArrayAccess;
@@ -391,7 +390,6 @@ class ThreeDSRequestData implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets challengeWindowSize

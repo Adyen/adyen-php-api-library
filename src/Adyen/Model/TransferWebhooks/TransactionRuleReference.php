@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\TransferWebhooks;
 
 use \ArrayAccess;
@@ -227,7 +226,6 @@ class TransactionRuleReference implements ModelInterface, ArrayAccess, \JsonSeri
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -288,7 +286,6 @@ class TransactionRuleReference implements ModelInterface, ArrayAccess, \JsonSeri
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets description

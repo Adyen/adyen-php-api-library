@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\POSTerminalManagement;
 
 use \ArrayAccess;
@@ -215,7 +214,6 @@ class GetStoresUnderAccountResponse implements ModelInterface, ArrayAccess, \Jso
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -274,7 +272,6 @@ class GetStoresUnderAccountResponse implements ModelInterface, ArrayAccess, \Jso
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets stores

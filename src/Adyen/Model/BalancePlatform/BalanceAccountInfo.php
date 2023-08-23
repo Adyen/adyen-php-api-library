@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\BalancePlatform;
 
 use \ArrayAccess;
@@ -257,7 +256,6 @@ class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializab
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -326,7 +324,6 @@ class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets accountHolderId

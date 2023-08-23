@@ -112,7 +112,6 @@ class PaymentTest extends TestCaseMock
         );
     }
 
-
     /**
      * @dataProvider connectionFailureAuthoriseProvider
      */

@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\BalancePlatform;
 
 use \ArrayAccess;
@@ -413,7 +412,6 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets accountNumber

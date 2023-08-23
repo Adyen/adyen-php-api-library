@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Adyen\Service\ResourceModel\Management;
 
 class CompanyAccount extends \Adyen\Service\AbstractResource

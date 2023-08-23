@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\BalancePlatform;
 
 use \ArrayAccess;
@@ -450,7 +449,6 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets balanceAccountId

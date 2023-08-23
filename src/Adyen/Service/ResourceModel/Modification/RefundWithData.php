@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Adyen\Service\ResourceModel\Modification;
 
 class RefundWithData extends \Adyen\Service\AbstractResource

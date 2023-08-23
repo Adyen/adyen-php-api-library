@@ -110,23 +110,19 @@ target/spec:
 	git clone https://github.com/Adyen/adyen-openapi.git target/spec
 	perl -i -pe's/"openapi" : "3.[0-9].[0-9]"/"openapi" : "3.0.0"/' target/spec/json/*.json
 
-
 # Extract templates (copy them for modifications)
 templates: $(openapi-generator-jar)
 	$(openapi-generator-cli) author template -g $(generator) -o target/templates
 
-
 # Download the generator
 $(openapi-generator-jar):
 	wget --quiet -o /dev/null $(openapi-generator-url) -O $(openapi-generator-jar)
-
 
 # Discard generated artifacts and changed models
 clean:
 	rm -rf $(output)
 	git checkout $(models)
 	git clean -f -d $(models)
-
 
 ## Releases
 

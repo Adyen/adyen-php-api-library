@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\LegalEntityManagement;
 
 use \ArrayAccess;
@@ -362,7 +361,6 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets countryOfGoverningLaw

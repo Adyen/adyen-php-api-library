@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\ConfigurationWebhooks;
 
 use \ArrayAccess;
@@ -313,7 +312,6 @@ class CapabilityProblemEntityRecursive implements ModelInterface, ArrayAccess, \
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets documents

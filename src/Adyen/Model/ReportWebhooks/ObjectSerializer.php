@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\ReportWebhooks;
 
 use Adyen\Model\ReportWebhooks\ModelInterface;
@@ -265,7 +264,6 @@ class ObjectSerializer
             settype($data, $class);
             return $data;
         }
-
 
         if (method_exists($class, 'getAllowableEnumValues')) {
             if (!in_array($data, $class::getAllowableEnumValues(), true)) {

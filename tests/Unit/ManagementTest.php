@@ -14,7 +14,6 @@ class ManagementTest extends TestCaseMock
     const SKIP_TEST_MESSAGE = '"Skipped the test. Configure your"';
     protected $management;
 
-
     /**
      * Get /merchants
      * @throws \Adyen\AdyenException
@@ -227,7 +226,6 @@ class ManagementTest extends TestCaseMock
         );
     }
 
-
     /**
      * Post /merchants/{merchantId}/webhooks/
      *
@@ -303,7 +301,6 @@ class ManagementTest extends TestCaseMock
         );
     }
 
-
     /**
      * Get /me/allowedOrigins
      *
@@ -333,7 +330,6 @@ class ManagementTest extends TestCaseMock
             array('tests/Resources/Management/get-allowed-origins-success.json', 200),
         );
     }
-
 
     /**
      * Post /me/allowedOrigins

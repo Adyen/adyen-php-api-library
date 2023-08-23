@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\ConfigurationWebhooks;
 
 use \ArrayAccess;
@@ -322,7 +321,6 @@ class SweepConfigurationNotificationRequest implements ModelInterface, ArrayAcce
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets data

@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\Payout;
 
 use \ArrayAccess;
@@ -450,7 +449,6 @@ class StoreDetailAndSubmitRequest implements ModelInterface, ArrayAccess, \JsonS
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets additionalData

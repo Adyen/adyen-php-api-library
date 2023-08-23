@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\StoredValue;
 
 use \ArrayAccess;
@@ -343,7 +342,6 @@ class StoredValueIssueResponse implements ModelInterface, ArrayAccess, \JsonSeri
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets authCode

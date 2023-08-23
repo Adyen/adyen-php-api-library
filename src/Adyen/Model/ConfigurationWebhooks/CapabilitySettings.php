@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\ConfigurationWebhooks;
 
 use \ArrayAccess;
@@ -343,7 +342,6 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets amountPerIndustry

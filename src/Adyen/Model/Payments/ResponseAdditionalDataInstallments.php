@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\Payments;
 
 use \ArrayAccess;
@@ -281,7 +280,6 @@ class ResponseAdditionalDataInstallments implements ModelInterface, ArrayAccess,
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -351,7 +349,6 @@ class ResponseAdditionalDataInstallments implements ModelInterface, ArrayAccess,
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets installmentPaymentDataInstallmentType

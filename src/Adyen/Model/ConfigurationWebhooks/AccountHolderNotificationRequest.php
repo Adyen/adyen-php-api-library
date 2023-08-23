@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\ConfigurationWebhooks;
 
 use \ArrayAccess;
@@ -320,7 +319,6 @@ class AccountHolderNotificationRequest implements ModelInterface, ArrayAccess, \
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets data

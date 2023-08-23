@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 namespace Adyen\Model\Payout;
 
 use \ArrayAccess;
@@ -239,7 +238,6 @@ class ResponseAdditionalData3DSecure implements ModelInterface, ArrayAccess, \Js
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -302,7 +300,6 @@ class ResponseAdditionalData3DSecure implements ModelInterface, ArrayAccess, \Js
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets cardHolderInfo

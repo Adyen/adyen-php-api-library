@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Adyen\Service\ResourceModel\Recurring;
 
 class NotifyShopper extends \Adyen\Service\AbstractResource
