@@ -470,7 +470,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets carRentalCustomerServiceTollFreeNumber
      *
-     * @param string|null $carRentalCustomerServiceTollFreeNumber The customer service phone number of the car rental company. * Format: Alphanumeric * maxLength: 17 * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not be all zeros * Must not contain any special characters such as + or -
+     * @param string|null $carRentalCustomerServiceTollFreeNumber The customer service phone number of the car rental company. * Format: Alphanumeric * maxLength: 17 * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not contain any special characters such as + or - *Must not be all zeros.
      *
      * @return self
      */
@@ -551,7 +551,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets carRentalInsuranceCharges
      *
-     * @param string|null $carRentalInsuranceCharges Any insurance charges associated with the rental, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: Numeric * maxLength: 12 * Must not be all spaces * Must not be all zeros
+     * @param string|null $carRentalInsuranceCharges Any insurance charges associated with the rental, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: Numeric * maxLength: 12 * Must not be all spaces *Must not be all zeros.
      *
      * @return self
      */
@@ -578,7 +578,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets carRentalLocationCity
      *
-     * @param string|null $carRentalLocationCity The city where the car is rented. * Format: Alphanumeric * maxLength: 18 * Must not start with a space or be all spaces * Must not be all zeros
+     * @param string|null $carRentalLocationCity The city where the car is rented. * Format: Alphanumeric * maxLength: 18 * Must not start with a space or be all spaces *Must not be all zeros.
      *
      * @return self
      */
@@ -632,7 +632,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets carRentalLocationStateProvince
      *
-     * @param string|null $carRentalLocationStateProvince The state or province where the car is rented. * Format: Alphanumeric * maxLength: 2 * Must not start with a space or be all spaces * Must not be all zeros
+     * @param string|null $carRentalLocationStateProvince The state or province where the car is rented. * Format: Alphanumeric * maxLength: 2 * Must not start with a space or be all spaces *Must not be all zeros.
      *
      * @return self
      */
@@ -767,7 +767,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets carRentalRentalAgreementNumber
      *
-     * @param string|null $carRentalRentalAgreementNumber The rental agreement number for the car rental. * Format: Alphanumeric * maxLength: 9 * Must not start with a space or be all spaces * Must not be all zeros
+     * @param string|null $carRentalRentalAgreementNumber The rental agreement number for the car rental. * Format: Alphanumeric * maxLength: 9 * Must not start with a space or be all spaces *Must not be all zeros.
      *
      * @return self
      */
@@ -794,7 +794,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets carRentalRentalClassId
      *
-     * @param string|null $carRentalRentalClassId The classification of the rental car. * Format: Alphanumeric * maxLength: 4 * Must not start with a space or be all spaces * Must not be all zeros
+     * @param string|null $carRentalRentalClassId The classification of the rental car. * Format: Alphanumeric * maxLength: 4 * Must not start with a space or be all spaces *Must not be all zeros.
      *
      * @return self
      */
@@ -821,7 +821,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets carRentalRenterName
      *
-     * @param string|null $carRentalRenterName The name of the person renting the car. * Format: Alphanumeric * maxLength: 26 * If you send more than 26 characters, the name is truncated * Must not start with a space or be all spaces * Must not be all zeros
+     * @param string|null $carRentalRenterName The name of the person renting the car. * Format: Alphanumeric * maxLength: 26 * If you send more than 26 characters, the name is truncated * Must not start with a space or be all spaces *Must not be all zeros.
      *
      * @return self
      */
@@ -848,7 +848,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets carRentalReturnCity
      *
-     * @param string|null $carRentalReturnCity The city where the car must be returned. * Format: Alphanumeric * maxLength: 18 * Must not start with a space or be all spaces * Must not be all zeros
+     * @param string|null $carRentalReturnCity The city where the car must be returned. * Format: Alphanumeric * maxLength: 18 * Must not start with a space or be all spaces *Must not be all zeros.
      *
      * @return self
      */
@@ -929,7 +929,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets carRentalReturnLocationId
      *
-     * @param string|null $carRentalReturnLocationId The agency code, phone number, or address abbreviation * Format: Alphanumeric * maxLength: 10 * Must not start with a space or be all spaces * Must not be all zeros
+     * @param string|null $carRentalReturnLocationId The agency code, phone number, or address abbreviation * Format: Alphanumeric * maxLength: 10 * Must not start with a space or be all spaces *Must not be all zeros.
      *
      * @return self
      */
@@ -956,7 +956,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets carRentalReturnStateProvince
      *
-     * @param string|null $carRentalReturnStateProvince The state or province where the car must be returned. * Format: Alphanumeric * maxLength: 3 * Must not start with a space or be all spaces * Must not be all zeros
+     * @param string|null $carRentalReturnStateProvince The state or province where the car must be returned. * Format: Alphanumeric * maxLength: 3 * Must not start with a space or be all spaces *Must not be all zeros.
      *
      * @return self
      */

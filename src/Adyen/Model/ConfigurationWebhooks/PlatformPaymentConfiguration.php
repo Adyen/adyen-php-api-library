@@ -19,16 +19,15 @@ use \ArrayAccess;
 use Adyen\Model\ConfigurationWebhooks\ObjectSerializer;
 
 /**
- * SweepConfigurationSchedule Class Doc Comment
+ * PlatformPaymentConfiguration Class Doc Comment
  *
  * @category Class
- * @description The schedule when the &#x60;triggerAmount&#x60; is evaluated. If the balance meets the threshold, funds are pushed out of or pulled in to the balance account.
  * @package  Adyen
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class SweepConfigurationSchedule implements ModelInterface, ArrayAccess, \JsonSerializable
+class PlatformPaymentConfiguration implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -37,7 +36,7 @@ class SweepConfigurationSchedule implements ModelInterface, ArrayAccess, \JsonSe
       *
       * @var string
       */
-    protected static $openAPIModelName = 'SweepConfiguration_schedule';
+    protected static $openAPIModelName = 'PlatformPaymentConfiguration';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -45,8 +44,8 @@ class SweepConfigurationSchedule implements ModelInterface, ArrayAccess, \JsonSe
       * @var string[]
       */
     protected static $openAPITypes = [
-        'cronExpression' => 'string',
-        'type' => 'string'
+        'salesDayClosingTime' => 'string',
+        'settlementDelayDays' => 'int'
     ];
 
     /**
@@ -57,8 +56,8 @@ class SweepConfigurationSchedule implements ModelInterface, ArrayAccess, \JsonSe
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'cronExpression' => null,
-        'type' => null
+        'salesDayClosingTime' => 'time',
+        'settlementDelayDays' => 'int32'
     ];
 
     /**
@@ -67,8 +66,8 @@ class SweepConfigurationSchedule implements ModelInterface, ArrayAccess, \JsonSe
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'cronExpression' => false,
-        'type' => false
+        'salesDayClosingTime' => false,
+        'settlementDelayDays' => true
     ];
 
     /**
@@ -157,8 +156,8 @@ class SweepConfigurationSchedule implements ModelInterface, ArrayAccess, \JsonSe
      * @var string[]
      */
     protected static $attributeMap = [
-        'cronExpression' => 'cronExpression',
-        'type' => 'type'
+        'salesDayClosingTime' => 'salesDayClosingTime',
+        'settlementDelayDays' => 'settlementDelayDays'
     ];
 
     /**
@@ -167,8 +166,8 @@ class SweepConfigurationSchedule implements ModelInterface, ArrayAccess, \JsonSe
      * @var string[]
      */
     protected static $setters = [
-        'cronExpression' => 'setCronExpression',
-        'type' => 'setType'
+        'salesDayClosingTime' => 'setSalesDayClosingTime',
+        'settlementDelayDays' => 'setSettlementDelayDays'
     ];
 
     /**
@@ -177,8 +176,8 @@ class SweepConfigurationSchedule implements ModelInterface, ArrayAccess, \JsonSe
      * @var string[]
      */
     protected static $getters = [
-        'cronExpression' => 'getCronExpression',
-        'type' => 'getType'
+        'salesDayClosingTime' => 'getSalesDayClosingTime',
+        'settlementDelayDays' => 'getSettlementDelayDays'
     ];
 
     /**
@@ -222,6 +221,7 @@ class SweepConfigurationSchedule implements ModelInterface, ArrayAccess, \JsonSe
         return self::$openAPIModelName;
     }
 
+
     /**
      * Associative array for storing property values
      *
@@ -237,8 +237,8 @@ class SweepConfigurationSchedule implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('cronExpression', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('salesDayClosingTime', $data ?? [], null);
+        $this->setIfExists('settlementDelayDays', $data ?? [], null);
     }
 
     /**
@@ -268,10 +268,6 @@ class SweepConfigurationSchedule implements ModelInterface, ArrayAccess, \JsonSe
     {
         $invalidProperties = [];
 
-        if ($this->container['cronExpression'] === null) {
-            $invalidProperties[] = "'cronExpression' can't be null";
-        }
-
         return $invalidProperties;
     }
 
@@ -288,55 +284,53 @@ class SweepConfigurationSchedule implements ModelInterface, ArrayAccess, \JsonSe
 
 
     /**
-     * Gets cronExpression
+     * Gets salesDayClosingTime
      *
-     * @return string
+     * @return string|null
      */
-    public function getCronExpression()
+    public function getSalesDayClosingTime()
     {
-        return $this->container['cronExpression'];
+        return $this->container['salesDayClosingTime'];
     }
 
     /**
-     * Sets cronExpression
+     * Sets salesDayClosingTime
      *
-     * @param string $cronExpression A [cron expression](https://en.wikipedia.org/wiki/Cron#CRON_expression) that is used to set the sweep schedule. The schedule uses the time zone of the balance account. For example, **30 17 * * MON** schedules a sweep every Monday at 17:30.  The expression must have five values separated by a single space in the following order:  * Minute: **0-59**  * Hour: **0-23**  * Day of the month: **1-31**  * Month: **1-12** or **JAN-DEC**  * Day of the week: **0-7** (0 and 7 are Sunday) or **MON-SUN**.  The following non-standard characters are supported: **&ast;**, **L**, **#**, **W** and **_/_**. See [crontab guru](https://crontab.guru/) for more examples.
+     * @param string|null $salesDayClosingTime Specifies at what time a [sales day](https://docs.adyen.com/marketplaces-and-platforms/receive-funds/sales-day-settlement#sales-day) ends.  Possible values: Time in **\"HH:MM\"** format. **HH** ranges from **00** to **07**. **MM** must be **00**.  Default value: **\"00:00\"**.
      *
      * @return self
      */
-    public function setCronExpression($cronExpression)
+    public function setSalesDayClosingTime($salesDayClosingTime)
     {
-        if (is_null($cronExpression)) {
-            throw new \InvalidArgumentException('non-nullable cronExpression cannot be null');
+        if (is_null($salesDayClosingTime)) {
+            throw new \InvalidArgumentException('non-nullable salesDayClosingTime cannot be null');
         }
-        $this->container['cronExpression'] = $cronExpression;
+        $this->container['salesDayClosingTime'] = $salesDayClosingTime;
 
         return $this;
     }
 
     /**
-     * Gets type
+     * Gets settlementDelayDays
      *
-     * @return string|null
+     * @return int|null
      */
-    public function getType()
+    public function getSettlementDelayDays()
     {
-        return $this->container['type'];
+        return $this->container['settlementDelayDays'];
     }
 
     /**
-     * Sets type
+     * Sets settlementDelayDays
      *
-     * @param string|null $type The schedule type.  Possible values:  * **cron**: push out funds based on a cron expression.  * **daily**: push out funds daily at 07:00 AM CET.  * **weekly**: push out funds every Monday at 07:00 AM CET.  * **monthly**: push out funds every first of the month at 07:00 AM CET.  * **balance**: pull in funds instantly if the balance is less than or equal to the `triggerAmount`. You can only use this for sweeps of `type` **pull** and when the source is a `merchantAccount` or `transferInstrument`.If the source is transferInstrument, merchant account identifier is still required, with which you want to process the transaction.
+     * @param int|null $settlementDelayDays Specifies after how many business days the funds in a [settlement batch](https://docs.adyen.com/marketplaces-and-platforms/receive-funds/sales-day-settlement#settlement-batch) are made available.  Possible values: **0** to **10**, or **null**. * Setting this value to an integer enables [Sales day settlement](https://docs.adyen.com/marketplaces-and-platforms/receive-funds/sales-day-settlement). * Setting this value to **null** enables [Pass-through settlement](https://docs.adyen.com/marketplaces-and-platforms/receive-funds/pass-through-settlement).  Default value: **null**.
      *
      * @return self
      */
-    public function setType($type)
+    public function setSettlementDelayDays($settlementDelayDays)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
-        $this->container['type'] = $type;
+        // Do nothing for nullable integers
+        $this->container['settlementDelayDays'] = $settlementDelayDays;
 
         return $this;
     }

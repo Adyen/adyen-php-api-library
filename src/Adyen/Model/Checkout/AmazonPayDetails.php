@@ -46,6 +46,7 @@ class AmazonPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'amazonPayToken' => 'string',
         'checkoutAttemptId' => 'string',
+        'checkoutSessionId' => 'string',
         'type' => 'string'
     ];
 
@@ -59,6 +60,7 @@ class AmazonPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'amazonPayToken' => null,
         'checkoutAttemptId' => null,
+        'checkoutSessionId' => null,
         'type' => null
     ];
 
@@ -70,6 +72,7 @@ class AmazonPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPINullables = [
         'amazonPayToken' => false,
         'checkoutAttemptId' => false,
+        'checkoutSessionId' => false,
         'type' => false
     ];
 
@@ -161,6 +164,7 @@ class AmazonPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'amazonPayToken' => 'amazonPayToken',
         'checkoutAttemptId' => 'checkoutAttemptId',
+        'checkoutSessionId' => 'checkoutSessionId',
         'type' => 'type'
     ];
 
@@ -172,6 +176,7 @@ class AmazonPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'amazonPayToken' => 'setAmazonPayToken',
         'checkoutAttemptId' => 'setCheckoutAttemptId',
+        'checkoutSessionId' => 'setCheckoutSessionId',
         'type' => 'setType'
     ];
 
@@ -183,6 +188,7 @@ class AmazonPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'amazonPayToken' => 'getAmazonPayToken',
         'checkoutAttemptId' => 'getCheckoutAttemptId',
+        'checkoutSessionId' => 'getCheckoutSessionId',
         'type' => 'getType'
     ];
 
@@ -257,6 +263,7 @@ class AmazonPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('amazonPayToken', $data ?? [], null);
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
+        $this->setIfExists('checkoutSessionId', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], 'amazonpay');
     }
 
@@ -324,7 +331,7 @@ class AmazonPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets amazonPayToken
      *
-     * @param string|null $amazonPayToken This is the `amazonPayToken` that you obtained from the [Get Checkout Session](https://amazon-pay-acquirer-guide.s3-eu-west-1.amazonaws.com/v1/amazon-pay-api-v2/checkout-session.html#get-checkout-session) response.
+     * @param string|null $amazonPayToken This is the `amazonPayToken` that you obtained from the [Get Checkout Session](https://amazon-pay-acquirer-guide.s3-eu-west-1.amazonaws.com/v1/amazon-pay-api-v2/checkout-session.html#get-checkout-session) response. This token is used for API only integration specifically.
      *
      * @return self
      */
@@ -361,6 +368,33 @@ class AmazonPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable checkoutAttemptId cannot be null');
         }
         $this->container['checkoutAttemptId'] = $checkoutAttemptId;
+
+        return $this;
+    }
+
+    /**
+     * Gets checkoutSessionId
+     *
+     * @return string|null
+     */
+    public function getCheckoutSessionId()
+    {
+        return $this->container['checkoutSessionId'];
+    }
+
+    /**
+     * Sets checkoutSessionId
+     *
+     * @param string|null $checkoutSessionId The `checkoutSessionId` is used to identify the checkout session at the Amazon Pay side. This field is required only for drop-in and components integration, where it replaces the amazonPayToken.
+     *
+     * @return self
+     */
+    public function setCheckoutSessionId($checkoutSessionId)
+    {
+        if (is_null($checkoutSessionId)) {
+            throw new \InvalidArgumentException('non-nullable checkoutSessionId cannot be null');
+        }
+        $this->container['checkoutSessionId'] = $checkoutSessionId;
 
         return $this;
     }

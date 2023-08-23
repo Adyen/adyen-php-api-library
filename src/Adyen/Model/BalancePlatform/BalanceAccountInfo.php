@@ -48,6 +48,8 @@ class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializab
         'defaultCurrencyCode' => 'string',
         'description' => 'string',
         'metadata' => 'array<string,string>',
+        'migratedAccountCode' => 'string',
+        'platformPaymentConfiguration' => '\Adyen\Model\BalancePlatform\PlatformPaymentConfiguration',
         'reference' => 'string',
         'timeZone' => 'string'
     ];
@@ -64,6 +66,8 @@ class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializab
         'defaultCurrencyCode' => null,
         'description' => null,
         'metadata' => null,
+        'migratedAccountCode' => null,
+        'platformPaymentConfiguration' => null,
         'reference' => null,
         'timeZone' => null
     ];
@@ -78,6 +82,8 @@ class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializab
         'defaultCurrencyCode' => false,
         'description' => false,
         'metadata' => false,
+        'migratedAccountCode' => false,
+        'platformPaymentConfiguration' => false,
         'reference' => false,
         'timeZone' => false
     ];
@@ -172,6 +178,8 @@ class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializab
         'defaultCurrencyCode' => 'defaultCurrencyCode',
         'description' => 'description',
         'metadata' => 'metadata',
+        'migratedAccountCode' => 'migratedAccountCode',
+        'platformPaymentConfiguration' => 'platformPaymentConfiguration',
         'reference' => 'reference',
         'timeZone' => 'timeZone'
     ];
@@ -186,6 +194,8 @@ class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializab
         'defaultCurrencyCode' => 'setDefaultCurrencyCode',
         'description' => 'setDescription',
         'metadata' => 'setMetadata',
+        'migratedAccountCode' => 'setMigratedAccountCode',
+        'platformPaymentConfiguration' => 'setPlatformPaymentConfiguration',
         'reference' => 'setReference',
         'timeZone' => 'setTimeZone'
     ];
@@ -200,6 +210,8 @@ class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializab
         'defaultCurrencyCode' => 'getDefaultCurrencyCode',
         'description' => 'getDescription',
         'metadata' => 'getMetadata',
+        'migratedAccountCode' => 'getMigratedAccountCode',
+        'platformPaymentConfiguration' => 'getPlatformPaymentConfiguration',
         'reference' => 'getReference',
         'timeZone' => 'getTimeZone'
     ];
@@ -265,6 +277,8 @@ class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('defaultCurrencyCode', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('metadata', $data ?? [], null);
+        $this->setIfExists('migratedAccountCode', $data ?? [], null);
+        $this->setIfExists('platformPaymentConfiguration', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
         $this->setIfExists('timeZone', $data ?? [], null);
     }
@@ -408,7 +422,7 @@ class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets metadata
      *
-     * @param array<string,string>|null $metadata A set of key and value pairs for general use by the merchant. The keys do not have specific names and may be used for storing miscellaneous data as desired. > Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.
+     * @param array<string,string>|null $metadata A set of key and value pairs for general use. The keys do not have specific names and may be used for storing miscellaneous data as desired. > Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.
      *
      * @return self
      */
@@ -418,6 +432,60 @@ class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializab
             throw new \InvalidArgumentException('non-nullable metadata cannot be null');
         }
         $this->container['metadata'] = $metadata;
+
+        return $this;
+    }
+
+    /**
+     * Gets migratedAccountCode
+     *
+     * @return string|null
+     */
+    public function getMigratedAccountCode()
+    {
+        return $this->container['migratedAccountCode'];
+    }
+
+    /**
+     * Sets migratedAccountCode
+     *
+     * @param string|null $migratedAccountCode The unique identifier of the account of the migrated account holder in the classic integration.
+     *
+     * @return self
+     */
+    public function setMigratedAccountCode($migratedAccountCode)
+    {
+        if (is_null($migratedAccountCode)) {
+            throw new \InvalidArgumentException('non-nullable migratedAccountCode cannot be null');
+        }
+        $this->container['migratedAccountCode'] = $migratedAccountCode;
+
+        return $this;
+    }
+
+    /**
+     * Gets platformPaymentConfiguration
+     *
+     * @return \Adyen\Model\BalancePlatform\PlatformPaymentConfiguration|null
+     */
+    public function getPlatformPaymentConfiguration()
+    {
+        return $this->container['platformPaymentConfiguration'];
+    }
+
+    /**
+     * Sets platformPaymentConfiguration
+     *
+     * @param \Adyen\Model\BalancePlatform\PlatformPaymentConfiguration|null $platformPaymentConfiguration platformPaymentConfiguration
+     *
+     * @return self
+     */
+    public function setPlatformPaymentConfiguration($platformPaymentConfiguration)
+    {
+        if (is_null($platformPaymentConfiguration)) {
+            throw new \InvalidArgumentException('non-nullable platformPaymentConfiguration cannot be null');
+        }
+        $this->container['platformPaymentConfiguration'] = $platformPaymentConfiguration;
 
         return $this;
     }

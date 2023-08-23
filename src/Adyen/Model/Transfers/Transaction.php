@@ -52,7 +52,9 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => 'string',
         'counterparty' => '\Adyen\Model\Transfers\CounterpartyV3',
         'createdAt' => '\DateTime',
+        'creationDate' => '\DateTime',
         'description' => 'string',
+        'eventId' => 'string',
         'id' => 'string',
         'instructedAmount' => '\Adyen\Model\Transfers\Amount',
         'paymentInstrumentId' => 'string',
@@ -80,7 +82,9 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => null,
         'counterparty' => null,
         'createdAt' => 'date-time',
+        'creationDate' => 'date-time',
         'description' => null,
+        'eventId' => null,
         'id' => null,
         'instructedAmount' => null,
         'paymentInstrumentId' => null,
@@ -106,7 +110,9 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => false,
         'counterparty' => false,
         'createdAt' => false,
+        'creationDate' => false,
         'description' => false,
+        'eventId' => false,
         'id' => false,
         'instructedAmount' => false,
         'paymentInstrumentId' => false,
@@ -212,7 +218,9 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => 'category',
         'counterparty' => 'counterparty',
         'createdAt' => 'createdAt',
+        'creationDate' => 'creationDate',
         'description' => 'description',
+        'eventId' => 'eventId',
         'id' => 'id',
         'instructedAmount' => 'instructedAmount',
         'paymentInstrumentId' => 'paymentInstrumentId',
@@ -238,7 +246,9 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => 'setCategory',
         'counterparty' => 'setCounterparty',
         'createdAt' => 'setCreatedAt',
+        'creationDate' => 'setCreationDate',
         'description' => 'setDescription',
+        'eventId' => 'setEventId',
         'id' => 'setId',
         'instructedAmount' => 'setInstructedAmount',
         'paymentInstrumentId' => 'setPaymentInstrumentId',
@@ -264,7 +274,9 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => 'getCategory',
         'counterparty' => 'getCounterparty',
         'createdAt' => 'getCreatedAt',
+        'creationDate' => 'getCreationDate',
         'description' => 'getDescription',
+        'eventId' => 'getEventId',
         'id' => 'getId',
         'instructedAmount' => 'getInstructedAmount',
         'paymentInstrumentId' => 'getPaymentInstrumentId',
@@ -443,7 +455,9 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('category', $data ?? [], null);
         $this->setIfExists('counterparty', $data ?? [], null);
         $this->setIfExists('createdAt', $data ?? [], null);
+        $this->setIfExists('creationDate', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('eventId', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('instructedAmount', $data ?? [], null);
         $this->setIfExists('paymentInstrumentId', $data ?? [], null);
@@ -784,6 +798,33 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets creationDate
+     *
+     * @return \DateTime|null
+     */
+    public function getCreationDate()
+    {
+        return $this->container['creationDate'];
+    }
+
+    /**
+     * Sets creationDate
+     *
+     * @param \DateTime|null $creationDate The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
+     *
+     * @return self
+     */
+    public function setCreationDate($creationDate)
+    {
+        if (is_null($creationDate)) {
+            throw new \InvalidArgumentException('non-nullable creationDate cannot be null');
+        }
+        $this->container['creationDate'] = $creationDate;
+
+        return $this;
+    }
+
+    /**
      * Gets description
      *
      * @return string|null
@@ -806,6 +847,33 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable description cannot be null');
         }
         $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets eventId
+     *
+     * @return string|null
+     */
+    public function getEventId()
+    {
+        return $this->container['eventId'];
+    }
+
+    /**
+     * Sets eventId
+     *
+     * @param string|null $eventId The PSP reference in the journal.
+     *
+     * @return self
+     */
+    public function setEventId($eventId)
+    {
+        if (is_null($eventId)) {
+            throw new \InvalidArgumentException('non-nullable eventId cannot be null');
+        }
+        $this->container['eventId'] = $eventId;
 
         return $this;
     }

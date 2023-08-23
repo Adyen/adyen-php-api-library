@@ -48,6 +48,7 @@ class BalanceAccountUpdateRequest implements ModelInterface, ArrayAccess, \JsonS
         'defaultCurrencyCode' => 'string',
         'description' => 'string',
         'metadata' => 'array<string,string>',
+        'platformPaymentConfiguration' => '\Adyen\Model\BalancePlatform\PlatformPaymentConfiguration',
         'reference' => 'string',
         'status' => 'string',
         'timeZone' => 'string'
@@ -65,6 +66,7 @@ class BalanceAccountUpdateRequest implements ModelInterface, ArrayAccess, \JsonS
         'defaultCurrencyCode' => null,
         'description' => null,
         'metadata' => null,
+        'platformPaymentConfiguration' => null,
         'reference' => null,
         'status' => null,
         'timeZone' => null
@@ -80,6 +82,7 @@ class BalanceAccountUpdateRequest implements ModelInterface, ArrayAccess, \JsonS
         'defaultCurrencyCode' => false,
         'description' => false,
         'metadata' => false,
+        'platformPaymentConfiguration' => false,
         'reference' => false,
         'status' => false,
         'timeZone' => false
@@ -175,6 +178,7 @@ class BalanceAccountUpdateRequest implements ModelInterface, ArrayAccess, \JsonS
         'defaultCurrencyCode' => 'defaultCurrencyCode',
         'description' => 'description',
         'metadata' => 'metadata',
+        'platformPaymentConfiguration' => 'platformPaymentConfiguration',
         'reference' => 'reference',
         'status' => 'status',
         'timeZone' => 'timeZone'
@@ -190,6 +194,7 @@ class BalanceAccountUpdateRequest implements ModelInterface, ArrayAccess, \JsonS
         'defaultCurrencyCode' => 'setDefaultCurrencyCode',
         'description' => 'setDescription',
         'metadata' => 'setMetadata',
+        'platformPaymentConfiguration' => 'setPlatformPaymentConfiguration',
         'reference' => 'setReference',
         'status' => 'setStatus',
         'timeZone' => 'setTimeZone'
@@ -205,6 +210,7 @@ class BalanceAccountUpdateRequest implements ModelInterface, ArrayAccess, \JsonS
         'defaultCurrencyCode' => 'getDefaultCurrencyCode',
         'description' => 'getDescription',
         'metadata' => 'getMetadata',
+        'platformPaymentConfiguration' => 'getPlatformPaymentConfiguration',
         'reference' => 'getReference',
         'status' => 'getStatus',
         'timeZone' => 'getTimeZone'
@@ -289,6 +295,7 @@ class BalanceAccountUpdateRequest implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('defaultCurrencyCode', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('metadata', $data ?? [], null);
+        $this->setIfExists('platformPaymentConfiguration', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('timeZone', $data ?? [], null);
@@ -439,7 +446,7 @@ class BalanceAccountUpdateRequest implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets metadata
      *
-     * @param array<string,string>|null $metadata A set of key and value pairs for general use by the merchant. The keys do not have specific names and may be used for storing miscellaneous data as desired. > Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.
+     * @param array<string,string>|null $metadata A set of key and value pairs for general use. The keys do not have specific names and may be used for storing miscellaneous data as desired. > Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.
      *
      * @return self
      */
@@ -449,6 +456,33 @@ class BalanceAccountUpdateRequest implements ModelInterface, ArrayAccess, \JsonS
             throw new \InvalidArgumentException('non-nullable metadata cannot be null');
         }
         $this->container['metadata'] = $metadata;
+
+        return $this;
+    }
+
+    /**
+     * Gets platformPaymentConfiguration
+     *
+     * @return \Adyen\Model\BalancePlatform\PlatformPaymentConfiguration|null
+     */
+    public function getPlatformPaymentConfiguration()
+    {
+        return $this->container['platformPaymentConfiguration'];
+    }
+
+    /**
+     * Sets platformPaymentConfiguration
+     *
+     * @param \Adyen\Model\BalancePlatform\PlatformPaymentConfiguration|null $platformPaymentConfiguration platformPaymentConfiguration
+     *
+     * @return self
+     */
+    public function setPlatformPaymentConfiguration($platformPaymentConfiguration)
+    {
+        if (is_null($platformPaymentConfiguration)) {
+            throw new \InvalidArgumentException('non-nullable platformPaymentConfiguration cannot be null');
+        }
+        $this->container['platformPaymentConfiguration'] = $platformPaymentConfiguration;
 
         return $this;
     }

@@ -401,7 +401,7 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets enhancedSchemeDataCustomerReference
      *
-     * @param string|null $enhancedSchemeDataCustomerReference The customer code, if supplied by a customer.  Encoding: ASCII  Max length: 25 characters  Must not start with a space or be all spaces  Must not be all zeros
+     * @param string|null $enhancedSchemeDataCustomerReference The customer code.  Encoding: ASCII  Max length: 25 characters  Must not start with a space or be all spaces  Must not be all zeros
      *
      * @return self
      */

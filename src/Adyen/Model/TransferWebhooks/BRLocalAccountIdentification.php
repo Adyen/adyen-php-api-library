@@ -343,7 +343,7 @@ class BRLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets accountNumber
      *
-     * @param string $accountNumber The bank account number (without separators or whitespace).
+     * @param string $accountNumber The bank account number, without separators or whitespace.
      *
      * @return self
      */
@@ -370,7 +370,7 @@ class BRLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets bankCode
      *
-     * @param string $bankCode The 3-digit Brazilian bank code (with leading zeros).
+     * @param string $bankCode The 3-digit bank code, with leading zeros.
      *
      * @return self
      */
@@ -397,7 +397,7 @@ class BRLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets branchNumber
      *
-     * @param string $branchNumber The bank account branch number (without separators or whitespace).
+     * @param string $branchNumber The bank account branch number, without separators or whitespace.
      *
      * @return self
      */
