@@ -73,15 +73,15 @@ class AccountHoldersApi extends Service
     * Update an account holder
     *
     * @param string $id
-    * @param \Adyen\Model\BalancePlatform\AccountHolder $accountHolder
+    * @param \Adyen\Model\BalancePlatform\AccountHolderUpdateRequest $accountHolderUpdateRequest
     * @param array|null $requestOptions
     * @return \Adyen\Model\BalancePlatform\AccountHolder
     * @throws AdyenException
     */
-    public function updateAccountHolder(string $id, \Adyen\Model\BalancePlatform\AccountHolder $accountHolder, array $requestOptions = null): \Adyen\Model\BalancePlatform\AccountHolder
+    public function updateAccountHolder(string $id, \Adyen\Model\BalancePlatform\AccountHolderUpdateRequest $accountHolderUpdateRequest, array $requestOptions = null): \Adyen\Model\BalancePlatform\AccountHolder
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/accountHolders/{id}");
-        $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $accountHolder->jsonSerialize(), $requestOptions);
+        $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $accountHolderUpdateRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\BalancePlatform\AccountHolder::class);
     }
 

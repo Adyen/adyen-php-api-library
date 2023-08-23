@@ -497,7 +497,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets carRentalDaysRented
      *
-     * @param string|null $carRentalDaysRented Number of days for which the car is being rented. * Format: Numeric * maxLength: 2 * Must not be all spaces
+     * @param string|null $carRentalDaysRented Number of days for which the car is being rented. * Format: Numeric * maxLength: 4 * Must not be all spaces
      *
      * @return self
      */
@@ -1010,7 +1010,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets travelEntertainmentAuthDataDuration
      *
-     * @param string|null $travelEntertainmentAuthDataDuration Number of days the car is rented for. This should be included in the auth message. * Format: Numeric * maxLength: 2
+     * @param string|null $travelEntertainmentAuthDataDuration Number of days the car is rented for. This should be included in the auth message. * Format: Numeric * maxLength: 4
      *
      * @return self
      */

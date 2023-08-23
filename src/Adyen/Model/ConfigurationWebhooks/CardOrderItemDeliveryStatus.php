@@ -44,9 +44,8 @@ class CardOrderItemDeliveryStatus implements ModelInterface, ArrayAccess, \JsonS
       * @var string[]
       */
     protected static $openAPITypes = [
+        'errorMessage' => 'string',
         'status' => 'string',
-        'statusError' => 'string',
-        'statusErrorMessage' => 'string',
         'trackingNumber' => 'string'
     ];
 
@@ -58,9 +57,8 @@ class CardOrderItemDeliveryStatus implements ModelInterface, ArrayAccess, \JsonS
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'errorMessage' => null,
         'status' => null,
-        'statusError' => null,
-        'statusErrorMessage' => null,
         'trackingNumber' => null
     ];
 
@@ -70,9 +68,8 @@ class CardOrderItemDeliveryStatus implements ModelInterface, ArrayAccess, \JsonS
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'errorMessage' => false,
         'status' => false,
-        'statusError' => false,
-        'statusErrorMessage' => false,
         'trackingNumber' => false
     ];
 
@@ -162,9 +159,8 @@ class CardOrderItemDeliveryStatus implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $attributeMap = [
+        'errorMessage' => 'errorMessage',
         'status' => 'status',
-        'statusError' => 'statusError',
-        'statusErrorMessage' => 'statusErrorMessage',
         'trackingNumber' => 'trackingNumber'
     ];
 
@@ -174,9 +170,8 @@ class CardOrderItemDeliveryStatus implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $setters = [
+        'errorMessage' => 'setErrorMessage',
         'status' => 'setStatus',
-        'statusError' => 'setStatusError',
-        'statusErrorMessage' => 'setStatusErrorMessage',
         'trackingNumber' => 'setTrackingNumber'
     ];
 
@@ -186,9 +181,8 @@ class CardOrderItemDeliveryStatus implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $getters = [
+        'errorMessage' => 'getErrorMessage',
         'status' => 'getStatus',
-        'statusError' => 'getStatusError',
-        'statusErrorMessage' => 'getStatusErrorMessage',
         'trackingNumber' => 'getTrackingNumber'
     ];
 
@@ -235,6 +229,7 @@ class CardOrderItemDeliveryStatus implements ModelInterface, ArrayAccess, \JsonS
 
     public const STATUS_CREATED = 'created';
     public const STATUS_DELIVERED = 'delivered';
+    public const STATUS_NOT_APPLICABLE = 'notApplicable';
     public const STATUS_PROCESSING = 'processing';
     public const STATUS_PRODUCED = 'produced';
     public const STATUS_REJECTED = 'rejected';
@@ -251,6 +246,7 @@ class CardOrderItemDeliveryStatus implements ModelInterface, ArrayAccess, \JsonS
         return [
             self::STATUS_CREATED,
             self::STATUS_DELIVERED,
+            self::STATUS_NOT_APPLICABLE,
             self::STATUS_PROCESSING,
             self::STATUS_PRODUCED,
             self::STATUS_REJECTED,
@@ -273,9 +269,8 @@ class CardOrderItemDeliveryStatus implements ModelInterface, ArrayAccess, \JsonS
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('errorMessage', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
-        $this->setIfExists('statusError', $data ?? [], null);
-        $this->setIfExists('statusErrorMessage', $data ?? [], null);
         $this->setIfExists('trackingNumber', $data ?? [], null);
     }
 
@@ -331,6 +326,33 @@ class CardOrderItemDeliveryStatus implements ModelInterface, ArrayAccess, \JsonS
 
 
     /**
+     * Gets errorMessage
+     *
+     * @return string|null
+     */
+    public function getErrorMessage()
+    {
+        return $this->container['errorMessage'];
+    }
+
+    /**
+     * Sets errorMessage
+     *
+     * @param string|null $errorMessage Error message.
+     *
+     * @return self
+     */
+    public function setErrorMessage($errorMessage)
+    {
+        if (is_null($errorMessage)) {
+            throw new \InvalidArgumentException('non-nullable errorMessage cannot be null');
+        }
+        $this->container['errorMessage'] = $errorMessage;
+
+        return $this;
+    }
+
+    /**
      * Gets status
      *
      * @return string|null
@@ -363,60 +385,6 @@ class CardOrderItemDeliveryStatus implements ModelInterface, ArrayAccess, \JsonS
             );
         }
         $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Gets statusError
-     *
-     * @return string|null
-     */
-    public function getStatusError()
-    {
-        return $this->container['statusError'];
-    }
-
-    /**
-     * Sets statusError
-     *
-     * @param string|null $statusError Error status, if any.
-     *
-     * @return self
-     */
-    public function setStatusError($statusError)
-    {
-        if (is_null($statusError)) {
-            throw new \InvalidArgumentException('non-nullable statusError cannot be null');
-        }
-        $this->container['statusError'] = $statusError;
-
-        return $this;
-    }
-
-    /**
-     * Gets statusErrorMessage
-     *
-     * @return string|null
-     */
-    public function getStatusErrorMessage()
-    {
-        return $this->container['statusErrorMessage'];
-    }
-
-    /**
-     * Sets statusErrorMessage
-     *
-     * @param string|null $statusErrorMessage Error message, if any.
-     *
-     * @return self
-     */
-    public function setStatusErrorMessage($statusErrorMessage)
-    {
-        if (is_null($statusErrorMessage)) {
-            throw new \InvalidArgumentException('non-nullable statusErrorMessage cannot be null');
-        }
-        $this->container['statusErrorMessage'] = $statusErrorMessage;
 
         return $this;
     }

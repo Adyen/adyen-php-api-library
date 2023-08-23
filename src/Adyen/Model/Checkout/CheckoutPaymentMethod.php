@@ -46,6 +46,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPITypes = [
         'bankAccountNumber' => 'string',
+        'bankAccountType' => 'string',
         'bankLocationId' => 'string',
         'checkoutAttemptId' => 'string',
         'encryptedBankAccountNumber' => 'string',
@@ -58,6 +59,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'deliveryAddress' => 'string',
         'personalDetails' => 'string',
         'amazonPayToken' => 'string',
+        'checkoutSessionId' => 'string',
         'applePayToken' => 'string',
         'fundingSource' => 'string',
         'holderName' => 'string',
@@ -81,12 +83,12 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'shopperEmail' => 'string',
         'telephoneNumber' => 'string',
         'googlePayToken' => 'string',
+        'subtype' => 'string',
         'masterpassTransactionId' => 'string',
         'orderID' => 'string',
         'payeePreferred' => 'string',
         'payerID' => 'string',
         'payerSelected' => 'string',
-        'subtype' => 'string',
         'virtualPaymentAddress' => 'string',
         'samsungPayToken' => 'string',
         'iban' => 'string',
@@ -106,6 +108,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPIFormats = [
         'bankAccountNumber' => null,
+        'bankAccountType' => null,
         'bankLocationId' => null,
         'checkoutAttemptId' => null,
         'encryptedBankAccountNumber' => null,
@@ -118,6 +121,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'deliveryAddress' => null,
         'personalDetails' => null,
         'amazonPayToken' => null,
+        'checkoutSessionId' => null,
         'applePayToken' => null,
         'fundingSource' => null,
         'holderName' => null,
@@ -141,12 +145,12 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'shopperEmail' => null,
         'telephoneNumber' => null,
         'googlePayToken' => null,
+        'subtype' => null,
         'masterpassTransactionId' => null,
         'orderID' => null,
         'payeePreferred' => null,
         'payerID' => null,
         'payerSelected' => null,
-        'subtype' => null,
         'virtualPaymentAddress' => null,
         'samsungPayToken' => null,
         'iban' => null,
@@ -164,6 +168,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPINullables = [
         'bankAccountNumber' => false,
+        'bankAccountType' => false,
         'bankLocationId' => false,
         'checkoutAttemptId' => false,
         'encryptedBankAccountNumber' => false,
@@ -176,6 +181,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'deliveryAddress' => false,
         'personalDetails' => false,
         'amazonPayToken' => false,
+        'checkoutSessionId' => false,
         'applePayToken' => false,
         'fundingSource' => false,
         'holderName' => false,
@@ -199,12 +205,12 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'shopperEmail' => false,
         'telephoneNumber' => false,
         'googlePayToken' => false,
+        'subtype' => false,
         'masterpassTransactionId' => false,
         'orderID' => false,
         'payeePreferred' => false,
         'payerID' => false,
         'payerSelected' => false,
-        'subtype' => false,
         'virtualPaymentAddress' => false,
         'samsungPayToken' => false,
         'iban' => false,
@@ -302,6 +308,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     protected static $attributeMap = [
         'bankAccountNumber' => 'bankAccountNumber',
+        'bankAccountType' => 'bankAccountType',
         'bankLocationId' => 'bankLocationId',
         'checkoutAttemptId' => 'checkoutAttemptId',
         'encryptedBankAccountNumber' => 'encryptedBankAccountNumber',
@@ -314,6 +321,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'deliveryAddress' => 'deliveryAddress',
         'personalDetails' => 'personalDetails',
         'amazonPayToken' => 'amazonPayToken',
+        'checkoutSessionId' => 'checkoutSessionId',
         'applePayToken' => 'applePayToken',
         'fundingSource' => 'fundingSource',
         'holderName' => 'holderName',
@@ -337,12 +345,12 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'shopperEmail' => 'shopperEmail',
         'telephoneNumber' => 'telephoneNumber',
         'googlePayToken' => 'googlePayToken',
+        'subtype' => 'subtype',
         'masterpassTransactionId' => 'masterpassTransactionId',
         'orderID' => 'orderID',
         'payeePreferred' => 'payeePreferred',
         'payerID' => 'payerID',
         'payerSelected' => 'payerSelected',
-        'subtype' => 'subtype',
         'virtualPaymentAddress' => 'virtualPaymentAddress',
         'samsungPayToken' => 'samsungPayToken',
         'iban' => 'iban',
@@ -360,6 +368,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     protected static $setters = [
         'bankAccountNumber' => 'setBankAccountNumber',
+        'bankAccountType' => 'setBankAccountType',
         'bankLocationId' => 'setBankLocationId',
         'checkoutAttemptId' => 'setCheckoutAttemptId',
         'encryptedBankAccountNumber' => 'setEncryptedBankAccountNumber',
@@ -372,6 +381,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'deliveryAddress' => 'setDeliveryAddress',
         'personalDetails' => 'setPersonalDetails',
         'amazonPayToken' => 'setAmazonPayToken',
+        'checkoutSessionId' => 'setCheckoutSessionId',
         'applePayToken' => 'setApplePayToken',
         'fundingSource' => 'setFundingSource',
         'holderName' => 'setHolderName',
@@ -395,12 +405,12 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'shopperEmail' => 'setShopperEmail',
         'telephoneNumber' => 'setTelephoneNumber',
         'googlePayToken' => 'setGooglePayToken',
+        'subtype' => 'setSubtype',
         'masterpassTransactionId' => 'setMasterpassTransactionId',
         'orderID' => 'setOrderID',
         'payeePreferred' => 'setPayeePreferred',
         'payerID' => 'setPayerID',
         'payerSelected' => 'setPayerSelected',
-        'subtype' => 'setSubtype',
         'virtualPaymentAddress' => 'setVirtualPaymentAddress',
         'samsungPayToken' => 'setSamsungPayToken',
         'iban' => 'setIban',
@@ -418,6 +428,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     protected static $getters = [
         'bankAccountNumber' => 'getBankAccountNumber',
+        'bankAccountType' => 'getBankAccountType',
         'bankLocationId' => 'getBankLocationId',
         'checkoutAttemptId' => 'getCheckoutAttemptId',
         'encryptedBankAccountNumber' => 'getEncryptedBankAccountNumber',
@@ -430,6 +441,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'deliveryAddress' => 'getDeliveryAddress',
         'personalDetails' => 'getPersonalDetails',
         'amazonPayToken' => 'getAmazonPayToken',
+        'checkoutSessionId' => 'getCheckoutSessionId',
         'applePayToken' => 'getApplePayToken',
         'fundingSource' => 'getFundingSource',
         'holderName' => 'getHolderName',
@@ -453,12 +465,12 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'shopperEmail' => 'getShopperEmail',
         'telephoneNumber' => 'getTelephoneNumber',
         'googlePayToken' => 'getGooglePayToken',
+        'subtype' => 'getSubtype',
         'masterpassTransactionId' => 'getMasterpassTransactionId',
         'orderID' => 'getOrderID',
         'payeePreferred' => 'getPayeePreferred',
         'payerID' => 'getPayerID',
         'payerSelected' => 'getPayerSelected',
-        'subtype' => 'getSubtype',
         'virtualPaymentAddress' => 'getVirtualPaymentAddress',
         'samsungPayToken' => 'getSamsungPayToken',
         'iban' => 'getIban',
@@ -526,6 +538,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     public function __construct(array $data = null)
     {
         $this->setIfExists('bankAccountNumber', $data ?? [], null);
+        $this->setIfExists('bankAccountType', $data ?? [], null);
         $this->setIfExists('bankLocationId', $data ?? [], null);
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('encryptedBankAccountNumber', $data ?? [], null);
@@ -538,6 +551,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('deliveryAddress', $data ?? [], null);
         $this->setIfExists('personalDetails', $data ?? [], null);
         $this->setIfExists('amazonPayToken', $data ?? [], null);
+        $this->setIfExists('checkoutSessionId', $data ?? [], null);
         $this->setIfExists('applePayToken', $data ?? [], null);
         $this->setIfExists('fundingSource', $data ?? [], null);
         $this->setIfExists('holderName', $data ?? [], null);
@@ -561,12 +575,12 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('shopperEmail', $data ?? [], null);
         $this->setIfExists('telephoneNumber', $data ?? [], null);
         $this->setIfExists('googlePayToken', $data ?? [], null);
+        $this->setIfExists('subtype', $data ?? [], null);
         $this->setIfExists('masterpassTransactionId', $data ?? [], null);
         $this->setIfExists('orderID', $data ?? [], null);
         $this->setIfExists('payeePreferred', $data ?? [], null);
         $this->setIfExists('payerID', $data ?? [], null);
         $this->setIfExists('payerSelected', $data ?? [], null);
-        $this->setIfExists('subtype', $data ?? [], null);
         $this->setIfExists('virtualPaymentAddress', $data ?? [], null);
         $this->setIfExists('samsungPayToken', $data ?? [], null);
         $this->setIfExists('iban', $data ?? [], null);
@@ -607,6 +621,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         if ($this->container['bankAccountNumber'] === null) {
             $invalidProperties[] = "'bankAccountNumber' can't be null";
         }
+
         if ($this->container['ownerName'] === null) {
             $invalidProperties[] = "'ownerName' can't be null";
         }
@@ -636,10 +651,10 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         if ($this->container['googlePayToken'] === null) {
             $invalidProperties[] = "'googlePayToken' can't be null";
         }
+
         if ($this->container['masterpassTransactionId'] === null) {
             $invalidProperties[] = "'masterpassTransactionId' can't be null";
         }
-
         if ($this->container['samsungPayToken'] === null) {
             $invalidProperties[] = "'samsungPayToken' can't be null";
         }
@@ -690,6 +705,33 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
             throw new \InvalidArgumentException('non-nullable bankAccountNumber cannot be null');
         }
         $this->container['bankAccountNumber'] = $bankAccountNumber;
+
+        return $this;
+    }
+
+    /**
+     * Gets bankAccountType
+     *
+     * @return string|null
+     */
+    public function getBankAccountType()
+    {
+        return $this->container['bankAccountType'];
+    }
+
+    /**
+     * Sets bankAccountType
+     *
+     * @param string|null $bankAccountType The bank account type (checking, savings...).
+     *
+     * @return self
+     */
+    public function setBankAccountType($bankAccountType)
+    {
+        if (is_null($bankAccountType)) {
+            throw new \InvalidArgumentException('non-nullable bankAccountType cannot be null');
+        }
+        $this->container['bankAccountType'] = $bankAccountType;
 
         return $this;
     }
@@ -1006,7 +1048,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets amazonPayToken
      *
-     * @param string|null $amazonPayToken This is the `amazonPayToken` that you obtained from the [Get Checkout Session](https://amazon-pay-acquirer-guide.s3-eu-west-1.amazonaws.com/v1/amazon-pay-api-v2/checkout-session.html#get-checkout-session) response.
+     * @param string|null $amazonPayToken This is the `amazonPayToken` that you obtained from the [Get Checkout Session](https://amazon-pay-acquirer-guide.s3-eu-west-1.amazonaws.com/v1/amazon-pay-api-v2/checkout-session.html#get-checkout-session) response. This token is used for API only integration specifically.
      *
      * @return self
      */
@@ -1016,6 +1058,33 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
             throw new \InvalidArgumentException('non-nullable amazonPayToken cannot be null');
         }
         $this->container['amazonPayToken'] = $amazonPayToken;
+
+        return $this;
+    }
+
+    /**
+     * Gets checkoutSessionId
+     *
+     * @return string|null
+     */
+    public function getCheckoutSessionId()
+    {
+        return $this->container['checkoutSessionId'];
+    }
+
+    /**
+     * Sets checkoutSessionId
+     *
+     * @param string|null $checkoutSessionId The `checkoutSessionId` is used to identify the checkout session at the Amazon Pay side. This field is required only for drop-in and components integration, where it replaces the amazonPayToken.
+     *
+     * @return self
+     */
+    public function setCheckoutSessionId($checkoutSessionId)
+    {
+        if (is_null($checkoutSessionId)) {
+            throw new \InvalidArgumentException('non-nullable checkoutSessionId cannot be null');
+        }
+        $this->container['checkoutSessionId'] = $checkoutSessionId;
 
         return $this;
     }
@@ -1644,6 +1713,33 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
+     * Gets subtype
+     *
+     * @return string|null
+     */
+    public function getSubtype()
+    {
+        return $this->container['subtype'];
+    }
+
+    /**
+     * Sets subtype
+     *
+     * @param string|null $subtype The type of flow to initiate.
+     *
+     * @return self
+     */
+    public function setSubtype($subtype)
+    {
+        if (is_null($subtype)) {
+            throw new \InvalidArgumentException('non-nullable subtype cannot be null');
+        }
+        $this->container['subtype'] = $subtype;
+
+        return $this;
+    }
+
+    /**
      * Gets masterpassTransactionId
      *
      * @return string
@@ -1774,33 +1870,6 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
             throw new \InvalidArgumentException('non-nullable payerSelected cannot be null');
         }
         $this->container['payerSelected'] = $payerSelected;
-
-        return $this;
-    }
-
-    /**
-     * Gets subtype
-     *
-     * @return string|null
-     */
-    public function getSubtype()
-    {
-        return $this->container['subtype'];
-    }
-
-    /**
-     * Sets subtype
-     *
-     * @param string|null $subtype The type of flow to initiate.
-     *
-     * @return self
-     */
-    public function setSubtype($subtype)
-    {
-        if (is_null($subtype)) {
-            throw new \InvalidArgumentException('non-nullable subtype cannot be null');
-        }
-        $this->container['subtype'] = $subtype;
 
         return $this;
     }

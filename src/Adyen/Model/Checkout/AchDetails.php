@@ -45,6 +45,7 @@ class AchDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'bankAccountNumber' => 'string',
+        'bankAccountType' => 'string',
         'bankLocationId' => 'string',
         'checkoutAttemptId' => 'string',
         'encryptedBankAccountNumber' => 'string',
@@ -64,6 +65,7 @@ class AchDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'bankAccountNumber' => null,
+        'bankAccountType' => null,
         'bankLocationId' => null,
         'checkoutAttemptId' => null,
         'encryptedBankAccountNumber' => null,
@@ -81,6 +83,7 @@ class AchDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'bankAccountNumber' => false,
+        'bankAccountType' => false,
         'bankLocationId' => false,
         'checkoutAttemptId' => false,
         'encryptedBankAccountNumber' => false,
@@ -178,6 +181,7 @@ class AchDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'bankAccountNumber' => 'bankAccountNumber',
+        'bankAccountType' => 'bankAccountType',
         'bankLocationId' => 'bankLocationId',
         'checkoutAttemptId' => 'checkoutAttemptId',
         'encryptedBankAccountNumber' => 'encryptedBankAccountNumber',
@@ -195,6 +199,7 @@ class AchDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'bankAccountNumber' => 'setBankAccountNumber',
+        'bankAccountType' => 'setBankAccountType',
         'bankLocationId' => 'setBankLocationId',
         'checkoutAttemptId' => 'setCheckoutAttemptId',
         'encryptedBankAccountNumber' => 'setEncryptedBankAccountNumber',
@@ -212,6 +217,7 @@ class AchDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'bankAccountNumber' => 'getBankAccountNumber',
+        'bankAccountType' => 'getBankAccountType',
         'bankLocationId' => 'getBankLocationId',
         'checkoutAttemptId' => 'getCheckoutAttemptId',
         'encryptedBankAccountNumber' => 'getEncryptedBankAccountNumber',
@@ -263,9 +269,33 @@ class AchDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const BANK_ACCOUNT_TYPE_BALANCE = 'balance';
+    public const BANK_ACCOUNT_TYPE_CHECKING = 'checking';
+    public const BANK_ACCOUNT_TYPE_DEPOSIT = 'deposit';
+    public const BANK_ACCOUNT_TYPE_GENERAL = 'general';
+    public const BANK_ACCOUNT_TYPE_OTHER = 'other';
+    public const BANK_ACCOUNT_TYPE_PAYMENT = 'payment';
+    public const BANK_ACCOUNT_TYPE_SAVINGS = 'savings';
     public const TYPE_ACH = 'ach';
     public const TYPE_ACH_PLAID = 'ach_plaid';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getBankAccountTypeAllowableValues()
+    {
+        return [
+            self::BANK_ACCOUNT_TYPE_BALANCE,
+            self::BANK_ACCOUNT_TYPE_CHECKING,
+            self::BANK_ACCOUNT_TYPE_DEPOSIT,
+            self::BANK_ACCOUNT_TYPE_GENERAL,
+            self::BANK_ACCOUNT_TYPE_OTHER,
+            self::BANK_ACCOUNT_TYPE_PAYMENT,
+            self::BANK_ACCOUNT_TYPE_SAVINGS,
+        ];
+    }
     /**
      * Gets allowable values of the enum
      *
@@ -294,6 +324,7 @@ class AchDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('bankAccountNumber', $data ?? [], null);
+        $this->setIfExists('bankAccountType', $data ?? [], null);
         $this->setIfExists('bankLocationId', $data ?? [], null);
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('encryptedBankAccountNumber', $data ?? [], null);
@@ -334,6 +365,15 @@ class AchDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['bankAccountNumber'] === null) {
             $invalidProperties[] = "'bankAccountNumber' can't be null";
         }
+        $allowedValues = $this->getBankAccountTypeAllowableValues();
+        if (!is_null($this->container['bankAccountType']) && !in_array($this->container['bankAccountType'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'bankAccountType', must be one of '%s'",
+                $this->container['bankAccountType'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         $allowedValues = $this->getTypeAllowableValues();
         if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -381,6 +421,43 @@ class AchDetails implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable bankAccountNumber cannot be null');
         }
         $this->container['bankAccountNumber'] = $bankAccountNumber;
+
+        return $this;
+    }
+
+    /**
+     * Gets bankAccountType
+     *
+     * @return string|null
+     */
+    public function getBankAccountType()
+    {
+        return $this->container['bankAccountType'];
+    }
+
+    /**
+     * Sets bankAccountType
+     *
+     * @param string|null $bankAccountType The bank account type (checking, savings...).
+     *
+     * @return self
+     */
+    public function setBankAccountType($bankAccountType)
+    {
+        if (is_null($bankAccountType)) {
+            throw new \InvalidArgumentException('non-nullable bankAccountType cannot be null');
+        }
+        $allowedValues = $this->getBankAccountTypeAllowableValues();
+        if (!in_array($bankAccountType, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'bankAccountType', must be one of '%s'",
+                    $bankAccountType,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['bankAccountType'] = $bankAccountType;
 
         return $this;
     }

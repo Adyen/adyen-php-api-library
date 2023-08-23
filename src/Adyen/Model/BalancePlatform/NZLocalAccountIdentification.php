@@ -19,16 +19,15 @@ use \ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * SweepConfigurationV2Schedule Class Doc Comment
+ * NZLocalAccountIdentification Class Doc Comment
  *
  * @category Class
- * @description The schedule when the &#x60;triggerAmount&#x60; is evaluated. If the balance meets the threshold, funds are pushed out of or pulled in to the balance account.
  * @package  Adyen
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class SweepConfigurationV2Schedule implements ModelInterface, ArrayAccess, \JsonSerializable
+class NZLocalAccountIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -37,7 +36,7 @@ class SweepConfigurationV2Schedule implements ModelInterface, ArrayAccess, \Json
       *
       * @var string
       */
-    protected static $openAPIModelName = 'SweepConfigurationV2_schedule';
+    protected static $openAPIModelName = 'NZLocalAccountIdentification';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -45,7 +44,9 @@ class SweepConfigurationV2Schedule implements ModelInterface, ArrayAccess, \Json
       * @var string[]
       */
     protected static $openAPITypes = [
-        'cronExpression' => 'string',
+        'accountNumber' => 'string',
+        'accountSuffix' => 'string',
+        'bankCode' => 'string',
         'type' => 'string'
     ];
 
@@ -57,7 +58,9 @@ class SweepConfigurationV2Schedule implements ModelInterface, ArrayAccess, \Json
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'cronExpression' => null,
+        'accountNumber' => null,
+        'accountSuffix' => null,
+        'bankCode' => null,
         'type' => null
     ];
 
@@ -67,7 +70,9 @@ class SweepConfigurationV2Schedule implements ModelInterface, ArrayAccess, \Json
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'cronExpression' => false,
+        'accountNumber' => false,
+        'accountSuffix' => false,
+        'bankCode' => false,
         'type' => false
     ];
 
@@ -157,7 +162,9 @@ class SweepConfigurationV2Schedule implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $attributeMap = [
-        'cronExpression' => 'cronExpression',
+        'accountNumber' => 'accountNumber',
+        'accountSuffix' => 'accountSuffix',
+        'bankCode' => 'bankCode',
         'type' => 'type'
     ];
 
@@ -167,7 +174,9 @@ class SweepConfigurationV2Schedule implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $setters = [
-        'cronExpression' => 'setCronExpression',
+        'accountNumber' => 'setAccountNumber',
+        'accountSuffix' => 'setAccountSuffix',
+        'bankCode' => 'setBankCode',
         'type' => 'setType'
     ];
 
@@ -177,7 +186,9 @@ class SweepConfigurationV2Schedule implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $getters = [
-        'cronExpression' => 'getCronExpression',
+        'accountNumber' => 'getAccountNumber',
+        'accountSuffix' => 'getAccountSuffix',
+        'bankCode' => 'getBankCode',
         'type' => 'getType'
     ];
 
@@ -222,6 +233,19 @@ class SweepConfigurationV2Schedule implements ModelInterface, ArrayAccess, \Json
         return self::$openAPIModelName;
     }
 
+    public const TYPE_NZ_LOCAL = 'nzLocal';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_NZ_LOCAL,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -237,8 +261,10 @@ class SweepConfigurationV2Schedule implements ModelInterface, ArrayAccess, \Json
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('cronExpression', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('accountNumber', $data ?? [], null);
+        $this->setIfExists('accountSuffix', $data ?? [], null);
+        $this->setIfExists('bankCode', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], 'nzLocal');
     }
 
     /**
@@ -268,8 +294,25 @@ class SweepConfigurationV2Schedule implements ModelInterface, ArrayAccess, \Json
     {
         $invalidProperties = [];
 
-        if ($this->container['cronExpression'] === null) {
-            $invalidProperties[] = "'cronExpression' can't be null";
+        if ($this->container['accountNumber'] === null) {
+            $invalidProperties[] = "'accountNumber' can't be null";
+        }
+        if ($this->container['accountSuffix'] === null) {
+            $invalidProperties[] = "'accountSuffix' can't be null";
+        }
+        if ($this->container['bankCode'] === null) {
+            $invalidProperties[] = "'bankCode' can't be null";
+        }
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
         }
 
         return $invalidProperties;
@@ -288,28 +331,82 @@ class SweepConfigurationV2Schedule implements ModelInterface, ArrayAccess, \Json
 
 
     /**
-     * Gets cronExpression
+     * Gets accountNumber
      *
      * @return string
      */
-    public function getCronExpression()
+    public function getAccountNumber()
     {
-        return $this->container['cronExpression'];
+        return $this->container['accountNumber'];
     }
 
     /**
-     * Sets cronExpression
+     * Sets accountNumber
      *
-     * @param string $cronExpression A [cron expression](https://en.wikipedia.org/wiki/Cron#CRON_expression) that is used to set the sweep schedule. The schedule uses the time zone of the balance account. For example, **30 17 * * MON** schedules a sweep every Monday at 17:30.  The expression must have five values separated by a single space in the following order:  * Minute: **0-59**  * Hour: **0-23**  * Day of the month: **1-31**  * Month: **1-12** or **JAN-DEC**  * Day of the week: **0-7** (0 and 7 are Sunday) or **MON-SUN**.  The following non-standard characters are supported: **&ast;**, **L**, **#**, **W** and **_/_**. See [crontab guru](https://crontab.guru/) for more examples.
+     * @param string $accountNumber The 7-digit bank account number, without separators or whitespace.
      *
      * @return self
      */
-    public function setCronExpression($cronExpression)
+    public function setAccountNumber($accountNumber)
     {
-        if (is_null($cronExpression)) {
-            throw new \InvalidArgumentException('non-nullable cronExpression cannot be null');
+        if (is_null($accountNumber)) {
+            throw new \InvalidArgumentException('non-nullable accountNumber cannot be null');
         }
-        $this->container['cronExpression'] = $cronExpression;
+        $this->container['accountNumber'] = $accountNumber;
+
+        return $this;
+    }
+
+    /**
+     * Gets accountSuffix
+     *
+     * @return string
+     */
+    public function getAccountSuffix()
+    {
+        return $this->container['accountSuffix'];
+    }
+
+    /**
+     * Sets accountSuffix
+     *
+     * @param string $accountSuffix The 2- to 3-digit account suffix, without separators or whitespace.
+     *
+     * @return self
+     */
+    public function setAccountSuffix($accountSuffix)
+    {
+        if (is_null($accountSuffix)) {
+            throw new \InvalidArgumentException('non-nullable accountSuffix cannot be null');
+        }
+        $this->container['accountSuffix'] = $accountSuffix;
+
+        return $this;
+    }
+
+    /**
+     * Gets bankCode
+     *
+     * @return string
+     */
+    public function getBankCode()
+    {
+        return $this->container['bankCode'];
+    }
+
+    /**
+     * Sets bankCode
+     *
+     * @param string $bankCode The 6-digit bank code including the 2-digit bank code and 4-digit branch code, without separators or whitespace.
+     *
+     * @return self
+     */
+    public function setBankCode($bankCode)
+    {
+        if (is_null($bankCode)) {
+            throw new \InvalidArgumentException('non-nullable bankCode cannot be null');
+        }
+        $this->container['bankCode'] = $bankCode;
 
         return $this;
     }
@@ -317,7 +414,7 @@ class SweepConfigurationV2Schedule implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets type
      *
-     * @return string|null
+     * @return string
      */
     public function getType()
     {
@@ -327,7 +424,7 @@ class SweepConfigurationV2Schedule implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets type
      *
-     * @param string|null $type The schedule type.  Possible values:  * **cron**: push out funds based on a cron expression.  * **daily**: push out funds daily at 07:00 AM CET.  * **weekly**: push out funds every Monday at 07:00 AM CET.  * **monthly**: push out funds every first of the month at 07:00 AM CET.  * **balance**: pull in funds instantly if the balance is less than or equal to the `triggerAmount`. You can only use this for sweeps of `type` **pull** and when the source is a `merchantAccount` or `transferInstrument`.If the source is transferInstrument, merchant account identifier is still required, with which you want to process the transaction.
+     * @param string $type **nzLocal**
      *
      * @return self
      */
@@ -335,6 +432,16 @@ class SweepConfigurationV2Schedule implements ModelInterface, ArrayAccess, \Json
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
+        }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
+                    implode("', '", $allowedValues)
+                )
+            );
         }
         $this->container['type'] = $type;
 

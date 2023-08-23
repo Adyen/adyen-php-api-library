@@ -48,11 +48,13 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
         'accountNumber' => 'string',
         'bsbCode' => 'string',
         'type' => 'string',
+        'bankCode' => 'string',
+        'branchNumber' => 'string',
         'accountType' => 'string',
         'institutionNumber' => 'string',
         'transitNumber' => 'string',
-        'bankCode' => 'string',
         'iban' => 'string',
+        'accountSuffix' => 'string',
         'additionalBankIdentification' => '\Adyen\Model\BalancePlatform\AdditionalBankIdentification',
         'bic' => 'string',
         'clearingNumber' => 'string',
@@ -71,11 +73,13 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
         'accountNumber' => null,
         'bsbCode' => null,
         'type' => null,
+        'bankCode' => null,
+        'branchNumber' => null,
         'accountType' => null,
         'institutionNumber' => null,
         'transitNumber' => null,
-        'bankCode' => null,
         'iban' => null,
+        'accountSuffix' => null,
         'additionalBankIdentification' => null,
         'bic' => null,
         'clearingNumber' => null,
@@ -92,11 +96,13 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
         'accountNumber' => false,
         'bsbCode' => false,
         'type' => false,
+        'bankCode' => false,
+        'branchNumber' => false,
         'accountType' => false,
         'institutionNumber' => false,
         'transitNumber' => false,
-        'bankCode' => false,
         'iban' => false,
+        'accountSuffix' => false,
         'additionalBankIdentification' => false,
         'bic' => false,
         'clearingNumber' => false,
@@ -193,11 +199,13 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
         'accountNumber' => 'accountNumber',
         'bsbCode' => 'bsbCode',
         'type' => 'type',
+        'bankCode' => 'bankCode',
+        'branchNumber' => 'branchNumber',
         'accountType' => 'accountType',
         'institutionNumber' => 'institutionNumber',
         'transitNumber' => 'transitNumber',
-        'bankCode' => 'bankCode',
         'iban' => 'iban',
+        'accountSuffix' => 'accountSuffix',
         'additionalBankIdentification' => 'additionalBankIdentification',
         'bic' => 'bic',
         'clearingNumber' => 'clearingNumber',
@@ -214,11 +222,13 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
         'accountNumber' => 'setAccountNumber',
         'bsbCode' => 'setBsbCode',
         'type' => 'setType',
+        'bankCode' => 'setBankCode',
+        'branchNumber' => 'setBranchNumber',
         'accountType' => 'setAccountType',
         'institutionNumber' => 'setInstitutionNumber',
         'transitNumber' => 'setTransitNumber',
-        'bankCode' => 'setBankCode',
         'iban' => 'setIban',
+        'accountSuffix' => 'setAccountSuffix',
         'additionalBankIdentification' => 'setAdditionalBankIdentification',
         'bic' => 'setBic',
         'clearingNumber' => 'setClearingNumber',
@@ -235,11 +245,13 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
         'accountNumber' => 'getAccountNumber',
         'bsbCode' => 'getBsbCode',
         'type' => 'getType',
+        'bankCode' => 'getBankCode',
+        'branchNumber' => 'getBranchNumber',
         'accountType' => 'getAccountType',
         'institutionNumber' => 'getInstitutionNumber',
         'transitNumber' => 'getTransitNumber',
-        'bankCode' => 'getBankCode',
         'iban' => 'getIban',
+        'accountSuffix' => 'getAccountSuffix',
         'additionalBankIdentification' => 'getAdditionalBankIdentification',
         'bic' => 'getBic',
         'clearingNumber' => 'getClearingNumber',
@@ -306,11 +318,13 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
         $this->setIfExists('accountNumber', $data ?? [], null);
         $this->setIfExists('bsbCode', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], 'usLocal');
+        $this->setIfExists('bankCode', $data ?? [], null);
+        $this->setIfExists('branchNumber', $data ?? [], null);
         $this->setIfExists('accountType', $data ?? [], 'checking');
         $this->setIfExists('institutionNumber', $data ?? [], null);
         $this->setIfExists('transitNumber', $data ?? [], null);
-        $this->setIfExists('bankCode', $data ?? [], null);
         $this->setIfExists('iban', $data ?? [], null);
+        $this->setIfExists('accountSuffix', $data ?? [], null);
         $this->setIfExists('additionalBankIdentification', $data ?? [], null);
         $this->setIfExists('bic', $data ?? [], null);
         $this->setIfExists('clearingNumber', $data ?? [], null);
@@ -355,6 +369,12 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
             $invalidProperties[] = "'type' can't be null";
         }
 
+        if ($this->container['bankCode'] === null) {
+            $invalidProperties[] = "'bankCode' can't be null";
+        }
+        if ($this->container['branchNumber'] === null) {
+            $invalidProperties[] = "'branchNumber' can't be null";
+        }
 
         if ($this->container['institutionNumber'] === null) {
             $invalidProperties[] = "'institutionNumber' can't be null";
@@ -362,11 +382,11 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
         if ($this->container['transitNumber'] === null) {
             $invalidProperties[] = "'transitNumber' can't be null";
         }
-        if ($this->container['bankCode'] === null) {
-            $invalidProperties[] = "'bankCode' can't be null";
-        }
         if ($this->container['iban'] === null) {
             $invalidProperties[] = "'iban' can't be null";
+        }
+        if ($this->container['accountSuffix'] === null) {
+            $invalidProperties[] = "'accountSuffix' can't be null";
         }
         if ($this->container['bic'] === null) {
             $invalidProperties[] = "'bic' can't be null";
@@ -477,6 +497,60 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
     }
 
     /**
+     * Gets bankCode
+     *
+     * @return string
+     */
+    public function getBankCode()
+    {
+        return $this->container['bankCode'];
+    }
+
+    /**
+     * Sets bankCode
+     *
+     * @param string $bankCode The 6-digit bank code including the 2-digit bank code and 4-digit branch code, without separators or whitespace.
+     *
+     * @return self
+     */
+    public function setBankCode($bankCode)
+    {
+        if (is_null($bankCode)) {
+            throw new \InvalidArgumentException('non-nullable bankCode cannot be null');
+        }
+        $this->container['bankCode'] = $bankCode;
+
+        return $this;
+    }
+
+    /**
+     * Gets branchNumber
+     *
+     * @return string
+     */
+    public function getBranchNumber()
+    {
+        return $this->container['branchNumber'];
+    }
+
+    /**
+     * Sets branchNumber
+     *
+     * @param string $branchNumber The bank account branch number, without separators or whitespace.
+     *
+     * @return self
+     */
+    public function setBranchNumber($branchNumber)
+    {
+        if (is_null($branchNumber)) {
+            throw new \InvalidArgumentException('non-nullable branchNumber cannot be null');
+        }
+        $this->container['branchNumber'] = $branchNumber;
+
+        return $this;
+    }
+
+    /**
      * Gets accountType
      *
      * @return string|null
@@ -558,33 +632,6 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
     }
 
     /**
-     * Gets bankCode
-     *
-     * @return string
-     */
-    public function getBankCode()
-    {
-        return $this->container['bankCode'];
-    }
-
-    /**
-     * Sets bankCode
-     *
-     * @param string $bankCode The 4-digit bank code (Kód banky), without separators or whitespace.
-     *
-     * @return self
-     */
-    public function setBankCode($bankCode)
-    {
-        if (is_null($bankCode)) {
-            throw new \InvalidArgumentException('non-nullable bankCode cannot be null');
-        }
-        $this->container['bankCode'] = $bankCode;
-
-        return $this;
-    }
-
-    /**
      * Gets iban
      *
      * @return string
@@ -607,6 +654,33 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
             throw new \InvalidArgumentException('non-nullable iban cannot be null');
         }
         $this->container['iban'] = $iban;
+
+        return $this;
+    }
+
+    /**
+     * Gets accountSuffix
+     *
+     * @return string
+     */
+    public function getAccountSuffix()
+    {
+        return $this->container['accountSuffix'];
+    }
+
+    /**
+     * Sets accountSuffix
+     *
+     * @param string $accountSuffix The 2- to 3-digit account suffix, without separators or whitespace.
+     *
+     * @return self
+     */
+    public function setAccountSuffix($accountSuffix)
+    {
+        if (is_null($accountSuffix)) {
+            throw new \InvalidArgumentException('non-nullable accountSuffix cannot be null');
+        }
+        $this->container['accountSuffix'] = $accountSuffix;
 
         return $this;
     }
