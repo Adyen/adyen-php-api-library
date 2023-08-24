@@ -126,7 +126,7 @@ class Address
     }
 
     /**
-     * @param string self::$addressTypeBilling|self::$addressTypeDelivery
+     * @param string $addressType self::$addressTypeBilling|self::$addressTypeDelivery
      * @param string $street
      * @param string $houseNumberOrName
      * @param string $postalCode
