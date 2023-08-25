@@ -93,20 +93,20 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPINullables = [
         'acsTransId' => false,
-		'challenge' => false,
-		'challengeIndicator' => false,
-		'createdAt' => false,
-		'deviceChannel' => false,
-		'dsTransID' => false,
-		'exemptionIndicator' => false,
-		'inPSD2Scope' => false,
-		'messageCategory' => false,
-		'messageVersion' => false,
-		'riskScore' => true,
-		'threeDSServerTransID' => false,
-		'transStatus' => false,
-		'transStatusReason' => false,
-		'type' => false
+        'challenge' => false,
+        'challengeIndicator' => false,
+        'createdAt' => false,
+        'deviceChannel' => false,
+        'dsTransID' => false,
+        'exemptionIndicator' => false,
+        'inPSD2Scope' => false,
+        'messageCategory' => false,
+        'messageVersion' => false,
+        'riskScore' => true,
+        'threeDSServerTransID' => false,
+        'transStatus' => false,
+        'transStatusReason' => false,
+        'type' => false
     ];
 
     /**
@@ -1204,7 +1204,7 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

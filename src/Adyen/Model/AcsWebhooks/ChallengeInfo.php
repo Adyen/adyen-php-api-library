@@ -75,11 +75,11 @@ class ChallengeInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'challengeCancel' => false,
-		'flow' => false,
-		'lastInteraction' => false,
-		'phoneNumber' => false,
-		'resends' => true,
-		'retries' => true
+        'flow' => false,
+        'lastInteraction' => false,
+        'phoneNumber' => false,
+        'resends' => true,
+        'retries' => true
     ];
 
     /**
@@ -614,7 +614,7 @@ class ChallengeInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -75,11 +75,11 @@ class AuthenticationNotificationData implements ModelInterface, ArrayAccess, \Js
       */
     protected static $openAPINullables = [
         'authentication' => false,
-		'balancePlatform' => false,
-		'id' => false,
-		'paymentInstrumentId' => false,
-		'purchase' => false,
-		'status' => false
+        'balancePlatform' => false,
+        'id' => false,
+        'paymentInstrumentId' => false,
+        'purchase' => false,
+        'status' => false
     ];
 
     /**
@@ -586,7 +586,7 @@ class AuthenticationNotificationData implements ModelInterface, ArrayAccess, \Js
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

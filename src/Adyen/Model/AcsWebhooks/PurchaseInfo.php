@@ -69,8 +69,8 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'date' => false,
-		'merchantName' => false,
-		'originalAmount' => false
+        'merchantName' => false,
+        'originalAmount' => false
     ];
 
     /**
@@ -443,7 +443,7 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
