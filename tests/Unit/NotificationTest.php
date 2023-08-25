@@ -94,7 +94,6 @@ class NotificationTest extends TestCaseMock
             '
             {
               "configurationDetails": {
-            
               }
             }',
             true
