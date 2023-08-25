@@ -23,9 +23,6 @@
 
 namespace Adyen\Tests\Unit;
 
-use Adyen\Model\AcsWebhooks\AuthenticationNotificationRequest;
-use Adyen\Model\BalancePlatform\Balance;
-use Adyen\Model\ConfigurationWebhooks\BalanceAccountNotificationRequest;
 use Adyen\Model\ConfigurationWebhooks\SweepConfigurationNotificationRequest;
 use Adyen\Model\ManagementWebhooks\PaymentMethodCreatedNotificationRequest;
 use Adyen\Service\BankingWebhookParser;
