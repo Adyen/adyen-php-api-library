@@ -1,0 +1,25 @@
+root = true
+
+[*]
+indent_style = space
+indent_size = 4
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+max_line_length = 165
+eclint_block_comment_start = /*
+eclint_block_comment = *
+eclint_block_comment_end = */
+
+[Makefile]
+indent_style = tab
+max_line_length = unset
+
+[{*.xml,*.yml,*.yaml}]
+indent_size = 2
+
+[{*.json,*.md,*.mustache}]
+indent_size = 2
+max_line_length = unset
+insert_final_newline = unset

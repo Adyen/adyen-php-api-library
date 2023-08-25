@@ -231,7 +231,7 @@ class ObjectSerializer
             // determine file name
             if (
                 is_array($httpHeaders)
-                && array_key_exists('Content-Disposition', $httpHeaders) 
+                && array_key_exists('Content-Disposition', $httpHeaders)
                 && preg_match('/inline; filename=[\'"]?([^\'"\s]+)[\'"]?$/i', $httpHeaders['Content-Disposition'], $match)
             ) {
                 $filename = Configuration::getDefaultConfiguration()->getTempFolderPath() . DIRECTORY_SEPARATOR . self::sanitizeFilename($match[1]);
