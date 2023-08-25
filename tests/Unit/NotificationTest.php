@@ -25,6 +25,7 @@ namespace Adyen\Tests\Unit;
 
 use Adyen\Model\ConfigurationWebhooks\SweepConfigurationNotificationRequest;
 use Adyen\Model\ManagementWebhooks\PaymentMethodCreatedNotificationRequest;
+use Adyen\Model\AcsWebhooks\AuthenticationNotificationRequest;
 use Adyen\Service\BankingWebhookParser;
 use Adyen\Service\ManagementWebhookParser;
 use Adyen\Service\Notification;

@@ -173,6 +173,18 @@ if ($isValid) {
     $result = $webhookParser->getGenericWebhook();
 }
 ~~~~
+### Using Management Webhooks
+~~~~ php
+...
+
+$jsonString = 'webhook_payload';
+$isValid = $hmac->validateHMAC("YOUR_HMAC_KEY", "YOUR_HMAC_SIGN", $jsonString);
+
+if ($isValid) {
+    $webhookParser = new ManagementWebhookHandler($jsonString);
+    $result = $webhookParser->getGenericWebhook();
+}
+~~~~
 
 ### Example integration
 
