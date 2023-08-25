@@ -71,9 +71,9 @@ class AccountUpdateNotificationData implements ModelInterface, ArrayAccess, \Jso
       */
     protected static $openAPINullables = [
         'capabilities' => false,
-		'legalEntityId' => false,
-		'merchantId' => false,
-		'status' => false
+        'legalEntityId' => false,
+        'merchantId' => false,
+        'status' => false
     ];
 
     /**
@@ -477,7 +477,7 @@ class AccountUpdateNotificationData implements ModelInterface, ArrayAccess, \Jso
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -77,12 +77,12 @@ class AccountCapabilityData implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPINullables = [
         'allowed' => false,
-		'allowedLevel' => false,
-		'capability' => false,
-		'problems' => false,
-		'requested' => false,
-		'requestedLevel' => false,
-		'verificationStatus' => false
+        'allowedLevel' => false,
+        'capability' => false,
+        'problems' => false,
+        'requested' => false,
+        'requestedLevel' => false,
+        'verificationStatus' => false
     ];
 
     /**
@@ -576,7 +576,7 @@ class AccountCapabilityData implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -73,10 +73,10 @@ class AccountCreateNotificationData implements ModelInterface, ArrayAccess, \Jso
       */
     protected static $openAPINullables = [
         'capabilities' => false,
-		'companyId' => false,
-		'legalEntityId' => false,
-		'merchantId' => false,
-		'status' => false
+        'companyId' => false,
+        'legalEntityId' => false,
+        'merchantId' => false,
+        'status' => false
     ];
 
     /**
@@ -514,7 +514,7 @@ class AccountCreateNotificationData implements ModelInterface, ArrayAccess, \Jso
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

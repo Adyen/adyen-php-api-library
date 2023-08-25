@@ -81,14 +81,14 @@ class MidServiceNotificationData implements ModelInterface, ArrayAccess, \JsonSe
       */
     protected static $openAPINullables = [
         'allowed' => false,
-		'enabled' => false,
-		'id' => false,
-		'merchantId' => false,
-		'reference' => false,
-		'result' => false,
-		'storeId' => false,
-		'type' => false,
-		'verificationStatus' => false
+        'enabled' => false,
+        'id' => false,
+        'merchantId' => false,
+        'reference' => false,
+        'result' => false,
+        'storeId' => false,
+        'type' => false,
+        'verificationStatus' => false
     ];
 
     /**
@@ -720,7 +720,7 @@ class MidServiceNotificationData implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

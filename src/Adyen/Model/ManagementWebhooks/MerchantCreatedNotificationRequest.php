@@ -71,9 +71,9 @@ class MerchantCreatedNotificationRequest implements ModelInterface, ArrayAccess,
       */
     protected static $openAPINullables = [
         'createdAt' => false,
-		'data' => false,
-		'environment' => false,
-		'type' => false
+        'data' => false,
+        'environment' => false,
+        'type' => false
     ];
 
     /**
@@ -511,7 +511,7 @@ class MerchantCreatedNotificationRequest implements ModelInterface, ArrayAccess,
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

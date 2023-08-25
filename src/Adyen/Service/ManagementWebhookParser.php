@@ -6,6 +6,7 @@ use Adyen\Model\ManagementWebhooks\MerchantCreatedNotificationRequest;
 use Adyen\Model\ManagementWebhooks\MerchantUpdatedNotificationRequest;
 use Adyen\Model\ManagementWebhooks\PaymentMethodCreatedNotificationRequest;
 use Adyen\Model\ManagementWebhooks\ObjectSerializer;
+
 class ManagementWebhookParser
 {
     private $payload;
