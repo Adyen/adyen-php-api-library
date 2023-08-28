@@ -181,7 +181,7 @@ $jsonString = 'webhook_payload';
 $isValid = $hmac->validateHMAC("YOUR_HMAC_KEY", "YOUR_HMAC_SIGN", $jsonString);
 
 if ($isValid) {
-    $webhookParser = new ManagementWebhookHandler($jsonString);
+    $webhookParser = new ManagementWebhookParser($jsonString);
     $result = $webhookParser->getGenericWebhook();
 }
 ~~~~
