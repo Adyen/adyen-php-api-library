@@ -41,6 +41,7 @@ The library supports all webhooks under the following model directories:
 | [Configuration Webhooks](https://docs.adyen.com/api-explorer/balanceplatform-webhooks/1/overview) | You can use these webhooks to build your implementation. For example, you can use this information to update internal statuses when the status of a capability is changed.              | [ConfigurationWebhooks](src/Adyen/Model/ConfigurationWebhooks) | **v1**            |
 | [Transfer Webhooks](https://docs.adyen.com/api-explorer/transfer-webhooks/3/overview)             | You can use these webhooks to build your implementation. For example, you can use this information to update balances in your own dashboards or to keep track of incoming funds.        | [TransferWebhooks](src/Adyen/Model/TransferWebhooks)           | **v3**            |
 | [Report Webhooks](https://docs.adyen.com/api-explorer/report-webhooks/1/overview)                 | You can download reports programmatically by making an HTTP GET request, or manually from your Balance Platform Customer Area                                                           | [ReportWebhooks](src/Adyen/Model/ReportWebhooks)               | **v1**            |
+| [Management Webhooks](https://docs.adyen.com/api-explorer/ManagementNotification/1/overview)                 | Adyen uses webhooks to inform your system about events that happen with your Adyen company and merchant accounts, stores, payment terminals, and payment methods when using Management API.                                                           | [ManagementWebhooks](src/Adyen/Model/ManagementWebhooks)               | **v1**            |
 | [Notification Webhooks](https://docs.adyen.com/api-explorer/Webhooks/1/overview)                  | We use webhooks to send you updates about payment status updates, newly available reports, and other events that you can subscribe to. For more information, refer to our documentation | [Notification](src/Adyen/Service/Notification.php)                 | **v1**            |
 
 For more information, refer to our [documentation](https://docs.adyen.com/) or the [API Explorer](https://docs.adyen.com/api-explorer/).
@@ -169,6 +170,18 @@ $isValid = $hmac->validateHMAC("YOUR_HMAC_KEY", "YOUR_HMAC_SIGN", $jsonString);
 
 if ($isValid) {
     $webhookParser = new BankingWebhookParser($jsonString);
+    $result = $webhookParser->getGenericWebhook();
+}
+~~~~
+### Using Management Webhooks
+~~~~ php
+...
+
+$jsonString = 'webhook_payload';
+$isValid = $hmac->validateHMAC("YOUR_HMAC_KEY", "YOUR_HMAC_SIGN", $jsonString);
+
+if ($isValid) {
+    $webhookParser = new ManagementWebhookParser($jsonString);
     $result = $webhookParser->getGenericWebhook();
 }
 ~~~~
