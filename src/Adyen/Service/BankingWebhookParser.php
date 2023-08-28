@@ -30,28 +30,31 @@ class BankingWebhookParser
         }
 
         if (in_array($type, ($clazz = new AccountHolderNotificationRequest)->getTypeAllowableValues())) {
-            return (object)$this->deserializewebhook($clazz);
+            return (object)self::deserializewebhook($clazz);
         }
 
         if (in_array($type, ($clazz = new BalanceAccountNotificationRequest())->getTypeAllowableValues())) {
-            return (object)$this->deserializeWebhook($clazz);
+            return (object)self::deserializeWebhook($clazz);
         }
 
         if (in_array($type, ($clazz = new PaymentNotificationRequest())->getTypeAllowableValues())) {
-            return (object)$this->deserializeWebhook($clazz);
+            return (object)self::deserializeWebhook($clazz);
         }
 
         if (in_array($type, ($clazz =  new SweepConfigurationNotificationRequest())->getTypeAllowableValues())) {
-            return (object)$this->deserializeWebhook($clazz);
+            return (object)self::deserializeWebhook($clazz);
         }
 
         if (in_array($type, ($clazz =  new ReportNotificationRequest())->getTypeAllowableValues())) {
-            return (object)$this->deserializeWebhook($clazz);
+            return (object)self::deserializeWebhook($clazz);
         }
 
         if (in_array($type, ($clazz = new TransferNotificationRequest())->getTypeAllowableValues())) {
-            return(object)$this->deserializeWebhook($clazz);
+            return(object)self::deserializeWebhook($clazz);
         }
+
+        // throw error in case the webhook can not be parsed
+        throw new \Error("Could not parse the payload:" . $this->payload);
     }
 
     /** @noinspection PhpIncompatibleReturnTypeInspection */
