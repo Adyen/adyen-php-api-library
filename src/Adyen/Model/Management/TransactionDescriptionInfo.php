@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\Management\ObjectSerializer;
 
 /**
- * BcmcInfo Class Doc Comment
+ * TransactionDescriptionInfo Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\Management\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class BcmcInfo implements ModelInterface, ArrayAccess, \JsonSerializable
+class TransactionDescriptionInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class BcmcInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'BcmcInfo';
+    protected static $openAPIModelName = 'TransactionDescriptionInfo';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,8 +44,8 @@ class BcmcInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'enableBcmcMobile' => 'bool',
-        'transactionDescription' => '\Adyen\Model\Management\TransactionDescriptionInfo'
+        'doingBusinessAsName' => 'string',
+        'type' => 'string'
     ];
 
     /**
@@ -56,8 +56,8 @@ class BcmcInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'enableBcmcMobile' => null,
-        'transactionDescription' => null
+        'doingBusinessAsName' => null,
+        'type' => null
     ];
 
     /**
@@ -66,8 +66,8 @@ class BcmcInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'enableBcmcMobile' => false,
-        'transactionDescription' => false
+        'doingBusinessAsName' => false,
+        'type' => false
     ];
 
     /**
@@ -156,8 +156,8 @@ class BcmcInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'enableBcmcMobile' => 'enableBcmcMobile',
-        'transactionDescription' => 'transactionDescription'
+        'doingBusinessAsName' => 'doingBusinessAsName',
+        'type' => 'type'
     ];
 
     /**
@@ -166,8 +166,8 @@ class BcmcInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'enableBcmcMobile' => 'setEnableBcmcMobile',
-        'transactionDescription' => 'setTransactionDescription'
+        'doingBusinessAsName' => 'setDoingBusinessAsName',
+        'type' => 'setType'
     ];
 
     /**
@@ -176,8 +176,8 @@ class BcmcInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'enableBcmcMobile' => 'getEnableBcmcMobile',
-        'transactionDescription' => 'getTransactionDescription'
+        'doingBusinessAsName' => 'getDoingBusinessAsName',
+        'type' => 'getType'
     ];
 
     /**
@@ -221,7 +221,23 @@ class BcmcInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const TYPE_APPEND = 'append';
+    public const TYPE_DYNAMIC = 'dynamic';
+    public const TYPE_FIXED = 'fixed';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_APPEND,
+            self::TYPE_DYNAMIC,
+            self::TYPE_FIXED,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -237,8 +253,8 @@ class BcmcInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('enableBcmcMobile', $data ?? [], null);
-        $this->setIfExists('transactionDescription', $data ?? [], null);
+        $this->setIfExists('doingBusinessAsName', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], 'dynamic');
     }
 
     /**
@@ -268,6 +284,15 @@ class BcmcInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -284,55 +309,65 @@ class BcmcInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets enableBcmcMobile
+     * Gets doingBusinessAsName
      *
-     * @return bool|null
+     * @return string|null
      */
-    public function getEnableBcmcMobile()
+    public function getDoingBusinessAsName()
     {
-        return $this->container['enableBcmcMobile'];
+        return $this->container['doingBusinessAsName'];
     }
 
     /**
-     * Sets enableBcmcMobile
+     * Sets doingBusinessAsName
      *
-     * @param bool|null $enableBcmcMobile Indicates if [Bancontact mobile](https://docs.adyen.com/payment-methods/bancontact/bancontact-mobile) is enabled.
+     * @param string|null $doingBusinessAsName The text to be shown on the shopper's bank statement.  We recommend sending a maximum of 22 characters, otherwise banks might truncate the string.  Allowed characters: **a-z**, **A-Z**, **0-9**, spaces, and special characters **. , ' _ - ? + * /_**.
      *
      * @return self
      */
-    public function setEnableBcmcMobile($enableBcmcMobile)
+    public function setDoingBusinessAsName($doingBusinessAsName)
     {
-        if (is_null($enableBcmcMobile)) {
-            throw new \InvalidArgumentException('non-nullable enableBcmcMobile cannot be null');
+        if (is_null($doingBusinessAsName)) {
+            throw new \InvalidArgumentException('non-nullable doingBusinessAsName cannot be null');
         }
-        $this->container['enableBcmcMobile'] = $enableBcmcMobile;
+        $this->container['doingBusinessAsName'] = $doingBusinessAsName;
 
         return $this;
     }
 
     /**
-     * Gets transactionDescription
+     * Gets type
      *
-     * @return \Adyen\Model\Management\TransactionDescriptionInfo|null
+     * @return string|null
      */
-    public function getTransactionDescription()
+    public function getType()
     {
-        return $this->container['transactionDescription'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets transactionDescription
+     * Sets type
      *
-     * @param \Adyen\Model\Management\TransactionDescriptionInfo|null $transactionDescription transactionDescription
+     * @param string|null $type The type of transaction description you want to use: - **fixed**: The transaction description set in this request is used for all payments with this payment method. - **append**: The transaction description set in this request is used as a base for all payments with this payment method. The [transaction description set in the request to process the payment](https://docs.adyen.com/api-explorer/Checkout/70/post/sessions#request-shopperStatement) is appended to this base description. Note that if the combined length exceeds 22 characters, banks may truncate the string. - **dynamic**: Only the [transaction description set in the request to process the payment](https://docs.adyen.com/api-explorer/Checkout/70/post/sessions#request-shopperStatement) is used for payments with this payment method.
      *
      * @return self
      */
-    public function setTransactionDescription($transactionDescription)
+    public function setType($type)
     {
-        if (is_null($transactionDescription)) {
-            throw new \InvalidArgumentException('non-nullable transactionDescription cannot be null');
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
-        $this->container['transactionDescription'] = $transactionDescription;
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
 
         return $this;
     }

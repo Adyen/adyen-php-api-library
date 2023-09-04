@@ -47,9 +47,20 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'bcmc' => '\Adyen\Model\Management\BcmcInfo',
         'cartesBancaires' => '\Adyen\Model\Management\CartesBancairesInfo',
         'countries' => 'string[]',
+        'cup' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'currencies' => 'string[]',
+        'diners' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
+        'discover' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
+        'eftposAustralia' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'enabled' => 'bool',
-        'storeIds' => 'string[]'
+        'girocard' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
+        'ideal' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
+        'interacCard' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
+        'jcb' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
+        'maestro' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
+        'mc' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
+        'storeIds' => 'string[]',
+        'visa' => '\Adyen\Model\Management\GenericPmWithTdiInfo'
     ];
 
     /**
@@ -63,9 +74,20 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'bcmc' => null,
         'cartesBancaires' => null,
         'countries' => null,
+        'cup' => null,
         'currencies' => null,
+        'diners' => null,
+        'discover' => null,
+        'eftposAustralia' => null,
         'enabled' => null,
-        'storeIds' => null
+        'girocard' => null,
+        'ideal' => null,
+        'interacCard' => null,
+        'jcb' => null,
+        'maestro' => null,
+        'mc' => null,
+        'storeIds' => null,
+        'visa' => null
     ];
 
     /**
@@ -77,9 +99,20 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'bcmc' => false,
         'cartesBancaires' => false,
         'countries' => false,
+        'cup' => false,
         'currencies' => false,
+        'diners' => false,
+        'discover' => false,
+        'eftposAustralia' => false,
         'enabled' => false,
-        'storeIds' => false
+        'girocard' => false,
+        'ideal' => false,
+        'interacCard' => false,
+        'jcb' => false,
+        'maestro' => false,
+        'mc' => false,
+        'storeIds' => false,
+        'visa' => false
     ];
 
     /**
@@ -171,9 +204,20 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'bcmc' => 'bcmc',
         'cartesBancaires' => 'cartesBancaires',
         'countries' => 'countries',
+        'cup' => 'cup',
         'currencies' => 'currencies',
+        'diners' => 'diners',
+        'discover' => 'discover',
+        'eftposAustralia' => 'eftpos_australia',
         'enabled' => 'enabled',
-        'storeIds' => 'storeIds'
+        'girocard' => 'girocard',
+        'ideal' => 'ideal',
+        'interacCard' => 'interac_card',
+        'jcb' => 'jcb',
+        'maestro' => 'maestro',
+        'mc' => 'mc',
+        'storeIds' => 'storeIds',
+        'visa' => 'visa'
     ];
 
     /**
@@ -185,9 +229,20 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'bcmc' => 'setBcmc',
         'cartesBancaires' => 'setCartesBancaires',
         'countries' => 'setCountries',
+        'cup' => 'setCup',
         'currencies' => 'setCurrencies',
+        'diners' => 'setDiners',
+        'discover' => 'setDiscover',
+        'eftposAustralia' => 'setEftposAustralia',
         'enabled' => 'setEnabled',
-        'storeIds' => 'setStoreIds'
+        'girocard' => 'setGirocard',
+        'ideal' => 'setIdeal',
+        'interacCard' => 'setInteracCard',
+        'jcb' => 'setJcb',
+        'maestro' => 'setMaestro',
+        'mc' => 'setMc',
+        'storeIds' => 'setStoreIds',
+        'visa' => 'setVisa'
     ];
 
     /**
@@ -199,9 +254,20 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'bcmc' => 'getBcmc',
         'cartesBancaires' => 'getCartesBancaires',
         'countries' => 'getCountries',
+        'cup' => 'getCup',
         'currencies' => 'getCurrencies',
+        'diners' => 'getDiners',
+        'discover' => 'getDiscover',
+        'eftposAustralia' => 'getEftposAustralia',
         'enabled' => 'getEnabled',
-        'storeIds' => 'getStoreIds'
+        'girocard' => 'getGirocard',
+        'ideal' => 'getIdeal',
+        'interacCard' => 'getInteracCard',
+        'jcb' => 'getJcb',
+        'maestro' => 'getMaestro',
+        'mc' => 'getMc',
+        'storeIds' => 'getStoreIds',
+        'visa' => 'getVisa'
     ];
 
     /**
@@ -264,9 +330,20 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('bcmc', $data ?? [], null);
         $this->setIfExists('cartesBancaires', $data ?? [], null);
         $this->setIfExists('countries', $data ?? [], null);
+        $this->setIfExists('cup', $data ?? [], null);
         $this->setIfExists('currencies', $data ?? [], null);
+        $this->setIfExists('diners', $data ?? [], null);
+        $this->setIfExists('discover', $data ?? [], null);
+        $this->setIfExists('eftposAustralia', $data ?? [], null);
         $this->setIfExists('enabled', $data ?? [], null);
+        $this->setIfExists('girocard', $data ?? [], null);
+        $this->setIfExists('ideal', $data ?? [], null);
+        $this->setIfExists('interacCard', $data ?? [], null);
+        $this->setIfExists('jcb', $data ?? [], null);
+        $this->setIfExists('maestro', $data ?? [], null);
+        $this->setIfExists('mc', $data ?? [], null);
         $this->setIfExists('storeIds', $data ?? [], null);
+        $this->setIfExists('visa', $data ?? [], null);
     }
 
     /**
@@ -393,6 +470,33 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
+     * Gets cup
+     *
+     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     */
+    public function getCup()
+    {
+        return $this->container['cup'];
+    }
+
+    /**
+     * Sets cup
+     *
+     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $cup cup
+     *
+     * @return self
+     */
+    public function setCup($cup)
+    {
+        if (is_null($cup)) {
+            throw new \InvalidArgumentException('non-nullable cup cannot be null');
+        }
+        $this->container['cup'] = $cup;
+
+        return $this;
+    }
+
+    /**
      * Gets currencies
      *
      * @return string[]|null
@@ -415,6 +519,87 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
             throw new \InvalidArgumentException('non-nullable currencies cannot be null');
         }
         $this->container['currencies'] = $currencies;
+
+        return $this;
+    }
+
+    /**
+     * Gets diners
+     *
+     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     */
+    public function getDiners()
+    {
+        return $this->container['diners'];
+    }
+
+    /**
+     * Sets diners
+     *
+     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $diners diners
+     *
+     * @return self
+     */
+    public function setDiners($diners)
+    {
+        if (is_null($diners)) {
+            throw new \InvalidArgumentException('non-nullable diners cannot be null');
+        }
+        $this->container['diners'] = $diners;
+
+        return $this;
+    }
+
+    /**
+     * Gets discover
+     *
+     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     */
+    public function getDiscover()
+    {
+        return $this->container['discover'];
+    }
+
+    /**
+     * Sets discover
+     *
+     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $discover discover
+     *
+     * @return self
+     */
+    public function setDiscover($discover)
+    {
+        if (is_null($discover)) {
+            throw new \InvalidArgumentException('non-nullable discover cannot be null');
+        }
+        $this->container['discover'] = $discover;
+
+        return $this;
+    }
+
+    /**
+     * Gets eftposAustralia
+     *
+     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     */
+    public function getEftposAustralia()
+    {
+        return $this->container['eftposAustralia'];
+    }
+
+    /**
+     * Sets eftposAustralia
+     *
+     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $eftposAustralia eftposAustralia
+     *
+     * @return self
+     */
+    public function setEftposAustralia($eftposAustralia)
+    {
+        if (is_null($eftposAustralia)) {
+            throw new \InvalidArgumentException('non-nullable eftposAustralia cannot be null');
+        }
+        $this->container['eftposAustralia'] = $eftposAustralia;
 
         return $this;
     }
@@ -447,6 +632,168 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
+     * Gets girocard
+     *
+     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     */
+    public function getGirocard()
+    {
+        return $this->container['girocard'];
+    }
+
+    /**
+     * Sets girocard
+     *
+     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $girocard girocard
+     *
+     * @return self
+     */
+    public function setGirocard($girocard)
+    {
+        if (is_null($girocard)) {
+            throw new \InvalidArgumentException('non-nullable girocard cannot be null');
+        }
+        $this->container['girocard'] = $girocard;
+
+        return $this;
+    }
+
+    /**
+     * Gets ideal
+     *
+     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     */
+    public function getIdeal()
+    {
+        return $this->container['ideal'];
+    }
+
+    /**
+     * Sets ideal
+     *
+     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $ideal ideal
+     *
+     * @return self
+     */
+    public function setIdeal($ideal)
+    {
+        if (is_null($ideal)) {
+            throw new \InvalidArgumentException('non-nullable ideal cannot be null');
+        }
+        $this->container['ideal'] = $ideal;
+
+        return $this;
+    }
+
+    /**
+     * Gets interacCard
+     *
+     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     */
+    public function getInteracCard()
+    {
+        return $this->container['interacCard'];
+    }
+
+    /**
+     * Sets interacCard
+     *
+     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $interacCard interacCard
+     *
+     * @return self
+     */
+    public function setInteracCard($interacCard)
+    {
+        if (is_null($interacCard)) {
+            throw new \InvalidArgumentException('non-nullable interacCard cannot be null');
+        }
+        $this->container['interacCard'] = $interacCard;
+
+        return $this;
+    }
+
+    /**
+     * Gets jcb
+     *
+     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     */
+    public function getJcb()
+    {
+        return $this->container['jcb'];
+    }
+
+    /**
+     * Sets jcb
+     *
+     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $jcb jcb
+     *
+     * @return self
+     */
+    public function setJcb($jcb)
+    {
+        if (is_null($jcb)) {
+            throw new \InvalidArgumentException('non-nullable jcb cannot be null');
+        }
+        $this->container['jcb'] = $jcb;
+
+        return $this;
+    }
+
+    /**
+     * Gets maestro
+     *
+     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     */
+    public function getMaestro()
+    {
+        return $this->container['maestro'];
+    }
+
+    /**
+     * Sets maestro
+     *
+     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $maestro maestro
+     *
+     * @return self
+     */
+    public function setMaestro($maestro)
+    {
+        if (is_null($maestro)) {
+            throw new \InvalidArgumentException('non-nullable maestro cannot be null');
+        }
+        $this->container['maestro'] = $maestro;
+
+        return $this;
+    }
+
+    /**
+     * Gets mc
+     *
+     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     */
+    public function getMc()
+    {
+        return $this->container['mc'];
+    }
+
+    /**
+     * Sets mc
+     *
+     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $mc mc
+     *
+     * @return self
+     */
+    public function setMc($mc)
+    {
+        if (is_null($mc)) {
+            throw new \InvalidArgumentException('non-nullable mc cannot be null');
+        }
+        $this->container['mc'] = $mc;
+
+        return $this;
+    }
+
+    /**
      * Gets storeIds
      *
      * @return string[]|null
@@ -469,6 +816,33 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
             throw new \InvalidArgumentException('non-nullable storeIds cannot be null');
         }
         $this->container['storeIds'] = $storeIds;
+
+        return $this;
+    }
+
+    /**
+     * Gets visa
+     *
+     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     */
+    public function getVisa()
+    {
+        return $this->container['visa'];
+    }
+
+    /**
+     * Sets visa
+     *
+     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $visa visa
+     *
+     * @return self
+     */
+    public function setVisa($visa)
+    {
+        if (is_null($visa)) {
+            throw new \InvalidArgumentException('non-nullable visa cannot be null');
+        }
+        $this->container['visa'] = $visa;
 
         return $this;
     }
