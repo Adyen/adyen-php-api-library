@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\Management\ObjectSerializer;
 
 /**
- * BcmcInfo Class Doc Comment
+ * GenericPmWithTdiInfo Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\Management\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class BcmcInfo implements ModelInterface, ArrayAccess, \JsonSerializable
+class GenericPmWithTdiInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class BcmcInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'BcmcInfo';
+    protected static $openAPIModelName = 'GenericPmWithTdiInfo';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,7 +44,6 @@ class BcmcInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'enableBcmcMobile' => 'bool',
         'transactionDescription' => '\Adyen\Model\Management\TransactionDescriptionInfo'
     ];
 
@@ -56,7 +55,6 @@ class BcmcInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'enableBcmcMobile' => null,
         'transactionDescription' => null
     ];
 
@@ -66,7 +64,6 @@ class BcmcInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'enableBcmcMobile' => false,
         'transactionDescription' => false
     ];
 
@@ -156,7 +153,6 @@ class BcmcInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'enableBcmcMobile' => 'enableBcmcMobile',
         'transactionDescription' => 'transactionDescription'
     ];
 
@@ -166,7 +162,6 @@ class BcmcInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'enableBcmcMobile' => 'setEnableBcmcMobile',
         'transactionDescription' => 'setTransactionDescription'
     ];
 
@@ -176,7 +171,6 @@ class BcmcInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'enableBcmcMobile' => 'getEnableBcmcMobile',
         'transactionDescription' => 'getTransactionDescription'
     ];
 
@@ -237,7 +231,6 @@ class BcmcInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('enableBcmcMobile', $data ?? [], null);
         $this->setIfExists('transactionDescription', $data ?? [], null);
     }
 
@@ -282,33 +275,6 @@ class BcmcInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets enableBcmcMobile
-     *
-     * @return bool|null
-     */
-    public function getEnableBcmcMobile()
-    {
-        return $this->container['enableBcmcMobile'];
-    }
-
-    /**
-     * Sets enableBcmcMobile
-     *
-     * @param bool|null $enableBcmcMobile Indicates if [Bancontact mobile](https://docs.adyen.com/payment-methods/bancontact/bancontact-mobile) is enabled.
-     *
-     * @return self
-     */
-    public function setEnableBcmcMobile($enableBcmcMobile)
-    {
-        if (is_null($enableBcmcMobile)) {
-            throw new \InvalidArgumentException('non-nullable enableBcmcMobile cannot be null');
-        }
-        $this->container['enableBcmcMobile'] = $enableBcmcMobile;
-
-        return $this;
-    }
 
     /**
      * Gets transactionDescription
