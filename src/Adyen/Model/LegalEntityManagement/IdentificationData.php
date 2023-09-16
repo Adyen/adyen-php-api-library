@@ -251,20 +251,7 @@ class IdentificationData implements ModelInterface, ArrayAccess, \JsonSerializab
         return self::$openAPIModelName;
     }
 
-    public const TYPE_BANK_STATEMENT = 'bankStatement';
-    public const TYPE_DRIVERS_LICENSE = 'driversLicense';
-    public const TYPE_IDENTITY_CARD = 'identityCard';
-    public const TYPE_NATIONAL_ID_NUMBER = 'nationalIdNumber';
-    public const TYPE_PASSPORT = 'passport';
-    public const TYPE_PROOF_OF_ADDRESS = 'proofOfAddress';
     public const TYPE_PROOF_OF_NATIONAL_ID_NUMBER = 'proofOfNationalIdNumber';
-    public const TYPE_PROOF_OF_RESIDENCY = 'proofOfResidency';
-    public const TYPE_REGISTRATION_DOCUMENT = 'registrationDocument';
-    public const TYPE_VAT_DOCUMENT = 'vatDocument';
-    public const TYPE_PROOF_OF_ORGANIZATION_TAX_INFO = 'proofOfOrganizationTaxInfo';
-    public const TYPE_PROOF_OF_INDUSTRY = 'proofOfIndustry';
-    public const TYPE_CONSTITUTIONAL_DOCUMENT = 'constitutionalDocument';
-    public const TYPE_PROOF_OF_FUNDING_OR_WEALTH_SOURCE = 'proofOfFundingOrWealthSource';
 
     /**
      * Gets allowable values of the enum
@@ -274,20 +261,7 @@ class IdentificationData implements ModelInterface, ArrayAccess, \JsonSerializab
     public function getTypeAllowableValues()
     {
         return [
-            self::TYPE_BANK_STATEMENT,
-            self::TYPE_DRIVERS_LICENSE,
-            self::TYPE_IDENTITY_CARD,
-            self::TYPE_NATIONAL_ID_NUMBER,
-            self::TYPE_PASSPORT,
-            self::TYPE_PROOF_OF_ADDRESS,
             self::TYPE_PROOF_OF_NATIONAL_ID_NUMBER,
-            self::TYPE_PROOF_OF_RESIDENCY,
-            self::TYPE_REGISTRATION_DOCUMENT,
-            self::TYPE_VAT_DOCUMENT,
-            self::TYPE_PROOF_OF_ORGANIZATION_TAX_INFO,
-            self::TYPE_PROOF_OF_INDUSTRY,
-            self::TYPE_CONSTITUTIONAL_DOCUMENT,
-            self::TYPE_PROOF_OF_FUNDING_OR_WEALTH_SOURCE,
         ];
     }
     /**
@@ -547,7 +521,7 @@ class IdentificationData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets type
      *
-     * @param string $type Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  * For **organization**, the `type` values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, **proofOfIndustry**, or **proofOfFundingOrWealthSource**.  * For **individual**, the `type` values can be **identityCard**, **driversLicense**, **passport**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, **proofOfIndividualTaxId**, or **proofOfFundingOrWealthSource**.  * For **soleProprietorship**, the `type` values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
+     * @param string $type Type of identity data. For **individual**, the `type` value is **nationalIdNumber**.
      *
      * @return self
      */

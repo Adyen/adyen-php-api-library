@@ -692,7 +692,7 @@ class TransactionRuleInfo implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets requestType
      *
-     * @param string|null $requestType Indicates the type of request to which the rule applies.  Possible values: **authorization**, **authentication**, **tokenization**.
+     * @param string|null $requestType Indicates the type of request to which the rule applies. If not provided, by default, this is set to **authorization**.  Possible values: **authorization**, **authentication**, **tokenization**, **bankTransfer**.
      *
      * @return self
      */

@@ -292,6 +292,12 @@ class GetTermsOfServiceDocumentRequest implements ModelInterface, ArrayAccess, \
     {
         $invalidProperties = [];
 
+        if ($this->container['language'] === null) {
+            $invalidProperties[] = "'language' can't be null";
+        }
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -319,7 +325,7 @@ class GetTermsOfServiceDocumentRequest implements ModelInterface, ArrayAccess, \
     /**
      * Gets language
      *
-     * @return string|null
+     * @return string
      */
     public function getLanguage()
     {
@@ -329,7 +335,7 @@ class GetTermsOfServiceDocumentRequest implements ModelInterface, ArrayAccess, \
     /**
      * Sets language
      *
-     * @param string|null $language The language to be used for the Terms of Service document, specified by the two letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. For example, **nl** for Dutch.
+     * @param string $language The language to be used for the Terms of Service document, specified by the two letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. For example, **nl** for Dutch.
      *
      * @return self
      */
@@ -346,7 +352,7 @@ class GetTermsOfServiceDocumentRequest implements ModelInterface, ArrayAccess, \
     /**
      * Gets type
      *
-     * @return string|null
+     * @return string
      */
     public function getType()
     {
@@ -356,7 +362,7 @@ class GetTermsOfServiceDocumentRequest implements ModelInterface, ArrayAccess, \
     /**
      * Sets type
      *
-     * @param string|null $type The type of Terms of Service.
+     * @param string $type The type of Terms of Service.
      *
      * @return self
      */

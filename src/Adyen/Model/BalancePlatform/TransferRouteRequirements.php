@@ -19,15 +19,16 @@ use \ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * DeliveryAddress Class Doc Comment
+ * TransferRouteRequirements Class Doc Comment
  *
  * @category Class
+ * @description A set of rules defined by clearing houses and banking partners. Your transfer request must adhere to these rules to ensure successful initiation of transfer. Based on the priority, one or more requirements may be returned. Each requirement is defined with a &#x60;type&#x60; and &#x60;description&#x60;.
  * @package  Adyen
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
+class TransferRouteRequirements implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +37,7 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'DeliveryAddress';
+    protected static $openAPIModelName = 'TransferRoute_requirements';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,13 +45,14 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'city' => 'string',
-        'country' => 'string',
-        'line1' => 'string',
-        'line2' => 'string',
-        'line3' => 'string',
-        'postalCode' => 'string',
-        'stateOrProvince' => 'string'
+        'description' => 'string',
+        'requiredAddressFields' => 'string[]',
+        'type' => 'string',
+        'max' => 'int',
+        'min' => 'int',
+        'bankAccountIdentificationTypes' => 'string[]',
+        'issuingCountryCode' => 'string',
+        'paymentInstrumentType' => 'string'
     ];
 
     /**
@@ -61,13 +63,14 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'city' => null,
-        'country' => null,
-        'line1' => null,
-        'line2' => null,
-        'line3' => null,
-        'postalCode' => null,
-        'stateOrProvince' => null
+        'description' => null,
+        'requiredAddressFields' => null,
+        'type' => null,
+        'max' => 'int64',
+        'min' => 'int64',
+        'bankAccountIdentificationTypes' => null,
+        'issuingCountryCode' => null,
+        'paymentInstrumentType' => null
     ];
 
     /**
@@ -76,13 +79,14 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'city' => false,
-        'country' => false,
-        'line1' => false,
-        'line2' => false,
-        'line3' => false,
-        'postalCode' => false,
-        'stateOrProvince' => false
+        'description' => false,
+        'requiredAddressFields' => false,
+        'type' => false,
+        'max' => false,
+        'min' => false,
+        'bankAccountIdentificationTypes' => false,
+        'issuingCountryCode' => false,
+        'paymentInstrumentType' => false
     ];
 
     /**
@@ -171,13 +175,14 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'city' => 'city',
-        'country' => 'country',
-        'line1' => 'line1',
-        'line2' => 'line2',
-        'line3' => 'line3',
-        'postalCode' => 'postalCode',
-        'stateOrProvince' => 'stateOrProvince'
+        'description' => 'description',
+        'requiredAddressFields' => 'requiredAddressFields',
+        'type' => 'type',
+        'max' => 'max',
+        'min' => 'min',
+        'bankAccountIdentificationTypes' => 'bankAccountIdentificationTypes',
+        'issuingCountryCode' => 'issuingCountryCode',
+        'paymentInstrumentType' => 'paymentInstrumentType'
     ];
 
     /**
@@ -186,13 +191,14 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'city' => 'setCity',
-        'country' => 'setCountry',
-        'line1' => 'setLine1',
-        'line2' => 'setLine2',
-        'line3' => 'setLine3',
-        'postalCode' => 'setPostalCode',
-        'stateOrProvince' => 'setStateOrProvince'
+        'description' => 'setDescription',
+        'requiredAddressFields' => 'setRequiredAddressFields',
+        'type' => 'setType',
+        'max' => 'setMax',
+        'min' => 'setMin',
+        'bankAccountIdentificationTypes' => 'setBankAccountIdentificationTypes',
+        'issuingCountryCode' => 'setIssuingCountryCode',
+        'paymentInstrumentType' => 'setPaymentInstrumentType'
     ];
 
     /**
@@ -201,13 +207,14 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'city' => 'getCity',
-        'country' => 'getCountry',
-        'line1' => 'getLine1',
-        'line2' => 'getLine2',
-        'line3' => 'getLine3',
-        'postalCode' => 'getPostalCode',
-        'stateOrProvince' => 'getStateOrProvince'
+        'description' => 'getDescription',
+        'requiredAddressFields' => 'getRequiredAddressFields',
+        'type' => 'getType',
+        'max' => 'getMax',
+        'min' => 'getMin',
+        'bankAccountIdentificationTypes' => 'getBankAccountIdentificationTypes',
+        'issuingCountryCode' => 'getIssuingCountryCode',
+        'paymentInstrumentType' => 'getPaymentInstrumentType'
     ];
 
     /**
@@ -251,7 +258,6 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -267,13 +273,14 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('city', $data ?? [], null);
-        $this->setIfExists('country', $data ?? [], null);
-        $this->setIfExists('line1', $data ?? [], null);
-        $this->setIfExists('line2', $data ?? [], null);
-        $this->setIfExists('line3', $data ?? [], null);
-        $this->setIfExists('postalCode', $data ?? [], null);
-        $this->setIfExists('stateOrProvince', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('requiredAddressFields', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], 'paymentInstrumentRequirement');
+        $this->setIfExists('max', $data ?? [], null);
+        $this->setIfExists('min', $data ?? [], null);
+        $this->setIfExists('bankAccountIdentificationTypes', $data ?? [], null);
+        $this->setIfExists('issuingCountryCode', $data ?? [], null);
+        $this->setIfExists('paymentInstrumentType', $data ?? [], null);
     }
 
     /**
@@ -303,9 +310,11 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['country'] === null) {
-            $invalidProperties[] = "'country' can't be null";
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
         }
+
+
         return $invalidProperties;
     }
 
@@ -322,190 +331,217 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets city
+     * Gets description
      *
      * @return string|null
      */
-    public function getCity()
+    public function getDescription()
     {
-        return $this->container['city'];
+        return $this->container['description'];
     }
 
     /**
-     * Sets city
+     * Sets description
      *
-     * @param string|null $city The name of the city.
+     * @param string|null $description Specifies the requirements for the payment instrument that need to be included in the request for a particular route.
      *
      * @return self
      */
-    public function setCity($city)
+    public function setDescription($description)
     {
-        if (is_null($city)) {
-            throw new \InvalidArgumentException('non-nullable city cannot be null');
+        if (is_null($description)) {
+            throw new \InvalidArgumentException('non-nullable description cannot be null');
         }
-        $this->container['city'] = $city;
+        $this->container['description'] = $description;
 
         return $this;
     }
 
     /**
-     * Gets country
+     * Gets requiredAddressFields
+     *
+     * @return string[]|null
+     */
+    public function getRequiredAddressFields()
+    {
+        return $this->container['requiredAddressFields'];
+    }
+
+    /**
+     * Sets requiredAddressFields
+     *
+     * @param string[]|null $requiredAddressFields List of address fields.
+     *
+     * @return self
+     */
+    public function setRequiredAddressFields($requiredAddressFields)
+    {
+        if (is_null($requiredAddressFields)) {
+            throw new \InvalidArgumentException('non-nullable requiredAddressFields cannot be null');
+        }
+        $this->container['requiredAddressFields'] = $requiredAddressFields;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
      *
      * @return string
      */
-    public function getCountry()
+    public function getType()
     {
-        return $this->container['country'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets country
+     * Sets type
      *
-     * @param string $country The two-character ISO-3166-1 alpha-2 country code. For example, **US**. >If you don't know the country or are not collecting the country from the shopper, provide `country` as `ZZ`.
+     * @param string $type **paymentInstrumentRequirement**
      *
      * @return self
      */
-    public function setCountry($country)
+    public function setType($type)
     {
-        if (is_null($country)) {
-            throw new \InvalidArgumentException('non-nullable country cannot be null');
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
-        $this->container['country'] = $country;
+        $this->container['type'] = $type;
 
         return $this;
     }
 
     /**
-     * Gets line1
+     * Gets max
      *
-     * @return string|null
+     * @return int|null
      */
-    public function getLine1()
+    public function getMax()
     {
-        return $this->container['line1'];
+        return $this->container['max'];
     }
 
     /**
-     * Sets line1
+     * Sets max
      *
-     * @param string|null $line1 The street name. For example, if the address is \"Rokin 49\", provide \"Rokin\".
+     * @param int|null $max Maximum amount.
      *
      * @return self
      */
-    public function setLine1($line1)
+    public function setMax($max)
     {
-        if (is_null($line1)) {
-            throw new \InvalidArgumentException('non-nullable line1 cannot be null');
+        if (is_null($max)) {
+            throw new \InvalidArgumentException('non-nullable max cannot be null');
         }
-        $this->container['line1'] = $line1;
+        $this->container['max'] = $max;
 
         return $this;
     }
 
     /**
-     * Gets line2
+     * Gets min
      *
-     * @return string|null
+     * @return int|null
      */
-    public function getLine2()
+    public function getMin()
     {
-        return $this->container['line2'];
+        return $this->container['min'];
     }
 
     /**
-     * Sets line2
+     * Sets min
      *
-     * @param string|null $line2 The house number or name. For example, if the address is \"Rokin 49\", provide \"49\".
+     * @param int|null $min Minimum amount.
      *
      * @return self
      */
-    public function setLine2($line2)
+    public function setMin($min)
     {
-        if (is_null($line2)) {
-            throw new \InvalidArgumentException('non-nullable line2 cannot be null');
+        if (is_null($min)) {
+            throw new \InvalidArgumentException('non-nullable min cannot be null');
         }
-        $this->container['line2'] = $line2;
+        $this->container['min'] = $min;
 
         return $this;
     }
 
     /**
-     * Gets line3
+     * Gets bankAccountIdentificationTypes
      *
-     * @return string|null
+     * @return string[]|null
      */
-    public function getLine3()
+    public function getBankAccountIdentificationTypes()
     {
-        return $this->container['line3'];
+        return $this->container['bankAccountIdentificationTypes'];
     }
 
     /**
-     * Sets line3
+     * Sets bankAccountIdentificationTypes
      *
-     * @param string|null $line3 Optional information about the address.
+     * @param string[]|null $bankAccountIdentificationTypes List of bank account identification types: eg.; [iban , numberAndBic]
      *
      * @return self
      */
-    public function setLine3($line3)
+    public function setBankAccountIdentificationTypes($bankAccountIdentificationTypes)
     {
-        if (is_null($line3)) {
-            throw new \InvalidArgumentException('non-nullable line3 cannot be null');
+        if (is_null($bankAccountIdentificationTypes)) {
+            throw new \InvalidArgumentException('non-nullable bankAccountIdentificationTypes cannot be null');
         }
-        $this->container['line3'] = $line3;
+        $this->container['bankAccountIdentificationTypes'] = $bankAccountIdentificationTypes;
 
         return $this;
     }
 
     /**
-     * Gets postalCode
+     * Gets issuingCountryCode
      *
      * @return string|null
      */
-    public function getPostalCode()
+    public function getIssuingCountryCode()
     {
-        return $this->container['postalCode'];
+        return $this->container['issuingCountryCode'];
     }
 
     /**
-     * Sets postalCode
+     * Sets issuingCountryCode
      *
-     * @param string|null $postalCode The postal code. Maximum length: * 5 digits for an address in the US. * 10 characters for an address in all other countries.
+     * @param string|null $issuingCountryCode The two-character ISO-3166-1 alpha-2 country code of the counterparty. For example, **US** or **NL**.
      *
      * @return self
      */
-    public function setPostalCode($postalCode)
+    public function setIssuingCountryCode($issuingCountryCode)
     {
-        if (is_null($postalCode)) {
-            throw new \InvalidArgumentException('non-nullable postalCode cannot be null');
+        if (is_null($issuingCountryCode)) {
+            throw new \InvalidArgumentException('non-nullable issuingCountryCode cannot be null');
         }
-        $this->container['postalCode'] = $postalCode;
+        $this->container['issuingCountryCode'] = $issuingCountryCode;
 
         return $this;
     }
 
     /**
-     * Gets stateOrProvince
+     * Gets paymentInstrumentType
      *
      * @return string|null
      */
-    public function getStateOrProvince()
+    public function getPaymentInstrumentType()
     {
-        return $this->container['stateOrProvince'];
+        return $this->container['paymentInstrumentType'];
     }
 
     /**
-     * Sets stateOrProvince
+     * Sets paymentInstrumentType
      *
-     * @param string|null $stateOrProvince The two-letterISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada. > Required for the US and Canada.
+     * @param string|null $paymentInstrumentType The type of the payment instrument. For example, \"BankAccount\" or \"Card\".
      *
      * @return self
      */
-    public function setStateOrProvince($stateOrProvince)
+    public function setPaymentInstrumentType($paymentInstrumentType)
     {
-        if (is_null($stateOrProvince)) {
-            throw new \InvalidArgumentException('non-nullable stateOrProvince cannot be null');
+        if (is_null($paymentInstrumentType)) {
+            throw new \InvalidArgumentException('non-nullable paymentInstrumentType cannot be null');
         }
-        $this->container['stateOrProvince'] = $stateOrProvince;
+        $this->container['paymentInstrumentType'] = $paymentInstrumentType;
 
         return $this;
     }
