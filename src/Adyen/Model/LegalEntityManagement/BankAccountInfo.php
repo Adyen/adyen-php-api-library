@@ -46,6 +46,7 @@ class BankAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'accountIdentification' => '\Adyen\Model\LegalEntityManagement\BankAccount',
         'accountType' => 'string',
+        'bankName' => 'string',
         'countryCode' => 'string',
         'trustedSource' => 'bool'
     ];
@@ -60,6 +61,7 @@ class BankAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'accountIdentification' => null,
         'accountType' => null,
+        'bankName' => null,
         'countryCode' => null,
         'trustedSource' => null
     ];
@@ -72,6 +74,7 @@ class BankAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPINullables = [
         'accountIdentification' => false,
         'accountType' => false,
+        'bankName' => false,
         'countryCode' => false,
         'trustedSource' => false
     ];
@@ -164,6 +167,7 @@ class BankAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'accountIdentification' => 'accountIdentification',
         'accountType' => 'accountType',
+        'bankName' => 'bankName',
         'countryCode' => 'countryCode',
         'trustedSource' => 'trustedSource'
     ];
@@ -176,6 +180,7 @@ class BankAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'accountIdentification' => 'setAccountIdentification',
         'accountType' => 'setAccountType',
+        'bankName' => 'setBankName',
         'countryCode' => 'setCountryCode',
         'trustedSource' => 'setTrustedSource'
     ];
@@ -188,6 +193,7 @@ class BankAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'accountIdentification' => 'getAccountIdentification',
         'accountType' => 'getAccountType',
+        'bankName' => 'getBankName',
         'countryCode' => 'getCountryCode',
         'trustedSource' => 'getTrustedSource'
     ];
@@ -251,6 +257,7 @@ class BankAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('accountIdentification', $data ?? [], null);
         $this->setIfExists('accountType', $data ?? [], null);
+        $this->setIfExists('bankName', $data ?? [], null);
         $this->setIfExists('countryCode', $data ?? [], null);
         $this->setIfExists('trustedSource', $data ?? [], null);
     }
@@ -349,6 +356,33 @@ class BankAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable accountType cannot be null');
         }
         $this->container['accountType'] = $accountType;
+
+        return $this;
+    }
+
+    /**
+     * Gets bankName
+     *
+     * @return string|null
+     */
+    public function getBankName()
+    {
+        return $this->container['bankName'];
+    }
+
+    /**
+     * Sets bankName
+     *
+     * @param string|null $bankName The name of the banking institution where the bank account is held.
+     *
+     * @return self
+     */
+    public function setBankName($bankName)
+    {
+        if (is_null($bankName)) {
+            throw new \InvalidArgumentException('non-nullable bankName cannot be null');
+        }
+        $this->container['bankName'] = $bankName;
 
         return $this;
     }

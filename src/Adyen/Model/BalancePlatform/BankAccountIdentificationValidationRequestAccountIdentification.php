@@ -53,6 +53,7 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
         'accountType' => 'string',
         'institutionNumber' => 'string',
         'transitNumber' => 'string',
+        'clearingCode' => 'string',
         'iban' => 'string',
         'accountSuffix' => 'string',
         'additionalBankIdentification' => '\Adyen\Model\BalancePlatform\AdditionalBankIdentification',
@@ -78,6 +79,7 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
         'accountType' => null,
         'institutionNumber' => null,
         'transitNumber' => null,
+        'clearingCode' => null,
         'iban' => null,
         'accountSuffix' => null,
         'additionalBankIdentification' => null,
@@ -101,6 +103,7 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
         'accountType' => false,
         'institutionNumber' => false,
         'transitNumber' => false,
+        'clearingCode' => false,
         'iban' => false,
         'accountSuffix' => false,
         'additionalBankIdentification' => false,
@@ -204,6 +207,7 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
         'accountType' => 'accountType',
         'institutionNumber' => 'institutionNumber',
         'transitNumber' => 'transitNumber',
+        'clearingCode' => 'clearingCode',
         'iban' => 'iban',
         'accountSuffix' => 'accountSuffix',
         'additionalBankIdentification' => 'additionalBankIdentification',
@@ -227,6 +231,7 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
         'accountType' => 'setAccountType',
         'institutionNumber' => 'setInstitutionNumber',
         'transitNumber' => 'setTransitNumber',
+        'clearingCode' => 'setClearingCode',
         'iban' => 'setIban',
         'accountSuffix' => 'setAccountSuffix',
         'additionalBankIdentification' => 'setAdditionalBankIdentification',
@@ -250,6 +255,7 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
         'accountType' => 'getAccountType',
         'institutionNumber' => 'getInstitutionNumber',
         'transitNumber' => 'getTransitNumber',
+        'clearingCode' => 'getClearingCode',
         'iban' => 'getIban',
         'accountSuffix' => 'getAccountSuffix',
         'additionalBankIdentification' => 'getAdditionalBankIdentification',
@@ -323,6 +329,7 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
         $this->setIfExists('accountType', $data ?? [], 'checking');
         $this->setIfExists('institutionNumber', $data ?? [], null);
         $this->setIfExists('transitNumber', $data ?? [], null);
+        $this->setIfExists('clearingCode', $data ?? [], null);
         $this->setIfExists('iban', $data ?? [], null);
         $this->setIfExists('accountSuffix', $data ?? [], null);
         $this->setIfExists('additionalBankIdentification', $data ?? [], null);
@@ -381,6 +388,9 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
         }
         if ($this->container['transitNumber'] === null) {
             $invalidProperties[] = "'transitNumber' can't be null";
+        }
+        if ($this->container['clearingCode'] === null) {
+            $invalidProperties[] = "'clearingCode' can't be null";
         }
         if ($this->container['iban'] === null) {
             $invalidProperties[] = "'iban' can't be null";
@@ -627,6 +637,33 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
             throw new \InvalidArgumentException('non-nullable transitNumber cannot be null');
         }
         $this->container['transitNumber'] = $transitNumber;
+
+        return $this;
+    }
+
+    /**
+     * Gets clearingCode
+     *
+     * @return string
+     */
+    public function getClearingCode()
+    {
+        return $this->container['clearingCode'];
+    }
+
+    /**
+     * Sets clearingCode
+     *
+     * @param string $clearingCode The 3-digit clearing code, without separators or whitespace.
+     *
+     * @return self
+     */
+    public function setClearingCode($clearingCode)
+    {
+        if (is_null($clearingCode)) {
+            throw new \InvalidArgumentException('non-nullable clearingCode cannot be null');
+        }
+        $this->container['clearingCode'] = $clearingCode;
 
         return $this;
     }

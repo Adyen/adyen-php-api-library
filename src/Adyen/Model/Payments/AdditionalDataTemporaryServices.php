@@ -372,7 +372,7 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
     /**
      * Sets enhancedSchemeDataEmployeeName
      *
-     * @param string|null $enhancedSchemeDataEmployeeName The name or ID of the person working in a temporary capacity. * maxLength: 40 * Must not be all zeros * Must not be all spaces
+     * @param string|null $enhancedSchemeDataEmployeeName The name or ID of the person working in a temporary capacity. * maxLength: 40.   * Must not be all spaces.  *Must not be all zeros.
      *
      * @return self
      */
@@ -399,7 +399,7 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
     /**
      * Sets enhancedSchemeDataJobDescription
      *
-     * @param string|null $enhancedSchemeDataJobDescription The job description of the person working in a temporary capacity. * maxLength: 40 * Must not be all zeros * Must not be all spaces
+     * @param string|null $enhancedSchemeDataJobDescription The job description of the person working in a temporary capacity. * maxLength: 40  * Must not be all spaces.  *Must not be all zeros.
      *
      * @return self
      */

@@ -45,6 +45,7 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'description' => 'string',
+        'errorCode' => 'string',
         'id' => 'string',
         'label' => 'string',
         'packageName' => 'string',
@@ -62,6 +63,7 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'description' => null,
+        'errorCode' => null,
         'id' => null,
         'label' => null,
         'packageName' => null,
@@ -77,6 +79,7 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'description' => false,
+        'errorCode' => false,
         'id' => false,
         'label' => false,
         'packageName' => false,
@@ -172,6 +175,7 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'description' => 'description',
+        'errorCode' => 'errorCode',
         'id' => 'id',
         'label' => 'label',
         'packageName' => 'packageName',
@@ -187,6 +191,7 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'description' => 'setDescription',
+        'errorCode' => 'setErrorCode',
         'id' => 'setId',
         'label' => 'setLabel',
         'packageName' => 'setPackageName',
@@ -202,6 +207,7 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'description' => 'getDescription',
+        'errorCode' => 'getErrorCode',
         'id' => 'getId',
         'label' => 'getLabel',
         'packageName' => 'getPackageName',
@@ -268,6 +274,7 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('errorCode', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('label', $data ?? [], null);
         $this->setIfExists('packageName', $data ?? [], null);
@@ -347,6 +354,33 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable description cannot be null');
         }
         $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets errorCode
+     *
+     * @return string|null
+     */
+    public function getErrorCode()
+    {
+        return $this->container['errorCode'];
+    }
+
+    /**
+     * Sets errorCode
+     *
+     * @param string|null $errorCode The error code of the app. It exists if the status is error or invalid.
+     *
+     * @return self
+     */
+    public function setErrorCode($errorCode)
+    {
+        if (is_null($errorCode)) {
+            throw new \InvalidArgumentException('non-nullable errorCode cannot be null');
+        }
+        $this->container['errorCode'] = $errorCode;
 
         return $this;
     }
@@ -445,7 +479,7 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      *
-     * @param string $status The status of the app. Possible values:  * `processing`: The app is being signed and converted to a format that the terminal can handle. * `error`: Something went wrong. Check that the app matches the [requirements](https://docs.adyen.com/point-of-sale/android-terminals/app-requirements). * `invalid`: There is something wrong with the APK file of the app. * `ready`: The app has been signed and converted. * `archived`: The app is no longer available.
+     * @param string $status The status of the app. Possible values:  * `processing`: the app is being signed and converted to a format that the terminal can handle. * `error`: something went wrong. Check that the app matches the [requirements](https://docs.adyen.com/point-of-sale/android-terminals/app-requirements). * `invalid`: there is something wrong with the APK file of the app. * `ready`: the app has been signed and converted. * `archived`: the app is no longer available.
      *
      * @return self
      */
