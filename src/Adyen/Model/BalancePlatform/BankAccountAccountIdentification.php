@@ -19,16 +19,16 @@ use \ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * BankAccountIdentificationValidationRequestAccountIdentification Class Doc Comment
+ * BankAccountAccountIdentification Class Doc Comment
  *
  * @category Class
- * @description Bank account identification.
+ * @description Contains the bank account details. The fields required in this object depend on the country of the bank account and the currency of the transfer.
  * @package  Adyen
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class BankAccountIdentificationValidationRequestAccountIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
+class BankAccountAccountIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -37,7 +37,7 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
       *
       * @var string
       */
-    protected static $openAPIModelName = 'BankAccountIdentificationValidationRequest_accountIdentification';
+    protected static $openAPIModelName = 'BankAccount_accountIdentification';
 
     /**
       * Array of property to type mappings. Used for (de)serialization

@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\LegalEntityManagement\ObjectSerializer;
 
 /**
- * AcceptTermsOfServiceRequest Class Doc Comment
+ * NZLocalAccountIdentification Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\LegalEntityManagement\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class AcceptTermsOfServiceRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class NZLocalAccountIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class AcceptTermsOfServiceRequest implements ModelInterface, ArrayAccess, \JsonS
       *
       * @var string
       */
-    protected static $openAPIModelName = 'AcceptTermsOfServiceRequest';
+    protected static $openAPIModelName = 'NZLocalAccountIdentification';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,8 +44,8 @@ class AcceptTermsOfServiceRequest implements ModelInterface, ArrayAccess, \JsonS
       * @var string[]
       */
     protected static $openAPITypes = [
-        'acceptedBy' => 'string',
-        'ipAddress' => 'string'
+        'accountNumber' => 'string',
+        'type' => 'string'
     ];
 
     /**
@@ -56,8 +56,8 @@ class AcceptTermsOfServiceRequest implements ModelInterface, ArrayAccess, \JsonS
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'acceptedBy' => null,
-        'ipAddress' => null
+        'accountNumber' => null,
+        'type' => null
     ];
 
     /**
@@ -66,8 +66,8 @@ class AcceptTermsOfServiceRequest implements ModelInterface, ArrayAccess, \JsonS
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'acceptedBy' => false,
-        'ipAddress' => false
+        'accountNumber' => false,
+        'type' => false
     ];
 
     /**
@@ -156,8 +156,8 @@ class AcceptTermsOfServiceRequest implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $attributeMap = [
-        'acceptedBy' => 'acceptedBy',
-        'ipAddress' => 'ipAddress'
+        'accountNumber' => 'accountNumber',
+        'type' => 'type'
     ];
 
     /**
@@ -166,8 +166,8 @@ class AcceptTermsOfServiceRequest implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $setters = [
-        'acceptedBy' => 'setAcceptedBy',
-        'ipAddress' => 'setIpAddress'
+        'accountNumber' => 'setAccountNumber',
+        'type' => 'setType'
     ];
 
     /**
@@ -176,8 +176,8 @@ class AcceptTermsOfServiceRequest implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $getters = [
-        'acceptedBy' => 'getAcceptedBy',
-        'ipAddress' => 'getIpAddress'
+        'accountNumber' => 'getAccountNumber',
+        'type' => 'getType'
     ];
 
     /**
@@ -221,7 +221,19 @@ class AcceptTermsOfServiceRequest implements ModelInterface, ArrayAccess, \JsonS
         return self::$openAPIModelName;
     }
 
+    public const TYPE_NZ_LOCAL = 'nzLocal';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_NZ_LOCAL,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -237,8 +249,8 @@ class AcceptTermsOfServiceRequest implements ModelInterface, ArrayAccess, \JsonS
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('acceptedBy', $data ?? [], null);
-        $this->setIfExists('ipAddress', $data ?? [], null);
+        $this->setIfExists('accountNumber', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], 'nzLocal');
     }
 
     /**
@@ -268,9 +280,21 @@ class AcceptTermsOfServiceRequest implements ModelInterface, ArrayAccess, \JsonS
     {
         $invalidProperties = [];
 
-        if ($this->container['acceptedBy'] === null) {
-            $invalidProperties[] = "'acceptedBy' can't be null";
+        if ($this->container['accountNumber'] === null) {
+            $invalidProperties[] = "'accountNumber' can't be null";
         }
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -287,55 +311,65 @@ class AcceptTermsOfServiceRequest implements ModelInterface, ArrayAccess, \JsonS
 
 
     /**
-     * Gets acceptedBy
+     * Gets accountNumber
      *
      * @return string
      */
-    public function getAcceptedBy()
+    public function getAccountNumber()
     {
-        return $this->container['acceptedBy'];
+        return $this->container['accountNumber'];
     }
 
     /**
-     * Sets acceptedBy
+     * Sets accountNumber
      *
-     * @param string $acceptedBy The legal entity ID of the user accepting the Terms of Service.  For organizations, this must be the individual legal entity ID of an authorized signatory for the organization.  For sole proprietorships, this must be the individual legal entity ID of the owner.
+     * @param string $accountNumber The 15-16 digit bank account number. The first 2 digits are the bank number, the next 4 digits are the branch number, the next 7 digits are the account number, and the final 2-3 digits are the suffix.
      *
      * @return self
      */
-    public function setAcceptedBy($acceptedBy)
+    public function setAccountNumber($accountNumber)
     {
-        if (is_null($acceptedBy)) {
-            throw new \InvalidArgumentException('non-nullable acceptedBy cannot be null');
+        if (is_null($accountNumber)) {
+            throw new \InvalidArgumentException('non-nullable accountNumber cannot be null');
         }
-        $this->container['acceptedBy'] = $acceptedBy;
+        $this->container['accountNumber'] = $accountNumber;
 
         return $this;
     }
 
     /**
-     * Gets ipAddress
+     * Gets type
      *
-     * @return string|null
+     * @return string
      */
-    public function getIpAddress()
+    public function getType()
     {
-        return $this->container['ipAddress'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets ipAddress
+     * Sets type
      *
-     * @param string|null $ipAddress The IP address of the user accepting the Terms of Service.
+     * @param string $type **nzLocal**
      *
      * @return self
      */
-    public function setIpAddress($ipAddress)
+    public function setType($type)
     {
-        if (is_null($ipAddress)) {
-            throw new \InvalidArgumentException('non-nullable ipAddress cannot be null');
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
-        $this->container['ipAddress'] = $ipAddress;
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
 
         return $this;
     }
