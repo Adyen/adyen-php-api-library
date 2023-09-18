@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * DeliveryAddress Class Doc Comment
+ * TransferRouteRequest Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\BalancePlatform\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
+class TransferRouteRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'DeliveryAddress';
+    protected static $openAPIModelName = 'TransferRouteRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,13 +44,13 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'city' => 'string',
+        'balanceAccountId' => 'string',
+        'balancePlatform' => 'string',
+        'category' => 'string',
+        'counterparty' => '\Adyen\Model\BalancePlatform\Counterparty',
         'country' => 'string',
-        'line1' => 'string',
-        'line2' => 'string',
-        'line3' => 'string',
-        'postalCode' => 'string',
-        'stateOrProvince' => 'string'
+        'currency' => 'string',
+        'priorities' => 'string[]'
     ];
 
     /**
@@ -61,13 +61,13 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'city' => null,
+        'balanceAccountId' => null,
+        'balancePlatform' => null,
+        'category' => null,
+        'counterparty' => null,
         'country' => null,
-        'line1' => null,
-        'line2' => null,
-        'line3' => null,
-        'postalCode' => null,
-        'stateOrProvince' => null
+        'currency' => null,
+        'priorities' => null
     ];
 
     /**
@@ -76,13 +76,13 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'city' => false,
+        'balanceAccountId' => false,
+        'balancePlatform' => false,
+        'category' => false,
+        'counterparty' => false,
         'country' => false,
-        'line1' => false,
-        'line2' => false,
-        'line3' => false,
-        'postalCode' => false,
-        'stateOrProvince' => false
+        'currency' => false,
+        'priorities' => false
     ];
 
     /**
@@ -171,13 +171,13 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'city' => 'city',
+        'balanceAccountId' => 'balanceAccountId',
+        'balancePlatform' => 'balancePlatform',
+        'category' => 'category',
+        'counterparty' => 'counterparty',
         'country' => 'country',
-        'line1' => 'line1',
-        'line2' => 'line2',
-        'line3' => 'line3',
-        'postalCode' => 'postalCode',
-        'stateOrProvince' => 'stateOrProvince'
+        'currency' => 'currency',
+        'priorities' => 'priorities'
     ];
 
     /**
@@ -186,13 +186,13 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'city' => 'setCity',
+        'balanceAccountId' => 'setBalanceAccountId',
+        'balancePlatform' => 'setBalancePlatform',
+        'category' => 'setCategory',
+        'counterparty' => 'setCounterparty',
         'country' => 'setCountry',
-        'line1' => 'setLine1',
-        'line2' => 'setLine2',
-        'line3' => 'setLine3',
-        'postalCode' => 'setPostalCode',
-        'stateOrProvince' => 'setStateOrProvince'
+        'currency' => 'setCurrency',
+        'priorities' => 'setPriorities'
     ];
 
     /**
@@ -201,13 +201,13 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'city' => 'getCity',
+        'balanceAccountId' => 'getBalanceAccountId',
+        'balancePlatform' => 'getBalancePlatform',
+        'category' => 'getCategory',
+        'counterparty' => 'getCounterparty',
         'country' => 'getCountry',
-        'line1' => 'getLine1',
-        'line2' => 'getLine2',
-        'line3' => 'getLine3',
-        'postalCode' => 'getPostalCode',
-        'stateOrProvince' => 'getStateOrProvince'
+        'currency' => 'getCurrency',
+        'priorities' => 'getPriorities'
     ];
 
     /**
@@ -251,7 +251,41 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const CATEGORY_BANK = 'bank';
+    public const PRIORITIES_CROSS_BORDER = 'crossBorder';
+    public const PRIORITIES_FAST = 'fast';
+    public const PRIORITIES_INSTANT = 'instant';
+    public const PRIORITIES_INTERNAL = 'internal';
+    public const PRIORITIES_REGULAR = 'regular';
+    public const PRIORITIES_WIRE = 'wire';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getCategoryAllowableValues()
+    {
+        return [
+            self::CATEGORY_BANK,
+        ];
+    }
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getPrioritiesAllowableValues()
+    {
+        return [
+            self::PRIORITIES_CROSS_BORDER,
+            self::PRIORITIES_FAST,
+            self::PRIORITIES_INSTANT,
+            self::PRIORITIES_INTERNAL,
+            self::PRIORITIES_REGULAR,
+            self::PRIORITIES_WIRE,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -267,13 +301,13 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('city', $data ?? [], null);
+        $this->setIfExists('balanceAccountId', $data ?? [], null);
+        $this->setIfExists('balancePlatform', $data ?? [], null);
+        $this->setIfExists('category', $data ?? [], null);
+        $this->setIfExists('counterparty', $data ?? [], null);
         $this->setIfExists('country', $data ?? [], null);
-        $this->setIfExists('line1', $data ?? [], null);
-        $this->setIfExists('line2', $data ?? [], null);
-        $this->setIfExists('line3', $data ?? [], null);
-        $this->setIfExists('postalCode', $data ?? [], null);
-        $this->setIfExists('stateOrProvince', $data ?? [], null);
+        $this->setIfExists('currency', $data ?? [], null);
+        $this->setIfExists('priorities', $data ?? [], null);
     }
 
     /**
@@ -303,8 +337,23 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['country'] === null) {
-            $invalidProperties[] = "'country' can't be null";
+        if ($this->container['balancePlatform'] === null) {
+            $invalidProperties[] = "'balancePlatform' can't be null";
+        }
+        if ($this->container['category'] === null) {
+            $invalidProperties[] = "'category' can't be null";
+        }
+        $allowedValues = $this->getCategoryAllowableValues();
+        if (!is_null($this->container['category']) && !in_array($this->container['category'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'category', must be one of '%s'",
+                $this->container['category'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['currency'] === null) {
+            $invalidProperties[] = "'currency' can't be null";
         }
         return $invalidProperties;
     }
@@ -322,28 +371,119 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets city
+     * Gets balanceAccountId
      *
      * @return string|null
      */
-    public function getCity()
+    public function getBalanceAccountId()
     {
-        return $this->container['city'];
+        return $this->container['balanceAccountId'];
     }
 
     /**
-     * Sets city
+     * Sets balanceAccountId
      *
-     * @param string|null $city The name of the city.
+     * @param string|null $balanceAccountId The unique identifier of the source [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id). Required if `counterparty` is **transferInstrumentId**.
      *
      * @return self
      */
-    public function setCity($city)
+    public function setBalanceAccountId($balanceAccountId)
     {
-        if (is_null($city)) {
-            throw new \InvalidArgumentException('non-nullable city cannot be null');
+        if (is_null($balanceAccountId)) {
+            throw new \InvalidArgumentException('non-nullable balanceAccountId cannot be null');
         }
-        $this->container['city'] = $city;
+        $this->container['balanceAccountId'] = $balanceAccountId;
+
+        return $this;
+    }
+
+    /**
+     * Gets balancePlatform
+     *
+     * @return string
+     */
+    public function getBalancePlatform()
+    {
+        return $this->container['balancePlatform'];
+    }
+
+    /**
+     * Sets balancePlatform
+     *
+     * @param string $balancePlatform The unique identifier assigned to the balance platform associated with the account holder.
+     *
+     * @return self
+     */
+    public function setBalancePlatform($balancePlatform)
+    {
+        if (is_null($balancePlatform)) {
+            throw new \InvalidArgumentException('non-nullable balancePlatform cannot be null');
+        }
+        $this->container['balancePlatform'] = $balancePlatform;
+
+        return $this;
+    }
+
+    /**
+     * Gets category
+     *
+     * @return string
+     */
+    public function getCategory()
+    {
+        return $this->container['category'];
+    }
+
+    /**
+     * Sets category
+     *
+     * @param string $category The type of transfer. Possible values:    - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.
+     *
+     * @return self
+     */
+    public function setCategory($category)
+    {
+        if (is_null($category)) {
+            throw new \InvalidArgumentException('non-nullable category cannot be null');
+        }
+        $allowedValues = $this->getCategoryAllowableValues();
+        if (!in_array($category, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'category', must be one of '%s'",
+                    $category,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['category'] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Gets counterparty
+     *
+     * @return \Adyen\Model\BalancePlatform\Counterparty|null
+     */
+    public function getCounterparty()
+    {
+        return $this->container['counterparty'];
+    }
+
+    /**
+     * Sets counterparty
+     *
+     * @param \Adyen\Model\BalancePlatform\Counterparty|null $counterparty counterparty
+     *
+     * @return self
+     */
+    public function setCounterparty($counterparty)
+    {
+        if (is_null($counterparty)) {
+            throw new \InvalidArgumentException('non-nullable counterparty cannot be null');
+        }
+        $this->container['counterparty'] = $counterparty;
 
         return $this;
     }
@@ -351,7 +491,7 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets country
      *
-     * @return string
+     * @return string|null
      */
     public function getCountry()
     {
@@ -361,7 +501,7 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets country
      *
-     * @param string $country The two-character ISO-3166-1 alpha-2 country code. For example, **US**. >If you don't know the country or are not collecting the country from the shopper, provide `country` as `ZZ`.
+     * @param string|null $country The two-character ISO-3166-1 alpha-2 country code of the counterparty. For example, **US** or **NL**.  > Either `counterparty` or `country` field must be provided in a transfer route request.
      *
      * @return self
      */
@@ -376,136 +516,64 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets line1
+     * Gets currency
      *
-     * @return string|null
+     * @return string
      */
-    public function getLine1()
+    public function getCurrency()
     {
-        return $this->container['line1'];
+        return $this->container['currency'];
     }
 
     /**
-     * Sets line1
+     * Sets currency
      *
-     * @param string|null $line1 The street name. For example, if the address is \"Rokin 49\", provide \"Rokin\".
+     * @param string $currency The three-character ISO currency code of transfer. For example, **USD** or **EUR**.
      *
      * @return self
      */
-    public function setLine1($line1)
+    public function setCurrency($currency)
     {
-        if (is_null($line1)) {
-            throw new \InvalidArgumentException('non-nullable line1 cannot be null');
+        if (is_null($currency)) {
+            throw new \InvalidArgumentException('non-nullable currency cannot be null');
         }
-        $this->container['line1'] = $line1;
+        $this->container['currency'] = $currency;
 
         return $this;
     }
 
     /**
-     * Gets line2
+     * Gets priorities
      *
-     * @return string|null
+     * @return string[]|null
      */
-    public function getLine2()
+    public function getPriorities()
     {
-        return $this->container['line2'];
+        return $this->container['priorities'];
     }
 
     /**
-     * Sets line2
+     * Sets priorities
      *
-     * @param string|null $line2 The house number or name. For example, if the address is \"Rokin 49\", provide \"49\".
+     * @param string[]|null $priorities The list of priorities for the bank transfer. Priorities set the speed at which the transfer is sent and the fees that you have to pay. Multiple values can be provided. Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN).
      *
      * @return self
      */
-    public function setLine2($line2)
+    public function setPriorities($priorities)
     {
-        if (is_null($line2)) {
-            throw new \InvalidArgumentException('non-nullable line2 cannot be null');
+        if (is_null($priorities)) {
+            throw new \InvalidArgumentException('non-nullable priorities cannot be null');
         }
-        $this->container['line2'] = $line2;
-
-        return $this;
-    }
-
-    /**
-     * Gets line3
-     *
-     * @return string|null
-     */
-    public function getLine3()
-    {
-        return $this->container['line3'];
-    }
-
-    /**
-     * Sets line3
-     *
-     * @param string|null $line3 Optional information about the address.
-     *
-     * @return self
-     */
-    public function setLine3($line3)
-    {
-        if (is_null($line3)) {
-            throw new \InvalidArgumentException('non-nullable line3 cannot be null');
+        $allowedValues = $this->getPrioritiesAllowableValues();
+        if (array_diff($priorities, $allowedValues)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'priorities', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
         }
-        $this->container['line3'] = $line3;
-
-        return $this;
-    }
-
-    /**
-     * Gets postalCode
-     *
-     * @return string|null
-     */
-    public function getPostalCode()
-    {
-        return $this->container['postalCode'];
-    }
-
-    /**
-     * Sets postalCode
-     *
-     * @param string|null $postalCode The postal code. Maximum length: * 5 digits for an address in the US. * 10 characters for an address in all other countries.
-     *
-     * @return self
-     */
-    public function setPostalCode($postalCode)
-    {
-        if (is_null($postalCode)) {
-            throw new \InvalidArgumentException('non-nullable postalCode cannot be null');
-        }
-        $this->container['postalCode'] = $postalCode;
-
-        return $this;
-    }
-
-    /**
-     * Gets stateOrProvince
-     *
-     * @return string|null
-     */
-    public function getStateOrProvince()
-    {
-        return $this->container['stateOrProvince'];
-    }
-
-    /**
-     * Sets stateOrProvince
-     *
-     * @param string|null $stateOrProvince The two-letterISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada. > Required for the US and Canada.
-     *
-     * @return self
-     */
-    public function setStateOrProvince($stateOrProvince)
-    {
-        if (is_null($stateOrProvince)) {
-            throw new \InvalidArgumentException('non-nullable stateOrProvince cannot be null');
-        }
-        $this->container['stateOrProvince'] = $stateOrProvince;
+        $this->container['priorities'] = $priorities;
 
         return $this;
     }
