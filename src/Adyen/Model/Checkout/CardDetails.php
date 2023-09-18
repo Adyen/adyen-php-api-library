@@ -324,7 +324,6 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     public const FUNDING_SOURCE_DEBIT = 'debit';
-    public const TYPE_BCMC = 'bcmc';
     public const TYPE_SCHEME = 'scheme';
     public const TYPE_NETWORK_TOKEN = 'networkToken';
     public const TYPE_GIFTCARD = 'giftcard';
@@ -350,7 +349,6 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public function getTypeAllowableValues()
     {
         return [
-            self::TYPE_BCMC,
             self::TYPE_SCHEME,
             self::TYPE_NETWORK_TOKEN,
             self::TYPE_GIFTCARD,

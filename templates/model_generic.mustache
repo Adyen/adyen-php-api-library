@@ -38,7 +38,7 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
       */
     protected static $openAPINullables = [
         {{#vars}}'{{name}}' => {{#isNullable}}true{{/isNullable}}{{^isNullable}}{{^isInteger}}false{{/isInteger}}{{/isNullable}}{{^isNullable}}{{#isInteger}}true{{/isInteger}}{{/isNullable}}{{^-last}},
-        {{/-last}}{{/vars}}
+		{{/-last}}{{/vars}}
     ];
 
     /**
@@ -465,7 +465,7 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -44,8 +44,7 @@ class CartesBancairesInfo implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var string[]
       */
     protected static $openAPITypes = [
-        'siret' => 'string',
-        'transactionDescription' => '\Adyen\Model\Management\TransactionDescriptionInfo'
+        'siret' => 'string'
     ];
 
     /**
@@ -56,8 +55,7 @@ class CartesBancairesInfo implements ModelInterface, ArrayAccess, \JsonSerializa
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'siret' => null,
-        'transactionDescription' => null
+        'siret' => null
     ];
 
     /**
@@ -66,8 +64,7 @@ class CartesBancairesInfo implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'siret' => false,
-        'transactionDescription' => false
+        'siret' => false
     ];
 
     /**
@@ -156,8 +153,7 @@ class CartesBancairesInfo implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $attributeMap = [
-        'siret' => 'siret',
-        'transactionDescription' => 'transactionDescription'
+        'siret' => 'siret'
     ];
 
     /**
@@ -166,8 +162,7 @@ class CartesBancairesInfo implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $setters = [
-        'siret' => 'setSiret',
-        'transactionDescription' => 'setTransactionDescription'
+        'siret' => 'setSiret'
     ];
 
     /**
@@ -176,8 +171,7 @@ class CartesBancairesInfo implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $getters = [
-        'siret' => 'getSiret',
-        'transactionDescription' => 'getTransactionDescription'
+        'siret' => 'getSiret'
     ];
 
     /**
@@ -238,7 +232,6 @@ class CartesBancairesInfo implements ModelInterface, ArrayAccess, \JsonSerializa
     public function __construct(array $data = null)
     {
         $this->setIfExists('siret', $data ?? [], null);
-        $this->setIfExists('transactionDescription', $data ?? [], null);
     }
 
     /**
@@ -309,33 +302,6 @@ class CartesBancairesInfo implements ModelInterface, ArrayAccess, \JsonSerializa
             throw new \InvalidArgumentException('non-nullable siret cannot be null');
         }
         $this->container['siret'] = $siret;
-
-        return $this;
-    }
-
-    /**
-     * Gets transactionDescription
-     *
-     * @return \Adyen\Model\Management\TransactionDescriptionInfo|null
-     */
-    public function getTransactionDescription()
-    {
-        return $this->container['transactionDescription'];
-    }
-
-    /**
-     * Sets transactionDescription
-     *
-     * @param \Adyen\Model\Management\TransactionDescriptionInfo|null $transactionDescription transactionDescription
-     *
-     * @return self
-     */
-    public function setTransactionDescription($transactionDescription)
-    {
-        if (is_null($transactionDescription)) {
-            throw new \InvalidArgumentException('non-nullable transactionDescription cannot be null');
-        }
-        $this->container['transactionDescription'] = $transactionDescription;
 
         return $this;
     }

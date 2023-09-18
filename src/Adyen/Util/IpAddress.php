@@ -45,7 +45,7 @@ class IpAddress
         $ipAddresses = array();
         foreach (self::$HOSTNAMES as $hostname) {
             $ipAddressesOfHostName = gethostbynamel($hostname);
-
+            
             // gethostbynamel can return false if hostname could not be resolved
             if (false !== $ipAddressesOfHostName) {
                 $ipAddresses = array_merge($ipAddresses, $ipAddressesOfHostName);

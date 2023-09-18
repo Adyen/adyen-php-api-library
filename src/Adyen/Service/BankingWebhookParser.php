@@ -2,7 +2,6 @@
 
 namespace Adyen\Service;
 
-use Adyen\Model\AcsWebhooks\AuthenticationNotificationRequest;
 use Adyen\Model\ConfigurationWebhooks\AccountHolderNotificationRequest;
 use Adyen\Model\ConfigurationWebhooks\BalanceAccountNotificationRequest;
 use Adyen\Model\ConfigurationWebhooks\ObjectSerializer;
@@ -25,42 +24,29 @@ class BankingWebhookParser
         $jsonPayload = json_decode($this->payload, true);
         $type = $jsonPayload['type'];
 
-        if (in_array($type, ($clazz = new AuthenticationNotificationRequest())->getTypeAllowableValues())) {
+        if (in_array($type, ($clazz = new AccountHolderNotificationRequest)->getTypeAllowableValues())) {
             return (object)$this->deserializewebhook($clazz);
         }
 
-        if (in_array($type, ($clazz = new AccountHolderNotificationRequest)->getTypeAllowableValues())) {
-            return (object)self::deserializewebhook($clazz);
-        }
-
         if (in_array($type, ($clazz = new BalanceAccountNotificationRequest())->getTypeAllowableValues())) {
-            return (object)self::deserializeWebhook($clazz);
+            return (object)$this->deserializeWebhook($clazz);
         }
 
         if (in_array($type, ($clazz = new PaymentNotificationRequest())->getTypeAllowableValues())) {
-            return (object)self::deserializeWebhook($clazz);
+            return (object)$this->deserializeWebhook($clazz);
         }
 
         if (in_array($type, ($clazz =  new SweepConfigurationNotificationRequest())->getTypeAllowableValues())) {
-            return (object)self::deserializeWebhook($clazz);
+            return (object)$this->deserializeWebhook($clazz);
         }
 
         if (in_array($type, ($clazz =  new ReportNotificationRequest())->getTypeAllowableValues())) {
-            return (object)self::deserializeWebhook($clazz);
+            return (object)$this->deserializeWebhook($clazz);
         }
 
         if (in_array($type, ($clazz = new TransferNotificationRequest())->getTypeAllowableValues())) {
-            return(object)self::deserializeWebhook($clazz);
+            return(object)$this->deserializeWebhook($clazz);
         }
-
-        // throw error in case the webhook can not be parsed
-        throw new \Error("Could not parse the payload:" . $this->payload);
-    }
-
-    /** @noinspection PhpIncompatibleReturnTypeInspection */
-    public function getAuthenticationNotificationRequest(): AuthenticationNotificationRequest
-    {
-        return $this->getGenericWebhook();
     }
 
     /** @noinspection PhpIncompatibleReturnTypeInspection */

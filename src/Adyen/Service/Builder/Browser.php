@@ -36,7 +36,7 @@ class Browser
      * @param int $screenWidth
      * @param int $screenHeight
      * @param int $colorDepth
-     * @param int $timeZoneOffset
+     * @param int $timeZoneOffsetß
      * @param string $language
      * @param bool $javaEnabled
      * @param array $request

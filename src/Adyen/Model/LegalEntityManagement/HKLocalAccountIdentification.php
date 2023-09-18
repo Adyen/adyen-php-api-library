@@ -45,7 +45,7 @@ class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPITypes = [
         'accountNumber' => 'string',
-        'clearingCode' => 'string',
+        'bankCode' => 'string',
         'type' => 'string'
     ];
 
@@ -58,7 +58,7 @@ class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPIFormats = [
         'accountNumber' => null,
-        'clearingCode' => null,
+        'bankCode' => null,
         'type' => null
     ];
 
@@ -69,7 +69,7 @@ class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPINullables = [
         'accountNumber' => false,
-        'clearingCode' => false,
+        'bankCode' => false,
         'type' => false
     ];
 
@@ -160,7 +160,7 @@ class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      */
     protected static $attributeMap = [
         'accountNumber' => 'accountNumber',
-        'clearingCode' => 'clearingCode',
+        'bankCode' => 'bankCode',
         'type' => 'type'
     ];
 
@@ -171,7 +171,7 @@ class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      */
     protected static $setters = [
         'accountNumber' => 'setAccountNumber',
-        'clearingCode' => 'setClearingCode',
+        'bankCode' => 'setBankCode',
         'type' => 'setType'
     ];
 
@@ -182,7 +182,7 @@ class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      */
     protected static $getters = [
         'accountNumber' => 'getAccountNumber',
-        'clearingCode' => 'getClearingCode',
+        'bankCode' => 'getBankCode',
         'type' => 'getType'
     ];
 
@@ -256,7 +256,7 @@ class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     public function __construct(array $data = null)
     {
         $this->setIfExists('accountNumber', $data ?? [], null);
-        $this->setIfExists('clearingCode', $data ?? [], null);
+        $this->setIfExists('bankCode', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], 'hkLocal');
     }
 
@@ -290,8 +290,8 @@ class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
         if ($this->container['accountNumber'] === null) {
             $invalidProperties[] = "'accountNumber' can't be null";
         }
-        if ($this->container['clearingCode'] === null) {
-            $invalidProperties[] = "'clearingCode' can't be null";
+        if ($this->container['bankCode'] === null) {
+            $invalidProperties[] = "'bankCode' can't be null";
         }
         if ($this->container['type'] === null) {
             $invalidProperties[] = "'type' can't be null";
@@ -333,7 +333,7 @@ class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets accountNumber
      *
-     * @param string $accountNumber The 9- to 12-character bank account number (alphanumeric), without separators or whitespace. Starts with the 3-digit branch code.
+     * @param string $accountNumber The 6- to 19-character bank account number (alphanumeric), without separators or whitespace.
      *
      * @return self
      */
@@ -348,28 +348,28 @@ class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     }
 
     /**
-     * Gets clearingCode
+     * Gets bankCode
      *
      * @return string
      */
-    public function getClearingCode()
+    public function getBankCode()
     {
-        return $this->container['clearingCode'];
+        return $this->container['bankCode'];
     }
 
     /**
-     * Sets clearingCode
+     * Sets bankCode
      *
-     * @param string $clearingCode The 3-digit clearing code, without separators or whitespace.
+     * @param string $bankCode The 6-digit bank code including the 3-digit bank code and 3-digit branch code, without separators or whitespace.
      *
      * @return self
      */
-    public function setClearingCode($clearingCode)
+    public function setBankCode($bankCode)
     {
-        if (is_null($clearingCode)) {
-            throw new \InvalidArgumentException('non-nullable clearingCode cannot be null');
+        if (is_null($bankCode)) {
+            throw new \InvalidArgumentException('non-nullable bankCode cannot be null');
         }
-        $this->container['clearingCode'] = $clearingCode;
+        $this->container['bankCode'] = $bankCode;
 
         return $this;
     }
