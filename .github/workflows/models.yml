@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Generate Models
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: make models
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
