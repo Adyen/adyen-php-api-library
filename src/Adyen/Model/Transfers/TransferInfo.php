@@ -49,7 +49,6 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => 'string',
         'counterparty' => '\Adyen\Model\Transfers\CounterpartyInfoV3',
         'description' => 'string',
-        'id' => 'string',
         'paymentInstrumentId' => 'string',
         'priority' => 'string',
         'reference' => 'string',
@@ -70,7 +69,6 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => null,
         'counterparty' => null,
         'description' => null,
-        'id' => null,
         'paymentInstrumentId' => null,
         'priority' => null,
         'reference' => null,
@@ -89,7 +87,6 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => false,
         'counterparty' => false,
         'description' => false,
-        'id' => false,
         'paymentInstrumentId' => false,
         'priority' => false,
         'reference' => false,
@@ -188,7 +185,6 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => 'category',
         'counterparty' => 'counterparty',
         'description' => 'description',
-        'id' => 'id',
         'paymentInstrumentId' => 'paymentInstrumentId',
         'priority' => 'priority',
         'reference' => 'reference',
@@ -207,7 +203,6 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => 'setCategory',
         'counterparty' => 'setCounterparty',
         'description' => 'setDescription',
-        'id' => 'setId',
         'paymentInstrumentId' => 'setPaymentInstrumentId',
         'priority' => 'setPriority',
         'reference' => 'setReference',
@@ -226,7 +221,6 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => 'getCategory',
         'counterparty' => 'getCounterparty',
         'description' => 'getDescription',
-        'id' => 'getId',
         'paymentInstrumentId' => 'getPaymentInstrumentId',
         'priority' => 'getPriority',
         'reference' => 'getReference',
@@ -340,7 +334,6 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('category', $data ?? [], null);
         $this->setIfExists('counterparty', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('paymentInstrumentId', $data ?? [], null);
         $this->setIfExists('priority', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
@@ -558,33 +551,6 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable description cannot be null');
         }
         $this->container['description'] = $description;
-
-        return $this;
-    }
-
-    /**
-     * Gets id
-     *
-     * @return string|null
-     */
-    public function getId()
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param string|null $id The ID of the resource.
-     *
-     * @return self
-     */
-    public function setId($id)
-    {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
-        $this->container['id'] = $id;
 
         return $this;
     }

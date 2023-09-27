@@ -40,36 +40,6 @@ class TerminalActionsCompanyLevelApi extends Service
     }
 
     /**
-    * Get a list of Android apps
-    *
-    * @param string $companyId
-    * @param array|null $requestOptions ['queryParams' => ['pageNumber'=> int, 'pageSize'=> int, 'packageName'=> string, 'versionCode'=> int]]
-    * @return \Adyen\Model\Management\AndroidAppsResponse
-    * @throws AdyenException
-    */
-    public function listAndroidApps(string $companyId, array $requestOptions = null): \Adyen\Model\Management\AndroidAppsResponse
-    {
-        $endpoint = $this->baseURL . str_replace(['{companyId}'], [$companyId], "/companies/{companyId}/androidApps");
-        $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
-        return ObjectSerializer::deserialize($response, \Adyen\Model\Management\AndroidAppsResponse::class);
-    }
-
-    /**
-    * Get a list of Android certificates
-    *
-    * @param string $companyId
-    * @param array|null $requestOptions ['queryParams' => ['pageNumber'=> int, 'pageSize'=> int, 'certificateName'=> string]]
-    * @return \Adyen\Model\Management\AndroidCertificatesResponse
-    * @throws AdyenException
-    */
-    public function listAndroidCertificates(string $companyId, array $requestOptions = null): \Adyen\Model\Management\AndroidCertificatesResponse
-    {
-        $endpoint = $this->baseURL . str_replace(['{companyId}'], [$companyId], "/companies/{companyId}/androidCertificates");
-        $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
-        return ObjectSerializer::deserialize($response, \Adyen\Model\Management\AndroidCertificatesResponse::class);
-    }
-
-    /**
     * Get a list of terminal actions
     *
     * @param string $companyId

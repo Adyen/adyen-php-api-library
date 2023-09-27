@@ -277,7 +277,6 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_KNET = 'knet';
     public const TYPE_OMANNET = 'omannet';
     public const TYPE_GOPAY_WALLET = 'gopay_wallet';
-    public const TYPE_POLI = 'poli';
     public const TYPE_KCP_NAVERPAY = 'kcp_naverpay';
     public const TYPE_ONLINEBANKING_IN = 'onlinebanking_IN';
     public const TYPE_FAWRY = 'fawry';
@@ -374,7 +373,6 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_KNET,
             self::TYPE_OMANNET,
             self::TYPE_GOPAY_WALLET,
-            self::TYPE_POLI,
             self::TYPE_KCP_NAVERPAY,
             self::TYPE_ONLINEBANKING_IN,
             self::TYPE_FAWRY,

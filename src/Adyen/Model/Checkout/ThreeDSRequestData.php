@@ -241,8 +241,8 @@ class ThreeDSRequestData implements ModelInterface, ArrayAccess, \JsonSerializab
     public const DATA_ONLY_FALSE = 'false';
     public const DATA_ONLY_TRUE = 'true';
     public const NATIVE_THREE_DS_PREFERRED = 'preferred';
-    public const THREE_DS_VERSION__1_0 = 'V_2_1_0';
-    public const THREE_DS_VERSION__2_0 = 'V_2_2_0';
+    public const THREE_DS_VERSION__1_0 = '2.1.0';
+    public const THREE_DS_VERSION__2_0 = '2.2.0';
 
     /**
      * Gets allowable values of the enum

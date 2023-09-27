@@ -45,7 +45,7 @@ class TransactionSearchResponse implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static $openAPITypes = [
         'links' => '\Adyen\Model\Transfers\Links',
-        'data' => '\Adyen\Model\Transfers\Transaction[]'
+        'data' => '\Adyen\Model\Transfers\TransactionData[]'
     ];
 
     /**
@@ -313,7 +313,7 @@ class TransactionSearchResponse implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets data
      *
-     * @return \Adyen\Model\Transfers\Transaction[]|null
+     * @return \Adyen\Model\Transfers\TransactionData[]|null
      */
     public function getData()
     {
@@ -323,7 +323,7 @@ class TransactionSearchResponse implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets data
      *
-     * @param \Adyen\Model\Transfers\Transaction[]|null $data Contains the transactions that match the query parameters.
+     * @param \Adyen\Model\Transfers\TransactionData[]|null $data Contains the transactions that match the query parameters.
      *
      * @return self
      */
