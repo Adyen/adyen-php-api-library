@@ -254,6 +254,7 @@ class AfterpayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_AFTERPAY_DEFAULT = 'afterpay_default';
     public const TYPE_AFTERPAYTOUCH = 'afterpaytouch';
     public const TYPE_AFTERPAY_B2B = 'afterpay_b2b';
+    public const TYPE_CLEARPAY = 'clearpay';
 
     /**
      * Gets allowable values of the enum
@@ -266,6 +267,7 @@ class AfterpayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_AFTERPAY_DEFAULT,
             self::TYPE_AFTERPAYTOUCH,
             self::TYPE_AFTERPAY_B2B,
+            self::TYPE_CLEARPAY,
         ];
     }
     /**

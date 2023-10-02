@@ -336,18 +336,25 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
     public const CATEGORY_ISSUED_CARD = 'issuedCard';
     public const CATEGORY_MIGRATION = 'migration';
     public const CATEGORY_PLATFORM_PAYMENT = 'platformPayment';
+    public const CATEGORY_UPGRADE = 'upgrade';
     public const STATUS_BOOKED = 'booked';
     public const STATUS_PENDING = 'pending';
     public const TYPE_ATM_WITHDRAWAL = 'atmWithdrawal';
     public const TYPE_ATM_WITHDRAWAL_REVERSAL = 'atmWithdrawalReversal';
     public const TYPE_BALANCE_ADJUSTMENT = 'balanceAdjustment';
+    public const TYPE_BALANCE_MIGRATION = 'balanceMigration';
     public const TYPE_BALANCE_ROLLOVER = 'balanceRollover';
     public const TYPE_BANK_TRANSFER = 'bankTransfer';
     public const TYPE_CAPTURE = 'capture';
     public const TYPE_CAPTURE_REVERSAL = 'captureReversal';
     public const TYPE_CARD_TRANSFER = 'cardTransfer';
+    public const TYPE_CASH_OUT_FEE = 'cashOutFee';
+    public const TYPE_CASH_OUT_FUNDING = 'cashOutFunding';
+    public const TYPE_CASH_OUT_INSTRUCTION = 'cashOutInstruction';
     public const TYPE_CHARGEBACK = 'chargeback';
+    public const TYPE_CHARGEBACK_CORRECTION = 'chargebackCorrection';
     public const TYPE_CHARGEBACK_REVERSAL = 'chargebackReversal';
+    public const TYPE_CHARGEBACK_REVERSAL_CORRECTION = 'chargebackReversalCorrection';
     public const TYPE_DEPOSIT_CORRECTION = 'depositCorrection';
     public const TYPE_FEE = 'fee';
     public const TYPE_GRANT = 'grant';
@@ -365,6 +372,7 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_REPAYMENT = 'repayment';
     public const TYPE_RESERVE_ADJUSTMENT = 'reserveAdjustment';
     public const TYPE_SECOND_CHARGEBACK = 'secondChargeback';
+    public const TYPE_SECOND_CHARGEBACK_CORRECTION = 'secondChargebackCorrection';
 
     /**
      * Gets allowable values of the enum
@@ -381,6 +389,7 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
             self::CATEGORY_ISSUED_CARD,
             self::CATEGORY_MIGRATION,
             self::CATEGORY_PLATFORM_PAYMENT,
+            self::CATEGORY_UPGRADE,
         ];
     }
     /**
@@ -406,13 +415,19 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_ATM_WITHDRAWAL,
             self::TYPE_ATM_WITHDRAWAL_REVERSAL,
             self::TYPE_BALANCE_ADJUSTMENT,
+            self::TYPE_BALANCE_MIGRATION,
             self::TYPE_BALANCE_ROLLOVER,
             self::TYPE_BANK_TRANSFER,
             self::TYPE_CAPTURE,
             self::TYPE_CAPTURE_REVERSAL,
             self::TYPE_CARD_TRANSFER,
+            self::TYPE_CASH_OUT_FEE,
+            self::TYPE_CASH_OUT_FUNDING,
+            self::TYPE_CASH_OUT_INSTRUCTION,
             self::TYPE_CHARGEBACK,
+            self::TYPE_CHARGEBACK_CORRECTION,
             self::TYPE_CHARGEBACK_REVERSAL,
+            self::TYPE_CHARGEBACK_REVERSAL_CORRECTION,
             self::TYPE_DEPOSIT_CORRECTION,
             self::TYPE_FEE,
             self::TYPE_GRANT,
@@ -430,6 +445,7 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_REPAYMENT,
             self::TYPE_RESERVE_ADJUSTMENT,
             self::TYPE_SECOND_CHARGEBACK,
+            self::TYPE_SECOND_CHARGEBACK_CORRECTION,
         ];
     }
     /**
@@ -665,7 +681,7 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets balancePlatform
      *
-     * @param string $balancePlatform Unique identifier of the balance platform.
+     * @param string $balancePlatform The unique identifier of the balance platform.
      *
      * @return self
      */
@@ -692,7 +708,7 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets bookingDate
      *
-     * @param \DateTime $bookingDate The date the transaction was booked to the balance account.
+     * @param \DateTime $bookingDate The date the transaction was booked into the balance account.
      *
      * @return self
      */
@@ -864,7 +880,7 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets eventId
      *
-     * @param string|null $eventId The PSP reference in the journal.
+     * @param string|null $eventId The PSP reference of the transaction in the journal.
      *
      * @return self
      */
@@ -891,7 +907,7 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      *
-     * @param string $id Unique identifier of the transaction.
+     * @param string $id The unique identifier of the transaction.
      *
      * @return self
      */
@@ -945,7 +961,7 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets paymentInstrumentId
      *
-     * @param string|null $paymentInstrumentId Unique identifier of the payment instrument that was used for the transaction.
+     * @param string|null $paymentInstrumentId The unique identifier of the payment instrument that was used for the transaction.
      *
      * @return self
      */
