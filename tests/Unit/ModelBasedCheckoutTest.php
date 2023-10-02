@@ -320,10 +320,7 @@ class ModelBasedCheckoutTest extends TestCaseMock
 
         $service = new RecurringApi($client);
 
-        $result = $service->deleteTokenForStoredPaymentDetails("123");
-
-        $this->assertEquals("CS16116100127511AF", $result->getId());
-        $this->assertEquals("networkRef", $result->getNetworkTxReference());
+        $service->deleteTokenForStoredPaymentDetails("123");
     }
 
     public static function successDeleteStoredPaymentMethodsProvider()

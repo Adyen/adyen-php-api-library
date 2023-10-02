@@ -326,16 +326,19 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     public const PRIORITY_WIRE = 'wire';
     public const REASON_AMOUNT_LIMIT_EXCEEDED = 'amountLimitExceeded';
     public const REASON_APPROVED = 'approved';
+    public const REASON_BALANCE_ACCOUNT_TEMPORARILY_BLOCKED_BY_TRANSACTION_RULE = 'balanceAccountTemporarilyBlockedByTransactionRule';
     public const REASON_COUNTERPARTY_ACCOUNT_BLOCKED = 'counterpartyAccountBlocked';
     public const REASON_COUNTERPARTY_ACCOUNT_CLOSED = 'counterpartyAccountClosed';
     public const REASON_COUNTERPARTY_ACCOUNT_NOT_FOUND = 'counterpartyAccountNotFound';
     public const REASON_COUNTERPARTY_ADDRESS_REQUIRED = 'counterpartyAddressRequired';
     public const REASON_COUNTERPARTY_BANK_TIMED_OUT = 'counterpartyBankTimedOut';
     public const REASON_COUNTERPARTY_BANK_UNAVAILABLE = 'counterpartyBankUnavailable';
+    public const REASON_DECLINED_BY_TRANSACTION_RULE = 'declinedByTransactionRule';
     public const REASON_ERROR = 'error';
     public const REASON_NOT_ENOUGH_BALANCE = 'notEnoughBalance';
     public const REASON_REFUSED_BY_COUNTERPARTY_BANK = 'refusedByCounterpartyBank';
     public const REASON_ROUTE_NOT_FOUND = 'routeNotFound';
+    public const REASON_SCA_FAILED = 'scaFailed';
     public const REASON_UNKNOWN = 'unknown';
     public const STATUS_APPROVAL_PENDING = 'approvalPending';
     public const STATUS_ATM_WITHDRAWAL = 'atmWithdrawal';
@@ -386,10 +389,6 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_MERCHANT_PAYIN_REVERSED_PENDING = 'merchantPayinReversedPending';
     public const STATUS_MISC_COST = 'miscCost';
     public const STATUS_MISC_COST_PENDING = 'miscCostPending';
-    public const STATUS_OPERATION_AUTHORIZED = 'operationAuthorized';
-    public const STATUS_OPERATION_BOOKED = 'operationBooked';
-    public const STATUS_OPERATION_PENDING = 'operationPending';
-    public const STATUS_OPERATION_RECEIVED = 'operationReceived';
     public const STATUS_PAYMENT_COST = 'paymentCost';
     public const STATUS_PAYMENT_COST_PENDING = 'paymentCostPending';
     public const STATUS_RECEIVED = 'received';
@@ -459,16 +458,19 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
         return [
             self::REASON_AMOUNT_LIMIT_EXCEEDED,
             self::REASON_APPROVED,
+            self::REASON_BALANCE_ACCOUNT_TEMPORARILY_BLOCKED_BY_TRANSACTION_RULE,
             self::REASON_COUNTERPARTY_ACCOUNT_BLOCKED,
             self::REASON_COUNTERPARTY_ACCOUNT_CLOSED,
             self::REASON_COUNTERPARTY_ACCOUNT_NOT_FOUND,
             self::REASON_COUNTERPARTY_ADDRESS_REQUIRED,
             self::REASON_COUNTERPARTY_BANK_TIMED_OUT,
             self::REASON_COUNTERPARTY_BANK_UNAVAILABLE,
+            self::REASON_DECLINED_BY_TRANSACTION_RULE,
             self::REASON_ERROR,
             self::REASON_NOT_ENOUGH_BALANCE,
             self::REASON_REFUSED_BY_COUNTERPARTY_BANK,
             self::REASON_ROUTE_NOT_FOUND,
+            self::REASON_SCA_FAILED,
             self::REASON_UNKNOWN,
         ];
     }
@@ -529,10 +531,6 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_MERCHANT_PAYIN_REVERSED_PENDING,
             self::STATUS_MISC_COST,
             self::STATUS_MISC_COST_PENDING,
-            self::STATUS_OPERATION_AUTHORIZED,
-            self::STATUS_OPERATION_BOOKED,
-            self::STATUS_OPERATION_PENDING,
-            self::STATUS_OPERATION_RECEIVED,
             self::STATUS_PAYMENT_COST,
             self::STATUS_PAYMENT_COST_PENDING,
             self::STATUS_RECEIVED,
@@ -806,7 +804,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets category
      *
-     * @param string $category The type of transfer.  Possible values:   - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: Transfer initiated by a Adyen-issued card.  - **platformPayment**: Fund movements related to payments that are acquired for your users.
+     * @param string $category The category of transfer.  Possible values:   - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: Transfer initiated by a Adyen-issued card.  - **platformPayment**: Fund movements related to payments that are acquired for your users.
      *
      * @return self
      */
@@ -1044,7 +1042,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets priority
      *
-     * @param string|null $priority The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with `category` **bank**.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN).
+     * @param string|null $priority The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with `category` **bank**.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN). This will be removed in v4 and replaced with a new field.
      *
      * @return self
      */
