@@ -313,7 +313,7 @@ class TransactionSearchResponse implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets data
      *
-     * @return \Adyen\Model\Transfers\TransactionData[]|null
+     * @return \Adyen\Model\Transfers\Transaction[]|null
      */
     public function getData()
     {
@@ -323,7 +323,7 @@ class TransactionSearchResponse implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets data
      *
-     * @param \Adyen\Model\Transfers\TransactionData[]|null $data Contains the transactions that match the query parameters.
+     * @param \Adyen\Model\Transfers\Transaction[]|null $data Contains the transactions that match the query parameters.
      *
      * @return self
      */

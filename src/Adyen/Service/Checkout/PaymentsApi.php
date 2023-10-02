@@ -26,7 +26,7 @@ class PaymentsApi extends Service
     private $baseURL;
 
     /**
-     * PaymentsApi constructor.
+     * GeneralApi constructor.
      *
      * @param \Adyen\Client $client
      * @throws AdyenException

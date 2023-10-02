@@ -58,13 +58,13 @@ class TransactionsApi extends Service
     *
     * @param string $id
     * @param array|null $requestOptions
-    * @return \Adyen\Model\Transfers\TransactionData
+    * @return \Adyen\Model\Transfers\Transaction
     * @throws AdyenException
     */
-    public function getTransaction(string $id, array $requestOptions = null): \Adyen\Model\Transfers\TransactionData
+    public function getTransaction(string $id, array $requestOptions = null): \Adyen\Model\Transfers\Transaction
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/transactions/{id}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
-        return ObjectSerializer::deserialize($response, \Adyen\Model\Transfers\TransactionData::class);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\Transfers\Transaction::class);
     }
 }
