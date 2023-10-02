@@ -45,7 +45,7 @@ class TransactionSearchResponse implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static $openAPITypes = [
         'links' => '\Adyen\Model\Transfers\Links',
-        'data' => '\Adyen\Model\Transfers\TransactionData[]'
+        'data' => '\Adyen\Model\Transfers\Transaction[]'
     ];
 
     /**
