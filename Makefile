@@ -31,7 +31,7 @@ ConfigurationWebhooks: spec=BalancePlatformConfigurationNotification-v1
 ReportWebhooks: spec=BalancePlatformReportNotification-v1
 TransferWebhooks: spec=BalancePlatformTransferNotification-v4
 # ManagementWebhooks
-ManagementWebhooks: spec=ManagementNotificationService-v1
+ManagementWebhooks: spec=ManagementNotificationService-v3
 
 # Classic Platforms
 marketpay/account: spec=AccountService-v6
