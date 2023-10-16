@@ -50,6 +50,7 @@ class AccountHolderInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
         'description' => 'string',
         'legalEntityId' => 'string',
         'metadata' => 'array<string,string>',
+        'migratedAccountHolderCode' => 'string',
         'reference' => 'string',
         'timeZone' => 'string'
     ];
@@ -68,6 +69,7 @@ class AccountHolderInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
         'description' => null,
         'legalEntityId' => null,
         'metadata' => null,
+        'migratedAccountHolderCode' => null,
         'reference' => null,
         'timeZone' => null
     ];
@@ -84,6 +86,7 @@ class AccountHolderInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
         'description' => false,
         'legalEntityId' => false,
         'metadata' => false,
+        'migratedAccountHolderCode' => false,
         'reference' => false,
         'timeZone' => false
     ];
@@ -180,6 +183,7 @@ class AccountHolderInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
         'description' => 'description',
         'legalEntityId' => 'legalEntityId',
         'metadata' => 'metadata',
+        'migratedAccountHolderCode' => 'migratedAccountHolderCode',
         'reference' => 'reference',
         'timeZone' => 'timeZone'
     ];
@@ -196,6 +200,7 @@ class AccountHolderInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
         'description' => 'setDescription',
         'legalEntityId' => 'setLegalEntityId',
         'metadata' => 'setMetadata',
+        'migratedAccountHolderCode' => 'setMigratedAccountHolderCode',
         'reference' => 'setReference',
         'timeZone' => 'setTimeZone'
     ];
@@ -212,6 +217,7 @@ class AccountHolderInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
         'description' => 'getDescription',
         'legalEntityId' => 'getLegalEntityId',
         'metadata' => 'getMetadata',
+        'migratedAccountHolderCode' => 'getMigratedAccountHolderCode',
         'reference' => 'getReference',
         'timeZone' => 'getTimeZone'
     ];
@@ -279,6 +285,7 @@ class AccountHolderInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('legalEntityId', $data ?? [], null);
         $this->setIfExists('metadata', $data ?? [], null);
+        $this->setIfExists('migratedAccountHolderCode', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
         $this->setIfExists('timeZone', $data ?? [], null);
     }
@@ -476,7 +483,7 @@ class AccountHolderInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets metadata
      *
-     * @param array<string,string>|null $metadata A set of key and value pairs for general use by the merchant. The keys do not have specific names and may be used for storing miscellaneous data as desired. > Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.
+     * @param array<string,string>|null $metadata A set of key and value pairs for general use. The keys do not have specific names and may be used for storing miscellaneous data as desired. > Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.
      *
      * @return self
      */
@@ -486,6 +493,33 @@ class AccountHolderInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
             throw new \InvalidArgumentException('non-nullable metadata cannot be null');
         }
         $this->container['metadata'] = $metadata;
+
+        return $this;
+    }
+
+    /**
+     * Gets migratedAccountHolderCode
+     *
+     * @return string|null
+     */
+    public function getMigratedAccountHolderCode()
+    {
+        return $this->container['migratedAccountHolderCode'];
+    }
+
+    /**
+     * Sets migratedAccountHolderCode
+     *
+     * @param string|null $migratedAccountHolderCode The unique identifier of the migrated account holder in the classic integration.
+     *
+     * @return self
+     */
+    public function setMigratedAccountHolderCode($migratedAccountHolderCode)
+    {
+        if (is_null($migratedAccountHolderCode)) {
+            throw new \InvalidArgumentException('non-nullable migratedAccountHolderCode cannot be null');
+        }
+        $this->container['migratedAccountHolderCode'] = $migratedAccountHolderCode;
 
         return $this;
     }

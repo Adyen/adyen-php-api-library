@@ -55,7 +55,8 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
         'expiration' => '\Adyen\Model\BalancePlatform\Expiry',
         'formFactor' => 'string',
         'lastFour' => 'string',
-        'number' => 'string'
+        'number' => 'string',
+        'threeDSecure' => 'string'
     ];
 
     /**
@@ -77,7 +78,8 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
         'expiration' => null,
         'formFactor' => null,
         'lastFour' => null,
-        'number' => null
+        'number' => null,
+        'threeDSecure' => null
     ];
 
     /**
@@ -97,7 +99,8 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
         'expiration' => false,
         'formFactor' => false,
         'lastFour' => false,
-        'number' => false
+        'number' => false,
+        'threeDSecure' => false
     ];
 
     /**
@@ -197,7 +200,8 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
         'expiration' => 'expiration',
         'formFactor' => 'formFactor',
         'lastFour' => 'lastFour',
-        'number' => 'number'
+        'number' => 'number',
+        'threeDSecure' => 'threeDSecure'
     ];
 
     /**
@@ -217,7 +221,8 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
         'expiration' => 'setExpiration',
         'formFactor' => 'setFormFactor',
         'lastFour' => 'setLastFour',
-        'number' => 'setNumber'
+        'number' => 'setNumber',
+        'threeDSecure' => 'setThreeDSecure'
     ];
 
     /**
@@ -237,7 +242,8 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
         'expiration' => 'getExpiration',
         'formFactor' => 'getFormFactor',
         'lastFour' => 'getLastFour',
-        'number' => 'getNumber'
+        'number' => 'getNumber',
+        'threeDSecure' => 'getThreeDSecure'
     ];
 
     /**
@@ -325,6 +331,7 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('formFactor', $data ?? [], null);
         $this->setIfExists('lastFour', $data ?? [], null);
         $this->setIfExists('number', $data ?? [], null);
+        $this->setIfExists('threeDSecure', $data ?? [], null);
     }
 
     /**
@@ -487,7 +494,7 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets brandVariant
      *
-     * @param string $brandVariant The brand variant of the physical or the virtual card. >Contact your Adyen Implementation Manager to get the values that are relevant to your integration. Examples: **visadebit**, **mcprepaid**.
+     * @param string $brandVariant The brand variant of the physical or the virtual card. For example, **visadebit** or **mcprepaid**. >Reach out to your Adyen contact to get the values relevant for your integration.
      *
      * @return self
      */
@@ -723,6 +730,33 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable number cannot be null');
         }
         $this->container['number'] = $number;
+
+        return $this;
+    }
+
+    /**
+     * Gets threeDSecure
+     *
+     * @return string|null
+     */
+    public function getThreeDSecure()
+    {
+        return $this->container['threeDSecure'];
+    }
+
+    /**
+     * Sets threeDSecure
+     *
+     * @param string|null $threeDSecure Allocates a specific product range for either a physical or a virtual card. Possible values: **fullySupported**, **secureCorporate**. >Reach out to your Adyen contact to get the values relevant for your integration.
+     *
+     * @return self
+     */
+    public function setThreeDSecure($threeDSecure)
+    {
+        if (is_null($threeDSecure)) {
+            throw new \InvalidArgumentException('non-nullable threeDSecure cannot be null');
+        }
+        $this->container['threeDSecure'] = $threeDSecure;
 
         return $this;
     }

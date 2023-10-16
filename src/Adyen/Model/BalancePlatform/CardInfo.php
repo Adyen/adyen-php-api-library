@@ -50,7 +50,8 @@ class CardInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'cardholderName' => 'string',
         'configuration' => '\Adyen\Model\BalancePlatform\CardConfiguration',
         'deliveryContact' => '\Adyen\Model\BalancePlatform\DeliveryContact',
-        'formFactor' => 'string'
+        'formFactor' => 'string',
+        'threeDSecure' => 'string'
     ];
 
     /**
@@ -67,7 +68,8 @@ class CardInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'cardholderName' => null,
         'configuration' => null,
         'deliveryContact' => null,
-        'formFactor' => null
+        'formFactor' => null,
+        'threeDSecure' => null
     ];
 
     /**
@@ -82,7 +84,8 @@ class CardInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'cardholderName' => false,
         'configuration' => false,
         'deliveryContact' => false,
-        'formFactor' => false
+        'formFactor' => false,
+        'threeDSecure' => false
     ];
 
     /**
@@ -177,7 +180,8 @@ class CardInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'cardholderName' => 'cardholderName',
         'configuration' => 'configuration',
         'deliveryContact' => 'deliveryContact',
-        'formFactor' => 'formFactor'
+        'formFactor' => 'formFactor',
+        'threeDSecure' => 'threeDSecure'
     ];
 
     /**
@@ -192,7 +196,8 @@ class CardInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'cardholderName' => 'setCardholderName',
         'configuration' => 'setConfiguration',
         'deliveryContact' => 'setDeliveryContact',
-        'formFactor' => 'setFormFactor'
+        'formFactor' => 'setFormFactor',
+        'threeDSecure' => 'setThreeDSecure'
     ];
 
     /**
@@ -207,7 +212,8 @@ class CardInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'cardholderName' => 'getCardholderName',
         'configuration' => 'getConfiguration',
         'deliveryContact' => 'getDeliveryContact',
-        'formFactor' => 'getFormFactor'
+        'formFactor' => 'getFormFactor',
+        'threeDSecure' => 'getThreeDSecure'
     ];
 
     /**
@@ -290,6 +296,7 @@ class CardInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('configuration', $data ?? [], null);
         $this->setIfExists('deliveryContact', $data ?? [], null);
         $this->setIfExists('formFactor', $data ?? [], null);
+        $this->setIfExists('threeDSecure', $data ?? [], null);
     }
 
     /**
@@ -422,7 +429,7 @@ class CardInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets brandVariant
      *
-     * @param string $brandVariant The brand variant of the physical or the virtual card. >Contact your Adyen Implementation Manager to get the values that are relevant to your integration. Examples: **visadebit**, **mcprepaid**.
+     * @param string $brandVariant The brand variant of the physical or the virtual card. For example, **visadebit** or **mcprepaid**. >Reach out to your Adyen contact to get the values relevant for your integration.
      *
      * @return self
      */
@@ -550,6 +557,33 @@ class CardInfo implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['formFactor'] = $formFactor;
+
+        return $this;
+    }
+
+    /**
+     * Gets threeDSecure
+     *
+     * @return string|null
+     */
+    public function getThreeDSecure()
+    {
+        return $this->container['threeDSecure'];
+    }
+
+    /**
+     * Sets threeDSecure
+     *
+     * @param string|null $threeDSecure Allocates a specific product range for either a physical or a virtual card. Possible values: **fullySupported**, **secureCorporate**. >Reach out to your Adyen contact to get the values relevant for your integration.
+     *
+     * @return self
+     */
+    public function setThreeDSecure($threeDSecure)
+    {
+        if (is_null($threeDSecure)) {
+            throw new \InvalidArgumentException('non-nullable threeDSecure cannot be null');
+        }
+        $this->container['threeDSecure'] = $threeDSecure;
 
         return $this;
     }

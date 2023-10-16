@@ -47,6 +47,7 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
         'available' => 'int',
         'balance' => 'int',
         'currency' => 'string',
+        'pending' => 'int',
         'reserved' => 'int'
     ];
 
@@ -61,6 +62,7 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
         'available' => 'int64',
         'balance' => 'int64',
         'currency' => null,
+        'pending' => 'int64',
         'reserved' => 'int64'
     ];
 
@@ -73,6 +75,7 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
         'available' => false,
         'balance' => false,
         'currency' => false,
+        'pending' => false,
         'reserved' => false
     ];
 
@@ -165,6 +168,7 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
         'available' => 'available',
         'balance' => 'balance',
         'currency' => 'currency',
+        'pending' => 'pending',
         'reserved' => 'reserved'
     ];
 
@@ -177,6 +181,7 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
         'available' => 'setAvailable',
         'balance' => 'setBalance',
         'currency' => 'setCurrency',
+        'pending' => 'setPending',
         'reserved' => 'setReserved'
     ];
 
@@ -189,6 +194,7 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
         'available' => 'getAvailable',
         'balance' => 'getBalance',
         'currency' => 'getCurrency',
+        'pending' => 'getPending',
         'reserved' => 'getReserved'
     ];
 
@@ -252,6 +258,7 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('available', $data ?? [], null);
         $this->setIfExists('balance', $data ?? [], null);
         $this->setIfExists('currency', $data ?? [], null);
+        $this->setIfExists('pending', $data ?? [], null);
         $this->setIfExists('reserved', $data ?? [], null);
     }
 
@@ -386,6 +393,33 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable currency cannot be null');
         }
         $this->container['currency'] = $currency;
+
+        return $this;
+    }
+
+    /**
+     * Gets pending
+     *
+     * @return int|null
+     */
+    public function getPending()
+    {
+        return $this->container['pending'];
+    }
+
+    /**
+     * Sets pending
+     *
+     * @param int|null $pending The amount pending to be paid out but not yet available in the balance.
+     *
+     * @return self
+     */
+    public function setPending($pending)
+    {
+        if (is_null($pending)) {
+            throw new \InvalidArgumentException('non-nullable pending cannot be null');
+        }
+        $this->container['pending'] = $pending;
 
         return $this;
     }

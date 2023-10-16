@@ -45,6 +45,7 @@ class VerificationDeadline implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPITypes = [
         'capabilities' => 'string[]',
+        'entityIds' => 'string[]',
         'expiresAt' => '\DateTime'
     ];
 
@@ -57,6 +58,7 @@ class VerificationDeadline implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPIFormats = [
         'capabilities' => null,
+        'entityIds' => null,
         'expiresAt' => 'date-time'
     ];
 
@@ -67,6 +69,7 @@ class VerificationDeadline implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPINullables = [
         'capabilities' => false,
+        'entityIds' => false,
         'expiresAt' => false
     ];
 
@@ -157,6 +160,7 @@ class VerificationDeadline implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $attributeMap = [
         'capabilities' => 'capabilities',
+        'entityIds' => 'entityIds',
         'expiresAt' => 'expiresAt'
     ];
 
@@ -167,6 +171,7 @@ class VerificationDeadline implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $setters = [
         'capabilities' => 'setCapabilities',
+        'entityIds' => 'setEntityIds',
         'expiresAt' => 'setExpiresAt'
     ];
 
@@ -177,6 +182,7 @@ class VerificationDeadline implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $getters = [
         'capabilities' => 'getCapabilities',
+        'entityIds' => 'getEntityIds',
         'expiresAt' => 'getExpiresAt'
     ];
 
@@ -348,6 +354,7 @@ class VerificationDeadline implements ModelInterface, ArrayAccess, \JsonSerializ
     public function __construct(array $data = null)
     {
         $this->setIfExists('capabilities', $data ?? [], null);
+        $this->setIfExists('entityIds', $data ?? [], null);
         $this->setIfExists('expiresAt', $data ?? [], null);
     }
 
@@ -431,6 +438,33 @@ class VerificationDeadline implements ModelInterface, ArrayAccess, \JsonSerializ
             );
         }
         $this->container['capabilities'] = $capabilities;
+
+        return $this;
+    }
+
+    /**
+     * Gets entityIds
+     *
+     * @return string[]|null
+     */
+    public function getEntityIds()
+    {
+        return $this->container['entityIds'];
+    }
+
+    /**
+     * Sets entityIds
+     *
+     * @param string[]|null $entityIds The unique identifiers of the bank account(s) that the deadline applies to
+     *
+     * @return self
+     */
+    public function setEntityIds($entityIds)
+    {
+        if (is_null($entityIds)) {
+            throw new \InvalidArgumentException('non-nullable entityIds cannot be null');
+        }
+        $this->container['entityIds'] = $entityIds;
 
         return $this;
     }

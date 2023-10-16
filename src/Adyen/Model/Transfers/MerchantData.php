@@ -44,6 +44,7 @@ class MerchantData implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'acquirerId' => 'string',
         'mcc' => 'string',
         'merchantId' => 'string',
         'nameLocation' => '\Adyen\Model\Transfers\NameLocation',
@@ -58,6 +59,7 @@ class MerchantData implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'acquirerId' => null,
         'mcc' => null,
         'merchantId' => null,
         'nameLocation' => null,
@@ -70,6 +72,7 @@ class MerchantData implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'acquirerId' => false,
         'mcc' => false,
         'merchantId' => false,
         'nameLocation' => false,
@@ -162,6 +165,7 @@ class MerchantData implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'acquirerId' => 'acquirerId',
         'mcc' => 'mcc',
         'merchantId' => 'merchantId',
         'nameLocation' => 'nameLocation',
@@ -174,6 +178,7 @@ class MerchantData implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'acquirerId' => 'setAcquirerId',
         'mcc' => 'setMcc',
         'merchantId' => 'setMerchantId',
         'nameLocation' => 'setNameLocation',
@@ -186,6 +191,7 @@ class MerchantData implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'acquirerId' => 'getAcquirerId',
         'mcc' => 'getMcc',
         'merchantId' => 'getMerchantId',
         'nameLocation' => 'getNameLocation',
@@ -249,6 +255,7 @@ class MerchantData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('acquirerId', $data ?? [], null);
         $this->setIfExists('mcc', $data ?? [], null);
         $this->setIfExists('merchantId', $data ?? [], null);
         $this->setIfExists('nameLocation', $data ?? [], null);
@@ -296,6 +303,33 @@ class MerchantData implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets acquirerId
+     *
+     * @return string|null
+     */
+    public function getAcquirerId()
+    {
+        return $this->container['acquirerId'];
+    }
+
+    /**
+     * Sets acquirerId
+     *
+     * @param string|null $acquirerId The unique identifier of the merchant's acquirer.
+     *
+     * @return self
+     */
+    public function setAcquirerId($acquirerId)
+    {
+        if (is_null($acquirerId)) {
+            throw new \InvalidArgumentException('non-nullable acquirerId cannot be null');
+        }
+        $this->container['acquirerId'] = $acquirerId;
+
+        return $this;
+    }
 
     /**
      * Gets mcc

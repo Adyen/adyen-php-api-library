@@ -404,7 +404,7 @@ class GetTermsOfServiceDocumentResponse implements ModelInterface, ArrayAccess, 
     /**
      * Sets language
      *
-     * @param string|null $language The language used for the Terms of Service document, specified by the two letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. For example, **nl** for Dutch.
+     * @param string|null $language The language used for the Terms of Service document, specified by the two-letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. Possible value: **en** for English.
      *
      * @return self
      */

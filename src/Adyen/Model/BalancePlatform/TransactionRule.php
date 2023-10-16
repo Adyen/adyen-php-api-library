@@ -293,10 +293,12 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const OUTCOME_TYPE_ENFORCE_SCA = 'enforceSCA';
     public const OUTCOME_TYPE_HARD_BLOCK = 'hardBlock';
     public const OUTCOME_TYPE_SCORE_BASED = 'scoreBased';
     public const REQUEST_TYPE_AUTHENTICATION = 'authentication';
     public const REQUEST_TYPE_AUTHORIZATION = 'authorization';
+    public const REQUEST_TYPE_BANK_TRANSFER = 'bankTransfer';
     public const REQUEST_TYPE_TOKENIZATION = 'tokenization';
     public const STATUS_ACTIVE = 'active';
     public const STATUS_INACTIVE = 'inactive';
@@ -313,6 +315,7 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
     public function getOutcomeTypeAllowableValues()
     {
         return [
+            self::OUTCOME_TYPE_ENFORCE_SCA,
             self::OUTCOME_TYPE_HARD_BLOCK,
             self::OUTCOME_TYPE_SCORE_BASED,
         ];
@@ -327,6 +330,7 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
         return [
             self::REQUEST_TYPE_AUTHENTICATION,
             self::REQUEST_TYPE_AUTHORIZATION,
+            self::REQUEST_TYPE_BANK_TRANSFER,
             self::REQUEST_TYPE_TOKENIZATION,
         ];
     }
@@ -722,7 +726,7 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets requestType
      *
-     * @param string|null $requestType Indicates the type of request to which the rule applies.  Possible values: **authorization**, **authentication**, **tokenization**.
+     * @param string|null $requestType Indicates the type of request to which the rule applies. If not provided, by default, this is set to **authorization**.  Possible values: **authorization**, **authentication**, **tokenization**, **bankTransfer**.
      *
      * @return self
      */

@@ -19,16 +19,15 @@ use \ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * SweepConfigurationV2Schedule Class Doc Comment
+ * CapabilityProblem Class Doc Comment
  *
  * @category Class
- * @description The schedule when the &#x60;triggerAmount&#x60; is evaluated. If the balance meets the threshold, funds are pushed out of or pulled in to the balance account.
  * @package  Adyen
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class SweepConfigurationV2Schedule implements ModelInterface, ArrayAccess, \JsonSerializable
+class CapabilityProblem implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -37,7 +36,7 @@ class SweepConfigurationV2Schedule implements ModelInterface, ArrayAccess, \Json
       *
       * @var string
       */
-    protected static $openAPIModelName = 'SweepConfigurationV2_schedule';
+    protected static $openAPIModelName = 'CapabilityProblem';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -45,8 +44,8 @@ class SweepConfigurationV2Schedule implements ModelInterface, ArrayAccess, \Json
       * @var string[]
       */
     protected static $openAPITypes = [
-        'cronExpression' => 'string',
-        'type' => 'string'
+        'entity' => '\Adyen\Model\BalancePlatform\CapabilityProblemEntity',
+        'verificationErrors' => '\Adyen\Model\BalancePlatform\VerificationError[]'
     ];
 
     /**
@@ -57,8 +56,8 @@ class SweepConfigurationV2Schedule implements ModelInterface, ArrayAccess, \Json
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'cronExpression' => null,
-        'type' => null
+        'entity' => null,
+        'verificationErrors' => null
     ];
 
     /**
@@ -67,8 +66,8 @@ class SweepConfigurationV2Schedule implements ModelInterface, ArrayAccess, \Json
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'cronExpression' => false,
-        'type' => false
+        'entity' => false,
+        'verificationErrors' => false
     ];
 
     /**
@@ -157,8 +156,8 @@ class SweepConfigurationV2Schedule implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $attributeMap = [
-        'cronExpression' => 'cronExpression',
-        'type' => 'type'
+        'entity' => 'entity',
+        'verificationErrors' => 'verificationErrors'
     ];
 
     /**
@@ -167,8 +166,8 @@ class SweepConfigurationV2Schedule implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $setters = [
-        'cronExpression' => 'setCronExpression',
-        'type' => 'setType'
+        'entity' => 'setEntity',
+        'verificationErrors' => 'setVerificationErrors'
     ];
 
     /**
@@ -177,8 +176,8 @@ class SweepConfigurationV2Schedule implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $getters = [
-        'cronExpression' => 'getCronExpression',
-        'type' => 'getType'
+        'entity' => 'getEntity',
+        'verificationErrors' => 'getVerificationErrors'
     ];
 
     /**
@@ -222,6 +221,7 @@ class SweepConfigurationV2Schedule implements ModelInterface, ArrayAccess, \Json
         return self::$openAPIModelName;
     }
 
+
     /**
      * Associative array for storing property values
      *
@@ -237,8 +237,8 @@ class SweepConfigurationV2Schedule implements ModelInterface, ArrayAccess, \Json
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('cronExpression', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('entity', $data ?? [], null);
+        $this->setIfExists('verificationErrors', $data ?? [], null);
     }
 
     /**
@@ -268,10 +268,6 @@ class SweepConfigurationV2Schedule implements ModelInterface, ArrayAccess, \Json
     {
         $invalidProperties = [];
 
-        if ($this->container['cronExpression'] === null) {
-            $invalidProperties[] = "'cronExpression' can't be null";
-        }
-
         return $invalidProperties;
     }
 
@@ -288,55 +284,55 @@ class SweepConfigurationV2Schedule implements ModelInterface, ArrayAccess, \Json
 
 
     /**
-     * Gets cronExpression
+     * Gets entity
      *
-     * @return string
+     * @return \Adyen\Model\BalancePlatform\CapabilityProblemEntity|null
      */
-    public function getCronExpression()
+    public function getEntity()
     {
-        return $this->container['cronExpression'];
+        return $this->container['entity'];
     }
 
     /**
-     * Sets cronExpression
+     * Sets entity
      *
-     * @param string $cronExpression A [cron expression](https://en.wikipedia.org/wiki/Cron#CRON_expression) that is used to set the sweep schedule. The schedule uses the time zone of the balance account. For example, **30 17 * * MON** schedules a sweep every Monday at 17:30.  The expression must have five values separated by a single space in the following order:  * Minute: **0-59**  * Hour: **0-23**  * Day of the month: **1-31**  * Month: **1-12** or **JAN-DEC**  * Day of the week: **0-7** (0 and 7 are Sunday) or **MON-SUN**.  The following non-standard characters are supported: **&ast;**, **L**, **#**, **W** and **_/_**. See [crontab guru](https://crontab.guru/) for more examples.
+     * @param \Adyen\Model\BalancePlatform\CapabilityProblemEntity|null $entity entity
      *
      * @return self
      */
-    public function setCronExpression($cronExpression)
+    public function setEntity($entity)
     {
-        if (is_null($cronExpression)) {
-            throw new \InvalidArgumentException('non-nullable cronExpression cannot be null');
+        if (is_null($entity)) {
+            throw new \InvalidArgumentException('non-nullable entity cannot be null');
         }
-        $this->container['cronExpression'] = $cronExpression;
+        $this->container['entity'] = $entity;
 
         return $this;
     }
 
     /**
-     * Gets type
+     * Gets verificationErrors
      *
-     * @return string|null
+     * @return \Adyen\Model\BalancePlatform\VerificationError[]|null
      */
-    public function getType()
+    public function getVerificationErrors()
     {
-        return $this->container['type'];
+        return $this->container['verificationErrors'];
     }
 
     /**
-     * Sets type
+     * Sets verificationErrors
      *
-     * @param string|null $type The schedule type.  Possible values:  * **cron**: push out funds based on a cron expression.  * **daily**: push out funds daily at 07:00 AM CET.  * **weekly**: push out funds every Monday at 07:00 AM CET.  * **monthly**: push out funds every first of the month at 07:00 AM CET.  * **balance**: pull in funds instantly if the balance is less than or equal to the `triggerAmount`. You can only use this for sweeps of `type` **pull** and when the source is a `merchantAccount` or `transferInstrument`.If the source is transferInstrument, merchant account identifier is still required, with which you want to process the transaction.
+     * @param \Adyen\Model\BalancePlatform\VerificationError[]|null $verificationErrors Contains information about the verification error.
      *
      * @return self
      */
-    public function setType($type)
+    public function setVerificationErrors($verificationErrors)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        if (is_null($verificationErrors)) {
+            throw new \InvalidArgumentException('non-nullable verificationErrors cannot be null');
         }
-        $this->container['type'] = $type;
+        $this->container['verificationErrors'] = $verificationErrors;
 
         return $this;
     }

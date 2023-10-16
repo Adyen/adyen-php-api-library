@@ -52,6 +52,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         'institutionNumber' => 'string',
         'transitNumber' => 'string',
         'bankCode' => 'string',
+        'clearingCode' => 'string',
         'iban' => 'string',
         'additionalBankIdentification' => '\Adyen\Model\LegalEntityManagement\AdditionalBankIdentification',
         'bic' => 'string',
@@ -75,6 +76,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         'institutionNumber' => null,
         'transitNumber' => null,
         'bankCode' => null,
+        'clearingCode' => null,
         'iban' => null,
         'additionalBankIdentification' => null,
         'bic' => null,
@@ -96,6 +98,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         'institutionNumber' => false,
         'transitNumber' => false,
         'bankCode' => false,
+        'clearingCode' => false,
         'iban' => false,
         'additionalBankIdentification' => false,
         'bic' => false,
@@ -197,6 +200,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         'institutionNumber' => 'institutionNumber',
         'transitNumber' => 'transitNumber',
         'bankCode' => 'bankCode',
+        'clearingCode' => 'clearingCode',
         'iban' => 'iban',
         'additionalBankIdentification' => 'additionalBankIdentification',
         'bic' => 'bic',
@@ -218,6 +222,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         'institutionNumber' => 'setInstitutionNumber',
         'transitNumber' => 'setTransitNumber',
         'bankCode' => 'setBankCode',
+        'clearingCode' => 'setClearingCode',
         'iban' => 'setIban',
         'additionalBankIdentification' => 'setAdditionalBankIdentification',
         'bic' => 'setBic',
@@ -239,6 +244,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         'institutionNumber' => 'getInstitutionNumber',
         'transitNumber' => 'getTransitNumber',
         'bankCode' => 'getBankCode',
+        'clearingCode' => 'getClearingCode',
         'iban' => 'getIban',
         'additionalBankIdentification' => 'getAdditionalBankIdentification',
         'bic' => 'getBic',
@@ -310,6 +316,7 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('institutionNumber', $data ?? [], null);
         $this->setIfExists('transitNumber', $data ?? [], null);
         $this->setIfExists('bankCode', $data ?? [], null);
+        $this->setIfExists('clearingCode', $data ?? [], null);
         $this->setIfExists('iban', $data ?? [], null);
         $this->setIfExists('additionalBankIdentification', $data ?? [], null);
         $this->setIfExists('bic', $data ?? [], null);
@@ -364,6 +371,9 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['bankCode'] === null) {
             $invalidProperties[] = "'bankCode' can't be null";
+        }
+        if ($this->container['clearingCode'] === null) {
+            $invalidProperties[] = "'clearingCode' can't be null";
         }
         if ($this->container['iban'] === null) {
             $invalidProperties[] = "'iban' can't be null";
@@ -580,6 +590,33 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable bankCode cannot be null');
         }
         $this->container['bankCode'] = $bankCode;
+
+        return $this;
+    }
+
+    /**
+     * Gets clearingCode
+     *
+     * @return string
+     */
+    public function getClearingCode()
+    {
+        return $this->container['clearingCode'];
+    }
+
+    /**
+     * Sets clearingCode
+     *
+     * @param string $clearingCode The 3-digit clearing code, without separators or whitespace.
+     *
+     * @return self
+     */
+    public function setClearingCode($clearingCode)
+    {
+        if (is_null($clearingCode)) {
+            throw new \InvalidArgumentException('non-nullable clearingCode cannot be null');
+        }
+        $this->container['clearingCode'] = $clearingCode;
 
         return $this;
     }

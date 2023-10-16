@@ -48,7 +48,7 @@ class AccountHolderCapability implements ModelInterface, ArrayAccess, \JsonSeria
         'allowedLevel' => 'string',
         'allowedSettings' => '\Adyen\Model\BalancePlatform\CapabilitySettings',
         'enabled' => 'bool',
-        'problems' => 'object[]',
+        'problems' => '\Adyen\Model\BalancePlatform\CapabilityProblem[]',
         'requested' => 'bool',
         'requestedLevel' => 'string',
         'requestedSettings' => '\Adyen\Model\BalancePlatform\CapabilitySettings',
@@ -541,7 +541,7 @@ class AccountHolderCapability implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets problems
      *
-     * @return object[]|null
+     * @return \Adyen\Model\BalancePlatform\CapabilityProblem[]|null
      */
     public function getProblems()
     {
@@ -551,7 +551,7 @@ class AccountHolderCapability implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets problems
      *
-     * @param object[]|null $problems Contains verification errors and the actions that you can take to resolve them.
+     * @param \Adyen\Model\BalancePlatform\CapabilityProblem[]|null $problems Contains verification errors and the actions that you can take to resolve them.
      *
      * @return self
      */

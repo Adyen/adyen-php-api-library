@@ -23,10 +23,11 @@
 
 namespace Adyen\Tests\Unit;
 
-use Adyen\Model\BalancePlatform\Balance;
-use Adyen\Model\ConfigurationWebhooks\BalanceAccountNotificationRequest;
 use Adyen\Model\ConfigurationWebhooks\SweepConfigurationNotificationRequest;
+use Adyen\Model\ManagementWebhooks\PaymentMethodCreatedNotificationRequest;
+use Adyen\Model\AcsWebhooks\AuthenticationNotificationRequest;
 use Adyen\Service\BankingWebhookParser;
+use Adyen\Service\ManagementWebhookParser;
 use Adyen\Service\Notification;
 
 class NotificationTest extends TestCaseMock
@@ -94,7 +95,6 @@ class NotificationTest extends TestCaseMock
             '
             {
               "configurationDetails": {
-            
               }
             }',
             true
@@ -276,5 +276,73 @@ class NotificationTest extends TestCaseMock
         $result = $webhookParser->getGenericWebhook();
         self::assertEquals(SweepConfigurationNotificationRequest::class, get_class($result));
         self::assertEquals("test", $result->getEnvironment());
+    }
+
+    public function testManagementWebhookParser()
+    {
+        $jsonString = '{
+          "createdAt": "2022-01-24T14:59:11+01:00",
+          "data": {
+            "id": "PM3224R223224K5FH4M2K9B86",
+            "merchantId": "MERCHANT_ACCOUNT",
+            "result": "SUCCESS",
+            "storeId": "ST322LJ223223K5F4SQNR9XL5",
+            "type": "visa"
+          },
+          "environment": "test",
+          "type": "paymentMethod.created"
+        }';
+        $webhookParser = new ManagementWebhookParser($jsonString);
+        $result = $webhookParser->getPaymentMethodCreatedNotificationRequest();
+        self::assertEquals(PaymentMethodCreatedNotificationRequest::class, get_class($result));
+        $paymentWebhook = new PaymentMethodCreatedNotificationRequest();
+        self::assertEquals($paymentWebhook->getTypeAllowableValues()[0], $result->getType());
+    }
+
+    public function testBankingWebhookParserAuthenticationRequest()
+    {
+        $jsonString = '{
+          "data": {
+            "authentication": {
+              "acsTransId": "6a4c1709-a42e-4c7f-96c7-1043adacfc97",
+              "challenge": {
+                "flow": "OOB",
+                "lastInteraction": "2022-12-22T15:49:03+01:00"
+              },
+              "challengeIndicator": "01",
+              "createdAt": "2022-12-22T15:45:03+01:00",
+              "deviceChannel": "app",
+              "dsTransID": "a3b86754-444d-46ca-95a2-ada351d3f42c",
+              "exemptionIndicator": "lowValue",
+              "inPSD2Scope": true,
+              "messageCategory": "payment",
+              "messageVersion": "2.2.0",
+              "riskScore": 0,
+              "threeDSServerTransID": "6edcc246-23ee-4e94-ac5d-8ae620bea7d9",
+              "transStatus": "Y",
+              "type": "challenge"
+            },
+            "balancePlatform": "YOUR_BALANCE_PLATFORM",
+            "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
+            "paymentInstrumentId": "PI3227C223222B5BPCMFXD2XG",
+            "purchase": {
+              "date": "2022-12-22T15:49:03+01:00",
+              "merchantName": "TeaShop_NL",
+              "originalAmount": {
+                "currency": "EUR",
+                "value": 1000
+              }
+            },
+            "status": "authenticated"
+          },
+          "environment": "test",
+          "type": "balancePlatform.authentication.created"
+        }';
+        $webhookParser = new BankingWebhookParser($jsonString);
+        $result = $webhookParser->getGenericWebhook();
+        self::assertEquals(AuthenticationNotificationRequest::class, get_class($result));
+        self::assertEquals($webhookParser->getAuthenticationNotificationRequest(), $result);
+        $authenticationRequest = new AuthenticationNotificationRequest();
+        self::assertEquals($authenticationRequest->getTypeAllowableValues()[0], $webhookParser->getAuthenticationNotificationRequest()->getType());
     }
 }

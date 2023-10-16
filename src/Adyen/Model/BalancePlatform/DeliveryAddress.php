@@ -388,7 +388,7 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets line1
      *
-     * @param string|null $line1 First line of the address.
+     * @param string|null $line1 The street name. For example, if the address is \"Rokin 49\", provide \"Rokin\".
      *
      * @return self
      */
@@ -415,7 +415,7 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets line2
      *
-     * @param string|null $line2 Second line of the address.
+     * @param string|null $line2 The house number or name. For example, if the address is \"Rokin 49\", provide \"49\".
      *
      * @return self
      */
@@ -442,7 +442,7 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets line3
      *
-     * @param string|null $line3 Third line of the address.
+     * @param string|null $line3 Optional information about the address.
      *
      * @return self
      */

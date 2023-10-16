@@ -51,7 +51,7 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
         'id' => 'string',
         'priorities' => 'string[]',
         'reason' => 'string',
-        'schedule' => '\Adyen\Model\BalancePlatform\SweepConfigurationV2Schedule',
+        'schedule' => '\Adyen\Model\BalancePlatform\SweepSchedule',
         'status' => 'string',
         'sweepAmount' => '\Adyen\Model\BalancePlatform\Amount',
         'targetAmount' => '\Adyen\Model\BalancePlatform\Amount',
@@ -733,7 +733,7 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets schedule
      *
-     * @return \Adyen\Model\BalancePlatform\SweepConfigurationV2Schedule
+     * @return \Adyen\Model\BalancePlatform\SweepSchedule
      */
     public function getSchedule()
     {
@@ -743,7 +743,7 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets schedule
      *
-     * @param \Adyen\Model\BalancePlatform\SweepConfigurationV2Schedule $schedule schedule
+     * @param \Adyen\Model\BalancePlatform\SweepSchedule $schedule schedule
      *
      * @return self
      */

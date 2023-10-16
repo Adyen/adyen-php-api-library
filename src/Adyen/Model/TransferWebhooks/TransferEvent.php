@@ -54,6 +54,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'reason' => 'string',
         'status' => 'string',
         'transactionId' => 'string',
+        'transferOperation' => '\Adyen\Model\TransferWebhooks\TransferOperation',
         'type' => 'string',
         'updateDate' => '\DateTime',
         'valueDate' => '\DateTime'
@@ -77,6 +78,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'reason' => null,
         'status' => null,
         'transactionId' => null,
+        'transferOperation' => null,
         'type' => null,
         'updateDate' => 'date-time',
         'valueDate' => 'date-time'
@@ -98,6 +100,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'reason' => false,
         'status' => false,
         'transactionId' => false,
+        'transferOperation' => false,
         'type' => false,
         'updateDate' => false,
         'valueDate' => false
@@ -199,6 +202,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'reason' => 'reason',
         'status' => 'status',
         'transactionId' => 'transactionId',
+        'transferOperation' => 'transferOperation',
         'type' => 'type',
         'updateDate' => 'updateDate',
         'valueDate' => 'valueDate'
@@ -220,6 +224,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'reason' => 'setReason',
         'status' => 'setStatus',
         'transactionId' => 'setTransactionId',
+        'transferOperation' => 'setTransferOperation',
         'type' => 'setType',
         'updateDate' => 'setUpdateDate',
         'valueDate' => 'setValueDate'
@@ -241,6 +246,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'reason' => 'getReason',
         'status' => 'getStatus',
         'transactionId' => 'getTransactionId',
+        'transferOperation' => 'getTransferOperation',
         'type' => 'getType',
         'updateDate' => 'getUpdateDate',
         'valueDate' => 'getValueDate'
@@ -349,6 +355,10 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_MERCHANT_PAYIN_REVERSED_PENDING = 'merchantPayinReversedPending';
     public const STATUS_MISC_COST = 'miscCost';
     public const STATUS_MISC_COST_PENDING = 'miscCostPending';
+    public const STATUS_OPERATION_AUTHORIZED = 'operationAuthorized';
+    public const STATUS_OPERATION_BOOKED = 'operationBooked';
+    public const STATUS_OPERATION_PENDING = 'operationPending';
+    public const STATUS_OPERATION_RECEIVED = 'operationReceived';
     public const STATUS_PAYMENT_COST = 'paymentCost';
     public const STATUS_PAYMENT_COST_PENDING = 'paymentCostPending';
     public const STATUS_RECEIVED = 'received';
@@ -447,6 +457,10 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_MERCHANT_PAYIN_REVERSED_PENDING,
             self::STATUS_MISC_COST,
             self::STATUS_MISC_COST_PENDING,
+            self::STATUS_OPERATION_AUTHORIZED,
+            self::STATUS_OPERATION_BOOKED,
+            self::STATUS_OPERATION_PENDING,
+            self::STATUS_OPERATION_RECEIVED,
             self::STATUS_PAYMENT_COST,
             self::STATUS_PAYMENT_COST_PENDING,
             self::STATUS_RECEIVED,
@@ -501,6 +515,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('reason', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('transactionId', $data ?? [], null);
+        $this->setIfExists('transferOperation', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('updateDate', $data ?? [], null);
         $this->setIfExists('valueDate', $data ?? [], null);
@@ -861,6 +876,33 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable transactionId cannot be null');
         }
         $this->container['transactionId'] = $transactionId;
+
+        return $this;
+    }
+
+    /**
+     * Gets transferOperation
+     *
+     * @return \Adyen\Model\TransferWebhooks\TransferOperation|null
+     */
+    public function getTransferOperation()
+    {
+        return $this->container['transferOperation'];
+    }
+
+    /**
+     * Sets transferOperation
+     *
+     * @param \Adyen\Model\TransferWebhooks\TransferOperation|null $transferOperation transferOperation
+     *
+     * @return self
+     */
+    public function setTransferOperation($transferOperation)
+    {
+        if (is_null($transferOperation)) {
+            throw new \InvalidArgumentException('non-nullable transferOperation cannot be null');
+        }
+        $this->container['transferOperation'] = $transferOperation;
 
         return $this;
     }

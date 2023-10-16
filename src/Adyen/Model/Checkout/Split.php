@@ -244,17 +244,10 @@ class Split implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE__DEFAULT = 'Default';
     public const TYPE_MARKET_PLACE = 'MarketPlace';
     public const TYPE_PAYMENT_FEE = 'PaymentFee';
-    public const TYPE_PAYMENT_FEE_ACQUIRING = 'PaymentFeeAcquiring';
-    public const TYPE_PAYMENT_FEE_ADYEN = 'PaymentFeeAdyen';
-    public const TYPE_PAYMENT_FEE_ADYEN_COMMISSION = 'PaymentFeeAdyenCommission';
-    public const TYPE_PAYMENT_FEE_ADYEN_MARKUP = 'PaymentFeeAdyenMarkup';
-    public const TYPE_PAYMENT_FEE_INTERCHANGE = 'PaymentFeeInterchange';
-    public const TYPE_PAYMENT_FEE_SCHEME_FEE = 'PaymentFeeSchemeFee';
     public const TYPE_REMAINDER = 'Remainder';
     public const TYPE_SURCHARGE = 'Surcharge';
     public const TYPE_TIP = 'Tip';
     public const TYPE_VAT = 'VAT';
-    public const TYPE_VERIFICATION = 'Verification';
 
     /**
      * Gets allowable values of the enum
@@ -269,17 +262,10 @@ class Split implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE__DEFAULT,
             self::TYPE_MARKET_PLACE,
             self::TYPE_PAYMENT_FEE,
-            self::TYPE_PAYMENT_FEE_ACQUIRING,
-            self::TYPE_PAYMENT_FEE_ADYEN,
-            self::TYPE_PAYMENT_FEE_ADYEN_COMMISSION,
-            self::TYPE_PAYMENT_FEE_ADYEN_MARKUP,
-            self::TYPE_PAYMENT_FEE_INTERCHANGE,
-            self::TYPE_PAYMENT_FEE_SCHEME_FEE,
             self::TYPE_REMAINDER,
             self::TYPE_SURCHARGE,
             self::TYPE_TIP,
             self::TYPE_VAT,
-            self::TYPE_VERIFICATION,
         ];
     }
     /**
