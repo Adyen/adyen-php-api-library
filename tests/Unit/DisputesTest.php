@@ -1,6 +1,6 @@
 <?php
 
-use Adyen\Tests\Unit\TestCaseMock;
+namespace Adyen\Tests\Unit;
 
 class DisputesTest extends TestCaseMock
 {

@@ -4,7 +4,7 @@ openapi-generator-jar:=target/openapi-generator-cli.jar
 openapi-generator-cli:=java -jar $(openapi-generator-jar)
 
 generator:=php
-modelGen:=AcsWebhooks BalanceControl BalancePlatform Checkout ConfigurationWebhooks StoredValue Payments Payout Management ManagementWebhooks LegalEntityManagement TransferWebhooks Transfers BinLookup StoredValue POSTerminalManagement Recurring ReportWebhooks
+modelGen:=AcsWebhooks BalanceControl BalancePlatform Checkout ConfigurationWebhooks Disputes Payments Payout Management ManagementWebhooks LegalEntityManagement TransferWebhooks Transfers BinLookup StoredValue POSTerminalManagement Recurring ReportWebhooks
 models:=src/Adyen/Model
 output:=target/out
 
