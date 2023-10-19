@@ -4,7 +4,7 @@ openapi-generator-jar:=target/openapi-generator-cli.jar
 openapi-generator-cli:=java -jar $(openapi-generator-jar)
 
 generator:=php
-modelGen:=AcsWebhooks BalanceControl BalancePlatform Checkout ConfigurationWebhooks StoredValue Payments Payout Management ManagementWebhooks LegalEntityManagement TransferWebhooks Transfers BinLookup StoredValue POSTerminalManagement Recurring ReportWebhooks
+modelGen:=AcsWebhooks BalanceControl BalancePlatform Checkout ConfigurationWebhooks Disputes Payments Payout Management ManagementWebhooks LegalEntityManagement TransferWebhooks Transfers BinLookup StoredValue POSTerminalManagement Recurring ReportWebhooks
 models:=src/Adyen/Model
 output:=target/out
 
@@ -15,6 +15,7 @@ BalanceControl: spec=BalanceControlService-v1
 BalancePlatform: spec=BalancePlatformService-v2
 BinLookup: spec=BinLookupService-v54
 Checkout: spec=CheckoutService-v70
+Disputes: spec=DisputeService-v30
 DataProtection: spec=DataProtectionService-v1
 StoredValue: spec=StoredValueService-v46
 POSTerminalManagement: spec=TfmAPIService-v1
@@ -62,7 +63,7 @@ $(modelGen): target/spec $(openapi-generator-jar)
 # Service Generation; split up in to templates based on the size of the service. That is, some services have no subgroups and are thus generated in one single file, others are grouped in a directory.
 
 Services:=BalancePlatform Checkout StoredValue Payments Payout Management LegalEntityManagement Transfers
-SingleFileServices:=BalanceControl BinLookup DataProtection StoredValue POSTerminalManagement Recurring
+SingleFileServices:=BalanceControl BinLookup DataProtection StoredValue POSTerminalManagement Recurring Disputes
 
 all: $(Services) $(SingleFileServices)
 
