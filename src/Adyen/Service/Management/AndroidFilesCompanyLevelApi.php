@@ -90,13 +90,12 @@ class AndroidFilesCompanyLevelApi extends Service
     *
     * @param string $companyId
     * @param array|null $requestOptions
-    
+
     * @throws AdyenException
     */
     public function uploadAndroidApp(string $companyId, array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}'], [$companyId], "/companies/{companyId}/androidApps");
         $this->requestHttp($endpoint, strtolower('POST'), null, $requestOptions);
-        
     }
 }
