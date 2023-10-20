@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\ManagementWebhooks\ObjectSerializer;
 
 /**
- * AccountUpdateNotificationData Class Doc Comment
+ * NotificationDataMessage Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\ManagementWebhooks\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class AccountUpdateNotificationData implements ModelInterface, ArrayAccess, \JsonSerializable
+class NotificationDataMessage implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class AccountUpdateNotificationData implements ModelInterface, ArrayAccess, \Jso
       *
       * @var string
       */
-    protected static $openAPIModelName = 'AccountUpdateNotificationData';
+    protected static $openAPIModelName = 'NotificationDataMessage';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,10 +44,10 @@ class AccountUpdateNotificationData implements ModelInterface, ArrayAccess, \Jso
       * @var string[]
       */
     protected static $openAPITypes = [
-        'capabilities' => 'array<string,\Adyen\Model\ManagementWebhooks\AccountCapabilityData>',
-        'legalEntityId' => 'string',
-        'merchantId' => 'string',
-        'status' => 'string'
+        'createdAt' => '\DateTime',
+        'data' => '\Adyen\Model\ManagementWebhooks\MidServiceNotificationData',
+        'environment' => 'string',
+        'type' => 'string'
     ];
 
     /**
@@ -58,10 +58,10 @@ class AccountUpdateNotificationData implements ModelInterface, ArrayAccess, \Jso
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'capabilities' => null,
-        'legalEntityId' => null,
-        'merchantId' => null,
-        'status' => null
+        'createdAt' => 'date-time',
+        'data' => null,
+        'environment' => null,
+        'type' => null
     ];
 
     /**
@@ -70,10 +70,10 @@ class AccountUpdateNotificationData implements ModelInterface, ArrayAccess, \Jso
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'capabilities' => false,
-        'legalEntityId' => false,
-        'merchantId' => false,
-        'status' => false
+        'createdAt' => false,
+        'data' => false,
+        'environment' => false,
+        'type' => false
     ];
 
     /**
@@ -162,10 +162,10 @@ class AccountUpdateNotificationData implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $attributeMap = [
-        'capabilities' => 'capabilities',
-        'legalEntityId' => 'legalEntityId',
-        'merchantId' => 'merchantId',
-        'status' => 'status'
+        'createdAt' => 'createdAt',
+        'data' => 'data',
+        'environment' => 'environment',
+        'type' => 'type'
     ];
 
     /**
@@ -174,10 +174,10 @@ class AccountUpdateNotificationData implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $setters = [
-        'capabilities' => 'setCapabilities',
-        'legalEntityId' => 'setLegalEntityId',
-        'merchantId' => 'setMerchantId',
-        'status' => 'setStatus'
+        'createdAt' => 'setCreatedAt',
+        'data' => 'setData',
+        'environment' => 'setEnvironment',
+        'type' => 'setType'
     ];
 
     /**
@@ -186,10 +186,10 @@ class AccountUpdateNotificationData implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $getters = [
-        'capabilities' => 'getCapabilities',
-        'legalEntityId' => 'getLegalEntityId',
-        'merchantId' => 'getMerchantId',
-        'status' => 'getStatus'
+        'createdAt' => 'getCreatedAt',
+        'data' => 'getData',
+        'environment' => 'getEnvironment',
+        'type' => 'getType'
     ];
 
     /**
@@ -249,10 +249,10 @@ class AccountUpdateNotificationData implements ModelInterface, ArrayAccess, \Jso
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('capabilities', $data ?? [], null);
-        $this->setIfExists('legalEntityId', $data ?? [], null);
-        $this->setIfExists('merchantId', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('createdAt', $data ?? [], null);
+        $this->setIfExists('data', $data ?? [], null);
+        $this->setIfExists('environment', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -282,14 +282,17 @@ class AccountUpdateNotificationData implements ModelInterface, ArrayAccess, \Jso
     {
         $invalidProperties = [];
 
-        if ($this->container['capabilities'] === null) {
-            $invalidProperties[] = "'capabilities' can't be null";
+        if ($this->container['createdAt'] === null) {
+            $invalidProperties[] = "'createdAt' can't be null";
         }
-        if ($this->container['merchantId'] === null) {
-            $invalidProperties[] = "'merchantId' can't be null";
+        if ($this->container['data'] === null) {
+            $invalidProperties[] = "'data' can't be null";
         }
-        if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
+        if ($this->container['environment'] === null) {
+            $invalidProperties[] = "'environment' can't be null";
+        }
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
         }
         return $invalidProperties;
     }
@@ -307,109 +310,109 @@ class AccountUpdateNotificationData implements ModelInterface, ArrayAccess, \Jso
 
 
     /**
-     * Gets capabilities
+     * Gets createdAt
      *
-     * @return array<string,\Adyen\Model\ManagementWebhooks\AccountCapabilityData>
+     * @return \DateTime
      */
-    public function getCapabilities()
+    public function getCreatedAt()
     {
-        return $this->container['capabilities'];
+        return $this->container['createdAt'];
     }
 
     /**
-     * Sets capabilities
+     * Sets createdAt
      *
-     * @param array<string,\Adyen\Model\ManagementWebhooks\AccountCapabilityData> $capabilities Key-value pairs that specify what you can do with the merchant account and its settings. The key is a capability. For example, the **sendToTransferInstrument** is the capability required before you can pay out the funds of a merchant account to a [bank account](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments). The value is an object containing the settings for the capability.
+     * @param \DateTime $createdAt Timestamp for when the webhook was created.
      *
      * @return self
      */
-    public function setCapabilities($capabilities)
+    public function setCreatedAt($createdAt)
     {
-        if (is_null($capabilities)) {
-            throw new \InvalidArgumentException('non-nullable capabilities cannot be null');
+        if (is_null($createdAt)) {
+            throw new \InvalidArgumentException('non-nullable createdAt cannot be null');
         }
-        $this->container['capabilities'] = $capabilities;
+        $this->container['createdAt'] = $createdAt;
 
         return $this;
     }
 
     /**
-     * Gets legalEntityId
+     * Gets data
      *
-     * @return string|null
+     * @return \Adyen\Model\ManagementWebhooks\MidServiceNotificationData
      */
-    public function getLegalEntityId()
+    public function getData()
     {
-        return $this->container['legalEntityId'];
+        return $this->container['data'];
     }
 
     /**
-     * Sets legalEntityId
+     * Sets data
      *
-     * @param string|null $legalEntityId The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id).
+     * @param \Adyen\Model\ManagementWebhooks\MidServiceNotificationData $data data
      *
      * @return self
      */
-    public function setLegalEntityId($legalEntityId)
+    public function setData($data)
     {
-        if (is_null($legalEntityId)) {
-            throw new \InvalidArgumentException('non-nullable legalEntityId cannot be null');
+        if (is_null($data)) {
+            throw new \InvalidArgumentException('non-nullable data cannot be null');
         }
-        $this->container['legalEntityId'] = $legalEntityId;
+        $this->container['data'] = $data;
 
         return $this;
     }
 
     /**
-     * Gets merchantId
+     * Gets environment
      *
      * @return string
      */
-    public function getMerchantId()
+    public function getEnvironment()
     {
-        return $this->container['merchantId'];
+        return $this->container['environment'];
     }
 
     /**
-     * Sets merchantId
+     * Sets environment
      *
-     * @param string $merchantId The unique identifier of the merchant account.
+     * @param string $environment The environment from which the webhook originated.  Possible values: **test**, **live**.
      *
      * @return self
      */
-    public function setMerchantId($merchantId)
+    public function setEnvironment($environment)
     {
-        if (is_null($merchantId)) {
-            throw new \InvalidArgumentException('non-nullable merchantId cannot be null');
+        if (is_null($environment)) {
+            throw new \InvalidArgumentException('non-nullable environment cannot be null');
         }
-        $this->container['merchantId'] = $merchantId;
+        $this->container['environment'] = $environment;
 
         return $this;
     }
 
     /**
-     * Gets status
+     * Gets type
      *
      * @return string
      */
-    public function getStatus()
+    public function getType()
     {
-        return $this->container['status'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets status
+     * Sets type
      *
-     * @param string $status The status of the merchant account.  Possible values:  * **PreActive**: The merchant account has been created. Users cannot access the merchant account in the Customer Area. The account cannot process payments. * **Active**: Users can access the merchant account in the Customer Area. If the company account is also **Active**, then payment processing and payouts are enabled. * **InactiveWithModifications**: Users can access the merchant account in the Customer Area. The account cannot process new payments but can still modify payments, for example issue refunds. The account can still receive payouts. * **Inactive**: Users can access the merchant account in the Customer Area. Payment processing and payouts are disabled. * **Closed**: The account is closed and this cannot be reversed. Users cannot log in. Payment processing and payouts are disabled.
+     * @param string $type Type of notification.
      *
      * @return self
      */
-    public function setStatus($status)
+    public function setType($type)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
-        $this->container['status'] = $status;
+        $this->container['type'] = $type;
 
         return $this;
     }
