@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\TransferWebhooks\ObjectSerializer;
 
 /**
- * TransactionEventViolation Class Doc Comment
+ * InternalCategoryData Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\TransferWebhooks\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class TransactionEventViolation implements ModelInterface, ArrayAccess, \JsonSerializable
+class InternalCategoryData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class TransactionEventViolation implements ModelInterface, ArrayAccess, \JsonSer
       *
       * @var string
       */
-    protected static $openAPIModelName = 'TransactionEventViolation';
+    protected static $openAPIModelName = 'InternalCategoryData';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,9 +44,9 @@ class TransactionEventViolation implements ModelInterface, ArrayAccess, \JsonSer
       * @var string[]
       */
     protected static $openAPITypes = [
-        'reason' => 'string',
-        'transactionRule' => '\Adyen\Model\TransferWebhooks\TransactionRuleReference',
-        'transactionRuleSource' => '\Adyen\Model\TransferWebhooks\TransactionRuleSource'
+        'modificationMerchantReference' => 'string',
+        'modificationPspReference' => 'string',
+        'type' => 'string'
     ];
 
     /**
@@ -57,9 +57,9 @@ class TransactionEventViolation implements ModelInterface, ArrayAccess, \JsonSer
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'reason' => null,
-        'transactionRule' => null,
-        'transactionRuleSource' => null
+        'modificationMerchantReference' => null,
+        'modificationPspReference' => null,
+        'type' => null
     ];
 
     /**
@@ -68,9 +68,9 @@ class TransactionEventViolation implements ModelInterface, ArrayAccess, \JsonSer
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'reason' => false,
-        'transactionRule' => false,
-        'transactionRuleSource' => false
+        'modificationMerchantReference' => false,
+        'modificationPspReference' => false,
+        'type' => false
     ];
 
     /**
@@ -159,9 +159,9 @@ class TransactionEventViolation implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $attributeMap = [
-        'reason' => 'reason',
-        'transactionRule' => 'transactionRule',
-        'transactionRuleSource' => 'transactionRuleSource'
+        'modificationMerchantReference' => 'modificationMerchantReference',
+        'modificationPspReference' => 'modificationPspReference',
+        'type' => 'type'
     ];
 
     /**
@@ -170,9 +170,9 @@ class TransactionEventViolation implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $setters = [
-        'reason' => 'setReason',
-        'transactionRule' => 'setTransactionRule',
-        'transactionRuleSource' => 'setTransactionRuleSource'
+        'modificationMerchantReference' => 'setModificationMerchantReference',
+        'modificationPspReference' => 'setModificationPspReference',
+        'type' => 'setType'
     ];
 
     /**
@@ -181,9 +181,9 @@ class TransactionEventViolation implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $getters = [
-        'reason' => 'getReason',
-        'transactionRule' => 'getTransactionRule',
-        'transactionRuleSource' => 'getTransactionRuleSource'
+        'modificationMerchantReference' => 'getModificationMerchantReference',
+        'modificationPspReference' => 'getModificationPspReference',
+        'type' => 'getType'
     ];
 
     /**
@@ -227,7 +227,19 @@ class TransactionEventViolation implements ModelInterface, ArrayAccess, \JsonSer
         return self::$openAPIModelName;
     }
 
+    public const TYPE_INTERNAL = 'internal';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_INTERNAL,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -243,9 +255,9 @@ class TransactionEventViolation implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('reason', $data ?? [], null);
-        $this->setIfExists('transactionRule', $data ?? [], null);
-        $this->setIfExists('transactionRuleSource', $data ?? [], null);
+        $this->setIfExists('modificationMerchantReference', $data ?? [], null);
+        $this->setIfExists('modificationPspReference', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], 'internal');
     }
 
     /**
@@ -275,6 +287,15 @@ class TransactionEventViolation implements ModelInterface, ArrayAccess, \JsonSer
     {
         $invalidProperties = [];
 
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -291,82 +312,92 @@ class TransactionEventViolation implements ModelInterface, ArrayAccess, \JsonSer
 
 
     /**
-     * Gets reason
+     * Gets modificationMerchantReference
      *
      * @return string|null
      */
-    public function getReason()
+    public function getModificationMerchantReference()
     {
-        return $this->container['reason'];
+        return $this->container['modificationMerchantReference'];
     }
 
     /**
-     * Sets reason
+     * Sets modificationMerchantReference
      *
-     * @param string|null $reason An explanation about why the transaction rule failed.
+     * @param string|null $modificationMerchantReference The capture's merchant reference included in the transfer.
      *
      * @return self
      */
-    public function setReason($reason)
+    public function setModificationMerchantReference($modificationMerchantReference)
     {
-        if (is_null($reason)) {
-            throw new \InvalidArgumentException('non-nullable reason cannot be null');
+        if (is_null($modificationMerchantReference)) {
+            throw new \InvalidArgumentException('non-nullable modificationMerchantReference cannot be null');
         }
-        $this->container['reason'] = $reason;
+        $this->container['modificationMerchantReference'] = $modificationMerchantReference;
 
         return $this;
     }
 
     /**
-     * Gets transactionRule
+     * Gets modificationPspReference
      *
-     * @return \Adyen\Model\TransferWebhooks\TransactionRuleReference|null
+     * @return string|null
      */
-    public function getTransactionRule()
+    public function getModificationPspReference()
     {
-        return $this->container['transactionRule'];
+        return $this->container['modificationPspReference'];
     }
 
     /**
-     * Sets transactionRule
+     * Sets modificationPspReference
      *
-     * @param \Adyen\Model\TransferWebhooks\TransactionRuleReference|null $transactionRule transactionRule
+     * @param string|null $modificationPspReference The capture reference included in the transfer.
      *
      * @return self
      */
-    public function setTransactionRule($transactionRule)
+    public function setModificationPspReference($modificationPspReference)
     {
-        if (is_null($transactionRule)) {
-            throw new \InvalidArgumentException('non-nullable transactionRule cannot be null');
+        if (is_null($modificationPspReference)) {
+            throw new \InvalidArgumentException('non-nullable modificationPspReference cannot be null');
         }
-        $this->container['transactionRule'] = $transactionRule;
+        $this->container['modificationPspReference'] = $modificationPspReference;
 
         return $this;
     }
 
     /**
-     * Gets transactionRuleSource
+     * Gets type
      *
-     * @return \Adyen\Model\TransferWebhooks\TransactionRuleSource|null
+     * @return string|null
      */
-    public function getTransactionRuleSource()
+    public function getType()
     {
-        return $this->container['transactionRuleSource'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets transactionRuleSource
+     * Sets type
      *
-     * @param \Adyen\Model\TransferWebhooks\TransactionRuleSource|null $transactionRuleSource transactionRuleSource
+     * @param string|null $type **internal**
      *
      * @return self
      */
-    public function setTransactionRuleSource($transactionRuleSource)
+    public function setType($type)
     {
-        if (is_null($transactionRuleSource)) {
-            throw new \InvalidArgumentException('non-nullable transactionRuleSource cannot be null');
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
-        $this->container['transactionRuleSource'] = $transactionRuleSource;
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
 
         return $this;
     }

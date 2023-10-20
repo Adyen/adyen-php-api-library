@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\TransferWebhooks\ObjectSerializer;
 
 /**
- * TransactionEventViolation Class Doc Comment
+ * BankCategoryData Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\TransferWebhooks\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class TransactionEventViolation implements ModelInterface, ArrayAccess, \JsonSerializable
+class BankCategoryData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class TransactionEventViolation implements ModelInterface, ArrayAccess, \JsonSer
       *
       * @var string
       */
-    protected static $openAPIModelName = 'TransactionEventViolation';
+    protected static $openAPIModelName = 'BankCategoryData';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,9 +44,8 @@ class TransactionEventViolation implements ModelInterface, ArrayAccess, \JsonSer
       * @var string[]
       */
     protected static $openAPITypes = [
-        'reason' => 'string',
-        'transactionRule' => '\Adyen\Model\TransferWebhooks\TransactionRuleReference',
-        'transactionRuleSource' => '\Adyen\Model\TransferWebhooks\TransactionRuleSource'
+        'priority' => 'string',
+        'type' => 'string'
     ];
 
     /**
@@ -57,9 +56,8 @@ class TransactionEventViolation implements ModelInterface, ArrayAccess, \JsonSer
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'reason' => null,
-        'transactionRule' => null,
-        'transactionRuleSource' => null
+        'priority' => null,
+        'type' => null
     ];
 
     /**
@@ -68,9 +66,8 @@ class TransactionEventViolation implements ModelInterface, ArrayAccess, \JsonSer
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'reason' => false,
-        'transactionRule' => false,
-        'transactionRuleSource' => false
+        'priority' => false,
+        'type' => false
     ];
 
     /**
@@ -159,9 +156,8 @@ class TransactionEventViolation implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $attributeMap = [
-        'reason' => 'reason',
-        'transactionRule' => 'transactionRule',
-        'transactionRuleSource' => 'transactionRuleSource'
+        'priority' => 'priority',
+        'type' => 'type'
     ];
 
     /**
@@ -170,9 +166,8 @@ class TransactionEventViolation implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $setters = [
-        'reason' => 'setReason',
-        'transactionRule' => 'setTransactionRule',
-        'transactionRuleSource' => 'setTransactionRuleSource'
+        'priority' => 'setPriority',
+        'type' => 'setType'
     ];
 
     /**
@@ -181,9 +176,8 @@ class TransactionEventViolation implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $getters = [
-        'reason' => 'getReason',
-        'transactionRule' => 'getTransactionRule',
-        'transactionRuleSource' => 'getTransactionRuleSource'
+        'priority' => 'getPriority',
+        'type' => 'getType'
     ];
 
     /**
@@ -227,7 +221,41 @@ class TransactionEventViolation implements ModelInterface, ArrayAccess, \JsonSer
         return self::$openAPIModelName;
     }
 
+    public const PRIORITY_CROSS_BORDER = 'crossBorder';
+    public const PRIORITY_FAST = 'fast';
+    public const PRIORITY_INSTANT = 'instant';
+    public const PRIORITY_INTERNAL = 'internal';
+    public const PRIORITY_REGULAR = 'regular';
+    public const PRIORITY_WIRE = 'wire';
+    public const TYPE_BANK = 'bank';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getPriorityAllowableValues()
+    {
+        return [
+            self::PRIORITY_CROSS_BORDER,
+            self::PRIORITY_FAST,
+            self::PRIORITY_INSTANT,
+            self::PRIORITY_INTERNAL,
+            self::PRIORITY_REGULAR,
+            self::PRIORITY_WIRE,
+        ];
+    }
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_BANK,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -243,9 +271,8 @@ class TransactionEventViolation implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('reason', $data ?? [], null);
-        $this->setIfExists('transactionRule', $data ?? [], null);
-        $this->setIfExists('transactionRuleSource', $data ?? [], null);
+        $this->setIfExists('priority', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], 'bank');
     }
 
     /**
@@ -275,6 +302,24 @@ class TransactionEventViolation implements ModelInterface, ArrayAccess, \JsonSer
     {
         $invalidProperties = [];
 
+        $allowedValues = $this->getPriorityAllowableValues();
+        if (!is_null($this->container['priority']) && !in_array($this->container['priority'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'priority', must be one of '%s'",
+                $this->container['priority'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -291,82 +336,75 @@ class TransactionEventViolation implements ModelInterface, ArrayAccess, \JsonSer
 
 
     /**
-     * Gets reason
+     * Gets priority
      *
      * @return string|null
      */
-    public function getReason()
+    public function getPriority()
     {
-        return $this->container['reason'];
+        return $this->container['priority'];
     }
 
     /**
-     * Sets reason
+     * Sets priority
      *
-     * @param string|null $reason An explanation about why the transaction rule failed.
+     * @param string|null $priority The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with `category` **bank**.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN).
      *
      * @return self
      */
-    public function setReason($reason)
+    public function setPriority($priority)
     {
-        if (is_null($reason)) {
-            throw new \InvalidArgumentException('non-nullable reason cannot be null');
+        if (is_null($priority)) {
+            throw new \InvalidArgumentException('non-nullable priority cannot be null');
         }
-        $this->container['reason'] = $reason;
+        $allowedValues = $this->getPriorityAllowableValues();
+        if (!in_array($priority, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'priority', must be one of '%s'",
+                    $priority,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['priority'] = $priority;
 
         return $this;
     }
 
     /**
-     * Gets transactionRule
+     * Gets type
      *
-     * @return \Adyen\Model\TransferWebhooks\TransactionRuleReference|null
+     * @return string|null
      */
-    public function getTransactionRule()
+    public function getType()
     {
-        return $this->container['transactionRule'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets transactionRule
+     * Sets type
      *
-     * @param \Adyen\Model\TransferWebhooks\TransactionRuleReference|null $transactionRule transactionRule
+     * @param string|null $type **bank**
      *
      * @return self
      */
-    public function setTransactionRule($transactionRule)
+    public function setType($type)
     {
-        if (is_null($transactionRule)) {
-            throw new \InvalidArgumentException('non-nullable transactionRule cannot be null');
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
-        $this->container['transactionRule'] = $transactionRule;
-
-        return $this;
-    }
-
-    /**
-     * Gets transactionRuleSource
-     *
-     * @return \Adyen\Model\TransferWebhooks\TransactionRuleSource|null
-     */
-    public function getTransactionRuleSource()
-    {
-        return $this->container['transactionRuleSource'];
-    }
-
-    /**
-     * Sets transactionRuleSource
-     *
-     * @param \Adyen\Model\TransferWebhooks\TransactionRuleSource|null $transactionRuleSource transactionRuleSource
-     *
-     * @return self
-     */
-    public function setTransactionRuleSource($transactionRuleSource)
-    {
-        if (is_null($transactionRuleSource)) {
-            throw new \InvalidArgumentException('non-nullable transactionRuleSource cannot be null');
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
+                    implode("', '", $allowedValues)
+                )
+            );
         }
-        $this->container['transactionRuleSource'] = $transactionRuleSource;
+        $this->container['type'] = $type;
 
         return $this;
     }

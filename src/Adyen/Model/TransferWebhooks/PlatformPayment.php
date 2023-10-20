@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\TransferWebhooks\ObjectSerializer;
 
 /**
- * HKLocalAccountIdentification Class Doc Comment
+ * PlatformPayment Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\TransferWebhooks\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
+class PlatformPayment implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       *
       * @var string
       */
-    protected static $openAPIModelName = 'HKLocalAccountIdentification';
+    protected static $openAPIModelName = 'PlatformPayment';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,8 +44,11 @@ class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       * @var string[]
       */
     protected static $openAPITypes = [
-        'accountNumber' => 'string',
-        'clearingCode' => 'string',
+        'modificationMerchantReference' => 'string',
+        'modificationPspReference' => 'string',
+        'paymentMerchantReference' => 'string',
+        'platformPaymentType' => 'string',
+        'pspPaymentReference' => 'string',
         'type' => 'string'
     ];
 
@@ -57,8 +60,11 @@ class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'accountNumber' => null,
-        'clearingCode' => null,
+        'modificationMerchantReference' => null,
+        'modificationPspReference' => null,
+        'paymentMerchantReference' => null,
+        'platformPaymentType' => null,
+        'pspPaymentReference' => null,
         'type' => null
     ];
 
@@ -68,8 +74,11 @@ class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'accountNumber' => false,
-        'clearingCode' => false,
+        'modificationMerchantReference' => false,
+        'modificationPspReference' => false,
+        'paymentMerchantReference' => false,
+        'platformPaymentType' => false,
+        'pspPaymentReference' => false,
         'type' => false
     ];
 
@@ -159,8 +168,11 @@ class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $attributeMap = [
-        'accountNumber' => 'accountNumber',
-        'clearingCode' => 'clearingCode',
+        'modificationMerchantReference' => 'modificationMerchantReference',
+        'modificationPspReference' => 'modificationPspReference',
+        'paymentMerchantReference' => 'paymentMerchantReference',
+        'platformPaymentType' => 'platformPaymentType',
+        'pspPaymentReference' => 'pspPaymentReference',
         'type' => 'type'
     ];
 
@@ -170,8 +182,11 @@ class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $setters = [
-        'accountNumber' => 'setAccountNumber',
-        'clearingCode' => 'setClearingCode',
+        'modificationMerchantReference' => 'setModificationMerchantReference',
+        'modificationPspReference' => 'setModificationPspReference',
+        'paymentMerchantReference' => 'setPaymentMerchantReference',
+        'platformPaymentType' => 'setPlatformPaymentType',
+        'pspPaymentReference' => 'setPspPaymentReference',
         'type' => 'setType'
     ];
 
@@ -181,8 +196,11 @@ class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $getters = [
-        'accountNumber' => 'getAccountNumber',
-        'clearingCode' => 'getClearingCode',
+        'modificationMerchantReference' => 'getModificationMerchantReference',
+        'modificationPspReference' => 'getModificationPspReference',
+        'paymentMerchantReference' => 'getPaymentMerchantReference',
+        'platformPaymentType' => 'getPlatformPaymentType',
+        'pspPaymentReference' => 'getPspPaymentReference',
         'type' => 'getType'
     ];
 
@@ -227,8 +245,44 @@ class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
         return self::$openAPIModelName;
     }
 
-    public const TYPE_HK_LOCAL = 'hkLocal';
+    public const PLATFORM_PAYMENT_TYPE_ACQUIRING_FEES = 'AcquiringFees';
+    public const PLATFORM_PAYMENT_TYPE_ADYEN_COMMISSION = 'AdyenCommission';
+    public const PLATFORM_PAYMENT_TYPE_ADYEN_FEES = 'AdyenFees';
+    public const PLATFORM_PAYMENT_TYPE_ADYEN_MARKUP = 'AdyenMarkup';
+    public const PLATFORM_PAYMENT_TYPE_BALANCE_ACCOUNT = 'BalanceAccount';
+    public const PLATFORM_PAYMENT_TYPE_COMMISSION = 'Commission';
+    public const PLATFORM_PAYMENT_TYPE__DEFAULT = 'Default';
+    public const PLATFORM_PAYMENT_TYPE_INTERCHANGE = 'Interchange';
+    public const PLATFORM_PAYMENT_TYPE_PAYMENT_FEE = 'PaymentFee';
+    public const PLATFORM_PAYMENT_TYPE_REMAINDER = 'Remainder';
+    public const PLATFORM_PAYMENT_TYPE_SCHEME_FEE = 'SchemeFee';
+    public const PLATFORM_PAYMENT_TYPE_TOP_UP = 'TopUp';
+    public const PLATFORM_PAYMENT_TYPE_VAT = 'VAT';
+    public const TYPE_PLATFORM_PAYMENT = 'platformPayment';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getPlatformPaymentTypeAllowableValues()
+    {
+        return [
+            self::PLATFORM_PAYMENT_TYPE_ACQUIRING_FEES,
+            self::PLATFORM_PAYMENT_TYPE_ADYEN_COMMISSION,
+            self::PLATFORM_PAYMENT_TYPE_ADYEN_FEES,
+            self::PLATFORM_PAYMENT_TYPE_ADYEN_MARKUP,
+            self::PLATFORM_PAYMENT_TYPE_BALANCE_ACCOUNT,
+            self::PLATFORM_PAYMENT_TYPE_COMMISSION,
+            self::PLATFORM_PAYMENT_TYPE__DEFAULT,
+            self::PLATFORM_PAYMENT_TYPE_INTERCHANGE,
+            self::PLATFORM_PAYMENT_TYPE_PAYMENT_FEE,
+            self::PLATFORM_PAYMENT_TYPE_REMAINDER,
+            self::PLATFORM_PAYMENT_TYPE_SCHEME_FEE,
+            self::PLATFORM_PAYMENT_TYPE_TOP_UP,
+            self::PLATFORM_PAYMENT_TYPE_VAT,
+        ];
+    }
     /**
      * Gets allowable values of the enum
      *
@@ -237,7 +291,7 @@ class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     public function getTypeAllowableValues()
     {
         return [
-            self::TYPE_HK_LOCAL,
+            self::TYPE_PLATFORM_PAYMENT,
         ];
     }
     /**
@@ -255,9 +309,12 @@ class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('accountNumber', $data ?? [], null);
-        $this->setIfExists('clearingCode', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'hkLocal');
+        $this->setIfExists('modificationMerchantReference', $data ?? [], null);
+        $this->setIfExists('modificationPspReference', $data ?? [], null);
+        $this->setIfExists('paymentMerchantReference', $data ?? [], null);
+        $this->setIfExists('platformPaymentType', $data ?? [], null);
+        $this->setIfExists('pspPaymentReference', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], 'platformPayment');
     }
 
     /**
@@ -287,15 +344,15 @@ class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     {
         $invalidProperties = [];
 
-        if ($this->container['accountNumber'] === null) {
-            $invalidProperties[] = "'accountNumber' can't be null";
+        $allowedValues = $this->getPlatformPaymentTypeAllowableValues();
+        if (!is_null($this->container['platformPaymentType']) && !in_array($this->container['platformPaymentType'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'platformPaymentType', must be one of '%s'",
+                $this->container['platformPaymentType'],
+                implode("', '", $allowedValues)
+            );
         }
-        if ($this->container['clearingCode'] === null) {
-            $invalidProperties[] = "'clearingCode' can't be null";
-        }
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
-        }
+
         $allowedValues = $this->getTypeAllowableValues();
         if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -321,55 +378,146 @@ class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
 
 
     /**
-     * Gets accountNumber
+     * Gets modificationMerchantReference
      *
-     * @return string
+     * @return string|null
      */
-    public function getAccountNumber()
+    public function getModificationMerchantReference()
     {
-        return $this->container['accountNumber'];
+        return $this->container['modificationMerchantReference'];
     }
 
     /**
-     * Sets accountNumber
+     * Sets modificationMerchantReference
      *
-     * @param string $accountNumber The 9- to 15-character bank account number (alphanumeric), without separators or whitespace. Starts with the 3-digit branch code.
+     * @param string|null $modificationMerchantReference The capture's merchant reference included in the transfer.
      *
      * @return self
      */
-    public function setAccountNumber($accountNumber)
+    public function setModificationMerchantReference($modificationMerchantReference)
     {
-        if (is_null($accountNumber)) {
-            throw new \InvalidArgumentException('non-nullable accountNumber cannot be null');
+        if (is_null($modificationMerchantReference)) {
+            throw new \InvalidArgumentException('non-nullable modificationMerchantReference cannot be null');
         }
-        $this->container['accountNumber'] = $accountNumber;
+        $this->container['modificationMerchantReference'] = $modificationMerchantReference;
 
         return $this;
     }
 
     /**
-     * Gets clearingCode
+     * Gets modificationPspReference
      *
-     * @return string
+     * @return string|null
      */
-    public function getClearingCode()
+    public function getModificationPspReference()
     {
-        return $this->container['clearingCode'];
+        return $this->container['modificationPspReference'];
     }
 
     /**
-     * Sets clearingCode
+     * Sets modificationPspReference
      *
-     * @param string $clearingCode The 3-digit clearing code, without separators or whitespace.
+     * @param string|null $modificationPspReference The capture reference included in the transfer.
      *
      * @return self
      */
-    public function setClearingCode($clearingCode)
+    public function setModificationPspReference($modificationPspReference)
     {
-        if (is_null($clearingCode)) {
-            throw new \InvalidArgumentException('non-nullable clearingCode cannot be null');
+        if (is_null($modificationPspReference)) {
+            throw new \InvalidArgumentException('non-nullable modificationPspReference cannot be null');
         }
-        $this->container['clearingCode'] = $clearingCode;
+        $this->container['modificationPspReference'] = $modificationPspReference;
+
+        return $this;
+    }
+
+    /**
+     * Gets paymentMerchantReference
+     *
+     * @return string|null
+     */
+    public function getPaymentMerchantReference()
+    {
+        return $this->container['paymentMerchantReference'];
+    }
+
+    /**
+     * Sets paymentMerchantReference
+     *
+     * @param string|null $paymentMerchantReference The payment's merchant reference included in the transfer.
+     *
+     * @return self
+     */
+    public function setPaymentMerchantReference($paymentMerchantReference)
+    {
+        if (is_null($paymentMerchantReference)) {
+            throw new \InvalidArgumentException('non-nullable paymentMerchantReference cannot be null');
+        }
+        $this->container['paymentMerchantReference'] = $paymentMerchantReference;
+
+        return $this;
+    }
+
+    /**
+     * Gets platformPaymentType
+     *
+     * @return string|null
+     */
+    public function getPlatformPaymentType()
+    {
+        return $this->container['platformPaymentType'];
+    }
+
+    /**
+     * Sets platformPaymentType
+     *
+     * @param string|null $platformPaymentType The type of the related split.
+     *
+     * @return self
+     */
+    public function setPlatformPaymentType($platformPaymentType)
+    {
+        if (is_null($platformPaymentType)) {
+            throw new \InvalidArgumentException('non-nullable platformPaymentType cannot be null');
+        }
+        $allowedValues = $this->getPlatformPaymentTypeAllowableValues();
+        if (!in_array($platformPaymentType, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'platformPaymentType', must be one of '%s'",
+                    $platformPaymentType,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['platformPaymentType'] = $platformPaymentType;
+
+        return $this;
+    }
+
+    /**
+     * Gets pspPaymentReference
+     *
+     * @return string|null
+     */
+    public function getPspPaymentReference()
+    {
+        return $this->container['pspPaymentReference'];
+    }
+
+    /**
+     * Sets pspPaymentReference
+     *
+     * @param string|null $pspPaymentReference The payment reference included in the transfer.
+     *
+     * @return self
+     */
+    public function setPspPaymentReference($pspPaymentReference)
+    {
+        if (is_null($pspPaymentReference)) {
+            throw new \InvalidArgumentException('non-nullable pspPaymentReference cannot be null');
+        }
+        $this->container['pspPaymentReference'] = $pspPaymentReference;
 
         return $this;
     }
@@ -377,7 +525,7 @@ class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets type
      *
-     * @return string
+     * @return string|null
      */
     public function getType()
     {
@@ -387,7 +535,7 @@ class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets type
      *
-     * @param string $type **hkLocal**
+     * @param string|null $type **platformPayment**
      *
      * @return self
      */
