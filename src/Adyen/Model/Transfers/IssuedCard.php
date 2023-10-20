@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\Transfers\ObjectSerializer;
 
 /**
- * SELocalAccountIdentification Class Doc Comment
+ * IssuedCard Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\Transfers\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class SELocalAccountIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
+class IssuedCard implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class SELocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       *
       * @var string
       */
-    protected static $openAPIModelName = 'SELocalAccountIdentification';
+    protected static $openAPIModelName = 'IssuedCard';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,9 +44,11 @@ class SELocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       * @var string[]
       */
     protected static $openAPITypes = [
-        'accountNumber' => 'string',
-        'clearingNumber' => 'string',
-        'type' => 'string'
+        'panEntryMode' => 'string',
+        'processingType' => 'string',
+        'relayedAuthorisationData' => '\Adyen\Model\Transfers\RelayedAuthorisationData',
+        'type' => 'string',
+        'validationFacts' => '\Adyen\Model\Transfers\TransferNotificationValidationFact[]'
     ];
 
     /**
@@ -57,9 +59,11 @@ class SELocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'accountNumber' => null,
-        'clearingNumber' => null,
-        'type' => null
+        'panEntryMode' => null,
+        'processingType' => null,
+        'relayedAuthorisationData' => null,
+        'type' => null,
+        'validationFacts' => null
     ];
 
     /**
@@ -68,9 +72,11 @@ class SELocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'accountNumber' => false,
-        'clearingNumber' => false,
-        'type' => false
+        'panEntryMode' => false,
+        'processingType' => false,
+        'relayedAuthorisationData' => false,
+        'type' => false,
+        'validationFacts' => false
     ];
 
     /**
@@ -159,9 +165,11 @@ class SELocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $attributeMap = [
-        'accountNumber' => 'accountNumber',
-        'clearingNumber' => 'clearingNumber',
-        'type' => 'type'
+        'panEntryMode' => 'panEntryMode',
+        'processingType' => 'processingType',
+        'relayedAuthorisationData' => 'relayedAuthorisationData',
+        'type' => 'type',
+        'validationFacts' => 'validationFacts'
     ];
 
     /**
@@ -170,9 +178,11 @@ class SELocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $setters = [
-        'accountNumber' => 'setAccountNumber',
-        'clearingNumber' => 'setClearingNumber',
-        'type' => 'setType'
+        'panEntryMode' => 'setPanEntryMode',
+        'processingType' => 'setProcessingType',
+        'relayedAuthorisationData' => 'setRelayedAuthorisationData',
+        'type' => 'setType',
+        'validationFacts' => 'setValidationFacts'
     ];
 
     /**
@@ -181,9 +191,11 @@ class SELocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $getters = [
-        'accountNumber' => 'getAccountNumber',
-        'clearingNumber' => 'getClearingNumber',
-        'type' => 'getType'
+        'panEntryMode' => 'getPanEntryMode',
+        'processingType' => 'getProcessingType',
+        'relayedAuthorisationData' => 'getRelayedAuthorisationData',
+        'type' => 'getType',
+        'validationFacts' => 'getValidationFacts'
     ];
 
     /**
@@ -227,8 +239,58 @@ class SELocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
         return self::$openAPIModelName;
     }
 
-    public const TYPE_SE_LOCAL = 'seLocal';
+    public const PAN_ENTRY_MODE_CHIP = 'chip';
+    public const PAN_ENTRY_MODE_COF = 'cof';
+    public const PAN_ENTRY_MODE_CONTACTLESS = 'contactless';
+    public const PAN_ENTRY_MODE_ECOMMERCE = 'ecommerce';
+    public const PAN_ENTRY_MODE_MAGSTRIPE = 'magstripe';
+    public const PAN_ENTRY_MODE_MANUAL = 'manual';
+    public const PAN_ENTRY_MODE_TOKEN = 'token';
+    public const PROCESSING_TYPE_ATM_WITHDRAW = 'atmWithdraw';
+    public const PROCESSING_TYPE_BALANCE_INQUIRY = 'balanceInquiry';
+    public const PROCESSING_TYPE_ECOMMERCE = 'ecommerce';
+    public const PROCESSING_TYPE_MOTO = 'moto';
+    public const PROCESSING_TYPE_POS = 'pos';
+    public const PROCESSING_TYPE_PURCHASE_WITH_CASHBACK = 'purchaseWithCashback';
+    public const PROCESSING_TYPE_RECURRING = 'recurring';
+    public const PROCESSING_TYPE_TOKEN = 'token';
+    public const TYPE_ISSUED_CARD = 'issuedCard';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getPanEntryModeAllowableValues()
+    {
+        return [
+            self::PAN_ENTRY_MODE_CHIP,
+            self::PAN_ENTRY_MODE_COF,
+            self::PAN_ENTRY_MODE_CONTACTLESS,
+            self::PAN_ENTRY_MODE_ECOMMERCE,
+            self::PAN_ENTRY_MODE_MAGSTRIPE,
+            self::PAN_ENTRY_MODE_MANUAL,
+            self::PAN_ENTRY_MODE_TOKEN,
+        ];
+    }
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getProcessingTypeAllowableValues()
+    {
+        return [
+            self::PROCESSING_TYPE_ATM_WITHDRAW,
+            self::PROCESSING_TYPE_BALANCE_INQUIRY,
+            self::PROCESSING_TYPE_ECOMMERCE,
+            self::PROCESSING_TYPE_MOTO,
+            self::PROCESSING_TYPE_POS,
+            self::PROCESSING_TYPE_PURCHASE_WITH_CASHBACK,
+            self::PROCESSING_TYPE_RECURRING,
+            self::PROCESSING_TYPE_TOKEN,
+        ];
+    }
     /**
      * Gets allowable values of the enum
      *
@@ -237,7 +299,7 @@ class SELocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     public function getTypeAllowableValues()
     {
         return [
-            self::TYPE_SE_LOCAL,
+            self::TYPE_ISSUED_CARD,
         ];
     }
     /**
@@ -255,9 +317,11 @@ class SELocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('accountNumber', $data ?? [], null);
-        $this->setIfExists('clearingNumber', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'seLocal');
+        $this->setIfExists('panEntryMode', $data ?? [], null);
+        $this->setIfExists('processingType', $data ?? [], null);
+        $this->setIfExists('relayedAuthorisationData', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], 'issuedCard');
+        $this->setIfExists('validationFacts', $data ?? [], null);
     }
 
     /**
@@ -287,15 +351,24 @@ class SELocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     {
         $invalidProperties = [];
 
-        if ($this->container['accountNumber'] === null) {
-            $invalidProperties[] = "'accountNumber' can't be null";
+        $allowedValues = $this->getPanEntryModeAllowableValues();
+        if (!is_null($this->container['panEntryMode']) && !in_array($this->container['panEntryMode'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'panEntryMode', must be one of '%s'",
+                $this->container['panEntryMode'],
+                implode("', '", $allowedValues)
+            );
         }
-        if ($this->container['clearingNumber'] === null) {
-            $invalidProperties[] = "'clearingNumber' can't be null";
+
+        $allowedValues = $this->getProcessingTypeAllowableValues();
+        if (!is_null($this->container['processingType']) && !in_array($this->container['processingType'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'processingType', must be one of '%s'",
+                $this->container['processingType'],
+                implode("', '", $allowedValues)
+            );
         }
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
-        }
+
         $allowedValues = $this->getTypeAllowableValues();
         if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -321,55 +394,102 @@ class SELocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
 
 
     /**
-     * Gets accountNumber
+     * Gets panEntryMode
      *
-     * @return string
+     * @return string|null
      */
-    public function getAccountNumber()
+    public function getPanEntryMode()
     {
-        return $this->container['accountNumber'];
+        return $this->container['panEntryMode'];
     }
 
     /**
-     * Sets accountNumber
+     * Sets panEntryMode
      *
-     * @param string $accountNumber The 7- to 10-digit bank account number ([Bankkontonummer](https://sv.wikipedia.org/wiki/Bankkonto)), without the clearing number, separators, or whitespace.
+     * @param string|null $panEntryMode Indicates the method used for entering the PAN to initiate a transaction.  Possible values: **manual**, **chip**, **magstripe**, **contactless**, **cof**, **ecommerce**, **token**.
      *
      * @return self
      */
-    public function setAccountNumber($accountNumber)
+    public function setPanEntryMode($panEntryMode)
     {
-        if (is_null($accountNumber)) {
-            throw new \InvalidArgumentException('non-nullable accountNumber cannot be null');
+        if (is_null($panEntryMode)) {
+            throw new \InvalidArgumentException('non-nullable panEntryMode cannot be null');
         }
-        $this->container['accountNumber'] = $accountNumber;
+        $allowedValues = $this->getPanEntryModeAllowableValues();
+        if (!in_array($panEntryMode, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'panEntryMode', must be one of '%s'",
+                    $panEntryMode,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['panEntryMode'] = $panEntryMode;
 
         return $this;
     }
 
     /**
-     * Gets clearingNumber
+     * Gets processingType
      *
-     * @return string
+     * @return string|null
      */
-    public function getClearingNumber()
+    public function getProcessingType()
     {
-        return $this->container['clearingNumber'];
+        return $this->container['processingType'];
     }
 
     /**
-     * Sets clearingNumber
+     * Sets processingType
      *
-     * @param string $clearingNumber The 4- to 5-digit clearing number ([Clearingnummer](https://sv.wikipedia.org/wiki/Clearingnummer)), without separators or whitespace.
+     * @param string|null $processingType Contains information about how the payment was processed. For example, **ecommerce** for online or **pos** for in-person payments.
      *
      * @return self
      */
-    public function setClearingNumber($clearingNumber)
+    public function setProcessingType($processingType)
     {
-        if (is_null($clearingNumber)) {
-            throw new \InvalidArgumentException('non-nullable clearingNumber cannot be null');
+        if (is_null($processingType)) {
+            throw new \InvalidArgumentException('non-nullable processingType cannot be null');
         }
-        $this->container['clearingNumber'] = $clearingNumber;
+        $allowedValues = $this->getProcessingTypeAllowableValues();
+        if (!in_array($processingType, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'processingType', must be one of '%s'",
+                    $processingType,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['processingType'] = $processingType;
+
+        return $this;
+    }
+
+    /**
+     * Gets relayedAuthorisationData
+     *
+     * @return \Adyen\Model\Transfers\RelayedAuthorisationData|null
+     */
+    public function getRelayedAuthorisationData()
+    {
+        return $this->container['relayedAuthorisationData'];
+    }
+
+    /**
+     * Sets relayedAuthorisationData
+     *
+     * @param \Adyen\Model\Transfers\RelayedAuthorisationData|null $relayedAuthorisationData relayedAuthorisationData
+     *
+     * @return self
+     */
+    public function setRelayedAuthorisationData($relayedAuthorisationData)
+    {
+        if (is_null($relayedAuthorisationData)) {
+            throw new \InvalidArgumentException('non-nullable relayedAuthorisationData cannot be null');
+        }
+        $this->container['relayedAuthorisationData'] = $relayedAuthorisationData;
 
         return $this;
     }
@@ -377,7 +497,7 @@ class SELocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets type
      *
-     * @return string
+     * @return string|null
      */
     public function getType()
     {
@@ -387,7 +507,7 @@ class SELocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets type
      *
-     * @param string $type **seLocal**
+     * @param string|null $type **issuedCard**
      *
      * @return self
      */
@@ -407,6 +527,33 @@ class SELocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
             );
         }
         $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets validationFacts
+     *
+     * @return \Adyen\Model\Transfers\TransferNotificationValidationFact[]|null
+     */
+    public function getValidationFacts()
+    {
+        return $this->container['validationFacts'];
+    }
+
+    /**
+     * Sets validationFacts
+     *
+     * @param \Adyen\Model\Transfers\TransferNotificationValidationFact[]|null $validationFacts The evaluation of the validation facts. See [validation checks](https://docs.adyen.com/issuing/validation-checks) for more information.
+     *
+     * @return self
+     */
+    public function setValidationFacts($validationFacts)
+    {
+        if (is_null($validationFacts)) {
+            throw new \InvalidArgumentException('non-nullable validationFacts cannot be null');
+        }
+        $this->container['validationFacts'] = $validationFacts;
 
         return $this;
     }

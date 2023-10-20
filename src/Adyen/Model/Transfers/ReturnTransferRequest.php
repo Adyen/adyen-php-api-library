@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\Transfers\ObjectSerializer;
 
 /**
- * Amount Class Doc Comment
+ * ReturnTransferRequest Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\Transfers\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
+class ReturnTransferRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Amount';
+    protected static $openAPIModelName = 'ReturnTransferRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,8 +44,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'currency' => 'string',
-        'value' => 'int'
+        'amount' => '\Adyen\Model\Transfers\Amount',
+        'reference' => 'string'
     ];
 
     /**
@@ -56,8 +56,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'currency' => null,
-        'value' => 'int64'
+        'amount' => null,
+        'reference' => null
     ];
 
     /**
@@ -66,8 +66,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'currency' => false,
-        'value' => false
+        'amount' => false,
+        'reference' => false
     ];
 
     /**
@@ -156,8 +156,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'currency' => 'currency',
-        'value' => 'value'
+        'amount' => 'amount',
+        'reference' => 'reference'
     ];
 
     /**
@@ -166,8 +166,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'currency' => 'setCurrency',
-        'value' => 'setValue'
+        'amount' => 'setAmount',
+        'reference' => 'setReference'
     ];
 
     /**
@@ -176,8 +176,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'currency' => 'getCurrency',
-        'value' => 'getValue'
+        'amount' => 'getAmount',
+        'reference' => 'getReference'
     ];
 
     /**
@@ -237,8 +237,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('currency', $data ?? [], null);
-        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('amount', $data ?? [], null);
+        $this->setIfExists('reference', $data ?? [], null);
     }
 
     /**
@@ -268,11 +268,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['currency'] === null) {
-            $invalidProperties[] = "'currency' can't be null";
-        }
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
+        if ($this->container['amount'] === null) {
+            $invalidProperties[] = "'amount' can't be null";
         }
         return $invalidProperties;
     }
@@ -290,55 +287,55 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets currency
+     * Gets amount
      *
-     * @return string
+     * @return \Adyen\Model\Transfers\Amount
      */
-    public function getCurrency()
+    public function getAmount()
     {
-        return $this->container['currency'];
+        return $this->container['amount'];
     }
 
     /**
-     * Sets currency
+     * Sets amount
      *
-     * @param string $currency The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
+     * @param \Adyen\Model\Transfers\Amount $amount amount
      *
      * @return self
      */
-    public function setCurrency($currency)
+    public function setAmount($amount)
     {
-        if (is_null($currency)) {
-            throw new \InvalidArgumentException('non-nullable currency cannot be null');
+        if (is_null($amount)) {
+            throw new \InvalidArgumentException('non-nullable amount cannot be null');
         }
-        $this->container['currency'] = $currency;
+        $this->container['amount'] = $amount;
 
         return $this;
     }
 
     /**
-     * Gets value
+     * Gets reference
      *
-     * @return int
+     * @return string|null
      */
-    public function getValue()
+    public function getReference()
     {
-        return $this->container['value'];
+        return $this->container['reference'];
     }
 
     /**
-     * Sets value
+     * Sets reference
      *
-     * @param int $value The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+     * @param string|null $reference Your internal reference for the return. If you don't provide this in the request, Adyen generates a unique reference. This reference is used in all communication with you about the instruction status.  We recommend using a unique value per instruction. If you need to provide multiple references for a transaction, separate them with hyphens (\"-\").
      *
      * @return self
      */
-    public function setValue($value)
+    public function setReference($reference)
     {
-        if (is_null($value)) {
-            throw new \InvalidArgumentException('non-nullable value cannot be null');
+        if (is_null($reference)) {
+            throw new \InvalidArgumentException('non-nullable reference cannot be null');
         }
-        $this->container['value'] = $value;
+        $this->container['reference'] = $reference;
 
         return $this;
     }

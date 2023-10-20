@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\Transfers\ObjectSerializer;
 
 /**
- * Amount Class Doc Comment
+ * PartyIdentification Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\Transfers\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
+class PartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Amount';
+    protected static $openAPIModelName = 'PartyIdentification';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,8 +44,13 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'currency' => 'string',
-        'value' => 'int'
+        'address' => '\Adyen\Model\Transfers\Address',
+        'dateOfBirth' => '\DateTime',
+        'firstName' => 'string',
+        'fullName' => 'string',
+        'lastName' => 'string',
+        'reference' => 'string',
+        'type' => 'string'
     ];
 
     /**
@@ -56,8 +61,13 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'currency' => null,
-        'value' => 'int64'
+        'address' => null,
+        'dateOfBirth' => 'date',
+        'firstName' => null,
+        'fullName' => null,
+        'lastName' => null,
+        'reference' => null,
+        'type' => null
     ];
 
     /**
@@ -66,8 +76,13 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'currency' => false,
-        'value' => false
+        'address' => false,
+        'dateOfBirth' => false,
+        'firstName' => false,
+        'fullName' => false,
+        'lastName' => false,
+        'reference' => false,
+        'type' => false
     ];
 
     /**
@@ -156,8 +171,13 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'currency' => 'currency',
-        'value' => 'value'
+        'address' => 'address',
+        'dateOfBirth' => 'dateOfBirth',
+        'firstName' => 'firstName',
+        'fullName' => 'fullName',
+        'lastName' => 'lastName',
+        'reference' => 'reference',
+        'type' => 'type'
     ];
 
     /**
@@ -166,8 +186,13 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'currency' => 'setCurrency',
-        'value' => 'setValue'
+        'address' => 'setAddress',
+        'dateOfBirth' => 'setDateOfBirth',
+        'firstName' => 'setFirstName',
+        'fullName' => 'setFullName',
+        'lastName' => 'setLastName',
+        'reference' => 'setReference',
+        'type' => 'setType'
     ];
 
     /**
@@ -176,8 +201,13 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'currency' => 'getCurrency',
-        'value' => 'getValue'
+        'address' => 'getAddress',
+        'dateOfBirth' => 'getDateOfBirth',
+        'firstName' => 'getFirstName',
+        'fullName' => 'getFullName',
+        'lastName' => 'getLastName',
+        'reference' => 'getReference',
+        'type' => 'getType'
     ];
 
     /**
@@ -221,7 +251,23 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const TYPE_INDIVIDUAL = 'individual';
+    public const TYPE_ORGANIZATION = 'organization';
+    public const TYPE_UNKNOWN = 'unknown';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_INDIVIDUAL,
+            self::TYPE_ORGANIZATION,
+            self::TYPE_UNKNOWN,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -237,8 +283,13 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('currency', $data ?? [], null);
-        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('address', $data ?? [], null);
+        $this->setIfExists('dateOfBirth', $data ?? [], null);
+        $this->setIfExists('firstName', $data ?? [], null);
+        $this->setIfExists('fullName', $data ?? [], null);
+        $this->setIfExists('lastName', $data ?? [], null);
+        $this->setIfExists('reference', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], 'unknown');
     }
 
     /**
@@ -268,12 +319,18 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['currency'] === null) {
-            $invalidProperties[] = "'currency' can't be null";
+        if ($this->container['fullName'] === null) {
+            $invalidProperties[] = "'fullName' can't be null";
         }
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
         }
+
         return $invalidProperties;
     }
 
@@ -290,55 +347,200 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets currency
+     * Gets address
      *
-     * @return string
+     * @return \Adyen\Model\Transfers\Address|null
      */
-    public function getCurrency()
+    public function getAddress()
     {
-        return $this->container['currency'];
+        return $this->container['address'];
     }
 
     /**
-     * Sets currency
+     * Sets address
      *
-     * @param string $currency The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
+     * @param \Adyen\Model\Transfers\Address|null $address address
      *
      * @return self
      */
-    public function setCurrency($currency)
+    public function setAddress($address)
     {
-        if (is_null($currency)) {
-            throw new \InvalidArgumentException('non-nullable currency cannot be null');
+        if (is_null($address)) {
+            throw new \InvalidArgumentException('non-nullable address cannot be null');
         }
-        $this->container['currency'] = $currency;
+        $this->container['address'] = $address;
 
         return $this;
     }
 
     /**
-     * Gets value
+     * Gets dateOfBirth
      *
-     * @return int
+     * @return \DateTime|null
      */
-    public function getValue()
+    public function getDateOfBirth()
     {
-        return $this->container['value'];
+        return $this->container['dateOfBirth'];
     }
 
     /**
-     * Sets value
+     * Sets dateOfBirth
      *
-     * @param int $value The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+     * @param \DateTime|null $dateOfBirth The date of birth of the individual in [ISO-8601](https://www.w3.org/TR/NOTE-datetime) format. For example, **YYYY-MM-DD**. Should not be before January 1, 1900.  Allowed only when `type` is **individual**.
      *
      * @return self
      */
-    public function setValue($value)
+    public function setDateOfBirth($dateOfBirth)
     {
-        if (is_null($value)) {
-            throw new \InvalidArgumentException('non-nullable value cannot be null');
+        if (is_null($dateOfBirth)) {
+            throw new \InvalidArgumentException('non-nullable dateOfBirth cannot be null');
         }
-        $this->container['value'] = $value;
+        $this->container['dateOfBirth'] = $dateOfBirth;
+
+        return $this;
+    }
+
+    /**
+     * Gets firstName
+     *
+     * @return string|null
+     */
+    public function getFirstName()
+    {
+        return $this->container['firstName'];
+    }
+
+    /**
+     * Sets firstName
+     *
+     * @param string|null $firstName First name of the individual.  Allowed only when `type` is **individual**.
+     *
+     * @return self
+     */
+    public function setFirstName($firstName)
+    {
+        if (is_null($firstName)) {
+            throw new \InvalidArgumentException('non-nullable firstName cannot be null');
+        }
+        $this->container['firstName'] = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * Gets fullName
+     *
+     * @return string
+     */
+    public function getFullName()
+    {
+        return $this->container['fullName'];
+    }
+
+    /**
+     * Sets fullName
+     *
+     * @param string $fullName The name of the entity.
+     *
+     * @return self
+     */
+    public function setFullName($fullName)
+    {
+        if (is_null($fullName)) {
+            throw new \InvalidArgumentException('non-nullable fullName cannot be null');
+        }
+        $this->container['fullName'] = $fullName;
+
+        return $this;
+    }
+
+    /**
+     * Gets lastName
+     *
+     * @return string|null
+     */
+    public function getLastName()
+    {
+        return $this->container['lastName'];
+    }
+
+    /**
+     * Sets lastName
+     *
+     * @param string|null $lastName Last name of the individual.  Allowed only when `type` is **individual**.
+     *
+     * @return self
+     */
+    public function setLastName($lastName)
+    {
+        if (is_null($lastName)) {
+            throw new \InvalidArgumentException('non-nullable lastName cannot be null');
+        }
+        $this->container['lastName'] = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Gets reference
+     *
+     * @return string|null
+     */
+    public function getReference()
+    {
+        return $this->container['reference'];
+    }
+
+    /**
+     * Sets reference
+     *
+     * @param string|null $reference A unique reference to identify the party or counterparty involved in transfers. This identifier ensures consistency and uniqueness throughout all transactions initiated to and from the same party. For example, your client's unique wallet or payee ID.
+     *
+     * @return self
+     */
+    public function setReference($reference)
+    {
+        if (is_null($reference)) {
+            throw new \InvalidArgumentException('non-nullable reference cannot be null');
+        }
+        $this->container['reference'] = $reference;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string|null
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string|null $type The type of entity that owns the bank account.   Possible values: **individual**, **organization**, or **unknown**.
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
 
         return $this;
     }

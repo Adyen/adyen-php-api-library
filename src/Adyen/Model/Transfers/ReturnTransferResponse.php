@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\Transfers\ObjectSerializer;
 
 /**
- * Amount Class Doc Comment
+ * ReturnTransferResponse Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\Transfers\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
+class ReturnTransferResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Amount';
+    protected static $openAPIModelName = 'ReturnTransferResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,8 +44,10 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'currency' => 'string',
-        'value' => 'int'
+        'id' => 'string',
+        'reference' => 'string',
+        'status' => 'string',
+        'transferId' => 'string'
     ];
 
     /**
@@ -56,8 +58,10 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'currency' => null,
-        'value' => 'int64'
+        'id' => null,
+        'reference' => null,
+        'status' => null,
+        'transferId' => null
     ];
 
     /**
@@ -66,8 +70,10 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'currency' => false,
-        'value' => false
+        'id' => false,
+        'reference' => false,
+        'status' => false,
+        'transferId' => false
     ];
 
     /**
@@ -156,8 +162,10 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'currency' => 'currency',
-        'value' => 'value'
+        'id' => 'id',
+        'reference' => 'reference',
+        'status' => 'status',
+        'transferId' => 'transferId'
     ];
 
     /**
@@ -166,8 +174,10 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'currency' => 'setCurrency',
-        'value' => 'setValue'
+        'id' => 'setId',
+        'reference' => 'setReference',
+        'status' => 'setStatus',
+        'transferId' => 'setTransferId'
     ];
 
     /**
@@ -176,8 +186,10 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'currency' => 'getCurrency',
-        'value' => 'getValue'
+        'id' => 'getId',
+        'reference' => 'getReference',
+        'status' => 'getStatus',
+        'transferId' => 'getTransferId'
     ];
 
     /**
@@ -221,7 +233,21 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const STATUS_AUTHORISED = 'Authorised';
+    public const STATUS_DECLINED = 'Declined';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getStatusAllowableValues()
+    {
+        return [
+            self::STATUS_AUTHORISED,
+            self::STATUS_DECLINED,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -237,8 +263,10 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('currency', $data ?? [], null);
-        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('reference', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('transferId', $data ?? [], null);
     }
 
     /**
@@ -268,12 +296,15 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['currency'] === null) {
-            $invalidProperties[] = "'currency' can't be null";
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'status', must be one of '%s'",
+                $this->container['status'],
+                implode("', '", $allowedValues)
+            );
         }
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
-        }
+
         return $invalidProperties;
     }
 
@@ -290,55 +321,119 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets currency
+     * Gets id
      *
-     * @return string
+     * @return string|null
      */
-    public function getCurrency()
+    public function getId()
     {
-        return $this->container['currency'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets currency
+     * Sets id
      *
-     * @param string $currency The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
+     * @param string|null $id The unique identifier of the return.
      *
      * @return self
      */
-    public function setCurrency($currency)
+    public function setId($id)
     {
-        if (is_null($currency)) {
-            throw new \InvalidArgumentException('non-nullable currency cannot be null');
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
-        $this->container['currency'] = $currency;
+        $this->container['id'] = $id;
 
         return $this;
     }
 
     /**
-     * Gets value
+     * Gets reference
      *
-     * @return int
+     * @return string|null
      */
-    public function getValue()
+    public function getReference()
     {
-        return $this->container['value'];
+        return $this->container['reference'];
     }
 
     /**
-     * Sets value
+     * Sets reference
      *
-     * @param int $value The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+     * @param string|null $reference Your internal reference for the return.
      *
      * @return self
      */
-    public function setValue($value)
+    public function setReference($reference)
     {
-        if (is_null($value)) {
-            throw new \InvalidArgumentException('non-nullable value cannot be null');
+        if (is_null($reference)) {
+            throw new \InvalidArgumentException('non-nullable reference cannot be null');
         }
-        $this->container['value'] = $value;
+        $this->container['reference'] = $reference;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return string|null
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     *
+     * @param string|null $status The resulting status of the return.  For example: **authorised**, **booked**, **error**.
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        }
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!in_array($status, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    $status,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets transferId
+     *
+     * @return string|null
+     */
+    public function getTransferId()
+    {
+        return $this->container['transferId'];
+    }
+
+    /**
+     * Sets transferId
+     *
+     * @param string|null $transferId The unique identifier of the original transfer.
+     *
+     * @return self
+     */
+    public function setTransferId($transferId)
+    {
+        if (is_null($transferId)) {
+            throw new \InvalidArgumentException('non-nullable transferId cannot be null');
+        }
+        $this->container['transferId'] = $transferId;
 
         return $this;
     }

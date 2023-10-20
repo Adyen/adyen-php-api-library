@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\Transfers\ObjectSerializer;
 
 /**
- * Amount Class Doc Comment
+ * TransferData Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\Transfers\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
+class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Amount';
+    protected static $openAPIModelName = 'TransferData';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,8 +44,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'currency' => 'string',
-        'value' => 'int'
+        'id' => 'string',
+        'reference' => 'string'
     ];
 
     /**
@@ -56,8 +56,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'currency' => null,
-        'value' => 'int64'
+        'id' => null,
+        'reference' => null
     ];
 
     /**
@@ -66,8 +66,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'currency' => false,
-        'value' => false
+        'id' => false,
+        'reference' => false
     ];
 
     /**
@@ -156,8 +156,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'currency' => 'currency',
-        'value' => 'value'
+        'id' => 'id',
+        'reference' => 'reference'
     ];
 
     /**
@@ -166,8 +166,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'currency' => 'setCurrency',
-        'value' => 'setValue'
+        'id' => 'setId',
+        'reference' => 'setReference'
     ];
 
     /**
@@ -176,8 +176,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'currency' => 'getCurrency',
-        'value' => 'getValue'
+        'id' => 'getId',
+        'reference' => 'getReference'
     ];
 
     /**
@@ -237,8 +237,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('currency', $data ?? [], null);
-        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('reference', $data ?? [], null);
     }
 
     /**
@@ -268,11 +268,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['currency'] === null) {
-            $invalidProperties[] = "'currency' can't be null";
-        }
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
+        if ($this->container['reference'] === null) {
+            $invalidProperties[] = "'reference' can't be null";
         }
         return $invalidProperties;
     }
@@ -290,55 +287,55 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets currency
+     * Gets id
      *
-     * @return string
+     * @return string|null
      */
-    public function getCurrency()
+    public function getId()
     {
-        return $this->container['currency'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets currency
+     * Sets id
      *
-     * @param string $currency The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
+     * @param string|null $id The ID of the resource.
      *
      * @return self
      */
-    public function setCurrency($currency)
+    public function setId($id)
     {
-        if (is_null($currency)) {
-            throw new \InvalidArgumentException('non-nullable currency cannot be null');
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
-        $this->container['currency'] = $currency;
+        $this->container['id'] = $id;
 
         return $this;
     }
 
     /**
-     * Gets value
+     * Gets reference
      *
-     * @return int
+     * @return string
      */
-    public function getValue()
+    public function getReference()
     {
-        return $this->container['value'];
+        return $this->container['reference'];
     }
 
     /**
-     * Sets value
+     * Sets reference
      *
-     * @param int $value The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+     * @param string $reference The [`reference`](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__reqParam_reference) from the `/transfers` request. If you haven't provided any, Adyen generates a unique reference.
      *
      * @return self
      */
-    public function setValue($value)
+    public function setReference($reference)
     {
-        if (is_null($value)) {
-            throw new \InvalidArgumentException('non-nullable value cannot be null');
+        if (is_null($reference)) {
+            throw new \InvalidArgumentException('non-nullable reference cannot be null');
         }
-        $this->container['value'] = $value;
+        $this->container['reference'] = $reference;
 
         return $this;
     }

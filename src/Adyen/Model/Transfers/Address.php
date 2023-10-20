@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\Transfers\ObjectSerializer;
 
 /**
- * Amount Class Doc Comment
+ * Address Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\Transfers\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
+class Address implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Amount';
+    protected static $openAPIModelName = 'Address';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,8 +44,12 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'currency' => 'string',
-        'value' => 'int'
+        'city' => 'string',
+        'country' => 'string',
+        'line1' => 'string',
+        'line2' => 'string',
+        'postalCode' => 'string',
+        'stateOrProvince' => 'string'
     ];
 
     /**
@@ -56,8 +60,12 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'currency' => null,
-        'value' => 'int64'
+        'city' => null,
+        'country' => null,
+        'line1' => null,
+        'line2' => null,
+        'postalCode' => null,
+        'stateOrProvince' => null
     ];
 
     /**
@@ -66,8 +74,12 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'currency' => false,
-        'value' => false
+        'city' => false,
+        'country' => false,
+        'line1' => false,
+        'line2' => false,
+        'postalCode' => false,
+        'stateOrProvince' => false
     ];
 
     /**
@@ -156,8 +168,12 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'currency' => 'currency',
-        'value' => 'value'
+        'city' => 'city',
+        'country' => 'country',
+        'line1' => 'line1',
+        'line2' => 'line2',
+        'postalCode' => 'postalCode',
+        'stateOrProvince' => 'stateOrProvince'
     ];
 
     /**
@@ -166,8 +182,12 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'currency' => 'setCurrency',
-        'value' => 'setValue'
+        'city' => 'setCity',
+        'country' => 'setCountry',
+        'line1' => 'setLine1',
+        'line2' => 'setLine2',
+        'postalCode' => 'setPostalCode',
+        'stateOrProvince' => 'setStateOrProvince'
     ];
 
     /**
@@ -176,8 +196,12 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'currency' => 'getCurrency',
-        'value' => 'getValue'
+        'city' => 'getCity',
+        'country' => 'getCountry',
+        'line1' => 'getLine1',
+        'line2' => 'getLine2',
+        'postalCode' => 'getPostalCode',
+        'stateOrProvince' => 'getStateOrProvince'
     ];
 
     /**
@@ -237,8 +261,12 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('currency', $data ?? [], null);
-        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('city', $data ?? [], null);
+        $this->setIfExists('country', $data ?? [], null);
+        $this->setIfExists('line1', $data ?? [], null);
+        $this->setIfExists('line2', $data ?? [], null);
+        $this->setIfExists('postalCode', $data ?? [], null);
+        $this->setIfExists('stateOrProvince', $data ?? [], null);
     }
 
     /**
@@ -268,11 +296,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['currency'] === null) {
-            $invalidProperties[] = "'currency' can't be null";
-        }
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
+        if ($this->container['country'] === null) {
+            $invalidProperties[] = "'country' can't be null";
         }
         return $invalidProperties;
     }
@@ -290,55 +315,163 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets currency
+     * Gets city
      *
-     * @return string
+     * @return string|null
      */
-    public function getCurrency()
+    public function getCity()
     {
-        return $this->container['currency'];
+        return $this->container['city'];
     }
 
     /**
-     * Sets currency
+     * Sets city
      *
-     * @param string $currency The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
+     * @param string|null $city The name of the city.
      *
      * @return self
      */
-    public function setCurrency($currency)
+    public function setCity($city)
     {
-        if (is_null($currency)) {
-            throw new \InvalidArgumentException('non-nullable currency cannot be null');
+        if (is_null($city)) {
+            throw new \InvalidArgumentException('non-nullable city cannot be null');
         }
-        $this->container['currency'] = $currency;
+        $this->container['city'] = $city;
 
         return $this;
     }
 
     /**
-     * Gets value
+     * Gets country
      *
-     * @return int
+     * @return string
      */
-    public function getValue()
+    public function getCountry()
     {
-        return $this->container['value'];
+        return $this->container['country'];
     }
 
     /**
-     * Sets value
+     * Sets country
      *
-     * @param int $value The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+     * @param string $country The two-character ISO 3166-1 alpha-2 country code. For example, **US**, **NL**, or **GB**.
      *
      * @return self
      */
-    public function setValue($value)
+    public function setCountry($country)
     {
-        if (is_null($value)) {
-            throw new \InvalidArgumentException('non-nullable value cannot be null');
+        if (is_null($country)) {
+            throw new \InvalidArgumentException('non-nullable country cannot be null');
         }
-        $this->container['value'] = $value;
+        $this->container['country'] = $country;
+
+        return $this;
+    }
+
+    /**
+     * Gets line1
+     *
+     * @return string|null
+     */
+    public function getLine1()
+    {
+        return $this->container['line1'];
+    }
+
+    /**
+     * Sets line1
+     *
+     * @param string|null $line1 First line of the street address.
+     *
+     * @return self
+     */
+    public function setLine1($line1)
+    {
+        if (is_null($line1)) {
+            throw new \InvalidArgumentException('non-nullable line1 cannot be null');
+        }
+        $this->container['line1'] = $line1;
+
+        return $this;
+    }
+
+    /**
+     * Gets line2
+     *
+     * @return string|null
+     */
+    public function getLine2()
+    {
+        return $this->container['line2'];
+    }
+
+    /**
+     * Sets line2
+     *
+     * @param string|null $line2 Second line of the street address.
+     *
+     * @return self
+     */
+    public function setLine2($line2)
+    {
+        if (is_null($line2)) {
+            throw new \InvalidArgumentException('non-nullable line2 cannot be null');
+        }
+        $this->container['line2'] = $line2;
+
+        return $this;
+    }
+
+    /**
+     * Gets postalCode
+     *
+     * @return string|null
+     */
+    public function getPostalCode()
+    {
+        return $this->container['postalCode'];
+    }
+
+    /**
+     * Sets postalCode
+     *
+     * @param string|null $postalCode The postal code. Maximum length: * 5 digits for an address in the US. * 10 characters for an address in all other countries.
+     *
+     * @return self
+     */
+    public function setPostalCode($postalCode)
+    {
+        if (is_null($postalCode)) {
+            throw new \InvalidArgumentException('non-nullable postalCode cannot be null');
+        }
+        $this->container['postalCode'] = $postalCode;
+
+        return $this;
+    }
+
+    /**
+     * Gets stateOrProvince
+     *
+     * @return string|null
+     */
+    public function getStateOrProvince()
+    {
+        return $this->container['stateOrProvince'];
+    }
+
+    /**
+     * Sets stateOrProvince
+     *
+     * @param string|null $stateOrProvince The two-letter ISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada. > Required for the US and Canada.
+     *
+     * @return self
+     */
+    public function setStateOrProvince($stateOrProvince)
+    {
+        if (is_null($stateOrProvince)) {
+            throw new \InvalidArgumentException('non-nullable stateOrProvince cannot be null');
+        }
+        $this->container['stateOrProvince'] = $stateOrProvince;
 
         return $this;
     }

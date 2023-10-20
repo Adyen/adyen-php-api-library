@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\Transfers\ObjectSerializer;
 
 /**
- * Amount Class Doc Comment
+ * BankCategoryData Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\Transfers\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
+class BankCategoryData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Amount';
+    protected static $openAPIModelName = 'BankCategoryData';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,8 +44,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'currency' => 'string',
-        'value' => 'int'
+        'priority' => 'string',
+        'type' => 'string'
     ];
 
     /**
@@ -56,8 +56,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'currency' => null,
-        'value' => 'int64'
+        'priority' => null,
+        'type' => null
     ];
 
     /**
@@ -66,8 +66,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'currency' => false,
-        'value' => false
+        'priority' => false,
+        'type' => false
     ];
 
     /**
@@ -156,8 +156,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'currency' => 'currency',
-        'value' => 'value'
+        'priority' => 'priority',
+        'type' => 'type'
     ];
 
     /**
@@ -166,8 +166,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'currency' => 'setCurrency',
-        'value' => 'setValue'
+        'priority' => 'setPriority',
+        'type' => 'setType'
     ];
 
     /**
@@ -176,8 +176,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'currency' => 'getCurrency',
-        'value' => 'getValue'
+        'priority' => 'getPriority',
+        'type' => 'getType'
     ];
 
     /**
@@ -221,7 +221,41 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const PRIORITY_CROSS_BORDER = 'crossBorder';
+    public const PRIORITY_FAST = 'fast';
+    public const PRIORITY_INSTANT = 'instant';
+    public const PRIORITY_INTERNAL = 'internal';
+    public const PRIORITY_REGULAR = 'regular';
+    public const PRIORITY_WIRE = 'wire';
+    public const TYPE_BANK = 'bank';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getPriorityAllowableValues()
+    {
+        return [
+            self::PRIORITY_CROSS_BORDER,
+            self::PRIORITY_FAST,
+            self::PRIORITY_INSTANT,
+            self::PRIORITY_INTERNAL,
+            self::PRIORITY_REGULAR,
+            self::PRIORITY_WIRE,
+        ];
+    }
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_BANK,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -237,8 +271,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('currency', $data ?? [], null);
-        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('priority', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], 'bank');
     }
 
     /**
@@ -268,12 +302,24 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['currency'] === null) {
-            $invalidProperties[] = "'currency' can't be null";
+        $allowedValues = $this->getPriorityAllowableValues();
+        if (!is_null($this->container['priority']) && !in_array($this->container['priority'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'priority', must be one of '%s'",
+                $this->container['priority'],
+                implode("', '", $allowedValues)
+            );
         }
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
+
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
         }
+
         return $invalidProperties;
     }
 
@@ -290,55 +336,75 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets currency
+     * Gets priority
      *
-     * @return string
+     * @return string|null
      */
-    public function getCurrency()
+    public function getPriority()
     {
-        return $this->container['currency'];
+        return $this->container['priority'];
     }
 
     /**
-     * Sets currency
+     * Sets priority
      *
-     * @param string $currency The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
+     * @param string|null $priority The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with `category` **bank**.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN).
      *
      * @return self
      */
-    public function setCurrency($currency)
+    public function setPriority($priority)
     {
-        if (is_null($currency)) {
-            throw new \InvalidArgumentException('non-nullable currency cannot be null');
+        if (is_null($priority)) {
+            throw new \InvalidArgumentException('non-nullable priority cannot be null');
         }
-        $this->container['currency'] = $currency;
+        $allowedValues = $this->getPriorityAllowableValues();
+        if (!in_array($priority, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'priority', must be one of '%s'",
+                    $priority,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['priority'] = $priority;
 
         return $this;
     }
 
     /**
-     * Gets value
+     * Gets type
      *
-     * @return int
+     * @return string|null
      */
-    public function getValue()
+    public function getType()
     {
-        return $this->container['value'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets value
+     * Sets type
      *
-     * @param int $value The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+     * @param string|null $type **bank**
      *
      * @return self
      */
-    public function setValue($value)
+    public function setType($type)
     {
-        if (is_null($value)) {
-            throw new \InvalidArgumentException('non-nullable value cannot be null');
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
-        $this->container['value'] = $value;
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
 
         return $this;
     }
