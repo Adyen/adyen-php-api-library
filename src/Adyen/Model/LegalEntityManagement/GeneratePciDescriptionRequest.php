@@ -44,6 +44,7 @@ class GeneratePciDescriptionRequest implements ModelInterface, ArrayAccess, \Jso
       * @var string[]
       */
     protected static $openAPITypes = [
+        'additionalSalesChannels' => 'string[]',
         'language' => 'string'
     ];
 
@@ -55,6 +56,7 @@ class GeneratePciDescriptionRequest implements ModelInterface, ArrayAccess, \Jso
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'additionalSalesChannels' => null,
         'language' => null
     ];
 
@@ -64,6 +66,7 @@ class GeneratePciDescriptionRequest implements ModelInterface, ArrayAccess, \Jso
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'additionalSalesChannels' => false,
         'language' => false
     ];
 
@@ -153,6 +156,7 @@ class GeneratePciDescriptionRequest implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $attributeMap = [
+        'additionalSalesChannels' => 'additionalSalesChannels',
         'language' => 'language'
     ];
 
@@ -162,6 +166,7 @@ class GeneratePciDescriptionRequest implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $setters = [
+        'additionalSalesChannels' => 'setAdditionalSalesChannels',
         'language' => 'setLanguage'
     ];
 
@@ -171,6 +176,7 @@ class GeneratePciDescriptionRequest implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $getters = [
+        'additionalSalesChannels' => 'getAdditionalSalesChannels',
         'language' => 'getLanguage'
     ];
 
@@ -215,7 +221,25 @@ class GeneratePciDescriptionRequest implements ModelInterface, ArrayAccess, \Jso
         return self::$openAPIModelName;
     }
 
+    public const ADDITIONAL_SALES_CHANNELS_E_COMMERCE = 'eCommerce';
+    public const ADDITIONAL_SALES_CHANNELS_ECOM_MOTO = 'ecomMoto';
+    public const ADDITIONAL_SALES_CHANNELS_POS = 'pos';
+    public const ADDITIONAL_SALES_CHANNELS_POS_MOTO = 'posMoto';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getAdditionalSalesChannelsAllowableValues()
+    {
+        return [
+            self::ADDITIONAL_SALES_CHANNELS_E_COMMERCE,
+            self::ADDITIONAL_SALES_CHANNELS_ECOM_MOTO,
+            self::ADDITIONAL_SALES_CHANNELS_POS,
+            self::ADDITIONAL_SALES_CHANNELS_POS_MOTO,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -231,6 +255,7 @@ class GeneratePciDescriptionRequest implements ModelInterface, ArrayAccess, \Jso
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('additionalSalesChannels', $data ?? [], null);
         $this->setIfExists('language', $data ?? [], null);
     }
 
@@ -275,6 +300,42 @@ class GeneratePciDescriptionRequest implements ModelInterface, ArrayAccess, \Jso
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets additionalSalesChannels
+     *
+     * @return string[]|null
+     */
+    public function getAdditionalSalesChannels()
+    {
+        return $this->container['additionalSalesChannels'];
+    }
+
+    /**
+     * Sets additionalSalesChannels
+     *
+     * @param string[]|null $additionalSalesChannels An array of additional sales channels to generate PCI questionnaires. Include the relevant sales channels if you need your user to sign PCI questionnaires. Not required if you [create stores](https://docs.adyen.com/marketplaces-and-platforms/additional-for-platform-setup/create-stores/) and [add payment methods](https://docs.adyen.com/marketplaces-and-platforms/payment-methods/) for your user.  Possible values: *  **eCommerce** *  **pos** *  **ecomMoto** *  **posMoto**
+     *
+     * @return self
+     */
+    public function setAdditionalSalesChannels($additionalSalesChannels)
+    {
+        if (is_null($additionalSalesChannels)) {
+            throw new \InvalidArgumentException('non-nullable additionalSalesChannels cannot be null');
+        }
+        $allowedValues = $this->getAdditionalSalesChannelsAllowableValues();
+        if (array_diff($additionalSalesChannels, $allowedValues)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'additionalSalesChannels', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['additionalSalesChannels'] = $additionalSalesChannels;
+
+        return $this;
+    }
 
     /**
      * Gets language

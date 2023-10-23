@@ -596,7 +596,7 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets problems
      *
-     * @param \Adyen\Model\LegalEntityManagement\CapabilityProblem[]|null $problems List of the verification errors from capabilities for the legal entity.
+     * @param \Adyen\Model\LegalEntityManagement\CapabilityProblem[]|null $problems List of verification errors related to capabilities for the legal entity.
      *
      * @return self
      */

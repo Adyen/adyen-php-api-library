@@ -333,7 +333,7 @@ class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets accountNumber
      *
-     * @param string $accountNumber The 9- to 12-character bank account number (alphanumeric), without separators or whitespace. Starts with the 3-digit branch code.
+     * @param string $accountNumber The 9- to 15-character bank account number (alphanumeric), without separators or whitespace. Starts with the 3-digit branch code.
      *
      * @return self
      */

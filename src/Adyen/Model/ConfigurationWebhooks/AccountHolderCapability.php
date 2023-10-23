@@ -52,7 +52,6 @@ class AccountHolderCapability implements ModelInterface, ArrayAccess, \JsonSeria
         'requested' => 'bool',
         'requestedLevel' => 'string',
         'requestedSettings' => '\Adyen\Model\ConfigurationWebhooks\CapabilitySettings',
-        'transferInstruments' => '\Adyen\Model\ConfigurationWebhooks\AccountSupportingEntityCapability[]',
         'verificationStatus' => 'string'
     ];
 
@@ -72,7 +71,6 @@ class AccountHolderCapability implements ModelInterface, ArrayAccess, \JsonSeria
         'requested' => null,
         'requestedLevel' => null,
         'requestedSettings' => null,
-        'transferInstruments' => null,
         'verificationStatus' => null
     ];
 
@@ -90,7 +88,6 @@ class AccountHolderCapability implements ModelInterface, ArrayAccess, \JsonSeria
         'requested' => false,
         'requestedLevel' => false,
         'requestedSettings' => false,
-        'transferInstruments' => false,
         'verificationStatus' => false
     ];
 
@@ -188,7 +185,6 @@ class AccountHolderCapability implements ModelInterface, ArrayAccess, \JsonSeria
         'requested' => 'requested',
         'requestedLevel' => 'requestedLevel',
         'requestedSettings' => 'requestedSettings',
-        'transferInstruments' => 'transferInstruments',
         'verificationStatus' => 'verificationStatus'
     ];
 
@@ -206,7 +202,6 @@ class AccountHolderCapability implements ModelInterface, ArrayAccess, \JsonSeria
         'requested' => 'setRequested',
         'requestedLevel' => 'setRequestedLevel',
         'requestedSettings' => 'setRequestedSettings',
-        'transferInstruments' => 'setTransferInstruments',
         'verificationStatus' => 'setVerificationStatus'
     ];
 
@@ -224,7 +219,6 @@ class AccountHolderCapability implements ModelInterface, ArrayAccess, \JsonSeria
         'requested' => 'getRequested',
         'requestedLevel' => 'getRequestedLevel',
         'requestedSettings' => 'getRequestedSettings',
-        'transferInstruments' => 'getTransferInstruments',
         'verificationStatus' => 'getVerificationStatus'
     ];
 
@@ -347,7 +341,6 @@ class AccountHolderCapability implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('requested', $data ?? [], null);
         $this->setIfExists('requestedLevel', $data ?? [], null);
         $this->setIfExists('requestedSettings', $data ?? [], null);
-        $this->setIfExists('transferInstruments', $data ?? [], null);
         $this->setIfExists('verificationStatus', $data ?? [], null);
     }
 
@@ -652,33 +645,6 @@ class AccountHolderCapability implements ModelInterface, ArrayAccess, \JsonSeria
             throw new \InvalidArgumentException('non-nullable requestedSettings cannot be null');
         }
         $this->container['requestedSettings'] = $requestedSettings;
-
-        return $this;
-    }
-
-    /**
-     * Gets transferInstruments
-     *
-     * @return \Adyen\Model\ConfigurationWebhooks\AccountSupportingEntityCapability[]|null
-     */
-    public function getTransferInstruments()
-    {
-        return $this->container['transferInstruments'];
-    }
-
-    /**
-     * Sets transferInstruments
-     *
-     * @param \Adyen\Model\ConfigurationWebhooks\AccountSupportingEntityCapability[]|null $transferInstruments Contains the status of the transfer instruments associated with this capability.
-     *
-     * @return self
-     */
-    public function setTransferInstruments($transferInstruments)
-    {
-        if (is_null($transferInstruments)) {
-            throw new \InvalidArgumentException('non-nullable transferInstruments cannot be null');
-        }
-        $this->container['transferInstruments'] = $transferInstruments;
 
         return $this;
     }
