@@ -44,7 +44,7 @@ class SubMerchantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'address' => '\Adyen\Model\Checkout\Address',
+        'address' => '\Adyen\Model\Checkout\BillingAddress',
         'id' => 'string',
         'mcc' => 'string',
         'name' => 'string',
@@ -307,7 +307,7 @@ class SubMerchantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets address
      *
-     * @return \Adyen\Model\Checkout\Address|null
+     * @return \Adyen\Model\Checkout\BillingAddress|null
      */
     public function getAddress()
     {
@@ -317,7 +317,7 @@ class SubMerchantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets address
      *
-     * @param \Adyen\Model\Checkout\Address|null $address address
+     * @param \Adyen\Model\Checkout\BillingAddress|null $address address
      *
      * @return self
      */

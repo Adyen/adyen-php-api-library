@@ -110,4 +110,18 @@ class MyAPICredentialApi extends Service
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $createAllowedOriginRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Management\AllowedOrigin::class);
     }
+
+    /**
+    * Generate new client key for self
+    *
+    * @param array|null $requestOptions
+    * @return \Adyen\Model\Management\GenerateClientKeyResponse
+    * @throws AdyenException
+    */
+    public function generateNewClientKeyForSelf(array $requestOptions = null): \Adyen\Model\Management\GenerateClientKeyResponse
+    {
+        $endpoint = $this->baseURL . "/me/generateClientKey";
+        $response = $this->requestHttp($endpoint, strtolower('POST'), null, $requestOptions);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\Management\GenerateClientKeyResponse::class);
+    }
 }

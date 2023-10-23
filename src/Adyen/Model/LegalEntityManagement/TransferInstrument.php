@@ -393,7 +393,7 @@ class TransferInstrument implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets capabilities
      *
-     * @param array<string,\Adyen\Model\LegalEntityManagement\SupportingEntityCapability>|null $capabilities List of capabilities for this supporting entity.
+     * @param array<string,\Adyen\Model\LegalEntityManagement\SupportingEntityCapability>|null $capabilities List of capabilities for this transfer instrument.
      *
      * @return self
      */
@@ -501,7 +501,7 @@ class TransferInstrument implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets problems
      *
-     * @param \Adyen\Model\LegalEntityManagement\CapabilityProblem[]|null $problems List of the verification errors from capabilities for this supporting entity.
+     * @param \Adyen\Model\LegalEntityManagement\CapabilityProblem[]|null $problems The verification errors related to capabilities for this transfer instrument.
      *
      * @return self
      */

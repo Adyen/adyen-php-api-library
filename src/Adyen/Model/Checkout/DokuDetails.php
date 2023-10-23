@@ -248,6 +248,8 @@ class DokuDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_BCA_VA = 'doku_bca_va';
     public const TYPE_ALFAMART = 'doku_alfamart';
     public const TYPE_INDOMARET = 'doku_indomaret';
+    public const TYPE_WALLET = 'doku_wallet';
+    public const TYPE_OVO = 'doku_ovo';
 
     /**
      * Gets allowable values of the enum
@@ -266,6 +268,8 @@ class DokuDetails implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_BCA_VA,
             self::TYPE_ALFAMART,
             self::TYPE_INDOMARET,
+            self::TYPE_WALLET,
+            self::TYPE_OVO,
         ];
     }
     /**

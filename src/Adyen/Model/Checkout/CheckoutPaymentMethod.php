@@ -45,26 +45,12 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var string[]
       */
     protected static $openAPITypes = [
-        'bankAccountNumber' => 'string',
-        'bankAccountType' => 'string',
-        'bankLocationId' => 'string',
+        'applePayToken' => 'string',
         'checkoutAttemptId' => 'string',
-        'encryptedBankAccountNumber' => 'string',
-        'encryptedBankLocationId' => 'string',
-        'ownerName' => 'string',
+        'fundingSource' => 'string',
         'recurringDetailReference' => 'string',
         'storedPaymentMethodId' => 'string',
         'type' => 'string',
-        'billingAddress' => 'string',
-        'deliveryAddress' => 'string',
-        'personalDetails' => 'string',
-        'amazonPayToken' => 'string',
-        'checkoutSessionId' => 'string',
-        'applePayToken' => 'string',
-        'fundingSource' => 'string',
-        'holderName' => 'string',
-        'issuer' => 'string',
-        'blikCode' => 'string',
         'brand' => 'string',
         'cupsecureplusSmscode' => 'string',
         'cvc' => 'string',
@@ -74,29 +60,13 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedSecurityCode' => 'string',
         'expiryMonth' => 'string',
         'expiryYear' => 'string',
+        'holderName' => 'string',
         'networkPaymentReference' => 'string',
         'number' => 'string',
         'shopperNotificationReference' => 'string',
         'threeDS2SdkVersion' => 'string',
-        'firstName' => 'string',
-        'lastName' => 'string',
-        'shopperEmail' => 'string',
-        'telephoneNumber' => 'string',
         'googlePayToken' => 'string',
-        'subtype' => 'string',
-        'masterpassTransactionId' => 'string',
-        'orderID' => 'string',
-        'payeePreferred' => 'string',
-        'payerID' => 'string',
-        'payerSelected' => 'string',
-        'virtualPaymentAddress' => 'string',
-        'samsungPayToken' => 'string',
-        'iban' => 'string',
-        'billingSequenceNumber' => 'string',
-        'visaCheckoutCallId' => 'string',
-        'appId' => 'string',
-        'openid' => 'string',
-        'clickAndCollect' => 'string'
+        'issuer' => 'string'
     ];
 
     /**
@@ -107,26 +77,12 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'bankAccountNumber' => null,
-        'bankAccountType' => null,
-        'bankLocationId' => null,
+        'applePayToken' => null,
         'checkoutAttemptId' => null,
-        'encryptedBankAccountNumber' => null,
-        'encryptedBankLocationId' => null,
-        'ownerName' => null,
+        'fundingSource' => null,
         'recurringDetailReference' => null,
         'storedPaymentMethodId' => null,
         'type' => null,
-        'billingAddress' => null,
-        'deliveryAddress' => null,
-        'personalDetails' => null,
-        'amazonPayToken' => null,
-        'checkoutSessionId' => null,
-        'applePayToken' => null,
-        'fundingSource' => null,
-        'holderName' => null,
-        'issuer' => null,
-        'blikCode' => null,
         'brand' => null,
         'cupsecureplusSmscode' => null,
         'cvc' => null,
@@ -136,29 +92,13 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedSecurityCode' => null,
         'expiryMonth' => null,
         'expiryYear' => null,
+        'holderName' => null,
         'networkPaymentReference' => null,
         'number' => null,
         'shopperNotificationReference' => null,
         'threeDS2SdkVersion' => null,
-        'firstName' => null,
-        'lastName' => null,
-        'shopperEmail' => null,
-        'telephoneNumber' => null,
         'googlePayToken' => null,
-        'subtype' => null,
-        'masterpassTransactionId' => null,
-        'orderID' => null,
-        'payeePreferred' => null,
-        'payerID' => null,
-        'payerSelected' => null,
-        'virtualPaymentAddress' => null,
-        'samsungPayToken' => null,
-        'iban' => null,
-        'billingSequenceNumber' => null,
-        'visaCheckoutCallId' => null,
-        'appId' => null,
-        'openid' => null,
-        'clickAndCollect' => null
+        'issuer' => null
     ];
 
     /**
@@ -167,26 +107,12 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'bankAccountNumber' => false,
-        'bankAccountType' => false,
-        'bankLocationId' => false,
+        'applePayToken' => false,
         'checkoutAttemptId' => false,
-        'encryptedBankAccountNumber' => false,
-        'encryptedBankLocationId' => false,
-        'ownerName' => false,
+        'fundingSource' => false,
         'recurringDetailReference' => false,
         'storedPaymentMethodId' => false,
         'type' => false,
-        'billingAddress' => false,
-        'deliveryAddress' => false,
-        'personalDetails' => false,
-        'amazonPayToken' => false,
-        'checkoutSessionId' => false,
-        'applePayToken' => false,
-        'fundingSource' => false,
-        'holderName' => false,
-        'issuer' => false,
-        'blikCode' => false,
         'brand' => false,
         'cupsecureplusSmscode' => false,
         'cvc' => false,
@@ -196,29 +122,13 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedSecurityCode' => false,
         'expiryMonth' => false,
         'expiryYear' => false,
+        'holderName' => false,
         'networkPaymentReference' => false,
         'number' => false,
         'shopperNotificationReference' => false,
         'threeDS2SdkVersion' => false,
-        'firstName' => false,
-        'lastName' => false,
-        'shopperEmail' => false,
-        'telephoneNumber' => false,
         'googlePayToken' => false,
-        'subtype' => false,
-        'masterpassTransactionId' => false,
-        'orderID' => false,
-        'payeePreferred' => false,
-        'payerID' => false,
-        'payerSelected' => false,
-        'virtualPaymentAddress' => false,
-        'samsungPayToken' => false,
-        'iban' => false,
-        'billingSequenceNumber' => false,
-        'visaCheckoutCallId' => false,
-        'appId' => false,
-        'openid' => false,
-        'clickAndCollect' => false
+        'issuer' => false
     ];
 
     /**
@@ -307,26 +217,12 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $attributeMap = [
-        'bankAccountNumber' => 'bankAccountNumber',
-        'bankAccountType' => 'bankAccountType',
-        'bankLocationId' => 'bankLocationId',
+        'applePayToken' => 'applePayToken',
         'checkoutAttemptId' => 'checkoutAttemptId',
-        'encryptedBankAccountNumber' => 'encryptedBankAccountNumber',
-        'encryptedBankLocationId' => 'encryptedBankLocationId',
-        'ownerName' => 'ownerName',
+        'fundingSource' => 'fundingSource',
         'recurringDetailReference' => 'recurringDetailReference',
         'storedPaymentMethodId' => 'storedPaymentMethodId',
         'type' => 'type',
-        'billingAddress' => 'billingAddress',
-        'deliveryAddress' => 'deliveryAddress',
-        'personalDetails' => 'personalDetails',
-        'amazonPayToken' => 'amazonPayToken',
-        'checkoutSessionId' => 'checkoutSessionId',
-        'applePayToken' => 'applePayToken',
-        'fundingSource' => 'fundingSource',
-        'holderName' => 'holderName',
-        'issuer' => 'issuer',
-        'blikCode' => 'blikCode',
         'brand' => 'brand',
         'cupsecureplusSmscode' => 'cupsecureplus.smscode',
         'cvc' => 'cvc',
@@ -336,29 +232,13 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedSecurityCode' => 'encryptedSecurityCode',
         'expiryMonth' => 'expiryMonth',
         'expiryYear' => 'expiryYear',
+        'holderName' => 'holderName',
         'networkPaymentReference' => 'networkPaymentReference',
         'number' => 'number',
         'shopperNotificationReference' => 'shopperNotificationReference',
         'threeDS2SdkVersion' => 'threeDS2SdkVersion',
-        'firstName' => 'firstName',
-        'lastName' => 'lastName',
-        'shopperEmail' => 'shopperEmail',
-        'telephoneNumber' => 'telephoneNumber',
         'googlePayToken' => 'googlePayToken',
-        'subtype' => 'subtype',
-        'masterpassTransactionId' => 'masterpassTransactionId',
-        'orderID' => 'orderID',
-        'payeePreferred' => 'payeePreferred',
-        'payerID' => 'payerID',
-        'payerSelected' => 'payerSelected',
-        'virtualPaymentAddress' => 'virtualPaymentAddress',
-        'samsungPayToken' => 'samsungPayToken',
-        'iban' => 'iban',
-        'billingSequenceNumber' => 'billingSequenceNumber',
-        'visaCheckoutCallId' => 'visaCheckoutCallId',
-        'appId' => 'appId',
-        'openid' => 'openid',
-        'clickAndCollect' => 'clickAndCollect'
+        'issuer' => 'issuer'
     ];
 
     /**
@@ -367,26 +247,12 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $setters = [
-        'bankAccountNumber' => 'setBankAccountNumber',
-        'bankAccountType' => 'setBankAccountType',
-        'bankLocationId' => 'setBankLocationId',
+        'applePayToken' => 'setApplePayToken',
         'checkoutAttemptId' => 'setCheckoutAttemptId',
-        'encryptedBankAccountNumber' => 'setEncryptedBankAccountNumber',
-        'encryptedBankLocationId' => 'setEncryptedBankLocationId',
-        'ownerName' => 'setOwnerName',
+        'fundingSource' => 'setFundingSource',
         'recurringDetailReference' => 'setRecurringDetailReference',
         'storedPaymentMethodId' => 'setStoredPaymentMethodId',
         'type' => 'setType',
-        'billingAddress' => 'setBillingAddress',
-        'deliveryAddress' => 'setDeliveryAddress',
-        'personalDetails' => 'setPersonalDetails',
-        'amazonPayToken' => 'setAmazonPayToken',
-        'checkoutSessionId' => 'setCheckoutSessionId',
-        'applePayToken' => 'setApplePayToken',
-        'fundingSource' => 'setFundingSource',
-        'holderName' => 'setHolderName',
-        'issuer' => 'setIssuer',
-        'blikCode' => 'setBlikCode',
         'brand' => 'setBrand',
         'cupsecureplusSmscode' => 'setCupsecureplusSmscode',
         'cvc' => 'setCvc',
@@ -396,29 +262,13 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedSecurityCode' => 'setEncryptedSecurityCode',
         'expiryMonth' => 'setExpiryMonth',
         'expiryYear' => 'setExpiryYear',
+        'holderName' => 'setHolderName',
         'networkPaymentReference' => 'setNetworkPaymentReference',
         'number' => 'setNumber',
         'shopperNotificationReference' => 'setShopperNotificationReference',
         'threeDS2SdkVersion' => 'setThreeDS2SdkVersion',
-        'firstName' => 'setFirstName',
-        'lastName' => 'setLastName',
-        'shopperEmail' => 'setShopperEmail',
-        'telephoneNumber' => 'setTelephoneNumber',
         'googlePayToken' => 'setGooglePayToken',
-        'subtype' => 'setSubtype',
-        'masterpassTransactionId' => 'setMasterpassTransactionId',
-        'orderID' => 'setOrderID',
-        'payeePreferred' => 'setPayeePreferred',
-        'payerID' => 'setPayerID',
-        'payerSelected' => 'setPayerSelected',
-        'virtualPaymentAddress' => 'setVirtualPaymentAddress',
-        'samsungPayToken' => 'setSamsungPayToken',
-        'iban' => 'setIban',
-        'billingSequenceNumber' => 'setBillingSequenceNumber',
-        'visaCheckoutCallId' => 'setVisaCheckoutCallId',
-        'appId' => 'setAppId',
-        'openid' => 'setOpenid',
-        'clickAndCollect' => 'setClickAndCollect'
+        'issuer' => 'setIssuer'
     ];
 
     /**
@@ -427,26 +277,12 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $getters = [
-        'bankAccountNumber' => 'getBankAccountNumber',
-        'bankAccountType' => 'getBankAccountType',
-        'bankLocationId' => 'getBankLocationId',
+        'applePayToken' => 'getApplePayToken',
         'checkoutAttemptId' => 'getCheckoutAttemptId',
-        'encryptedBankAccountNumber' => 'getEncryptedBankAccountNumber',
-        'encryptedBankLocationId' => 'getEncryptedBankLocationId',
-        'ownerName' => 'getOwnerName',
+        'fundingSource' => 'getFundingSource',
         'recurringDetailReference' => 'getRecurringDetailReference',
         'storedPaymentMethodId' => 'getStoredPaymentMethodId',
         'type' => 'getType',
-        'billingAddress' => 'getBillingAddress',
-        'deliveryAddress' => 'getDeliveryAddress',
-        'personalDetails' => 'getPersonalDetails',
-        'amazonPayToken' => 'getAmazonPayToken',
-        'checkoutSessionId' => 'getCheckoutSessionId',
-        'applePayToken' => 'getApplePayToken',
-        'fundingSource' => 'getFundingSource',
-        'holderName' => 'getHolderName',
-        'issuer' => 'getIssuer',
-        'blikCode' => 'getBlikCode',
         'brand' => 'getBrand',
         'cupsecureplusSmscode' => 'getCupsecureplusSmscode',
         'cvc' => 'getCvc',
@@ -456,29 +292,13 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedSecurityCode' => 'getEncryptedSecurityCode',
         'expiryMonth' => 'getExpiryMonth',
         'expiryYear' => 'getExpiryYear',
+        'holderName' => 'getHolderName',
         'networkPaymentReference' => 'getNetworkPaymentReference',
         'number' => 'getNumber',
         'shopperNotificationReference' => 'getShopperNotificationReference',
         'threeDS2SdkVersion' => 'getThreeDS2SdkVersion',
-        'firstName' => 'getFirstName',
-        'lastName' => 'getLastName',
-        'shopperEmail' => 'getShopperEmail',
-        'telephoneNumber' => 'getTelephoneNumber',
         'googlePayToken' => 'getGooglePayToken',
-        'subtype' => 'getSubtype',
-        'masterpassTransactionId' => 'getMasterpassTransactionId',
-        'orderID' => 'getOrderID',
-        'payeePreferred' => 'getPayeePreferred',
-        'payerID' => 'getPayerID',
-        'payerSelected' => 'getPayerSelected',
-        'virtualPaymentAddress' => 'getVirtualPaymentAddress',
-        'samsungPayToken' => 'getSamsungPayToken',
-        'iban' => 'getIban',
-        'billingSequenceNumber' => 'getBillingSequenceNumber',
-        'visaCheckoutCallId' => 'getVisaCheckoutCallId',
-        'appId' => 'getAppId',
-        'openid' => 'getOpenid',
-        'clickAndCollect' => 'getClickAndCollect'
+        'issuer' => 'getIssuer'
     ];
 
     /**
@@ -537,26 +357,12 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('bankAccountNumber', $data ?? [], null);
-        $this->setIfExists('bankAccountType', $data ?? [], null);
-        $this->setIfExists('bankLocationId', $data ?? [], null);
+        $this->setIfExists('applePayToken', $data ?? [], null);
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
-        $this->setIfExists('encryptedBankAccountNumber', $data ?? [], null);
-        $this->setIfExists('encryptedBankLocationId', $data ?? [], null);
-        $this->setIfExists('ownerName', $data ?? [], null);
+        $this->setIfExists('fundingSource', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'zip');
-        $this->setIfExists('billingAddress', $data ?? [], null);
-        $this->setIfExists('deliveryAddress', $data ?? [], null);
-        $this->setIfExists('personalDetails', $data ?? [], null);
-        $this->setIfExists('amazonPayToken', $data ?? [], null);
-        $this->setIfExists('checkoutSessionId', $data ?? [], null);
-        $this->setIfExists('applePayToken', $data ?? [], null);
-        $this->setIfExists('fundingSource', $data ?? [], null);
-        $this->setIfExists('holderName', $data ?? [], null);
-        $this->setIfExists('issuer', $data ?? [], null);
-        $this->setIfExists('blikCode', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], 'paywithgoogle');
         $this->setIfExists('brand', $data ?? [], null);
         $this->setIfExists('cupsecureplusSmscode', $data ?? [], null);
         $this->setIfExists('cvc', $data ?? [], null);
@@ -566,29 +372,13 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('encryptedSecurityCode', $data ?? [], null);
         $this->setIfExists('expiryMonth', $data ?? [], null);
         $this->setIfExists('expiryYear', $data ?? [], null);
+        $this->setIfExists('holderName', $data ?? [], null);
         $this->setIfExists('networkPaymentReference', $data ?? [], null);
         $this->setIfExists('number', $data ?? [], null);
         $this->setIfExists('shopperNotificationReference', $data ?? [], null);
         $this->setIfExists('threeDS2SdkVersion', $data ?? [], null);
-        $this->setIfExists('firstName', $data ?? [], null);
-        $this->setIfExists('lastName', $data ?? [], null);
-        $this->setIfExists('shopperEmail', $data ?? [], null);
-        $this->setIfExists('telephoneNumber', $data ?? [], null);
         $this->setIfExists('googlePayToken', $data ?? [], null);
-        $this->setIfExists('subtype', $data ?? [], null);
-        $this->setIfExists('masterpassTransactionId', $data ?? [], null);
-        $this->setIfExists('orderID', $data ?? [], null);
-        $this->setIfExists('payeePreferred', $data ?? [], null);
-        $this->setIfExists('payerID', $data ?? [], null);
-        $this->setIfExists('payerSelected', $data ?? [], null);
-        $this->setIfExists('virtualPaymentAddress', $data ?? [], null);
-        $this->setIfExists('samsungPayToken', $data ?? [], null);
-        $this->setIfExists('iban', $data ?? [], null);
-        $this->setIfExists('billingSequenceNumber', $data ?? [], null);
-        $this->setIfExists('visaCheckoutCallId', $data ?? [], null);
-        $this->setIfExists('appId', $data ?? [], null);
-        $this->setIfExists('openid', $data ?? [], null);
-        $this->setIfExists('clickAndCollect', $data ?? [], null);
+        $this->setIfExists('issuer', $data ?? [], null);
     }
 
     /**
@@ -618,54 +408,16 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         $invalidProperties = [];
 
-        if ($this->container['bankAccountNumber'] === null) {
-            $invalidProperties[] = "'bankAccountNumber' can't be null";
-        }
-
-        if ($this->container['ownerName'] === null) {
-            $invalidProperties[] = "'ownerName' can't be null";
-        }
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
-        }
-
         if ($this->container['applePayToken'] === null) {
             $invalidProperties[] = "'applePayToken' can't be null";
         }
 
-        if ($this->container['issuer'] === null) {
-            $invalidProperties[] = "'issuer' can't be null";
-        }
-        if ($this->container['firstName'] === null) {
-            $invalidProperties[] = "'firstName' can't be null";
-        }
-        if ($this->container['lastName'] === null) {
-            $invalidProperties[] = "'lastName' can't be null";
-        }
-        if ($this->container['shopperEmail'] === null) {
-            $invalidProperties[] = "'shopperEmail' can't be null";
-        }
-        if ($this->container['telephoneNumber'] === null) {
-            $invalidProperties[] = "'telephoneNumber' can't be null";
-        }
+
         if ($this->container['googlePayToken'] === null) {
             $invalidProperties[] = "'googlePayToken' can't be null";
         }
-
-        if ($this->container['masterpassTransactionId'] === null) {
-            $invalidProperties[] = "'masterpassTransactionId' can't be null";
-        }
-        if ($this->container['samsungPayToken'] === null) {
-            $invalidProperties[] = "'samsungPayToken' can't be null";
-        }
-        if ($this->container['iban'] === null) {
-            $invalidProperties[] = "'iban' can't be null";
-        }
-        if ($this->container['billingSequenceNumber'] === null) {
-            $invalidProperties[] = "'billingSequenceNumber' can't be null";
-        }
-        if ($this->container['visaCheckoutCallId'] === null) {
-            $invalidProperties[] = "'visaCheckoutCallId' can't be null";
+        if ($this->container['issuer'] === null) {
+            $invalidProperties[] = "'issuer' can't be null";
         }
         return $invalidProperties;
     }
@@ -683,82 +435,28 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
 
 
     /**
-     * Gets bankAccountNumber
+     * Gets applePayToken
      *
      * @return string
      */
-    public function getBankAccountNumber()
+    public function getApplePayToken()
     {
-        return $this->container['bankAccountNumber'];
+        return $this->container['applePayToken'];
     }
 
     /**
-     * Sets bankAccountNumber
+     * Sets applePayToken
      *
-     * @param string $bankAccountNumber The bank account number (without separators).
+     * @param string $applePayToken The stringified and base64 encoded `paymentData` you retrieved from the Apple framework.
      *
      * @return self
      */
-    public function setBankAccountNumber($bankAccountNumber)
+    public function setApplePayToken($applePayToken)
     {
-        if (is_null($bankAccountNumber)) {
-            throw new \InvalidArgumentException('non-nullable bankAccountNumber cannot be null');
+        if (is_null($applePayToken)) {
+            throw new \InvalidArgumentException('non-nullable applePayToken cannot be null');
         }
-        $this->container['bankAccountNumber'] = $bankAccountNumber;
-
-        return $this;
-    }
-
-    /**
-     * Gets bankAccountType
-     *
-     * @return string|null
-     */
-    public function getBankAccountType()
-    {
-        return $this->container['bankAccountType'];
-    }
-
-    /**
-     * Sets bankAccountType
-     *
-     * @param string|null $bankAccountType The bank account type (checking, savings...).
-     *
-     * @return self
-     */
-    public function setBankAccountType($bankAccountType)
-    {
-        if (is_null($bankAccountType)) {
-            throw new \InvalidArgumentException('non-nullable bankAccountType cannot be null');
-        }
-        $this->container['bankAccountType'] = $bankAccountType;
-
-        return $this;
-    }
-
-    /**
-     * Gets bankLocationId
-     *
-     * @return string|null
-     */
-    public function getBankLocationId()
-    {
-        return $this->container['bankLocationId'];
-    }
-
-    /**
-     * Sets bankLocationId
-     *
-     * @param string|null $bankLocationId The bank routing number of the account.
-     *
-     * @return self
-     */
-    public function setBankLocationId($bankLocationId)
-    {
-        if (is_null($bankLocationId)) {
-            throw new \InvalidArgumentException('non-nullable bankLocationId cannot be null');
-        }
-        $this->container['bankLocationId'] = $bankLocationId;
+        $this->container['applePayToken'] = $applePayToken;
 
         return $this;
     }
@@ -791,82 +489,28 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Gets encryptedBankAccountNumber
+     * Gets fundingSource
      *
      * @return string|null
      */
-    public function getEncryptedBankAccountNumber()
+    public function getFundingSource()
     {
-        return $this->container['encryptedBankAccountNumber'];
+        return $this->container['fundingSource'];
     }
 
     /**
-     * Sets encryptedBankAccountNumber
+     * Sets fundingSource
      *
-     * @param string|null $encryptedBankAccountNumber Encrypted bank account number. The bank account number (without separators).
+     * @param string|null $fundingSource The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
      *
      * @return self
      */
-    public function setEncryptedBankAccountNumber($encryptedBankAccountNumber)
+    public function setFundingSource($fundingSource)
     {
-        if (is_null($encryptedBankAccountNumber)) {
-            throw new \InvalidArgumentException('non-nullable encryptedBankAccountNumber cannot be null');
+        if (is_null($fundingSource)) {
+            throw new \InvalidArgumentException('non-nullable fundingSource cannot be null');
         }
-        $this->container['encryptedBankAccountNumber'] = $encryptedBankAccountNumber;
-
-        return $this;
-    }
-
-    /**
-     * Gets encryptedBankLocationId
-     *
-     * @return string|null
-     */
-    public function getEncryptedBankLocationId()
-    {
-        return $this->container['encryptedBankLocationId'];
-    }
-
-    /**
-     * Sets encryptedBankLocationId
-     *
-     * @param string|null $encryptedBankLocationId Encrypted location id. The bank routing number of the account. The field value is `nil` in most cases.
-     *
-     * @return self
-     */
-    public function setEncryptedBankLocationId($encryptedBankLocationId)
-    {
-        if (is_null($encryptedBankLocationId)) {
-            throw new \InvalidArgumentException('non-nullable encryptedBankLocationId cannot be null');
-        }
-        $this->container['encryptedBankLocationId'] = $encryptedBankLocationId;
-
-        return $this;
-    }
-
-    /**
-     * Gets ownerName
-     *
-     * @return string
-     */
-    public function getOwnerName()
-    {
-        return $this->container['ownerName'];
-    }
-
-    /**
-     * Sets ownerName
-     *
-     * @param string $ownerName The name of the bank account holder.
-     *
-     * @return self
-     */
-    public function setOwnerName($ownerName)
-    {
-        if (is_null($ownerName)) {
-            throw new \InvalidArgumentException('non-nullable ownerName cannot be null');
-        }
-        $this->container['ownerName'] = $ownerName;
+        $this->container['fundingSource'] = $fundingSource;
 
         return $this;
     }
@@ -930,7 +574,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets type
      *
-     * @return string
+     * @return string|null
      */
     public function getType()
     {
@@ -940,7 +584,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets type
      *
-     * @param string $type **zip**
+     * @param string|null $type **paywithgoogle**
      *
      * @return self
      */
@@ -950,276 +594,6 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
             throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
         $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets billingAddress
-     *
-     * @return string|null
-     */
-    public function getBillingAddress()
-    {
-        return $this->container['billingAddress'];
-    }
-
-    /**
-     * Sets billingAddress
-     *
-     * @param string|null $billingAddress The address where to send the invoice.
-     *
-     * @return self
-     */
-    public function setBillingAddress($billingAddress)
-    {
-        if (is_null($billingAddress)) {
-            throw new \InvalidArgumentException('non-nullable billingAddress cannot be null');
-        }
-        $this->container['billingAddress'] = $billingAddress;
-
-        return $this;
-    }
-
-    /**
-     * Gets deliveryAddress
-     *
-     * @return string|null
-     */
-    public function getDeliveryAddress()
-    {
-        return $this->container['deliveryAddress'];
-    }
-
-    /**
-     * Sets deliveryAddress
-     *
-     * @param string|null $deliveryAddress The address where the goods should be delivered.
-     *
-     * @return self
-     */
-    public function setDeliveryAddress($deliveryAddress)
-    {
-        if (is_null($deliveryAddress)) {
-            throw new \InvalidArgumentException('non-nullable deliveryAddress cannot be null');
-        }
-        $this->container['deliveryAddress'] = $deliveryAddress;
-
-        return $this;
-    }
-
-    /**
-     * Gets personalDetails
-     *
-     * @return string|null
-     */
-    public function getPersonalDetails()
-    {
-        return $this->container['personalDetails'];
-    }
-
-    /**
-     * Sets personalDetails
-     *
-     * @param string|null $personalDetails Shopper name, date of birth, phone number, and email address.
-     *
-     * @return self
-     */
-    public function setPersonalDetails($personalDetails)
-    {
-        if (is_null($personalDetails)) {
-            throw new \InvalidArgumentException('non-nullable personalDetails cannot be null');
-        }
-        $this->container['personalDetails'] = $personalDetails;
-
-        return $this;
-    }
-
-    /**
-     * Gets amazonPayToken
-     *
-     * @return string|null
-     */
-    public function getAmazonPayToken()
-    {
-        return $this->container['amazonPayToken'];
-    }
-
-    /**
-     * Sets amazonPayToken
-     *
-     * @param string|null $amazonPayToken This is the `amazonPayToken` that you obtained from the [Get Checkout Session](https://amazon-pay-acquirer-guide.s3-eu-west-1.amazonaws.com/v1/amazon-pay-api-v2/checkout-session.html#get-checkout-session) response. This token is used for API only integration specifically.
-     *
-     * @return self
-     */
-    public function setAmazonPayToken($amazonPayToken)
-    {
-        if (is_null($amazonPayToken)) {
-            throw new \InvalidArgumentException('non-nullable amazonPayToken cannot be null');
-        }
-        $this->container['amazonPayToken'] = $amazonPayToken;
-
-        return $this;
-    }
-
-    /**
-     * Gets checkoutSessionId
-     *
-     * @return string|null
-     */
-    public function getCheckoutSessionId()
-    {
-        return $this->container['checkoutSessionId'];
-    }
-
-    /**
-     * Sets checkoutSessionId
-     *
-     * @param string|null $checkoutSessionId The `checkoutSessionId` is used to identify the checkout session at the Amazon Pay side. This field is required only for drop-in and components integration, where it replaces the amazonPayToken.
-     *
-     * @return self
-     */
-    public function setCheckoutSessionId($checkoutSessionId)
-    {
-        if (is_null($checkoutSessionId)) {
-            throw new \InvalidArgumentException('non-nullable checkoutSessionId cannot be null');
-        }
-        $this->container['checkoutSessionId'] = $checkoutSessionId;
-
-        return $this;
-    }
-
-    /**
-     * Gets applePayToken
-     *
-     * @return string
-     */
-    public function getApplePayToken()
-    {
-        return $this->container['applePayToken'];
-    }
-
-    /**
-     * Sets applePayToken
-     *
-     * @param string $applePayToken The stringified and base64 encoded `paymentData` you retrieved from the Apple framework.
-     *
-     * @return self
-     */
-    public function setApplePayToken($applePayToken)
-    {
-        if (is_null($applePayToken)) {
-            throw new \InvalidArgumentException('non-nullable applePayToken cannot be null');
-        }
-        $this->container['applePayToken'] = $applePayToken;
-
-        return $this;
-    }
-
-    /**
-     * Gets fundingSource
-     *
-     * @return string|null
-     */
-    public function getFundingSource()
-    {
-        return $this->container['fundingSource'];
-    }
-
-    /**
-     * Sets fundingSource
-     *
-     * @param string|null $fundingSource The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
-     *
-     * @return self
-     */
-    public function setFundingSource($fundingSource)
-    {
-        if (is_null($fundingSource)) {
-            throw new \InvalidArgumentException('non-nullable fundingSource cannot be null');
-        }
-        $this->container['fundingSource'] = $fundingSource;
-
-        return $this;
-    }
-
-    /**
-     * Gets holderName
-     *
-     * @return string|null
-     */
-    public function getHolderName()
-    {
-        return $this->container['holderName'];
-    }
-
-    /**
-     * Sets holderName
-     *
-     * @param string|null $holderName The name of the card holder.
-     *
-     * @return self
-     */
-    public function setHolderName($holderName)
-    {
-        if (is_null($holderName)) {
-            throw new \InvalidArgumentException('non-nullable holderName cannot be null');
-        }
-        $this->container['holderName'] = $holderName;
-
-        return $this;
-    }
-
-    /**
-     * Gets issuer
-     *
-     * @return string
-     */
-    public function getIssuer()
-    {
-        return $this->container['issuer'];
-    }
-
-    /**
-     * Sets issuer
-     *
-     * @param string $issuer The shopper's bank. Specify this with the issuer value that corresponds to this bank.
-     *
-     * @return self
-     */
-    public function setIssuer($issuer)
-    {
-        if (is_null($issuer)) {
-            throw new \InvalidArgumentException('non-nullable issuer cannot be null');
-        }
-        $this->container['issuer'] = $issuer;
-
-        return $this;
-    }
-
-    /**
-     * Gets blikCode
-     *
-     * @return string|null
-     */
-    public function getBlikCode()
-    {
-        return $this->container['blikCode'];
-    }
-
-    /**
-     * Sets blikCode
-     *
-     * @param string|null $blikCode BLIK code consisting of 6 digits.
-     *
-     * @return self
-     */
-    public function setBlikCode($blikCode)
-    {
-        if (is_null($blikCode)) {
-            throw new \InvalidArgumentException('non-nullable blikCode cannot be null');
-        }
-        $this->container['blikCode'] = $blikCode;
 
         return $this;
     }
@@ -1470,6 +844,33 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
+     * Gets holderName
+     *
+     * @return string|null
+     */
+    public function getHolderName()
+    {
+        return $this->container['holderName'];
+    }
+
+    /**
+     * Sets holderName
+     *
+     * @param string|null $holderName The name of the card holder.
+     *
+     * @return self
+     */
+    public function setHolderName($holderName)
+    {
+        if (is_null($holderName)) {
+            throw new \InvalidArgumentException('non-nullable holderName cannot be null');
+        }
+        $this->container['holderName'] = $holderName;
+
+        return $this;
+    }
+
+    /**
      * Gets networkPaymentReference
      *
      * @return string|null
@@ -1536,7 +937,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets shopperNotificationReference
      *
-     * @param string|null $shopperNotificationReference The `shopperNotificationReference` returned in the response when you requested to notify the shopper. Used for recurring payment only.
+     * @param string|null $shopperNotificationReference The `shopperNotificationReference` returned in the response when you requested to notify the shopper. Used only for recurring payments in India.
      *
      * @return self
      */
@@ -1578,114 +979,6 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Gets firstName
-     *
-     * @return string
-     */
-    public function getFirstName()
-    {
-        return $this->container['firstName'];
-    }
-
-    /**
-     * Sets firstName
-     *
-     * @param string $firstName The shopper's first name.
-     *
-     * @return self
-     */
-    public function setFirstName($firstName)
-    {
-        if (is_null($firstName)) {
-            throw new \InvalidArgumentException('non-nullable firstName cannot be null');
-        }
-        $this->container['firstName'] = $firstName;
-
-        return $this;
-    }
-
-    /**
-     * Gets lastName
-     *
-     * @return string
-     */
-    public function getLastName()
-    {
-        return $this->container['lastName'];
-    }
-
-    /**
-     * Sets lastName
-     *
-     * @param string $lastName The shopper's last name.
-     *
-     * @return self
-     */
-    public function setLastName($lastName)
-    {
-        if (is_null($lastName)) {
-            throw new \InvalidArgumentException('non-nullable lastName cannot be null');
-        }
-        $this->container['lastName'] = $lastName;
-
-        return $this;
-    }
-
-    /**
-     * Gets shopperEmail
-     *
-     * @return string
-     */
-    public function getShopperEmail()
-    {
-        return $this->container['shopperEmail'];
-    }
-
-    /**
-     * Sets shopperEmail
-     *
-     * @param string $shopperEmail
-     *
-     * @return self
-     */
-    public function setShopperEmail($shopperEmail)
-    {
-        if (is_null($shopperEmail)) {
-            throw new \InvalidArgumentException('non-nullable shopperEmail cannot be null');
-        }
-        $this->container['shopperEmail'] = $shopperEmail;
-
-        return $this;
-    }
-
-    /**
-     * Gets telephoneNumber
-     *
-     * @return string
-     */
-    public function getTelephoneNumber()
-    {
-        return $this->container['telephoneNumber'];
-    }
-
-    /**
-     * Sets telephoneNumber
-     *
-     * @param string $telephoneNumber
-     *
-     * @return self
-     */
-    public function setTelephoneNumber($telephoneNumber)
-    {
-        if (is_null($telephoneNumber)) {
-            throw new \InvalidArgumentException('non-nullable telephoneNumber cannot be null');
-        }
-        $this->container['telephoneNumber'] = $telephoneNumber;
-
-        return $this;
-    }
-
-    /**
      * Gets googlePayToken
      *
      * @return string
@@ -1713,379 +1006,28 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Gets subtype
-     *
-     * @return string|null
-     */
-    public function getSubtype()
-    {
-        return $this->container['subtype'];
-    }
-
-    /**
-     * Sets subtype
-     *
-     * @param string|null $subtype The type of flow to initiate.
-     *
-     * @return self
-     */
-    public function setSubtype($subtype)
-    {
-        if (is_null($subtype)) {
-            throw new \InvalidArgumentException('non-nullable subtype cannot be null');
-        }
-        $this->container['subtype'] = $subtype;
-
-        return $this;
-    }
-
-    /**
-     * Gets masterpassTransactionId
+     * Gets issuer
      *
      * @return string
      */
-    public function getMasterpassTransactionId()
+    public function getIssuer()
     {
-        return $this->container['masterpassTransactionId'];
+        return $this->container['issuer'];
     }
 
     /**
-     * Sets masterpassTransactionId
+     * Sets issuer
      *
-     * @param string $masterpassTransactionId The Masterpass transaction ID.
+     * @param string $issuer The iDEAL issuer value of the shopper's selected bank. Set this to an **id** of an iDEAL issuer to preselect it.
      *
      * @return self
      */
-    public function setMasterpassTransactionId($masterpassTransactionId)
+    public function setIssuer($issuer)
     {
-        if (is_null($masterpassTransactionId)) {
-            throw new \InvalidArgumentException('non-nullable masterpassTransactionId cannot be null');
+        if (is_null($issuer)) {
+            throw new \InvalidArgumentException('non-nullable issuer cannot be null');
         }
-        $this->container['masterpassTransactionId'] = $masterpassTransactionId;
-
-        return $this;
-    }
-
-    /**
-     * Gets orderID
-     *
-     * @return string|null
-     */
-    public function getOrderID()
-    {
-        return $this->container['orderID'];
-    }
-
-    /**
-     * Sets orderID
-     *
-     * @param string|null $orderID The unique ID associated with the order.
-     *
-     * @return self
-     */
-    public function setOrderID($orderID)
-    {
-        if (is_null($orderID)) {
-            throw new \InvalidArgumentException('non-nullable orderID cannot be null');
-        }
-        $this->container['orderID'] = $orderID;
-
-        return $this;
-    }
-
-    /**
-     * Gets payeePreferred
-     *
-     * @return string|null
-     */
-    public function getPayeePreferred()
-    {
-        return $this->container['payeePreferred'];
-    }
-
-    /**
-     * Sets payeePreferred
-     *
-     * @param string|null $payeePreferred IMMEDIATE_PAYMENT_REQUIRED or UNRESTRICTED
-     *
-     * @return self
-     */
-    public function setPayeePreferred($payeePreferred)
-    {
-        if (is_null($payeePreferred)) {
-            throw new \InvalidArgumentException('non-nullable payeePreferred cannot be null');
-        }
-        $this->container['payeePreferred'] = $payeePreferred;
-
-        return $this;
-    }
-
-    /**
-     * Gets payerID
-     *
-     * @return string|null
-     */
-    public function getPayerID()
-    {
-        return $this->container['payerID'];
-    }
-
-    /**
-     * Sets payerID
-     *
-     * @param string|null $payerID The unique ID associated with the payer.
-     *
-     * @return self
-     */
-    public function setPayerID($payerID)
-    {
-        if (is_null($payerID)) {
-            throw new \InvalidArgumentException('non-nullable payerID cannot be null');
-        }
-        $this->container['payerID'] = $payerID;
-
-        return $this;
-    }
-
-    /**
-     * Gets payerSelected
-     *
-     * @return string|null
-     */
-    public function getPayerSelected()
-    {
-        return $this->container['payerSelected'];
-    }
-
-    /**
-     * Sets payerSelected
-     *
-     * @param string|null $payerSelected PAYPAL or PAYPAL_CREDIT
-     *
-     * @return self
-     */
-    public function setPayerSelected($payerSelected)
-    {
-        if (is_null($payerSelected)) {
-            throw new \InvalidArgumentException('non-nullable payerSelected cannot be null');
-        }
-        $this->container['payerSelected'] = $payerSelected;
-
-        return $this;
-    }
-
-    /**
-     * Gets virtualPaymentAddress
-     *
-     * @return string|null
-     */
-    public function getVirtualPaymentAddress()
-    {
-        return $this->container['virtualPaymentAddress'];
-    }
-
-    /**
-     * Sets virtualPaymentAddress
-     *
-     * @param string|null $virtualPaymentAddress The virtual payment address for UPI.
-     *
-     * @return self
-     */
-    public function setVirtualPaymentAddress($virtualPaymentAddress)
-    {
-        if (is_null($virtualPaymentAddress)) {
-            throw new \InvalidArgumentException('non-nullable virtualPaymentAddress cannot be null');
-        }
-        $this->container['virtualPaymentAddress'] = $virtualPaymentAddress;
-
-        return $this;
-    }
-
-    /**
-     * Gets samsungPayToken
-     *
-     * @return string
-     */
-    public function getSamsungPayToken()
-    {
-        return $this->container['samsungPayToken'];
-    }
-
-    /**
-     * Sets samsungPayToken
-     *
-     * @param string $samsungPayToken The payload you received from the Samsung Pay SDK response.
-     *
-     * @return self
-     */
-    public function setSamsungPayToken($samsungPayToken)
-    {
-        if (is_null($samsungPayToken)) {
-            throw new \InvalidArgumentException('non-nullable samsungPayToken cannot be null');
-        }
-        $this->container['samsungPayToken'] = $samsungPayToken;
-
-        return $this;
-    }
-
-    /**
-     * Gets iban
-     *
-     * @return string
-     */
-    public function getIban()
-    {
-        return $this->container['iban'];
-    }
-
-    /**
-     * Sets iban
-     *
-     * @param string $iban The International Bank Account Number (IBAN).
-     *
-     * @return self
-     */
-    public function setIban($iban)
-    {
-        if (is_null($iban)) {
-            throw new \InvalidArgumentException('non-nullable iban cannot be null');
-        }
-        $this->container['iban'] = $iban;
-
-        return $this;
-    }
-
-    /**
-     * Gets billingSequenceNumber
-     *
-     * @return string
-     */
-    public function getBillingSequenceNumber()
-    {
-        return $this->container['billingSequenceNumber'];
-    }
-
-    /**
-     * Sets billingSequenceNumber
-     *
-     * @param string $billingSequenceNumber The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper.
-     *
-     * @return self
-     */
-    public function setBillingSequenceNumber($billingSequenceNumber)
-    {
-        if (is_null($billingSequenceNumber)) {
-            throw new \InvalidArgumentException('non-nullable billingSequenceNumber cannot be null');
-        }
-        $this->container['billingSequenceNumber'] = $billingSequenceNumber;
-
-        return $this;
-    }
-
-    /**
-     * Gets visaCheckoutCallId
-     *
-     * @return string
-     */
-    public function getVisaCheckoutCallId()
-    {
-        return $this->container['visaCheckoutCallId'];
-    }
-
-    /**
-     * Sets visaCheckoutCallId
-     *
-     * @param string $visaCheckoutCallId The Visa Click to Pay Call ID value. When your shopper selects a payment and/or a shipping address from Visa Click to Pay, you will receive a Visa Click to Pay Call ID.
-     *
-     * @return self
-     */
-    public function setVisaCheckoutCallId($visaCheckoutCallId)
-    {
-        if (is_null($visaCheckoutCallId)) {
-            throw new \InvalidArgumentException('non-nullable visaCheckoutCallId cannot be null');
-        }
-        $this->container['visaCheckoutCallId'] = $visaCheckoutCallId;
-
-        return $this;
-    }
-
-    /**
-     * Gets appId
-     *
-     * @return string|null
-     */
-    public function getAppId()
-    {
-        return $this->container['appId'];
-    }
-
-    /**
-     * Sets appId
-     *
-     * @param string|null $appId appId
-     *
-     * @return self
-     */
-    public function setAppId($appId)
-    {
-        if (is_null($appId)) {
-            throw new \InvalidArgumentException('non-nullable appId cannot be null');
-        }
-        $this->container['appId'] = $appId;
-
-        return $this;
-    }
-
-    /**
-     * Gets openid
-     *
-     * @return string|null
-     */
-    public function getOpenid()
-    {
-        return $this->container['openid'];
-    }
-
-    /**
-     * Sets openid
-     *
-     * @param string|null $openid openid
-     *
-     * @return self
-     */
-    public function setOpenid($openid)
-    {
-        if (is_null($openid)) {
-            throw new \InvalidArgumentException('non-nullable openid cannot be null');
-        }
-        $this->container['openid'] = $openid;
-
-        return $this;
-    }
-
-    /**
-     * Gets clickAndCollect
-     *
-     * @return string|null
-     */
-    public function getClickAndCollect()
-    {
-        return $this->container['clickAndCollect'];
-    }
-
-    /**
-     * Sets clickAndCollect
-     *
-     * @param string|null $clickAndCollect Set this to **true** if the shopper would like to pick up and collect their order, instead of having the goods delivered to them.
-     *
-     * @return self
-     */
-    public function setClickAndCollect($clickAndCollect)
-    {
-        if (is_null($clickAndCollect)) {
-            throw new \InvalidArgumentException('non-nullable clickAndCollect cannot be null');
-        }
-        $this->container['clickAndCollect'] = $clickAndCollect;
+        $this->container['issuer'] = $issuer;
 
         return $this;
     }

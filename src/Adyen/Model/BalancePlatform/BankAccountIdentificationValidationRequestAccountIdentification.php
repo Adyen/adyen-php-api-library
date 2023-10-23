@@ -55,7 +55,6 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
         'transitNumber' => 'string',
         'clearingCode' => 'string',
         'iban' => 'string',
-        'accountSuffix' => 'string',
         'additionalBankIdentification' => '\Adyen\Model\BalancePlatform\AdditionalBankIdentification',
         'bic' => 'string',
         'clearingNumber' => 'string',
@@ -81,7 +80,6 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
         'transitNumber' => null,
         'clearingCode' => null,
         'iban' => null,
-        'accountSuffix' => null,
         'additionalBankIdentification' => null,
         'bic' => null,
         'clearingNumber' => null,
@@ -105,7 +103,6 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
         'transitNumber' => false,
         'clearingCode' => false,
         'iban' => false,
-        'accountSuffix' => false,
         'additionalBankIdentification' => false,
         'bic' => false,
         'clearingNumber' => false,
@@ -209,7 +206,6 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
         'transitNumber' => 'transitNumber',
         'clearingCode' => 'clearingCode',
         'iban' => 'iban',
-        'accountSuffix' => 'accountSuffix',
         'additionalBankIdentification' => 'additionalBankIdentification',
         'bic' => 'bic',
         'clearingNumber' => 'clearingNumber',
@@ -233,7 +229,6 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
         'transitNumber' => 'setTransitNumber',
         'clearingCode' => 'setClearingCode',
         'iban' => 'setIban',
-        'accountSuffix' => 'setAccountSuffix',
         'additionalBankIdentification' => 'setAdditionalBankIdentification',
         'bic' => 'setBic',
         'clearingNumber' => 'setClearingNumber',
@@ -257,7 +252,6 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
         'transitNumber' => 'getTransitNumber',
         'clearingCode' => 'getClearingCode',
         'iban' => 'getIban',
-        'accountSuffix' => 'getAccountSuffix',
         'additionalBankIdentification' => 'getAdditionalBankIdentification',
         'bic' => 'getBic',
         'clearingNumber' => 'getClearingNumber',
@@ -331,7 +325,6 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
         $this->setIfExists('transitNumber', $data ?? [], null);
         $this->setIfExists('clearingCode', $data ?? [], null);
         $this->setIfExists('iban', $data ?? [], null);
-        $this->setIfExists('accountSuffix', $data ?? [], null);
         $this->setIfExists('additionalBankIdentification', $data ?? [], null);
         $this->setIfExists('bic', $data ?? [], null);
         $this->setIfExists('clearingNumber', $data ?? [], null);
@@ -394,9 +387,6 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
         }
         if ($this->container['iban'] === null) {
             $invalidProperties[] = "'iban' can't be null";
-        }
-        if ($this->container['accountSuffix'] === null) {
-            $invalidProperties[] = "'accountSuffix' can't be null";
         }
         if ($this->container['bic'] === null) {
             $invalidProperties[] = "'bic' can't be null";
@@ -519,7 +509,7 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
     /**
      * Sets bankCode
      *
-     * @param string $bankCode The 6-digit bank code including the 2-digit bank code and 4-digit branch code, without separators or whitespace.
+     * @param string $bankCode The 4-digit bank code (Registreringsnummer) (without separators or whitespace).
      *
      * @return self
      */
@@ -691,33 +681,6 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
             throw new \InvalidArgumentException('non-nullable iban cannot be null');
         }
         $this->container['iban'] = $iban;
-
-        return $this;
-    }
-
-    /**
-     * Gets accountSuffix
-     *
-     * @return string
-     */
-    public function getAccountSuffix()
-    {
-        return $this->container['accountSuffix'];
-    }
-
-    /**
-     * Sets accountSuffix
-     *
-     * @param string $accountSuffix The 2- to 3-digit account suffix, without separators or whitespace.
-     *
-     * @return self
-     */
-    public function setAccountSuffix($accountSuffix)
-    {
-        if (is_null($accountSuffix)) {
-            throw new \InvalidArgumentException('non-nullable accountSuffix cannot be null');
-        }
-        $this->container['accountSuffix'] = $accountSuffix;
 
         return $this;
     }

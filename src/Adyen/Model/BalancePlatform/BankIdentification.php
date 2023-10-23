@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * PaymentInstrumentRequirement Class Doc Comment
+ * BankIdentification Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\BalancePlatform\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \JsonSerializable
+class BankIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PaymentInstrumentRequirement';
+    protected static $openAPIModelName = 'BankIdentification';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,11 +44,9 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
       * @var string[]
       */
     protected static $openAPITypes = [
-        'description' => 'string',
-        'issuingCountryCode' => 'string',
-        'onlyForCrossBalancePlatform' => 'bool',
-        'paymentInstrumentType' => 'string',
-        'type' => 'string'
+        'country' => 'string',
+        'identification' => 'string',
+        'identificationType' => 'string'
     ];
 
     /**
@@ -59,11 +57,9 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'description' => null,
-        'issuingCountryCode' => null,
-        'onlyForCrossBalancePlatform' => null,
-        'paymentInstrumentType' => null,
-        'type' => null
+        'country' => null,
+        'identification' => null,
+        'identificationType' => null
     ];
 
     /**
@@ -72,11 +68,9 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'description' => false,
-        'issuingCountryCode' => false,
-        'onlyForCrossBalancePlatform' => false,
-        'paymentInstrumentType' => false,
-        'type' => false
+        'country' => false,
+        'identification' => false,
+        'identificationType' => false
     ];
 
     /**
@@ -165,11 +159,9 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $attributeMap = [
-        'description' => 'description',
-        'issuingCountryCode' => 'issuingCountryCode',
-        'onlyForCrossBalancePlatform' => 'onlyForCrossBalancePlatform',
-        'paymentInstrumentType' => 'paymentInstrumentType',
-        'type' => 'type'
+        'country' => 'country',
+        'identification' => 'identification',
+        'identificationType' => 'identificationType'
     ];
 
     /**
@@ -178,11 +170,9 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $setters = [
-        'description' => 'setDescription',
-        'issuingCountryCode' => 'setIssuingCountryCode',
-        'onlyForCrossBalancePlatform' => 'setOnlyForCrossBalancePlatform',
-        'paymentInstrumentType' => 'setPaymentInstrumentType',
-        'type' => 'setType'
+        'country' => 'setCountry',
+        'identification' => 'setIdentification',
+        'identificationType' => 'setIdentificationType'
     ];
 
     /**
@@ -191,11 +181,9 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $getters = [
-        'description' => 'getDescription',
-        'issuingCountryCode' => 'getIssuingCountryCode',
-        'onlyForCrossBalancePlatform' => 'getOnlyForCrossBalancePlatform',
-        'paymentInstrumentType' => 'getPaymentInstrumentType',
-        'type' => 'getType'
+        'country' => 'getCountry',
+        'identification' => 'getIdentification',
+        'identificationType' => 'getIdentificationType'
     ];
 
     /**
@@ -239,31 +227,19 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
         return self::$openAPIModelName;
     }
 
-    public const PAYMENT_INSTRUMENT_TYPE_BANK_ACCOUNT = 'BankAccount';
-    public const PAYMENT_INSTRUMENT_TYPE_CARD = 'Card';
-    public const TYPE_PAYMENT_INSTRUMENT_REQUIREMENT = 'paymentInstrumentRequirement';
+    public const IDENTIFICATION_TYPE_IBAN = 'iban';
+    public const IDENTIFICATION_TYPE_ROUTING_NUMBER = 'routingNumber';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getPaymentInstrumentTypeAllowableValues()
+    public function getIdentificationTypeAllowableValues()
     {
         return [
-            self::PAYMENT_INSTRUMENT_TYPE_BANK_ACCOUNT,
-            self::PAYMENT_INSTRUMENT_TYPE_CARD,
-        ];
-    }
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_PAYMENT_INSTRUMENT_REQUIREMENT,
+            self::IDENTIFICATION_TYPE_IBAN,
+            self::IDENTIFICATION_TYPE_ROUTING_NUMBER,
         ];
     }
     /**
@@ -281,11 +257,9 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('issuingCountryCode', $data ?? [], null);
-        $this->setIfExists('onlyForCrossBalancePlatform', $data ?? [], null);
-        $this->setIfExists('paymentInstrumentType', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'paymentInstrumentRequirement');
+        $this->setIfExists('country', $data ?? [], null);
+        $this->setIfExists('identification', $data ?? [], null);
+        $this->setIfExists('identificationType', $data ?? [], null);
     }
 
     /**
@@ -315,23 +289,11 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getPaymentInstrumentTypeAllowableValues();
-        if (!is_null($this->container['paymentInstrumentType']) && !in_array($this->container['paymentInstrumentType'], $allowedValues, true)) {
+        $allowedValues = $this->getIdentificationTypeAllowableValues();
+        if (!is_null($this->container['identificationType']) && !in_array($this->container['identificationType'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'paymentInstrumentType', must be one of '%s'",
-                $this->container['paymentInstrumentType'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
-        }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
+                "invalid value '%s' for 'identificationType', must be one of '%s'",
+                $this->container['identificationType'],
                 implode("', '", $allowedValues)
             );
         }
@@ -352,156 +314,92 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
 
 
     /**
-     * Gets description
+     * Gets country
      *
      * @return string|null
      */
-    public function getDescription()
+    public function getCountry()
     {
-        return $this->container['description'];
+        return $this->container['country'];
     }
 
     /**
-     * Sets description
+     * Sets country
      *
-     * @param string|null $description Specifies the requirements for the payment instrument that need to be included in the request for a particular route.
+     * @param string|null $country country
      *
      * @return self
      */
-    public function setDescription($description)
+    public function setCountry($country)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
+        if (is_null($country)) {
+            throw new \InvalidArgumentException('non-nullable country cannot be null');
         }
-        $this->container['description'] = $description;
+        $this->container['country'] = $country;
 
         return $this;
     }
 
     /**
-     * Gets issuingCountryCode
+     * Gets identification
      *
      * @return string|null
      */
-    public function getIssuingCountryCode()
+    public function getIdentification()
     {
-        return $this->container['issuingCountryCode'];
+        return $this->container['identification'];
     }
 
     /**
-     * Sets issuingCountryCode
+     * Sets identification
      *
-     * @param string|null $issuingCountryCode The two-character ISO-3166-1 alpha-2 country code of the counterparty. For example, **US** or **NL**.
+     * @param string|null $identification identification
      *
      * @return self
      */
-    public function setIssuingCountryCode($issuingCountryCode)
+    public function setIdentification($identification)
     {
-        if (is_null($issuingCountryCode)) {
-            throw new \InvalidArgumentException('non-nullable issuingCountryCode cannot be null');
+        if (is_null($identification)) {
+            throw new \InvalidArgumentException('non-nullable identification cannot be null');
         }
-        $this->container['issuingCountryCode'] = $issuingCountryCode;
+        $this->container['identification'] = $identification;
 
         return $this;
     }
 
     /**
-     * Gets onlyForCrossBalancePlatform
-     *
-     * @return bool|null
-     */
-    public function getOnlyForCrossBalancePlatform()
-    {
-        return $this->container['onlyForCrossBalancePlatform'];
-    }
-
-    /**
-     * Sets onlyForCrossBalancePlatform
-     *
-     * @param bool|null $onlyForCrossBalancePlatform Specifies if the requirement only applies to transfers to another balance platform.
-     *
-     * @return self
-     */
-    public function setOnlyForCrossBalancePlatform($onlyForCrossBalancePlatform)
-    {
-        if (is_null($onlyForCrossBalancePlatform)) {
-            throw new \InvalidArgumentException('non-nullable onlyForCrossBalancePlatform cannot be null');
-        }
-        $this->container['onlyForCrossBalancePlatform'] = $onlyForCrossBalancePlatform;
-
-        return $this;
-    }
-
-    /**
-     * Gets paymentInstrumentType
+     * Gets identificationType
      *
      * @return string|null
      */
-    public function getPaymentInstrumentType()
+    public function getIdentificationType()
     {
-        return $this->container['paymentInstrumentType'];
+        return $this->container['identificationType'];
     }
 
     /**
-     * Sets paymentInstrumentType
+     * Sets identificationType
      *
-     * @param string|null $paymentInstrumentType The type of the payment instrument. For example, \"BankAccount\" or \"Card\".
+     * @param string|null $identificationType identificationType
      *
      * @return self
      */
-    public function setPaymentInstrumentType($paymentInstrumentType)
+    public function setIdentificationType($identificationType)
     {
-        if (is_null($paymentInstrumentType)) {
-            throw new \InvalidArgumentException('non-nullable paymentInstrumentType cannot be null');
+        if (is_null($identificationType)) {
+            throw new \InvalidArgumentException('non-nullable identificationType cannot be null');
         }
-        $allowedValues = $this->getPaymentInstrumentTypeAllowableValues();
-        if (!in_array($paymentInstrumentType, $allowedValues, true)) {
+        $allowedValues = $this->getIdentificationTypeAllowableValues();
+        if (!in_array($identificationType, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value '%s' for 'paymentInstrumentType', must be one of '%s'",
-                    $paymentInstrumentType,
+                    "Invalid value '%s' for 'identificationType', must be one of '%s'",
+                    $identificationType,
                     implode("', '", $allowedValues)
                 )
             );
         }
-        $this->container['paymentInstrumentType'] = $paymentInstrumentType;
-
-        return $this;
-    }
-
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type **paymentInstrumentRequirement**
-     *
-     * @return self
-     */
-    public function setType($type)
-    {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
+        $this->container['identificationType'] = $identificationType;
 
         return $this;
     }

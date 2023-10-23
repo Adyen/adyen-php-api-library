@@ -47,10 +47,12 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'accountInfo' => '\Adyen\Model\Checkout\AccountInfo',
         'additionalAmount' => '\Adyen\Model\Checkout\Amount',
         'additionalData' => 'array<string,string>',
+        'allowedPaymentMethods' => 'string[]',
         'amount' => '\Adyen\Model\Checkout\Amount',
         'applicationInfo' => '\Adyen\Model\Checkout\ApplicationInfo',
         'authenticationData' => '\Adyen\Model\Checkout\AuthenticationData',
-        'billingAddress' => '\Adyen\Model\Checkout\Address',
+        'billingAddress' => '\Adyen\Model\Checkout\BillingAddress',
+        'blockedPaymentMethods' => 'string[]',
         'browserInfo' => '\Adyen\Model\Checkout\BrowserInfo',
         'captureDelayHours' => 'int',
         'channel' => 'string',
@@ -61,7 +63,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'dateOfBirth' => '\DateTime',
         'dccQuote' => '\Adyen\Model\Checkout\ForexQuote',
         'deliverAt' => '\DateTime',
-        'deliveryAddress' => '\Adyen\Model\Checkout\Address',
+        'deliveryAddress' => '\Adyen\Model\Checkout\DeliveryAddress',
         'deliveryDate' => '\DateTime',
         'deviceFingerprint' => 'string',
         'donationAccount' => 'string',
@@ -74,6 +76,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'fraudOffset' => 'int',
         'fundOrigin' => '\Adyen\Model\Checkout\FundOrigin',
         'fundRecipient' => '\Adyen\Model\Checkout\FundRecipient',
+        'fundingSource' => 'string',
         'industryUsage' => 'string',
         'installments' => '\Adyen\Model\Checkout\Installments',
         'lineItems' => '\Adyen\Model\Checkout\LineItem[]',
@@ -98,6 +101,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'reference' => 'string',
         'returnUrl' => 'string',
         'riskData' => '\Adyen\Model\Checkout\RiskData',
+        'selectedRecurringDetailReference' => 'string',
         'sessionValidity' => 'string',
         'shopperEmail' => 'string',
         'shopperIP' => 'string',
@@ -127,10 +131,12 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'accountInfo' => null,
         'additionalAmount' => null,
         'additionalData' => null,
+        'allowedPaymentMethods' => null,
         'amount' => null,
         'applicationInfo' => null,
         'authenticationData' => null,
         'billingAddress' => null,
+        'blockedPaymentMethods' => null,
         'browserInfo' => null,
         'captureDelayHours' => 'int32',
         'channel' => null,
@@ -154,6 +160,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'fraudOffset' => 'int32',
         'fundOrigin' => null,
         'fundRecipient' => null,
+        'fundingSource' => null,
         'industryUsage' => null,
         'installments' => null,
         'lineItems' => null,
@@ -178,6 +185,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'reference' => null,
         'returnUrl' => null,
         'riskData' => null,
+        'selectedRecurringDetailReference' => null,
         'sessionValidity' => null,
         'shopperEmail' => null,
         'shopperIP' => null,
@@ -205,10 +213,12 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'accountInfo' => false,
         'additionalAmount' => false,
         'additionalData' => false,
+        'allowedPaymentMethods' => false,
         'amount' => false,
         'applicationInfo' => false,
         'authenticationData' => false,
         'billingAddress' => false,
+        'blockedPaymentMethods' => false,
         'browserInfo' => false,
         'captureDelayHours' => true,
         'channel' => false,
@@ -232,6 +242,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'fraudOffset' => true,
         'fundOrigin' => false,
         'fundRecipient' => false,
+        'fundingSource' => false,
         'industryUsage' => false,
         'installments' => false,
         'lineItems' => false,
@@ -256,6 +267,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'reference' => false,
         'returnUrl' => false,
         'riskData' => false,
+        'selectedRecurringDetailReference' => false,
         'sessionValidity' => false,
         'shopperEmail' => false,
         'shopperIP' => false,
@@ -363,10 +375,12 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'accountInfo' => 'accountInfo',
         'additionalAmount' => 'additionalAmount',
         'additionalData' => 'additionalData',
+        'allowedPaymentMethods' => 'allowedPaymentMethods',
         'amount' => 'amount',
         'applicationInfo' => 'applicationInfo',
         'authenticationData' => 'authenticationData',
         'billingAddress' => 'billingAddress',
+        'blockedPaymentMethods' => 'blockedPaymentMethods',
         'browserInfo' => 'browserInfo',
         'captureDelayHours' => 'captureDelayHours',
         'channel' => 'channel',
@@ -390,6 +404,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'fraudOffset' => 'fraudOffset',
         'fundOrigin' => 'fundOrigin',
         'fundRecipient' => 'fundRecipient',
+        'fundingSource' => 'fundingSource',
         'industryUsage' => 'industryUsage',
         'installments' => 'installments',
         'lineItems' => 'lineItems',
@@ -414,6 +429,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'reference' => 'reference',
         'returnUrl' => 'returnUrl',
         'riskData' => 'riskData',
+        'selectedRecurringDetailReference' => 'selectedRecurringDetailReference',
         'sessionValidity' => 'sessionValidity',
         'shopperEmail' => 'shopperEmail',
         'shopperIP' => 'shopperIP',
@@ -441,10 +457,12 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'accountInfo' => 'setAccountInfo',
         'additionalAmount' => 'setAdditionalAmount',
         'additionalData' => 'setAdditionalData',
+        'allowedPaymentMethods' => 'setAllowedPaymentMethods',
         'amount' => 'setAmount',
         'applicationInfo' => 'setApplicationInfo',
         'authenticationData' => 'setAuthenticationData',
         'billingAddress' => 'setBillingAddress',
+        'blockedPaymentMethods' => 'setBlockedPaymentMethods',
         'browserInfo' => 'setBrowserInfo',
         'captureDelayHours' => 'setCaptureDelayHours',
         'channel' => 'setChannel',
@@ -468,6 +486,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'fraudOffset' => 'setFraudOffset',
         'fundOrigin' => 'setFundOrigin',
         'fundRecipient' => 'setFundRecipient',
+        'fundingSource' => 'setFundingSource',
         'industryUsage' => 'setIndustryUsage',
         'installments' => 'setInstallments',
         'lineItems' => 'setLineItems',
@@ -492,6 +511,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'reference' => 'setReference',
         'returnUrl' => 'setReturnUrl',
         'riskData' => 'setRiskData',
+        'selectedRecurringDetailReference' => 'setSelectedRecurringDetailReference',
         'sessionValidity' => 'setSessionValidity',
         'shopperEmail' => 'setShopperEmail',
         'shopperIP' => 'setShopperIP',
@@ -519,10 +539,12 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'accountInfo' => 'getAccountInfo',
         'additionalAmount' => 'getAdditionalAmount',
         'additionalData' => 'getAdditionalData',
+        'allowedPaymentMethods' => 'getAllowedPaymentMethods',
         'amount' => 'getAmount',
         'applicationInfo' => 'getApplicationInfo',
         'authenticationData' => 'getAuthenticationData',
         'billingAddress' => 'getBillingAddress',
+        'blockedPaymentMethods' => 'getBlockedPaymentMethods',
         'browserInfo' => 'getBrowserInfo',
         'captureDelayHours' => 'getCaptureDelayHours',
         'channel' => 'getChannel',
@@ -546,6 +568,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'fraudOffset' => 'getFraudOffset',
         'fundOrigin' => 'getFundOrigin',
         'fundRecipient' => 'getFundRecipient',
+        'fundingSource' => 'getFundingSource',
         'industryUsage' => 'getIndustryUsage',
         'installments' => 'getInstallments',
         'lineItems' => 'getLineItems',
@@ -570,6 +593,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'reference' => 'getReference',
         'returnUrl' => 'getReturnUrl',
         'riskData' => 'getRiskData',
+        'selectedRecurringDetailReference' => 'getSelectedRecurringDetailReference',
         'sessionValidity' => 'getSessionValidity',
         'shopperEmail' => 'getShopperEmail',
         'shopperIP' => 'getShopperIP',
@@ -634,6 +658,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
     public const CHANNEL_WEB = 'Web';
     public const ENTITY_TYPE_NATURAL_PERSON = 'NaturalPerson';
     public const ENTITY_TYPE_COMPANY_NAME = 'CompanyName';
+    public const FUNDING_SOURCE_DEBIT = 'debit';
     public const INDUSTRY_USAGE_DELAYED_CHARGE = 'delayedCharge';
     public const INDUSTRY_USAGE_INSTALLMENT = 'installment';
     public const INDUSTRY_USAGE_NO_SHOW = 'noShow';
@@ -668,6 +693,17 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         return [
             self::ENTITY_TYPE_NATURAL_PERSON,
             self::ENTITY_TYPE_COMPANY_NAME,
+        ];
+    }
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getFundingSourceAllowableValues()
+    {
+        return [
+            self::FUNDING_SOURCE_DEBIT,
         ];
     }
     /**
@@ -728,10 +764,12 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('accountInfo', $data ?? [], null);
         $this->setIfExists('additionalAmount', $data ?? [], null);
         $this->setIfExists('additionalData', $data ?? [], null);
+        $this->setIfExists('allowedPaymentMethods', $data ?? [], null);
         $this->setIfExists('amount', $data ?? [], null);
         $this->setIfExists('applicationInfo', $data ?? [], null);
         $this->setIfExists('authenticationData', $data ?? [], null);
         $this->setIfExists('billingAddress', $data ?? [], null);
+        $this->setIfExists('blockedPaymentMethods', $data ?? [], null);
         $this->setIfExists('browserInfo', $data ?? [], null);
         $this->setIfExists('captureDelayHours', $data ?? [], null);
         $this->setIfExists('channel', $data ?? [], null);
@@ -755,6 +793,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('fraudOffset', $data ?? [], null);
         $this->setIfExists('fundOrigin', $data ?? [], null);
         $this->setIfExists('fundRecipient', $data ?? [], null);
+        $this->setIfExists('fundingSource', $data ?? [], null);
         $this->setIfExists('industryUsage', $data ?? [], null);
         $this->setIfExists('installments', $data ?? [], null);
         $this->setIfExists('lineItems', $data ?? [], null);
@@ -779,6 +818,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('reference', $data ?? [], null);
         $this->setIfExists('returnUrl', $data ?? [], null);
         $this->setIfExists('riskData', $data ?? [], null);
+        $this->setIfExists('selectedRecurringDetailReference', $data ?? [], null);
         $this->setIfExists('sessionValidity', $data ?? [], null);
         $this->setIfExists('shopperEmail', $data ?? [], null);
         $this->setIfExists('shopperIP', $data ?? [], null);
@@ -844,6 +884,15 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'entityType', must be one of '%s'",
                 $this->container['entityType'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getFundingSourceAllowableValues();
+        if (!is_null($this->container['fundingSource']) && !in_array($this->container['fundingSource'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'fundingSource', must be one of '%s'",
+                $this->container['fundingSource'],
                 implode("', '", $allowedValues)
             );
         }
@@ -984,6 +1033,33 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
     }
 
     /**
+     * Gets allowedPaymentMethods
+     *
+     * @return string[]|null
+     */
+    public function getAllowedPaymentMethods()
+    {
+        return $this->container['allowedPaymentMethods'];
+    }
+
+    /**
+     * Sets allowedPaymentMethods
+     *
+     * @param string[]|null $allowedPaymentMethods List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"allowedPaymentMethods\":[\"ideal\",\"giropay\"]`
+     *
+     * @return self
+     */
+    public function setAllowedPaymentMethods($allowedPaymentMethods)
+    {
+        if (is_null($allowedPaymentMethods)) {
+            throw new \InvalidArgumentException('non-nullable allowedPaymentMethods cannot be null');
+        }
+        $this->container['allowedPaymentMethods'] = $allowedPaymentMethods;
+
+        return $this;
+    }
+
+    /**
      * Gets amount
      *
      * @return \Adyen\Model\Checkout\Amount
@@ -1067,7 +1143,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets billingAddress
      *
-     * @return \Adyen\Model\Checkout\Address|null
+     * @return \Adyen\Model\Checkout\BillingAddress|null
      */
     public function getBillingAddress()
     {
@@ -1077,7 +1153,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets billingAddress
      *
-     * @param \Adyen\Model\Checkout\Address|null $billingAddress billingAddress
+     * @param \Adyen\Model\Checkout\BillingAddress|null $billingAddress billingAddress
      *
      * @return self
      */
@@ -1087,6 +1163,33 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
             throw new \InvalidArgumentException('non-nullable billingAddress cannot be null');
         }
         $this->container['billingAddress'] = $billingAddress;
+
+        return $this;
+    }
+
+    /**
+     * Gets blockedPaymentMethods
+     *
+     * @return string[]|null
+     */
+    public function getBlockedPaymentMethods()
+    {
+        return $this->container['blockedPaymentMethods'];
+    }
+
+    /**
+     * Sets blockedPaymentMethods
+     *
+     * @param string[]|null $blockedPaymentMethods List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"blockedPaymentMethods\":[\"ideal\",\"giropay\"]`
+     *
+     * @return self
+     */
+    public function setBlockedPaymentMethods($blockedPaymentMethods)
+    {
+        if (is_null($blockedPaymentMethods)) {
+            throw new \InvalidArgumentException('non-nullable blockedPaymentMethods cannot be null');
+        }
+        $this->container['blockedPaymentMethods'] = $blockedPaymentMethods;
 
         return $this;
     }
@@ -1374,7 +1477,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets deliveryAddress
      *
-     * @return \Adyen\Model\Checkout\Address|null
+     * @return \Adyen\Model\Checkout\DeliveryAddress|null
      */
     public function getDeliveryAddress()
     {
@@ -1384,7 +1487,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets deliveryAddress
      *
-     * @param \Adyen\Model\Checkout\Address|null $deliveryAddress deliveryAddress
+     * @param \Adyen\Model\Checkout\DeliveryAddress|null $deliveryAddress deliveryAddress
      *
      * @return self
      */
@@ -1402,7 +1505,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      * Gets deliveryDate
      *
      * @return \DateTime|null
-     * @deprecated
      */
     public function getDeliveryDate()
     {
@@ -1415,7 +1517,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      * @param \DateTime|null $deliveryDate The date and time the purchased goods should be delivered.  Format [ISO 8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DDThh:mm:ss.sssTZD  Example: 2017-07-17T13:42:40.428+01:00
      *
      * @return self
-     * @deprecated
      */
     public function setDeliveryDate($deliveryDate)
     {
@@ -1728,6 +1829,43 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
             throw new \InvalidArgumentException('non-nullable fundRecipient cannot be null');
         }
         $this->container['fundRecipient'] = $fundRecipient;
+
+        return $this;
+    }
+
+    /**
+     * Gets fundingSource
+     *
+     * @return string|null
+     */
+    public function getFundingSource()
+    {
+        return $this->container['fundingSource'];
+    }
+
+    /**
+     * Sets fundingSource
+     *
+     * @param string|null $fundingSource The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
+     *
+     * @return self
+     */
+    public function setFundingSource($fundingSource)
+    {
+        if (is_null($fundingSource)) {
+            throw new \InvalidArgumentException('non-nullable fundingSource cannot be null');
+        }
+        $allowedValues = $this->getFundingSourceAllowableValues();
+        if (!in_array($fundingSource, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'fundingSource', must be one of '%s'",
+                    $fundingSource,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['fundingSource'] = $fundingSource;
 
         return $this;
     }
@@ -2396,6 +2534,33 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
             throw new \InvalidArgumentException('non-nullable riskData cannot be null');
         }
         $this->container['riskData'] = $riskData;
+
+        return $this;
+    }
+
+    /**
+     * Gets selectedRecurringDetailReference
+     *
+     * @return string|null
+     */
+    public function getSelectedRecurringDetailReference()
+    {
+        return $this->container['selectedRecurringDetailReference'];
+    }
+
+    /**
+     * Sets selectedRecurringDetailReference
+     *
+     * @param string|null $selectedRecurringDetailReference The `recurringDetailReference` you want to use for this payment. The value `LATEST` can be used to select the most recently stored recurring detail.
+     *
+     * @return self
+     */
+    public function setSelectedRecurringDetailReference($selectedRecurringDetailReference)
+    {
+        if (is_null($selectedRecurringDetailReference)) {
+            throw new \InvalidArgumentException('non-nullable selectedRecurringDetailReference cannot be null');
+        }
+        $this->container['selectedRecurringDetailReference'] = $selectedRecurringDetailReference;
 
         return $this;
     }

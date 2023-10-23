@@ -18,7 +18,7 @@ use Adyen\Client;
 use Adyen\Service;
 use Adyen\Model\Payments\ObjectSerializer;
 
-class GeneralApi extends Service
+class PaymentsApi extends Service
 {
     /**
      * @var array|string|string[]
@@ -26,7 +26,7 @@ class GeneralApi extends Service
     private $baseURL;
 
     /**
-     * GeneralApi constructor.
+     * PaymentsApi constructor.
      *
      * @param \Adyen\Client $client
      * @throws AdyenException

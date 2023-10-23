@@ -50,7 +50,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'amount' => '\Adyen\Model\Checkout\Amount',
         'applicationInfo' => '\Adyen\Model\Checkout\ApplicationInfo',
         'authenticationData' => '\Adyen\Model\Checkout\AuthenticationData',
-        'billingAddress' => '\Adyen\Model\Checkout\Address',
+        'billingAddress' => '\Adyen\Model\Checkout\BillingAddress',
         'browserInfo' => '\Adyen\Model\Checkout\BrowserInfo',
         'captureDelayHours' => 'int',
         'channel' => 'string',
@@ -61,7 +61,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'dateOfBirth' => '\DateTime',
         'dccQuote' => '\Adyen\Model\Checkout\ForexQuote',
         'deliverAt' => '\DateTime',
-        'deliveryAddress' => '\Adyen\Model\Checkout\Address',
+        'deliveryAddress' => '\Adyen\Model\Checkout\DeliveryAddress',
         'deliveryDate' => '\DateTime',
         'deviceFingerprint' => 'string',
         'enableOneClick' => 'bool',
@@ -85,7 +85,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'order' => '\Adyen\Model\Checkout\EncryptedOrderData',
         'orderReference' => 'string',
         'origin' => 'string',
-        'paymentMethod' => '\Adyen\Model\Checkout\CheckoutPaymentMethod',
+        'paymentMethod' => '\Adyen\Model\Checkout\PaymentRequestPaymentMethod',
         'platformChargebackLogic' => '\Adyen\Model\Checkout\PlatformChargebackLogic',
         'recurringExpiry' => 'string',
         'recurringFrequency' => 'string',
@@ -1043,7 +1043,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets billingAddress
      *
-     * @return \Adyen\Model\Checkout\Address|null
+     * @return \Adyen\Model\Checkout\BillingAddress|null
      */
     public function getBillingAddress()
     {
@@ -1053,7 +1053,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets billingAddress
      *
-     * @param \Adyen\Model\Checkout\Address|null $billingAddress billingAddress
+     * @param \Adyen\Model\Checkout\BillingAddress|null $billingAddress billingAddress
      *
      * @return self
      */
@@ -1350,7 +1350,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets deliveryAddress
      *
-     * @return \Adyen\Model\Checkout\Address|null
+     * @return \Adyen\Model\Checkout\DeliveryAddress|null
      */
     public function getDeliveryAddress()
     {
@@ -1360,7 +1360,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets deliveryAddress
      *
-     * @param \Adyen\Model\Checkout\Address|null $deliveryAddress deliveryAddress
+     * @param \Adyen\Model\Checkout\DeliveryAddress|null $deliveryAddress deliveryAddress
      *
      * @return self
      */
@@ -2018,7 +2018,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets paymentMethod
      *
-     * @return \Adyen\Model\Checkout\CheckoutPaymentMethod
+     * @return \Adyen\Model\Checkout\PaymentRequestPaymentMethod
      */
     public function getPaymentMethod()
     {
@@ -2028,7 +2028,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets paymentMethod
      *
-     * @param \Adyen\Model\Checkout\CheckoutPaymentMethod $paymentMethod paymentMethod
+     * @param \Adyen\Model\Checkout\PaymentRequestPaymentMethod $paymentMethod paymentMethod
      *
      * @return self
      */

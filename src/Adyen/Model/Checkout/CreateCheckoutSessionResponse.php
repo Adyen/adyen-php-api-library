@@ -51,7 +51,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'amount' => '\Adyen\Model\Checkout\Amount',
         'applicationInfo' => '\Adyen\Model\Checkout\ApplicationInfo',
         'authenticationData' => '\Adyen\Model\Checkout\AuthenticationData',
-        'billingAddress' => '\Adyen\Model\Checkout\Address',
+        'billingAddress' => '\Adyen\Model\Checkout\BillingAddress',
         'blockedPaymentMethods' => 'string[]',
         'captureDelayHours' => 'int',
         'channel' => 'string',
@@ -59,7 +59,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'countryCode' => 'string',
         'dateOfBirth' => '\DateTime',
         'deliverAt' => '\DateTime',
-        'deliveryAddress' => '\Adyen\Model\Checkout\Address',
+        'deliveryAddress' => '\Adyen\Model\Checkout\DeliveryAddress',
         'enableOneClick' => 'bool',
         'enablePayOut' => 'bool',
         'enableRecurring' => 'bool',
@@ -1010,7 +1010,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
     /**
      * Gets billingAddress
      *
-     * @return \Adyen\Model\Checkout\Address|null
+     * @return \Adyen\Model\Checkout\BillingAddress|null
      */
     public function getBillingAddress()
     {
@@ -1020,7 +1020,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets billingAddress
      *
-     * @param \Adyen\Model\Checkout\Address|null $billingAddress billingAddress
+     * @param \Adyen\Model\Checkout\BillingAddress|null $billingAddress billingAddress
      *
      * @return self
      */
@@ -1234,7 +1234,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
     /**
      * Gets deliveryAddress
      *
-     * @return \Adyen\Model\Checkout\Address|null
+     * @return \Adyen\Model\Checkout\DeliveryAddress|null
      */
     public function getDeliveryAddress()
     {
@@ -1244,7 +1244,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets deliveryAddress
      *
-     * @param \Adyen\Model\Checkout\Address|null $deliveryAddress deliveryAddress
+     * @param \Adyen\Model\Checkout\DeliveryAddress|null $deliveryAddress deliveryAddress
      *
      * @return self
      */
