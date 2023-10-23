@@ -22,17 +22,17 @@ POSTerminalManagement: spec=TfmAPIService-v1
 Payments: spec=PaymentService-v68
 Recurring: spec=RecurringService-v68
 Payout: spec=PayoutService-v68
-Management: spec=ManagementService-v1
+Management: spec=ManagementService-v3
 LegalEntityManagement: spec=LegalEntityService-v3
-Transfers: spec=TransferService-v3
+Transfers: spec=TransferService-v4
 
 # BalanceWebhooks
 AcsWebhooks: spec=BalancePlatformAcsNotification-v1
 ConfigurationWebhooks: spec=BalancePlatformConfigurationNotification-v1
 ReportWebhooks: spec=BalancePlatformReportNotification-v1
-TransferWebhooks: spec=BalancePlatformTransferNotification-v3
+TransferWebhooks: spec=BalancePlatformTransferNotification-v4
 # ManagementWebhooks
-ManagementWebhooks: spec=ManagementNotificationService-v1
+ManagementWebhooks: spec=ManagementNotificationService-v3
 
 # Classic Platforms
 marketpay/account: spec=AccountService-v6

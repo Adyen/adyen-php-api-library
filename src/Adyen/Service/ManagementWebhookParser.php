@@ -6,6 +6,8 @@ use Adyen\Model\ManagementWebhooks\MerchantCreatedNotificationRequest;
 use Adyen\Model\ManagementWebhooks\MerchantUpdatedNotificationRequest;
 use Adyen\Model\ManagementWebhooks\PaymentMethodCreatedNotificationRequest;
 use Adyen\Model\ManagementWebhooks\ObjectSerializer;
+use Adyen\Model\ManagementWebhooks\PaymentMethodRequestRemovedNotificationRequest;
+use Adyen\Model\ManagementWebhooks\PaymentMethodScheduledForRemovalNotificationRequest;
 
 class ManagementWebhookParser
 {
@@ -33,6 +35,14 @@ class ManagementWebhookParser
             return (object)self::deserializewebhook($clazz);
         }
 
+        if (in_array($type, ($clazz = new PaymentMethodRequestRemovedNotificationRequest())->getTypeAllowableValues())) {
+            return (object)self::deserializewebhook($clazz);
+        }
+
+        if (in_array($type, ($clazz = new PaymentMethodScheduledForRemovalNotificationRequest())->getTypeAllowableValues())) {
+            return (object)self::deserializewebhook($clazz);
+        }
+
         // throw error in case the webhook can not be parsed
         throw new \Error("Could not parse the payload:" . $this->payload);
     }
@@ -51,6 +61,18 @@ class ManagementWebhookParser
 
     /** @noinspection PhpIncompatibleReturnTypeInspection */
     public function getPaymentMethodCreatedNotificationRequest(): PaymentMethodCreatedNotificationRequest
+    {
+        return $this->getGenericWebhook();
+    }
+
+    /** @noinspection PhpIncompatibleReturnTypeInspection */
+    public function getPaymentMethodRequestRemovedNotificationRequest(): PaymentMethodRequestRemovedNotificationRequest
+    {
+        return $this->getGenericWebhook();
+    }
+
+    /** @noinspection PhpIncompatibleReturnTypeInspection */
+    public function getPaymentMethodScheduledForRemovalNotificationRequest(): PaymentMethodScheduledForRemovalNotificationRequest
     {
         return $this->getGenericWebhook();
     }

@@ -50,7 +50,7 @@ class ModelBasedManagementTest extends TestCaseMock
         $this->assertNotEmpty($response->getLinks());
         $this->assertNotEmpty($response->getData());
         $this->assertNotEmpty($response->getItemsTotal());
-        self::assertEquals('https://management-test.adyen.com/v1/merchants?pageSize=2', $this->requestUrl);
+        self::assertEquals('https://management-test.adyen.com/v3/merchants?pageSize=2', $this->requestUrl);
     }
 
     /**
@@ -82,7 +82,7 @@ class ModelBasedManagementTest extends TestCaseMock
         $this->assertNotEmpty(json_encode($response->jsonSerialize()));
         $this->assertEquals("AG4345BV33J78K17F4F963516FA42AC8813EWS3J8F41E902", $response->getHmacKey());
         $this->assertEquals(
-            'https://management-live.adyen.com/v1/merchants/merchantAccount/webhooks/webhookId/generateHmac',
+            'https://management-live.adyen.com/v3/merchants/merchantAccount/webhooks/webhookId/generateHmac',
             $this->requestUrl
         );
     }
