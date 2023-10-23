@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\ManagementWebhooks\ObjectSerializer;
 
 /**
- * NotificationDataMessage Class Doc Comment
+ * PaymentMethodScheduledForRemovalNotificationRequest Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\ManagementWebhooks\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class NotificationDataMessage implements ModelInterface, ArrayAccess, \JsonSerializable
+class PaymentMethodScheduledForRemovalNotificationRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class NotificationDataMessage implements ModelInterface, ArrayAccess, \JsonSeria
       *
       * @var string
       */
-    protected static $openAPIModelName = 'NotificationDataMessage';
+    protected static $openAPIModelName = 'PaymentMethodScheduledForRemovalNotificationRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -233,7 +233,19 @@ class NotificationDataMessage implements ModelInterface, ArrayAccess, \JsonSeria
         return self::$openAPIModelName;
     }
 
+    public const TYPE_PAYMENT_METHOD_REQUEST_SCHEDULED_FOR_REMOVAL = 'paymentMethod.requestScheduledForRemoval';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_PAYMENT_METHOD_REQUEST_SCHEDULED_FOR_REMOVAL,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -294,6 +306,15 @@ class NotificationDataMessage implements ModelInterface, ArrayAccess, \JsonSeria
         if ($this->container['type'] === null) {
             $invalidProperties[] = "'type' can't be null";
         }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -411,6 +432,16 @@ class NotificationDataMessage implements ModelInterface, ArrayAccess, \JsonSeria
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
+        }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
+                    implode("', '", $allowedValues)
+                )
+            );
         }
         $this->container['type'] = $type;
 
