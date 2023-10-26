@@ -50,7 +50,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'amount' => '\Adyen\Model\Checkout\Amount',
         'applicationInfo' => '\Adyen\Model\Checkout\ApplicationInfo',
         'authenticationData' => '\Adyen\Model\Checkout\AuthenticationData',
-        'billingAddress' => '\Adyen\Model\Checkout\Address',
+        'billingAddress' => '\Adyen\Model\Checkout\BillingAddress',
         'browserInfo' => '\Adyen\Model\Checkout\BrowserInfo',
         'captureDelayHours' => 'int',
         'channel' => 'string',
@@ -61,7 +61,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'dateOfBirth' => '\DateTime',
         'dccQuote' => '\Adyen\Model\Checkout\ForexQuote',
         'deliverAt' => '\DateTime',
-        'deliveryAddress' => '\Adyen\Model\Checkout\Address',
+        'deliveryAddress' => '\Adyen\Model\Checkout\DeliveryAddress',
         'deliveryDate' => '\DateTime',
         'deviceFingerprint' => 'string',
         'enableOneClick' => 'bool',
@@ -1043,7 +1043,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets billingAddress
      *
-     * @return \Adyen\Model\Checkout\Address|null
+     * @return \Adyen\Model\Checkout\BillingAddress|null
      */
     public function getBillingAddress()
     {
@@ -1053,7 +1053,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets billingAddress
      *
-     * @param \Adyen\Model\Checkout\Address|null $billingAddress billingAddress
+     * @param \Adyen\Model\Checkout\BillingAddress|null $billingAddress billingAddress
      *
      * @return self
      */
@@ -1350,7 +1350,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets deliveryAddress
      *
-     * @return \Adyen\Model\Checkout\Address|null
+     * @return \Adyen\Model\Checkout\DeliveryAddress|null
      */
     public function getDeliveryAddress()
     {
@@ -1360,7 +1360,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets deliveryAddress
      *
-     * @param \Adyen\Model\Checkout\Address|null $deliveryAddress deliveryAddress
+     * @param \Adyen\Model\Checkout\DeliveryAddress|null $deliveryAddress deliveryAddress
      *
      * @return self
      */
@@ -2254,7 +2254,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets returnUrl
      *
-     * @param string $returnUrl The URL to return to in case of a redirection. The format depends on the channel. This URL can have a maximum of 1024 characters. * For web, include the protocol `http://` or `https://`. You can also include your own additional query parameters, for example, shopper ID or order reference number. Example: `https://your-company.com/checkout?shopperOrder=12xy` * For iOS, use the custom URL for your app. To know more about setting custom URL schemes, refer to the [Apple Developer documentation](https://developer.apple.com/documentation/uikit/inter-process_communication/allowing_apps_and_websites_to_link_to_your_content/defining_a_custom_url_scheme_for_your_app). Example: `my-app://` * For Android, use a custom URL handled by an Activity on your app. You can configure it with an [intent filter](https://developer.android.com/guide/components/intents-filters). Example: `my-app://your.package.name`
+     * @param string $returnUrl The URL to return to in case of a redirection. The format depends on the channel.  * For web, include the protocol `http://` or `https://`. You can also include your own additional query parameters, for example, shopper ID or order reference number. Example: `https://your-company.com/checkout?shopperOrder=12xy` * For iOS, use the custom URL for your app. To know more about setting custom URL schemes, refer to the [Apple Developer documentation](https://developer.apple.com/documentation/uikit/inter-process_communication/allowing_apps_and_websites_to_link_to_your_content/defining_a_custom_url_scheme_for_your_app). Example: `my-app://` * For Android, use a custom URL handled by an Activity on your app. You can configure it with an [intent filter](https://developer.android.com/guide/components/intents-filters). Example: `my-app://your.package.name`
      *
      * @return self
      */
