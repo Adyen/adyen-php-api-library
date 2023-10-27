@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
- * PaymentCancelRequest Class Doc Comment
+ * DeliveryAddress Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class PaymentCancelRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class PaymentCancelRequest implements ModelInterface, ArrayAccess, \JsonSerializ
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PaymentCancelRequest';
+    protected static $openAPIModelName = 'DeliveryAddress';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,9 +44,14 @@ class PaymentCancelRequest implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var string[]
       */
     protected static $openAPITypes = [
-        'applicationInfo' => '\Adyen\Model\Checkout\ApplicationInfo',
-        'merchantAccount' => 'string',
-        'reference' => 'string'
+        'city' => 'string',
+        'country' => 'string',
+        'firstName' => 'string',
+        'houseNumberOrName' => 'string',
+        'lastName' => 'string',
+        'postalCode' => 'string',
+        'stateOrProvince' => 'string',
+        'street' => 'string'
     ];
 
     /**
@@ -57,9 +62,14 @@ class PaymentCancelRequest implements ModelInterface, ArrayAccess, \JsonSerializ
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'applicationInfo' => null,
-        'merchantAccount' => null,
-        'reference' => null
+        'city' => null,
+        'country' => null,
+        'firstName' => null,
+        'houseNumberOrName' => null,
+        'lastName' => null,
+        'postalCode' => null,
+        'stateOrProvince' => null,
+        'street' => null
     ];
 
     /**
@@ -68,9 +78,14 @@ class PaymentCancelRequest implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'applicationInfo' => false,
-        'merchantAccount' => false,
-        'reference' => false
+        'city' => false,
+        'country' => false,
+        'firstName' => false,
+        'houseNumberOrName' => false,
+        'lastName' => false,
+        'postalCode' => false,
+        'stateOrProvince' => false,
+        'street' => false
     ];
 
     /**
@@ -159,9 +174,14 @@ class PaymentCancelRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $attributeMap = [
-        'applicationInfo' => 'applicationInfo',
-        'merchantAccount' => 'merchantAccount',
-        'reference' => 'reference'
+        'city' => 'city',
+        'country' => 'country',
+        'firstName' => 'firstName',
+        'houseNumberOrName' => 'houseNumberOrName',
+        'lastName' => 'lastName',
+        'postalCode' => 'postalCode',
+        'stateOrProvince' => 'stateOrProvince',
+        'street' => 'street'
     ];
 
     /**
@@ -170,9 +190,14 @@ class PaymentCancelRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $setters = [
-        'applicationInfo' => 'setApplicationInfo',
-        'merchantAccount' => 'setMerchantAccount',
-        'reference' => 'setReference'
+        'city' => 'setCity',
+        'country' => 'setCountry',
+        'firstName' => 'setFirstName',
+        'houseNumberOrName' => 'setHouseNumberOrName',
+        'lastName' => 'setLastName',
+        'postalCode' => 'setPostalCode',
+        'stateOrProvince' => 'setStateOrProvince',
+        'street' => 'setStreet'
     ];
 
     /**
@@ -181,9 +206,14 @@ class PaymentCancelRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $getters = [
-        'applicationInfo' => 'getApplicationInfo',
-        'merchantAccount' => 'getMerchantAccount',
-        'reference' => 'getReference'
+        'city' => 'getCity',
+        'country' => 'getCountry',
+        'firstName' => 'getFirstName',
+        'houseNumberOrName' => 'getHouseNumberOrName',
+        'lastName' => 'getLastName',
+        'postalCode' => 'getPostalCode',
+        'stateOrProvince' => 'getStateOrProvince',
+        'street' => 'getStreet'
     ];
 
     /**
@@ -243,9 +273,14 @@ class PaymentCancelRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('applicationInfo', $data ?? [], null);
-        $this->setIfExists('merchantAccount', $data ?? [], null);
-        $this->setIfExists('reference', $data ?? [], null);
+        $this->setIfExists('city', $data ?? [], null);
+        $this->setIfExists('country', $data ?? [], null);
+        $this->setIfExists('firstName', $data ?? [], null);
+        $this->setIfExists('houseNumberOrName', $data ?? [], null);
+        $this->setIfExists('lastName', $data ?? [], null);
+        $this->setIfExists('postalCode', $data ?? [], null);
+        $this->setIfExists('stateOrProvince', $data ?? [], null);
+        $this->setIfExists('street', $data ?? [], null);
     }
 
     /**
@@ -275,8 +310,20 @@ class PaymentCancelRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         $invalidProperties = [];
 
-        if ($this->container['merchantAccount'] === null) {
-            $invalidProperties[] = "'merchantAccount' can't be null";
+        if ($this->container['city'] === null) {
+            $invalidProperties[] = "'city' can't be null";
+        }
+        if ($this->container['country'] === null) {
+            $invalidProperties[] = "'country' can't be null";
+        }
+        if ($this->container['houseNumberOrName'] === null) {
+            $invalidProperties[] = "'houseNumberOrName' can't be null";
+        }
+        if ($this->container['postalCode'] === null) {
+            $invalidProperties[] = "'postalCode' can't be null";
+        }
+        if ($this->container['street'] === null) {
+            $invalidProperties[] = "'street' can't be null";
         }
         return $invalidProperties;
     }
@@ -294,82 +341,217 @@ class PaymentCancelRequest implements ModelInterface, ArrayAccess, \JsonSerializ
 
 
     /**
-     * Gets applicationInfo
-     *
-     * @return \Adyen\Model\Checkout\ApplicationInfo|null
-     */
-    public function getApplicationInfo()
-    {
-        return $this->container['applicationInfo'];
-    }
-
-    /**
-     * Sets applicationInfo
-     *
-     * @param \Adyen\Model\Checkout\ApplicationInfo|null $applicationInfo applicationInfo
-     *
-     * @return self
-     */
-    public function setApplicationInfo($applicationInfo)
-    {
-        if (is_null($applicationInfo)) {
-            throw new \InvalidArgumentException('non-nullable applicationInfo cannot be null');
-        }
-        $this->container['applicationInfo'] = $applicationInfo;
-
-        return $this;
-    }
-
-    /**
-     * Gets merchantAccount
+     * Gets city
      *
      * @return string
      */
-    public function getMerchantAccount()
+    public function getCity()
     {
-        return $this->container['merchantAccount'];
+        return $this->container['city'];
     }
 
     /**
-     * Sets merchantAccount
+     * Sets city
      *
-     * @param string $merchantAccount The merchant account that is used to process the payment.
+     * @param string $city The name of the city. Maximum length: 3000 characters.
      *
      * @return self
      */
-    public function setMerchantAccount($merchantAccount)
+    public function setCity($city)
     {
-        if (is_null($merchantAccount)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
+        if (is_null($city)) {
+            throw new \InvalidArgumentException('non-nullable city cannot be null');
         }
-        $this->container['merchantAccount'] = $merchantAccount;
+        $this->container['city'] = $city;
 
         return $this;
     }
 
     /**
-     * Gets reference
+     * Gets country
      *
-     * @return string|null
+     * @return string
      */
-    public function getReference()
+    public function getCountry()
     {
-        return $this->container['reference'];
+        return $this->container['country'];
     }
 
     /**
-     * Sets reference
+     * Sets country
      *
-     * @param string|null $reference Your reference for the cancel request. Maximum length: 80 characters.
+     * @param string $country The two-character ISO-3166-1 alpha-2 country code. For example, **US**. > If you don't know the country or are not collecting the country from the shopper, provide `country` as `ZZ`.
      *
      * @return self
      */
-    public function setReference($reference)
+    public function setCountry($country)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
+        if (is_null($country)) {
+            throw new \InvalidArgumentException('non-nullable country cannot be null');
         }
-        $this->container['reference'] = $reference;
+        $this->container['country'] = $country;
+
+        return $this;
+    }
+
+    /**
+     * Gets firstName
+     *
+     * @return string|null
+     */
+    public function getFirstName()
+    {
+        return $this->container['firstName'];
+    }
+
+    /**
+     * Sets firstName
+     *
+     * @param string|null $firstName firstName
+     *
+     * @return self
+     */
+    public function setFirstName($firstName)
+    {
+        if (is_null($firstName)) {
+            throw new \InvalidArgumentException('non-nullable firstName cannot be null');
+        }
+        $this->container['firstName'] = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * Gets houseNumberOrName
+     *
+     * @return string
+     */
+    public function getHouseNumberOrName()
+    {
+        return $this->container['houseNumberOrName'];
+    }
+
+    /**
+     * Sets houseNumberOrName
+     *
+     * @param string $houseNumberOrName The number or name of the house. Maximum length: 3000 characters.
+     *
+     * @return self
+     */
+    public function setHouseNumberOrName($houseNumberOrName)
+    {
+        if (is_null($houseNumberOrName)) {
+            throw new \InvalidArgumentException('non-nullable houseNumberOrName cannot be null');
+        }
+        $this->container['houseNumberOrName'] = $houseNumberOrName;
+
+        return $this;
+    }
+
+    /**
+     * Gets lastName
+     *
+     * @return string|null
+     */
+    public function getLastName()
+    {
+        return $this->container['lastName'];
+    }
+
+    /**
+     * Sets lastName
+     *
+     * @param string|null $lastName lastName
+     *
+     * @return self
+     */
+    public function setLastName($lastName)
+    {
+        if (is_null($lastName)) {
+            throw new \InvalidArgumentException('non-nullable lastName cannot be null');
+        }
+        $this->container['lastName'] = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Gets postalCode
+     *
+     * @return string
+     */
+    public function getPostalCode()
+    {
+        return $this->container['postalCode'];
+    }
+
+    /**
+     * Sets postalCode
+     *
+     * @param string $postalCode A maximum of five digits for an address in the US, or a maximum of ten characters for an address in all other countries.
+     *
+     * @return self
+     */
+    public function setPostalCode($postalCode)
+    {
+        if (is_null($postalCode)) {
+            throw new \InvalidArgumentException('non-nullable postalCode cannot be null');
+        }
+        $this->container['postalCode'] = $postalCode;
+
+        return $this;
+    }
+
+    /**
+     * Gets stateOrProvince
+     *
+     * @return string|null
+     */
+    public function getStateOrProvince()
+    {
+        return $this->container['stateOrProvince'];
+    }
+
+    /**
+     * Sets stateOrProvince
+     *
+     * @param string|null $stateOrProvince The two-character ISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada. > Required for the US and Canada.
+     *
+     * @return self
+     */
+    public function setStateOrProvince($stateOrProvince)
+    {
+        if (is_null($stateOrProvince)) {
+            throw new \InvalidArgumentException('non-nullable stateOrProvince cannot be null');
+        }
+        $this->container['stateOrProvince'] = $stateOrProvince;
+
+        return $this;
+    }
+
+    /**
+     * Gets street
+     *
+     * @return string
+     */
+    public function getStreet()
+    {
+        return $this->container['street'];
+    }
+
+    /**
+     * Sets street
+     *
+     * @param string $street The name of the street. Maximum length: 3000 characters. > The house number should not be included in this field; it should be separately provided via `houseNumberOrName`.
+     *
+     * @return self
+     */
+    public function setStreet($street)
+    {
+        if (is_null($street)) {
+            throw new \InvalidArgumentException('non-nullable street cannot be null');
+        }
+        $this->container['street'] = $street;
 
         return $this;
     }

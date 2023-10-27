@@ -51,7 +51,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'amount' => '\Adyen\Model\Checkout\Amount',
         'applicationInfo' => '\Adyen\Model\Checkout\ApplicationInfo',
         'authenticationData' => '\Adyen\Model\Checkout\AuthenticationData',
-        'billingAddress' => '\Adyen\Model\Checkout\Address',
+        'billingAddress' => '\Adyen\Model\Checkout\BillingAddress',
         'blockedPaymentMethods' => 'string[]',
         'captureDelayHours' => 'int',
         'channel' => 'string',
@@ -59,7 +59,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'countryCode' => 'string',
         'dateOfBirth' => '\DateTime',
         'deliverAt' => '\DateTime',
-        'deliveryAddress' => '\Adyen\Model\Checkout\Address',
+        'deliveryAddress' => '\Adyen\Model\Checkout\DeliveryAddress',
         'enableOneClick' => 'bool',
         'enablePayOut' => 'bool',
         'enableRecurring' => 'bool',
@@ -93,6 +93,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'shopperName' => '\Adyen\Model\Checkout\Name',
         'shopperReference' => 'string',
         'shopperStatement' => 'string',
+        'showInstallmentAmount' => 'bool',
         'socialSecurityNumber' => 'string',
         'splitCardFundingSources' => 'bool',
         'splits' => '\Adyen\Model\Checkout\Split[]',
@@ -161,6 +162,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'shopperName' => null,
         'shopperReference' => null,
         'shopperStatement' => null,
+        'showInstallmentAmount' => null,
         'socialSecurityNumber' => null,
         'splitCardFundingSources' => null,
         'splits' => null,
@@ -227,6 +229,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'shopperName' => false,
         'shopperReference' => false,
         'shopperStatement' => false,
+        'showInstallmentAmount' => false,
         'socialSecurityNumber' => false,
         'splitCardFundingSources' => false,
         'splits' => false,
@@ -373,6 +376,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'shopperName' => 'shopperName',
         'shopperReference' => 'shopperReference',
         'shopperStatement' => 'shopperStatement',
+        'showInstallmentAmount' => 'showInstallmentAmount',
         'socialSecurityNumber' => 'socialSecurityNumber',
         'splitCardFundingSources' => 'splitCardFundingSources',
         'splits' => 'splits',
@@ -439,6 +443,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'shopperName' => 'setShopperName',
         'shopperReference' => 'setShopperReference',
         'shopperStatement' => 'setShopperStatement',
+        'showInstallmentAmount' => 'setShowInstallmentAmount',
         'socialSecurityNumber' => 'setSocialSecurityNumber',
         'splitCardFundingSources' => 'setSplitCardFundingSources',
         'splits' => 'setSplits',
@@ -505,6 +510,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'shopperName' => 'getShopperName',
         'shopperReference' => 'getShopperReference',
         'shopperStatement' => 'getShopperStatement',
+        'showInstallmentAmount' => 'getShowInstallmentAmount',
         'socialSecurityNumber' => 'getSocialSecurityNumber',
         'splitCardFundingSources' => 'getSplitCardFundingSources',
         'splits' => 'getSplits',
@@ -702,6 +708,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         $this->setIfExists('shopperName', $data ?? [], null);
         $this->setIfExists('shopperReference', $data ?? [], null);
         $this->setIfExists('shopperStatement', $data ?? [], null);
+        $this->setIfExists('showInstallmentAmount', $data ?? [], null);
         $this->setIfExists('socialSecurityNumber', $data ?? [], null);
         $this->setIfExists('splitCardFundingSources', $data ?? [], false);
         $this->setIfExists('splits', $data ?? [], null);
@@ -1010,7 +1017,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
     /**
      * Gets billingAddress
      *
-     * @return \Adyen\Model\Checkout\Address|null
+     * @return \Adyen\Model\Checkout\BillingAddress|null
      */
     public function getBillingAddress()
     {
@@ -1020,7 +1027,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets billingAddress
      *
-     * @param \Adyen\Model\Checkout\Address|null $billingAddress billingAddress
+     * @param \Adyen\Model\Checkout\BillingAddress|null $billingAddress billingAddress
      *
      * @return self
      */
@@ -1234,7 +1241,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
     /**
      * Gets deliveryAddress
      *
-     * @return \Adyen\Model\Checkout\Address|null
+     * @return \Adyen\Model\Checkout\DeliveryAddress|null
      */
     public function getDeliveryAddress()
     {
@@ -1244,7 +1251,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets deliveryAddress
      *
-     * @param \Adyen\Model\Checkout\Address|null $deliveryAddress deliveryAddress
+     * @param \Adyen\Model\Checkout\DeliveryAddress|null $deliveryAddress deliveryAddress
      *
      * @return self
      */
@@ -2175,6 +2182,33 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
             throw new \InvalidArgumentException('non-nullable shopperStatement cannot be null');
         }
         $this->container['shopperStatement'] = $shopperStatement;
+
+        return $this;
+    }
+
+    /**
+     * Gets showInstallmentAmount
+     *
+     * @return bool|null
+     */
+    public function getShowInstallmentAmount()
+    {
+        return $this->container['showInstallmentAmount'];
+    }
+
+    /**
+     * Sets showInstallmentAmount
+     *
+     * @param bool|null $showInstallmentAmount Set to true to show the payment amount per installment.
+     *
+     * @return self
+     */
+    public function setShowInstallmentAmount($showInstallmentAmount)
+    {
+        if (is_null($showInstallmentAmount)) {
+            throw new \InvalidArgumentException('non-nullable showInstallmentAmount cannot be null');
+        }
+        $this->container['showInstallmentAmount'] = $showInstallmentAmount;
 
         return $this;
     }

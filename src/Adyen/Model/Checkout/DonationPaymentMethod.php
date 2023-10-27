@@ -19,15 +19,16 @@ use \ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
- * CardDetails Class Doc Comment
+ * DonationPaymentMethod Class Doc Comment
  *
  * @category Class
+ * @description The type and required details of a payment method to use.
  * @package  Adyen
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
+class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +37,7 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'CardDetails';
+    protected static $openAPIModelName = 'DonationPaymentMethod';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,8 +45,13 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'brand' => 'string',
+        'applePayToken' => 'string',
         'checkoutAttemptId' => 'string',
+        'fundingSource' => 'string',
+        'recurringDetailReference' => 'string',
+        'storedPaymentMethodId' => 'string',
+        'type' => 'string',
+        'brand' => 'string',
         'cupsecureplusSmscode' => 'string',
         'cvc' => 'string',
         'encryptedCardNumber' => 'string',
@@ -54,15 +60,13 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'encryptedSecurityCode' => 'string',
         'expiryMonth' => 'string',
         'expiryYear' => 'string',
-        'fundingSource' => 'string',
         'holderName' => 'string',
         'networkPaymentReference' => 'string',
         'number' => 'string',
-        'recurringDetailReference' => 'string',
         'shopperNotificationReference' => 'string',
-        'storedPaymentMethodId' => 'string',
         'threeDS2SdkVersion' => 'string',
-        'type' => 'string'
+        'googlePayToken' => 'string',
+        'issuer' => 'string'
     ];
 
     /**
@@ -73,8 +77,13 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'brand' => null,
+        'applePayToken' => null,
         'checkoutAttemptId' => null,
+        'fundingSource' => null,
+        'recurringDetailReference' => null,
+        'storedPaymentMethodId' => null,
+        'type' => null,
+        'brand' => null,
         'cupsecureplusSmscode' => null,
         'cvc' => null,
         'encryptedCardNumber' => null,
@@ -83,15 +92,13 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'encryptedSecurityCode' => null,
         'expiryMonth' => null,
         'expiryYear' => null,
-        'fundingSource' => null,
         'holderName' => null,
         'networkPaymentReference' => null,
         'number' => null,
-        'recurringDetailReference' => null,
         'shopperNotificationReference' => null,
-        'storedPaymentMethodId' => null,
         'threeDS2SdkVersion' => null,
-        'type' => null
+        'googlePayToken' => null,
+        'issuer' => null
     ];
 
     /**
@@ -100,8 +107,13 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'brand' => false,
+        'applePayToken' => false,
         'checkoutAttemptId' => false,
+        'fundingSource' => false,
+        'recurringDetailReference' => false,
+        'storedPaymentMethodId' => false,
+        'type' => false,
+        'brand' => false,
         'cupsecureplusSmscode' => false,
         'cvc' => false,
         'encryptedCardNumber' => false,
@@ -110,15 +122,13 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'encryptedSecurityCode' => false,
         'expiryMonth' => false,
         'expiryYear' => false,
-        'fundingSource' => false,
         'holderName' => false,
         'networkPaymentReference' => false,
         'number' => false,
-        'recurringDetailReference' => false,
         'shopperNotificationReference' => false,
-        'storedPaymentMethodId' => false,
         'threeDS2SdkVersion' => false,
-        'type' => false
+        'googlePayToken' => false,
+        'issuer' => false
     ];
 
     /**
@@ -207,8 +217,13 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'brand' => 'brand',
+        'applePayToken' => 'applePayToken',
         'checkoutAttemptId' => 'checkoutAttemptId',
+        'fundingSource' => 'fundingSource',
+        'recurringDetailReference' => 'recurringDetailReference',
+        'storedPaymentMethodId' => 'storedPaymentMethodId',
+        'type' => 'type',
+        'brand' => 'brand',
         'cupsecureplusSmscode' => 'cupsecureplus.smscode',
         'cvc' => 'cvc',
         'encryptedCardNumber' => 'encryptedCardNumber',
@@ -217,15 +232,13 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'encryptedSecurityCode' => 'encryptedSecurityCode',
         'expiryMonth' => 'expiryMonth',
         'expiryYear' => 'expiryYear',
-        'fundingSource' => 'fundingSource',
         'holderName' => 'holderName',
         'networkPaymentReference' => 'networkPaymentReference',
         'number' => 'number',
-        'recurringDetailReference' => 'recurringDetailReference',
         'shopperNotificationReference' => 'shopperNotificationReference',
-        'storedPaymentMethodId' => 'storedPaymentMethodId',
         'threeDS2SdkVersion' => 'threeDS2SdkVersion',
-        'type' => 'type'
+        'googlePayToken' => 'googlePayToken',
+        'issuer' => 'issuer'
     ];
 
     /**
@@ -234,8 +247,13 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'brand' => 'setBrand',
+        'applePayToken' => 'setApplePayToken',
         'checkoutAttemptId' => 'setCheckoutAttemptId',
+        'fundingSource' => 'setFundingSource',
+        'recurringDetailReference' => 'setRecurringDetailReference',
+        'storedPaymentMethodId' => 'setStoredPaymentMethodId',
+        'type' => 'setType',
+        'brand' => 'setBrand',
         'cupsecureplusSmscode' => 'setCupsecureplusSmscode',
         'cvc' => 'setCvc',
         'encryptedCardNumber' => 'setEncryptedCardNumber',
@@ -244,15 +262,13 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'encryptedSecurityCode' => 'setEncryptedSecurityCode',
         'expiryMonth' => 'setExpiryMonth',
         'expiryYear' => 'setExpiryYear',
-        'fundingSource' => 'setFundingSource',
         'holderName' => 'setHolderName',
         'networkPaymentReference' => 'setNetworkPaymentReference',
         'number' => 'setNumber',
-        'recurringDetailReference' => 'setRecurringDetailReference',
         'shopperNotificationReference' => 'setShopperNotificationReference',
-        'storedPaymentMethodId' => 'setStoredPaymentMethodId',
         'threeDS2SdkVersion' => 'setThreeDS2SdkVersion',
-        'type' => 'setType'
+        'googlePayToken' => 'setGooglePayToken',
+        'issuer' => 'setIssuer'
     ];
 
     /**
@@ -261,8 +277,13 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'brand' => 'getBrand',
+        'applePayToken' => 'getApplePayToken',
         'checkoutAttemptId' => 'getCheckoutAttemptId',
+        'fundingSource' => 'getFundingSource',
+        'recurringDetailReference' => 'getRecurringDetailReference',
+        'storedPaymentMethodId' => 'getStoredPaymentMethodId',
+        'type' => 'getType',
+        'brand' => 'getBrand',
         'cupsecureplusSmscode' => 'getCupsecureplusSmscode',
         'cvc' => 'getCvc',
         'encryptedCardNumber' => 'getEncryptedCardNumber',
@@ -271,15 +292,13 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'encryptedSecurityCode' => 'getEncryptedSecurityCode',
         'expiryMonth' => 'getExpiryMonth',
         'expiryYear' => 'getExpiryYear',
-        'fundingSource' => 'getFundingSource',
         'holderName' => 'getHolderName',
         'networkPaymentReference' => 'getNetworkPaymentReference',
         'number' => 'getNumber',
-        'recurringDetailReference' => 'getRecurringDetailReference',
         'shopperNotificationReference' => 'getShopperNotificationReference',
-        'storedPaymentMethodId' => 'getStoredPaymentMethodId',
         'threeDS2SdkVersion' => 'getThreeDS2SdkVersion',
-        'type' => 'getType'
+        'googlePayToken' => 'getGooglePayToken',
+        'issuer' => 'getIssuer'
     ];
 
     /**
@@ -323,35 +342,6 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const FUNDING_SOURCE_DEBIT = 'debit';
-    public const TYPE_SCHEME = 'scheme';
-    public const TYPE_NETWORK_TOKEN = 'networkToken';
-    public const TYPE_CARD = 'card';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getFundingSourceAllowableValues()
-    {
-        return [
-            self::FUNDING_SOURCE_DEBIT,
-        ];
-    }
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_SCHEME,
-            self::TYPE_NETWORK_TOKEN,
-            self::TYPE_CARD,
-        ];
-    }
     /**
      * Associative array for storing property values
      *
@@ -367,8 +357,13 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('brand', $data ?? [], null);
+        $this->setIfExists('applePayToken', $data ?? [], null);
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
+        $this->setIfExists('fundingSource', $data ?? [], null);
+        $this->setIfExists('recurringDetailReference', $data ?? [], null);
+        $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], 'paywithgoogle');
+        $this->setIfExists('brand', $data ?? [], null);
         $this->setIfExists('cupsecureplusSmscode', $data ?? [], null);
         $this->setIfExists('cvc', $data ?? [], null);
         $this->setIfExists('encryptedCardNumber', $data ?? [], null);
@@ -377,15 +372,13 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('encryptedSecurityCode', $data ?? [], null);
         $this->setIfExists('expiryMonth', $data ?? [], null);
         $this->setIfExists('expiryYear', $data ?? [], null);
-        $this->setIfExists('fundingSource', $data ?? [], null);
         $this->setIfExists('holderName', $data ?? [], null);
         $this->setIfExists('networkPaymentReference', $data ?? [], null);
         $this->setIfExists('number', $data ?? [], null);
-        $this->setIfExists('recurringDetailReference', $data ?? [], null);
         $this->setIfExists('shopperNotificationReference', $data ?? [], null);
-        $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
         $this->setIfExists('threeDS2SdkVersion', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'scheme');
+        $this->setIfExists('googlePayToken', $data ?? [], null);
+        $this->setIfExists('issuer', $data ?? [], null);
     }
 
     /**
@@ -415,24 +408,17 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getFundingSourceAllowableValues();
-        if (!is_null($this->container['fundingSource']) && !in_array($this->container['fundingSource'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'fundingSource', must be one of '%s'",
-                $this->container['fundingSource'],
-                implode("', '", $allowedValues)
-            );
+        if ($this->container['applePayToken'] === null) {
+            $invalidProperties[] = "'applePayToken' can't be null";
         }
 
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
-                implode("', '", $allowedValues)
-            );
-        }
 
+        if ($this->container['googlePayToken'] === null) {
+            $invalidProperties[] = "'googlePayToken' can't be null";
+        }
+        if ($this->container['issuer'] === null) {
+            $invalidProperties[] = "'issuer' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -449,28 +435,28 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets brand
+     * Gets applePayToken
      *
-     * @return string|null
+     * @return string
      */
-    public function getBrand()
+    public function getApplePayToken()
     {
-        return $this->container['brand'];
+        return $this->container['applePayToken'];
     }
 
     /**
-     * Sets brand
+     * Sets applePayToken
      *
-     * @param string|null $brand Secondary brand of the card. For example: **plastix**, **hmclub**.
+     * @param string $applePayToken The stringified and base64 encoded `paymentData` you retrieved from the Apple framework.
      *
      * @return self
      */
-    public function setBrand($brand)
+    public function setApplePayToken($applePayToken)
     {
-        if (is_null($brand)) {
-            throw new \InvalidArgumentException('non-nullable brand cannot be null');
+        if (is_null($applePayToken)) {
+            throw new \InvalidArgumentException('non-nullable applePayToken cannot be null');
         }
-        $this->container['brand'] = $brand;
+        $this->container['applePayToken'] = $applePayToken;
 
         return $this;
     }
@@ -498,6 +484,143 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable checkoutAttemptId cannot be null');
         }
         $this->container['checkoutAttemptId'] = $checkoutAttemptId;
+
+        return $this;
+    }
+
+    /**
+     * Gets fundingSource
+     *
+     * @return string|null
+     */
+    public function getFundingSource()
+    {
+        return $this->container['fundingSource'];
+    }
+
+    /**
+     * Sets fundingSource
+     *
+     * @param string|null $fundingSource The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
+     *
+     * @return self
+     */
+    public function setFundingSource($fundingSource)
+    {
+        if (is_null($fundingSource)) {
+            throw new \InvalidArgumentException('non-nullable fundingSource cannot be null');
+        }
+        $this->container['fundingSource'] = $fundingSource;
+
+        return $this;
+    }
+
+    /**
+     * Gets recurringDetailReference
+     *
+     * @return string|null
+     * @deprecated
+     */
+    public function getRecurringDetailReference()
+    {
+        return $this->container['recurringDetailReference'];
+    }
+
+    /**
+     * Sets recurringDetailReference
+     *
+     * @param string|null $recurringDetailReference This is the `recurringDetailReference` returned in the response when you created the token.
+     *
+     * @return self
+     * @deprecated
+     */
+    public function setRecurringDetailReference($recurringDetailReference)
+    {
+        if (is_null($recurringDetailReference)) {
+            throw new \InvalidArgumentException('non-nullable recurringDetailReference cannot be null');
+        }
+        $this->container['recurringDetailReference'] = $recurringDetailReference;
+
+        return $this;
+    }
+
+    /**
+     * Gets storedPaymentMethodId
+     *
+     * @return string|null
+     */
+    public function getStoredPaymentMethodId()
+    {
+        return $this->container['storedPaymentMethodId'];
+    }
+
+    /**
+     * Sets storedPaymentMethodId
+     *
+     * @param string|null $storedPaymentMethodId This is the `recurringDetailReference` returned in the response when you created the token.
+     *
+     * @return self
+     */
+    public function setStoredPaymentMethodId($storedPaymentMethodId)
+    {
+        if (is_null($storedPaymentMethodId)) {
+            throw new \InvalidArgumentException('non-nullable storedPaymentMethodId cannot be null');
+        }
+        $this->container['storedPaymentMethodId'] = $storedPaymentMethodId;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string|null
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string|null $type **paywithgoogle**
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        }
+        $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets brand
+     *
+     * @return string|null
+     */
+    public function getBrand()
+    {
+        return $this->container['brand'];
+    }
+
+    /**
+     * Sets brand
+     *
+     * @param string|null $brand Secondary brand of the card. For example: **plastix**, **hmclub**.
+     *
+     * @return self
+     */
+    public function setBrand($brand)
+    {
+        if (is_null($brand)) {
+            throw new \InvalidArgumentException('non-nullable brand cannot be null');
+        }
+        $this->container['brand'] = $brand;
 
         return $this;
     }
@@ -721,43 +844,6 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets fundingSource
-     *
-     * @return string|null
-     */
-    public function getFundingSource()
-    {
-        return $this->container['fundingSource'];
-    }
-
-    /**
-     * Sets fundingSource
-     *
-     * @param string|null $fundingSource The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
-     *
-     * @return self
-     */
-    public function setFundingSource($fundingSource)
-    {
-        if (is_null($fundingSource)) {
-            throw new \InvalidArgumentException('non-nullable fundingSource cannot be null');
-        }
-        $allowedValues = $this->getFundingSourceAllowableValues();
-        if (!in_array($fundingSource, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'fundingSource', must be one of '%s'",
-                    $fundingSource,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['fundingSource'] = $fundingSource;
-
-        return $this;
-    }
-
-    /**
      * Gets holderName
      *
      * @return string|null
@@ -839,35 +925,6 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets recurringDetailReference
-     *
-     * @return string|null
-     * @deprecated
-     */
-    public function getRecurringDetailReference()
-    {
-        return $this->container['recurringDetailReference'];
-    }
-
-    /**
-     * Sets recurringDetailReference
-     *
-     * @param string|null $recurringDetailReference This is the `recurringDetailReference` returned in the response when you created the token.
-     *
-     * @return self
-     * @deprecated
-     */
-    public function setRecurringDetailReference($recurringDetailReference)
-    {
-        if (is_null($recurringDetailReference)) {
-            throw new \InvalidArgumentException('non-nullable recurringDetailReference cannot be null');
-        }
-        $this->container['recurringDetailReference'] = $recurringDetailReference;
-
-        return $this;
-    }
-
-    /**
      * Gets shopperNotificationReference
      *
      * @return string|null
@@ -890,33 +947,6 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable shopperNotificationReference cannot be null');
         }
         $this->container['shopperNotificationReference'] = $shopperNotificationReference;
-
-        return $this;
-    }
-
-    /**
-     * Gets storedPaymentMethodId
-     *
-     * @return string|null
-     */
-    public function getStoredPaymentMethodId()
-    {
-        return $this->container['storedPaymentMethodId'];
-    }
-
-    /**
-     * Sets storedPaymentMethodId
-     *
-     * @param string|null $storedPaymentMethodId This is the `recurringDetailReference` returned in the response when you created the token.
-     *
-     * @return self
-     */
-    public function setStoredPaymentMethodId($storedPaymentMethodId)
-    {
-        if (is_null($storedPaymentMethodId)) {
-            throw new \InvalidArgumentException('non-nullable storedPaymentMethodId cannot be null');
-        }
-        $this->container['storedPaymentMethodId'] = $storedPaymentMethodId;
 
         return $this;
     }
@@ -949,38 +979,55 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets type
+     * Gets googlePayToken
      *
-     * @return string|null
+     * @return string
      */
-    public function getType()
+    public function getGooglePayToken()
     {
-        return $this->container['type'];
+        return $this->container['googlePayToken'];
     }
 
     /**
-     * Sets type
+     * Sets googlePayToken
      *
-     * @param string|null $type Default payment method details. Common for scheme payment methods, and for simple payment method details.
+     * @param string $googlePayToken The `token` that you obtained from the [Google Pay API](https://developers.google.com/pay/api/web/reference/response-objects#PaymentData) `PaymentData` response.
      *
      * @return self
      */
-    public function setType($type)
+    public function setGooglePayToken($googlePayToken)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        if (is_null($googlePayToken)) {
+            throw new \InvalidArgumentException('non-nullable googlePayToken cannot be null');
         }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
+        $this->container['googlePayToken'] = $googlePayToken;
+
+        return $this;
+    }
+
+    /**
+     * Gets issuer
+     *
+     * @return string
+     */
+    public function getIssuer()
+    {
+        return $this->container['issuer'];
+    }
+
+    /**
+     * Sets issuer
+     *
+     * @param string $issuer The iDEAL issuer value of the shopper's selected bank. Set this to an **id** of an iDEAL issuer to preselect it.
+     *
+     * @return self
+     */
+    public function setIssuer($issuer)
+    {
+        if (is_null($issuer)) {
+            throw new \InvalidArgumentException('non-nullable issuer cannot be null');
         }
-        $this->container['type'] = $type;
+        $this->container['issuer'] = $issuer;
 
         return $this;
     }

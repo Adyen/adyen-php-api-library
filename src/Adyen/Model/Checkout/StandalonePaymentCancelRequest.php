@@ -44,6 +44,7 @@ class StandalonePaymentCancelRequest implements ModelInterface, ArrayAccess, \Js
       * @var string[]
       */
     protected static $openAPITypes = [
+        'applicationInfo' => '\Adyen\Model\Checkout\ApplicationInfo',
         'merchantAccount' => 'string',
         'paymentReference' => 'string',
         'reference' => 'string'
@@ -57,6 +58,7 @@ class StandalonePaymentCancelRequest implements ModelInterface, ArrayAccess, \Js
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'applicationInfo' => null,
         'merchantAccount' => null,
         'paymentReference' => null,
         'reference' => null
@@ -68,6 +70,7 @@ class StandalonePaymentCancelRequest implements ModelInterface, ArrayAccess, \Js
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'applicationInfo' => false,
         'merchantAccount' => false,
         'paymentReference' => false,
         'reference' => false
@@ -159,6 +162,7 @@ class StandalonePaymentCancelRequest implements ModelInterface, ArrayAccess, \Js
      * @var string[]
      */
     protected static $attributeMap = [
+        'applicationInfo' => 'applicationInfo',
         'merchantAccount' => 'merchantAccount',
         'paymentReference' => 'paymentReference',
         'reference' => 'reference'
@@ -170,6 +174,7 @@ class StandalonePaymentCancelRequest implements ModelInterface, ArrayAccess, \Js
      * @var string[]
      */
     protected static $setters = [
+        'applicationInfo' => 'setApplicationInfo',
         'merchantAccount' => 'setMerchantAccount',
         'paymentReference' => 'setPaymentReference',
         'reference' => 'setReference'
@@ -181,6 +186,7 @@ class StandalonePaymentCancelRequest implements ModelInterface, ArrayAccess, \Js
      * @var string[]
      */
     protected static $getters = [
+        'applicationInfo' => 'getApplicationInfo',
         'merchantAccount' => 'getMerchantAccount',
         'paymentReference' => 'getPaymentReference',
         'reference' => 'getReference'
@@ -243,6 +249,7 @@ class StandalonePaymentCancelRequest implements ModelInterface, ArrayAccess, \Js
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('applicationInfo', $data ?? [], null);
         $this->setIfExists('merchantAccount', $data ?? [], null);
         $this->setIfExists('paymentReference', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
@@ -295,6 +302,33 @@ class StandalonePaymentCancelRequest implements ModelInterface, ArrayAccess, \Js
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets applicationInfo
+     *
+     * @return \Adyen\Model\Checkout\ApplicationInfo|null
+     */
+    public function getApplicationInfo()
+    {
+        return $this->container['applicationInfo'];
+    }
+
+    /**
+     * Sets applicationInfo
+     *
+     * @param \Adyen\Model\Checkout\ApplicationInfo|null $applicationInfo applicationInfo
+     *
+     * @return self
+     */
+    public function setApplicationInfo($applicationInfo)
+    {
+        if (is_null($applicationInfo)) {
+            throw new \InvalidArgumentException('non-nullable applicationInfo cannot be null');
+        }
+        $this->container['applicationInfo'] = $applicationInfo;
+
+        return $this;
+    }
 
     /**
      * Gets merchantAccount
