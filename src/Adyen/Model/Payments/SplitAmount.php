@@ -299,7 +299,7 @@ class SplitAmount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets currency
      *
-     * @param string|null $currency The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).  If this value is not provided, the currency in which the payment is made will be used.
+     * @param string|null $currency The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes). By default, this is the original payment currency.
      *
      * @return self
      */
@@ -326,7 +326,7 @@ class SplitAmount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets value
      *
-     * @param int $value The amount in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+     * @param int $value The value of the split amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
      *
      * @return self
      */
