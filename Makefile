@@ -14,7 +14,7 @@ models: $(modelGen)
 BalanceControl: spec=BalanceControlService-v1
 BalancePlatform: spec=BalancePlatformService-v2
 BinLookup: spec=BinLookupService-v54
-Checkout: spec=CheckoutService-v70
+Checkout: spec=CheckoutService-v71
 Disputes: spec=DisputeService-v30
 DataProtection: spec=DataProtectionService-v1
 StoredValue: spec=StoredValueService-v46
