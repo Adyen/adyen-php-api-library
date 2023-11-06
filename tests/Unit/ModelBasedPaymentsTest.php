@@ -2,17 +2,13 @@
 
 namespace Adyen\Tests\Unit;
 
-use Adyen\AdyenException;
-use Adyen\ConnectionException;
 use Adyen\Model\Payments\AdjustAuthorisationRequest;
 use Adyen\Model\Payments\CancelRequest;
 use Adyen\Model\Payments\PaymentRequest;
 use Adyen\Model\Payments\PaymentRequest3d;
 use Adyen\Model\Payments\PaymentRequest3ds2;
-use Adyen\Service\Payments\GeneralApi;
 use Adyen\Service\Payments\ModificationsApi;
-use Monolog\Handler\TestHandler;
-use Monolog\Logger;
+use Adyen\Service\Payments\PaymentsApi;
 
 class ModelBasedPaymentsTest extends TestCaseMock
 {
@@ -25,7 +21,7 @@ class ModelBasedPaymentsTest extends TestCaseMock
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
         // initialize service
-        $service = new GeneralApi($client);
+        $service = new PaymentsApi($client);
 
         $result = $service->authorise(new PaymentRequest());
 
@@ -50,7 +46,7 @@ class ModelBasedPaymentsTest extends TestCaseMock
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
         // initialize service
-        $service = new GeneralApi($client);
+        $service = new PaymentsApi($client);
 
         $result = $service->authorise3d(new PaymentRequest3d());
 
@@ -74,7 +70,7 @@ class ModelBasedPaymentsTest extends TestCaseMock
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
         // initialize service
-        $service = new GeneralApi($client);
+        $service = new PaymentsApi($client);
 
         $result = $service->authorise3ds2(new PaymentRequest3ds2());
 

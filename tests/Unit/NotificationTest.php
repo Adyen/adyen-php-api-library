@@ -26,6 +26,7 @@ namespace Adyen\Tests\Unit;
 use Adyen\Model\ConfigurationWebhooks\SweepConfigurationNotificationRequest;
 use Adyen\Model\ManagementWebhooks\PaymentMethodCreatedNotificationRequest;
 use Adyen\Model\AcsWebhooks\AuthenticationNotificationRequest;
+use Adyen\Model\TransactionWebhooks\TransactionNotificationRequestV4;
 use Adyen\Service\BankingWebhookParser;
 use Adyen\Service\ManagementWebhookParser;
 use Adyen\Service\Notification;
@@ -343,6 +344,23 @@ class NotificationTest extends TestCaseMock
         self::assertEquals(AuthenticationNotificationRequest::class, get_class($result));
         self::assertEquals($webhookParser->getAuthenticationNotificationRequest(), $result);
         $authenticationRequest = new AuthenticationNotificationRequest();
-        self::assertEquals($authenticationRequest->getTypeAllowableValues()[0], $webhookParser->getAuthenticationNotificationRequest()->getType());
+        self::assertEquals(
+            $authenticationRequest->getTypeAllowableValues()[0],
+            $webhookParser->getAuthenticationNotificationRequest()->getType()
+        );
+    }
+
+    public function testBankingWebhookParserTransactionV4Webhook()
+    {
+        $jsonString = file_get_contents("tests/Resources/Notification/transaction-webhook.json", true);
+        $webhookParser = new BankingWebhookParser($jsonString);
+        $result = $webhookParser->getGenericWebhook();
+        self::assertEquals(TransactionNotificationRequestV4::class, get_class($result));
+        self::assertEquals($webhookParser->getTransactionNotificationRequestV4(), $result);
+        $authenticationRequest = new TransactionNotificationRequestV4();
+        self::assertEquals(
+            $authenticationRequest->getTypeAllowableValues()[0],
+            $webhookParser->getTransactionNotificationRequestV4()->getType()
+        );
     }
 }
