@@ -49,7 +49,7 @@ class RestServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
         'instance' => 'string',
         'invalidFields' => '\Adyen\Model\Management\InvalidField[]',
         'requestId' => 'string',
-        'response' => '\Adyen\Model\Management\JSONObject',
+        'response' => 'object',
         'status' => 'int',
         'title' => 'string',
         'type' => 'string'
@@ -485,7 +485,7 @@ class RestServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets response
      *
-     * @return \Adyen\Model\Management\JSONObject|null
+     * @return object|null
      */
     public function getResponse()
     {
@@ -495,7 +495,7 @@ class RestServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets response
      *
-     * @param \Adyen\Model\Management\JSONObject|null $response response
+     * @param object|null $response response
      *
      * @return self
      */

@@ -49,6 +49,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
         'jobTitle' => 'string',
         'legalEntityId' => 'string',
         'name' => 'string',
+        'settlorExemptionReason' => 'string[]',
         'type' => 'string'
     ];
 
@@ -65,6 +66,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
         'jobTitle' => null,
         'legalEntityId' => null,
         'name' => null,
+        'settlorExemptionReason' => null,
         'type' => null
     ];
 
@@ -79,6 +81,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
         'jobTitle' => false,
         'legalEntityId' => false,
         'name' => false,
+        'settlorExemptionReason' => false,
         'type' => false
     ];
 
@@ -173,6 +176,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
         'jobTitle' => 'jobTitle',
         'legalEntityId' => 'legalEntityId',
         'name' => 'name',
+        'settlorExemptionReason' => 'settlorExemptionReason',
         'type' => 'type'
     ];
 
@@ -187,6 +191,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
         'jobTitle' => 'setJobTitle',
         'legalEntityId' => 'setLegalEntityId',
         'name' => 'setName',
+        'settlorExemptionReason' => 'setSettlorExemptionReason',
         'type' => 'setType'
     ];
 
@@ -201,6 +206,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
         'jobTitle' => 'getJobTitle',
         'legalEntityId' => 'getLegalEntityId',
         'name' => 'getName',
+        'settlorExemptionReason' => 'getSettlorExemptionReason',
         'type' => 'getType'
     ];
 
@@ -245,12 +251,20 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
         return self::$openAPIModelName;
     }
 
+    public const TYPE_DEFINED_BENEFICIARY = 'definedBeneficiary';
+    public const TYPE_DIRECTOR = 'director';
     public const TYPE_PCI_SIGNATORY = 'pciSignatory';
+    public const TYPE_PROTECTOR = 'protector';
+    public const TYPE_SECONDARY_TRUSTEE = 'secondaryTrustee';
+    public const TYPE_SETTLOR = 'settlor';
     public const TYPE_SIGNATORY = 'signatory';
     public const TYPE_SOLE_PROPRIETORSHIP = 'soleProprietorship';
+    public const TYPE_TRUST = 'trust';
+    public const TYPE_TRUST_OWNERSHIP = 'trustOwnership';
     public const TYPE_UBO_THROUGH_CONTROL = 'uboThroughControl';
     public const TYPE_UBO_THROUGH_OWNERSHIP = 'uboThroughOwnership';
     public const TYPE_ULTIMATE_PARENT_COMPANY = 'ultimateParentCompany';
+    public const TYPE_UNDEFINED_BENEFICIARY = 'undefinedBeneficiary';
 
     /**
      * Gets allowable values of the enum
@@ -260,12 +274,20 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
     public function getTypeAllowableValues()
     {
         return [
+            self::TYPE_DEFINED_BENEFICIARY,
+            self::TYPE_DIRECTOR,
             self::TYPE_PCI_SIGNATORY,
+            self::TYPE_PROTECTOR,
+            self::TYPE_SECONDARY_TRUSTEE,
+            self::TYPE_SETTLOR,
             self::TYPE_SIGNATORY,
             self::TYPE_SOLE_PROPRIETORSHIP,
+            self::TYPE_TRUST,
+            self::TYPE_TRUST_OWNERSHIP,
             self::TYPE_UBO_THROUGH_CONTROL,
             self::TYPE_UBO_THROUGH_OWNERSHIP,
             self::TYPE_ULTIMATE_PARENT_COMPANY,
+            self::TYPE_UNDEFINED_BENEFICIARY,
         ];
     }
     /**
@@ -288,6 +310,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('jobTitle', $data ?? [], null);
         $this->setIfExists('legalEntityId', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('settlorExemptionReason', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -484,6 +507,33 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
     }
 
     /**
+     * Gets settlorExemptionReason
+     *
+     * @return string[]|null
+     */
+    public function getSettlorExemptionReason()
+    {
+        return $this->container['settlorExemptionReason'];
+    }
+
+    /**
+     * Sets settlorExemptionReason
+     *
+     * @param string[]|null $settlorExemptionReason Defines the Kyc Exemption Reason for a Settlor associated with a trust.  For example, **professionalServiceProvider**, **deceased**, or **contributionBelowThreshold**.
+     *
+     * @return self
+     */
+    public function setSettlorExemptionReason($settlorExemptionReason)
+    {
+        if (is_null($settlorExemptionReason)) {
+            throw new \InvalidArgumentException('non-nullable settlorExemptionReason cannot be null');
+        }
+        $this->container['settlorExemptionReason'] = $settlorExemptionReason;
+
+        return $this;
+    }
+
+    /**
      * Gets type
      *
      * @return string
@@ -496,7 +546,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets type
      *
-     * @param string $type Defines the relationship of the legal entity to the current legal entity.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **director**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.
+     * @param string $type Defines the relationship of the legal entity to the current legal entity.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **director**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.  Possible value for trusts: **trust**  Possible values for trust members: **definedBeneficiary**, **protector**, **secondaryTrustee**, **settlor**, **uboThroughControl**, or **uboThroughOwnership**.
      *
      * @return self
      */
