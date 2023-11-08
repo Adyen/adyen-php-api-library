@@ -392,7 +392,7 @@ class LegalEntityCapability implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets allowed
      *
-     * @param bool|null $allowed Indicates whether the capability is allowed. Adyen sets this to **true** if the verification is successful
+     * @param bool|null $allowed Indicates whether the capability is allowed. Adyen sets this to **true** if the verification is successful.
      *
      * @return self
      */
@@ -483,7 +483,7 @@ class LegalEntityCapability implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets requested
      *
-     * @param bool|null $requested Indicates whether the capability is requested. To check whether the Legal Entity is permitted to use the capability,
+     * @param bool|null $requested Indicates whether the capability is requested. To check whether the legal entity is permitted to use the capability, refer to the `allowed` field.
      *
      * @return self
      */
@@ -574,7 +574,7 @@ class LegalEntityCapability implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets transferInstruments
      *
-     * @param \Adyen\Model\LegalEntityManagement\SupportingEntityCapability[]|null $transferInstruments Capability status for transfer instruments associated with legal entity
+     * @param \Adyen\Model\LegalEntityManagement\SupportingEntityCapability[]|null $transferInstruments The capability status of transfer instruments associated with the legal entity.
      *
      * @return self
      */

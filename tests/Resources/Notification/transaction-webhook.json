@@ -1,0 +1,30 @@
+{
+  "data": {
+    "id": "EVJN42272224222B5JB8BRC84N686ZEUR",
+    "amount": {
+      "value": 7000,
+      "currency": "EUR"
+    },
+    "status": "booked",
+    "transfer": {
+      "id": "JN4227222422265",
+      "reference": "Split_item_1"
+    },
+    "valueDate": "2023-03-01T00:00:00+02:00",
+    "bookingDate": "2023-02-28T13:30:20+02:00",
+    "creationDate": "2023-02-28T13:30:05+02:00",
+    "accountHolder": {
+      "id": "AH00000000000000000000001",
+      "description": "Your description for the account holder",
+      "reference": "Your reference for the account holder"
+    },
+    "balanceAccount": {
+      "id": "BA00000000000000000000001",
+      "description": "Your description for the balance account",
+      "reference": "Your reference for the balance account"
+    },
+    "balancePlatform": "YOUR_BALANCE_PLATFORM"
+  },
+  "environment": "test",
+  "type": "balancePlatform.transaction.created"
+}

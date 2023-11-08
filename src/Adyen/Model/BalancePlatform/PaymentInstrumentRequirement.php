@@ -46,6 +46,7 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
     protected static $openAPITypes = [
         'description' => 'string',
         'issuingCountryCode' => 'string',
+        'onlyForCrossBalancePlatform' => 'bool',
         'paymentInstrumentType' => 'string',
         'type' => 'string'
     ];
@@ -60,6 +61,7 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
     protected static $openAPIFormats = [
         'description' => null,
         'issuingCountryCode' => null,
+        'onlyForCrossBalancePlatform' => null,
         'paymentInstrumentType' => null,
         'type' => null
     ];
@@ -72,6 +74,7 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
     protected static $openAPINullables = [
         'description' => false,
         'issuingCountryCode' => false,
+        'onlyForCrossBalancePlatform' => false,
         'paymentInstrumentType' => false,
         'type' => false
     ];
@@ -164,6 +167,7 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
     protected static $attributeMap = [
         'description' => 'description',
         'issuingCountryCode' => 'issuingCountryCode',
+        'onlyForCrossBalancePlatform' => 'onlyForCrossBalancePlatform',
         'paymentInstrumentType' => 'paymentInstrumentType',
         'type' => 'type'
     ];
@@ -176,6 +180,7 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
     protected static $setters = [
         'description' => 'setDescription',
         'issuingCountryCode' => 'setIssuingCountryCode',
+        'onlyForCrossBalancePlatform' => 'setOnlyForCrossBalancePlatform',
         'paymentInstrumentType' => 'setPaymentInstrumentType',
         'type' => 'setType'
     ];
@@ -188,6 +193,7 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
     protected static $getters = [
         'description' => 'getDescription',
         'issuingCountryCode' => 'getIssuingCountryCode',
+        'onlyForCrossBalancePlatform' => 'getOnlyForCrossBalancePlatform',
         'paymentInstrumentType' => 'getPaymentInstrumentType',
         'type' => 'getType'
     ];
@@ -277,6 +283,7 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
     {
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('issuingCountryCode', $data ?? [], null);
+        $this->setIfExists('onlyForCrossBalancePlatform', $data ?? [], null);
         $this->setIfExists('paymentInstrumentType', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], 'paymentInstrumentRequirement');
     }
@@ -394,6 +401,33 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
             throw new \InvalidArgumentException('non-nullable issuingCountryCode cannot be null');
         }
         $this->container['issuingCountryCode'] = $issuingCountryCode;
+
+        return $this;
+    }
+
+    /**
+     * Gets onlyForCrossBalancePlatform
+     *
+     * @return bool|null
+     */
+    public function getOnlyForCrossBalancePlatform()
+    {
+        return $this->container['onlyForCrossBalancePlatform'];
+    }
+
+    /**
+     * Sets onlyForCrossBalancePlatform
+     *
+     * @param bool|null $onlyForCrossBalancePlatform Specifies if the requirement only applies to transfers to another balance platform.
+     *
+     * @return self
+     */
+    public function setOnlyForCrossBalancePlatform($onlyForCrossBalancePlatform)
+    {
+        if (is_null($onlyForCrossBalancePlatform)) {
+            throw new \InvalidArgumentException('non-nullable onlyForCrossBalancePlatform cannot be null');
+        }
+        $this->container['onlyForCrossBalancePlatform'] = $onlyForCrossBalancePlatform;
 
         return $this;
     }

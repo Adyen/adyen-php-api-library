@@ -87,7 +87,11 @@ class Service
             $url .= '?' . http_build_query($queryParams);
         }
 
-        return $curlClient->requestHttp($this, $url, $bodyParams, $method, $requestOptions);
+        $response = $curlClient->requestHttp($this, $url, $bodyParams, $method, $requestOptions);
+        if (!is_array($response)) {
+            return [];
+        }
+        return $response;
     }
 
     /**

@@ -362,7 +362,7 @@ class GetTermsOfServiceDocumentRequest implements ModelInterface, ArrayAccess, \
     /**
      * Sets type
      *
-     * @param string $type The type of Terms of Service.
+     * @param string $type The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee**
      *
      * @return self
      */

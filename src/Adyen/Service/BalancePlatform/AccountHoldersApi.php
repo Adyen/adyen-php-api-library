@@ -70,6 +70,21 @@ class AccountHoldersApi extends Service
     }
 
     /**
+    * Get a tax form
+    *
+    * @param string $id
+    * @param array|null $requestOptions ['queryParams' => ['formType'=> string, 'year'=> int]]
+    * @return \Adyen\Model\BalancePlatform\GetTaxFormResponse
+    * @throws AdyenException
+    */
+    public function getTaxForm(string $id, array $requestOptions = null): \Adyen\Model\BalancePlatform\GetTaxFormResponse
+    {
+        $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/accountHolders/{id}/taxForms");
+        $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\BalancePlatform\GetTaxFormResponse::class);
+    }
+
+    /**
     * Update an account holder
     *
     * @param string $id

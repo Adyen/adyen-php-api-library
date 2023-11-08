@@ -84,21 +84,6 @@ class DisputesApi extends Service
     }
 
     /**
-    * Download a defense document
-    *
-    * @param \Adyen\Model\Disputes\DownloadDefenseDocumentRequest $downloadDefenseDocumentRequest
-    * @param array|null $requestOptions
-    * @return \Adyen\Model\Disputes\DownloadDefenseDocumentResponse
-    * @throws AdyenException
-    */
-    public function downloadDisputeDefenseDocument(\Adyen\Model\Disputes\DownloadDefenseDocumentRequest $downloadDefenseDocumentRequest, array $requestOptions = null): \Adyen\Model\Disputes\DownloadDefenseDocumentResponse
-    {
-        $endpoint = $this->baseURL . "/downloadDisputeDefenseDocument";
-        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $downloadDefenseDocumentRequest->jsonSerialize(), $requestOptions);
-        return ObjectSerializer::deserialize($response, \Adyen\Model\Disputes\DownloadDefenseDocumentResponse::class);
-    }
-
-    /**
     * Get applicable defense reasons
     *
     * @param \Adyen\Model\Disputes\DefenseReasonsRequest $defenseReasonsRequest

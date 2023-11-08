@@ -4,7 +4,7 @@ openapi-generator-jar:=target/openapi-generator-cli.jar
 openapi-generator-cli:=java -jar $(openapi-generator-jar)
 
 generator:=php
-modelGen:=AcsWebhooks BalanceControl BalancePlatform Checkout ConfigurationWebhooks Disputes Payments Payout Management ManagementWebhooks LegalEntityManagement TransferWebhooks Transfers BinLookup StoredValue POSTerminalManagement Recurring ReportWebhooks
+modelGen:=AcsWebhooks BalanceControl BalancePlatform Checkout ConfigurationWebhooks Disputes Payments Payout Management ManagementWebhooks LegalEntityManagement TransactionWebhooks TransferWebhooks Transfers BinLookup StoredValue POSTerminalManagement Recurring ReportWebhooks
 models:=src/Adyen/Model
 output:=target/out
 
@@ -14,7 +14,7 @@ models: $(modelGen)
 BalanceControl: spec=BalanceControlService-v1
 BalancePlatform: spec=BalancePlatformService-v2
 BinLookup: spec=BinLookupService-v54
-Checkout: spec=CheckoutService-v70
+Checkout: spec=CheckoutService-v71
 Disputes: spec=DisputeService-v30
 DataProtection: spec=DataProtectionService-v1
 StoredValue: spec=StoredValueService-v46
@@ -31,6 +31,7 @@ AcsWebhooks: spec=BalancePlatformAcsNotification-v1
 ConfigurationWebhooks: spec=BalancePlatformConfigurationNotification-v1
 ReportWebhooks: spec=BalancePlatformReportNotification-v1
 TransferWebhooks: spec=BalancePlatformTransferNotification-v4
+TransactionWebhooks: spec=BalancePlatformTransactionNotification-v4
 # ManagementWebhooks
 ManagementWebhooks: spec=ManagementNotificationService-v3
 
@@ -48,7 +49,8 @@ $(modelGen): target/spec $(openapi-generator-jar)
 			-g $(generator) \
 			-o $(output) \
 			-t ./templates \
-			--inline-schema-name-mappings DonationPaymentRequest_paymentMethod=CheckoutPaymentMethod \
+			--inline-schema-name-mappings PaymentRequest_paymentMethod=CheckoutPaymentMethod \
+			--inline-schema-name-mappings DonationPaymentRequest_paymentMethod=DonationPaymentMethod \
 			--model-package Model\\$@ \
 			--api-package Service\\$@ \
 			--reserved-words-mappings configuration=configuration \
@@ -74,7 +76,8 @@ $(Services): target/spec $(openapi-generator-jar)
 		-g $(generator) \
 		-o $(output) \
 		-t ./templates \
-		--inline-schema-name-mappings DonationPaymentRequest_paymentMethod=CheckoutPaymentMethod \
+		--inline-schema-name-mappings PaymentRequest_paymentMethod=CheckoutPaymentMethod \
+		--inline-schema-name-mappings DonationPaymentRequest_paymentMethod=DonationPaymentMethod \
 		--model-package Model\\$@ \
 		--api-package Service\\$@ \
 		--inline-schema-name-mappings BankAccountInfo_accountIdentification=BankAccount \
@@ -98,7 +101,8 @@ $(SingleFileServices): target/spec $(openapi-generator-jar)
 		-c templates/config.yaml \
 		--model-package Model\\$@ \
 		--api-package Service\\$@ \
-		--inline-schema-name-mappings DonationPaymentRequest_paymentMethod=CheckoutPaymentMethod \
+		--inline-schema-name-mappings PaymentRequest_paymentMethod=CheckoutPaymentMethod \
+		--inline-schema-name-mappings DonationPaymentRequest_paymentMethod=DonationPaymentMethod \
 		--reserved-words-mappings configuration=configuration \
 		--skip-validate-spec \
 		--additional-properties variableNamingConvention=camelCase \

@@ -46,6 +46,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
     protected static $openAPITypes = [
         'activeNetworkTokens' => '\Adyen\Model\BalancePlatform\ActiveNetworkTokensRestriction',
         'brandVariants' => '\Adyen\Model\BalancePlatform\BrandVariantsRestriction',
+        'counterpartyBank' => '\Adyen\Model\BalancePlatform\CounterpartyBankRestriction',
         'countries' => '\Adyen\Model\BalancePlatform\CountriesRestriction',
         'dayOfWeek' => '\Adyen\Model\BalancePlatform\DayOfWeekRestriction',
         'differentCurrencies' => '\Adyen\Model\BalancePlatform\DifferentCurrenciesRestriction',
@@ -70,6 +71,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
     protected static $openAPIFormats = [
         'activeNetworkTokens' => null,
         'brandVariants' => null,
+        'counterpartyBank' => null,
         'countries' => null,
         'dayOfWeek' => null,
         'differentCurrencies' => null,
@@ -92,6 +94,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
     protected static $openAPINullables = [
         'activeNetworkTokens' => false,
         'brandVariants' => false,
+        'counterpartyBank' => false,
         'countries' => false,
         'dayOfWeek' => false,
         'differentCurrencies' => false,
@@ -194,6 +197,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
     protected static $attributeMap = [
         'activeNetworkTokens' => 'activeNetworkTokens',
         'brandVariants' => 'brandVariants',
+        'counterpartyBank' => 'counterpartyBank',
         'countries' => 'countries',
         'dayOfWeek' => 'dayOfWeek',
         'differentCurrencies' => 'differentCurrencies',
@@ -216,6 +220,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
     protected static $setters = [
         'activeNetworkTokens' => 'setActiveNetworkTokens',
         'brandVariants' => 'setBrandVariants',
+        'counterpartyBank' => 'setCounterpartyBank',
         'countries' => 'setCountries',
         'dayOfWeek' => 'setDayOfWeek',
         'differentCurrencies' => 'setDifferentCurrencies',
@@ -238,6 +243,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
     protected static $getters = [
         'activeNetworkTokens' => 'getActiveNetworkTokens',
         'brandVariants' => 'getBrandVariants',
+        'counterpartyBank' => 'getCounterpartyBank',
         'countries' => 'getCountries',
         'dayOfWeek' => 'getDayOfWeek',
         'differentCurrencies' => 'getDifferentCurrencies',
@@ -311,6 +317,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
     {
         $this->setIfExists('activeNetworkTokens', $data ?? [], null);
         $this->setIfExists('brandVariants', $data ?? [], null);
+        $this->setIfExists('counterpartyBank', $data ?? [], null);
         $this->setIfExists('countries', $data ?? [], null);
         $this->setIfExists('dayOfWeek', $data ?? [], null);
         $this->setIfExists('differentCurrencies', $data ?? [], null);
@@ -417,6 +424,33 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
             throw new \InvalidArgumentException('non-nullable brandVariants cannot be null');
         }
         $this->container['brandVariants'] = $brandVariants;
+
+        return $this;
+    }
+
+    /**
+     * Gets counterpartyBank
+     *
+     * @return \Adyen\Model\BalancePlatform\CounterpartyBankRestriction|null
+     */
+    public function getCounterpartyBank()
+    {
+        return $this->container['counterpartyBank'];
+    }
+
+    /**
+     * Sets counterpartyBank
+     *
+     * @param \Adyen\Model\BalancePlatform\CounterpartyBankRestriction|null $counterpartyBank counterpartyBank
+     *
+     * @return self
+     */
+    public function setCounterpartyBank($counterpartyBank)
+    {
+        if (is_null($counterpartyBank)) {
+            throw new \InvalidArgumentException('non-nullable counterpartyBank cannot be null');
+        }
+        $this->container['counterpartyBank'] = $counterpartyBank;
 
         return $this;
     }

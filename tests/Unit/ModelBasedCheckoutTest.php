@@ -1,17 +1,14 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Adyen\Tests\Unit;
 
+use Adyen\AdyenException;
 use Adyen\Model\Checkout\Amount;
 use Adyen\Model\Checkout\CardDetailsRequest;
 use Adyen\Model\Checkout\CheckoutPaymentMethod;
 use Adyen\Model\Checkout\CreateCheckoutSessionRequest;
-use Adyen\Model\Checkout\CreatePaymentLinkRequest;
-use Adyen\Model\Checkout\DetailsRequest;
 use Adyen\Model\Checkout\DonationPaymentRequest;
 use Adyen\Model\Checkout\PaymentDetailsRequest;
-use Adyen\Model\Checkout\PaymentDonationRequest;
-use Adyen\Model\Checkout\PaymentDonationRequestPaymentMethod;
 use Adyen\Model\Checkout\PaymentLinkRequest;
 use Adyen\Model\Checkout\PaymentMethodsRequest;
 use Adyen\Model\Checkout\PaymentRequest;
@@ -309,25 +306,17 @@ class ModelBasedCheckoutTest extends TestCaseMock
     }
 
     /**
-     * @param string $jsonFile
-     * @param int $httpStatus
-     *
-     * @dataProvider successDeleteStoredPaymentMethodsProvider
+     * @throws AdyenException
      */
-    public function testDeleteStoredPaymentMethodsSuccess($jsonFile, $httpStatus)
+    public function testDeleteStoredPaymentMethodsSuccess()
     {
-        $client = $this->createMockClient($jsonFile, $httpStatus);
+        $client = $this->createMockClient(null, 204);
 
         $service = new RecurringApi($client);
 
         $service->deleteTokenForStoredPaymentDetails("123");
-    }
 
-    public static function successDeleteStoredPaymentMethodsProvider()
-    {
-        return array(
-            array('tests/Resources/ModelBasedCheckout/deleteStoredPaymentMethods-success.json', 200),
-        );
+        $this->assertTrue(true, 'no exception');
     }
 
     public function testPaymentMethodSerialization()

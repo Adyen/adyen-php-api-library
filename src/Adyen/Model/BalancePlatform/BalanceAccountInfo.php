@@ -368,7 +368,7 @@ class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets defaultCurrencyCode
      *
-     * @param string|null $defaultCurrencyCode The default three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) of the balance account. The default value is **EUR**.
+     * @param string|null $defaultCurrencyCode The default three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) of the balance account. The default value is **EUR**. > After a balance account is created, you cannot change its default currency.
      *
      * @return self
      */

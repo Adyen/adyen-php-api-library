@@ -9,7 +9,10 @@ use Adyen\Model\ConfigurationWebhooks\ObjectSerializer;
 use Adyen\Model\ConfigurationWebhooks\PaymentNotificationRequest;
 use Adyen\Model\ConfigurationWebhooks\SweepConfigurationNotificationRequest;
 use Adyen\Model\ReportWebhooks\ReportNotificationRequest;
+use Adyen\Model\TransactionWebhooks\TransactionNotificationRequestV4;
 use Adyen\Model\TransferWebhooks\TransferNotificationRequest;
+use Exception;
+use PhpParser\Error;
 
 class BankingWebhookParser
 {
@@ -22,8 +25,12 @@ class BankingWebhookParser
 
     public function getGenericWebhook()
     {
-        $jsonPayload = json_decode($this->payload, true);
-        $type = $jsonPayload['type'];
+        $jsonPayload = (array)json_decode($this->payload, true);
+        try {
+            $type = $jsonPayload['type'];
+        } catch (Exception $ex) {
+            throw new Error("'type' attribute not found in payload: " . $this->payload);
+        }
 
         if (in_array($type, ($clazz = new AuthenticationNotificationRequest())->getTypeAllowableValues())) {
             return (object)$this->deserializewebhook($clazz);
@@ -53,8 +60,12 @@ class BankingWebhookParser
             return(object)self::deserializeWebhook($clazz);
         }
 
+        if (in_array($type, ($clazz = new TransactionNotificationRequestV4())->getTypeAllowableValues())) {
+            return(object)self::deserializeWebhook($clazz);
+        }
+
         // throw error in case the webhook can not be parsed
-        throw new \Error("Could not parse the payload:" . $this->payload);
+        throw new \Error("Could not parse the payload: " . $this->payload);
     }
 
     /** @noinspection PhpIncompatibleReturnTypeInspection */
@@ -95,6 +106,12 @@ class BankingWebhookParser
 
     /** @noinspection PhpIncompatibleReturnTypeInspection */
     public function getTransferNotificationRequest(): TransferNotificationRequest
+    {
+        return $this->getGenericWebhook();
+    }
+
+    /** @noinspection PhpIncompatibleReturnTypeInspection */
+    public function getTransactionNotificationRequestV4(): TransactionNotificationRequestV4
     {
         return $this->getGenericWebhook();
     }
