@@ -31,7 +31,7 @@ jobs:
           token: ${{ secrets.ADYEN_AUTOMATION_BOT_ACCESS_TOKEN }}
           committer: ${{ secrets.ADYEN_AUTOMATION_BOT_EMAIL }}
           author: ${{ secrets.ADYEN_AUTOMATION_BOT_EMAIL }}
-          base: develop
+          base: main
           branch: automation/models
           title: ${{ steps.vars.outputs.pr_title }}
           body: ${{ steps.vars.outputs.pr_body }}
