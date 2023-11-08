@@ -458,7 +458,7 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets type
      *
-     * @param string|null $type The type of Terms of Service.
+     * @param string|null $type The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee**
      *
      * @return self
      */

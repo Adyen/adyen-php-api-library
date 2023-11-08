@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * PaymentInstrumentRequirement Class Doc Comment
+ * CounterpartyBankRestriction Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\BalancePlatform\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \JsonSerializable
+class CounterpartyBankRestriction implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PaymentInstrumentRequirement';
+    protected static $openAPIModelName = 'CounterpartyBankRestriction';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,11 +44,8 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
       * @var string[]
       */
     protected static $openAPITypes = [
-        'description' => 'string',
-        'issuingCountryCode' => 'string',
-        'onlyForCrossBalancePlatform' => 'bool',
-        'paymentInstrumentType' => 'string',
-        'type' => 'string'
+        'operation' => 'string',
+        'value' => '\Adyen\Model\BalancePlatform\BankIdentification[]'
     ];
 
     /**
@@ -59,11 +56,8 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'description' => null,
-        'issuingCountryCode' => null,
-        'onlyForCrossBalancePlatform' => null,
-        'paymentInstrumentType' => null,
-        'type' => null
+        'operation' => null,
+        'value' => null
     ];
 
     /**
@@ -72,11 +66,8 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'description' => false,
-        'issuingCountryCode' => false,
-        'onlyForCrossBalancePlatform' => false,
-        'paymentInstrumentType' => false,
-        'type' => false
+        'operation' => false,
+        'value' => false
     ];
 
     /**
@@ -165,11 +156,8 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $attributeMap = [
-        'description' => 'description',
-        'issuingCountryCode' => 'issuingCountryCode',
-        'onlyForCrossBalancePlatform' => 'onlyForCrossBalancePlatform',
-        'paymentInstrumentType' => 'paymentInstrumentType',
-        'type' => 'type'
+        'operation' => 'operation',
+        'value' => 'value'
     ];
 
     /**
@@ -178,11 +166,8 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $setters = [
-        'description' => 'setDescription',
-        'issuingCountryCode' => 'setIssuingCountryCode',
-        'onlyForCrossBalancePlatform' => 'setOnlyForCrossBalancePlatform',
-        'paymentInstrumentType' => 'setPaymentInstrumentType',
-        'type' => 'setType'
+        'operation' => 'setOperation',
+        'value' => 'setValue'
     ];
 
     /**
@@ -191,11 +176,8 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $getters = [
-        'description' => 'getDescription',
-        'issuingCountryCode' => 'getIssuingCountryCode',
-        'onlyForCrossBalancePlatform' => 'getOnlyForCrossBalancePlatform',
-        'paymentInstrumentType' => 'getPaymentInstrumentType',
-        'type' => 'getType'
+        'operation' => 'getOperation',
+        'value' => 'getValue'
     ];
 
     /**
@@ -239,33 +221,7 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
         return self::$openAPIModelName;
     }
 
-    public const PAYMENT_INSTRUMENT_TYPE_BANK_ACCOUNT = 'BankAccount';
-    public const PAYMENT_INSTRUMENT_TYPE_CARD = 'Card';
-    public const TYPE_PAYMENT_INSTRUMENT_REQUIREMENT = 'paymentInstrumentRequirement';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getPaymentInstrumentTypeAllowableValues()
-    {
-        return [
-            self::PAYMENT_INSTRUMENT_TYPE_BANK_ACCOUNT,
-            self::PAYMENT_INSTRUMENT_TYPE_CARD,
-        ];
-    }
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_PAYMENT_INSTRUMENT_REQUIREMENT,
-        ];
-    }
     /**
      * Associative array for storing property values
      *
@@ -281,11 +237,8 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('issuingCountryCode', $data ?? [], null);
-        $this->setIfExists('onlyForCrossBalancePlatform', $data ?? [], null);
-        $this->setIfExists('paymentInstrumentType', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'paymentInstrumentRequirement');
+        $this->setIfExists('operation', $data ?? [], null);
+        $this->setIfExists('value', $data ?? [], null);
     }
 
     /**
@@ -315,27 +268,9 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getPaymentInstrumentTypeAllowableValues();
-        if (!is_null($this->container['paymentInstrumentType']) && !in_array($this->container['paymentInstrumentType'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'paymentInstrumentType', must be one of '%s'",
-                $this->container['paymentInstrumentType'],
-                implode("', '", $allowedValues)
-            );
+        if ($this->container['operation'] === null) {
+            $invalidProperties[] = "'operation' can't be null";
         }
-
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
-        }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -352,156 +287,55 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
 
 
     /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription()
-    {
-        return $this->container['description'];
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Specifies the requirements for the payment instrument that need to be included in the request for a particular route.
-     *
-     * @return self
-     */
-    public function setDescription($description)
-    {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-
-    /**
-     * Gets issuingCountryCode
-     *
-     * @return string|null
-     */
-    public function getIssuingCountryCode()
-    {
-        return $this->container['issuingCountryCode'];
-    }
-
-    /**
-     * Sets issuingCountryCode
-     *
-     * @param string|null $issuingCountryCode The two-character ISO-3166-1 alpha-2 country code of the counterparty. For example, **US** or **NL**.
-     *
-     * @return self
-     */
-    public function setIssuingCountryCode($issuingCountryCode)
-    {
-        if (is_null($issuingCountryCode)) {
-            throw new \InvalidArgumentException('non-nullable issuingCountryCode cannot be null');
-        }
-        $this->container['issuingCountryCode'] = $issuingCountryCode;
-
-        return $this;
-    }
-
-    /**
-     * Gets onlyForCrossBalancePlatform
-     *
-     * @return bool|null
-     */
-    public function getOnlyForCrossBalancePlatform()
-    {
-        return $this->container['onlyForCrossBalancePlatform'];
-    }
-
-    /**
-     * Sets onlyForCrossBalancePlatform
-     *
-     * @param bool|null $onlyForCrossBalancePlatform Specifies if the requirement only applies to transfers to another balance platform.
-     *
-     * @return self
-     */
-    public function setOnlyForCrossBalancePlatform($onlyForCrossBalancePlatform)
-    {
-        if (is_null($onlyForCrossBalancePlatform)) {
-            throw new \InvalidArgumentException('non-nullable onlyForCrossBalancePlatform cannot be null');
-        }
-        $this->container['onlyForCrossBalancePlatform'] = $onlyForCrossBalancePlatform;
-
-        return $this;
-    }
-
-    /**
-     * Gets paymentInstrumentType
-     *
-     * @return string|null
-     */
-    public function getPaymentInstrumentType()
-    {
-        return $this->container['paymentInstrumentType'];
-    }
-
-    /**
-     * Sets paymentInstrumentType
-     *
-     * @param string|null $paymentInstrumentType The type of the payment instrument. For example, \"BankAccount\" or \"Card\".
-     *
-     * @return self
-     */
-    public function setPaymentInstrumentType($paymentInstrumentType)
-    {
-        if (is_null($paymentInstrumentType)) {
-            throw new \InvalidArgumentException('non-nullable paymentInstrumentType cannot be null');
-        }
-        $allowedValues = $this->getPaymentInstrumentTypeAllowableValues();
-        if (!in_array($paymentInstrumentType, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'paymentInstrumentType', must be one of '%s'",
-                    $paymentInstrumentType,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['paymentInstrumentType'] = $paymentInstrumentType;
-
-        return $this;
-    }
-
-    /**
-     * Gets type
+     * Gets operation
      *
      * @return string
      */
-    public function getType()
+    public function getOperation()
     {
-        return $this->container['type'];
+        return $this->container['operation'];
     }
 
     /**
-     * Sets type
+     * Sets operation
      *
-     * @param string $type **paymentInstrumentRequirement**
+     * @param string $operation Defines how the condition must be evaluated.
      *
      * @return self
      */
-    public function setType($type)
+    public function setOperation($operation)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        if (is_null($operation)) {
+            throw new \InvalidArgumentException('non-nullable operation cannot be null');
         }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
+        $this->container['operation'] = $operation;
+
+        return $this;
+    }
+
+    /**
+     * Gets value
+     *
+     * @return \Adyen\Model\BalancePlatform\BankIdentification[]|null
+     */
+    public function getValue()
+    {
+        return $this->container['value'];
+    }
+
+    /**
+     * Sets value
+     *
+     * @param \Adyen\Model\BalancePlatform\BankIdentification[]|null $value List of counterparty Bank Institutions and the operation.
+     *
+     * @return self
+     */
+    public function setValue($value)
+    {
+        if (is_null($value)) {
+            throw new \InvalidArgumentException('non-nullable value cannot be null');
         }
-        $this->container['type'] = $type;
+        $this->container['value'] = $value;
 
         return $this;
     }

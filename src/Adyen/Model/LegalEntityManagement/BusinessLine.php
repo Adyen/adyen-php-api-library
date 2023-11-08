@@ -534,7 +534,7 @@ class BusinessLine implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets problems
      *
-     * @param \Adyen\Model\LegalEntityManagement\CapabilityProblem[]|null $problems List of the verification errors from capabilities for this supporting entity.
+     * @param \Adyen\Model\LegalEntityManagement\CapabilityProblem[]|null $problems The verification errors related to capabilities for this supporting entity.
      *
      * @return self
      */

@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\Management\ObjectSerializer;
 
 /**
- * JSONObject Class Doc Comment
+ * Localization Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\Management\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class JSONObject implements ModelInterface, ArrayAccess, \JsonSerializable
+class Localization implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class JSONObject implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'JSONObject';
+    protected static $openAPIModelName = 'Localization';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,8 +44,7 @@ class JSONObject implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'paths' => '\Adyen\Model\Management\JSONPath[]',
-        'rootPath' => '\Adyen\Model\Management\JSONPath'
+        'language' => 'string'
     ];
 
     /**
@@ -56,8 +55,7 @@ class JSONObject implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'paths' => null,
-        'rootPath' => null
+        'language' => null
     ];
 
     /**
@@ -66,8 +64,7 @@ class JSONObject implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'paths' => false,
-        'rootPath' => false
+        'language' => false
     ];
 
     /**
@@ -156,8 +153,7 @@ class JSONObject implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'paths' => 'paths',
-        'rootPath' => 'rootPath'
+        'language' => 'language'
     ];
 
     /**
@@ -166,8 +162,7 @@ class JSONObject implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'paths' => 'setPaths',
-        'rootPath' => 'setRootPath'
+        'language' => 'setLanguage'
     ];
 
     /**
@@ -176,8 +171,7 @@ class JSONObject implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'paths' => 'getPaths',
-        'rootPath' => 'getRootPath'
+        'language' => 'getLanguage'
     ];
 
     /**
@@ -237,8 +231,7 @@ class JSONObject implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('paths', $data ?? [], null);
-        $this->setIfExists('rootPath', $data ?? [], null);
+        $this->setIfExists('language', $data ?? [], null);
     }
 
     /**
@@ -284,55 +277,28 @@ class JSONObject implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets paths
+     * Gets language
      *
-     * @return \Adyen\Model\Management\JSONPath[]|null
+     * @return string|null
      */
-    public function getPaths()
+    public function getLanguage()
     {
-        return $this->container['paths'];
+        return $this->container['language'];
     }
 
     /**
-     * Sets paths
+     * Sets language
      *
-     * @param \Adyen\Model\Management\JSONPath[]|null $paths paths
+     * @param string|null $language Language of the terminal.
      *
      * @return self
      */
-    public function setPaths($paths)
+    public function setLanguage($language)
     {
-        if (is_null($paths)) {
-            throw new \InvalidArgumentException('non-nullable paths cannot be null');
+        if (is_null($language)) {
+            throw new \InvalidArgumentException('non-nullable language cannot be null');
         }
-        $this->container['paths'] = $paths;
-
-        return $this;
-    }
-
-    /**
-     * Gets rootPath
-     *
-     * @return \Adyen\Model\Management\JSONPath|null
-     */
-    public function getRootPath()
-    {
-        return $this->container['rootPath'];
-    }
-
-    /**
-     * Sets rootPath
-     *
-     * @param \Adyen\Model\Management\JSONPath|null $rootPath rootPath
-     *
-     * @return self
-     */
-    public function setRootPath($rootPath)
-    {
-        if (is_null($rootPath)) {
-            throw new \InvalidArgumentException('non-nullable rootPath cannot be null');
-        }
-        $this->container['rootPath'] = $rootPath;
+        $this->container['language'] = $language;
 
         return $this;
     }
