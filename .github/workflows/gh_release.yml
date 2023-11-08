@@ -1,16 +1,20 @@
-name: Github Release
+name: Automatic Github release
 
 on:
-    workflow_dispatch:
-    push:
-      branches:
-        - main
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - VERSION
 
 jobs:
-  gh_release:
+  github:
     permissions:
       contents: write
-    uses: Adyen/adyen-node-api-library/.github/workflows/lib-gh-release.yml@develop
+    uses: Adyen/release-automation-action/.github/workflows/reusable-github-release.yml@v1.1.1
     with:
-      project-name: PHP
-    secrets: inherit
+      release-title: Adyen PHP API Library
+      develop-branch: main
+    secrets:
+      token: ${{ secrets.ADYEN_AUTOMATION_BOT_ACCESS_TOKEN }}
