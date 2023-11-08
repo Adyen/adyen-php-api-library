@@ -48,6 +48,7 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         'connectivity' => '\Adyen\Model\Management\Connectivity',
         'gratuities' => '\Adyen\Model\Management\Gratuity[]',
         'hardware' => '\Adyen\Model\Management\Hardware',
+        'localization' => '\Adyen\Model\Management\Localization',
         'nexo' => '\Adyen\Model\Management\Nexo',
         'offlineProcessing' => '\Adyen\Model\Management\OfflineProcessing',
         'opi' => '\Adyen\Model\Management\Opi',
@@ -75,6 +76,7 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         'connectivity' => null,
         'gratuities' => null,
         'hardware' => null,
+        'localization' => null,
         'nexo' => null,
         'offlineProcessing' => null,
         'opi' => null,
@@ -100,6 +102,7 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         'connectivity' => false,
         'gratuities' => false,
         'hardware' => false,
+        'localization' => false,
         'nexo' => false,
         'offlineProcessing' => false,
         'opi' => false,
@@ -205,6 +208,7 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         'connectivity' => 'connectivity',
         'gratuities' => 'gratuities',
         'hardware' => 'hardware',
+        'localization' => 'localization',
         'nexo' => 'nexo',
         'offlineProcessing' => 'offlineProcessing',
         'opi' => 'opi',
@@ -230,6 +234,7 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         'connectivity' => 'setConnectivity',
         'gratuities' => 'setGratuities',
         'hardware' => 'setHardware',
+        'localization' => 'setLocalization',
         'nexo' => 'setNexo',
         'offlineProcessing' => 'setOfflineProcessing',
         'opi' => 'setOpi',
@@ -255,6 +260,7 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         'connectivity' => 'getConnectivity',
         'gratuities' => 'getGratuities',
         'hardware' => 'getHardware',
+        'localization' => 'getLocalization',
         'nexo' => 'getNexo',
         'offlineProcessing' => 'getOfflineProcessing',
         'opi' => 'getOpi',
@@ -331,6 +337,7 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('connectivity', $data ?? [], null);
         $this->setIfExists('gratuities', $data ?? [], null);
         $this->setIfExists('hardware', $data ?? [], null);
+        $this->setIfExists('localization', $data ?? [], null);
         $this->setIfExists('nexo', $data ?? [], null);
         $this->setIfExists('offlineProcessing', $data ?? [], null);
         $this->setIfExists('opi', $data ?? [], null);
@@ -492,6 +499,33 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable hardware cannot be null');
         }
         $this->container['hardware'] = $hardware;
+
+        return $this;
+    }
+
+    /**
+     * Gets localization
+     *
+     * @return \Adyen\Model\Management\Localization|null
+     */
+    public function getLocalization()
+    {
+        return $this->container['localization'];
+    }
+
+    /**
+     * Sets localization
+     *
+     * @param \Adyen\Model\Management\Localization|null $localization localization
+     *
+     * @return self
+     */
+    public function setLocalization($localization)
+    {
+        if (is_null($localization)) {
+            throw new \InvalidArgumentException('non-nullable localization cannot be null');
+        }
+        $this->container['localization'] = $localization;
 
         return $this;
     }

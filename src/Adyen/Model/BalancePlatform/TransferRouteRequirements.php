@@ -52,6 +52,7 @@ class TransferRouteRequirements implements ModelInterface, ArrayAccess, \JsonSer
         'min' => 'int',
         'bankAccountIdentificationTypes' => 'string[]',
         'issuingCountryCode' => 'string',
+        'onlyForCrossBalancePlatform' => 'bool',
         'paymentInstrumentType' => 'string'
     ];
 
@@ -70,6 +71,7 @@ class TransferRouteRequirements implements ModelInterface, ArrayAccess, \JsonSer
         'min' => 'int64',
         'bankAccountIdentificationTypes' => null,
         'issuingCountryCode' => null,
+        'onlyForCrossBalancePlatform' => null,
         'paymentInstrumentType' => null
     ];
 
@@ -86,6 +88,7 @@ class TransferRouteRequirements implements ModelInterface, ArrayAccess, \JsonSer
         'min' => false,
         'bankAccountIdentificationTypes' => false,
         'issuingCountryCode' => false,
+        'onlyForCrossBalancePlatform' => false,
         'paymentInstrumentType' => false
     ];
 
@@ -182,6 +185,7 @@ class TransferRouteRequirements implements ModelInterface, ArrayAccess, \JsonSer
         'min' => 'min',
         'bankAccountIdentificationTypes' => 'bankAccountIdentificationTypes',
         'issuingCountryCode' => 'issuingCountryCode',
+        'onlyForCrossBalancePlatform' => 'onlyForCrossBalancePlatform',
         'paymentInstrumentType' => 'paymentInstrumentType'
     ];
 
@@ -198,6 +202,7 @@ class TransferRouteRequirements implements ModelInterface, ArrayAccess, \JsonSer
         'min' => 'setMin',
         'bankAccountIdentificationTypes' => 'setBankAccountIdentificationTypes',
         'issuingCountryCode' => 'setIssuingCountryCode',
+        'onlyForCrossBalancePlatform' => 'setOnlyForCrossBalancePlatform',
         'paymentInstrumentType' => 'setPaymentInstrumentType'
     ];
 
@@ -214,6 +219,7 @@ class TransferRouteRequirements implements ModelInterface, ArrayAccess, \JsonSer
         'min' => 'getMin',
         'bankAccountIdentificationTypes' => 'getBankAccountIdentificationTypes',
         'issuingCountryCode' => 'getIssuingCountryCode',
+        'onlyForCrossBalancePlatform' => 'getOnlyForCrossBalancePlatform',
         'paymentInstrumentType' => 'getPaymentInstrumentType'
     ];
 
@@ -280,6 +286,7 @@ class TransferRouteRequirements implements ModelInterface, ArrayAccess, \JsonSer
         $this->setIfExists('min', $data ?? [], null);
         $this->setIfExists('bankAccountIdentificationTypes', $data ?? [], null);
         $this->setIfExists('issuingCountryCode', $data ?? [], null);
+        $this->setIfExists('onlyForCrossBalancePlatform', $data ?? [], null);
         $this->setIfExists('paymentInstrumentType', $data ?? [], null);
     }
 
@@ -515,6 +522,33 @@ class TransferRouteRequirements implements ModelInterface, ArrayAccess, \JsonSer
             throw new \InvalidArgumentException('non-nullable issuingCountryCode cannot be null');
         }
         $this->container['issuingCountryCode'] = $issuingCountryCode;
+
+        return $this;
+    }
+
+    /**
+     * Gets onlyForCrossBalancePlatform
+     *
+     * @return bool|null
+     */
+    public function getOnlyForCrossBalancePlatform()
+    {
+        return $this->container['onlyForCrossBalancePlatform'];
+    }
+
+    /**
+     * Sets onlyForCrossBalancePlatform
+     *
+     * @param bool|null $onlyForCrossBalancePlatform Specifies if the requirement only applies to transfers to another balance platform.
+     *
+     * @return self
+     */
+    public function setOnlyForCrossBalancePlatform($onlyForCrossBalancePlatform)
+    {
+        if (is_null($onlyForCrossBalancePlatform)) {
+            throw new \InvalidArgumentException('non-nullable onlyForCrossBalancePlatform cannot be null');
+        }
+        $this->container['onlyForCrossBalancePlatform'] = $onlyForCrossBalancePlatform;
 
         return $this;
     }

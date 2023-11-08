@@ -50,7 +50,6 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
         'balancePlatform' => 'string',
         'bookingDate' => '\DateTime',
         'creationDate' => '\DateTime',
-        'eventId' => 'string',
         'id' => 'string',
         'status' => 'string',
         'transfer' => '\Adyen\Model\Transfers\TransferData',
@@ -71,7 +70,6 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
         'balancePlatform' => null,
         'bookingDate' => 'date-time',
         'creationDate' => 'date-time',
-        'eventId' => null,
         'id' => null,
         'status' => null,
         'transfer' => null,
@@ -90,7 +88,6 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
         'balancePlatform' => false,
         'bookingDate' => false,
         'creationDate' => false,
-        'eventId' => false,
         'id' => false,
         'status' => false,
         'transfer' => false,
@@ -189,7 +186,6 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
         'balancePlatform' => 'balancePlatform',
         'bookingDate' => 'bookingDate',
         'creationDate' => 'creationDate',
-        'eventId' => 'eventId',
         'id' => 'id',
         'status' => 'status',
         'transfer' => 'transfer',
@@ -208,7 +204,6 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
         'balancePlatform' => 'setBalancePlatform',
         'bookingDate' => 'setBookingDate',
         'creationDate' => 'setCreationDate',
-        'eventId' => 'setEventId',
         'id' => 'setId',
         'status' => 'setStatus',
         'transfer' => 'setTransfer',
@@ -227,7 +222,6 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
         'balancePlatform' => 'getBalancePlatform',
         'bookingDate' => 'getBookingDate',
         'creationDate' => 'getCreationDate',
-        'eventId' => 'getEventId',
         'id' => 'getId',
         'status' => 'getStatus',
         'transfer' => 'getTransfer',
@@ -311,7 +305,6 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('balancePlatform', $data ?? [], null);
         $this->setIfExists('bookingDate', $data ?? [], null);
         $this->setIfExists('creationDate', $data ?? [], null);
-        $this->setIfExists('eventId', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('transfer', $data ?? [], null);
@@ -551,33 +544,6 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable creationDate cannot be null');
         }
         $this->container['creationDate'] = $creationDate;
-
-        return $this;
-    }
-
-    /**
-     * Gets eventId
-     *
-     * @return string|null
-     */
-    public function getEventId()
-    {
-        return $this->container['eventId'];
-    }
-
-    /**
-     * Sets eventId
-     *
-     * @param string|null $eventId The PSP reference of the transaction in the journal.
-     *
-     * @return self
-     */
-    public function setEventId($eventId)
-    {
-        if (is_null($eventId)) {
-            throw new \InvalidArgumentException('non-nullable eventId cannot be null');
-        }
-        $this->container['eventId'] = $eventId;
 
         return $this;
     }

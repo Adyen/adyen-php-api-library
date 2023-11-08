@@ -239,9 +239,10 @@ class TerminalAssignment implements ModelInterface, ArrayAccess, \JsonSerializab
         return self::$openAPIModelName;
     }
 
-    public const STATUS_REASSIGNMENT_IN_PROGRESS = 'reassignmentInProgress';
+    public const STATUS_BOARDED = 'boarded';
     public const STATUS_DEPLOYED = 'deployed';
     public const STATUS_INVENTORY = 'inventory';
+    public const STATUS_REASSIGNMENT_IN_PROGRESS = 'reassignmentInProgress';
 
     /**
      * Gets allowable values of the enum
@@ -251,9 +252,10 @@ class TerminalAssignment implements ModelInterface, ArrayAccess, \JsonSerializab
     public function getStatusAllowableValues()
     {
         return [
-            self::STATUS_REASSIGNMENT_IN_PROGRESS,
+            self::STATUS_BOARDED,
             self::STATUS_DEPLOYED,
             self::STATUS_INVENTORY,
+            self::STATUS_REASSIGNMENT_IN_PROGRESS,
         ];
     }
     /**
@@ -429,7 +431,7 @@ class TerminalAssignment implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets status
      *
-     * @param string $status The status of the reassignment. Possible values:   * `reassignmentInProgress`: the terminal was boarded and is now scheduled to remove the configuration. Wait for the terminal to synchronize with the Adyen platform.  * `deployed`: the terminal is deployed and reassigned.   * `inventory`: the terminal is in inventory and cannot process transactions.
+     * @param string $status The status of the reassignment. Possible values:   * `reassignmentInProgress`: the terminal was boarded and is now scheduled to remove the configuration. Wait for the terminal to synchronize with the Adyen platform.  * `deployed`: the terminal is deployed and reassigned.   * `inventory`: the terminal is in inventory and cannot process transactions.   * `boarded`: the terminal is boarded to a store, or a merchant account representing a store, and can process transactions.
      *
      * @return self
      */

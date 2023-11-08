@@ -47,7 +47,8 @@ class DSPublicKeyDetail implements ModelInterface, ArrayAccess, \JsonSerializabl
         'brand' => 'string',
         'directoryServerId' => 'string',
         'fromSDKVersion' => 'string',
-        'publicKey' => 'string'
+        'publicKey' => 'string',
+        'rootCertificates' => 'string'
     ];
 
     /**
@@ -61,7 +62,8 @@ class DSPublicKeyDetail implements ModelInterface, ArrayAccess, \JsonSerializabl
         'brand' => null,
         'directoryServerId' => null,
         'fromSDKVersion' => null,
-        'publicKey' => 'byte'
+        'publicKey' => 'byte',
+        'rootCertificates' => null
     ];
 
     /**
@@ -73,7 +75,8 @@ class DSPublicKeyDetail implements ModelInterface, ArrayAccess, \JsonSerializabl
         'brand' => false,
         'directoryServerId' => false,
         'fromSDKVersion' => false,
-        'publicKey' => false
+        'publicKey' => false,
+        'rootCertificates' => false
     ];
 
     /**
@@ -165,7 +168,8 @@ class DSPublicKeyDetail implements ModelInterface, ArrayAccess, \JsonSerializabl
         'brand' => 'brand',
         'directoryServerId' => 'directoryServerId',
         'fromSDKVersion' => 'fromSDKVersion',
-        'publicKey' => 'publicKey'
+        'publicKey' => 'publicKey',
+        'rootCertificates' => 'rootCertificates'
     ];
 
     /**
@@ -177,7 +181,8 @@ class DSPublicKeyDetail implements ModelInterface, ArrayAccess, \JsonSerializabl
         'brand' => 'setBrand',
         'directoryServerId' => 'setDirectoryServerId',
         'fromSDKVersion' => 'setFromSDKVersion',
-        'publicKey' => 'setPublicKey'
+        'publicKey' => 'setPublicKey',
+        'rootCertificates' => 'setRootCertificates'
     ];
 
     /**
@@ -189,7 +194,8 @@ class DSPublicKeyDetail implements ModelInterface, ArrayAccess, \JsonSerializabl
         'brand' => 'getBrand',
         'directoryServerId' => 'getDirectoryServerId',
         'fromSDKVersion' => 'getFromSDKVersion',
-        'publicKey' => 'getPublicKey'
+        'publicKey' => 'getPublicKey',
+        'rootCertificates' => 'getRootCertificates'
     ];
 
     /**
@@ -253,6 +259,7 @@ class DSPublicKeyDetail implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('directoryServerId', $data ?? [], null);
         $this->setIfExists('fromSDKVersion', $data ?? [], null);
         $this->setIfExists('publicKey', $data ?? [], null);
+        $this->setIfExists('rootCertificates', $data ?? [], null);
     }
 
     /**
@@ -401,6 +408,33 @@ class DSPublicKeyDetail implements ModelInterface, ArrayAccess, \JsonSerializabl
             throw new \InvalidArgumentException('non-nullable publicKey cannot be null');
         }
         $this->container['publicKey'] = $publicKey;
+
+        return $this;
+    }
+
+    /**
+     * Gets rootCertificates
+     *
+     * @return string|null
+     */
+    public function getRootCertificates()
+    {
+        return $this->container['rootCertificates'];
+    }
+
+    /**
+     * Sets rootCertificates
+     *
+     * @param string|null $rootCertificates Directory Server root certificates. The 3D Secure 2 SDK verifies the ACS signed content using the rootCertificates.
+     *
+     * @return self
+     */
+    public function setRootCertificates($rootCertificates)
+    {
+        if (is_null($rootCertificates)) {
+            throw new \InvalidArgumentException('non-nullable rootCertificates cannot be null');
+        }
+        $this->container['rootCertificates'] = $rootCertificates;
 
         return $this;
     }

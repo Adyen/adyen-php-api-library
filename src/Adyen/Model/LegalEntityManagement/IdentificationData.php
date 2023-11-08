@@ -251,7 +251,7 @@ class IdentificationData implements ModelInterface, ArrayAccess, \JsonSerializab
         return self::$openAPIModelName;
     }
 
-    public const TYPE_PROOF_OF_NATIONAL_ID_NUMBER = 'proofOfNationalIdNumber';
+    public const TYPE_NATIONAL_ID_NUMBER = 'nationalIdNumber';
 
     /**
      * Gets allowable values of the enum
@@ -261,7 +261,7 @@ class IdentificationData implements ModelInterface, ArrayAccess, \JsonSerializab
     public function getTypeAllowableValues()
     {
         return [
-            self::TYPE_PROOF_OF_NATIONAL_ID_NUMBER,
+            self::TYPE_NATIONAL_ID_NUMBER,
         ];
     }
     /**
@@ -373,7 +373,6 @@ class IdentificationData implements ModelInterface, ArrayAccess, \JsonSerializab
      * Gets expiryDate
      *
      * @return string|null
-     * @deprecated
      */
     public function getExpiryDate()
     {
@@ -386,7 +385,6 @@ class IdentificationData implements ModelInterface, ArrayAccess, \JsonSerializab
      * @param string|null $expiryDate The expiry date of the document, in YYYY-MM-DD format.
      *
      * @return self
-     * @deprecated
      */
     public function setExpiryDate($expiryDate)
     {

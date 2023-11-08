@@ -244,6 +244,8 @@ class Recurring implements ModelInterface, ArrayAccess, \JsonSerializable
     public const CONTRACT_PAYOUT = 'PAYOUT';
     public const TOKEN_SERVICE_VISATOKENSERVICE = 'VISATOKENSERVICE';
     public const TOKEN_SERVICE_MCTOKENSERVICE = 'MCTOKENSERVICE';
+    public const TOKEN_SERVICE_AMEXTOKENSERVICE = 'AMEXTOKENSERVICE';
+    public const TOKEN_SERVICE_TOKEN_SHARING = 'TOKEN_SHARING';
 
     /**
      * Gets allowable values of the enum
@@ -268,6 +270,8 @@ class Recurring implements ModelInterface, ArrayAccess, \JsonSerializable
         return [
             self::TOKEN_SERVICE_VISATOKENSERVICE,
             self::TOKEN_SERVICE_MCTOKENSERVICE,
+            self::TOKEN_SERVICE_AMEXTOKENSERVICE,
+            self::TOKEN_SERVICE_TOKEN_SHARING,
         ];
     }
     /**

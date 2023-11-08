@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\LegalEntityManagement\ObjectSerializer;
 
 /**
- * SoleProprietorship Class Doc Comment
+ * Trust Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\LegalEntityManagement\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializable
+class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
       *
       * @var string
       */
-    protected static $openAPIModelName = 'SoleProprietorship';
+    protected static $openAPIModelName = 'Trust';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -52,6 +52,8 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
         'registeredAddress' => '\Adyen\Model\LegalEntityManagement\Address',
         'registrationNumber' => 'string',
         'taxInformation' => '\Adyen\Model\LegalEntityManagement\TaxInformation[]',
+        'type' => 'string',
+        'undefinedBeneficiaryInfo' => '\Adyen\Model\LegalEntityManagement\UndefinedBeneficiary[]',
         'vatAbsenceReason' => 'string',
         'vatNumber' => 'string'
     ];
@@ -72,6 +74,8 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
         'registeredAddress' => null,
         'registrationNumber' => null,
         'taxInformation' => null,
+        'type' => null,
+        'undefinedBeneficiaryInfo' => null,
         'vatAbsenceReason' => null,
         'vatNumber' => null
     ];
@@ -90,6 +94,8 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
         'registeredAddress' => false,
         'registrationNumber' => false,
         'taxInformation' => false,
+        'type' => false,
+        'undefinedBeneficiaryInfo' => false,
         'vatAbsenceReason' => false,
         'vatNumber' => false
     ];
@@ -188,6 +194,8 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
         'registeredAddress' => 'registeredAddress',
         'registrationNumber' => 'registrationNumber',
         'taxInformation' => 'taxInformation',
+        'type' => 'type',
+        'undefinedBeneficiaryInfo' => 'undefinedBeneficiaryInfo',
         'vatAbsenceReason' => 'vatAbsenceReason',
         'vatNumber' => 'vatNumber'
     ];
@@ -206,6 +214,8 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
         'registeredAddress' => 'setRegisteredAddress',
         'registrationNumber' => 'setRegistrationNumber',
         'taxInformation' => 'setTaxInformation',
+        'type' => 'setType',
+        'undefinedBeneficiaryInfo' => 'setUndefinedBeneficiaryInfo',
         'vatAbsenceReason' => 'setVatAbsenceReason',
         'vatNumber' => 'setVatNumber'
     ];
@@ -224,6 +234,8 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
         'registeredAddress' => 'getRegisteredAddress',
         'registrationNumber' => 'getRegistrationNumber',
         'taxInformation' => 'getTaxInformation',
+        'type' => 'getType',
+        'undefinedBeneficiaryInfo' => 'getUndefinedBeneficiaryInfo',
         'vatAbsenceReason' => 'getVatAbsenceReason',
         'vatNumber' => 'getVatNumber'
     ];
@@ -269,9 +281,49 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
         return self::$openAPIModelName;
     }
 
+    public const TYPE_CASH_MANAGEMENT_TRUST = 'cashManagementTrust';
+    public const TYPE_CORPORATE_UNIT_TRUST = 'corporateUnitTrust';
+    public const TYPE_DECEASED_ESTATE = 'deceasedEstate';
+    public const TYPE_DISCRETIONARY_INVESTMENT_TRUST = 'discretionaryInvestmentTrust';
+    public const TYPE_DISCRETIONARY_SERVICES_MANAGEMENT_TRUST = 'discretionaryServicesManagementTrust';
+    public const TYPE_DISCRETIONARY_TRADING_TRUST = 'discretionaryTradingTrust';
+    public const TYPE_FIRST_HOME_SAVER_ACCOUNTS_TRUST = 'firstHomeSaverAccountsTrust';
+    public const TYPE_FIXED_TRUST = 'fixedTrust';
+    public const TYPE_FIXED_UNIT_TRUST = 'fixedUnitTrust';
+    public const TYPE_HYBRID_TRUST = 'hybridTrust';
+    public const TYPE_LISTED_PUBLIC_UNIT_TRUST = 'listedPublicUnitTrust';
+    public const TYPE_OTHER_TRUST = 'otherTrust';
+    public const TYPE_POOLED_SUPERANNUATION_TRUST = 'pooledSuperannuationTrust';
+    public const TYPE_PUBLIC_TRADING_TRUST = 'publicTradingTrust';
+    public const TYPE_UNLISTED_PUBLIC_UNIT_TRUST = 'unlistedPublicUnitTrust';
     public const VAT_ABSENCE_REASON_INDUSTRY_EXEMPTION = 'industryExemption';
     public const VAT_ABSENCE_REASON_BELOW_TAX_THRESHOLD = 'belowTaxThreshold';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_CASH_MANAGEMENT_TRUST,
+            self::TYPE_CORPORATE_UNIT_TRUST,
+            self::TYPE_DECEASED_ESTATE,
+            self::TYPE_DISCRETIONARY_INVESTMENT_TRUST,
+            self::TYPE_DISCRETIONARY_SERVICES_MANAGEMENT_TRUST,
+            self::TYPE_DISCRETIONARY_TRADING_TRUST,
+            self::TYPE_FIRST_HOME_SAVER_ACCOUNTS_TRUST,
+            self::TYPE_FIXED_TRUST,
+            self::TYPE_FIXED_UNIT_TRUST,
+            self::TYPE_HYBRID_TRUST,
+            self::TYPE_LISTED_PUBLIC_UNIT_TRUST,
+            self::TYPE_OTHER_TRUST,
+            self::TYPE_POOLED_SUPERANNUATION_TRUST,
+            self::TYPE_PUBLIC_TRADING_TRUST,
+            self::TYPE_UNLISTED_PUBLIC_UNIT_TRUST,
+        ];
+    }
     /**
      * Gets allowable values of the enum
      *
@@ -307,6 +359,8 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('registeredAddress', $data ?? [], null);
         $this->setIfExists('registrationNumber', $data ?? [], null);
         $this->setIfExists('taxInformation', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('undefinedBeneficiaryInfo', $data ?? [], null);
         $this->setIfExists('vatAbsenceReason', $data ?? [], null);
         $this->setIfExists('vatNumber', $data ?? [], null);
     }
@@ -347,6 +401,18 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
         if ($this->container['registeredAddress'] === null) {
             $invalidProperties[] = "'registeredAddress' can't be null";
         }
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         $allowedValues = $this->getVatAbsenceReasonAllowableValues();
         if (!is_null($this->container['vatAbsenceReason']) && !in_array($this->container['vatAbsenceReason'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -583,6 +649,70 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
             throw new \InvalidArgumentException('non-nullable taxInformation cannot be null');
         }
         $this->container['taxInformation'] = $taxInformation;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string $type Type of trust.  Possible values for Australian trusts: **cashManagementTrust**, **corporateUnitTrust**, **deceasedEstate**, **discretionaryInvestmentTrust**, **discretionaryServicesManagementTrust**, **discretionaryTradingTrust**, **firstHomeSaverAccountsTrust**, **fixedTrust**, **fixedUnitTrust**, **hybridTrust**, **listedPublicUnitTrust**, **otherTrust**, **pooledSuperannuationTrust**, **publicTradingTrust**, **unlistedPublicUnitTrust**.
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets undefinedBeneficiaryInfo
+     *
+     * @return \Adyen\Model\LegalEntityManagement\UndefinedBeneficiary[]|null
+     */
+    public function getUndefinedBeneficiaryInfo()
+    {
+        return $this->container['undefinedBeneficiaryInfo'];
+    }
+
+    /**
+     * Sets undefinedBeneficiaryInfo
+     *
+     * @param \Adyen\Model\LegalEntityManagement\UndefinedBeneficiary[]|null $undefinedBeneficiaryInfo The undefined beneficiary information of the entity.
+     *
+     * @return self
+     */
+    public function setUndefinedBeneficiaryInfo($undefinedBeneficiaryInfo)
+    {
+        if (is_null($undefinedBeneficiaryInfo)) {
+            throw new \InvalidArgumentException('non-nullable undefinedBeneficiaryInfo cannot be null');
+        }
+        $this->container['undefinedBeneficiaryInfo'] = $undefinedBeneficiaryInfo;
 
         return $this;
     }
