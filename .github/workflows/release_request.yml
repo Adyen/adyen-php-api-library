@@ -1,23 +1,32 @@
-name: Release request
+name: Prepare release
 
 on:
-    workflow_dispatch:
-      inputs:
-        prerelease:
-          required: false
-          type: boolean
-          default: false
-          description: "This release will be labeled as non-production ready"
-    push:
-      branches:
-        - develop
+  workflow_dispatch:
+    inputs:
+      pre-release:
+        required: false
+        type: boolean
+        default: false
+        description: "This release will be labeled as non-production ready"
+  pull_request:
+    types:
+      - closed
+    branches:
+      - releases/v15
 
 jobs:
-  release:
+  candidate:
+    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.merged && !startsWith(github.head_ref, 'promote/'))
     permissions:
       contents: write
       pull-requests: write
-    uses: Adyen/adyen-node-api-library/.github/workflows/lib-release.yml@develop
-    with:
-      prerelease: ${{ inputs.prerelease || false }}
-    secrets: inherit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare the next main release
+        uses: Adyen/release-automation-action@v1.1.1
+        with:
+          token: ${{ secrets.ADYEN_AUTOMATION_BOT_ACCESS_TOKEN }}
+          develop-branch: releases/v15
+          version-files: src/Adyen/Client.php README.md
+          pre-release: ${{ inputs.pre-release || false }}
