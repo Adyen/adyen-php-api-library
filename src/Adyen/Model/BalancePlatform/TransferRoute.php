@@ -246,6 +246,7 @@ class TransferRoute implements ModelInterface, ArrayAccess, \JsonSerializable
     public const CATEGORY_ISSUED_CARD = 'issuedCard';
     public const CATEGORY_MIGRATION = 'migration';
     public const CATEGORY_PLATFORM_PAYMENT = 'platformPayment';
+    public const CATEGORY_TOP_UP = 'topUp';
     public const CATEGORY_UPGRADE = 'upgrade';
     public const PRIORITY_CROSS_BORDER = 'crossBorder';
     public const PRIORITY_FAST = 'fast';
@@ -269,6 +270,7 @@ class TransferRoute implements ModelInterface, ArrayAccess, \JsonSerializable
             self::CATEGORY_ISSUED_CARD,
             self::CATEGORY_MIGRATION,
             self::CATEGORY_PLATFORM_PAYMENT,
+            self::CATEGORY_TOP_UP,
             self::CATEGORY_UPGRADE,
         ];
     }

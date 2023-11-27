@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * JSONObject Class Doc Comment
+ * SameCounterpartyRestriction Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\BalancePlatform\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class JSONObject implements ModelInterface, ArrayAccess, \JsonSerializable
+class SameCounterpartyRestriction implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class JSONObject implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'JSONObject';
+    protected static $openAPIModelName = 'SameCounterpartyRestriction';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,8 +44,8 @@ class JSONObject implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'paths' => '\Adyen\Model\BalancePlatform\JSONPath[]',
-        'rootPath' => '\Adyen\Model\BalancePlatform\JSONPath'
+        'operation' => 'string',
+        'value' => 'bool'
     ];
 
     /**
@@ -56,8 +56,8 @@ class JSONObject implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'paths' => null,
-        'rootPath' => null
+        'operation' => null,
+        'value' => null
     ];
 
     /**
@@ -66,8 +66,8 @@ class JSONObject implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'paths' => false,
-        'rootPath' => false
+        'operation' => false,
+        'value' => false
     ];
 
     /**
@@ -156,8 +156,8 @@ class JSONObject implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'paths' => 'paths',
-        'rootPath' => 'rootPath'
+        'operation' => 'operation',
+        'value' => 'value'
     ];
 
     /**
@@ -166,8 +166,8 @@ class JSONObject implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'paths' => 'setPaths',
-        'rootPath' => 'setRootPath'
+        'operation' => 'setOperation',
+        'value' => 'setValue'
     ];
 
     /**
@@ -176,8 +176,8 @@ class JSONObject implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'paths' => 'getPaths',
-        'rootPath' => 'getRootPath'
+        'operation' => 'getOperation',
+        'value' => 'getValue'
     ];
 
     /**
@@ -237,8 +237,8 @@ class JSONObject implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('paths', $data ?? [], null);
-        $this->setIfExists('rootPath', $data ?? [], null);
+        $this->setIfExists('operation', $data ?? [], null);
+        $this->setIfExists('value', $data ?? [], null);
     }
 
     /**
@@ -268,6 +268,9 @@ class JSONObject implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['operation'] === null) {
+            $invalidProperties[] = "'operation' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -284,55 +287,55 @@ class JSONObject implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets paths
+     * Gets operation
      *
-     * @return \Adyen\Model\BalancePlatform\JSONPath[]|null
+     * @return string
      */
-    public function getPaths()
+    public function getOperation()
     {
-        return $this->container['paths'];
+        return $this->container['operation'];
     }
 
     /**
-     * Sets paths
+     * Sets operation
      *
-     * @param \Adyen\Model\BalancePlatform\JSONPath[]|null $paths paths
+     * @param string $operation Defines how the condition must be evaluated.
      *
      * @return self
      */
-    public function setPaths($paths)
+    public function setOperation($operation)
     {
-        if (is_null($paths)) {
-            throw new \InvalidArgumentException('non-nullable paths cannot be null');
+        if (is_null($operation)) {
+            throw new \InvalidArgumentException('non-nullable operation cannot be null');
         }
-        $this->container['paths'] = $paths;
+        $this->container['operation'] = $operation;
 
         return $this;
     }
 
     /**
-     * Gets rootPath
+     * Gets value
      *
-     * @return \Adyen\Model\BalancePlatform\JSONPath|null
+     * @return bool|null
      */
-    public function getRootPath()
+    public function getValue()
     {
-        return $this->container['rootPath'];
+        return $this->container['value'];
     }
 
     /**
-     * Sets rootPath
+     * Sets value
      *
-     * @param \Adyen\Model\BalancePlatform\JSONPath|null $rootPath rootPath
+     * @param bool|null $value value
      *
      * @return self
      */
-    public function setRootPath($rootPath)
+    public function setValue($value)
     {
-        if (is_null($rootPath)) {
-            throw new \InvalidArgumentException('non-nullable rootPath cannot be null');
+        if (is_null($value)) {
+            throw new \InvalidArgumentException('non-nullable value cannot be null');
         }
-        $this->container['rootPath'] = $rootPath;
+        $this->container['value'] = $value;
 
         return $this;
     }

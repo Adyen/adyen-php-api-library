@@ -367,7 +367,7 @@ class PaymentDetailsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets paymentData
      *
-     * @param string|null $paymentData The `paymentData` value from the `/payments` response. Required if the `/payments` response returns this value.
+     * @param string|null $paymentData Encoded payment data. For [authorizing a payment after using 3D Secure 2 Authentication-only](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only/#authorise-the-payment-with-adyen):  If you received `resultCode`: **AuthenticationNotRequired** in the `/payments` response, use the `threeDSPaymentData` from the same response.  If you received `resultCode`: **AuthenticationFinished** in the `/payments` response, use the `action.paymentData` from the same response.
      *
      * @return self
      */

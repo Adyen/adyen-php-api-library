@@ -57,6 +57,8 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'merchantNames' => '\Adyen\Model\BalancePlatform\MerchantNamesRestriction',
         'merchants' => '\Adyen\Model\BalancePlatform\MerchantsRestriction',
         'processingTypes' => '\Adyen\Model\BalancePlatform\ProcessingTypesRestriction',
+        'sameAmountRestriction' => '\Adyen\Model\BalancePlatform\SameAmountRestriction',
+        'sameCounterpartyRestriction' => '\Adyen\Model\BalancePlatform\SameCounterpartyRestriction',
         'timeOfDay' => '\Adyen\Model\BalancePlatform\TimeOfDayRestriction',
         'totalAmount' => '\Adyen\Model\BalancePlatform\TotalAmountRestriction'
     ];
@@ -82,6 +84,8 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'merchantNames' => null,
         'merchants' => null,
         'processingTypes' => null,
+        'sameAmountRestriction' => null,
+        'sameCounterpartyRestriction' => null,
         'timeOfDay' => null,
         'totalAmount' => null
     ];
@@ -105,6 +109,8 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'merchantNames' => false,
         'merchants' => false,
         'processingTypes' => false,
+        'sameAmountRestriction' => false,
+        'sameCounterpartyRestriction' => false,
         'timeOfDay' => false,
         'totalAmount' => false
     ];
@@ -208,6 +214,8 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'merchantNames' => 'merchantNames',
         'merchants' => 'merchants',
         'processingTypes' => 'processingTypes',
+        'sameAmountRestriction' => 'sameAmountRestriction',
+        'sameCounterpartyRestriction' => 'sameCounterpartyRestriction',
         'timeOfDay' => 'timeOfDay',
         'totalAmount' => 'totalAmount'
     ];
@@ -231,6 +239,8 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'merchantNames' => 'setMerchantNames',
         'merchants' => 'setMerchants',
         'processingTypes' => 'setProcessingTypes',
+        'sameAmountRestriction' => 'setSameAmountRestriction',
+        'sameCounterpartyRestriction' => 'setSameCounterpartyRestriction',
         'timeOfDay' => 'setTimeOfDay',
         'totalAmount' => 'setTotalAmount'
     ];
@@ -254,6 +264,8 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'merchantNames' => 'getMerchantNames',
         'merchants' => 'getMerchants',
         'processingTypes' => 'getProcessingTypes',
+        'sameAmountRestriction' => 'getSameAmountRestriction',
+        'sameCounterpartyRestriction' => 'getSameCounterpartyRestriction',
         'timeOfDay' => 'getTimeOfDay',
         'totalAmount' => 'getTotalAmount'
     ];
@@ -328,6 +340,8 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('merchantNames', $data ?? [], null);
         $this->setIfExists('merchants', $data ?? [], null);
         $this->setIfExists('processingTypes', $data ?? [], null);
+        $this->setIfExists('sameAmountRestriction', $data ?? [], null);
+        $this->setIfExists('sameCounterpartyRestriction', $data ?? [], null);
         $this->setIfExists('timeOfDay', $data ?? [], null);
         $this->setIfExists('totalAmount', $data ?? [], null);
     }
@@ -721,6 +735,60 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
             throw new \InvalidArgumentException('non-nullable processingTypes cannot be null');
         }
         $this->container['processingTypes'] = $processingTypes;
+
+        return $this;
+    }
+
+    /**
+     * Gets sameAmountRestriction
+     *
+     * @return \Adyen\Model\BalancePlatform\SameAmountRestriction|null
+     */
+    public function getSameAmountRestriction()
+    {
+        return $this->container['sameAmountRestriction'];
+    }
+
+    /**
+     * Sets sameAmountRestriction
+     *
+     * @param \Adyen\Model\BalancePlatform\SameAmountRestriction|null $sameAmountRestriction sameAmountRestriction
+     *
+     * @return self
+     */
+    public function setSameAmountRestriction($sameAmountRestriction)
+    {
+        if (is_null($sameAmountRestriction)) {
+            throw new \InvalidArgumentException('non-nullable sameAmountRestriction cannot be null');
+        }
+        $this->container['sameAmountRestriction'] = $sameAmountRestriction;
+
+        return $this;
+    }
+
+    /**
+     * Gets sameCounterpartyRestriction
+     *
+     * @return \Adyen\Model\BalancePlatform\SameCounterpartyRestriction|null
+     */
+    public function getSameCounterpartyRestriction()
+    {
+        return $this->container['sameCounterpartyRestriction'];
+    }
+
+    /**
+     * Sets sameCounterpartyRestriction
+     *
+     * @param \Adyen\Model\BalancePlatform\SameCounterpartyRestriction|null $sameCounterpartyRestriction sameCounterpartyRestriction
+     *
+     * @return self
+     */
+    public function setSameCounterpartyRestriction($sameCounterpartyRestriction)
+    {
+        if (is_null($sameCounterpartyRestriction)) {
+            throw new \InvalidArgumentException('non-nullable sameCounterpartyRestriction cannot be null');
+        }
+        $this->container['sameCounterpartyRestriction'] = $sameCounterpartyRestriction;
 
         return $this;
     }

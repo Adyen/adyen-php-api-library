@@ -296,7 +296,7 @@ class PlatformPaymentConfiguration implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets salesDayClosingTime
      *
-     * @param string|null $salesDayClosingTime Specifies at what time a [sales day](https://docs.adyen.com/marketplaces-and-platforms/receive-funds/sales-day-settlement#sales-day) ends.  Possible values: Time in **\"HH:MM\"** format. **HH** ranges from **00** to **07**. **MM** must be **00**.  Default value: **\"00:00\"**.
+     * @param string|null $salesDayClosingTime Specifies at what time a [sales day](https://docs.adyen.com/marketplaces-and-platforms/settle-funds/sales-day-settlement#sales-day) ends.  Possible values: Time in **\"HH:MM\"** format. **HH** ranges from **00** to **07**. **MM** must be **00**.  Default value: **\"00:00\"**.
      *
      * @return self
      */
@@ -323,7 +323,7 @@ class PlatformPaymentConfiguration implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets settlementDelayDays
      *
-     * @param int|null $settlementDelayDays Specifies after how many business days the funds in a [settlement batch](https://docs.adyen.com/marketplaces-and-platforms/receive-funds/sales-day-settlement#settlement-batch) are made available.  Possible values: **0** to **10**, or **null**. * Setting this value to an integer enables [Sales day settlement](https://docs.adyen.com/marketplaces-and-platforms/receive-funds/sales-day-settlement). * Setting this value to **null** enables [Pass-through settlement](https://docs.adyen.com/marketplaces-and-platforms/receive-funds/pass-through-settlement).  Default value: **null**.
+     * @param int|null $settlementDelayDays Specifies after how many business days the funds in a [settlement batch](https://docs.adyen.com/marketplaces-and-platforms/settle-funds/sales-day-settlement#settlement-batch) are made available.  Possible values: **0** to **10**, or **null**. * Setting this value to an integer enables [Sales day settlement](https://docs.adyen.com/marketplaces-and-platforms/settle-funds/sales-day-settlement). * Setting this value to **null** enables [Pass-through settlement](https://docs.adyen.com/marketplaces-and-platforms/settle-funds/pass-through-settlement).  Default value: **null**.
      *
      * @return self
      */
