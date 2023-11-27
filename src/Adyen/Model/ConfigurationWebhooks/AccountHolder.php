@@ -55,7 +55,8 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
         'primaryBalanceAccount' => 'string',
         'reference' => 'string',
         'status' => 'string',
-        'timeZone' => 'string'
+        'timeZone' => 'string',
+        'verificationDeadlines' => '\Adyen\Model\ConfigurationWebhooks\VerificationDeadline[]'
     ];
 
     /**
@@ -77,7 +78,8 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
         'primaryBalanceAccount' => null,
         'reference' => null,
         'status' => null,
-        'timeZone' => null
+        'timeZone' => null,
+        'verificationDeadlines' => null
     ];
 
     /**
@@ -97,7 +99,8 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
         'primaryBalanceAccount' => false,
         'reference' => false,
         'status' => false,
-        'timeZone' => false
+        'timeZone' => false,
+        'verificationDeadlines' => false
     ];
 
     /**
@@ -197,7 +200,8 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
         'primaryBalanceAccount' => 'primaryBalanceAccount',
         'reference' => 'reference',
         'status' => 'status',
-        'timeZone' => 'timeZone'
+        'timeZone' => 'timeZone',
+        'verificationDeadlines' => 'verificationDeadlines'
     ];
 
     /**
@@ -217,7 +221,8 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
         'primaryBalanceAccount' => 'setPrimaryBalanceAccount',
         'reference' => 'setReference',
         'status' => 'setStatus',
-        'timeZone' => 'setTimeZone'
+        'timeZone' => 'setTimeZone',
+        'verificationDeadlines' => 'setVerificationDeadlines'
     ];
 
     /**
@@ -237,7 +242,8 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
         'primaryBalanceAccount' => 'getPrimaryBalanceAccount',
         'reference' => 'getReference',
         'status' => 'getStatus',
-        'timeZone' => 'getTimeZone'
+        'timeZone' => 'getTimeZone',
+        'verificationDeadlines' => 'getVerificationDeadlines'
     ];
 
     /**
@@ -327,6 +333,7 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('reference', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('timeZone', $data ?? [], null);
+        $this->setIfExists('verificationDeadlines', $data ?? [], null);
     }
 
     /**
@@ -716,6 +723,33 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable timeZone cannot be null');
         }
         $this->container['timeZone'] = $timeZone;
+
+        return $this;
+    }
+
+    /**
+     * Gets verificationDeadlines
+     *
+     * @return \Adyen\Model\ConfigurationWebhooks\VerificationDeadline[]|null
+     */
+    public function getVerificationDeadlines()
+    {
+        return $this->container['verificationDeadlines'];
+    }
+
+    /**
+     * Sets verificationDeadlines
+     *
+     * @param \Adyen\Model\ConfigurationWebhooks\VerificationDeadline[]|null $verificationDeadlines List of verification deadlines and the capabilities that will be disallowed if verification errors are not resolved.
+     *
+     * @return self
+     */
+    public function setVerificationDeadlines($verificationDeadlines)
+    {
+        if (is_null($verificationDeadlines)) {
+            throw new \InvalidArgumentException('non-nullable verificationDeadlines cannot be null');
+        }
+        $this->container['verificationDeadlines'] = $verificationDeadlines;
 
         return $this;
     }

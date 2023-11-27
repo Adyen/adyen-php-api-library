@@ -277,16 +277,19 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
 
     public const REASON_AMOUNT_LIMIT_EXCEEDED = 'amountLimitExceeded';
     public const REASON_APPROVED = 'approved';
+    public const REASON_BALANCE_ACCOUNT_TEMPORARILY_BLOCKED_BY_TRANSACTION_RULE = 'balanceAccountTemporarilyBlockedByTransactionRule';
     public const REASON_COUNTERPARTY_ACCOUNT_BLOCKED = 'counterpartyAccountBlocked';
     public const REASON_COUNTERPARTY_ACCOUNT_CLOSED = 'counterpartyAccountClosed';
     public const REASON_COUNTERPARTY_ACCOUNT_NOT_FOUND = 'counterpartyAccountNotFound';
     public const REASON_COUNTERPARTY_ADDRESS_REQUIRED = 'counterpartyAddressRequired';
     public const REASON_COUNTERPARTY_BANK_TIMED_OUT = 'counterpartyBankTimedOut';
     public const REASON_COUNTERPARTY_BANK_UNAVAILABLE = 'counterpartyBankUnavailable';
+    public const REASON_DECLINED_BY_TRANSACTION_RULE = 'declinedByTransactionRule';
     public const REASON_ERROR = 'error';
     public const REASON_NOT_ENOUGH_BALANCE = 'notEnoughBalance';
     public const REASON_REFUSED_BY_COUNTERPARTY_BANK = 'refusedByCounterpartyBank';
     public const REASON_ROUTE_NOT_FOUND = 'routeNotFound';
+    public const REASON_SCA_FAILED = 'scaFailed';
     public const REASON_UNKNOWN = 'unknown';
     public const STATUS_ACTIVE = 'active';
     public const STATUS_INACTIVE = 'inactive';
@@ -303,16 +306,19 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
         return [
             self::REASON_AMOUNT_LIMIT_EXCEEDED,
             self::REASON_APPROVED,
+            self::REASON_BALANCE_ACCOUNT_TEMPORARILY_BLOCKED_BY_TRANSACTION_RULE,
             self::REASON_COUNTERPARTY_ACCOUNT_BLOCKED,
             self::REASON_COUNTERPARTY_ACCOUNT_CLOSED,
             self::REASON_COUNTERPARTY_ACCOUNT_NOT_FOUND,
             self::REASON_COUNTERPARTY_ADDRESS_REQUIRED,
             self::REASON_COUNTERPARTY_BANK_TIMED_OUT,
             self::REASON_COUNTERPARTY_BANK_UNAVAILABLE,
+            self::REASON_DECLINED_BY_TRANSACTION_RULE,
             self::REASON_ERROR,
             self::REASON_NOT_ENOUGH_BALANCE,
             self::REASON_REFUSED_BY_COUNTERPARTY_BANK,
             self::REASON_ROUTE_NOT_FOUND,
+            self::REASON_SCA_FAILED,
             self::REASON_UNKNOWN,
         ];
     }
