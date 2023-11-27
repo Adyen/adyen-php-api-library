@@ -101,8 +101,10 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'storePaymentMethod' => 'bool',
         'storePaymentMethodMode' => 'string',
         'telephoneNumber' => 'string',
+        'themeId' => 'string',
         'threeDSAuthenticationOnly' => 'bool',
-        'trustedShopper' => 'bool'
+        'trustedShopper' => 'bool',
+        'url' => 'string'
     ];
 
     /**
@@ -170,8 +172,10 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'storePaymentMethod' => null,
         'storePaymentMethodMode' => null,
         'telephoneNumber' => null,
+        'themeId' => null,
         'threeDSAuthenticationOnly' => null,
-        'trustedShopper' => null
+        'trustedShopper' => null,
+        'url' => null
     ];
 
     /**
@@ -237,8 +241,10 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'storePaymentMethod' => false,
         'storePaymentMethodMode' => false,
         'telephoneNumber' => false,
+        'themeId' => false,
         'threeDSAuthenticationOnly' => false,
-        'trustedShopper' => false
+        'trustedShopper' => false,
+        'url' => false
     ];
 
     /**
@@ -384,8 +390,10 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'storePaymentMethod' => 'storePaymentMethod',
         'storePaymentMethodMode' => 'storePaymentMethodMode',
         'telephoneNumber' => 'telephoneNumber',
+        'themeId' => 'themeId',
         'threeDSAuthenticationOnly' => 'threeDSAuthenticationOnly',
-        'trustedShopper' => 'trustedShopper'
+        'trustedShopper' => 'trustedShopper',
+        'url' => 'url'
     ];
 
     /**
@@ -451,8 +459,10 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'storePaymentMethod' => 'setStorePaymentMethod',
         'storePaymentMethodMode' => 'setStorePaymentMethodMode',
         'telephoneNumber' => 'setTelephoneNumber',
+        'themeId' => 'setThemeId',
         'threeDSAuthenticationOnly' => 'setThreeDSAuthenticationOnly',
-        'trustedShopper' => 'setTrustedShopper'
+        'trustedShopper' => 'setTrustedShopper',
+        'url' => 'setUrl'
     ];
 
     /**
@@ -518,8 +528,10 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'storePaymentMethod' => 'getStorePaymentMethod',
         'storePaymentMethodMode' => 'getStorePaymentMethodMode',
         'telephoneNumber' => 'getTelephoneNumber',
+        'themeId' => 'getThemeId',
         'threeDSAuthenticationOnly' => 'getThreeDSAuthenticationOnly',
-        'trustedShopper' => 'getTrustedShopper'
+        'trustedShopper' => 'getTrustedShopper',
+        'url' => 'getUrl'
     ];
 
     /**
@@ -716,8 +728,10 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         $this->setIfExists('storePaymentMethod', $data ?? [], null);
         $this->setIfExists('storePaymentMethodMode', $data ?? [], null);
         $this->setIfExists('telephoneNumber', $data ?? [], null);
+        $this->setIfExists('themeId', $data ?? [], null);
         $this->setIfExists('threeDSAuthenticationOnly', $data ?? [], false);
         $this->setIfExists('trustedShopper', $data ?? [], null);
+        $this->setIfExists('url', $data ?? [], null);
     }
 
     /**
@@ -2413,6 +2427,33 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
     }
 
     /**
+     * Gets themeId
+     *
+     * @return string|null
+     */
+    public function getThemeId()
+    {
+        return $this->container['themeId'];
+    }
+
+    /**
+     * Sets themeId
+     *
+     * @param string|null $themeId Sets a custom theme for the Adyen-hosted payment page. The value can be any of the **Theme ID** values from your Customer Area.
+     *
+     * @return self
+     */
+    public function setThemeId($themeId)
+    {
+        if (is_null($themeId)) {
+            throw new \InvalidArgumentException('non-nullable themeId cannot be null');
+        }
+        $this->container['themeId'] = $themeId;
+
+        return $this;
+    }
+
+    /**
      * Gets threeDSAuthenticationOnly
      *
      * @return bool|null
@@ -2464,6 +2505,33 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
             throw new \InvalidArgumentException('non-nullable trustedShopper cannot be null');
         }
         $this->container['trustedShopper'] = $trustedShopper;
+
+        return $this;
+    }
+
+    /**
+     * Gets url
+     *
+     * @return string|null
+     */
+    public function getUrl()
+    {
+        return $this->container['url'];
+    }
+
+    /**
+     * Sets url
+     *
+     * @param string|null $url The URL for the Hosted Checkout page. Redirect the shopper to this URL so they can make the payment.
+     *
+     * @return self
+     */
+    public function setUrl($url)
+    {
+        if (is_null($url)) {
+            throw new \InvalidArgumentException('non-nullable url cannot be null');
+        }
+        $this->container['url'] = $url;
 
         return $this;
     }

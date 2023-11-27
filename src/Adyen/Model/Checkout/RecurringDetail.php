@@ -275,6 +275,7 @@ class RecurringDetail implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const FUNDING_SOURCE_CREDIT = 'credit';
     public const FUNDING_SOURCE_DEBIT = 'debit';
 
     /**
@@ -285,6 +286,7 @@ class RecurringDetail implements ModelInterface, ArrayAccess, \JsonSerializable
     public function getFundingSourceAllowableValues()
     {
         return [
+            self::FUNDING_SOURCE_CREDIT,
             self::FUNDING_SOURCE_DEBIT,
         ];
     }

@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * AddressRequirement Class Doc Comment
+ * SameAmountRestriction Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\BalancePlatform\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class AddressRequirement implements ModelInterface, ArrayAccess, \JsonSerializable
+class SameAmountRestriction implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class AddressRequirement implements ModelInterface, ArrayAccess, \JsonSerializab
       *
       * @var string
       */
-    protected static $openAPIModelName = 'AddressRequirement';
+    protected static $openAPIModelName = 'SameAmountRestriction';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,9 +44,8 @@ class AddressRequirement implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var string[]
       */
     protected static $openAPITypes = [
-        'description' => 'string',
-        'requiredAddressFields' => 'string[]',
-        'type' => 'string'
+        'operation' => 'string',
+        'value' => 'bool'
     ];
 
     /**
@@ -57,9 +56,8 @@ class AddressRequirement implements ModelInterface, ArrayAccess, \JsonSerializab
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'description' => null,
-        'requiredAddressFields' => null,
-        'type' => null
+        'operation' => null,
+        'value' => null
     ];
 
     /**
@@ -68,9 +66,8 @@ class AddressRequirement implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'description' => false,
-        'requiredAddressFields' => false,
-        'type' => false
+        'operation' => false,
+        'value' => false
     ];
 
     /**
@@ -159,9 +156,8 @@ class AddressRequirement implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $attributeMap = [
-        'description' => 'description',
-        'requiredAddressFields' => 'requiredAddressFields',
-        'type' => 'type'
+        'operation' => 'operation',
+        'value' => 'value'
     ];
 
     /**
@@ -170,9 +166,8 @@ class AddressRequirement implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $setters = [
-        'description' => 'setDescription',
-        'requiredAddressFields' => 'setRequiredAddressFields',
-        'type' => 'setType'
+        'operation' => 'setOperation',
+        'value' => 'setValue'
     ];
 
     /**
@@ -181,9 +176,8 @@ class AddressRequirement implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $getters = [
-        'description' => 'getDescription',
-        'requiredAddressFields' => 'getRequiredAddressFields',
-        'type' => 'getType'
+        'operation' => 'getOperation',
+        'value' => 'getValue'
     ];
 
     /**
@@ -227,39 +221,7 @@ class AddressRequirement implements ModelInterface, ArrayAccess, \JsonSerializab
         return self::$openAPIModelName;
     }
 
-    public const REQUIRED_ADDRESS_FIELDS_CITY = 'city';
-    public const REQUIRED_ADDRESS_FIELDS_COUNTRY = 'country';
-    public const REQUIRED_ADDRESS_FIELDS_LINE1 = 'line1';
-    public const REQUIRED_ADDRESS_FIELDS_POSTAL_CODE = 'postalCode';
-    public const REQUIRED_ADDRESS_FIELDS_STATE_OR_PROVINCE = 'stateOrProvince';
-    public const TYPE_ADDRESS_REQUIREMENT = 'addressRequirement';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getRequiredAddressFieldsAllowableValues()
-    {
-        return [
-            self::REQUIRED_ADDRESS_FIELDS_CITY,
-            self::REQUIRED_ADDRESS_FIELDS_COUNTRY,
-            self::REQUIRED_ADDRESS_FIELDS_LINE1,
-            self::REQUIRED_ADDRESS_FIELDS_POSTAL_CODE,
-            self::REQUIRED_ADDRESS_FIELDS_STATE_OR_PROVINCE,
-        ];
-    }
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_ADDRESS_REQUIREMENT,
-        ];
-    }
     /**
      * Associative array for storing property values
      *
@@ -275,9 +237,8 @@ class AddressRequirement implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('requiredAddressFields', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'addressRequirement');
+        $this->setIfExists('operation', $data ?? [], null);
+        $this->setIfExists('value', $data ?? [], null);
     }
 
     /**
@@ -307,18 +268,9 @@ class AddressRequirement implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $invalidProperties = [];
 
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
+        if ($this->container['operation'] === null) {
+            $invalidProperties[] = "'operation' can't be null";
         }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -335,101 +287,55 @@ class AddressRequirement implements ModelInterface, ArrayAccess, \JsonSerializab
 
 
     /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription()
-    {
-        return $this->container['description'];
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Specifies the required address related fields for a particular route.
-     *
-     * @return self
-     */
-    public function setDescription($description)
-    {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-
-    /**
-     * Gets requiredAddressFields
-     *
-     * @return string[]|null
-     */
-    public function getRequiredAddressFields()
-    {
-        return $this->container['requiredAddressFields'];
-    }
-
-    /**
-     * Sets requiredAddressFields
-     *
-     * @param string[]|null $requiredAddressFields List of address fields.
-     *
-     * @return self
-     */
-    public function setRequiredAddressFields($requiredAddressFields)
-    {
-        if (is_null($requiredAddressFields)) {
-            throw new \InvalidArgumentException('non-nullable requiredAddressFields cannot be null');
-        }
-        $allowedValues = $this->getRequiredAddressFieldsAllowableValues();
-        if (array_diff($requiredAddressFields, $allowedValues)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value for 'requiredAddressFields', must be one of '%s'",
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['requiredAddressFields'] = $requiredAddressFields;
-
-        return $this;
-    }
-
-    /**
-     * Gets type
+     * Gets operation
      *
      * @return string
      */
-    public function getType()
+    public function getOperation()
     {
-        return $this->container['type'];
+        return $this->container['operation'];
     }
 
     /**
-     * Sets type
+     * Sets operation
      *
-     * @param string $type **addressRequirement**
+     * @param string $operation Defines how the condition must be evaluated.
      *
      * @return self
      */
-    public function setType($type)
+    public function setOperation($operation)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        if (is_null($operation)) {
+            throw new \InvalidArgumentException('non-nullable operation cannot be null');
         }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
+        $this->container['operation'] = $operation;
+
+        return $this;
+    }
+
+    /**
+     * Gets value
+     *
+     * @return bool|null
+     */
+    public function getValue()
+    {
+        return $this->container['value'];
+    }
+
+    /**
+     * Sets value
+     *
+     * @param bool|null $value value
+     *
+     * @return self
+     */
+    public function setValue($value)
+    {
+        if (is_null($value)) {
+            throw new \InvalidArgumentException('non-nullable value cannot be null');
         }
-        $this->container['type'] = $type;
+        $this->container['value'] = $value;
 
         return $this;
     }

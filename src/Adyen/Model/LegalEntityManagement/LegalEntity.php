@@ -57,6 +57,7 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
         'transferInstruments' => '\Adyen\Model\LegalEntityManagement\TransferInstrumentReference[]',
         'trust' => '\Adyen\Model\LegalEntityManagement\Trust',
         'type' => 'string',
+        'unincorporatedPartnership' => '\Adyen\Model\LegalEntityManagement\UnincorporatedPartnership',
         'verificationDeadlines' => '\Adyen\Model\LegalEntityManagement\VerificationDeadline[]'
     ];
 
@@ -81,6 +82,7 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
         'transferInstruments' => null,
         'trust' => null,
         'type' => null,
+        'unincorporatedPartnership' => null,
         'verificationDeadlines' => null
     ];
 
@@ -103,6 +105,7 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
         'transferInstruments' => false,
         'trust' => false,
         'type' => false,
+        'unincorporatedPartnership' => false,
         'verificationDeadlines' => false
     ];
 
@@ -205,6 +208,7 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
         'transferInstruments' => 'transferInstruments',
         'trust' => 'trust',
         'type' => 'type',
+        'unincorporatedPartnership' => 'unincorporatedPartnership',
         'verificationDeadlines' => 'verificationDeadlines'
     ];
 
@@ -227,6 +231,7 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
         'transferInstruments' => 'setTransferInstruments',
         'trust' => 'setTrust',
         'type' => 'setType',
+        'unincorporatedPartnership' => 'setUnincorporatedPartnership',
         'verificationDeadlines' => 'setVerificationDeadlines'
     ];
 
@@ -249,6 +254,7 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
         'transferInstruments' => 'getTransferInstruments',
         'trust' => 'getTrust',
         'type' => 'getType',
+        'unincorporatedPartnership' => 'getUnincorporatedPartnership',
         'verificationDeadlines' => 'getVerificationDeadlines'
     ];
 
@@ -342,6 +348,7 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('transferInstruments', $data ?? [], null);
         $this->setIfExists('trust', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('unincorporatedPartnership', $data ?? [], null);
         $this->setIfExists('verificationDeadlines', $data ?? [], null);
     }
 
@@ -758,6 +765,33 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets unincorporatedPartnership
+     *
+     * @return \Adyen\Model\LegalEntityManagement\UnincorporatedPartnership|null
+     */
+    public function getUnincorporatedPartnership()
+    {
+        return $this->container['unincorporatedPartnership'];
+    }
+
+    /**
+     * Sets unincorporatedPartnership
+     *
+     * @param \Adyen\Model\LegalEntityManagement\UnincorporatedPartnership|null $unincorporatedPartnership unincorporatedPartnership
+     *
+     * @return self
+     */
+    public function setUnincorporatedPartnership($unincorporatedPartnership)
+    {
+        if (is_null($unincorporatedPartnership)) {
+            throw new \InvalidArgumentException('non-nullable unincorporatedPartnership cannot be null');
+        }
+        $this->container['unincorporatedPartnership'] = $unincorporatedPartnership;
 
         return $this;
     }

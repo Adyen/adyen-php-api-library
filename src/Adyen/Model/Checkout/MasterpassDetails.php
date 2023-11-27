@@ -233,6 +233,7 @@ class MasterpassDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
         return self::$openAPIModelName;
     }
 
+    public const FUNDING_SOURCE_CREDIT = 'credit';
     public const FUNDING_SOURCE_DEBIT = 'debit';
     public const TYPE_MASTERPASS = 'masterpass';
 
@@ -244,6 +245,7 @@ class MasterpassDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function getFundingSourceAllowableValues()
     {
         return [
+            self::FUNDING_SOURCE_CREDIT,
             self::FUNDING_SOURCE_DEBIT,
         ];
     }

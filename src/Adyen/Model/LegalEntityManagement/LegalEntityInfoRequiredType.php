@@ -51,7 +51,8 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
         'reference' => 'string',
         'soleProprietorship' => '\Adyen\Model\LegalEntityManagement\SoleProprietorship',
         'trust' => '\Adyen\Model\LegalEntityManagement\Trust',
-        'type' => 'string'
+        'type' => 'string',
+        'unincorporatedPartnership' => '\Adyen\Model\LegalEntityManagement\UnincorporatedPartnership'
     ];
 
     /**
@@ -69,7 +70,8 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
         'reference' => null,
         'soleProprietorship' => null,
         'trust' => null,
-        'type' => null
+        'type' => null,
+        'unincorporatedPartnership' => null
     ];
 
     /**
@@ -85,7 +87,8 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
         'reference' => false,
         'soleProprietorship' => false,
         'trust' => false,
-        'type' => false
+        'type' => false,
+        'unincorporatedPartnership' => false
     ];
 
     /**
@@ -181,7 +184,8 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
         'reference' => 'reference',
         'soleProprietorship' => 'soleProprietorship',
         'trust' => 'trust',
-        'type' => 'type'
+        'type' => 'type',
+        'unincorporatedPartnership' => 'unincorporatedPartnership'
     ];
 
     /**
@@ -197,7 +201,8 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
         'reference' => 'setReference',
         'soleProprietorship' => 'setSoleProprietorship',
         'trust' => 'setTrust',
-        'type' => 'setType'
+        'type' => 'setType',
+        'unincorporatedPartnership' => 'setUnincorporatedPartnership'
     ];
 
     /**
@@ -213,7 +218,8 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
         'reference' => 'getReference',
         'soleProprietorship' => 'getSoleProprietorship',
         'trust' => 'getTrust',
-        'type' => 'getType'
+        'type' => 'getType',
+        'unincorporatedPartnership' => 'getUnincorporatedPartnership'
     ];
 
     /**
@@ -301,6 +307,7 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('soleProprietorship', $data ?? [], null);
         $this->setIfExists('trust', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('unincorporatedPartnership', $data ?? [], null);
     }
 
     /**
@@ -579,6 +586,33 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
             );
         }
         $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets unincorporatedPartnership
+     *
+     * @return \Adyen\Model\LegalEntityManagement\UnincorporatedPartnership|null
+     */
+    public function getUnincorporatedPartnership()
+    {
+        return $this->container['unincorporatedPartnership'];
+    }
+
+    /**
+     * Sets unincorporatedPartnership
+     *
+     * @param \Adyen\Model\LegalEntityManagement\UnincorporatedPartnership|null $unincorporatedPartnership unincorporatedPartnership
+     *
+     * @return self
+     */
+    public function setUnincorporatedPartnership($unincorporatedPartnership)
+    {
+        if (is_null($unincorporatedPartnership)) {
+            throw new \InvalidArgumentException('non-nullable unincorporatedPartnership cannot be null');
+        }
+        $this->container['unincorporatedPartnership'] = $unincorporatedPartnership;
 
         return $this;
     }

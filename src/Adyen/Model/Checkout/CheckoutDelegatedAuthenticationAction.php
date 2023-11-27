@@ -375,7 +375,7 @@ class CheckoutDelegatedAuthenticationAction implements ModelInterface, ArrayAcce
     /**
      * Sets paymentData
      *
-     * @param string|null $paymentData A value that must be submitted to the `/payments/details` endpoint to verify this payment.
+     * @param string|null $paymentData Encoded payment data.
      *
      * @return self
      */

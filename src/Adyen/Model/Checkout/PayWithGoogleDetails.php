@@ -245,6 +245,7 @@ class PayWithGoogleDetails implements ModelInterface, ArrayAccess, \JsonSerializ
         return self::$openAPIModelName;
     }
 
+    public const FUNDING_SOURCE_CREDIT = 'credit';
     public const FUNDING_SOURCE_DEBIT = 'debit';
     public const TYPE_PAYWITHGOOGLE = 'paywithgoogle';
 
@@ -256,6 +257,7 @@ class PayWithGoogleDetails implements ModelInterface, ArrayAccess, \JsonSerializ
     public function getFundingSourceAllowableValues()
     {
         return [
+            self::FUNDING_SOURCE_CREDIT,
             self::FUNDING_SOURCE_DEBIT,
         ];
     }
