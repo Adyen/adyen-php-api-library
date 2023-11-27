@@ -323,6 +323,7 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const FUNDING_SOURCE_CREDIT = 'credit';
     public const FUNDING_SOURCE_DEBIT = 'debit';
     public const TYPE_SCHEME = 'scheme';
     public const TYPE_NETWORK_TOKEN = 'networkToken';
@@ -336,6 +337,7 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public function getFundingSourceAllowableValues()
     {
         return [
+            self::FUNDING_SOURCE_CREDIT,
             self::FUNDING_SOURCE_DEBIT,
         ];
     }

@@ -99,6 +99,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
         'storePaymentMethod' => 'bool',
         'storePaymentMethodMode' => 'string',
         'telephoneNumber' => 'string',
+        'themeId' => 'string',
         'threeDSAuthenticationOnly' => 'bool',
         'trustedShopper' => 'bool'
     ];
@@ -166,6 +167,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
         'storePaymentMethod' => null,
         'storePaymentMethodMode' => null,
         'telephoneNumber' => null,
+        'themeId' => null,
         'threeDSAuthenticationOnly' => null,
         'trustedShopper' => null
     ];
@@ -231,6 +233,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
         'storePaymentMethod' => false,
         'storePaymentMethodMode' => false,
         'telephoneNumber' => false,
+        'themeId' => false,
         'threeDSAuthenticationOnly' => false,
         'trustedShopper' => false
     ];
@@ -376,6 +379,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
         'storePaymentMethod' => 'storePaymentMethod',
         'storePaymentMethodMode' => 'storePaymentMethodMode',
         'telephoneNumber' => 'telephoneNumber',
+        'themeId' => 'themeId',
         'threeDSAuthenticationOnly' => 'threeDSAuthenticationOnly',
         'trustedShopper' => 'trustedShopper'
     ];
@@ -441,6 +445,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
         'storePaymentMethod' => 'setStorePaymentMethod',
         'storePaymentMethodMode' => 'setStorePaymentMethodMode',
         'telephoneNumber' => 'setTelephoneNumber',
+        'themeId' => 'setThemeId',
         'threeDSAuthenticationOnly' => 'setThreeDSAuthenticationOnly',
         'trustedShopper' => 'setTrustedShopper'
     ];
@@ -506,6 +511,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
         'storePaymentMethod' => 'getStorePaymentMethod',
         'storePaymentMethodMode' => 'getStorePaymentMethodMode',
         'telephoneNumber' => 'getTelephoneNumber',
+        'themeId' => 'getThemeId',
         'threeDSAuthenticationOnly' => 'getThreeDSAuthenticationOnly',
         'trustedShopper' => 'getTrustedShopper'
     ];
@@ -702,6 +708,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
         $this->setIfExists('storePaymentMethod', $data ?? [], null);
         $this->setIfExists('storePaymentMethodMode', $data ?? [], null);
         $this->setIfExists('telephoneNumber', $data ?? [], null);
+        $this->setIfExists('themeId', $data ?? [], null);
         $this->setIfExists('threeDSAuthenticationOnly', $data ?? [], false);
         $this->setIfExists('trustedShopper', $data ?? [], null);
     }
@@ -2334,6 +2341,33 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
             throw new \InvalidArgumentException('non-nullable telephoneNumber cannot be null');
         }
         $this->container['telephoneNumber'] = $telephoneNumber;
+
+        return $this;
+    }
+
+    /**
+     * Gets themeId
+     *
+     * @return string|null
+     */
+    public function getThemeId()
+    {
+        return $this->container['themeId'];
+    }
+
+    /**
+     * Sets themeId
+     *
+     * @param string|null $themeId Sets a custom theme for the Adyen-hosted payment page. The value can be any of the **Theme ID** values from your Customer Area.
+     *
+     * @return self
+     */
+    public function setThemeId($themeId)
+    {
+        if (is_null($themeId)) {
+            throw new \InvalidArgumentException('non-nullable themeId cannot be null');
+        }
+        $this->container['themeId'] = $themeId;
 
         return $this;
     }
