@@ -31,5 +31,8 @@
     "psr-4": {
       "Adyen\\Tests\\": "tests/"
     }
+  },
+  "scripts": {
+    "fmt": "phpcbf src/Adyen/Service/** src/Adyen/Model/**"
   }
 }
