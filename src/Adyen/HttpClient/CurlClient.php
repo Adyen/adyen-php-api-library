@@ -306,6 +306,11 @@ class CurlClient implements ClientInterface
             $libraryVersion
         );
 
+        // If headers are provided in requestOptions include them in the request
+        if(!empty(requestOptions['headers'])) {
+            $headers = array_merge($headers, $requestOptions['headers']);
+        }
+
         // If idempotency key is provided as option include into request
         if (!empty($requestOptions['idempotencyKey'])) {
             $headers[] = 'Idempotency-Key: ' . $requestOptions['idempotencyKey'];
