@@ -309,7 +309,7 @@ class CurlClient implements ClientInterface
         // If headers are provided in requestOptions include them in the request
         if (!empty($requestOptions['headers'])) {
             foreach ($requestOptions['headers'] as $headerKey => $headerValue) {
-                $headers[] = $headerKey . ': ' . $headerValue; 
+                $headers[] = $headerKey . ': ' . $headerValue;
             }
         }
 
