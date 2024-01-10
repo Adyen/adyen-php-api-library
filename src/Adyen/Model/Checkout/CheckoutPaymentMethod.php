@@ -1651,7 +1651,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets shopperEmail
      *
-     * @param string $shopperEmail 
+     * @param string $shopperEmail
      *
      * @return self
      */
@@ -1678,7 +1678,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets telephoneNumber
      *
-     * @param string $telephoneNumber 
+     * @param string $telephoneNumber
      *
      * @return self
      */

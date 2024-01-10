@@ -63,14 +63,13 @@ class AllowedOriginsMerchantLevelApi extends Service
     * @param string $apiCredentialId
     * @param string $originId
     * @param array|null $requestOptions
-    
+
     * @throws AdyenException
     */
     public function deleteAllowedOrigin(string $merchantId, string $apiCredentialId, string $originId, array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{apiCredentialId}', '{originId}'], [$merchantId, $apiCredentialId, $originId], "/merchants/{merchantId}/apiCredentials/{apiCredentialId}/allowedOrigins/{originId}");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
-        
     }
 
     /**
