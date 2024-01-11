@@ -19,7 +19,7 @@
     "dms/phpunit-arraysubset-asserts": "0.5.0",
     "friendsofphp/php-cs-fixer": "*",
     "phpunit/phpunit": "9.6.15",
-    "php-coveralls/php-coveralls": "2.6.0",
+    "php-coveralls/php-coveralls": "2.7.0",
     "squizlabs/php_codesniffer": "3.8.0"
   },
   "autoload": {
