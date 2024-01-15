@@ -242,7 +242,7 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
 
         {{/parentSchema}}
         {{#vars}}
-        $this->setIfExists('{{name}}', $data ?? [], {{#defaultValue}}{{{defaultValue}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}});
+        $this->setIfExists('{{name}}', $data ?? [], null);
         {{/vars}}
         {{#discriminator}}
 
