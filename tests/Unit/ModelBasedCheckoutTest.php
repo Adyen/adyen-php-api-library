@@ -15,6 +15,7 @@ use Adyen\Model\Checkout\PaymentRequest;
 use Adyen\Model\Checkout\PaymentSetupRequest;
 use Adyen\Model\Checkout\PaymentVerificationRequest;
 use Adyen\Service\Checkout\ClassicCheckoutSDKApi;
+use Adyen\Service\Checkout\DonationsApi;
 use Adyen\Service\Checkout\PaymentLinksApi;
 use Adyen\Service\Checkout\PaymentsApi;
 use Adyen\Service\Checkout\RecurringApi;
@@ -217,7 +218,7 @@ class ModelBasedCheckoutTest extends TestCaseMock
     {
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
-        $service = new PaymentsApi($client);
+        $service = new DonationsApi($client);
 
         $result = $service->donations(new DonationPaymentRequest());
         $this->assertStringContainsString($result->getReference(), 'YOUR_DONATION_REFERENCE');
