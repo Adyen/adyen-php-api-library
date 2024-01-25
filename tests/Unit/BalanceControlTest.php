@@ -6,6 +6,7 @@ use Adyen\Model\BalanceControl\BalanceTransferRequest;
 use Adyen\Model\BalanceControl\BalanceTransferResponse;
 use Adyen\Service\BalanceControlApi;
 
+//this is a test class
 class BalanceControlTest extends TestCaseMock
 {
     public function testBalanceTransfer()
