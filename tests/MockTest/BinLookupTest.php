@@ -8,7 +8,7 @@ use Adyen\Tests\Unit\TestCaseMock;
 class BinLookupTest extends TestCaseMock
 {
     /**
-     * @dataProvider successGetCostEstimateProvider
+     * @dataProvider successGetCostEstimateProvider test
      */
     public function testEstimateIsSuccessful($jsonFile, $httpStatus)
     {
