@@ -31,7 +31,7 @@ class AbstractResourceTest extends TestCase
             )
         );
 
-        // Mock client without the Test ini settings
+        // Mock client without the Test ini settings to test
         $mockedClient = $this->createClientWithoutTestIni();
 
         // Mock abstract class with mocked client and $paramsToFilter parameters
