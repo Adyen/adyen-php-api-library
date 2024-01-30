@@ -280,7 +280,7 @@ class SepaDirectDebitDetails implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('ownerName', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'sepadirectdebit');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

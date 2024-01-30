@@ -574,7 +574,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('acquirerBIN', $data ?? [], null);
         $this->setIfExists('acquirerMerchantID', $data ?? [], null);
         $this->setIfExists('addrMatch', $data ?? [], null);
-        $this->setIfExists('authenticationOnly', $data ?? [], false);
+        $this->setIfExists('authenticationOnly', $data ?? [], null);
         $this->setIfExists('challengeIndicator', $data ?? [], null);
         $this->setIfExists('deviceChannel', $data ?? [], null);
         $this->setIfExists('deviceRenderOptions', $data ?? [], null);
@@ -592,7 +592,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('sdkAppID', $data ?? [], null);
         $this->setIfExists('sdkEncData', $data ?? [], null);
         $this->setIfExists('sdkEphemPubKey', $data ?? [], null);
-        $this->setIfExists('sdkMaxTimeout', $data ?? [], 60);
+        $this->setIfExists('sdkMaxTimeout', $data ?? [], null);
         $this->setIfExists('sdkReferenceNumber', $data ?? [], null);
         $this->setIfExists('sdkTransID', $data ?? [], null);
         $this->setIfExists('sdkVersion', $data ?? [], null);

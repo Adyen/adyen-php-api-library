@@ -257,7 +257,7 @@ class DotpayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('issuer', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'dotpay');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

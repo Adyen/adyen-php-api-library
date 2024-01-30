@@ -332,7 +332,7 @@ class AchDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('ownerName', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'ach');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

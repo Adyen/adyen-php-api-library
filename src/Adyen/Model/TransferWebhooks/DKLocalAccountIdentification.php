@@ -257,7 +257,7 @@ class DKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     {
         $this->setIfExists('accountNumber', $data ?? [], null);
         $this->setIfExists('bankCode', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'dkLocal');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

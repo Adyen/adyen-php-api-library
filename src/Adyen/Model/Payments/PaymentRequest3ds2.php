@@ -571,7 +571,7 @@ class PaymentRequest3ds2 implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('threeDS2RequestData', $data ?? [], null);
         $this->setIfExists('threeDS2Result', $data ?? [], null);
         $this->setIfExists('threeDS2Token', $data ?? [], null);
-        $this->setIfExists('threeDSAuthenticationOnly', $data ?? [], false);
+        $this->setIfExists('threeDSAuthenticationOnly', $data ?? [], null);
         $this->setIfExists('totalsGroup', $data ?? [], null);
         $this->setIfExists('trustedShopper', $data ?? [], null);
     }

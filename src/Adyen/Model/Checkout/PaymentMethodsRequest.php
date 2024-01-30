@@ -323,7 +323,7 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('order', $data ?? [], null);
         $this->setIfExists('shopperLocale', $data ?? [], null);
         $this->setIfExists('shopperReference', $data ?? [], null);
-        $this->setIfExists('splitCardFundingSources', $data ?? [], false);
+        $this->setIfExists('splitCardFundingSources', $data ?? [], null);
         $this->setIfExists('store', $data ?? [], null);
     }
 

@@ -250,7 +250,7 @@ class PLLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     public function __construct(array $data = null)
     {
         $this->setIfExists('accountNumber', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'plLocal');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

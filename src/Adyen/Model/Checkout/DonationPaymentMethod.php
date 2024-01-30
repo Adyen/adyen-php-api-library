@@ -368,7 +368,7 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('fundingSource', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'paywithgoogle');
+        $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('brand', $data ?? [], null);
         $this->setIfExists('cupsecureplusSmscode', $data ?? [], null);
         $this->setIfExists('cvc', $data ?? [], null);

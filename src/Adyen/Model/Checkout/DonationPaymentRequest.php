@@ -561,7 +561,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('socialSecurityNumber', $data ?? [], null);
         $this->setIfExists('telephoneNumber', $data ?? [], null);
         $this->setIfExists('threeDS2RequestData', $data ?? [], null);
-        $this->setIfExists('threeDSAuthenticationOnly', $data ?? [], false);
+        $this->setIfExists('threeDSAuthenticationOnly', $data ?? [], null);
     }
 
     /**

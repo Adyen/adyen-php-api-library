@@ -289,7 +289,7 @@ class PartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('fullName', $data ?? [], null);
         $this->setIfExists('lastName', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'unknown');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

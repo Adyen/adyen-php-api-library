@@ -257,7 +257,7 @@ class AULocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     {
         $this->setIfExists('accountNumber', $data ?? [], null);
         $this->setIfExists('bsbCode', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'auLocal');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

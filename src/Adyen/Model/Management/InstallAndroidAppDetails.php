@@ -250,7 +250,7 @@ class InstallAndroidAppDetails implements ModelInterface, ArrayAccess, \JsonSeri
     public function __construct(array $data = null)
     {
         $this->setIfExists('appId', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'InstallAndroidApp');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

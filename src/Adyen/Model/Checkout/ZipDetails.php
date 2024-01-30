@@ -273,7 +273,7 @@ class ZipDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('clickAndCollect', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'zip');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

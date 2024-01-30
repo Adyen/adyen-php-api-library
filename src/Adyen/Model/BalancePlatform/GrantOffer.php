@@ -47,11 +47,11 @@ class GrantOffer implements ModelInterface, ArrayAccess, \JsonSerializable
         'accountHolderId' => 'string',
         'amount' => '\Adyen\Model\BalancePlatform\Amount',
         'contractType' => 'string',
-        'expiresAt' => 'object',
+        'expiresAt' => '\DateTime',
         'fee' => '\Adyen\Model\BalancePlatform\Fee',
         'id' => 'string',
         'repayment' => '\Adyen\Model\BalancePlatform\Repayment',
-        'startsAt' => 'object'
+        'startsAt' => '\DateTime'
     ];
 
     /**
@@ -65,11 +65,11 @@ class GrantOffer implements ModelInterface, ArrayAccess, \JsonSerializable
         'accountHolderId' => null,
         'amount' => null,
         'contractType' => null,
-        'expiresAt' => null,
+        'expiresAt' => 'date-time',
         'fee' => null,
         'id' => null,
         'repayment' => null,
-        'startsAt' => null
+        'startsAt' => 'date-time'
     ];
 
     /**
@@ -445,7 +445,7 @@ class GrantOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets expiresAt
      *
-     * @return object|null
+     * @return \DateTime|null
      */
     public function getExpiresAt()
     {
@@ -455,7 +455,7 @@ class GrantOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets expiresAt
      *
-     * @param object|null $expiresAt expiresAt
+     * @param \DateTime|null $expiresAt The end date of the grant offer validity period.
      *
      * @return self
      */
@@ -553,7 +553,7 @@ class GrantOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets startsAt
      *
-     * @return object|null
+     * @return \DateTime|null
      */
     public function getStartsAt()
     {
@@ -563,7 +563,7 @@ class GrantOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets startsAt
      *
-     * @param object|null $startsAt startsAt
+     * @param \DateTime|null $startsAt The starting date of the grant offer validity period.
      *
      * @return self
      */

@@ -250,7 +250,7 @@ class ScheduleTerminalActionsRequestActionDetails implements ModelInterface, Arr
     public function __construct(array $data = null)
     {
         $this->setIfExists('appId', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'UninstallAndroidCertificate');
+        $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('certificateId', $data ?? [], null);
         $this->setIfExists('updateAtFirstMaintenanceCall', $data ?? [], null);
     }

@@ -257,7 +257,7 @@ class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     {
         $this->setIfExists('accountNumber', $data ?? [], null);
         $this->setIfExists('clearingCode', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'hkLocal');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

@@ -250,7 +250,7 @@ class InstallAndroidCertificateDetails implements ModelInterface, ArrayAccess, \
     public function __construct(array $data = null)
     {
         $this->setIfExists('certificateId', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'InstallAndroidCertificate');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

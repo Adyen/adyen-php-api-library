@@ -571,7 +571,7 @@ class PaymentRequest3d implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('store', $data ?? [], null);
         $this->setIfExists('telephoneNumber', $data ?? [], null);
         $this->setIfExists('threeDS2RequestData', $data ?? [], null);
-        $this->setIfExists('threeDSAuthenticationOnly', $data ?? [], false);
+        $this->setIfExists('threeDSAuthenticationOnly', $data ?? [], null);
         $this->setIfExists('totalsGroup', $data ?? [], null);
         $this->setIfExists('trustedShopper', $data ?? [], null);
     }

@@ -679,7 +679,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets businessLineId
      *
-     * @param string|null $businessLineId The unique identifier of the business line.
+     * @param string|null $businessLineId The unique identifier of the business line. Required if you have a [platform setup](https://docs.adyen.com/marketplaces-and-platforms/platform-structure-resources/platform-setup/).
      *
      * @return self
      */

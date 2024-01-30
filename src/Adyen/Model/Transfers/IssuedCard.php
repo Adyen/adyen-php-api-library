@@ -341,7 +341,7 @@ class IssuedCard implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('relayedAuthorisationData', $data ?? [], null);
         $this->setIfExists('schemeTraceId', $data ?? [], null);
         $this->setIfExists('schemeUniqueTransactionId', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'issuedCard');
+        $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('validationFacts', $data ?? [], null);
     }
 

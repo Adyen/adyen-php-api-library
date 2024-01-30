@@ -257,7 +257,7 @@ class InternalCategoryData implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         $this->setIfExists('modificationMerchantReference', $data ?? [], null);
         $this->setIfExists('modificationPspReference', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'internal');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

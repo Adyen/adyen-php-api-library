@@ -311,8 +311,8 @@ class BankAccountInfoAccountIdentification implements ModelInterface, ArrayAcces
     {
         $this->setIfExists('accountNumber', $data ?? [], null);
         $this->setIfExists('bsbCode', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'usLocal');
-        $this->setIfExists('accountType', $data ?? [], 'checking');
+        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('accountType', $data ?? [], null);
         $this->setIfExists('institutionNumber', $data ?? [], null);
         $this->setIfExists('transitNumber', $data ?? [], null);
         $this->setIfExists('bankCode', $data ?? [], null);

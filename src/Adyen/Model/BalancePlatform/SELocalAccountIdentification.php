@@ -257,7 +257,7 @@ class SELocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     {
         $this->setIfExists('accountNumber', $data ?? [], null);
         $this->setIfExists('clearingNumber', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'seLocal');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

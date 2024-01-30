@@ -301,7 +301,7 @@ class BankAccountIdentificationTypeRequirement implements ModelInterface, ArrayA
     {
         $this->setIfExists('bankAccountIdentificationTypes', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'bankAccountIdentificationTypeRequirement');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

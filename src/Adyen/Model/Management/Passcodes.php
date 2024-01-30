@@ -337,7 +337,7 @@ class Passcodes implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets refundPin
      *
-     * @param string|null $refundPin The passcode for unreferenced refunds on standalone terminals.
+     * @param string|null $refundPin The passcode for referenced and unreferenced refunds on standalone terminals.
      *
      * @return self
      */

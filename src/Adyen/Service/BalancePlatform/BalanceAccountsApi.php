@@ -76,28 +76,14 @@ class BalanceAccountsApi extends Service
     * @param string $balanceAccountId
     * @param string $sweepId
     * @param array|null $requestOptions
-
+    
     * @throws AdyenException
     */
     public function deleteSweep(string $balanceAccountId, string $sweepId, array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{balanceAccountId}', '{sweepId}'], [$balanceAccountId, $sweepId], "/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
-    }
-
-    /**
-    * Get all payment instruments for a balance account
-    *
-    * @param string $id
-    * @param array|null $requestOptions ['queryParams' => ['offset'=> int, 'limit'=> int]]
-    * @return \Adyen\Model\BalancePlatform\PaginatedPaymentInstrumentsResponse
-    * @throws AdyenException
-    */
-    public function getAllPaymentInstrumentsForBalanceAccount(string $id, array $requestOptions = null): \Adyen\Model\BalancePlatform\PaginatedPaymentInstrumentsResponse
-    {
-        $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/balanceAccounts/{id}/paymentInstruments");
-        $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
-        return ObjectSerializer::deserialize($response, \Adyen\Model\BalancePlatform\PaginatedPaymentInstrumentsResponse::class);
+        
     }
 
     /**
@@ -128,6 +114,21 @@ class BalanceAccountsApi extends Service
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/balanceAccounts/{id}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\BalancePlatform\BalanceAccount::class);
+    }
+
+    /**
+    * Get payment instruments linked to a balance account
+    *
+    * @param string $id
+    * @param array|null $requestOptions ['queryParams' => ['offset'=> int, 'limit'=> int, 'status'=> string]]
+    * @return \Adyen\Model\BalancePlatform\PaginatedPaymentInstrumentsResponse
+    * @throws AdyenException
+    */
+    public function getPaymentInstrumentsLinkedToBalanceAccount(string $id, array $requestOptions = null): \Adyen\Model\BalancePlatform\PaginatedPaymentInstrumentsResponse
+    {
+        $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/balanceAccounts/{id}/paymentInstruments");
+        $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\BalancePlatform\PaginatedPaymentInstrumentsResponse::class);
     }
 
     /**

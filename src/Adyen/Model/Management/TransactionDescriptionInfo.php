@@ -254,7 +254,7 @@ class TransactionDescriptionInfo implements ModelInterface, ArrayAccess, \JsonSe
     public function __construct(array $data = null)
     {
         $this->setIfExists('doingBusinessAsName', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'dynamic');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

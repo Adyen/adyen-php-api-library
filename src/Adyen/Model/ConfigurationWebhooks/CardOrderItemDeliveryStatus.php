@@ -338,7 +338,7 @@ class CardOrderItemDeliveryStatus implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets errorMessage
      *
-     * @param string|null $errorMessage Error message.
+     * @param string|null $errorMessage An error message.
      *
      * @return self
      */
@@ -365,7 +365,7 @@ class CardOrderItemDeliveryStatus implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets status
      *
-     * @param string|null $status Status of the delivery.
+     * @param string|null $status The status of the PIN delivery.
      *
      * @return self
      */
@@ -402,7 +402,7 @@ class CardOrderItemDeliveryStatus implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets trackingNumber
      *
-     * @param string|null $trackingNumber Tracking number of the delivery.
+     * @param string|null $trackingNumber The tracking number of the PIN delivery.
      *
      * @return self
      */

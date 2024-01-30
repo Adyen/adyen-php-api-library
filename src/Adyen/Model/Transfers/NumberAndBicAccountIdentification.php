@@ -264,7 +264,7 @@ class NumberAndBicAccountIdentification implements ModelInterface, ArrayAccess, 
         $this->setIfExists('accountNumber', $data ?? [], null);
         $this->setIfExists('additionalBankIdentification', $data ?? [], null);
         $this->setIfExists('bic', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'numberAndBic');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

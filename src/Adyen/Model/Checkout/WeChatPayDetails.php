@@ -252,7 +252,7 @@ class WeChatPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'wechatpay');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

@@ -250,7 +250,7 @@ class UninstallAndroidCertificateDetails implements ModelInterface, ArrayAccess,
     public function __construct(array $data = null)
     {
         $this->setIfExists('certificateId', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'UninstallAndroidCertificate');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

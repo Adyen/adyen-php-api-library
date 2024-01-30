@@ -264,7 +264,7 @@ class AmountMinMaxRequirement implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('max', $data ?? [], null);
         $this->setIfExists('min', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'amountMinMaxRequirement');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
