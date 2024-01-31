@@ -12,7 +12,7 @@ jobs:
   github:
     permissions:
       contents: write
-    uses: Adyen/release-automation-action/.github/workflows/reusable-github-release.yml@v2.0.0
+    uses: Adyen/release-automation-action/.github/workflows/reusable-github-release.yml@v1.1.1
     with:
       release-title: Adyen PHP API Library
       develop-branch: main
