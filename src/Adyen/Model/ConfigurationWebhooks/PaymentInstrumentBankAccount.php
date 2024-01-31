@@ -256,9 +256,9 @@ class PaymentInstrumentBankAccount implements ModelInterface, ArrayAccess, \Json
     public function __construct(array $data = null)
     {
         $this->setIfExists('iban', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'usLocal');
+        $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('accountNumber', $data ?? [], null);
-        $this->setIfExists('accountType', $data ?? [], 'checking');
+        $this->setIfExists('accountType', $data ?? [], null);
         $this->setIfExists('routingNumber', $data ?? [], null);
     }
 

@@ -391,7 +391,7 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('shopperNotificationReference', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
         $this->setIfExists('threeDS2SdkVersion', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'scheme');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

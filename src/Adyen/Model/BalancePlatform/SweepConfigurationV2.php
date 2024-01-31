@@ -423,7 +423,7 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('sweepAmount', $data ?? [], null);
         $this->setIfExists('targetAmount', $data ?? [], null);
         $this->setIfExists('triggerAmount', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'push');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

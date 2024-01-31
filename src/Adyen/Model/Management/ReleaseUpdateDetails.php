@@ -249,7 +249,7 @@ class ReleaseUpdateDetails implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('type', $data ?? [], 'ReleaseUpdate');
+        $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('updateAtFirstMaintenanceCall', $data ?? [], null);
     }
 

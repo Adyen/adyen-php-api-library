@@ -285,7 +285,7 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
         $this->setIfExists('issuingCountryCode', $data ?? [], null);
         $this->setIfExists('onlyForCrossBalancePlatform', $data ?? [], null);
         $this->setIfExists('paymentInstrumentType', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'paymentInstrumentRequirement');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -391,7 +391,7 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets issuingCountryCode
      *
-     * @param string|null $issuingCountryCode The two-character ISO-3166-1 alpha-2 country code of the counterparty. For example, **US** or **NL**.
+     * @param string|null $issuingCountryCode The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the payment instrument is issued. For example, **NL** or **US**.
      *
      * @return self
      */

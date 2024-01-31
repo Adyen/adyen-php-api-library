@@ -287,7 +287,7 @@ class RatepayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('personalDetails', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'ratepay');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

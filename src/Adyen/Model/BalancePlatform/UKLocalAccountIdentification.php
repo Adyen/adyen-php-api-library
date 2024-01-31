@@ -257,7 +257,7 @@ class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     {
         $this->setIfExists('accountNumber', $data ?? [], null);
         $this->setIfExists('sortCode', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'ukLocal');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

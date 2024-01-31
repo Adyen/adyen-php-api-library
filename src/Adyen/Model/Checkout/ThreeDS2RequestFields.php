@@ -556,7 +556,7 @@ class ThreeDS2RequestFields implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('acquirerBIN', $data ?? [], null);
         $this->setIfExists('acquirerMerchantID', $data ?? [], null);
         $this->setIfExists('addrMatch', $data ?? [], null);
-        $this->setIfExists('authenticationOnly', $data ?? [], false);
+        $this->setIfExists('authenticationOnly', $data ?? [], null);
         $this->setIfExists('challengeIndicator', $data ?? [], null);
         $this->setIfExists('deviceRenderOptions', $data ?? [], null);
         $this->setIfExists('homePhone', $data ?? [], null);
@@ -572,7 +572,7 @@ class ThreeDS2RequestFields implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('recurringFrequency', $data ?? [], null);
         $this->setIfExists('sdkAppID', $data ?? [], null);
         $this->setIfExists('sdkEphemPubKey', $data ?? [], null);
-        $this->setIfExists('sdkMaxTimeout', $data ?? [], 60);
+        $this->setIfExists('sdkMaxTimeout', $data ?? [], null);
         $this->setIfExists('sdkReferenceNumber', $data ?? [], null);
         $this->setIfExists('sdkTransID', $data ?? [], null);
         $this->setIfExists('threeDSCompInd', $data ?? [], null);

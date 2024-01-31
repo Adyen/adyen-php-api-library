@@ -258,7 +258,7 @@ class AuthenticationData implements ModelInterface, ArrayAccess, \JsonSerializab
     public function __construct(array $data = null)
     {
         $this->setIfExists('attemptAuthentication', $data ?? [], null);
-        $this->setIfExists('authenticationOnly', $data ?? [], false);
+        $this->setIfExists('authenticationOnly', $data ?? [], null);
         $this->setIfExists('threeDSRequestData', $data ?? [], null);
     }
 

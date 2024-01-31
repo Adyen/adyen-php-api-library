@@ -662,7 +662,7 @@ class PaymentSetupRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('store', $data ?? [], null);
         $this->setIfExists('storePaymentMethod', $data ?? [], null);
         $this->setIfExists('telephoneNumber', $data ?? [], null);
-        $this->setIfExists('threeDSAuthenticationOnly', $data ?? [], false);
+        $this->setIfExists('threeDSAuthenticationOnly', $data ?? [], null);
         $this->setIfExists('token', $data ?? [], null);
         $this->setIfExists('trustedShopper', $data ?? [], null);
     }

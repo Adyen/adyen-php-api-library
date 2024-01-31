@@ -310,7 +310,7 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
     public function __construct(array $data = null)
     {
         $this->setIfExists('priority', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'platformPayment');
+        $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('modificationMerchantReference', $data ?? [], null);
         $this->setIfExists('modificationPspReference', $data ?? [], null);
         $this->setIfExists('authorisationType', $data ?? [], null);

@@ -264,7 +264,7 @@ class AmazonPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('amazonPayToken', $data ?? [], null);
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('checkoutSessionId', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'amazonpay');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

@@ -580,9 +580,9 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('shopperName', $data ?? [], null);
         $this->setIfExists('shopperReference', $data ?? [], null);
         $this->setIfExists('shopperStatement', $data ?? [], null);
-        $this->setIfExists('showRemovePaymentMethodButton', $data ?? [], true);
+        $this->setIfExists('showRemovePaymentMethodButton', $data ?? [], null);
         $this->setIfExists('socialSecurityNumber', $data ?? [], null);
-        $this->setIfExists('splitCardFundingSources', $data ?? [], false);
+        $this->setIfExists('splitCardFundingSources', $data ?? [], null);
         $this->setIfExists('splits', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('store', $data ?? [], null);

@@ -257,7 +257,7 @@ class SGLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     {
         $this->setIfExists('accountNumber', $data ?? [], null);
         $this->setIfExists('bic', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'sgLocal');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

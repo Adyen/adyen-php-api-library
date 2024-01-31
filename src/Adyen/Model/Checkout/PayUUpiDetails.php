@@ -277,7 +277,7 @@ class PayUUpiDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
         $this->setIfExists('shopperNotificationReference', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'payu_IN_upi');
+        $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('virtualPaymentAddress', $data ?? [], null);
     }
 

@@ -231,7 +231,7 @@ class DetailsRequestAuthenticationData implements ModelInterface, ArrayAccess, \
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('authenticationOnly', $data ?? [], false);
+        $this->setIfExists('authenticationOnly', $data ?? [], null);
     }
 
     /**

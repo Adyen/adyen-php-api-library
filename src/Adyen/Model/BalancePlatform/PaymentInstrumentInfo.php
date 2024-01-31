@@ -45,6 +45,7 @@ class PaymentInstrumentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPITypes = [
         'balanceAccountId' => 'string',
+        'bankAccount' => '\Adyen\Model\BalancePlatform\BankAccountModel',
         'card' => '\Adyen\Model\BalancePlatform\CardInfo',
         'description' => 'string',
         'issuingCountryCode' => 'string',
@@ -64,6 +65,7 @@ class PaymentInstrumentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPIFormats = [
         'balanceAccountId' => null,
+        'bankAccount' => null,
         'card' => null,
         'description' => null,
         'issuingCountryCode' => null,
@@ -81,6 +83,7 @@ class PaymentInstrumentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPINullables = [
         'balanceAccountId' => false,
+        'bankAccount' => false,
         'card' => false,
         'description' => false,
         'issuingCountryCode' => false,
@@ -178,6 +181,7 @@ class PaymentInstrumentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     protected static $attributeMap = [
         'balanceAccountId' => 'balanceAccountId',
+        'bankAccount' => 'bankAccount',
         'card' => 'card',
         'description' => 'description',
         'issuingCountryCode' => 'issuingCountryCode',
@@ -195,6 +199,7 @@ class PaymentInstrumentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     protected static $setters = [
         'balanceAccountId' => 'setBalanceAccountId',
+        'bankAccount' => 'setBankAccount',
         'card' => 'setCard',
         'description' => 'setDescription',
         'issuingCountryCode' => 'setIssuingCountryCode',
@@ -212,6 +217,7 @@ class PaymentInstrumentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     protected static $getters = [
         'balanceAccountId' => 'getBalanceAccountId',
+        'bankAccount' => 'getBankAccount',
         'card' => 'getCard',
         'description' => 'getDescription',
         'issuingCountryCode' => 'getIssuingCountryCode',
@@ -340,6 +346,7 @@ class PaymentInstrumentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
     public function __construct(array $data = null)
     {
         $this->setIfExists('balanceAccountId', $data ?? [], null);
+        $this->setIfExists('bankAccount', $data ?? [], null);
         $this->setIfExists('card', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('issuingCountryCode', $data ?? [], null);
@@ -451,6 +458,33 @@ class PaymentInstrumentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
             throw new \InvalidArgumentException('non-nullable balanceAccountId cannot be null');
         }
         $this->container['balanceAccountId'] = $balanceAccountId;
+
+        return $this;
+    }
+
+    /**
+     * Gets bankAccount
+     *
+     * @return \Adyen\Model\BalancePlatform\BankAccountModel|null
+     */
+    public function getBankAccount()
+    {
+        return $this->container['bankAccount'];
+    }
+
+    /**
+     * Sets bankAccount
+     *
+     * @param \Adyen\Model\BalancePlatform\BankAccountModel|null $bankAccount bankAccount
+     *
+     * @return self
+     */
+    public function setBankAccount($bankAccount)
+    {
+        if (is_null($bankAccount)) {
+            throw new \InvalidArgumentException('non-nullable bankAccount cannot be null');
+        }
+        $this->container['bankAccount'] = $bankAccount;
 
         return $this;
     }

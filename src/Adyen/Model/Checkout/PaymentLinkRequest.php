@@ -535,9 +535,9 @@ class PaymentLinkRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('shopperName', $data ?? [], null);
         $this->setIfExists('shopperReference', $data ?? [], null);
         $this->setIfExists('shopperStatement', $data ?? [], null);
-        $this->setIfExists('showRemovePaymentMethodButton', $data ?? [], true);
+        $this->setIfExists('showRemovePaymentMethodButton', $data ?? [], null);
         $this->setIfExists('socialSecurityNumber', $data ?? [], null);
-        $this->setIfExists('splitCardFundingSources', $data ?? [], false);
+        $this->setIfExists('splitCardFundingSources', $data ?? [], null);
         $this->setIfExists('splits', $data ?? [], null);
         $this->setIfExists('store', $data ?? [], null);
         $this->setIfExists('storePaymentMethodMode', $data ?? [], null);

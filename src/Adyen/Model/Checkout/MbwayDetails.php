@@ -264,7 +264,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('shopperEmail', $data ?? [], null);
         $this->setIfExists('telephoneNumber', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'mbway');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

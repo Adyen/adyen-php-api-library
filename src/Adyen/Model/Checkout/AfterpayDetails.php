@@ -291,7 +291,7 @@ class AfterpayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('personalDetails', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'afterpay_default');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

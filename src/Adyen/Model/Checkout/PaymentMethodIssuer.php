@@ -243,7 +243,7 @@ class PaymentMethodIssuer implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('disabled', $data ?? [], false);
+        $this->setIfExists('disabled', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
     }

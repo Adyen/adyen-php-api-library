@@ -292,7 +292,7 @@ class PayWithGoogleDetails implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('googlePayToken', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'paywithgoogle');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

@@ -45,7 +45,8 @@ class Localization implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'language' => 'string',
-        'secondaryLanguage' => 'string'
+        'secondaryLanguage' => 'string',
+        'timezone' => 'string'
     ];
 
     /**
@@ -57,7 +58,8 @@ class Localization implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'language' => null,
-        'secondaryLanguage' => null
+        'secondaryLanguage' => null,
+        'timezone' => null
     ];
 
     /**
@@ -67,7 +69,8 @@ class Localization implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'language' => false,
-        'secondaryLanguage' => false
+        'secondaryLanguage' => false,
+        'timezone' => false
     ];
 
     /**
@@ -157,7 +160,8 @@ class Localization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'language' => 'language',
-        'secondaryLanguage' => 'secondaryLanguage'
+        'secondaryLanguage' => 'secondaryLanguage',
+        'timezone' => 'timezone'
     ];
 
     /**
@@ -167,7 +171,8 @@ class Localization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'language' => 'setLanguage',
-        'secondaryLanguage' => 'setSecondaryLanguage'
+        'secondaryLanguage' => 'setSecondaryLanguage',
+        'timezone' => 'setTimezone'
     ];
 
     /**
@@ -177,7 +182,8 @@ class Localization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'language' => 'getLanguage',
-        'secondaryLanguage' => 'getSecondaryLanguage'
+        'secondaryLanguage' => 'getSecondaryLanguage',
+        'timezone' => 'getTimezone'
     ];
 
     /**
@@ -239,6 +245,7 @@ class Localization implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('language', $data ?? [], null);
         $this->setIfExists('secondaryLanguage', $data ?? [], null);
+        $this->setIfExists('timezone', $data ?? [], null);
     }
 
     /**
@@ -333,6 +340,33 @@ class Localization implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable secondaryLanguage cannot be null');
         }
         $this->container['secondaryLanguage'] = $secondaryLanguage;
+
+        return $this;
+    }
+
+    /**
+     * Gets timezone
+     *
+     * @return string|null
+     */
+    public function getTimezone()
+    {
+        return $this->container['timezone'];
+    }
+
+    /**
+     * Sets timezone
+     *
+     * @param string|null $timezone The time zone of the terminal.
+     *
+     * @return self
+     */
+    public function setTimezone($timezone)
+    {
+        if (is_null($timezone)) {
+            throw new \InvalidArgumentException('non-nullable timezone cannot be null');
+        }
+        $this->container['timezone'] = $timezone;
 
         return $this;
     }

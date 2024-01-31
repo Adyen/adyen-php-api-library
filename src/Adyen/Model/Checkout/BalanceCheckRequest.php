@@ -564,7 +564,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('store', $data ?? [], null);
         $this->setIfExists('telephoneNumber', $data ?? [], null);
         $this->setIfExists('threeDS2RequestData', $data ?? [], null);
-        $this->setIfExists('threeDSAuthenticationOnly', $data ?? [], false);
+        $this->setIfExists('threeDSAuthenticationOnly', $data ?? [], null);
         $this->setIfExists('totalsGroup', $data ?? [], null);
         $this->setIfExists('trustedShopper', $data ?? [], null);
     }

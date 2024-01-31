@@ -281,7 +281,7 @@ class TransferRouteRequirements implements ModelInterface, ArrayAccess, \JsonSer
     {
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('requiredAddressFields', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'paymentInstrumentRequirement');
+        $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('max', $data ?? [], null);
         $this->setIfExists('min', $data ?? [], null);
         $this->setIfExists('bankAccountIdentificationTypes', $data ?? [], null);
@@ -512,7 +512,7 @@ class TransferRouteRequirements implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets issuingCountryCode
      *
-     * @param string|null $issuingCountryCode The two-character ISO-3166-1 alpha-2 country code of the counterparty. For example, **US** or **NL**.
+     * @param string|null $issuingCountryCode The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the payment instrument is issued. For example, **NL** or **US**.
      *
      * @return self
      */

@@ -277,7 +277,7 @@ class AddressRequirement implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('requiredAddressFields', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'addressRequirement');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

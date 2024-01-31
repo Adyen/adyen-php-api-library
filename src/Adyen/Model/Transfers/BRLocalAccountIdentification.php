@@ -264,7 +264,7 @@ class BRLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
         $this->setIfExists('accountNumber', $data ?? [], null);
         $this->setIfExists('bankCode', $data ?? [], null);
         $this->setIfExists('branchNumber', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'brLocal');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

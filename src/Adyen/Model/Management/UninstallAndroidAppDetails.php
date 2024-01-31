@@ -250,7 +250,7 @@ class UninstallAndroidAppDetails implements ModelInterface, ArrayAccess, \JsonSe
     public function __construct(array $data = null)
     {
         $this->setIfExists('appId', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'UninstallAndroidApp');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

@@ -277,7 +277,7 @@ class VisaCheckoutDetails implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('fundingSource', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'visacheckout');
+        $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('visaCheckoutCallId', $data ?? [], null);
     }
 

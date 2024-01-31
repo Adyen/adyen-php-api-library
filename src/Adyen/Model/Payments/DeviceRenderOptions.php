@@ -273,7 +273,7 @@ class DeviceRenderOptions implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('sdkInterface', $data ?? [], 'both');
+        $this->setIfExists('sdkInterface', $data ?? [], null);
         $this->setIfExists('sdkUiType', $data ?? [], null);
     }
 

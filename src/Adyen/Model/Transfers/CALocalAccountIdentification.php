@@ -282,10 +282,10 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     public function __construct(array $data = null)
     {
         $this->setIfExists('accountNumber', $data ?? [], null);
-        $this->setIfExists('accountType', $data ?? [], 'checking');
+        $this->setIfExists('accountType', $data ?? [], null);
         $this->setIfExists('institutionNumber', $data ?? [], null);
         $this->setIfExists('transitNumber', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'caLocal');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

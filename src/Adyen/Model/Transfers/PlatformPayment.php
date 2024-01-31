@@ -314,7 +314,7 @@ class PlatformPayment implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('paymentMerchantReference', $data ?? [], null);
         $this->setIfExists('platformPaymentType', $data ?? [], null);
         $this->setIfExists('pspPaymentReference', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'platformPayment');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

@@ -272,7 +272,7 @@ class BankCategoryData implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('priority', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'bank');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

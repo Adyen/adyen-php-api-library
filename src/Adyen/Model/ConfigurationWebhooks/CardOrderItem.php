@@ -527,7 +527,7 @@ class CardOrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets shippingMethod
      *
-     * @param string|null $shippingMethod Shipping method used to deliver the card or the PIN.
+     * @param string|null $shippingMethod The shipping method used to deliver the card or the PIN.
      *
      * @return self
      */

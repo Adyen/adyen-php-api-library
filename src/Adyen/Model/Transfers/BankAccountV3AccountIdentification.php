@@ -317,10 +317,10 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
     {
         $this->setIfExists('accountNumber', $data ?? [], null);
         $this->setIfExists('bsbCode', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'usLocal');
+        $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('bankCode', $data ?? [], null);
         $this->setIfExists('branchNumber', $data ?? [], null);
-        $this->setIfExists('accountType', $data ?? [], 'checking');
+        $this->setIfExists('accountType', $data ?? [], null);
         $this->setIfExists('institutionNumber', $data ?? [], null);
         $this->setIfExists('transitNumber', $data ?? [], null);
         $this->setIfExists('clearingCode', $data ?? [], null);

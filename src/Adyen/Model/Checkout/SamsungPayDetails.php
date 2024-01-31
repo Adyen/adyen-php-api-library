@@ -292,7 +292,7 @@ class SamsungPayDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
         $this->setIfExists('samsungPayToken', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'samsungpay');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

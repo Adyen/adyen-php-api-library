@@ -250,7 +250,7 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
     public function __construct(array $data = null)
     {
         $this->setIfExists('iban', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'iban');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
