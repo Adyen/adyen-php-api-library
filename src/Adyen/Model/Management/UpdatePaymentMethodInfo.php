@@ -49,6 +49,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'countries' => 'string[]',
         'cup' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'currencies' => 'string[]',
+        'customRoutingFlags' => 'string[]',
         'diners' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'discover' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'eftposAustralia' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
@@ -76,6 +77,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'countries' => null,
         'cup' => null,
         'currencies' => null,
+        'customRoutingFlags' => null,
         'diners' => null,
         'discover' => null,
         'eftposAustralia' => null,
@@ -101,6 +103,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'countries' => false,
         'cup' => false,
         'currencies' => false,
+        'customRoutingFlags' => false,
         'diners' => false,
         'discover' => false,
         'eftposAustralia' => false,
@@ -206,6 +209,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'countries' => 'countries',
         'cup' => 'cup',
         'currencies' => 'currencies',
+        'customRoutingFlags' => 'customRoutingFlags',
         'diners' => 'diners',
         'discover' => 'discover',
         'eftposAustralia' => 'eftpos_australia',
@@ -231,6 +235,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'countries' => 'setCountries',
         'cup' => 'setCup',
         'currencies' => 'setCurrencies',
+        'customRoutingFlags' => 'setCustomRoutingFlags',
         'diners' => 'setDiners',
         'discover' => 'setDiscover',
         'eftposAustralia' => 'setEftposAustralia',
@@ -256,6 +261,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'countries' => 'getCountries',
         'cup' => 'getCup',
         'currencies' => 'getCurrencies',
+        'customRoutingFlags' => 'getCustomRoutingFlags',
         'diners' => 'getDiners',
         'discover' => 'getDiscover',
         'eftposAustralia' => 'getEftposAustralia',
@@ -332,6 +338,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('countries', $data ?? [], null);
         $this->setIfExists('cup', $data ?? [], null);
         $this->setIfExists('currencies', $data ?? [], null);
+        $this->setIfExists('customRoutingFlags', $data ?? [], null);
         $this->setIfExists('diners', $data ?? [], null);
         $this->setIfExists('discover', $data ?? [], null);
         $this->setIfExists('eftposAustralia', $data ?? [], null);
@@ -519,6 +526,33 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
             throw new \InvalidArgumentException('non-nullable currencies cannot be null');
         }
         $this->container['currencies'] = $currencies;
+
+        return $this;
+    }
+
+    /**
+     * Gets customRoutingFlags
+     *
+     * @return string[]|null
+     */
+    public function getCustomRoutingFlags()
+    {
+        return $this->container['customRoutingFlags'];
+    }
+
+    /**
+     * Sets customRoutingFlags
+     *
+     * @param string[]|null $customRoutingFlags Custom routing flags for acquirer routing.
+     *
+     * @return self
+     */
+    public function setCustomRoutingFlags($customRoutingFlags)
+    {
+        if (is_null($customRoutingFlags)) {
+            throw new \InvalidArgumentException('non-nullable customRoutingFlags cannot be null');
+        }
+        $this->container['customRoutingFlags'] = $customRoutingFlags;
 
         return $this;
     }
