@@ -44,7 +44,11 @@ class Notification implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'showButton' => 'bool'
+        'category' => 'string',
+        'details' => 'string',
+        'enabled' => 'bool',
+        'showButton' => 'bool',
+        'title' => 'string'
     ];
 
     /**
@@ -55,7 +59,11 @@ class Notification implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'showButton' => null
+        'category' => null,
+        'details' => null,
+        'enabled' => null,
+        'showButton' => null,
+        'title' => null
     ];
 
     /**
@@ -64,7 +72,11 @@ class Notification implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'showButton' => false
+        'category' => false,
+        'details' => false,
+        'enabled' => false,
+        'showButton' => false,
+        'title' => false
     ];
 
     /**
@@ -153,7 +165,11 @@ class Notification implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'showButton' => 'showButton'
+        'category' => 'category',
+        'details' => 'details',
+        'enabled' => 'enabled',
+        'showButton' => 'showButton',
+        'title' => 'title'
     ];
 
     /**
@@ -162,7 +178,11 @@ class Notification implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'showButton' => 'setShowButton'
+        'category' => 'setCategory',
+        'details' => 'setDetails',
+        'enabled' => 'setEnabled',
+        'showButton' => 'setShowButton',
+        'title' => 'setTitle'
     ];
 
     /**
@@ -171,7 +191,11 @@ class Notification implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'showButton' => 'getShowButton'
+        'category' => 'getCategory',
+        'details' => 'getDetails',
+        'enabled' => 'getEnabled',
+        'showButton' => 'getShowButton',
+        'title' => 'getTitle'
     ];
 
     /**
@@ -215,7 +239,21 @@ class Notification implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const CATEGORY_SALE_WAKE_UP = 'SaleWakeUp';
+    public const CATEGORY_KEY_PRESSED = 'KeyPressed';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getCategoryAllowableValues()
+    {
+        return [
+            self::CATEGORY_SALE_WAKE_UP,
+            self::CATEGORY_KEY_PRESSED,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -231,7 +269,11 @@ class Notification implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('category', $data ?? [], null);
+        $this->setIfExists('details', $data ?? [], null);
+        $this->setIfExists('enabled', $data ?? [], null);
         $this->setIfExists('showButton', $data ?? [], null);
+        $this->setIfExists('title', $data ?? [], null);
     }
 
     /**
@@ -261,6 +303,15 @@ class Notification implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        $allowedValues = $this->getCategoryAllowableValues();
+        if (!is_null($this->container['category']) && !in_array($this->container['category'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'category', must be one of '%s'",
+                $this->container['category'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -277,6 +328,97 @@ class Notification implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
+     * Gets category
+     *
+     * @return string|null
+     */
+    public function getCategory()
+    {
+        return $this->container['category'];
+    }
+
+    /**
+     * Sets category
+     *
+     * @param string|null $category The type of event notification sent when you select the notification button.
+     *
+     * @return self
+     */
+    public function setCategory($category)
+    {
+        if (is_null($category)) {
+            throw new \InvalidArgumentException('non-nullable category cannot be null');
+        }
+        $allowedValues = $this->getCategoryAllowableValues();
+        if (!in_array($category, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'category', must be one of '%s'",
+                    $category,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['category'] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Gets details
+     *
+     * @return string|null
+     */
+    public function getDetails()
+    {
+        return $this->container['details'];
+    }
+
+    /**
+     * Sets details
+     *
+     * @param string|null $details The text shown in the prompt which opens when you select the notification button. For example, the description of the input box for pay-at-table.
+     *
+     * @return self
+     */
+    public function setDetails($details)
+    {
+        if (is_null($details)) {
+            throw new \InvalidArgumentException('non-nullable details cannot be null');
+        }
+        $this->container['details'] = $details;
+
+        return $this;
+    }
+
+    /**
+     * Gets enabled
+     *
+     * @return bool|null
+     */
+    public function getEnabled()
+    {
+        return $this->container['enabled'];
+    }
+
+    /**
+     * Sets enabled
+     *
+     * @param bool|null $enabled Enables sending event notifications either by pressing the Confirm key on terminals with a keypad or by tapping the event notification button on the terminal screen.
+     *
+     * @return self
+     */
+    public function setEnabled($enabled)
+    {
+        if (is_null($enabled)) {
+            throw new \InvalidArgumentException('non-nullable enabled cannot be null');
+        }
+        $this->container['enabled'] = $enabled;
+
+        return $this;
+    }
+
+    /**
      * Gets showButton
      *
      * @return bool|null
@@ -289,7 +431,7 @@ class Notification implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets showButton
      *
-     * @param bool|null $showButton Shows or hides the event notification button on the terminal screen.
+     * @param bool|null $showButton Shows or hides the event notification button on the screen of terminal models that have a keypad.
      *
      * @return self
      */
@@ -299,6 +441,33 @@ class Notification implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable showButton cannot be null');
         }
         $this->container['showButton'] = $showButton;
+
+        return $this;
+    }
+
+    /**
+     * Gets title
+     *
+     * @return string|null
+     */
+    public function getTitle()
+    {
+        return $this->container['title'];
+    }
+
+    /**
+     * Sets title
+     *
+     * @param string|null $title The name of the notification button on the terminal screen.
+     *
+     * @return self
+     */
+    public function setTitle($title)
+    {
+        if (is_null($title)) {
+            throw new \InvalidArgumentException('non-nullable title cannot be null');
+        }
+        $this->container['title'] = $title;
 
         return $this;
     }
