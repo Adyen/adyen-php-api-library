@@ -104,4 +104,13 @@ class TestCaseMock extends TestCase
         $client->setHttpClient($curlClient);
         return $client;
     }
+
+    // Method for testing the effective time it cost to run a method
+    public function calculateRunTime($callback)
+    {
+        $startA = microtime(true);
+        $callback();
+        $endA = microtime(true);
+        return $endA - $startA;
+    }
 }
