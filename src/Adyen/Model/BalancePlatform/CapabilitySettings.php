@@ -358,7 +358,7 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets amountPerIndustry
      *
-     * @param array<string,\Adyen\Model\BalancePlatform\Amount>|null $amountPerIndustry
+     * @param array<string,\Adyen\Model\BalancePlatform\Amount>|null $amountPerIndustry 
      *
      * @return self
      */
@@ -385,7 +385,7 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets authorizedCardUsers
      *
-     * @param bool|null $authorizedCardUsers
+     * @param bool|null $authorizedCardUsers 
      *
      * @return self
      */
@@ -412,7 +412,7 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets fundingSource
      *
-     * @param string[]|null $fundingSource
+     * @param string[]|null $fundingSource 
      *
      * @return self
      */
@@ -448,7 +448,7 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets interval
      *
-     * @param string|null $interval
+     * @param string|null $interval 
      *
      * @return self
      */
@@ -563,6 +563,32 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    public function toArray(): array
+    {
+        $array = [];
+        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+            $propertyValue = $this[$propertyName];
+            if ($propertyValue !== null) {
+                // Check if the property value is an object and has a toArray() method
+                if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
+                    $array[$propertyName] = $propertyValue->toArray();
+                // Check if it's type datetime
+                } elseif ($propertyValue instanceof \DateTime) {
+                    $array[$propertyName] = $propertyValue->format(DATE_ATOM);
+                // If it's an array type we should check whether it contains objects and if so call toArray method
+                } elseif (is_array($propertyValue)) {
+                    $array[$propertyName] = array_map(function ($item) {
+                        return $item instanceof ModelInterface ? $item->toArray() : $item;
+                    }, $propertyValue);
+                } else {
+                    // Otherwise, directly assign the property value to the array
+                    $array[$propertyName] = $propertyValue;
+                }
+            }
+        }
+        return $array;
     }
 
     /**

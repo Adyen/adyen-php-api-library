@@ -46,6 +46,7 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
     protected static $openAPITypes = [
         'description' => 'string',
         'issuingCountryCode' => 'string',
+        'issuingCountryCodes' => 'string[]',
         'onlyForCrossBalancePlatform' => 'bool',
         'paymentInstrumentType' => 'string',
         'type' => 'string'
@@ -61,6 +62,7 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
     protected static $openAPIFormats = [
         'description' => null,
         'issuingCountryCode' => null,
+        'issuingCountryCodes' => null,
         'onlyForCrossBalancePlatform' => null,
         'paymentInstrumentType' => null,
         'type' => null
@@ -74,6 +76,7 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
     protected static $openAPINullables = [
         'description' => false,
         'issuingCountryCode' => false,
+        'issuingCountryCodes' => false,
         'onlyForCrossBalancePlatform' => false,
         'paymentInstrumentType' => false,
         'type' => false
@@ -167,6 +170,7 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
     protected static $attributeMap = [
         'description' => 'description',
         'issuingCountryCode' => 'issuingCountryCode',
+        'issuingCountryCodes' => 'issuingCountryCodes',
         'onlyForCrossBalancePlatform' => 'onlyForCrossBalancePlatform',
         'paymentInstrumentType' => 'paymentInstrumentType',
         'type' => 'type'
@@ -180,6 +184,7 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
     protected static $setters = [
         'description' => 'setDescription',
         'issuingCountryCode' => 'setIssuingCountryCode',
+        'issuingCountryCodes' => 'setIssuingCountryCodes',
         'onlyForCrossBalancePlatform' => 'setOnlyForCrossBalancePlatform',
         'paymentInstrumentType' => 'setPaymentInstrumentType',
         'type' => 'setType'
@@ -193,6 +198,7 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
     protected static $getters = [
         'description' => 'getDescription',
         'issuingCountryCode' => 'getIssuingCountryCode',
+        'issuingCountryCodes' => 'getIssuingCountryCodes',
         'onlyForCrossBalancePlatform' => 'getOnlyForCrossBalancePlatform',
         'paymentInstrumentType' => 'getPaymentInstrumentType',
         'type' => 'getType'
@@ -283,6 +289,7 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
     {
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('issuingCountryCode', $data ?? [], null);
+        $this->setIfExists('issuingCountryCodes', $data ?? [], null);
         $this->setIfExists('onlyForCrossBalancePlatform', $data ?? [], null);
         $this->setIfExists('paymentInstrumentType', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
@@ -401,6 +408,33 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
             throw new \InvalidArgumentException('non-nullable issuingCountryCode cannot be null');
         }
         $this->container['issuingCountryCode'] = $issuingCountryCode;
+
+        return $this;
+    }
+
+    /**
+     * Gets issuingCountryCodes
+     *
+     * @return string[]|null
+     */
+    public function getIssuingCountryCodes()
+    {
+        return $this->container['issuingCountryCodes'];
+    }
+
+    /**
+     * Sets issuingCountryCodes
+     *
+     * @param string[]|null $issuingCountryCodes The two-character ISO-3166-1 alpha-2 country code list for payment instruments.
+     *
+     * @return self
+     */
+    public function setIssuingCountryCodes($issuingCountryCodes)
+    {
+        if (is_null($issuingCountryCodes)) {
+            throw new \InvalidArgumentException('non-nullable issuingCountryCodes cannot be null');
+        }
+        $this->container['issuingCountryCodes'] = $issuingCountryCodes;
 
         return $this;
     }
@@ -570,6 +604,32 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    public function toArray(): array
+    {
+        $array = [];
+        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+            $propertyValue = $this[$propertyName];
+            if ($propertyValue !== null) {
+                // Check if the property value is an object and has a toArray() method
+                if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
+                    $array[$propertyName] = $propertyValue->toArray();
+                // Check if it's type datetime
+                } elseif ($propertyValue instanceof \DateTime) {
+                    $array[$propertyName] = $propertyValue->format(DATE_ATOM);
+                // If it's an array type we should check whether it contains objects and if so call toArray method
+                } elseif (is_array($propertyValue)) {
+                    $array[$propertyName] = array_map(function ($item) {
+                        return $item instanceof ModelInterface ? $item->toArray() : $item;
+                    }, $propertyValue);
+                } else {
+                    // Otherwise, directly assign the property value to the array
+                    $array[$propertyName] = $propertyValue;
+                }
+            }
+        }
+        return $array;
     }
 
     /**

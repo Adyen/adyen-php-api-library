@@ -326,7 +326,7 @@ class BankIdentification implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets country
      *
-     * @param string|null $country country
+     * @param string|null $country Two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code.
      *
      * @return self
      */
@@ -353,7 +353,7 @@ class BankIdentification implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets identification
      *
-     * @param string|null $identification identification
+     * @param string|null $identification The bank identification code.
      *
      * @return self
      */
@@ -380,7 +380,7 @@ class BankIdentification implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets identificationType
      *
-     * @param string|null $identificationType identificationType
+     * @param string|null $identificationType The type of the identification.  Possible values: **iban**, **routingNumber**.
      *
      * @return self
      */
@@ -468,6 +468,32 @@ class BankIdentification implements ModelInterface, ArrayAccess, \JsonSerializab
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    public function toArray(): array
+    {
+        $array = [];
+        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+            $propertyValue = $this[$propertyName];
+            if ($propertyValue !== null) {
+                // Check if the property value is an object and has a toArray() method
+                if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
+                    $array[$propertyName] = $propertyValue->toArray();
+                // Check if it's type datetime
+                } elseif ($propertyValue instanceof \DateTime) {
+                    $array[$propertyName] = $propertyValue->format(DATE_ATOM);
+                // If it's an array type we should check whether it contains objects and if so call toArray method
+                } elseif (is_array($propertyValue)) {
+                    $array[$propertyName] = array_map(function ($item) {
+                        return $item instanceof ModelInterface ? $item->toArray() : $item;
+                    }, $propertyValue);
+                } else {
+                    // Otherwise, directly assign the property value to the array
+                    $array[$propertyName] = $propertyValue;
+                }
+            }
+        }
+        return $array;
     }
 
     /**
