@@ -48,7 +48,7 @@ class TransferRoute implements ModelInterface, ArrayAccess, \JsonSerializable
         'country' => 'string',
         'currency' => 'string',
         'priority' => 'string',
-        'requirements' => '\Adyen\Model\BalancePlatform\TransferRouteRequirements'
+        'requirements' => '\Adyen\Model\BalancePlatform\TransferRouteRequirementsInner[]'
     ];
 
     /**
@@ -503,7 +503,7 @@ class TransferRoute implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets requirements
      *
-     * @return \Adyen\Model\BalancePlatform\TransferRouteRequirements|null
+     * @return \Adyen\Model\BalancePlatform\TransferRouteRequirementsInner[]|null
      */
     public function getRequirements()
     {
@@ -513,7 +513,7 @@ class TransferRoute implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets requirements
      *
-     * @param \Adyen\Model\BalancePlatform\TransferRouteRequirements|null $requirements requirements
+     * @param \Adyen\Model\BalancePlatform\TransferRouteRequirementsInner[]|null $requirements A set of rules defined by clearing houses and banking partners. Your transfer request must adhere to these rules to ensure successful initiation of transfer. Based on the priority, one or more requirements may be returned. Each requirement is defined with a `type` and `description`.
      *
      * @return self
      */
@@ -591,6 +591,32 @@ class TransferRoute implements ModelInterface, ArrayAccess, \JsonSerializable
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    public function toArray(): array
+    {
+        $array = [];
+        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+            $propertyValue = $this[$propertyName];
+            if ($propertyValue !== null) {
+                // Check if the property value is an object and has a toArray() method
+                if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
+                    $array[$propertyName] = $propertyValue->toArray();
+                // Check if it's type datetime
+                } elseif ($propertyValue instanceof \DateTime) {
+                    $array[$propertyName] = $propertyValue->format(DATE_ATOM);
+                // If it's an array type we should check whether it contains objects and if so call toArray method
+                } elseif (is_array($propertyValue)) {
+                    $array[$propertyName] = array_map(function ($item) {
+                        return $item instanceof ModelInterface ? $item->toArray() : $item;
+                    }, $propertyValue);
+                } else {
+                    // Otherwise, directly assign the property value to the array
+                    $array[$propertyName] = $propertyValue;
+                }
+            }
+        }
+        return $array;
     }
 
     /**

@@ -302,7 +302,7 @@ class RevealPinResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets encryptedPinBlock
      *
-     * @param string $encryptedPinBlock The encrypted PIN block.
+     * @param string $encryptedPinBlock The encrypted [PIN block](https://www.pcisecuritystandards.org/glossary/pin-block).
      *
      * @return self
      */
@@ -329,7 +329,7 @@ class RevealPinResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets token
      *
-     * @param string $token The encrypted PIN block extraction token.
+     * @param string $token The 16-digit token that you need to extract the `encryptedPinBlock`.
      *
      * @return self
      */
@@ -407,6 +407,32 @@ class RevealPinResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    public function toArray(): array
+    {
+        $array = [];
+        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+            $propertyValue = $this[$propertyName];
+            if ($propertyValue !== null) {
+                // Check if the property value is an object and has a toArray() method
+                if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
+                    $array[$propertyName] = $propertyValue->toArray();
+                // Check if it's type datetime
+                } elseif ($propertyValue instanceof \DateTime) {
+                    $array[$propertyName] = $propertyValue->format(DATE_ATOM);
+                // If it's an array type we should check whether it contains objects and if so call toArray method
+                } elseif (is_array($propertyValue)) {
+                    $array[$propertyName] = array_map(function ($item) {
+                        return $item instanceof ModelInterface ? $item->toArray() : $item;
+                    }, $propertyValue);
+                } else {
+                    // Otherwise, directly assign the property value to the array
+                    $array[$propertyName] = $propertyValue;
+                }
+            }
+        }
+        return $array;
     }
 
     /**

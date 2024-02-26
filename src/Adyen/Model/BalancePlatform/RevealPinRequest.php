@@ -302,7 +302,7 @@ class RevealPinRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets encryptedKey
      *
-     * @param string $encryptedKey Symmetric session key encrypted under the public key.
+     * @param string $encryptedKey The symmetric session key that you encrypted with the [public key](https://docs.adyen.com/api-explorer/balanceplatform/2/get/publicKey) that you received from Adyen.
      *
      * @return self
      */
@@ -329,7 +329,7 @@ class RevealPinRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets paymentInstrumentId
      *
-     * @param string $paymentInstrumentId The unique identifier of the payment instrument.
+     * @param string $paymentInstrumentId The unique identifier of the payment instrument, which is the card for which you are managing the PIN.
      *
      * @return self
      */
@@ -407,6 +407,32 @@ class RevealPinRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    public function toArray(): array
+    {
+        $array = [];
+        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+            $propertyValue = $this[$propertyName];
+            if ($propertyValue !== null) {
+                // Check if the property value is an object and has a toArray() method
+                if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
+                    $array[$propertyName] = $propertyValue->toArray();
+                // Check if it's type datetime
+                } elseif ($propertyValue instanceof \DateTime) {
+                    $array[$propertyName] = $propertyValue->format(DATE_ATOM);
+                // If it's an array type we should check whether it contains objects and if so call toArray method
+                } elseif (is_array($propertyValue)) {
+                    $array[$propertyName] = array_map(function ($item) {
+                        return $item instanceof ModelInterface ? $item->toArray() : $item;
+                    }, $propertyValue);
+                } else {
+                    // Otherwise, directly assign the property value to the array
+                    $array[$propertyName] = $propertyValue;
+                }
+            }
+        }
+        return $array;
     }
 
     /**

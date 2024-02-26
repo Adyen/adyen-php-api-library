@@ -115,6 +115,21 @@ class PaymentInstrumentsApi extends Service
     }
 
     /**
+    * Reveal the data of a payment instrument
+    *
+    * @param \Adyen\Model\BalancePlatform\PaymentInstrumentRevealRequest $paymentInstrumentRevealRequest
+    * @param array|null $requestOptions
+    * @return \Adyen\Model\BalancePlatform\PaymentInstrumentRevealResponse
+    * @throws AdyenException
+    */
+    public function revealDataOfPaymentInstrument(\Adyen\Model\BalancePlatform\PaymentInstrumentRevealRequest $paymentInstrumentRevealRequest, array $requestOptions = null): \Adyen\Model\BalancePlatform\PaymentInstrumentRevealResponse
+    {
+        $endpoint = $this->baseURL . "/paymentInstruments/reveal";
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $paymentInstrumentRevealRequest->jsonSerialize(), $requestOptions);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\BalancePlatform\PaymentInstrumentRevealResponse::class);
+    }
+
+    /**
     * Update a payment instrument
     *
     * @param string $id
