@@ -46,6 +46,7 @@ class USLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     protected static $openAPITypes = [
         'accountNumber' => 'string',
         'accountType' => 'string',
+        'formFactor' => 'string',
         'routingNumber' => 'string',
         'type' => 'string'
     ];
@@ -60,6 +61,7 @@ class USLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     protected static $openAPIFormats = [
         'accountNumber' => null,
         'accountType' => null,
+        'formFactor' => null,
         'routingNumber' => null,
         'type' => null
     ];
@@ -72,6 +74,7 @@ class USLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     protected static $openAPINullables = [
         'accountNumber' => false,
         'accountType' => false,
+        'formFactor' => true,
         'routingNumber' => false,
         'type' => false
     ];
@@ -164,6 +167,7 @@ class USLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     protected static $attributeMap = [
         'accountNumber' => 'accountNumber',
         'accountType' => 'accountType',
+        'formFactor' => 'formFactor',
         'routingNumber' => 'routingNumber',
         'type' => 'type'
     ];
@@ -176,6 +180,7 @@ class USLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     protected static $setters = [
         'accountNumber' => 'setAccountNumber',
         'accountType' => 'setAccountType',
+        'formFactor' => 'setFormFactor',
         'routingNumber' => 'setRoutingNumber',
         'type' => 'setType'
     ];
@@ -188,6 +193,7 @@ class USLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     protected static $getters = [
         'accountNumber' => 'getAccountNumber',
         'accountType' => 'getAccountType',
+        'formFactor' => 'getFormFactor',
         'routingNumber' => 'getRoutingNumber',
         'type' => 'getType'
     ];
@@ -277,6 +283,7 @@ class USLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     {
         $this->setIfExists('accountNumber', $data ?? [], null);
         $this->setIfExists('accountType', $data ?? [], null);
+        $this->setIfExists('formFactor', $data ?? [], null);
         $this->setIfExists('routingNumber', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
@@ -410,6 +417,40 @@ class USLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
             );
         }
         $this->container['accountType'] = $accountType;
+
+        return $this;
+    }
+
+    /**
+     * Gets formFactor
+     *
+     * @return string|null
+     */
+    public function getFormFactor()
+    {
+        return $this->container['formFactor'];
+    }
+
+    /**
+     * Sets formFactor
+     *
+     * @param string|null $formFactor The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
+     *
+     * @return self
+     */
+    public function setFormFactor($formFactor)
+    {
+        if (is_null($formFactor)) {
+            array_push($this->openAPINullablesSetToNull, 'formFactor');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('formFactor', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['formFactor'] = $formFactor;
 
         return $this;
     }

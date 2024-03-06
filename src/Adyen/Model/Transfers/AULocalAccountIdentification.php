@@ -46,6 +46,7 @@ class AULocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     protected static $openAPITypes = [
         'accountNumber' => 'string',
         'bsbCode' => 'string',
+        'formFactor' => 'string',
         'type' => 'string'
     ];
 
@@ -59,6 +60,7 @@ class AULocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     protected static $openAPIFormats = [
         'accountNumber' => null,
         'bsbCode' => null,
+        'formFactor' => null,
         'type' => null
     ];
 
@@ -70,6 +72,7 @@ class AULocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     protected static $openAPINullables = [
         'accountNumber' => false,
         'bsbCode' => false,
+        'formFactor' => true,
         'type' => false
     ];
 
@@ -161,6 +164,7 @@ class AULocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     protected static $attributeMap = [
         'accountNumber' => 'accountNumber',
         'bsbCode' => 'bsbCode',
+        'formFactor' => 'formFactor',
         'type' => 'type'
     ];
 
@@ -172,6 +176,7 @@ class AULocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     protected static $setters = [
         'accountNumber' => 'setAccountNumber',
         'bsbCode' => 'setBsbCode',
+        'formFactor' => 'setFormFactor',
         'type' => 'setType'
     ];
 
@@ -183,6 +188,7 @@ class AULocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     protected static $getters = [
         'accountNumber' => 'getAccountNumber',
         'bsbCode' => 'getBsbCode',
+        'formFactor' => 'getFormFactor',
         'type' => 'getType'
     ];
 
@@ -257,6 +263,7 @@ class AULocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     {
         $this->setIfExists('accountNumber', $data ?? [], null);
         $this->setIfExists('bsbCode', $data ?? [], null);
+        $this->setIfExists('formFactor', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -370,6 +377,40 @@ class AULocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
             throw new \InvalidArgumentException('non-nullable bsbCode cannot be null');
         }
         $this->container['bsbCode'] = $bsbCode;
+
+        return $this;
+    }
+
+    /**
+     * Gets formFactor
+     *
+     * @return string|null
+     */
+    public function getFormFactor()
+    {
+        return $this->container['formFactor'];
+    }
+
+    /**
+     * Sets formFactor
+     *
+     * @param string|null $formFactor The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
+     *
+     * @return self
+     */
+    public function setFormFactor($formFactor)
+    {
+        if (is_null($formFactor)) {
+            array_push($this->openAPINullablesSetToNull, 'formFactor');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('formFactor', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['formFactor'] = $formFactor;
 
         return $this;
     }

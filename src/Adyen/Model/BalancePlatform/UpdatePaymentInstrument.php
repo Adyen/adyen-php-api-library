@@ -44,6 +44,7 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
       * @var string[]
       */
     protected static $openAPITypes = [
+        'additionalBankAccountIdentifications' => '\Adyen\Model\BalancePlatform\PaymentInstrumentAdditionalBankAccountIdentificationsInner[]',
         'balanceAccountId' => 'string',
         'bankAccount' => '\Adyen\Model\BalancePlatform\PaymentInstrumentBankAccount',
         'card' => '\Adyen\Model\BalancePlatform\Card',
@@ -66,6 +67,7 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'additionalBankAccountIdentifications' => null,
         'balanceAccountId' => null,
         'bankAccount' => null,
         'card' => null,
@@ -86,6 +88,7 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'additionalBankAccountIdentifications' => false,
         'balanceAccountId' => false,
         'bankAccount' => false,
         'card' => false,
@@ -186,6 +189,7 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $attributeMap = [
+        'additionalBankAccountIdentifications' => 'additionalBankAccountIdentifications',
         'balanceAccountId' => 'balanceAccountId',
         'bankAccount' => 'bankAccount',
         'card' => 'card',
@@ -206,6 +210,7 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $setters = [
+        'additionalBankAccountIdentifications' => 'setAdditionalBankAccountIdentifications',
         'balanceAccountId' => 'setBalanceAccountId',
         'bankAccount' => 'setBankAccount',
         'card' => 'setCard',
@@ -226,6 +231,7 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $getters = [
+        'additionalBankAccountIdentifications' => 'getAdditionalBankAccountIdentifications',
         'balanceAccountId' => 'getBalanceAccountId',
         'bankAccount' => 'getBankAccount',
         'card' => 'getCard',
@@ -357,6 +363,7 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('additionalBankAccountIdentifications', $data ?? [], null);
         $this->setIfExists('balanceAccountId', $data ?? [], null);
         $this->setIfExists('bankAccount', $data ?? [], null);
         $this->setIfExists('card', $data ?? [], null);
@@ -451,6 +458,33 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets additionalBankAccountIdentifications
+     *
+     * @return \Adyen\Model\BalancePlatform\PaymentInstrumentAdditionalBankAccountIdentificationsInner[]|null
+     */
+    public function getAdditionalBankAccountIdentifications()
+    {
+        return $this->container['additionalBankAccountIdentifications'];
+    }
+
+    /**
+     * Sets additionalBankAccountIdentifications
+     *
+     * @param \Adyen\Model\BalancePlatform\PaymentInstrumentAdditionalBankAccountIdentificationsInner[]|null $additionalBankAccountIdentifications Contains optional, additional business account details. Returned when you create a payment instrument with `type` **bankAccount**.
+     *
+     * @return self
+     */
+    public function setAdditionalBankAccountIdentifications($additionalBankAccountIdentifications)
+    {
+        if (is_null($additionalBankAccountIdentifications)) {
+            throw new \InvalidArgumentException('non-nullable additionalBankAccountIdentifications cannot be null');
+        }
+        $this->container['additionalBankAccountIdentifications'] = $additionalBankAccountIdentifications;
+
+        return $this;
+    }
 
     /**
      * Gets balanceAccountId

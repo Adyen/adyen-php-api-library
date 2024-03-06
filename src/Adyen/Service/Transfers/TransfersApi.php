@@ -40,6 +40,35 @@ class TransfersApi extends Service
     }
 
     /**
+    * Get all transfers
+    *
+    * @param array|null $requestOptions ['queryParams' => ['balancePlatform'=> string, 'accountHolderId'=> string, 'balanceAccountId'=> string, 'paymentInstrumentId'=> string, 'reference'=> string, 'category'=> string, 'createdSince'=> \DateTime, 'createdUntil'=> \DateTime, 'cursor'=> string, 'limit'=> int]]
+    * @return \Adyen\Model\Transfers\FindTransfersResponse
+    * @throws AdyenException
+    */
+    public function getAllTransfers(array $requestOptions = null): \Adyen\Model\Transfers\FindTransfersResponse
+    {
+        $endpoint = $this->baseURL . "/transfers";
+        $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\Transfers\FindTransfersResponse::class);
+    }
+
+    /**
+    * Get a transfer
+    *
+    * @param string $id
+    * @param array|null $requestOptions
+    * @return \Adyen\Model\Transfers\TransferData
+    * @throws AdyenException
+    */
+    public function getTransfer(string $id, array $requestOptions = null): \Adyen\Model\Transfers\TransferData
+    {
+        $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/transfers/{id}");
+        $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\Transfers\TransferData::class);
+    }
+
+    /**
     * Return a transfer
     *
     * @param string $transferId

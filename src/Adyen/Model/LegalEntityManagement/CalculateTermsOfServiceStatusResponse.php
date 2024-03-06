@@ -222,6 +222,7 @@ class CalculateTermsOfServiceStatusResponse implements ModelInterface, ArrayAcce
     public const TERMS_OF_SERVICE_TYPES_ADYEN_FOR_PLATFORMS_MANAGE = 'adyenForPlatformsManage';
     public const TERMS_OF_SERVICE_TYPES_ADYEN_FRANCHISEE = 'adyenFranchisee';
     public const TERMS_OF_SERVICE_TYPES_ADYEN_ISSUING = 'adyenIssuing';
+    public const TERMS_OF_SERVICE_TYPES_ADYEN_PCCR = 'adyenPccr';
 
     /**
      * Gets allowable values of the enum
@@ -238,6 +239,7 @@ class CalculateTermsOfServiceStatusResponse implements ModelInterface, ArrayAcce
             self::TERMS_OF_SERVICE_TYPES_ADYEN_FOR_PLATFORMS_MANAGE,
             self::TERMS_OF_SERVICE_TYPES_ADYEN_FRANCHISEE,
             self::TERMS_OF_SERVICE_TYPES_ADYEN_ISSUING,
+            self::TERMS_OF_SERVICE_TYPES_ADYEN_PCCR,
         ];
     }
     /**

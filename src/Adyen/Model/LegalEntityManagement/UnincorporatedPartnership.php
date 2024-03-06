@@ -296,6 +296,19 @@ class UnincorporatedPartnership implements ModelInterface, ArrayAccess, \JsonSer
     public const TYPE_PRIVATE_FUND_LIMITED_PARTNERSHIP = 'privateFundLimitedPartnership';
     public const TYPE_BUSINESS_TRUST_ENTITY = 'businessTrustEntity';
     public const TYPE_BUSINESS_PARTNERSHIP = 'businessPartnership';
+    public const TYPE_LIMITED_LIABILITY_PARTNERSHIP = 'limitedLiabilityPartnership';
+    public const TYPE_EG = 'eg';
+    public const TYPE_COOPERATIVE = 'cooperative';
+    public const TYPE_VOS = 'vos';
+    public const TYPE_COMUNIDAD_DE_BIENES = 'comunidadDeBienes';
+    public const TYPE_HERENCIA_YACENTE = 'herenciaYacente';
+    public const TYPE_COMUNIDAD_DE_PROPIETARIOS = 'comunidadDePropietarios';
+    public const TYPE_SEP = 'sep';
+    public const TYPE_SCA = 'sca';
+    public const TYPE_BT = 'bt';
+    public const TYPE_KKT = 'kkt';
+    public const TYPE_SCS = 'scs';
+    public const TYPE_SNC = 'snc';
     public const VAT_ABSENCE_REASON_INDUSTRY_EXEMPTION = 'industryExemption';
     public const VAT_ABSENCE_REASON_BELOW_TAX_THRESHOLD = 'belowTaxThreshold';
 
@@ -322,6 +335,19 @@ class UnincorporatedPartnership implements ModelInterface, ArrayAccess, \JsonSer
             self::TYPE_PRIVATE_FUND_LIMITED_PARTNERSHIP,
             self::TYPE_BUSINESS_TRUST_ENTITY,
             self::TYPE_BUSINESS_PARTNERSHIP,
+            self::TYPE_LIMITED_LIABILITY_PARTNERSHIP,
+            self::TYPE_EG,
+            self::TYPE_COOPERATIVE,
+            self::TYPE_VOS,
+            self::TYPE_COMUNIDAD_DE_BIENES,
+            self::TYPE_HERENCIA_YACENTE,
+            self::TYPE_COMUNIDAD_DE_PROPIETARIOS,
+            self::TYPE_SEP,
+            self::TYPE_SCA,
+            self::TYPE_BT,
+            self::TYPE_KKT,
+            self::TYPE_SCS,
+            self::TYPE_SNC,
         ];
     }
     /**
@@ -693,7 +719,7 @@ class UnincorporatedPartnership implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets type
      *
-     * @param string $type Type of Partnership.  Possible values: *  **limitedPartnership** *  **generalPartnership** *  **familyPartnership** *  **commercialPartnership** *  **publicPartnership** *  **otherPartnership** *  **gbr** *  **gmbh** *  **kgaa** *  **cv** *  **vof** *  **maatschap** *  **privateFundLimitedPartnership** *  **businessTrustEntity** *  **businessPartnership**
+     * @param string $type Type of Partnership.  Possible values: *  **limitedPartnership** *  **generalPartnership** *  **familyPartnership** *  **commercialPartnership** *  **publicPartnership** *  **otherPartnership** *  **gbr** *  **gmbh** *  **kgaa** *  **cv** *  **vof** *  **maatschap** *  **privateFundLimitedPartnership** *  **businessTrustEntity** *  **businessPartnership** *  **limitedLiabilityPartnership** *  **eg** *  **cooperative** *  **vos** *  **comunidadDeBienes** *  **herenciaYacente** *  **comunidadDePropietarios** *  **sep** *  **sca** *  **bt** *  **kkt** *  **scs** *  **snc**
      *
      * @return self
      */

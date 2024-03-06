@@ -246,6 +246,7 @@ class GetTermsOfServiceDocumentResponse implements ModelInterface, ArrayAccess, 
     public const TYPE_ADYEN_FOR_PLATFORMS_MANAGE = 'adyenForPlatformsManage';
     public const TYPE_ADYEN_FRANCHISEE = 'adyenFranchisee';
     public const TYPE_ADYEN_ISSUING = 'adyenIssuing';
+    public const TYPE_ADYEN_PCCR = 'adyenPccr';
 
     /**
      * Gets allowable values of the enum
@@ -262,6 +263,7 @@ class GetTermsOfServiceDocumentResponse implements ModelInterface, ArrayAccess, 
             self::TYPE_ADYEN_FOR_PLATFORMS_MANAGE,
             self::TYPE_ADYEN_FRANCHISEE,
             self::TYPE_ADYEN_ISSUING,
+            self::TYPE_ADYEN_PCCR,
         ];
     }
     /**
@@ -458,7 +460,7 @@ class GetTermsOfServiceDocumentResponse implements ModelInterface, ArrayAccess, 
     /**
      * Sets type
      *
-     * @param string|null $type The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee**
+     * @param string|null $type The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr**
      *
      * @return self
      */

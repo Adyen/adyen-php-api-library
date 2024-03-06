@@ -85,7 +85,7 @@ class PaymentRefundResponse implements ModelInterface, ArrayAccess, \JsonSeriali
         'amount' => false,
         'lineItems' => false,
         'merchantAccount' => false,
-        'merchantRefundReason' => false,
+        'merchantRefundReason' => true,
         'paymentPspReference' => false,
         'pspReference' => false,
         'reference' => false,
@@ -505,10 +505,17 @@ class PaymentRefundResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setMerchantRefundReason($merchantRefundReason)
     {
         if (is_null($merchantRefundReason)) {
-            throw new \InvalidArgumentException('non-nullable merchantRefundReason cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'merchantRefundReason');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('merchantRefundReason', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $allowedValues = $this->getMerchantRefundReasonAllowableValues();
-        if (!in_array($merchantRefundReason, $allowedValues, true)) {
+        if (!is_null($merchantRefundReason) && !in_array($merchantRefundReason, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'merchantRefundReason', must be one of '%s'",

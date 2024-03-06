@@ -46,14 +46,14 @@ class AllowedOriginsCompanyLevelApi extends Service
     * @param string $apiCredentialId
     * @param \Adyen\Model\Management\AllowedOrigin $allowedOrigin
     * @param array|null $requestOptions
-    * @return \Adyen\Model\Management\AllowedOriginsResponse
+    * @return \Adyen\Model\Management\AllowedOrigin
     * @throws AdyenException
     */
-    public function createAllowedOrigin(string $companyId, string $apiCredentialId, \Adyen\Model\Management\AllowedOrigin $allowedOrigin, array $requestOptions = null): \Adyen\Model\Management\AllowedOriginsResponse
+    public function createAllowedOrigin(string $companyId, string $apiCredentialId, \Adyen\Model\Management\AllowedOrigin $allowedOrigin, array $requestOptions = null): \Adyen\Model\Management\AllowedOrigin
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}', '{apiCredentialId}'], [$companyId, $apiCredentialId], "/companies/{companyId}/apiCredentials/{apiCredentialId}/allowedOrigins");
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $allowedOrigin->jsonSerialize(), $requestOptions);
-        return ObjectSerializer::deserialize($response, \Adyen\Model\Management\AllowedOriginsResponse::class);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\Management\AllowedOrigin::class);
     }
 
     /**
@@ -63,13 +63,14 @@ class AllowedOriginsCompanyLevelApi extends Service
     * @param string $apiCredentialId
     * @param string $originId
     * @param array|null $requestOptions
-
+    
     * @throws AdyenException
     */
     public function deleteAllowedOrigin(string $companyId, string $apiCredentialId, string $originId, array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}', '{apiCredentialId}', '{originId}'], [$companyId, $apiCredentialId, $originId], "/companies/{companyId}/apiCredentials/{apiCredentialId}/allowedOrigins/{originId}");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
+        
     }
 
     /**

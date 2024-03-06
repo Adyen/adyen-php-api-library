@@ -52,7 +52,7 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
         'creationDate' => '\DateTime',
         'id' => 'string',
         'status' => 'string',
-        'transfer' => '\Adyen\Model\Transfers\TransferData',
+        'transfer' => '\Adyen\Model\Transfers\TransferView',
         'valueDate' => '\DateTime'
     ];
 
@@ -615,7 +615,7 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets transfer
      *
-     * @return \Adyen\Model\Transfers\TransferData|null
+     * @return \Adyen\Model\Transfers\TransferView|null
      */
     public function getTransfer()
     {
@@ -625,7 +625,7 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets transfer
      *
-     * @param \Adyen\Model\Transfers\TransferData|null $transfer transfer
+     * @param \Adyen\Model\Transfers\TransferView|null $transfer transfer
      *
      * @return self
      */

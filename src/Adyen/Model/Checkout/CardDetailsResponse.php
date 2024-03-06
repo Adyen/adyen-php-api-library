@@ -44,7 +44,8 @@ class CardDetailsResponse implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var string[]
       */
     protected static $openAPITypes = [
-        'brands' => '\Adyen\Model\Checkout\CardBrandDetails[]'
+        'brands' => '\Adyen\Model\Checkout\CardBrandDetails[]',
+        'issuingCountryCode' => 'string'
     ];
 
     /**
@@ -55,7 +56,8 @@ class CardDetailsResponse implements ModelInterface, ArrayAccess, \JsonSerializa
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'brands' => null
+        'brands' => null,
+        'issuingCountryCode' => null
     ];
 
     /**
@@ -64,7 +66,8 @@ class CardDetailsResponse implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'brands' => false
+        'brands' => false,
+        'issuingCountryCode' => false
     ];
 
     /**
@@ -153,7 +156,8 @@ class CardDetailsResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $attributeMap = [
-        'brands' => 'brands'
+        'brands' => 'brands',
+        'issuingCountryCode' => 'issuingCountryCode'
     ];
 
     /**
@@ -162,7 +166,8 @@ class CardDetailsResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $setters = [
-        'brands' => 'setBrands'
+        'brands' => 'setBrands',
+        'issuingCountryCode' => 'setIssuingCountryCode'
     ];
 
     /**
@@ -171,7 +176,8 @@ class CardDetailsResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $getters = [
-        'brands' => 'getBrands'
+        'brands' => 'getBrands',
+        'issuingCountryCode' => 'getIssuingCountryCode'
     ];
 
     /**
@@ -232,6 +238,7 @@ class CardDetailsResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     public function __construct(array $data = null)
     {
         $this->setIfExists('brands', $data ?? [], null);
+        $this->setIfExists('issuingCountryCode', $data ?? [], null);
     }
 
     /**
@@ -299,6 +306,33 @@ class CardDetailsResponse implements ModelInterface, ArrayAccess, \JsonSerializa
             throw new \InvalidArgumentException('non-nullable brands cannot be null');
         }
         $this->container['brands'] = $brands;
+
+        return $this;
+    }
+
+    /**
+     * Gets issuingCountryCode
+     *
+     * @return string|null
+     */
+    public function getIssuingCountryCode()
+    {
+        return $this->container['issuingCountryCode'];
+    }
+
+    /**
+     * Sets issuingCountryCode
+     *
+     * @param string|null $issuingCountryCode The two-letter country code  of the country where the card was issued.
+     *
+     * @return self
+     */
+    public function setIssuingCountryCode($issuingCountryCode)
+    {
+        if (is_null($issuingCountryCode)) {
+            throw new \InvalidArgumentException('non-nullable issuingCountryCode cannot be null');
+        }
+        $this->container['issuingCountryCode'] = $issuingCountryCode;
 
         return $this;
     }

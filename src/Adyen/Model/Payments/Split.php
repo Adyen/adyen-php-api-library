@@ -239,12 +239,18 @@ class Split implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const TYPE_ACQUIRING_FEES = 'AcquiringFees';
+    public const TYPE_ADYEN_COMMISSION = 'AdyenCommission';
+    public const TYPE_ADYEN_FEES = 'AdyenFees';
+    public const TYPE_ADYEN_MARKUP = 'AdyenMarkup';
     public const TYPE_BALANCE_ACCOUNT = 'BalanceAccount';
     public const TYPE_COMMISSION = 'Commission';
     public const TYPE__DEFAULT = 'Default';
+    public const TYPE_INTERCHANGE = 'Interchange';
     public const TYPE_MARKET_PLACE = 'MarketPlace';
     public const TYPE_PAYMENT_FEE = 'PaymentFee';
     public const TYPE_REMAINDER = 'Remainder';
+    public const TYPE_SCHEME_FEE = 'SchemeFee';
     public const TYPE_SURCHARGE = 'Surcharge';
     public const TYPE_TIP = 'Tip';
     public const TYPE_VAT = 'VAT';
@@ -257,12 +263,18 @@ class Split implements ModelInterface, ArrayAccess, \JsonSerializable
     public function getTypeAllowableValues()
     {
         return [
+            self::TYPE_ACQUIRING_FEES,
+            self::TYPE_ADYEN_COMMISSION,
+            self::TYPE_ADYEN_FEES,
+            self::TYPE_ADYEN_MARKUP,
             self::TYPE_BALANCE_ACCOUNT,
             self::TYPE_COMMISSION,
             self::TYPE__DEFAULT,
+            self::TYPE_INTERCHANGE,
             self::TYPE_MARKET_PLACE,
             self::TYPE_PAYMENT_FEE,
             self::TYPE_REMAINDER,
+            self::TYPE_SCHEME_FEE,
             self::TYPE_SURCHARGE,
             self::TYPE_TIP,
             self::TYPE_VAT,

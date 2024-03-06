@@ -394,7 +394,7 @@ class SELocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets formFactor
      *
-     * @param string|null $formFactor The form factor of bank account.
+     * @param string|null $formFactor The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
      *
      * @return self
      */

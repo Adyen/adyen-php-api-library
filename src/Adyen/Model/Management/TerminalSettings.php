@@ -60,8 +60,10 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         'refunds' => '\Adyen\Model\Management\Refunds',
         'signature' => '\Adyen\Model\Management\Signature',
         'standalone' => '\Adyen\Model\Management\Standalone',
+        'storeAndForward' => '\Adyen\Model\Management\StoreAndForward',
         'surcharge' => '\Adyen\Model\Management\Surcharge',
         'tapToPay' => '\Adyen\Model\Management\TapToPay',
+        'terminalInstructions' => '\Adyen\Model\Management\TerminalInstructions',
         'timeouts' => '\Adyen\Model\Management\Timeouts',
         'wifiProfiles' => '\Adyen\Model\Management\WifiProfiles'
     ];
@@ -90,8 +92,10 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         'refunds' => null,
         'signature' => null,
         'standalone' => null,
+        'storeAndForward' => null,
         'surcharge' => null,
         'tapToPay' => null,
+        'terminalInstructions' => null,
         'timeouts' => null,
         'wifiProfiles' => null
     ];
@@ -118,8 +122,10 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         'refunds' => false,
         'signature' => false,
         'standalone' => false,
+        'storeAndForward' => false,
         'surcharge' => false,
         'tapToPay' => false,
+        'terminalInstructions' => false,
         'timeouts' => false,
         'wifiProfiles' => false
     ];
@@ -226,8 +232,10 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         'refunds' => 'refunds',
         'signature' => 'signature',
         'standalone' => 'standalone',
+        'storeAndForward' => 'storeAndForward',
         'surcharge' => 'surcharge',
         'tapToPay' => 'tapToPay',
+        'terminalInstructions' => 'terminalInstructions',
         'timeouts' => 'timeouts',
         'wifiProfiles' => 'wifiProfiles'
     ];
@@ -254,8 +262,10 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         'refunds' => 'setRefunds',
         'signature' => 'setSignature',
         'standalone' => 'setStandalone',
+        'storeAndForward' => 'setStoreAndForward',
         'surcharge' => 'setSurcharge',
         'tapToPay' => 'setTapToPay',
+        'terminalInstructions' => 'setTerminalInstructions',
         'timeouts' => 'setTimeouts',
         'wifiProfiles' => 'setWifiProfiles'
     ];
@@ -282,8 +292,10 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         'refunds' => 'getRefunds',
         'signature' => 'getSignature',
         'standalone' => 'getStandalone',
+        'storeAndForward' => 'getStoreAndForward',
         'surcharge' => 'getSurcharge',
         'tapToPay' => 'getTapToPay',
+        'terminalInstructions' => 'getTerminalInstructions',
         'timeouts' => 'getTimeouts',
         'wifiProfiles' => 'getWifiProfiles'
     ];
@@ -361,8 +373,10 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('refunds', $data ?? [], null);
         $this->setIfExists('signature', $data ?? [], null);
         $this->setIfExists('standalone', $data ?? [], null);
+        $this->setIfExists('storeAndForward', $data ?? [], null);
         $this->setIfExists('surcharge', $data ?? [], null);
         $this->setIfExists('tapToPay', $data ?? [], null);
+        $this->setIfExists('terminalInstructions', $data ?? [], null);
         $this->setIfExists('timeouts', $data ?? [], null);
         $this->setIfExists('wifiProfiles', $data ?? [], null);
     }
@@ -842,6 +856,33 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets storeAndForward
+     *
+     * @return \Adyen\Model\Management\StoreAndForward|null
+     */
+    public function getStoreAndForward()
+    {
+        return $this->container['storeAndForward'];
+    }
+
+    /**
+     * Sets storeAndForward
+     *
+     * @param \Adyen\Model\Management\StoreAndForward|null $storeAndForward storeAndForward
+     *
+     * @return self
+     */
+    public function setStoreAndForward($storeAndForward)
+    {
+        if (is_null($storeAndForward)) {
+            throw new \InvalidArgumentException('non-nullable storeAndForward cannot be null');
+        }
+        $this->container['storeAndForward'] = $storeAndForward;
+
+        return $this;
+    }
+
+    /**
      * Gets surcharge
      *
      * @return \Adyen\Model\Management\Surcharge|null
@@ -891,6 +932,33 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable tapToPay cannot be null');
         }
         $this->container['tapToPay'] = $tapToPay;
+
+        return $this;
+    }
+
+    /**
+     * Gets terminalInstructions
+     *
+     * @return \Adyen\Model\Management\TerminalInstructions|null
+     */
+    public function getTerminalInstructions()
+    {
+        return $this->container['terminalInstructions'];
+    }
+
+    /**
+     * Sets terminalInstructions
+     *
+     * @param \Adyen\Model\Management\TerminalInstructions|null $terminalInstructions terminalInstructions
+     *
+     * @return self
+     */
+    public function setTerminalInstructions($terminalInstructions)
+    {
+        if (is_null($terminalInstructions)) {
+            throw new \InvalidArgumentException('non-nullable terminalInstructions cannot be null');
+        }
+        $this->container['terminalInstructions'] = $terminalInstructions;
 
         return $this;
     }

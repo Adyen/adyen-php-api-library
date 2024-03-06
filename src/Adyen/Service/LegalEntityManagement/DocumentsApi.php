@@ -44,20 +44,21 @@ class DocumentsApi extends Service
     *
     * @param string $id
     * @param array|null $requestOptions
-
+    
     * @throws AdyenException
     */
     public function deleteDocument(string $id, array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/documents/{id}");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
+        
     }
 
     /**
     * Get a document
     *
     * @param string $id
-    * @param array|null $requestOptions
+    * @param array|null $requestOptions ['queryParams' => ['skipContent'=> bool]]
     * @return \Adyen\Model\LegalEntityManagement\Document
     * @throws AdyenException
     */

@@ -47,6 +47,7 @@ class BRLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
         'accountNumber' => 'string',
         'bankCode' => 'string',
         'branchNumber' => 'string',
+        'formFactor' => 'string',
         'type' => 'string'
     ];
 
@@ -61,6 +62,7 @@ class BRLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
         'accountNumber' => null,
         'bankCode' => null,
         'branchNumber' => null,
+        'formFactor' => null,
         'type' => null
     ];
 
@@ -73,6 +75,7 @@ class BRLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
         'accountNumber' => false,
         'bankCode' => false,
         'branchNumber' => false,
+        'formFactor' => true,
         'type' => false
     ];
 
@@ -165,6 +168,7 @@ class BRLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
         'accountNumber' => 'accountNumber',
         'bankCode' => 'bankCode',
         'branchNumber' => 'branchNumber',
+        'formFactor' => 'formFactor',
         'type' => 'type'
     ];
 
@@ -177,6 +181,7 @@ class BRLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
         'accountNumber' => 'setAccountNumber',
         'bankCode' => 'setBankCode',
         'branchNumber' => 'setBranchNumber',
+        'formFactor' => 'setFormFactor',
         'type' => 'setType'
     ];
 
@@ -189,6 +194,7 @@ class BRLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
         'accountNumber' => 'getAccountNumber',
         'bankCode' => 'getBankCode',
         'branchNumber' => 'getBranchNumber',
+        'formFactor' => 'getFormFactor',
         'type' => 'getType'
     ];
 
@@ -264,6 +270,7 @@ class BRLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
         $this->setIfExists('accountNumber', $data ?? [], null);
         $this->setIfExists('bankCode', $data ?? [], null);
         $this->setIfExists('branchNumber', $data ?? [], null);
+        $this->setIfExists('formFactor', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -407,6 +414,40 @@ class BRLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
             throw new \InvalidArgumentException('non-nullable branchNumber cannot be null');
         }
         $this->container['branchNumber'] = $branchNumber;
+
+        return $this;
+    }
+
+    /**
+     * Gets formFactor
+     *
+     * @return string|null
+     */
+    public function getFormFactor()
+    {
+        return $this->container['formFactor'];
+    }
+
+    /**
+     * Sets formFactor
+     *
+     * @param string|null $formFactor The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
+     *
+     * @return self
+     */
+    public function setFormFactor($formFactor)
+    {
+        if (is_null($formFactor)) {
+            array_push($this->openAPINullablesSetToNull, 'formFactor');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('formFactor', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['formFactor'] = $formFactor;
 
         return $this;
     }

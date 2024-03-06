@@ -297,6 +297,7 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_REFUNDED = 'refunded';
     public const STATUS_REFUNDED_EXTERNALLY = 'refundedExternally';
     public const STATUS_REFUSED = 'refused';
+    public const STATUS_REJECTED = 'rejected';
     public const STATUS_RESERVE_ADJUSTMENT = 'reserveAdjustment';
     public const STATUS_RESERVE_ADJUSTMENT_PENDING = 'reserveAdjustmentPending';
     public const STATUS_RETURNED = 'returned';
@@ -370,6 +371,7 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_REFUNDED,
             self::STATUS_REFUNDED_EXTERNALLY,
             self::STATUS_REFUSED,
+            self::STATUS_REJECTED,
             self::STATUS_RESERVE_ADJUSTMENT,
             self::STATUS_RESERVE_ADJUSTMENT_PENDING,
             self::STATUS_RETURNED,
