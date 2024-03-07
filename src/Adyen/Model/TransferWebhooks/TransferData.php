@@ -421,6 +421,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_REFUNDED = 'refunded';
     public const STATUS_REFUNDED_EXTERNALLY = 'refundedExternally';
     public const STATUS_REFUSED = 'refused';
+    public const STATUS_REJECTED = 'rejected';
     public const STATUS_RESERVE_ADJUSTMENT = 'reserveAdjustment';
     public const STATUS_RESERVE_ADJUSTMENT_PENDING = 'reserveAdjustmentPending';
     public const STATUS_RETURNED = 'returned';
@@ -432,6 +433,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_BALANCE_ADJUSTMENT = 'balanceAdjustment';
     public const TYPE_BALANCE_MIGRATION = 'balanceMigration';
     public const TYPE_BALANCE_ROLLOVER = 'balanceRollover';
+    public const TYPE_BANK_DIRECT_DEBIT = 'bankDirectDebit';
     public const TYPE_BANK_TRANSFER = 'bankTransfer';
     public const TYPE_CAPTURE = 'capture';
     public const TYPE_CAPTURE_REVERSAL = 'captureReversal';
@@ -448,6 +450,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_GRANT = 'grant';
     public const TYPE_INSTALLMENT = 'installment';
     public const TYPE_INSTALLMENT_REVERSAL = 'installmentReversal';
+    public const TYPE_INTERNAL_DIRECT_DEBIT = 'internalDirectDebit';
     public const TYPE_INTERNAL_TRANSFER = 'internalTransfer';
     public const TYPE_INVOICE_DEDUCTION = 'invoiceDeduction';
     public const TYPE_LEFTOVER = 'leftover';
@@ -580,6 +583,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_REFUNDED,
             self::STATUS_REFUNDED_EXTERNALLY,
             self::STATUS_REFUSED,
+            self::STATUS_REJECTED,
             self::STATUS_RESERVE_ADJUSTMENT,
             self::STATUS_RESERVE_ADJUSTMENT_PENDING,
             self::STATUS_RETURNED,
@@ -601,6 +605,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_BALANCE_ADJUSTMENT,
             self::TYPE_BALANCE_MIGRATION,
             self::TYPE_BALANCE_ROLLOVER,
+            self::TYPE_BANK_DIRECT_DEBIT,
             self::TYPE_BANK_TRANSFER,
             self::TYPE_CAPTURE,
             self::TYPE_CAPTURE_REVERSAL,
@@ -617,6 +622,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_GRANT,
             self::TYPE_INSTALLMENT,
             self::TYPE_INSTALLMENT_REVERSAL,
+            self::TYPE_INTERNAL_DIRECT_DEBIT,
             self::TYPE_INTERNAL_TRANSFER,
             self::TYPE_INVOICE_DEDUCTION,
             self::TYPE_LEFTOVER,

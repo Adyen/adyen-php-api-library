@@ -49,6 +49,7 @@ class PaymentInstrumentBankAccount implements ModelInterface, ArrayAccess, \Json
         'iban' => 'string',
         'type' => 'string',
         'accountNumber' => 'string',
+        'sortCode' => 'string',
         'accountType' => 'string',
         'routingNumber' => 'string'
     ];
@@ -65,6 +66,7 @@ class PaymentInstrumentBankAccount implements ModelInterface, ArrayAccess, \Json
         'iban' => null,
         'type' => null,
         'accountNumber' => null,
+        'sortCode' => null,
         'accountType' => null,
         'routingNumber' => null
     ];
@@ -79,6 +81,7 @@ class PaymentInstrumentBankAccount implements ModelInterface, ArrayAccess, \Json
         'iban' => false,
         'type' => false,
         'accountNumber' => false,
+        'sortCode' => false,
         'accountType' => false,
         'routingNumber' => false
     ];
@@ -173,6 +176,7 @@ class PaymentInstrumentBankAccount implements ModelInterface, ArrayAccess, \Json
         'iban' => 'iban',
         'type' => 'type',
         'accountNumber' => 'accountNumber',
+        'sortCode' => 'sortCode',
         'accountType' => 'accountType',
         'routingNumber' => 'routingNumber'
     ];
@@ -187,6 +191,7 @@ class PaymentInstrumentBankAccount implements ModelInterface, ArrayAccess, \Json
         'iban' => 'setIban',
         'type' => 'setType',
         'accountNumber' => 'setAccountNumber',
+        'sortCode' => 'setSortCode',
         'accountType' => 'setAccountType',
         'routingNumber' => 'setRoutingNumber'
     ];
@@ -201,6 +206,7 @@ class PaymentInstrumentBankAccount implements ModelInterface, ArrayAccess, \Json
         'iban' => 'getIban',
         'type' => 'getType',
         'accountNumber' => 'getAccountNumber',
+        'sortCode' => 'getSortCode',
         'accountType' => 'getAccountType',
         'routingNumber' => 'getRoutingNumber'
     ];
@@ -265,6 +271,7 @@ class PaymentInstrumentBankAccount implements ModelInterface, ArrayAccess, \Json
         $this->setIfExists('iban', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('accountNumber', $data ?? [], null);
+        $this->setIfExists('sortCode', $data ?? [], null);
         $this->setIfExists('accountType', $data ?? [], null);
         $this->setIfExists('routingNumber', $data ?? [], null);
     }
@@ -306,6 +313,9 @@ class PaymentInstrumentBankAccount implements ModelInterface, ArrayAccess, \Json
         if ($this->container['accountNumber'] === null) {
             $invalidProperties[] = "'accountNumber' can't be null";
         }
+        if ($this->container['sortCode'] === null) {
+            $invalidProperties[] = "'sortCode' can't be null";
+        }
 
         if ($this->container['routingNumber'] === null) {
             $invalidProperties[] = "'routingNumber' can't be null";
@@ -338,7 +348,7 @@ class PaymentInstrumentBankAccount implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets formFactor
      *
-     * @param string|null $formFactor The form factor of bank account.
+     * @param string|null $formFactor The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
      *
      * @return self
      */
@@ -436,6 +446,33 @@ class PaymentInstrumentBankAccount implements ModelInterface, ArrayAccess, \Json
             throw new \InvalidArgumentException('non-nullable accountNumber cannot be null');
         }
         $this->container['accountNumber'] = $accountNumber;
+
+        return $this;
+    }
+
+    /**
+     * Gets sortCode
+     *
+     * @return string
+     */
+    public function getSortCode()
+    {
+        return $this->container['sortCode'];
+    }
+
+    /**
+     * Sets sortCode
+     *
+     * @param string $sortCode The 6-digit [sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or whitespace.
+     *
+     * @return self
+     */
+    public function setSortCode($sortCode)
+    {
+        if (is_null($sortCode)) {
+            throw new \InvalidArgumentException('non-nullable sortCode cannot be null');
+        }
+        $this->container['sortCode'] = $sortCode;
 
         return $this;
     }

@@ -309,7 +309,7 @@ class Name implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets firstName
      *
-     * @param string $firstName The individual's first name.
+     * @param string $firstName The individual's first name. Must not be blank.
      *
      * @return self
      */
@@ -363,7 +363,7 @@ class Name implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets lastName
      *
-     * @param string $lastName The individual's last name.
+     * @param string $lastName The individual's last name. Must not be blank.
      *
      * @return self
      */

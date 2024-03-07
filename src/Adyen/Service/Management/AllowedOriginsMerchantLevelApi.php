@@ -46,14 +46,14 @@ class AllowedOriginsMerchantLevelApi extends Service
     * @param string $apiCredentialId
     * @param \Adyen\Model\Management\AllowedOrigin $allowedOrigin
     * @param array|null $requestOptions
-    * @return \Adyen\Model\Management\AllowedOriginsResponse
+    * @return \Adyen\Model\Management\AllowedOrigin
     * @throws AdyenException
     */
-    public function createAllowedOrigin(string $merchantId, string $apiCredentialId, \Adyen\Model\Management\AllowedOrigin $allowedOrigin, array $requestOptions = null): \Adyen\Model\Management\AllowedOriginsResponse
+    public function createAllowedOrigin(string $merchantId, string $apiCredentialId, \Adyen\Model\Management\AllowedOrigin $allowedOrigin, array $requestOptions = null): \Adyen\Model\Management\AllowedOrigin
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{apiCredentialId}'], [$merchantId, $apiCredentialId], "/merchants/{merchantId}/apiCredentials/{apiCredentialId}/allowedOrigins");
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $allowedOrigin->jsonSerialize(), $requestOptions);
-        return ObjectSerializer::deserialize($response, \Adyen\Model\Management\AllowedOriginsResponse::class);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\Management\AllowedOrigin::class);
     }
 
     /**

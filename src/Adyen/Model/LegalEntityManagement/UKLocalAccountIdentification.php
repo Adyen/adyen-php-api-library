@@ -45,6 +45,7 @@ class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPITypes = [
         'accountNumber' => 'string',
+        'formFactor' => 'string',
         'sortCode' => 'string',
         'type' => 'string'
     ];
@@ -58,6 +59,7 @@ class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPIFormats = [
         'accountNumber' => null,
+        'formFactor' => null,
         'sortCode' => null,
         'type' => null
     ];
@@ -69,6 +71,7 @@ class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPINullables = [
         'accountNumber' => false,
+        'formFactor' => true,
         'sortCode' => false,
         'type' => false
     ];
@@ -160,6 +163,7 @@ class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      */
     protected static $attributeMap = [
         'accountNumber' => 'accountNumber',
+        'formFactor' => 'formFactor',
         'sortCode' => 'sortCode',
         'type' => 'type'
     ];
@@ -171,6 +175,7 @@ class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      */
     protected static $setters = [
         'accountNumber' => 'setAccountNumber',
+        'formFactor' => 'setFormFactor',
         'sortCode' => 'setSortCode',
         'type' => 'setType'
     ];
@@ -182,6 +187,7 @@ class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      */
     protected static $getters = [
         'accountNumber' => 'getAccountNumber',
+        'formFactor' => 'getFormFactor',
         'sortCode' => 'getSortCode',
         'type' => 'getType'
     ];
@@ -256,6 +262,7 @@ class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     public function __construct(array $data = null)
     {
         $this->setIfExists('accountNumber', $data ?? [], null);
+        $this->setIfExists('formFactor', $data ?? [], null);
         $this->setIfExists('sortCode', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
@@ -343,6 +350,40 @@ class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
             throw new \InvalidArgumentException('non-nullable accountNumber cannot be null');
         }
         $this->container['accountNumber'] = $accountNumber;
+
+        return $this;
+    }
+
+    /**
+     * Gets formFactor
+     *
+     * @return string|null
+     */
+    public function getFormFactor()
+    {
+        return $this->container['formFactor'];
+    }
+
+    /**
+     * Sets formFactor
+     *
+     * @param string|null $formFactor Business accounts with a `formFactor` value of **physical** are business accounts issued under the central bank of that country. The default value is **physical** for NL, US, and UK business accounts.   Adyen creates a local IBAN for business accounts when the `formFactor`å value is set to **virtual**. The local IBANs that are supported are for DE and FR, which reference a physical NL account, with funds being routed through the central bank of NL.
+     *
+     * @return self
+     */
+    public function setFormFactor($formFactor)
+    {
+        if (is_null($formFactor)) {
+            array_push($this->openAPINullablesSetToNull, 'formFactor');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('formFactor', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['formFactor'] = $formFactor;
 
         return $this;
     }

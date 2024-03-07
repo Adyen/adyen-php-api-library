@@ -47,6 +47,7 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
     protected static $openAPITypes = [
         'accountNumber' => 'string',
         'bsbCode' => 'string',
+        'formFactor' => 'string',
         'type' => 'string',
         'bankCode' => 'string',
         'branchNumber' => 'string',
@@ -72,6 +73,7 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
     protected static $openAPIFormats = [
         'accountNumber' => null,
         'bsbCode' => null,
+        'formFactor' => null,
         'type' => null,
         'bankCode' => null,
         'branchNumber' => null,
@@ -95,6 +97,7 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
     protected static $openAPINullables = [
         'accountNumber' => false,
         'bsbCode' => false,
+        'formFactor' => true,
         'type' => false,
         'bankCode' => false,
         'branchNumber' => false,
@@ -198,6 +201,7 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
     protected static $attributeMap = [
         'accountNumber' => 'accountNumber',
         'bsbCode' => 'bsbCode',
+        'formFactor' => 'formFactor',
         'type' => 'type',
         'bankCode' => 'bankCode',
         'branchNumber' => 'branchNumber',
@@ -221,6 +225,7 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
     protected static $setters = [
         'accountNumber' => 'setAccountNumber',
         'bsbCode' => 'setBsbCode',
+        'formFactor' => 'setFormFactor',
         'type' => 'setType',
         'bankCode' => 'setBankCode',
         'branchNumber' => 'setBranchNumber',
@@ -244,6 +249,7 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
     protected static $getters = [
         'accountNumber' => 'getAccountNumber',
         'bsbCode' => 'getBsbCode',
+        'formFactor' => 'getFormFactor',
         'type' => 'getType',
         'bankCode' => 'getBankCode',
         'branchNumber' => 'getBranchNumber',
@@ -317,6 +323,7 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
     {
         $this->setIfExists('accountNumber', $data ?? [], null);
         $this->setIfExists('bsbCode', $data ?? [], null);
+        $this->setIfExists('formFactor', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('bankCode', $data ?? [], null);
         $this->setIfExists('branchNumber', $data ?? [], null);
@@ -465,6 +472,40 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
             throw new \InvalidArgumentException('non-nullable bsbCode cannot be null');
         }
         $this->container['bsbCode'] = $bsbCode;
+
+        return $this;
+    }
+
+    /**
+     * Gets formFactor
+     *
+     * @return string|null
+     */
+    public function getFormFactor()
+    {
+        return $this->container['formFactor'];
+    }
+
+    /**
+     * Sets formFactor
+     *
+     * @param string|null $formFactor The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
+     *
+     * @return self
+     */
+    public function setFormFactor($formFactor)
+    {
+        if (is_null($formFactor)) {
+            array_push($this->openAPINullablesSetToNull, 'formFactor');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('formFactor', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['formFactor'] = $formFactor;
 
         return $this;
     }

@@ -60,6 +60,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'personalDetails' => 'string',
         'amazonPayToken' => 'string',
         'checkoutSessionId' => 'string',
+        'beneficiaryId' => 'string',
         'applePayToken' => 'string',
         'fundingSource' => 'string',
         'holderName' => 'string',
@@ -123,6 +124,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'personalDetails' => null,
         'amazonPayToken' => null,
         'checkoutSessionId' => null,
+        'beneficiaryId' => null,
         'applePayToken' => null,
         'fundingSource' => null,
         'holderName' => null,
@@ -184,6 +186,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'personalDetails' => false,
         'amazonPayToken' => false,
         'checkoutSessionId' => false,
+        'beneficiaryId' => false,
         'applePayToken' => false,
         'fundingSource' => false,
         'holderName' => false,
@@ -325,6 +328,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'personalDetails' => 'personalDetails',
         'amazonPayToken' => 'amazonPayToken',
         'checkoutSessionId' => 'checkoutSessionId',
+        'beneficiaryId' => 'beneficiaryId',
         'applePayToken' => 'applePayToken',
         'fundingSource' => 'fundingSource',
         'holderName' => 'holderName',
@@ -386,6 +390,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'personalDetails' => 'setPersonalDetails',
         'amazonPayToken' => 'setAmazonPayToken',
         'checkoutSessionId' => 'setCheckoutSessionId',
+        'beneficiaryId' => 'setBeneficiaryId',
         'applePayToken' => 'setApplePayToken',
         'fundingSource' => 'setFundingSource',
         'holderName' => 'setHolderName',
@@ -447,6 +452,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'personalDetails' => 'getPersonalDetails',
         'amazonPayToken' => 'getAmazonPayToken',
         'checkoutSessionId' => 'getCheckoutSessionId',
+        'beneficiaryId' => 'getBeneficiaryId',
         'applePayToken' => 'getApplePayToken',
         'fundingSource' => 'getFundingSource',
         'holderName' => 'getHolderName',
@@ -558,6 +564,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('personalDetails', $data ?? [], null);
         $this->setIfExists('amazonPayToken', $data ?? [], null);
         $this->setIfExists('checkoutSessionId', $data ?? [], null);
+        $this->setIfExists('beneficiaryId', $data ?? [], null);
         $this->setIfExists('applePayToken', $data ?? [], null);
         $this->setIfExists('fundingSource', $data ?? [], null);
         $this->setIfExists('holderName', $data ?? [], null);
@@ -625,9 +632,6 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         $invalidProperties = [];
 
-        if ($this->container['bankAccountNumber'] === null) {
-            $invalidProperties[] = "'bankAccountNumber' can't be null";
-        }
 
         if ($this->container['ownerName'] === null) {
             $invalidProperties[] = "'ownerName' can't be null";
@@ -692,7 +696,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets bankAccountNumber
      *
-     * @return string
+     * @return string|null
      */
     public function getBankAccountNumber()
     {
@@ -702,7 +706,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets bankAccountNumber
      *
-     * @param string $bankAccountNumber The bank account number (without separators).
+     * @param string|null $bankAccountNumber The bank account number (without separators).
      *
      * @return self
      */
@@ -1092,6 +1096,33 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
             throw new \InvalidArgumentException('non-nullable checkoutSessionId cannot be null');
         }
         $this->container['checkoutSessionId'] = $checkoutSessionId;
+
+        return $this;
+    }
+
+    /**
+     * Gets beneficiaryId
+     *
+     * @return string|null
+     */
+    public function getBeneficiaryId()
+    {
+        return $this->container['beneficiaryId'];
+    }
+
+    /**
+     * Sets beneficiaryId
+     *
+     * @param string|null $beneficiaryId ANCV account identification (email or account number)
+     *
+     * @return self
+     */
+    public function setBeneficiaryId($beneficiaryId)
+    {
+        if (is_null($beneficiaryId)) {
+            throw new \InvalidArgumentException('non-nullable beneficiaryId cannot be null');
+        }
+        $this->container['beneficiaryId'] = $beneficiaryId;
 
         return $this;
     }

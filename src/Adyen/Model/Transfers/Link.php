@@ -289,7 +289,7 @@ class Link implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets href
      *
-     * @param string|null $href href
+     * @param string|null $href The link to the resource.
      *
      * @return self
      */

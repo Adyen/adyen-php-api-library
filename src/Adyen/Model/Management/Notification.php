@@ -241,6 +241,7 @@ class Notification implements ModelInterface, ArrayAccess, \JsonSerializable
 
     public const CATEGORY_SALE_WAKE_UP = 'SaleWakeUp';
     public const CATEGORY_KEY_PRESSED = 'KeyPressed';
+    public const CATEGORY_EMPTY = '';
 
     /**
      * Gets allowable values of the enum
@@ -252,6 +253,7 @@ class Notification implements ModelInterface, ArrayAccess, \JsonSerializable
         return [
             self::CATEGORY_SALE_WAKE_UP,
             self::CATEGORY_KEY_PRESSED,
+            self::CATEGORY_EMPTY,
         ];
     }
     /**

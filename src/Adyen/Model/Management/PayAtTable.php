@@ -70,7 +70,7 @@ class PayAtTable implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPINullables = [
         'authenticationMethod' => false,
         'enablePayAtTable' => false,
-        'paymentInstrument' => false
+        'paymentInstrument' => true
     ];
 
     /**
@@ -420,10 +420,17 @@ class PayAtTable implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setPaymentInstrument($paymentInstrument)
     {
         if (is_null($paymentInstrument)) {
-            throw new \InvalidArgumentException('non-nullable paymentInstrument cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'paymentInstrument');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('paymentInstrument', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $allowedValues = $this->getPaymentInstrumentAllowableValues();
-        if (!in_array($paymentInstrument, $allowedValues, true)) {
+        if (!is_null($paymentInstrument) && !in_array($paymentInstrument, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'paymentInstrument', must be one of '%s'",

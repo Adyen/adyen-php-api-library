@@ -57,7 +57,7 @@ class DocumentsApi extends Service
     * Get a document
     *
     * @param string $id
-    * @param array|null $requestOptions
+    * @param array|null $requestOptions ['queryParams' => ['skipContent'=> bool]]
     * @return \Adyen\Model\LegalEntityManagement\Document
     * @throws AdyenException
     */

@@ -362,9 +362,6 @@ class AchDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['bankAccountNumber'] === null) {
-            $invalidProperties[] = "'bankAccountNumber' can't be null";
-        }
         $allowedValues = $this->getBankAccountTypeAllowableValues();
         if (!is_null($this->container['bankAccountType']) && !in_array($this->container['bankAccountType'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -401,7 +398,7 @@ class AchDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets bankAccountNumber
      *
-     * @return string
+     * @return string|null
      */
     public function getBankAccountNumber()
     {
@@ -411,7 +408,7 @@ class AchDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets bankAccountNumber
      *
-     * @param string $bankAccountNumber The bank account number (without separators).
+     * @param string|null $bankAccountNumber The bank account number (without separators).
      *
      * @return self
      */
