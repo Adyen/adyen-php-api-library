@@ -24,7 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Prepare the next main release
-        uses: Adyen/release-automation-action@v1.2.0
+        uses: Adyen/release-automation-action@v1.3.0
         with:
           token: ${{ secrets.ADYEN_AUTOMATION_BOT_ACCESS_TOKEN }}
           develop-branch: main
