@@ -46,7 +46,6 @@ class USLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     protected static $openAPITypes = [
         'accountNumber' => 'string',
         'accountType' => 'string',
-        'formFactor' => 'string',
         'routingNumber' => 'string',
         'type' => 'string'
     ];
@@ -61,7 +60,6 @@ class USLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     protected static $openAPIFormats = [
         'accountNumber' => null,
         'accountType' => null,
-        'formFactor' => null,
         'routingNumber' => null,
         'type' => null
     ];
@@ -74,7 +72,6 @@ class USLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     protected static $openAPINullables = [
         'accountNumber' => false,
         'accountType' => false,
-        'formFactor' => true,
         'routingNumber' => false,
         'type' => false
     ];
@@ -167,7 +164,6 @@ class USLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     protected static $attributeMap = [
         'accountNumber' => 'accountNumber',
         'accountType' => 'accountType',
-        'formFactor' => 'formFactor',
         'routingNumber' => 'routingNumber',
         'type' => 'type'
     ];
@@ -180,7 +176,6 @@ class USLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     protected static $setters = [
         'accountNumber' => 'setAccountNumber',
         'accountType' => 'setAccountType',
-        'formFactor' => 'setFormFactor',
         'routingNumber' => 'setRoutingNumber',
         'type' => 'setType'
     ];
@@ -193,7 +188,6 @@ class USLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     protected static $getters = [
         'accountNumber' => 'getAccountNumber',
         'accountType' => 'getAccountType',
-        'formFactor' => 'getFormFactor',
         'routingNumber' => 'getRoutingNumber',
         'type' => 'getType'
     ];
@@ -283,7 +277,6 @@ class USLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     {
         $this->setIfExists('accountNumber', $data ?? [], null);
         $this->setIfExists('accountType', $data ?? [], null);
-        $this->setIfExists('formFactor', $data ?? [], null);
         $this->setIfExists('routingNumber', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
@@ -417,40 +410,6 @@ class USLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
             );
         }
         $this->container['accountType'] = $accountType;
-
-        return $this;
-    }
-
-    /**
-     * Gets formFactor
-     *
-     * @return string|null
-     */
-    public function getFormFactor()
-    {
-        return $this->container['formFactor'];
-    }
-
-    /**
-     * Sets formFactor
-     *
-     * @param string|null $formFactor Business accounts with a `formFactor` value of **physical** are business accounts issued under the central bank of that country. The default value is **physical** for NL, US, and UK business accounts.   Adyen creates a local IBAN for business accounts when the `formFactor`å value is set to **virtual**. The local IBANs that are supported are for DE and FR, which reference a physical NL account, with funds being routed through the central bank of NL.
-     *
-     * @return self
-     */
-    public function setFormFactor($formFactor)
-    {
-        if (is_null($formFactor)) {
-            array_push($this->openAPINullablesSetToNull, 'formFactor');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('formFactor', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['formFactor'] = $formFactor;
 
         return $this;
     }

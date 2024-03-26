@@ -55,7 +55,8 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'shopperLocale' => 'string',
         'shopperReference' => 'string',
         'splitCardFundingSources' => 'bool',
-        'store' => 'string'
+        'store' => 'string',
+        'storeFiltrationMode' => 'string'
     ];
 
     /**
@@ -77,7 +78,8 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'shopperLocale' => null,
         'shopperReference' => null,
         'splitCardFundingSources' => null,
-        'store' => null
+        'store' => null,
+        'storeFiltrationMode' => null
     ];
 
     /**
@@ -97,7 +99,8 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'shopperLocale' => false,
         'shopperReference' => false,
         'splitCardFundingSources' => false,
-        'store' => false
+        'store' => false,
+        'storeFiltrationMode' => false
     ];
 
     /**
@@ -197,7 +200,8 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'shopperLocale' => 'shopperLocale',
         'shopperReference' => 'shopperReference',
         'splitCardFundingSources' => 'splitCardFundingSources',
-        'store' => 'store'
+        'store' => 'store',
+        'storeFiltrationMode' => 'storeFiltrationMode'
     ];
 
     /**
@@ -217,7 +221,8 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'shopperLocale' => 'setShopperLocale',
         'shopperReference' => 'setShopperReference',
         'splitCardFundingSources' => 'setSplitCardFundingSources',
-        'store' => 'setStore'
+        'store' => 'setStore',
+        'storeFiltrationMode' => 'setStoreFiltrationMode'
     ];
 
     /**
@@ -237,7 +242,8 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'shopperLocale' => 'getShopperLocale',
         'shopperReference' => 'getShopperReference',
         'splitCardFundingSources' => 'getSplitCardFundingSources',
-        'store' => 'getStore'
+        'store' => 'getStore',
+        'storeFiltrationMode' => 'getStoreFiltrationMode'
     ];
 
     /**
@@ -284,6 +290,9 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     public const CHANNEL_I_OS = 'iOS';
     public const CHANNEL_ANDROID = 'Android';
     public const CHANNEL_WEB = 'Web';
+    public const STORE_FILTRATION_MODE_EXCLUSIVE = 'exclusive';
+    public const STORE_FILTRATION_MODE_INCLUSIVE = 'inclusive';
+    public const STORE_FILTRATION_MODE_SKIP_FILTER = 'skipFilter';
 
     /**
      * Gets allowable values of the enum
@@ -296,6 +305,19 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
             self::CHANNEL_I_OS,
             self::CHANNEL_ANDROID,
             self::CHANNEL_WEB,
+        ];
+    }
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getStoreFiltrationModeAllowableValues()
+    {
+        return [
+            self::STORE_FILTRATION_MODE_EXCLUSIVE,
+            self::STORE_FILTRATION_MODE_INCLUSIVE,
+            self::STORE_FILTRATION_MODE_SKIP_FILTER,
         ];
     }
     /**
@@ -325,6 +347,7 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('shopperReference', $data ?? [], null);
         $this->setIfExists('splitCardFundingSources', $data ?? [], null);
         $this->setIfExists('store', $data ?? [], null);
+        $this->setIfExists('storeFiltrationMode', $data ?? [], null);
     }
 
     /**
@@ -366,6 +389,15 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         if ($this->container['merchantAccount'] === null) {
             $invalidProperties[] = "'merchantAccount' can't be null";
         }
+        $allowedValues = $this->getStoreFiltrationModeAllowableValues();
+        if (!is_null($this->container['storeFiltrationMode']) && !in_array($this->container['storeFiltrationMode'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'storeFiltrationMode', must be one of '%s'",
+                $this->container['storeFiltrationMode'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -701,7 +733,7 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets store
      *
-     * @param string|null $store Required for Adyen for Platforms integrations if you have a platform setup. This is your [reference](https://docs.adyen.com/api-explorer/Management/3/post/merchants/(merchantId)/stores#request-reference) (on [balance platform](https://docs.adyen.com/marketplaces-and-platforms/classic/platforms-for-partners#route-payments)) or the [storeReference](https://docs.adyen.com/api-explorer/Account/latest/post/updateAccountHolder#request-accountHolderDetails-storeDetails-storeReference) (in the [classic integration](https://docs.adyen.com/marketplaces-and-platforms/processing-payments/route-payment-to-store/#route-a-payment-to-a-store)) for the ecommerce or point-of-sale store that is processing the payment.
+     * @param string|null $store Required for Adyen for Platforms integrations if you are a platform model. This is your [reference](https://docs.adyen.com/api-explorer/Management/3/post/merchants/(merchantId)/stores#request-reference) (on [balance platform](https://docs.adyen.com/platforms)) or the [storeReference](https://docs.adyen.com/api-explorer/Account/latest/post/updateAccountHolder#request-accountHolderDetails-storeDetails-storeReference) (in the [classic integration](https://docs.adyen.com/classic-platforms/processing-payments/route-payment-to-store/#route-a-payment-to-a-store)) for the ecommerce or point-of-sale store that is processing the payment.
      *
      * @return self
      */
@@ -711,6 +743,43 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
             throw new \InvalidArgumentException('non-nullable store cannot be null');
         }
         $this->container['store'] = $store;
+
+        return $this;
+    }
+
+    /**
+     * Gets storeFiltrationMode
+     *
+     * @return string|null
+     */
+    public function getStoreFiltrationMode()
+    {
+        return $this->container['storeFiltrationMode'];
+    }
+
+    /**
+     * Sets storeFiltrationMode
+     *
+     * @param string|null $storeFiltrationMode Specifies how payment methods should be filtered based on the 'store' parameter:   - 'exclusive': Only payment methods belonging to the specified 'store' are returned.   - 'inclusive': Payment methods from the 'store' and those not associated with any other store are returned.   - 'skipFilter': All payment methods are returned, regardless of store association.
+     *
+     * @return self
+     */
+    public function setStoreFiltrationMode($storeFiltrationMode)
+    {
+        if (is_null($storeFiltrationMode)) {
+            throw new \InvalidArgumentException('non-nullable storeFiltrationMode cannot be null');
+        }
+        $allowedValues = $this->getStoreFiltrationModeAllowableValues();
+        if (!in_array($storeFiltrationMode, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'storeFiltrationMode', must be one of '%s'",
+                    $storeFiltrationMode,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['storeFiltrationMode'] = $storeFiltrationMode;
 
         return $this;
     }

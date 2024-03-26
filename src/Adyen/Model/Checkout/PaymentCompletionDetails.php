@@ -61,7 +61,8 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
         'resultCode' => 'string',
         'threeDSResult' => 'string',
         'threeds2ChallengeResult' => 'string',
-        'threeds2Fingerprint' => 'string'
+        'threeds2Fingerprint' => 'string',
+        'vaultToken' => 'string'
     ];
 
     /**
@@ -89,7 +90,8 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
         'resultCode' => null,
         'threeDSResult' => null,
         'threeds2ChallengeResult' => null,
-        'threeds2Fingerprint' => null
+        'threeds2Fingerprint' => null,
+        'vaultToken' => null
     ];
 
     /**
@@ -115,7 +117,8 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
         'resultCode' => false,
         'threeDSResult' => false,
         'threeds2ChallengeResult' => false,
-        'threeds2Fingerprint' => false
+        'threeds2Fingerprint' => false,
+        'vaultToken' => false
     ];
 
     /**
@@ -221,7 +224,8 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
         'resultCode' => 'resultCode',
         'threeDSResult' => 'threeDSResult',
         'threeds2ChallengeResult' => 'threeds2.challengeResult',
-        'threeds2Fingerprint' => 'threeds2.fingerprint'
+        'threeds2Fingerprint' => 'threeds2.fingerprint',
+        'vaultToken' => 'vaultToken'
     ];
 
     /**
@@ -247,7 +251,8 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
         'resultCode' => 'setResultCode',
         'threeDSResult' => 'setThreeDSResult',
         'threeds2ChallengeResult' => 'setThreeds2ChallengeResult',
-        'threeds2Fingerprint' => 'setThreeds2Fingerprint'
+        'threeds2Fingerprint' => 'setThreeds2Fingerprint',
+        'vaultToken' => 'setVaultToken'
     ];
 
     /**
@@ -273,7 +278,8 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
         'resultCode' => 'getResultCode',
         'threeDSResult' => 'getThreeDSResult',
         'threeds2ChallengeResult' => 'getThreeds2ChallengeResult',
-        'threeds2Fingerprint' => 'getThreeds2Fingerprint'
+        'threeds2Fingerprint' => 'getThreeds2Fingerprint',
+        'vaultToken' => 'getVaultToken'
     ];
 
     /**
@@ -351,6 +357,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
         $this->setIfExists('threeDSResult', $data ?? [], null);
         $this->setIfExists('threeds2ChallengeResult', $data ?? [], null);
         $this->setIfExists('threeds2Fingerprint', $data ?? [], null);
+        $this->setIfExists('vaultToken', $data ?? [], null);
     }
 
     /**
@@ -877,6 +884,33 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
             throw new \InvalidArgumentException('non-nullable threeds2Fingerprint cannot be null');
         }
         $this->container['threeds2Fingerprint'] = $threeds2Fingerprint;
+
+        return $this;
+    }
+
+    /**
+     * Gets vaultToken
+     *
+     * @return string|null
+     */
+    public function getVaultToken()
+    {
+        return $this->container['vaultToken'];
+    }
+
+    /**
+     * Sets vaultToken
+     *
+     * @param string|null $vaultToken PayPalv2-generated token for recurring payments.
+     *
+     * @return self
+     */
+    public function setVaultToken($vaultToken)
+    {
+        if (is_null($vaultToken)) {
+            throw new \InvalidArgumentException('non-nullable vaultToken cannot be null');
+        }
+        $this->container['vaultToken'] = $vaultToken;
 
         return $this;
     }

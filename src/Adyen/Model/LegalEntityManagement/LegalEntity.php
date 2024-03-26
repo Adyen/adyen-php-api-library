@@ -57,7 +57,6 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
         'transferInstruments' => '\Adyen\Model\LegalEntityManagement\TransferInstrumentReference[]',
         'trust' => '\Adyen\Model\LegalEntityManagement\Trust',
         'type' => 'string',
-        'unincorporatedPartnership' => '\Adyen\Model\LegalEntityManagement\UnincorporatedPartnership',
         'verificationDeadlines' => '\Adyen\Model\LegalEntityManagement\VerificationDeadline[]',
         'verificationPlan' => 'string'
     ];
@@ -83,7 +82,6 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
         'transferInstruments' => null,
         'trust' => null,
         'type' => null,
-        'unincorporatedPartnership' => null,
         'verificationDeadlines' => null,
         'verificationPlan' => null
     ];
@@ -107,7 +105,6 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
         'transferInstruments' => false,
         'trust' => false,
         'type' => false,
-        'unincorporatedPartnership' => false,
         'verificationDeadlines' => false,
         'verificationPlan' => false
     ];
@@ -211,7 +208,6 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
         'transferInstruments' => 'transferInstruments',
         'trust' => 'trust',
         'type' => 'type',
-        'unincorporatedPartnership' => 'unincorporatedPartnership',
         'verificationDeadlines' => 'verificationDeadlines',
         'verificationPlan' => 'verificationPlan'
     ];
@@ -235,7 +231,6 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
         'transferInstruments' => 'setTransferInstruments',
         'trust' => 'setTrust',
         'type' => 'setType',
-        'unincorporatedPartnership' => 'setUnincorporatedPartnership',
         'verificationDeadlines' => 'setVerificationDeadlines',
         'verificationPlan' => 'setVerificationPlan'
     ];
@@ -259,7 +254,6 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
         'transferInstruments' => 'getTransferInstruments',
         'trust' => 'getTrust',
         'type' => 'getType',
-        'unincorporatedPartnership' => 'getUnincorporatedPartnership',
         'verificationDeadlines' => 'getVerificationDeadlines',
         'verificationPlan' => 'getVerificationPlan'
     ];
@@ -354,7 +348,6 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('transferInstruments', $data ?? [], null);
         $this->setIfExists('trust', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('unincorporatedPartnership', $data ?? [], null);
         $this->setIfExists('verificationDeadlines', $data ?? [], null);
         $this->setIfExists('verificationPlan', $data ?? [], null);
     }
@@ -777,33 +770,6 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets unincorporatedPartnership
-     *
-     * @return \Adyen\Model\LegalEntityManagement\UnincorporatedPartnership|null
-     */
-    public function getUnincorporatedPartnership()
-    {
-        return $this->container['unincorporatedPartnership'];
-    }
-
-    /**
-     * Sets unincorporatedPartnership
-     *
-     * @param \Adyen\Model\LegalEntityManagement\UnincorporatedPartnership|null $unincorporatedPartnership unincorporatedPartnership
-     *
-     * @return self
-     */
-    public function setUnincorporatedPartnership($unincorporatedPartnership)
-    {
-        if (is_null($unincorporatedPartnership)) {
-            throw new \InvalidArgumentException('non-nullable unincorporatedPartnership cannot be null');
-        }
-        $this->container['unincorporatedPartnership'] = $unincorporatedPartnership;
-
-        return $this;
-    }
-
-    /**
      * Gets verificationDeadlines
      *
      * @return \Adyen\Model\LegalEntityManagement\VerificationDeadline[]|null
@@ -843,7 +809,7 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets verificationPlan
      *
-     * @param string|null $verificationPlan A key-value pair that specifies the [verification process](https://docs.adyen.com/marketplaces-and-platforms/collect-verification-details/) for a legal entity. Set to **upfront** for [upfront verification](https://docs.adyen.com/marketplaces-and-platforms/collect-verification-details#upfront).
+     * @param string|null $verificationPlan A key-value pair that specifies the verification process for a legal entity. Set to **upfront** for upfront verification for [marketplaces](https://docs.adyen.com/marketplaces/onboard-users#upfront).
      *
      * @return self
      */

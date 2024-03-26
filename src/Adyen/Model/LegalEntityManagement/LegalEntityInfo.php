@@ -52,7 +52,6 @@ class LegalEntityInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'soleProprietorship' => '\Adyen\Model\LegalEntityManagement\SoleProprietorship',
         'trust' => '\Adyen\Model\LegalEntityManagement\Trust',
         'type' => 'string',
-        'unincorporatedPartnership' => '\Adyen\Model\LegalEntityManagement\UnincorporatedPartnership',
         'verificationPlan' => 'string'
     ];
 
@@ -72,7 +71,6 @@ class LegalEntityInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'soleProprietorship' => null,
         'trust' => null,
         'type' => null,
-        'unincorporatedPartnership' => null,
         'verificationPlan' => null
     ];
 
@@ -90,7 +88,6 @@ class LegalEntityInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'soleProprietorship' => false,
         'trust' => false,
         'type' => false,
-        'unincorporatedPartnership' => false,
         'verificationPlan' => false
     ];
 
@@ -188,7 +185,6 @@ class LegalEntityInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'soleProprietorship' => 'soleProprietorship',
         'trust' => 'trust',
         'type' => 'type',
-        'unincorporatedPartnership' => 'unincorporatedPartnership',
         'verificationPlan' => 'verificationPlan'
     ];
 
@@ -206,7 +202,6 @@ class LegalEntityInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'soleProprietorship' => 'setSoleProprietorship',
         'trust' => 'setTrust',
         'type' => 'setType',
-        'unincorporatedPartnership' => 'setUnincorporatedPartnership',
         'verificationPlan' => 'setVerificationPlan'
     ];
 
@@ -224,7 +219,6 @@ class LegalEntityInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'soleProprietorship' => 'getSoleProprietorship',
         'trust' => 'getTrust',
         'type' => 'getType',
-        'unincorporatedPartnership' => 'getUnincorporatedPartnership',
         'verificationPlan' => 'getVerificationPlan'
     ];
 
@@ -313,7 +307,6 @@ class LegalEntityInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('soleProprietorship', $data ?? [], null);
         $this->setIfExists('trust', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('unincorporatedPartnership', $data ?? [], null);
         $this->setIfExists('verificationPlan', $data ?? [], null);
     }
 
@@ -595,33 +588,6 @@ class LegalEntityInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets unincorporatedPartnership
-     *
-     * @return \Adyen\Model\LegalEntityManagement\UnincorporatedPartnership|null
-     */
-    public function getUnincorporatedPartnership()
-    {
-        return $this->container['unincorporatedPartnership'];
-    }
-
-    /**
-     * Sets unincorporatedPartnership
-     *
-     * @param \Adyen\Model\LegalEntityManagement\UnincorporatedPartnership|null $unincorporatedPartnership unincorporatedPartnership
-     *
-     * @return self
-     */
-    public function setUnincorporatedPartnership($unincorporatedPartnership)
-    {
-        if (is_null($unincorporatedPartnership)) {
-            throw new \InvalidArgumentException('non-nullable unincorporatedPartnership cannot be null');
-        }
-        $this->container['unincorporatedPartnership'] = $unincorporatedPartnership;
-
-        return $this;
-    }
-
-    /**
      * Gets verificationPlan
      *
      * @return string|null
@@ -634,7 +600,7 @@ class LegalEntityInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets verificationPlan
      *
-     * @param string|null $verificationPlan A key-value pair that specifies the [verification process](https://docs.adyen.com/marketplaces-and-platforms/collect-verification-details/) for a legal entity. Set to **upfront** for [upfront verification](https://docs.adyen.com/marketplaces-and-platforms/collect-verification-details#upfront).
+     * @param string|null $verificationPlan A key-value pair that specifies the verification process for a legal entity. Set to **upfront** for upfront verification for [marketplaces](https://docs.adyen.com/marketplaces/onboard-users#upfront).
      *
      * @return self
      */
