@@ -44,7 +44,6 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       * @var string[]
       */
     protected static $openAPITypes = [
-        'formFactor' => 'string',
         'iban' => 'string',
         'type' => 'string'
     ];
@@ -57,7 +56,6 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'formFactor' => null,
         'iban' => null,
         'type' => null
     ];
@@ -68,7 +66,6 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'formFactor' => true,
         'iban' => false,
         'type' => false
     ];
@@ -159,7 +156,6 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $attributeMap = [
-        'formFactor' => 'formFactor',
         'iban' => 'iban',
         'type' => 'type'
     ];
@@ -170,7 +166,6 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $setters = [
-        'formFactor' => 'setFormFactor',
         'iban' => 'setIban',
         'type' => 'setType'
     ];
@@ -181,7 +176,6 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $getters = [
-        'formFactor' => 'getFormFactor',
         'iban' => 'getIban',
         'type' => 'getType'
     ];
@@ -255,7 +249,6 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('formFactor', $data ?? [], null);
         $this->setIfExists('iban', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
@@ -316,40 +309,6 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets formFactor
-     *
-     * @return string|null
-     */
-    public function getFormFactor()
-    {
-        return $this->container['formFactor'];
-    }
-
-    /**
-     * Sets formFactor
-     *
-     * @param string|null $formFactor Business accounts with a `formFactor` value of **physical** are business accounts issued under the central bank of that country. The default value is **physical** for NL, US, and UK business accounts.   Adyen creates a local IBAN for business accounts when the `formFactor`å value is set to **virtual**. The local IBANs that are supported are for DE and FR, which reference a physical NL account, with funds being routed through the central bank of NL.
-     *
-     * @return self
-     */
-    public function setFormFactor($formFactor)
-    {
-        if (is_null($formFactor)) {
-            array_push($this->openAPINullablesSetToNull, 'formFactor');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('formFactor', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['formFactor'] = $formFactor;
-
-        return $this;
-    }
 
     /**
      * Gets iban

@@ -44,6 +44,7 @@ class UpiIntentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'appId' => 'string',
         'checkoutAttemptId' => 'string',
         'recurringDetailReference' => 'string',
         'shopperNotificationReference' => 'string',
@@ -59,6 +60,7 @@ class UpiIntentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'appId' => null,
         'checkoutAttemptId' => null,
         'recurringDetailReference' => null,
         'shopperNotificationReference' => null,
@@ -72,6 +74,7 @@ class UpiIntentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'appId' => false,
         'checkoutAttemptId' => false,
         'recurringDetailReference' => false,
         'shopperNotificationReference' => false,
@@ -165,6 +168,7 @@ class UpiIntentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'appId' => 'appId',
         'checkoutAttemptId' => 'checkoutAttemptId',
         'recurringDetailReference' => 'recurringDetailReference',
         'shopperNotificationReference' => 'shopperNotificationReference',
@@ -178,6 +182,7 @@ class UpiIntentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'appId' => 'setAppId',
         'checkoutAttemptId' => 'setCheckoutAttemptId',
         'recurringDetailReference' => 'setRecurringDetailReference',
         'shopperNotificationReference' => 'setShopperNotificationReference',
@@ -191,6 +196,7 @@ class UpiIntentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'appId' => 'getAppId',
         'checkoutAttemptId' => 'getCheckoutAttemptId',
         'recurringDetailReference' => 'getRecurringDetailReference',
         'shopperNotificationReference' => 'getShopperNotificationReference',
@@ -267,6 +273,7 @@ class UpiIntentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('appId', $data ?? [], null);
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
         $this->setIfExists('shopperNotificationReference', $data ?? [], null);
@@ -327,6 +334,33 @@ class UpiIntentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets appId
+     *
+     * @return string|null
+     */
+    public function getAppId()
+    {
+        return $this->container['appId'];
+    }
+
+    /**
+     * Sets appId
+     *
+     * @param string|null $appId TPAP (Third Party Application) Id that is being used to make the UPI payment
+     *
+     * @return self
+     */
+    public function setAppId($appId)
+    {
+        if (is_null($appId)) {
+            throw new \InvalidArgumentException('non-nullable appId cannot be null');
+        }
+        $this->container['appId'] = $appId;
+
+        return $this;
+    }
 
     /**
      * Gets checkoutAttemptId

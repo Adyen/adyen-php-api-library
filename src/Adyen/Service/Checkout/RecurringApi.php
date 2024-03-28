@@ -66,4 +66,19 @@ class RecurringApi extends Service
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\ListStoredPaymentMethodsResponse::class);
     }
+
+    /**
+    * Create a token to store payment details
+    *
+    * @param \Adyen\Model\Checkout\StoredPaymentMethodRequest $storedPaymentMethodRequest
+    * @param array|null $requestOptions
+    * @return \Adyen\Model\Checkout\StoredPaymentMethodResource
+    * @throws AdyenException
+    */
+    public function storedPaymentMethods(\Adyen\Model\Checkout\StoredPaymentMethodRequest $storedPaymentMethodRequest, array $requestOptions = null): \Adyen\Model\Checkout\StoredPaymentMethodResource
+    {
+        $endpoint = $this->baseURL . "/storedPaymentMethods";
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $storedPaymentMethodRequest->jsonSerialize(), $requestOptions);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\StoredPaymentMethodResource::class);
+    }
 }

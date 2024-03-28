@@ -441,7 +441,7 @@ class StoreCreationWithMerchantCodeRequest implements ModelInterface, ArrayAcces
     /**
      * Sets externalReferenceId
      *
-     * @param string|null $externalReferenceId The unique identifier of the store, used by certain payment methods and tax authorities. Accepts up to 14 digits.  Required for CNPJ in Brazil, in the format 00.000.000/00git00-00 separated by dots, slashes, hyphens, or without separators.  Optional for Zip in Australia and SIRET in France, required except for nonprofit organizations and incorporated associations.
+     * @param string|null $externalReferenceId The unique identifier of the store, used by certain payment methods and tax authorities.  Required for CNPJ in Brazil, in the format 00.000.000/0000-00 separated by dots, slashes, hyphens, or without separators.  Optional for SIRET in France, up to 14 digits.  Optional for Zip in Australia, up to 50 digits.
      *
      * @return self
      */

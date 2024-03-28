@@ -60,7 +60,6 @@ class ThreeDS2RequestFields implements ModelInterface, ArrayAccess, \JsonSeriali
         'notificationURL' => 'string',
         'payTokenInd' => 'bool',
         'paymentAuthenticationUseCase' => 'string',
-        'platform' => 'string',
         'purchaseInstalData' => 'string',
         'recurringExpiry' => 'string',
         'recurringFrequency' => 'string',
@@ -107,7 +106,6 @@ class ThreeDS2RequestFields implements ModelInterface, ArrayAccess, \JsonSeriali
         'notificationURL' => null,
         'payTokenInd' => null,
         'paymentAuthenticationUseCase' => null,
-        'platform' => null,
         'purchaseInstalData' => null,
         'recurringExpiry' => null,
         'recurringFrequency' => null,
@@ -152,7 +150,6 @@ class ThreeDS2RequestFields implements ModelInterface, ArrayAccess, \JsonSeriali
         'notificationURL' => false,
         'payTokenInd' => false,
         'paymentAuthenticationUseCase' => false,
-        'platform' => false,
         'purchaseInstalData' => false,
         'recurringExpiry' => false,
         'recurringFrequency' => false,
@@ -277,7 +274,6 @@ class ThreeDS2RequestFields implements ModelInterface, ArrayAccess, \JsonSeriali
         'notificationURL' => 'notificationURL',
         'payTokenInd' => 'payTokenInd',
         'paymentAuthenticationUseCase' => 'paymentAuthenticationUseCase',
-        'platform' => 'platform',
         'purchaseInstalData' => 'purchaseInstalData',
         'recurringExpiry' => 'recurringExpiry',
         'recurringFrequency' => 'recurringFrequency',
@@ -322,7 +318,6 @@ class ThreeDS2RequestFields implements ModelInterface, ArrayAccess, \JsonSeriali
         'notificationURL' => 'setNotificationURL',
         'payTokenInd' => 'setPayTokenInd',
         'paymentAuthenticationUseCase' => 'setPaymentAuthenticationUseCase',
-        'platform' => 'setPlatform',
         'purchaseInstalData' => 'setPurchaseInstalData',
         'recurringExpiry' => 'setRecurringExpiry',
         'recurringFrequency' => 'setRecurringFrequency',
@@ -367,7 +362,6 @@ class ThreeDS2RequestFields implements ModelInterface, ArrayAccess, \JsonSeriali
         'notificationURL' => 'getNotificationURL',
         'payTokenInd' => 'getPayTokenInd',
         'paymentAuthenticationUseCase' => 'getPaymentAuthenticationUseCase',
-        'platform' => 'getPlatform',
         'purchaseInstalData' => 'getPurchaseInstalData',
         'recurringExpiry' => 'getRecurringExpiry',
         'recurringFrequency' => 'getRecurringFrequency',
@@ -440,9 +434,6 @@ class ThreeDS2RequestFields implements ModelInterface, ArrayAccess, \JsonSeriali
     public const CHALLENGE_INDICATOR_REQUEST_NO_CHALLENGE = 'requestNoChallenge';
     public const CHALLENGE_INDICATOR_REQUEST_CHALLENGE = 'requestChallenge';
     public const CHALLENGE_INDICATOR_REQUEST_CHALLENGE_AS_MANDATE = 'requestChallengeAsMandate';
-    public const PLATFORM_I_OS = 'iOS';
-    public const PLATFORM_ANDROID = 'android';
-    public const PLATFORM_BROWSER = 'browser';
     public const THREE_DS_REQUESTOR_CHALLENGE_IND__01 = '01';
     public const THREE_DS_REQUESTOR_CHALLENGE_IND__02 = '02';
     public const THREE_DS_REQUESTOR_CHALLENGE_IND__03 = '03';
@@ -497,19 +488,6 @@ class ThreeDS2RequestFields implements ModelInterface, ArrayAccess, \JsonSeriali
             self::CHALLENGE_INDICATOR_REQUEST_NO_CHALLENGE,
             self::CHALLENGE_INDICATOR_REQUEST_CHALLENGE,
             self::CHALLENGE_INDICATOR_REQUEST_CHALLENGE_AS_MANDATE,
-        ];
-    }
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getPlatformAllowableValues()
-    {
-        return [
-            self::PLATFORM_I_OS,
-            self::PLATFORM_ANDROID,
-            self::PLATFORM_BROWSER,
         ];
     }
     /**
@@ -589,7 +567,6 @@ class ThreeDS2RequestFields implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('notificationURL', $data ?? [], null);
         $this->setIfExists('payTokenInd', $data ?? [], null);
         $this->setIfExists('paymentAuthenticationUseCase', $data ?? [], null);
-        $this->setIfExists('platform', $data ?? [], null);
         $this->setIfExists('purchaseInstalData', $data ?? [], null);
         $this->setIfExists('recurringExpiry', $data ?? [], null);
         $this->setIfExists('recurringFrequency', $data ?? [], null);
@@ -662,15 +639,6 @@ class ThreeDS2RequestFields implements ModelInterface, ArrayAccess, \JsonSeriali
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'challengeIndicator', must be one of '%s'",
                 $this->container['challengeIndicator'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        $allowedValues = $this->getPlatformAllowableValues();
-        if (!is_null($this->container['platform']) && !in_array($this->container['platform'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'platform', must be one of '%s'",
-                $this->container['platform'],
                 implode("', '", $allowedValues)
             );
         }
@@ -1179,43 +1147,6 @@ class ThreeDS2RequestFields implements ModelInterface, ArrayAccess, \JsonSeriali
             throw new \InvalidArgumentException('non-nullable paymentAuthenticationUseCase cannot be null');
         }
         $this->container['paymentAuthenticationUseCase'] = $paymentAuthenticationUseCase;
-
-        return $this;
-    }
-
-    /**
-     * Gets platform
-     *
-     * @return string|null
-     */
-    public function getPlatform()
-    {
-        return $this->container['platform'];
-    }
-
-    /**
-     * Sets platform
-     *
-     * @param string|null $platform The platform of the shopper. Allowed values: * `iOS` * `android` * `browser`
-     *
-     * @return self
-     */
-    public function setPlatform($platform)
-    {
-        if (is_null($platform)) {
-            throw new \InvalidArgumentException('non-nullable platform cannot be null');
-        }
-        $allowedValues = $this->getPlatformAllowableValues();
-        if (!in_array($platform, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'platform', must be one of '%s'",
-                    $platform,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['platform'] = $platform;
 
         return $this;
     }

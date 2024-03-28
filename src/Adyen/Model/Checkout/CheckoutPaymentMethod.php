@@ -95,8 +95,8 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'samsungPayToken' => 'string',
         'iban' => 'string',
         'billingSequenceNumber' => 'string',
-        'visaCheckoutCallId' => 'string',
         'appId' => 'string',
+        'visaCheckoutCallId' => 'string',
         'openid' => 'string',
         'clickAndCollect' => 'string'
     ];
@@ -159,8 +159,8 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'samsungPayToken' => null,
         'iban' => null,
         'billingSequenceNumber' => null,
-        'visaCheckoutCallId' => null,
         'appId' => null,
+        'visaCheckoutCallId' => null,
         'openid' => null,
         'clickAndCollect' => null
     ];
@@ -221,8 +221,8 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'samsungPayToken' => false,
         'iban' => false,
         'billingSequenceNumber' => false,
-        'visaCheckoutCallId' => false,
         'appId' => false,
+        'visaCheckoutCallId' => false,
         'openid' => false,
         'clickAndCollect' => false
     ];
@@ -363,8 +363,8 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'samsungPayToken' => 'samsungPayToken',
         'iban' => 'iban',
         'billingSequenceNumber' => 'billingSequenceNumber',
-        'visaCheckoutCallId' => 'visaCheckoutCallId',
         'appId' => 'appId',
+        'visaCheckoutCallId' => 'visaCheckoutCallId',
         'openid' => 'openid',
         'clickAndCollect' => 'clickAndCollect'
     ];
@@ -425,8 +425,8 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'samsungPayToken' => 'setSamsungPayToken',
         'iban' => 'setIban',
         'billingSequenceNumber' => 'setBillingSequenceNumber',
-        'visaCheckoutCallId' => 'setVisaCheckoutCallId',
         'appId' => 'setAppId',
+        'visaCheckoutCallId' => 'setVisaCheckoutCallId',
         'openid' => 'setOpenid',
         'clickAndCollect' => 'setClickAndCollect'
     ];
@@ -487,8 +487,8 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'samsungPayToken' => 'getSamsungPayToken',
         'iban' => 'getIban',
         'billingSequenceNumber' => 'getBillingSequenceNumber',
-        'visaCheckoutCallId' => 'getVisaCheckoutCallId',
         'appId' => 'getAppId',
+        'visaCheckoutCallId' => 'getVisaCheckoutCallId',
         'openid' => 'getOpenid',
         'clickAndCollect' => 'getClickAndCollect'
     ];
@@ -599,8 +599,8 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('samsungPayToken', $data ?? [], null);
         $this->setIfExists('iban', $data ?? [], null);
         $this->setIfExists('billingSequenceNumber', $data ?? [], null);
-        $this->setIfExists('visaCheckoutCallId', $data ?? [], null);
         $this->setIfExists('appId', $data ?? [], null);
+        $this->setIfExists('visaCheckoutCallId', $data ?? [], null);
         $this->setIfExists('openid', $data ?? [], null);
         $this->setIfExists('clickAndCollect', $data ?? [], null);
     }
@@ -2048,33 +2048,6 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Gets visaCheckoutCallId
-     *
-     * @return string
-     */
-    public function getVisaCheckoutCallId()
-    {
-        return $this->container['visaCheckoutCallId'];
-    }
-
-    /**
-     * Sets visaCheckoutCallId
-     *
-     * @param string $visaCheckoutCallId The Visa Click to Pay Call ID value. When your shopper selects a payment and/or a shipping address from Visa Click to Pay, you will receive a Visa Click to Pay Call ID.
-     *
-     * @return self
-     */
-    public function setVisaCheckoutCallId($visaCheckoutCallId)
-    {
-        if (is_null($visaCheckoutCallId)) {
-            throw new \InvalidArgumentException('non-nullable visaCheckoutCallId cannot be null');
-        }
-        $this->container['visaCheckoutCallId'] = $visaCheckoutCallId;
-
-        return $this;
-    }
-
-    /**
      * Gets appId
      *
      * @return string|null
@@ -2097,6 +2070,33 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
             throw new \InvalidArgumentException('non-nullable appId cannot be null');
         }
         $this->container['appId'] = $appId;
+
+        return $this;
+    }
+
+    /**
+     * Gets visaCheckoutCallId
+     *
+     * @return string
+     */
+    public function getVisaCheckoutCallId()
+    {
+        return $this->container['visaCheckoutCallId'];
+    }
+
+    /**
+     * Sets visaCheckoutCallId
+     *
+     * @param string $visaCheckoutCallId The Visa Click to Pay Call ID value. When your shopper selects a payment and/or a shipping address from Visa Click to Pay, you will receive a Visa Click to Pay Call ID.
+     *
+     * @return self
+     */
+    public function setVisaCheckoutCallId($visaCheckoutCallId)
+    {
+        if (is_null($visaCheckoutCallId)) {
+            throw new \InvalidArgumentException('non-nullable visaCheckoutCallId cannot be null');
+        }
+        $this->container['visaCheckoutCallId'] = $visaCheckoutCallId;
 
         return $this;
     }

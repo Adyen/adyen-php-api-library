@@ -51,6 +51,7 @@ class Terminal implements ModelInterface, ArrayAccess, \JsonSerializable
         'lastActivityAt' => '\DateTime',
         'lastTransactionAt' => '\DateTime',
         'model' => 'string',
+        'restartLocalTime' => 'string',
         'serialNumber' => 'string'
     ];
 
@@ -69,6 +70,7 @@ class Terminal implements ModelInterface, ArrayAccess, \JsonSerializable
         'lastActivityAt' => 'date-time',
         'lastTransactionAt' => 'date-time',
         'model' => null,
+        'restartLocalTime' => null,
         'serialNumber' => null
     ];
 
@@ -85,6 +87,7 @@ class Terminal implements ModelInterface, ArrayAccess, \JsonSerializable
         'lastActivityAt' => false,
         'lastTransactionAt' => false,
         'model' => false,
+        'restartLocalTime' => false,
         'serialNumber' => false
     ];
 
@@ -181,6 +184,7 @@ class Terminal implements ModelInterface, ArrayAccess, \JsonSerializable
         'lastActivityAt' => 'lastActivityAt',
         'lastTransactionAt' => 'lastTransactionAt',
         'model' => 'model',
+        'restartLocalTime' => 'restartLocalTime',
         'serialNumber' => 'serialNumber'
     ];
 
@@ -197,6 +201,7 @@ class Terminal implements ModelInterface, ArrayAccess, \JsonSerializable
         'lastActivityAt' => 'setLastActivityAt',
         'lastTransactionAt' => 'setLastTransactionAt',
         'model' => 'setModel',
+        'restartLocalTime' => 'setRestartLocalTime',
         'serialNumber' => 'setSerialNumber'
     ];
 
@@ -213,6 +218,7 @@ class Terminal implements ModelInterface, ArrayAccess, \JsonSerializable
         'lastActivityAt' => 'getLastActivityAt',
         'lastTransactionAt' => 'getLastTransactionAt',
         'model' => 'getModel',
+        'restartLocalTime' => 'getRestartLocalTime',
         'serialNumber' => 'getSerialNumber'
     ];
 
@@ -280,6 +286,7 @@ class Terminal implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('lastActivityAt', $data ?? [], null);
         $this->setIfExists('lastTransactionAt', $data ?? [], null);
         $this->setIfExists('model', $data ?? [], null);
+        $this->setIfExists('restartLocalTime', $data ?? [], null);
         $this->setIfExists('serialNumber', $data ?? [], null);
     }
 
@@ -510,6 +517,33 @@ class Terminal implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable model cannot be null');
         }
         $this->container['model'] = $model;
+
+        return $this;
+    }
+
+    /**
+     * Gets restartLocalTime
+     *
+     * @return string|null
+     */
+    public function getRestartLocalTime()
+    {
+        return $this->container['restartLocalTime'];
+    }
+
+    /**
+     * Sets restartLocalTime
+     *
+     * @param string|null $restartLocalTime The exact time of the terminal reboot, in the timezone of the terminal in **HH:mm** format.
+     *
+     * @return self
+     */
+    public function setRestartLocalTime($restartLocalTime)
+    {
+        if (is_null($restartLocalTime)) {
+            throw new \InvalidArgumentException('non-nullable restartLocalTime cannot be null');
+        }
+        $this->container['restartLocalTime'] = $restartLocalTime;
 
         return $this;
     }

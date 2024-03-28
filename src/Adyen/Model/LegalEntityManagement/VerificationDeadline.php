@@ -455,7 +455,7 @@ class VerificationDeadline implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets entityIds
      *
-     * @param string[]|null $entityIds The unique identifiers of the bank account(s) that the deadline applies to
+     * @param string[]|null $entityIds The unique identifiers of the legal entity or supporting entities that the deadline applies to
      *
      * @return self
      */

@@ -68,4 +68,19 @@ class UtilityApi extends Service
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $utilityRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\UtilityResponse::class);
     }
+
+    /**
+    * Updates the order for PayPal Express Checkout
+    *
+    * @param \Adyen\Model\Checkout\PaypalUpdateOrderRequest $paypalUpdateOrderRequest
+    * @param array|null $requestOptions
+    * @return \Adyen\Model\Checkout\PaypalUpdateOrderResponse
+    * @throws AdyenException
+    */
+    public function updatesOrderForPaypalExpressCheckout(\Adyen\Model\Checkout\PaypalUpdateOrderRequest $paypalUpdateOrderRequest, array $requestOptions = null): \Adyen\Model\Checkout\PaypalUpdateOrderResponse
+    {
+        $endpoint = $this->baseURL . "/paypal/updateOrder";
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $paypalUpdateOrderRequest->jsonSerialize(), $requestOptions);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\PaypalUpdateOrderResponse::class);
+    }
 }

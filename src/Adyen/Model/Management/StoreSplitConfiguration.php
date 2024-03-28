@@ -323,7 +323,7 @@ class StoreSplitConfiguration implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets splitConfigurationId
      *
-     * @param string|null $splitConfigurationId The unique identifier of the [split configuration profile](https://docs.adyen.com/marketplaces-and-platforms/automatic-split-configuration/create-split-configuration/).
+     * @param string|null $splitConfigurationId The unique identifier of the [split configuration profile](https://docs.adyen.com/platforms/automatic-split-configuration/create-split-configuration/).
      *
      * @return self
      */

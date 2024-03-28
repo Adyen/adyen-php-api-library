@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
- * PaymentCaptureResponse Class Doc Comment
+ * PaypalUpdateOrderRequest Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class PaymentCaptureResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class PaypalUpdateOrderRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class PaymentCaptureResponse implements ModelInterface, ArrayAccess, \JsonSerial
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PaymentCaptureResponse';
+    protected static $openAPIModelName = 'PaypalUpdateOrderRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -45,15 +45,10 @@ class PaymentCaptureResponse implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPITypes = [
         'amount' => '\Adyen\Model\Checkout\Amount',
-        'lineItems' => '\Adyen\Model\Checkout\LineItem[]',
-        'merchantAccount' => 'string',
-        'paymentPspReference' => 'string',
-        'platformChargebackLogic' => '\Adyen\Model\Checkout\PlatformChargebackLogic',
+        'deliveryMethods' => '\Adyen\Model\Checkout\DeliveryMethod[]',
+        'paymentData' => 'string',
         'pspReference' => 'string',
-        'reference' => 'string',
-        'splits' => '\Adyen\Model\Checkout\Split[]',
-        'status' => 'string',
-        'subMerchants' => '\Adyen\Model\Checkout\SubMerchantInfo[]'
+        'sessionId' => 'string'
     ];
 
     /**
@@ -65,15 +60,10 @@ class PaymentCaptureResponse implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPIFormats = [
         'amount' => null,
-        'lineItems' => null,
-        'merchantAccount' => null,
-        'paymentPspReference' => null,
-        'platformChargebackLogic' => null,
+        'deliveryMethods' => null,
+        'paymentData' => null,
         'pspReference' => null,
-        'reference' => null,
-        'splits' => null,
-        'status' => null,
-        'subMerchants' => null
+        'sessionId' => null
     ];
 
     /**
@@ -83,15 +73,10 @@ class PaymentCaptureResponse implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPINullables = [
         'amount' => false,
-        'lineItems' => false,
-        'merchantAccount' => false,
-        'paymentPspReference' => false,
-        'platformChargebackLogic' => false,
+        'deliveryMethods' => false,
+        'paymentData' => false,
         'pspReference' => false,
-        'reference' => false,
-        'splits' => false,
-        'status' => false,
-        'subMerchants' => false
+        'sessionId' => false
     ];
 
     /**
@@ -181,15 +166,10 @@ class PaymentCaptureResponse implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static $attributeMap = [
         'amount' => 'amount',
-        'lineItems' => 'lineItems',
-        'merchantAccount' => 'merchantAccount',
-        'paymentPspReference' => 'paymentPspReference',
-        'platformChargebackLogic' => 'platformChargebackLogic',
+        'deliveryMethods' => 'deliveryMethods',
+        'paymentData' => 'paymentData',
         'pspReference' => 'pspReference',
-        'reference' => 'reference',
-        'splits' => 'splits',
-        'status' => 'status',
-        'subMerchants' => 'subMerchants'
+        'sessionId' => 'sessionId'
     ];
 
     /**
@@ -199,15 +179,10 @@ class PaymentCaptureResponse implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static $setters = [
         'amount' => 'setAmount',
-        'lineItems' => 'setLineItems',
-        'merchantAccount' => 'setMerchantAccount',
-        'paymentPspReference' => 'setPaymentPspReference',
-        'platformChargebackLogic' => 'setPlatformChargebackLogic',
+        'deliveryMethods' => 'setDeliveryMethods',
+        'paymentData' => 'setPaymentData',
         'pspReference' => 'setPspReference',
-        'reference' => 'setReference',
-        'splits' => 'setSplits',
-        'status' => 'setStatus',
-        'subMerchants' => 'setSubMerchants'
+        'sessionId' => 'setSessionId'
     ];
 
     /**
@@ -217,15 +192,10 @@ class PaymentCaptureResponse implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static $getters = [
         'amount' => 'getAmount',
-        'lineItems' => 'getLineItems',
-        'merchantAccount' => 'getMerchantAccount',
-        'paymentPspReference' => 'getPaymentPspReference',
-        'platformChargebackLogic' => 'getPlatformChargebackLogic',
+        'deliveryMethods' => 'getDeliveryMethods',
+        'paymentData' => 'getPaymentData',
         'pspReference' => 'getPspReference',
-        'reference' => 'getReference',
-        'splits' => 'getSplits',
-        'status' => 'getStatus',
-        'subMerchants' => 'getSubMerchants'
+        'sessionId' => 'getSessionId'
     ];
 
     /**
@@ -269,19 +239,7 @@ class PaymentCaptureResponse implements ModelInterface, ArrayAccess, \JsonSerial
         return self::$openAPIModelName;
     }
 
-    public const STATUS_RECEIVED = 'received';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS_RECEIVED,
-        ];
-    }
     /**
      * Associative array for storing property values
      *
@@ -298,15 +256,10 @@ class PaymentCaptureResponse implements ModelInterface, ArrayAccess, \JsonSerial
     public function __construct(array $data = null)
     {
         $this->setIfExists('amount', $data ?? [], null);
-        $this->setIfExists('lineItems', $data ?? [], null);
-        $this->setIfExists('merchantAccount', $data ?? [], null);
-        $this->setIfExists('paymentPspReference', $data ?? [], null);
-        $this->setIfExists('platformChargebackLogic', $data ?? [], null);
+        $this->setIfExists('deliveryMethods', $data ?? [], null);
+        $this->setIfExists('paymentData', $data ?? [], null);
         $this->setIfExists('pspReference', $data ?? [], null);
-        $this->setIfExists('reference', $data ?? [], null);
-        $this->setIfExists('splits', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
-        $this->setIfExists('subMerchants', $data ?? [], null);
+        $this->setIfExists('sessionId', $data ?? [], null);
     }
 
     /**
@@ -336,30 +289,6 @@ class PaymentCaptureResponse implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $invalidProperties = [];
 
-        if ($this->container['amount'] === null) {
-            $invalidProperties[] = "'amount' can't be null";
-        }
-        if ($this->container['merchantAccount'] === null) {
-            $invalidProperties[] = "'merchantAccount' can't be null";
-        }
-        if ($this->container['paymentPspReference'] === null) {
-            $invalidProperties[] = "'paymentPspReference' can't be null";
-        }
-        if ($this->container['pspReference'] === null) {
-            $invalidProperties[] = "'pspReference' can't be null";
-        }
-        if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
-        }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -378,7 +307,7 @@ class PaymentCaptureResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets amount
      *
-     * @return \Adyen\Model\Checkout\Amount
+     * @return \Adyen\Model\Checkout\Amount|null
      */
     public function getAmount()
     {
@@ -388,7 +317,7 @@ class PaymentCaptureResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets amount
      *
-     * @param \Adyen\Model\Checkout\Amount $amount amount
+     * @param \Adyen\Model\Checkout\Amount|null $amount amount
      *
      * @return self
      */
@@ -403,109 +332,55 @@ class PaymentCaptureResponse implements ModelInterface, ArrayAccess, \JsonSerial
     }
 
     /**
-     * Gets lineItems
+     * Gets deliveryMethods
      *
-     * @return \Adyen\Model\Checkout\LineItem[]|null
+     * @return \Adyen\Model\Checkout\DeliveryMethod[]|null
      */
-    public function getLineItems()
+    public function getDeliveryMethods()
     {
-        return $this->container['lineItems'];
+        return $this->container['deliveryMethods'];
     }
 
     /**
-     * Sets lineItems
+     * Sets deliveryMethods
      *
-     * @param \Adyen\Model\Checkout\LineItem[]|null $lineItems Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). > This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip.
+     * @param \Adyen\Model\Checkout\DeliveryMethod[]|null $deliveryMethods The list of new delivery methods and the cost of each.
      *
      * @return self
      */
-    public function setLineItems($lineItems)
+    public function setDeliveryMethods($deliveryMethods)
     {
-        if (is_null($lineItems)) {
-            throw new \InvalidArgumentException('non-nullable lineItems cannot be null');
+        if (is_null($deliveryMethods)) {
+            throw new \InvalidArgumentException('non-nullable deliveryMethods cannot be null');
         }
-        $this->container['lineItems'] = $lineItems;
+        $this->container['deliveryMethods'] = $deliveryMethods;
 
         return $this;
     }
 
     /**
-     * Gets merchantAccount
+     * Gets paymentData
      *
-     * @return string
+     * @return string|null
      */
-    public function getMerchantAccount()
+    public function getPaymentData()
     {
-        return $this->container['merchantAccount'];
+        return $this->container['paymentData'];
     }
 
     /**
-     * Sets merchantAccount
+     * Sets paymentData
      *
-     * @param string $merchantAccount The merchant account that is used to process the payment.
+     * @param string|null $paymentData The `paymentData` from the client side. This value changes every time you make a `/paypal/updateOrder` request.
      *
      * @return self
      */
-    public function setMerchantAccount($merchantAccount)
+    public function setPaymentData($paymentData)
     {
-        if (is_null($merchantAccount)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
+        if (is_null($paymentData)) {
+            throw new \InvalidArgumentException('non-nullable paymentData cannot be null');
         }
-        $this->container['merchantAccount'] = $merchantAccount;
-
-        return $this;
-    }
-
-    /**
-     * Gets paymentPspReference
-     *
-     * @return string
-     */
-    public function getPaymentPspReference()
-    {
-        return $this->container['paymentPspReference'];
-    }
-
-    /**
-     * Sets paymentPspReference
-     *
-     * @param string $paymentPspReference The [`pspReference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment to capture.
-     *
-     * @return self
-     */
-    public function setPaymentPspReference($paymentPspReference)
-    {
-        if (is_null($paymentPspReference)) {
-            throw new \InvalidArgumentException('non-nullable paymentPspReference cannot be null');
-        }
-        $this->container['paymentPspReference'] = $paymentPspReference;
-
-        return $this;
-    }
-
-    /**
-     * Gets platformChargebackLogic
-     *
-     * @return \Adyen\Model\Checkout\PlatformChargebackLogic|null
-     */
-    public function getPlatformChargebackLogic()
-    {
-        return $this->container['platformChargebackLogic'];
-    }
-
-    /**
-     * Sets platformChargebackLogic
-     *
-     * @param \Adyen\Model\Checkout\PlatformChargebackLogic|null $platformChargebackLogic platformChargebackLogic
-     *
-     * @return self
-     */
-    public function setPlatformChargebackLogic($platformChargebackLogic)
-    {
-        if (is_null($platformChargebackLogic)) {
-            throw new \InvalidArgumentException('non-nullable platformChargebackLogic cannot be null');
-        }
-        $this->container['platformChargebackLogic'] = $platformChargebackLogic;
+        $this->container['paymentData'] = $paymentData;
 
         return $this;
     }
@@ -513,7 +388,7 @@ class PaymentCaptureResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets pspReference
      *
-     * @return string
+     * @return string|null
      */
     public function getPspReference()
     {
@@ -523,7 +398,7 @@ class PaymentCaptureResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets pspReference
      *
-     * @param string $pspReference Adyen's 16-character reference associated with the capture request.
+     * @param string|null $pspReference The original `pspReference` from the `/payments` response.
      *
      * @return self
      */
@@ -538,119 +413,28 @@ class PaymentCaptureResponse implements ModelInterface, ArrayAccess, \JsonSerial
     }
 
     /**
-     * Gets reference
+     * Gets sessionId
      *
      * @return string|null
      */
-    public function getReference()
+    public function getSessionId()
     {
-        return $this->container['reference'];
+        return $this->container['sessionId'];
     }
 
     /**
-     * Sets reference
+     * Sets sessionId
      *
-     * @param string|null $reference Your reference for the capture request.
+     * @param string|null $sessionId The original `sessionId` from the `/sessions` response.
      *
      * @return self
      */
-    public function setReference($reference)
+    public function setSessionId($sessionId)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
+        if (is_null($sessionId)) {
+            throw new \InvalidArgumentException('non-nullable sessionId cannot be null');
         }
-        $this->container['reference'] = $reference;
-
-        return $this;
-    }
-
-    /**
-     * Gets splits
-     *
-     * @return \Adyen\Model\Checkout\Split[]|null
-     */
-    public function getSplits()
-    {
-        return $this->container['splits'];
-    }
-
-    /**
-     * Sets splits
-     *
-     * @param \Adyen\Model\Checkout\Split[]|null $splits An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to process payments for [marketplaces](https://docs.adyen.com/marketplaces/split-payments) or [platforms](https://docs.adyen.com/platforms/online-payments/split-payments/).
-     *
-     * @return self
-     */
-    public function setSplits($splits)
-    {
-        if (is_null($splits)) {
-            throw new \InvalidArgumentException('non-nullable splits cannot be null');
-        }
-        $this->container['splits'] = $splits;
-
-        return $this;
-    }
-
-    /**
-     * Gets status
-     *
-     * @return string
-     */
-    public function getStatus()
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string $status The status of your request. This will always have the value **received**.
-     *
-     * @return self
-     */
-    public function setStatus($status)
-    {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Gets subMerchants
-     *
-     * @return \Adyen\Model\Checkout\SubMerchantInfo[]|null
-     */
-    public function getSubMerchants()
-    {
-        return $this->container['subMerchants'];
-    }
-
-    /**
-     * Sets subMerchants
-     *
-     * @param \Adyen\Model\Checkout\SubMerchantInfo[]|null $subMerchants List of sub-merchants.
-     *
-     * @return self
-     */
-    public function setSubMerchants($subMerchants)
-    {
-        if (is_null($subMerchants)) {
-            throw new \InvalidArgumentException('non-nullable subMerchants cannot be null');
-        }
-        $this->container['subMerchants'] = $subMerchants;
+        $this->container['sessionId'] = $sessionId;
 
         return $this;
     }
