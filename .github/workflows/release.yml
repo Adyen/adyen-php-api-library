@@ -34,7 +34,7 @@ jobs:
           token: ${{ secrets.ADYEN_AUTOMATION_BOT_ACCESS_TOKEN }}
           develop-branch: main
           version-files: src/Adyen/Client.php README.md
-          release-title: Adyen Ruby API Library
+          release-title: Adyen PHP API Library
           pre-release: ${{ inputs.pre-release || false }}
           github-release: ${{ inputs.github-release || false }}
           separator: .pre.beta
