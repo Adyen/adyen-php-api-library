@@ -99,4 +99,19 @@ class AndroidFilesCompanyLevelApi extends Service
         $response = $this->requestHttp($endpoint, strtolower('POST'), null, $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Management\UploadAndroidAppResponse::class);
     }
+
+    /**
+    * Upload Android Certificate
+    *
+    * @param string $companyId
+    * @param array|null $requestOptions
+    * @return \Adyen\Model\Management\UploadAndroidCertificateResponse
+    * @throws AdyenException
+    */
+    public function uploadAndroidCertificate(string $companyId, array $requestOptions = null): \Adyen\Model\Management\UploadAndroidCertificateResponse
+    {
+        $endpoint = $this->baseURL . str_replace(['{companyId}'], [$companyId], "/companies/{companyId}/androidCertificates");
+        $response = $this->requestHttp($endpoint, strtolower('POST'), null, $requestOptions);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\Management\UploadAndroidCertificateResponse::class);
+    }
 }
