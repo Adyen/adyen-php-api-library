@@ -1,4 +1,4 @@
-name: Automatic Github release
+name: Automatic GitHub release
 
 on:
   workflow_dispatch:

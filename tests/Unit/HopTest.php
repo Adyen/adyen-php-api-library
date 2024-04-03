@@ -110,7 +110,7 @@ class HopTest extends TestCaseMock
         $service = new Hop($client);
 
         $params = [
-            'acountHolderCode' => "YourAccountHolderCode",
+            'accountHolderCode' => "YourAccountHolderCode",
         ];
 
         $service->getPciQuestionnaireUrl($params);

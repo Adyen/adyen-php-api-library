@@ -595,7 +595,7 @@ class FundRecipient implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets walletOwnerTaxId
      *
-     * @param string|null $walletOwnerTaxId indicates the tax identifier of the fund recepient
+     * @param string|null $walletOwnerTaxId indicates the tax identifier of the fund recipient
      *
      * @return self
      */

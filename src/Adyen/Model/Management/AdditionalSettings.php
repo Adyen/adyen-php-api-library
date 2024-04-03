@@ -296,7 +296,7 @@ class AdditionalSettings implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets includeEventCodes
      *
-     * @param string[]|null $includeEventCodes Object containing list of event codes for which the notifcation will be sent.
+     * @param string[]|null $includeEventCodes Object containing list of event codes for which the notification will be sent.
      *
      * @return self
      */

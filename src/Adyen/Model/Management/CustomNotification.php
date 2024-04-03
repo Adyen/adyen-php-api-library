@@ -466,7 +466,7 @@ class CustomNotification implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets reason
      *
-     * @param string|null $reason A descripton of what caused the notification.
+     * @param string|null $reason A description of what caused the notification.
      *
      * @return self
      */

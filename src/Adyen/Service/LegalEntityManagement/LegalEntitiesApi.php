@@ -108,7 +108,7 @@ class LegalEntitiesApi extends Service
     * @return \Adyen\Model\LegalEntityManagement\VerificationErrors
     * @throws AdyenException
     */
-    public function checkLegalEntitysVerificationErrors(string $id, array $requestOptions = null): \Adyen\Model\LegalEntityManagement\VerificationErrors
+    public function checkLegalEntitiesVerificationErrors(string $id, array $requestOptions = null): \Adyen\Model\LegalEntityManagement\VerificationErrors
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/legalEntities/{id}/checkVerificationErrors");
         $response = $this->requestHttp($endpoint, strtolower('POST'), null, $requestOptions);
