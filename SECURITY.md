@@ -12,7 +12,7 @@
 
 We welcome reports of possible vulnerabilities or issues as part of our responsible disclosure program. At this point in time we do not run a bug bounty program.
 
-To report a security issue, [contact Support](https://support.adyen.com/hc/en-us/requests/new).
+To report a security issue go to [this page](https://www.adyen.com/policies-and-disclaimer/responsible-disclosure).
 
 If the nature of the security issue is sensitive, please provide the following:
 
