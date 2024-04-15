@@ -15,6 +15,7 @@ use Adyen\Model\Checkout\PaymentRequest;
 use Adyen\Model\Checkout\PaymentSetupRequest;
 use Adyen\Model\Checkout\PaymentVerificationRequest;
 use Adyen\Service\Checkout\ClassicCheckoutSDKApi;
+use Adyen\Service\Checkout\DonationsApi;
 use Adyen\Service\Checkout\PaymentLinksApi;
 use Adyen\Service\Checkout\PaymentsApi;
 use Adyen\Service\Checkout\RecurringApi;
@@ -46,6 +47,30 @@ class ModelBasedCheckoutTest extends TestCaseMock
         return array(
             array('tests/Resources/ModelBasedCheckout/payment-methods-success.json', 200)
         );
+    }
+
+    /**
+     * @dataProvider successPaymentMethodsProvider
+     */
+    public function testToArrayMethod($jsonFile, $httpStatus)
+    {
+        // create Checkout client
+        $client = $this->createMockClient($jsonFile, $httpStatus);
+        $service = new \Adyen\Service\Checkout\PaymentsApi($client);
+        $result = $service->paymentMethods(new PaymentMethodsRequest(null));
+
+        // first function calling to Array
+        $func1 = function () use ($result) {
+            return $result->toArray();
+        };
+        // second function calling to json encode + decode
+        $func2 = function () use ($result) {
+            return json_decode(json_encode($result->jsonSerialize()), true);
+        };
+        // Assert our to array function is faster
+        $this->assertTrue($this->calculateRunTime($func1) < $this->calculateRunTime($func2));
+        // And assert that the result is equal to a deep json encode/decode
+        $this->assertEquals($result->toArray(), json_decode(json_encode($result->jsonSerialize()), true));
     }
 
     /**
@@ -217,7 +242,7 @@ class ModelBasedCheckoutTest extends TestCaseMock
     {
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
-        $service = new PaymentsApi($client);
+        $service = new DonationsApi($client);
 
         $result = $service->donations(new DonationPaymentRequest());
         $this->assertStringContainsString($result->getReference(), 'YOUR_DONATION_REFERENCE');

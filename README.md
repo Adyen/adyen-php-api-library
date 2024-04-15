@@ -4,7 +4,7 @@
 
 This is the officially supported PHP library for using Adyen's APIs.
 
-[![version](https://img.shields.io/badge/version-16.0.0-blue.svg)](https://docs.adyen.com/development-resources/libraries)
+[![version](https://img.shields.io/badge/version-17.4.0-blue.svg)](https://packagist.org/packages/adyen/php-api-library)
 
 ## Supported API versions
 The library supports all APIs under the following services:
@@ -55,7 +55,7 @@ For more information, refer to our [documentation](https://docs.adyen.com/) or t
 - PHP 7.3 or later
 - cURL with SSL support.
 - The PHP extensions: ctype, curl, json, mbstring and openssl.
-- See [composer require list](https://github.com/Adyen/adyen-php-api-library/blob/develop/composer.json#L10) for the complete list of dependencies.
+- See [composer require list](https://github.com/Adyen/adyen-php-api-library/blob/main/composer.json#L10) for the complete list of dependencies.
 
 ### Legacy version support
 
@@ -202,7 +202,7 @@ We value your input! Help us enhance our API Libraries and improve the integrati
 ## Contributing
 
 We encourage you to contribute to this repository, so everyone can benefit from new features, bug fixes, and any other improvements.
-Have a look at our [contributing guidelines](https://github.com/Adyen/adyen-php-api-library/blob/develop/CONTRIBUTING.md) to find out how to raise a pull request.
+Have a look at our [contributing guidelines](https://github.com/Adyen/adyen-php-api-library/blob/main/CONTRIBUTING.md) to find out how to raise a pull request.
 
 ## Support
 If you have a feature request, or spotted a bug or a technical problem, [create an issue here](https://github.com/Adyen/adyen-php-api-library/issues/new/choose).

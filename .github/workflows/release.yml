@@ -1,4 +1,4 @@
-name: Prepare release
+name: Release
 
 on:
   workflow_dispatch:
@@ -8,6 +8,12 @@ on:
         type: boolean
         default: false
         description: "This release will be labeled as non-production ready"
+      github-release:
+        required: false
+        type: boolean
+        default: false
+        description: "Publish Github release for the current version"
+  # Monitor pull request events
   pull_request:
     types:
       - closed
@@ -15,8 +21,7 @@ on:
       - main
 
 jobs:
-  candidate:
-    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.merged && !startsWith(github.head_ref, 'promote/'))
+  release:
     permissions:
       contents: write
       pull-requests: write
@@ -24,9 +29,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Prepare the next main release
-        uses: Adyen/release-automation-action@v1.1.1
+        uses: Adyen/release-automation-action@v1.3.1
         with:
           token: ${{ secrets.ADYEN_AUTOMATION_BOT_ACCESS_TOKEN }}
           develop-branch: main
           version-files: src/Adyen/Client.php README.md
+          release-title: Adyen PHP API Library
           pre-release: ${{ inputs.pre-release || false }}
+          github-release: ${{ inputs.github-release || false }}
+          separator: .pre.beta

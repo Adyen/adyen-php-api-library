@@ -3,7 +3,7 @@
 ## How to contribute step-by-step
 
 1. Fork the `Adyen/adyen-php-api-library` repository.
-2. Create a new branch from `develop` in your fork. This makes it easier for you to keep track of your changes.
+2. Create a new branch from `main` in your fork. This makes it easier for you to keep track of your changes.
 3. Make the desired changes to the code.
     * If you are adding new functionality or fixing a bug, we recommend you add unit tests that cover it.
 4. Push the changes to your fork.
