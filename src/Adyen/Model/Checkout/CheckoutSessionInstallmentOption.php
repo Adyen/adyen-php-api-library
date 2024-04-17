@@ -227,8 +227,15 @@ class CheckoutSessionInstallmentOption implements ModelInterface, ArrayAccess, \
         return self::$openAPIModelName;
     }
 
+    public const PLANS_BUYNOW_PAYLATER = 'buynow_paylater';
+    public const PLANS_INTERES_REFUND_PRCTG = 'interes_refund_prctg';
+    public const PLANS_INTEREST_BONUS = 'interest_bonus';
+    public const PLANS_NOINTERES_REFUND_PRCTG = 'nointeres_refund_prctg';
+    public const PLANS_NOINTEREST_BONUS = 'nointerest_bonus';
+    public const PLANS_REFUND_PRCTG = 'refund_prctg';
     public const PLANS_REGULAR = 'regular';
     public const PLANS_REVOLVING = 'revolving';
+    public const PLANS_WITH_INTEREST = 'with_interest';
 
     /**
      * Gets allowable values of the enum
@@ -238,8 +245,15 @@ class CheckoutSessionInstallmentOption implements ModelInterface, ArrayAccess, \
     public function getPlansAllowableValues()
     {
         return [
+            self::PLANS_BUYNOW_PAYLATER,
+            self::PLANS_INTERES_REFUND_PRCTG,
+            self::PLANS_INTEREST_BONUS,
+            self::PLANS_NOINTERES_REFUND_PRCTG,
+            self::PLANS_NOINTEREST_BONUS,
+            self::PLANS_REFUND_PRCTG,
             self::PLANS_REGULAR,
             self::PLANS_REVOLVING,
+            self::PLANS_WITH_INTEREST,
         ];
     }
     /**

@@ -324,7 +324,7 @@ class TerminalOrderRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets billingEntityId
      *
-     * @param string|null $billingEntityId The identification of the billing entity to use for the order.
+     * @param string|null $billingEntityId The identification of the billing entity to use for the order.    > When ordering products in Brazil, you do not need to include the `billingEntityId` in the request.
      *
      * @return self
      */

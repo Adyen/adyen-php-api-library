@@ -45,8 +45,6 @@ class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPITypes = [
         'accountNumber' => 'string',
-        'bankName' => 'string',
-        'bic' => 'string',
         'clearingCode' => 'string',
         'type' => 'string'
     ];
@@ -60,8 +58,6 @@ class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPIFormats = [
         'accountNumber' => null,
-        'bankName' => null,
-        'bic' => null,
         'clearingCode' => null,
         'type' => null
     ];
@@ -73,8 +69,6 @@ class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPINullables = [
         'accountNumber' => false,
-        'bankName' => false,
-        'bic' => false,
         'clearingCode' => false,
         'type' => false
     ];
@@ -166,8 +160,6 @@ class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      */
     protected static $attributeMap = [
         'accountNumber' => 'accountNumber',
-        'bankName' => 'bankName',
-        'bic' => 'bic',
         'clearingCode' => 'clearingCode',
         'type' => 'type'
     ];
@@ -179,8 +171,6 @@ class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      */
     protected static $setters = [
         'accountNumber' => 'setAccountNumber',
-        'bankName' => 'setBankName',
-        'bic' => 'setBic',
         'clearingCode' => 'setClearingCode',
         'type' => 'setType'
     ];
@@ -192,8 +182,6 @@ class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      */
     protected static $getters = [
         'accountNumber' => 'getAccountNumber',
-        'bankName' => 'getBankName',
-        'bic' => 'getBic',
         'clearingCode' => 'getClearingCode',
         'type' => 'getType'
     ];
@@ -268,8 +256,6 @@ class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     public function __construct(array $data = null)
     {
         $this->setIfExists('accountNumber', $data ?? [], null);
-        $this->setIfExists('bankName', $data ?? [], null);
-        $this->setIfExists('bic', $data ?? [], null);
         $this->setIfExists('clearingCode', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
@@ -357,60 +343,6 @@ class HKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
             throw new \InvalidArgumentException('non-nullable accountNumber cannot be null');
         }
         $this->container['accountNumber'] = $accountNumber;
-
-        return $this;
-    }
-
-    /**
-     * Gets bankName
-     *
-     * @return string|null
-     */
-    public function getBankName()
-    {
-        return $this->container['bankName'];
-    }
-
-    /**
-     * Sets bankName
-     *
-     * @param string|null $bankName The bank's name.
-     *
-     * @return self
-     */
-    public function setBankName($bankName)
-    {
-        if (is_null($bankName)) {
-            throw new \InvalidArgumentException('non-nullable bankName cannot be null');
-        }
-        $this->container['bankName'] = $bankName;
-
-        return $this;
-    }
-
-    /**
-     * Gets bic
-     *
-     * @return string|null
-     */
-    public function getBic()
-    {
-        return $this->container['bic'];
-    }
-
-    /**
-     * Sets bic
-     *
-     * @param string|null $bic The bank's 8- or 11-character BIC or SWIFT code.
-     *
-     * @return self
-     */
-    public function setBic($bic)
-    {
-        if (is_null($bic)) {
-            throw new \InvalidArgumentException('non-nullable bic cannot be null');
-        }
-        $this->container['bic'] = $bic;
 
         return $this;
     }
