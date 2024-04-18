@@ -592,6 +592,6 @@ class CheckoutTest extends TestCaseMock
         $resource = new Checkout($client);
         $resource->captures(array('paymentPspReference' => 'pspRef1'));
         $resource->captures(array('paymentPspReference' => 'pspRef2'));
-        assertEquals($this->requestUrl, 'https://checkout-test.adyen.com/v70/payments/pspRef2/captures');
+        assertEquals($this->requestUrl, 'https://checkout-test.adyen.com/v71/payments/pspRef2/captures');
     }
 }
