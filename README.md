@@ -94,7 +94,7 @@ $client->setTimeout(30);
 $service = new \Adyen\Service\Checkout\PaymentsApi($client);
 
 // Create PaymentMethod object
-$paymentMethod = new CheckoutPaymentMethod();
+$paymentMethod = new \Adyen\Model\Checkout\CheckoutPaymentMethod();
 $paymentMethod
     ->setType("scheme")
     ->setEncryptedBankAccountNumber("test_4111111111111111")
@@ -102,12 +102,12 @@ $paymentMethod
     ->setEncryptedExpiryYear("test_2030")
     ->setEncryptedSecurityCode("test_737");
 // Creating Amount Object
-$amount = new Amount();
+$amount = new \Adyen\Model\Checkout\Amount();
 $amount
     ->setValue(1500)
     ->setCurrency("EUR");
 // Create the actual Payments Request
-$paymentRequest = new PaymentRequest();
+$paymentRequest = new \Adyen\Model\Checkout\PaymentRequest();
 $paymentRequest
     ->setMerchantAccount("YOUR MERCHANT ACCOUNT")
     ->setPaymentMethod($paymentMethod)
@@ -143,7 +143,7 @@ $client->setTimeout(30);
 ~~~~ php
 ...
 
-$service = new \Adyen\Service\Checkout\PaymentsApi($client);
+$service = new \Adyen\Service\Checkout\PaymentLinksApi($client);
 
 $params = array(
     'merchantAccount' => "YourMerchantAccount",
@@ -156,7 +156,7 @@ $params = array(
     'billingAddress' => array(...),
     'deliveryAddress' => array(...),
 );
-$createPaymentLinkRequest = new CreatePaymentLinkRequest($params);
+$createPaymentLinkRequest = new \Adyen\Model\Checkout\PaymentLinkRequest($params);
 
 $result = $service->paymentLinks($createPaymentLinkRequest);
 
@@ -170,7 +170,7 @@ $jsonString = 'webhook_payload';
 $isValid = $hmac->validateHMAC("YOUR_HMAC_KEY", "YOUR_HMAC_SIGN", $jsonString);
 
 if ($isValid) {
-    $webhookParser = new BankingWebhookParser($jsonString);
+    $webhookParser = new \Adyen\Service\BankingWebhookParser($jsonString);
     $result = $webhookParser->getGenericWebhook();
 }
 ~~~~
@@ -182,7 +182,7 @@ $jsonString = 'webhook_payload';
 $isValid = $hmac->validateHMAC("YOUR_HMAC_KEY", "YOUR_HMAC_SIGN", $jsonString);
 
 if ($isValid) {
-    $webhookParser = new ManagementWebhookParser($jsonString);
+    $webhookParser = new \Adyen\Service\ManagementWebhookParser($jsonString);
     $result = $webhookParser->getGenericWebhook();
 }
 ~~~~
