@@ -52,11 +52,10 @@ class BankAccountInfoAccountIdentification implements ModelInterface, ArrayAcces
         'institutionNumber' => 'string',
         'transitNumber' => 'string',
         'bankCode' => 'string',
-        'bankName' => 'string',
-        'bic' => 'string',
         'clearingCode' => 'string',
         'iban' => 'string',
         'additionalBankIdentification' => '\Adyen\Model\LegalEntityManagement\AdditionalBankIdentification',
+        'bic' => 'string',
         'clearingNumber' => 'string',
         'sortCode' => 'string',
         'routingNumber' => 'string'
@@ -77,11 +76,10 @@ class BankAccountInfoAccountIdentification implements ModelInterface, ArrayAcces
         'institutionNumber' => null,
         'transitNumber' => null,
         'bankCode' => null,
-        'bankName' => null,
-        'bic' => null,
         'clearingCode' => null,
         'iban' => null,
         'additionalBankIdentification' => null,
+        'bic' => null,
         'clearingNumber' => null,
         'sortCode' => null,
         'routingNumber' => null
@@ -100,11 +98,10 @@ class BankAccountInfoAccountIdentification implements ModelInterface, ArrayAcces
         'institutionNumber' => false,
         'transitNumber' => false,
         'bankCode' => false,
-        'bankName' => false,
-        'bic' => false,
         'clearingCode' => false,
         'iban' => false,
         'additionalBankIdentification' => false,
+        'bic' => false,
         'clearingNumber' => false,
         'sortCode' => false,
         'routingNumber' => false
@@ -203,11 +200,10 @@ class BankAccountInfoAccountIdentification implements ModelInterface, ArrayAcces
         'institutionNumber' => 'institutionNumber',
         'transitNumber' => 'transitNumber',
         'bankCode' => 'bankCode',
-        'bankName' => 'bankName',
-        'bic' => 'bic',
         'clearingCode' => 'clearingCode',
         'iban' => 'iban',
         'additionalBankIdentification' => 'additionalBankIdentification',
+        'bic' => 'bic',
         'clearingNumber' => 'clearingNumber',
         'sortCode' => 'sortCode',
         'routingNumber' => 'routingNumber'
@@ -226,11 +222,10 @@ class BankAccountInfoAccountIdentification implements ModelInterface, ArrayAcces
         'institutionNumber' => 'setInstitutionNumber',
         'transitNumber' => 'setTransitNumber',
         'bankCode' => 'setBankCode',
-        'bankName' => 'setBankName',
-        'bic' => 'setBic',
         'clearingCode' => 'setClearingCode',
         'iban' => 'setIban',
         'additionalBankIdentification' => 'setAdditionalBankIdentification',
+        'bic' => 'setBic',
         'clearingNumber' => 'setClearingNumber',
         'sortCode' => 'setSortCode',
         'routingNumber' => 'setRoutingNumber'
@@ -249,11 +244,10 @@ class BankAccountInfoAccountIdentification implements ModelInterface, ArrayAcces
         'institutionNumber' => 'getInstitutionNumber',
         'transitNumber' => 'getTransitNumber',
         'bankCode' => 'getBankCode',
-        'bankName' => 'getBankName',
-        'bic' => 'getBic',
         'clearingCode' => 'getClearingCode',
         'iban' => 'getIban',
         'additionalBankIdentification' => 'getAdditionalBankIdentification',
+        'bic' => 'getBic',
         'clearingNumber' => 'getClearingNumber',
         'sortCode' => 'getSortCode',
         'routingNumber' => 'getRoutingNumber'
@@ -322,11 +316,10 @@ class BankAccountInfoAccountIdentification implements ModelInterface, ArrayAcces
         $this->setIfExists('institutionNumber', $data ?? [], null);
         $this->setIfExists('transitNumber', $data ?? [], null);
         $this->setIfExists('bankCode', $data ?? [], null);
-        $this->setIfExists('bankName', $data ?? [], null);
-        $this->setIfExists('bic', $data ?? [], null);
         $this->setIfExists('clearingCode', $data ?? [], null);
         $this->setIfExists('iban', $data ?? [], null);
         $this->setIfExists('additionalBankIdentification', $data ?? [], null);
+        $this->setIfExists('bic', $data ?? [], null);
         $this->setIfExists('clearingNumber', $data ?? [], null);
         $this->setIfExists('sortCode', $data ?? [], null);
         $this->setIfExists('routingNumber', $data ?? [], null);
@@ -379,14 +372,14 @@ class BankAccountInfoAccountIdentification implements ModelInterface, ArrayAcces
         if ($this->container['bankCode'] === null) {
             $invalidProperties[] = "'bankCode' can't be null";
         }
-        if ($this->container['bic'] === null) {
-            $invalidProperties[] = "'bic' can't be null";
-        }
         if ($this->container['clearingCode'] === null) {
             $invalidProperties[] = "'clearingCode' can't be null";
         }
         if ($this->container['iban'] === null) {
             $invalidProperties[] = "'iban' can't be null";
+        }
+        if ($this->container['bic'] === null) {
+            $invalidProperties[] = "'bic' can't be null";
         }
         if ($this->container['clearingNumber'] === null) {
             $invalidProperties[] = "'clearingNumber' can't be null";
@@ -602,60 +595,6 @@ class BankAccountInfoAccountIdentification implements ModelInterface, ArrayAcces
     }
 
     /**
-     * Gets bankName
-     *
-     * @return string|null
-     */
-    public function getBankName()
-    {
-        return $this->container['bankName'];
-    }
-
-    /**
-     * Sets bankName
-     *
-     * @param string|null $bankName The bank's name.
-     *
-     * @return self
-     */
-    public function setBankName($bankName)
-    {
-        if (is_null($bankName)) {
-            throw new \InvalidArgumentException('non-nullable bankName cannot be null');
-        }
-        $this->container['bankName'] = $bankName;
-
-        return $this;
-    }
-
-    /**
-     * Gets bic
-     *
-     * @return string
-     */
-    public function getBic()
-    {
-        return $this->container['bic'];
-    }
-
-    /**
-     * Sets bic
-     *
-     * @param string $bic The bank's 8- or 11-character BIC or SWIFT code.
-     *
-     * @return self
-     */
-    public function setBic($bic)
-    {
-        if (is_null($bic)) {
-            throw new \InvalidArgumentException('non-nullable bic cannot be null');
-        }
-        $this->container['bic'] = $bic;
-
-        return $this;
-    }
-
-    /**
      * Gets clearingCode
      *
      * @return string
@@ -732,6 +671,33 @@ class BankAccountInfoAccountIdentification implements ModelInterface, ArrayAcces
             throw new \InvalidArgumentException('non-nullable additionalBankIdentification cannot be null');
         }
         $this->container['additionalBankIdentification'] = $additionalBankIdentification;
+
+        return $this;
+    }
+
+    /**
+     * Gets bic
+     *
+     * @return string
+     */
+    public function getBic()
+    {
+        return $this->container['bic'];
+    }
+
+    /**
+     * Sets bic
+     *
+     * @param string $bic The bank's 8- or 11-character BIC or SWIFT code.
+     *
+     * @return self
+     */
+    public function setBic($bic)
+    {
+        if (is_null($bic)) {
+            throw new \InvalidArgumentException('non-nullable bic cannot be null');
+        }
+        $this->container['bic'] = $bic;
 
         return $this;
     }

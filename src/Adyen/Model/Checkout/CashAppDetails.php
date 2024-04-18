@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
- * InstallmentOption Class Doc Comment
+ * CashAppDetails Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class InstallmentOption implements ModelInterface, ArrayAccess, \JsonSerializable
+class CashAppDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class InstallmentOption implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var string
       */
-    protected static $openAPIModelName = 'InstallmentOption';
+    protected static $openAPIModelName = 'CashAppDetails';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,10 +44,15 @@ class InstallmentOption implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
-        'maxValue' => 'int',
-        'plans' => 'string[]',
-        'preselectedValue' => 'int',
-        'values' => 'int[]'
+        'cashtag' => 'string',
+        'checkoutAttemptId' => 'string',
+        'customerId' => 'string',
+        'grantId' => 'string',
+        'onFileGrantId' => 'string',
+        'recurringDetailReference' => 'string',
+        'requestId' => 'string',
+        'storedPaymentMethodId' => 'string',
+        'type' => 'string'
     ];
 
     /**
@@ -58,10 +63,15 @@ class InstallmentOption implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'maxValue' => 'int32',
-        'plans' => null,
-        'preselectedValue' => 'int32',
-        'values' => 'int32'
+        'cashtag' => null,
+        'checkoutAttemptId' => null,
+        'customerId' => null,
+        'grantId' => null,
+        'onFileGrantId' => null,
+        'recurringDetailReference' => null,
+        'requestId' => null,
+        'storedPaymentMethodId' => null,
+        'type' => null
     ];
 
     /**
@@ -70,10 +80,15 @@ class InstallmentOption implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'maxValue' => true,
-        'plans' => false,
-        'preselectedValue' => true,
-        'values' => false
+        'cashtag' => false,
+        'checkoutAttemptId' => false,
+        'customerId' => false,
+        'grantId' => false,
+        'onFileGrantId' => false,
+        'recurringDetailReference' => false,
+        'requestId' => false,
+        'storedPaymentMethodId' => false,
+        'type' => false
     ];
 
     /**
@@ -162,10 +177,15 @@ class InstallmentOption implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
-        'maxValue' => 'maxValue',
-        'plans' => 'plans',
-        'preselectedValue' => 'preselectedValue',
-        'values' => 'values'
+        'cashtag' => 'cashtag',
+        'checkoutAttemptId' => 'checkoutAttemptId',
+        'customerId' => 'customerId',
+        'grantId' => 'grantId',
+        'onFileGrantId' => 'onFileGrantId',
+        'recurringDetailReference' => 'recurringDetailReference',
+        'requestId' => 'requestId',
+        'storedPaymentMethodId' => 'storedPaymentMethodId',
+        'type' => 'type'
     ];
 
     /**
@@ -174,10 +194,15 @@ class InstallmentOption implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
-        'maxValue' => 'setMaxValue',
-        'plans' => 'setPlans',
-        'preselectedValue' => 'setPreselectedValue',
-        'values' => 'setValues'
+        'cashtag' => 'setCashtag',
+        'checkoutAttemptId' => 'setCheckoutAttemptId',
+        'customerId' => 'setCustomerId',
+        'grantId' => 'setGrantId',
+        'onFileGrantId' => 'setOnFileGrantId',
+        'recurringDetailReference' => 'setRecurringDetailReference',
+        'requestId' => 'setRequestId',
+        'storedPaymentMethodId' => 'setStoredPaymentMethodId',
+        'type' => 'setType'
     ];
 
     /**
@@ -186,10 +211,15 @@ class InstallmentOption implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
-        'maxValue' => 'getMaxValue',
-        'plans' => 'getPlans',
-        'preselectedValue' => 'getPreselectedValue',
-        'values' => 'getValues'
+        'cashtag' => 'getCashtag',
+        'checkoutAttemptId' => 'getCheckoutAttemptId',
+        'customerId' => 'getCustomerId',
+        'grantId' => 'getGrantId',
+        'onFileGrantId' => 'getOnFileGrantId',
+        'recurringDetailReference' => 'getRecurringDetailReference',
+        'requestId' => 'getRequestId',
+        'storedPaymentMethodId' => 'getStoredPaymentMethodId',
+        'type' => 'getType'
     ];
 
     /**
@@ -233,33 +263,17 @@ class InstallmentOption implements ModelInterface, ArrayAccess, \JsonSerializabl
         return self::$openAPIModelName;
     }
 
-    public const PLANS_BUYNOW_PAYLATER = 'buynow_paylater';
-    public const PLANS_INTERES_REFUND_PRCTG = 'interes_refund_prctg';
-    public const PLANS_INTEREST_BONUS = 'interest_bonus';
-    public const PLANS_NOINTERES_REFUND_PRCTG = 'nointeres_refund_prctg';
-    public const PLANS_NOINTEREST_BONUS = 'nointerest_bonus';
-    public const PLANS_REFUND_PRCTG = 'refund_prctg';
-    public const PLANS_REGULAR = 'regular';
-    public const PLANS_REVOLVING = 'revolving';
-    public const PLANS_WITH_INTEREST = 'with_interest';
+    public const TYPE_CASHAPP = 'cashapp';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getPlansAllowableValues()
+    public function getTypeAllowableValues()
     {
         return [
-            self::PLANS_BUYNOW_PAYLATER,
-            self::PLANS_INTERES_REFUND_PRCTG,
-            self::PLANS_INTEREST_BONUS,
-            self::PLANS_NOINTERES_REFUND_PRCTG,
-            self::PLANS_NOINTEREST_BONUS,
-            self::PLANS_REFUND_PRCTG,
-            self::PLANS_REGULAR,
-            self::PLANS_REVOLVING,
-            self::PLANS_WITH_INTEREST,
+            self::TYPE_CASHAPP,
         ];
     }
     /**
@@ -277,10 +291,15 @@ class InstallmentOption implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('maxValue', $data ?? [], null);
-        $this->setIfExists('plans', $data ?? [], null);
-        $this->setIfExists('preselectedValue', $data ?? [], null);
-        $this->setIfExists('values', $data ?? [], null);
+        $this->setIfExists('cashtag', $data ?? [], null);
+        $this->setIfExists('checkoutAttemptId', $data ?? [], null);
+        $this->setIfExists('customerId', $data ?? [], null);
+        $this->setIfExists('grantId', $data ?? [], null);
+        $this->setIfExists('onFileGrantId', $data ?? [], null);
+        $this->setIfExists('recurringDetailReference', $data ?? [], null);
+        $this->setIfExists('requestId', $data ?? [], null);
+        $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -310,6 +329,15 @@ class InstallmentOption implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -326,114 +354,256 @@ class InstallmentOption implements ModelInterface, ArrayAccess, \JsonSerializabl
 
 
     /**
-     * Gets maxValue
+     * Gets cashtag
      *
-     * @return int|null
+     * @return string|null
      */
-    public function getMaxValue()
+    public function getCashtag()
     {
-        return $this->container['maxValue'];
+        return $this->container['cashtag'];
     }
 
     /**
-     * Sets maxValue
+     * Sets cashtag
      *
-     * @param int|null $maxValue The maximum number of installments offered for this payment method.
+     * @param string|null $cashtag Cash App issued cashtag for recurring payment
      *
      * @return self
      */
-    public function setMaxValue($maxValue)
+    public function setCashtag($cashtag)
     {
-        // Do nothing for nullable integers
-        $this->container['maxValue'] = $maxValue;
+        if (is_null($cashtag)) {
+            throw new \InvalidArgumentException('non-nullable cashtag cannot be null');
+        }
+        $this->container['cashtag'] = $cashtag;
 
         return $this;
     }
 
     /**
-     * Gets plans
+     * Gets checkoutAttemptId
      *
-     * @return string[]|null
+     * @return string|null
      */
-    public function getPlans()
+    public function getCheckoutAttemptId()
     {
-        return $this->container['plans'];
+        return $this->container['checkoutAttemptId'];
     }
 
     /**
-     * Sets plans
+     * Sets checkoutAttemptId
      *
-     * @param string[]|null $plans Defines the type of installment plan. If not set, defaults to **regular**.  Possible values: * **regular** * **revolving**
+     * @param string|null $checkoutAttemptId The checkout attempt identifier.
      *
      * @return self
      */
-    public function setPlans($plans)
+    public function setCheckoutAttemptId($checkoutAttemptId)
     {
-        if (is_null($plans)) {
-            throw new \InvalidArgumentException('non-nullable plans cannot be null');
+        if (is_null($checkoutAttemptId)) {
+            throw new \InvalidArgumentException('non-nullable checkoutAttemptId cannot be null');
         }
-        $allowedValues = $this->getPlansAllowableValues();
-        if (array_diff($plans, $allowedValues)) {
+        $this->container['checkoutAttemptId'] = $checkoutAttemptId;
+
+        return $this;
+    }
+
+    /**
+     * Gets customerId
+     *
+     * @return string|null
+     */
+    public function getCustomerId()
+    {
+        return $this->container['customerId'];
+    }
+
+    /**
+     * Sets customerId
+     *
+     * @param string|null $customerId Cash App issued customerId for recurring payment
+     *
+     * @return self
+     */
+    public function setCustomerId($customerId)
+    {
+        if (is_null($customerId)) {
+            throw new \InvalidArgumentException('non-nullable customerId cannot be null');
+        }
+        $this->container['customerId'] = $customerId;
+
+        return $this;
+    }
+
+    /**
+     * Gets grantId
+     *
+     * @return string|null
+     */
+    public function getGrantId()
+    {
+        return $this->container['grantId'];
+    }
+
+    /**
+     * Sets grantId
+     *
+     * @param string|null $grantId Cash App issued grantId for one time payment
+     *
+     * @return self
+     */
+    public function setGrantId($grantId)
+    {
+        if (is_null($grantId)) {
+            throw new \InvalidArgumentException('non-nullable grantId cannot be null');
+        }
+        $this->container['grantId'] = $grantId;
+
+        return $this;
+    }
+
+    /**
+     * Gets onFileGrantId
+     *
+     * @return string|null
+     */
+    public function getOnFileGrantId()
+    {
+        return $this->container['onFileGrantId'];
+    }
+
+    /**
+     * Sets onFileGrantId
+     *
+     * @param string|null $onFileGrantId Cash App issued onFileGrantId for recurring payment
+     *
+     * @return self
+     */
+    public function setOnFileGrantId($onFileGrantId)
+    {
+        if (is_null($onFileGrantId)) {
+            throw new \InvalidArgumentException('non-nullable onFileGrantId cannot be null');
+        }
+        $this->container['onFileGrantId'] = $onFileGrantId;
+
+        return $this;
+    }
+
+    /**
+     * Gets recurringDetailReference
+     *
+     * @return string|null
+     * @deprecated
+     */
+    public function getRecurringDetailReference()
+    {
+        return $this->container['recurringDetailReference'];
+    }
+
+    /**
+     * Sets recurringDetailReference
+     *
+     * @param string|null $recurringDetailReference This is the `recurringDetailReference` returned in the response when you created the token.
+     *
+     * @return self
+     * @deprecated
+     */
+    public function setRecurringDetailReference($recurringDetailReference)
+    {
+        if (is_null($recurringDetailReference)) {
+            throw new \InvalidArgumentException('non-nullable recurringDetailReference cannot be null');
+        }
+        $this->container['recurringDetailReference'] = $recurringDetailReference;
+
+        return $this;
+    }
+
+    /**
+     * Gets requestId
+     *
+     * @return string|null
+     */
+    public function getRequestId()
+    {
+        return $this->container['requestId'];
+    }
+
+    /**
+     * Sets requestId
+     *
+     * @param string|null $requestId Cash App request id
+     *
+     * @return self
+     */
+    public function setRequestId($requestId)
+    {
+        if (is_null($requestId)) {
+            throw new \InvalidArgumentException('non-nullable requestId cannot be null');
+        }
+        $this->container['requestId'] = $requestId;
+
+        return $this;
+    }
+
+    /**
+     * Gets storedPaymentMethodId
+     *
+     * @return string|null
+     */
+    public function getStoredPaymentMethodId()
+    {
+        return $this->container['storedPaymentMethodId'];
+    }
+
+    /**
+     * Sets storedPaymentMethodId
+     *
+     * @param string|null $storedPaymentMethodId This is the `recurringDetailReference` returned in the response when you created the token.
+     *
+     * @return self
+     */
+    public function setStoredPaymentMethodId($storedPaymentMethodId)
+    {
+        if (is_null($storedPaymentMethodId)) {
+            throw new \InvalidArgumentException('non-nullable storedPaymentMethodId cannot be null');
+        }
+        $this->container['storedPaymentMethodId'] = $storedPaymentMethodId;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string|null
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string|null $type cashapp
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value for 'plans', must be one of '%s'",
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
                     implode("', '", $allowedValues)
                 )
             );
         }
-        $this->container['plans'] = $plans;
-
-        return $this;
-    }
-
-    /**
-     * Gets preselectedValue
-     *
-     * @return int|null
-     */
-    public function getPreselectedValue()
-    {
-        return $this->container['preselectedValue'];
-    }
-
-    /**
-     * Sets preselectedValue
-     *
-     * @param int|null $preselectedValue Preselected number of installments offered for this payment method.
-     *
-     * @return self
-     */
-    public function setPreselectedValue($preselectedValue)
-    {
-        // Do nothing for nullable integers
-        $this->container['preselectedValue'] = $preselectedValue;
-
-        return $this;
-    }
-
-    /**
-     * Gets values
-     *
-     * @return int[]|null
-     */
-    public function getValues()
-    {
-        return $this->container['values'];
-    }
-
-    /**
-     * Sets values
-     *
-     * @param int[]|null $values An array of the number of installments that the shopper can choose from. For example, **[2,3,5]**. This cannot be specified simultaneously with `maxValue`.
-     *
-     * @return self
-     */
-    public function setValues($values)
-    {
-        if (is_null($values)) {
-            throw new \InvalidArgumentException('non-nullable values cannot be null');
-        }
-        $this->container['values'] = $values;
+        $this->container['type'] = $type;
 
         return $this;
     }

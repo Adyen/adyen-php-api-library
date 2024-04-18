@@ -44,6 +44,7 @@ class Installments implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'extra' => 'int',
         'plan' => 'string',
         'value' => 'int'
     ];
@@ -56,6 +57,7 @@ class Installments implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'extra' => 'int32',
         'plan' => null,
         'value' => 'int32'
     ];
@@ -66,6 +68,7 @@ class Installments implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'extra' => true,
         'plan' => false,
         'value' => true
     ];
@@ -156,6 +159,7 @@ class Installments implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'extra' => 'extra',
         'plan' => 'plan',
         'value' => 'value'
     ];
@@ -166,6 +170,7 @@ class Installments implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'extra' => 'setExtra',
         'plan' => 'setPlan',
         'value' => 'setValue'
     ];
@@ -176,6 +181,7 @@ class Installments implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'extra' => 'getExtra',
         'plan' => 'getPlan',
         'value' => 'getValue'
     ];
@@ -221,8 +227,15 @@ class Installments implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const PLAN_BUYNOW_PAYLATER = 'buynow_paylater';
+    public const PLAN_INTERES_REFUND_PRCTG = 'interes_refund_prctg';
+    public const PLAN_INTEREST_BONUS = 'interest_bonus';
+    public const PLAN_NOINTERES_REFUND_PRCTG = 'nointeres_refund_prctg';
+    public const PLAN_NOINTEREST_BONUS = 'nointerest_bonus';
+    public const PLAN_REFUND_PRCTG = 'refund_prctg';
     public const PLAN_REGULAR = 'regular';
     public const PLAN_REVOLVING = 'revolving';
+    public const PLAN_WITH_INTEREST = 'with_interest';
 
     /**
      * Gets allowable values of the enum
@@ -232,8 +245,15 @@ class Installments implements ModelInterface, ArrayAccess, \JsonSerializable
     public function getPlanAllowableValues()
     {
         return [
+            self::PLAN_BUYNOW_PAYLATER,
+            self::PLAN_INTERES_REFUND_PRCTG,
+            self::PLAN_INTEREST_BONUS,
+            self::PLAN_NOINTERES_REFUND_PRCTG,
+            self::PLAN_NOINTEREST_BONUS,
+            self::PLAN_REFUND_PRCTG,
             self::PLAN_REGULAR,
             self::PLAN_REVOLVING,
+            self::PLAN_WITH_INTEREST,
         ];
     }
     /**
@@ -251,6 +271,7 @@ class Installments implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('extra', $data ?? [], null);
         $this->setIfExists('plan', $data ?? [], null);
         $this->setIfExists('value', $data ?? [], null);
     }
@@ -310,6 +331,31 @@ class Installments implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
+     * Gets extra
+     *
+     * @return int|null
+     */
+    public function getExtra()
+    {
+        return $this->container['extra'];
+    }
+
+    /**
+     * Sets extra
+     *
+     * @param int|null $extra Defines the bonus percentage, refund percentage or if the transaction is Buy now Pay later. Used for [card installments in Mexico](https://docs.adyen.com/payment-methods/cards/credit-card-installments/#getting-paid-mexico)
+     *
+     * @return self
+     */
+    public function setExtra($extra)
+    {
+        // Do nothing for nullable integers
+        $this->container['extra'] = $extra;
+
+        return $this;
+    }
+
+    /**
      * Gets plan
      *
      * @return string|null
@@ -322,7 +368,7 @@ class Installments implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets plan
      *
-     * @param string|null $plan The installment plan, used for [card installments in Japan](https://docs.adyen.com/payment-methods/cards/credit-card-installments#make-a-payment-japan). By default, this is set to **regular**. Possible values: * **regular** * **revolving**
+     * @param string|null $plan The installment plan, used for [card installments in Japan](https://docs.adyen.com/payment-methods/cards/credit-card-installments#make-a-payment-japan). and [mexico](https://docs.adyen.com/payment-methods/cards/credit-card-installments/#getting-paid-mexico). By default, this is set to **regular**.
      *
      * @return self
      */
@@ -359,7 +405,7 @@ class Installments implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets value
      *
-     * @param int $value Defines the number of installments. Its value needs to be greater than zero.  Usually, the maximum allowed number of installments is capped. For example, it may not be possible to split a payment in more than 24 installments. The acquirer sets this upper limit, so its value may vary.
+     * @param int $value Defines the number of installments. Usually, the maximum allowed number of installments is capped. For example, it may not be possible to split a payment in more than 24 installments. The acquirer sets this upper limit, so its value may vary. This value can be zero for Installments processed in Mexico
      *
      * @return self
      */

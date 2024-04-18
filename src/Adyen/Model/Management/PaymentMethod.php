@@ -46,6 +46,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'afterpayTouch' => '\Adyen\Model\Management\AfterpayTouchInfo',
         'allowed' => 'bool',
+        'amex' => '\Adyen\Model\Management\AmexInfo',
         'applePay' => '\Adyen\Model\Management\ApplePayInfo',
         'bcmc' => '\Adyen\Model\Management\BcmcInfo',
         'businessLineId' => 'string',
@@ -93,6 +94,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'afterpayTouch' => null,
         'allowed' => null,
+        'amex' => null,
         'applePay' => null,
         'bcmc' => null,
         'businessLineId' => null,
@@ -138,6 +140,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPINullables = [
         'afterpayTouch' => false,
         'allowed' => false,
+        'amex' => false,
         'applePay' => false,
         'bcmc' => false,
         'businessLineId' => false,
@@ -263,6 +266,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'afterpayTouch' => 'afterpayTouch',
         'allowed' => 'allowed',
+        'amex' => 'amex',
         'applePay' => 'applePay',
         'bcmc' => 'bcmc',
         'businessLineId' => 'businessLineId',
@@ -308,6 +312,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'afterpayTouch' => 'setAfterpayTouch',
         'allowed' => 'setAllowed',
+        'amex' => 'setAmex',
         'applePay' => 'setApplePay',
         'bcmc' => 'setBcmc',
         'businessLineId' => 'setBusinessLineId',
@@ -353,6 +358,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'afterpayTouch' => 'getAfterpayTouch',
         'allowed' => 'getAllowed',
+        'amex' => 'getAmex',
         'applePay' => 'getApplePay',
         'bcmc' => 'getBcmc',
         'businessLineId' => 'getBusinessLineId',
@@ -467,6 +473,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('afterpayTouch', $data ?? [], null);
         $this->setIfExists('allowed', $data ?? [], null);
+        $this->setIfExists('amex', $data ?? [], null);
         $this->setIfExists('applePay', $data ?? [], null);
         $this->setIfExists('bcmc', $data ?? [], null);
         $this->setIfExists('businessLineId', $data ?? [], null);
@@ -608,6 +615,33 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable allowed cannot be null');
         }
         $this->container['allowed'] = $allowed;
+
+        return $this;
+    }
+
+    /**
+     * Gets amex
+     *
+     * @return \Adyen\Model\Management\AmexInfo|null
+     */
+    public function getAmex()
+    {
+        return $this->container['amex'];
+    }
+
+    /**
+     * Sets amex
+     *
+     * @param \Adyen\Model\Management\AmexInfo|null $amex amex
+     *
+     * @return self
+     */
+    public function setAmex($amex)
+    {
+        if (is_null($amex)) {
+            throw new \InvalidArgumentException('non-nullable amex cannot be null');
+        }
+        $this->container['amex'] = $amex;
 
         return $this;
     }

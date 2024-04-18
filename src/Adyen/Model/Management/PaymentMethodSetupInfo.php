@@ -45,6 +45,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPITypes = [
         'afterpayTouch' => '\Adyen\Model\Management\AfterpayTouchInfo',
+        'amex' => '\Adyen\Model\Management\AmexInfo',
         'applePay' => '\Adyen\Model\Management\ApplePayInfo',
         'bcmc' => '\Adyen\Model\Management\BcmcInfo',
         'businessLineId' => 'string',
@@ -88,6 +89,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPIFormats = [
         'afterpayTouch' => null,
+        'amex' => null,
         'applePay' => null,
         'bcmc' => null,
         'businessLineId' => null,
@@ -129,6 +131,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPINullables = [
         'afterpayTouch' => false,
+        'amex' => false,
         'applePay' => false,
         'bcmc' => false,
         'businessLineId' => false,
@@ -250,6 +253,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static $attributeMap = [
         'afterpayTouch' => 'afterpayTouch',
+        'amex' => 'amex',
         'applePay' => 'applePay',
         'bcmc' => 'bcmc',
         'businessLineId' => 'businessLineId',
@@ -291,6 +295,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static $setters = [
         'afterpayTouch' => 'setAfterpayTouch',
+        'amex' => 'setAmex',
         'applePay' => 'setApplePay',
         'bcmc' => 'setBcmc',
         'businessLineId' => 'setBusinessLineId',
@@ -332,6 +337,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static $getters = [
         'afterpayTouch' => 'getAfterpayTouch',
+        'amex' => 'getAmex',
         'applePay' => 'getApplePay',
         'bcmc' => 'getBcmc',
         'businessLineId' => 'getBusinessLineId',
@@ -420,6 +426,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     public const TYPE_BLIK = 'blik';
     public const TYPE_CARTEBANCAIRE = 'cartebancaire';
     public const TYPE_CLEARPAY = 'clearpay';
+    public const TYPE_CLICKTOPAY = 'clicktopay';
     public const TYPE_CUP = 'cup';
     public const TYPE_DINERS = 'diners';
     public const TYPE_DIRECTDEBIT_GB = 'directdebit_GB';
@@ -492,6 +499,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
             self::TYPE_BLIK,
             self::TYPE_CARTEBANCAIRE,
             self::TYPE_CLEARPAY,
+            self::TYPE_CLICKTOPAY,
             self::TYPE_CUP,
             self::TYPE_DINERS,
             self::TYPE_DIRECTDEBIT_GB,
@@ -550,6 +558,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     public function __construct(array $data = null)
     {
         $this->setIfExists('afterpayTouch', $data ?? [], null);
+        $this->setIfExists('amex', $data ?? [], null);
         $this->setIfExists('applePay', $data ?? [], null);
         $this->setIfExists('bcmc', $data ?? [], null);
         $this->setIfExists('businessLineId', $data ?? [], null);
@@ -670,6 +679,33 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
             throw new \InvalidArgumentException('non-nullable afterpayTouch cannot be null');
         }
         $this->container['afterpayTouch'] = $afterpayTouch;
+
+        return $this;
+    }
+
+    /**
+     * Gets amex
+     *
+     * @return \Adyen\Model\Management\AmexInfo|null
+     */
+    public function getAmex()
+    {
+        return $this->container['amex'];
+    }
+
+    /**
+     * Sets amex
+     *
+     * @param \Adyen\Model\Management\AmexInfo|null $amex amex
+     *
+     * @return self
+     */
+    public function setAmex($amex)
+    {
+        if (is_null($amex)) {
+            throw new \InvalidArgumentException('non-nullable amex cannot be null');
+        }
+        $this->container['amex'] = $amex;
 
         return $this;
     }

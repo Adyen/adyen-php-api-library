@@ -406,7 +406,7 @@ class FundRecipient implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets shopperEmail
      *
-     * @param string|null $shopperEmail the email address of the person
+     * @param string|null $shopperEmail The email address of the shopper.
      *
      * @return self
      */
@@ -541,7 +541,7 @@ class FundRecipient implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets telephoneNumber
      *
-     * @param string|null $telephoneNumber the telephone number of the person
+     * @param string|null $telephoneNumber The telephone number of the shopper.
      *
      * @return self
      */
@@ -568,7 +568,7 @@ class FundRecipient implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets walletIdentifier
      *
-     * @param string|null $walletIdentifier indicates where the money is going
+     * @param string|null $walletIdentifier Indicates where the money is going.
      *
      * @return self
      */
@@ -595,7 +595,7 @@ class FundRecipient implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets walletOwnerTaxId
      *
-     * @param string|null $walletOwnerTaxId indicates the tax identifier of the fund recepient
+     * @param string|null $walletOwnerTaxId Indicates the tax identifier of the fund recepient
      *
      * @return self
      */

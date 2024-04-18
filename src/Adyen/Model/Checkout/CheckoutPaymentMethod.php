@@ -79,6 +79,11 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'number' => 'string',
         'shopperNotificationReference' => 'string',
         'threeDS2SdkVersion' => 'string',
+        'cashtag' => 'string',
+        'customerId' => 'string',
+        'grantId' => 'string',
+        'onFileGrantId' => 'string',
+        'requestId' => 'string',
         'firstName' => 'string',
         'lastName' => 'string',
         'shopperEmail' => 'string',
@@ -143,6 +148,11 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'number' => null,
         'shopperNotificationReference' => null,
         'threeDS2SdkVersion' => null,
+        'cashtag' => null,
+        'customerId' => null,
+        'grantId' => null,
+        'onFileGrantId' => null,
+        'requestId' => null,
         'firstName' => null,
         'lastName' => null,
         'shopperEmail' => null,
@@ -205,6 +215,11 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'number' => false,
         'shopperNotificationReference' => false,
         'threeDS2SdkVersion' => false,
+        'cashtag' => false,
+        'customerId' => false,
+        'grantId' => false,
+        'onFileGrantId' => false,
+        'requestId' => false,
         'firstName' => false,
         'lastName' => false,
         'shopperEmail' => false,
@@ -347,6 +362,11 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'number' => 'number',
         'shopperNotificationReference' => 'shopperNotificationReference',
         'threeDS2SdkVersion' => 'threeDS2SdkVersion',
+        'cashtag' => 'cashtag',
+        'customerId' => 'customerId',
+        'grantId' => 'grantId',
+        'onFileGrantId' => 'onFileGrantId',
+        'requestId' => 'requestId',
         'firstName' => 'firstName',
         'lastName' => 'lastName',
         'shopperEmail' => 'shopperEmail',
@@ -409,6 +429,11 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'number' => 'setNumber',
         'shopperNotificationReference' => 'setShopperNotificationReference',
         'threeDS2SdkVersion' => 'setThreeDS2SdkVersion',
+        'cashtag' => 'setCashtag',
+        'customerId' => 'setCustomerId',
+        'grantId' => 'setGrantId',
+        'onFileGrantId' => 'setOnFileGrantId',
+        'requestId' => 'setRequestId',
         'firstName' => 'setFirstName',
         'lastName' => 'setLastName',
         'shopperEmail' => 'setShopperEmail',
@@ -471,6 +496,11 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'number' => 'getNumber',
         'shopperNotificationReference' => 'getShopperNotificationReference',
         'threeDS2SdkVersion' => 'getThreeDS2SdkVersion',
+        'cashtag' => 'getCashtag',
+        'customerId' => 'getCustomerId',
+        'grantId' => 'getGrantId',
+        'onFileGrantId' => 'getOnFileGrantId',
+        'requestId' => 'getRequestId',
         'firstName' => 'getFirstName',
         'lastName' => 'getLastName',
         'shopperEmail' => 'getShopperEmail',
@@ -583,6 +613,11 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('number', $data ?? [], null);
         $this->setIfExists('shopperNotificationReference', $data ?? [], null);
         $this->setIfExists('threeDS2SdkVersion', $data ?? [], null);
+        $this->setIfExists('cashtag', $data ?? [], null);
+        $this->setIfExists('customerId', $data ?? [], null);
+        $this->setIfExists('grantId', $data ?? [], null);
+        $this->setIfExists('onFileGrantId', $data ?? [], null);
+        $this->setIfExists('requestId', $data ?? [], null);
         $this->setIfExists('firstName', $data ?? [], null);
         $this->setIfExists('lastName', $data ?? [], null);
         $this->setIfExists('shopperEmail', $data ?? [], null);
@@ -1611,6 +1646,141 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
             throw new \InvalidArgumentException('non-nullable threeDS2SdkVersion cannot be null');
         }
         $this->container['threeDS2SdkVersion'] = $threeDS2SdkVersion;
+
+        return $this;
+    }
+
+    /**
+     * Gets cashtag
+     *
+     * @return string|null
+     */
+    public function getCashtag()
+    {
+        return $this->container['cashtag'];
+    }
+
+    /**
+     * Sets cashtag
+     *
+     * @param string|null $cashtag Cash App issued cashtag for recurring payment
+     *
+     * @return self
+     */
+    public function setCashtag($cashtag)
+    {
+        if (is_null($cashtag)) {
+            throw new \InvalidArgumentException('non-nullable cashtag cannot be null');
+        }
+        $this->container['cashtag'] = $cashtag;
+
+        return $this;
+    }
+
+    /**
+     * Gets customerId
+     *
+     * @return string|null
+     */
+    public function getCustomerId()
+    {
+        return $this->container['customerId'];
+    }
+
+    /**
+     * Sets customerId
+     *
+     * @param string|null $customerId Cash App issued customerId for recurring payment
+     *
+     * @return self
+     */
+    public function setCustomerId($customerId)
+    {
+        if (is_null($customerId)) {
+            throw new \InvalidArgumentException('non-nullable customerId cannot be null');
+        }
+        $this->container['customerId'] = $customerId;
+
+        return $this;
+    }
+
+    /**
+     * Gets grantId
+     *
+     * @return string|null
+     */
+    public function getGrantId()
+    {
+        return $this->container['grantId'];
+    }
+
+    /**
+     * Sets grantId
+     *
+     * @param string|null $grantId Cash App issued grantId for one time payment
+     *
+     * @return self
+     */
+    public function setGrantId($grantId)
+    {
+        if (is_null($grantId)) {
+            throw new \InvalidArgumentException('non-nullable grantId cannot be null');
+        }
+        $this->container['grantId'] = $grantId;
+
+        return $this;
+    }
+
+    /**
+     * Gets onFileGrantId
+     *
+     * @return string|null
+     */
+    public function getOnFileGrantId()
+    {
+        return $this->container['onFileGrantId'];
+    }
+
+    /**
+     * Sets onFileGrantId
+     *
+     * @param string|null $onFileGrantId Cash App issued onFileGrantId for recurring payment
+     *
+     * @return self
+     */
+    public function setOnFileGrantId($onFileGrantId)
+    {
+        if (is_null($onFileGrantId)) {
+            throw new \InvalidArgumentException('non-nullable onFileGrantId cannot be null');
+        }
+        $this->container['onFileGrantId'] = $onFileGrantId;
+
+        return $this;
+    }
+
+    /**
+     * Gets requestId
+     *
+     * @return string|null
+     */
+    public function getRequestId()
+    {
+        return $this->container['requestId'];
+    }
+
+    /**
+     * Sets requestId
+     *
+     * @param string|null $requestId Cash App request id
+     *
+     * @return self
+     */
+    public function setRequestId($requestId)
+    {
+        if (is_null($requestId)) {
+            throw new \InvalidArgumentException('non-nullable requestId cannot be null');
+        }
+        $this->container['requestId'] = $requestId;
 
         return $this;
     }
