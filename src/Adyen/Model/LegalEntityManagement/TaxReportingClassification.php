@@ -238,7 +238,7 @@ class TaxReportingClassification implements ModelInterface, ArrayAccess, \JsonSe
     public const BUSINESS_TYPE_SUBSIDIARY_OF_LISTED_PUBLIC_COMPANY = 'subsidiaryOfListedPublicCompany';
     public const BUSINESS_TYPE_GOVERNMENTAL_ORGANIZATION = 'governmentalOrganization';
     public const BUSINESS_TYPE_INTERNATIONAL_ORGANIZATION = 'internationalOrganization';
-    public const BUSINESS_TYPE_FINANCIAL_INSTITUTION = 'financialInstitution.';
+    public const BUSINESS_TYPE_FINANCIAL_INSTITUTION = 'financialInstitution';
     public const MAIN_SOURCE_OF_INCOME_BUSINESS_OPERATION = 'businessOperation';
     public const MAIN_SOURCE_OF_INCOME_REAL_ESTATE_SALES = 'realEstateSales';
     public const MAIN_SOURCE_OF_INCOME_INVESTMENT_INTEREST_OR_ROYALTY = 'investmentInterestOrRoyalty';
