@@ -45,6 +45,7 @@ class DeliveryContact implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'address' => '\Adyen\Model\BalancePlatform\DeliveryAddress',
+        'company' => 'string',
         'email' => 'string',
         'fullPhoneNumber' => 'string',
         'name' => '\Adyen\Model\BalancePlatform\Name',
@@ -61,6 +62,7 @@ class DeliveryContact implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'address' => null,
+        'company' => null,
         'email' => null,
         'fullPhoneNumber' => null,
         'name' => null,
@@ -75,6 +77,7 @@ class DeliveryContact implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'address' => false,
+        'company' => false,
         'email' => false,
         'fullPhoneNumber' => false,
         'name' => false,
@@ -169,6 +172,7 @@ class DeliveryContact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'address' => 'address',
+        'company' => 'company',
         'email' => 'email',
         'fullPhoneNumber' => 'fullPhoneNumber',
         'name' => 'name',
@@ -183,6 +187,7 @@ class DeliveryContact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'address' => 'setAddress',
+        'company' => 'setCompany',
         'email' => 'setEmail',
         'fullPhoneNumber' => 'setFullPhoneNumber',
         'name' => 'setName',
@@ -197,6 +202,7 @@ class DeliveryContact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'address' => 'getAddress',
+        'company' => 'getCompany',
         'email' => 'getEmail',
         'fullPhoneNumber' => 'getFullPhoneNumber',
         'name' => 'getName',
@@ -262,6 +268,7 @@ class DeliveryContact implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('address', $data ?? [], null);
+        $this->setIfExists('company', $data ?? [], null);
         $this->setIfExists('email', $data ?? [], null);
         $this->setIfExists('fullPhoneNumber', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
@@ -340,6 +347,33 @@ class DeliveryContact implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable address cannot be null');
         }
         $this->container['address'] = $address;
+
+        return $this;
+    }
+
+    /**
+     * Gets company
+     *
+     * @return string|null
+     */
+    public function getCompany()
+    {
+        return $this->container['company'];
+    }
+
+    /**
+     * Sets company
+     *
+     * @param string|null $company The company name of the contact.
+     *
+     * @return self
+     */
+    public function setCompany($company)
+    {
+        if (is_null($company)) {
+            throw new \InvalidArgumentException('non-nullable company cannot be null');
+        }
+        $this->container['company'] = $company;
 
         return $this;
     }

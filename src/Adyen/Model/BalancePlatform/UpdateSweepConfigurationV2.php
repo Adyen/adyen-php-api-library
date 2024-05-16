@@ -51,6 +51,8 @@ class UpdateSweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSe
         'id' => 'string',
         'priorities' => 'string[]',
         'reason' => 'string',
+        'reference' => 'string',
+        'referenceForBeneficiary' => 'string',
         'schedule' => '\Adyen\Model\BalancePlatform\SweepSchedule',
         'status' => 'string',
         'sweepAmount' => '\Adyen\Model\BalancePlatform\Amount',
@@ -74,6 +76,8 @@ class UpdateSweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSe
         'id' => null,
         'priorities' => null,
         'reason' => null,
+        'reference' => null,
+        'referenceForBeneficiary' => null,
         'schedule' => null,
         'status' => null,
         'sweepAmount' => null,
@@ -95,6 +99,8 @@ class UpdateSweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSe
         'id' => false,
         'priorities' => false,
         'reason' => false,
+        'reference' => false,
+        'referenceForBeneficiary' => false,
         'schedule' => false,
         'status' => false,
         'sweepAmount' => false,
@@ -196,6 +202,8 @@ class UpdateSweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSe
         'id' => 'id',
         'priorities' => 'priorities',
         'reason' => 'reason',
+        'reference' => 'reference',
+        'referenceForBeneficiary' => 'referenceForBeneficiary',
         'schedule' => 'schedule',
         'status' => 'status',
         'sweepAmount' => 'sweepAmount',
@@ -217,6 +225,8 @@ class UpdateSweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSe
         'id' => 'setId',
         'priorities' => 'setPriorities',
         'reason' => 'setReason',
+        'reference' => 'setReference',
+        'referenceForBeneficiary' => 'setReferenceForBeneficiary',
         'schedule' => 'setSchedule',
         'status' => 'setStatus',
         'sweepAmount' => 'setSweepAmount',
@@ -238,6 +248,8 @@ class UpdateSweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSe
         'id' => 'getId',
         'priorities' => 'getPriorities',
         'reason' => 'getReason',
+        'reference' => 'getReference',
+        'referenceForBeneficiary' => 'getReferenceForBeneficiary',
         'schedule' => 'getSchedule',
         'status' => 'getStatus',
         'sweepAmount' => 'getSweepAmount',
@@ -308,6 +320,7 @@ class UpdateSweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSe
     public const REASON_DECLINED_BY_TRANSACTION_RULE = 'declinedByTransactionRule';
     public const REASON_ERROR = 'error';
     public const REASON_NOT_ENOUGH_BALANCE = 'notEnoughBalance';
+    public const REASON_PENDING_APPROVAL = 'pendingApproval';
     public const REASON_REFUSED_BY_COUNTERPARTY_BANK = 'refusedByCounterpartyBank';
     public const REASON_ROUTE_NOT_FOUND = 'routeNotFound';
     public const REASON_SCA_FAILED = 'scaFailed';
@@ -366,6 +379,7 @@ class UpdateSweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSe
             self::REASON_DECLINED_BY_TRANSACTION_RULE,
             self::REASON_ERROR,
             self::REASON_NOT_ENOUGH_BALANCE,
+            self::REASON_PENDING_APPROVAL,
             self::REASON_REFUSED_BY_COUNTERPARTY_BANK,
             self::REASON_ROUTE_NOT_FOUND,
             self::REASON_SCA_FAILED,
@@ -418,6 +432,8 @@ class UpdateSweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSe
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('priorities', $data ?? [], null);
         $this->setIfExists('reason', $data ?? [], null);
+        $this->setIfExists('reference', $data ?? [], null);
+        $this->setIfExists('referenceForBeneficiary', $data ?? [], null);
         $this->setIfExists('schedule', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('sweepAmount', $data ?? [], null);
@@ -662,7 +678,7 @@ class UpdateSweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets priorities
      *
-     * @param string[]|null $priorities The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities. Adyen will try to pay out using the priority listed first, and if that's not possible, it moves on to the next option in the order of provided priorities.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN).  Set `category` to **bank**. For more details, see [optional priorities setup](https://docs.adyen.com/marketplaces-and-platforms/payout-to-users/scheduled-payouts#optional-priorities-setup).
+     * @param string[]|null $priorities The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities. Adyen will try to pay out using the priority you list first. If that's not possible, it moves on to the next option in the order of your provided priorities.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN).  Set `category` to **bank**. For more details, see optional priorities setup for [marketplaces](https://docs.adyen.com/marketplaces/payout-to-users/scheduled-payouts#optional-priorities-setup) or [platforms](https://docs.adyen.com/platforms/payout-to-users/scheduled-payouts#optional-priorities-setup).
      *
      * @return self
      */
@@ -718,6 +734,60 @@ class UpdateSweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSe
             );
         }
         $this->container['reason'] = $reason;
+
+        return $this;
+    }
+
+    /**
+     * Gets reference
+     *
+     * @return string|null
+     */
+    public function getReference()
+    {
+        return $this->container['reference'];
+    }
+
+    /**
+     * Sets reference
+     *
+     * @param string|null $reference Your reference for the sweep configuration.
+     *
+     * @return self
+     */
+    public function setReference($reference)
+    {
+        if (is_null($reference)) {
+            throw new \InvalidArgumentException('non-nullable reference cannot be null');
+        }
+        $this->container['reference'] = $reference;
+
+        return $this;
+    }
+
+    /**
+     * Gets referenceForBeneficiary
+     *
+     * @return string|null
+     */
+    public function getReferenceForBeneficiary()
+    {
+        return $this->container['referenceForBeneficiary'];
+    }
+
+    /**
+     * Sets referenceForBeneficiary
+     *
+     * @param string|null $referenceForBeneficiary The reference sent to or received from the counterparty. Only alphanumeric characters are allowed.
+     *
+     * @return self
+     */
+    public function setReferenceForBeneficiary($referenceForBeneficiary)
+    {
+        if (is_null($referenceForBeneficiary)) {
+            throw new \InvalidArgumentException('non-nullable referenceForBeneficiary cannot be null');
+        }
+        $this->container['referenceForBeneficiary'] = $referenceForBeneficiary;
 
         return $this;
     }

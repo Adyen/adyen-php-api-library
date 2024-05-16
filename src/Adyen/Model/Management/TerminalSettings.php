@@ -108,7 +108,7 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPINullables = [
         'cardholderReceipt' => false,
         'connectivity' => false,
-        'gratuities' => false,
+        'gratuities' => true,
         'hardware' => false,
         'localization' => false,
         'nexo' => false,
@@ -497,7 +497,14 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setGratuities($gratuities)
     {
         if (is_null($gratuities)) {
-            throw new \InvalidArgumentException('non-nullable gratuities cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'gratuities');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('gratuities', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['gratuities'] = $gratuities;
 

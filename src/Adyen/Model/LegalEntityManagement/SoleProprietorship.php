@@ -46,12 +46,12 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $openAPITypes = [
         'countryOfGoverningLaw' => 'string',
         'dateOfIncorporation' => 'string',
-        'description' => 'string',
         'doingBusinessAs' => 'string',
         'name' => 'string',
         'principalPlaceOfBusiness' => '\Adyen\Model\LegalEntityManagement\Address',
         'registeredAddress' => '\Adyen\Model\LegalEntityManagement\Address',
         'registrationNumber' => 'string',
+        'taxAbsent' => 'bool',
         'taxInformation' => '\Adyen\Model\LegalEntityManagement\TaxInformation[]',
         'vatAbsenceReason' => 'string',
         'vatNumber' => 'string'
@@ -67,12 +67,12 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $openAPIFormats = [
         'countryOfGoverningLaw' => null,
         'dateOfIncorporation' => null,
-        'description' => null,
         'doingBusinessAs' => null,
         'name' => null,
         'principalPlaceOfBusiness' => null,
         'registeredAddress' => null,
         'registrationNumber' => null,
+        'taxAbsent' => null,
         'taxInformation' => null,
         'vatAbsenceReason' => null,
         'vatNumber' => null
@@ -86,12 +86,12 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $openAPINullables = [
         'countryOfGoverningLaw' => false,
         'dateOfIncorporation' => false,
-        'description' => false,
         'doingBusinessAs' => false,
         'name' => false,
         'principalPlaceOfBusiness' => false,
         'registeredAddress' => false,
         'registrationNumber' => false,
+        'taxAbsent' => true,
         'taxInformation' => false,
         'vatAbsenceReason' => false,
         'vatNumber' => false
@@ -185,12 +185,12 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $attributeMap = [
         'countryOfGoverningLaw' => 'countryOfGoverningLaw',
         'dateOfIncorporation' => 'dateOfIncorporation',
-        'description' => 'description',
         'doingBusinessAs' => 'doingBusinessAs',
         'name' => 'name',
         'principalPlaceOfBusiness' => 'principalPlaceOfBusiness',
         'registeredAddress' => 'registeredAddress',
         'registrationNumber' => 'registrationNumber',
+        'taxAbsent' => 'taxAbsent',
         'taxInformation' => 'taxInformation',
         'vatAbsenceReason' => 'vatAbsenceReason',
         'vatNumber' => 'vatNumber'
@@ -204,12 +204,12 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $setters = [
         'countryOfGoverningLaw' => 'setCountryOfGoverningLaw',
         'dateOfIncorporation' => 'setDateOfIncorporation',
-        'description' => 'setDescription',
         'doingBusinessAs' => 'setDoingBusinessAs',
         'name' => 'setName',
         'principalPlaceOfBusiness' => 'setPrincipalPlaceOfBusiness',
         'registeredAddress' => 'setRegisteredAddress',
         'registrationNumber' => 'setRegistrationNumber',
+        'taxAbsent' => 'setTaxAbsent',
         'taxInformation' => 'setTaxInformation',
         'vatAbsenceReason' => 'setVatAbsenceReason',
         'vatNumber' => 'setVatNumber'
@@ -223,12 +223,12 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $getters = [
         'countryOfGoverningLaw' => 'getCountryOfGoverningLaw',
         'dateOfIncorporation' => 'getDateOfIncorporation',
-        'description' => 'getDescription',
         'doingBusinessAs' => 'getDoingBusinessAs',
         'name' => 'getName',
         'principalPlaceOfBusiness' => 'getPrincipalPlaceOfBusiness',
         'registeredAddress' => 'getRegisteredAddress',
         'registrationNumber' => 'getRegistrationNumber',
+        'taxAbsent' => 'getTaxAbsent',
         'taxInformation' => 'getTaxInformation',
         'vatAbsenceReason' => 'getVatAbsenceReason',
         'vatNumber' => 'getVatNumber'
@@ -307,12 +307,12 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $this->setIfExists('countryOfGoverningLaw', $data ?? [], null);
         $this->setIfExists('dateOfIncorporation', $data ?? [], null);
-        $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('doingBusinessAs', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('principalPlaceOfBusiness', $data ?? [], null);
         $this->setIfExists('registeredAddress', $data ?? [], null);
         $this->setIfExists('registrationNumber', $data ?? [], null);
+        $this->setIfExists('taxAbsent', $data ?? [], null);
         $this->setIfExists('taxInformation', $data ?? [], null);
         $this->setIfExists('vatAbsenceReason', $data ?? [], null);
         $this->setIfExists('vatNumber', $data ?? [], null);
@@ -428,33 +428,6 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
             throw new \InvalidArgumentException('non-nullable dateOfIncorporation cannot be null');
         }
         $this->container['dateOfIncorporation'] = $dateOfIncorporation;
-
-        return $this;
-    }
-
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription()
-    {
-        return $this->container['description'];
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Short description about the Legal Arrangement.
-     *
-     * @return self
-     */
-    public function setDescription($description)
-    {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
-        $this->container['description'] = $description;
 
         return $this;
     }
@@ -590,6 +563,40 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
             throw new \InvalidArgumentException('non-nullable registrationNumber cannot be null');
         }
         $this->container['registrationNumber'] = $registrationNumber;
+
+        return $this;
+    }
+
+    /**
+     * Gets taxAbsent
+     *
+     * @return bool|null
+     */
+    public function getTaxAbsent()
+    {
+        return $this->container['taxAbsent'];
+    }
+
+    /**
+     * Sets taxAbsent
+     *
+     * @param bool|null $taxAbsent The tax information is absent.
+     *
+     * @return self
+     */
+    public function setTaxAbsent($taxAbsent)
+    {
+        if (is_null($taxAbsent)) {
+            array_push($this->openAPINullablesSetToNull, 'taxAbsent');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('taxAbsent', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['taxAbsent'] = $taxAbsent;
 
         return $this;
     }

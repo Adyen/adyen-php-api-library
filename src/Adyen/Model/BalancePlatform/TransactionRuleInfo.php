@@ -290,6 +290,7 @@ class TransactionRuleInfo implements ModelInterface, ArrayAccess, \JsonSerializa
     public const OUTCOME_TYPE_ENFORCE_SCA = 'enforceSCA';
     public const OUTCOME_TYPE_HARD_BLOCK = 'hardBlock';
     public const OUTCOME_TYPE_SCORE_BASED = 'scoreBased';
+    public const OUTCOME_TYPE_TIMED_BLOCK = 'timedBlock';
     public const REQUEST_TYPE_AUTHENTICATION = 'authentication';
     public const REQUEST_TYPE_AUTHORIZATION = 'authorization';
     public const REQUEST_TYPE_BANK_TRANSFER = 'bankTransfer';
@@ -312,6 +313,7 @@ class TransactionRuleInfo implements ModelInterface, ArrayAccess, \JsonSerializa
             self::OUTCOME_TYPE_ENFORCE_SCA,
             self::OUTCOME_TYPE_HARD_BLOCK,
             self::OUTCOME_TYPE_SCORE_BASED,
+            self::OUTCOME_TYPE_TIMED_BLOCK,
         ];
     }
     /**
@@ -520,7 +522,7 @@ class TransactionRuleInfo implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets description
      *
-     * @param string $description Your description for the transaction rule, maximum 300 characters.
+     * @param string $description Your description for the transaction rule.
      *
      * @return self
      */
@@ -665,7 +667,7 @@ class TransactionRuleInfo implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets reference
      *
-     * @param string $reference Your reference for the transaction rule, maximum 150 characters.
+     * @param string $reference Your reference for the transaction rule.
      *
      * @return self
      */

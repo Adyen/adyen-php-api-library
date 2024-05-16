@@ -350,7 +350,7 @@ class PaymentInstrumentGroupInfo implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets description
      *
-     * @param string|null $description Your description for the payment instrument group, maximum 300 characters.
+     * @param string|null $description Your description for the payment instrument group.
      *
      * @return self
      */
@@ -404,7 +404,7 @@ class PaymentInstrumentGroupInfo implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets reference
      *
-     * @param string|null $reference Your reference for the payment instrument group, maximum 150 characters.
+     * @param string|null $reference Your reference for the payment instrument group.
      *
      * @return self
      */

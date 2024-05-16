@@ -57,6 +57,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'merchantNames' => '\Adyen\Model\BalancePlatform\MerchantNamesRestriction',
         'merchants' => '\Adyen\Model\BalancePlatform\MerchantsRestriction',
         'processingTypes' => '\Adyen\Model\BalancePlatform\ProcessingTypesRestriction',
+        'riskScores' => '\Adyen\Model\BalancePlatform\RiskScoresRestriction',
         'sameAmountRestriction' => '\Adyen\Model\BalancePlatform\SameAmountRestriction',
         'sameCounterpartyRestriction' => '\Adyen\Model\BalancePlatform\SameCounterpartyRestriction',
         'timeOfDay' => '\Adyen\Model\BalancePlatform\TimeOfDayRestriction',
@@ -84,6 +85,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'merchantNames' => null,
         'merchants' => null,
         'processingTypes' => null,
+        'riskScores' => null,
         'sameAmountRestriction' => null,
         'sameCounterpartyRestriction' => null,
         'timeOfDay' => null,
@@ -109,6 +111,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'merchantNames' => false,
         'merchants' => false,
         'processingTypes' => false,
+        'riskScores' => false,
         'sameAmountRestriction' => false,
         'sameCounterpartyRestriction' => false,
         'timeOfDay' => false,
@@ -214,6 +217,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'merchantNames' => 'merchantNames',
         'merchants' => 'merchants',
         'processingTypes' => 'processingTypes',
+        'riskScores' => 'riskScores',
         'sameAmountRestriction' => 'sameAmountRestriction',
         'sameCounterpartyRestriction' => 'sameCounterpartyRestriction',
         'timeOfDay' => 'timeOfDay',
@@ -239,6 +243,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'merchantNames' => 'setMerchantNames',
         'merchants' => 'setMerchants',
         'processingTypes' => 'setProcessingTypes',
+        'riskScores' => 'setRiskScores',
         'sameAmountRestriction' => 'setSameAmountRestriction',
         'sameCounterpartyRestriction' => 'setSameCounterpartyRestriction',
         'timeOfDay' => 'setTimeOfDay',
@@ -264,6 +269,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'merchantNames' => 'getMerchantNames',
         'merchants' => 'getMerchants',
         'processingTypes' => 'getProcessingTypes',
+        'riskScores' => 'getRiskScores',
         'sameAmountRestriction' => 'getSameAmountRestriction',
         'sameCounterpartyRestriction' => 'getSameCounterpartyRestriction',
         'timeOfDay' => 'getTimeOfDay',
@@ -340,6 +346,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('merchantNames', $data ?? [], null);
         $this->setIfExists('merchants', $data ?? [], null);
         $this->setIfExists('processingTypes', $data ?? [], null);
+        $this->setIfExists('riskScores', $data ?? [], null);
         $this->setIfExists('sameAmountRestriction', $data ?? [], null);
         $this->setIfExists('sameCounterpartyRestriction', $data ?? [], null);
         $this->setIfExists('timeOfDay', $data ?? [], null);
@@ -735,6 +742,33 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
             throw new \InvalidArgumentException('non-nullable processingTypes cannot be null');
         }
         $this->container['processingTypes'] = $processingTypes;
+
+        return $this;
+    }
+
+    /**
+     * Gets riskScores
+     *
+     * @return \Adyen\Model\BalancePlatform\RiskScoresRestriction|null
+     */
+    public function getRiskScores()
+    {
+        return $this->container['riskScores'];
+    }
+
+    /**
+     * Sets riskScores
+     *
+     * @param \Adyen\Model\BalancePlatform\RiskScoresRestriction|null $riskScores riskScores
+     *
+     * @return self
+     */
+    public function setRiskScores($riskScores)
+    {
+        if (is_null($riskScores)) {
+            throw new \InvalidArgumentException('non-nullable riskScores cannot be null');
+        }
+        $this->container['riskScores'] = $riskScores;
 
         return $this;
     }

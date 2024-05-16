@@ -46,7 +46,7 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $openAPITypes = [
         'additionalBankAccountIdentifications' => '\Adyen\Model\BalancePlatform\PaymentInstrumentAdditionalBankAccountIdentificationsInner[]',
         'balanceAccountId' => 'string',
-        'bankAccount' => '\Adyen\Model\BalancePlatform\PaymentInstrumentBankAccount',
+        'bankAccount' => '\Adyen\Model\BalancePlatform\BankAccountDetails',
         'card' => '\Adyen\Model\BalancePlatform\Card',
         'description' => 'string',
         'id' => 'string',
@@ -463,6 +463,7 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
      * Gets additionalBankAccountIdentifications
      *
      * @return \Adyen\Model\BalancePlatform\PaymentInstrumentAdditionalBankAccountIdentificationsInner[]|null
+     * @deprecated
      */
     public function getAdditionalBankAccountIdentifications()
     {
@@ -475,6 +476,7 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
      * @param \Adyen\Model\BalancePlatform\PaymentInstrumentAdditionalBankAccountIdentificationsInner[]|null $additionalBankAccountIdentifications Contains optional, additional business account details. Returned when you create a payment instrument with `type` **bankAccount**.
      *
      * @return self
+     * @deprecated
      */
     public function setAdditionalBankAccountIdentifications($additionalBankAccountIdentifications)
     {
@@ -516,7 +518,7 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets bankAccount
      *
-     * @return \Adyen\Model\BalancePlatform\PaymentInstrumentBankAccount|null
+     * @return \Adyen\Model\BalancePlatform\BankAccountDetails|null
      */
     public function getBankAccount()
     {
@@ -526,7 +528,7 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets bankAccount
      *
-     * @param \Adyen\Model\BalancePlatform\PaymentInstrumentBankAccount|null $bankAccount bankAccount
+     * @param \Adyen\Model\BalancePlatform\BankAccountDetails|null $bankAccount bankAccount
      *
      * @return self
      */

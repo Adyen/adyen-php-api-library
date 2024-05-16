@@ -44,7 +44,6 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       * @var string[]
       */
     protected static $openAPITypes = [
-        'formFactor' => 'string',
         'iban' => 'string',
         'type' => 'string'
     ];
@@ -57,7 +56,6 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'formFactor' => null,
         'iban' => null,
         'type' => null
     ];
@@ -68,7 +66,6 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'formFactor' => true,
         'iban' => false,
         'type' => false
     ];
@@ -159,7 +156,6 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $attributeMap = [
-        'formFactor' => 'formFactor',
         'iban' => 'iban',
         'type' => 'type'
     ];
@@ -170,7 +166,6 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $setters = [
-        'formFactor' => 'setFormFactor',
         'iban' => 'setIban',
         'type' => 'setType'
     ];
@@ -181,7 +176,6 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $getters = [
-        'formFactor' => 'getFormFactor',
         'iban' => 'getIban',
         'type' => 'getType'
     ];
@@ -255,7 +249,6 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('formFactor', $data ?? [], null);
         $this->setIfExists('iban', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
@@ -316,40 +309,6 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets formFactor
-     *
-     * @return string|null
-     */
-    public function getFormFactor()
-    {
-        return $this->container['formFactor'];
-    }
-
-    /**
-     * Sets formFactor
-     *
-     * @param string|null $formFactor The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
-     *
-     * @return self
-     */
-    public function setFormFactor($formFactor)
-    {
-        if (is_null($formFactor)) {
-            array_push($this->openAPINullablesSetToNull, 'formFactor');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('formFactor', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['formFactor'] = $formFactor;
-
-        return $this;
-    }
 
     /**
      * Gets iban

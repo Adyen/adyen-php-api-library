@@ -289,7 +289,6 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
 
     public const STATUS_ACTIVE = 'active';
     public const STATUS_CLOSED = 'closed';
-    public const STATUS_INACTIVE = 'inactive';
     public const STATUS_SUSPENDED = 'suspended';
 
     /**
@@ -302,7 +301,6 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
         return [
             self::STATUS_ACTIVE,
             self::STATUS_CLOSED,
-            self::STATUS_INACTIVE,
             self::STATUS_SUSPENDED,
         ];
     }
@@ -487,7 +485,7 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets description
      *
-     * @param string|null $description Your description for the account holder, maximum 300 characters.
+     * @param string|null $description Your description for the account holder.
      *
      * @return self
      */
@@ -649,7 +647,7 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets reference
      *
-     * @param string|null $reference Your reference for the account holder, maximum 150 characters.
+     * @param string|null $reference Your reference for the account holder.
      *
      * @return self
      */
@@ -676,7 +674,7 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      *
-     * @param string|null $status The status of the account holder.  Possible values:    * **active**: The account holder is active. This is the default status when creating an account holder.    * **inactive (Deprecated)**: The account holder is temporarily inactive due to missing KYC details. You can set the account back to active by providing the missing KYC details.    * **suspended**: The account holder is permanently deactivated by Adyen. This action cannot be undone.   * **closed**: The account holder is permanently deactivated by you. This action cannot be undone.
+     * @param string|null $status The status of the account holder.  Possible values:    * **active**: The account holder is active. This is the default status when creating an account holder.    * **suspended**: The account holder is permanently deactivated by Adyen. This action cannot be undone.   * **closed**: The account holder is permanently deactivated by you. This action cannot be undone.
      *
      * @return self
      */

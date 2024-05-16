@@ -388,7 +388,7 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets line1
      *
-     * @param string|null $line1 The street name. For example, if the address is \"Rokin 49\", provide \"Rokin\".
+     * @param string|null $line1 The name of the street. Do not include the number of the building.  For example, if the address is Simon Carmiggeltstraat 6-50, provide **Simon Carmiggeltstraat**.
      *
      * @return self
      */
@@ -415,7 +415,7 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets line2
      *
-     * @param string|null $line2 The house number or name. For example, if the address is \"Rokin 49\", provide \"49\".
+     * @param string|null $line2 The number of the building.  For example, if the address is Simon Carmiggeltstraat 6-50, provide **6-50**.
      *
      * @return self
      */
@@ -442,7 +442,7 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets line3
      *
-     * @param string|null $line3 Optional information about the address.
+     * @param string|null $line3 Additional information about the delivery address.
      *
      * @return self
      */
@@ -496,7 +496,7 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets stateOrProvince
      *
-     * @param string|null $stateOrProvince The two-letterISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada. > Required for the US and Canada.
+     * @param string|null $stateOrProvince The two-letter ISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada. > Required for the US and Canada.
      *
      * @return self
      */

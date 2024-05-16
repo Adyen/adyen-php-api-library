@@ -44,6 +44,7 @@ class TransferView implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'categoryData' => '\Adyen\Model\Transfers\TransferCategoryData',
         'id' => 'string',
         'reference' => 'string'
     ];
@@ -56,6 +57,7 @@ class TransferView implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'categoryData' => null,
         'id' => null,
         'reference' => null
     ];
@@ -66,6 +68,7 @@ class TransferView implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'categoryData' => false,
         'id' => false,
         'reference' => false
     ];
@@ -156,6 +159,7 @@ class TransferView implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'categoryData' => 'categoryData',
         'id' => 'id',
         'reference' => 'reference'
     ];
@@ -166,6 +170,7 @@ class TransferView implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'categoryData' => 'setCategoryData',
         'id' => 'setId',
         'reference' => 'setReference'
     ];
@@ -176,6 +181,7 @@ class TransferView implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'categoryData' => 'getCategoryData',
         'id' => 'getId',
         'reference' => 'getReference'
     ];
@@ -237,6 +243,7 @@ class TransferView implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('categoryData', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
     }
@@ -285,6 +292,33 @@ class TransferView implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets categoryData
+     *
+     * @return \Adyen\Model\Transfers\TransferCategoryData|null
+     */
+    public function getCategoryData()
+    {
+        return $this->container['categoryData'];
+    }
+
+    /**
+     * Sets categoryData
+     *
+     * @param \Adyen\Model\Transfers\TransferCategoryData|null $categoryData categoryData
+     *
+     * @return self
+     */
+    public function setCategoryData($categoryData)
+    {
+        if (is_null($categoryData)) {
+            throw new \InvalidArgumentException('non-nullable categoryData cannot be null');
+        }
+        $this->container['categoryData'] = $categoryData;
+
+        return $this;
+    }
 
     /**
      * Gets id

@@ -331,7 +331,7 @@ class AmexInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets midNumber
      *
-     * @param string|null $midNumber MID number. Format: 10 numeric characters
+     * @param string|null $midNumber MID (Merchant ID) number. Format: 10 numeric characters.  Must be provided only when requesting `gatewayContract` or `paymentDesignatorContract` service levels.
      *
      * @return self
      */
@@ -358,7 +358,7 @@ class AmexInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets reuseMidNumber
      *
-     * @param bool|null $reuseMidNumber Indicates whether the Amex Merchant ID is reused from previously setup payment methods
+     * @param bool|null $reuseMidNumber Indicates whether the Amex Merchant ID is reused from a previously setup Amex payment method.  This is only applicable for `gatewayContract` and `paymentDesignatorContract` service levels.  The default value is `false`.
      *
      * @return self
      */
@@ -385,7 +385,7 @@ class AmexInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets serviceLevel
      *
-     * @param string $serviceLevel Service level
+     * @param string $serviceLevel Specifies the service level (settlement type) of this payment method. Possible values: * **noContract** — Adyen holds the contract with American Express. * **gatewayContract** — American Express receives the settlement and handles disputes. They then pay out to the merchant directly. * **paymentDesignatorContract** — Adyen receives the settlement and handles disputes. Adyen then pays out to the merchant.
      *
      * @return self
      */

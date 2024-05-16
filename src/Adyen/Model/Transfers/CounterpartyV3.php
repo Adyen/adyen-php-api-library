@@ -310,7 +310,7 @@ class CounterpartyV3 implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets balanceAccountId
      *
-     * @param string|null $balanceAccountId Unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id).
+     * @param string|null $balanceAccountId The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id).
      *
      * @return self
      */
@@ -391,7 +391,7 @@ class CounterpartyV3 implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets transferInstrumentId
      *
-     * @param string|null $transferInstrumentId Unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
+     * @param string|null $transferInstrumentId The unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
      *
      * @return self
      */

@@ -46,7 +46,6 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     protected static $openAPITypes = [
         'accountNumber' => 'string',
         'accountType' => 'string',
-        'formFactor' => 'string',
         'institutionNumber' => 'string',
         'transitNumber' => 'string',
         'type' => 'string'
@@ -62,7 +61,6 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     protected static $openAPIFormats = [
         'accountNumber' => null,
         'accountType' => null,
-        'formFactor' => null,
         'institutionNumber' => null,
         'transitNumber' => null,
         'type' => null
@@ -76,7 +74,6 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     protected static $openAPINullables = [
         'accountNumber' => false,
         'accountType' => false,
-        'formFactor' => true,
         'institutionNumber' => false,
         'transitNumber' => false,
         'type' => false
@@ -170,7 +167,6 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     protected static $attributeMap = [
         'accountNumber' => 'accountNumber',
         'accountType' => 'accountType',
-        'formFactor' => 'formFactor',
         'institutionNumber' => 'institutionNumber',
         'transitNumber' => 'transitNumber',
         'type' => 'type'
@@ -184,7 +180,6 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     protected static $setters = [
         'accountNumber' => 'setAccountNumber',
         'accountType' => 'setAccountType',
-        'formFactor' => 'setFormFactor',
         'institutionNumber' => 'setInstitutionNumber',
         'transitNumber' => 'setTransitNumber',
         'type' => 'setType'
@@ -198,7 +193,6 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     protected static $getters = [
         'accountNumber' => 'getAccountNumber',
         'accountType' => 'getAccountType',
-        'formFactor' => 'getFormFactor',
         'institutionNumber' => 'getInstitutionNumber',
         'transitNumber' => 'getTransitNumber',
         'type' => 'getType'
@@ -289,7 +283,6 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     {
         $this->setIfExists('accountNumber', $data ?? [], null);
         $this->setIfExists('accountType', $data ?? [], null);
-        $this->setIfExists('formFactor', $data ?? [], null);
         $this->setIfExists('institutionNumber', $data ?? [], null);
         $this->setIfExists('transitNumber', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
@@ -427,40 +420,6 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
             );
         }
         $this->container['accountType'] = $accountType;
-
-        return $this;
-    }
-
-    /**
-     * Gets formFactor
-     *
-     * @return string|null
-     */
-    public function getFormFactor()
-    {
-        return $this->container['formFactor'];
-    }
-
-    /**
-     * Sets formFactor
-     *
-     * @param string|null $formFactor The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
-     *
-     * @return self
-     */
-    public function setFormFactor($formFactor)
-    {
-        if (is_null($formFactor)) {
-            array_push($this->openAPINullablesSetToNull, 'formFactor');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('formFactor', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['formFactor'] = $formFactor;
 
         return $this;
     }
