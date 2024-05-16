@@ -264,7 +264,7 @@ class NotificationTest extends TestCaseMock
 
     public function testBankingWebhookParser()
     {
-        $jsonString = '{ "data": {"balancePlatform":"YOUR_BALANCE_PLATFORM","accountHolder":{"contactDetails":{"address":{"country":"NL","houseNumberOrName":"274","postalCode":"1020CD","street":"Brannan Street"},"email": "s.hopper@example.com","phone": {"number": "+315551231234","type": "Mobile"}},"description": "S.Hopper - Staff 123","id": "AH00000000000000000000001","status": "Active"}},"environment": "test","type": "balancePlatform.accountHolder.created"}';
+        $jsonString = '{ "data": {"balancePlatform":"YOUR_BALANCE_PLATFORM","accountHolder":{"contactDetails":{"address":{"country":"NL","houseNumberOrName":"274","postalCode":"1020CD","street":"Brannan Street"},"email": "s.hopper@example.com","phone": {"number": "+315551231234","type": "mobile"}},"description": "S.Hopper - Staff 123","id": "AH00000000000000000000001","status": "active"}},"environment": "test","type": "balancePlatform.accountHolder.created"}';
         $webhookParser = new BankingWebhookParser($jsonString);
         $result = $webhookParser->getAccountHolderNotificationRequest();
         self::assertEquals("test", $result->getEnvironment());
