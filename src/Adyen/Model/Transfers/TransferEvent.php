@@ -48,12 +48,14 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'amountAdjustments' => '\Adyen\Model\Transfers\AmountAdjustment[]',
         'bookingDate' => '\DateTime',
         'estimatedArrivalTime' => '\DateTime',
+        'externalReason' => '\Adyen\Model\Transfers\ExternalReason',
         'id' => 'string',
         'modification' => '\Adyen\Model\Transfers\Modification',
         'mutations' => '\Adyen\Model\Transfers\BalanceMutation[]',
         'originalAmount' => '\Adyen\Model\Transfers\Amount',
         'reason' => 'string',
         'status' => 'string',
+        'trackingData' => '\Adyen\Model\Transfers\TransferEventTrackingData',
         'transactionId' => 'string',
         'type' => 'string',
         'updateDate' => '\DateTime',
@@ -72,12 +74,14 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'amountAdjustments' => null,
         'bookingDate' => 'date-time',
         'estimatedArrivalTime' => 'date-time',
+        'externalReason' => null,
         'id' => null,
         'modification' => null,
         'mutations' => null,
         'originalAmount' => null,
         'reason' => null,
         'status' => null,
+        'trackingData' => null,
         'transactionId' => null,
         'type' => null,
         'updateDate' => 'date-time',
@@ -94,12 +98,14 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'amountAdjustments' => false,
         'bookingDate' => false,
         'estimatedArrivalTime' => false,
+        'externalReason' => false,
         'id' => false,
         'modification' => false,
         'mutations' => false,
         'originalAmount' => false,
         'reason' => false,
         'status' => false,
+        'trackingData' => false,
         'transactionId' => false,
         'type' => false,
         'updateDate' => false,
@@ -196,12 +202,14 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'amountAdjustments' => 'amountAdjustments',
         'bookingDate' => 'bookingDate',
         'estimatedArrivalTime' => 'estimatedArrivalTime',
+        'externalReason' => 'externalReason',
         'id' => 'id',
         'modification' => 'modification',
         'mutations' => 'mutations',
         'originalAmount' => 'originalAmount',
         'reason' => 'reason',
         'status' => 'status',
+        'trackingData' => 'trackingData',
         'transactionId' => 'transactionId',
         'type' => 'type',
         'updateDate' => 'updateDate',
@@ -218,12 +226,14 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'amountAdjustments' => 'setAmountAdjustments',
         'bookingDate' => 'setBookingDate',
         'estimatedArrivalTime' => 'setEstimatedArrivalTime',
+        'externalReason' => 'setExternalReason',
         'id' => 'setId',
         'modification' => 'setModification',
         'mutations' => 'setMutations',
         'originalAmount' => 'setOriginalAmount',
         'reason' => 'setReason',
         'status' => 'setStatus',
+        'trackingData' => 'setTrackingData',
         'transactionId' => 'setTransactionId',
         'type' => 'setType',
         'updateDate' => 'setUpdateDate',
@@ -240,12 +250,14 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'amountAdjustments' => 'getAmountAdjustments',
         'bookingDate' => 'getBookingDate',
         'estimatedArrivalTime' => 'getEstimatedArrivalTime',
+        'externalReason' => 'getExternalReason',
         'id' => 'getId',
         'modification' => 'getModification',
         'mutations' => 'getMutations',
         'originalAmount' => 'getOriginalAmount',
         'reason' => 'getReason',
         'status' => 'getStatus',
+        'trackingData' => 'getTrackingData',
         'transactionId' => 'getTransactionId',
         'type' => 'getType',
         'updateDate' => 'getUpdateDate',
@@ -305,6 +317,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     public const REASON_DECLINED_BY_TRANSACTION_RULE = 'declinedByTransactionRule';
     public const REASON_ERROR = 'error';
     public const REASON_NOT_ENOUGH_BALANCE = 'notEnoughBalance';
+    public const REASON_PENDING_APPROVAL = 'pendingApproval';
     public const REASON_REFUSED_BY_COUNTERPARTY_BANK = 'refusedByCounterpartyBank';
     public const REASON_ROUTE_NOT_FOUND = 'routeNotFound';
     public const REASON_SCA_FAILED = 'scaFailed';
@@ -397,6 +410,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
             self::REASON_DECLINED_BY_TRANSACTION_RULE,
             self::REASON_ERROR,
             self::REASON_NOT_ENOUGH_BALANCE,
+            self::REASON_PENDING_APPROVAL,
             self::REASON_REFUSED_BY_COUNTERPARTY_BANK,
             self::REASON_ROUTE_NOT_FOUND,
             self::REASON_SCA_FAILED,
@@ -509,12 +523,14 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('amountAdjustments', $data ?? [], null);
         $this->setIfExists('bookingDate', $data ?? [], null);
         $this->setIfExists('estimatedArrivalTime', $data ?? [], null);
+        $this->setIfExists('externalReason', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('modification', $data ?? [], null);
         $this->setIfExists('mutations', $data ?? [], null);
         $this->setIfExists('originalAmount', $data ?? [], null);
         $this->setIfExists('reason', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('trackingData', $data ?? [], null);
         $this->setIfExists('transactionId', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('updateDate', $data ?? [], null);
@@ -675,6 +691,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets estimatedArrivalTime
      *
      * @return \DateTime|null
+     * @deprecated
      */
     public function getEstimatedArrivalTime()
     {
@@ -687,6 +704,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param \DateTime|null $estimatedArrivalTime The estimated time the beneficiary should have access to the funds.
      *
      * @return self
+     * @deprecated
      */
     public function setEstimatedArrivalTime($estimatedArrivalTime)
     {
@@ -694,6 +712,33 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable estimatedArrivalTime cannot be null');
         }
         $this->container['estimatedArrivalTime'] = $estimatedArrivalTime;
+
+        return $this;
+    }
+
+    /**
+     * Gets externalReason
+     *
+     * @return \Adyen\Model\Transfers\ExternalReason|null
+     */
+    public function getExternalReason()
+    {
+        return $this->container['externalReason'];
+    }
+
+    /**
+     * Sets externalReason
+     *
+     * @param \Adyen\Model\Transfers\ExternalReason|null $externalReason externalReason
+     *
+     * @return self
+     */
+    public function setExternalReason($externalReason)
+    {
+        if (is_null($externalReason)) {
+            throw new \InvalidArgumentException('non-nullable externalReason cannot be null');
+        }
+        $this->container['externalReason'] = $externalReason;
 
         return $this;
     }
@@ -876,6 +921,33 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets trackingData
+     *
+     * @return \Adyen\Model\Transfers\TransferEventTrackingData|null
+     */
+    public function getTrackingData()
+    {
+        return $this->container['trackingData'];
+    }
+
+    /**
+     * Sets trackingData
+     *
+     * @param \Adyen\Model\Transfers\TransferEventTrackingData|null $trackingData trackingData
+     *
+     * @return self
+     */
+    public function setTrackingData($trackingData)
+    {
+        if (is_null($trackingData)) {
+            throw new \InvalidArgumentException('non-nullable trackingData cannot be null');
+        }
+        $this->container['trackingData'] = $trackingData;
 
         return $this;
     }

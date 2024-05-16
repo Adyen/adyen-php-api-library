@@ -306,7 +306,7 @@ class BalancePlatform implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets description
      *
-     * @param string|null $description Your description of the balance platform, maximum 300 characters.
+     * @param string|null $description Your description of the balance platform.
      *
      * @return self
      */

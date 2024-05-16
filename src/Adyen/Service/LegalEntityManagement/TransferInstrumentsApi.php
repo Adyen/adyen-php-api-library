@@ -59,13 +59,14 @@ class TransferInstrumentsApi extends Service
     *
     * @param string $id
     * @param array|null $requestOptions
-
+    
     * @throws AdyenException
     */
     public function deleteTransferInstrument(string $id, array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/transferInstruments/{id}");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
+        
     }
 
     /**

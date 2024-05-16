@@ -323,6 +323,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     public const REASON_DECLINED_BY_TRANSACTION_RULE = 'declinedByTransactionRule';
     public const REASON_ERROR = 'error';
     public const REASON_NOT_ENOUGH_BALANCE = 'notEnoughBalance';
+    public const REASON_PENDING_APPROVAL = 'pendingApproval';
     public const REASON_REFUSED_BY_COUNTERPARTY_BANK = 'refusedByCounterpartyBank';
     public const REASON_ROUTE_NOT_FOUND = 'routeNotFound';
     public const REASON_SCA_FAILED = 'scaFailed';
@@ -399,6 +400,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_BALANCE_ROLLOVER = 'balanceRollover';
     public const TYPE_BANK_DIRECT_DEBIT = 'bankDirectDebit';
     public const TYPE_BANK_TRANSFER = 'bankTransfer';
+    public const TYPE_CAPITAL_FUNDS_COLLECTION = 'capitalFundsCollection';
     public const TYPE_CAPTURE = 'capture';
     public const TYPE_CAPTURE_REVERSAL = 'captureReversal';
     public const TYPE_CARD_TRANSFER = 'cardTransfer';
@@ -475,6 +477,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
             self::REASON_DECLINED_BY_TRANSACTION_RULE,
             self::REASON_ERROR,
             self::REASON_NOT_ENOUGH_BALANCE,
+            self::REASON_PENDING_APPROVAL,
             self::REASON_REFUSED_BY_COUNTERPARTY_BANK,
             self::REASON_ROUTE_NOT_FOUND,
             self::REASON_SCA_FAILED,
@@ -571,6 +574,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_BALANCE_ROLLOVER,
             self::TYPE_BANK_DIRECT_DEBIT,
             self::TYPE_BANK_TRANSFER,
+            self::TYPE_CAPITAL_FUNDS_COLLECTION,
             self::TYPE_CAPTURE,
             self::TYPE_CAPTURE_REVERSAL,
             self::TYPE_CARD_TRANSFER,

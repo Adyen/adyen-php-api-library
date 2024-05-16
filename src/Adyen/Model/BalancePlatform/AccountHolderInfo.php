@@ -429,7 +429,7 @@ class AccountHolderInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets description
      *
-     * @param string|null $description Your description for the account holder, maximum 300 characters.
+     * @param string|null $description Your description for the account holder.
      *
      * @return self
      */
@@ -537,7 +537,7 @@ class AccountHolderInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets reference
      *
-     * @param string|null $reference Your reference for the account holder, maximum 150 characters.
+     * @param string|null $reference Your reference for the account holder.
      *
      * @return self
      */

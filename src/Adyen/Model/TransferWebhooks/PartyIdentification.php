@@ -413,7 +413,7 @@ class PartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets firstName
      *
-     * @param string|null $firstName First name of the individual.  Allowed only when `type` is **individual**.
+     * @param string|null $firstName First name of the individual.  Allowed only when `type` is **individual**.  Supported characters: [a-z] [A-Z] - . / — and Space.
      *
      * @return self
      */
@@ -440,7 +440,7 @@ class PartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets fullName
      *
-     * @param string $fullName The name of the entity.
+     * @param string $fullName The name of the entity.  Supported characters: [a-z] [A-Z] [0-9] , . ; : - — / \\ + & ! ? @ ( ) \" ' and Space.
      *
      * @return self
      */
@@ -467,7 +467,7 @@ class PartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets lastName
      *
-     * @param string|null $lastName Last name of the individual.  Allowed only when `type` is **individual**.
+     * @param string|null $lastName Last name of the individual.  Allowed only when `type` is **individual**.  Supported characters: [a-z] [A-Z] - . / — and Space.
      *
      * @return self
      */

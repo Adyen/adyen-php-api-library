@@ -229,6 +229,7 @@ class BankIdentification implements ModelInterface, ArrayAccess, \JsonSerializab
 
     public const IDENTIFICATION_TYPE_IBAN = 'iban';
     public const IDENTIFICATION_TYPE_ROUTING_NUMBER = 'routingNumber';
+    public const IDENTIFICATION_TYPE_SORT_CODE = 'sortCode';
 
     /**
      * Gets allowable values of the enum
@@ -240,6 +241,7 @@ class BankIdentification implements ModelInterface, ArrayAccess, \JsonSerializab
         return [
             self::IDENTIFICATION_TYPE_IBAN,
             self::IDENTIFICATION_TYPE_ROUTING_NUMBER,
+            self::IDENTIFICATION_TYPE_SORT_CODE,
         ];
     }
     /**
@@ -380,7 +382,7 @@ class BankIdentification implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets identificationType
      *
-     * @param string|null $identificationType The type of the identification.  Possible values: **iban**, **routingNumber**.
+     * @param string|null $identificationType The type of the identification.  Possible values: **iban**, **routingNumber**, **sortCode**.
      *
      * @return self
      */

@@ -385,7 +385,7 @@ class BalanceAccountUpdateRequest implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets description
      *
-     * @param string|null $description A human-readable description of the balance account, maximum 300 characters. You can use this parameter to distinguish between multiple balance accounts under an account holder.
+     * @param string|null $description A human-readable description of the balance account. You can use this parameter to distinguish between multiple balance accounts under an account holder.
      *
      * @return self
      */
@@ -466,7 +466,7 @@ class BalanceAccountUpdateRequest implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets reference
      *
-     * @param string|null $reference Your reference to the balance account, maximum 150 characters.
+     * @param string|null $reference Your reference to the balance account.
      *
      * @return self
      */
@@ -493,7 +493,7 @@ class BalanceAccountUpdateRequest implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets status
      *
-     * @param string|null $status The status of the balance account. Payment instruments linked to the balance account can only be used if the balance account status is **active**.  Possible values: **active**, **inactive**, **closed**, **suspended**.
+     * @param string|null $status The status of the balance account. Payment instruments linked to the balance account can only be used if the balance account status is **active**.  Possible values: **active**, **closed**, **suspended**.
      *
      * @return self
      */

@@ -252,6 +252,9 @@ class IdentificationData implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     public const TYPE_NATIONAL_ID_NUMBER = 'nationalIdNumber';
+    public const TYPE_PASSPORT = 'passport';
+    public const TYPE_DRIVERS_LICENSE = 'driversLicense';
+    public const TYPE_IDENTITY_CARD = 'identityCard';
 
     /**
      * Gets allowable values of the enum
@@ -262,6 +265,9 @@ class IdentificationData implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         return [
             self::TYPE_NATIONAL_ID_NUMBER,
+            self::TYPE_PASSPORT,
+            self::TYPE_DRIVERS_LICENSE,
+            self::TYPE_IDENTITY_CARD,
         ];
     }
     /**
@@ -519,7 +525,7 @@ class IdentificationData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets type
      *
-     * @param string $type Type of identity data. For **individual**, the `type` value is **nationalIdNumber**.
+     * @param string $type Type of identity data. For individuals, the `type` value is **nationalIdNumber**. For individuals in these countries, the following types are supported.  - Australia: **driversLicense**, **passport**  - Hong Kong: **driversLicense**, **nationalIdNumber**, **passport**  - New Zealand: **driversLicense**, **passport**  - Singapore: **driversLicense**, **nationalIdNumber**, **passport**
      *
      * @return self
      */

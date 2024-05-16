@@ -46,7 +46,6 @@ class CZLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     protected static $openAPITypes = [
         'accountNumber' => 'string',
         'bankCode' => 'string',
-        'formFactor' => 'string',
         'type' => 'string'
     ];
 
@@ -60,7 +59,6 @@ class CZLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     protected static $openAPIFormats = [
         'accountNumber' => null,
         'bankCode' => null,
-        'formFactor' => null,
         'type' => null
     ];
 
@@ -72,7 +70,6 @@ class CZLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     protected static $openAPINullables = [
         'accountNumber' => false,
         'bankCode' => false,
-        'formFactor' => true,
         'type' => false
     ];
 
@@ -164,7 +161,6 @@ class CZLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     protected static $attributeMap = [
         'accountNumber' => 'accountNumber',
         'bankCode' => 'bankCode',
-        'formFactor' => 'formFactor',
         'type' => 'type'
     ];
 
@@ -176,7 +172,6 @@ class CZLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     protected static $setters = [
         'accountNumber' => 'setAccountNumber',
         'bankCode' => 'setBankCode',
-        'formFactor' => 'setFormFactor',
         'type' => 'setType'
     ];
 
@@ -188,7 +183,6 @@ class CZLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     protected static $getters = [
         'accountNumber' => 'getAccountNumber',
         'bankCode' => 'getBankCode',
-        'formFactor' => 'getFormFactor',
         'type' => 'getType'
     ];
 
@@ -263,7 +257,6 @@ class CZLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     {
         $this->setIfExists('accountNumber', $data ?? [], null);
         $this->setIfExists('bankCode', $data ?? [], null);
-        $this->setIfExists('formFactor', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -377,40 +370,6 @@ class CZLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
             throw new \InvalidArgumentException('non-nullable bankCode cannot be null');
         }
         $this->container['bankCode'] = $bankCode;
-
-        return $this;
-    }
-
-    /**
-     * Gets formFactor
-     *
-     * @return string|null
-     */
-    public function getFormFactor()
-    {
-        return $this->container['formFactor'];
-    }
-
-    /**
-     * Sets formFactor
-     *
-     * @param string|null $formFactor The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
-     *
-     * @return self
-     */
-    public function setFormFactor($formFactor)
-    {
-        if (is_null($formFactor)) {
-            array_push($this->openAPINullablesSetToNull, 'formFactor');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('formFactor', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['formFactor'] = $formFactor;
 
         return $this;
     }

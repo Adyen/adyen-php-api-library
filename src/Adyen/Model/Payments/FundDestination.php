@@ -52,7 +52,8 @@ class FundDestination implements ModelInterface, ArrayAccess, \JsonSerializable
         'shopperName' => '\Adyen\Model\Payments\Name',
         'shopperReference' => 'string',
         'subMerchant' => '\Adyen\Model\Payments\SubMerchant',
-        'telephoneNumber' => 'string'
+        'telephoneNumber' => 'string',
+        'walletPurpose' => 'string'
     ];
 
     /**
@@ -71,7 +72,8 @@ class FundDestination implements ModelInterface, ArrayAccess, \JsonSerializable
         'shopperName' => null,
         'shopperReference' => null,
         'subMerchant' => null,
-        'telephoneNumber' => null
+        'telephoneNumber' => null,
+        'walletPurpose' => null
     ];
 
     /**
@@ -88,7 +90,8 @@ class FundDestination implements ModelInterface, ArrayAccess, \JsonSerializable
         'shopperName' => false,
         'shopperReference' => false,
         'subMerchant' => false,
-        'telephoneNumber' => false
+        'telephoneNumber' => false,
+        'walletPurpose' => false
     ];
 
     /**
@@ -185,7 +188,8 @@ class FundDestination implements ModelInterface, ArrayAccess, \JsonSerializable
         'shopperName' => 'shopperName',
         'shopperReference' => 'shopperReference',
         'subMerchant' => 'subMerchant',
-        'telephoneNumber' => 'telephoneNumber'
+        'telephoneNumber' => 'telephoneNumber',
+        'walletPurpose' => 'walletPurpose'
     ];
 
     /**
@@ -202,7 +206,8 @@ class FundDestination implements ModelInterface, ArrayAccess, \JsonSerializable
         'shopperName' => 'setShopperName',
         'shopperReference' => 'setShopperReference',
         'subMerchant' => 'setSubMerchant',
-        'telephoneNumber' => 'setTelephoneNumber'
+        'telephoneNumber' => 'setTelephoneNumber',
+        'walletPurpose' => 'setWalletPurpose'
     ];
 
     /**
@@ -219,7 +224,8 @@ class FundDestination implements ModelInterface, ArrayAccess, \JsonSerializable
         'shopperName' => 'getShopperName',
         'shopperReference' => 'getShopperReference',
         'subMerchant' => 'getSubMerchant',
-        'telephoneNumber' => 'getTelephoneNumber'
+        'telephoneNumber' => 'getTelephoneNumber',
+        'walletPurpose' => 'getWalletPurpose'
     ];
 
     /**
@@ -288,6 +294,7 @@ class FundDestination implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('shopperReference', $data ?? [], null);
         $this->setIfExists('subMerchant', $data ?? [], null);
         $this->setIfExists('telephoneNumber', $data ?? [], null);
+        $this->setIfExists('walletPurpose', $data ?? [], null);
     }
 
     /**
@@ -571,6 +578,33 @@ class FundDestination implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable telephoneNumber cannot be null');
         }
         $this->container['telephoneNumber'] = $telephoneNumber;
+
+        return $this;
+    }
+
+    /**
+     * Gets walletPurpose
+     *
+     * @return string|null
+     */
+    public function getWalletPurpose()
+    {
+        return $this->container['walletPurpose'];
+    }
+
+    /**
+     * Sets walletPurpose
+     *
+     * @param string|null $walletPurpose The purpose of a digital wallet transaction.
+     *
+     * @return self
+     */
+    public function setWalletPurpose($walletPurpose)
+    {
+        if (is_null($walletPurpose)) {
+            throw new \InvalidArgumentException('non-nullable walletPurpose cannot be null');
+        }
+        $this->container['walletPurpose'] = $walletPurpose;
 
         return $this;
     }
