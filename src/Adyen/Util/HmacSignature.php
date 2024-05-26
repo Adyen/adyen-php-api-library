@@ -108,7 +108,8 @@ class HmacSignature
     /**
      * Returns true when the event code support HMAC validation
      *
-     * @param $response
+     * @param array $response
+     * @return bool
      */
     public function isHmacSupportedEventCode($response)
     {
