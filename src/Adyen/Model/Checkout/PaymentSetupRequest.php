@@ -84,6 +84,7 @@ class PaymentSetupRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'returnUrl' => 'string',
         'riskData' => '\Adyen\Model\Checkout\RiskData',
         'sdkVersion' => 'string',
+        'secureRemoteCommerceCheckoutData' => '\Adyen\Model\Checkout\SecureRemoteCommerceCheckoutData',
         'sessionValidity' => 'string',
         'shopperEmail' => 'string',
         'shopperIP' => 'string',
@@ -150,6 +151,7 @@ class PaymentSetupRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'returnUrl' => null,
         'riskData' => null,
         'sdkVersion' => null,
+        'secureRemoteCommerceCheckoutData' => null,
         'sessionValidity' => null,
         'shopperEmail' => null,
         'shopperIP' => null,
@@ -214,6 +216,7 @@ class PaymentSetupRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'returnUrl' => false,
         'riskData' => false,
         'sdkVersion' => false,
+        'secureRemoteCommerceCheckoutData' => false,
         'sessionValidity' => false,
         'shopperEmail' => false,
         'shopperIP' => false,
@@ -358,6 +361,7 @@ class PaymentSetupRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'returnUrl' => 'returnUrl',
         'riskData' => 'riskData',
         'sdkVersion' => 'sdkVersion',
+        'secureRemoteCommerceCheckoutData' => 'secureRemoteCommerceCheckoutData',
         'sessionValidity' => 'sessionValidity',
         'shopperEmail' => 'shopperEmail',
         'shopperIP' => 'shopperIP',
@@ -422,6 +426,7 @@ class PaymentSetupRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'returnUrl' => 'setReturnUrl',
         'riskData' => 'setRiskData',
         'sdkVersion' => 'setSdkVersion',
+        'secureRemoteCommerceCheckoutData' => 'setSecureRemoteCommerceCheckoutData',
         'sessionValidity' => 'setSessionValidity',
         'shopperEmail' => 'setShopperEmail',
         'shopperIP' => 'setShopperIP',
@@ -486,6 +491,7 @@ class PaymentSetupRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'returnUrl' => 'getReturnUrl',
         'riskData' => 'getRiskData',
         'sdkVersion' => 'getSdkVersion',
+        'secureRemoteCommerceCheckoutData' => 'getSecureRemoteCommerceCheckoutData',
         'sessionValidity' => 'getSessionValidity',
         'shopperEmail' => 'getShopperEmail',
         'shopperIP' => 'getShopperIP',
@@ -649,6 +655,7 @@ class PaymentSetupRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('returnUrl', $data ?? [], null);
         $this->setIfExists('riskData', $data ?? [], null);
         $this->setIfExists('sdkVersion', $data ?? [], null);
+        $this->setIfExists('secureRemoteCommerceCheckoutData', $data ?? [], null);
         $this->setIfExists('sessionValidity', $data ?? [], null);
         $this->setIfExists('shopperEmail', $data ?? [], null);
         $this->setIfExists('shopperIP', $data ?? [], null);
@@ -1845,6 +1852,33 @@ class PaymentSetupRequest implements ModelInterface, ArrayAccess, \JsonSerializa
             throw new \InvalidArgumentException('non-nullable sdkVersion cannot be null');
         }
         $this->container['sdkVersion'] = $sdkVersion;
+
+        return $this;
+    }
+
+    /**
+     * Gets secureRemoteCommerceCheckoutData
+     *
+     * @return \Adyen\Model\Checkout\SecureRemoteCommerceCheckoutData|null
+     */
+    public function getSecureRemoteCommerceCheckoutData()
+    {
+        return $this->container['secureRemoteCommerceCheckoutData'];
+    }
+
+    /**
+     * Sets secureRemoteCommerceCheckoutData
+     *
+     * @param \Adyen\Model\Checkout\SecureRemoteCommerceCheckoutData|null $secureRemoteCommerceCheckoutData secureRemoteCommerceCheckoutData
+     *
+     * @return self
+     */
+    public function setSecureRemoteCommerceCheckoutData($secureRemoteCommerceCheckoutData)
+    {
+        if (is_null($secureRemoteCommerceCheckoutData)) {
+            throw new \InvalidArgumentException('non-nullable secureRemoteCommerceCheckoutData cannot be null');
+        }
+        $this->container['secureRemoteCommerceCheckoutData'] = $secureRemoteCommerceCheckoutData;
 
         return $this;
     }

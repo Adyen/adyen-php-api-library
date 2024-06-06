@@ -245,8 +245,11 @@ class EcontextVoucherDetails implements ModelInterface, ArrayAccess, \JsonSerial
         return self::$openAPIModelName;
     }
 
-    public const TYPE_SEVENELEVEN = 'econtext_seveneleven';
-    public const TYPE_STORES = 'econtext_stores';
+    public const TYPE_ECONTEXT_SEVEN_ELEVEN = 'econtext_seven_eleven';
+    public const TYPE_ECONTEXT_ONLINE = 'econtext_online';
+    public const TYPE_ECONTEXT = 'econtext';
+    public const TYPE_ECONTEXT_STORES = 'econtext_stores';
+    public const TYPE_ECONTEXT_ATM = 'econtext_atm';
 
     /**
      * Gets allowable values of the enum
@@ -256,8 +259,11 @@ class EcontextVoucherDetails implements ModelInterface, ArrayAccess, \JsonSerial
     public function getTypeAllowableValues()
     {
         return [
-            self::TYPE_SEVENELEVEN,
-            self::TYPE_STORES,
+            self::TYPE_ECONTEXT_SEVEN_ELEVEN,
+            self::TYPE_ECONTEXT_ONLINE,
+            self::TYPE_ECONTEXT,
+            self::TYPE_ECONTEXT_STORES,
+            self::TYPE_ECONTEXT_ATM,
         ];
     }
     /**

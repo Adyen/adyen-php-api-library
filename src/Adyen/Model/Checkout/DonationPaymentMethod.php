@@ -64,6 +64,9 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'networkPaymentReference' => 'string',
         'number' => 'string',
         'shopperNotificationReference' => 'string',
+        'srcCorrelationId' => 'string',
+        'srcScheme' => 'string',
+        'srcTokenReference' => 'string',
         'threeDS2SdkVersion' => 'string',
         'googlePayCardNetwork' => 'string',
         'googlePayToken' => 'string',
@@ -97,6 +100,9 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'networkPaymentReference' => null,
         'number' => null,
         'shopperNotificationReference' => null,
+        'srcCorrelationId' => null,
+        'srcScheme' => null,
+        'srcTokenReference' => null,
         'threeDS2SdkVersion' => null,
         'googlePayCardNetwork' => null,
         'googlePayToken' => null,
@@ -128,6 +134,9 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'networkPaymentReference' => false,
         'number' => false,
         'shopperNotificationReference' => false,
+        'srcCorrelationId' => false,
+        'srcScheme' => false,
+        'srcTokenReference' => false,
         'threeDS2SdkVersion' => false,
         'googlePayCardNetwork' => false,
         'googlePayToken' => false,
@@ -239,6 +248,9 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'networkPaymentReference' => 'networkPaymentReference',
         'number' => 'number',
         'shopperNotificationReference' => 'shopperNotificationReference',
+        'srcCorrelationId' => 'srcCorrelationId',
+        'srcScheme' => 'srcScheme',
+        'srcTokenReference' => 'srcTokenReference',
         'threeDS2SdkVersion' => 'threeDS2SdkVersion',
         'googlePayCardNetwork' => 'googlePayCardNetwork',
         'googlePayToken' => 'googlePayToken',
@@ -270,6 +282,9 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'networkPaymentReference' => 'setNetworkPaymentReference',
         'number' => 'setNumber',
         'shopperNotificationReference' => 'setShopperNotificationReference',
+        'srcCorrelationId' => 'setSrcCorrelationId',
+        'srcScheme' => 'setSrcScheme',
+        'srcTokenReference' => 'setSrcTokenReference',
         'threeDS2SdkVersion' => 'setThreeDS2SdkVersion',
         'googlePayCardNetwork' => 'setGooglePayCardNetwork',
         'googlePayToken' => 'setGooglePayToken',
@@ -301,6 +316,9 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'networkPaymentReference' => 'getNetworkPaymentReference',
         'number' => 'getNumber',
         'shopperNotificationReference' => 'getShopperNotificationReference',
+        'srcCorrelationId' => 'getSrcCorrelationId',
+        'srcScheme' => 'getSrcScheme',
+        'srcTokenReference' => 'getSrcTokenReference',
         'threeDS2SdkVersion' => 'getThreeDS2SdkVersion',
         'googlePayCardNetwork' => 'getGooglePayCardNetwork',
         'googlePayToken' => 'getGooglePayToken',
@@ -382,6 +400,9 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('networkPaymentReference', $data ?? [], null);
         $this->setIfExists('number', $data ?? [], null);
         $this->setIfExists('shopperNotificationReference', $data ?? [], null);
+        $this->setIfExists('srcCorrelationId', $data ?? [], null);
+        $this->setIfExists('srcScheme', $data ?? [], null);
+        $this->setIfExists('srcTokenReference', $data ?? [], null);
         $this->setIfExists('threeDS2SdkVersion', $data ?? [], null);
         $this->setIfExists('googlePayCardNetwork', $data ?? [], null);
         $this->setIfExists('googlePayToken', $data ?? [], null);
@@ -954,6 +975,87 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
             throw new \InvalidArgumentException('non-nullable shopperNotificationReference cannot be null');
         }
         $this->container['shopperNotificationReference'] = $shopperNotificationReference;
+
+        return $this;
+    }
+
+    /**
+     * Gets srcCorrelationId
+     *
+     * @return string|null
+     */
+    public function getSrcCorrelationId()
+    {
+        return $this->container['srcCorrelationId'];
+    }
+
+    /**
+     * Sets srcCorrelationId
+     *
+     * @param string|null $srcCorrelationId An identifier used for the Click to Pay transaction.
+     *
+     * @return self
+     */
+    public function setSrcCorrelationId($srcCorrelationId)
+    {
+        if (is_null($srcCorrelationId)) {
+            throw new \InvalidArgumentException('non-nullable srcCorrelationId cannot be null');
+        }
+        $this->container['srcCorrelationId'] = $srcCorrelationId;
+
+        return $this;
+    }
+
+    /**
+     * Gets srcScheme
+     *
+     * @return string|null
+     */
+    public function getSrcScheme()
+    {
+        return $this->container['srcScheme'];
+    }
+
+    /**
+     * Sets srcScheme
+     *
+     * @param string|null $srcScheme The scheme that is being used for Click to Pay.
+     *
+     * @return self
+     */
+    public function setSrcScheme($srcScheme)
+    {
+        if (is_null($srcScheme)) {
+            throw new \InvalidArgumentException('non-nullable srcScheme cannot be null');
+        }
+        $this->container['srcScheme'] = $srcScheme;
+
+        return $this;
+    }
+
+    /**
+     * Gets srcTokenReference
+     *
+     * @return string|null
+     */
+    public function getSrcTokenReference()
+    {
+        return $this->container['srcTokenReference'];
+    }
+
+    /**
+     * Sets srcTokenReference
+     *
+     * @param string|null $srcTokenReference The reference for the Click to Pay token.
+     *
+     * @return self
+     */
+    public function setSrcTokenReference($srcTokenReference)
+    {
+        if (is_null($srcTokenReference)) {
+            throw new \InvalidArgumentException('non-nullable srcTokenReference cannot be null');
+        }
+        $this->container['srcTokenReference'] = $srcTokenReference;
 
         return $this;
     }

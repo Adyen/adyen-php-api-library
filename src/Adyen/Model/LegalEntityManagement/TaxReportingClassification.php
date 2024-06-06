@@ -461,7 +461,7 @@ class TaxReportingClassification implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets mainSourceOfIncome
      *
-     * @param string|null $mainSourceOfIncome The organization's main source of income.  Possible values: **businessOperation**, **realEstateSales**, **investmentInterestOrRoyalty**, **propertyRental**, **other**.
+     * @param string|null $mainSourceOfIncome The organization's main source of income. Only required if `businessType` is **other**.  Possible values: **businessOperation**, **realEstateSales**, **investmentInterestOrRoyalty**, **propertyRental**, **other**.
      *
      * @return self
      */

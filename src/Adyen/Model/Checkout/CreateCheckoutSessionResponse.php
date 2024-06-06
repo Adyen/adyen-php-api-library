@@ -103,6 +103,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'storePaymentMethodMode' => 'string',
         'telephoneNumber' => 'string',
         'themeId' => 'string',
+        'threeDS2RequestData' => '\Adyen\Model\Checkout\CheckoutSessionThreeDS2RequestData',
         'threeDSAuthenticationOnly' => 'bool',
         'trustedShopper' => 'bool',
         'url' => 'string'
@@ -175,6 +176,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'storePaymentMethodMode' => null,
         'telephoneNumber' => null,
         'themeId' => null,
+        'threeDS2RequestData' => null,
         'threeDSAuthenticationOnly' => null,
         'trustedShopper' => null,
         'url' => null
@@ -245,6 +247,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'storePaymentMethodMode' => false,
         'telephoneNumber' => false,
         'themeId' => false,
+        'threeDS2RequestData' => false,
         'threeDSAuthenticationOnly' => false,
         'trustedShopper' => false,
         'url' => false
@@ -395,6 +398,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'storePaymentMethodMode' => 'storePaymentMethodMode',
         'telephoneNumber' => 'telephoneNumber',
         'themeId' => 'themeId',
+        'threeDS2RequestData' => 'threeDS2RequestData',
         'threeDSAuthenticationOnly' => 'threeDSAuthenticationOnly',
         'trustedShopper' => 'trustedShopper',
         'url' => 'url'
@@ -465,6 +469,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'storePaymentMethodMode' => 'setStorePaymentMethodMode',
         'telephoneNumber' => 'setTelephoneNumber',
         'themeId' => 'setThemeId',
+        'threeDS2RequestData' => 'setThreeDS2RequestData',
         'threeDSAuthenticationOnly' => 'setThreeDSAuthenticationOnly',
         'trustedShopper' => 'setTrustedShopper',
         'url' => 'setUrl'
@@ -535,6 +540,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'storePaymentMethodMode' => 'getStorePaymentMethodMode',
         'telephoneNumber' => 'getTelephoneNumber',
         'themeId' => 'getThemeId',
+        'threeDS2RequestData' => 'getThreeDS2RequestData',
         'threeDSAuthenticationOnly' => 'getThreeDSAuthenticationOnly',
         'trustedShopper' => 'getTrustedShopper',
         'url' => 'getUrl'
@@ -736,6 +742,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         $this->setIfExists('storePaymentMethodMode', $data ?? [], null);
         $this->setIfExists('telephoneNumber', $data ?? [], null);
         $this->setIfExists('themeId', $data ?? [], null);
+        $this->setIfExists('threeDS2RequestData', $data ?? [], null);
         $this->setIfExists('threeDSAuthenticationOnly', $data ?? [], null);
         $this->setIfExists('trustedShopper', $data ?? [], null);
         $this->setIfExists('url', $data ?? [], null);
@@ -1299,7 +1306,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets enableOneClick
      *
-     * @param bool|null $enableOneClick When true and `shopperReference` is provided, the shopper will be asked if the payment details should be stored for future one-click payments.
+     * @param bool|null $enableOneClick When true and `shopperReference` is provided, the shopper will be asked if the payment details should be stored for future [one-click payments](https://docs.adyen.com/get-started-with-adyen/payment-glossary/#one-click-payments-definition).
      *
      * @return self
      */
@@ -1353,7 +1360,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets enableRecurring
      *
-     * @param bool|null $enableRecurring When true and `shopperReference` is provided, the payment details will be tokenized for recurring payments.
+     * @param bool|null $enableRecurring When true and `shopperReference` is provided, the payment details will be stored for [recurring payments](https://docs.adyen.com/online-payments/tokenization/#recurring-payment-types) where the shopper is not present, such as subscription or automatic top-up payments.
      *
      * @return self
      */
@@ -2382,7 +2389,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets storePaymentMethod
      *
-     * @param bool|null $storePaymentMethod When this is set to **true** and the `shopperReference` is provided, the payment details will be stored.
+     * @param bool|null $storePaymentMethod When true and `shopperReference` is provided, the payment details will be stored for future [recurring payments](https://docs.adyen.com/online-payments/tokenization/#recurring-payment-types).
      *
      * @return self
      */
@@ -2483,6 +2490,33 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
             throw new \InvalidArgumentException('non-nullable themeId cannot be null');
         }
         $this->container['themeId'] = $themeId;
+
+        return $this;
+    }
+
+    /**
+     * Gets threeDS2RequestData
+     *
+     * @return \Adyen\Model\Checkout\CheckoutSessionThreeDS2RequestData|null
+     */
+    public function getThreeDS2RequestData()
+    {
+        return $this->container['threeDS2RequestData'];
+    }
+
+    /**
+     * Sets threeDS2RequestData
+     *
+     * @param \Adyen\Model\Checkout\CheckoutSessionThreeDS2RequestData|null $threeDS2RequestData threeDS2RequestData
+     *
+     * @return self
+     */
+    public function setThreeDS2RequestData($threeDS2RequestData)
+    {
+        if (is_null($threeDS2RequestData)) {
+            throw new \InvalidArgumentException('non-nullable threeDS2RequestData cannot be null');
+        }
+        $this->container['threeDS2RequestData'] = $threeDS2RequestData;
 
         return $this;
     }

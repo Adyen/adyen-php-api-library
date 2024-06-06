@@ -53,7 +53,8 @@ class PaymentMethodToStore implements ModelInterface, ArrayAccess, \JsonSerializ
         'expiryMonth' => 'string',
         'expiryYear' => 'string',
         'holderName' => 'string',
-        'number' => 'string'
+        'number' => 'string',
+        'type' => 'string'
     ];
 
     /**
@@ -73,7 +74,8 @@ class PaymentMethodToStore implements ModelInterface, ArrayAccess, \JsonSerializ
         'expiryMonth' => null,
         'expiryYear' => null,
         'holderName' => null,
-        'number' => null
+        'number' => null,
+        'type' => null
     ];
 
     /**
@@ -91,7 +93,8 @@ class PaymentMethodToStore implements ModelInterface, ArrayAccess, \JsonSerializ
         'expiryMonth' => false,
         'expiryYear' => false,
         'holderName' => false,
-        'number' => false
+        'number' => false,
+        'type' => false
     ];
 
     /**
@@ -189,7 +192,8 @@ class PaymentMethodToStore implements ModelInterface, ArrayAccess, \JsonSerializ
         'expiryMonth' => 'expiryMonth',
         'expiryYear' => 'expiryYear',
         'holderName' => 'holderName',
-        'number' => 'number'
+        'number' => 'number',
+        'type' => 'type'
     ];
 
     /**
@@ -207,7 +211,8 @@ class PaymentMethodToStore implements ModelInterface, ArrayAccess, \JsonSerializ
         'expiryMonth' => 'setExpiryMonth',
         'expiryYear' => 'setExpiryYear',
         'holderName' => 'setHolderName',
-        'number' => 'setNumber'
+        'number' => 'setNumber',
+        'type' => 'setType'
     ];
 
     /**
@@ -225,7 +230,8 @@ class PaymentMethodToStore implements ModelInterface, ArrayAccess, \JsonSerializ
         'expiryMonth' => 'getExpiryMonth',
         'expiryYear' => 'getExpiryYear',
         'holderName' => 'getHolderName',
-        'number' => 'getNumber'
+        'number' => 'getNumber',
+        'type' => 'getType'
     ];
 
     /**
@@ -295,6 +301,7 @@ class PaymentMethodToStore implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('expiryYear', $data ?? [], null);
         $this->setIfExists('holderName', $data ?? [], null);
         $this->setIfExists('number', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -605,6 +612,33 @@ class PaymentMethodToStore implements ModelInterface, ArrayAccess, \JsonSerializ
             throw new \InvalidArgumentException('non-nullable number cannot be null');
         }
         $this->container['number'] = $number;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string|null
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string|null $type Set to **scheme**.
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        }
+        $this->container['type'] = $type;
 
         return $this;
     }

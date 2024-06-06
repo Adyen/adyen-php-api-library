@@ -77,7 +77,9 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'twint' => '\Adyen\Model\Management\TwintInfo',
         'type' => 'string',
         'vipps' => '\Adyen\Model\Management\VippsInfo',
-        'visa' => '\Adyen\Model\Management\GenericPmWithTdiInfo'
+        'visa' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
+        'wechatpay' => '\Adyen\Model\Management\WeChatPayInfo',
+        'wechatpayPos' => '\Adyen\Model\Management\WeChatPayPosInfo'
     ];
 
     /**
@@ -121,7 +123,9 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'twint' => null,
         'type' => null,
         'vipps' => null,
-        'visa' => null
+        'visa' => null,
+        'wechatpay' => null,
+        'wechatpayPos' => null
     ];
 
     /**
@@ -163,7 +167,9 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'twint' => false,
         'type' => false,
         'vipps' => false,
-        'visa' => false
+        'visa' => false,
+        'wechatpay' => false,
+        'wechatpayPos' => false
     ];
 
     /**
@@ -285,7 +291,9 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'twint' => 'twint',
         'type' => 'type',
         'vipps' => 'vipps',
-        'visa' => 'visa'
+        'visa' => 'visa',
+        'wechatpay' => 'wechatpay',
+        'wechatpayPos' => 'wechatpay_pos'
     ];
 
     /**
@@ -327,7 +335,9 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'twint' => 'setTwint',
         'type' => 'setType',
         'vipps' => 'setVipps',
-        'visa' => 'setVisa'
+        'visa' => 'setVisa',
+        'wechatpay' => 'setWechatpay',
+        'wechatpayPos' => 'setWechatpayPos'
     ];
 
     /**
@@ -369,7 +379,9 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'twint' => 'getTwint',
         'type' => 'getType',
         'vipps' => 'getVipps',
-        'visa' => 'getVisa'
+        'visa' => 'getVisa',
+        'wechatpay' => 'getWechatpay',
+        'wechatpayPos' => 'getWechatpayPos'
     ];
 
     /**
@@ -591,6 +603,8 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('vipps', $data ?? [], null);
         $this->setIfExists('visa', $data ?? [], null);
+        $this->setIfExists('wechatpay', $data ?? [], null);
+        $this->setIfExists('wechatpayPos', $data ?? [], null);
     }
 
     /**
@@ -1590,6 +1604,60 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
             throw new \InvalidArgumentException('non-nullable visa cannot be null');
         }
         $this->container['visa'] = $visa;
+
+        return $this;
+    }
+
+    /**
+     * Gets wechatpay
+     *
+     * @return \Adyen\Model\Management\WeChatPayInfo|null
+     */
+    public function getWechatpay()
+    {
+        return $this->container['wechatpay'];
+    }
+
+    /**
+     * Sets wechatpay
+     *
+     * @param \Adyen\Model\Management\WeChatPayInfo|null $wechatpay wechatpay
+     *
+     * @return self
+     */
+    public function setWechatpay($wechatpay)
+    {
+        if (is_null($wechatpay)) {
+            throw new \InvalidArgumentException('non-nullable wechatpay cannot be null');
+        }
+        $this->container['wechatpay'] = $wechatpay;
+
+        return $this;
+    }
+
+    /**
+     * Gets wechatpayPos
+     *
+     * @return \Adyen\Model\Management\WeChatPayPosInfo|null
+     */
+    public function getWechatpayPos()
+    {
+        return $this->container['wechatpayPos'];
+    }
+
+    /**
+     * Sets wechatpayPos
+     *
+     * @param \Adyen\Model\Management\WeChatPayPosInfo|null $wechatpayPos wechatpayPos
+     *
+     * @return self
+     */
+    public function setWechatpayPos($wechatpayPos)
+    {
+        if (is_null($wechatpayPos)) {
+            throw new \InvalidArgumentException('non-nullable wechatpayPos cannot be null');
+        }
+        $this->container['wechatpayPos'] = $wechatpayPos;
 
         return $this;
     }

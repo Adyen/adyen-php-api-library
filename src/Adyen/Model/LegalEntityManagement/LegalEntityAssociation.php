@@ -253,6 +253,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
 
     public const TYPE_DEFINED_BENEFICIARY = 'definedBeneficiary';
     public const TYPE_DIRECTOR = 'director';
+    public const TYPE_IMMEDIATE_PARENT_COMPANY = 'immediateParentCompany';
     public const TYPE_PCI_SIGNATORY = 'pciSignatory';
     public const TYPE_PROTECTOR = 'protector';
     public const TYPE_SECONDARY_TRUSTEE = 'secondaryTrustee';
@@ -276,6 +277,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
         return [
             self::TYPE_DEFINED_BENEFICIARY,
             self::TYPE_DIRECTOR,
+            self::TYPE_IMMEDIATE_PARENT_COMPANY,
             self::TYPE_PCI_SIGNATORY,
             self::TYPE_PROTECTOR,
             self::TYPE_SECONDARY_TRUSTEE,

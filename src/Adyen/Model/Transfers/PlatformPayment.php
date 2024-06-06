@@ -256,6 +256,8 @@ class PlatformPayment implements ModelInterface, ArrayAccess, \JsonSerializable
     public const PLATFORM_PAYMENT_TYPE_PAYMENT_FEE = 'PaymentFee';
     public const PLATFORM_PAYMENT_TYPE_REMAINDER = 'Remainder';
     public const PLATFORM_PAYMENT_TYPE_SCHEME_FEE = 'SchemeFee';
+    public const PLATFORM_PAYMENT_TYPE_SURCHARGE = 'Surcharge';
+    public const PLATFORM_PAYMENT_TYPE_TIP = 'Tip';
     public const PLATFORM_PAYMENT_TYPE_TOP_UP = 'TopUp';
     public const PLATFORM_PAYMENT_TYPE_VAT = 'VAT';
     public const TYPE_PLATFORM_PAYMENT = 'platformPayment';
@@ -279,6 +281,8 @@ class PlatformPayment implements ModelInterface, ArrayAccess, \JsonSerializable
             self::PLATFORM_PAYMENT_TYPE_PAYMENT_FEE,
             self::PLATFORM_PAYMENT_TYPE_REMAINDER,
             self::PLATFORM_PAYMENT_TYPE_SCHEME_FEE,
+            self::PLATFORM_PAYMENT_TYPE_SURCHARGE,
+            self::PLATFORM_PAYMENT_TYPE_TIP,
             self::PLATFORM_PAYMENT_TYPE_TOP_UP,
             self::PLATFORM_PAYMENT_TYPE_VAT,
         ];

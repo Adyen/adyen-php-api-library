@@ -1443,7 +1443,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets enableOneClick
      *
-     * @param bool|null $enableOneClick When true and `shopperReference` is provided, the shopper will be asked if the payment details should be stored for future one-click payments.
+     * @param bool|null $enableOneClick When true and `shopperReference` is provided, the shopper will be asked if the payment details should be stored for future [one-click payments](https://docs.adyen.com/get-started-with-adyen/payment-glossary/#one-click-payments-definition).
      *
      * @return self
      */
@@ -1497,7 +1497,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets enableRecurring
      *
-     * @param bool|null $enableRecurring When true and `shopperReference` is provided, the payment details will be tokenized for recurring payments.
+     * @param bool|null $enableRecurring When true and `shopperReference` is provided, the payment details will be stored for [recurring payments](https://docs.adyen.com/online-payments/tokenization/#recurring-payment-types) where the shopper is not present, such as subscription or automatic top-up payments.
      *
      * @return self
      */
@@ -2615,7 +2615,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets storePaymentMethod
      *
-     * @param bool|null $storePaymentMethod When true and `shopperReference` is provided, the payment details will be stored.
+     * @param bool|null $storePaymentMethod When true and `shopperReference` is provided, the payment details will be stored for future [recurring payments](https://docs.adyen.com/online-payments/tokenization/#recurring-payment-types).
      *
      * @return self
      */

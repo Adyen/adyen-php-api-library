@@ -48,6 +48,7 @@ class SubMerchantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'string',
         'mcc' => 'string',
         'name' => 'string',
+        'registeredSince' => 'string',
         'taxId' => 'string'
     ];
 
@@ -63,6 +64,7 @@ class SubMerchantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => null,
         'mcc' => null,
         'name' => null,
+        'registeredSince' => null,
         'taxId' => null
     ];
 
@@ -76,6 +78,7 @@ class SubMerchantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => false,
         'mcc' => false,
         'name' => false,
+        'registeredSince' => false,
         'taxId' => false
     ];
 
@@ -169,6 +172,7 @@ class SubMerchantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'id',
         'mcc' => 'mcc',
         'name' => 'name',
+        'registeredSince' => 'registeredSince',
         'taxId' => 'taxId'
     ];
 
@@ -182,6 +186,7 @@ class SubMerchantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'setId',
         'mcc' => 'setMcc',
         'name' => 'setName',
+        'registeredSince' => 'setRegisteredSince',
         'taxId' => 'setTaxId'
     ];
 
@@ -195,6 +200,7 @@ class SubMerchantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'getId',
         'mcc' => 'getMcc',
         'name' => 'getName',
+        'registeredSince' => 'getRegisteredSince',
         'taxId' => 'getTaxId'
     ];
 
@@ -259,6 +265,7 @@ class SubMerchantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('mcc', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('registeredSince', $data ?? [], null);
         $this->setIfExists('taxId', $data ?? [], null);
     }
 
@@ -408,6 +415,33 @@ class SubMerchantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
         $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets registeredSince
+     *
+     * @return string|null
+     */
+    public function getRegisteredSince()
+    {
+        return $this->container['registeredSince'];
+    }
+
+    /**
+     * Sets registeredSince
+     *
+     * @param string|null $registeredSince registeredSince
+     *
+     * @return self
+     */
+    public function setRegisteredSince($registeredSince)
+    {
+        if (is_null($registeredSince)) {
+            throw new \InvalidArgumentException('non-nullable registeredSince cannot be null');
+        }
+        $this->container['registeredSince'] = $registeredSince;
 
         return $this;
     }

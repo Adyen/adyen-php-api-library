@@ -555,7 +555,7 @@ class IssuedCard implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets schemeTraceId
      *
-     * @param string|null $schemeTraceId The identifier of the original payment provided by the scheme. The Id could be alphanumeric or numeric depending on the scheme. The schemeTraceID should be referring to an original schemeUniqueTransactionID provided in an earlier payment (not necessarily processed by Adyen). Instances of available schemeTraceId is authAdjustment or recurring payments.
+     * @param string|null $schemeTraceId The identifier of the original payment. This ID is provided by the scheme and can be alphanumeric or numeric, depending on the scheme. The `schemeTraceID` should refer to an original `schemeUniqueTransactionID` provided in an earlier payment (not necessarily processed by Adyen). A `schemeTraceId` is typically available for authorization adjustments or recurring payments.
      *
      * @return self
      */
@@ -582,7 +582,7 @@ class IssuedCard implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets schemeUniqueTransactionId
      *
-     * @param string|null $schemeUniqueTransactionId The unique identifier created by the scheme. The ID could be alphanumeric or numeric depending on the scheme.
+     * @param string|null $schemeUniqueTransactionId The unique identifier created by the scheme. This ID can be alphanumeric or numeric depending on the scheme.
      *
      * @return self
      */

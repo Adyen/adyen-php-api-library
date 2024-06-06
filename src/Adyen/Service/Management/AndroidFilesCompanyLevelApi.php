@@ -86,6 +86,22 @@ class AndroidFilesCompanyLevelApi extends Service
     }
 
     /**
+    * Reprocess Android App
+    *
+    * @param string $companyId
+    * @param string $id
+    * @param array|null $requestOptions
+    * @return \Adyen\Model\Management\ReprocessAndroidAppResponse
+    * @throws AdyenException
+    */
+    public function reprocessAndroidApp(string $companyId, string $id, array $requestOptions = null): \Adyen\Model\Management\ReprocessAndroidAppResponse
+    {
+        $endpoint = $this->baseURL . str_replace(['{companyId}', '{id}'], [$companyId, $id], "/companies/{companyId}/androidApps/{id}");
+        $response = $this->requestHttp($endpoint, strtolower('PATCH'), null, $requestOptions);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\Management\ReprocessAndroidAppResponse::class);
+    }
+
+    /**
     * Upload Android App
     *
     * @param string $companyId

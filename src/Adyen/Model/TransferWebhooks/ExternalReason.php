@@ -303,7 +303,7 @@ class ExternalReason implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets code
      *
-     * @param string|null $code The code for this reason code.
+     * @param string|null $code The reason code.
      *
      * @return self
      */
@@ -330,7 +330,7 @@ class ExternalReason implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets description
      *
-     * @param string|null $description The description for this reason code.
+     * @param string|null $description The description of the reason code.
      *
      * @return self
      */
@@ -357,7 +357,7 @@ class ExternalReason implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets namespace
      *
-     * @param string|null $namespace The namespace for this reason code.
+     * @param string|null $namespace The namespace for the reason code.
      *
      * @return self
      */
