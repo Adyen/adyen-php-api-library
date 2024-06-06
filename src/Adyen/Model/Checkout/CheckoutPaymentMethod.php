@@ -78,6 +78,9 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'networkPaymentReference' => 'string',
         'number' => 'string',
         'shopperNotificationReference' => 'string',
+        'srcCorrelationId' => 'string',
+        'srcScheme' => 'string',
+        'srcTokenReference' => 'string',
         'threeDS2SdkVersion' => 'string',
         'cashtag' => 'string',
         'customerId' => 'string',
@@ -147,6 +150,9 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'networkPaymentReference' => null,
         'number' => null,
         'shopperNotificationReference' => null,
+        'srcCorrelationId' => null,
+        'srcScheme' => null,
+        'srcTokenReference' => null,
         'threeDS2SdkVersion' => null,
         'cashtag' => null,
         'customerId' => null,
@@ -214,6 +220,9 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'networkPaymentReference' => false,
         'number' => false,
         'shopperNotificationReference' => false,
+        'srcCorrelationId' => false,
+        'srcScheme' => false,
+        'srcTokenReference' => false,
         'threeDS2SdkVersion' => false,
         'cashtag' => false,
         'customerId' => false,
@@ -361,6 +370,9 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'networkPaymentReference' => 'networkPaymentReference',
         'number' => 'number',
         'shopperNotificationReference' => 'shopperNotificationReference',
+        'srcCorrelationId' => 'srcCorrelationId',
+        'srcScheme' => 'srcScheme',
+        'srcTokenReference' => 'srcTokenReference',
         'threeDS2SdkVersion' => 'threeDS2SdkVersion',
         'cashtag' => 'cashtag',
         'customerId' => 'customerId',
@@ -428,6 +440,9 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'networkPaymentReference' => 'setNetworkPaymentReference',
         'number' => 'setNumber',
         'shopperNotificationReference' => 'setShopperNotificationReference',
+        'srcCorrelationId' => 'setSrcCorrelationId',
+        'srcScheme' => 'setSrcScheme',
+        'srcTokenReference' => 'setSrcTokenReference',
         'threeDS2SdkVersion' => 'setThreeDS2SdkVersion',
         'cashtag' => 'setCashtag',
         'customerId' => 'setCustomerId',
@@ -495,6 +510,9 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'networkPaymentReference' => 'getNetworkPaymentReference',
         'number' => 'getNumber',
         'shopperNotificationReference' => 'getShopperNotificationReference',
+        'srcCorrelationId' => 'getSrcCorrelationId',
+        'srcScheme' => 'getSrcScheme',
+        'srcTokenReference' => 'getSrcTokenReference',
         'threeDS2SdkVersion' => 'getThreeDS2SdkVersion',
         'cashtag' => 'getCashtag',
         'customerId' => 'getCustomerId',
@@ -612,6 +630,9 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('networkPaymentReference', $data ?? [], null);
         $this->setIfExists('number', $data ?? [], null);
         $this->setIfExists('shopperNotificationReference', $data ?? [], null);
+        $this->setIfExists('srcCorrelationId', $data ?? [], null);
+        $this->setIfExists('srcScheme', $data ?? [], null);
+        $this->setIfExists('srcTokenReference', $data ?? [], null);
         $this->setIfExists('threeDS2SdkVersion', $data ?? [], null);
         $this->setIfExists('cashtag', $data ?? [], null);
         $this->setIfExists('customerId', $data ?? [], null);
@@ -1624,6 +1645,87 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
+     * Gets srcCorrelationId
+     *
+     * @return string|null
+     */
+    public function getSrcCorrelationId()
+    {
+        return $this->container['srcCorrelationId'];
+    }
+
+    /**
+     * Sets srcCorrelationId
+     *
+     * @param string|null $srcCorrelationId An identifier used for the Click to Pay transaction.
+     *
+     * @return self
+     */
+    public function setSrcCorrelationId($srcCorrelationId)
+    {
+        if (is_null($srcCorrelationId)) {
+            throw new \InvalidArgumentException('non-nullable srcCorrelationId cannot be null');
+        }
+        $this->container['srcCorrelationId'] = $srcCorrelationId;
+
+        return $this;
+    }
+
+    /**
+     * Gets srcScheme
+     *
+     * @return string|null
+     */
+    public function getSrcScheme()
+    {
+        return $this->container['srcScheme'];
+    }
+
+    /**
+     * Sets srcScheme
+     *
+     * @param string|null $srcScheme The scheme that is being used for Click to Pay.
+     *
+     * @return self
+     */
+    public function setSrcScheme($srcScheme)
+    {
+        if (is_null($srcScheme)) {
+            throw new \InvalidArgumentException('non-nullable srcScheme cannot be null');
+        }
+        $this->container['srcScheme'] = $srcScheme;
+
+        return $this;
+    }
+
+    /**
+     * Gets srcTokenReference
+     *
+     * @return string|null
+     */
+    public function getSrcTokenReference()
+    {
+        return $this->container['srcTokenReference'];
+    }
+
+    /**
+     * Sets srcTokenReference
+     *
+     * @param string|null $srcTokenReference The reference for the Click to Pay token.
+     *
+     * @return self
+     */
+    public function setSrcTokenReference($srcTokenReference)
+    {
+        if (is_null($srcTokenReference)) {
+            throw new \InvalidArgumentException('non-nullable srcTokenReference cannot be null');
+        }
+        $this->container['srcTokenReference'] = $srcTokenReference;
+
+        return $this;
+    }
+
+    /**
      * Gets threeDS2SdkVersion
      *
      * @return string|null
@@ -1852,7 +1954,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets shopperEmail
      *
-     * @param string $shopperEmail
+     * @param string $shopperEmail 
      *
      * @return self
      */
@@ -1879,7 +1981,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets telephoneNumber
      *
-     * @param string $telephoneNumber
+     * @param string $telephoneNumber 
      *
      * @return self
      */

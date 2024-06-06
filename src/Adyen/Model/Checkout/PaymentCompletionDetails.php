@@ -59,6 +59,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
         'paymentStatus' => 'string',
         'redirectResult' => 'string',
         'resultCode' => 'string',
+        'returnUrlQueryString' => 'string',
         'threeDSResult' => 'string',
         'threeds2ChallengeResult' => 'string',
         'threeds2Fingerprint' => 'string',
@@ -88,6 +89,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
         'paymentStatus' => null,
         'redirectResult' => null,
         'resultCode' => null,
+        'returnUrlQueryString' => null,
         'threeDSResult' => null,
         'threeds2ChallengeResult' => null,
         'threeds2Fingerprint' => null,
@@ -115,6 +117,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
         'paymentStatus' => false,
         'redirectResult' => false,
         'resultCode' => false,
+        'returnUrlQueryString' => false,
         'threeDSResult' => false,
         'threeds2ChallengeResult' => false,
         'threeds2Fingerprint' => false,
@@ -222,6 +225,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
         'paymentStatus' => 'paymentStatus',
         'redirectResult' => 'redirectResult',
         'resultCode' => 'resultCode',
+        'returnUrlQueryString' => 'returnUrlQueryString',
         'threeDSResult' => 'threeDSResult',
         'threeds2ChallengeResult' => 'threeds2.challengeResult',
         'threeds2Fingerprint' => 'threeds2.fingerprint',
@@ -249,6 +253,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
         'paymentStatus' => 'setPaymentStatus',
         'redirectResult' => 'setRedirectResult',
         'resultCode' => 'setResultCode',
+        'returnUrlQueryString' => 'setReturnUrlQueryString',
         'threeDSResult' => 'setThreeDSResult',
         'threeds2ChallengeResult' => 'setThreeds2ChallengeResult',
         'threeds2Fingerprint' => 'setThreeds2Fingerprint',
@@ -276,6 +281,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
         'paymentStatus' => 'getPaymentStatus',
         'redirectResult' => 'getRedirectResult',
         'resultCode' => 'getResultCode',
+        'returnUrlQueryString' => 'getReturnUrlQueryString',
         'threeDSResult' => 'getThreeDSResult',
         'threeds2ChallengeResult' => 'getThreeds2ChallengeResult',
         'threeds2Fingerprint' => 'getThreeds2Fingerprint',
@@ -354,6 +360,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
         $this->setIfExists('paymentStatus', $data ?? [], null);
         $this->setIfExists('redirectResult', $data ?? [], null);
         $this->setIfExists('resultCode', $data ?? [], null);
+        $this->setIfExists('returnUrlQueryString', $data ?? [], null);
         $this->setIfExists('threeDSResult', $data ?? [], null);
         $this->setIfExists('threeds2ChallengeResult', $data ?? [], null);
         $this->setIfExists('threeds2Fingerprint', $data ?? [], null);
@@ -803,6 +810,33 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
             throw new \InvalidArgumentException('non-nullable resultCode cannot be null');
         }
         $this->container['resultCode'] = $resultCode;
+
+        return $this;
+    }
+
+    /**
+     * Gets returnUrlQueryString
+     *
+     * @return string|null
+     */
+    public function getReturnUrlQueryString()
+    {
+        return $this->container['returnUrlQueryString'];
+    }
+
+    /**
+     * Sets returnUrlQueryString
+     *
+     * @param string|null $returnUrlQueryString The query string as appended to the `returnURL` when using direct issuer links .
+     *
+     * @return self
+     */
+    public function setReturnUrlQueryString($returnUrlQueryString)
+    {
+        if (is_null($returnUrlQueryString)) {
+            throw new \InvalidArgumentException('non-nullable returnUrlQueryString cannot be null');
+        }
+        $this->container['returnUrlQueryString'] = $returnUrlQueryString;
 
         return $this;
     }

@@ -344,7 +344,7 @@ class ConfirmationTrackingData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets status
      *
-     * @param string $status Possible values:   - **credited**: Transfer is credited to beneficiary.
+     * @param string $status The status of the transfer.  Possible values:    - **credited**: the funds are credited to your user's transfer instrument or bank account.
      *
      * @return self
      */
@@ -381,7 +381,7 @@ class ConfirmationTrackingData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets type
      *
-     * @param string $type **confirmation**
+     * @param string $type The type of the tracking event.  Possible values:   - **confirmation**: the transfer passed Adyen's internal review.
      *
      * @return self
      */

@@ -391,7 +391,7 @@ class PaymentInstrument implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets tokenType
      *
-     * @param string|null $tokenType The type of wallet the network token is associated with.
+     * @param string|null $tokenType The type of wallet that the network token is associated with.
      *
      * @return self
      */

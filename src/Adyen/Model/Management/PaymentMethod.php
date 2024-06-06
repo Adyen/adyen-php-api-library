@@ -81,7 +81,9 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'type' => 'string',
         'verificationStatus' => 'string',
         'vipps' => '\Adyen\Model\Management\VippsInfo',
-        'visa' => '\Adyen\Model\Management\GenericPmWithTdiInfo'
+        'visa' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
+        'wechatpay' => '\Adyen\Model\Management\WeChatPayInfo',
+        'wechatpayPos' => '\Adyen\Model\Management\WeChatPayPosInfo'
     ];
 
     /**
@@ -129,7 +131,9 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'type' => null,
         'verificationStatus' => null,
         'vipps' => null,
-        'visa' => null
+        'visa' => null,
+        'wechatpay' => null,
+        'wechatpayPos' => null
     ];
 
     /**
@@ -175,7 +179,9 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'type' => false,
         'verificationStatus' => false,
         'vipps' => false,
-        'visa' => false
+        'visa' => false,
+        'wechatpay' => false,
+        'wechatpayPos' => false
     ];
 
     /**
@@ -301,7 +307,9 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'type' => 'type',
         'verificationStatus' => 'verificationStatus',
         'vipps' => 'vipps',
-        'visa' => 'visa'
+        'visa' => 'visa',
+        'wechatpay' => 'wechatpay',
+        'wechatpayPos' => 'wechatpay_pos'
     ];
 
     /**
@@ -347,7 +355,9 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'type' => 'setType',
         'verificationStatus' => 'setVerificationStatus',
         'vipps' => 'setVipps',
-        'visa' => 'setVisa'
+        'visa' => 'setVisa',
+        'wechatpay' => 'setWechatpay',
+        'wechatpayPos' => 'setWechatpayPos'
     ];
 
     /**
@@ -393,7 +403,9 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'type' => 'getType',
         'verificationStatus' => 'getVerificationStatus',
         'vipps' => 'getVipps',
-        'visa' => 'getVisa'
+        'visa' => 'getVisa',
+        'wechatpay' => 'getWechatpay',
+        'wechatpayPos' => 'getWechatpayPos'
     ];
 
     /**
@@ -509,6 +521,8 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('verificationStatus', $data ?? [], null);
         $this->setIfExists('vipps', $data ?? [], null);
         $this->setIfExists('visa', $data ?? [], null);
+        $this->setIfExists('wechatpay', $data ?? [], null);
+        $this->setIfExists('wechatpayPos', $data ?? [], null);
     }
 
     /**
@@ -1597,6 +1611,60 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable visa cannot be null');
         }
         $this->container['visa'] = $visa;
+
+        return $this;
+    }
+
+    /**
+     * Gets wechatpay
+     *
+     * @return \Adyen\Model\Management\WeChatPayInfo|null
+     */
+    public function getWechatpay()
+    {
+        return $this->container['wechatpay'];
+    }
+
+    /**
+     * Sets wechatpay
+     *
+     * @param \Adyen\Model\Management\WeChatPayInfo|null $wechatpay wechatpay
+     *
+     * @return self
+     */
+    public function setWechatpay($wechatpay)
+    {
+        if (is_null($wechatpay)) {
+            throw new \InvalidArgumentException('non-nullable wechatpay cannot be null');
+        }
+        $this->container['wechatpay'] = $wechatpay;
+
+        return $this;
+    }
+
+    /**
+     * Gets wechatpayPos
+     *
+     * @return \Adyen\Model\Management\WeChatPayPosInfo|null
+     */
+    public function getWechatpayPos()
+    {
+        return $this->container['wechatpayPos'];
+    }
+
+    /**
+     * Sets wechatpayPos
+     *
+     * @param \Adyen\Model\Management\WeChatPayPosInfo|null $wechatpayPos wechatpayPos
+     *
+     * @return self
+     */
+    public function setWechatpayPos($wechatpayPos)
+    {
+        if (is_null($wechatpayPos)) {
+            throw new \InvalidArgumentException('non-nullable wechatpayPos cannot be null');
+        }
+        $this->container['wechatpayPos'] = $wechatpayPos;
 
         return $this;
     }

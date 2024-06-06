@@ -81,7 +81,8 @@ class PaymentLinkRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'store' => 'string',
         'storePaymentMethodMode' => 'string',
         'telephoneNumber' => 'string',
-        'themeId' => 'string'
+        'themeId' => 'string',
+        'threeDS2RequestData' => '\Adyen\Model\Checkout\CheckoutSessionThreeDS2RequestData'
     ];
 
     /**
@@ -129,7 +130,8 @@ class PaymentLinkRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'store' => null,
         'storePaymentMethodMode' => null,
         'telephoneNumber' => null,
-        'themeId' => null
+        'themeId' => null,
+        'threeDS2RequestData' => null
     ];
 
     /**
@@ -175,7 +177,8 @@ class PaymentLinkRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'store' => false,
         'storePaymentMethodMode' => false,
         'telephoneNumber' => false,
-        'themeId' => false
+        'themeId' => false,
+        'threeDS2RequestData' => false
     ];
 
     /**
@@ -301,7 +304,8 @@ class PaymentLinkRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'store' => 'store',
         'storePaymentMethodMode' => 'storePaymentMethodMode',
         'telephoneNumber' => 'telephoneNumber',
-        'themeId' => 'themeId'
+        'themeId' => 'themeId',
+        'threeDS2RequestData' => 'threeDS2RequestData'
     ];
 
     /**
@@ -347,7 +351,8 @@ class PaymentLinkRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'store' => 'setStore',
         'storePaymentMethodMode' => 'setStorePaymentMethodMode',
         'telephoneNumber' => 'setTelephoneNumber',
-        'themeId' => 'setThemeId'
+        'themeId' => 'setThemeId',
+        'threeDS2RequestData' => 'setThreeDS2RequestData'
     ];
 
     /**
@@ -393,7 +398,8 @@ class PaymentLinkRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'store' => 'getStore',
         'storePaymentMethodMode' => 'getStorePaymentMethodMode',
         'telephoneNumber' => 'getTelephoneNumber',
-        'themeId' => 'getThemeId'
+        'themeId' => 'getThemeId',
+        'threeDS2RequestData' => 'getThreeDS2RequestData'
     ];
 
     /**
@@ -543,6 +549,7 @@ class PaymentLinkRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('storePaymentMethodMode', $data ?? [], null);
         $this->setIfExists('telephoneNumber', $data ?? [], null);
         $this->setIfExists('themeId', $data ?? [], null);
+        $this->setIfExists('threeDS2RequestData', $data ?? [], null);
     }
 
     /**
@@ -1663,6 +1670,33 @@ class PaymentLinkRequest implements ModelInterface, ArrayAccess, \JsonSerializab
             throw new \InvalidArgumentException('non-nullable themeId cannot be null');
         }
         $this->container['themeId'] = $themeId;
+
+        return $this;
+    }
+
+    /**
+     * Gets threeDS2RequestData
+     *
+     * @return \Adyen\Model\Checkout\CheckoutSessionThreeDS2RequestData|null
+     */
+    public function getThreeDS2RequestData()
+    {
+        return $this->container['threeDS2RequestData'];
+    }
+
+    /**
+     * Sets threeDS2RequestData
+     *
+     * @param \Adyen\Model\Checkout\CheckoutSessionThreeDS2RequestData|null $threeDS2RequestData threeDS2RequestData
+     *
+     * @return self
+     */
+    public function setThreeDS2RequestData($threeDS2RequestData)
+    {
+        if (is_null($threeDS2RequestData)) {
+            throw new \InvalidArgumentException('non-nullable threeDS2RequestData cannot be null');
+        }
+        $this->container['threeDS2RequestData'] = $threeDS2RequestData;
 
         return $this;
     }

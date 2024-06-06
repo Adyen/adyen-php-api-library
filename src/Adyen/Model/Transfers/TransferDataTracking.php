@@ -22,7 +22,7 @@ use Adyen\Model\Transfers\ObjectSerializer;
  * TransferDataTracking Class Doc Comment
  *
  * @category Class
- * @description Most recent tracking information for the transfer.
+ * @description The latest tracking information of the transfer.
  * @package  Adyen
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -322,7 +322,7 @@ class TransferDataTracking implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets status
      *
-     * @param string $status Possible values:   - **pending**: Transfer is under internal review.  - **failed**: Transfer failed to pass internal review. See field **reason** for details.
+     * @param string $status The status of the transfer.  Possible values:   - **pending**: the transfer is under internal review.  - **failed**: the transfer failed Adyen's internal review. For details, see `reason`.
      *
      * @return self
      */
@@ -349,7 +349,7 @@ class TransferDataTracking implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets type
      *
-     * @param string $type **internalReview**
+     * @param string $type The type of tracking event.   Possible values:    - **internalReview**: the transfer was flagged because it does not comply with Adyen's risk policy.
      *
      * @return self
      */
@@ -403,7 +403,7 @@ class TransferDataTracking implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets reason
      *
-     * @param string|null $reason Possible values:   - **refusedForRegulatoryReasons**.
+     * @param string|null $reason The reason why the transfer failed Adyen's internal review.   Possible values:  - **refusedForRegulatoryReasons**: the transfer does not comply with Adyen's risk policy. For more information, [contact the Support Team](https://www.adyen.help/hc/en-us/requests/new).
      *
      * @return self
      */

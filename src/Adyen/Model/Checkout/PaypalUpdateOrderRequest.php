@@ -48,7 +48,8 @@ class PaypalUpdateOrderRequest implements ModelInterface, ArrayAccess, \JsonSeri
         'deliveryMethods' => '\Adyen\Model\Checkout\DeliveryMethod[]',
         'paymentData' => 'string',
         'pspReference' => 'string',
-        'sessionId' => 'string'
+        'sessionId' => 'string',
+        'taxTotal' => '\Adyen\Model\Checkout\TaxTotal'
     ];
 
     /**
@@ -63,7 +64,8 @@ class PaypalUpdateOrderRequest implements ModelInterface, ArrayAccess, \JsonSeri
         'deliveryMethods' => null,
         'paymentData' => null,
         'pspReference' => null,
-        'sessionId' => null
+        'sessionId' => null,
+        'taxTotal' => null
     ];
 
     /**
@@ -76,7 +78,8 @@ class PaypalUpdateOrderRequest implements ModelInterface, ArrayAccess, \JsonSeri
         'deliveryMethods' => false,
         'paymentData' => false,
         'pspReference' => false,
-        'sessionId' => false
+        'sessionId' => false,
+        'taxTotal' => false
     ];
 
     /**
@@ -169,7 +172,8 @@ class PaypalUpdateOrderRequest implements ModelInterface, ArrayAccess, \JsonSeri
         'deliveryMethods' => 'deliveryMethods',
         'paymentData' => 'paymentData',
         'pspReference' => 'pspReference',
-        'sessionId' => 'sessionId'
+        'sessionId' => 'sessionId',
+        'taxTotal' => 'taxTotal'
     ];
 
     /**
@@ -182,7 +186,8 @@ class PaypalUpdateOrderRequest implements ModelInterface, ArrayAccess, \JsonSeri
         'deliveryMethods' => 'setDeliveryMethods',
         'paymentData' => 'setPaymentData',
         'pspReference' => 'setPspReference',
-        'sessionId' => 'setSessionId'
+        'sessionId' => 'setSessionId',
+        'taxTotal' => 'setTaxTotal'
     ];
 
     /**
@@ -195,7 +200,8 @@ class PaypalUpdateOrderRequest implements ModelInterface, ArrayAccess, \JsonSeri
         'deliveryMethods' => 'getDeliveryMethods',
         'paymentData' => 'getPaymentData',
         'pspReference' => 'getPspReference',
-        'sessionId' => 'getSessionId'
+        'sessionId' => 'getSessionId',
+        'taxTotal' => 'getTaxTotal'
     ];
 
     /**
@@ -260,6 +266,7 @@ class PaypalUpdateOrderRequest implements ModelInterface, ArrayAccess, \JsonSeri
         $this->setIfExists('paymentData', $data ?? [], null);
         $this->setIfExists('pspReference', $data ?? [], null);
         $this->setIfExists('sessionId', $data ?? [], null);
+        $this->setIfExists('taxTotal', $data ?? [], null);
     }
 
     /**
@@ -435,6 +442,33 @@ class PaypalUpdateOrderRequest implements ModelInterface, ArrayAccess, \JsonSeri
             throw new \InvalidArgumentException('non-nullable sessionId cannot be null');
         }
         $this->container['sessionId'] = $sessionId;
+
+        return $this;
+    }
+
+    /**
+     * Gets taxTotal
+     *
+     * @return \Adyen\Model\Checkout\TaxTotal|null
+     */
+    public function getTaxTotal()
+    {
+        return $this->container['taxTotal'];
+    }
+
+    /**
+     * Sets taxTotal
+     *
+     * @param \Adyen\Model\Checkout\TaxTotal|null $taxTotal taxTotal
+     *
+     * @return self
+     */
+    public function setTaxTotal($taxTotal)
+    {
+        if (is_null($taxTotal)) {
+            throw new \InvalidArgumentException('non-nullable taxTotal cannot be null');
+        }
+        $this->container['taxTotal'] = $taxTotal;
 
         return $this;
     }

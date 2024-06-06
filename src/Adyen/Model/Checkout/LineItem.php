@@ -53,6 +53,7 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'imageUrl' => 'string',
         'itemCategory' => 'string',
         'manufacturer' => 'string',
+        'marketplaceSellerId' => 'string',
         'productUrl' => 'string',
         'quantity' => 'int',
         'receiverEmail' => 'string',
@@ -80,6 +81,7 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'imageUrl' => null,
         'itemCategory' => null,
         'manufacturer' => null,
+        'marketplaceSellerId' => null,
         'productUrl' => null,
         'quantity' => 'int64',
         'receiverEmail' => null,
@@ -105,6 +107,7 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'imageUrl' => false,
         'itemCategory' => false,
         'manufacturer' => false,
+        'marketplaceSellerId' => false,
         'productUrl' => false,
         'quantity' => false,
         'receiverEmail' => false,
@@ -210,6 +213,7 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'imageUrl' => 'imageUrl',
         'itemCategory' => 'itemCategory',
         'manufacturer' => 'manufacturer',
+        'marketplaceSellerId' => 'marketplaceSellerId',
         'productUrl' => 'productUrl',
         'quantity' => 'quantity',
         'receiverEmail' => 'receiverEmail',
@@ -235,6 +239,7 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'imageUrl' => 'setImageUrl',
         'itemCategory' => 'setItemCategory',
         'manufacturer' => 'setManufacturer',
+        'marketplaceSellerId' => 'setMarketplaceSellerId',
         'productUrl' => 'setProductUrl',
         'quantity' => 'setQuantity',
         'receiverEmail' => 'setReceiverEmail',
@@ -260,6 +265,7 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'imageUrl' => 'getImageUrl',
         'itemCategory' => 'getItemCategory',
         'manufacturer' => 'getManufacturer',
+        'marketplaceSellerId' => 'getMarketplaceSellerId',
         'productUrl' => 'getProductUrl',
         'quantity' => 'getQuantity',
         'receiverEmail' => 'getReceiverEmail',
@@ -336,6 +342,7 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('imageUrl', $data ?? [], null);
         $this->setIfExists('itemCategory', $data ?? [], null);
         $this->setIfExists('manufacturer', $data ?? [], null);
+        $this->setIfExists('marketplaceSellerId', $data ?? [], null);
         $this->setIfExists('productUrl', $data ?? [], null);
         $this->setIfExists('quantity', $data ?? [], null);
         $this->setIfExists('receiverEmail', $data ?? [], null);
@@ -627,6 +634,33 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable manufacturer cannot be null');
         }
         $this->container['manufacturer'] = $manufacturer;
+
+        return $this;
+    }
+
+    /**
+     * Gets marketplaceSellerId
+     *
+     * @return string|null
+     */
+    public function getMarketplaceSellerId()
+    {
+        return $this->container['marketplaceSellerId'];
+    }
+
+    /**
+     * Sets marketplaceSellerId
+     *
+     * @param string|null $marketplaceSellerId Marketplace seller id.
+     *
+     * @return self
+     */
+    public function setMarketplaceSellerId($marketplaceSellerId)
+    {
+        if (is_null($marketplaceSellerId)) {
+            throw new \InvalidArgumentException('non-nullable marketplaceSellerId cannot be null');
+        }
+        $this->container['marketplaceSellerId'] = $marketplaceSellerId;
 
         return $this;
     }

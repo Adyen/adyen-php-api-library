@@ -44,6 +44,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'apps' => '\Adyen\Model\Checkout\PaymentMethodUPIApps[]',
         'brand' => 'string',
         'brands' => 'string[]',
         'configuration' => 'array<string,string>',
@@ -63,6 +64,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'apps' => null,
         'brand' => null,
         'brands' => null,
         'configuration' => null,
@@ -80,6 +82,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'apps' => false,
         'brand' => false,
         'brands' => false,
         'configuration' => false,
@@ -177,6 +180,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'apps' => 'apps',
         'brand' => 'brand',
         'brands' => 'brands',
         'configuration' => 'configuration',
@@ -194,6 +198,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'apps' => 'setApps',
         'brand' => 'setBrand',
         'brands' => 'setBrands',
         'configuration' => 'setConfiguration',
@@ -211,6 +216,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'apps' => 'getApps',
         'brand' => 'getBrand',
         'brands' => 'getBrands',
         'configuration' => 'getConfiguration',
@@ -293,6 +299,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('apps', $data ?? [], null);
         $this->setIfExists('brand', $data ?? [], null);
         $this->setIfExists('brands', $data ?? [], null);
         $this->setIfExists('configuration', $data ?? [], null);
@@ -354,6 +361,33 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets apps
+     *
+     * @return \Adyen\Model\Checkout\PaymentMethodUPIApps[]|null
+     */
+    public function getApps()
+    {
+        return $this->container['apps'];
+    }
+
+    /**
+     * Sets apps
+     *
+     * @param \Adyen\Model\Checkout\PaymentMethodUPIApps[]|null $apps A list of apps for this payment method.
+     *
+     * @return self
+     */
+    public function setApps($apps)
+    {
+        if (is_null($apps)) {
+            throw new \InvalidArgumentException('non-nullable apps cannot be null');
+        }
+        $this->container['apps'] = $apps;
+
+        return $this;
+    }
 
     /**
      * Gets brand

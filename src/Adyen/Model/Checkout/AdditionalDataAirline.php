@@ -53,6 +53,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
         'airlineCustomerReferenceNumber' => 'string',
         'airlineDocumentType' => 'string',
         'airlineFlightDate' => 'string',
+        'airlineIssueDate' => 'string',
         'airlineLegCarrierCode' => 'string',
         'airlineLegClassOfTravel' => 'string',
         'airlineLegDateOfTravel' => 'string',
@@ -91,6 +92,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
         'airlineCustomerReferenceNumber' => null,
         'airlineDocumentType' => null,
         'airlineFlightDate' => null,
+        'airlineIssueDate' => null,
         'airlineLegCarrierCode' => null,
         'airlineLegClassOfTravel' => null,
         'airlineLegDateOfTravel' => null,
@@ -127,6 +129,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
         'airlineCustomerReferenceNumber' => false,
         'airlineDocumentType' => false,
         'airlineFlightDate' => false,
+        'airlineIssueDate' => false,
         'airlineLegCarrierCode' => false,
         'airlineLegClassOfTravel' => false,
         'airlineLegDateOfTravel' => false,
@@ -243,6 +246,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
         'airlineCustomerReferenceNumber' => 'airline.customer_reference_number',
         'airlineDocumentType' => 'airline.document_type',
         'airlineFlightDate' => 'airline.flight_date',
+        'airlineIssueDate' => 'airline.issue_date',
         'airlineLegCarrierCode' => 'airline.leg.carrier_code',
         'airlineLegClassOfTravel' => 'airline.leg.class_of_travel',
         'airlineLegDateOfTravel' => 'airline.leg.date_of_travel',
@@ -279,6 +283,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
         'airlineCustomerReferenceNumber' => 'setAirlineCustomerReferenceNumber',
         'airlineDocumentType' => 'setAirlineDocumentType',
         'airlineFlightDate' => 'setAirlineFlightDate',
+        'airlineIssueDate' => 'setAirlineIssueDate',
         'airlineLegCarrierCode' => 'setAirlineLegCarrierCode',
         'airlineLegClassOfTravel' => 'setAirlineLegClassOfTravel',
         'airlineLegDateOfTravel' => 'setAirlineLegDateOfTravel',
@@ -315,6 +320,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
         'airlineCustomerReferenceNumber' => 'getAirlineCustomerReferenceNumber',
         'airlineDocumentType' => 'getAirlineDocumentType',
         'airlineFlightDate' => 'getAirlineFlightDate',
+        'airlineIssueDate' => 'getAirlineIssueDate',
         'airlineLegCarrierCode' => 'getAirlineLegCarrierCode',
         'airlineLegClassOfTravel' => 'getAirlineLegClassOfTravel',
         'airlineLegDateOfTravel' => 'getAirlineLegDateOfTravel',
@@ -402,6 +408,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('airlineCustomerReferenceNumber', $data ?? [], null);
         $this->setIfExists('airlineDocumentType', $data ?? [], null);
         $this->setIfExists('airlineFlightDate', $data ?? [], null);
+        $this->setIfExists('airlineIssueDate', $data ?? [], null);
         $this->setIfExists('airlineLegCarrierCode', $data ?? [], null);
         $this->setIfExists('airlineLegClassOfTravel', $data ?? [], null);
         $this->setIfExists('airlineLegDateOfTravel', $data ?? [], null);
@@ -707,6 +714,33 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
             throw new \InvalidArgumentException('non-nullable airlineFlightDate cannot be null');
         }
         $this->container['airlineFlightDate'] = $airlineFlightDate;
+
+        return $this;
+    }
+
+    /**
+     * Gets airlineIssueDate
+     *
+     * @return string|null
+     */
+    public function getAirlineIssueDate()
+    {
+        return $this->container['airlineIssueDate'];
+    }
+
+    /**
+     * Sets airlineIssueDate
+     *
+     * @param string|null $airlineIssueDate The date that the ticket was issued to the passenger. * minLength: 6 characters * maxLength: 6 characters * Date format: YYMMDD
+     *
+     * @return self
+     */
+    public function setAirlineIssueDate($airlineIssueDate)
+    {
+        if (is_null($airlineIssueDate)) {
+            throw new \InvalidArgumentException('non-nullable airlineIssueDate cannot be null');
+        }
+        $this->container['airlineIssueDate'] = $airlineIssueDate;
 
         return $this;
     }

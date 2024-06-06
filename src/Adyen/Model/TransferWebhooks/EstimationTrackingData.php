@@ -350,7 +350,7 @@ class EstimationTrackingData implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets type
      *
-     * @param string $type **estimation**
+     * @param string $type The type of tracking event.   Possible values:   - **estimation**: the estimated date and time of when the funds will be credited has been determined.
      *
      * @return self
      */

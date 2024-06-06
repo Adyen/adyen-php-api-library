@@ -691,7 +691,6 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets estimatedArrivalTime
      *
      * @return \DateTime|null
-     * @deprecated
      */
     public function getEstimatedArrivalTime()
     {
@@ -701,10 +700,9 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets estimatedArrivalTime
      *
-     * @param \DateTime|null $estimatedArrivalTime The estimated time the beneficiary should have access to the funds.
+     * @param \DateTime|null $estimatedArrivalTime The estimated time when the beneficiary should have access to the funds.
      *
      * @return self
-     * @deprecated
      */
     public function setEstimatedArrivalTime($estimatedArrivalTime)
     {
@@ -810,7 +808,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets mutations
      *
-     * @param \Adyen\Model\TransferWebhooks\BalanceMutation[]|null $mutations The list of the balance mutation per event.
+     * @param \Adyen\Model\TransferWebhooks\BalanceMutation[]|null $mutations The list of balance mutations per event.
      *
      * @return self
      */
