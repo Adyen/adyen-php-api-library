@@ -46,6 +46,7 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'description' => 'string',
         'errorCode' => 'string',
+        'errors' => '\Adyen\Model\Management\AndroidAppError[]',
         'id' => 'string',
         'label' => 'string',
         'packageName' => 'string',
@@ -64,6 +65,7 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'description' => null,
         'errorCode' => null,
+        'errors' => null,
         'id' => null,
         'label' => null,
         'packageName' => null,
@@ -80,6 +82,7 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPINullables = [
         'description' => false,
         'errorCode' => false,
+        'errors' => false,
         'id' => false,
         'label' => false,
         'packageName' => false,
@@ -176,6 +179,7 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'description' => 'description',
         'errorCode' => 'errorCode',
+        'errors' => 'errors',
         'id' => 'id',
         'label' => 'label',
         'packageName' => 'packageName',
@@ -192,6 +196,7 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'description' => 'setDescription',
         'errorCode' => 'setErrorCode',
+        'errors' => 'setErrors',
         'id' => 'setId',
         'label' => 'setLabel',
         'packageName' => 'setPackageName',
@@ -208,6 +213,7 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'description' => 'getDescription',
         'errorCode' => 'getErrorCode',
+        'errors' => 'getErrors',
         'id' => 'getId',
         'label' => 'getLabel',
         'packageName' => 'getPackageName',
@@ -275,6 +281,7 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('errorCode', $data ?? [], null);
+        $this->setIfExists('errors', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('label', $data ?? [], null);
         $this->setIfExists('packageName', $data ?? [], null);
@@ -362,6 +369,7 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets errorCode
      *
      * @return string|null
+     * @deprecated
      */
     public function getErrorCode()
     {
@@ -371,9 +379,10 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets errorCode
      *
-     * @param string|null $errorCode The error code of the app. It exists if the status is error or invalid.
+     * @param string|null $errorCode The error code of the Android app with the `status` of either **error** or **invalid**.
      *
      * @return self
+     * @deprecated
      */
     public function setErrorCode($errorCode)
     {
@@ -381,6 +390,33 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable errorCode cannot be null');
         }
         $this->container['errorCode'] = $errorCode;
+
+        return $this;
+    }
+
+    /**
+     * Gets errors
+     *
+     * @return \Adyen\Model\Management\AndroidAppError[]|null
+     */
+    public function getErrors()
+    {
+        return $this->container['errors'];
+    }
+
+    /**
+     * Sets errors
+     *
+     * @param \Adyen\Model\Management\AndroidAppError[]|null $errors The list of errors of the Android app.
+     *
+     * @return self
+     */
+    public function setErrors($errors)
+    {
+        if (is_null($errors)) {
+            throw new \InvalidArgumentException('non-nullable errors cannot be null');
+        }
+        $this->container['errors'] = $errors;
 
         return $this;
     }
