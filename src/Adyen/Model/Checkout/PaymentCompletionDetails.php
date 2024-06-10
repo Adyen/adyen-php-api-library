@@ -536,9 +536,6 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setBillingToken($billingToken)
     {
-        if (is_null($billingToken)) {
-            throw new \InvalidArgumentException('non-nullable billingToken cannot be null');
-        }
         $this->container['billingToken'] = $billingToken;
 
         return $this;
