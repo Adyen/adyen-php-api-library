@@ -87,13 +87,13 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'grantId' => 'string',
         'onFileGrantId' => 'string',
         'requestId' => 'string',
+        'subtype' => 'string',
         'firstName' => 'string',
         'lastName' => 'string',
         'shopperEmail' => 'string',
         'telephoneNumber' => 'string',
         'googlePayCardNetwork' => 'string',
         'googlePayToken' => 'string',
-        'subtype' => 'string',
         'masterpassTransactionId' => 'string',
         'orderID' => 'string',
         'payeePreferred' => 'string',
@@ -159,13 +159,13 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'grantId' => null,
         'onFileGrantId' => null,
         'requestId' => null,
+        'subtype' => null,
         'firstName' => null,
         'lastName' => null,
         'shopperEmail' => null,
         'telephoneNumber' => null,
         'googlePayCardNetwork' => null,
         'googlePayToken' => null,
-        'subtype' => null,
         'masterpassTransactionId' => null,
         'orderID' => null,
         'payeePreferred' => null,
@@ -229,13 +229,13 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'grantId' => false,
         'onFileGrantId' => false,
         'requestId' => false,
+        'subtype' => false,
         'firstName' => false,
         'lastName' => false,
         'shopperEmail' => false,
         'telephoneNumber' => false,
         'googlePayCardNetwork' => false,
         'googlePayToken' => false,
-        'subtype' => false,
         'masterpassTransactionId' => false,
         'orderID' => false,
         'payeePreferred' => false,
@@ -379,13 +379,13 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'grantId' => 'grantId',
         'onFileGrantId' => 'onFileGrantId',
         'requestId' => 'requestId',
+        'subtype' => 'subtype',
         'firstName' => 'firstName',
         'lastName' => 'lastName',
         'shopperEmail' => 'shopperEmail',
         'telephoneNumber' => 'telephoneNumber',
         'googlePayCardNetwork' => 'googlePayCardNetwork',
         'googlePayToken' => 'googlePayToken',
-        'subtype' => 'subtype',
         'masterpassTransactionId' => 'masterpassTransactionId',
         'orderID' => 'orderID',
         'payeePreferred' => 'payeePreferred',
@@ -449,13 +449,13 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'grantId' => 'setGrantId',
         'onFileGrantId' => 'setOnFileGrantId',
         'requestId' => 'setRequestId',
+        'subtype' => 'setSubtype',
         'firstName' => 'setFirstName',
         'lastName' => 'setLastName',
         'shopperEmail' => 'setShopperEmail',
         'telephoneNumber' => 'setTelephoneNumber',
         'googlePayCardNetwork' => 'setGooglePayCardNetwork',
         'googlePayToken' => 'setGooglePayToken',
-        'subtype' => 'setSubtype',
         'masterpassTransactionId' => 'setMasterpassTransactionId',
         'orderID' => 'setOrderID',
         'payeePreferred' => 'setPayeePreferred',
@@ -519,13 +519,13 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'grantId' => 'getGrantId',
         'onFileGrantId' => 'getOnFileGrantId',
         'requestId' => 'getRequestId',
+        'subtype' => 'getSubtype',
         'firstName' => 'getFirstName',
         'lastName' => 'getLastName',
         'shopperEmail' => 'getShopperEmail',
         'telephoneNumber' => 'getTelephoneNumber',
         'googlePayCardNetwork' => 'getGooglePayCardNetwork',
         'googlePayToken' => 'getGooglePayToken',
-        'subtype' => 'getSubtype',
         'masterpassTransactionId' => 'getMasterpassTransactionId',
         'orderID' => 'getOrderID',
         'payeePreferred' => 'getPayeePreferred',
@@ -639,13 +639,13 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('grantId', $data ?? [], null);
         $this->setIfExists('onFileGrantId', $data ?? [], null);
         $this->setIfExists('requestId', $data ?? [], null);
+        $this->setIfExists('subtype', $data ?? [], null);
         $this->setIfExists('firstName', $data ?? [], null);
         $this->setIfExists('lastName', $data ?? [], null);
         $this->setIfExists('shopperEmail', $data ?? [], null);
         $this->setIfExists('telephoneNumber', $data ?? [], null);
         $this->setIfExists('googlePayCardNetwork', $data ?? [], null);
         $this->setIfExists('googlePayToken', $data ?? [], null);
-        $this->setIfExists('subtype', $data ?? [], null);
         $this->setIfExists('masterpassTransactionId', $data ?? [], null);
         $this->setIfExists('orderID', $data ?? [], null);
         $this->setIfExists('payeePreferred', $data ?? [], null);
@@ -703,6 +703,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         if ($this->container['issuer'] === null) {
             $invalidProperties[] = "'issuer' can't be null";
         }
+
         if ($this->container['firstName'] === null) {
             $invalidProperties[] = "'firstName' can't be null";
         }
@@ -718,7 +719,6 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         if ($this->container['googlePayToken'] === null) {
             $invalidProperties[] = "'googlePayToken' can't be null";
         }
-
         if ($this->container['masterpassTransactionId'] === null) {
             $invalidProperties[] = "'masterpassTransactionId' can't be null";
         }
@@ -1277,7 +1277,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets issuer
      *
-     * @param string $issuer The shopper's bank. Specify this with the issuer value that corresponds to this bank.
+     * @param string $issuer The PayByBank issuer value of the shopper's selected bank.
      *
      * @return self
      */
@@ -1888,6 +1888,33 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
+     * Gets subtype
+     *
+     * @return string|null
+     */
+    public function getSubtype()
+    {
+        return $this->container['subtype'];
+    }
+
+    /**
+     * Sets subtype
+     *
+     * @param string|null $subtype The type of flow to initiate.
+     *
+     * @return self
+     */
+    public function setSubtype($subtype)
+    {
+        if (is_null($subtype)) {
+            throw new \InvalidArgumentException('non-nullable subtype cannot be null');
+        }
+        $this->container['subtype'] = $subtype;
+
+        return $this;
+    }
+
+    /**
      * Gets firstName
      *
      * @return string
@@ -1954,7 +1981,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets shopperEmail
      *
-     * @param string $shopperEmail
+     * @param string $shopperEmail 
      *
      * @return self
      */
@@ -1981,7 +2008,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets telephoneNumber
      *
-     * @param string $telephoneNumber
+     * @param string $telephoneNumber 
      *
      * @return self
      */
@@ -2045,33 +2072,6 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
             throw new \InvalidArgumentException('non-nullable googlePayToken cannot be null');
         }
         $this->container['googlePayToken'] = $googlePayToken;
-
-        return $this;
-    }
-
-    /**
-     * Gets subtype
-     *
-     * @return string|null
-     */
-    public function getSubtype()
-    {
-        return $this->container['subtype'];
-    }
-
-    /**
-     * Sets subtype
-     *
-     * @param string|null $subtype The type of flow to initiate.
-     *
-     * @return self
-     */
-    public function setSubtype($subtype)
-    {
-        if (is_null($subtype)) {
-            throw new \InvalidArgumentException('non-nullable subtype cannot be null');
-        }
-        $this->container['subtype'] = $subtype;
 
         return $this;
     }

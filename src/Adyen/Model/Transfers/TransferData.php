@@ -356,6 +356,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     public const REASON_COUNTERPARTY_ADDRESS_REQUIRED = 'counterpartyAddressRequired';
     public const REASON_COUNTERPARTY_BANK_TIMED_OUT = 'counterpartyBankTimedOut';
     public const REASON_COUNTERPARTY_BANK_UNAVAILABLE = 'counterpartyBankUnavailable';
+    public const REASON_DECLINED = 'declined';
     public const REASON_DECLINED_BY_TRANSACTION_RULE = 'declinedByTransactionRule';
     public const REASON_ERROR = 'error';
     public const REASON_NOT_ENOUGH_BALANCE = 'notEnoughBalance';
@@ -510,6 +511,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
             self::REASON_COUNTERPARTY_ADDRESS_REQUIRED,
             self::REASON_COUNTERPARTY_BANK_TIMED_OUT,
             self::REASON_COUNTERPARTY_BANK_UNAVAILABLE,
+            self::REASON_DECLINED,
             self::REASON_DECLINED_BY_TRANSACTION_RULE,
             self::REASON_ERROR,
             self::REASON_NOT_ENOUGH_BALANCE,

@@ -630,7 +630,7 @@ class AdditionalDataRiskStandalone implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets bin
      *
-     * @param string|null $bin The Bank Identification Number of a credit card, which is the first six digits of a card number. Required for [tokenized card request](https://docs.adyen.com/risk-management/standalone-risk#tokenised-pan-request).
+     * @param string|null $bin The Bank Identification Number of a credit card, which is the first six digits of a card number. Required for [tokenized card request](https://docs.adyen.com/online-payments/tokenization).
      *
      * @return self
      */

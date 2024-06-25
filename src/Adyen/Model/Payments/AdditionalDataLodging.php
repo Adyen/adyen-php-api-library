@@ -44,6 +44,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var string[]
       */
     protected static $openAPITypes = [
+        'lodgingSpecialProgramCode' => 'string',
         'lodgingCheckInDate' => 'string',
         'lodgingCheckOutDate' => 'string',
         'lodgingCustomerServiceTollFreeNumber' => 'string',
@@ -70,6 +71,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'lodgingSpecialProgramCode' => null,
         'lodgingCheckInDate' => null,
         'lodgingCheckOutDate' => null,
         'lodgingCustomerServiceTollFreeNumber' => null,
@@ -94,6 +96,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'lodgingSpecialProgramCode' => false,
         'lodgingCheckInDate' => false,
         'lodgingCheckOutDate' => false,
         'lodgingCustomerServiceTollFreeNumber' => false,
@@ -198,6 +201,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $attributeMap = [
+        'lodgingSpecialProgramCode' => 'lodging.SpecialProgramCode',
         'lodgingCheckInDate' => 'lodging.checkInDate',
         'lodgingCheckOutDate' => 'lodging.checkOutDate',
         'lodgingCustomerServiceTollFreeNumber' => 'lodging.customerServiceTollFreeNumber',
@@ -222,6 +226,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $setters = [
+        'lodgingSpecialProgramCode' => 'setLodgingSpecialProgramCode',
         'lodgingCheckInDate' => 'setLodgingCheckInDate',
         'lodgingCheckOutDate' => 'setLodgingCheckOutDate',
         'lodgingCustomerServiceTollFreeNumber' => 'setLodgingCustomerServiceTollFreeNumber',
@@ -246,6 +251,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $getters = [
+        'lodgingSpecialProgramCode' => 'getLodgingSpecialProgramCode',
         'lodgingCheckInDate' => 'getLodgingCheckInDate',
         'lodgingCheckOutDate' => 'getLodgingCheckOutDate',
         'lodgingCustomerServiceTollFreeNumber' => 'getLodgingCustomerServiceTollFreeNumber',
@@ -321,6 +327,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('lodgingSpecialProgramCode', $data ?? [], null);
         $this->setIfExists('lodgingCheckInDate', $data ?? [], null);
         $this->setIfExists('lodgingCheckOutDate', $data ?? [], null);
         $this->setIfExists('lodgingCustomerServiceTollFreeNumber', $data ?? [], null);
@@ -380,6 +387,33 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets lodgingSpecialProgramCode
+     *
+     * @return string|null
+     */
+    public function getLodgingSpecialProgramCode()
+    {
+        return $this->container['lodgingSpecialProgramCode'];
+    }
+
+    /**
+     * Sets lodgingSpecialProgramCode
+     *
+     * @param string|null $lodgingSpecialProgramCode A code that corresponds to the category of lodging charges for the payment. Possible values: * 1: Lodging * 2: No show reservation * 3: Advanced deposit
+     *
+     * @return self
+     */
+    public function setLodgingSpecialProgramCode($lodgingSpecialProgramCode)
+    {
+        if (is_null($lodgingSpecialProgramCode)) {
+            throw new \InvalidArgumentException('non-nullable lodgingSpecialProgramCode cannot be null');
+        }
+        $this->container['lodgingSpecialProgramCode'] = $lodgingSpecialProgramCode;
+
+        return $this;
+    }
 
     /**
      * Gets lodgingCheckInDate

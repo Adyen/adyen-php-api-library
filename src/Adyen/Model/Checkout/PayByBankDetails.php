@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
- * VippsDetails Class Doc Comment
+ * PayByBankDetails Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class VippsDetails implements ModelInterface, ArrayAccess, \JsonSerializable
+class PayByBankDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class VippsDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'VippsDetails';
+    protected static $openAPIModelName = 'PayByBankDetails';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -45,9 +45,7 @@ class VippsDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'checkoutAttemptId' => 'string',
-        'recurringDetailReference' => 'string',
-        'storedPaymentMethodId' => 'string',
-        'telephoneNumber' => 'string',
+        'issuer' => 'string',
         'type' => 'string'
     ];
 
@@ -60,9 +58,7 @@ class VippsDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'checkoutAttemptId' => null,
-        'recurringDetailReference' => null,
-        'storedPaymentMethodId' => null,
-        'telephoneNumber' => null,
+        'issuer' => null,
         'type' => null
     ];
 
@@ -73,9 +69,7 @@ class VippsDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'checkoutAttemptId' => false,
-        'recurringDetailReference' => false,
-        'storedPaymentMethodId' => false,
-        'telephoneNumber' => false,
+        'issuer' => false,
         'type' => false
     ];
 
@@ -166,9 +160,7 @@ class VippsDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'checkoutAttemptId' => 'checkoutAttemptId',
-        'recurringDetailReference' => 'recurringDetailReference',
-        'storedPaymentMethodId' => 'storedPaymentMethodId',
-        'telephoneNumber' => 'telephoneNumber',
+        'issuer' => 'issuer',
         'type' => 'type'
     ];
 
@@ -179,9 +171,7 @@ class VippsDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'checkoutAttemptId' => 'setCheckoutAttemptId',
-        'recurringDetailReference' => 'setRecurringDetailReference',
-        'storedPaymentMethodId' => 'setStoredPaymentMethodId',
-        'telephoneNumber' => 'setTelephoneNumber',
+        'issuer' => 'setIssuer',
         'type' => 'setType'
     ];
 
@@ -192,9 +182,7 @@ class VippsDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'checkoutAttemptId' => 'getCheckoutAttemptId',
-        'recurringDetailReference' => 'getRecurringDetailReference',
-        'storedPaymentMethodId' => 'getStoredPaymentMethodId',
-        'telephoneNumber' => 'getTelephoneNumber',
+        'issuer' => 'getIssuer',
         'type' => 'getType'
     ];
 
@@ -239,7 +227,7 @@ class VippsDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const TYPE_VIPPS = 'vipps';
+    public const TYPE_PAYBYBANK = 'paybybank';
 
     /**
      * Gets allowable values of the enum
@@ -249,7 +237,7 @@ class VippsDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public function getTypeAllowableValues()
     {
         return [
-            self::TYPE_VIPPS,
+            self::TYPE_PAYBYBANK,
         ];
     }
     /**
@@ -268,9 +256,7 @@ class VippsDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
-        $this->setIfExists('recurringDetailReference', $data ?? [], null);
-        $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
-        $this->setIfExists('telephoneNumber', $data ?? [], null);
+        $this->setIfExists('issuer', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -301,8 +287,8 @@ class VippsDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['telephoneNumber'] === null) {
-            $invalidProperties[] = "'telephoneNumber' can't be null";
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
         }
         $allowedValues = $this->getTypeAllowableValues();
         if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
@@ -356,84 +342,28 @@ class VippsDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets recurringDetailReference
-     *
-     * @return string|null
-     * @deprecated
-     */
-    public function getRecurringDetailReference()
-    {
-        return $this->container['recurringDetailReference'];
-    }
-
-    /**
-     * Sets recurringDetailReference
-     *
-     * @param string|null $recurringDetailReference This is the `recurringDetailReference` returned in the response when you created the token.
-     *
-     * @return self
-     * @deprecated
-     */
-    public function setRecurringDetailReference($recurringDetailReference)
-    {
-        if (is_null($recurringDetailReference)) {
-            throw new \InvalidArgumentException('non-nullable recurringDetailReference cannot be null');
-        }
-        $this->container['recurringDetailReference'] = $recurringDetailReference;
-
-        return $this;
-    }
-
-    /**
-     * Gets storedPaymentMethodId
+     * Gets issuer
      *
      * @return string|null
      */
-    public function getStoredPaymentMethodId()
+    public function getIssuer()
     {
-        return $this->container['storedPaymentMethodId'];
+        return $this->container['issuer'];
     }
 
     /**
-     * Sets storedPaymentMethodId
+     * Sets issuer
      *
-     * @param string|null $storedPaymentMethodId This is the `recurringDetailReference` returned in the response when you created the token.
+     * @param string|null $issuer The PayByBank issuer value of the shopper's selected bank.
      *
      * @return self
      */
-    public function setStoredPaymentMethodId($storedPaymentMethodId)
+    public function setIssuer($issuer)
     {
-        if (is_null($storedPaymentMethodId)) {
-            throw new \InvalidArgumentException('non-nullable storedPaymentMethodId cannot be null');
+        if (is_null($issuer)) {
+            throw new \InvalidArgumentException('non-nullable issuer cannot be null');
         }
-        $this->container['storedPaymentMethodId'] = $storedPaymentMethodId;
-
-        return $this;
-    }
-
-    /**
-     * Gets telephoneNumber
-     *
-     * @return string
-     */
-    public function getTelephoneNumber()
-    {
-        return $this->container['telephoneNumber'];
-    }
-
-    /**
-     * Sets telephoneNumber
-     *
-     * @param string $telephoneNumber 
-     *
-     * @return self
-     */
-    public function setTelephoneNumber($telephoneNumber)
-    {
-        if (is_null($telephoneNumber)) {
-            throw new \InvalidArgumentException('non-nullable telephoneNumber cannot be null');
-        }
-        $this->container['telephoneNumber'] = $telephoneNumber;
+        $this->container['issuer'] = $issuer;
 
         return $this;
     }
@@ -441,7 +371,7 @@ class VippsDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets type
      *
-     * @return string|null
+     * @return string
      */
     public function getType()
     {
@@ -451,7 +381,7 @@ class VippsDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      *
-     * @param string|null $type **vipps**
+     * @param string $type **paybybank**
      *
      * @return self
      */

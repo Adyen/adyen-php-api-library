@@ -2254,7 +2254,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets splits
      *
-     * @param \Adyen\Model\Checkout\Split[]|null $splits An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/processing-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split).
+     * @param \Adyen\Model\Checkout\Split[]|null $splits An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/process-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split).
      *
      * @return self
      */

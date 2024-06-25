@@ -64,6 +64,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'merchantAccount' => 'string',
         'merchantOrderReference' => 'string',
         'metadata' => 'array<string,string>',
+        'platformChargebackLogic' => '\Adyen\Model\Checkout\PlatformChargebackLogic',
         'recurringProcessingModel' => 'string',
         'reference' => 'string',
         'requiredShopperFields' => 'string[]',
@@ -117,6 +118,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'merchantAccount' => null,
         'merchantOrderReference' => null,
         'metadata' => null,
+        'platformChargebackLogic' => null,
         'recurringProcessingModel' => null,
         'reference' => null,
         'requiredShopperFields' => null,
@@ -168,6 +170,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'merchantAccount' => false,
         'merchantOrderReference' => false,
         'metadata' => false,
+        'platformChargebackLogic' => false,
         'recurringProcessingModel' => false,
         'reference' => false,
         'requiredShopperFields' => false,
@@ -299,6 +302,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'merchantAccount' => 'merchantAccount',
         'merchantOrderReference' => 'merchantOrderReference',
         'metadata' => 'metadata',
+        'platformChargebackLogic' => 'platformChargebackLogic',
         'recurringProcessingModel' => 'recurringProcessingModel',
         'reference' => 'reference',
         'requiredShopperFields' => 'requiredShopperFields',
@@ -350,6 +354,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'merchantAccount' => 'setMerchantAccount',
         'merchantOrderReference' => 'setMerchantOrderReference',
         'metadata' => 'setMetadata',
+        'platformChargebackLogic' => 'setPlatformChargebackLogic',
         'recurringProcessingModel' => 'setRecurringProcessingModel',
         'reference' => 'setReference',
         'requiredShopperFields' => 'setRequiredShopperFields',
@@ -401,6 +406,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'merchantAccount' => 'getMerchantAccount',
         'merchantOrderReference' => 'getMerchantOrderReference',
         'metadata' => 'getMetadata',
+        'platformChargebackLogic' => 'getPlatformChargebackLogic',
         'recurringProcessingModel' => 'getRecurringProcessingModel',
         'reference' => 'getReference',
         'requiredShopperFields' => 'getRequiredShopperFields',
@@ -575,6 +581,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('merchantAccount', $data ?? [], null);
         $this->setIfExists('merchantOrderReference', $data ?? [], null);
         $this->setIfExists('metadata', $data ?? [], null);
+        $this->setIfExists('platformChargebackLogic', $data ?? [], null);
         $this->setIfExists('recurringProcessingModel', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
         $this->setIfExists('requiredShopperFields', $data ?? [], null);
@@ -1226,6 +1233,33 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     }
 
     /**
+     * Gets platformChargebackLogic
+     *
+     * @return \Adyen\Model\Checkout\PlatformChargebackLogic|null
+     */
+    public function getPlatformChargebackLogic()
+    {
+        return $this->container['platformChargebackLogic'];
+    }
+
+    /**
+     * Sets platformChargebackLogic
+     *
+     * @param \Adyen\Model\Checkout\PlatformChargebackLogic|null $platformChargebackLogic platformChargebackLogic
+     *
+     * @return self
+     */
+    public function setPlatformChargebackLogic($platformChargebackLogic)
+    {
+        if (is_null($platformChargebackLogic)) {
+            throw new \InvalidArgumentException('non-nullable platformChargebackLogic cannot be null');
+        }
+        $this->container['platformChargebackLogic'] = $platformChargebackLogic;
+
+        return $this;
+    }
+
+    /**
      * Gets recurringProcessingModel
      *
      * @return string|null
@@ -1635,7 +1669,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets splits
      *
-     * @param \Adyen\Model\Checkout\Split[]|null $splits An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/processing-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split).
+     * @param \Adyen\Model\Checkout\Split[]|null $splits An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/process-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split).
      *
      * @return self
      */

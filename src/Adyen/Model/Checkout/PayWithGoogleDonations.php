@@ -49,6 +49,7 @@ class PayWithGoogleDonations implements ModelInterface, ArrayAccess, \JsonSerial
         'googlePayToken' => 'string',
         'recurringDetailReference' => 'string',
         'storedPaymentMethodId' => 'string',
+        'threeDS2SdkVersion' => 'string',
         'type' => 'string'
     ];
 
@@ -65,6 +66,7 @@ class PayWithGoogleDonations implements ModelInterface, ArrayAccess, \JsonSerial
         'googlePayToken' => null,
         'recurringDetailReference' => null,
         'storedPaymentMethodId' => null,
+        'threeDS2SdkVersion' => null,
         'type' => null
     ];
 
@@ -79,6 +81,7 @@ class PayWithGoogleDonations implements ModelInterface, ArrayAccess, \JsonSerial
         'googlePayToken' => false,
         'recurringDetailReference' => false,
         'storedPaymentMethodId' => false,
+        'threeDS2SdkVersion' => false,
         'type' => false
     ];
 
@@ -173,6 +176,7 @@ class PayWithGoogleDonations implements ModelInterface, ArrayAccess, \JsonSerial
         'googlePayToken' => 'googlePayToken',
         'recurringDetailReference' => 'recurringDetailReference',
         'storedPaymentMethodId' => 'storedPaymentMethodId',
+        'threeDS2SdkVersion' => 'threeDS2SdkVersion',
         'type' => 'type'
     ];
 
@@ -187,6 +191,7 @@ class PayWithGoogleDonations implements ModelInterface, ArrayAccess, \JsonSerial
         'googlePayToken' => 'setGooglePayToken',
         'recurringDetailReference' => 'setRecurringDetailReference',
         'storedPaymentMethodId' => 'setStoredPaymentMethodId',
+        'threeDS2SdkVersion' => 'setThreeDS2SdkVersion',
         'type' => 'setType'
     ];
 
@@ -201,6 +206,7 @@ class PayWithGoogleDonations implements ModelInterface, ArrayAccess, \JsonSerial
         'googlePayToken' => 'getGooglePayToken',
         'recurringDetailReference' => 'getRecurringDetailReference',
         'storedPaymentMethodId' => 'getStoredPaymentMethodId',
+        'threeDS2SdkVersion' => 'getThreeDS2SdkVersion',
         'type' => 'getType'
     ];
 
@@ -292,6 +298,7 @@ class PayWithGoogleDonations implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('googlePayToken', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
+        $this->setIfExists('threeDS2SdkVersion', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -501,6 +508,33 @@ class PayWithGoogleDonations implements ModelInterface, ArrayAccess, \JsonSerial
             throw new \InvalidArgumentException('non-nullable storedPaymentMethodId cannot be null');
         }
         $this->container['storedPaymentMethodId'] = $storedPaymentMethodId;
+
+        return $this;
+    }
+
+    /**
+     * Gets threeDS2SdkVersion
+     *
+     * @return string|null
+     */
+    public function getThreeDS2SdkVersion()
+    {
+        return $this->container['threeDS2SdkVersion'];
+    }
+
+    /**
+     * Sets threeDS2SdkVersion
+     *
+     * @param string|null $threeDS2SdkVersion Required for mobile integrations. Version of the 3D Secure 2 mobile SDK.
+     *
+     * @return self
+     */
+    public function setThreeDS2SdkVersion($threeDS2SdkVersion)
+    {
+        if (is_null($threeDS2SdkVersion)) {
+            throw new \InvalidArgumentException('non-nullable threeDS2SdkVersion cannot be null');
+        }
+        $this->container['threeDS2SdkVersion'] = $threeDS2SdkVersion;
 
         return $this;
     }

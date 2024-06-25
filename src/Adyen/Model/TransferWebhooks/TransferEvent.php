@@ -46,6 +46,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'amount' => '\Adyen\Model\TransferWebhooks\Amount',
         'amountAdjustments' => '\Adyen\Model\TransferWebhooks\AmountAdjustment[]',
+        'arn' => 'string',
         'bookingDate' => '\DateTime',
         'estimatedArrivalTime' => '\DateTime',
         'externalReason' => '\Adyen\Model\TransferWebhooks\ExternalReason',
@@ -72,6 +73,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'amount' => null,
         'amountAdjustments' => null,
+        'arn' => null,
         'bookingDate' => 'date-time',
         'estimatedArrivalTime' => 'date-time',
         'externalReason' => null,
@@ -96,6 +98,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPINullables = [
         'amount' => false,
         'amountAdjustments' => false,
+        'arn' => false,
         'bookingDate' => false,
         'estimatedArrivalTime' => false,
         'externalReason' => false,
@@ -200,6 +203,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'amount' => 'amount',
         'amountAdjustments' => 'amountAdjustments',
+        'arn' => 'arn',
         'bookingDate' => 'bookingDate',
         'estimatedArrivalTime' => 'estimatedArrivalTime',
         'externalReason' => 'externalReason',
@@ -224,6 +228,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'amount' => 'setAmount',
         'amountAdjustments' => 'setAmountAdjustments',
+        'arn' => 'setArn',
         'bookingDate' => 'setBookingDate',
         'estimatedArrivalTime' => 'setEstimatedArrivalTime',
         'externalReason' => 'setExternalReason',
@@ -248,6 +253,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'amount' => 'getAmount',
         'amountAdjustments' => 'getAmountAdjustments',
+        'arn' => 'getArn',
         'bookingDate' => 'getBookingDate',
         'estimatedArrivalTime' => 'getEstimatedArrivalTime',
         'externalReason' => 'getExternalReason',
@@ -314,6 +320,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     public const REASON_COUNTERPARTY_ADDRESS_REQUIRED = 'counterpartyAddressRequired';
     public const REASON_COUNTERPARTY_BANK_TIMED_OUT = 'counterpartyBankTimedOut';
     public const REASON_COUNTERPARTY_BANK_UNAVAILABLE = 'counterpartyBankUnavailable';
+    public const REASON_DECLINED = 'declined';
     public const REASON_DECLINED_BY_TRANSACTION_RULE = 'declinedByTransactionRule';
     public const REASON_ERROR = 'error';
     public const REASON_NOT_ENOUGH_BALANCE = 'notEnoughBalance';
@@ -407,6 +414,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
             self::REASON_COUNTERPARTY_ADDRESS_REQUIRED,
             self::REASON_COUNTERPARTY_BANK_TIMED_OUT,
             self::REASON_COUNTERPARTY_BANK_UNAVAILABLE,
+            self::REASON_DECLINED,
             self::REASON_DECLINED_BY_TRANSACTION_RULE,
             self::REASON_ERROR,
             self::REASON_NOT_ENOUGH_BALANCE,
@@ -521,6 +529,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('amount', $data ?? [], null);
         $this->setIfExists('amountAdjustments', $data ?? [], null);
+        $this->setIfExists('arn', $data ?? [], null);
         $this->setIfExists('bookingDate', $data ?? [], null);
         $this->setIfExists('estimatedArrivalTime', $data ?? [], null);
         $this->setIfExists('externalReason', $data ?? [], null);
@@ -656,6 +665,33 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable amountAdjustments cannot be null');
         }
         $this->container['amountAdjustments'] = $amountAdjustments;
+
+        return $this;
+    }
+
+    /**
+     * Gets arn
+     *
+     * @return string|null
+     */
+    public function getArn()
+    {
+        return $this->container['arn'];
+    }
+
+    /**
+     * Sets arn
+     *
+     * @param string|null $arn Scheme unique arn identifier useful for tracing captures, chargebacks, refunds, etc.
+     *
+     * @return self
+     */
+    public function setArn($arn)
+    {
+        if (is_null($arn)) {
+            throw new \InvalidArgumentException('non-nullable arn cannot be null');
+        }
+        $this->container['arn'] = $arn;
 
         return $this;
     }

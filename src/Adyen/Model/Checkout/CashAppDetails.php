@@ -52,6 +52,7 @@ class CashAppDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'recurringDetailReference' => 'string',
         'requestId' => 'string',
         'storedPaymentMethodId' => 'string',
+        'subtype' => 'string',
         'type' => 'string'
     ];
 
@@ -71,6 +72,7 @@ class CashAppDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'recurringDetailReference' => null,
         'requestId' => null,
         'storedPaymentMethodId' => null,
+        'subtype' => null,
         'type' => null
     ];
 
@@ -88,6 +90,7 @@ class CashAppDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'recurringDetailReference' => false,
         'requestId' => false,
         'storedPaymentMethodId' => false,
+        'subtype' => false,
         'type' => false
     ];
 
@@ -185,6 +188,7 @@ class CashAppDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'recurringDetailReference' => 'recurringDetailReference',
         'requestId' => 'requestId',
         'storedPaymentMethodId' => 'storedPaymentMethodId',
+        'subtype' => 'subtype',
         'type' => 'type'
     ];
 
@@ -202,6 +206,7 @@ class CashAppDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'recurringDetailReference' => 'setRecurringDetailReference',
         'requestId' => 'setRequestId',
         'storedPaymentMethodId' => 'setStoredPaymentMethodId',
+        'subtype' => 'setSubtype',
         'type' => 'setType'
     ];
 
@@ -219,6 +224,7 @@ class CashAppDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'recurringDetailReference' => 'getRecurringDetailReference',
         'requestId' => 'getRequestId',
         'storedPaymentMethodId' => 'getStoredPaymentMethodId',
+        'subtype' => 'getSubtype',
         'type' => 'getType'
     ];
 
@@ -299,6 +305,7 @@ class CashAppDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
         $this->setIfExists('requestId', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
+        $this->setIfExists('subtype', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -567,6 +574,33 @@ class CashAppDetails implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable storedPaymentMethodId cannot be null');
         }
         $this->container['storedPaymentMethodId'] = $storedPaymentMethodId;
+
+        return $this;
+    }
+
+    /**
+     * Gets subtype
+     *
+     * @return string|null
+     */
+    public function getSubtype()
+    {
+        return $this->container['subtype'];
+    }
+
+    /**
+     * Sets subtype
+     *
+     * @param string|null $subtype The payment method subtype.
+     *
+     * @return self
+     */
+    public function setSubtype($subtype)
+    {
+        if (is_null($subtype)) {
+            throw new \InvalidArgumentException('non-nullable subtype cannot be null');
+        }
+        $this->container['subtype'] = $subtype;
 
         return $this;
     }

@@ -429,6 +429,7 @@ class AccountHolderUpdateRequest implements ModelInterface, ArrayAccess, \JsonSe
      * Gets contactDetails
      *
      * @return \Adyen\Model\BalancePlatform\ContactDetails|null
+     * @deprecated
      */
     public function getContactDetails()
     {
@@ -441,6 +442,7 @@ class AccountHolderUpdateRequest implements ModelInterface, ArrayAccess, \JsonSe
      * @param \Adyen\Model\BalancePlatform\ContactDetails|null $contactDetails contactDetails
      *
      * @return self
+     * @deprecated
      */
     public function setContactDetails($contactDetails)
     {

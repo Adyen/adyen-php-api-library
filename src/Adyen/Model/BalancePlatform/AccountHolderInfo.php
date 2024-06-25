@@ -393,6 +393,7 @@ class AccountHolderInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * Gets contactDetails
      *
      * @return \Adyen\Model\BalancePlatform\ContactDetails|null
+     * @deprecated
      */
     public function getContactDetails()
     {
@@ -405,6 +406,7 @@ class AccountHolderInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @param \Adyen\Model\BalancePlatform\ContactDetails|null $contactDetails contactDetails
      *
      * @return self
+     * @deprecated
      */
     public function setContactDetails($contactDetails)
     {

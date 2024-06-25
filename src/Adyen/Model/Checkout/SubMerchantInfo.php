@@ -45,11 +45,15 @@ class SubMerchantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'address' => '\Adyen\Model\Checkout\BillingAddress',
+        'amount' => '\Adyen\Model\Checkout\Amount',
+        'email' => 'string',
         'id' => 'string',
         'mcc' => 'string',
         'name' => 'string',
+        'phoneNumber' => 'string',
         'registeredSince' => 'string',
-        'taxId' => 'string'
+        'taxId' => 'string',
+        'url' => 'string'
     ];
 
     /**
@@ -61,11 +65,15 @@ class SubMerchantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'address' => null,
+        'amount' => null,
+        'email' => null,
         'id' => null,
         'mcc' => null,
         'name' => null,
+        'phoneNumber' => null,
         'registeredSince' => null,
-        'taxId' => null
+        'taxId' => null,
+        'url' => null
     ];
 
     /**
@@ -75,11 +83,15 @@ class SubMerchantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'address' => false,
+        'amount' => false,
+        'email' => false,
         'id' => false,
         'mcc' => false,
         'name' => false,
+        'phoneNumber' => false,
         'registeredSince' => false,
-        'taxId' => false
+        'taxId' => false,
+        'url' => false
     ];
 
     /**
@@ -169,11 +181,15 @@ class SubMerchantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'address' => 'address',
+        'amount' => 'amount',
+        'email' => 'email',
         'id' => 'id',
         'mcc' => 'mcc',
         'name' => 'name',
+        'phoneNumber' => 'phoneNumber',
         'registeredSince' => 'registeredSince',
-        'taxId' => 'taxId'
+        'taxId' => 'taxId',
+        'url' => 'url'
     ];
 
     /**
@@ -183,11 +199,15 @@ class SubMerchantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'address' => 'setAddress',
+        'amount' => 'setAmount',
+        'email' => 'setEmail',
         'id' => 'setId',
         'mcc' => 'setMcc',
         'name' => 'setName',
+        'phoneNumber' => 'setPhoneNumber',
         'registeredSince' => 'setRegisteredSince',
-        'taxId' => 'setTaxId'
+        'taxId' => 'setTaxId',
+        'url' => 'setUrl'
     ];
 
     /**
@@ -197,11 +217,15 @@ class SubMerchantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'address' => 'getAddress',
+        'amount' => 'getAmount',
+        'email' => 'getEmail',
         'id' => 'getId',
         'mcc' => 'getMcc',
         'name' => 'getName',
+        'phoneNumber' => 'getPhoneNumber',
         'registeredSince' => 'getRegisteredSince',
-        'taxId' => 'getTaxId'
+        'taxId' => 'getTaxId',
+        'url' => 'getUrl'
     ];
 
     /**
@@ -262,11 +286,15 @@ class SubMerchantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('address', $data ?? [], null);
+        $this->setIfExists('amount', $data ?? [], null);
+        $this->setIfExists('email', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('mcc', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('phoneNumber', $data ?? [], null);
         $this->setIfExists('registeredSince', $data ?? [], null);
         $this->setIfExists('taxId', $data ?? [], null);
+        $this->setIfExists('url', $data ?? [], null);
     }
 
     /**
@@ -334,6 +362,60 @@ class SubMerchantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable address cannot be null');
         }
         $this->container['address'] = $address;
+
+        return $this;
+    }
+
+    /**
+     * Gets amount
+     *
+     * @return \Adyen\Model\Checkout\Amount|null
+     */
+    public function getAmount()
+    {
+        return $this->container['amount'];
+    }
+
+    /**
+     * Sets amount
+     *
+     * @param \Adyen\Model\Checkout\Amount|null $amount amount
+     *
+     * @return self
+     */
+    public function setAmount($amount)
+    {
+        if (is_null($amount)) {
+            throw new \InvalidArgumentException('non-nullable amount cannot be null');
+        }
+        $this->container['amount'] = $amount;
+
+        return $this;
+    }
+
+    /**
+     * Gets email
+     *
+     * @return string|null
+     */
+    public function getEmail()
+    {
+        return $this->container['email'];
+    }
+
+    /**
+     * Sets email
+     *
+     * @param string|null $email email
+     *
+     * @return self
+     */
+    public function setEmail($email)
+    {
+        if (is_null($email)) {
+            throw new \InvalidArgumentException('non-nullable email cannot be null');
+        }
+        $this->container['email'] = $email;
 
         return $this;
     }
@@ -420,6 +502,33 @@ class SubMerchantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets phoneNumber
+     *
+     * @return string|null
+     */
+    public function getPhoneNumber()
+    {
+        return $this->container['phoneNumber'];
+    }
+
+    /**
+     * Sets phoneNumber
+     *
+     * @param string|null $phoneNumber phoneNumber
+     *
+     * @return self
+     */
+    public function setPhoneNumber($phoneNumber)
+    {
+        if (is_null($phoneNumber)) {
+            throw new \InvalidArgumentException('non-nullable phoneNumber cannot be null');
+        }
+        $this->container['phoneNumber'] = $phoneNumber;
+
+        return $this;
+    }
+
+    /**
      * Gets registeredSince
      *
      * @return string|null
@@ -469,6 +578,33 @@ class SubMerchantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable taxId cannot be null');
         }
         $this->container['taxId'] = $taxId;
+
+        return $this;
+    }
+
+    /**
+     * Gets url
+     *
+     * @return string|null
+     */
+    public function getUrl()
+    {
+        return $this->container['url'];
+    }
+
+    /**
+     * Sets url
+     *
+     * @param string|null $url url
+     *
+     * @return self
+     */
+    public function setUrl($url)
+    {
+        if (is_null($url)) {
+            throw new \InvalidArgumentException('non-nullable url cannot be null');
+        }
+        $this->container['url'] = $url;
 
         return $this;
     }

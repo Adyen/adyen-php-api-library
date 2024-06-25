@@ -52,6 +52,7 @@ class PaymentInstrumentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
         'paymentInstrumentGroupId' => 'string',
         'reference' => 'string',
         'status' => 'string',
+        'statusComment' => 'string',
         'statusReason' => 'string',
         'type' => 'string'
     ];
@@ -72,6 +73,7 @@ class PaymentInstrumentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
         'paymentInstrumentGroupId' => null,
         'reference' => null,
         'status' => null,
+        'statusComment' => null,
         'statusReason' => null,
         'type' => null
     ];
@@ -90,6 +92,7 @@ class PaymentInstrumentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
         'paymentInstrumentGroupId' => false,
         'reference' => false,
         'status' => false,
+        'statusComment' => false,
         'statusReason' => false,
         'type' => false
     ];
@@ -188,6 +191,7 @@ class PaymentInstrumentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
         'paymentInstrumentGroupId' => 'paymentInstrumentGroupId',
         'reference' => 'reference',
         'status' => 'status',
+        'statusComment' => 'statusComment',
         'statusReason' => 'statusReason',
         'type' => 'type'
     ];
@@ -206,6 +210,7 @@ class PaymentInstrumentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
         'paymentInstrumentGroupId' => 'setPaymentInstrumentGroupId',
         'reference' => 'setReference',
         'status' => 'setStatus',
+        'statusComment' => 'setStatusComment',
         'statusReason' => 'setStatusReason',
         'type' => 'setType'
     ];
@@ -224,6 +229,7 @@ class PaymentInstrumentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
         'paymentInstrumentGroupId' => 'getPaymentInstrumentGroupId',
         'reference' => 'getReference',
         'status' => 'getStatus',
+        'statusComment' => 'getStatusComment',
         'statusReason' => 'getStatusReason',
         'type' => 'getType'
     ];
@@ -353,6 +359,7 @@ class PaymentInstrumentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('paymentInstrumentGroupId', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('statusComment', $data ?? [], null);
         $this->setIfExists('statusReason', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
@@ -657,6 +664,33 @@ class PaymentInstrumentInfo implements ModelInterface, ArrayAccess, \JsonSeriali
             );
         }
         $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets statusComment
+     *
+     * @return string|null
+     */
+    public function getStatusComment()
+    {
+        return $this->container['statusComment'];
+    }
+
+    /**
+     * Sets statusComment
+     *
+     * @param string|null $statusComment The status comment provides additional information for the statusReason of the payment instrument.
+     *
+     * @return self
+     */
+    public function setStatusComment($statusComment)
+    {
+        if (is_null($statusComment)) {
+            throw new \InvalidArgumentException('non-nullable statusComment cannot be null');
+        }
+        $this->container['statusComment'] = $statusComment;
 
         return $this;
     }

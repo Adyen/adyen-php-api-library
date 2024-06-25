@@ -449,6 +449,7 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets contactDetails
      *
      * @return \Adyen\Model\ConfigurationWebhooks\ContactDetails|null
+     * @deprecated
      */
     public function getContactDetails()
     {
@@ -461,6 +462,7 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param \Adyen\Model\ConfigurationWebhooks\ContactDetails|null $contactDetails contactDetails
      *
      * @return self
+     * @deprecated
      */
     public function setContactDetails($contactDetails)
     {

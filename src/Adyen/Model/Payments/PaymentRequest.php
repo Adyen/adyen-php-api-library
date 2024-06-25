@@ -79,6 +79,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'recurring' => '\Adyen\Model\Payments\Recurring',
         'recurringProcessingModel' => 'string',
         'reference' => 'string',
+        'secureRemoteCommerceCheckoutData' => '\Adyen\Model\Payments\SecureRemoteCommerceCheckoutData',
         'selectedBrand' => 'string',
         'selectedRecurringDetailReference' => 'string',
         'sessionId' => 'string',
@@ -142,6 +143,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'recurring' => null,
         'recurringProcessingModel' => null,
         'reference' => null,
+        'secureRemoteCommerceCheckoutData' => null,
         'selectedBrand' => null,
         'selectedRecurringDetailReference' => null,
         'sessionId' => null,
@@ -203,6 +205,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'recurring' => false,
         'recurringProcessingModel' => false,
         'reference' => false,
+        'secureRemoteCommerceCheckoutData' => false,
         'selectedBrand' => false,
         'selectedRecurringDetailReference' => false,
         'sessionId' => false,
@@ -344,6 +347,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'recurring' => 'recurring',
         'recurringProcessingModel' => 'recurringProcessingModel',
         'reference' => 'reference',
+        'secureRemoteCommerceCheckoutData' => 'secureRemoteCommerceCheckoutData',
         'selectedBrand' => 'selectedBrand',
         'selectedRecurringDetailReference' => 'selectedRecurringDetailReference',
         'sessionId' => 'sessionId',
@@ -405,6 +409,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'recurring' => 'setRecurring',
         'recurringProcessingModel' => 'setRecurringProcessingModel',
         'reference' => 'setReference',
+        'secureRemoteCommerceCheckoutData' => 'setSecureRemoteCommerceCheckoutData',
         'selectedBrand' => 'setSelectedBrand',
         'selectedRecurringDetailReference' => 'setSelectedRecurringDetailReference',
         'sessionId' => 'setSessionId',
@@ -466,6 +471,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'recurring' => 'getRecurring',
         'recurringProcessingModel' => 'getRecurringProcessingModel',
         'reference' => 'getReference',
+        'secureRemoteCommerceCheckoutData' => 'getSecureRemoteCommerceCheckoutData',
         'selectedBrand' => 'getSelectedBrand',
         'selectedRecurringDetailReference' => 'getSelectedRecurringDetailReference',
         'sessionId' => 'getSessionId',
@@ -640,6 +646,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('recurring', $data ?? [], null);
         $this->setIfExists('recurringProcessingModel', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
+        $this->setIfExists('secureRemoteCommerceCheckoutData', $data ?? [], null);
         $this->setIfExists('selectedBrand', $data ?? [], null);
         $this->setIfExists('selectedRecurringDetailReference', $data ?? [], null);
         $this->setIfExists('sessionId', $data ?? [], null);
@@ -1714,6 +1721,33 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable reference cannot be null');
         }
         $this->container['reference'] = $reference;
+
+        return $this;
+    }
+
+    /**
+     * Gets secureRemoteCommerceCheckoutData
+     *
+     * @return \Adyen\Model\Payments\SecureRemoteCommerceCheckoutData|null
+     */
+    public function getSecureRemoteCommerceCheckoutData()
+    {
+        return $this->container['secureRemoteCommerceCheckoutData'];
+    }
+
+    /**
+     * Sets secureRemoteCommerceCheckoutData
+     *
+     * @param \Adyen\Model\Payments\SecureRemoteCommerceCheckoutData|null $secureRemoteCommerceCheckoutData secureRemoteCommerceCheckoutData
+     *
+     * @return self
+     */
+    public function setSecureRemoteCommerceCheckoutData($secureRemoteCommerceCheckoutData)
+    {
+        if (is_null($secureRemoteCommerceCheckoutData)) {
+            throw new \InvalidArgumentException('non-nullable secureRemoteCommerceCheckoutData cannot be null');
+        }
+        $this->container['secureRemoteCommerceCheckoutData'] = $secureRemoteCommerceCheckoutData;
 
         return $this;
     }

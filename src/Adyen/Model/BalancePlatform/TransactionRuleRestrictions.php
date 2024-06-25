@@ -53,6 +53,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'entryModes' => '\Adyen\Model\BalancePlatform\EntryModesRestriction',
         'internationalTransaction' => '\Adyen\Model\BalancePlatform\InternationalTransactionRestriction',
         'matchingTransactions' => '\Adyen\Model\BalancePlatform\MatchingTransactionsRestriction',
+        'matchingValues' => '\Adyen\Model\BalancePlatform\MatchingValuesRestriction',
         'mccs' => '\Adyen\Model\BalancePlatform\MccsRestriction',
         'merchantNames' => '\Adyen\Model\BalancePlatform\MerchantNamesRestriction',
         'merchants' => '\Adyen\Model\BalancePlatform\MerchantsRestriction',
@@ -81,6 +82,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'entryModes' => null,
         'internationalTransaction' => null,
         'matchingTransactions' => null,
+        'matchingValues' => null,
         'mccs' => null,
         'merchantNames' => null,
         'merchants' => null,
@@ -107,6 +109,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'entryModes' => false,
         'internationalTransaction' => false,
         'matchingTransactions' => false,
+        'matchingValues' => false,
         'mccs' => false,
         'merchantNames' => false,
         'merchants' => false,
@@ -213,6 +216,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'entryModes' => 'entryModes',
         'internationalTransaction' => 'internationalTransaction',
         'matchingTransactions' => 'matchingTransactions',
+        'matchingValues' => 'matchingValues',
         'mccs' => 'mccs',
         'merchantNames' => 'merchantNames',
         'merchants' => 'merchants',
@@ -239,6 +243,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'entryModes' => 'setEntryModes',
         'internationalTransaction' => 'setInternationalTransaction',
         'matchingTransactions' => 'setMatchingTransactions',
+        'matchingValues' => 'setMatchingValues',
         'mccs' => 'setMccs',
         'merchantNames' => 'setMerchantNames',
         'merchants' => 'setMerchants',
@@ -265,6 +270,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'entryModes' => 'getEntryModes',
         'internationalTransaction' => 'getInternationalTransaction',
         'matchingTransactions' => 'getMatchingTransactions',
+        'matchingValues' => 'getMatchingValues',
         'mccs' => 'getMccs',
         'merchantNames' => 'getMerchantNames',
         'merchants' => 'getMerchants',
@@ -342,6 +348,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('entryModes', $data ?? [], null);
         $this->setIfExists('internationalTransaction', $data ?? [], null);
         $this->setIfExists('matchingTransactions', $data ?? [], null);
+        $this->setIfExists('matchingValues', $data ?? [], null);
         $this->setIfExists('mccs', $data ?? [], null);
         $this->setIfExists('merchantNames', $data ?? [], null);
         $this->setIfExists('merchants', $data ?? [], null);
@@ -634,6 +641,33 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
             throw new \InvalidArgumentException('non-nullable matchingTransactions cannot be null');
         }
         $this->container['matchingTransactions'] = $matchingTransactions;
+
+        return $this;
+    }
+
+    /**
+     * Gets matchingValues
+     *
+     * @return \Adyen\Model\BalancePlatform\MatchingValuesRestriction|null
+     */
+    public function getMatchingValues()
+    {
+        return $this->container['matchingValues'];
+    }
+
+    /**
+     * Sets matchingValues
+     *
+     * @param \Adyen\Model\BalancePlatform\MatchingValuesRestriction|null $matchingValues matchingValues
+     *
+     * @return self
+     */
+    public function setMatchingValues($matchingValues)
+    {
+        if (is_null($matchingValues)) {
+            throw new \InvalidArgumentException('non-nullable matchingValues cannot be null');
+        }
+        $this->container['matchingValues'] = $matchingValues;
 
         return $this;
     }
