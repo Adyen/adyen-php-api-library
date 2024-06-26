@@ -4,6 +4,7 @@ namespace Adyen\Tests\Unit;
 
 use Adyen\AdyenException;
 use Adyen\Model\Checkout\Amount;
+use Adyen\Model\Checkout\BillingAddress;
 use Adyen\Model\Checkout\CardDetailsRequest;
 use Adyen\Model\Checkout\CheckoutPaymentMethod;
 use Adyen\Model\Checkout\CreateCheckoutSessionRequest;
@@ -405,5 +406,24 @@ class ModelBasedCheckoutTest extends TestCaseMock
         return array(
             array('tests/Resources/ModelBasedCheckout/payments-action.json', 200)
         );
+    }
+
+    public function testNonNullableSettersCanBeNulled()
+    {
+        $request = new PaymentRequest();
+        $request->setChannel('iOS');
+        $request->setCheckoutAttemptId('ID');
+        $request->setCheckoutAttemptId(null);
+        $request->setBillingAddress(new BillingAddress());
+        $request->setBillingAddress(null);
+        $this->assertEquals($request->getBillingAddress(), null);
+
+        $array = $request->toArray();
+        $this->assertFalse(array_key_exists('billingAddress', $array));
+        $this->assertFalse(array_key_exists('checkoutAttemptId', $array));
+
+        $jsonString = json_encode($request->jsonSerialize());
+        // Assert nulled value is not in serialised string
+        $this->assertFalse(strpos($jsonString, 'billingAddress') !== false);
     }
 }

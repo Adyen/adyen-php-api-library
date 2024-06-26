@@ -358,18 +358,6 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
             }
         }
         {{/isNullable}}
-        {{^isNullable}}
-        {{#isInteger}}
-        // Do nothing for nullable integers
-        {{/isInteger}}
-        {{/isNullable}}
-        {{^isNullable}}
-        {{^isInteger}}
-        if (is_null(${{name}})) {
-            throw new \InvalidArgumentException('non-nullable {{name}} cannot be null');
-        }
-        {{/isInteger}}
-        {{/isNullable}}
         {{^oneOf}}
         {{#isEnum}}
         $allowedValues = $this->{{getter}}AllowableValues();
