@@ -295,9 +295,6 @@ class DetailsRequestAuthenticationData implements ModelInterface, ArrayAccess, \
      */
     public function setAuthenticationOnly($authenticationOnly)
     {
-        if (is_null($authenticationOnly)) {
-            throw new \InvalidArgumentException('non-nullable authenticationOnly cannot be null');
-        }
         $this->container['authenticationOnly'] = $authenticationOnly;
 
         return $this;

@@ -330,9 +330,6 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setHomepage($homepage)
     {
-        if (is_null($homepage)) {
-            throw new \InvalidArgumentException('non-nullable homepage cannot be null');
-        }
         $this->container['homepage'] = $homepage;
 
         return $this;
@@ -357,9 +354,6 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setName($name)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
         $this->container['name'] = $name;
 
         return $this;
@@ -384,9 +378,6 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRegistrationNumber($registrationNumber)
     {
-        if (is_null($registrationNumber)) {
-            throw new \InvalidArgumentException('non-nullable registrationNumber cannot be null');
-        }
         $this->container['registrationNumber'] = $registrationNumber;
 
         return $this;
@@ -411,9 +402,6 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRegistryLocation($registryLocation)
     {
-        if (is_null($registryLocation)) {
-            throw new \InvalidArgumentException('non-nullable registryLocation cannot be null');
-        }
         $this->container['registryLocation'] = $registryLocation;
 
         return $this;
@@ -438,9 +426,6 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTaxId($taxId)
     {
-        if (is_null($taxId)) {
-            throw new \InvalidArgumentException('non-nullable taxId cannot be null');
-        }
         $this->container['taxId'] = $taxId;
 
         return $this;
@@ -465,9 +450,6 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $this->container['type'] = $type;
 
         return $this;

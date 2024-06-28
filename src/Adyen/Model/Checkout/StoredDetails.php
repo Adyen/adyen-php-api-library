@@ -309,9 +309,6 @@ class StoredDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBank($bank)
     {
-        if (is_null($bank)) {
-            throw new \InvalidArgumentException('non-nullable bank cannot be null');
-        }
         $this->container['bank'] = $bank;
 
         return $this;
@@ -336,9 +333,6 @@ class StoredDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCard($card)
     {
-        if (is_null($card)) {
-            throw new \InvalidArgumentException('non-nullable card cannot be null');
-        }
         $this->container['card'] = $card;
 
         return $this;
@@ -363,9 +357,6 @@ class StoredDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEmailAddress($emailAddress)
     {
-        if (is_null($emailAddress)) {
-            throw new \InvalidArgumentException('non-nullable emailAddress cannot be null');
-        }
         $this->container['emailAddress'] = $emailAddress;
 
         return $this;

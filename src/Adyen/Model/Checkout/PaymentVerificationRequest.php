@@ -298,9 +298,6 @@ class PaymentVerificationRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setPayload($payload)
     {
-        if (is_null($payload)) {
-            throw new \InvalidArgumentException('non-nullable payload cannot be null');
-        }
         $this->container['payload'] = $payload;
 
         return $this;

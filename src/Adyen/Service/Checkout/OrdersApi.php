@@ -40,6 +40,21 @@ class OrdersApi extends Service
     }
 
     /**
+    * Create an order
+    *
+    * @param \Adyen\Model\Checkout\CreateOrderRequest $createOrderRequest
+    * @param array|null $requestOptions
+    * @return \Adyen\Model\Checkout\CreateOrderResponse
+    * @throws AdyenException
+    */
+    public function orders(\Adyen\Model\Checkout\CreateOrderRequest $createOrderRequest, array $requestOptions = null): \Adyen\Model\Checkout\CreateOrderResponse
+    {
+        $endpoint = $this->baseURL . "/orders";
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $createOrderRequest->jsonSerialize(), $requestOptions);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\CreateOrderResponse::class);
+    }
+
+    /**
     * Cancel an order
     *
     * @param \Adyen\Model\Checkout\CancelOrderRequest $cancelOrderRequest
@@ -67,20 +82,5 @@ class OrdersApi extends Service
         $endpoint = $this->baseURL . "/paymentMethods/balance";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $balanceCheckRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\BalanceCheckResponse::class);
-    }
-
-    /**
-    * Create an order
-    *
-    * @param \Adyen\Model\Checkout\CreateOrderRequest $createOrderRequest
-    * @param array|null $requestOptions
-    * @return \Adyen\Model\Checkout\CreateOrderResponse
-    * @throws AdyenException
-    */
-    public function orders(\Adyen\Model\Checkout\CreateOrderRequest $createOrderRequest, array $requestOptions = null): \Adyen\Model\Checkout\CreateOrderResponse
-    {
-        $endpoint = $this->baseURL . "/orders";
-        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $createOrderRequest->jsonSerialize(), $requestOptions);
-        return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\CreateOrderResponse::class);
     }
 }

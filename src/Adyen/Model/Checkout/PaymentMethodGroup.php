@@ -309,9 +309,6 @@ class PaymentMethodGroup implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setName($name)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
         $this->container['name'] = $name;
 
         return $this;
@@ -336,9 +333,6 @@ class PaymentMethodGroup implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setPaymentMethodData($paymentMethodData)
     {
-        if (is_null($paymentMethodData)) {
-            throw new \InvalidArgumentException('non-nullable paymentMethodData cannot be null');
-        }
         $this->container['paymentMethodData'] = $paymentMethodData;
 
         return $this;
@@ -363,9 +357,6 @@ class PaymentMethodGroup implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $this->container['type'] = $type;
 
         return $this;

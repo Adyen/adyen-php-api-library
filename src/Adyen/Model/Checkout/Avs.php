@@ -327,9 +327,6 @@ class Avs implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAddressEditable($addressEditable)
     {
-        if (is_null($addressEditable)) {
-            throw new \InvalidArgumentException('non-nullable addressEditable cannot be null');
-        }
         $this->container['addressEditable'] = $addressEditable;
 
         return $this;
@@ -354,9 +351,6 @@ class Avs implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEnabled($enabled)
     {
-        if (is_null($enabled)) {
-            throw new \InvalidArgumentException('non-nullable enabled cannot be null');
-        }
         $allowedValues = $this->getEnabledAllowableValues();
         if (!in_array($enabled, $allowedValues, true)) {
             throw new \InvalidArgumentException(

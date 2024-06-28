@@ -316,9 +316,6 @@ class RiskData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setClientData($clientData)
     {
-        if (is_null($clientData)) {
-            throw new \InvalidArgumentException('non-nullable clientData cannot be null');
-        }
         $this->container['clientData'] = $clientData;
 
         return $this;
@@ -343,9 +340,6 @@ class RiskData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCustomFields($customFields)
     {
-        if (is_null($customFields)) {
-            throw new \InvalidArgumentException('non-nullable customFields cannot be null');
-        }
         $this->container['customFields'] = $customFields;
 
         return $this;
@@ -370,7 +364,6 @@ class RiskData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFraudOffset($fraudOffset)
     {
-        // Do nothing for nullable integers
         $this->container['fraudOffset'] = $fraudOffset;
 
         return $this;
@@ -395,9 +388,6 @@ class RiskData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setProfileReference($profileReference)
     {
-        if (is_null($profileReference)) {
-            throw new \InvalidArgumentException('non-nullable profileReference cannot be null');
-        }
         $this->container['profileReference'] = $profileReference;
 
         return $this;

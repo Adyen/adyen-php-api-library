@@ -302,9 +302,6 @@ class CardBrandDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSupported($supported)
     {
-        if (is_null($supported)) {
-            throw new \InvalidArgumentException('non-nullable supported cannot be null');
-        }
         $this->container['supported'] = $supported;
 
         return $this;
@@ -329,9 +326,6 @@ class CardBrandDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $this->container['type'] = $type;
 
         return $this;

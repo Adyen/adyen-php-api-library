@@ -379,9 +379,6 @@ class PaymentRefundRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setAmount($amount)
     {
-        if (is_null($amount)) {
-            throw new \InvalidArgumentException('non-nullable amount cannot be null');
-        }
         $this->container['amount'] = $amount;
 
         return $this;
@@ -406,9 +403,6 @@ class PaymentRefundRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setApplicationInfo($applicationInfo)
     {
-        if (is_null($applicationInfo)) {
-            throw new \InvalidArgumentException('non-nullable applicationInfo cannot be null');
-        }
         $this->container['applicationInfo'] = $applicationInfo;
 
         return $this;
@@ -433,9 +427,6 @@ class PaymentRefundRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setLineItems($lineItems)
     {
-        if (is_null($lineItems)) {
-            throw new \InvalidArgumentException('non-nullable lineItems cannot be null');
-        }
         $this->container['lineItems'] = $lineItems;
 
         return $this;
@@ -460,9 +451,6 @@ class PaymentRefundRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setMerchantAccount($merchantAccount)
     {
-        if (is_null($merchantAccount)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
-        }
         $this->container['merchantAccount'] = $merchantAccount;
 
         return $this;
@@ -531,9 +519,6 @@ class PaymentRefundRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -558,9 +543,6 @@ class PaymentRefundRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setSplits($splits)
     {
-        if (is_null($splits)) {
-            throw new \InvalidArgumentException('non-nullable splits cannot be null');
-        }
         $this->container['splits'] = $splits;
 
         return $this;
@@ -585,9 +567,6 @@ class PaymentRefundRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setStore($store)
     {
-        if (is_null($store)) {
-            throw new \InvalidArgumentException('non-nullable store cannot be null');
-        }
         $this->container['store'] = $store;
 
         return $this;

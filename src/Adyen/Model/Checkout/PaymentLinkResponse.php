@@ -64,6 +64,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'merchantAccount' => 'string',
         'merchantOrderReference' => 'string',
         'metadata' => 'array<string,string>',
+        'platformChargebackLogic' => '\Adyen\Model\Checkout\PlatformChargebackLogic',
         'recurringProcessingModel' => 'string',
         'reference' => 'string',
         'requiredShopperFields' => 'string[]',
@@ -117,6 +118,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'merchantAccount' => null,
         'merchantOrderReference' => null,
         'metadata' => null,
+        'platformChargebackLogic' => null,
         'recurringProcessingModel' => null,
         'reference' => null,
         'requiredShopperFields' => null,
@@ -168,6 +170,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'merchantAccount' => false,
         'merchantOrderReference' => false,
         'metadata' => false,
+        'platformChargebackLogic' => false,
         'recurringProcessingModel' => false,
         'reference' => false,
         'requiredShopperFields' => false,
@@ -299,6 +302,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'merchantAccount' => 'merchantAccount',
         'merchantOrderReference' => 'merchantOrderReference',
         'metadata' => 'metadata',
+        'platformChargebackLogic' => 'platformChargebackLogic',
         'recurringProcessingModel' => 'recurringProcessingModel',
         'reference' => 'reference',
         'requiredShopperFields' => 'requiredShopperFields',
@@ -350,6 +354,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'merchantAccount' => 'setMerchantAccount',
         'merchantOrderReference' => 'setMerchantOrderReference',
         'metadata' => 'setMetadata',
+        'platformChargebackLogic' => 'setPlatformChargebackLogic',
         'recurringProcessingModel' => 'setRecurringProcessingModel',
         'reference' => 'setReference',
         'requiredShopperFields' => 'setRequiredShopperFields',
@@ -401,6 +406,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'merchantAccount' => 'getMerchantAccount',
         'merchantOrderReference' => 'getMerchantOrderReference',
         'metadata' => 'getMetadata',
+        'platformChargebackLogic' => 'getPlatformChargebackLogic',
         'recurringProcessingModel' => 'getRecurringProcessingModel',
         'reference' => 'getReference',
         'requiredShopperFields' => 'getRequiredShopperFields',
@@ -575,6 +581,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('merchantAccount', $data ?? [], null);
         $this->setIfExists('merchantOrderReference', $data ?? [], null);
         $this->setIfExists('metadata', $data ?? [], null);
+        $this->setIfExists('platformChargebackLogic', $data ?? [], null);
         $this->setIfExists('recurringProcessingModel', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
         $this->setIfExists('requiredShopperFields', $data ?? [], null);
@@ -706,9 +713,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setAllowedPaymentMethods($allowedPaymentMethods)
     {
-        if (is_null($allowedPaymentMethods)) {
-            throw new \InvalidArgumentException('non-nullable allowedPaymentMethods cannot be null');
-        }
         $this->container['allowedPaymentMethods'] = $allowedPaymentMethods;
 
         return $this;
@@ -733,9 +737,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setAmount($amount)
     {
-        if (is_null($amount)) {
-            throw new \InvalidArgumentException('non-nullable amount cannot be null');
-        }
         $this->container['amount'] = $amount;
 
         return $this;
@@ -760,9 +761,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setApplicationInfo($applicationInfo)
     {
-        if (is_null($applicationInfo)) {
-            throw new \InvalidArgumentException('non-nullable applicationInfo cannot be null');
-        }
         $this->container['applicationInfo'] = $applicationInfo;
 
         return $this;
@@ -787,9 +785,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setBillingAddress($billingAddress)
     {
-        if (is_null($billingAddress)) {
-            throw new \InvalidArgumentException('non-nullable billingAddress cannot be null');
-        }
         $this->container['billingAddress'] = $billingAddress;
 
         return $this;
@@ -814,9 +809,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setBlockedPaymentMethods($blockedPaymentMethods)
     {
-        if (is_null($blockedPaymentMethods)) {
-            throw new \InvalidArgumentException('non-nullable blockedPaymentMethods cannot be null');
-        }
         $this->container['blockedPaymentMethods'] = $blockedPaymentMethods;
 
         return $this;
@@ -841,7 +833,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setCaptureDelayHours($captureDelayHours)
     {
-        // Do nothing for nullable integers
         $this->container['captureDelayHours'] = $captureDelayHours;
 
         return $this;
@@ -866,9 +857,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setCountryCode($countryCode)
     {
-        if (is_null($countryCode)) {
-            throw new \InvalidArgumentException('non-nullable countryCode cannot be null');
-        }
         $this->container['countryCode'] = $countryCode;
 
         return $this;
@@ -893,9 +881,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setDateOfBirth($dateOfBirth)
     {
-        if (is_null($dateOfBirth)) {
-            throw new \InvalidArgumentException('non-nullable dateOfBirth cannot be null');
-        }
         $this->container['dateOfBirth'] = $dateOfBirth;
 
         return $this;
@@ -920,9 +905,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setDeliverAt($deliverAt)
     {
-        if (is_null($deliverAt)) {
-            throw new \InvalidArgumentException('non-nullable deliverAt cannot be null');
-        }
         $this->container['deliverAt'] = $deliverAt;
 
         return $this;
@@ -947,9 +929,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setDeliveryAddress($deliveryAddress)
     {
-        if (is_null($deliveryAddress)) {
-            throw new \InvalidArgumentException('non-nullable deliveryAddress cannot be null');
-        }
         $this->container['deliveryAddress'] = $deliveryAddress;
 
         return $this;
@@ -974,9 +953,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -1001,9 +977,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setExpiresAt($expiresAt)
     {
-        if (is_null($expiresAt)) {
-            throw new \InvalidArgumentException('non-nullable expiresAt cannot be null');
-        }
         $this->container['expiresAt'] = $expiresAt;
 
         return $this;
@@ -1028,9 +1001,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -1055,9 +1025,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setInstallmentOptions($installmentOptions)
     {
-        if (is_null($installmentOptions)) {
-            throw new \InvalidArgumentException('non-nullable installmentOptions cannot be null');
-        }
         $this->container['installmentOptions'] = $installmentOptions;
 
         return $this;
@@ -1082,9 +1049,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setLineItems($lineItems)
     {
-        if (is_null($lineItems)) {
-            throw new \InvalidArgumentException('non-nullable lineItems cannot be null');
-        }
         $this->container['lineItems'] = $lineItems;
 
         return $this;
@@ -1109,9 +1073,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setManualCapture($manualCapture)
     {
-        if (is_null($manualCapture)) {
-            throw new \InvalidArgumentException('non-nullable manualCapture cannot be null');
-        }
         $this->container['manualCapture'] = $manualCapture;
 
         return $this;
@@ -1136,9 +1097,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setMcc($mcc)
     {
-        if (is_null($mcc)) {
-            throw new \InvalidArgumentException('non-nullable mcc cannot be null');
-        }
         $this->container['mcc'] = $mcc;
 
         return $this;
@@ -1163,9 +1121,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setMerchantAccount($merchantAccount)
     {
-        if (is_null($merchantAccount)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
-        }
         $this->container['merchantAccount'] = $merchantAccount;
 
         return $this;
@@ -1190,9 +1145,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setMerchantOrderReference($merchantOrderReference)
     {
-        if (is_null($merchantOrderReference)) {
-            throw new \InvalidArgumentException('non-nullable merchantOrderReference cannot be null');
-        }
         $this->container['merchantOrderReference'] = $merchantOrderReference;
 
         return $this;
@@ -1217,10 +1169,31 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setMetadata($metadata)
     {
-        if (is_null($metadata)) {
-            throw new \InvalidArgumentException('non-nullable metadata cannot be null');
-        }
         $this->container['metadata'] = $metadata;
+
+        return $this;
+    }
+
+    /**
+     * Gets platformChargebackLogic
+     *
+     * @return \Adyen\Model\Checkout\PlatformChargebackLogic|null
+     */
+    public function getPlatformChargebackLogic()
+    {
+        return $this->container['platformChargebackLogic'];
+    }
+
+    /**
+     * Sets platformChargebackLogic
+     *
+     * @param \Adyen\Model\Checkout\PlatformChargebackLogic|null $platformChargebackLogic platformChargebackLogic
+     *
+     * @return self
+     */
+    public function setPlatformChargebackLogic($platformChargebackLogic)
+    {
+        $this->container['platformChargebackLogic'] = $platformChargebackLogic;
 
         return $this;
     }
@@ -1244,9 +1217,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setRecurringProcessingModel($recurringProcessingModel)
     {
-        if (is_null($recurringProcessingModel)) {
-            throw new \InvalidArgumentException('non-nullable recurringProcessingModel cannot be null');
-        }
         $allowedValues = $this->getRecurringProcessingModelAllowableValues();
         if (!in_array($recurringProcessingModel, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -1281,9 +1251,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -1308,9 +1275,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setRequiredShopperFields($requiredShopperFields)
     {
-        if (is_null($requiredShopperFields)) {
-            throw new \InvalidArgumentException('non-nullable requiredShopperFields cannot be null');
-        }
         $allowedValues = $this->getRequiredShopperFieldsAllowableValues();
         if (array_diff($requiredShopperFields, $allowedValues)) {
             throw new \InvalidArgumentException(
@@ -1344,9 +1308,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setReturnUrl($returnUrl)
     {
-        if (is_null($returnUrl)) {
-            throw new \InvalidArgumentException('non-nullable returnUrl cannot be null');
-        }
         $this->container['returnUrl'] = $returnUrl;
 
         return $this;
@@ -1371,9 +1332,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setReusable($reusable)
     {
-        if (is_null($reusable)) {
-            throw new \InvalidArgumentException('non-nullable reusable cannot be null');
-        }
         $this->container['reusable'] = $reusable;
 
         return $this;
@@ -1398,9 +1356,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setRiskData($riskData)
     {
-        if (is_null($riskData)) {
-            throw new \InvalidArgumentException('non-nullable riskData cannot be null');
-        }
         $this->container['riskData'] = $riskData;
 
         return $this;
@@ -1425,9 +1380,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setShopperEmail($shopperEmail)
     {
-        if (is_null($shopperEmail)) {
-            throw new \InvalidArgumentException('non-nullable shopperEmail cannot be null');
-        }
         $this->container['shopperEmail'] = $shopperEmail;
 
         return $this;
@@ -1452,9 +1404,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setShopperLocale($shopperLocale)
     {
-        if (is_null($shopperLocale)) {
-            throw new \InvalidArgumentException('non-nullable shopperLocale cannot be null');
-        }
         $this->container['shopperLocale'] = $shopperLocale;
 
         return $this;
@@ -1479,9 +1428,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setShopperName($shopperName)
     {
-        if (is_null($shopperName)) {
-            throw new \InvalidArgumentException('non-nullable shopperName cannot be null');
-        }
         $this->container['shopperName'] = $shopperName;
 
         return $this;
@@ -1506,9 +1452,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setShopperReference($shopperReference)
     {
-        if (is_null($shopperReference)) {
-            throw new \InvalidArgumentException('non-nullable shopperReference cannot be null');
-        }
         $this->container['shopperReference'] = $shopperReference;
 
         return $this;
@@ -1533,9 +1476,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setShopperStatement($shopperStatement)
     {
-        if (is_null($shopperStatement)) {
-            throw new \InvalidArgumentException('non-nullable shopperStatement cannot be null');
-        }
         $this->container['shopperStatement'] = $shopperStatement;
 
         return $this;
@@ -1560,9 +1500,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setShowRemovePaymentMethodButton($showRemovePaymentMethodButton)
     {
-        if (is_null($showRemovePaymentMethodButton)) {
-            throw new \InvalidArgumentException('non-nullable showRemovePaymentMethodButton cannot be null');
-        }
         $this->container['showRemovePaymentMethodButton'] = $showRemovePaymentMethodButton;
 
         return $this;
@@ -1587,9 +1524,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setSocialSecurityNumber($socialSecurityNumber)
     {
-        if (is_null($socialSecurityNumber)) {
-            throw new \InvalidArgumentException('non-nullable socialSecurityNumber cannot be null');
-        }
         $this->container['socialSecurityNumber'] = $socialSecurityNumber;
 
         return $this;
@@ -1614,9 +1548,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setSplitCardFundingSources($splitCardFundingSources)
     {
-        if (is_null($splitCardFundingSources)) {
-            throw new \InvalidArgumentException('non-nullable splitCardFundingSources cannot be null');
-        }
         $this->container['splitCardFundingSources'] = $splitCardFundingSources;
 
         return $this;
@@ -1635,15 +1566,12 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets splits
      *
-     * @param \Adyen\Model\Checkout\Split[]|null $splits An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/processing-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split).
+     * @param \Adyen\Model\Checkout\Split[]|null $splits An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/process-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split).
      *
      * @return self
      */
     public function setSplits($splits)
     {
-        if (is_null($splits)) {
-            throw new \InvalidArgumentException('non-nullable splits cannot be null');
-        }
         $this->container['splits'] = $splits;
 
         return $this;
@@ -1668,9 +1596,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -1705,9 +1630,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setStore($store)
     {
-        if (is_null($store)) {
-            throw new \InvalidArgumentException('non-nullable store cannot be null');
-        }
         $this->container['store'] = $store;
 
         return $this;
@@ -1732,9 +1654,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setStorePaymentMethodMode($storePaymentMethodMode)
     {
-        if (is_null($storePaymentMethodMode)) {
-            throw new \InvalidArgumentException('non-nullable storePaymentMethodMode cannot be null');
-        }
         $allowedValues = $this->getStorePaymentMethodModeAllowableValues();
         if (!in_array($storePaymentMethodMode, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -1769,9 +1688,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setTelephoneNumber($telephoneNumber)
     {
-        if (is_null($telephoneNumber)) {
-            throw new \InvalidArgumentException('non-nullable telephoneNumber cannot be null');
-        }
         $this->container['telephoneNumber'] = $telephoneNumber;
 
         return $this;
@@ -1796,9 +1712,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setThemeId($themeId)
     {
-        if (is_null($themeId)) {
-            throw new \InvalidArgumentException('non-nullable themeId cannot be null');
-        }
         $this->container['themeId'] = $themeId;
 
         return $this;
@@ -1823,9 +1736,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setThreeDS2RequestData($threeDS2RequestData)
     {
-        if (is_null($threeDS2RequestData)) {
-            throw new \InvalidArgumentException('non-nullable threeDS2RequestData cannot be null');
-        }
         $this->container['threeDS2RequestData'] = $threeDS2RequestData;
 
         return $this;
@@ -1850,9 +1760,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setUpdatedAt($updatedAt)
     {
-        if (is_null($updatedAt)) {
-            throw new \InvalidArgumentException('non-nullable updatedAt cannot be null');
-        }
         $this->container['updatedAt'] = $updatedAt;
 
         return $this;
@@ -1877,9 +1784,6 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setUrl($url)
     {
-        if (is_null($url)) {
-            throw new \InvalidArgumentException('non-nullable url cannot be null');
-        }
         $this->container['url'] = $url;
 
         return $this;

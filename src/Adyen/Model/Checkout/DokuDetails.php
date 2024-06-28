@@ -376,9 +376,6 @@ class DokuDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCheckoutAttemptId($checkoutAttemptId)
     {
-        if (is_null($checkoutAttemptId)) {
-            throw new \InvalidArgumentException('non-nullable checkoutAttemptId cannot be null');
-        }
         $this->container['checkoutAttemptId'] = $checkoutAttemptId;
 
         return $this;
@@ -403,9 +400,6 @@ class DokuDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFirstName($firstName)
     {
-        if (is_null($firstName)) {
-            throw new \InvalidArgumentException('non-nullable firstName cannot be null');
-        }
         $this->container['firstName'] = $firstName;
 
         return $this;
@@ -430,9 +424,6 @@ class DokuDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLastName($lastName)
     {
-        if (is_null($lastName)) {
-            throw new \InvalidArgumentException('non-nullable lastName cannot be null');
-        }
         $this->container['lastName'] = $lastName;
 
         return $this;
@@ -457,9 +448,6 @@ class DokuDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setShopperEmail($shopperEmail)
     {
-        if (is_null($shopperEmail)) {
-            throw new \InvalidArgumentException('non-nullable shopperEmail cannot be null');
-        }
         $this->container['shopperEmail'] = $shopperEmail;
 
         return $this;
@@ -484,9 +472,6 @@ class DokuDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

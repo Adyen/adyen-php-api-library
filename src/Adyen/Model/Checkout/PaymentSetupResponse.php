@@ -302,9 +302,6 @@ class PaymentSetupResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setPaymentSession($paymentSession)
     {
-        if (is_null($paymentSession)) {
-            throw new \InvalidArgumentException('non-nullable paymentSession cannot be null');
-        }
         $this->container['paymentSession'] = $paymentSession;
 
         return $this;
@@ -331,9 +328,6 @@ class PaymentSetupResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setRecurringDetails($recurringDetails)
     {
-        if (is_null($recurringDetails)) {
-            throw new \InvalidArgumentException('non-nullable recurringDetails cannot be null');
-        }
         $this->container['recurringDetails'] = $recurringDetails;
 
         return $this;

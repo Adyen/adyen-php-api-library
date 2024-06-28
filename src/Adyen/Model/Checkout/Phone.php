@@ -302,9 +302,6 @@ class Phone implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCc($cc)
     {
-        if (is_null($cc)) {
-            throw new \InvalidArgumentException('non-nullable cc cannot be null');
-        }
         $this->container['cc'] = $cc;
 
         return $this;
@@ -329,9 +326,6 @@ class Phone implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSubscriber($subscriber)
     {
-        if (is_null($subscriber)) {
-            throw new \InvalidArgumentException('non-nullable subscriber cannot be null');
-        }
         $this->container['subscriber'] = $subscriber;
 
         return $this;

@@ -459,9 +459,6 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setAlternativeReference($alternativeReference)
     {
-        if (is_null($alternativeReference)) {
-            throw new \InvalidArgumentException('non-nullable alternativeReference cannot be null');
-        }
         $this->container['alternativeReference'] = $alternativeReference;
 
         return $this;
@@ -486,9 +483,6 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setCollectionInstitutionNumber($collectionInstitutionNumber)
     {
-        if (is_null($collectionInstitutionNumber)) {
-            throw new \InvalidArgumentException('non-nullable collectionInstitutionNumber cannot be null');
-        }
         $this->container['collectionInstitutionNumber'] = $collectionInstitutionNumber;
 
         return $this;
@@ -513,9 +507,6 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setDownloadUrl($downloadUrl)
     {
-        if (is_null($downloadUrl)) {
-            throw new \InvalidArgumentException('non-nullable downloadUrl cannot be null');
-        }
         $this->container['downloadUrl'] = $downloadUrl;
 
         return $this;
@@ -540,9 +531,6 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setEntity($entity)
     {
-        if (is_null($entity)) {
-            throw new \InvalidArgumentException('non-nullable entity cannot be null');
-        }
         $this->container['entity'] = $entity;
 
         return $this;
@@ -567,9 +555,6 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setExpiresAt($expiresAt)
     {
-        if (is_null($expiresAt)) {
-            throw new \InvalidArgumentException('non-nullable expiresAt cannot be null');
-        }
         $this->container['expiresAt'] = $expiresAt;
 
         return $this;
@@ -594,9 +579,6 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setInitialAmount($initialAmount)
     {
-        if (is_null($initialAmount)) {
-            throw new \InvalidArgumentException('non-nullable initialAmount cannot be null');
-        }
         $this->container['initialAmount'] = $initialAmount;
 
         return $this;
@@ -621,9 +603,6 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setInstructionsUrl($instructionsUrl)
     {
-        if (is_null($instructionsUrl)) {
-            throw new \InvalidArgumentException('non-nullable instructionsUrl cannot be null');
-        }
         $this->container['instructionsUrl'] = $instructionsUrl;
 
         return $this;
@@ -648,9 +627,6 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setIssuer($issuer)
     {
-        if (is_null($issuer)) {
-            throw new \InvalidArgumentException('non-nullable issuer cannot be null');
-        }
         $this->container['issuer'] = $issuer;
 
         return $this;
@@ -675,9 +651,6 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setMaskedTelephoneNumber($maskedTelephoneNumber)
     {
-        if (is_null($maskedTelephoneNumber)) {
-            throw new \InvalidArgumentException('non-nullable maskedTelephoneNumber cannot be null');
-        }
         $this->container['maskedTelephoneNumber'] = $maskedTelephoneNumber;
 
         return $this;
@@ -702,9 +675,6 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setMerchantName($merchantName)
     {
-        if (is_null($merchantName)) {
-            throw new \InvalidArgumentException('non-nullable merchantName cannot be null');
-        }
         $this->container['merchantName'] = $merchantName;
 
         return $this;
@@ -729,9 +699,6 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setMerchantReference($merchantReference)
     {
-        if (is_null($merchantReference)) {
-            throw new \InvalidArgumentException('non-nullable merchantReference cannot be null');
-        }
         $this->container['merchantReference'] = $merchantReference;
 
         return $this;
@@ -750,15 +717,12 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets passCreationToken
      *
-     * @param string|null $passCreationToken A base64 encoded signature of all properties
+     * @param string|null $passCreationToken A Base64-encoded token containing all properties of the voucher. For iOS, you can use this to pass a voucher to Apple Wallet.
      *
      * @return self
      */
     public function setPassCreationToken($passCreationToken)
     {
-        if (is_null($passCreationToken)) {
-            throw new \InvalidArgumentException('non-nullable passCreationToken cannot be null');
-        }
         $this->container['passCreationToken'] = $passCreationToken;
 
         return $this;
@@ -783,9 +747,6 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setPaymentData($paymentData)
     {
-        if (is_null($paymentData)) {
-            throw new \InvalidArgumentException('non-nullable paymentData cannot be null');
-        }
         $this->container['paymentData'] = $paymentData;
 
         return $this;
@@ -810,9 +771,6 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setPaymentMethodType($paymentMethodType)
     {
-        if (is_null($paymentMethodType)) {
-            throw new \InvalidArgumentException('non-nullable paymentMethodType cannot be null');
-        }
         $this->container['paymentMethodType'] = $paymentMethodType;
 
         return $this;
@@ -837,9 +795,6 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -864,9 +819,6 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setShopperEmail($shopperEmail)
     {
-        if (is_null($shopperEmail)) {
-            throw new \InvalidArgumentException('non-nullable shopperEmail cannot be null');
-        }
         $this->container['shopperEmail'] = $shopperEmail;
 
         return $this;
@@ -891,9 +843,6 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setShopperName($shopperName)
     {
-        if (is_null($shopperName)) {
-            throw new \InvalidArgumentException('non-nullable shopperName cannot be null');
-        }
         $this->container['shopperName'] = $shopperName;
 
         return $this;
@@ -918,9 +867,6 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setSurcharge($surcharge)
     {
-        if (is_null($surcharge)) {
-            throw new \InvalidArgumentException('non-nullable surcharge cannot be null');
-        }
         $this->container['surcharge'] = $surcharge;
 
         return $this;
@@ -945,9 +891,6 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setTotalAmount($totalAmount)
     {
-        if (is_null($totalAmount)) {
-            throw new \InvalidArgumentException('non-nullable totalAmount cannot be null');
-        }
         $this->container['totalAmount'] = $totalAmount;
 
         return $this;
@@ -972,9 +915,6 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -1009,9 +949,6 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setUrl($url)
     {
-        if (is_null($url)) {
-            throw new \InvalidArgumentException('non-nullable url cannot be null');
-        }
         $this->container['url'] = $url;
 
         return $this;

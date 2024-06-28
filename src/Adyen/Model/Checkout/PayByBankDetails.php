@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
- * DeviceRenderOptions Class Doc Comment
+ * PayByBankDetails Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class DeviceRenderOptions implements ModelInterface, ArrayAccess, \JsonSerializable
+class PayByBankDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class DeviceRenderOptions implements ModelInterface, ArrayAccess, \JsonSerializa
       *
       * @var string
       */
-    protected static $openAPIModelName = 'DeviceRenderOptions';
+    protected static $openAPIModelName = 'PayByBankDetails';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,8 +44,9 @@ class DeviceRenderOptions implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var string[]
       */
     protected static $openAPITypes = [
-        'sdkInterface' => 'string',
-        'sdkUiType' => 'string[]'
+        'checkoutAttemptId' => 'string',
+        'issuer' => 'string',
+        'type' => 'string'
     ];
 
     /**
@@ -56,8 +57,9 @@ class DeviceRenderOptions implements ModelInterface, ArrayAccess, \JsonSerializa
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'sdkInterface' => null,
-        'sdkUiType' => null
+        'checkoutAttemptId' => null,
+        'issuer' => null,
+        'type' => null
     ];
 
     /**
@@ -66,8 +68,9 @@ class DeviceRenderOptions implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'sdkInterface' => false,
-        'sdkUiType' => false
+        'checkoutAttemptId' => false,
+        'issuer' => false,
+        'type' => false
     ];
 
     /**
@@ -156,8 +159,9 @@ class DeviceRenderOptions implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $attributeMap = [
-        'sdkInterface' => 'sdkInterface',
-        'sdkUiType' => 'sdkUiType'
+        'checkoutAttemptId' => 'checkoutAttemptId',
+        'issuer' => 'issuer',
+        'type' => 'type'
     ];
 
     /**
@@ -166,8 +170,9 @@ class DeviceRenderOptions implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $setters = [
-        'sdkInterface' => 'setSdkInterface',
-        'sdkUiType' => 'setSdkUiType'
+        'checkoutAttemptId' => 'setCheckoutAttemptId',
+        'issuer' => 'setIssuer',
+        'type' => 'setType'
     ];
 
     /**
@@ -176,8 +181,9 @@ class DeviceRenderOptions implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $getters = [
-        'sdkInterface' => 'getSdkInterface',
-        'sdkUiType' => 'getSdkUiType'
+        'checkoutAttemptId' => 'getCheckoutAttemptId',
+        'issuer' => 'getIssuer',
+        'type' => 'getType'
     ];
 
     /**
@@ -221,41 +227,17 @@ class DeviceRenderOptions implements ModelInterface, ArrayAccess, \JsonSerializa
         return self::$openAPIModelName;
     }
 
-    public const SDK_INTERFACE_NATIVE = 'native';
-    public const SDK_INTERFACE_HTML = 'html';
-    public const SDK_INTERFACE_BOTH = 'both';
-    public const SDK_UI_TYPE_MULTI_SELECT = 'multiSelect';
-    public const SDK_UI_TYPE_OTHER_HTML = 'otherHtml';
-    public const SDK_UI_TYPE_OUT_OF_BAND = 'outOfBand';
-    public const SDK_UI_TYPE_SINGLE_SELECT = 'singleSelect';
-    public const SDK_UI_TYPE_TEXT = 'text';
+    public const TYPE_PAYBYBANK = 'paybybank';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getSdkInterfaceAllowableValues()
+    public function getTypeAllowableValues()
     {
         return [
-            self::SDK_INTERFACE_NATIVE,
-            self::SDK_INTERFACE_HTML,
-            self::SDK_INTERFACE_BOTH,
-        ];
-    }
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getSdkUiTypeAllowableValues()
-    {
-        return [
-            self::SDK_UI_TYPE_MULTI_SELECT,
-            self::SDK_UI_TYPE_OTHER_HTML,
-            self::SDK_UI_TYPE_OUT_OF_BAND,
-            self::SDK_UI_TYPE_SINGLE_SELECT,
-            self::SDK_UI_TYPE_TEXT,
+            self::TYPE_PAYBYBANK,
         ];
     }
     /**
@@ -273,8 +255,9 @@ class DeviceRenderOptions implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('sdkInterface', $data ?? [], null);
-        $this->setIfExists('sdkUiType', $data ?? [], null);
+        $this->setIfExists('checkoutAttemptId', $data ?? [], null);
+        $this->setIfExists('issuer', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -304,11 +287,14 @@ class DeviceRenderOptions implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getSdkInterfaceAllowableValues();
-        if (!is_null($this->container['sdkInterface']) && !in_array($this->container['sdkInterface'], $allowedValues, true)) {
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'sdkInterface', must be one of '%s'",
-                $this->container['sdkInterface'],
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
                 implode("', '", $allowedValues)
             );
         }
@@ -329,68 +315,83 @@ class DeviceRenderOptions implements ModelInterface, ArrayAccess, \JsonSerializa
 
 
     /**
-     * Gets sdkInterface
+     * Gets checkoutAttemptId
      *
      * @return string|null
      */
-    public function getSdkInterface()
+    public function getCheckoutAttemptId()
     {
-        return $this->container['sdkInterface'];
+        return $this->container['checkoutAttemptId'];
     }
 
     /**
-     * Sets sdkInterface
+     * Sets checkoutAttemptId
      *
-     * @param string|null $sdkInterface Supported SDK interface types. Allowed values: * native * html * both
+     * @param string|null $checkoutAttemptId The checkout attempt identifier.
      *
      * @return self
      */
-    public function setSdkInterface($sdkInterface)
+    public function setCheckoutAttemptId($checkoutAttemptId)
     {
-        $allowedValues = $this->getSdkInterfaceAllowableValues();
-        if (!in_array($sdkInterface, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'sdkInterface', must be one of '%s'",
-                    $sdkInterface,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['sdkInterface'] = $sdkInterface;
+        $this->container['checkoutAttemptId'] = $checkoutAttemptId;
 
         return $this;
     }
 
     /**
-     * Gets sdkUiType
+     * Gets issuer
      *
-     * @return string[]|null
+     * @return string|null
      */
-    public function getSdkUiType()
+    public function getIssuer()
     {
-        return $this->container['sdkUiType'];
+        return $this->container['issuer'];
     }
 
     /**
-     * Sets sdkUiType
+     * Sets issuer
      *
-     * @param string[]|null $sdkUiType UI types supported for displaying specific challenges. Allowed values: * text * singleSelect * outOfBand * otherHtml * multiSelect
+     * @param string|null $issuer The PayByBank issuer value of the shopper's selected bank.
      *
      * @return self
      */
-    public function setSdkUiType($sdkUiType)
+    public function setIssuer($issuer)
     {
-        $allowedValues = $this->getSdkUiTypeAllowableValues();
-        if (array_diff($sdkUiType, $allowedValues)) {
+        $this->container['issuer'] = $issuer;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string $type **paybybank**
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value for 'sdkUiType', must be one of '%s'",
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
                     implode("', '", $allowedValues)
                 )
             );
         }
-        $this->container['sdkUiType'] = $sdkUiType;
+        $this->container['type'] = $type;
 
         return $this;
     }

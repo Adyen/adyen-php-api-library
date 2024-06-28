@@ -308,9 +308,6 @@ class CancelOrderRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setMerchantAccount($merchantAccount)
     {
-        if (is_null($merchantAccount)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
-        }
         $this->container['merchantAccount'] = $merchantAccount;
 
         return $this;
@@ -335,9 +332,6 @@ class CancelOrderRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setOrder($order)
     {
-        if (is_null($order)) {
-            throw new \InvalidArgumentException('non-nullable order cannot be null');
-        }
         $this->container['order'] = $order;
 
         return $this;

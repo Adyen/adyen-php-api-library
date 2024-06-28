@@ -308,9 +308,6 @@ class EncryptedOrderData implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setOrderData($orderData)
     {
-        if (is_null($orderData)) {
-            throw new \InvalidArgumentException('non-nullable orderData cannot be null');
-        }
         $this->container['orderData'] = $orderData;
 
         return $this;
@@ -335,9 +332,6 @@ class EncryptedOrderData implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setPspReference($pspReference)
     {
-        if (is_null($pspReference)) {
-            throw new \InvalidArgumentException('non-nullable pspReference cannot be null');
-        }
         $this->container['pspReference'] = $pspReference;
 
         return $this;

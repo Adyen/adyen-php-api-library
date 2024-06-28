@@ -367,9 +367,6 @@ class StoredPaymentMethodRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setMerchantAccount($merchantAccount)
     {
-        if (is_null($merchantAccount)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
-        }
         $this->container['merchantAccount'] = $merchantAccount;
 
         return $this;
@@ -394,9 +391,6 @@ class StoredPaymentMethodRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setPaymentMethod($paymentMethod)
     {
-        if (is_null($paymentMethod)) {
-            throw new \InvalidArgumentException('non-nullable paymentMethod cannot be null');
-        }
         $this->container['paymentMethod'] = $paymentMethod;
 
         return $this;
@@ -421,9 +415,6 @@ class StoredPaymentMethodRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setRecurringProcessingModel($recurringProcessingModel)
     {
-        if (is_null($recurringProcessingModel)) {
-            throw new \InvalidArgumentException('non-nullable recurringProcessingModel cannot be null');
-        }
         $allowedValues = $this->getRecurringProcessingModelAllowableValues();
         if (!in_array($recurringProcessingModel, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -458,9 +449,6 @@ class StoredPaymentMethodRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setShopperEmail($shopperEmail)
     {
-        if (is_null($shopperEmail)) {
-            throw new \InvalidArgumentException('non-nullable shopperEmail cannot be null');
-        }
         $this->container['shopperEmail'] = $shopperEmail;
 
         return $this;
@@ -485,9 +473,6 @@ class StoredPaymentMethodRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setShopperIP($shopperIP)
     {
-        if (is_null($shopperIP)) {
-            throw new \InvalidArgumentException('non-nullable shopperIP cannot be null');
-        }
         $this->container['shopperIP'] = $shopperIP;
 
         return $this;
@@ -512,9 +497,6 @@ class StoredPaymentMethodRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setShopperReference($shopperReference)
     {
-        if (is_null($shopperReference)) {
-            throw new \InvalidArgumentException('non-nullable shopperReference cannot be null');
-        }
         $this->container['shopperReference'] = $shopperReference;
 
         return $this;

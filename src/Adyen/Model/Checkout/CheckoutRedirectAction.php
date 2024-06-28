@@ -347,9 +347,6 @@ class CheckoutRedirectAction implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setData($data)
     {
-        if (is_null($data)) {
-            throw new \InvalidArgumentException('non-nullable data cannot be null');
-        }
         $this->container['data'] = $data;
 
         return $this;
@@ -374,9 +371,6 @@ class CheckoutRedirectAction implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setMethod($method)
     {
-        if (is_null($method)) {
-            throw new \InvalidArgumentException('non-nullable method cannot be null');
-        }
         $this->container['method'] = $method;
 
         return $this;
@@ -401,9 +395,6 @@ class CheckoutRedirectAction implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setPaymentMethodType($paymentMethodType)
     {
-        if (is_null($paymentMethodType)) {
-            throw new \InvalidArgumentException('non-nullable paymentMethodType cannot be null');
-        }
         $this->container['paymentMethodType'] = $paymentMethodType;
 
         return $this;
@@ -428,9 +419,6 @@ class CheckoutRedirectAction implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -465,9 +453,6 @@ class CheckoutRedirectAction implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setUrl($url)
     {
-        if (is_null($url)) {
-            throw new \InvalidArgumentException('non-nullable url cannot be null');
-        }
         $this->container['url'] = $url;
 
         return $this;

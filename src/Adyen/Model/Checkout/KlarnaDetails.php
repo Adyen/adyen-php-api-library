@@ -380,9 +380,6 @@ class KlarnaDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBillingAddress($billingAddress)
     {
-        if (is_null($billingAddress)) {
-            throw new \InvalidArgumentException('non-nullable billingAddress cannot be null');
-        }
         $this->container['billingAddress'] = $billingAddress;
 
         return $this;
@@ -407,9 +404,6 @@ class KlarnaDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCheckoutAttemptId($checkoutAttemptId)
     {
-        if (is_null($checkoutAttemptId)) {
-            throw new \InvalidArgumentException('non-nullable checkoutAttemptId cannot be null');
-        }
         $this->container['checkoutAttemptId'] = $checkoutAttemptId;
 
         return $this;
@@ -434,9 +428,6 @@ class KlarnaDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDeliveryAddress($deliveryAddress)
     {
-        if (is_null($deliveryAddress)) {
-            throw new \InvalidArgumentException('non-nullable deliveryAddress cannot be null');
-        }
         $this->container['deliveryAddress'] = $deliveryAddress;
 
         return $this;
@@ -461,9 +452,6 @@ class KlarnaDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPersonalDetails($personalDetails)
     {
-        if (is_null($personalDetails)) {
-            throw new \InvalidArgumentException('non-nullable personalDetails cannot be null');
-        }
         $this->container['personalDetails'] = $personalDetails;
 
         return $this;
@@ -490,9 +478,6 @@ class KlarnaDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRecurringDetailReference($recurringDetailReference)
     {
-        if (is_null($recurringDetailReference)) {
-            throw new \InvalidArgumentException('non-nullable recurringDetailReference cannot be null');
-        }
         $this->container['recurringDetailReference'] = $recurringDetailReference;
 
         return $this;
@@ -517,9 +502,6 @@ class KlarnaDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStoredPaymentMethodId($storedPaymentMethodId)
     {
-        if (is_null($storedPaymentMethodId)) {
-            throw new \InvalidArgumentException('non-nullable storedPaymentMethodId cannot be null');
-        }
         $this->container['storedPaymentMethodId'] = $storedPaymentMethodId;
 
         return $this;
@@ -544,9 +526,6 @@ class KlarnaDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSubtype($subtype)
     {
-        if (is_null($subtype)) {
-            throw new \InvalidArgumentException('non-nullable subtype cannot be null');
-        }
         $this->container['subtype'] = $subtype;
 
         return $this;
@@ -571,9 +550,6 @@ class KlarnaDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

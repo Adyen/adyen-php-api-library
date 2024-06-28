@@ -343,9 +343,6 @@ class ThreeDSRequestorPriorAuthenticationInfo implements ModelInterface, ArrayAc
      */
     public function setThreeDSReqPriorAuthData($threeDSReqPriorAuthData)
     {
-        if (is_null($threeDSReqPriorAuthData)) {
-            throw new \InvalidArgumentException('non-nullable threeDSReqPriorAuthData cannot be null');
-        }
         $this->container['threeDSReqPriorAuthData'] = $threeDSReqPriorAuthData;
 
         return $this;
@@ -370,9 +367,6 @@ class ThreeDSRequestorPriorAuthenticationInfo implements ModelInterface, ArrayAc
      */
     public function setThreeDSReqPriorAuthMethod($threeDSReqPriorAuthMethod)
     {
-        if (is_null($threeDSReqPriorAuthMethod)) {
-            throw new \InvalidArgumentException('non-nullable threeDSReqPriorAuthMethod cannot be null');
-        }
         $allowedValues = $this->getThreeDSReqPriorAuthMethodAllowableValues();
         if (!in_array($threeDSReqPriorAuthMethod, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -407,9 +401,6 @@ class ThreeDSRequestorPriorAuthenticationInfo implements ModelInterface, ArrayAc
      */
     public function setThreeDSReqPriorAuthTimestamp($threeDSReqPriorAuthTimestamp)
     {
-        if (is_null($threeDSReqPriorAuthTimestamp)) {
-            throw new \InvalidArgumentException('non-nullable threeDSReqPriorAuthTimestamp cannot be null');
-        }
         $this->container['threeDSReqPriorAuthTimestamp'] = $threeDSReqPriorAuthTimestamp;
 
         return $this;
@@ -434,9 +425,6 @@ class ThreeDSRequestorPriorAuthenticationInfo implements ModelInterface, ArrayAc
      */
     public function setThreeDSReqPriorRef($threeDSReqPriorRef)
     {
-        if (is_null($threeDSReqPriorRef)) {
-            throw new \InvalidArgumentException('non-nullable threeDSReqPriorRef cannot be null');
-        }
         $this->container['threeDSReqPriorRef'] = $threeDSReqPriorRef;
 
         return $this;

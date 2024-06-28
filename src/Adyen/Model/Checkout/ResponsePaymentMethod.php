@@ -302,9 +302,6 @@ class ResponsePaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setBrand($brand)
     {
-        if (is_null($brand)) {
-            throw new \InvalidArgumentException('non-nullable brand cannot be null');
-        }
         $this->container['brand'] = $brand;
 
         return $this;
@@ -329,9 +326,6 @@ class ResponsePaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $this->container['type'] = $type;
 
         return $this;

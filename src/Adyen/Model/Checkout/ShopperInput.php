@@ -384,9 +384,6 @@ class ShopperInput implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBillingAddress($billingAddress)
     {
-        if (is_null($billingAddress)) {
-            throw new \InvalidArgumentException('non-nullable billingAddress cannot be null');
-        }
         $allowedValues = $this->getBillingAddressAllowableValues();
         if (!in_array($billingAddress, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -421,9 +418,6 @@ class ShopperInput implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDeliveryAddress($deliveryAddress)
     {
-        if (is_null($deliveryAddress)) {
-            throw new \InvalidArgumentException('non-nullable deliveryAddress cannot be null');
-        }
         $allowedValues = $this->getDeliveryAddressAllowableValues();
         if (!in_array($deliveryAddress, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -458,9 +452,6 @@ class ShopperInput implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPersonalDetails($personalDetails)
     {
-        if (is_null($personalDetails)) {
-            throw new \InvalidArgumentException('non-nullable personalDetails cannot be null');
-        }
         $allowedValues = $this->getPersonalDetailsAllowableValues();
         if (!in_array($personalDetails, $allowedValues, true)) {
             throw new \InvalidArgumentException(

@@ -316,9 +316,6 @@ class ServiceErrorDetails implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setErrorCode($errorCode)
     {
-        if (is_null($errorCode)) {
-            throw new \InvalidArgumentException('non-nullable errorCode cannot be null');
-        }
         $this->container['errorCode'] = $errorCode;
 
         return $this;
@@ -343,9 +340,6 @@ class ServiceErrorDetails implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setErrorType($errorType)
     {
-        if (is_null($errorType)) {
-            throw new \InvalidArgumentException('non-nullable errorType cannot be null');
-        }
         $this->container['errorType'] = $errorType;
 
         return $this;
@@ -370,9 +364,6 @@ class ServiceErrorDetails implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setMessage($message)
     {
-        if (is_null($message)) {
-            throw new \InvalidArgumentException('non-nullable message cannot be null');
-        }
         $this->container['message'] = $message;
 
         return $this;
@@ -397,9 +388,6 @@ class ServiceErrorDetails implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setPspReference($pspReference)
     {
-        if (is_null($pspReference)) {
-            throw new \InvalidArgumentException('non-nullable pspReference cannot be null');
-        }
         $this->container['pspReference'] = $pspReference;
 
         return $this;

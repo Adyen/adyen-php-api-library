@@ -55,21 +55,6 @@ class PaymentLinksApi extends Service
     }
 
     /**
-    * Create a payment link
-    *
-    * @param \Adyen\Model\Checkout\PaymentLinkRequest $paymentLinkRequest
-    * @param array|null $requestOptions
-    * @return \Adyen\Model\Checkout\PaymentLinkResponse
-    * @throws AdyenException
-    */
-    public function paymentLinks(\Adyen\Model\Checkout\PaymentLinkRequest $paymentLinkRequest, array $requestOptions = null): \Adyen\Model\Checkout\PaymentLinkResponse
-    {
-        $endpoint = $this->baseURL . "/paymentLinks";
-        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $paymentLinkRequest->jsonSerialize(), $requestOptions);
-        return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\PaymentLinkResponse::class);
-    }
-
-    /**
     * Update the status of a payment link
     *
     * @param string $linkId
@@ -82,6 +67,21 @@ class PaymentLinksApi extends Service
     {
         $endpoint = $this->baseURL . str_replace(['{linkId}'], [$linkId], "/paymentLinks/{linkId}");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $updatePaymentLinkRequest->jsonSerialize(), $requestOptions);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\PaymentLinkResponse::class);
+    }
+
+    /**
+    * Create a payment link
+    *
+    * @param \Adyen\Model\Checkout\PaymentLinkRequest $paymentLinkRequest
+    * @param array|null $requestOptions
+    * @return \Adyen\Model\Checkout\PaymentLinkResponse
+    * @throws AdyenException
+    */
+    public function paymentLinks(\Adyen\Model\Checkout\PaymentLinkRequest $paymentLinkRequest, array $requestOptions = null): \Adyen\Model\Checkout\PaymentLinkResponse
+    {
+        $endpoint = $this->baseURL . "/paymentLinks";
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $paymentLinkRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\PaymentLinkResponse::class);
     }
 }

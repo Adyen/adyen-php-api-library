@@ -414,9 +414,6 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAmountExcludingTax($amountExcludingTax)
     {
-        if (is_null($amountExcludingTax)) {
-            throw new \InvalidArgumentException('non-nullable amountExcludingTax cannot be null');
-        }
         $this->container['amountExcludingTax'] = $amountExcludingTax;
 
         return $this;
@@ -441,9 +438,6 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAmountIncludingTax($amountIncludingTax)
     {
-        if (is_null($amountIncludingTax)) {
-            throw new \InvalidArgumentException('non-nullable amountIncludingTax cannot be null');
-        }
         $this->container['amountIncludingTax'] = $amountIncludingTax;
 
         return $this;
@@ -468,9 +462,6 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBrand($brand)
     {
-        if (is_null($brand)) {
-            throw new \InvalidArgumentException('non-nullable brand cannot be null');
-        }
         $this->container['brand'] = $brand;
 
         return $this;
@@ -495,9 +486,6 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setColor($color)
     {
-        if (is_null($color)) {
-            throw new \InvalidArgumentException('non-nullable color cannot be null');
-        }
         $this->container['color'] = $color;
 
         return $this;
@@ -522,9 +510,6 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -549,9 +534,6 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -576,9 +558,6 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setImageUrl($imageUrl)
     {
-        if (is_null($imageUrl)) {
-            throw new \InvalidArgumentException('non-nullable imageUrl cannot be null');
-        }
         $this->container['imageUrl'] = $imageUrl;
 
         return $this;
@@ -603,9 +582,6 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setItemCategory($itemCategory)
     {
-        if (is_null($itemCategory)) {
-            throw new \InvalidArgumentException('non-nullable itemCategory cannot be null');
-        }
         $this->container['itemCategory'] = $itemCategory;
 
         return $this;
@@ -630,9 +606,6 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setManufacturer($manufacturer)
     {
-        if (is_null($manufacturer)) {
-            throw new \InvalidArgumentException('non-nullable manufacturer cannot be null');
-        }
         $this->container['manufacturer'] = $manufacturer;
 
         return $this;
@@ -657,9 +630,6 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMarketplaceSellerId($marketplaceSellerId)
     {
-        if (is_null($marketplaceSellerId)) {
-            throw new \InvalidArgumentException('non-nullable marketplaceSellerId cannot be null');
-        }
         $this->container['marketplaceSellerId'] = $marketplaceSellerId;
 
         return $this;
@@ -684,9 +654,6 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setProductUrl($productUrl)
     {
-        if (is_null($productUrl)) {
-            throw new \InvalidArgumentException('non-nullable productUrl cannot be null');
-        }
         $this->container['productUrl'] = $productUrl;
 
         return $this;
@@ -711,9 +678,6 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setQuantity($quantity)
     {
-        if (is_null($quantity)) {
-            throw new \InvalidArgumentException('non-nullable quantity cannot be null');
-        }
         $this->container['quantity'] = $quantity;
 
         return $this;
@@ -738,9 +702,6 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setReceiverEmail($receiverEmail)
     {
-        if (is_null($receiverEmail)) {
-            throw new \InvalidArgumentException('non-nullable receiverEmail cannot be null');
-        }
         $this->container['receiverEmail'] = $receiverEmail;
 
         return $this;
@@ -765,9 +726,6 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSize($size)
     {
-        if (is_null($size)) {
-            throw new \InvalidArgumentException('non-nullable size cannot be null');
-        }
         $this->container['size'] = $size;
 
         return $this;
@@ -792,9 +750,6 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSku($sku)
     {
-        if (is_null($sku)) {
-            throw new \InvalidArgumentException('non-nullable sku cannot be null');
-        }
         $this->container['sku'] = $sku;
 
         return $this;
@@ -819,9 +774,6 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTaxAmount($taxAmount)
     {
-        if (is_null($taxAmount)) {
-            throw new \InvalidArgumentException('non-nullable taxAmount cannot be null');
-        }
         $this->container['taxAmount'] = $taxAmount;
 
         return $this;
@@ -846,9 +798,6 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTaxPercentage($taxPercentage)
     {
-        if (is_null($taxPercentage)) {
-            throw new \InvalidArgumentException('non-nullable taxPercentage cannot be null');
-        }
         $this->container['taxPercentage'] = $taxPercentage;
 
         return $this;
@@ -873,9 +822,6 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUpc($upc)
     {
-        if (is_null($upc)) {
-            throw new \InvalidArgumentException('non-nullable upc cannot be null');
-        }
         $this->container['upc'] = $upc;
 
         return $this;

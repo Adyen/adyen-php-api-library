@@ -330,9 +330,6 @@ class ResponseAdditionalDataBillingAddress implements ModelInterface, ArrayAcces
      */
     public function setBillingAddressCity($billingAddressCity)
     {
-        if (is_null($billingAddressCity)) {
-            throw new \InvalidArgumentException('non-nullable billingAddressCity cannot be null');
-        }
         $this->container['billingAddressCity'] = $billingAddressCity;
 
         return $this;
@@ -357,9 +354,6 @@ class ResponseAdditionalDataBillingAddress implements ModelInterface, ArrayAcces
      */
     public function setBillingAddressCountry($billingAddressCountry)
     {
-        if (is_null($billingAddressCountry)) {
-            throw new \InvalidArgumentException('non-nullable billingAddressCountry cannot be null');
-        }
         $this->container['billingAddressCountry'] = $billingAddressCountry;
 
         return $this;
@@ -384,9 +378,6 @@ class ResponseAdditionalDataBillingAddress implements ModelInterface, ArrayAcces
      */
     public function setBillingAddressHouseNumberOrName($billingAddressHouseNumberOrName)
     {
-        if (is_null($billingAddressHouseNumberOrName)) {
-            throw new \InvalidArgumentException('non-nullable billingAddressHouseNumberOrName cannot be null');
-        }
         $this->container['billingAddressHouseNumberOrName'] = $billingAddressHouseNumberOrName;
 
         return $this;
@@ -411,9 +402,6 @@ class ResponseAdditionalDataBillingAddress implements ModelInterface, ArrayAcces
      */
     public function setBillingAddressPostalCode($billingAddressPostalCode)
     {
-        if (is_null($billingAddressPostalCode)) {
-            throw new \InvalidArgumentException('non-nullable billingAddressPostalCode cannot be null');
-        }
         $this->container['billingAddressPostalCode'] = $billingAddressPostalCode;
 
         return $this;
@@ -438,9 +426,6 @@ class ResponseAdditionalDataBillingAddress implements ModelInterface, ArrayAcces
      */
     public function setBillingAddressStateOrProvince($billingAddressStateOrProvince)
     {
-        if (is_null($billingAddressStateOrProvince)) {
-            throw new \InvalidArgumentException('non-nullable billingAddressStateOrProvince cannot be null');
-        }
         $this->container['billingAddressStateOrProvince'] = $billingAddressStateOrProvince;
 
         return $this;
@@ -465,9 +450,6 @@ class ResponseAdditionalDataBillingAddress implements ModelInterface, ArrayAcces
      */
     public function setBillingAddressStreet($billingAddressStreet)
     {
-        if (is_null($billingAddressStreet)) {
-            throw new \InvalidArgumentException('non-nullable billingAddressStreet cannot be null');
-        }
         $this->container['billingAddressStreet'] = $billingAddressStreet;
 
         return $this;

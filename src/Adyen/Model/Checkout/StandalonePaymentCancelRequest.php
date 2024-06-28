@@ -322,9 +322,6 @@ class StandalonePaymentCancelRequest implements ModelInterface, ArrayAccess, \Js
      */
     public function setApplicationInfo($applicationInfo)
     {
-        if (is_null($applicationInfo)) {
-            throw new \InvalidArgumentException('non-nullable applicationInfo cannot be null');
-        }
         $this->container['applicationInfo'] = $applicationInfo;
 
         return $this;
@@ -349,9 +346,6 @@ class StandalonePaymentCancelRequest implements ModelInterface, ArrayAccess, \Js
      */
     public function setMerchantAccount($merchantAccount)
     {
-        if (is_null($merchantAccount)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
-        }
         $this->container['merchantAccount'] = $merchantAccount;
 
         return $this;
@@ -376,9 +370,6 @@ class StandalonePaymentCancelRequest implements ModelInterface, ArrayAccess, \Js
      */
     public function setPaymentReference($paymentReference)
     {
-        if (is_null($paymentReference)) {
-            throw new \InvalidArgumentException('non-nullable paymentReference cannot be null');
-        }
         $this->container['paymentReference'] = $paymentReference;
 
         return $this;
@@ -403,9 +394,6 @@ class StandalonePaymentCancelRequest implements ModelInterface, ArrayAccess, \Js
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;

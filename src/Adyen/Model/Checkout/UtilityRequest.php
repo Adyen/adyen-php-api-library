@@ -298,9 +298,6 @@ class UtilityRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setOriginDomains($originDomains)
     {
-        if (is_null($originDomains)) {
-            throw new \InvalidArgumentException('non-nullable originDomains cannot be null');
-        }
         $this->container['originDomains'] = $originDomains;
 
         return $this;

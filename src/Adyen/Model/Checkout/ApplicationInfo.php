@@ -330,9 +330,6 @@ class ApplicationInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAdyenLibrary($adyenLibrary)
     {
-        if (is_null($adyenLibrary)) {
-            throw new \InvalidArgumentException('non-nullable adyenLibrary cannot be null');
-        }
         $this->container['adyenLibrary'] = $adyenLibrary;
 
         return $this;
@@ -357,9 +354,6 @@ class ApplicationInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAdyenPaymentSource($adyenPaymentSource)
     {
-        if (is_null($adyenPaymentSource)) {
-            throw new \InvalidArgumentException('non-nullable adyenPaymentSource cannot be null');
-        }
         $this->container['adyenPaymentSource'] = $adyenPaymentSource;
 
         return $this;
@@ -384,9 +378,6 @@ class ApplicationInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setExternalPlatform($externalPlatform)
     {
-        if (is_null($externalPlatform)) {
-            throw new \InvalidArgumentException('non-nullable externalPlatform cannot be null');
-        }
         $this->container['externalPlatform'] = $externalPlatform;
 
         return $this;
@@ -411,9 +402,6 @@ class ApplicationInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMerchantApplication($merchantApplication)
     {
-        if (is_null($merchantApplication)) {
-            throw new \InvalidArgumentException('non-nullable merchantApplication cannot be null');
-        }
         $this->container['merchantApplication'] = $merchantApplication;
 
         return $this;
@@ -438,9 +426,6 @@ class ApplicationInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMerchantDevice($merchantDevice)
     {
-        if (is_null($merchantDevice)) {
-            throw new \InvalidArgumentException('non-nullable merchantDevice cannot be null');
-        }
         $this->container['merchantDevice'] = $merchantDevice;
 
         return $this;
@@ -465,9 +450,6 @@ class ApplicationInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setShopperInteractionDevice($shopperInteractionDevice)
     {
-        if (is_null($shopperInteractionDevice)) {
-            throw new \InvalidArgumentException('non-nullable shopperInteractionDevice cannot be null');
-        }
         $this->container['shopperInteractionDevice'] = $shopperInteractionDevice;
 
         return $this;

@@ -381,9 +381,6 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setApps($apps)
     {
-        if (is_null($apps)) {
-            throw new \InvalidArgumentException('non-nullable apps cannot be null');
-        }
         $this->container['apps'] = $apps;
 
         return $this;
@@ -408,9 +405,6 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBrand($brand)
     {
-        if (is_null($brand)) {
-            throw new \InvalidArgumentException('non-nullable brand cannot be null');
-        }
         $this->container['brand'] = $brand;
 
         return $this;
@@ -435,9 +429,6 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBrands($brands)
     {
-        if (is_null($brands)) {
-            throw new \InvalidArgumentException('non-nullable brands cannot be null');
-        }
         $this->container['brands'] = $brands;
 
         return $this;
@@ -462,9 +453,6 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setConfiguration($configuration)
     {
-        if (is_null($configuration)) {
-            throw new \InvalidArgumentException('non-nullable configuration cannot be null');
-        }
         $this->container['configuration'] = $configuration;
 
         return $this;
@@ -489,9 +477,6 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFundingSource($fundingSource)
     {
-        if (is_null($fundingSource)) {
-            throw new \InvalidArgumentException('non-nullable fundingSource cannot be null');
-        }
         $allowedValues = $this->getFundingSourceAllowableValues();
         if (!in_array($fundingSource, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -526,9 +511,6 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setGroup($group)
     {
-        if (is_null($group)) {
-            throw new \InvalidArgumentException('non-nullable group cannot be null');
-        }
         $this->container['group'] = $group;
 
         return $this;
@@ -555,9 +537,6 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setInputDetails($inputDetails)
     {
-        if (is_null($inputDetails)) {
-            throw new \InvalidArgumentException('non-nullable inputDetails cannot be null');
-        }
         $this->container['inputDetails'] = $inputDetails;
 
         return $this;
@@ -582,9 +561,6 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setIssuers($issuers)
     {
-        if (is_null($issuers)) {
-            throw new \InvalidArgumentException('non-nullable issuers cannot be null');
-        }
         $this->container['issuers'] = $issuers;
 
         return $this;
@@ -609,9 +585,6 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setName($name)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
         $this->container['name'] = $name;
 
         return $this;
@@ -636,9 +609,6 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $this->container['type'] = $type;
 
         return $this;

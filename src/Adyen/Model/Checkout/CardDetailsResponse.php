@@ -302,9 +302,6 @@ class CardDetailsResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setBrands($brands)
     {
-        if (is_null($brands)) {
-            throw new \InvalidArgumentException('non-nullable brands cannot be null');
-        }
         $this->container['brands'] = $brands;
 
         return $this;
@@ -329,9 +326,6 @@ class CardDetailsResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setIssuingCountryCode($issuingCountryCode)
     {
-        if (is_null($issuingCountryCode)) {
-            throw new \InvalidArgumentException('non-nullable issuingCountryCode cannot be null');
-        }
         $this->container['issuingCountryCode'] = $issuingCountryCode;
 
         return $this;

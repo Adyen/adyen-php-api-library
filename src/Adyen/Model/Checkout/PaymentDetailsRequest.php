@@ -319,9 +319,6 @@ class PaymentDetailsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setAuthenticationData($authenticationData)
     {
-        if (is_null($authenticationData)) {
-            throw new \InvalidArgumentException('non-nullable authenticationData cannot be null');
-        }
         $this->container['authenticationData'] = $authenticationData;
 
         return $this;
@@ -346,9 +343,6 @@ class PaymentDetailsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setDetails($details)
     {
-        if (is_null($details)) {
-            throw new \InvalidArgumentException('non-nullable details cannot be null');
-        }
         $this->container['details'] = $details;
 
         return $this;
@@ -373,9 +367,6 @@ class PaymentDetailsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setPaymentData($paymentData)
     {
-        if (is_null($paymentData)) {
-            throw new \InvalidArgumentException('non-nullable paymentData cannot be null');
-        }
         $this->container['paymentData'] = $paymentData;
 
         return $this;
@@ -402,9 +393,6 @@ class PaymentDetailsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setThreeDSAuthenticationOnly($threeDSAuthenticationOnly)
     {
-        if (is_null($threeDSAuthenticationOnly)) {
-            throw new \InvalidArgumentException('non-nullable threeDSAuthenticationOnly cannot be null');
-        }
         $this->container['threeDSAuthenticationOnly'] = $threeDSAuthenticationOnly;
 
         return $this;

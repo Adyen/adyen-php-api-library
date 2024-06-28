@@ -325,9 +325,6 @@ class WeChatPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCheckoutAttemptId($checkoutAttemptId)
     {
-        if (is_null($checkoutAttemptId)) {
-            throw new \InvalidArgumentException('non-nullable checkoutAttemptId cannot be null');
-        }
         $this->container['checkoutAttemptId'] = $checkoutAttemptId;
 
         return $this;
@@ -352,9 +349,6 @@ class WeChatPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

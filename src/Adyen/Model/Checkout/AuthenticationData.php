@@ -332,9 +332,6 @@ class AuthenticationData implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setAttemptAuthentication($attemptAuthentication)
     {
-        if (is_null($attemptAuthentication)) {
-            throw new \InvalidArgumentException('non-nullable attemptAuthentication cannot be null');
-        }
         $allowedValues = $this->getAttemptAuthenticationAllowableValues();
         if (!in_array($attemptAuthentication, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -369,9 +366,6 @@ class AuthenticationData implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setAuthenticationOnly($authenticationOnly)
     {
-        if (is_null($authenticationOnly)) {
-            throw new \InvalidArgumentException('non-nullable authenticationOnly cannot be null');
-        }
         $this->container['authenticationOnly'] = $authenticationOnly;
 
         return $this;
@@ -396,9 +390,6 @@ class AuthenticationData implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setThreeDSRequestData($threeDSRequestData)
     {
-        if (is_null($threeDSRequestData)) {
-            throw new \InvalidArgumentException('non-nullable threeDSRequestData cannot be null');
-        }
         $this->container['threeDSRequestData'] = $threeDSRequestData;
 
         return $this;

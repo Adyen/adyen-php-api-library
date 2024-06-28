@@ -330,9 +330,6 @@ class SubInputDetail implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setConfiguration($configuration)
     {
-        if (is_null($configuration)) {
-            throw new \InvalidArgumentException('non-nullable configuration cannot be null');
-        }
         $this->container['configuration'] = $configuration;
 
         return $this;
@@ -357,9 +354,6 @@ class SubInputDetail implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setItems($items)
     {
-        if (is_null($items)) {
-            throw new \InvalidArgumentException('non-nullable items cannot be null');
-        }
         $this->container['items'] = $items;
 
         return $this;
@@ -384,9 +378,6 @@ class SubInputDetail implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setKey($key)
     {
-        if (is_null($key)) {
-            throw new \InvalidArgumentException('non-nullable key cannot be null');
-        }
         $this->container['key'] = $key;
 
         return $this;
@@ -411,9 +402,6 @@ class SubInputDetail implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setOptional($optional)
     {
-        if (is_null($optional)) {
-            throw new \InvalidArgumentException('non-nullable optional cannot be null');
-        }
         $this->container['optional'] = $optional;
 
         return $this;
@@ -438,9 +426,6 @@ class SubInputDetail implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $this->container['type'] = $type;
 
         return $this;
@@ -465,9 +450,6 @@ class SubInputDetail implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setValue($value)
     {
-        if (is_null($value)) {
-            throw new \InvalidArgumentException('non-nullable value cannot be null');
-        }
         $this->container['value'] = $value;
 
         return $this;

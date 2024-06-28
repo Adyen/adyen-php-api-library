@@ -337,9 +337,6 @@ class AmazonPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAmazonPayToken($amazonPayToken)
     {
-        if (is_null($amazonPayToken)) {
-            throw new \InvalidArgumentException('non-nullable amazonPayToken cannot be null');
-        }
         $this->container['amazonPayToken'] = $amazonPayToken;
 
         return $this;
@@ -364,9 +361,6 @@ class AmazonPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCheckoutAttemptId($checkoutAttemptId)
     {
-        if (is_null($checkoutAttemptId)) {
-            throw new \InvalidArgumentException('non-nullable checkoutAttemptId cannot be null');
-        }
         $this->container['checkoutAttemptId'] = $checkoutAttemptId;
 
         return $this;
@@ -391,9 +385,6 @@ class AmazonPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCheckoutSessionId($checkoutSessionId)
     {
-        if (is_null($checkoutSessionId)) {
-            throw new \InvalidArgumentException('non-nullable checkoutSessionId cannot be null');
-        }
         $this->container['checkoutSessionId'] = $checkoutSessionId;
 
         return $this;
@@ -418,9 +409,6 @@ class AmazonPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

@@ -298,7 +298,6 @@ class InstallmentsNumber implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setMaxNumberOfInstallments($maxNumberOfInstallments)
     {
-        // Do nothing for nullable integers
         $this->container['maxNumberOfInstallments'] = $maxNumberOfInstallments;
 
         return $this;

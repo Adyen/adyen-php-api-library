@@ -295,9 +295,6 @@ class UtilityResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setOriginKeys($originKeys)
     {
-        if (is_null($originKeys)) {
-            throw new \InvalidArgumentException('non-nullable originKeys cannot be null');
-        }
         $this->container['originKeys'] = $originKeys;
 
         return $this;

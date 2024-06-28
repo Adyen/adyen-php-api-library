@@ -356,9 +356,6 @@ class StandalonePaymentCancelResponse implements ModelInterface, ArrayAccess, \J
      */
     public function setMerchantAccount($merchantAccount)
     {
-        if (is_null($merchantAccount)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
-        }
         $this->container['merchantAccount'] = $merchantAccount;
 
         return $this;
@@ -383,9 +380,6 @@ class StandalonePaymentCancelResponse implements ModelInterface, ArrayAccess, \J
      */
     public function setPaymentReference($paymentReference)
     {
-        if (is_null($paymentReference)) {
-            throw new \InvalidArgumentException('non-nullable paymentReference cannot be null');
-        }
         $this->container['paymentReference'] = $paymentReference;
 
         return $this;
@@ -410,9 +404,6 @@ class StandalonePaymentCancelResponse implements ModelInterface, ArrayAccess, \J
      */
     public function setPspReference($pspReference)
     {
-        if (is_null($pspReference)) {
-            throw new \InvalidArgumentException('non-nullable pspReference cannot be null');
-        }
         $this->container['pspReference'] = $pspReference;
 
         return $this;
@@ -437,9 +428,6 @@ class StandalonePaymentCancelResponse implements ModelInterface, ArrayAccess, \J
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -464,9 +452,6 @@ class StandalonePaymentCancelResponse implements ModelInterface, ArrayAccess, \J
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(

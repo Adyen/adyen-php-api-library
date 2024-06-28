@@ -302,9 +302,6 @@ class PaymentMethodsResponse implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setPaymentMethods($paymentMethods)
     {
-        if (is_null($paymentMethods)) {
-            throw new \InvalidArgumentException('non-nullable paymentMethods cannot be null');
-        }
         $this->container['paymentMethods'] = $paymentMethods;
 
         return $this;
@@ -329,9 +326,6 @@ class PaymentMethodsResponse implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setStoredPaymentMethods($storedPaymentMethods)
     {
-        if (is_null($storedPaymentMethods)) {
-            throw new \InvalidArgumentException('non-nullable storedPaymentMethods cannot be null');
-        }
         $this->container['storedPaymentMethods'] = $storedPaymentMethods;
 
         return $this;

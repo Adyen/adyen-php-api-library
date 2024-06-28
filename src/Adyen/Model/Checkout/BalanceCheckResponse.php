@@ -368,9 +368,6 @@ class BalanceCheckResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setAdditionalData($additionalData)
     {
-        if (is_null($additionalData)) {
-            throw new \InvalidArgumentException('non-nullable additionalData cannot be null');
-        }
         $this->container['additionalData'] = $additionalData;
 
         return $this;
@@ -395,9 +392,6 @@ class BalanceCheckResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setBalance($balance)
     {
-        if (is_null($balance)) {
-            throw new \InvalidArgumentException('non-nullable balance cannot be null');
-        }
         $this->container['balance'] = $balance;
 
         return $this;
@@ -422,9 +416,6 @@ class BalanceCheckResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setFraudResult($fraudResult)
     {
-        if (is_null($fraudResult)) {
-            throw new \InvalidArgumentException('non-nullable fraudResult cannot be null');
-        }
         $this->container['fraudResult'] = $fraudResult;
 
         return $this;
@@ -449,9 +440,6 @@ class BalanceCheckResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setPspReference($pspReference)
     {
-        if (is_null($pspReference)) {
-            throw new \InvalidArgumentException('non-nullable pspReference cannot be null');
-        }
         $this->container['pspReference'] = $pspReference;
 
         return $this;
@@ -476,9 +464,6 @@ class BalanceCheckResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setRefusalReason($refusalReason)
     {
-        if (is_null($refusalReason)) {
-            throw new \InvalidArgumentException('non-nullable refusalReason cannot be null');
-        }
         $this->container['refusalReason'] = $refusalReason;
 
         return $this;
@@ -503,9 +488,6 @@ class BalanceCheckResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setResultCode($resultCode)
     {
-        if (is_null($resultCode)) {
-            throw new \InvalidArgumentException('non-nullable resultCode cannot be null');
-        }
         $allowedValues = $this->getResultCodeAllowableValues();
         if (!in_array($resultCode, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -540,9 +522,6 @@ class BalanceCheckResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setTransactionLimit($transactionLimit)
     {
-        if (is_null($transactionLimit)) {
-            throw new \InvalidArgumentException('non-nullable transactionLimit cannot be null');
-        }
         $this->container['transactionLimit'] = $transactionLimit;
 
         return $this;

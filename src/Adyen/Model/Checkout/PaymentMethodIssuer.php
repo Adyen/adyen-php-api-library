@@ -315,9 +315,6 @@ class PaymentMethodIssuer implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setDisabled($disabled)
     {
-        if (is_null($disabled)) {
-            throw new \InvalidArgumentException('non-nullable disabled cannot be null');
-        }
         $this->container['disabled'] = $disabled;
 
         return $this;
@@ -342,9 +339,6 @@ class PaymentMethodIssuer implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -369,9 +363,6 @@ class PaymentMethodIssuer implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setName($name)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
         $this->container['name'] = $name;
 
         return $this;

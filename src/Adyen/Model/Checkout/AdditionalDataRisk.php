@@ -435,9 +435,6 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setRiskdataCustomFieldName($riskdataCustomFieldName)
     {
-        if (is_null($riskdataCustomFieldName)) {
-            throw new \InvalidArgumentException('non-nullable riskdataCustomFieldName cannot be null');
-        }
         $this->container['riskdataCustomFieldName'] = $riskdataCustomFieldName;
 
         return $this;
@@ -462,9 +459,6 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setRiskdataBasketItemItemNrAmountPerItem($riskdataBasketItemItemNrAmountPerItem)
     {
-        if (is_null($riskdataBasketItemItemNrAmountPerItem)) {
-            throw new \InvalidArgumentException('non-nullable riskdataBasketItemItemNrAmountPerItem cannot be null');
-        }
         $this->container['riskdataBasketItemItemNrAmountPerItem'] = $riskdataBasketItemItemNrAmountPerItem;
 
         return $this;
@@ -489,9 +483,6 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setRiskdataBasketItemItemNrBrand($riskdataBasketItemItemNrBrand)
     {
-        if (is_null($riskdataBasketItemItemNrBrand)) {
-            throw new \InvalidArgumentException('non-nullable riskdataBasketItemItemNrBrand cannot be null');
-        }
         $this->container['riskdataBasketItemItemNrBrand'] = $riskdataBasketItemItemNrBrand;
 
         return $this;
@@ -516,9 +507,6 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setRiskdataBasketItemItemNrCategory($riskdataBasketItemItemNrCategory)
     {
-        if (is_null($riskdataBasketItemItemNrCategory)) {
-            throw new \InvalidArgumentException('non-nullable riskdataBasketItemItemNrCategory cannot be null');
-        }
         $this->container['riskdataBasketItemItemNrCategory'] = $riskdataBasketItemItemNrCategory;
 
         return $this;
@@ -543,9 +531,6 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setRiskdataBasketItemItemNrColor($riskdataBasketItemItemNrColor)
     {
-        if (is_null($riskdataBasketItemItemNrColor)) {
-            throw new \InvalidArgumentException('non-nullable riskdataBasketItemItemNrColor cannot be null');
-        }
         $this->container['riskdataBasketItemItemNrColor'] = $riskdataBasketItemItemNrColor;
 
         return $this;
@@ -570,9 +555,6 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setRiskdataBasketItemItemNrCurrency($riskdataBasketItemItemNrCurrency)
     {
-        if (is_null($riskdataBasketItemItemNrCurrency)) {
-            throw new \InvalidArgumentException('non-nullable riskdataBasketItemItemNrCurrency cannot be null');
-        }
         $this->container['riskdataBasketItemItemNrCurrency'] = $riskdataBasketItemItemNrCurrency;
 
         return $this;
@@ -597,9 +579,6 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setRiskdataBasketItemItemNrItemID($riskdataBasketItemItemNrItemID)
     {
-        if (is_null($riskdataBasketItemItemNrItemID)) {
-            throw new \InvalidArgumentException('non-nullable riskdataBasketItemItemNrItemID cannot be null');
-        }
         $this->container['riskdataBasketItemItemNrItemID'] = $riskdataBasketItemItemNrItemID;
 
         return $this;
@@ -624,9 +603,6 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setRiskdataBasketItemItemNrManufacturer($riskdataBasketItemItemNrManufacturer)
     {
-        if (is_null($riskdataBasketItemItemNrManufacturer)) {
-            throw new \InvalidArgumentException('non-nullable riskdataBasketItemItemNrManufacturer cannot be null');
-        }
         $this->container['riskdataBasketItemItemNrManufacturer'] = $riskdataBasketItemItemNrManufacturer;
 
         return $this;
@@ -651,9 +627,6 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setRiskdataBasketItemItemNrProductTitle($riskdataBasketItemItemNrProductTitle)
     {
-        if (is_null($riskdataBasketItemItemNrProductTitle)) {
-            throw new \InvalidArgumentException('non-nullable riskdataBasketItemItemNrProductTitle cannot be null');
-        }
         $this->container['riskdataBasketItemItemNrProductTitle'] = $riskdataBasketItemItemNrProductTitle;
 
         return $this;
@@ -678,9 +651,6 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setRiskdataBasketItemItemNrQuantity($riskdataBasketItemItemNrQuantity)
     {
-        if (is_null($riskdataBasketItemItemNrQuantity)) {
-            throw new \InvalidArgumentException('non-nullable riskdataBasketItemItemNrQuantity cannot be null');
-        }
         $this->container['riskdataBasketItemItemNrQuantity'] = $riskdataBasketItemItemNrQuantity;
 
         return $this;
@@ -705,9 +675,6 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setRiskdataBasketItemItemNrReceiverEmail($riskdataBasketItemItemNrReceiverEmail)
     {
-        if (is_null($riskdataBasketItemItemNrReceiverEmail)) {
-            throw new \InvalidArgumentException('non-nullable riskdataBasketItemItemNrReceiverEmail cannot be null');
-        }
         $this->container['riskdataBasketItemItemNrReceiverEmail'] = $riskdataBasketItemItemNrReceiverEmail;
 
         return $this;
@@ -732,9 +699,6 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setRiskdataBasketItemItemNrSize($riskdataBasketItemItemNrSize)
     {
-        if (is_null($riskdataBasketItemItemNrSize)) {
-            throw new \InvalidArgumentException('non-nullable riskdataBasketItemItemNrSize cannot be null');
-        }
         $this->container['riskdataBasketItemItemNrSize'] = $riskdataBasketItemItemNrSize;
 
         return $this;
@@ -759,9 +723,6 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setRiskdataBasketItemItemNrSku($riskdataBasketItemItemNrSku)
     {
-        if (is_null($riskdataBasketItemItemNrSku)) {
-            throw new \InvalidArgumentException('non-nullable riskdataBasketItemItemNrSku cannot be null');
-        }
         $this->container['riskdataBasketItemItemNrSku'] = $riskdataBasketItemItemNrSku;
 
         return $this;
@@ -786,9 +747,6 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setRiskdataBasketItemItemNrUpc($riskdataBasketItemItemNrUpc)
     {
-        if (is_null($riskdataBasketItemItemNrUpc)) {
-            throw new \InvalidArgumentException('non-nullable riskdataBasketItemItemNrUpc cannot be null');
-        }
         $this->container['riskdataBasketItemItemNrUpc'] = $riskdataBasketItemItemNrUpc;
 
         return $this;
@@ -813,9 +771,6 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setRiskdataPromotionsPromotionItemNrPromotionCode($riskdataPromotionsPromotionItemNrPromotionCode)
     {
-        if (is_null($riskdataPromotionsPromotionItemNrPromotionCode)) {
-            throw new \InvalidArgumentException('non-nullable riskdataPromotionsPromotionItemNrPromotionCode cannot be null');
-        }
         $this->container['riskdataPromotionsPromotionItemNrPromotionCode'] = $riskdataPromotionsPromotionItemNrPromotionCode;
 
         return $this;
@@ -840,9 +795,6 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setRiskdataPromotionsPromotionItemNrPromotionDiscountAmount($riskdataPromotionsPromotionItemNrPromotionDiscountAmount)
     {
-        if (is_null($riskdataPromotionsPromotionItemNrPromotionDiscountAmount)) {
-            throw new \InvalidArgumentException('non-nullable riskdataPromotionsPromotionItemNrPromotionDiscountAmount cannot be null');
-        }
         $this->container['riskdataPromotionsPromotionItemNrPromotionDiscountAmount'] = $riskdataPromotionsPromotionItemNrPromotionDiscountAmount;
 
         return $this;
@@ -867,9 +819,6 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setRiskdataPromotionsPromotionItemNrPromotionDiscountCurrency($riskdataPromotionsPromotionItemNrPromotionDiscountCurrency)
     {
-        if (is_null($riskdataPromotionsPromotionItemNrPromotionDiscountCurrency)) {
-            throw new \InvalidArgumentException('non-nullable riskdataPromotionsPromotionItemNrPromotionDiscountCurrency cannot be null');
-        }
         $this->container['riskdataPromotionsPromotionItemNrPromotionDiscountCurrency'] = $riskdataPromotionsPromotionItemNrPromotionDiscountCurrency;
 
         return $this;
@@ -894,9 +843,6 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setRiskdataPromotionsPromotionItemNrPromotionDiscountPercentage($riskdataPromotionsPromotionItemNrPromotionDiscountPercentage)
     {
-        if (is_null($riskdataPromotionsPromotionItemNrPromotionDiscountPercentage)) {
-            throw new \InvalidArgumentException('non-nullable riskdataPromotionsPromotionItemNrPromotionDiscountPercentage cannot be null');
-        }
         $this->container['riskdataPromotionsPromotionItemNrPromotionDiscountPercentage'] = $riskdataPromotionsPromotionItemNrPromotionDiscountPercentage;
 
         return $this;
@@ -921,9 +867,6 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setRiskdataPromotionsPromotionItemNrPromotionName($riskdataPromotionsPromotionItemNrPromotionName)
     {
-        if (is_null($riskdataPromotionsPromotionItemNrPromotionName)) {
-            throw new \InvalidArgumentException('non-nullable riskdataPromotionsPromotionItemNrPromotionName cannot be null');
-        }
         $this->container['riskdataPromotionsPromotionItemNrPromotionName'] = $riskdataPromotionsPromotionItemNrPromotionName;
 
         return $this;
@@ -948,9 +891,6 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setRiskdataRiskProfileReference($riskdataRiskProfileReference)
     {
-        if (is_null($riskdataRiskProfileReference)) {
-            throw new \InvalidArgumentException('non-nullable riskdataRiskProfileReference cannot be null');
-        }
         $this->container['riskdataRiskProfileReference'] = $riskdataRiskProfileReference;
 
         return $this;
@@ -975,9 +915,6 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setRiskdataSkipRisk($riskdataSkipRisk)
     {
-        if (is_null($riskdataSkipRisk)) {
-            throw new \InvalidArgumentException('non-nullable riskdataSkipRisk cannot be null');
-        }
         $this->container['riskdataSkipRisk'] = $riskdataSkipRisk;
 
         return $this;

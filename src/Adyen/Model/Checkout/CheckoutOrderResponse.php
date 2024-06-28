@@ -333,9 +333,6 @@ class CheckoutOrderResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setAmount($amount)
     {
-        if (is_null($amount)) {
-            throw new \InvalidArgumentException('non-nullable amount cannot be null');
-        }
         $this->container['amount'] = $amount;
 
         return $this;
@@ -360,9 +357,6 @@ class CheckoutOrderResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setExpiresAt($expiresAt)
     {
-        if (is_null($expiresAt)) {
-            throw new \InvalidArgumentException('non-nullable expiresAt cannot be null');
-        }
         $this->container['expiresAt'] = $expiresAt;
 
         return $this;
@@ -387,9 +381,6 @@ class CheckoutOrderResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setOrderData($orderData)
     {
-        if (is_null($orderData)) {
-            throw new \InvalidArgumentException('non-nullable orderData cannot be null');
-        }
         $this->container['orderData'] = $orderData;
 
         return $this;
@@ -414,9 +405,6 @@ class CheckoutOrderResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setPspReference($pspReference)
     {
-        if (is_null($pspReference)) {
-            throw new \InvalidArgumentException('non-nullable pspReference cannot be null');
-        }
         $this->container['pspReference'] = $pspReference;
 
         return $this;
@@ -441,9 +429,6 @@ class CheckoutOrderResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -468,9 +453,6 @@ class CheckoutOrderResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setRemainingAmount($remainingAmount)
     {
-        if (is_null($remainingAmount)) {
-            throw new \InvalidArgumentException('non-nullable remainingAmount cannot be null');
-        }
         $this->container['remainingAmount'] = $remainingAmount;
 
         return $this;

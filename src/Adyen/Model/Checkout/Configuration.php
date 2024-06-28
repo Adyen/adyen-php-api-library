@@ -341,9 +341,6 @@ class Configuration implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAvs($avs)
     {
-        if (is_null($avs)) {
-            throw new \InvalidArgumentException('non-nullable avs cannot be null');
-        }
         $this->container['avs'] = $avs;
 
         return $this;
@@ -368,9 +365,6 @@ class Configuration implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCardHolderName($cardHolderName)
     {
-        if (is_null($cardHolderName)) {
-            throw new \InvalidArgumentException('non-nullable cardHolderName cannot be null');
-        }
         $allowedValues = $this->getCardHolderNameAllowableValues();
         if (!in_array($cardHolderName, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -405,9 +399,6 @@ class Configuration implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setInstallments($installments)
     {
-        if (is_null($installments)) {
-            throw new \InvalidArgumentException('non-nullable installments cannot be null');
-        }
         $this->container['installments'] = $installments;
 
         return $this;
@@ -432,9 +423,6 @@ class Configuration implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setShopperInput($shopperInput)
     {
-        if (is_null($shopperInput)) {
-            throw new \InvalidArgumentException('non-nullable shopperInput cannot be null');
-        }
         $this->container['shopperInput'] = $shopperInput;
 
         return $this;

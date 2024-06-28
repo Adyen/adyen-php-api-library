@@ -333,9 +333,6 @@ class SessionResultResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -360,9 +357,6 @@ class SessionResultResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(

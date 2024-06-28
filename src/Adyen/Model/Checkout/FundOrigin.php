@@ -323,9 +323,6 @@ class FundOrigin implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBillingAddress($billingAddress)
     {
-        if (is_null($billingAddress)) {
-            throw new \InvalidArgumentException('non-nullable billingAddress cannot be null');
-        }
         $this->container['billingAddress'] = $billingAddress;
 
         return $this;
@@ -350,9 +347,6 @@ class FundOrigin implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setShopperEmail($shopperEmail)
     {
-        if (is_null($shopperEmail)) {
-            throw new \InvalidArgumentException('non-nullable shopperEmail cannot be null');
-        }
         $this->container['shopperEmail'] = $shopperEmail;
 
         return $this;
@@ -377,9 +371,6 @@ class FundOrigin implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setShopperName($shopperName)
     {
-        if (is_null($shopperName)) {
-            throw new \InvalidArgumentException('non-nullable shopperName cannot be null');
-        }
         $this->container['shopperName'] = $shopperName;
 
         return $this;
@@ -404,9 +395,6 @@ class FundOrigin implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTelephoneNumber($telephoneNumber)
     {
-        if (is_null($telephoneNumber)) {
-            throw new \InvalidArgumentException('non-nullable telephoneNumber cannot be null');
-        }
         $this->container['telephoneNumber'] = $telephoneNumber;
 
         return $this;
@@ -431,9 +419,6 @@ class FundOrigin implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setWalletIdentifier($walletIdentifier)
     {
-        if (is_null($walletIdentifier)) {
-            throw new \InvalidArgumentException('non-nullable walletIdentifier cannot be null');
-        }
         $this->container['walletIdentifier'] = $walletIdentifier;
 
         return $this;

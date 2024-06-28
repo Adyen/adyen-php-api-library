@@ -667,9 +667,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setAccountInfo($accountInfo)
     {
-        if (is_null($accountInfo)) {
-            throw new \InvalidArgumentException('non-nullable accountInfo cannot be null');
-        }
         $this->container['accountInfo'] = $accountInfo;
 
         return $this;
@@ -694,9 +691,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setAdditionalData($additionalData)
     {
-        if (is_null($additionalData)) {
-            throw new \InvalidArgumentException('non-nullable additionalData cannot be null');
-        }
         $this->container['additionalData'] = $additionalData;
 
         return $this;
@@ -721,9 +715,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setAmount($amount)
     {
-        if (is_null($amount)) {
-            throw new \InvalidArgumentException('non-nullable amount cannot be null');
-        }
         $this->container['amount'] = $amount;
 
         return $this;
@@ -748,9 +739,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setApplicationInfo($applicationInfo)
     {
-        if (is_null($applicationInfo)) {
-            throw new \InvalidArgumentException('non-nullable applicationInfo cannot be null');
-        }
         $this->container['applicationInfo'] = $applicationInfo;
 
         return $this;
@@ -775,9 +763,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setAuthenticationData($authenticationData)
     {
-        if (is_null($authenticationData)) {
-            throw new \InvalidArgumentException('non-nullable authenticationData cannot be null');
-        }
         $this->container['authenticationData'] = $authenticationData;
 
         return $this;
@@ -802,9 +787,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setBillingAddress($billingAddress)
     {
-        if (is_null($billingAddress)) {
-            throw new \InvalidArgumentException('non-nullable billingAddress cannot be null');
-        }
         $this->container['billingAddress'] = $billingAddress;
 
         return $this;
@@ -829,9 +811,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setBrowserInfo($browserInfo)
     {
-        if (is_null($browserInfo)) {
-            throw new \InvalidArgumentException('non-nullable browserInfo cannot be null');
-        }
         $this->container['browserInfo'] = $browserInfo;
 
         return $this;
@@ -856,9 +835,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setChannel($channel)
     {
-        if (is_null($channel)) {
-            throw new \InvalidArgumentException('non-nullable channel cannot be null');
-        }
         $allowedValues = $this->getChannelAllowableValues();
         if (!in_array($channel, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -893,9 +869,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setCheckoutAttemptId($checkoutAttemptId)
     {
-        if (is_null($checkoutAttemptId)) {
-            throw new \InvalidArgumentException('non-nullable checkoutAttemptId cannot be null');
-        }
         $this->container['checkoutAttemptId'] = $checkoutAttemptId;
 
         return $this;
@@ -922,9 +895,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setConversionId($conversionId)
     {
-        if (is_null($conversionId)) {
-            throw new \InvalidArgumentException('non-nullable conversionId cannot be null');
-        }
         $this->container['conversionId'] = $conversionId;
 
         return $this;
@@ -949,9 +919,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setCountryCode($countryCode)
     {
-        if (is_null($countryCode)) {
-            throw new \InvalidArgumentException('non-nullable countryCode cannot be null');
-        }
         $this->container['countryCode'] = $countryCode;
 
         return $this;
@@ -976,9 +943,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setDateOfBirth($dateOfBirth)
     {
-        if (is_null($dateOfBirth)) {
-            throw new \InvalidArgumentException('non-nullable dateOfBirth cannot be null');
-        }
         $this->container['dateOfBirth'] = $dateOfBirth;
 
         return $this;
@@ -1003,9 +967,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setDeliverAt($deliverAt)
     {
-        if (is_null($deliverAt)) {
-            throw new \InvalidArgumentException('non-nullable deliverAt cannot be null');
-        }
         $this->container['deliverAt'] = $deliverAt;
 
         return $this;
@@ -1030,9 +991,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setDeliveryAddress($deliveryAddress)
     {
-        if (is_null($deliveryAddress)) {
-            throw new \InvalidArgumentException('non-nullable deliveryAddress cannot be null');
-        }
         $this->container['deliveryAddress'] = $deliveryAddress;
 
         return $this;
@@ -1057,9 +1015,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setDeviceFingerprint($deviceFingerprint)
     {
-        if (is_null($deviceFingerprint)) {
-            throw new \InvalidArgumentException('non-nullable deviceFingerprint cannot be null');
-        }
         $this->container['deviceFingerprint'] = $deviceFingerprint;
 
         return $this;
@@ -1084,9 +1039,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setDonationAccount($donationAccount)
     {
-        if (is_null($donationAccount)) {
-            throw new \InvalidArgumentException('non-nullable donationAccount cannot be null');
-        }
         $this->container['donationAccount'] = $donationAccount;
 
         return $this;
@@ -1111,9 +1063,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setDonationOriginalPspReference($donationOriginalPspReference)
     {
-        if (is_null($donationOriginalPspReference)) {
-            throw new \InvalidArgumentException('non-nullable donationOriginalPspReference cannot be null');
-        }
         $this->container['donationOriginalPspReference'] = $donationOriginalPspReference;
 
         return $this;
@@ -1138,9 +1087,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setDonationToken($donationToken)
     {
-        if (is_null($donationToken)) {
-            throw new \InvalidArgumentException('non-nullable donationToken cannot be null');
-        }
         $this->container['donationToken'] = $donationToken;
 
         return $this;
@@ -1165,9 +1111,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setLineItems($lineItems)
     {
-        if (is_null($lineItems)) {
-            throw new \InvalidArgumentException('non-nullable lineItems cannot be null');
-        }
         $this->container['lineItems'] = $lineItems;
 
         return $this;
@@ -1192,9 +1135,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setMerchantAccount($merchantAccount)
     {
-        if (is_null($merchantAccount)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
-        }
         $this->container['merchantAccount'] = $merchantAccount;
 
         return $this;
@@ -1219,9 +1159,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setMerchantRiskIndicator($merchantRiskIndicator)
     {
-        if (is_null($merchantRiskIndicator)) {
-            throw new \InvalidArgumentException('non-nullable merchantRiskIndicator cannot be null');
-        }
         $this->container['merchantRiskIndicator'] = $merchantRiskIndicator;
 
         return $this;
@@ -1246,9 +1183,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setMetadata($metadata)
     {
-        if (is_null($metadata)) {
-            throw new \InvalidArgumentException('non-nullable metadata cannot be null');
-        }
         $this->container['metadata'] = $metadata;
 
         return $this;
@@ -1273,9 +1207,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setMpiData($mpiData)
     {
-        if (is_null($mpiData)) {
-            throw new \InvalidArgumentException('non-nullable mpiData cannot be null');
-        }
         $this->container['mpiData'] = $mpiData;
 
         return $this;
@@ -1300,9 +1231,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setOrigin($origin)
     {
-        if (is_null($origin)) {
-            throw new \InvalidArgumentException('non-nullable origin cannot be null');
-        }
         $this->container['origin'] = $origin;
 
         return $this;
@@ -1327,9 +1255,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setPaymentMethod($paymentMethod)
     {
-        if (is_null($paymentMethod)) {
-            throw new \InvalidArgumentException('non-nullable paymentMethod cannot be null');
-        }
         $this->container['paymentMethod'] = $paymentMethod;
 
         return $this;
@@ -1354,9 +1279,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setRecurringProcessingModel($recurringProcessingModel)
     {
-        if (is_null($recurringProcessingModel)) {
-            throw new \InvalidArgumentException('non-nullable recurringProcessingModel cannot be null');
-        }
         $allowedValues = $this->getRecurringProcessingModelAllowableValues();
         if (!in_array($recurringProcessingModel, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -1391,9 +1313,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setRedirectFromIssuerMethod($redirectFromIssuerMethod)
     {
-        if (is_null($redirectFromIssuerMethod)) {
-            throw new \InvalidArgumentException('non-nullable redirectFromIssuerMethod cannot be null');
-        }
         $this->container['redirectFromIssuerMethod'] = $redirectFromIssuerMethod;
 
         return $this;
@@ -1418,9 +1337,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setRedirectToIssuerMethod($redirectToIssuerMethod)
     {
-        if (is_null($redirectToIssuerMethod)) {
-            throw new \InvalidArgumentException('non-nullable redirectToIssuerMethod cannot be null');
-        }
         $this->container['redirectToIssuerMethod'] = $redirectToIssuerMethod;
 
         return $this;
@@ -1445,9 +1361,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -1472,9 +1385,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setReturnUrl($returnUrl)
     {
-        if (is_null($returnUrl)) {
-            throw new \InvalidArgumentException('non-nullable returnUrl cannot be null');
-        }
         $this->container['returnUrl'] = $returnUrl;
 
         return $this;
@@ -1499,9 +1409,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setSessionValidity($sessionValidity)
     {
-        if (is_null($sessionValidity)) {
-            throw new \InvalidArgumentException('non-nullable sessionValidity cannot be null');
-        }
         $this->container['sessionValidity'] = $sessionValidity;
 
         return $this;
@@ -1526,9 +1433,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setShopperEmail($shopperEmail)
     {
-        if (is_null($shopperEmail)) {
-            throw new \InvalidArgumentException('non-nullable shopperEmail cannot be null');
-        }
         $this->container['shopperEmail'] = $shopperEmail;
 
         return $this;
@@ -1553,9 +1457,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setShopperIP($shopperIP)
     {
-        if (is_null($shopperIP)) {
-            throw new \InvalidArgumentException('non-nullable shopperIP cannot be null');
-        }
         $this->container['shopperIP'] = $shopperIP;
 
         return $this;
@@ -1580,9 +1481,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setShopperInteraction($shopperInteraction)
     {
-        if (is_null($shopperInteraction)) {
-            throw new \InvalidArgumentException('non-nullable shopperInteraction cannot be null');
-        }
         $allowedValues = $this->getShopperInteractionAllowableValues();
         if (!in_array($shopperInteraction, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -1617,9 +1515,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setShopperLocale($shopperLocale)
     {
-        if (is_null($shopperLocale)) {
-            throw new \InvalidArgumentException('non-nullable shopperLocale cannot be null');
-        }
         $this->container['shopperLocale'] = $shopperLocale;
 
         return $this;
@@ -1644,9 +1539,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setShopperName($shopperName)
     {
-        if (is_null($shopperName)) {
-            throw new \InvalidArgumentException('non-nullable shopperName cannot be null');
-        }
         $this->container['shopperName'] = $shopperName;
 
         return $this;
@@ -1671,9 +1563,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setShopperReference($shopperReference)
     {
-        if (is_null($shopperReference)) {
-            throw new \InvalidArgumentException('non-nullable shopperReference cannot be null');
-        }
         $this->container['shopperReference'] = $shopperReference;
 
         return $this;
@@ -1698,9 +1587,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setSocialSecurityNumber($socialSecurityNumber)
     {
-        if (is_null($socialSecurityNumber)) {
-            throw new \InvalidArgumentException('non-nullable socialSecurityNumber cannot be null');
-        }
         $this->container['socialSecurityNumber'] = $socialSecurityNumber;
 
         return $this;
@@ -1725,9 +1611,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setTelephoneNumber($telephoneNumber)
     {
-        if (is_null($telephoneNumber)) {
-            throw new \InvalidArgumentException('non-nullable telephoneNumber cannot be null');
-        }
         $this->container['telephoneNumber'] = $telephoneNumber;
 
         return $this;
@@ -1752,9 +1635,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setThreeDS2RequestData($threeDS2RequestData)
     {
-        if (is_null($threeDS2RequestData)) {
-            throw new \InvalidArgumentException('non-nullable threeDS2RequestData cannot be null');
-        }
         $this->container['threeDS2RequestData'] = $threeDS2RequestData;
 
         return $this;
@@ -1781,9 +1661,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setThreeDSAuthenticationOnly($threeDSAuthenticationOnly)
     {
-        if (is_null($threeDSAuthenticationOnly)) {
-            throw new \InvalidArgumentException('non-nullable threeDSAuthenticationOnly cannot be null');
-        }
         $this->container['threeDSAuthenticationOnly'] = $threeDSAuthenticationOnly;
 
         return $this;

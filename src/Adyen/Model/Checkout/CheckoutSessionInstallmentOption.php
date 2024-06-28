@@ -337,9 +337,6 @@ class CheckoutSessionInstallmentOption implements ModelInterface, ArrayAccess, \
      */
     public function setPlans($plans)
     {
-        if (is_null($plans)) {
-            throw new \InvalidArgumentException('non-nullable plans cannot be null');
-        }
         $allowedValues = $this->getPlansAllowableValues();
         if (array_diff($plans, $allowedValues)) {
             throw new \InvalidArgumentException(
@@ -373,7 +370,6 @@ class CheckoutSessionInstallmentOption implements ModelInterface, ArrayAccess, \
      */
     public function setPreselectedValue($preselectedValue)
     {
-        // Do nothing for nullable integers
         $this->container['preselectedValue'] = $preselectedValue;
 
         return $this;
@@ -398,9 +394,6 @@ class CheckoutSessionInstallmentOption implements ModelInterface, ArrayAccess, \
      */
     public function setValues($values)
     {
-        if (is_null($values)) {
-            throw new \InvalidArgumentException('non-nullable values cannot be null');
-        }
         $this->container['values'] = $values;
 
         return $this;

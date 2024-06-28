@@ -845,9 +845,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setAccountInfo($accountInfo)
     {
-        if (is_null($accountInfo)) {
-            throw new \InvalidArgumentException('non-nullable accountInfo cannot be null');
-        }
         $this->container['accountInfo'] = $accountInfo;
 
         return $this;
@@ -872,9 +869,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setAdditionalAmount($additionalAmount)
     {
-        if (is_null($additionalAmount)) {
-            throw new \InvalidArgumentException('non-nullable additionalAmount cannot be null');
-        }
         $this->container['additionalAmount'] = $additionalAmount;
 
         return $this;
@@ -899,9 +893,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setAdditionalData($additionalData)
     {
-        if (is_null($additionalData)) {
-            throw new \InvalidArgumentException('non-nullable additionalData cannot be null');
-        }
         $this->container['additionalData'] = $additionalData;
 
         return $this;
@@ -926,9 +917,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setAllowedPaymentMethods($allowedPaymentMethods)
     {
-        if (is_null($allowedPaymentMethods)) {
-            throw new \InvalidArgumentException('non-nullable allowedPaymentMethods cannot be null');
-        }
         $this->container['allowedPaymentMethods'] = $allowedPaymentMethods;
 
         return $this;
@@ -953,9 +941,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setAmount($amount)
     {
-        if (is_null($amount)) {
-            throw new \InvalidArgumentException('non-nullable amount cannot be null');
-        }
         $this->container['amount'] = $amount;
 
         return $this;
@@ -980,9 +965,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setApplicationInfo($applicationInfo)
     {
-        if (is_null($applicationInfo)) {
-            throw new \InvalidArgumentException('non-nullable applicationInfo cannot be null');
-        }
         $this->container['applicationInfo'] = $applicationInfo;
 
         return $this;
@@ -1007,9 +989,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setAuthenticationData($authenticationData)
     {
-        if (is_null($authenticationData)) {
-            throw new \InvalidArgumentException('non-nullable authenticationData cannot be null');
-        }
         $this->container['authenticationData'] = $authenticationData;
 
         return $this;
@@ -1034,9 +1013,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setBillingAddress($billingAddress)
     {
-        if (is_null($billingAddress)) {
-            throw new \InvalidArgumentException('non-nullable billingAddress cannot be null');
-        }
         $this->container['billingAddress'] = $billingAddress;
 
         return $this;
@@ -1061,9 +1037,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setBlockedPaymentMethods($blockedPaymentMethods)
     {
-        if (is_null($blockedPaymentMethods)) {
-            throw new \InvalidArgumentException('non-nullable blockedPaymentMethods cannot be null');
-        }
         $this->container['blockedPaymentMethods'] = $blockedPaymentMethods;
 
         return $this;
@@ -1088,7 +1061,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setCaptureDelayHours($captureDelayHours)
     {
-        // Do nothing for nullable integers
         $this->container['captureDelayHours'] = $captureDelayHours;
 
         return $this;
@@ -1113,9 +1085,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setChannel($channel)
     {
-        if (is_null($channel)) {
-            throw new \InvalidArgumentException('non-nullable channel cannot be null');
-        }
         $allowedValues = $this->getChannelAllowableValues();
         if (!in_array($channel, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -1150,9 +1119,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setCompany($company)
     {
-        if (is_null($company)) {
-            throw new \InvalidArgumentException('non-nullable company cannot be null');
-        }
         $this->container['company'] = $company;
 
         return $this;
@@ -1177,9 +1143,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setCountryCode($countryCode)
     {
-        if (is_null($countryCode)) {
-            throw new \InvalidArgumentException('non-nullable countryCode cannot be null');
-        }
         $this->container['countryCode'] = $countryCode;
 
         return $this;
@@ -1204,9 +1167,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setDateOfBirth($dateOfBirth)
     {
-        if (is_null($dateOfBirth)) {
-            throw new \InvalidArgumentException('non-nullable dateOfBirth cannot be null');
-        }
         $this->container['dateOfBirth'] = $dateOfBirth;
 
         return $this;
@@ -1231,9 +1191,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setDeliverAt($deliverAt)
     {
-        if (is_null($deliverAt)) {
-            throw new \InvalidArgumentException('non-nullable deliverAt cannot be null');
-        }
         $this->container['deliverAt'] = $deliverAt;
 
         return $this;
@@ -1258,9 +1215,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setDeliveryAddress($deliveryAddress)
     {
-        if (is_null($deliveryAddress)) {
-            throw new \InvalidArgumentException('non-nullable deliveryAddress cannot be null');
-        }
         $this->container['deliveryAddress'] = $deliveryAddress;
 
         return $this;
@@ -1285,9 +1239,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setEnableOneClick($enableOneClick)
     {
-        if (is_null($enableOneClick)) {
-            throw new \InvalidArgumentException('non-nullable enableOneClick cannot be null');
-        }
         $this->container['enableOneClick'] = $enableOneClick;
 
         return $this;
@@ -1312,9 +1263,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setEnablePayOut($enablePayOut)
     {
-        if (is_null($enablePayOut)) {
-            throw new \InvalidArgumentException('non-nullable enablePayOut cannot be null');
-        }
         $this->container['enablePayOut'] = $enablePayOut;
 
         return $this;
@@ -1339,9 +1287,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setEnableRecurring($enableRecurring)
     {
-        if (is_null($enableRecurring)) {
-            throw new \InvalidArgumentException('non-nullable enableRecurring cannot be null');
-        }
         $this->container['enableRecurring'] = $enableRecurring;
 
         return $this;
@@ -1366,9 +1311,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setExpiresAt($expiresAt)
     {
-        if (is_null($expiresAt)) {
-            throw new \InvalidArgumentException('non-nullable expiresAt cannot be null');
-        }
         $this->container['expiresAt'] = $expiresAt;
 
         return $this;
@@ -1393,9 +1335,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setFundOrigin($fundOrigin)
     {
-        if (is_null($fundOrigin)) {
-            throw new \InvalidArgumentException('non-nullable fundOrigin cannot be null');
-        }
         $this->container['fundOrigin'] = $fundOrigin;
 
         return $this;
@@ -1420,9 +1359,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setFundRecipient($fundRecipient)
     {
-        if (is_null($fundRecipient)) {
-            throw new \InvalidArgumentException('non-nullable fundRecipient cannot be null');
-        }
         $this->container['fundRecipient'] = $fundRecipient;
 
         return $this;
@@ -1447,9 +1383,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setInstallmentOptions($installmentOptions)
     {
-        if (is_null($installmentOptions)) {
-            throw new \InvalidArgumentException('non-nullable installmentOptions cannot be null');
-        }
         $this->container['installmentOptions'] = $installmentOptions;
 
         return $this;
@@ -1474,9 +1407,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setLineItems($lineItems)
     {
-        if (is_null($lineItems)) {
-            throw new \InvalidArgumentException('non-nullable lineItems cannot be null');
-        }
         $this->container['lineItems'] = $lineItems;
 
         return $this;
@@ -1501,9 +1431,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setMandate($mandate)
     {
-        if (is_null($mandate)) {
-            throw new \InvalidArgumentException('non-nullable mandate cannot be null');
-        }
         $this->container['mandate'] = $mandate;
 
         return $this;
@@ -1528,9 +1455,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setMcc($mcc)
     {
-        if (is_null($mcc)) {
-            throw new \InvalidArgumentException('non-nullable mcc cannot be null');
-        }
         $this->container['mcc'] = $mcc;
 
         return $this;
@@ -1555,9 +1479,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setMerchantAccount($merchantAccount)
     {
-        if (is_null($merchantAccount)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
-        }
         $this->container['merchantAccount'] = $merchantAccount;
 
         return $this;
@@ -1582,9 +1503,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setMerchantOrderReference($merchantOrderReference)
     {
-        if (is_null($merchantOrderReference)) {
-            throw new \InvalidArgumentException('non-nullable merchantOrderReference cannot be null');
-        }
         $this->container['merchantOrderReference'] = $merchantOrderReference;
 
         return $this;
@@ -1609,9 +1527,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setMetadata($metadata)
     {
-        if (is_null($metadata)) {
-            throw new \InvalidArgumentException('non-nullable metadata cannot be null');
-        }
         $this->container['metadata'] = $metadata;
 
         return $this;
@@ -1636,9 +1551,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setMode($mode)
     {
-        if (is_null($mode)) {
-            throw new \InvalidArgumentException('non-nullable mode cannot be null');
-        }
         $allowedValues = $this->getModeAllowableValues();
         if (!in_array($mode, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -1673,9 +1585,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setMpiData($mpiData)
     {
-        if (is_null($mpiData)) {
-            throw new \InvalidArgumentException('non-nullable mpiData cannot be null');
-        }
         $this->container['mpiData'] = $mpiData;
 
         return $this;
@@ -1700,9 +1609,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setPlatformChargebackLogic($platformChargebackLogic)
     {
-        if (is_null($platformChargebackLogic)) {
-            throw new \InvalidArgumentException('non-nullable platformChargebackLogic cannot be null');
-        }
         $this->container['platformChargebackLogic'] = $platformChargebackLogic;
 
         return $this;
@@ -1727,9 +1633,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setRecurringExpiry($recurringExpiry)
     {
-        if (is_null($recurringExpiry)) {
-            throw new \InvalidArgumentException('non-nullable recurringExpiry cannot be null');
-        }
         $this->container['recurringExpiry'] = $recurringExpiry;
 
         return $this;
@@ -1754,9 +1657,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setRecurringFrequency($recurringFrequency)
     {
-        if (is_null($recurringFrequency)) {
-            throw new \InvalidArgumentException('non-nullable recurringFrequency cannot be null');
-        }
         $this->container['recurringFrequency'] = $recurringFrequency;
 
         return $this;
@@ -1781,9 +1681,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setRecurringProcessingModel($recurringProcessingModel)
     {
-        if (is_null($recurringProcessingModel)) {
-            throw new \InvalidArgumentException('non-nullable recurringProcessingModel cannot be null');
-        }
         $allowedValues = $this->getRecurringProcessingModelAllowableValues();
         if (!in_array($recurringProcessingModel, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -1818,9 +1715,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setRedirectFromIssuerMethod($redirectFromIssuerMethod)
     {
-        if (is_null($redirectFromIssuerMethod)) {
-            throw new \InvalidArgumentException('non-nullable redirectFromIssuerMethod cannot be null');
-        }
         $this->container['redirectFromIssuerMethod'] = $redirectFromIssuerMethod;
 
         return $this;
@@ -1845,9 +1739,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setRedirectToIssuerMethod($redirectToIssuerMethod)
     {
-        if (is_null($redirectToIssuerMethod)) {
-            throw new \InvalidArgumentException('non-nullable redirectToIssuerMethod cannot be null');
-        }
         $this->container['redirectToIssuerMethod'] = $redirectToIssuerMethod;
 
         return $this;
@@ -1872,9 +1763,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -1899,9 +1787,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setReturnUrl($returnUrl)
     {
-        if (is_null($returnUrl)) {
-            throw new \InvalidArgumentException('non-nullable returnUrl cannot be null');
-        }
         $this->container['returnUrl'] = $returnUrl;
 
         return $this;
@@ -1926,9 +1811,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setRiskData($riskData)
     {
-        if (is_null($riskData)) {
-            throw new \InvalidArgumentException('non-nullable riskData cannot be null');
-        }
         $this->container['riskData'] = $riskData;
 
         return $this;
@@ -1953,9 +1835,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setShopperEmail($shopperEmail)
     {
-        if (is_null($shopperEmail)) {
-            throw new \InvalidArgumentException('non-nullable shopperEmail cannot be null');
-        }
         $this->container['shopperEmail'] = $shopperEmail;
 
         return $this;
@@ -1980,9 +1859,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setShopperIP($shopperIP)
     {
-        if (is_null($shopperIP)) {
-            throw new \InvalidArgumentException('non-nullable shopperIP cannot be null');
-        }
         $this->container['shopperIP'] = $shopperIP;
 
         return $this;
@@ -2007,9 +1883,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setShopperInteraction($shopperInteraction)
     {
-        if (is_null($shopperInteraction)) {
-            throw new \InvalidArgumentException('non-nullable shopperInteraction cannot be null');
-        }
         $allowedValues = $this->getShopperInteractionAllowableValues();
         if (!in_array($shopperInteraction, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -2044,9 +1917,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setShopperLocale($shopperLocale)
     {
-        if (is_null($shopperLocale)) {
-            throw new \InvalidArgumentException('non-nullable shopperLocale cannot be null');
-        }
         $this->container['shopperLocale'] = $shopperLocale;
 
         return $this;
@@ -2071,9 +1941,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setShopperName($shopperName)
     {
-        if (is_null($shopperName)) {
-            throw new \InvalidArgumentException('non-nullable shopperName cannot be null');
-        }
         $this->container['shopperName'] = $shopperName;
 
         return $this;
@@ -2098,9 +1965,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setShopperReference($shopperReference)
     {
-        if (is_null($shopperReference)) {
-            throw new \InvalidArgumentException('non-nullable shopperReference cannot be null');
-        }
         $this->container['shopperReference'] = $shopperReference;
 
         return $this;
@@ -2125,9 +1989,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setShopperStatement($shopperStatement)
     {
-        if (is_null($shopperStatement)) {
-            throw new \InvalidArgumentException('non-nullable shopperStatement cannot be null');
-        }
         $this->container['shopperStatement'] = $shopperStatement;
 
         return $this;
@@ -2152,9 +2013,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setShowInstallmentAmount($showInstallmentAmount)
     {
-        if (is_null($showInstallmentAmount)) {
-            throw new \InvalidArgumentException('non-nullable showInstallmentAmount cannot be null');
-        }
         $this->container['showInstallmentAmount'] = $showInstallmentAmount;
 
         return $this;
@@ -2179,9 +2037,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setShowRemovePaymentMethodButton($showRemovePaymentMethodButton)
     {
-        if (is_null($showRemovePaymentMethodButton)) {
-            throw new \InvalidArgumentException('non-nullable showRemovePaymentMethodButton cannot be null');
-        }
         $this->container['showRemovePaymentMethodButton'] = $showRemovePaymentMethodButton;
 
         return $this;
@@ -2206,9 +2061,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setSocialSecurityNumber($socialSecurityNumber)
     {
-        if (is_null($socialSecurityNumber)) {
-            throw new \InvalidArgumentException('non-nullable socialSecurityNumber cannot be null');
-        }
         $this->container['socialSecurityNumber'] = $socialSecurityNumber;
 
         return $this;
@@ -2233,9 +2085,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setSplitCardFundingSources($splitCardFundingSources)
     {
-        if (is_null($splitCardFundingSources)) {
-            throw new \InvalidArgumentException('non-nullable splitCardFundingSources cannot be null');
-        }
         $this->container['splitCardFundingSources'] = $splitCardFundingSources;
 
         return $this;
@@ -2254,15 +2103,12 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets splits
      *
-     * @param \Adyen\Model\Checkout\Split[]|null $splits An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/processing-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split).
+     * @param \Adyen\Model\Checkout\Split[]|null $splits An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/process-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split).
      *
      * @return self
      */
     public function setSplits($splits)
     {
-        if (is_null($splits)) {
-            throw new \InvalidArgumentException('non-nullable splits cannot be null');
-        }
         $this->container['splits'] = $splits;
 
         return $this;
@@ -2287,9 +2133,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setStore($store)
     {
-        if (is_null($store)) {
-            throw new \InvalidArgumentException('non-nullable store cannot be null');
-        }
         $this->container['store'] = $store;
 
         return $this;
@@ -2314,9 +2157,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setStorePaymentMethod($storePaymentMethod)
     {
-        if (is_null($storePaymentMethod)) {
-            throw new \InvalidArgumentException('non-nullable storePaymentMethod cannot be null');
-        }
         $this->container['storePaymentMethod'] = $storePaymentMethod;
 
         return $this;
@@ -2341,9 +2181,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setStorePaymentMethodMode($storePaymentMethodMode)
     {
-        if (is_null($storePaymentMethodMode)) {
-            throw new \InvalidArgumentException('non-nullable storePaymentMethodMode cannot be null');
-        }
         $allowedValues = $this->getStorePaymentMethodModeAllowableValues();
         if (!in_array($storePaymentMethodMode, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -2378,9 +2215,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setTelephoneNumber($telephoneNumber)
     {
-        if (is_null($telephoneNumber)) {
-            throw new \InvalidArgumentException('non-nullable telephoneNumber cannot be null');
-        }
         $this->container['telephoneNumber'] = $telephoneNumber;
 
         return $this;
@@ -2405,9 +2239,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setThemeId($themeId)
     {
-        if (is_null($themeId)) {
-            throw new \InvalidArgumentException('non-nullable themeId cannot be null');
-        }
         $this->container['themeId'] = $themeId;
 
         return $this;
@@ -2432,9 +2263,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setThreeDS2RequestData($threeDS2RequestData)
     {
-        if (is_null($threeDS2RequestData)) {
-            throw new \InvalidArgumentException('non-nullable threeDS2RequestData cannot be null');
-        }
         $this->container['threeDS2RequestData'] = $threeDS2RequestData;
 
         return $this;
@@ -2461,9 +2289,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setThreeDSAuthenticationOnly($threeDSAuthenticationOnly)
     {
-        if (is_null($threeDSAuthenticationOnly)) {
-            throw new \InvalidArgumentException('non-nullable threeDSAuthenticationOnly cannot be null');
-        }
         $this->container['threeDSAuthenticationOnly'] = $threeDSAuthenticationOnly;
 
         return $this;
@@ -2488,9 +2313,6 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setTrustedShopper($trustedShopper)
     {
-        if (is_null($trustedShopper)) {
-            throw new \InvalidArgumentException('non-nullable trustedShopper cannot be null');
-        }
         $this->container['trustedShopper'] = $trustedShopper;
 
         return $this;

@@ -354,9 +354,6 @@ class CheckoutQrCodeAction implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setExpiresAt($expiresAt)
     {
-        if (is_null($expiresAt)) {
-            throw new \InvalidArgumentException('non-nullable expiresAt cannot be null');
-        }
         $this->container['expiresAt'] = $expiresAt;
 
         return $this;
@@ -381,9 +378,6 @@ class CheckoutQrCodeAction implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setPaymentData($paymentData)
     {
-        if (is_null($paymentData)) {
-            throw new \InvalidArgumentException('non-nullable paymentData cannot be null');
-        }
         $this->container['paymentData'] = $paymentData;
 
         return $this;
@@ -408,9 +402,6 @@ class CheckoutQrCodeAction implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setPaymentMethodType($paymentMethodType)
     {
-        if (is_null($paymentMethodType)) {
-            throw new \InvalidArgumentException('non-nullable paymentMethodType cannot be null');
-        }
         $this->container['paymentMethodType'] = $paymentMethodType;
 
         return $this;
@@ -435,9 +426,6 @@ class CheckoutQrCodeAction implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setQrCodeData($qrCodeData)
     {
-        if (is_null($qrCodeData)) {
-            throw new \InvalidArgumentException('non-nullable qrCodeData cannot be null');
-        }
         $this->container['qrCodeData'] = $qrCodeData;
 
         return $this;
@@ -462,9 +450,6 @@ class CheckoutQrCodeAction implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -499,9 +484,6 @@ class CheckoutQrCodeAction implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setUrl($url)
     {
-        if (is_null($url)) {
-            throw new \InvalidArgumentException('non-nullable url cannot be null');
-        }
         $this->container['url'] = $url;
 
         return $this;

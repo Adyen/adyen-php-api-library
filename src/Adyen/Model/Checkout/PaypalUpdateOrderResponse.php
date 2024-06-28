@@ -331,9 +331,6 @@ class PaypalUpdateOrderResponse implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function setPaymentData($paymentData)
     {
-        if (is_null($paymentData)) {
-            throw new \InvalidArgumentException('non-nullable paymentData cannot be null');
-        }
         $this->container['paymentData'] = $paymentData;
 
         return $this;
@@ -358,9 +355,6 @@ class PaypalUpdateOrderResponse implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(

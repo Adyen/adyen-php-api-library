@@ -309,9 +309,6 @@ class AdditionalDataRetry implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setRetryChainAttemptNumber($retryChainAttemptNumber)
     {
-        if (is_null($retryChainAttemptNumber)) {
-            throw new \InvalidArgumentException('non-nullable retryChainAttemptNumber cannot be null');
-        }
         $this->container['retryChainAttemptNumber'] = $retryChainAttemptNumber;
 
         return $this;
@@ -336,9 +333,6 @@ class AdditionalDataRetry implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setRetryOrderAttemptNumber($retryOrderAttemptNumber)
     {
-        if (is_null($retryOrderAttemptNumber)) {
-            throw new \InvalidArgumentException('non-nullable retryOrderAttemptNumber cannot be null');
-        }
         $this->container['retryOrderAttemptNumber'] = $retryOrderAttemptNumber;
 
         return $this;
@@ -363,9 +357,6 @@ class AdditionalDataRetry implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setRetrySkipRetry($retrySkipRetry)
     {
-        if (is_null($retrySkipRetry)) {
-            throw new \InvalidArgumentException('non-nullable retrySkipRetry cannot be null');
-        }
         $this->container['retrySkipRetry'] = $retrySkipRetry;
 
         return $this;

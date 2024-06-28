@@ -344,7 +344,6 @@ class InstallmentOption implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setMaxValue($maxValue)
     {
-        // Do nothing for nullable integers
         $this->container['maxValue'] = $maxValue;
 
         return $this;
@@ -369,9 +368,6 @@ class InstallmentOption implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setPlans($plans)
     {
-        if (is_null($plans)) {
-            throw new \InvalidArgumentException('non-nullable plans cannot be null');
-        }
         $allowedValues = $this->getPlansAllowableValues();
         if (array_diff($plans, $allowedValues)) {
             throw new \InvalidArgumentException(
@@ -405,7 +401,6 @@ class InstallmentOption implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setPreselectedValue($preselectedValue)
     {
-        // Do nothing for nullable integers
         $this->container['preselectedValue'] = $preselectedValue;
 
         return $this;
@@ -430,9 +425,6 @@ class InstallmentOption implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setValues($values)
     {
-        if (is_null($values)) {
-            throw new \InvalidArgumentException('non-nullable values cannot be null');
-        }
         $this->container['values'] = $values;
 
         return $this;

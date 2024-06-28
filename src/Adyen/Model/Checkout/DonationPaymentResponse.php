@@ -362,9 +362,6 @@ class DonationPaymentResponse implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setAmount($amount)
     {
-        if (is_null($amount)) {
-            throw new \InvalidArgumentException('non-nullable amount cannot be null');
-        }
         $this->container['amount'] = $amount;
 
         return $this;
@@ -389,9 +386,6 @@ class DonationPaymentResponse implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setDonationAccount($donationAccount)
     {
-        if (is_null($donationAccount)) {
-            throw new \InvalidArgumentException('non-nullable donationAccount cannot be null');
-        }
         $this->container['donationAccount'] = $donationAccount;
 
         return $this;
@@ -416,9 +410,6 @@ class DonationPaymentResponse implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -443,9 +434,6 @@ class DonationPaymentResponse implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setMerchantAccount($merchantAccount)
     {
-        if (is_null($merchantAccount)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
-        }
         $this->container['merchantAccount'] = $merchantAccount;
 
         return $this;
@@ -470,9 +458,6 @@ class DonationPaymentResponse implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setPayment($payment)
     {
-        if (is_null($payment)) {
-            throw new \InvalidArgumentException('non-nullable payment cannot be null');
-        }
         $this->container['payment'] = $payment;
 
         return $this;
@@ -497,9 +482,6 @@ class DonationPaymentResponse implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -524,9 +506,6 @@ class DonationPaymentResponse implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(

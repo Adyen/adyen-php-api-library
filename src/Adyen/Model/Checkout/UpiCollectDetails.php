@@ -364,9 +364,6 @@ class UpiCollectDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setBillingSequenceNumber($billingSequenceNumber)
     {
-        if (is_null($billingSequenceNumber)) {
-            throw new \InvalidArgumentException('non-nullable billingSequenceNumber cannot be null');
-        }
         $this->container['billingSequenceNumber'] = $billingSequenceNumber;
 
         return $this;
@@ -391,9 +388,6 @@ class UpiCollectDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setCheckoutAttemptId($checkoutAttemptId)
     {
-        if (is_null($checkoutAttemptId)) {
-            throw new \InvalidArgumentException('non-nullable checkoutAttemptId cannot be null');
-        }
         $this->container['checkoutAttemptId'] = $checkoutAttemptId;
 
         return $this;
@@ -420,9 +414,6 @@ class UpiCollectDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setRecurringDetailReference($recurringDetailReference)
     {
-        if (is_null($recurringDetailReference)) {
-            throw new \InvalidArgumentException('non-nullable recurringDetailReference cannot be null');
-        }
         $this->container['recurringDetailReference'] = $recurringDetailReference;
 
         return $this;
@@ -447,9 +438,6 @@ class UpiCollectDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setShopperNotificationReference($shopperNotificationReference)
     {
-        if (is_null($shopperNotificationReference)) {
-            throw new \InvalidArgumentException('non-nullable shopperNotificationReference cannot be null');
-        }
         $this->container['shopperNotificationReference'] = $shopperNotificationReference;
 
         return $this;
@@ -474,9 +462,6 @@ class UpiCollectDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setStoredPaymentMethodId($storedPaymentMethodId)
     {
-        if (is_null($storedPaymentMethodId)) {
-            throw new \InvalidArgumentException('non-nullable storedPaymentMethodId cannot be null');
-        }
         $this->container['storedPaymentMethodId'] = $storedPaymentMethodId;
 
         return $this;
@@ -501,9 +486,6 @@ class UpiCollectDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -538,9 +520,6 @@ class UpiCollectDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setVirtualPaymentAddress($virtualPaymentAddress)
     {
-        if (is_null($virtualPaymentAddress)) {
-            throw new \InvalidArgumentException('non-nullable virtualPaymentAddress cannot be null');
-        }
         $this->container['virtualPaymentAddress'] = $virtualPaymentAddress;
 
         return $this;

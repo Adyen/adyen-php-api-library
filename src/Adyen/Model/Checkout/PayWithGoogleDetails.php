@@ -49,6 +49,7 @@ class PayWithGoogleDetails implements ModelInterface, ArrayAccess, \JsonSerializ
         'googlePayToken' => 'string',
         'recurringDetailReference' => 'string',
         'storedPaymentMethodId' => 'string',
+        'threeDS2SdkVersion' => 'string',
         'type' => 'string'
     ];
 
@@ -65,6 +66,7 @@ class PayWithGoogleDetails implements ModelInterface, ArrayAccess, \JsonSerializ
         'googlePayToken' => null,
         'recurringDetailReference' => null,
         'storedPaymentMethodId' => null,
+        'threeDS2SdkVersion' => null,
         'type' => null
     ];
 
@@ -79,6 +81,7 @@ class PayWithGoogleDetails implements ModelInterface, ArrayAccess, \JsonSerializ
         'googlePayToken' => false,
         'recurringDetailReference' => false,
         'storedPaymentMethodId' => false,
+        'threeDS2SdkVersion' => false,
         'type' => false
     ];
 
@@ -173,6 +176,7 @@ class PayWithGoogleDetails implements ModelInterface, ArrayAccess, \JsonSerializ
         'googlePayToken' => 'googlePayToken',
         'recurringDetailReference' => 'recurringDetailReference',
         'storedPaymentMethodId' => 'storedPaymentMethodId',
+        'threeDS2SdkVersion' => 'threeDS2SdkVersion',
         'type' => 'type'
     ];
 
@@ -187,6 +191,7 @@ class PayWithGoogleDetails implements ModelInterface, ArrayAccess, \JsonSerializ
         'googlePayToken' => 'setGooglePayToken',
         'recurringDetailReference' => 'setRecurringDetailReference',
         'storedPaymentMethodId' => 'setStoredPaymentMethodId',
+        'threeDS2SdkVersion' => 'setThreeDS2SdkVersion',
         'type' => 'setType'
     ];
 
@@ -201,6 +206,7 @@ class PayWithGoogleDetails implements ModelInterface, ArrayAccess, \JsonSerializ
         'googlePayToken' => 'getGooglePayToken',
         'recurringDetailReference' => 'getRecurringDetailReference',
         'storedPaymentMethodId' => 'getStoredPaymentMethodId',
+        'threeDS2SdkVersion' => 'getThreeDS2SdkVersion',
         'type' => 'getType'
     ];
 
@@ -292,6 +298,7 @@ class PayWithGoogleDetails implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('googlePayToken', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
+        $this->setIfExists('threeDS2SdkVersion', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -377,9 +384,6 @@ class PayWithGoogleDetails implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setCheckoutAttemptId($checkoutAttemptId)
     {
-        if (is_null($checkoutAttemptId)) {
-            throw new \InvalidArgumentException('non-nullable checkoutAttemptId cannot be null');
-        }
         $this->container['checkoutAttemptId'] = $checkoutAttemptId;
 
         return $this;
@@ -404,9 +408,6 @@ class PayWithGoogleDetails implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setFundingSource($fundingSource)
     {
-        if (is_null($fundingSource)) {
-            throw new \InvalidArgumentException('non-nullable fundingSource cannot be null');
-        }
         $allowedValues = $this->getFundingSourceAllowableValues();
         if (!in_array($fundingSource, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -441,9 +442,6 @@ class PayWithGoogleDetails implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setGooglePayToken($googlePayToken)
     {
-        if (is_null($googlePayToken)) {
-            throw new \InvalidArgumentException('non-nullable googlePayToken cannot be null');
-        }
         $this->container['googlePayToken'] = $googlePayToken;
 
         return $this;
@@ -470,9 +468,6 @@ class PayWithGoogleDetails implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setRecurringDetailReference($recurringDetailReference)
     {
-        if (is_null($recurringDetailReference)) {
-            throw new \InvalidArgumentException('non-nullable recurringDetailReference cannot be null');
-        }
         $this->container['recurringDetailReference'] = $recurringDetailReference;
 
         return $this;
@@ -497,10 +492,31 @@ class PayWithGoogleDetails implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setStoredPaymentMethodId($storedPaymentMethodId)
     {
-        if (is_null($storedPaymentMethodId)) {
-            throw new \InvalidArgumentException('non-nullable storedPaymentMethodId cannot be null');
-        }
         $this->container['storedPaymentMethodId'] = $storedPaymentMethodId;
+
+        return $this;
+    }
+
+    /**
+     * Gets threeDS2SdkVersion
+     *
+     * @return string|null
+     */
+    public function getThreeDS2SdkVersion()
+    {
+        return $this->container['threeDS2SdkVersion'];
+    }
+
+    /**
+     * Sets threeDS2SdkVersion
+     *
+     * @param string|null $threeDS2SdkVersion Required for mobile integrations. Version of the 3D Secure 2 mobile SDK.
+     *
+     * @return self
+     */
+    public function setThreeDS2SdkVersion($threeDS2SdkVersion)
+    {
+        $this->container['threeDS2SdkVersion'] = $threeDS2SdkVersion;
 
         return $this;
     }
@@ -524,9 +540,6 @@ class PayWithGoogleDetails implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

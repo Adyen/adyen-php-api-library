@@ -363,9 +363,6 @@ class MasterpassDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setCheckoutAttemptId($checkoutAttemptId)
     {
-        if (is_null($checkoutAttemptId)) {
-            throw new \InvalidArgumentException('non-nullable checkoutAttemptId cannot be null');
-        }
         $this->container['checkoutAttemptId'] = $checkoutAttemptId;
 
         return $this;
@@ -390,9 +387,6 @@ class MasterpassDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setFundingSource($fundingSource)
     {
-        if (is_null($fundingSource)) {
-            throw new \InvalidArgumentException('non-nullable fundingSource cannot be null');
-        }
         $allowedValues = $this->getFundingSourceAllowableValues();
         if (!in_array($fundingSource, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -427,9 +421,6 @@ class MasterpassDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setMasterpassTransactionId($masterpassTransactionId)
     {
-        if (is_null($masterpassTransactionId)) {
-            throw new \InvalidArgumentException('non-nullable masterpassTransactionId cannot be null');
-        }
         $this->container['masterpassTransactionId'] = $masterpassTransactionId;
 
         return $this;
@@ -454,9 +445,6 @@ class MasterpassDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

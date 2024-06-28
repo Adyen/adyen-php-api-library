@@ -318,9 +318,6 @@ class ApplePaySessionRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setDisplayName($displayName)
     {
-        if (is_null($displayName)) {
-            throw new \InvalidArgumentException('non-nullable displayName cannot be null');
-        }
         $this->container['displayName'] = $displayName;
 
         return $this;
@@ -345,9 +342,6 @@ class ApplePaySessionRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setDomainName($domainName)
     {
-        if (is_null($domainName)) {
-            throw new \InvalidArgumentException('non-nullable domainName cannot be null');
-        }
         $this->container['domainName'] = $domainName;
 
         return $this;
@@ -372,9 +366,6 @@ class ApplePaySessionRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setMerchantIdentifier($merchantIdentifier)
     {
-        if (is_null($merchantIdentifier)) {
-            throw new \InvalidArgumentException('non-nullable merchantIdentifier cannot be null');
-        }
         $this->container['merchantIdentifier'] = $merchantIdentifier;
 
         return $this;

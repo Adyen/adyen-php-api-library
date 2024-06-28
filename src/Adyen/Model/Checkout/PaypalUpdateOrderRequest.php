@@ -330,9 +330,6 @@ class PaypalUpdateOrderRequest implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setAmount($amount)
     {
-        if (is_null($amount)) {
-            throw new \InvalidArgumentException('non-nullable amount cannot be null');
-        }
         $this->container['amount'] = $amount;
 
         return $this;
@@ -357,9 +354,6 @@ class PaypalUpdateOrderRequest implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setDeliveryMethods($deliveryMethods)
     {
-        if (is_null($deliveryMethods)) {
-            throw new \InvalidArgumentException('non-nullable deliveryMethods cannot be null');
-        }
         $this->container['deliveryMethods'] = $deliveryMethods;
 
         return $this;
@@ -384,9 +378,6 @@ class PaypalUpdateOrderRequest implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setPaymentData($paymentData)
     {
-        if (is_null($paymentData)) {
-            throw new \InvalidArgumentException('non-nullable paymentData cannot be null');
-        }
         $this->container['paymentData'] = $paymentData;
 
         return $this;
@@ -411,9 +402,6 @@ class PaypalUpdateOrderRequest implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setPspReference($pspReference)
     {
-        if (is_null($pspReference)) {
-            throw new \InvalidArgumentException('non-nullable pspReference cannot be null');
-        }
         $this->container['pspReference'] = $pspReference;
 
         return $this;
@@ -438,9 +426,6 @@ class PaypalUpdateOrderRequest implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setSessionId($sessionId)
     {
-        if (is_null($sessionId)) {
-            throw new \InvalidArgumentException('non-nullable sessionId cannot be null');
-        }
         $this->container['sessionId'] = $sessionId;
 
         return $this;
@@ -465,9 +450,6 @@ class PaypalUpdateOrderRequest implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setTaxTotal($taxTotal)
     {
-        if (is_null($taxTotal)) {
-            throw new \InvalidArgumentException('non-nullable taxTotal cannot be null');
-        }
         $this->container['taxTotal'] = $taxTotal;
 
         return $this;

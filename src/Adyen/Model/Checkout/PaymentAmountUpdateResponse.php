@@ -415,9 +415,6 @@ class PaymentAmountUpdateResponse implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setAmount($amount)
     {
-        if (is_null($amount)) {
-            throw new \InvalidArgumentException('non-nullable amount cannot be null');
-        }
         $this->container['amount'] = $amount;
 
         return $this;
@@ -442,9 +439,6 @@ class PaymentAmountUpdateResponse implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setIndustryUsage($industryUsage)
     {
-        if (is_null($industryUsage)) {
-            throw new \InvalidArgumentException('non-nullable industryUsage cannot be null');
-        }
         $allowedValues = $this->getIndustryUsageAllowableValues();
         if (!in_array($industryUsage, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -479,9 +473,6 @@ class PaymentAmountUpdateResponse implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setLineItems($lineItems)
     {
-        if (is_null($lineItems)) {
-            throw new \InvalidArgumentException('non-nullable lineItems cannot be null');
-        }
         $this->container['lineItems'] = $lineItems;
 
         return $this;
@@ -506,9 +497,6 @@ class PaymentAmountUpdateResponse implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setMerchantAccount($merchantAccount)
     {
-        if (is_null($merchantAccount)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
-        }
         $this->container['merchantAccount'] = $merchantAccount;
 
         return $this;
@@ -533,9 +521,6 @@ class PaymentAmountUpdateResponse implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setPaymentPspReference($paymentPspReference)
     {
-        if (is_null($paymentPspReference)) {
-            throw new \InvalidArgumentException('non-nullable paymentPspReference cannot be null');
-        }
         $this->container['paymentPspReference'] = $paymentPspReference;
 
         return $this;
@@ -560,9 +545,6 @@ class PaymentAmountUpdateResponse implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setPspReference($pspReference)
     {
-        if (is_null($pspReference)) {
-            throw new \InvalidArgumentException('non-nullable pspReference cannot be null');
-        }
         $this->container['pspReference'] = $pspReference;
 
         return $this;
@@ -587,9 +569,6 @@ class PaymentAmountUpdateResponse implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -614,9 +593,6 @@ class PaymentAmountUpdateResponse implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setSplits($splits)
     {
-        if (is_null($splits)) {
-            throw new \InvalidArgumentException('non-nullable splits cannot be null');
-        }
         $this->container['splits'] = $splits;
 
         return $this;
@@ -641,9 +617,6 @@ class PaymentAmountUpdateResponse implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(

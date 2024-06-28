@@ -440,9 +440,6 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAction($action)
     {
-        if (is_null($action)) {
-            throw new \InvalidArgumentException('non-nullable action cannot be null');
-        }
         $this->container['action'] = $action;
 
         return $this;
@@ -467,9 +464,6 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAdditionalData($additionalData)
     {
-        if (is_null($additionalData)) {
-            throw new \InvalidArgumentException('non-nullable additionalData cannot be null');
-        }
         $this->container['additionalData'] = $additionalData;
 
         return $this;
@@ -494,9 +488,6 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAmount($amount)
     {
-        if (is_null($amount)) {
-            throw new \InvalidArgumentException('non-nullable amount cannot be null');
-        }
         $this->container['amount'] = $amount;
 
         return $this;
@@ -521,9 +512,6 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDonationToken($donationToken)
     {
-        if (is_null($donationToken)) {
-            throw new \InvalidArgumentException('non-nullable donationToken cannot be null');
-        }
         $this->container['donationToken'] = $donationToken;
 
         return $this;
@@ -548,9 +536,6 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFraudResult($fraudResult)
     {
-        if (is_null($fraudResult)) {
-            throw new \InvalidArgumentException('non-nullable fraudResult cannot be null');
-        }
         $this->container['fraudResult'] = $fraudResult;
 
         return $this;
@@ -575,9 +560,6 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMerchantReference($merchantReference)
     {
-        if (is_null($merchantReference)) {
-            throw new \InvalidArgumentException('non-nullable merchantReference cannot be null');
-        }
         $this->container['merchantReference'] = $merchantReference;
 
         return $this;
@@ -602,9 +584,6 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setOrder($order)
     {
-        if (is_null($order)) {
-            throw new \InvalidArgumentException('non-nullable order cannot be null');
-        }
         $this->container['order'] = $order;
 
         return $this;
@@ -629,9 +608,6 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPaymentMethod($paymentMethod)
     {
-        if (is_null($paymentMethod)) {
-            throw new \InvalidArgumentException('non-nullable paymentMethod cannot be null');
-        }
         $this->container['paymentMethod'] = $paymentMethod;
 
         return $this;
@@ -656,9 +632,6 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPspReference($pspReference)
     {
-        if (is_null($pspReference)) {
-            throw new \InvalidArgumentException('non-nullable pspReference cannot be null');
-        }
         $this->container['pspReference'] = $pspReference;
 
         return $this;
@@ -683,9 +656,6 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRefusalReason($refusalReason)
     {
-        if (is_null($refusalReason)) {
-            throw new \InvalidArgumentException('non-nullable refusalReason cannot be null');
-        }
         $this->container['refusalReason'] = $refusalReason;
 
         return $this;
@@ -710,9 +680,6 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRefusalReasonCode($refusalReasonCode)
     {
-        if (is_null($refusalReasonCode)) {
-            throw new \InvalidArgumentException('non-nullable refusalReasonCode cannot be null');
-        }
         $this->container['refusalReasonCode'] = $refusalReasonCode;
 
         return $this;
@@ -737,9 +704,6 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setResultCode($resultCode)
     {
-        if (is_null($resultCode)) {
-            throw new \InvalidArgumentException('non-nullable resultCode cannot be null');
-        }
         $allowedValues = $this->getResultCodeAllowableValues();
         if (!in_array($resultCode, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -774,9 +738,6 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setThreeDS2ResponseData($threeDS2ResponseData)
     {
-        if (is_null($threeDS2ResponseData)) {
-            throw new \InvalidArgumentException('non-nullable threeDS2ResponseData cannot be null');
-        }
         $this->container['threeDS2ResponseData'] = $threeDS2ResponseData;
 
         return $this;
@@ -801,9 +762,6 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setThreeDS2Result($threeDS2Result)
     {
-        if (is_null($threeDS2Result)) {
-            throw new \InvalidArgumentException('non-nullable threeDS2Result cannot be null');
-        }
         $this->container['threeDS2Result'] = $threeDS2Result;
 
         return $this;
@@ -828,9 +786,6 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setThreeDSPaymentData($threeDSPaymentData)
     {
-        if (is_null($threeDSPaymentData)) {
-            throw new \InvalidArgumentException('non-nullable threeDSPaymentData cannot be null');
-        }
         $this->container['threeDSPaymentData'] = $threeDSPaymentData;
 
         return $this;

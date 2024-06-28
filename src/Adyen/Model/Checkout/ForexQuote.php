@@ -378,9 +378,6 @@ class ForexQuote implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAccount($account)
     {
-        if (is_null($account)) {
-            throw new \InvalidArgumentException('non-nullable account cannot be null');
-        }
         $this->container['account'] = $account;
 
         return $this;
@@ -405,9 +402,6 @@ class ForexQuote implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAccountType($accountType)
     {
-        if (is_null($accountType)) {
-            throw new \InvalidArgumentException('non-nullable accountType cannot be null');
-        }
         $this->container['accountType'] = $accountType;
 
         return $this;
@@ -432,9 +426,6 @@ class ForexQuote implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBaseAmount($baseAmount)
     {
-        if (is_null($baseAmount)) {
-            throw new \InvalidArgumentException('non-nullable baseAmount cannot be null');
-        }
         $this->container['baseAmount'] = $baseAmount;
 
         return $this;
@@ -459,7 +450,6 @@ class ForexQuote implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBasePoints($basePoints)
     {
-        // Do nothing for nullable integers
         $this->container['basePoints'] = $basePoints;
 
         return $this;
@@ -484,9 +474,6 @@ class ForexQuote implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBuy($buy)
     {
-        if (is_null($buy)) {
-            throw new \InvalidArgumentException('non-nullable buy cannot be null');
-        }
         $this->container['buy'] = $buy;
 
         return $this;
@@ -511,9 +498,6 @@ class ForexQuote implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setInterbank($interbank)
     {
-        if (is_null($interbank)) {
-            throw new \InvalidArgumentException('non-nullable interbank cannot be null');
-        }
         $this->container['interbank'] = $interbank;
 
         return $this;
@@ -538,9 +522,6 @@ class ForexQuote implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -565,9 +546,6 @@ class ForexQuote implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSell($sell)
     {
-        if (is_null($sell)) {
-            throw new \InvalidArgumentException('non-nullable sell cannot be null');
-        }
         $this->container['sell'] = $sell;
 
         return $this;
@@ -592,9 +570,6 @@ class ForexQuote implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSignature($signature)
     {
-        if (is_null($signature)) {
-            throw new \InvalidArgumentException('non-nullable signature cannot be null');
-        }
         $this->container['signature'] = $signature;
 
         return $this;
@@ -619,9 +594,6 @@ class ForexQuote implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSource($source)
     {
-        if (is_null($source)) {
-            throw new \InvalidArgumentException('non-nullable source cannot be null');
-        }
         $this->container['source'] = $source;
 
         return $this;
@@ -646,9 +618,6 @@ class ForexQuote implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $this->container['type'] = $type;
 
         return $this;
@@ -673,9 +642,6 @@ class ForexQuote implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setValidTill($validTill)
     {
-        if (is_null($validTill)) {
-            throw new \InvalidArgumentException('non-nullable validTill cannot be null');
-        }
         $this->container['validTill'] = $validTill;
 
         return $this;
