@@ -322,9 +322,6 @@ class SplitConfiguration implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -349,9 +346,6 @@ class SplitConfiguration implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setRules($rules)
     {
-        if (is_null($rules)) {
-            throw new \InvalidArgumentException('non-nullable rules cannot be null');
-        }
         $this->container['rules'] = $rules;
 
         return $this;
@@ -376,9 +370,6 @@ class SplitConfiguration implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setSplitConfigurationId($splitConfigurationId)
     {
-        if (is_null($splitConfigurationId)) {
-            throw new \InvalidArgumentException('non-nullable splitConfigurationId cannot be null');
-        }
         $this->container['splitConfigurationId'] = $splitConfigurationId;
 
         return $this;
@@ -403,9 +394,6 @@ class SplitConfiguration implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setStores($stores)
     {
-        if (is_null($stores)) {
-            throw new \InvalidArgumentException('non-nullable stores cannot be null');
-        }
         $this->container['stores'] = $stores;
 
         return $this;

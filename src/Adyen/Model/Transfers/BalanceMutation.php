@@ -316,9 +316,6 @@ class BalanceMutation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBalance($balance)
     {
-        if (is_null($balance)) {
-            throw new \InvalidArgumentException('non-nullable balance cannot be null');
-        }
         $this->container['balance'] = $balance;
 
         return $this;
@@ -343,9 +340,6 @@ class BalanceMutation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCurrency($currency)
     {
-        if (is_null($currency)) {
-            throw new \InvalidArgumentException('non-nullable currency cannot be null');
-        }
         $this->container['currency'] = $currency;
 
         return $this;
@@ -370,9 +364,6 @@ class BalanceMutation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setReceived($received)
     {
-        if (is_null($received)) {
-            throw new \InvalidArgumentException('non-nullable received cannot be null');
-        }
         $this->container['received'] = $received;
 
         return $this;
@@ -397,9 +388,6 @@ class BalanceMutation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setReserved($reserved)
     {
-        if (is_null($reserved)) {
-            throw new \InvalidArgumentException('non-nullable reserved cannot be null');
-        }
         $this->container['reserved'] = $reserved;
 
         return $this;

@@ -357,9 +357,6 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -386,9 +383,6 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setErrorCode($errorCode)
     {
-        if (is_null($errorCode)) {
-            throw new \InvalidArgumentException('non-nullable errorCode cannot be null');
-        }
         $this->container['errorCode'] = $errorCode;
 
         return $this;
@@ -413,9 +407,6 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setErrors($errors)
     {
-        if (is_null($errors)) {
-            throw new \InvalidArgumentException('non-nullable errors cannot be null');
-        }
         $this->container['errors'] = $errors;
 
         return $this;
@@ -440,9 +431,6 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -467,9 +455,6 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLabel($label)
     {
-        if (is_null($label)) {
-            throw new \InvalidArgumentException('non-nullable label cannot be null');
-        }
         $this->container['label'] = $label;
 
         return $this;
@@ -494,9 +479,6 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPackageName($packageName)
     {
-        if (is_null($packageName)) {
-            throw new \InvalidArgumentException('non-nullable packageName cannot be null');
-        }
         $this->container['packageName'] = $packageName;
 
         return $this;
@@ -521,9 +503,6 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $this->container['status'] = $status;
 
         return $this;
@@ -548,7 +527,6 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setVersionCode($versionCode)
     {
-        // Do nothing for nullable integers
         $this->container['versionCode'] = $versionCode;
 
         return $this;
@@ -573,9 +551,6 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setVersionName($versionName)
     {
-        if (is_null($versionName)) {
-            throw new \InvalidArgumentException('non-nullable versionName cannot be null');
-        }
         $this->container['versionName'] = $versionName;
 
         return $this;

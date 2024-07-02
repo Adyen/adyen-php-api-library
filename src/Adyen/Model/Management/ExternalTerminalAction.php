@@ -344,9 +344,6 @@ class ExternalTerminalAction implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setActionType($actionType)
     {
-        if (is_null($actionType)) {
-            throw new \InvalidArgumentException('non-nullable actionType cannot be null');
-        }
         $this->container['actionType'] = $actionType;
 
         return $this;
@@ -371,9 +368,6 @@ class ExternalTerminalAction implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setConfig($config)
     {
-        if (is_null($config)) {
-            throw new \InvalidArgumentException('non-nullable config cannot be null');
-        }
         $this->container['config'] = $config;
 
         return $this;
@@ -398,9 +392,6 @@ class ExternalTerminalAction implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setConfirmedAt($confirmedAt)
     {
-        if (is_null($confirmedAt)) {
-            throw new \InvalidArgumentException('non-nullable confirmedAt cannot be null');
-        }
         $this->container['confirmedAt'] = $confirmedAt;
 
         return $this;
@@ -425,9 +416,6 @@ class ExternalTerminalAction implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -452,9 +440,6 @@ class ExternalTerminalAction implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setResult($result)
     {
-        if (is_null($result)) {
-            throw new \InvalidArgumentException('non-nullable result cannot be null');
-        }
         $this->container['result'] = $result;
 
         return $this;
@@ -479,9 +464,6 @@ class ExternalTerminalAction implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setScheduledAt($scheduledAt)
     {
-        if (is_null($scheduledAt)) {
-            throw new \InvalidArgumentException('non-nullable scheduledAt cannot be null');
-        }
         $this->container['scheduledAt'] = $scheduledAt;
 
         return $this;
@@ -506,9 +488,6 @@ class ExternalTerminalAction implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $this->container['status'] = $status;
 
         return $this;
@@ -533,9 +512,6 @@ class ExternalTerminalAction implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setTerminalId($terminalId)
     {
-        if (is_null($terminalId)) {
-            throw new \InvalidArgumentException('non-nullable terminalId cannot be null');
-        }
         $this->container['terminalId'] = $terminalId;
 
         return $this;

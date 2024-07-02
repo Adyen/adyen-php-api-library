@@ -319,9 +319,6 @@ class MerchantAccount implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setInStoreTerminals($inStoreTerminals)
     {
-        if (is_null($inStoreTerminals)) {
-            throw new \InvalidArgumentException('non-nullable inStoreTerminals cannot be null');
-        }
         $this->container['inStoreTerminals'] = $inStoreTerminals;
 
         return $this;
@@ -346,9 +343,6 @@ class MerchantAccount implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setInventoryTerminals($inventoryTerminals)
     {
-        if (is_null($inventoryTerminals)) {
-            throw new \InvalidArgumentException('non-nullable inventoryTerminals cannot be null');
-        }
         $this->container['inventoryTerminals'] = $inventoryTerminals;
 
         return $this;
@@ -373,9 +367,6 @@ class MerchantAccount implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMerchantAccount($merchantAccount)
     {
-        if (is_null($merchantAccount)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
-        }
         $this->container['merchantAccount'] = $merchantAccount;
 
         return $this;
@@ -400,9 +391,6 @@ class MerchantAccount implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStores($stores)
     {
-        if (is_null($stores)) {
-            throw new \InvalidArgumentException('non-nullable stores cannot be null');
-        }
         $this->container['stores'] = $stores;
 
         return $this;

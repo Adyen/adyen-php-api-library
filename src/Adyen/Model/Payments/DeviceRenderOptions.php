@@ -347,9 +347,6 @@ class DeviceRenderOptions implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setSdkInterface($sdkInterface)
     {
-        if (is_null($sdkInterface)) {
-            throw new \InvalidArgumentException('non-nullable sdkInterface cannot be null');
-        }
         $allowedValues = $this->getSdkInterfaceAllowableValues();
         if (!in_array($sdkInterface, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -384,9 +381,6 @@ class DeviceRenderOptions implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setSdkUiType($sdkUiType)
     {
-        if (is_null($sdkUiType)) {
-            throw new \InvalidArgumentException('non-nullable sdkUiType cannot be null');
-        }
         $allowedValues = $this->getSdkUiTypeAllowableValues();
         if (array_diff($sdkUiType, $allowedValues)) {
             throw new \InvalidArgumentException(

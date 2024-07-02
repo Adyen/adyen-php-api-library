@@ -336,9 +336,6 @@ class PhoneNumber implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPhoneCountryCode($phoneCountryCode)
     {
-        if (is_null($phoneCountryCode)) {
-            throw new \InvalidArgumentException('non-nullable phoneCountryCode cannot be null');
-        }
         $this->container['phoneCountryCode'] = $phoneCountryCode;
 
         return $this;
@@ -363,9 +360,6 @@ class PhoneNumber implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPhoneNumber($phoneNumber)
     {
-        if (is_null($phoneNumber)) {
-            throw new \InvalidArgumentException('non-nullable phoneNumber cannot be null');
-        }
         $this->container['phoneNumber'] = $phoneNumber;
 
         return $this;
@@ -390,9 +384,6 @@ class PhoneNumber implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPhoneType($phoneType)
     {
-        if (is_null($phoneType)) {
-            throw new \InvalidArgumentException('non-nullable phoneType cannot be null');
-        }
         $allowedValues = $this->getPhoneTypeAllowableValues();
         if (!in_array($phoneType, $allowedValues, true)) {
             throw new \InvalidArgumentException(

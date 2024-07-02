@@ -442,9 +442,6 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCardholderReceipt($cardholderReceipt)
     {
-        if (is_null($cardholderReceipt)) {
-            throw new \InvalidArgumentException('non-nullable cardholderReceipt cannot be null');
-        }
         $this->container['cardholderReceipt'] = $cardholderReceipt;
 
         return $this;
@@ -469,9 +466,6 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setConnectivity($connectivity)
     {
-        if (is_null($connectivity)) {
-            throw new \InvalidArgumentException('non-nullable connectivity cannot be null');
-        }
         $this->container['connectivity'] = $connectivity;
 
         return $this;
@@ -530,9 +524,6 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setHardware($hardware)
     {
-        if (is_null($hardware)) {
-            throw new \InvalidArgumentException('non-nullable hardware cannot be null');
-        }
         $this->container['hardware'] = $hardware;
 
         return $this;
@@ -557,9 +548,6 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLocalization($localization)
     {
-        if (is_null($localization)) {
-            throw new \InvalidArgumentException('non-nullable localization cannot be null');
-        }
         $this->container['localization'] = $localization;
 
         return $this;
@@ -584,9 +572,6 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setNexo($nexo)
     {
-        if (is_null($nexo)) {
-            throw new \InvalidArgumentException('non-nullable nexo cannot be null');
-        }
         $this->container['nexo'] = $nexo;
 
         return $this;
@@ -611,9 +596,6 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setOfflineProcessing($offlineProcessing)
     {
-        if (is_null($offlineProcessing)) {
-            throw new \InvalidArgumentException('non-nullable offlineProcessing cannot be null');
-        }
         $this->container['offlineProcessing'] = $offlineProcessing;
 
         return $this;
@@ -638,9 +620,6 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setOpi($opi)
     {
-        if (is_null($opi)) {
-            throw new \InvalidArgumentException('non-nullable opi cannot be null');
-        }
         $this->container['opi'] = $opi;
 
         return $this;
@@ -665,9 +644,6 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPasscodes($passcodes)
     {
-        if (is_null($passcodes)) {
-            throw new \InvalidArgumentException('non-nullable passcodes cannot be null');
-        }
         $this->container['passcodes'] = $passcodes;
 
         return $this;
@@ -692,9 +668,6 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPayAtTable($payAtTable)
     {
-        if (is_null($payAtTable)) {
-            throw new \InvalidArgumentException('non-nullable payAtTable cannot be null');
-        }
         $this->container['payAtTable'] = $payAtTable;
 
         return $this;
@@ -719,9 +692,6 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPayment($payment)
     {
-        if (is_null($payment)) {
-            throw new \InvalidArgumentException('non-nullable payment cannot be null');
-        }
         $this->container['payment'] = $payment;
 
         return $this;
@@ -746,9 +716,6 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setReceiptOptions($receiptOptions)
     {
-        if (is_null($receiptOptions)) {
-            throw new \InvalidArgumentException('non-nullable receiptOptions cannot be null');
-        }
         $this->container['receiptOptions'] = $receiptOptions;
 
         return $this;
@@ -773,9 +740,6 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setReceiptPrinting($receiptPrinting)
     {
-        if (is_null($receiptPrinting)) {
-            throw new \InvalidArgumentException('non-nullable receiptPrinting cannot be null');
-        }
         $this->container['receiptPrinting'] = $receiptPrinting;
 
         return $this;
@@ -800,9 +764,6 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRefunds($refunds)
     {
-        if (is_null($refunds)) {
-            throw new \InvalidArgumentException('non-nullable refunds cannot be null');
-        }
         $this->container['refunds'] = $refunds;
 
         return $this;
@@ -827,9 +788,6 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSignature($signature)
     {
-        if (is_null($signature)) {
-            throw new \InvalidArgumentException('non-nullable signature cannot be null');
-        }
         $this->container['signature'] = $signature;
 
         return $this;
@@ -854,9 +812,6 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStandalone($standalone)
     {
-        if (is_null($standalone)) {
-            throw new \InvalidArgumentException('non-nullable standalone cannot be null');
-        }
         $this->container['standalone'] = $standalone;
 
         return $this;
@@ -881,9 +836,6 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStoreAndForward($storeAndForward)
     {
-        if (is_null($storeAndForward)) {
-            throw new \InvalidArgumentException('non-nullable storeAndForward cannot be null');
-        }
         $this->container['storeAndForward'] = $storeAndForward;
 
         return $this;
@@ -908,9 +860,6 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSurcharge($surcharge)
     {
-        if (is_null($surcharge)) {
-            throw new \InvalidArgumentException('non-nullable surcharge cannot be null');
-        }
         $this->container['surcharge'] = $surcharge;
 
         return $this;
@@ -935,9 +884,6 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTapToPay($tapToPay)
     {
-        if (is_null($tapToPay)) {
-            throw new \InvalidArgumentException('non-nullable tapToPay cannot be null');
-        }
         $this->container['tapToPay'] = $tapToPay;
 
         return $this;
@@ -962,9 +908,6 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTerminalInstructions($terminalInstructions)
     {
-        if (is_null($terminalInstructions)) {
-            throw new \InvalidArgumentException('non-nullable terminalInstructions cannot be null');
-        }
         $this->container['terminalInstructions'] = $terminalInstructions;
 
         return $this;
@@ -989,9 +932,6 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTimeouts($timeouts)
     {
-        if (is_null($timeouts)) {
-            throw new \InvalidArgumentException('non-nullable timeouts cannot be null');
-        }
         $this->container['timeouts'] = $timeouts;
 
         return $this;
@@ -1016,9 +956,6 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setWifiProfiles($wifiProfiles)
     {
-        if (is_null($wifiProfiles)) {
-            throw new \InvalidArgumentException('non-nullable wifiProfiles cannot be null');
-        }
         $this->container['wifiProfiles'] = $wifiProfiles;
 
         return $this;

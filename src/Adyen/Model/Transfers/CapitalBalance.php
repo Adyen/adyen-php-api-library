@@ -328,9 +328,6 @@ class CapitalBalance implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCurrency($currency)
     {
-        if (is_null($currency)) {
-            throw new \InvalidArgumentException('non-nullable currency cannot be null');
-        }
         $this->container['currency'] = $currency;
 
         return $this;
@@ -355,9 +352,6 @@ class CapitalBalance implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFee($fee)
     {
-        if (is_null($fee)) {
-            throw new \InvalidArgumentException('non-nullable fee cannot be null');
-        }
         $this->container['fee'] = $fee;
 
         return $this;
@@ -382,9 +376,6 @@ class CapitalBalance implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPrincipal($principal)
     {
-        if (is_null($principal)) {
-            throw new \InvalidArgumentException('non-nullable principal cannot be null');
-        }
         $this->container['principal'] = $principal;
 
         return $this;
@@ -409,9 +400,6 @@ class CapitalBalance implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTotal($total)
     {
-        if (is_null($total)) {
-            throw new \InvalidArgumentException('non-nullable total cannot be null');
-        }
         $this->container['total'] = $total;
 
         return $this;

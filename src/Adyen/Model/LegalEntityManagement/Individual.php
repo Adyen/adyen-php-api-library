@@ -357,9 +357,6 @@ class Individual implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBirthData($birthData)
     {
-        if (is_null($birthData)) {
-            throw new \InvalidArgumentException('non-nullable birthData cannot be null');
-        }
         $this->container['birthData'] = $birthData;
 
         return $this;
@@ -384,9 +381,6 @@ class Individual implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEmail($email)
     {
-        if (is_null($email)) {
-            throw new \InvalidArgumentException('non-nullable email cannot be null');
-        }
         $this->container['email'] = $email;
 
         return $this;
@@ -411,9 +405,6 @@ class Individual implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setIdentificationData($identificationData)
     {
-        if (is_null($identificationData)) {
-            throw new \InvalidArgumentException('non-nullable identificationData cannot be null');
-        }
         $this->container['identificationData'] = $identificationData;
 
         return $this;
@@ -438,9 +429,6 @@ class Individual implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setName($name)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
         $this->container['name'] = $name;
 
         return $this;
@@ -465,9 +453,6 @@ class Individual implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setNationality($nationality)
     {
-        if (is_null($nationality)) {
-            throw new \InvalidArgumentException('non-nullable nationality cannot be null');
-        }
         $this->container['nationality'] = $nationality;
 
         return $this;
@@ -492,9 +477,6 @@ class Individual implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPhone($phone)
     {
-        if (is_null($phone)) {
-            throw new \InvalidArgumentException('non-nullable phone cannot be null');
-        }
         $this->container['phone'] = $phone;
 
         return $this;
@@ -519,9 +501,6 @@ class Individual implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setResidentialAddress($residentialAddress)
     {
-        if (is_null($residentialAddress)) {
-            throw new \InvalidArgumentException('non-nullable residentialAddress cannot be null');
-        }
         $this->container['residentialAddress'] = $residentialAddress;
 
         return $this;
@@ -546,9 +525,6 @@ class Individual implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTaxInformation($taxInformation)
     {
-        if (is_null($taxInformation)) {
-            throw new \InvalidArgumentException('non-nullable taxInformation cannot be null');
-        }
         $this->container['taxInformation'] = $taxInformation;
 
         return $this;
@@ -573,9 +549,6 @@ class Individual implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setWebData($webData)
     {
-        if (is_null($webData)) {
-            throw new \InvalidArgumentException('non-nullable webData cannot be null');
-        }
         $this->container['webData'] = $webData;
 
         return $this;

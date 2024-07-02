@@ -302,9 +302,6 @@ class Surcharge implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAskConfirmation($askConfirmation)
     {
-        if (is_null($askConfirmation)) {
-            throw new \InvalidArgumentException('non-nullable askConfirmation cannot be null');
-        }
         $this->container['askConfirmation'] = $askConfirmation;
 
         return $this;
@@ -329,9 +326,6 @@ class Surcharge implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setConfigurations($configurations)
     {
-        if (is_null($configurations)) {
-            throw new \InvalidArgumentException('non-nullable configurations cannot be null');
-        }
         $this->container['configurations'] = $configurations;
 
         return $this;

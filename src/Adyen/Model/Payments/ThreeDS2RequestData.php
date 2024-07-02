@@ -728,9 +728,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setAcctInfo($acctInfo)
     {
-        if (is_null($acctInfo)) {
-            throw new \InvalidArgumentException('non-nullable acctInfo cannot be null');
-        }
         $this->container['acctInfo'] = $acctInfo;
 
         return $this;
@@ -755,9 +752,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setAcctType($acctType)
     {
-        if (is_null($acctType)) {
-            throw new \InvalidArgumentException('non-nullable acctType cannot be null');
-        }
         $allowedValues = $this->getAcctTypeAllowableValues();
         if (!in_array($acctType, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -792,9 +786,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setAcquirerBIN($acquirerBIN)
     {
-        if (is_null($acquirerBIN)) {
-            throw new \InvalidArgumentException('non-nullable acquirerBIN cannot be null');
-        }
         $this->container['acquirerBIN'] = $acquirerBIN;
 
         return $this;
@@ -819,9 +810,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setAcquirerMerchantID($acquirerMerchantID)
     {
-        if (is_null($acquirerMerchantID)) {
-            throw new \InvalidArgumentException('non-nullable acquirerMerchantID cannot be null');
-        }
         $this->container['acquirerMerchantID'] = $acquirerMerchantID;
 
         return $this;
@@ -846,9 +834,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setAddrMatch($addrMatch)
     {
-        if (is_null($addrMatch)) {
-            throw new \InvalidArgumentException('non-nullable addrMatch cannot be null');
-        }
         $allowedValues = $this->getAddrMatchAllowableValues();
         if (!in_array($addrMatch, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -885,9 +870,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setAuthenticationOnly($authenticationOnly)
     {
-        if (is_null($authenticationOnly)) {
-            throw new \InvalidArgumentException('non-nullable authenticationOnly cannot be null');
-        }
         $this->container['authenticationOnly'] = $authenticationOnly;
 
         return $this;
@@ -914,9 +896,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setChallengeIndicator($challengeIndicator)
     {
-        if (is_null($challengeIndicator)) {
-            throw new \InvalidArgumentException('non-nullable challengeIndicator cannot be null');
-        }
         $allowedValues = $this->getChallengeIndicatorAllowableValues();
         if (!in_array($challengeIndicator, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -951,9 +930,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setDeviceChannel($deviceChannel)
     {
-        if (is_null($deviceChannel)) {
-            throw new \InvalidArgumentException('non-nullable deviceChannel cannot be null');
-        }
         $this->container['deviceChannel'] = $deviceChannel;
 
         return $this;
@@ -978,9 +954,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setDeviceRenderOptions($deviceRenderOptions)
     {
-        if (is_null($deviceRenderOptions)) {
-            throw new \InvalidArgumentException('non-nullable deviceRenderOptions cannot be null');
-        }
         $this->container['deviceRenderOptions'] = $deviceRenderOptions;
 
         return $this;
@@ -1005,9 +978,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setHomePhone($homePhone)
     {
-        if (is_null($homePhone)) {
-            throw new \InvalidArgumentException('non-nullable homePhone cannot be null');
-        }
         $this->container['homePhone'] = $homePhone;
 
         return $this;
@@ -1032,9 +1002,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setMcc($mcc)
     {
-        if (is_null($mcc)) {
-            throw new \InvalidArgumentException('non-nullable mcc cannot be null');
-        }
         $this->container['mcc'] = $mcc;
 
         return $this;
@@ -1059,9 +1026,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setMerchantName($merchantName)
     {
-        if (is_null($merchantName)) {
-            throw new \InvalidArgumentException('non-nullable merchantName cannot be null');
-        }
         $this->container['merchantName'] = $merchantName;
 
         return $this;
@@ -1086,9 +1050,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setMessageVersion($messageVersion)
     {
-        if (is_null($messageVersion)) {
-            throw new \InvalidArgumentException('non-nullable messageVersion cannot be null');
-        }
         $this->container['messageVersion'] = $messageVersion;
 
         return $this;
@@ -1113,9 +1074,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setMobilePhone($mobilePhone)
     {
-        if (is_null($mobilePhone)) {
-            throw new \InvalidArgumentException('non-nullable mobilePhone cannot be null');
-        }
         $this->container['mobilePhone'] = $mobilePhone;
 
         return $this;
@@ -1140,9 +1098,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setNotificationURL($notificationURL)
     {
-        if (is_null($notificationURL)) {
-            throw new \InvalidArgumentException('non-nullable notificationURL cannot be null');
-        }
         $this->container['notificationURL'] = $notificationURL;
 
         return $this;
@@ -1167,9 +1122,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setPayTokenInd($payTokenInd)
     {
-        if (is_null($payTokenInd)) {
-            throw new \InvalidArgumentException('non-nullable payTokenInd cannot be null');
-        }
         $this->container['payTokenInd'] = $payTokenInd;
 
         return $this;
@@ -1194,9 +1146,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setPaymentAuthenticationUseCase($paymentAuthenticationUseCase)
     {
-        if (is_null($paymentAuthenticationUseCase)) {
-            throw new \InvalidArgumentException('non-nullable paymentAuthenticationUseCase cannot be null');
-        }
         $this->container['paymentAuthenticationUseCase'] = $paymentAuthenticationUseCase;
 
         return $this;
@@ -1221,9 +1170,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setPurchaseInstalData($purchaseInstalData)
     {
-        if (is_null($purchaseInstalData)) {
-            throw new \InvalidArgumentException('non-nullable purchaseInstalData cannot be null');
-        }
         $this->container['purchaseInstalData'] = $purchaseInstalData;
 
         return $this;
@@ -1248,9 +1194,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setRecurringExpiry($recurringExpiry)
     {
-        if (is_null($recurringExpiry)) {
-            throw new \InvalidArgumentException('non-nullable recurringExpiry cannot be null');
-        }
         $this->container['recurringExpiry'] = $recurringExpiry;
 
         return $this;
@@ -1275,9 +1218,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setRecurringFrequency($recurringFrequency)
     {
-        if (is_null($recurringFrequency)) {
-            throw new \InvalidArgumentException('non-nullable recurringFrequency cannot be null');
-        }
         $this->container['recurringFrequency'] = $recurringFrequency;
 
         return $this;
@@ -1302,9 +1242,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setSdkAppID($sdkAppID)
     {
-        if (is_null($sdkAppID)) {
-            throw new \InvalidArgumentException('non-nullable sdkAppID cannot be null');
-        }
         $this->container['sdkAppID'] = $sdkAppID;
 
         return $this;
@@ -1329,9 +1266,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setSdkEncData($sdkEncData)
     {
-        if (is_null($sdkEncData)) {
-            throw new \InvalidArgumentException('non-nullable sdkEncData cannot be null');
-        }
         $this->container['sdkEncData'] = $sdkEncData;
 
         return $this;
@@ -1356,9 +1290,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setSdkEphemPubKey($sdkEphemPubKey)
     {
-        if (is_null($sdkEphemPubKey)) {
-            throw new \InvalidArgumentException('non-nullable sdkEphemPubKey cannot be null');
-        }
         $this->container['sdkEphemPubKey'] = $sdkEphemPubKey;
 
         return $this;
@@ -1383,7 +1314,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setSdkMaxTimeout($sdkMaxTimeout)
     {
-        // Do nothing for nullable integers
         $this->container['sdkMaxTimeout'] = $sdkMaxTimeout;
 
         return $this;
@@ -1408,9 +1338,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setSdkReferenceNumber($sdkReferenceNumber)
     {
-        if (is_null($sdkReferenceNumber)) {
-            throw new \InvalidArgumentException('non-nullable sdkReferenceNumber cannot be null');
-        }
         $this->container['sdkReferenceNumber'] = $sdkReferenceNumber;
 
         return $this;
@@ -1435,9 +1362,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setSdkTransID($sdkTransID)
     {
-        if (is_null($sdkTransID)) {
-            throw new \InvalidArgumentException('non-nullable sdkTransID cannot be null');
-        }
         $this->container['sdkTransID'] = $sdkTransID;
 
         return $this;
@@ -1462,9 +1386,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setSdkVersion($sdkVersion)
     {
-        if (is_null($sdkVersion)) {
-            throw new \InvalidArgumentException('non-nullable sdkVersion cannot be null');
-        }
         $this->container['sdkVersion'] = $sdkVersion;
 
         return $this;
@@ -1489,9 +1410,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setThreeDSCompInd($threeDSCompInd)
     {
-        if (is_null($threeDSCompInd)) {
-            throw new \InvalidArgumentException('non-nullable threeDSCompInd cannot be null');
-        }
         $this->container['threeDSCompInd'] = $threeDSCompInd;
 
         return $this;
@@ -1516,9 +1434,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setThreeDSRequestorAuthenticationInd($threeDSRequestorAuthenticationInd)
     {
-        if (is_null($threeDSRequestorAuthenticationInd)) {
-            throw new \InvalidArgumentException('non-nullable threeDSRequestorAuthenticationInd cannot be null');
-        }
         $this->container['threeDSRequestorAuthenticationInd'] = $threeDSRequestorAuthenticationInd;
 
         return $this;
@@ -1543,9 +1458,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setThreeDSRequestorAuthenticationInfo($threeDSRequestorAuthenticationInfo)
     {
-        if (is_null($threeDSRequestorAuthenticationInfo)) {
-            throw new \InvalidArgumentException('non-nullable threeDSRequestorAuthenticationInfo cannot be null');
-        }
         $this->container['threeDSRequestorAuthenticationInfo'] = $threeDSRequestorAuthenticationInfo;
 
         return $this;
@@ -1570,9 +1482,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setThreeDSRequestorChallengeInd($threeDSRequestorChallengeInd)
     {
-        if (is_null($threeDSRequestorChallengeInd)) {
-            throw new \InvalidArgumentException('non-nullable threeDSRequestorChallengeInd cannot be null');
-        }
         $allowedValues = $this->getThreeDSRequestorChallengeIndAllowableValues();
         if (!in_array($threeDSRequestorChallengeInd, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -1607,9 +1516,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setThreeDSRequestorID($threeDSRequestorID)
     {
-        if (is_null($threeDSRequestorID)) {
-            throw new \InvalidArgumentException('non-nullable threeDSRequestorID cannot be null');
-        }
         $this->container['threeDSRequestorID'] = $threeDSRequestorID;
 
         return $this;
@@ -1634,9 +1540,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setThreeDSRequestorName($threeDSRequestorName)
     {
-        if (is_null($threeDSRequestorName)) {
-            throw new \InvalidArgumentException('non-nullable threeDSRequestorName cannot be null');
-        }
         $this->container['threeDSRequestorName'] = $threeDSRequestorName;
 
         return $this;
@@ -1661,9 +1564,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setThreeDSRequestorPriorAuthenticationInfo($threeDSRequestorPriorAuthenticationInfo)
     {
-        if (is_null($threeDSRequestorPriorAuthenticationInfo)) {
-            throw new \InvalidArgumentException('non-nullable threeDSRequestorPriorAuthenticationInfo cannot be null');
-        }
         $this->container['threeDSRequestorPriorAuthenticationInfo'] = $threeDSRequestorPriorAuthenticationInfo;
 
         return $this;
@@ -1688,9 +1588,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setThreeDSRequestorURL($threeDSRequestorURL)
     {
-        if (is_null($threeDSRequestorURL)) {
-            throw new \InvalidArgumentException('non-nullable threeDSRequestorURL cannot be null');
-        }
         $this->container['threeDSRequestorURL'] = $threeDSRequestorURL;
 
         return $this;
@@ -1715,9 +1612,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setTransType($transType)
     {
-        if (is_null($transType)) {
-            throw new \InvalidArgumentException('non-nullable transType cannot be null');
-        }
         $allowedValues = $this->getTransTypeAllowableValues();
         if (!in_array($transType, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -1752,9 +1646,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setTransactionType($transactionType)
     {
-        if (is_null($transactionType)) {
-            throw new \InvalidArgumentException('non-nullable transactionType cannot be null');
-        }
         $allowedValues = $this->getTransactionTypeAllowableValues();
         if (!in_array($transactionType, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -1789,9 +1680,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setWhiteListStatus($whiteListStatus)
     {
-        if (is_null($whiteListStatus)) {
-            throw new \InvalidArgumentException('non-nullable whiteListStatus cannot be null');
-        }
         $this->container['whiteListStatus'] = $whiteListStatus;
 
         return $this;
@@ -1816,9 +1704,6 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setWorkPhone($workPhone)
     {
-        if (is_null($workPhone)) {
-            throw new \InvalidArgumentException('non-nullable workPhone cannot be null');
-        }
         $this->container['workPhone'] = $workPhone;
 
         return $this;

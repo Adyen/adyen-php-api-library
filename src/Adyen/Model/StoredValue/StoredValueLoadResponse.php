@@ -357,9 +357,6 @@ class StoredValueLoadResponse implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setAuthCode($authCode)
     {
-        if (is_null($authCode)) {
-            throw new \InvalidArgumentException('non-nullable authCode cannot be null');
-        }
         $this->container['authCode'] = $authCode;
 
         return $this;
@@ -384,9 +381,6 @@ class StoredValueLoadResponse implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setCurrentBalance($currentBalance)
     {
-        if (is_null($currentBalance)) {
-            throw new \InvalidArgumentException('non-nullable currentBalance cannot be null');
-        }
         $this->container['currentBalance'] = $currentBalance;
 
         return $this;
@@ -411,9 +405,6 @@ class StoredValueLoadResponse implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setPspReference($pspReference)
     {
-        if (is_null($pspReference)) {
-            throw new \InvalidArgumentException('non-nullable pspReference cannot be null');
-        }
         $this->container['pspReference'] = $pspReference;
 
         return $this;
@@ -438,9 +429,6 @@ class StoredValueLoadResponse implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setRefusalReason($refusalReason)
     {
-        if (is_null($refusalReason)) {
-            throw new \InvalidArgumentException('non-nullable refusalReason cannot be null');
-        }
         $this->container['refusalReason'] = $refusalReason;
 
         return $this;
@@ -465,9 +453,6 @@ class StoredValueLoadResponse implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setResultCode($resultCode)
     {
-        if (is_null($resultCode)) {
-            throw new \InvalidArgumentException('non-nullable resultCode cannot be null');
-        }
         $allowedValues = $this->getResultCodeAllowableValues();
         if (!in_array($resultCode, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -502,9 +487,6 @@ class StoredValueLoadResponse implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setThirdPartyRefusalReason($thirdPartyRefusalReason)
     {
-        if (is_null($thirdPartyRefusalReason)) {
-            throw new \InvalidArgumentException('non-nullable thirdPartyRefusalReason cannot be null');
-        }
         $this->container['thirdPartyRefusalReason'] = $thirdPartyRefusalReason;
 
         return $this;

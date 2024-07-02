@@ -343,9 +343,6 @@ class DeliveryContact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAddress($address)
     {
-        if (is_null($address)) {
-            throw new \InvalidArgumentException('non-nullable address cannot be null');
-        }
         $this->container['address'] = $address;
 
         return $this;
@@ -370,9 +367,6 @@ class DeliveryContact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCompany($company)
     {
-        if (is_null($company)) {
-            throw new \InvalidArgumentException('non-nullable company cannot be null');
-        }
         $this->container['company'] = $company;
 
         return $this;
@@ -397,9 +391,6 @@ class DeliveryContact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEmail($email)
     {
-        if (is_null($email)) {
-            throw new \InvalidArgumentException('non-nullable email cannot be null');
-        }
         $this->container['email'] = $email;
 
         return $this;
@@ -424,9 +415,6 @@ class DeliveryContact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFullPhoneNumber($fullPhoneNumber)
     {
-        if (is_null($fullPhoneNumber)) {
-            throw new \InvalidArgumentException('non-nullable fullPhoneNumber cannot be null');
-        }
         $this->container['fullPhoneNumber'] = $fullPhoneNumber;
 
         return $this;
@@ -451,9 +439,6 @@ class DeliveryContact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setName($name)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
         $this->container['name'] = $name;
 
         return $this;
@@ -478,9 +463,6 @@ class DeliveryContact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPhoneNumber($phoneNumber)
     {
-        if (is_null($phoneNumber)) {
-            throw new \InvalidArgumentException('non-nullable phoneNumber cannot be null');
-        }
         $this->container['phoneNumber'] = $phoneNumber;
 
         return $this;
@@ -505,9 +487,6 @@ class DeliveryContact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setWebAddress($webAddress)
     {
-        if (is_null($webAddress)) {
-            throw new \InvalidArgumentException('non-nullable webAddress cannot be null');
-        }
         $this->container['webAddress'] = $webAddress;
 
         return $this;

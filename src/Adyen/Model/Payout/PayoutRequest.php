@@ -422,9 +422,6 @@ class PayoutRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAmount($amount)
     {
-        if (is_null($amount)) {
-            throw new \InvalidArgumentException('non-nullable amount cannot be null');
-        }
         $this->container['amount'] = $amount;
 
         return $this;
@@ -449,9 +446,6 @@ class PayoutRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBillingAddress($billingAddress)
     {
-        if (is_null($billingAddress)) {
-            throw new \InvalidArgumentException('non-nullable billingAddress cannot be null');
-        }
         $this->container['billingAddress'] = $billingAddress;
 
         return $this;
@@ -476,9 +470,6 @@ class PayoutRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCard($card)
     {
-        if (is_null($card)) {
-            throw new \InvalidArgumentException('non-nullable card cannot be null');
-        }
         $this->container['card'] = $card;
 
         return $this;
@@ -503,7 +494,6 @@ class PayoutRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFraudOffset($fraudOffset)
     {
-        // Do nothing for nullable integers
         $this->container['fraudOffset'] = $fraudOffset;
 
         return $this;
@@ -528,9 +518,6 @@ class PayoutRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFundSource($fundSource)
     {
-        if (is_null($fundSource)) {
-            throw new \InvalidArgumentException('non-nullable fundSource cannot be null');
-        }
         $this->container['fundSource'] = $fundSource;
 
         return $this;
@@ -555,9 +542,6 @@ class PayoutRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMerchantAccount($merchantAccount)
     {
-        if (is_null($merchantAccount)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
-        }
         $this->container['merchantAccount'] = $merchantAccount;
 
         return $this;
@@ -582,9 +566,6 @@ class PayoutRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRecurring($recurring)
     {
-        if (is_null($recurring)) {
-            throw new \InvalidArgumentException('non-nullable recurring cannot be null');
-        }
         $this->container['recurring'] = $recurring;
 
         return $this;
@@ -609,9 +590,6 @@ class PayoutRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -636,9 +614,6 @@ class PayoutRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSelectedRecurringDetailReference($selectedRecurringDetailReference)
     {
-        if (is_null($selectedRecurringDetailReference)) {
-            throw new \InvalidArgumentException('non-nullable selectedRecurringDetailReference cannot be null');
-        }
         $this->container['selectedRecurringDetailReference'] = $selectedRecurringDetailReference;
 
         return $this;
@@ -663,9 +638,6 @@ class PayoutRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setShopperEmail($shopperEmail)
     {
-        if (is_null($shopperEmail)) {
-            throw new \InvalidArgumentException('non-nullable shopperEmail cannot be null');
-        }
         $this->container['shopperEmail'] = $shopperEmail;
 
         return $this;
@@ -690,9 +662,6 @@ class PayoutRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setShopperInteraction($shopperInteraction)
     {
-        if (is_null($shopperInteraction)) {
-            throw new \InvalidArgumentException('non-nullable shopperInteraction cannot be null');
-        }
         $allowedValues = $this->getShopperInteractionAllowableValues();
         if (!in_array($shopperInteraction, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -727,9 +696,6 @@ class PayoutRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setShopperName($shopperName)
     {
-        if (is_null($shopperName)) {
-            throw new \InvalidArgumentException('non-nullable shopperName cannot be null');
-        }
         $this->container['shopperName'] = $shopperName;
 
         return $this;
@@ -754,9 +720,6 @@ class PayoutRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setShopperReference($shopperReference)
     {
-        if (is_null($shopperReference)) {
-            throw new \InvalidArgumentException('non-nullable shopperReference cannot be null');
-        }
         $this->container['shopperReference'] = $shopperReference;
 
         return $this;
@@ -781,9 +744,6 @@ class PayoutRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTelephoneNumber($telephoneNumber)
     {
-        if (is_null($telephoneNumber)) {
-            throw new \InvalidArgumentException('non-nullable telephoneNumber cannot be null');
-        }
         $this->container['telephoneNumber'] = $telephoneNumber;
 
         return $this;

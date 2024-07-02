@@ -365,9 +365,6 @@ class UltimatePartyIdentification implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setAddress($address)
     {
-        if (is_null($address)) {
-            throw new \InvalidArgumentException('non-nullable address cannot be null');
-        }
         $this->container['address'] = $address;
 
         return $this;
@@ -392,9 +389,6 @@ class UltimatePartyIdentification implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setDateOfBirth($dateOfBirth)
     {
-        if (is_null($dateOfBirth)) {
-            throw new \InvalidArgumentException('non-nullable dateOfBirth cannot be null');
-        }
         $this->container['dateOfBirth'] = $dateOfBirth;
 
         return $this;
@@ -419,9 +413,6 @@ class UltimatePartyIdentification implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setFirstName($firstName)
     {
-        if (is_null($firstName)) {
-            throw new \InvalidArgumentException('non-nullable firstName cannot be null');
-        }
         $this->container['firstName'] = $firstName;
 
         return $this;
@@ -446,9 +437,6 @@ class UltimatePartyIdentification implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setFullName($fullName)
     {
-        if (is_null($fullName)) {
-            throw new \InvalidArgumentException('non-nullable fullName cannot be null');
-        }
         $this->container['fullName'] = $fullName;
 
         return $this;
@@ -473,9 +461,6 @@ class UltimatePartyIdentification implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setLastName($lastName)
     {
-        if (is_null($lastName)) {
-            throw new \InvalidArgumentException('non-nullable lastName cannot be null');
-        }
         $this->container['lastName'] = $lastName;
 
         return $this;
@@ -500,9 +485,6 @@ class UltimatePartyIdentification implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -527,9 +509,6 @@ class UltimatePartyIdentification implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

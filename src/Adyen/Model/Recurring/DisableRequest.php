@@ -322,9 +322,6 @@ class DisableRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setContract($contract)
     {
-        if (is_null($contract)) {
-            throw new \InvalidArgumentException('non-nullable contract cannot be null');
-        }
         $this->container['contract'] = $contract;
 
         return $this;
@@ -349,9 +346,6 @@ class DisableRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMerchantAccount($merchantAccount)
     {
-        if (is_null($merchantAccount)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
-        }
         $this->container['merchantAccount'] = $merchantAccount;
 
         return $this;
@@ -376,9 +370,6 @@ class DisableRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRecurringDetailReference($recurringDetailReference)
     {
-        if (is_null($recurringDetailReference)) {
-            throw new \InvalidArgumentException('non-nullable recurringDetailReference cannot be null');
-        }
         $this->container['recurringDetailReference'] = $recurringDetailReference;
 
         return $this;
@@ -403,9 +394,6 @@ class DisableRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setShopperReference($shopperReference)
     {
-        if (is_null($shopperReference)) {
-            throw new \InvalidArgumentException('non-nullable shopperReference cannot be null');
-        }
         $this->container['shopperReference'] = $shopperReference;
 
         return $this;

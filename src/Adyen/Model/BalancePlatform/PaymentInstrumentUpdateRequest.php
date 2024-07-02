@@ -387,9 +387,6 @@ class PaymentInstrumentUpdateRequest implements ModelInterface, ArrayAccess, \Js
      */
     public function setBalanceAccountId($balanceAccountId)
     {
-        if (is_null($balanceAccountId)) {
-            throw new \InvalidArgumentException('non-nullable balanceAccountId cannot be null');
-        }
         $this->container['balanceAccountId'] = $balanceAccountId;
 
         return $this;
@@ -414,9 +411,6 @@ class PaymentInstrumentUpdateRequest implements ModelInterface, ArrayAccess, \Js
      */
     public function setCard($card)
     {
-        if (is_null($card)) {
-            throw new \InvalidArgumentException('non-nullable card cannot be null');
-        }
         $this->container['card'] = $card;
 
         return $this;
@@ -441,9 +435,6 @@ class PaymentInstrumentUpdateRequest implements ModelInterface, ArrayAccess, \Js
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -478,9 +469,6 @@ class PaymentInstrumentUpdateRequest implements ModelInterface, ArrayAccess, \Js
      */
     public function setStatusComment($statusComment)
     {
-        if (is_null($statusComment)) {
-            throw new \InvalidArgumentException('non-nullable statusComment cannot be null');
-        }
         $this->container['statusComment'] = $statusComment;
 
         return $this;
@@ -505,9 +493,6 @@ class PaymentInstrumentUpdateRequest implements ModelInterface, ArrayAccess, \Js
      */
     public function setStatusReason($statusReason)
     {
-        if (is_null($statusReason)) {
-            throw new \InvalidArgumentException('non-nullable statusReason cannot be null');
-        }
         $allowedValues = $this->getStatusReasonAllowableValues();
         if (!in_array($statusReason, $allowedValues, true)) {
             throw new \InvalidArgumentException(

@@ -302,9 +302,6 @@ class Expiry implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMonth($month)
     {
-        if (is_null($month)) {
-            throw new \InvalidArgumentException('non-nullable month cannot be null');
-        }
         $this->container['month'] = $month;
 
         return $this;
@@ -329,9 +326,6 @@ class Expiry implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setYear($year)
     {
-        if (is_null($year)) {
-            throw new \InvalidArgumentException('non-nullable year cannot be null');
-        }
         $this->container['year'] = $year;
 
         return $this;

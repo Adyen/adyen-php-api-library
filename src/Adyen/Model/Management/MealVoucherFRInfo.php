@@ -318,9 +318,6 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setConecsId($conecsId)
     {
-        if (is_null($conecsId)) {
-            throw new \InvalidArgumentException('non-nullable conecsId cannot be null');
-        }
         $this->container['conecsId'] = $conecsId;
 
         return $this;
@@ -345,9 +342,6 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setSiret($siret)
     {
-        if (is_null($siret)) {
-            throw new \InvalidArgumentException('non-nullable siret cannot be null');
-        }
         $this->container['siret'] = $siret;
 
         return $this;
@@ -372,9 +366,6 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setSubTypes($subTypes)
     {
-        if (is_null($subTypes)) {
-            throw new \InvalidArgumentException('non-nullable subTypes cannot be null');
-        }
         $this->container['subTypes'] = $subTypes;
 
         return $this;

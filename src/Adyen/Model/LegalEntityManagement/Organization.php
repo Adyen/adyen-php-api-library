@@ -460,9 +460,6 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDateOfIncorporation($dateOfIncorporation)
     {
-        if (is_null($dateOfIncorporation)) {
-            throw new \InvalidArgumentException('non-nullable dateOfIncorporation cannot be null');
-        }
         $this->container['dateOfIncorporation'] = $dateOfIncorporation;
 
         return $this;
@@ -487,9 +484,6 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -514,9 +508,6 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDoingBusinessAs($doingBusinessAs)
     {
-        if (is_null($doingBusinessAs)) {
-            throw new \InvalidArgumentException('non-nullable doingBusinessAs cannot be null');
-        }
         $this->container['doingBusinessAs'] = $doingBusinessAs;
 
         return $this;
@@ -541,9 +532,6 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEmail($email)
     {
-        if (is_null($email)) {
-            throw new \InvalidArgumentException('non-nullable email cannot be null');
-        }
         $this->container['email'] = $email;
 
         return $this;
@@ -568,9 +556,6 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLegalName($legalName)
     {
-        if (is_null($legalName)) {
-            throw new \InvalidArgumentException('non-nullable legalName cannot be null');
-        }
         $this->container['legalName'] = $legalName;
 
         return $this;
@@ -595,9 +580,6 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPhone($phone)
     {
-        if (is_null($phone)) {
-            throw new \InvalidArgumentException('non-nullable phone cannot be null');
-        }
         $this->container['phone'] = $phone;
 
         return $this;
@@ -622,9 +604,6 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPrincipalPlaceOfBusiness($principalPlaceOfBusiness)
     {
-        if (is_null($principalPlaceOfBusiness)) {
-            throw new \InvalidArgumentException('non-nullable principalPlaceOfBusiness cannot be null');
-        }
         $this->container['principalPlaceOfBusiness'] = $principalPlaceOfBusiness;
 
         return $this;
@@ -649,9 +628,6 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRegisteredAddress($registeredAddress)
     {
-        if (is_null($registeredAddress)) {
-            throw new \InvalidArgumentException('non-nullable registeredAddress cannot be null');
-        }
         $this->container['registeredAddress'] = $registeredAddress;
 
         return $this;
@@ -676,9 +652,6 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRegistrationNumber($registrationNumber)
     {
-        if (is_null($registrationNumber)) {
-            throw new \InvalidArgumentException('non-nullable registrationNumber cannot be null');
-        }
         $this->container['registrationNumber'] = $registrationNumber;
 
         return $this;
@@ -703,9 +676,6 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStockData($stockData)
     {
-        if (is_null($stockData)) {
-            throw new \InvalidArgumentException('non-nullable stockData cannot be null');
-        }
         $this->container['stockData'] = $stockData;
 
         return $this;
@@ -730,9 +700,6 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTaxInformation($taxInformation)
     {
-        if (is_null($taxInformation)) {
-            throw new \InvalidArgumentException('non-nullable taxInformation cannot be null');
-        }
         $this->container['taxInformation'] = $taxInformation;
 
         return $this;
@@ -757,9 +724,6 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTaxReportingClassification($taxReportingClassification)
     {
-        if (is_null($taxReportingClassification)) {
-            throw new \InvalidArgumentException('non-nullable taxReportingClassification cannot be null');
-        }
         $this->container['taxReportingClassification'] = $taxReportingClassification;
 
         return $this;
@@ -784,9 +748,6 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -821,9 +782,6 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setVatAbsenceReason($vatAbsenceReason)
     {
-        if (is_null($vatAbsenceReason)) {
-            throw new \InvalidArgumentException('non-nullable vatAbsenceReason cannot be null');
-        }
         $allowedValues = $this->getVatAbsenceReasonAllowableValues();
         if (!in_array($vatAbsenceReason, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -858,9 +816,6 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setVatNumber($vatNumber)
     {
-        if (is_null($vatNumber)) {
-            throw new \InvalidArgumentException('non-nullable vatNumber cannot be null');
-        }
         $this->container['vatNumber'] = $vatNumber;
 
         return $this;
@@ -885,9 +840,6 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setWebData($webData)
     {
-        if (is_null($webData)) {
-            throw new \InvalidArgumentException('non-nullable webData cannot be null');
-        }
         $this->container['webData'] = $webData;
 
         return $this;

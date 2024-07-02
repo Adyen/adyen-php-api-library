@@ -334,9 +334,6 @@ class PlatformChargebackLogic implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setBehavior($behavior)
     {
-        if (is_null($behavior)) {
-            throw new \InvalidArgumentException('non-nullable behavior cannot be null');
-        }
         $allowedValues = $this->getBehaviorAllowableValues();
         if (!in_array($behavior, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -371,9 +368,6 @@ class PlatformChargebackLogic implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setCostAllocationAccount($costAllocationAccount)
     {
-        if (is_null($costAllocationAccount)) {
-            throw new \InvalidArgumentException('non-nullable costAllocationAccount cannot be null');
-        }
         $this->container['costAllocationAccount'] = $costAllocationAccount;
 
         return $this;
@@ -398,9 +392,6 @@ class PlatformChargebackLogic implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setTargetAccount($targetAccount)
     {
-        if (is_null($targetAccount)) {
-            throw new \InvalidArgumentException('non-nullable targetAccount cannot be null');
-        }
         $this->container['targetAccount'] = $targetAccount;
 
         return $this;

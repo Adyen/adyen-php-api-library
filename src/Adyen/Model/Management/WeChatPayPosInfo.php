@@ -308,9 +308,6 @@ class WeChatPayPosInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setContactPersonName($contactPersonName)
     {
-        if (is_null($contactPersonName)) {
-            throw new \InvalidArgumentException('non-nullable contactPersonName cannot be null');
-        }
         $this->container['contactPersonName'] = $contactPersonName;
 
         return $this;
@@ -335,9 +332,6 @@ class WeChatPayPosInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEmail($email)
     {
-        if (is_null($email)) {
-            throw new \InvalidArgumentException('non-nullable email cannot be null');
-        }
         $this->container['email'] = $email;
 
         return $this;

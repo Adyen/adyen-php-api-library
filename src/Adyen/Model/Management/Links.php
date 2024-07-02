@@ -298,9 +298,6 @@ class Links implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSelf($self)
     {
-        if (is_null($self)) {
-            throw new \InvalidArgumentException('non-nullable self cannot be null');
-        }
         $this->container['self'] = $self;
 
         return $this;

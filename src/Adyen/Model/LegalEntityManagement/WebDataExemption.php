@@ -318,9 +318,6 @@ class WebDataExemption implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setReason($reason)
     {
-        if (is_null($reason)) {
-            throw new \InvalidArgumentException('non-nullable reason cannot be null');
-        }
         $allowedValues = $this->getReasonAllowableValues();
         if (!in_array($reason, $allowedValues, true)) {
             throw new \InvalidArgumentException(

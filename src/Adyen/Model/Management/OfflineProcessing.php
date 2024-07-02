@@ -302,7 +302,6 @@ class OfflineProcessing implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setChipFloorLimit($chipFloorLimit)
     {
-        // Do nothing for nullable integers
         $this->container['chipFloorLimit'] = $chipFloorLimit;
 
         return $this;
@@ -327,9 +326,6 @@ class OfflineProcessing implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setOfflineSwipeLimits($offlineSwipeLimits)
     {
-        if (is_null($offlineSwipeLimits)) {
-            throw new \InvalidArgumentException('non-nullable offlineSwipeLimits cannot be null');
-        }
         $this->container['offlineSwipeLimits'] = $offlineSwipeLimits;
 
         return $this;

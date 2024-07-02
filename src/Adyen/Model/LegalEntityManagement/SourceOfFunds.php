@@ -339,9 +339,6 @@ class SourceOfFunds implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAcquiringBusinessLineId($acquiringBusinessLineId)
     {
-        if (is_null($acquiringBusinessLineId)) {
-            throw new \InvalidArgumentException('non-nullable acquiringBusinessLineId cannot be null');
-        }
         $this->container['acquiringBusinessLineId'] = $acquiringBusinessLineId;
 
         return $this;
@@ -366,9 +363,6 @@ class SourceOfFunds implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAdyenProcessedFunds($adyenProcessedFunds)
     {
-        if (is_null($adyenProcessedFunds)) {
-            throw new \InvalidArgumentException('non-nullable adyenProcessedFunds cannot be null');
-        }
         $this->container['adyenProcessedFunds'] = $adyenProcessedFunds;
 
         return $this;
@@ -393,9 +387,6 @@ class SourceOfFunds implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -420,9 +411,6 @@ class SourceOfFunds implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

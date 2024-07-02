@@ -295,9 +295,6 @@ class TerminalInstructions implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setAdyenAppRestart($adyenAppRestart)
     {
-        if (is_null($adyenAppRestart)) {
-            throw new \InvalidArgumentException('non-nullable adyenAppRestart cannot be null');
-        }
         $this->container['adyenAppRestart'] = $adyenAppRestart;
 
         return $this;

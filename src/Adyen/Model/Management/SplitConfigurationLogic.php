@@ -736,9 +736,6 @@ class SplitConfigurationLogic implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setAcquiringFees($acquiringFees)
     {
-        if (is_null($acquiringFees)) {
-            throw new \InvalidArgumentException('non-nullable acquiringFees cannot be null');
-        }
         $allowedValues = $this->getAcquiringFeesAllowableValues();
         if (!in_array($acquiringFees, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -773,9 +770,6 @@ class SplitConfigurationLogic implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setAdditionalCommission($additionalCommission)
     {
-        if (is_null($additionalCommission)) {
-            throw new \InvalidArgumentException('non-nullable additionalCommission cannot be null');
-        }
         $this->container['additionalCommission'] = $additionalCommission;
 
         return $this;
@@ -800,9 +794,6 @@ class SplitConfigurationLogic implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setAdyenCommission($adyenCommission)
     {
-        if (is_null($adyenCommission)) {
-            throw new \InvalidArgumentException('non-nullable adyenCommission cannot be null');
-        }
         $allowedValues = $this->getAdyenCommissionAllowableValues();
         if (!in_array($adyenCommission, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -837,9 +828,6 @@ class SplitConfigurationLogic implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setAdyenFees($adyenFees)
     {
-        if (is_null($adyenFees)) {
-            throw new \InvalidArgumentException('non-nullable adyenFees cannot be null');
-        }
         $allowedValues = $this->getAdyenFeesAllowableValues();
         if (!in_array($adyenFees, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -874,9 +862,6 @@ class SplitConfigurationLogic implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setAdyenMarkup($adyenMarkup)
     {
-        if (is_null($adyenMarkup)) {
-            throw new \InvalidArgumentException('non-nullable adyenMarkup cannot be null');
-        }
         $allowedValues = $this->getAdyenMarkupAllowableValues();
         if (!in_array($adyenMarkup, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -911,9 +896,6 @@ class SplitConfigurationLogic implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setChargeback($chargeback)
     {
-        if (is_null($chargeback)) {
-            throw new \InvalidArgumentException('non-nullable chargeback cannot be null');
-        }
         $allowedValues = $this->getChargebackAllowableValues();
         if (!in_array($chargeback, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -948,9 +930,6 @@ class SplitConfigurationLogic implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setChargebackCostAllocation($chargebackCostAllocation)
     {
-        if (is_null($chargebackCostAllocation)) {
-            throw new \InvalidArgumentException('non-nullable chargebackCostAllocation cannot be null');
-        }
         $allowedValues = $this->getChargebackCostAllocationAllowableValues();
         if (!in_array($chargebackCostAllocation, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -985,9 +964,6 @@ class SplitConfigurationLogic implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setCommission($commission)
     {
-        if (is_null($commission)) {
-            throw new \InvalidArgumentException('non-nullable commission cannot be null');
-        }
         $this->container['commission'] = $commission;
 
         return $this;
@@ -1012,9 +988,6 @@ class SplitConfigurationLogic implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setInterchange($interchange)
     {
-        if (is_null($interchange)) {
-            throw new \InvalidArgumentException('non-nullable interchange cannot be null');
-        }
         $allowedValues = $this->getInterchangeAllowableValues();
         if (!in_array($interchange, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -1049,9 +1022,6 @@ class SplitConfigurationLogic implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setPaymentFee($paymentFee)
     {
-        if (is_null($paymentFee)) {
-            throw new \InvalidArgumentException('non-nullable paymentFee cannot be null');
-        }
         $allowedValues = $this->getPaymentFeeAllowableValues();
         if (!in_array($paymentFee, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -1086,9 +1056,6 @@ class SplitConfigurationLogic implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setRefund($refund)
     {
-        if (is_null($refund)) {
-            throw new \InvalidArgumentException('non-nullable refund cannot be null');
-        }
         $allowedValues = $this->getRefundAllowableValues();
         if (!in_array($refund, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -1123,9 +1090,6 @@ class SplitConfigurationLogic implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setRefundCostAllocation($refundCostAllocation)
     {
-        if (is_null($refundCostAllocation)) {
-            throw new \InvalidArgumentException('non-nullable refundCostAllocation cannot be null');
-        }
         $allowedValues = $this->getRefundCostAllocationAllowableValues();
         if (!in_array($refundCostAllocation, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -1160,9 +1124,6 @@ class SplitConfigurationLogic implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setRemainder($remainder)
     {
-        if (is_null($remainder)) {
-            throw new \InvalidArgumentException('non-nullable remainder cannot be null');
-        }
         $allowedValues = $this->getRemainderAllowableValues();
         if (!in_array($remainder, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -1197,9 +1158,6 @@ class SplitConfigurationLogic implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setSchemeFee($schemeFee)
     {
-        if (is_null($schemeFee)) {
-            throw new \InvalidArgumentException('non-nullable schemeFee cannot be null');
-        }
         $allowedValues = $this->getSchemeFeeAllowableValues();
         if (!in_array($schemeFee, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -1234,9 +1192,6 @@ class SplitConfigurationLogic implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setSplitLogicId($splitLogicId)
     {
-        if (is_null($splitLogicId)) {
-            throw new \InvalidArgumentException('non-nullable splitLogicId cannot be null');
-        }
         $this->container['splitLogicId'] = $splitLogicId;
 
         return $this;
@@ -1261,9 +1216,6 @@ class SplitConfigurationLogic implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setSurcharge($surcharge)
     {
-        if (is_null($surcharge)) {
-            throw new \InvalidArgumentException('non-nullable surcharge cannot be null');
-        }
         $allowedValues = $this->getSurchargeAllowableValues();
         if (!in_array($surcharge, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -1298,9 +1250,6 @@ class SplitConfigurationLogic implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setTip($tip)
     {
-        if (is_null($tip)) {
-            throw new \InvalidArgumentException('non-nullable tip cannot be null');
-        }
         $allowedValues = $this->getTipAllowableValues();
         if (!in_array($tip, $allowedValues, true)) {
             throw new \InvalidArgumentException(

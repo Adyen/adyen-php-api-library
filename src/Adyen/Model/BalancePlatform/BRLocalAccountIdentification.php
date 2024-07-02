@@ -356,9 +356,6 @@ class BRLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      */
     public function setAccountNumber($accountNumber)
     {
-        if (is_null($accountNumber)) {
-            throw new \InvalidArgumentException('non-nullable accountNumber cannot be null');
-        }
         $this->container['accountNumber'] = $accountNumber;
 
         return $this;
@@ -383,9 +380,6 @@ class BRLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      */
     public function setBankCode($bankCode)
     {
-        if (is_null($bankCode)) {
-            throw new \InvalidArgumentException('non-nullable bankCode cannot be null');
-        }
         $this->container['bankCode'] = $bankCode;
 
         return $this;
@@ -410,9 +404,6 @@ class BRLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      */
     public function setBranchNumber($branchNumber)
     {
-        if (is_null($branchNumber)) {
-            throw new \InvalidArgumentException('non-nullable branchNumber cannot be null');
-        }
         $this->container['branchNumber'] = $branchNumber;
 
         return $this;
@@ -437,9 +428,6 @@ class BRLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      */
     public function setIspb($ispb)
     {
-        if (is_null($ispb)) {
-            throw new \InvalidArgumentException('non-nullable ispb cannot be null');
-        }
         $this->container['ispb'] = $ispb;
 
         return $this;
@@ -464,9 +452,6 @@ class BRLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

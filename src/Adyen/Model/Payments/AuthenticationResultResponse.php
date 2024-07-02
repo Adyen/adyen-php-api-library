@@ -302,9 +302,6 @@ class AuthenticationResultResponse implements ModelInterface, ArrayAccess, \Json
      */
     public function setThreeDS1Result($threeDS1Result)
     {
-        if (is_null($threeDS1Result)) {
-            throw new \InvalidArgumentException('non-nullable threeDS1Result cannot be null');
-        }
         $this->container['threeDS1Result'] = $threeDS1Result;
 
         return $this;
@@ -329,9 +326,6 @@ class AuthenticationResultResponse implements ModelInterface, ArrayAccess, \Json
      */
     public function setThreeDS2Result($threeDS2Result)
     {
-        if (is_null($threeDS2Result)) {
-            throw new \InvalidArgumentException('non-nullable threeDS2Result cannot be null');
-        }
         $this->container['threeDS2Result'] = $threeDS2Result;
 
         return $this;

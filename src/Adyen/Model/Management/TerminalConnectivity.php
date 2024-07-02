@@ -316,9 +316,6 @@ class TerminalConnectivity implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setBluetooth($bluetooth)
     {
-        if (is_null($bluetooth)) {
-            throw new \InvalidArgumentException('non-nullable bluetooth cannot be null');
-        }
         $this->container['bluetooth'] = $bluetooth;
 
         return $this;
@@ -343,9 +340,6 @@ class TerminalConnectivity implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setCellular($cellular)
     {
-        if (is_null($cellular)) {
-            throw new \InvalidArgumentException('non-nullable cellular cannot be null');
-        }
         $this->container['cellular'] = $cellular;
 
         return $this;
@@ -370,9 +364,6 @@ class TerminalConnectivity implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setEthernet($ethernet)
     {
-        if (is_null($ethernet)) {
-            throw new \InvalidArgumentException('non-nullable ethernet cannot be null');
-        }
         $this->container['ethernet'] = $ethernet;
 
         return $this;
@@ -397,9 +388,6 @@ class TerminalConnectivity implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setWifi($wifi)
     {
-        if (is_null($wifi)) {
-            throw new \InvalidArgumentException('non-nullable wifi cannot be null');
-        }
         $this->container['wifi'] = $wifi;
 
         return $this;

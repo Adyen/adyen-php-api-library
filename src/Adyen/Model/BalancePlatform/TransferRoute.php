@@ -391,9 +391,6 @@ class TransferRoute implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCategory($category)
     {
-        if (is_null($category)) {
-            throw new \InvalidArgumentException('non-nullable category cannot be null');
-        }
         $allowedValues = $this->getCategoryAllowableValues();
         if (!in_array($category, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -428,9 +425,6 @@ class TransferRoute implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCountry($country)
     {
-        if (is_null($country)) {
-            throw new \InvalidArgumentException('non-nullable country cannot be null');
-        }
         $this->container['country'] = $country;
 
         return $this;
@@ -455,9 +449,6 @@ class TransferRoute implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCurrency($currency)
     {
-        if (is_null($currency)) {
-            throw new \InvalidArgumentException('non-nullable currency cannot be null');
-        }
         $this->container['currency'] = $currency;
 
         return $this;
@@ -476,15 +467,12 @@ class TransferRoute implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets priority
      *
-     * @param string|null $priority The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN).
+     * @param string|null $priority The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).
      *
      * @return self
      */
     public function setPriority($priority)
     {
-        if (is_null($priority)) {
-            throw new \InvalidArgumentException('non-nullable priority cannot be null');
-        }
         $allowedValues = $this->getPriorityAllowableValues();
         if (!in_array($priority, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -519,9 +507,6 @@ class TransferRoute implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRequirements($requirements)
     {
-        if (is_null($requirements)) {
-            throw new \InvalidArgumentException('non-nullable requirements cannot be null');
-        }
         $this->container['requirements'] = $requirements;
 
         return $this;

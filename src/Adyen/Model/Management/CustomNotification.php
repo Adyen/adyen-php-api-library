@@ -337,9 +337,6 @@ class CustomNotification implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setAmount($amount)
     {
-        if (is_null($amount)) {
-            throw new \InvalidArgumentException('non-nullable amount cannot be null');
-        }
         $this->container['amount'] = $amount;
 
         return $this;
@@ -364,9 +361,6 @@ class CustomNotification implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setEventCode($eventCode)
     {
-        if (is_null($eventCode)) {
-            throw new \InvalidArgumentException('non-nullable eventCode cannot be null');
-        }
         $this->container['eventCode'] = $eventCode;
 
         return $this;
@@ -391,9 +385,6 @@ class CustomNotification implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setEventDate($eventDate)
     {
-        if (is_null($eventDate)) {
-            throw new \InvalidArgumentException('non-nullable eventDate cannot be null');
-        }
         $this->container['eventDate'] = $eventDate;
 
         return $this;
@@ -418,9 +409,6 @@ class CustomNotification implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setMerchantReference($merchantReference)
     {
-        if (is_null($merchantReference)) {
-            throw new \InvalidArgumentException('non-nullable merchantReference cannot be null');
-        }
         $this->container['merchantReference'] = $merchantReference;
 
         return $this;
@@ -445,9 +433,6 @@ class CustomNotification implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setPaymentMethod($paymentMethod)
     {
-        if (is_null($paymentMethod)) {
-            throw new \InvalidArgumentException('non-nullable paymentMethod cannot be null');
-        }
         $this->container['paymentMethod'] = $paymentMethod;
 
         return $this;
@@ -472,9 +457,6 @@ class CustomNotification implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setReason($reason)
     {
-        if (is_null($reason)) {
-            throw new \InvalidArgumentException('non-nullable reason cannot be null');
-        }
         $this->container['reason'] = $reason;
 
         return $this;
@@ -499,9 +481,6 @@ class CustomNotification implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setSuccess($success)
     {
-        if (is_null($success)) {
-            throw new \InvalidArgumentException('non-nullable success cannot be null');
-        }
         $this->container['success'] = $success;
 
         return $this;

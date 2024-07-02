@@ -391,9 +391,6 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setPriority($priority)
     {
-        if (is_null($priority)) {
-            throw new \InvalidArgumentException('non-nullable priority cannot be null');
-        }
         $this->container['priority'] = $priority;
 
         return $this;
@@ -418,9 +415,6 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $this->container['type'] = $type;
 
         return $this;
@@ -445,9 +439,6 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setModificationMerchantReference($modificationMerchantReference)
     {
-        if (is_null($modificationMerchantReference)) {
-            throw new \InvalidArgumentException('non-nullable modificationMerchantReference cannot be null');
-        }
         $this->container['modificationMerchantReference'] = $modificationMerchantReference;
 
         return $this;
@@ -472,9 +463,6 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setModificationPspReference($modificationPspReference)
     {
-        if (is_null($modificationPspReference)) {
-            throw new \InvalidArgumentException('non-nullable modificationPspReference cannot be null');
-        }
         $this->container['modificationPspReference'] = $modificationPspReference;
 
         return $this;
@@ -499,9 +487,6 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setAuthorisationType($authorisationType)
     {
-        if (is_null($authorisationType)) {
-            throw new \InvalidArgumentException('non-nullable authorisationType cannot be null');
-        }
         $this->container['authorisationType'] = $authorisationType;
 
         return $this;
@@ -526,9 +511,6 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setPanEntryMode($panEntryMode)
     {
-        if (is_null($panEntryMode)) {
-            throw new \InvalidArgumentException('non-nullable panEntryMode cannot be null');
-        }
         $this->container['panEntryMode'] = $panEntryMode;
 
         return $this;
@@ -553,9 +535,6 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setProcessingType($processingType)
     {
-        if (is_null($processingType)) {
-            throw new \InvalidArgumentException('non-nullable processingType cannot be null');
-        }
         $this->container['processingType'] = $processingType;
 
         return $this;
@@ -580,9 +559,6 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setRelayedAuthorisationData($relayedAuthorisationData)
     {
-        if (is_null($relayedAuthorisationData)) {
-            throw new \InvalidArgumentException('non-nullable relayedAuthorisationData cannot be null');
-        }
         $this->container['relayedAuthorisationData'] = $relayedAuthorisationData;
 
         return $this;
@@ -607,9 +583,6 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setSchemeTraceId($schemeTraceId)
     {
-        if (is_null($schemeTraceId)) {
-            throw new \InvalidArgumentException('non-nullable schemeTraceId cannot be null');
-        }
         $this->container['schemeTraceId'] = $schemeTraceId;
 
         return $this;
@@ -634,9 +607,6 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setSchemeUniqueTransactionId($schemeUniqueTransactionId)
     {
-        if (is_null($schemeUniqueTransactionId)) {
-            throw new \InvalidArgumentException('non-nullable schemeUniqueTransactionId cannot be null');
-        }
         $this->container['schemeUniqueTransactionId'] = $schemeUniqueTransactionId;
 
         return $this;
@@ -661,9 +631,6 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setValidationFacts($validationFacts)
     {
-        if (is_null($validationFacts)) {
-            throw new \InvalidArgumentException('non-nullable validationFacts cannot be null');
-        }
         $this->container['validationFacts'] = $validationFacts;
 
         return $this;
@@ -688,9 +655,6 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setPaymentMerchantReference($paymentMerchantReference)
     {
-        if (is_null($paymentMerchantReference)) {
-            throw new \InvalidArgumentException('non-nullable paymentMerchantReference cannot be null');
-        }
         $this->container['paymentMerchantReference'] = $paymentMerchantReference;
 
         return $this;
@@ -715,9 +679,6 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setPlatformPaymentType($platformPaymentType)
     {
-        if (is_null($platformPaymentType)) {
-            throw new \InvalidArgumentException('non-nullable platformPaymentType cannot be null');
-        }
         $this->container['platformPaymentType'] = $platformPaymentType;
 
         return $this;
@@ -742,9 +703,6 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setPspPaymentReference($pspPaymentReference)
     {
-        if (is_null($pspPaymentReference)) {
-            throw new \InvalidArgumentException('non-nullable pspPaymentReference cannot be null');
-        }
         $this->container['pspPaymentReference'] = $pspPaymentReference;
 
         return $this;

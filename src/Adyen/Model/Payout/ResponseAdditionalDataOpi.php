@@ -295,9 +295,6 @@ class ResponseAdditionalDataOpi implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function setOpiTransToken($opiTransToken)
     {
-        if (is_null($opiTransToken)) {
-            throw new \InvalidArgumentException('non-nullable opiTransToken cannot be null');
-        }
         $this->container['opiTransToken'] = $opiTransToken;
 
         return $this;

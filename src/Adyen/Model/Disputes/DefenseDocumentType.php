@@ -318,9 +318,6 @@ class DefenseDocumentType implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setAvailable($available)
     {
-        if (is_null($available)) {
-            throw new \InvalidArgumentException('non-nullable available cannot be null');
-        }
         $this->container['available'] = $available;
 
         return $this;
@@ -345,9 +342,6 @@ class DefenseDocumentType implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setDefenseDocumentTypeCode($defenseDocumentTypeCode)
     {
-        if (is_null($defenseDocumentTypeCode)) {
-            throw new \InvalidArgumentException('non-nullable defenseDocumentTypeCode cannot be null');
-        }
         $this->container['defenseDocumentTypeCode'] = $defenseDocumentTypeCode;
 
         return $this;
@@ -372,9 +366,6 @@ class DefenseDocumentType implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setRequirementLevel($requirementLevel)
     {
-        if (is_null($requirementLevel)) {
-            throw new \InvalidArgumentException('non-nullable requirementLevel cannot be null');
-        }
         $this->container['requirementLevel'] = $requirementLevel;
 
         return $this;

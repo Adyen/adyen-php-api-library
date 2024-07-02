@@ -333,9 +333,6 @@ class TestOutput implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMerchantId($merchantId)
     {
-        if (is_null($merchantId)) {
-            throw new \InvalidArgumentException('non-nullable merchantId cannot be null');
-        }
         $this->container['merchantId'] = $merchantId;
 
         return $this;
@@ -360,9 +357,6 @@ class TestOutput implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setOutput($output)
     {
-        if (is_null($output)) {
-            throw new \InvalidArgumentException('non-nullable output cannot be null');
-        }
         $this->container['output'] = $output;
 
         return $this;
@@ -387,9 +381,6 @@ class TestOutput implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRequestSent($requestSent)
     {
-        if (is_null($requestSent)) {
-            throw new \InvalidArgumentException('non-nullable requestSent cannot be null');
-        }
         $this->container['requestSent'] = $requestSent;
 
         return $this;
@@ -414,9 +405,6 @@ class TestOutput implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setResponseCode($responseCode)
     {
-        if (is_null($responseCode)) {
-            throw new \InvalidArgumentException('non-nullable responseCode cannot be null');
-        }
         $this->container['responseCode'] = $responseCode;
 
         return $this;
@@ -441,9 +429,6 @@ class TestOutput implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setResponseTime($responseTime)
     {
-        if (is_null($responseTime)) {
-            throw new \InvalidArgumentException('non-nullable responseTime cannot be null');
-        }
         $this->container['responseTime'] = $responseTime;
 
         return $this;
@@ -468,9 +453,6 @@ class TestOutput implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $this->container['status'] = $status;
 
         return $this;

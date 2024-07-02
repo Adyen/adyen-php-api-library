@@ -449,9 +449,6 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setCarRentalCheckOutDate($carRentalCheckOutDate)
     {
-        if (is_null($carRentalCheckOutDate)) {
-            throw new \InvalidArgumentException('non-nullable carRentalCheckOutDate cannot be null');
-        }
         $this->container['carRentalCheckOutDate'] = $carRentalCheckOutDate;
 
         return $this;
@@ -476,9 +473,6 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setCarRentalCustomerServiceTollFreeNumber($carRentalCustomerServiceTollFreeNumber)
     {
-        if (is_null($carRentalCustomerServiceTollFreeNumber)) {
-            throw new \InvalidArgumentException('non-nullable carRentalCustomerServiceTollFreeNumber cannot be null');
-        }
         $this->container['carRentalCustomerServiceTollFreeNumber'] = $carRentalCustomerServiceTollFreeNumber;
 
         return $this;
@@ -503,9 +497,6 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setCarRentalDaysRented($carRentalDaysRented)
     {
-        if (is_null($carRentalDaysRented)) {
-            throw new \InvalidArgumentException('non-nullable carRentalDaysRented cannot be null');
-        }
         $this->container['carRentalDaysRented'] = $carRentalDaysRented;
 
         return $this;
@@ -530,9 +521,6 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setCarRentalFuelCharges($carRentalFuelCharges)
     {
-        if (is_null($carRentalFuelCharges)) {
-            throw new \InvalidArgumentException('non-nullable carRentalFuelCharges cannot be null');
-        }
         $this->container['carRentalFuelCharges'] = $carRentalFuelCharges;
 
         return $this;
@@ -557,9 +545,6 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setCarRentalInsuranceCharges($carRentalInsuranceCharges)
     {
-        if (is_null($carRentalInsuranceCharges)) {
-            throw new \InvalidArgumentException('non-nullable carRentalInsuranceCharges cannot be null');
-        }
         $this->container['carRentalInsuranceCharges'] = $carRentalInsuranceCharges;
 
         return $this;
@@ -584,9 +569,6 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setCarRentalLocationCity($carRentalLocationCity)
     {
-        if (is_null($carRentalLocationCity)) {
-            throw new \InvalidArgumentException('non-nullable carRentalLocationCity cannot be null');
-        }
         $this->container['carRentalLocationCity'] = $carRentalLocationCity;
 
         return $this;
@@ -611,9 +593,6 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setCarRentalLocationCountry($carRentalLocationCountry)
     {
-        if (is_null($carRentalLocationCountry)) {
-            throw new \InvalidArgumentException('non-nullable carRentalLocationCountry cannot be null');
-        }
         $this->container['carRentalLocationCountry'] = $carRentalLocationCountry;
 
         return $this;
@@ -638,9 +617,6 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setCarRentalLocationStateProvince($carRentalLocationStateProvince)
     {
-        if (is_null($carRentalLocationStateProvince)) {
-            throw new \InvalidArgumentException('non-nullable carRentalLocationStateProvince cannot be null');
-        }
         $this->container['carRentalLocationStateProvince'] = $carRentalLocationStateProvince;
 
         return $this;
@@ -665,9 +641,6 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setCarRentalNoShowIndicator($carRentalNoShowIndicator)
     {
-        if (is_null($carRentalNoShowIndicator)) {
-            throw new \InvalidArgumentException('non-nullable carRentalNoShowIndicator cannot be null');
-        }
         $this->container['carRentalNoShowIndicator'] = $carRentalNoShowIndicator;
 
         return $this;
@@ -692,9 +665,6 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setCarRentalOneWayDropOffCharges($carRentalOneWayDropOffCharges)
     {
-        if (is_null($carRentalOneWayDropOffCharges)) {
-            throw new \InvalidArgumentException('non-nullable carRentalOneWayDropOffCharges cannot be null');
-        }
         $this->container['carRentalOneWayDropOffCharges'] = $carRentalOneWayDropOffCharges;
 
         return $this;
@@ -719,9 +689,6 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setCarRentalRate($carRentalRate)
     {
-        if (is_null($carRentalRate)) {
-            throw new \InvalidArgumentException('non-nullable carRentalRate cannot be null');
-        }
         $this->container['carRentalRate'] = $carRentalRate;
 
         return $this;
@@ -746,9 +713,6 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setCarRentalRateIndicator($carRentalRateIndicator)
     {
-        if (is_null($carRentalRateIndicator)) {
-            throw new \InvalidArgumentException('non-nullable carRentalRateIndicator cannot be null');
-        }
         $this->container['carRentalRateIndicator'] = $carRentalRateIndicator;
 
         return $this;
@@ -773,9 +737,6 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setCarRentalRentalAgreementNumber($carRentalRentalAgreementNumber)
     {
-        if (is_null($carRentalRentalAgreementNumber)) {
-            throw new \InvalidArgumentException('non-nullable carRentalRentalAgreementNumber cannot be null');
-        }
         $this->container['carRentalRentalAgreementNumber'] = $carRentalRentalAgreementNumber;
 
         return $this;
@@ -800,9 +761,6 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setCarRentalRentalClassId($carRentalRentalClassId)
     {
-        if (is_null($carRentalRentalClassId)) {
-            throw new \InvalidArgumentException('non-nullable carRentalRentalClassId cannot be null');
-        }
         $this->container['carRentalRentalClassId'] = $carRentalRentalClassId;
 
         return $this;
@@ -827,9 +785,6 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setCarRentalRenterName($carRentalRenterName)
     {
-        if (is_null($carRentalRenterName)) {
-            throw new \InvalidArgumentException('non-nullable carRentalRenterName cannot be null');
-        }
         $this->container['carRentalRenterName'] = $carRentalRenterName;
 
         return $this;
@@ -854,9 +809,6 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setCarRentalReturnCity($carRentalReturnCity)
     {
-        if (is_null($carRentalReturnCity)) {
-            throw new \InvalidArgumentException('non-nullable carRentalReturnCity cannot be null');
-        }
         $this->container['carRentalReturnCity'] = $carRentalReturnCity;
 
         return $this;
@@ -881,9 +833,6 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setCarRentalReturnCountry($carRentalReturnCountry)
     {
-        if (is_null($carRentalReturnCountry)) {
-            throw new \InvalidArgumentException('non-nullable carRentalReturnCountry cannot be null');
-        }
         $this->container['carRentalReturnCountry'] = $carRentalReturnCountry;
 
         return $this;
@@ -908,9 +857,6 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setCarRentalReturnDate($carRentalReturnDate)
     {
-        if (is_null($carRentalReturnDate)) {
-            throw new \InvalidArgumentException('non-nullable carRentalReturnDate cannot be null');
-        }
         $this->container['carRentalReturnDate'] = $carRentalReturnDate;
 
         return $this;
@@ -935,9 +881,6 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setCarRentalReturnLocationId($carRentalReturnLocationId)
     {
-        if (is_null($carRentalReturnLocationId)) {
-            throw new \InvalidArgumentException('non-nullable carRentalReturnLocationId cannot be null');
-        }
         $this->container['carRentalReturnLocationId'] = $carRentalReturnLocationId;
 
         return $this;
@@ -962,9 +905,6 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setCarRentalReturnStateProvince($carRentalReturnStateProvince)
     {
-        if (is_null($carRentalReturnStateProvince)) {
-            throw new \InvalidArgumentException('non-nullable carRentalReturnStateProvince cannot be null');
-        }
         $this->container['carRentalReturnStateProvince'] = $carRentalReturnStateProvince;
 
         return $this;
@@ -989,9 +929,6 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setCarRentalTaxExemptIndicator($carRentalTaxExemptIndicator)
     {
-        if (is_null($carRentalTaxExemptIndicator)) {
-            throw new \InvalidArgumentException('non-nullable carRentalTaxExemptIndicator cannot be null');
-        }
         $this->container['carRentalTaxExemptIndicator'] = $carRentalTaxExemptIndicator;
 
         return $this;
@@ -1016,9 +953,6 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setTravelEntertainmentAuthDataDuration($travelEntertainmentAuthDataDuration)
     {
-        if (is_null($travelEntertainmentAuthDataDuration)) {
-            throw new \InvalidArgumentException('non-nullable travelEntertainmentAuthDataDuration cannot be null');
-        }
         $this->container['travelEntertainmentAuthDataDuration'] = $travelEntertainmentAuthDataDuration;
 
         return $this;
@@ -1043,9 +977,6 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setTravelEntertainmentAuthDataMarket($travelEntertainmentAuthDataMarket)
     {
-        if (is_null($travelEntertainmentAuthDataMarket)) {
-            throw new \InvalidArgumentException('non-nullable travelEntertainmentAuthDataMarket cannot be null');
-        }
         $this->container['travelEntertainmentAuthDataMarket'] = $travelEntertainmentAuthDataMarket;
 
         return $this;

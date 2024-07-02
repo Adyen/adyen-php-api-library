@@ -312,9 +312,6 @@ class OnboardingThemes implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setNext($next)
     {
-        if (is_null($next)) {
-            throw new \InvalidArgumentException('non-nullable next cannot be null');
-        }
         $this->container['next'] = $next;
 
         return $this;
@@ -339,9 +336,6 @@ class OnboardingThemes implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPrevious($previous)
     {
-        if (is_null($previous)) {
-            throw new \InvalidArgumentException('non-nullable previous cannot be null');
-        }
         $this->container['previous'] = $previous;
 
         return $this;
@@ -366,9 +360,6 @@ class OnboardingThemes implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setThemes($themes)
     {
-        if (is_null($themes)) {
-            throw new \InvalidArgumentException('non-nullable themes cannot be null');
-        }
         $this->container['themes'] = $themes;
 
         return $this;

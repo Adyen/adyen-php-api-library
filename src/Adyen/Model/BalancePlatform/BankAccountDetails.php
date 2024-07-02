@@ -340,9 +340,6 @@ class BankAccountDetails implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setAccountNumber($accountNumber)
     {
-        if (is_null($accountNumber)) {
-            throw new \InvalidArgumentException('non-nullable accountNumber cannot be null');
-        }
         $this->container['accountNumber'] = $accountNumber;
 
         return $this;
@@ -367,9 +364,6 @@ class BankAccountDetails implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setAccountType($accountType)
     {
-        if (is_null($accountType)) {
-            throw new \InvalidArgumentException('non-nullable accountType cannot be null');
-        }
         $this->container['accountType'] = $accountType;
 
         return $this;
@@ -394,9 +388,6 @@ class BankAccountDetails implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setFormFactor($formFactor)
     {
-        if (is_null($formFactor)) {
-            throw new \InvalidArgumentException('non-nullable formFactor cannot be null');
-        }
         $this->container['formFactor'] = $formFactor;
 
         return $this;
@@ -421,9 +412,6 @@ class BankAccountDetails implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setIban($iban)
     {
-        if (is_null($iban)) {
-            throw new \InvalidArgumentException('non-nullable iban cannot be null');
-        }
         $this->container['iban'] = $iban;
 
         return $this;
@@ -448,9 +436,6 @@ class BankAccountDetails implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setRoutingNumber($routingNumber)
     {
-        if (is_null($routingNumber)) {
-            throw new \InvalidArgumentException('non-nullable routingNumber cannot be null');
-        }
         $this->container['routingNumber'] = $routingNumber;
 
         return $this;
@@ -475,9 +460,6 @@ class BankAccountDetails implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setSortCode($sortCode)
     {
-        if (is_null($sortCode)) {
-            throw new \InvalidArgumentException('non-nullable sortCode cannot be null');
-        }
         $this->container['sortCode'] = $sortCode;
 
         return $this;
@@ -502,9 +484,6 @@ class BankAccountDetails implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $this->container['type'] = $type;
 
         return $this;

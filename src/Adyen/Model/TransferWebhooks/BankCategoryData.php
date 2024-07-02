@@ -354,9 +354,6 @@ class BankCategoryData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPriority($priority)
     {
-        if (is_null($priority)) {
-            throw new \InvalidArgumentException('non-nullable priority cannot be null');
-        }
         $allowedValues = $this->getPriorityAllowableValues();
         if (!in_array($priority, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -391,9 +388,6 @@ class BankCategoryData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

@@ -362,9 +362,6 @@ class TransferRouteRequirementsInner implements ModelInterface, ArrayAccess, \Js
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -389,9 +386,6 @@ class TransferRouteRequirementsInner implements ModelInterface, ArrayAccess, \Js
      */
     public function setRequiredAddressFields($requiredAddressFields)
     {
-        if (is_null($requiredAddressFields)) {
-            throw new \InvalidArgumentException('non-nullable requiredAddressFields cannot be null');
-        }
         $this->container['requiredAddressFields'] = $requiredAddressFields;
 
         return $this;
@@ -416,9 +410,6 @@ class TransferRouteRequirementsInner implements ModelInterface, ArrayAccess, \Js
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $this->container['type'] = $type;
 
         return $this;
@@ -443,9 +434,6 @@ class TransferRouteRequirementsInner implements ModelInterface, ArrayAccess, \Js
      */
     public function setMax($max)
     {
-        if (is_null($max)) {
-            throw new \InvalidArgumentException('non-nullable max cannot be null');
-        }
         $this->container['max'] = $max;
 
         return $this;
@@ -470,9 +458,6 @@ class TransferRouteRequirementsInner implements ModelInterface, ArrayAccess, \Js
      */
     public function setMin($min)
     {
-        if (is_null($min)) {
-            throw new \InvalidArgumentException('non-nullable min cannot be null');
-        }
         $this->container['min'] = $min;
 
         return $this;
@@ -497,9 +482,6 @@ class TransferRouteRequirementsInner implements ModelInterface, ArrayAccess, \Js
      */
     public function setBankAccountIdentificationTypes($bankAccountIdentificationTypes)
     {
-        if (is_null($bankAccountIdentificationTypes)) {
-            throw new \InvalidArgumentException('non-nullable bankAccountIdentificationTypes cannot be null');
-        }
         $this->container['bankAccountIdentificationTypes'] = $bankAccountIdentificationTypes;
 
         return $this;
@@ -524,9 +506,6 @@ class TransferRouteRequirementsInner implements ModelInterface, ArrayAccess, \Js
      */
     public function setIssuingCountryCode($issuingCountryCode)
     {
-        if (is_null($issuingCountryCode)) {
-            throw new \InvalidArgumentException('non-nullable issuingCountryCode cannot be null');
-        }
         $this->container['issuingCountryCode'] = $issuingCountryCode;
 
         return $this;
@@ -551,9 +530,6 @@ class TransferRouteRequirementsInner implements ModelInterface, ArrayAccess, \Js
      */
     public function setIssuingCountryCodes($issuingCountryCodes)
     {
-        if (is_null($issuingCountryCodes)) {
-            throw new \InvalidArgumentException('non-nullable issuingCountryCodes cannot be null');
-        }
         $this->container['issuingCountryCodes'] = $issuingCountryCodes;
 
         return $this;
@@ -578,9 +554,6 @@ class TransferRouteRequirementsInner implements ModelInterface, ArrayAccess, \Js
      */
     public function setOnlyForCrossBalancePlatform($onlyForCrossBalancePlatform)
     {
-        if (is_null($onlyForCrossBalancePlatform)) {
-            throw new \InvalidArgumentException('non-nullable onlyForCrossBalancePlatform cannot be null');
-        }
         $this->container['onlyForCrossBalancePlatform'] = $onlyForCrossBalancePlatform;
 
         return $this;
@@ -605,9 +578,6 @@ class TransferRouteRequirementsInner implements ModelInterface, ArrayAccess, \Js
      */
     public function setPaymentInstrumentType($paymentInstrumentType)
     {
-        if (is_null($paymentInstrumentType)) {
-            throw new \InvalidArgumentException('non-nullable paymentInstrumentType cannot be null');
-        }
         $this->container['paymentInstrumentType'] = $paymentInstrumentType;
 
         return $this;

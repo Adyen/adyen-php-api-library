@@ -305,7 +305,6 @@ class RepaymentTerm implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEstimatedDays($estimatedDays)
     {
-        // Do nothing for nullable integers
         $this->container['estimatedDays'] = $estimatedDays;
 
         return $this;
@@ -330,7 +329,6 @@ class RepaymentTerm implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMaximumDays($maximumDays)
     {
-        // Do nothing for nullable integers
         $this->container['maximumDays'] = $maximumDays;
 
         return $this;

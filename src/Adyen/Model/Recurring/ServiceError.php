@@ -330,9 +330,6 @@ class ServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAdditionalData($additionalData)
     {
-        if (is_null($additionalData)) {
-            throw new \InvalidArgumentException('non-nullable additionalData cannot be null');
-        }
         $this->container['additionalData'] = $additionalData;
 
         return $this;
@@ -357,9 +354,6 @@ class ServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setErrorCode($errorCode)
     {
-        if (is_null($errorCode)) {
-            throw new \InvalidArgumentException('non-nullable errorCode cannot be null');
-        }
         $this->container['errorCode'] = $errorCode;
 
         return $this;
@@ -384,9 +378,6 @@ class ServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setErrorType($errorType)
     {
-        if (is_null($errorType)) {
-            throw new \InvalidArgumentException('non-nullable errorType cannot be null');
-        }
         $this->container['errorType'] = $errorType;
 
         return $this;
@@ -411,9 +402,6 @@ class ServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMessage($message)
     {
-        if (is_null($message)) {
-            throw new \InvalidArgumentException('non-nullable message cannot be null');
-        }
         $this->container['message'] = $message;
 
         return $this;
@@ -438,9 +426,6 @@ class ServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPspReference($pspReference)
     {
-        if (is_null($pspReference)) {
-            throw new \InvalidArgumentException('non-nullable pspReference cannot be null');
-        }
         $this->container['pspReference'] = $pspReference;
 
         return $this;
@@ -465,7 +450,6 @@ class ServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStatus($status)
     {
-        // Do nothing for nullable integers
         $this->container['status'] = $status;
 
         return $this;

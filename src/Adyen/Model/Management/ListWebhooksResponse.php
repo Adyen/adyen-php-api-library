@@ -329,9 +329,6 @@ class ListWebhooksResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setLinks($links)
     {
-        if (is_null($links)) {
-            throw new \InvalidArgumentException('non-nullable links cannot be null');
-        }
         $this->container['links'] = $links;
 
         return $this;
@@ -356,9 +353,6 @@ class ListWebhooksResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setAccountReference($accountReference)
     {
-        if (is_null($accountReference)) {
-            throw new \InvalidArgumentException('non-nullable accountReference cannot be null');
-        }
         $this->container['accountReference'] = $accountReference;
 
         return $this;
@@ -383,9 +377,6 @@ class ListWebhooksResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setData($data)
     {
-        if (is_null($data)) {
-            throw new \InvalidArgumentException('non-nullable data cannot be null');
-        }
         $this->container['data'] = $data;
 
         return $this;
@@ -410,7 +401,6 @@ class ListWebhooksResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setItemsTotal($itemsTotal)
     {
-        // Do nothing for nullable integers
         $this->container['itemsTotal'] = $itemsTotal;
 
         return $this;
@@ -435,7 +425,6 @@ class ListWebhooksResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setPagesTotal($pagesTotal)
     {
-        // Do nothing for nullable integers
         $this->container['pagesTotal'] = $pagesTotal;
 
         return $this;

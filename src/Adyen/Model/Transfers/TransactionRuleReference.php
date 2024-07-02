@@ -323,9 +323,6 @@ class TransactionRuleReference implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -350,9 +347,6 @@ class TransactionRuleReference implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -377,9 +371,6 @@ class TransactionRuleReference implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setOutcomeType($outcomeType)
     {
-        if (is_null($outcomeType)) {
-            throw new \InvalidArgumentException('non-nullable outcomeType cannot be null');
-        }
         $this->container['outcomeType'] = $outcomeType;
 
         return $this;
@@ -404,9 +395,6 @@ class TransactionRuleReference implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -431,7 +419,6 @@ class TransactionRuleReference implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setScore($score)
     {
-        // Do nothing for nullable integers
         $this->container['score'] = $score;
 
         return $this;

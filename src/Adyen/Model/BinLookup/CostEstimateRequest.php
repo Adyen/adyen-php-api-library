@@ -391,9 +391,6 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setAmount($amount)
     {
-        if (is_null($amount)) {
-            throw new \InvalidArgumentException('non-nullable amount cannot be null');
-        }
         $this->container['amount'] = $amount;
 
         return $this;
@@ -418,9 +415,6 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setAssumptions($assumptions)
     {
-        if (is_null($assumptions)) {
-            throw new \InvalidArgumentException('non-nullable assumptions cannot be null');
-        }
         $this->container['assumptions'] = $assumptions;
 
         return $this;
@@ -445,9 +439,6 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setCardNumber($cardNumber)
     {
-        if (is_null($cardNumber)) {
-            throw new \InvalidArgumentException('non-nullable cardNumber cannot be null');
-        }
         $this->container['cardNumber'] = $cardNumber;
 
         return $this;
@@ -472,9 +463,6 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setEncryptedCardNumber($encryptedCardNumber)
     {
-        if (is_null($encryptedCardNumber)) {
-            throw new \InvalidArgumentException('non-nullable encryptedCardNumber cannot be null');
-        }
         $this->container['encryptedCardNumber'] = $encryptedCardNumber;
 
         return $this;
@@ -499,9 +487,6 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setMerchantAccount($merchantAccount)
     {
-        if (is_null($merchantAccount)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
-        }
         $this->container['merchantAccount'] = $merchantAccount;
 
         return $this;
@@ -526,9 +511,6 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setMerchantDetails($merchantDetails)
     {
-        if (is_null($merchantDetails)) {
-            throw new \InvalidArgumentException('non-nullable merchantDetails cannot be null');
-        }
         $this->container['merchantDetails'] = $merchantDetails;
 
         return $this;
@@ -553,9 +535,6 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setRecurring($recurring)
     {
-        if (is_null($recurring)) {
-            throw new \InvalidArgumentException('non-nullable recurring cannot be null');
-        }
         $this->container['recurring'] = $recurring;
 
         return $this;
@@ -580,9 +559,6 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setSelectedRecurringDetailReference($selectedRecurringDetailReference)
     {
-        if (is_null($selectedRecurringDetailReference)) {
-            throw new \InvalidArgumentException('non-nullable selectedRecurringDetailReference cannot be null');
-        }
         $this->container['selectedRecurringDetailReference'] = $selectedRecurringDetailReference;
 
         return $this;
@@ -607,9 +583,6 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setShopperInteraction($shopperInteraction)
     {
-        if (is_null($shopperInteraction)) {
-            throw new \InvalidArgumentException('non-nullable shopperInteraction cannot be null');
-        }
         $allowedValues = $this->getShopperInteractionAllowableValues();
         if (!in_array($shopperInteraction, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -644,9 +617,6 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setShopperReference($shopperReference)
     {
-        if (is_null($shopperReference)) {
-            throw new \InvalidArgumentException('non-nullable shopperReference cannot be null');
-        }
         $this->container['shopperReference'] = $shopperReference;
 
         return $this;

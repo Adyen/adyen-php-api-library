@@ -336,9 +336,6 @@ class TransactionNotificationRequestV4 implements ModelInterface, ArrayAccess, \
      */
     public function setData($data)
     {
-        if (is_null($data)) {
-            throw new \InvalidArgumentException('non-nullable data cannot be null');
-        }
         $this->container['data'] = $data;
 
         return $this;
@@ -363,9 +360,6 @@ class TransactionNotificationRequestV4 implements ModelInterface, ArrayAccess, \
      */
     public function setEnvironment($environment)
     {
-        if (is_null($environment)) {
-            throw new \InvalidArgumentException('non-nullable environment cannot be null');
-        }
         $this->container['environment'] = $environment;
 
         return $this;
@@ -390,9 +384,6 @@ class TransactionNotificationRequestV4 implements ModelInterface, ArrayAccess, \
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

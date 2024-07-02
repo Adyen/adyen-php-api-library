@@ -336,9 +336,6 @@ class AmountAdjustment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAmount($amount)
     {
-        if (is_null($amount)) {
-            throw new \InvalidArgumentException('non-nullable amount cannot be null');
-        }
         $this->container['amount'] = $amount;
 
         return $this;
@@ -363,9 +360,6 @@ class AmountAdjustment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAmountAdjustmentType($amountAdjustmentType)
     {
-        if (is_null($amountAdjustmentType)) {
-            throw new \InvalidArgumentException('non-nullable amountAdjustmentType cannot be null');
-        }
         $allowedValues = $this->getAmountAdjustmentTypeAllowableValues();
         if (!in_array($amountAdjustmentType, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -400,7 +394,6 @@ class AmountAdjustment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBasepoints($basepoints)
     {
-        // Do nothing for nullable integers
         $this->container['basepoints'] = $basepoints;
 
         return $this;

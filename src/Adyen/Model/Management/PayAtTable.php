@@ -355,9 +355,6 @@ class PayAtTable implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAuthenticationMethod($authenticationMethod)
     {
-        if (is_null($authenticationMethod)) {
-            throw new \InvalidArgumentException('non-nullable authenticationMethod cannot be null');
-        }
         $allowedValues = $this->getAuthenticationMethodAllowableValues();
         if (!in_array($authenticationMethod, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -392,9 +389,6 @@ class PayAtTable implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEnablePayAtTable($enablePayAtTable)
     {
-        if (is_null($enablePayAtTable)) {
-            throw new \InvalidArgumentException('non-nullable enablePayAtTable cannot be null');
-        }
         $this->container['enablePayAtTable'] = $enablePayAtTable;
 
         return $this;

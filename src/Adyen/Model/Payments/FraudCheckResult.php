@@ -318,7 +318,6 @@ class FraudCheckResult implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAccountScore($accountScore)
     {
-        // Do nothing for nullable integers
         $this->container['accountScore'] = $accountScore;
 
         return $this;
@@ -343,7 +342,6 @@ class FraudCheckResult implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCheckId($checkId)
     {
-        // Do nothing for nullable integers
         $this->container['checkId'] = $checkId;
 
         return $this;
@@ -368,9 +366,6 @@ class FraudCheckResult implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setName($name)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
         $this->container['name'] = $name;
 
         return $this;

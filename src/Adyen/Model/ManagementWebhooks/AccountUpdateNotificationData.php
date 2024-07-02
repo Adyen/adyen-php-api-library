@@ -325,9 +325,6 @@ class AccountUpdateNotificationData implements ModelInterface, ArrayAccess, \Jso
      */
     public function setCapabilities($capabilities)
     {
-        if (is_null($capabilities)) {
-            throw new \InvalidArgumentException('non-nullable capabilities cannot be null');
-        }
         $this->container['capabilities'] = $capabilities;
 
         return $this;
@@ -352,9 +349,6 @@ class AccountUpdateNotificationData implements ModelInterface, ArrayAccess, \Jso
      */
     public function setLegalEntityId($legalEntityId)
     {
-        if (is_null($legalEntityId)) {
-            throw new \InvalidArgumentException('non-nullable legalEntityId cannot be null');
-        }
         $this->container['legalEntityId'] = $legalEntityId;
 
         return $this;
@@ -379,9 +373,6 @@ class AccountUpdateNotificationData implements ModelInterface, ArrayAccess, \Jso
      */
     public function setMerchantId($merchantId)
     {
-        if (is_null($merchantId)) {
-            throw new \InvalidArgumentException('non-nullable merchantId cannot be null');
-        }
         $this->container['merchantId'] = $merchantId;
 
         return $this;
@@ -406,9 +397,6 @@ class AccountUpdateNotificationData implements ModelInterface, ArrayAccess, \Jso
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $this->container['status'] = $status;
 
         return $this;

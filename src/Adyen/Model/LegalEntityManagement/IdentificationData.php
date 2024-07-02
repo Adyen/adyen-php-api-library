@@ -367,9 +367,6 @@ class IdentificationData implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setCardNumber($cardNumber)
     {
-        if (is_null($cardNumber)) {
-            throw new \InvalidArgumentException('non-nullable cardNumber cannot be null');
-        }
         $this->container['cardNumber'] = $cardNumber;
 
         return $this;
@@ -394,9 +391,6 @@ class IdentificationData implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setExpiryDate($expiryDate)
     {
-        if (is_null($expiryDate)) {
-            throw new \InvalidArgumentException('non-nullable expiryDate cannot be null');
-        }
         $this->container['expiryDate'] = $expiryDate;
 
         return $this;
@@ -423,9 +417,6 @@ class IdentificationData implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setIssuerCountry($issuerCountry)
     {
-        if (is_null($issuerCountry)) {
-            throw new \InvalidArgumentException('non-nullable issuerCountry cannot be null');
-        }
         $this->container['issuerCountry'] = $issuerCountry;
 
         return $this;
@@ -450,9 +441,6 @@ class IdentificationData implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setIssuerState($issuerState)
     {
-        if (is_null($issuerState)) {
-            throw new \InvalidArgumentException('non-nullable issuerState cannot be null');
-        }
         $this->container['issuerState'] = $issuerState;
 
         return $this;
@@ -477,9 +465,6 @@ class IdentificationData implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setNationalIdExempt($nationalIdExempt)
     {
-        if (is_null($nationalIdExempt)) {
-            throw new \InvalidArgumentException('non-nullable nationalIdExempt cannot be null');
-        }
         $this->container['nationalIdExempt'] = $nationalIdExempt;
 
         return $this;
@@ -504,9 +489,6 @@ class IdentificationData implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setNumber($number)
     {
-        if (is_null($number)) {
-            throw new \InvalidArgumentException('non-nullable number cannot be null');
-        }
         $this->container['number'] = $number;
 
         return $this;
@@ -531,9 +513,6 @@ class IdentificationData implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

@@ -302,9 +302,6 @@ class CreatePermitResult implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setPermitResultList($permitResultList)
     {
-        if (is_null($permitResultList)) {
-            throw new \InvalidArgumentException('non-nullable permitResultList cannot be null');
-        }
         $this->container['permitResultList'] = $permitResultList;
 
         return $this;
@@ -329,9 +326,6 @@ class CreatePermitResult implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setPspReference($pspReference)
     {
-        if (is_null($pspReference)) {
-            throw new \InvalidArgumentException('non-nullable pspReference cannot be null');
-        }
         $this->container['pspReference'] = $pspReference;
 
         return $this;

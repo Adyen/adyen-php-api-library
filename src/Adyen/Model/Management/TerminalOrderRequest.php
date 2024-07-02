@@ -330,9 +330,6 @@ class TerminalOrderRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setBillingEntityId($billingEntityId)
     {
-        if (is_null($billingEntityId)) {
-            throw new \InvalidArgumentException('non-nullable billingEntityId cannot be null');
-        }
         $this->container['billingEntityId'] = $billingEntityId;
 
         return $this;
@@ -357,9 +354,6 @@ class TerminalOrderRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setCustomerOrderReference($customerOrderReference)
     {
-        if (is_null($customerOrderReference)) {
-            throw new \InvalidArgumentException('non-nullable customerOrderReference cannot be null');
-        }
         $this->container['customerOrderReference'] = $customerOrderReference;
 
         return $this;
@@ -384,9 +378,6 @@ class TerminalOrderRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setItems($items)
     {
-        if (is_null($items)) {
-            throw new \InvalidArgumentException('non-nullable items cannot be null');
-        }
         $this->container['items'] = $items;
 
         return $this;
@@ -411,9 +402,6 @@ class TerminalOrderRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setOrderType($orderType)
     {
-        if (is_null($orderType)) {
-            throw new \InvalidArgumentException('non-nullable orderType cannot be null');
-        }
         $this->container['orderType'] = $orderType;
 
         return $this;
@@ -438,9 +426,6 @@ class TerminalOrderRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setShippingLocationId($shippingLocationId)
     {
-        if (is_null($shippingLocationId)) {
-            throw new \InvalidArgumentException('non-nullable shippingLocationId cannot be null');
-        }
         $this->container['shippingLocationId'] = $shippingLocationId;
 
         return $this;
@@ -465,9 +450,6 @@ class TerminalOrderRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setTaxId($taxId)
     {
-        if (is_null($taxId)) {
-            throw new \InvalidArgumentException('non-nullable taxId cannot be null');
-        }
         $this->container['taxId'] = $taxId;
 
         return $this;

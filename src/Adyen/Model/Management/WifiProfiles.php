@@ -302,9 +302,6 @@ class WifiProfiles implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setProfiles($profiles)
     {
-        if (is_null($profiles)) {
-            throw new \InvalidArgumentException('non-nullable profiles cannot be null');
-        }
         $this->container['profiles'] = $profiles;
 
         return $this;
@@ -329,9 +326,6 @@ class WifiProfiles implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSettings($settings)
     {
-        if (is_null($settings)) {
-            throw new \InvalidArgumentException('non-nullable settings cannot be null');
-        }
         $this->container['settings'] = $settings;
 
         return $this;

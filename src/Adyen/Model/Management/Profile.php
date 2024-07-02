@@ -426,9 +426,6 @@ class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAuthType($authType)
     {
-        if (is_null($authType)) {
-            throw new \InvalidArgumentException('non-nullable authType cannot be null');
-        }
         $this->container['authType'] = $authType;
 
         return $this;
@@ -453,9 +450,6 @@ class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAutoWifi($autoWifi)
     {
-        if (is_null($autoWifi)) {
-            throw new \InvalidArgumentException('non-nullable autoWifi cannot be null');
-        }
         $this->container['autoWifi'] = $autoWifi;
 
         return $this;
@@ -480,9 +474,6 @@ class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBssType($bssType)
     {
-        if (is_null($bssType)) {
-            throw new \InvalidArgumentException('non-nullable bssType cannot be null');
-        }
         $this->container['bssType'] = $bssType;
 
         return $this;
@@ -507,7 +498,6 @@ class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setChannel($channel)
     {
-        // Do nothing for nullable integers
         $this->container['channel'] = $channel;
 
         return $this;
@@ -532,9 +522,6 @@ class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDefaultProfile($defaultProfile)
     {
-        if (is_null($defaultProfile)) {
-            throw new \InvalidArgumentException('non-nullable defaultProfile cannot be null');
-        }
         $this->container['defaultProfile'] = $defaultProfile;
 
         return $this;
@@ -559,9 +546,6 @@ class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEap($eap)
     {
-        if (is_null($eap)) {
-            throw new \InvalidArgumentException('non-nullable eap cannot be null');
-        }
         $this->container['eap'] = $eap;
 
         return $this;
@@ -586,9 +570,6 @@ class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEapCaCert($eapCaCert)
     {
-        if (is_null($eapCaCert)) {
-            throw new \InvalidArgumentException('non-nullable eapCaCert cannot be null');
-        }
         $this->container['eapCaCert'] = $eapCaCert;
 
         return $this;
@@ -613,9 +594,6 @@ class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEapClientCert($eapClientCert)
     {
-        if (is_null($eapClientCert)) {
-            throw new \InvalidArgumentException('non-nullable eapClientCert cannot be null');
-        }
         $this->container['eapClientCert'] = $eapClientCert;
 
         return $this;
@@ -640,9 +618,6 @@ class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEapClientKey($eapClientKey)
     {
-        if (is_null($eapClientKey)) {
-            throw new \InvalidArgumentException('non-nullable eapClientKey cannot be null');
-        }
         $this->container['eapClientKey'] = $eapClientKey;
 
         return $this;
@@ -667,9 +642,6 @@ class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEapClientPwd($eapClientPwd)
     {
-        if (is_null($eapClientPwd)) {
-            throw new \InvalidArgumentException('non-nullable eapClientPwd cannot be null');
-        }
         $this->container['eapClientPwd'] = $eapClientPwd;
 
         return $this;
@@ -694,9 +666,6 @@ class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEapIdentity($eapIdentity)
     {
-        if (is_null($eapIdentity)) {
-            throw new \InvalidArgumentException('non-nullable eapIdentity cannot be null');
-        }
         $this->container['eapIdentity'] = $eapIdentity;
 
         return $this;
@@ -721,9 +690,6 @@ class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEapIntermediateCert($eapIntermediateCert)
     {
-        if (is_null($eapIntermediateCert)) {
-            throw new \InvalidArgumentException('non-nullable eapIntermediateCert cannot be null');
-        }
         $this->container['eapIntermediateCert'] = $eapIntermediateCert;
 
         return $this;
@@ -748,9 +714,6 @@ class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEapPwd($eapPwd)
     {
-        if (is_null($eapPwd)) {
-            throw new \InvalidArgumentException('non-nullable eapPwd cannot be null');
-        }
         $this->container['eapPwd'] = $eapPwd;
 
         return $this;
@@ -775,9 +738,6 @@ class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setHiddenSsid($hiddenSsid)
     {
-        if (is_null($hiddenSsid)) {
-            throw new \InvalidArgumentException('non-nullable hiddenSsid cannot be null');
-        }
         $this->container['hiddenSsid'] = $hiddenSsid;
 
         return $this;
@@ -802,9 +762,6 @@ class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setName($name)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
         $this->container['name'] = $name;
 
         return $this;
@@ -829,9 +786,6 @@ class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPsk($psk)
     {
-        if (is_null($psk)) {
-            throw new \InvalidArgumentException('non-nullable psk cannot be null');
-        }
         $this->container['psk'] = $psk;
 
         return $this;
@@ -856,9 +810,6 @@ class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSsid($ssid)
     {
-        if (is_null($ssid)) {
-            throw new \InvalidArgumentException('non-nullable ssid cannot be null');
-        }
         $this->container['ssid'] = $ssid;
 
         return $this;
@@ -883,9 +834,6 @@ class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setWsec($wsec)
     {
-        if (is_null($wsec)) {
-            throw new \InvalidArgumentException('non-nullable wsec cannot be null');
-        }
         $this->container['wsec'] = $wsec;
 
         return $this;

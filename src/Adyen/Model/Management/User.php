@@ -373,9 +373,6 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLinks($links)
     {
-        if (is_null($links)) {
-            throw new \InvalidArgumentException('non-nullable links cannot be null');
-        }
         $this->container['links'] = $links;
 
         return $this;
@@ -400,9 +397,6 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAccountGroups($accountGroups)
     {
-        if (is_null($accountGroups)) {
-            throw new \InvalidArgumentException('non-nullable accountGroups cannot be null');
-        }
         $this->container['accountGroups'] = $accountGroups;
 
         return $this;
@@ -427,9 +421,6 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
-        if (is_null($active)) {
-            throw new \InvalidArgumentException('non-nullable active cannot be null');
-        }
         $this->container['active'] = $active;
 
         return $this;
@@ -454,9 +445,6 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setApps($apps)
     {
-        if (is_null($apps)) {
-            throw new \InvalidArgumentException('non-nullable apps cannot be null');
-        }
         $this->container['apps'] = $apps;
 
         return $this;
@@ -481,9 +469,6 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEmail($email)
     {
-        if (is_null($email)) {
-            throw new \InvalidArgumentException('non-nullable email cannot be null');
-        }
         $this->container['email'] = $email;
 
         return $this;
@@ -508,9 +493,6 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -535,9 +517,6 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setName($name)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
         $this->container['name'] = $name;
 
         return $this;
@@ -562,9 +541,6 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRoles($roles)
     {
-        if (is_null($roles)) {
-            throw new \InvalidArgumentException('non-nullable roles cannot be null');
-        }
         $this->container['roles'] = $roles;
 
         return $this;
@@ -589,9 +565,6 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTimeZoneCode($timeZoneCode)
     {
-        if (is_null($timeZoneCode)) {
-            throw new \InvalidArgumentException('non-nullable timeZoneCode cannot be null');
-        }
         $this->container['timeZoneCode'] = $timeZoneCode;
 
         return $this;
@@ -616,9 +589,6 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUsername($username)
     {
-        if (is_null($username)) {
-            throw new \InvalidArgumentException('non-nullable username cannot be null');
-        }
         $this->container['username'] = $username;
 
         return $this;

@@ -309,9 +309,6 @@ class SweepConfigurationNotificationData implements ModelInterface, ArrayAccess,
      */
     public function setAccountId($accountId)
     {
-        if (is_null($accountId)) {
-            throw new \InvalidArgumentException('non-nullable accountId cannot be null');
-        }
         $this->container['accountId'] = $accountId;
 
         return $this;
@@ -336,9 +333,6 @@ class SweepConfigurationNotificationData implements ModelInterface, ArrayAccess,
      */
     public function setBalancePlatform($balancePlatform)
     {
-        if (is_null($balancePlatform)) {
-            throw new \InvalidArgumentException('non-nullable balancePlatform cannot be null');
-        }
         $this->container['balancePlatform'] = $balancePlatform;
 
         return $this;
@@ -363,9 +357,6 @@ class SweepConfigurationNotificationData implements ModelInterface, ArrayAccess,
      */
     public function setSweep($sweep)
     {
-        if (is_null($sweep)) {
-            throw new \InvalidArgumentException('non-nullable sweep cannot be null');
-        }
         $this->container['sweep'] = $sweep;
 
         return $this;

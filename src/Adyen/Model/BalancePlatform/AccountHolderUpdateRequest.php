@@ -390,9 +390,6 @@ class AccountHolderUpdateRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setBalancePlatform($balancePlatform)
     {
-        if (is_null($balancePlatform)) {
-            throw new \InvalidArgumentException('non-nullable balancePlatform cannot be null');
-        }
         $this->container['balancePlatform'] = $balancePlatform;
 
         return $this;
@@ -417,9 +414,6 @@ class AccountHolderUpdateRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setCapabilities($capabilities)
     {
-        if (is_null($capabilities)) {
-            throw new \InvalidArgumentException('non-nullable capabilities cannot be null');
-        }
         $this->container['capabilities'] = $capabilities;
 
         return $this;
@@ -429,6 +423,7 @@ class AccountHolderUpdateRequest implements ModelInterface, ArrayAccess, \JsonSe
      * Gets contactDetails
      *
      * @return \Adyen\Model\BalancePlatform\ContactDetails|null
+     * @deprecated
      */
     public function getContactDetails()
     {
@@ -441,12 +436,10 @@ class AccountHolderUpdateRequest implements ModelInterface, ArrayAccess, \JsonSe
      * @param \Adyen\Model\BalancePlatform\ContactDetails|null $contactDetails contactDetails
      *
      * @return self
+     * @deprecated
      */
     public function setContactDetails($contactDetails)
     {
-        if (is_null($contactDetails)) {
-            throw new \InvalidArgumentException('non-nullable contactDetails cannot be null');
-        }
         $this->container['contactDetails'] = $contactDetails;
 
         return $this;
@@ -471,9 +464,6 @@ class AccountHolderUpdateRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -498,9 +488,6 @@ class AccountHolderUpdateRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setMetadata($metadata)
     {
-        if (is_null($metadata)) {
-            throw new \InvalidArgumentException('non-nullable metadata cannot be null');
-        }
         $this->container['metadata'] = $metadata;
 
         return $this;
@@ -525,9 +512,6 @@ class AccountHolderUpdateRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setMigratedAccountHolderCode($migratedAccountHolderCode)
     {
-        if (is_null($migratedAccountHolderCode)) {
-            throw new \InvalidArgumentException('non-nullable migratedAccountHolderCode cannot be null');
-        }
         $this->container['migratedAccountHolderCode'] = $migratedAccountHolderCode;
 
         return $this;
@@ -552,9 +536,6 @@ class AccountHolderUpdateRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setPrimaryBalanceAccount($primaryBalanceAccount)
     {
-        if (is_null($primaryBalanceAccount)) {
-            throw new \InvalidArgumentException('non-nullable primaryBalanceAccount cannot be null');
-        }
         $this->container['primaryBalanceAccount'] = $primaryBalanceAccount;
 
         return $this;
@@ -579,9 +560,6 @@ class AccountHolderUpdateRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -606,9 +584,6 @@ class AccountHolderUpdateRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -643,9 +618,6 @@ class AccountHolderUpdateRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setTimeZone($timeZone)
     {
-        if (is_null($timeZone)) {
-            throw new \InvalidArgumentException('non-nullable timeZone cannot be null');
-        }
         $this->container['timeZone'] = $timeZone;
 
         return $this;
@@ -670,9 +642,6 @@ class AccountHolderUpdateRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setVerificationDeadlines($verificationDeadlines)
     {
-        if (is_null($verificationDeadlines)) {
-            throw new \InvalidArgumentException('non-nullable verificationDeadlines cannot be null');
-        }
         $this->container['verificationDeadlines'] = $verificationDeadlines;
 
         return $this;

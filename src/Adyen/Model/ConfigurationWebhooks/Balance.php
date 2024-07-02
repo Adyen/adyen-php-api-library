@@ -335,9 +335,6 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAvailable($available)
     {
-        if (is_null($available)) {
-            throw new \InvalidArgumentException('non-nullable available cannot be null');
-        }
         $this->container['available'] = $available;
 
         return $this;
@@ -362,9 +359,6 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBalance($balance)
     {
-        if (is_null($balance)) {
-            throw new \InvalidArgumentException('non-nullable balance cannot be null');
-        }
         $this->container['balance'] = $balance;
 
         return $this;
@@ -389,9 +383,6 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCurrency($currency)
     {
-        if (is_null($currency)) {
-            throw new \InvalidArgumentException('non-nullable currency cannot be null');
-        }
         $this->container['currency'] = $currency;
 
         return $this;
@@ -416,9 +407,6 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPending($pending)
     {
-        if (is_null($pending)) {
-            throw new \InvalidArgumentException('non-nullable pending cannot be null');
-        }
         $this->container['pending'] = $pending;
 
         return $this;
@@ -443,9 +431,6 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setReserved($reserved)
     {
-        if (is_null($reserved)) {
-            throw new \InvalidArgumentException('non-nullable reserved cannot be null');
-        }
         $this->container['reserved'] = $reserved;
 
         return $this;

@@ -318,9 +318,6 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDate($date)
     {
-        if (is_null($date)) {
-            throw new \InvalidArgumentException('non-nullable date cannot be null');
-        }
         $this->container['date'] = $date;
 
         return $this;
@@ -345,9 +342,6 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMerchantName($merchantName)
     {
-        if (is_null($merchantName)) {
-            throw new \InvalidArgumentException('non-nullable merchantName cannot be null');
-        }
         $this->container['merchantName'] = $merchantName;
 
         return $this;
@@ -372,9 +366,6 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setOriginalAmount($originalAmount)
     {
-        if (is_null($originalAmount)) {
-            throw new \InvalidArgumentException('non-nullable originalAmount cannot be null');
-        }
         $this->container['originalAmount'] = $originalAmount;
 
         return $this;

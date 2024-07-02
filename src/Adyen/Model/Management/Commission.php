@@ -302,9 +302,6 @@ class Commission implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFixedAmount($fixedAmount)
     {
-        if (is_null($fixedAmount)) {
-            throw new \InvalidArgumentException('non-nullable fixedAmount cannot be null');
-        }
         $this->container['fixedAmount'] = $fixedAmount;
 
         return $this;
@@ -329,9 +326,6 @@ class Commission implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setVariablePercentage($variablePercentage)
     {
-        if (is_null($variablePercentage)) {
-            throw new \InvalidArgumentException('non-nullable variablePercentage cannot be null');
-        }
         $this->container['variablePercentage'] = $variablePercentage;
 
         return $this;

@@ -749,9 +749,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setAcquirerAccountCode($acquirerAccountCode)
     {
-        if (is_null($acquirerAccountCode)) {
-            throw new \InvalidArgumentException('non-nullable acquirerAccountCode cannot be null');
-        }
         $this->container['acquirerAccountCode'] = $acquirerAccountCode;
 
         return $this;
@@ -776,9 +773,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setAcquirerCode($acquirerCode)
     {
-        if (is_null($acquirerCode)) {
-            throw new \InvalidArgumentException('non-nullable acquirerCode cannot be null');
-        }
         $this->container['acquirerCode'] = $acquirerCode;
 
         return $this;
@@ -803,9 +797,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setAcquirerReference($acquirerReference)
     {
-        if (is_null($acquirerReference)) {
-            throw new \InvalidArgumentException('non-nullable acquirerReference cannot be null');
-        }
         $this->container['acquirerReference'] = $acquirerReference;
 
         return $this;
@@ -830,9 +821,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setAlias($alias)
     {
-        if (is_null($alias)) {
-            throw new \InvalidArgumentException('non-nullable alias cannot be null');
-        }
         $this->container['alias'] = $alias;
 
         return $this;
@@ -857,9 +845,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setAliasType($aliasType)
     {
-        if (is_null($aliasType)) {
-            throw new \InvalidArgumentException('non-nullable aliasType cannot be null');
-        }
         $this->container['aliasType'] = $aliasType;
 
         return $this;
@@ -884,9 +869,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setAuthCode($authCode)
     {
-        if (is_null($authCode)) {
-            throw new \InvalidArgumentException('non-nullable authCode cannot be null');
-        }
         $this->container['authCode'] = $authCode;
 
         return $this;
@@ -911,9 +893,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setAuthorisationMid($authorisationMid)
     {
-        if (is_null($authorisationMid)) {
-            throw new \InvalidArgumentException('non-nullable authorisationMid cannot be null');
-        }
         $this->container['authorisationMid'] = $authorisationMid;
 
         return $this;
@@ -938,9 +917,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setAuthorisedAmountCurrency($authorisedAmountCurrency)
     {
-        if (is_null($authorisedAmountCurrency)) {
-            throw new \InvalidArgumentException('non-nullable authorisedAmountCurrency cannot be null');
-        }
         $this->container['authorisedAmountCurrency'] = $authorisedAmountCurrency;
 
         return $this;
@@ -965,9 +941,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setAuthorisedAmountValue($authorisedAmountValue)
     {
-        if (is_null($authorisedAmountValue)) {
-            throw new \InvalidArgumentException('non-nullable authorisedAmountValue cannot be null');
-        }
         $this->container['authorisedAmountValue'] = $authorisedAmountValue;
 
         return $this;
@@ -992,9 +965,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setAvsResult($avsResult)
     {
-        if (is_null($avsResult)) {
-            throw new \InvalidArgumentException('non-nullable avsResult cannot be null');
-        }
         $this->container['avsResult'] = $avsResult;
 
         return $this;
@@ -1019,9 +989,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setAvsResultRaw($avsResultRaw)
     {
-        if (is_null($avsResultRaw)) {
-            throw new \InvalidArgumentException('non-nullable avsResultRaw cannot be null');
-        }
         $this->container['avsResultRaw'] = $avsResultRaw;
 
         return $this;
@@ -1046,9 +1013,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setBic($bic)
     {
-        if (is_null($bic)) {
-            throw new \InvalidArgumentException('non-nullable bic cannot be null');
-        }
         $this->container['bic'] = $bic;
 
         return $this;
@@ -1073,9 +1037,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setCoBrandedWith($coBrandedWith)
     {
-        if (is_null($coBrandedWith)) {
-            throw new \InvalidArgumentException('non-nullable coBrandedWith cannot be null');
-        }
         $this->container['coBrandedWith'] = $coBrandedWith;
 
         return $this;
@@ -1100,9 +1061,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setCvcResult($cvcResult)
     {
-        if (is_null($cvcResult)) {
-            throw new \InvalidArgumentException('non-nullable cvcResult cannot be null');
-        }
         $this->container['cvcResult'] = $cvcResult;
 
         return $this;
@@ -1127,9 +1085,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setCvcResultRaw($cvcResultRaw)
     {
-        if (is_null($cvcResultRaw)) {
-            throw new \InvalidArgumentException('non-nullable cvcResultRaw cannot be null');
-        }
         $this->container['cvcResultRaw'] = $cvcResultRaw;
 
         return $this;
@@ -1154,9 +1109,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setDsTransID($dsTransID)
     {
-        if (is_null($dsTransID)) {
-            throw new \InvalidArgumentException('non-nullable dsTransID cannot be null');
-        }
         $this->container['dsTransID'] = $dsTransID;
 
         return $this;
@@ -1181,9 +1133,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setEci($eci)
     {
-        if (is_null($eci)) {
-            throw new \InvalidArgumentException('non-nullable eci cannot be null');
-        }
         $this->container['eci'] = $eci;
 
         return $this;
@@ -1208,9 +1157,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setExpiryDate($expiryDate)
     {
-        if (is_null($expiryDate)) {
-            throw new \InvalidArgumentException('non-nullable expiryDate cannot be null');
-        }
         $this->container['expiryDate'] = $expiryDate;
 
         return $this;
@@ -1235,9 +1181,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setExtraCostsCurrency($extraCostsCurrency)
     {
-        if (is_null($extraCostsCurrency)) {
-            throw new \InvalidArgumentException('non-nullable extraCostsCurrency cannot be null');
-        }
         $this->container['extraCostsCurrency'] = $extraCostsCurrency;
 
         return $this;
@@ -1262,9 +1205,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setExtraCostsValue($extraCostsValue)
     {
-        if (is_null($extraCostsValue)) {
-            throw new \InvalidArgumentException('non-nullable extraCostsValue cannot be null');
-        }
         $this->container['extraCostsValue'] = $extraCostsValue;
 
         return $this;
@@ -1289,9 +1229,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setFraudCheckItemNrFraudCheckname($fraudCheckItemNrFraudCheckname)
     {
-        if (is_null($fraudCheckItemNrFraudCheckname)) {
-            throw new \InvalidArgumentException('non-nullable fraudCheckItemNrFraudCheckname cannot be null');
-        }
         $this->container['fraudCheckItemNrFraudCheckname'] = $fraudCheckItemNrFraudCheckname;
 
         return $this;
@@ -1316,9 +1253,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setFraudManualReview($fraudManualReview)
     {
-        if (is_null($fraudManualReview)) {
-            throw new \InvalidArgumentException('non-nullable fraudManualReview cannot be null');
-        }
         $this->container['fraudManualReview'] = $fraudManualReview;
 
         return $this;
@@ -1343,9 +1277,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setFraudResultType($fraudResultType)
     {
-        if (is_null($fraudResultType)) {
-            throw new \InvalidArgumentException('non-nullable fraudResultType cannot be null');
-        }
         $allowedValues = $this->getFraudResultTypeAllowableValues();
         if (!in_array($fraudResultType, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -1380,9 +1311,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setFundingSource($fundingSource)
     {
-        if (is_null($fundingSource)) {
-            throw new \InvalidArgumentException('non-nullable fundingSource cannot be null');
-        }
         $this->container['fundingSource'] = $fundingSource;
 
         return $this;
@@ -1407,9 +1335,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setFundsAvailability($fundsAvailability)
     {
-        if (is_null($fundsAvailability)) {
-            throw new \InvalidArgumentException('non-nullable fundsAvailability cannot be null');
-        }
         $this->container['fundsAvailability'] = $fundsAvailability;
 
         return $this;
@@ -1434,9 +1359,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setInferredRefusalReason($inferredRefusalReason)
     {
-        if (is_null($inferredRefusalReason)) {
-            throw new \InvalidArgumentException('non-nullable inferredRefusalReason cannot be null');
-        }
         $this->container['inferredRefusalReason'] = $inferredRefusalReason;
 
         return $this;
@@ -1461,9 +1383,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setIsCardCommercial($isCardCommercial)
     {
-        if (is_null($isCardCommercial)) {
-            throw new \InvalidArgumentException('non-nullable isCardCommercial cannot be null');
-        }
         $this->container['isCardCommercial'] = $isCardCommercial;
 
         return $this;
@@ -1488,9 +1407,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setIssuerCountry($issuerCountry)
     {
-        if (is_null($issuerCountry)) {
-            throw new \InvalidArgumentException('non-nullable issuerCountry cannot be null');
-        }
         $this->container['issuerCountry'] = $issuerCountry;
 
         return $this;
@@ -1515,9 +1431,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setLiabilityShift($liabilityShift)
     {
-        if (is_null($liabilityShift)) {
-            throw new \InvalidArgumentException('non-nullable liabilityShift cannot be null');
-        }
         $this->container['liabilityShift'] = $liabilityShift;
 
         return $this;
@@ -1542,9 +1455,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setMcBankNetReferenceNumber($mcBankNetReferenceNumber)
     {
-        if (is_null($mcBankNetReferenceNumber)) {
-            throw new \InvalidArgumentException('non-nullable mcBankNetReferenceNumber cannot be null');
-        }
         $this->container['mcBankNetReferenceNumber'] = $mcBankNetReferenceNumber;
 
         return $this;
@@ -1569,9 +1479,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setMerchantAdviceCode($merchantAdviceCode)
     {
-        if (is_null($merchantAdviceCode)) {
-            throw new \InvalidArgumentException('non-nullable merchantAdviceCode cannot be null');
-        }
         $this->container['merchantAdviceCode'] = $merchantAdviceCode;
 
         return $this;
@@ -1596,9 +1503,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setMerchantReference($merchantReference)
     {
-        if (is_null($merchantReference)) {
-            throw new \InvalidArgumentException('non-nullable merchantReference cannot be null');
-        }
         $this->container['merchantReference'] = $merchantReference;
 
         return $this;
@@ -1623,9 +1527,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setNetworkTxReference($networkTxReference)
     {
-        if (is_null($networkTxReference)) {
-            throw new \InvalidArgumentException('non-nullable networkTxReference cannot be null');
-        }
         $this->container['networkTxReference'] = $networkTxReference;
 
         return $this;
@@ -1650,9 +1551,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setOwnerName($ownerName)
     {
-        if (is_null($ownerName)) {
-            throw new \InvalidArgumentException('non-nullable ownerName cannot be null');
-        }
         $this->container['ownerName'] = $ownerName;
 
         return $this;
@@ -1677,9 +1575,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setPaymentAccountReference($paymentAccountReference)
     {
-        if (is_null($paymentAccountReference)) {
-            throw new \InvalidArgumentException('non-nullable paymentAccountReference cannot be null');
-        }
         $this->container['paymentAccountReference'] = $paymentAccountReference;
 
         return $this;
@@ -1704,9 +1599,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setPaymentMethod($paymentMethod)
     {
-        if (is_null($paymentMethod)) {
-            throw new \InvalidArgumentException('non-nullable paymentMethod cannot be null');
-        }
         $this->container['paymentMethod'] = $paymentMethod;
 
         return $this;
@@ -1731,9 +1623,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setPaymentMethodVariant($paymentMethodVariant)
     {
-        if (is_null($paymentMethodVariant)) {
-            throw new \InvalidArgumentException('non-nullable paymentMethodVariant cannot be null');
-        }
         $this->container['paymentMethodVariant'] = $paymentMethodVariant;
 
         return $this;
@@ -1758,9 +1647,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setPayoutEligible($payoutEligible)
     {
-        if (is_null($payoutEligible)) {
-            throw new \InvalidArgumentException('non-nullable payoutEligible cannot be null');
-        }
         $this->container['payoutEligible'] = $payoutEligible;
 
         return $this;
@@ -1785,9 +1671,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setRealtimeAccountUpdaterStatus($realtimeAccountUpdaterStatus)
     {
-        if (is_null($realtimeAccountUpdaterStatus)) {
-            throw new \InvalidArgumentException('non-nullable realtimeAccountUpdaterStatus cannot be null');
-        }
         $this->container['realtimeAccountUpdaterStatus'] = $realtimeAccountUpdaterStatus;
 
         return $this;
@@ -1812,9 +1695,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setReceiptFreeText($receiptFreeText)
     {
-        if (is_null($receiptFreeText)) {
-            throw new \InvalidArgumentException('non-nullable receiptFreeText cannot be null');
-        }
         $this->container['receiptFreeText'] = $receiptFreeText;
 
         return $this;
@@ -1839,9 +1719,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setRecurringContractTypes($recurringContractTypes)
     {
-        if (is_null($recurringContractTypes)) {
-            throw new \InvalidArgumentException('non-nullable recurringContractTypes cannot be null');
-        }
         $this->container['recurringContractTypes'] = $recurringContractTypes;
 
         return $this;
@@ -1866,9 +1743,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setRecurringFirstPspReference($recurringFirstPspReference)
     {
-        if (is_null($recurringFirstPspReference)) {
-            throw new \InvalidArgumentException('non-nullable recurringFirstPspReference cannot be null');
-        }
         $this->container['recurringFirstPspReference'] = $recurringFirstPspReference;
 
         return $this;
@@ -1893,9 +1767,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setRecurringRecurringDetailReference($recurringRecurringDetailReference)
     {
-        if (is_null($recurringRecurringDetailReference)) {
-            throw new \InvalidArgumentException('non-nullable recurringRecurringDetailReference cannot be null');
-        }
         $this->container['recurringRecurringDetailReference'] = $recurringRecurringDetailReference;
 
         return $this;
@@ -1920,9 +1791,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setRecurringShopperReference($recurringShopperReference)
     {
-        if (is_null($recurringShopperReference)) {
-            throw new \InvalidArgumentException('non-nullable recurringShopperReference cannot be null');
-        }
         $this->container['recurringShopperReference'] = $recurringShopperReference;
 
         return $this;
@@ -1947,9 +1815,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setRecurringProcessingModel($recurringProcessingModel)
     {
-        if (is_null($recurringProcessingModel)) {
-            throw new \InvalidArgumentException('non-nullable recurringProcessingModel cannot be null');
-        }
         $allowedValues = $this->getRecurringProcessingModelAllowableValues();
         if (!in_array($recurringProcessingModel, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -1984,9 +1849,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setReferred($referred)
     {
-        if (is_null($referred)) {
-            throw new \InvalidArgumentException('non-nullable referred cannot be null');
-        }
         $this->container['referred'] = $referred;
 
         return $this;
@@ -2011,9 +1873,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setRefusalReasonRaw($refusalReasonRaw)
     {
-        if (is_null($refusalReasonRaw)) {
-            throw new \InvalidArgumentException('non-nullable refusalReasonRaw cannot be null');
-        }
         $this->container['refusalReasonRaw'] = $refusalReasonRaw;
 
         return $this;
@@ -2038,9 +1897,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setRequestAmount($requestAmount)
     {
-        if (is_null($requestAmount)) {
-            throw new \InvalidArgumentException('non-nullable requestAmount cannot be null');
-        }
         $this->container['requestAmount'] = $requestAmount;
 
         return $this;
@@ -2065,9 +1921,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setRequestCurrencyCode($requestCurrencyCode)
     {
-        if (is_null($requestCurrencyCode)) {
-            throw new \InvalidArgumentException('non-nullable requestCurrencyCode cannot be null');
-        }
         $this->container['requestCurrencyCode'] = $requestCurrencyCode;
 
         return $this;
@@ -2092,9 +1945,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setShopperInteraction($shopperInteraction)
     {
-        if (is_null($shopperInteraction)) {
-            throw new \InvalidArgumentException('non-nullable shopperInteraction cannot be null');
-        }
         $this->container['shopperInteraction'] = $shopperInteraction;
 
         return $this;
@@ -2119,9 +1969,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setShopperReference($shopperReference)
     {
-        if (is_null($shopperReference)) {
-            throw new \InvalidArgumentException('non-nullable shopperReference cannot be null');
-        }
         $this->container['shopperReference'] = $shopperReference;
 
         return $this;
@@ -2146,9 +1993,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setTerminalId($terminalId)
     {
-        if (is_null($terminalId)) {
-            throw new \InvalidArgumentException('non-nullable terminalId cannot be null');
-        }
         $this->container['terminalId'] = $terminalId;
 
         return $this;
@@ -2173,9 +2017,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setThreeDAuthenticated($threeDAuthenticated)
     {
-        if (is_null($threeDAuthenticated)) {
-            throw new \InvalidArgumentException('non-nullable threeDAuthenticated cannot be null');
-        }
         $this->container['threeDAuthenticated'] = $threeDAuthenticated;
 
         return $this;
@@ -2200,9 +2041,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setThreeDAuthenticatedResponse($threeDAuthenticatedResponse)
     {
-        if (is_null($threeDAuthenticatedResponse)) {
-            throw new \InvalidArgumentException('non-nullable threeDAuthenticatedResponse cannot be null');
-        }
         $this->container['threeDAuthenticatedResponse'] = $threeDAuthenticatedResponse;
 
         return $this;
@@ -2227,9 +2065,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setThreeDOffered($threeDOffered)
     {
-        if (is_null($threeDOffered)) {
-            throw new \InvalidArgumentException('non-nullable threeDOffered cannot be null');
-        }
         $this->container['threeDOffered'] = $threeDOffered;
 
         return $this;
@@ -2254,9 +2089,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setThreeDOfferedResponse($threeDOfferedResponse)
     {
-        if (is_null($threeDOfferedResponse)) {
-            throw new \InvalidArgumentException('non-nullable threeDOfferedResponse cannot be null');
-        }
         $this->container['threeDOfferedResponse'] = $threeDOfferedResponse;
 
         return $this;
@@ -2281,9 +2113,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setThreeDSVersion($threeDSVersion)
     {
-        if (is_null($threeDSVersion)) {
-            throw new \InvalidArgumentException('non-nullable threeDSVersion cannot be null');
-        }
         $this->container['threeDSVersion'] = $threeDSVersion;
 
         return $this;
@@ -2308,9 +2137,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setVisaTransactionId($visaTransactionId)
     {
-        if (is_null($visaTransactionId)) {
-            throw new \InvalidArgumentException('non-nullable visaTransactionId cannot be null');
-        }
         $this->container['visaTransactionId'] = $visaTransactionId;
 
         return $this;
@@ -2335,9 +2161,6 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setXid($xid)
     {
-        if (is_null($xid)) {
-            throw new \InvalidArgumentException('non-nullable xid cannot be null');
-        }
         $this->container['xid'] = $xid;
 
         return $this;

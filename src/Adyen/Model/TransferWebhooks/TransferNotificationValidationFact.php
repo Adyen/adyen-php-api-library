@@ -302,9 +302,6 @@ class TransferNotificationValidationFact implements ModelInterface, ArrayAccess,
      */
     public function setResult($result)
     {
-        if (is_null($result)) {
-            throw new \InvalidArgumentException('non-nullable result cannot be null');
-        }
         $this->container['result'] = $result;
 
         return $this;
@@ -329,9 +326,6 @@ class TransferNotificationValidationFact implements ModelInterface, ArrayAccess,
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $this->container['type'] = $type;
 
         return $this;

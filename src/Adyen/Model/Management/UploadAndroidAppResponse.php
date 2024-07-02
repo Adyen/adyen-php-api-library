@@ -295,9 +295,6 @@ class UploadAndroidAppResponse implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;

@@ -295,9 +295,6 @@ class AdditionalDataOpi implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setOpiIncludeTransToken($opiIncludeTransToken)
     {
-        if (is_null($opiIncludeTransToken)) {
-            throw new \InvalidArgumentException('non-nullable opiIncludeTransToken cannot be null');
-        }
         $this->container['opiIncludeTransToken'] = $opiIncludeTransToken;
 
         return $this;

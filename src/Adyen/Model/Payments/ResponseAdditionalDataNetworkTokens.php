@@ -309,9 +309,6 @@ class ResponseAdditionalDataNetworkTokens implements ModelInterface, ArrayAccess
      */
     public function setNetworkTokenAvailable($networkTokenAvailable)
     {
-        if (is_null($networkTokenAvailable)) {
-            throw new \InvalidArgumentException('non-nullable networkTokenAvailable cannot be null');
-        }
         $this->container['networkTokenAvailable'] = $networkTokenAvailable;
 
         return $this;
@@ -336,9 +333,6 @@ class ResponseAdditionalDataNetworkTokens implements ModelInterface, ArrayAccess
      */
     public function setNetworkTokenBin($networkTokenBin)
     {
-        if (is_null($networkTokenBin)) {
-            throw new \InvalidArgumentException('non-nullable networkTokenBin cannot be null');
-        }
         $this->container['networkTokenBin'] = $networkTokenBin;
 
         return $this;
@@ -363,9 +357,6 @@ class ResponseAdditionalDataNetworkTokens implements ModelInterface, ArrayAccess
      */
     public function setNetworkTokenTokenSummary($networkTokenTokenSummary)
     {
-        if (is_null($networkTokenTokenSummary)) {
-            throw new \InvalidArgumentException('non-nullable networkTokenTokenSummary cannot be null');
-        }
         $this->container['networkTokenTokenSummary'] = $networkTokenTokenSummary;
 
         return $this;

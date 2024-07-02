@@ -373,9 +373,6 @@ class BalanceTransferRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setAmount($amount)
     {
-        if (is_null($amount)) {
-            throw new \InvalidArgumentException('non-nullable amount cannot be null');
-        }
         $this->container['amount'] = $amount;
 
         return $this;
@@ -400,9 +397,6 @@ class BalanceTransferRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -427,9 +421,6 @@ class BalanceTransferRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setFromMerchant($fromMerchant)
     {
-        if (is_null($fromMerchant)) {
-            throw new \InvalidArgumentException('non-nullable fromMerchant cannot be null');
-        }
         $this->container['fromMerchant'] = $fromMerchant;
 
         return $this;
@@ -454,9 +445,6 @@ class BalanceTransferRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -481,9 +469,6 @@ class BalanceTransferRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setToMerchant($toMerchant)
     {
-        if (is_null($toMerchant)) {
-            throw new \InvalidArgumentException('non-nullable toMerchant cannot be null');
-        }
         $this->container['toMerchant'] = $toMerchant;
 
         return $this;
@@ -508,9 +493,6 @@ class BalanceTransferRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

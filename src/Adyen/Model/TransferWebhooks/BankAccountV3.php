@@ -308,9 +308,6 @@ class BankAccountV3 implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAccountHolder($accountHolder)
     {
-        if (is_null($accountHolder)) {
-            throw new \InvalidArgumentException('non-nullable accountHolder cannot be null');
-        }
         $this->container['accountHolder'] = $accountHolder;
 
         return $this;
@@ -335,9 +332,6 @@ class BankAccountV3 implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAccountIdentification($accountIdentification)
     {
-        if (is_null($accountIdentification)) {
-            throw new \InvalidArgumentException('non-nullable accountIdentification cannot be null');
-        }
         $this->container['accountIdentification'] = $accountIdentification;
 
         return $this;

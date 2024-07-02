@@ -365,9 +365,6 @@ class CardBin implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBin($bin)
     {
-        if (is_null($bin)) {
-            throw new \InvalidArgumentException('non-nullable bin cannot be null');
-        }
         $this->container['bin'] = $bin;
 
         return $this;
@@ -392,9 +389,6 @@ class CardBin implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCommercial($commercial)
     {
-        if (is_null($commercial)) {
-            throw new \InvalidArgumentException('non-nullable commercial cannot be null');
-        }
         $this->container['commercial'] = $commercial;
 
         return $this;
@@ -419,9 +413,6 @@ class CardBin implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFundingSource($fundingSource)
     {
-        if (is_null($fundingSource)) {
-            throw new \InvalidArgumentException('non-nullable fundingSource cannot be null');
-        }
         $this->container['fundingSource'] = $fundingSource;
 
         return $this;
@@ -446,9 +437,6 @@ class CardBin implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFundsAvailability($fundsAvailability)
     {
-        if (is_null($fundsAvailability)) {
-            throw new \InvalidArgumentException('non-nullable fundsAvailability cannot be null');
-        }
         $this->container['fundsAvailability'] = $fundsAvailability;
 
         return $this;
@@ -473,9 +461,6 @@ class CardBin implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setIssuerBin($issuerBin)
     {
-        if (is_null($issuerBin)) {
-            throw new \InvalidArgumentException('non-nullable issuerBin cannot be null');
-        }
         $this->container['issuerBin'] = $issuerBin;
 
         return $this;
@@ -500,9 +485,6 @@ class CardBin implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setIssuingBank($issuingBank)
     {
-        if (is_null($issuingBank)) {
-            throw new \InvalidArgumentException('non-nullable issuingBank cannot be null');
-        }
         $this->container['issuingBank'] = $issuingBank;
 
         return $this;
@@ -527,9 +509,6 @@ class CardBin implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setIssuingCountry($issuingCountry)
     {
-        if (is_null($issuingCountry)) {
-            throw new \InvalidArgumentException('non-nullable issuingCountry cannot be null');
-        }
         $this->container['issuingCountry'] = $issuingCountry;
 
         return $this;
@@ -554,9 +533,6 @@ class CardBin implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setIssuingCurrency($issuingCurrency)
     {
-        if (is_null($issuingCurrency)) {
-            throw new \InvalidArgumentException('non-nullable issuingCurrency cannot be null');
-        }
         $this->container['issuingCurrency'] = $issuingCurrency;
 
         return $this;
@@ -581,9 +557,6 @@ class CardBin implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPaymentMethod($paymentMethod)
     {
-        if (is_null($paymentMethod)) {
-            throw new \InvalidArgumentException('non-nullable paymentMethod cannot be null');
-        }
         $this->container['paymentMethod'] = $paymentMethod;
 
         return $this;
@@ -608,9 +581,6 @@ class CardBin implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPayoutEligible($payoutEligible)
     {
-        if (is_null($payoutEligible)) {
-            throw new \InvalidArgumentException('non-nullable payoutEligible cannot be null');
-        }
         $this->container['payoutEligible'] = $payoutEligible;
 
         return $this;
@@ -635,9 +605,6 @@ class CardBin implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSummary($summary)
     {
-        if (is_null($summary)) {
-            throw new \InvalidArgumentException('non-nullable summary cannot be null');
-        }
         $this->container['summary'] = $summary;
 
         return $this;

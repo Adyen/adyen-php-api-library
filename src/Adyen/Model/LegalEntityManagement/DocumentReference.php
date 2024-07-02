@@ -337,9 +337,6 @@ class DocumentReference implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setActive($active)
     {
-        if (is_null($active)) {
-            throw new \InvalidArgumentException('non-nullable active cannot be null');
-        }
         $this->container['active'] = $active;
 
         return $this;
@@ -364,9 +361,6 @@ class DocumentReference implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -391,9 +385,6 @@ class DocumentReference implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setFileName($fileName)
     {
-        if (is_null($fileName)) {
-            throw new \InvalidArgumentException('non-nullable fileName cannot be null');
-        }
         $this->container['fileName'] = $fileName;
 
         return $this;
@@ -418,9 +409,6 @@ class DocumentReference implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -445,9 +433,6 @@ class DocumentReference implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setModificationDate($modificationDate)
     {
-        if (is_null($modificationDate)) {
-            throw new \InvalidArgumentException('non-nullable modificationDate cannot be null');
-        }
         $this->container['modificationDate'] = $modificationDate;
 
         return $this;
@@ -472,9 +457,6 @@ class DocumentReference implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setPages($pages)
     {
-        if (is_null($pages)) {
-            throw new \InvalidArgumentException('non-nullable pages cannot be null');
-        }
         $this->container['pages'] = $pages;
 
         return $this;
@@ -499,9 +481,6 @@ class DocumentReference implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $this->container['type'] = $type;
 
         return $this;

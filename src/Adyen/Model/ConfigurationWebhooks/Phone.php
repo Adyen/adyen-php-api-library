@@ -331,9 +331,6 @@ class Phone implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setNumber($number)
     {
-        if (is_null($number)) {
-            throw new \InvalidArgumentException('non-nullable number cannot be null');
-        }
         $this->container['number'] = $number;
 
         return $this;
@@ -358,9 +355,6 @@ class Phone implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

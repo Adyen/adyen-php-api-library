@@ -316,9 +316,6 @@ class GetPciQuestionnaireResponse implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setContent($content)
     {
-        if (is_null($content)) {
-            throw new \InvalidArgumentException('non-nullable content cannot be null');
-        }
         $this->container['content'] = $content;
 
         return $this;
@@ -343,9 +340,6 @@ class GetPciQuestionnaireResponse implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setCreatedAt($createdAt)
     {
-        if (is_null($createdAt)) {
-            throw new \InvalidArgumentException('non-nullable createdAt cannot be null');
-        }
         $this->container['createdAt'] = $createdAt;
 
         return $this;
@@ -370,9 +364,6 @@ class GetPciQuestionnaireResponse implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -397,9 +388,6 @@ class GetPciQuestionnaireResponse implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setValidUntil($validUntil)
     {
-        if (is_null($validUntil)) {
-            throw new \InvalidArgumentException('non-nullable validUntil cannot be null');
-        }
         $this->container['validUntil'] = $validUntil;
 
         return $this;

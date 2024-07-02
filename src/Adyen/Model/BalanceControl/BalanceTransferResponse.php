@@ -430,9 +430,6 @@ class BalanceTransferResponse implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setAmount($amount)
     {
-        if (is_null($amount)) {
-            throw new \InvalidArgumentException('non-nullable amount cannot be null');
-        }
         $this->container['amount'] = $amount;
 
         return $this;
@@ -457,9 +454,6 @@ class BalanceTransferResponse implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setCreatedAt($createdAt)
     {
-        if (is_null($createdAt)) {
-            throw new \InvalidArgumentException('non-nullable createdAt cannot be null');
-        }
         $this->container['createdAt'] = $createdAt;
 
         return $this;
@@ -484,9 +478,6 @@ class BalanceTransferResponse implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -511,9 +502,6 @@ class BalanceTransferResponse implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setFromMerchant($fromMerchant)
     {
-        if (is_null($fromMerchant)) {
-            throw new \InvalidArgumentException('non-nullable fromMerchant cannot be null');
-        }
         $this->container['fromMerchant'] = $fromMerchant;
 
         return $this;
@@ -538,9 +526,6 @@ class BalanceTransferResponse implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setPspReference($pspReference)
     {
-        if (is_null($pspReference)) {
-            throw new \InvalidArgumentException('non-nullable pspReference cannot be null');
-        }
         $this->container['pspReference'] = $pspReference;
 
         return $this;
@@ -565,9 +550,6 @@ class BalanceTransferResponse implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -592,9 +574,6 @@ class BalanceTransferResponse implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -629,9 +608,6 @@ class BalanceTransferResponse implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setToMerchant($toMerchant)
     {
-        if (is_null($toMerchant)) {
-            throw new \InvalidArgumentException('non-nullable toMerchant cannot be null');
-        }
         $this->container['toMerchant'] = $toMerchant;
 
         return $this;
@@ -656,9 +632,6 @@ class BalanceTransferResponse implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

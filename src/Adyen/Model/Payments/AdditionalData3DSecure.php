@@ -359,9 +359,6 @@ class AdditionalData3DSecure implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setAllow3DS2($allow3DS2)
     {
-        if (is_null($allow3DS2)) {
-            throw new \InvalidArgumentException('non-nullable allow3DS2 cannot be null');
-        }
         $this->container['allow3DS2'] = $allow3DS2;
 
         return $this;
@@ -386,9 +383,6 @@ class AdditionalData3DSecure implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setChallengeWindowSize($challengeWindowSize)
     {
-        if (is_null($challengeWindowSize)) {
-            throw new \InvalidArgumentException('non-nullable challengeWindowSize cannot be null');
-        }
         $allowedValues = $this->getChallengeWindowSizeAllowableValues();
         if (!in_array($challengeWindowSize, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -423,9 +417,6 @@ class AdditionalData3DSecure implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setExecuteThreeD($executeThreeD)
     {
-        if (is_null($executeThreeD)) {
-            throw new \InvalidArgumentException('non-nullable executeThreeD cannot be null');
-        }
         $this->container['executeThreeD'] = $executeThreeD;
 
         return $this;
@@ -450,9 +441,6 @@ class AdditionalData3DSecure implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setMpiImplementationType($mpiImplementationType)
     {
-        if (is_null($mpiImplementationType)) {
-            throw new \InvalidArgumentException('non-nullable mpiImplementationType cannot be null');
-        }
         $this->container['mpiImplementationType'] = $mpiImplementationType;
 
         return $this;
@@ -477,9 +465,6 @@ class AdditionalData3DSecure implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setScaExemption($scaExemption)
     {
-        if (is_null($scaExemption)) {
-            throw new \InvalidArgumentException('non-nullable scaExemption cannot be null');
-        }
         $this->container['scaExemption'] = $scaExemption;
 
         return $this;
@@ -504,9 +489,6 @@ class AdditionalData3DSecure implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setThreeDSVersion($threeDSVersion)
     {
-        if (is_null($threeDSVersion)) {
-            throw new \InvalidArgumentException('non-nullable threeDSVersion cannot be null');
-        }
         $this->container['threeDSVersion'] = $threeDSVersion;
 
         return $this;

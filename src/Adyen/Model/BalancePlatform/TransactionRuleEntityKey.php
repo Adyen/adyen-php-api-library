@@ -302,9 +302,6 @@ class TransactionRuleEntityKey implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setEntityReference($entityReference)
     {
-        if (is_null($entityReference)) {
-            throw new \InvalidArgumentException('non-nullable entityReference cannot be null');
-        }
         $this->container['entityReference'] = $entityReference;
 
         return $this;
@@ -329,9 +326,6 @@ class TransactionRuleEntityKey implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setEntityType($entityType)
     {
-        if (is_null($entityType)) {
-            throw new \InvalidArgumentException('non-nullable entityType cannot be null');
-        }
         $this->container['entityType'] = $entityType;
 
         return $this;

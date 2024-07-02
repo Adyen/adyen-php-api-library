@@ -426,9 +426,6 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAccountHolder($accountHolder)
     {
-        if (is_null($accountHolder)) {
-            throw new \InvalidArgumentException('non-nullable accountHolder cannot be null');
-        }
         $this->container['accountHolder'] = $accountHolder;
 
         return $this;
@@ -453,9 +450,6 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAmount($amount)
     {
-        if (is_null($amount)) {
-            throw new \InvalidArgumentException('non-nullable amount cannot be null');
-        }
         $this->container['amount'] = $amount;
 
         return $this;
@@ -480,9 +474,6 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBalanceAccount($balanceAccount)
     {
-        if (is_null($balanceAccount)) {
-            throw new \InvalidArgumentException('non-nullable balanceAccount cannot be null');
-        }
         $this->container['balanceAccount'] = $balanceAccount;
 
         return $this;
@@ -507,9 +498,6 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBalancePlatform($balancePlatform)
     {
-        if (is_null($balancePlatform)) {
-            throw new \InvalidArgumentException('non-nullable balancePlatform cannot be null');
-        }
         $this->container['balancePlatform'] = $balancePlatform;
 
         return $this;
@@ -534,9 +522,6 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBookingDate($bookingDate)
     {
-        if (is_null($bookingDate)) {
-            throw new \InvalidArgumentException('non-nullable bookingDate cannot be null');
-        }
         $this->container['bookingDate'] = $bookingDate;
 
         return $this;
@@ -561,9 +546,6 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCreationDate($creationDate)
     {
-        if (is_null($creationDate)) {
-            throw new \InvalidArgumentException('non-nullable creationDate cannot be null');
-        }
         $this->container['creationDate'] = $creationDate;
 
         return $this;
@@ -588,9 +570,6 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -615,9 +594,6 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -642,9 +618,6 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPaymentInstrument($paymentInstrument)
     {
-        if (is_null($paymentInstrument)) {
-            throw new \InvalidArgumentException('non-nullable paymentInstrument cannot be null');
-        }
         $this->container['paymentInstrument'] = $paymentInstrument;
 
         return $this;
@@ -669,9 +642,6 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setReferenceForBeneficiary($referenceForBeneficiary)
     {
-        if (is_null($referenceForBeneficiary)) {
-            throw new \InvalidArgumentException('non-nullable referenceForBeneficiary cannot be null');
-        }
         $this->container['referenceForBeneficiary'] = $referenceForBeneficiary;
 
         return $this;
@@ -696,9 +666,6 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -733,9 +700,6 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTransfer($transfer)
     {
-        if (is_null($transfer)) {
-            throw new \InvalidArgumentException('non-nullable transfer cannot be null');
-        }
         $this->container['transfer'] = $transfer;
 
         return $this;
@@ -760,9 +724,6 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setValueDate($valueDate)
     {
-        if (is_null($valueDate)) {
-            throw new \InvalidArgumentException('non-nullable valueDate cannot be null');
-        }
         $this->container['valueDate'] = $valueDate;
 
         return $this;

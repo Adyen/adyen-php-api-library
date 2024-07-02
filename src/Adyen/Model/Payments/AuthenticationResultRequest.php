@@ -308,9 +308,6 @@ class AuthenticationResultRequest implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setMerchantAccount($merchantAccount)
     {
-        if (is_null($merchantAccount)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
-        }
         $this->container['merchantAccount'] = $merchantAccount;
 
         return $this;
@@ -335,9 +332,6 @@ class AuthenticationResultRequest implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setPspReference($pspReference)
     {
-        if (is_null($pspReference)) {
-            throw new \InvalidArgumentException('non-nullable pspReference cannot be null');
-        }
         $this->container['pspReference'] = $pspReference;
 
         return $this;

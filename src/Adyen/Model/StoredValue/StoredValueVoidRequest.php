@@ -336,9 +336,6 @@ class StoredValueVoidRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setMerchantAccount($merchantAccount)
     {
-        if (is_null($merchantAccount)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
-        }
         $this->container['merchantAccount'] = $merchantAccount;
 
         return $this;
@@ -363,9 +360,6 @@ class StoredValueVoidRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setOriginalReference($originalReference)
     {
-        if (is_null($originalReference)) {
-            throw new \InvalidArgumentException('non-nullable originalReference cannot be null');
-        }
         $this->container['originalReference'] = $originalReference;
 
         return $this;
@@ -390,9 +384,6 @@ class StoredValueVoidRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -417,9 +408,6 @@ class StoredValueVoidRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setStore($store)
     {
-        if (is_null($store)) {
-            throw new \InvalidArgumentException('non-nullable store cannot be null');
-        }
         $this->container['store'] = $store;
 
         return $this;
@@ -444,9 +432,6 @@ class StoredValueVoidRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setTenderReference($tenderReference)
     {
-        if (is_null($tenderReference)) {
-            throw new \InvalidArgumentException('non-nullable tenderReference cannot be null');
-        }
         $this->container['tenderReference'] = $tenderReference;
 
         return $this;
@@ -471,9 +456,6 @@ class StoredValueVoidRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setUniqueTerminalId($uniqueTerminalId)
     {
-        if (is_null($uniqueTerminalId)) {
-            throw new \InvalidArgumentException('non-nullable uniqueTerminalId cannot be null');
-        }
         $this->container['uniqueTerminalId'] = $uniqueTerminalId;
 
         return $this;

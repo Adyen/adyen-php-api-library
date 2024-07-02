@@ -326,9 +326,6 @@ class GetTaxFormResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setContent($content)
     {
-        if (is_null($content)) {
-            throw new \InvalidArgumentException('non-nullable content cannot be null');
-        }
         $this->container['content'] = $content;
 
         return $this;
@@ -353,9 +350,6 @@ class GetTaxFormResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setContentType($contentType)
     {
-        if (is_null($contentType)) {
-            throw new \InvalidArgumentException('non-nullable contentType cannot be null');
-        }
         $allowedValues = $this->getContentTypeAllowableValues();
         if (!in_array($contentType, $allowedValues, true)) {
             throw new \InvalidArgumentException(

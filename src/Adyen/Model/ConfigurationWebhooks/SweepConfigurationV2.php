@@ -317,6 +317,7 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
     public const REASON_COUNTERPARTY_ADDRESS_REQUIRED = 'counterpartyAddressRequired';
     public const REASON_COUNTERPARTY_BANK_TIMED_OUT = 'counterpartyBankTimedOut';
     public const REASON_COUNTERPARTY_BANK_UNAVAILABLE = 'counterpartyBankUnavailable';
+    public const REASON_DECLINED = 'declined';
     public const REASON_DECLINED_BY_TRANSACTION_RULE = 'declinedByTransactionRule';
     public const REASON_ERROR = 'error';
     public const REASON_NOT_ENOUGH_BALANCE = 'notEnoughBalance';
@@ -376,6 +377,7 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
             self::REASON_COUNTERPARTY_ADDRESS_REQUIRED,
             self::REASON_COUNTERPARTY_BANK_TIMED_OUT,
             self::REASON_COUNTERPARTY_BANK_UNAVAILABLE,
+            self::REASON_DECLINED,
             self::REASON_DECLINED_BY_TRANSACTION_RULE,
             self::REASON_ERROR,
             self::REASON_NOT_ENOUGH_BALANCE,
@@ -551,9 +553,6 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setCategory($category)
     {
-        if (is_null($category)) {
-            throw new \InvalidArgumentException('non-nullable category cannot be null');
-        }
         $allowedValues = $this->getCategoryAllowableValues();
         if (!in_array($category, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -588,9 +587,6 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setCounterparty($counterparty)
     {
-        if (is_null($counterparty)) {
-            throw new \InvalidArgumentException('non-nullable counterparty cannot be null');
-        }
         $this->container['counterparty'] = $counterparty;
 
         return $this;
@@ -615,9 +611,6 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setCurrency($currency)
     {
-        if (is_null($currency)) {
-            throw new \InvalidArgumentException('non-nullable currency cannot be null');
-        }
         $this->container['currency'] = $currency;
 
         return $this;
@@ -642,9 +635,6 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -669,9 +659,6 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -690,15 +677,12 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets priorities
      *
-     * @param string[]|null $priorities The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities. Adyen will try to pay out using the priority you list first. If that's not possible, it moves on to the next option in the order of your provided priorities.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN).  Set `category` to **bank**. For more details, see optional priorities setup for [marketplaces](https://docs.adyen.com/marketplaces/payout-to-users/scheduled-payouts#optional-priorities-setup) or [platforms](https://docs.adyen.com/platforms/payout-to-users/scheduled-payouts#optional-priorities-setup).
+     * @param string[]|null $priorities The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities. Adyen will try to pay out using the priority you list first. If that's not possible, it moves on to the next option in the order of your provided priorities.  Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).  Set `category` to **bank**. For more details, see optional priorities setup for [marketplaces](https://docs.adyen.com/marketplaces/payout-to-users/scheduled-payouts#optional-priorities-setup) or [platforms](https://docs.adyen.com/platforms/payout-to-users/scheduled-payouts#optional-priorities-setup).
      *
      * @return self
      */
     public function setPriorities($priorities)
     {
-        if (is_null($priorities)) {
-            throw new \InvalidArgumentException('non-nullable priorities cannot be null');
-        }
         $allowedValues = $this->getPrioritiesAllowableValues();
         if (array_diff($priorities, $allowedValues)) {
             throw new \InvalidArgumentException(
@@ -732,9 +716,6 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setReason($reason)
     {
-        if (is_null($reason)) {
-            throw new \InvalidArgumentException('non-nullable reason cannot be null');
-        }
         $allowedValues = $this->getReasonAllowableValues();
         if (!in_array($reason, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -769,9 +750,6 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -796,9 +774,6 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setReferenceForBeneficiary($referenceForBeneficiary)
     {
-        if (is_null($referenceForBeneficiary)) {
-            throw new \InvalidArgumentException('non-nullable referenceForBeneficiary cannot be null');
-        }
         $this->container['referenceForBeneficiary'] = $referenceForBeneficiary;
 
         return $this;
@@ -823,9 +798,6 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setSchedule($schedule)
     {
-        if (is_null($schedule)) {
-            throw new \InvalidArgumentException('non-nullable schedule cannot be null');
-        }
         $this->container['schedule'] = $schedule;
 
         return $this;
@@ -850,9 +822,6 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -887,9 +856,6 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setSweepAmount($sweepAmount)
     {
-        if (is_null($sweepAmount)) {
-            throw new \InvalidArgumentException('non-nullable sweepAmount cannot be null');
-        }
         $this->container['sweepAmount'] = $sweepAmount;
 
         return $this;
@@ -914,9 +880,6 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setTargetAmount($targetAmount)
     {
-        if (is_null($targetAmount)) {
-            throw new \InvalidArgumentException('non-nullable targetAmount cannot be null');
-        }
         $this->container['targetAmount'] = $targetAmount;
 
         return $this;
@@ -941,9 +904,6 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setTriggerAmount($triggerAmount)
     {
-        if (is_null($triggerAmount)) {
-            throw new \InvalidArgumentException('non-nullable triggerAmount cannot be null');
-        }
         $this->container['triggerAmount'] = $triggerAmount;
 
         return $this;
@@ -968,9 +928,6 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

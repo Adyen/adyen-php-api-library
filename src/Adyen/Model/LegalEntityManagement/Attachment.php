@@ -326,9 +326,6 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setContent($content)
     {
-        if (is_null($content)) {
-            throw new \InvalidArgumentException('non-nullable content cannot be null');
-        }
         $this->container['content'] = $content;
 
         return $this;
@@ -355,9 +352,6 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setContentType($contentType)
     {
-        if (is_null($contentType)) {
-            throw new \InvalidArgumentException('non-nullable contentType cannot be null');
-        }
         $this->container['contentType'] = $contentType;
 
         return $this;
@@ -384,9 +378,6 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFilename($filename)
     {
-        if (is_null($filename)) {
-            throw new \InvalidArgumentException('non-nullable filename cannot be null');
-        }
         $this->container['filename'] = $filename;
 
         return $this;
@@ -411,9 +402,6 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPageName($pageName)
     {
-        if (is_null($pageName)) {
-            throw new \InvalidArgumentException('non-nullable pageName cannot be null');
-        }
         $this->container['pageName'] = $pageName;
 
         return $this;
@@ -438,9 +426,6 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPageType($pageType)
     {
-        if (is_null($pageType)) {
-            throw new \InvalidArgumentException('non-nullable pageType cannot be null');
-        }
         $this->container['pageType'] = $pageType;
 
         return $this;

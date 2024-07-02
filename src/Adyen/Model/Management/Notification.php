@@ -348,9 +348,6 @@ class Notification implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCategory($category)
     {
-        if (is_null($category)) {
-            throw new \InvalidArgumentException('non-nullable category cannot be null');
-        }
         $allowedValues = $this->getCategoryAllowableValues();
         if (!in_array($category, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -385,9 +382,6 @@ class Notification implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDetails($details)
     {
-        if (is_null($details)) {
-            throw new \InvalidArgumentException('non-nullable details cannot be null');
-        }
         $this->container['details'] = $details;
 
         return $this;
@@ -412,9 +406,6 @@ class Notification implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEnabled($enabled)
     {
-        if (is_null($enabled)) {
-            throw new \InvalidArgumentException('non-nullable enabled cannot be null');
-        }
         $this->container['enabled'] = $enabled;
 
         return $this;
@@ -439,9 +430,6 @@ class Notification implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setShowButton($showButton)
     {
-        if (is_null($showButton)) {
-            throw new \InvalidArgumentException('non-nullable showButton cannot be null');
-        }
         $this->container['showButton'] = $showButton;
 
         return $this;
@@ -466,9 +454,6 @@ class Notification implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTitle($title)
     {
-        if (is_null($title)) {
-            throw new \InvalidArgumentException('non-nullable title cannot be null');
-        }
         $this->container['title'] = $title;
 
         return $this;

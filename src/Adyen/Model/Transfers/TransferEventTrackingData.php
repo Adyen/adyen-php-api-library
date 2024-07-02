@@ -328,9 +328,6 @@ class TransferEventTrackingData implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $this->container['status'] = $status;
 
         return $this;
@@ -355,9 +352,6 @@ class TransferEventTrackingData implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $this->container['type'] = $type;
 
         return $this;
@@ -382,9 +376,6 @@ class TransferEventTrackingData implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function setEstimatedArrivalTime($estimatedArrivalTime)
     {
-        if (is_null($estimatedArrivalTime)) {
-            throw new \InvalidArgumentException('non-nullable estimatedArrivalTime cannot be null');
-        }
         $this->container['estimatedArrivalTime'] = $estimatedArrivalTime;
 
         return $this;
@@ -409,9 +400,6 @@ class TransferEventTrackingData implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function setReason($reason)
     {
-        if (is_null($reason)) {
-            throw new \InvalidArgumentException('non-nullable reason cannot be null');
-        }
         $this->container['reason'] = $reason;
 
         return $this;

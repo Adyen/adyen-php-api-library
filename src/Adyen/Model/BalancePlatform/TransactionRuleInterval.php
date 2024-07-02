@@ -399,7 +399,6 @@ class TransactionRuleInterval implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setDayOfMonth($dayOfMonth)
     {
-        // Do nothing for nullable integers
         $this->container['dayOfMonth'] = $dayOfMonth;
 
         return $this;
@@ -424,9 +423,6 @@ class TransactionRuleInterval implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setDayOfWeek($dayOfWeek)
     {
-        if (is_null($dayOfWeek)) {
-            throw new \InvalidArgumentException('non-nullable dayOfWeek cannot be null');
-        }
         $allowedValues = $this->getDayOfWeekAllowableValues();
         if (!in_array($dayOfWeek, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -461,9 +457,6 @@ class TransactionRuleInterval implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setDuration($duration)
     {
-        if (is_null($duration)) {
-            throw new \InvalidArgumentException('non-nullable duration cannot be null');
-        }
         $this->container['duration'] = $duration;
 
         return $this;
@@ -488,9 +481,6 @@ class TransactionRuleInterval implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setTimeOfDay($timeOfDay)
     {
-        if (is_null($timeOfDay)) {
-            throw new \InvalidArgumentException('non-nullable timeOfDay cannot be null');
-        }
         $this->container['timeOfDay'] = $timeOfDay;
 
         return $this;
@@ -515,9 +505,6 @@ class TransactionRuleInterval implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setTimeZone($timeZone)
     {
-        if (is_null($timeZone)) {
-            throw new \InvalidArgumentException('non-nullable timeZone cannot be null');
-        }
         $this->container['timeZone'] = $timeZone;
 
         return $this;
@@ -542,9 +529,6 @@ class TransactionRuleInterval implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

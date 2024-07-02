@@ -329,9 +329,6 @@ class DayOfWeekRestriction implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setOperation($operation)
     {
-        if (is_null($operation)) {
-            throw new \InvalidArgumentException('non-nullable operation cannot be null');
-        }
         $this->container['operation'] = $operation;
 
         return $this;
@@ -356,9 +353,6 @@ class DayOfWeekRestriction implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setValue($value)
     {
-        if (is_null($value)) {
-            throw new \InvalidArgumentException('non-nullable value cannot be null');
-        }
         $allowedValues = $this->getValueAllowableValues();
         if (array_diff($value, $allowedValues)) {
             throw new \InvalidArgumentException(

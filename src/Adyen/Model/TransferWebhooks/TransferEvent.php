@@ -46,6 +46,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'amount' => '\Adyen\Model\TransferWebhooks\Amount',
         'amountAdjustments' => '\Adyen\Model\TransferWebhooks\AmountAdjustment[]',
+        'arn' => 'string',
         'bookingDate' => '\DateTime',
         'estimatedArrivalTime' => '\DateTime',
         'externalReason' => '\Adyen\Model\TransferWebhooks\ExternalReason',
@@ -72,6 +73,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'amount' => null,
         'amountAdjustments' => null,
+        'arn' => null,
         'bookingDate' => 'date-time',
         'estimatedArrivalTime' => 'date-time',
         'externalReason' => null,
@@ -96,6 +98,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPINullables = [
         'amount' => false,
         'amountAdjustments' => false,
+        'arn' => false,
         'bookingDate' => false,
         'estimatedArrivalTime' => false,
         'externalReason' => false,
@@ -200,6 +203,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'amount' => 'amount',
         'amountAdjustments' => 'amountAdjustments',
+        'arn' => 'arn',
         'bookingDate' => 'bookingDate',
         'estimatedArrivalTime' => 'estimatedArrivalTime',
         'externalReason' => 'externalReason',
@@ -224,6 +228,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'amount' => 'setAmount',
         'amountAdjustments' => 'setAmountAdjustments',
+        'arn' => 'setArn',
         'bookingDate' => 'setBookingDate',
         'estimatedArrivalTime' => 'setEstimatedArrivalTime',
         'externalReason' => 'setExternalReason',
@@ -248,6 +253,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'amount' => 'getAmount',
         'amountAdjustments' => 'getAmountAdjustments',
+        'arn' => 'getArn',
         'bookingDate' => 'getBookingDate',
         'estimatedArrivalTime' => 'getEstimatedArrivalTime',
         'externalReason' => 'getExternalReason',
@@ -314,6 +320,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     public const REASON_COUNTERPARTY_ADDRESS_REQUIRED = 'counterpartyAddressRequired';
     public const REASON_COUNTERPARTY_BANK_TIMED_OUT = 'counterpartyBankTimedOut';
     public const REASON_COUNTERPARTY_BANK_UNAVAILABLE = 'counterpartyBankUnavailable';
+    public const REASON_DECLINED = 'declined';
     public const REASON_DECLINED_BY_TRANSACTION_RULE = 'declinedByTransactionRule';
     public const REASON_ERROR = 'error';
     public const REASON_NOT_ENOUGH_BALANCE = 'notEnoughBalance';
@@ -407,6 +414,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
             self::REASON_COUNTERPARTY_ADDRESS_REQUIRED,
             self::REASON_COUNTERPARTY_BANK_TIMED_OUT,
             self::REASON_COUNTERPARTY_BANK_UNAVAILABLE,
+            self::REASON_DECLINED,
             self::REASON_DECLINED_BY_TRANSACTION_RULE,
             self::REASON_ERROR,
             self::REASON_NOT_ENOUGH_BALANCE,
@@ -521,6 +529,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('amount', $data ?? [], null);
         $this->setIfExists('amountAdjustments', $data ?? [], null);
+        $this->setIfExists('arn', $data ?? [], null);
         $this->setIfExists('bookingDate', $data ?? [], null);
         $this->setIfExists('estimatedArrivalTime', $data ?? [], null);
         $this->setIfExists('externalReason', $data ?? [], null);
@@ -625,9 +634,6 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAmount($amount)
     {
-        if (is_null($amount)) {
-            throw new \InvalidArgumentException('non-nullable amount cannot be null');
-        }
         $this->container['amount'] = $amount;
 
         return $this;
@@ -652,10 +658,31 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAmountAdjustments($amountAdjustments)
     {
-        if (is_null($amountAdjustments)) {
-            throw new \InvalidArgumentException('non-nullable amountAdjustments cannot be null');
-        }
         $this->container['amountAdjustments'] = $amountAdjustments;
+
+        return $this;
+    }
+
+    /**
+     * Gets arn
+     *
+     * @return string|null
+     */
+    public function getArn()
+    {
+        return $this->container['arn'];
+    }
+
+    /**
+     * Sets arn
+     *
+     * @param string|null $arn Scheme unique arn identifier useful for tracing captures, chargebacks, refunds, etc.
+     *
+     * @return self
+     */
+    public function setArn($arn)
+    {
+        $this->container['arn'] = $arn;
 
         return $this;
     }
@@ -679,9 +706,6 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBookingDate($bookingDate)
     {
-        if (is_null($bookingDate)) {
-            throw new \InvalidArgumentException('non-nullable bookingDate cannot be null');
-        }
         $this->container['bookingDate'] = $bookingDate;
 
         return $this;
@@ -706,9 +730,6 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEstimatedArrivalTime($estimatedArrivalTime)
     {
-        if (is_null($estimatedArrivalTime)) {
-            throw new \InvalidArgumentException('non-nullable estimatedArrivalTime cannot be null');
-        }
         $this->container['estimatedArrivalTime'] = $estimatedArrivalTime;
 
         return $this;
@@ -733,9 +754,6 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setExternalReason($externalReason)
     {
-        if (is_null($externalReason)) {
-            throw new \InvalidArgumentException('non-nullable externalReason cannot be null');
-        }
         $this->container['externalReason'] = $externalReason;
 
         return $this;
@@ -760,9 +778,6 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -787,9 +802,6 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setModification($modification)
     {
-        if (is_null($modification)) {
-            throw new \InvalidArgumentException('non-nullable modification cannot be null');
-        }
         $this->container['modification'] = $modification;
 
         return $this;
@@ -814,9 +826,6 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMutations($mutations)
     {
-        if (is_null($mutations)) {
-            throw new \InvalidArgumentException('non-nullable mutations cannot be null');
-        }
         $this->container['mutations'] = $mutations;
 
         return $this;
@@ -841,9 +850,6 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setOriginalAmount($originalAmount)
     {
-        if (is_null($originalAmount)) {
-            throw new \InvalidArgumentException('non-nullable originalAmount cannot be null');
-        }
         $this->container['originalAmount'] = $originalAmount;
 
         return $this;
@@ -868,9 +874,6 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setReason($reason)
     {
-        if (is_null($reason)) {
-            throw new \InvalidArgumentException('non-nullable reason cannot be null');
-        }
         $allowedValues = $this->getReasonAllowableValues();
         if (!in_array($reason, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -905,9 +908,6 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -942,9 +942,6 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTrackingData($trackingData)
     {
-        if (is_null($trackingData)) {
-            throw new \InvalidArgumentException('non-nullable trackingData cannot be null');
-        }
         $this->container['trackingData'] = $trackingData;
 
         return $this;
@@ -969,9 +966,6 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTransactionId($transactionId)
     {
-        if (is_null($transactionId)) {
-            throw new \InvalidArgumentException('non-nullable transactionId cannot be null');
-        }
         $this->container['transactionId'] = $transactionId;
 
         return $this;
@@ -996,9 +990,6 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -1033,9 +1024,6 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUpdateDate($updateDate)
     {
-        if (is_null($updateDate)) {
-            throw new \InvalidArgumentException('non-nullable updateDate cannot be null');
-        }
         $this->container['updateDate'] = $updateDate;
 
         return $this;
@@ -1060,9 +1048,6 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setValueDate($valueDate)
     {
-        if (is_null($valueDate)) {
-            throw new \InvalidArgumentException('non-nullable valueDate cannot be null');
-        }
         $this->container['valueDate'] = $valueDate;
 
         return $this;

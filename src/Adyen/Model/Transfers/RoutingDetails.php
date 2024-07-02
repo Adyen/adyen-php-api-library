@@ -347,9 +347,6 @@ class RoutingDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDetail($detail)
     {
-        if (is_null($detail)) {
-            throw new \InvalidArgumentException('non-nullable detail cannot be null');
-        }
         $this->container['detail'] = $detail;
 
         return $this;
@@ -374,9 +371,6 @@ class RoutingDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setErrorCode($errorCode)
     {
-        if (is_null($errorCode)) {
-            throw new \InvalidArgumentException('non-nullable errorCode cannot be null');
-        }
         $this->container['errorCode'] = $errorCode;
 
         return $this;
@@ -401,9 +395,6 @@ class RoutingDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPriority($priority)
     {
-        if (is_null($priority)) {
-            throw new \InvalidArgumentException('non-nullable priority cannot be null');
-        }
         $allowedValues = $this->getPriorityAllowableValues();
         if (!in_array($priority, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -438,9 +429,6 @@ class RoutingDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTitle($title)
     {
-        if (is_null($title)) {
-            throw new \InvalidArgumentException('non-nullable title cannot be null');
-        }
         $this->container['title'] = $title;
 
         return $this;

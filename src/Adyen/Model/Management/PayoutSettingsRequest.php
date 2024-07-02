@@ -312,9 +312,6 @@ class PayoutSettingsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setEnabled($enabled)
     {
-        if (is_null($enabled)) {
-            throw new \InvalidArgumentException('non-nullable enabled cannot be null');
-        }
         $this->container['enabled'] = $enabled;
 
         return $this;
@@ -339,9 +336,6 @@ class PayoutSettingsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setEnabledFromDate($enabledFromDate)
     {
-        if (is_null($enabledFromDate)) {
-            throw new \InvalidArgumentException('non-nullable enabledFromDate cannot be null');
-        }
         $this->container['enabledFromDate'] = $enabledFromDate;
 
         return $this;
@@ -366,9 +360,6 @@ class PayoutSettingsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setTransferInstrumentId($transferInstrumentId)
     {
-        if (is_null($transferInstrumentId)) {
-            throw new \InvalidArgumentException('non-nullable transferInstrumentId cannot be null');
-        }
         $this->container['transferInstrumentId'] = $transferInstrumentId;
 
         return $this;

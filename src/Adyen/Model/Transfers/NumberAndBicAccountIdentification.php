@@ -346,9 +346,6 @@ class NumberAndBicAccountIdentification implements ModelInterface, ArrayAccess, 
      */
     public function setAccountNumber($accountNumber)
     {
-        if (is_null($accountNumber)) {
-            throw new \InvalidArgumentException('non-nullable accountNumber cannot be null');
-        }
         $this->container['accountNumber'] = $accountNumber;
 
         return $this;
@@ -373,9 +370,6 @@ class NumberAndBicAccountIdentification implements ModelInterface, ArrayAccess, 
      */
     public function setAdditionalBankIdentification($additionalBankIdentification)
     {
-        if (is_null($additionalBankIdentification)) {
-            throw new \InvalidArgumentException('non-nullable additionalBankIdentification cannot be null');
-        }
         $this->container['additionalBankIdentification'] = $additionalBankIdentification;
 
         return $this;
@@ -400,9 +394,6 @@ class NumberAndBicAccountIdentification implements ModelInterface, ArrayAccess, 
      */
     public function setBic($bic)
     {
-        if (is_null($bic)) {
-            throw new \InvalidArgumentException('non-nullable bic cannot be null');
-        }
         $this->container['bic'] = $bic;
 
         return $this;
@@ -427,9 +418,6 @@ class NumberAndBicAccountIdentification implements ModelInterface, ArrayAccess, 
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

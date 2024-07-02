@@ -309,9 +309,6 @@ class AdditionalCommission implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setBalanceAccountId($balanceAccountId)
     {
-        if (is_null($balanceAccountId)) {
-            throw new \InvalidArgumentException('non-nullable balanceAccountId cannot be null');
-        }
         $this->container['balanceAccountId'] = $balanceAccountId;
 
         return $this;
@@ -336,9 +333,6 @@ class AdditionalCommission implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setFixedAmount($fixedAmount)
     {
-        if (is_null($fixedAmount)) {
-            throw new \InvalidArgumentException('non-nullable fixedAmount cannot be null');
-        }
         $this->container['fixedAmount'] = $fixedAmount;
 
         return $this;
@@ -363,9 +357,6 @@ class AdditionalCommission implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setVariablePercentage($variablePercentage)
     {
-        if (is_null($variablePercentage)) {
-            throw new \InvalidArgumentException('non-nullable variablePercentage cannot be null');
-        }
         $this->container['variablePercentage'] = $variablePercentage;
 
         return $this;

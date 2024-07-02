@@ -358,15 +358,12 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets amountPerIndustry
      *
-     * @param array<string,\Adyen\Model\ConfigurationWebhooks\Amount>|null $amountPerIndustry
+     * @param array<string,\Adyen\Model\ConfigurationWebhooks\Amount>|null $amountPerIndustry 
      *
      * @return self
      */
     public function setAmountPerIndustry($amountPerIndustry)
     {
-        if (is_null($amountPerIndustry)) {
-            throw new \InvalidArgumentException('non-nullable amountPerIndustry cannot be null');
-        }
         $this->container['amountPerIndustry'] = $amountPerIndustry;
 
         return $this;
@@ -385,15 +382,12 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets authorizedCardUsers
      *
-     * @param bool|null $authorizedCardUsers
+     * @param bool|null $authorizedCardUsers 
      *
      * @return self
      */
     public function setAuthorizedCardUsers($authorizedCardUsers)
     {
-        if (is_null($authorizedCardUsers)) {
-            throw new \InvalidArgumentException('non-nullable authorizedCardUsers cannot be null');
-        }
         $this->container['authorizedCardUsers'] = $authorizedCardUsers;
 
         return $this;
@@ -412,15 +406,12 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets fundingSource
      *
-     * @param string[]|null $fundingSource
+     * @param string[]|null $fundingSource 
      *
      * @return self
      */
     public function setFundingSource($fundingSource)
     {
-        if (is_null($fundingSource)) {
-            throw new \InvalidArgumentException('non-nullable fundingSource cannot be null');
-        }
         $allowedValues = $this->getFundingSourceAllowableValues();
         if (array_diff($fundingSource, $allowedValues)) {
             throw new \InvalidArgumentException(
@@ -448,15 +439,12 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets interval
      *
-     * @param string|null $interval
+     * @param string|null $interval 
      *
      * @return self
      */
     public function setInterval($interval)
     {
-        if (is_null($interval)) {
-            throw new \InvalidArgumentException('non-nullable interval cannot be null');
-        }
         $allowedValues = $this->getIntervalAllowableValues();
         if (!in_array($interval, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -491,9 +479,6 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setMaxAmount($maxAmount)
     {
-        if (is_null($maxAmount)) {
-            throw new \InvalidArgumentException('non-nullable maxAmount cannot be null');
-        }
         $this->container['maxAmount'] = $maxAmount;
 
         return $this;
