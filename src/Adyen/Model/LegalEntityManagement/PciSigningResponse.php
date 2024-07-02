@@ -302,9 +302,6 @@ class PciSigningResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setPciQuestionnaireIds($pciQuestionnaireIds)
     {
-        if (is_null($pciQuestionnaireIds)) {
-            throw new \InvalidArgumentException('non-nullable pciQuestionnaireIds cannot be null');
-        }
         $this->container['pciQuestionnaireIds'] = $pciQuestionnaireIds;
 
         return $this;
@@ -329,9 +326,6 @@ class PciSigningResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setSignedBy($signedBy)
     {
-        if (is_null($signedBy)) {
-            throw new \InvalidArgumentException('non-nullable signedBy cannot be null');
-        }
         $this->container['signedBy'] = $signedBy;
 
         return $this;

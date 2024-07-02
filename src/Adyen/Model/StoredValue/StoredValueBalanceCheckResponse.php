@@ -350,9 +350,6 @@ class StoredValueBalanceCheckResponse implements ModelInterface, ArrayAccess, \J
      */
     public function setCurrentBalance($currentBalance)
     {
-        if (is_null($currentBalance)) {
-            throw new \InvalidArgumentException('non-nullable currentBalance cannot be null');
-        }
         $this->container['currentBalance'] = $currentBalance;
 
         return $this;
@@ -377,9 +374,6 @@ class StoredValueBalanceCheckResponse implements ModelInterface, ArrayAccess, \J
      */
     public function setPspReference($pspReference)
     {
-        if (is_null($pspReference)) {
-            throw new \InvalidArgumentException('non-nullable pspReference cannot be null');
-        }
         $this->container['pspReference'] = $pspReference;
 
         return $this;
@@ -404,9 +398,6 @@ class StoredValueBalanceCheckResponse implements ModelInterface, ArrayAccess, \J
      */
     public function setRefusalReason($refusalReason)
     {
-        if (is_null($refusalReason)) {
-            throw new \InvalidArgumentException('non-nullable refusalReason cannot be null');
-        }
         $this->container['refusalReason'] = $refusalReason;
 
         return $this;
@@ -431,9 +422,6 @@ class StoredValueBalanceCheckResponse implements ModelInterface, ArrayAccess, \J
      */
     public function setResultCode($resultCode)
     {
-        if (is_null($resultCode)) {
-            throw new \InvalidArgumentException('non-nullable resultCode cannot be null');
-        }
         $allowedValues = $this->getResultCodeAllowableValues();
         if (!in_array($resultCode, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -468,9 +456,6 @@ class StoredValueBalanceCheckResponse implements ModelInterface, ArrayAccess, \J
      */
     public function setThirdPartyRefusalReason($thirdPartyRefusalReason)
     {
-        if (is_null($thirdPartyRefusalReason)) {
-            throw new \InvalidArgumentException('non-nullable thirdPartyRefusalReason cannot be null');
-        }
         $this->container['thirdPartyRefusalReason'] = $thirdPartyRefusalReason;
 
         return $this;

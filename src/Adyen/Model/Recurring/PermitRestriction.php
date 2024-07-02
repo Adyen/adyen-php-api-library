@@ -309,9 +309,6 @@ class PermitRestriction implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setMaxAmount($maxAmount)
     {
-        if (is_null($maxAmount)) {
-            throw new \InvalidArgumentException('non-nullable maxAmount cannot be null');
-        }
         $this->container['maxAmount'] = $maxAmount;
 
         return $this;
@@ -336,9 +333,6 @@ class PermitRestriction implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setSingleTransactionLimit($singleTransactionLimit)
     {
-        if (is_null($singleTransactionLimit)) {
-            throw new \InvalidArgumentException('non-nullable singleTransactionLimit cannot be null');
-        }
         $this->container['singleTransactionLimit'] = $singleTransactionLimit;
 
         return $this;
@@ -363,9 +357,6 @@ class PermitRestriction implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setSingleUse($singleUse)
     {
-        if (is_null($singleUse)) {
-            throw new \InvalidArgumentException('non-nullable singleUse cannot be null');
-        }
         $this->container['singleUse'] = $singleUse;
 
         return $this;

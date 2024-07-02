@@ -302,9 +302,6 @@ class NotificationUrl implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLocalUrls($localUrls)
     {
-        if (is_null($localUrls)) {
-            throw new \InvalidArgumentException('non-nullable localUrls cannot be null');
-        }
         $this->container['localUrls'] = $localUrls;
 
         return $this;
@@ -329,9 +326,6 @@ class NotificationUrl implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPublicUrls($publicUrls)
     {
-        if (is_null($publicUrls)) {
-            throw new \InvalidArgumentException('non-nullable publicUrls cannot be null');
-        }
         $this->container['publicUrls'] = $publicUrls;
 
         return $this;

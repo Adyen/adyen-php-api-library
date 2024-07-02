@@ -318,9 +318,6 @@ class DefendDisputeRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setDefenseReasonCode($defenseReasonCode)
     {
-        if (is_null($defenseReasonCode)) {
-            throw new \InvalidArgumentException('non-nullable defenseReasonCode cannot be null');
-        }
         $this->container['defenseReasonCode'] = $defenseReasonCode;
 
         return $this;
@@ -345,9 +342,6 @@ class DefendDisputeRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setDisputePspReference($disputePspReference)
     {
-        if (is_null($disputePspReference)) {
-            throw new \InvalidArgumentException('non-nullable disputePspReference cannot be null');
-        }
         $this->container['disputePspReference'] = $disputePspReference;
 
         return $this;
@@ -372,9 +366,6 @@ class DefendDisputeRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setMerchantAccountCode($merchantAccountCode)
     {
-        if (is_null($merchantAccountCode)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccountCode cannot be null');
-        }
         $this->container['merchantAccountCode'] = $merchantAccountCode;
 
         return $this;

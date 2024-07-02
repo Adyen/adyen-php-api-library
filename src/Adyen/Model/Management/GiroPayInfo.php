@@ -298,9 +298,6 @@ class GiroPayInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSupportEmail($supportEmail)
     {
-        if (is_null($supportEmail)) {
-            throw new \InvalidArgumentException('non-nullable supportEmail cannot be null');
-        }
         $this->container['supportEmail'] = $supportEmail;
 
         return $this;

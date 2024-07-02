@@ -295,9 +295,6 @@ class TransferRouteResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setTransferRoutes($transferRoutes)
     {
-        if (is_null($transferRoutes)) {
-            throw new \InvalidArgumentException('non-nullable transferRoutes cannot be null');
-        }
         $this->container['transferRoutes'] = $transferRoutes;
 
         return $this;

@@ -389,9 +389,6 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setActivation($activation)
     {
-        if (is_null($activation)) {
-            throw new \InvalidArgumentException('non-nullable activation cannot be null');
-        }
         $this->container['activation'] = $activation;
 
         return $this;
@@ -416,9 +413,6 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setActivationUrl($activationUrl)
     {
-        if (is_null($activationUrl)) {
-            throw new \InvalidArgumentException('non-nullable activationUrl cannot be null');
-        }
         $this->container['activationUrl'] = $activationUrl;
 
         return $this;
@@ -443,9 +437,6 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setBulkAddress($bulkAddress)
     {
-        if (is_null($bulkAddress)) {
-            throw new \InvalidArgumentException('non-nullable bulkAddress cannot be null');
-        }
         $this->container['bulkAddress'] = $bulkAddress;
 
         return $this;
@@ -470,9 +461,6 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setCardImageId($cardImageId)
     {
-        if (is_null($cardImageId)) {
-            throw new \InvalidArgumentException('non-nullable cardImageId cannot be null');
-        }
         $this->container['cardImageId'] = $cardImageId;
 
         return $this;
@@ -497,9 +485,6 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setCarrier($carrier)
     {
-        if (is_null($carrier)) {
-            throw new \InvalidArgumentException('non-nullable carrier cannot be null');
-        }
         $this->container['carrier'] = $carrier;
 
         return $this;
@@ -524,9 +509,6 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setCarrierImageId($carrierImageId)
     {
-        if (is_null($carrierImageId)) {
-            throw new \InvalidArgumentException('non-nullable carrierImageId cannot be null');
-        }
         $this->container['carrierImageId'] = $carrierImageId;
 
         return $this;
@@ -551,9 +533,6 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setConfigurationProfileId($configurationProfileId)
     {
-        if (is_null($configurationProfileId)) {
-            throw new \InvalidArgumentException('non-nullable configurationProfileId cannot be null');
-        }
         $this->container['configurationProfileId'] = $configurationProfileId;
 
         return $this;
@@ -578,9 +557,6 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setCurrency($currency)
     {
-        if (is_null($currency)) {
-            throw new \InvalidArgumentException('non-nullable currency cannot be null');
-        }
         $this->container['currency'] = $currency;
 
         return $this;
@@ -605,9 +581,6 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setEnvelope($envelope)
     {
-        if (is_null($envelope)) {
-            throw new \InvalidArgumentException('non-nullable envelope cannot be null');
-        }
         $this->container['envelope'] = $envelope;
 
         return $this;
@@ -632,9 +605,6 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setInsert($insert)
     {
-        if (is_null($insert)) {
-            throw new \InvalidArgumentException('non-nullable insert cannot be null');
-        }
         $this->container['insert'] = $insert;
 
         return $this;
@@ -659,9 +629,6 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setLanguage($language)
     {
-        if (is_null($language)) {
-            throw new \InvalidArgumentException('non-nullable language cannot be null');
-        }
         $this->container['language'] = $language;
 
         return $this;
@@ -686,9 +653,6 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setLogoImageId($logoImageId)
     {
-        if (is_null($logoImageId)) {
-            throw new \InvalidArgumentException('non-nullable logoImageId cannot be null');
-        }
         $this->container['logoImageId'] = $logoImageId;
 
         return $this;
@@ -713,9 +677,6 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setPinMailer($pinMailer)
     {
-        if (is_null($pinMailer)) {
-            throw new \InvalidArgumentException('non-nullable pinMailer cannot be null');
-        }
         $this->container['pinMailer'] = $pinMailer;
 
         return $this;
@@ -740,9 +701,6 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setShipmentMethod($shipmentMethod)
     {
-        if (is_null($shipmentMethod)) {
-            throw new \InvalidArgumentException('non-nullable shipmentMethod cannot be null');
-        }
         $this->container['shipmentMethod'] = $shipmentMethod;
 
         return $this;

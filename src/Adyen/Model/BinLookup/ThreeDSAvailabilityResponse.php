@@ -323,9 +323,6 @@ class ThreeDSAvailabilityResponse implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setBinDetails($binDetails)
     {
-        if (is_null($binDetails)) {
-            throw new \InvalidArgumentException('non-nullable binDetails cannot be null');
-        }
         $this->container['binDetails'] = $binDetails;
 
         return $this;
@@ -350,9 +347,6 @@ class ThreeDSAvailabilityResponse implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setDsPublicKeys($dsPublicKeys)
     {
-        if (is_null($dsPublicKeys)) {
-            throw new \InvalidArgumentException('non-nullable dsPublicKeys cannot be null');
-        }
         $this->container['dsPublicKeys'] = $dsPublicKeys;
 
         return $this;
@@ -377,9 +371,6 @@ class ThreeDSAvailabilityResponse implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setThreeDS1Supported($threeDS1Supported)
     {
-        if (is_null($threeDS1Supported)) {
-            throw new \InvalidArgumentException('non-nullable threeDS1Supported cannot be null');
-        }
         $this->container['threeDS1Supported'] = $threeDS1Supported;
 
         return $this;
@@ -404,9 +395,6 @@ class ThreeDSAvailabilityResponse implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setThreeDS2CardRangeDetails($threeDS2CardRangeDetails)
     {
-        if (is_null($threeDS2CardRangeDetails)) {
-            throw new \InvalidArgumentException('non-nullable threeDS2CardRangeDetails cannot be null');
-        }
         $this->container['threeDS2CardRangeDetails'] = $threeDS2CardRangeDetails;
 
         return $this;
@@ -431,9 +419,6 @@ class ThreeDSAvailabilityResponse implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setThreeDS2supported($threeDS2supported)
     {
-        if (is_null($threeDS2supported)) {
-            throw new \InvalidArgumentException('non-nullable threeDS2supported cannot be null');
-        }
         $this->container['threeDS2supported'] = $threeDS2supported;
 
         return $this;

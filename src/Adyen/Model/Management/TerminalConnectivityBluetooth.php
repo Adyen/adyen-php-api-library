@@ -302,9 +302,6 @@ class TerminalConnectivityBluetooth implements ModelInterface, ArrayAccess, \Jso
      */
     public function setIpAddress($ipAddress)
     {
-        if (is_null($ipAddress)) {
-            throw new \InvalidArgumentException('non-nullable ipAddress cannot be null');
-        }
         $this->container['ipAddress'] = $ipAddress;
 
         return $this;
@@ -329,9 +326,6 @@ class TerminalConnectivityBluetooth implements ModelInterface, ArrayAccess, \Jso
      */
     public function setMacAddress($macAddress)
     {
-        if (is_null($macAddress)) {
-            throw new \InvalidArgumentException('non-nullable macAddress cannot be null');
-        }
         $this->container['macAddress'] = $macAddress;
 
         return $this;

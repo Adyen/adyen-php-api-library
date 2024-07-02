@@ -344,9 +344,6 @@ class AdditionalDataRatepay implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setRatepayInstallmentAmount($ratepayInstallmentAmount)
     {
-        if (is_null($ratepayInstallmentAmount)) {
-            throw new \InvalidArgumentException('non-nullable ratepayInstallmentAmount cannot be null');
-        }
         $this->container['ratepayInstallmentAmount'] = $ratepayInstallmentAmount;
 
         return $this;
@@ -371,9 +368,6 @@ class AdditionalDataRatepay implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setRatepayInterestRate($ratepayInterestRate)
     {
-        if (is_null($ratepayInterestRate)) {
-            throw new \InvalidArgumentException('non-nullable ratepayInterestRate cannot be null');
-        }
         $this->container['ratepayInterestRate'] = $ratepayInterestRate;
 
         return $this;
@@ -398,9 +392,6 @@ class AdditionalDataRatepay implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setRatepayLastInstallmentAmount($ratepayLastInstallmentAmount)
     {
-        if (is_null($ratepayLastInstallmentAmount)) {
-            throw new \InvalidArgumentException('non-nullable ratepayLastInstallmentAmount cannot be null');
-        }
         $this->container['ratepayLastInstallmentAmount'] = $ratepayLastInstallmentAmount;
 
         return $this;
@@ -425,9 +416,6 @@ class AdditionalDataRatepay implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setRatepayPaymentFirstday($ratepayPaymentFirstday)
     {
-        if (is_null($ratepayPaymentFirstday)) {
-            throw new \InvalidArgumentException('non-nullable ratepayPaymentFirstday cannot be null');
-        }
         $this->container['ratepayPaymentFirstday'] = $ratepayPaymentFirstday;
 
         return $this;
@@ -452,9 +440,6 @@ class AdditionalDataRatepay implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setRatepaydataDeliveryDate($ratepaydataDeliveryDate)
     {
-        if (is_null($ratepaydataDeliveryDate)) {
-            throw new \InvalidArgumentException('non-nullable ratepaydataDeliveryDate cannot be null');
-        }
         $this->container['ratepaydataDeliveryDate'] = $ratepaydataDeliveryDate;
 
         return $this;
@@ -479,9 +464,6 @@ class AdditionalDataRatepay implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setRatepaydataDueDate($ratepaydataDueDate)
     {
-        if (is_null($ratepaydataDueDate)) {
-            throw new \InvalidArgumentException('non-nullable ratepaydataDueDate cannot be null');
-        }
         $this->container['ratepaydataDueDate'] = $ratepaydataDueDate;
 
         return $this;
@@ -506,9 +488,6 @@ class AdditionalDataRatepay implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setRatepaydataInvoiceDate($ratepaydataInvoiceDate)
     {
-        if (is_null($ratepaydataInvoiceDate)) {
-            throw new \InvalidArgumentException('non-nullable ratepaydataInvoiceDate cannot be null');
-        }
         $this->container['ratepaydataInvoiceDate'] = $ratepaydataInvoiceDate;
 
         return $this;
@@ -533,9 +512,6 @@ class AdditionalDataRatepay implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setRatepaydataInvoiceId($ratepaydataInvoiceId)
     {
-        if (is_null($ratepaydataInvoiceId)) {
-            throw new \InvalidArgumentException('non-nullable ratepaydataInvoiceId cannot be null');
-        }
         $this->container['ratepaydataInvoiceId'] = $ratepaydataInvoiceId;
 
         return $this;

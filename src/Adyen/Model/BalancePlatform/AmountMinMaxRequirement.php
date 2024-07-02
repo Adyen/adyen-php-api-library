@@ -340,9 +340,6 @@ class AmountMinMaxRequirement implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -367,9 +364,6 @@ class AmountMinMaxRequirement implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setMax($max)
     {
-        if (is_null($max)) {
-            throw new \InvalidArgumentException('non-nullable max cannot be null');
-        }
         $this->container['max'] = $max;
 
         return $this;
@@ -394,9 +388,6 @@ class AmountMinMaxRequirement implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setMin($min)
     {
-        if (is_null($min)) {
-            throw new \InvalidArgumentException('non-nullable min cannot be null');
-        }
         $this->container['min'] = $min;
 
         return $this;
@@ -421,9 +412,6 @@ class AmountMinMaxRequirement implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

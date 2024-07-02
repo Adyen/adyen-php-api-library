@@ -302,9 +302,6 @@ class ResponseAdditionalDataDomesticError implements ModelInterface, ArrayAccess
      */
     public function setDomesticRefusalReasonRaw($domesticRefusalReasonRaw)
     {
-        if (is_null($domesticRefusalReasonRaw)) {
-            throw new \InvalidArgumentException('non-nullable domesticRefusalReasonRaw cannot be null');
-        }
         $this->container['domesticRefusalReasonRaw'] = $domesticRefusalReasonRaw;
 
         return $this;
@@ -329,9 +326,6 @@ class ResponseAdditionalDataDomesticError implements ModelInterface, ArrayAccess
      */
     public function setDomesticShopperAdvice($domesticShopperAdvice)
     {
-        if (is_null($domesticShopperAdvice)) {
-            throw new \InvalidArgumentException('non-nullable domesticShopperAdvice cannot be null');
-        }
         $this->container['domesticShopperAdvice'] = $domesticShopperAdvice;
 
         return $this;

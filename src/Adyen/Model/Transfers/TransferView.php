@@ -312,9 +312,6 @@ class TransferView implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCategoryData($categoryData)
     {
-        if (is_null($categoryData)) {
-            throw new \InvalidArgumentException('non-nullable categoryData cannot be null');
-        }
         $this->container['categoryData'] = $categoryData;
 
         return $this;
@@ -339,9 +336,6 @@ class TransferView implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -366,9 +360,6 @@ class TransferView implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;

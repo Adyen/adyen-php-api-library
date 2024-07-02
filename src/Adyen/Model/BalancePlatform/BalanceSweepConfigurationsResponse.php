@@ -318,9 +318,6 @@ class BalanceSweepConfigurationsResponse implements ModelInterface, ArrayAccess,
      */
     public function setHasNext($hasNext)
     {
-        if (is_null($hasNext)) {
-            throw new \InvalidArgumentException('non-nullable hasNext cannot be null');
-        }
         $this->container['hasNext'] = $hasNext;
 
         return $this;
@@ -345,9 +342,6 @@ class BalanceSweepConfigurationsResponse implements ModelInterface, ArrayAccess,
      */
     public function setHasPrevious($hasPrevious)
     {
-        if (is_null($hasPrevious)) {
-            throw new \InvalidArgumentException('non-nullable hasPrevious cannot be null');
-        }
         $this->container['hasPrevious'] = $hasPrevious;
 
         return $this;
@@ -372,9 +366,6 @@ class BalanceSweepConfigurationsResponse implements ModelInterface, ArrayAccess,
      */
     public function setSweeps($sweeps)
     {
-        if (is_null($sweeps)) {
-            throw new \InvalidArgumentException('non-nullable sweeps cannot be null');
-        }
         $this->container['sweeps'] = $sweeps;
 
         return $this;

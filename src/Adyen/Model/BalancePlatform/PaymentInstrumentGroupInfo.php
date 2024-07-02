@@ -329,9 +329,6 @@ class PaymentInstrumentGroupInfo implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setBalancePlatform($balancePlatform)
     {
-        if (is_null($balancePlatform)) {
-            throw new \InvalidArgumentException('non-nullable balancePlatform cannot be null');
-        }
         $this->container['balancePlatform'] = $balancePlatform;
 
         return $this;
@@ -356,9 +353,6 @@ class PaymentInstrumentGroupInfo implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -383,9 +377,6 @@ class PaymentInstrumentGroupInfo implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setProperties($properties)
     {
-        if (is_null($properties)) {
-            throw new \InvalidArgumentException('non-nullable properties cannot be null');
-        }
         $this->container['properties'] = $properties;
 
         return $this;
@@ -410,9 +401,6 @@ class PaymentInstrumentGroupInfo implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -437,9 +425,6 @@ class PaymentInstrumentGroupInfo implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setTxVariant($txVariant)
     {
-        if (is_null($txVariant)) {
-            throw new \InvalidArgumentException('non-nullable txVariant cannot be null');
-        }
         $this->container['txVariant'] = $txVariant;
 
         return $this;

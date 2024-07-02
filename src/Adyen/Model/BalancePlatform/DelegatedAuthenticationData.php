@@ -298,9 +298,6 @@ class DelegatedAuthenticationData implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setSdkOutput($sdkOutput)
     {
-        if (is_null($sdkOutput)) {
-            throw new \InvalidArgumentException('non-nullable sdkOutput cannot be null');
-        }
         $this->container['sdkOutput'] = $sdkOutput;
 
         return $this;

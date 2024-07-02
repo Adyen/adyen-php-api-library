@@ -323,9 +323,6 @@ class PinChangeResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(

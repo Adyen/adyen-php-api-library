@@ -323,9 +323,6 @@ class Contact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEmail($email)
     {
-        if (is_null($email)) {
-            throw new \InvalidArgumentException('non-nullable email cannot be null');
-        }
         $this->container['email'] = $email;
 
         return $this;
@@ -350,9 +347,6 @@ class Contact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFirstName($firstName)
     {
-        if (is_null($firstName)) {
-            throw new \InvalidArgumentException('non-nullable firstName cannot be null');
-        }
         $this->container['firstName'] = $firstName;
 
         return $this;
@@ -377,9 +371,6 @@ class Contact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setInfix($infix)
     {
-        if (is_null($infix)) {
-            throw new \InvalidArgumentException('non-nullable infix cannot be null');
-        }
         $this->container['infix'] = $infix;
 
         return $this;
@@ -404,9 +395,6 @@ class Contact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLastName($lastName)
     {
-        if (is_null($lastName)) {
-            throw new \InvalidArgumentException('non-nullable lastName cannot be null');
-        }
         $this->container['lastName'] = $lastName;
 
         return $this;
@@ -431,9 +419,6 @@ class Contact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPhoneNumber($phoneNumber)
     {
-        if (is_null($phoneNumber)) {
-            throw new \InvalidArgumentException('non-nullable phoneNumber cannot be null');
-        }
         $this->container['phoneNumber'] = $phoneNumber;
 
         return $this;

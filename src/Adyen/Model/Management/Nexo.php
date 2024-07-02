@@ -323,9 +323,6 @@ class Nexo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDisplayUrls($displayUrls)
     {
-        if (is_null($displayUrls)) {
-            throw new \InvalidArgumentException('non-nullable displayUrls cannot be null');
-        }
         $this->container['displayUrls'] = $displayUrls;
 
         return $this;
@@ -350,9 +347,6 @@ class Nexo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEncryptionKey($encryptionKey)
     {
-        if (is_null($encryptionKey)) {
-            throw new \InvalidArgumentException('non-nullable encryptionKey cannot be null');
-        }
         $this->container['encryptionKey'] = $encryptionKey;
 
         return $this;
@@ -377,9 +371,6 @@ class Nexo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEventUrls($eventUrls)
     {
-        if (is_null($eventUrls)) {
-            throw new \InvalidArgumentException('non-nullable eventUrls cannot be null');
-        }
         $this->container['eventUrls'] = $eventUrls;
 
         return $this;
@@ -406,9 +397,6 @@ class Nexo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setNexoEventUrls($nexoEventUrls)
     {
-        if (is_null($nexoEventUrls)) {
-            throw new \InvalidArgumentException('non-nullable nexoEventUrls cannot be null');
-        }
         $this->container['nexoEventUrls'] = $nexoEventUrls;
 
         return $this;
@@ -433,9 +421,6 @@ class Nexo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setNotification($notification)
     {
-        if (is_null($notification)) {
-            throw new \InvalidArgumentException('non-nullable notification cannot be null');
-        }
         $this->container['notification'] = $notification;
 
         return $this;

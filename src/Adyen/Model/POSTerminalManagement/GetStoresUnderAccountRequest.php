@@ -305,9 +305,6 @@ class GetStoresUnderAccountRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setCompanyAccount($companyAccount)
     {
-        if (is_null($companyAccount)) {
-            throw new \InvalidArgumentException('non-nullable companyAccount cannot be null');
-        }
         $this->container['companyAccount'] = $companyAccount;
 
         return $this;
@@ -332,9 +329,6 @@ class GetStoresUnderAccountRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setMerchantAccount($merchantAccount)
     {
-        if (is_null($merchantAccount)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
-        }
         $this->container['merchantAccount'] = $merchantAccount;
 
         return $this;

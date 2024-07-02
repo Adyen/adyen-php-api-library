@@ -295,9 +295,6 @@ class BalancePlatformNotificationResponse implements ModelInterface, ArrayAccess
      */
     public function setNotificationResponse($notificationResponse)
     {
-        if (is_null($notificationResponse)) {
-            throw new \InvalidArgumentException('non-nullable notificationResponse cannot be null');
-        }
         $this->container['notificationResponse'] = $notificationResponse;
 
         return $this;

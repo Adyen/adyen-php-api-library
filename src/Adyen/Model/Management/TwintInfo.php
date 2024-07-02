@@ -298,9 +298,6 @@ class TwintInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLogo($logo)
     {
-        if (is_null($logo)) {
-            throw new \InvalidArgumentException('non-nullable logo cannot be null');
-        }
         $this->container['logo'] = $logo;
 
         return $this;

@@ -316,9 +316,6 @@ class OnboardingLinkInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setLocale($locale)
     {
-        if (is_null($locale)) {
-            throw new \InvalidArgumentException('non-nullable locale cannot be null');
-        }
         $this->container['locale'] = $locale;
 
         return $this;
@@ -343,9 +340,6 @@ class OnboardingLinkInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setRedirectUrl($redirectUrl)
     {
-        if (is_null($redirectUrl)) {
-            throw new \InvalidArgumentException('non-nullable redirectUrl cannot be null');
-        }
         $this->container['redirectUrl'] = $redirectUrl;
 
         return $this;
@@ -370,9 +364,6 @@ class OnboardingLinkInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setSettings($settings)
     {
-        if (is_null($settings)) {
-            throw new \InvalidArgumentException('non-nullable settings cannot be null');
-        }
         $this->container['settings'] = $settings;
 
         return $this;
@@ -397,9 +388,6 @@ class OnboardingLinkInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setThemeId($themeId)
     {
-        if (is_null($themeId)) {
-            throw new \InvalidArgumentException('non-nullable themeId cannot be null');
-        }
         $this->container['themeId'] = $themeId;
 
         return $this;

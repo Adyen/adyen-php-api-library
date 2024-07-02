@@ -322,9 +322,6 @@ class SubjectErasureResponse implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setResult($result)
     {
-        if (is_null($result)) {
-            throw new \InvalidArgumentException('non-nullable result cannot be null');
-        }
         $allowedValues = $this->getResultAllowableValues();
         if (!in_array($result, $allowedValues, true)) {
             throw new \InvalidArgumentException(

@@ -312,9 +312,6 @@ class GetTerminalsUnderAccountRequest implements ModelInterface, ArrayAccess, \J
      */
     public function setCompanyAccount($companyAccount)
     {
-        if (is_null($companyAccount)) {
-            throw new \InvalidArgumentException('non-nullable companyAccount cannot be null');
-        }
         $this->container['companyAccount'] = $companyAccount;
 
         return $this;
@@ -339,9 +336,6 @@ class GetTerminalsUnderAccountRequest implements ModelInterface, ArrayAccess, \J
      */
     public function setMerchantAccount($merchantAccount)
     {
-        if (is_null($merchantAccount)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
-        }
         $this->container['merchantAccount'] = $merchantAccount;
 
         return $this;
@@ -366,9 +360,6 @@ class GetTerminalsUnderAccountRequest implements ModelInterface, ArrayAccess, \J
      */
     public function setStore($store)
     {
-        if (is_null($store)) {
-            throw new \InvalidArgumentException('non-nullable store cannot be null');
-        }
         $this->container['store'] = $store;
 
         return $this;

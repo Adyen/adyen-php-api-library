@@ -295,9 +295,6 @@ class ListNetworkTokensResponse implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function setNetworkTokens($networkTokens)
     {
-        if (is_null($networkTokens)) {
-            throw new \InvalidArgumentException('non-nullable networkTokens cannot be null');
-        }
         $this->container['networkTokens'] = $networkTokens;
 
         return $this;

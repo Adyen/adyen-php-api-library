@@ -414,9 +414,6 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setBcmc($bcmc)
     {
-        if (is_null($bcmc)) {
-            throw new \InvalidArgumentException('non-nullable bcmc cannot be null');
-        }
         $this->container['bcmc'] = $bcmc;
 
         return $this;
@@ -441,9 +438,6 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setCartesBancaires($cartesBancaires)
     {
-        if (is_null($cartesBancaires)) {
-            throw new \InvalidArgumentException('non-nullable cartesBancaires cannot be null');
-        }
         $this->container['cartesBancaires'] = $cartesBancaires;
 
         return $this;
@@ -468,9 +462,6 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setCountries($countries)
     {
-        if (is_null($countries)) {
-            throw new \InvalidArgumentException('non-nullable countries cannot be null');
-        }
         $this->container['countries'] = $countries;
 
         return $this;
@@ -495,9 +486,6 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setCup($cup)
     {
-        if (is_null($cup)) {
-            throw new \InvalidArgumentException('non-nullable cup cannot be null');
-        }
         $this->container['cup'] = $cup;
 
         return $this;
@@ -522,9 +510,6 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setCurrencies($currencies)
     {
-        if (is_null($currencies)) {
-            throw new \InvalidArgumentException('non-nullable currencies cannot be null');
-        }
         $this->container['currencies'] = $currencies;
 
         return $this;
@@ -549,9 +534,6 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setCustomRoutingFlags($customRoutingFlags)
     {
-        if (is_null($customRoutingFlags)) {
-            throw new \InvalidArgumentException('non-nullable customRoutingFlags cannot be null');
-        }
         $this->container['customRoutingFlags'] = $customRoutingFlags;
 
         return $this;
@@ -576,9 +558,6 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setDiners($diners)
     {
-        if (is_null($diners)) {
-            throw new \InvalidArgumentException('non-nullable diners cannot be null');
-        }
         $this->container['diners'] = $diners;
 
         return $this;
@@ -603,9 +582,6 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setDiscover($discover)
     {
-        if (is_null($discover)) {
-            throw new \InvalidArgumentException('non-nullable discover cannot be null');
-        }
         $this->container['discover'] = $discover;
 
         return $this;
@@ -630,9 +606,6 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setEftposAustralia($eftposAustralia)
     {
-        if (is_null($eftposAustralia)) {
-            throw new \InvalidArgumentException('non-nullable eftposAustralia cannot be null');
-        }
         $this->container['eftposAustralia'] = $eftposAustralia;
 
         return $this;
@@ -657,9 +630,6 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setEnabled($enabled)
     {
-        if (is_null($enabled)) {
-            throw new \InvalidArgumentException('non-nullable enabled cannot be null');
-        }
         $this->container['enabled'] = $enabled;
 
         return $this;
@@ -684,9 +654,6 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setGirocard($girocard)
     {
-        if (is_null($girocard)) {
-            throw new \InvalidArgumentException('non-nullable girocard cannot be null');
-        }
         $this->container['girocard'] = $girocard;
 
         return $this;
@@ -711,9 +678,6 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setIdeal($ideal)
     {
-        if (is_null($ideal)) {
-            throw new \InvalidArgumentException('non-nullable ideal cannot be null');
-        }
         $this->container['ideal'] = $ideal;
 
         return $this;
@@ -738,9 +702,6 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setInteracCard($interacCard)
     {
-        if (is_null($interacCard)) {
-            throw new \InvalidArgumentException('non-nullable interacCard cannot be null');
-        }
         $this->container['interacCard'] = $interacCard;
 
         return $this;
@@ -765,9 +726,6 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setJcb($jcb)
     {
-        if (is_null($jcb)) {
-            throw new \InvalidArgumentException('non-nullable jcb cannot be null');
-        }
         $this->container['jcb'] = $jcb;
 
         return $this;
@@ -792,9 +750,6 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setMaestro($maestro)
     {
-        if (is_null($maestro)) {
-            throw new \InvalidArgumentException('non-nullable maestro cannot be null');
-        }
         $this->container['maestro'] = $maestro;
 
         return $this;
@@ -819,9 +774,6 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setMc($mc)
     {
-        if (is_null($mc)) {
-            throw new \InvalidArgumentException('non-nullable mc cannot be null');
-        }
         $this->container['mc'] = $mc;
 
         return $this;
@@ -846,9 +798,6 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setStoreIds($storeIds)
     {
-        if (is_null($storeIds)) {
-            throw new \InvalidArgumentException('non-nullable storeIds cannot be null');
-        }
         $this->container['storeIds'] = $storeIds;
 
         return $this;
@@ -873,9 +822,6 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setVisa($visa)
     {
-        if (is_null($visa)) {
-            throw new \InvalidArgumentException('non-nullable visa cannot be null');
-        }
         $this->container['visa'] = $visa;
 
         return $this;

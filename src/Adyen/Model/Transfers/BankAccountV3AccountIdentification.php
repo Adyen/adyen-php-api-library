@@ -441,9 +441,6 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
      */
     public function setAccountNumber($accountNumber)
     {
-        if (is_null($accountNumber)) {
-            throw new \InvalidArgumentException('non-nullable accountNumber cannot be null');
-        }
         $this->container['accountNumber'] = $accountNumber;
 
         return $this;
@@ -468,9 +465,6 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
      */
     public function setBsbCode($bsbCode)
     {
-        if (is_null($bsbCode)) {
-            throw new \InvalidArgumentException('non-nullable bsbCode cannot be null');
-        }
         $this->container['bsbCode'] = $bsbCode;
 
         return $this;
@@ -495,9 +489,6 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $this->container['type'] = $type;
 
         return $this;
@@ -522,9 +513,6 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
      */
     public function setBankCode($bankCode)
     {
-        if (is_null($bankCode)) {
-            throw new \InvalidArgumentException('non-nullable bankCode cannot be null');
-        }
         $this->container['bankCode'] = $bankCode;
 
         return $this;
@@ -549,9 +537,6 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
      */
     public function setBranchNumber($branchNumber)
     {
-        if (is_null($branchNumber)) {
-            throw new \InvalidArgumentException('non-nullable branchNumber cannot be null');
-        }
         $this->container['branchNumber'] = $branchNumber;
 
         return $this;
@@ -576,9 +561,6 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
      */
     public function setIspb($ispb)
     {
-        if (is_null($ispb)) {
-            throw new \InvalidArgumentException('non-nullable ispb cannot be null');
-        }
         $this->container['ispb'] = $ispb;
 
         return $this;
@@ -603,9 +585,6 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
      */
     public function setAccountType($accountType)
     {
-        if (is_null($accountType)) {
-            throw new \InvalidArgumentException('non-nullable accountType cannot be null');
-        }
         $this->container['accountType'] = $accountType;
 
         return $this;
@@ -630,9 +609,6 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
      */
     public function setInstitutionNumber($institutionNumber)
     {
-        if (is_null($institutionNumber)) {
-            throw new \InvalidArgumentException('non-nullable institutionNumber cannot be null');
-        }
         $this->container['institutionNumber'] = $institutionNumber;
 
         return $this;
@@ -657,9 +633,6 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
      */
     public function setTransitNumber($transitNumber)
     {
-        if (is_null($transitNumber)) {
-            throw new \InvalidArgumentException('non-nullable transitNumber cannot be null');
-        }
         $this->container['transitNumber'] = $transitNumber;
 
         return $this;
@@ -684,9 +657,6 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
      */
     public function setClearingCode($clearingCode)
     {
-        if (is_null($clearingCode)) {
-            throw new \InvalidArgumentException('non-nullable clearingCode cannot be null');
-        }
         $this->container['clearingCode'] = $clearingCode;
 
         return $this;
@@ -711,9 +681,6 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
      */
     public function setIban($iban)
     {
-        if (is_null($iban)) {
-            throw new \InvalidArgumentException('non-nullable iban cannot be null');
-        }
         $this->container['iban'] = $iban;
 
         return $this;
@@ -738,9 +705,6 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
      */
     public function setAdditionalBankIdentification($additionalBankIdentification)
     {
-        if (is_null($additionalBankIdentification)) {
-            throw new \InvalidArgumentException('non-nullable additionalBankIdentification cannot be null');
-        }
         $this->container['additionalBankIdentification'] = $additionalBankIdentification;
 
         return $this;
@@ -765,9 +729,6 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
      */
     public function setBic($bic)
     {
-        if (is_null($bic)) {
-            throw new \InvalidArgumentException('non-nullable bic cannot be null');
-        }
         $this->container['bic'] = $bic;
 
         return $this;
@@ -792,9 +753,6 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
      */
     public function setClearingNumber($clearingNumber)
     {
-        if (is_null($clearingNumber)) {
-            throw new \InvalidArgumentException('non-nullable clearingNumber cannot be null');
-        }
         $this->container['clearingNumber'] = $clearingNumber;
 
         return $this;
@@ -819,9 +777,6 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
      */
     public function setSortCode($sortCode)
     {
-        if (is_null($sortCode)) {
-            throw new \InvalidArgumentException('non-nullable sortCode cannot be null');
-        }
         $this->container['sortCode'] = $sortCode;
 
         return $this;
@@ -846,9 +801,6 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
      */
     public function setRoutingNumber($routingNumber)
     {
-        if (is_null($routingNumber)) {
-            throw new \InvalidArgumentException('non-nullable routingNumber cannot be null');
-        }
         $this->container['routingNumber'] = $routingNumber;
 
         return $this;

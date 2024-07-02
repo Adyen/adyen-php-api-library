@@ -340,9 +340,6 @@ class CreateMerchantRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setBusinessLineId($businessLineId)
     {
-        if (is_null($businessLineId)) {
-            throw new \InvalidArgumentException('non-nullable businessLineId cannot be null');
-        }
         $this->container['businessLineId'] = $businessLineId;
 
         return $this;
@@ -367,9 +364,6 @@ class CreateMerchantRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setCompanyId($companyId)
     {
-        if (is_null($companyId)) {
-            throw new \InvalidArgumentException('non-nullable companyId cannot be null');
-        }
         $this->container['companyId'] = $companyId;
 
         return $this;
@@ -394,9 +388,6 @@ class CreateMerchantRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -421,9 +412,6 @@ class CreateMerchantRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setLegalEntityId($legalEntityId)
     {
-        if (is_null($legalEntityId)) {
-            throw new \InvalidArgumentException('non-nullable legalEntityId cannot be null');
-        }
         $this->container['legalEntityId'] = $legalEntityId;
 
         return $this;
@@ -448,9 +436,6 @@ class CreateMerchantRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setPricingPlan($pricingPlan)
     {
-        if (is_null($pricingPlan)) {
-            throw new \InvalidArgumentException('non-nullable pricingPlan cannot be null');
-        }
         $this->container['pricingPlan'] = $pricingPlan;
 
         return $this;
@@ -475,9 +460,6 @@ class CreateMerchantRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -502,9 +484,6 @@ class CreateMerchantRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setSalesChannels($salesChannels)
     {
-        if (is_null($salesChannels)) {
-            throw new \InvalidArgumentException('non-nullable salesChannels cannot be null');
-        }
         $this->container['salesChannels'] = $salesChannels;
 
         return $this;

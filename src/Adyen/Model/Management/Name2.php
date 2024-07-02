@@ -302,9 +302,6 @@ class Name2 implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFirstName($firstName)
     {
-        if (is_null($firstName)) {
-            throw new \InvalidArgumentException('non-nullable firstName cannot be null');
-        }
         $this->container['firstName'] = $firstName;
 
         return $this;
@@ -329,9 +326,6 @@ class Name2 implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLastName($lastName)
     {
-        if (is_null($lastName)) {
-            throw new \InvalidArgumentException('non-nullable lastName cannot be null');
-        }
         $this->container['lastName'] = $lastName;
 
         return $this;

@@ -295,9 +295,6 @@ class VerificationErrors implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setProblems($problems)
     {
-        if (is_null($problems)) {
-            throw new \InvalidArgumentException('non-nullable problems cannot be null');
-        }
         $this->container['problems'] = $problems;
 
         return $this;

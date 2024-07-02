@@ -302,9 +302,6 @@ class TimeOfDay implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEndTime($endTime)
     {
-        if (is_null($endTime)) {
-            throw new \InvalidArgumentException('non-nullable endTime cannot be null');
-        }
         $this->container['endTime'] = $endTime;
 
         return $this;
@@ -329,9 +326,6 @@ class TimeOfDay implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStartTime($startTime)
     {
-        if (is_null($startTime)) {
-            throw new \InvalidArgumentException('non-nullable startTime cannot be null');
-        }
         $this->container['startTime'] = $startTime;
 
         return $this;

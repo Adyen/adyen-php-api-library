@@ -392,9 +392,6 @@ class ChallengeInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setChallengeCancel($challengeCancel)
     {
-        if (is_null($challengeCancel)) {
-            throw new \InvalidArgumentException('non-nullable challengeCancel cannot be null');
-        }
         $allowedValues = $this->getChallengeCancelAllowableValues();
         if (!in_array($challengeCancel, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -429,9 +426,6 @@ class ChallengeInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFlow($flow)
     {
-        if (is_null($flow)) {
-            throw new \InvalidArgumentException('non-nullable flow cannot be null');
-        }
         $allowedValues = $this->getFlowAllowableValues();
         if (!in_array($flow, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -466,9 +460,6 @@ class ChallengeInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLastInteraction($lastInteraction)
     {
-        if (is_null($lastInteraction)) {
-            throw new \InvalidArgumentException('non-nullable lastInteraction cannot be null');
-        }
         $this->container['lastInteraction'] = $lastInteraction;
 
         return $this;
@@ -493,9 +484,6 @@ class ChallengeInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPhoneNumber($phoneNumber)
     {
-        if (is_null($phoneNumber)) {
-            throw new \InvalidArgumentException('non-nullable phoneNumber cannot be null');
-        }
         $this->container['phoneNumber'] = $phoneNumber;
 
         return $this;
@@ -520,7 +508,6 @@ class ChallengeInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setResends($resends)
     {
-        // Do nothing for nullable integers
         $this->container['resends'] = $resends;
 
         return $this;
@@ -545,7 +532,6 @@ class ChallengeInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRetries($retries)
     {
-        // Do nothing for nullable integers
         $this->container['retries'] = $retries;
 
         return $this;

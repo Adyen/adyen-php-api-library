@@ -316,9 +316,6 @@ class CapitalGrantAccount implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setBalances($balances)
     {
-        if (is_null($balances)) {
-            throw new \InvalidArgumentException('non-nullable balances cannot be null');
-        }
         $this->container['balances'] = $balances;
 
         return $this;
@@ -343,9 +340,6 @@ class CapitalGrantAccount implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setFundingBalanceAccountId($fundingBalanceAccountId)
     {
-        if (is_null($fundingBalanceAccountId)) {
-            throw new \InvalidArgumentException('non-nullable fundingBalanceAccountId cannot be null');
-        }
         $this->container['fundingBalanceAccountId'] = $fundingBalanceAccountId;
 
         return $this;
@@ -370,9 +364,6 @@ class CapitalGrantAccount implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -397,9 +388,6 @@ class CapitalGrantAccount implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setLimits($limits)
     {
-        if (is_null($limits)) {
-            throw new \InvalidArgumentException('non-nullable limits cannot be null');
-        }
         $this->container['limits'] = $limits;
 
         return $this;

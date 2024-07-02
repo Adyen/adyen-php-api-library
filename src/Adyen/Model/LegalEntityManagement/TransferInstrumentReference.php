@@ -322,9 +322,6 @@ class TransferInstrumentReference implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setAccountIdentifier($accountIdentifier)
     {
-        if (is_null($accountIdentifier)) {
-            throw new \InvalidArgumentException('non-nullable accountIdentifier cannot be null');
-        }
         $this->container['accountIdentifier'] = $accountIdentifier;
 
         return $this;
@@ -349,9 +346,6 @@ class TransferInstrumentReference implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -376,9 +370,6 @@ class TransferInstrumentReference implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setRealLastFour($realLastFour)
     {
-        if (is_null($realLastFour)) {
-            throw new \InvalidArgumentException('non-nullable realLastFour cannot be null');
-        }
         $this->container['realLastFour'] = $realLastFour;
 
         return $this;
@@ -403,9 +394,6 @@ class TransferInstrumentReference implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setTrustedSource($trustedSource)
     {
-        if (is_null($trustedSource)) {
-            throw new \InvalidArgumentException('non-nullable trustedSource cannot be null');
-        }
         $this->container['trustedSource'] = $trustedSource;
 
         return $this;

@@ -372,9 +372,6 @@ class TransferInstrument implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setBankAccount($bankAccount)
     {
-        if (is_null($bankAccount)) {
-            throw new \InvalidArgumentException('non-nullable bankAccount cannot be null');
-        }
         $this->container['bankAccount'] = $bankAccount;
 
         return $this;
@@ -399,9 +396,6 @@ class TransferInstrument implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setCapabilities($capabilities)
     {
-        if (is_null($capabilities)) {
-            throw new \InvalidArgumentException('non-nullable capabilities cannot be null');
-        }
         $this->container['capabilities'] = $capabilities;
 
         return $this;
@@ -426,9 +420,6 @@ class TransferInstrument implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setDocumentDetails($documentDetails)
     {
-        if (is_null($documentDetails)) {
-            throw new \InvalidArgumentException('non-nullable documentDetails cannot be null');
-        }
         $this->container['documentDetails'] = $documentDetails;
 
         return $this;
@@ -453,9 +444,6 @@ class TransferInstrument implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -480,9 +468,6 @@ class TransferInstrument implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setLegalEntityId($legalEntityId)
     {
-        if (is_null($legalEntityId)) {
-            throw new \InvalidArgumentException('non-nullable legalEntityId cannot be null');
-        }
         $this->container['legalEntityId'] = $legalEntityId;
 
         return $this;
@@ -507,9 +492,6 @@ class TransferInstrument implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setProblems($problems)
     {
-        if (is_null($problems)) {
-            throw new \InvalidArgumentException('non-nullable problems cannot be null');
-        }
         $this->container['problems'] = $problems;
 
         return $this;
@@ -534,9 +516,6 @@ class TransferInstrument implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

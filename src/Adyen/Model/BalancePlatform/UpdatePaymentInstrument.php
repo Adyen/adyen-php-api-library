@@ -480,9 +480,6 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setAdditionalBankAccountIdentifications($additionalBankAccountIdentifications)
     {
-        if (is_null($additionalBankAccountIdentifications)) {
-            throw new \InvalidArgumentException('non-nullable additionalBankAccountIdentifications cannot be null');
-        }
         $this->container['additionalBankAccountIdentifications'] = $additionalBankAccountIdentifications;
 
         return $this;
@@ -507,9 +504,6 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setBalanceAccountId($balanceAccountId)
     {
-        if (is_null($balanceAccountId)) {
-            throw new \InvalidArgumentException('non-nullable balanceAccountId cannot be null');
-        }
         $this->container['balanceAccountId'] = $balanceAccountId;
 
         return $this;
@@ -534,9 +528,6 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setBankAccount($bankAccount)
     {
-        if (is_null($bankAccount)) {
-            throw new \InvalidArgumentException('non-nullable bankAccount cannot be null');
-        }
         $this->container['bankAccount'] = $bankAccount;
 
         return $this;
@@ -561,9 +552,6 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setCard($card)
     {
-        if (is_null($card)) {
-            throw new \InvalidArgumentException('non-nullable card cannot be null');
-        }
         $this->container['card'] = $card;
 
         return $this;
@@ -588,9 +576,6 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -615,9 +600,6 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -642,9 +624,6 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setIssuingCountryCode($issuingCountryCode)
     {
-        if (is_null($issuingCountryCode)) {
-            throw new \InvalidArgumentException('non-nullable issuingCountryCode cannot be null');
-        }
         $this->container['issuingCountryCode'] = $issuingCountryCode;
 
         return $this;
@@ -669,9 +648,6 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setPaymentInstrumentGroupId($paymentInstrumentGroupId)
     {
-        if (is_null($paymentInstrumentGroupId)) {
-            throw new \InvalidArgumentException('non-nullable paymentInstrumentGroupId cannot be null');
-        }
         $this->container['paymentInstrumentGroupId'] = $paymentInstrumentGroupId;
 
         return $this;
@@ -696,9 +672,6 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -723,9 +696,6 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -760,9 +730,6 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setStatusComment($statusComment)
     {
-        if (is_null($statusComment)) {
-            throw new \InvalidArgumentException('non-nullable statusComment cannot be null');
-        }
         $this->container['statusComment'] = $statusComment;
 
         return $this;
@@ -787,9 +754,6 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setStatusReason($statusReason)
     {
-        if (is_null($statusReason)) {
-            throw new \InvalidArgumentException('non-nullable statusReason cannot be null');
-        }
         $allowedValues = $this->getStatusReasonAllowableValues();
         if (!in_array($statusReason, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -824,9 +788,6 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

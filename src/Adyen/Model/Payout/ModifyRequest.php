@@ -315,9 +315,6 @@ class ModifyRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAdditionalData($additionalData)
     {
-        if (is_null($additionalData)) {
-            throw new \InvalidArgumentException('non-nullable additionalData cannot be null');
-        }
         $this->container['additionalData'] = $additionalData;
 
         return $this;
@@ -342,9 +339,6 @@ class ModifyRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMerchantAccount($merchantAccount)
     {
-        if (is_null($merchantAccount)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
-        }
         $this->container['merchantAccount'] = $merchantAccount;
 
         return $this;
@@ -369,9 +363,6 @@ class ModifyRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setOriginalReference($originalReference)
     {
-        if (is_null($originalReference)) {
-            throw new \InvalidArgumentException('non-nullable originalReference cannot be null');
-        }
         $this->container['originalReference'] = $originalReference;
 
         return $this;

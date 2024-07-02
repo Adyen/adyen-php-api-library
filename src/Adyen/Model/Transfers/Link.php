@@ -295,9 +295,6 @@ class Link implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setHref($href)
     {
-        if (is_null($href)) {
-            throw new \InvalidArgumentException('non-nullable href cannot be null');
-        }
         $this->container['href'] = $href;
 
         return $this;

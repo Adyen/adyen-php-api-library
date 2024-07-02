@@ -317,9 +317,6 @@ class ScheduleTerminalActionsRequestActionDetails implements ModelInterface, Arr
      */
     public function setAppId($appId)
     {
-        if (is_null($appId)) {
-            throw new \InvalidArgumentException('non-nullable appId cannot be null');
-        }
         $this->container['appId'] = $appId;
 
         return $this;
@@ -344,9 +341,6 @@ class ScheduleTerminalActionsRequestActionDetails implements ModelInterface, Arr
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $this->container['type'] = $type;
 
         return $this;
@@ -371,9 +365,6 @@ class ScheduleTerminalActionsRequestActionDetails implements ModelInterface, Arr
      */
     public function setCertificateId($certificateId)
     {
-        if (is_null($certificateId)) {
-            throw new \InvalidArgumentException('non-nullable certificateId cannot be null');
-        }
         $this->container['certificateId'] = $certificateId;
 
         return $this;
@@ -398,9 +389,6 @@ class ScheduleTerminalActionsRequestActionDetails implements ModelInterface, Arr
      */
     public function setUpdateAtFirstMaintenanceCall($updateAtFirstMaintenanceCall)
     {
-        if (is_null($updateAtFirstMaintenanceCall)) {
-            throw new \InvalidArgumentException('non-nullable updateAtFirstMaintenanceCall cannot be null');
-        }
         $this->container['updateAtFirstMaintenanceCall'] = $updateAtFirstMaintenanceCall;
 
         return $this;

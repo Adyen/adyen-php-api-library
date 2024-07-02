@@ -375,9 +375,6 @@ class BrowserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAcceptHeader($acceptHeader)
     {
-        if (is_null($acceptHeader)) {
-            throw new \InvalidArgumentException('non-nullable acceptHeader cannot be null');
-        }
         $this->container['acceptHeader'] = $acceptHeader;
 
         return $this;
@@ -402,7 +399,6 @@ class BrowserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setColorDepth($colorDepth)
     {
-        // Do nothing for nullable integers
         $this->container['colorDepth'] = $colorDepth;
 
         return $this;
@@ -427,9 +423,6 @@ class BrowserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setJavaEnabled($javaEnabled)
     {
-        if (is_null($javaEnabled)) {
-            throw new \InvalidArgumentException('non-nullable javaEnabled cannot be null');
-        }
         $this->container['javaEnabled'] = $javaEnabled;
 
         return $this;
@@ -454,9 +447,6 @@ class BrowserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setJavaScriptEnabled($javaScriptEnabled)
     {
-        if (is_null($javaScriptEnabled)) {
-            throw new \InvalidArgumentException('non-nullable javaScriptEnabled cannot be null');
-        }
         $this->container['javaScriptEnabled'] = $javaScriptEnabled;
 
         return $this;
@@ -481,9 +471,6 @@ class BrowserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLanguage($language)
     {
-        if (is_null($language)) {
-            throw new \InvalidArgumentException('non-nullable language cannot be null');
-        }
         $this->container['language'] = $language;
 
         return $this;
@@ -508,7 +495,6 @@ class BrowserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setScreenHeight($screenHeight)
     {
-        // Do nothing for nullable integers
         $this->container['screenHeight'] = $screenHeight;
 
         return $this;
@@ -533,7 +519,6 @@ class BrowserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setScreenWidth($screenWidth)
     {
-        // Do nothing for nullable integers
         $this->container['screenWidth'] = $screenWidth;
 
         return $this;
@@ -558,7 +543,6 @@ class BrowserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTimeZoneOffset($timeZoneOffset)
     {
-        // Do nothing for nullable integers
         $this->container['timeZoneOffset'] = $timeZoneOffset;
 
         return $this;
@@ -583,9 +567,6 @@ class BrowserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUserAgent($userAgent)
     {
-        if (is_null($userAgent)) {
-            throw new \InvalidArgumentException('non-nullable userAgent cannot be null');
-        }
         $this->container['userAgent'] = $userAgent;
 
         return $this;

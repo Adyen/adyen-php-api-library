@@ -331,9 +331,6 @@ class TerminalConnectivityCellular implements ModelInterface, ArrayAccess, \Json
      */
     public function setIccid($iccid)
     {
-        if (is_null($iccid)) {
-            throw new \InvalidArgumentException('non-nullable iccid cannot be null');
-        }
         $this->container['iccid'] = $iccid;
 
         return $this;
@@ -358,9 +355,6 @@ class TerminalConnectivityCellular implements ModelInterface, ArrayAccess, \Json
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(

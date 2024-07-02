@@ -302,9 +302,6 @@ class Payment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setContactlessCurrency($contactlessCurrency)
     {
-        if (is_null($contactlessCurrency)) {
-            throw new \InvalidArgumentException('non-nullable contactlessCurrency cannot be null');
-        }
         $this->container['contactlessCurrency'] = $contactlessCurrency;
 
         return $this;
@@ -329,9 +326,6 @@ class Payment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setHideMinorUnitsInCurrencies($hideMinorUnitsInCurrencies)
     {
-        if (is_null($hideMinorUnitsInCurrencies)) {
-            throw new \InvalidArgumentException('non-nullable hideMinorUnitsInCurrencies cannot be null');
-        }
         $this->container['hideMinorUnitsInCurrencies'] = $hideMinorUnitsInCurrencies;
 
         return $this;

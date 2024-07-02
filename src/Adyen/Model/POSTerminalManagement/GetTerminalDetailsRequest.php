@@ -298,9 +298,6 @@ class GetTerminalDetailsRequest implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function setTerminal($terminal)
     {
-        if (is_null($terminal)) {
-            throw new \InvalidArgumentException('non-nullable terminal cannot be null');
-        }
         $this->container['terminal'] = $terminal;
 
         return $this;

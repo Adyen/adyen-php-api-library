@@ -295,9 +295,6 @@ class BcmcInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEnableBcmcMobile($enableBcmcMobile)
     {
-        if (is_null($enableBcmcMobile)) {
-            throw new \InvalidArgumentException('non-nullable enableBcmcMobile cannot be null');
-        }
         $this->container['enableBcmcMobile'] = $enableBcmcMobile;
 
         return $this;

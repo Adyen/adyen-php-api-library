@@ -349,7 +349,6 @@ class Installments implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setExtra($extra)
     {
-        // Do nothing for nullable integers
         $this->container['extra'] = $extra;
 
         return $this;
@@ -374,9 +373,6 @@ class Installments implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPlan($plan)
     {
-        if (is_null($plan)) {
-            throw new \InvalidArgumentException('non-nullable plan cannot be null');
-        }
         $allowedValues = $this->getPlanAllowableValues();
         if (!in_array($plan, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -411,7 +407,6 @@ class Installments implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setValue($value)
     {
-        // Do nothing for nullable integers
         $this->container['value'] = $value;
 
         return $this;

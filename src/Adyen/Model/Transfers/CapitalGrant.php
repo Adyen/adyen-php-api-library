@@ -391,9 +391,6 @@ class CapitalGrant implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAmount($amount)
     {
-        if (is_null($amount)) {
-            throw new \InvalidArgumentException('non-nullable amount cannot be null');
-        }
         $this->container['amount'] = $amount;
 
         return $this;
@@ -418,9 +415,6 @@ class CapitalGrant implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBalances($balances)
     {
-        if (is_null($balances)) {
-            throw new \InvalidArgumentException('non-nullable balances cannot be null');
-        }
         $this->container['balances'] = $balances;
 
         return $this;
@@ -445,9 +439,6 @@ class CapitalGrant implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCounterparty($counterparty)
     {
-        if (is_null($counterparty)) {
-            throw new \InvalidArgumentException('non-nullable counterparty cannot be null');
-        }
         $this->container['counterparty'] = $counterparty;
 
         return $this;
@@ -472,9 +463,6 @@ class CapitalGrant implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFee($fee)
     {
-        if (is_null($fee)) {
-            throw new \InvalidArgumentException('non-nullable fee cannot be null');
-        }
         $this->container['fee'] = $fee;
 
         return $this;
@@ -499,9 +487,6 @@ class CapitalGrant implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setGrantAccountId($grantAccountId)
     {
-        if (is_null($grantAccountId)) {
-            throw new \InvalidArgumentException('non-nullable grantAccountId cannot be null');
-        }
         $this->container['grantAccountId'] = $grantAccountId;
 
         return $this;
@@ -526,9 +511,6 @@ class CapitalGrant implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setGrantOfferId($grantOfferId)
     {
-        if (is_null($grantOfferId)) {
-            throw new \InvalidArgumentException('non-nullable grantOfferId cannot be null');
-        }
         $this->container['grantOfferId'] = $grantOfferId;
 
         return $this;
@@ -553,9 +535,6 @@ class CapitalGrant implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -580,9 +559,6 @@ class CapitalGrant implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRepayment($repayment)
     {
-        if (is_null($repayment)) {
-            throw new \InvalidArgumentException('non-nullable repayment cannot be null');
-        }
         $this->container['repayment'] = $repayment;
 
         return $this;
@@ -607,9 +583,6 @@ class CapitalGrant implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(

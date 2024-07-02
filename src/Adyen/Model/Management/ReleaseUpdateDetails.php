@@ -323,9 +323,6 @@ class ReleaseUpdateDetails implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -360,9 +357,6 @@ class ReleaseUpdateDetails implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setUpdateAtFirstMaintenanceCall($updateAtFirstMaintenanceCall)
     {
-        if (is_null($updateAtFirstMaintenanceCall)) {
-            throw new \InvalidArgumentException('non-nullable updateAtFirstMaintenanceCall cannot be null');
-        }
         $this->container['updateAtFirstMaintenanceCall'] = $updateAtFirstMaintenanceCall;
 
         return $this;

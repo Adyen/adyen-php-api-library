@@ -365,9 +365,6 @@ class DeviceInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCardCaptureTechnology($cardCaptureTechnology)
     {
-        if (is_null($cardCaptureTechnology)) {
-            throw new \InvalidArgumentException('non-nullable cardCaptureTechnology cannot be null');
-        }
         $this->container['cardCaptureTechnology'] = $cardCaptureTechnology;
 
         return $this;
@@ -392,9 +389,6 @@ class DeviceInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDeviceName($deviceName)
     {
-        if (is_null($deviceName)) {
-            throw new \InvalidArgumentException('non-nullable deviceName cannot be null');
-        }
         $this->container['deviceName'] = $deviceName;
 
         return $this;
@@ -419,9 +413,6 @@ class DeviceInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFormFactor($formFactor)
     {
-        if (is_null($formFactor)) {
-            throw new \InvalidArgumentException('non-nullable formFactor cannot be null');
-        }
         $this->container['formFactor'] = $formFactor;
 
         return $this;
@@ -446,9 +437,6 @@ class DeviceInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setImei($imei)
     {
-        if (is_null($imei)) {
-            throw new \InvalidArgumentException('non-nullable imei cannot be null');
-        }
         $this->container['imei'] = $imei;
 
         return $this;
@@ -473,9 +461,6 @@ class DeviceInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setIsoDeviceType($isoDeviceType)
     {
-        if (is_null($isoDeviceType)) {
-            throw new \InvalidArgumentException('non-nullable isoDeviceType cannot be null');
-        }
         $this->container['isoDeviceType'] = $isoDeviceType;
 
         return $this;
@@ -500,9 +485,6 @@ class DeviceInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMsisdn($msisdn)
     {
-        if (is_null($msisdn)) {
-            throw new \InvalidArgumentException('non-nullable msisdn cannot be null');
-        }
         $this->container['msisdn'] = $msisdn;
 
         return $this;
@@ -527,9 +509,6 @@ class DeviceInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setOsName($osName)
     {
-        if (is_null($osName)) {
-            throw new \InvalidArgumentException('non-nullable osName cannot be null');
-        }
         $this->container['osName'] = $osName;
 
         return $this;
@@ -554,9 +533,6 @@ class DeviceInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setOsVersion($osVersion)
     {
-        if (is_null($osVersion)) {
-            throw new \InvalidArgumentException('non-nullable osVersion cannot be null');
-        }
         $this->container['osVersion'] = $osVersion;
 
         return $this;
@@ -581,9 +557,6 @@ class DeviceInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPaymentTypes($paymentTypes)
     {
-        if (is_null($paymentTypes)) {
-            throw new \InvalidArgumentException('non-nullable paymentTypes cannot be null');
-        }
         $this->container['paymentTypes'] = $paymentTypes;
 
         return $this;
@@ -608,9 +581,6 @@ class DeviceInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSerialNumber($serialNumber)
     {
-        if (is_null($serialNumber)) {
-            throw new \InvalidArgumentException('non-nullable serialNumber cannot be null');
-        }
         $this->container['serialNumber'] = $serialNumber;
 
         return $this;
@@ -635,9 +605,6 @@ class DeviceInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStorageTechnology($storageTechnology)
     {
-        if (is_null($storageTechnology)) {
-            throw new \InvalidArgumentException('non-nullable storageTechnology cannot be null');
-        }
         $this->container['storageTechnology'] = $storageTechnology;
 
         return $this;

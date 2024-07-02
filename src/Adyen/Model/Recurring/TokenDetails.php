@@ -302,9 +302,6 @@ class TokenDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTokenData($tokenData)
     {
-        if (is_null($tokenData)) {
-            throw new \InvalidArgumentException('non-nullable tokenData cannot be null');
-        }
         $this->container['tokenData'] = $tokenData;
 
         return $this;
@@ -329,9 +326,6 @@ class TokenDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTokenDataType($tokenDataType)
     {
-        if (is_null($tokenDataType)) {
-            throw new \InvalidArgumentException('non-nullable tokenDataType cannot be null');
-        }
         $this->container['tokenDataType'] = $tokenDataType;
 
         return $this;

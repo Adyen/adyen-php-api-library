@@ -329,9 +329,6 @@ class EstimationTrackingData implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setEstimatedArrivalTime($estimatedArrivalTime)
     {
-        if (is_null($estimatedArrivalTime)) {
-            throw new \InvalidArgumentException('non-nullable estimatedArrivalTime cannot be null');
-        }
         $this->container['estimatedArrivalTime'] = $estimatedArrivalTime;
 
         return $this;
@@ -356,9 +353,6 @@ class EstimationTrackingData implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

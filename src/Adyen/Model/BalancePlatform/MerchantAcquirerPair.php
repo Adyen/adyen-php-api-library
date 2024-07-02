@@ -302,9 +302,6 @@ class MerchantAcquirerPair implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setAcquirerId($acquirerId)
     {
-        if (is_null($acquirerId)) {
-            throw new \InvalidArgumentException('non-nullable acquirerId cannot be null');
-        }
         $this->container['acquirerId'] = $acquirerId;
 
         return $this;
@@ -329,9 +326,6 @@ class MerchantAcquirerPair implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setMerchantId($merchantId)
     {
-        if (is_null($merchantId)) {
-            throw new \InvalidArgumentException('non-nullable merchantId cannot be null');
-        }
         $this->container['merchantId'] = $merchantId;
 
         return $this;

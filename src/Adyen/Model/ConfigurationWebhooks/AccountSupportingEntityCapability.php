@@ -418,9 +418,6 @@ class AccountSupportingEntityCapability implements ModelInterface, ArrayAccess, 
      */
     public function setAllowed($allowed)
     {
-        if (is_null($allowed)) {
-            throw new \InvalidArgumentException('non-nullable allowed cannot be null');
-        }
         $this->container['allowed'] = $allowed;
 
         return $this;
@@ -445,9 +442,6 @@ class AccountSupportingEntityCapability implements ModelInterface, ArrayAccess, 
      */
     public function setAllowedLevel($allowedLevel)
     {
-        if (is_null($allowedLevel)) {
-            throw new \InvalidArgumentException('non-nullable allowedLevel cannot be null');
-        }
         $allowedValues = $this->getAllowedLevelAllowableValues();
         if (!in_array($allowedLevel, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -482,9 +476,6 @@ class AccountSupportingEntityCapability implements ModelInterface, ArrayAccess, 
      */
     public function setEnabled($enabled)
     {
-        if (is_null($enabled)) {
-            throw new \InvalidArgumentException('non-nullable enabled cannot be null');
-        }
         $this->container['enabled'] = $enabled;
 
         return $this;
@@ -509,9 +500,6 @@ class AccountSupportingEntityCapability implements ModelInterface, ArrayAccess, 
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -536,9 +524,6 @@ class AccountSupportingEntityCapability implements ModelInterface, ArrayAccess, 
      */
     public function setRequested($requested)
     {
-        if (is_null($requested)) {
-            throw new \InvalidArgumentException('non-nullable requested cannot be null');
-        }
         $this->container['requested'] = $requested;
 
         return $this;
@@ -563,9 +548,6 @@ class AccountSupportingEntityCapability implements ModelInterface, ArrayAccess, 
      */
     public function setRequestedLevel($requestedLevel)
     {
-        if (is_null($requestedLevel)) {
-            throw new \InvalidArgumentException('non-nullable requestedLevel cannot be null');
-        }
         $allowedValues = $this->getRequestedLevelAllowableValues();
         if (!in_array($requestedLevel, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -600,9 +582,6 @@ class AccountSupportingEntityCapability implements ModelInterface, ArrayAccess, 
      */
     public function setVerificationStatus($verificationStatus)
     {
-        if (is_null($verificationStatus)) {
-            throw new \InvalidArgumentException('non-nullable verificationStatus cannot be null');
-        }
         $allowedValues = $this->getVerificationStatusAllowableValues();
         if (!in_array($verificationStatus, $allowedValues, true)) {
             throw new \InvalidArgumentException(

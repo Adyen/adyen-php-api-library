@@ -397,9 +397,6 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setCountryOfGoverningLaw($countryOfGoverningLaw)
     {
-        if (is_null($countryOfGoverningLaw)) {
-            throw new \InvalidArgumentException('non-nullable countryOfGoverningLaw cannot be null');
-        }
         $this->container['countryOfGoverningLaw'] = $countryOfGoverningLaw;
 
         return $this;
@@ -424,9 +421,6 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setDateOfIncorporation($dateOfIncorporation)
     {
-        if (is_null($dateOfIncorporation)) {
-            throw new \InvalidArgumentException('non-nullable dateOfIncorporation cannot be null');
-        }
         $this->container['dateOfIncorporation'] = $dateOfIncorporation;
 
         return $this;
@@ -451,9 +445,6 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setDoingBusinessAs($doingBusinessAs)
     {
-        if (is_null($doingBusinessAs)) {
-            throw new \InvalidArgumentException('non-nullable doingBusinessAs cannot be null');
-        }
         $this->container['doingBusinessAs'] = $doingBusinessAs;
 
         return $this;
@@ -478,9 +469,6 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setName($name)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
         $this->container['name'] = $name;
 
         return $this;
@@ -505,9 +493,6 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setPrincipalPlaceOfBusiness($principalPlaceOfBusiness)
     {
-        if (is_null($principalPlaceOfBusiness)) {
-            throw new \InvalidArgumentException('non-nullable principalPlaceOfBusiness cannot be null');
-        }
         $this->container['principalPlaceOfBusiness'] = $principalPlaceOfBusiness;
 
         return $this;
@@ -532,9 +517,6 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setRegisteredAddress($registeredAddress)
     {
-        if (is_null($registeredAddress)) {
-            throw new \InvalidArgumentException('non-nullable registeredAddress cannot be null');
-        }
         $this->container['registeredAddress'] = $registeredAddress;
 
         return $this;
@@ -559,9 +541,6 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setRegistrationNumber($registrationNumber)
     {
-        if (is_null($registrationNumber)) {
-            throw new \InvalidArgumentException('non-nullable registrationNumber cannot be null');
-        }
         $this->container['registrationNumber'] = $registrationNumber;
 
         return $this;
@@ -620,9 +599,6 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setTaxInformation($taxInformation)
     {
-        if (is_null($taxInformation)) {
-            throw new \InvalidArgumentException('non-nullable taxInformation cannot be null');
-        }
         $this->container['taxInformation'] = $taxInformation;
 
         return $this;
@@ -647,9 +623,6 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setVatAbsenceReason($vatAbsenceReason)
     {
-        if (is_null($vatAbsenceReason)) {
-            throw new \InvalidArgumentException('non-nullable vatAbsenceReason cannot be null');
-        }
         $allowedValues = $this->getVatAbsenceReasonAllowableValues();
         if (!in_array($vatAbsenceReason, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -684,9 +657,6 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setVatNumber($vatNumber)
     {
-        if (is_null($vatNumber)) {
-            throw new \InvalidArgumentException('non-nullable vatNumber cannot be null');
-        }
         $this->container['vatNumber'] = $vatNumber;
 
         return $this;

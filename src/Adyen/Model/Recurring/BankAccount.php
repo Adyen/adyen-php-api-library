@@ -351,9 +351,6 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBankAccountNumber($bankAccountNumber)
     {
-        if (is_null($bankAccountNumber)) {
-            throw new \InvalidArgumentException('non-nullable bankAccountNumber cannot be null');
-        }
         $this->container['bankAccountNumber'] = $bankAccountNumber;
 
         return $this;
@@ -378,9 +375,6 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBankCity($bankCity)
     {
-        if (is_null($bankCity)) {
-            throw new \InvalidArgumentException('non-nullable bankCity cannot be null');
-        }
         $this->container['bankCity'] = $bankCity;
 
         return $this;
@@ -405,9 +399,6 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBankLocationId($bankLocationId)
     {
-        if (is_null($bankLocationId)) {
-            throw new \InvalidArgumentException('non-nullable bankLocationId cannot be null');
-        }
         $this->container['bankLocationId'] = $bankLocationId;
 
         return $this;
@@ -432,9 +423,6 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBankName($bankName)
     {
-        if (is_null($bankName)) {
-            throw new \InvalidArgumentException('non-nullable bankName cannot be null');
-        }
         $this->container['bankName'] = $bankName;
 
         return $this;
@@ -459,9 +447,6 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBic($bic)
     {
-        if (is_null($bic)) {
-            throw new \InvalidArgumentException('non-nullable bic cannot be null');
-        }
         $this->container['bic'] = $bic;
 
         return $this;
@@ -486,9 +471,6 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCountryCode($countryCode)
     {
-        if (is_null($countryCode)) {
-            throw new \InvalidArgumentException('non-nullable countryCode cannot be null');
-        }
         $this->container['countryCode'] = $countryCode;
 
         return $this;
@@ -513,9 +495,6 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setIban($iban)
     {
-        if (is_null($iban)) {
-            throw new \InvalidArgumentException('non-nullable iban cannot be null');
-        }
         $this->container['iban'] = $iban;
 
         return $this;
@@ -540,9 +519,6 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setOwnerName($ownerName)
     {
-        if (is_null($ownerName)) {
-            throw new \InvalidArgumentException('non-nullable ownerName cannot be null');
-        }
         $this->container['ownerName'] = $ownerName;
 
         return $this;
@@ -567,9 +543,6 @@ class BankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTaxId($taxId)
     {
-        if (is_null($taxId)) {
-            throw new \InvalidArgumentException('non-nullable taxId cannot be null');
-        }
         $this->container['taxId'] = $taxId;
 
         return $this;

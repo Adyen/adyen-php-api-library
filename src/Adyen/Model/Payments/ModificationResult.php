@@ -350,9 +350,6 @@ class ModificationResult implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setAdditionalData($additionalData)
     {
-        if (is_null($additionalData)) {
-            throw new \InvalidArgumentException('non-nullable additionalData cannot be null');
-        }
         $this->container['additionalData'] = $additionalData;
 
         return $this;
@@ -377,9 +374,6 @@ class ModificationResult implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setPspReference($pspReference)
     {
-        if (is_null($pspReference)) {
-            throw new \InvalidArgumentException('non-nullable pspReference cannot be null');
-        }
         $this->container['pspReference'] = $pspReference;
 
         return $this;
@@ -404,9 +398,6 @@ class ModificationResult implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setResponse($response)
     {
-        if (is_null($response)) {
-            throw new \InvalidArgumentException('non-nullable response cannot be null');
-        }
         $allowedValues = $this->getResponseAllowableValues();
         if (!in_array($response, $allowedValues, true)) {
             throw new \InvalidArgumentException(

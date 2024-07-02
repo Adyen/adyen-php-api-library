@@ -295,9 +295,6 @@ class TapToPay implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMerchantDisplayName($merchantDisplayName)
     {
-        if (is_null($merchantDisplayName)) {
-            throw new \InvalidArgumentException('non-nullable merchantDisplayName cannot be null');
-        }
         $this->container['merchantDisplayName'] = $merchantDisplayName;
 
         return $this;

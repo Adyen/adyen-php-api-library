@@ -298,9 +298,6 @@ class ApplePayInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDomains($domains)
     {
-        if (is_null($domains)) {
-            throw new \InvalidArgumentException('non-nullable domains cannot be null');
-        }
         $this->container['domains'] = $domains;
 
         return $this;

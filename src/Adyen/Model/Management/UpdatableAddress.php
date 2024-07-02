@@ -330,9 +330,6 @@ class UpdatableAddress implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCity($city)
     {
-        if (is_null($city)) {
-            throw new \InvalidArgumentException('non-nullable city cannot be null');
-        }
         $this->container['city'] = $city;
 
         return $this;
@@ -357,9 +354,6 @@ class UpdatableAddress implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLine1($line1)
     {
-        if (is_null($line1)) {
-            throw new \InvalidArgumentException('non-nullable line1 cannot be null');
-        }
         $this->container['line1'] = $line1;
 
         return $this;
@@ -384,9 +378,6 @@ class UpdatableAddress implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLine2($line2)
     {
-        if (is_null($line2)) {
-            throw new \InvalidArgumentException('non-nullable line2 cannot be null');
-        }
         $this->container['line2'] = $line2;
 
         return $this;
@@ -411,9 +402,6 @@ class UpdatableAddress implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLine3($line3)
     {
-        if (is_null($line3)) {
-            throw new \InvalidArgumentException('non-nullable line3 cannot be null');
-        }
         $this->container['line3'] = $line3;
 
         return $this;
@@ -438,9 +426,6 @@ class UpdatableAddress implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPostalCode($postalCode)
     {
-        if (is_null($postalCode)) {
-            throw new \InvalidArgumentException('non-nullable postalCode cannot be null');
-        }
         $this->container['postalCode'] = $postalCode;
 
         return $this;
@@ -465,9 +450,6 @@ class UpdatableAddress implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStateOrProvince($stateOrProvince)
     {
-        if (is_null($stateOrProvince)) {
-            throw new \InvalidArgumentException('non-nullable stateOrProvince cannot be null');
-        }
         $this->container['stateOrProvince'] = $stateOrProvince;
 
         return $this;

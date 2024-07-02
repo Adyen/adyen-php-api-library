@@ -330,9 +330,6 @@ class ThreeDS1Result implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCavv($cavv)
     {
-        if (is_null($cavv)) {
-            throw new \InvalidArgumentException('non-nullable cavv cannot be null');
-        }
         $this->container['cavv'] = $cavv;
 
         return $this;
@@ -357,9 +354,6 @@ class ThreeDS1Result implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCavvAlgorithm($cavvAlgorithm)
     {
-        if (is_null($cavvAlgorithm)) {
-            throw new \InvalidArgumentException('non-nullable cavvAlgorithm cannot be null');
-        }
         $this->container['cavvAlgorithm'] = $cavvAlgorithm;
 
         return $this;
@@ -384,9 +378,6 @@ class ThreeDS1Result implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEci($eci)
     {
-        if (is_null($eci)) {
-            throw new \InvalidArgumentException('non-nullable eci cannot be null');
-        }
         $this->container['eci'] = $eci;
 
         return $this;
@@ -411,9 +402,6 @@ class ThreeDS1Result implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setThreeDAuthenticatedResponse($threeDAuthenticatedResponse)
     {
-        if (is_null($threeDAuthenticatedResponse)) {
-            throw new \InvalidArgumentException('non-nullable threeDAuthenticatedResponse cannot be null');
-        }
         $this->container['threeDAuthenticatedResponse'] = $threeDAuthenticatedResponse;
 
         return $this;
@@ -438,9 +426,6 @@ class ThreeDS1Result implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setThreeDOfferedResponse($threeDOfferedResponse)
     {
-        if (is_null($threeDOfferedResponse)) {
-            throw new \InvalidArgumentException('non-nullable threeDOfferedResponse cannot be null');
-        }
         $this->container['threeDOfferedResponse'] = $threeDOfferedResponse;
 
         return $this;
@@ -465,9 +450,6 @@ class ThreeDS1Result implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setXid($xid)
     {
-        if (is_null($xid)) {
-            throw new \InvalidArgumentException('non-nullable xid cannot be null');
-        }
         $this->container['xid'] = $xid;
 
         return $this;

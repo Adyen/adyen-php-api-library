@@ -386,9 +386,6 @@ class Merchant implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLinks($links)
     {
-        if (is_null($links)) {
-            throw new \InvalidArgumentException('non-nullable links cannot be null');
-        }
         $this->container['links'] = $links;
 
         return $this;
@@ -413,9 +410,6 @@ class Merchant implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCaptureDelay($captureDelay)
     {
-        if (is_null($captureDelay)) {
-            throw new \InvalidArgumentException('non-nullable captureDelay cannot be null');
-        }
         $this->container['captureDelay'] = $captureDelay;
 
         return $this;
@@ -440,9 +434,6 @@ class Merchant implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCompanyId($companyId)
     {
-        if (is_null($companyId)) {
-            throw new \InvalidArgumentException('non-nullable companyId cannot be null');
-        }
         $this->container['companyId'] = $companyId;
 
         return $this;
@@ -467,9 +458,6 @@ class Merchant implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDataCenters($dataCenters)
     {
-        if (is_null($dataCenters)) {
-            throw new \InvalidArgumentException('non-nullable dataCenters cannot be null');
-        }
         $this->container['dataCenters'] = $dataCenters;
 
         return $this;
@@ -494,9 +482,6 @@ class Merchant implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDefaultShopperInteraction($defaultShopperInteraction)
     {
-        if (is_null($defaultShopperInteraction)) {
-            throw new \InvalidArgumentException('non-nullable defaultShopperInteraction cannot be null');
-        }
         $this->container['defaultShopperInteraction'] = $defaultShopperInteraction;
 
         return $this;
@@ -521,9 +506,6 @@ class Merchant implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -548,9 +530,6 @@ class Merchant implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -575,9 +554,6 @@ class Merchant implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMerchantCity($merchantCity)
     {
-        if (is_null($merchantCity)) {
-            throw new \InvalidArgumentException('non-nullable merchantCity cannot be null');
-        }
         $this->container['merchantCity'] = $merchantCity;
 
         return $this;
@@ -602,9 +578,6 @@ class Merchant implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setName($name)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
         $this->container['name'] = $name;
 
         return $this;
@@ -629,9 +602,6 @@ class Merchant implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPricingPlan($pricingPlan)
     {
-        if (is_null($pricingPlan)) {
-            throw new \InvalidArgumentException('non-nullable pricingPlan cannot be null');
-        }
         $this->container['pricingPlan'] = $pricingPlan;
 
         return $this;
@@ -656,9 +626,6 @@ class Merchant implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPrimarySettlementCurrency($primarySettlementCurrency)
     {
-        if (is_null($primarySettlementCurrency)) {
-            throw new \InvalidArgumentException('non-nullable primarySettlementCurrency cannot be null');
-        }
         $this->container['primarySettlementCurrency'] = $primarySettlementCurrency;
 
         return $this;
@@ -683,9 +650,6 @@ class Merchant implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -710,9 +674,6 @@ class Merchant implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setShopWebAddress($shopWebAddress)
     {
-        if (is_null($shopWebAddress)) {
-            throw new \InvalidArgumentException('non-nullable shopWebAddress cannot be null');
-        }
         $this->container['shopWebAddress'] = $shopWebAddress;
 
         return $this;
@@ -737,9 +698,6 @@ class Merchant implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $this->container['status'] = $status;
 
         return $this;

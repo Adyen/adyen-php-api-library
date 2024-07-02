@@ -399,9 +399,6 @@ class CreateCompanyApiCredentialResponse implements ModelInterface, ArrayAccess,
      */
     public function setLinks($links)
     {
-        if (is_null($links)) {
-            throw new \InvalidArgumentException('non-nullable links cannot be null');
-        }
         $this->container['links'] = $links;
 
         return $this;
@@ -426,9 +423,6 @@ class CreateCompanyApiCredentialResponse implements ModelInterface, ArrayAccess,
      */
     public function setActive($active)
     {
-        if (is_null($active)) {
-            throw new \InvalidArgumentException('non-nullable active cannot be null');
-        }
         $this->container['active'] = $active;
 
         return $this;
@@ -453,9 +447,6 @@ class CreateCompanyApiCredentialResponse implements ModelInterface, ArrayAccess,
      */
     public function setAllowedIpAddresses($allowedIpAddresses)
     {
-        if (is_null($allowedIpAddresses)) {
-            throw new \InvalidArgumentException('non-nullable allowedIpAddresses cannot be null');
-        }
         $this->container['allowedIpAddresses'] = $allowedIpAddresses;
 
         return $this;
@@ -480,9 +471,6 @@ class CreateCompanyApiCredentialResponse implements ModelInterface, ArrayAccess,
      */
     public function setAllowedOrigins($allowedOrigins)
     {
-        if (is_null($allowedOrigins)) {
-            throw new \InvalidArgumentException('non-nullable allowedOrigins cannot be null');
-        }
         $this->container['allowedOrigins'] = $allowedOrigins;
 
         return $this;
@@ -507,9 +495,6 @@ class CreateCompanyApiCredentialResponse implements ModelInterface, ArrayAccess,
      */
     public function setApiKey($apiKey)
     {
-        if (is_null($apiKey)) {
-            throw new \InvalidArgumentException('non-nullable apiKey cannot be null');
-        }
         $this->container['apiKey'] = $apiKey;
 
         return $this;
@@ -534,9 +519,6 @@ class CreateCompanyApiCredentialResponse implements ModelInterface, ArrayAccess,
      */
     public function setAssociatedMerchantAccounts($associatedMerchantAccounts)
     {
-        if (is_null($associatedMerchantAccounts)) {
-            throw new \InvalidArgumentException('non-nullable associatedMerchantAccounts cannot be null');
-        }
         $this->container['associatedMerchantAccounts'] = $associatedMerchantAccounts;
 
         return $this;
@@ -561,9 +543,6 @@ class CreateCompanyApiCredentialResponse implements ModelInterface, ArrayAccess,
      */
     public function setClientKey($clientKey)
     {
-        if (is_null($clientKey)) {
-            throw new \InvalidArgumentException('non-nullable clientKey cannot be null');
-        }
         $this->container['clientKey'] = $clientKey;
 
         return $this;
@@ -588,9 +567,6 @@ class CreateCompanyApiCredentialResponse implements ModelInterface, ArrayAccess,
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -615,9 +591,6 @@ class CreateCompanyApiCredentialResponse implements ModelInterface, ArrayAccess,
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -642,9 +615,6 @@ class CreateCompanyApiCredentialResponse implements ModelInterface, ArrayAccess,
      */
     public function setPassword($password)
     {
-        if (is_null($password)) {
-            throw new \InvalidArgumentException('non-nullable password cannot be null');
-        }
         $this->container['password'] = $password;
 
         return $this;
@@ -669,9 +639,6 @@ class CreateCompanyApiCredentialResponse implements ModelInterface, ArrayAccess,
      */
     public function setRoles($roles)
     {
-        if (is_null($roles)) {
-            throw new \InvalidArgumentException('non-nullable roles cannot be null');
-        }
         $this->container['roles'] = $roles;
 
         return $this;
@@ -696,9 +663,6 @@ class CreateCompanyApiCredentialResponse implements ModelInterface, ArrayAccess,
      */
     public function setUsername($username)
     {
-        if (is_null($username)) {
-            throw new \InvalidArgumentException('non-nullable username cannot be null');
-        }
         $this->container['username'] = $username;
 
         return $this;

@@ -309,9 +309,6 @@ class TestCompanyWebhookRequest implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function setMerchantIds($merchantIds)
     {
-        if (is_null($merchantIds)) {
-            throw new \InvalidArgumentException('non-nullable merchantIds cannot be null');
-        }
         $this->container['merchantIds'] = $merchantIds;
 
         return $this;
@@ -336,9 +333,6 @@ class TestCompanyWebhookRequest implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function setNotification($notification)
     {
-        if (is_null($notification)) {
-            throw new \InvalidArgumentException('non-nullable notification cannot be null');
-        }
         $this->container['notification'] = $notification;
 
         return $this;
@@ -363,9 +357,6 @@ class TestCompanyWebhookRequest implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function setTypes($types)
     {
-        if (is_null($types)) {
-            throw new \InvalidArgumentException('non-nullable types cannot be null');
-        }
         $this->container['types'] = $types;
 
         return $this;

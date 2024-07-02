@@ -302,9 +302,6 @@ class DataCenter implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLivePrefix($livePrefix)
     {
-        if (is_null($livePrefix)) {
-            throw new \InvalidArgumentException('non-nullable livePrefix cannot be null');
-        }
         $this->container['livePrefix'] = $livePrefix;
 
         return $this;
@@ -329,9 +326,6 @@ class DataCenter implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setName($name)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
         $this->container['name'] = $name;
 
         return $this;

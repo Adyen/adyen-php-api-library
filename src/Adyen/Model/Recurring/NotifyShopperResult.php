@@ -337,9 +337,6 @@ class NotifyShopperResult implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setDisplayedReference($displayedReference)
     {
-        if (is_null($displayedReference)) {
-            throw new \InvalidArgumentException('non-nullable displayedReference cannot be null');
-        }
         $this->container['displayedReference'] = $displayedReference;
 
         return $this;
@@ -364,9 +361,6 @@ class NotifyShopperResult implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setMessage($message)
     {
-        if (is_null($message)) {
-            throw new \InvalidArgumentException('non-nullable message cannot be null');
-        }
         $this->container['message'] = $message;
 
         return $this;
@@ -391,9 +385,6 @@ class NotifyShopperResult implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setPspReference($pspReference)
     {
-        if (is_null($pspReference)) {
-            throw new \InvalidArgumentException('non-nullable pspReference cannot be null');
-        }
         $this->container['pspReference'] = $pspReference;
 
         return $this;
@@ -418,9 +409,6 @@ class NotifyShopperResult implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -445,9 +433,6 @@ class NotifyShopperResult implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setResultCode($resultCode)
     {
-        if (is_null($resultCode)) {
-            throw new \InvalidArgumentException('non-nullable resultCode cannot be null');
-        }
         $this->container['resultCode'] = $resultCode;
 
         return $this;
@@ -472,9 +457,6 @@ class NotifyShopperResult implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setShopperNotificationReference($shopperNotificationReference)
     {
-        if (is_null($shopperNotificationReference)) {
-            throw new \InvalidArgumentException('non-nullable shopperNotificationReference cannot be null');
-        }
         $this->container['shopperNotificationReference'] = $shopperNotificationReference;
 
         return $this;
@@ -499,9 +481,6 @@ class NotifyShopperResult implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setStoredPaymentMethodId($storedPaymentMethodId)
     {
-        if (is_null($storedPaymentMethodId)) {
-            throw new \InvalidArgumentException('non-nullable storedPaymentMethodId cannot be null');
-        }
         $this->container['storedPaymentMethodId'] = $storedPaymentMethodId;
 
         return $this;

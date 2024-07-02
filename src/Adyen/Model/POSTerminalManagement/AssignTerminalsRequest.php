@@ -329,9 +329,6 @@ class AssignTerminalsRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setCompanyAccount($companyAccount)
     {
-        if (is_null($companyAccount)) {
-            throw new \InvalidArgumentException('non-nullable companyAccount cannot be null');
-        }
         $this->container['companyAccount'] = $companyAccount;
 
         return $this;
@@ -356,9 +353,6 @@ class AssignTerminalsRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setMerchantAccount($merchantAccount)
     {
-        if (is_null($merchantAccount)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
-        }
         $this->container['merchantAccount'] = $merchantAccount;
 
         return $this;
@@ -383,9 +377,6 @@ class AssignTerminalsRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setMerchantInventory($merchantInventory)
     {
-        if (is_null($merchantInventory)) {
-            throw new \InvalidArgumentException('non-nullable merchantInventory cannot be null');
-        }
         $this->container['merchantInventory'] = $merchantInventory;
 
         return $this;
@@ -410,9 +401,6 @@ class AssignTerminalsRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setStore($store)
     {
-        if (is_null($store)) {
-            throw new \InvalidArgumentException('non-nullable store cannot be null');
-        }
         $this->container['store'] = $store;
 
         return $this;
@@ -437,9 +425,6 @@ class AssignTerminalsRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setTerminals($terminals)
     {
-        if (is_null($terminals)) {
-            throw new \InvalidArgumentException('non-nullable terminals cannot be null');
-        }
         $this->container['terminals'] = $terminals;
 
         return $this;

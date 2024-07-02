@@ -295,9 +295,6 @@ class GenericPmWithTdiInfo implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setTransactionDescription($transactionDescription)
     {
-        if (is_null($transactionDescription)) {
-            throw new \InvalidArgumentException('non-nullable transactionDescription cannot be null');
-        }
         $this->container['transactionDescription'] = $transactionDescription;
 
         return $this;

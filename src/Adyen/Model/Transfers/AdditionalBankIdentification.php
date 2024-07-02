@@ -325,9 +325,6 @@ class AdditionalBankIdentification implements ModelInterface, ArrayAccess, \Json
      */
     public function setCode($code)
     {
-        if (is_null($code)) {
-            throw new \InvalidArgumentException('non-nullable code cannot be null');
-        }
         $this->container['code'] = $code;
 
         return $this;
@@ -352,9 +349,6 @@ class AdditionalBankIdentification implements ModelInterface, ArrayAccess, \Json
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

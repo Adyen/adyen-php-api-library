@@ -318,9 +318,6 @@ class SupplyDefenseDocumentRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setDefenseDocuments($defenseDocuments)
     {
-        if (is_null($defenseDocuments)) {
-            throw new \InvalidArgumentException('non-nullable defenseDocuments cannot be null');
-        }
         $this->container['defenseDocuments'] = $defenseDocuments;
 
         return $this;
@@ -345,9 +342,6 @@ class SupplyDefenseDocumentRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setDisputePspReference($disputePspReference)
     {
-        if (is_null($disputePspReference)) {
-            throw new \InvalidArgumentException('non-nullable disputePspReference cannot be null');
-        }
         $this->container['disputePspReference'] = $disputePspReference;
 
         return $this;
@@ -372,9 +366,6 @@ class SupplyDefenseDocumentRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setMerchantAccountCode($merchantAccountCode)
     {
-        if (is_null($merchantAccountCode)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccountCode cannot be null');
-        }
         $this->container['merchantAccountCode'] = $merchantAccountCode;
 
         return $this;

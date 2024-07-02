@@ -298,9 +298,6 @@ class GenerateClientKeyResponse implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function setClientKey($clientKey)
     {
-        if (is_null($clientKey)) {
-            throw new \InvalidArgumentException('non-nullable clientKey cannot be null');
-        }
         $this->container['clientKey'] = $clientKey;
 
         return $this;

@@ -357,9 +357,6 @@ class CancelOrRefundRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setAdditionalData($additionalData)
     {
-        if (is_null($additionalData)) {
-            throw new \InvalidArgumentException('non-nullable additionalData cannot be null');
-        }
         $this->container['additionalData'] = $additionalData;
 
         return $this;
@@ -384,9 +381,6 @@ class CancelOrRefundRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setMerchantAccount($merchantAccount)
     {
-        if (is_null($merchantAccount)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
-        }
         $this->container['merchantAccount'] = $merchantAccount;
 
         return $this;
@@ -411,9 +405,6 @@ class CancelOrRefundRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setMpiData($mpiData)
     {
-        if (is_null($mpiData)) {
-            throw new \InvalidArgumentException('non-nullable mpiData cannot be null');
-        }
         $this->container['mpiData'] = $mpiData;
 
         return $this;
@@ -438,9 +429,6 @@ class CancelOrRefundRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setOriginalMerchantReference($originalMerchantReference)
     {
-        if (is_null($originalMerchantReference)) {
-            throw new \InvalidArgumentException('non-nullable originalMerchantReference cannot be null');
-        }
         $this->container['originalMerchantReference'] = $originalMerchantReference;
 
         return $this;
@@ -465,9 +453,6 @@ class CancelOrRefundRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setOriginalReference($originalReference)
     {
-        if (is_null($originalReference)) {
-            throw new \InvalidArgumentException('non-nullable originalReference cannot be null');
-        }
         $this->container['originalReference'] = $originalReference;
 
         return $this;
@@ -492,9 +477,6 @@ class CancelOrRefundRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setPlatformChargebackLogic($platformChargebackLogic)
     {
-        if (is_null($platformChargebackLogic)) {
-            throw new \InvalidArgumentException('non-nullable platformChargebackLogic cannot be null');
-        }
         $this->container['platformChargebackLogic'] = $platformChargebackLogic;
 
         return $this;
@@ -519,9 +501,6 @@ class CancelOrRefundRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -546,9 +525,6 @@ class CancelOrRefundRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setTenderReference($tenderReference)
     {
-        if (is_null($tenderReference)) {
-            throw new \InvalidArgumentException('non-nullable tenderReference cannot be null');
-        }
         $this->container['tenderReference'] = $tenderReference;
 
         return $this;
@@ -573,9 +549,6 @@ class CancelOrRefundRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setUniqueTerminalId($uniqueTerminalId)
     {
-        if (is_null($uniqueTerminalId)) {
-            throw new \InvalidArgumentException('non-nullable uniqueTerminalId cannot be null');
-        }
         $this->container['uniqueTerminalId'] = $uniqueTerminalId;
 
         return $this;

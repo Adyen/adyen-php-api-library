@@ -323,9 +323,6 @@ class UpdateCompanyApiCredentialRequest implements ModelInterface, ArrayAccess, 
      */
     public function setActive($active)
     {
-        if (is_null($active)) {
-            throw new \InvalidArgumentException('non-nullable active cannot be null');
-        }
         $this->container['active'] = $active;
 
         return $this;
@@ -350,9 +347,6 @@ class UpdateCompanyApiCredentialRequest implements ModelInterface, ArrayAccess, 
      */
     public function setAllowedOrigins($allowedOrigins)
     {
-        if (is_null($allowedOrigins)) {
-            throw new \InvalidArgumentException('non-nullable allowedOrigins cannot be null');
-        }
         $this->container['allowedOrigins'] = $allowedOrigins;
 
         return $this;
@@ -377,9 +371,6 @@ class UpdateCompanyApiCredentialRequest implements ModelInterface, ArrayAccess, 
      */
     public function setAssociatedMerchantAccounts($associatedMerchantAccounts)
     {
-        if (is_null($associatedMerchantAccounts)) {
-            throw new \InvalidArgumentException('non-nullable associatedMerchantAccounts cannot be null');
-        }
         $this->container['associatedMerchantAccounts'] = $associatedMerchantAccounts;
 
         return $this;
@@ -404,9 +395,6 @@ class UpdateCompanyApiCredentialRequest implements ModelInterface, ArrayAccess, 
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -431,9 +419,6 @@ class UpdateCompanyApiCredentialRequest implements ModelInterface, ArrayAccess, 
      */
     public function setRoles($roles)
     {
-        if (is_null($roles)) {
-            throw new \InvalidArgumentException('non-nullable roles cannot be null');
-        }
         $this->container['roles'] = $roles;
 
         return $this;

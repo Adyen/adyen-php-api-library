@@ -40,21 +40,6 @@ class PaymentsApi extends Service
     }
 
     /**
-    * Get the result of a payment session
-    *
-    * @param string $sessionId
-    * @param array|null $requestOptions ['queryParams' => ['sessionResult'=> string]]
-    * @return \Adyen\Model\Checkout\SessionResultResponse
-    * @throws AdyenException
-    */
-    public function getResultOfPaymentSession(string $sessionId, array $requestOptions = null): \Adyen\Model\Checkout\SessionResultResponse
-    {
-        $endpoint = $this->baseURL . str_replace(['{sessionId}'], [$sessionId], "/sessions/{sessionId}");
-        $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
-        return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\SessionResultResponse::class);
-    }
-
-    /**
     * Get the list of brands on the card
     *
     * @param \Adyen\Model\Checkout\CardDetailsRequest $cardDetailsRequest
@@ -67,6 +52,21 @@ class PaymentsApi extends Service
         $endpoint = $this->baseURL . "/cardDetails";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $cardDetailsRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\CardDetailsResponse::class);
+    }
+
+    /**
+    * Get the result of a payment session
+    *
+    * @param string $sessionId
+    * @param array|null $requestOptions ['queryParams' => ['sessionResult'=> string]]
+    * @return \Adyen\Model\Checkout\SessionResultResponse
+    * @throws AdyenException
+    */
+    public function getResultOfPaymentSession(string $sessionId, array $requestOptions = null): \Adyen\Model\Checkout\SessionResultResponse
+    {
+        $endpoint = $this->baseURL . str_replace(['{sessionId}'], [$sessionId], "/sessions/{sessionId}");
+        $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\SessionResultResponse::class);
     }
 
     /**

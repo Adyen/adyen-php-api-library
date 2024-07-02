@@ -302,9 +302,6 @@ class RemediatingAction implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setCode($code)
     {
-        if (is_null($code)) {
-            throw new \InvalidArgumentException('non-nullable code cannot be null');
-        }
         $this->container['code'] = $code;
 
         return $this;
@@ -329,9 +326,6 @@ class RemediatingAction implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setMessage($message)
     {
-        if (is_null($message)) {
-            throw new \InvalidArgumentException('non-nullable message cannot be null');
-        }
         $this->container['message'] = $message;
 
         return $this;

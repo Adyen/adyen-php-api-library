@@ -323,9 +323,6 @@ class InstallAndroidAppDetails implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setAppId($appId)
     {
-        if (is_null($appId)) {
-            throw new \InvalidArgumentException('non-nullable appId cannot be null');
-        }
         $this->container['appId'] = $appId;
 
         return $this;
@@ -350,9 +347,6 @@ class InstallAndroidAppDetails implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

@@ -425,9 +425,6 @@ class VerificationDeadline implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setCapabilities($capabilities)
     {
-        if (is_null($capabilities)) {
-            throw new \InvalidArgumentException('non-nullable capabilities cannot be null');
-        }
         $allowedValues = $this->getCapabilitiesAllowableValues();
         if (array_diff($capabilities, $allowedValues)) {
             throw new \InvalidArgumentException(
@@ -461,9 +458,6 @@ class VerificationDeadline implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setEntityIds($entityIds)
     {
-        if (is_null($entityIds)) {
-            throw new \InvalidArgumentException('non-nullable entityIds cannot be null');
-        }
         $this->container['entityIds'] = $entityIds;
 
         return $this;
@@ -488,9 +482,6 @@ class VerificationDeadline implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setExpiresAt($expiresAt)
     {
-        if (is_null($expiresAt)) {
-            throw new \InvalidArgumentException('non-nullable expiresAt cannot be null');
-        }
         $this->container['expiresAt'] = $expiresAt;
 
         return $this;

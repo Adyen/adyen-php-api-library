@@ -302,9 +302,6 @@ class Standalone implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCurrencyCode($currencyCode)
     {
-        if (is_null($currencyCode)) {
-            throw new \InvalidArgumentException('non-nullable currencyCode cannot be null');
-        }
         $this->container['currencyCode'] = $currencyCode;
 
         return $this;
@@ -329,9 +326,6 @@ class Standalone implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEnableStandalone($enableStandalone)
     {
-        if (is_null($enableStandalone)) {
-            throw new \InvalidArgumentException('non-nullable enableStandalone cannot be null');
-        }
         $this->container['enableStandalone'] = $enableStandalone;
 
         return $this;

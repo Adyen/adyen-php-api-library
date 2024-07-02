@@ -309,9 +309,6 @@ class MerchantDevice implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setOs($os)
     {
-        if (is_null($os)) {
-            throw new \InvalidArgumentException('non-nullable os cannot be null');
-        }
         $this->container['os'] = $os;
 
         return $this;
@@ -336,9 +333,6 @@ class MerchantDevice implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setOsVersion($osVersion)
     {
-        if (is_null($osVersion)) {
-            throw new \InvalidArgumentException('non-nullable osVersion cannot be null');
-        }
         $this->container['osVersion'] = $osVersion;
 
         return $this;
@@ -363,9 +357,6 @@ class MerchantDevice implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;

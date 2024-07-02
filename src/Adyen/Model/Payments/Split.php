@@ -375,9 +375,6 @@ class Split implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAccount($account)
     {
-        if (is_null($account)) {
-            throw new \InvalidArgumentException('non-nullable account cannot be null');
-        }
         $this->container['account'] = $account;
 
         return $this;
@@ -402,9 +399,6 @@ class Split implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAmount($amount)
     {
-        if (is_null($amount)) {
-            throw new \InvalidArgumentException('non-nullable amount cannot be null');
-        }
         $this->container['amount'] = $amount;
 
         return $this;
@@ -429,9 +423,6 @@ class Split implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -456,9 +447,6 @@ class Split implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -483,9 +471,6 @@ class Split implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

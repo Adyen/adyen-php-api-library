@@ -295,9 +295,6 @@ class BirthData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDateOfBirth($dateOfBirth)
     {
-        if (is_null($dateOfBirth)) {
-            throw new \InvalidArgumentException('non-nullable dateOfBirth cannot be null');
-        }
         $this->container['dateOfBirth'] = $dateOfBirth;
 
         return $this;

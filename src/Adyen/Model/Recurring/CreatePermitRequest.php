@@ -328,9 +328,6 @@ class CreatePermitRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setMerchantAccount($merchantAccount)
     {
-        if (is_null($merchantAccount)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
-        }
         $this->container['merchantAccount'] = $merchantAccount;
 
         return $this;
@@ -355,9 +352,6 @@ class CreatePermitRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setPermits($permits)
     {
-        if (is_null($permits)) {
-            throw new \InvalidArgumentException('non-nullable permits cannot be null');
-        }
         $this->container['permits'] = $permits;
 
         return $this;
@@ -382,9 +376,6 @@ class CreatePermitRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setRecurringDetailReference($recurringDetailReference)
     {
-        if (is_null($recurringDetailReference)) {
-            throw new \InvalidArgumentException('non-nullable recurringDetailReference cannot be null');
-        }
         $this->container['recurringDetailReference'] = $recurringDetailReference;
 
         return $this;
@@ -409,9 +400,6 @@ class CreatePermitRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setShopperReference($shopperReference)
     {
-        if (is_null($shopperReference)) {
-            throw new \InvalidArgumentException('non-nullable shopperReference cannot be null');
-        }
         $this->container['shopperReference'] = $shopperReference;
 
         return $this;

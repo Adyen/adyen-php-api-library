@@ -321,9 +321,6 @@ class CalculateTermsOfServiceStatusResponse implements ModelInterface, ArrayAcce
      */
     public function setTermsOfServiceTypes($termsOfServiceTypes)
     {
-        if (is_null($termsOfServiceTypes)) {
-            throw new \InvalidArgumentException('non-nullable termsOfServiceTypes cannot be null');
-        }
         $allowedValues = $this->getTermsOfServiceTypesAllowableValues();
         if (array_diff($termsOfServiceTypes, $allowedValues)) {
             throw new \InvalidArgumentException(

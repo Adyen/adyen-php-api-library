@@ -379,9 +379,6 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      */
     public function setAccountNumber($accountNumber)
     {
-        if (is_null($accountNumber)) {
-            throw new \InvalidArgumentException('non-nullable accountNumber cannot be null');
-        }
         $this->container['accountNumber'] = $accountNumber;
 
         return $this;
@@ -406,9 +403,6 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      */
     public function setAccountType($accountType)
     {
-        if (is_null($accountType)) {
-            throw new \InvalidArgumentException('non-nullable accountType cannot be null');
-        }
         $allowedValues = $this->getAccountTypeAllowableValues();
         if (!in_array($accountType, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -443,9 +437,6 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      */
     public function setInstitutionNumber($institutionNumber)
     {
-        if (is_null($institutionNumber)) {
-            throw new \InvalidArgumentException('non-nullable institutionNumber cannot be null');
-        }
         $this->container['institutionNumber'] = $institutionNumber;
 
         return $this;
@@ -470,9 +461,6 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      */
     public function setTransitNumber($transitNumber)
     {
-        if (is_null($transitNumber)) {
-            throw new \InvalidArgumentException('non-nullable transitNumber cannot be null');
-        }
         $this->container['transitNumber'] = $transitNumber;
 
         return $this;
@@ -497,9 +485,6 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

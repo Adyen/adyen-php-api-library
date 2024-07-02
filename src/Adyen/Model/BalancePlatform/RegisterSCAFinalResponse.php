@@ -295,9 +295,6 @@ class RegisterSCAFinalResponse implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setSuccess($success)
     {
-        if (is_null($success)) {
-            throw new \InvalidArgumentException('non-nullable success cannot be null');
-        }
         $this->container['success'] = $success;
 
         return $this;

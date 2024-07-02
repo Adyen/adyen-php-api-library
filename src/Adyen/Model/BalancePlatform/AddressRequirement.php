@@ -353,9 +353,6 @@ class AddressRequirement implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -380,9 +377,6 @@ class AddressRequirement implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setRequiredAddressFields($requiredAddressFields)
     {
-        if (is_null($requiredAddressFields)) {
-            throw new \InvalidArgumentException('non-nullable requiredAddressFields cannot be null');
-        }
         $allowedValues = $this->getRequiredAddressFieldsAllowableValues();
         if (array_diff($requiredAddressFields, $allowedValues)) {
             throw new \InvalidArgumentException(
@@ -416,9 +410,6 @@ class AddressRequirement implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

@@ -302,9 +302,6 @@ class EventUrl implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEventLocalUrls($eventLocalUrls)
     {
-        if (is_null($eventLocalUrls)) {
-            throw new \InvalidArgumentException('non-nullable eventLocalUrls cannot be null');
-        }
         $this->container['eventLocalUrls'] = $eventLocalUrls;
 
         return $this;
@@ -329,9 +326,6 @@ class EventUrl implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEventPublicUrls($eventPublicUrls)
     {
-        if (is_null($eventPublicUrls)) {
-            throw new \InvalidArgumentException('non-nullable eventPublicUrls cannot be null');
-        }
         $this->container['eventPublicUrls'] = $eventPublicUrls;
 
         return $this;

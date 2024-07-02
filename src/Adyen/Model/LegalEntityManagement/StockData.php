@@ -309,9 +309,6 @@ class StockData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMarketIdentifier($marketIdentifier)
     {
-        if (is_null($marketIdentifier)) {
-            throw new \InvalidArgumentException('non-nullable marketIdentifier cannot be null');
-        }
         $this->container['marketIdentifier'] = $marketIdentifier;
 
         return $this;
@@ -336,9 +333,6 @@ class StockData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStockNumber($stockNumber)
     {
-        if (is_null($stockNumber)) {
-            throw new \InvalidArgumentException('non-nullable stockNumber cannot be null');
-        }
         $this->container['stockNumber'] = $stockNumber;
 
         return $this;
@@ -363,9 +357,6 @@ class StockData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTickerSymbol($tickerSymbol)
     {
-        if (is_null($tickerSymbol)) {
-            throw new \InvalidArgumentException('non-nullable tickerSymbol cannot be null');
-        }
         $this->container['tickerSymbol'] = $tickerSymbol;
 
         return $this;

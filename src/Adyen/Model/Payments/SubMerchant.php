@@ -323,9 +323,6 @@ class SubMerchant implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCity($city)
     {
-        if (is_null($city)) {
-            throw new \InvalidArgumentException('non-nullable city cannot be null');
-        }
         $this->container['city'] = $city;
 
         return $this;
@@ -350,9 +347,6 @@ class SubMerchant implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCountry($country)
     {
-        if (is_null($country)) {
-            throw new \InvalidArgumentException('non-nullable country cannot be null');
-        }
         $this->container['country'] = $country;
 
         return $this;
@@ -377,9 +371,6 @@ class SubMerchant implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMcc($mcc)
     {
-        if (is_null($mcc)) {
-            throw new \InvalidArgumentException('non-nullable mcc cannot be null');
-        }
         $this->container['mcc'] = $mcc;
 
         return $this;
@@ -404,9 +395,6 @@ class SubMerchant implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setName($name)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
         $this->container['name'] = $name;
 
         return $this;
@@ -431,9 +419,6 @@ class SubMerchant implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTaxId($taxId)
     {
-        if (is_null($taxId)) {
-            throw new \InvalidArgumentException('non-nullable taxId cannot be null');
-        }
         $this->container['taxId'] = $taxId;
 
         return $this;

@@ -339,9 +339,6 @@ class ReturnTransferResponse implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -366,9 +363,6 @@ class ReturnTransferResponse implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -393,9 +387,6 @@ class ReturnTransferResponse implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -430,9 +421,6 @@ class ReturnTransferResponse implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setTransferId($transferId)
     {
-        if (is_null($transferId)) {
-            throw new \InvalidArgumentException('non-nullable transferId cannot be null');
-        }
         $this->container['transferId'] = $transferId;
 
         return $this;

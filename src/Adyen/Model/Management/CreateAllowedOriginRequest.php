@@ -312,9 +312,6 @@ class CreateAllowedOriginRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setLinks($links)
     {
-        if (is_null($links)) {
-            throw new \InvalidArgumentException('non-nullable links cannot be null');
-        }
         $this->container['links'] = $links;
 
         return $this;
@@ -339,9 +336,6 @@ class CreateAllowedOriginRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setDomain($domain)
     {
-        if (is_null($domain)) {
-            throw new \InvalidArgumentException('non-nullable domain cannot be null');
-        }
         $this->container['domain'] = $domain;
 
         return $this;
@@ -366,9 +360,6 @@ class CreateAllowedOriginRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;

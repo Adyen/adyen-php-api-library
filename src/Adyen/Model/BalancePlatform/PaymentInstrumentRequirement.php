@@ -377,9 +377,6 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -404,9 +401,6 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
      */
     public function setIssuingCountryCode($issuingCountryCode)
     {
-        if (is_null($issuingCountryCode)) {
-            throw new \InvalidArgumentException('non-nullable issuingCountryCode cannot be null');
-        }
         $this->container['issuingCountryCode'] = $issuingCountryCode;
 
         return $this;
@@ -431,9 +425,6 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
      */
     public function setIssuingCountryCodes($issuingCountryCodes)
     {
-        if (is_null($issuingCountryCodes)) {
-            throw new \InvalidArgumentException('non-nullable issuingCountryCodes cannot be null');
-        }
         $this->container['issuingCountryCodes'] = $issuingCountryCodes;
 
         return $this;
@@ -458,9 +449,6 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
      */
     public function setOnlyForCrossBalancePlatform($onlyForCrossBalancePlatform)
     {
-        if (is_null($onlyForCrossBalancePlatform)) {
-            throw new \InvalidArgumentException('non-nullable onlyForCrossBalancePlatform cannot be null');
-        }
         $this->container['onlyForCrossBalancePlatform'] = $onlyForCrossBalancePlatform;
 
         return $this;
@@ -485,9 +473,6 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
      */
     public function setPaymentInstrumentType($paymentInstrumentType)
     {
-        if (is_null($paymentInstrumentType)) {
-            throw new \InvalidArgumentException('non-nullable paymentInstrumentType cannot be null');
-        }
         $allowedValues = $this->getPaymentInstrumentTypeAllowableValues();
         if (!in_array($paymentInstrumentType, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -522,9 +507,6 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

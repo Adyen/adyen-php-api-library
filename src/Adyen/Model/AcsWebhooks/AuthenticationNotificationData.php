@@ -370,9 +370,6 @@ class AuthenticationNotificationData implements ModelInterface, ArrayAccess, \Js
      */
     public function setAuthentication($authentication)
     {
-        if (is_null($authentication)) {
-            throw new \InvalidArgumentException('non-nullable authentication cannot be null');
-        }
         $this->container['authentication'] = $authentication;
 
         return $this;
@@ -397,9 +394,6 @@ class AuthenticationNotificationData implements ModelInterface, ArrayAccess, \Js
      */
     public function setBalancePlatform($balancePlatform)
     {
-        if (is_null($balancePlatform)) {
-            throw new \InvalidArgumentException('non-nullable balancePlatform cannot be null');
-        }
         $this->container['balancePlatform'] = $balancePlatform;
 
         return $this;
@@ -424,9 +418,6 @@ class AuthenticationNotificationData implements ModelInterface, ArrayAccess, \Js
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -451,9 +442,6 @@ class AuthenticationNotificationData implements ModelInterface, ArrayAccess, \Js
      */
     public function setPaymentInstrumentId($paymentInstrumentId)
     {
-        if (is_null($paymentInstrumentId)) {
-            throw new \InvalidArgumentException('non-nullable paymentInstrumentId cannot be null');
-        }
         $this->container['paymentInstrumentId'] = $paymentInstrumentId;
 
         return $this;
@@ -478,9 +466,6 @@ class AuthenticationNotificationData implements ModelInterface, ArrayAccess, \Js
      */
     public function setPurchase($purchase)
     {
-        if (is_null($purchase)) {
-            throw new \InvalidArgumentException('non-nullable purchase cannot be null');
-        }
         $this->container['purchase'] = $purchase;
 
         return $this;
@@ -505,9 +490,6 @@ class AuthenticationNotificationData implements ModelInterface, ArrayAccess, \Js
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(

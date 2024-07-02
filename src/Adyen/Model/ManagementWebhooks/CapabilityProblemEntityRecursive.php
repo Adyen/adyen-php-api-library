@@ -334,9 +334,6 @@ class CapabilityProblemEntityRecursive implements ModelInterface, ArrayAccess, \
      */
     public function setDocuments($documents)
     {
-        if (is_null($documents)) {
-            throw new \InvalidArgumentException('non-nullable documents cannot be null');
-        }
         $this->container['documents'] = $documents;
 
         return $this;
@@ -361,9 +358,6 @@ class CapabilityProblemEntityRecursive implements ModelInterface, ArrayAccess, \
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -388,9 +382,6 @@ class CapabilityProblemEntityRecursive implements ModelInterface, ArrayAccess, \
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

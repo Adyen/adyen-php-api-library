@@ -309,9 +309,6 @@ class TerminalConnectivityWifi implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setIpAddress($ipAddress)
     {
-        if (is_null($ipAddress)) {
-            throw new \InvalidArgumentException('non-nullable ipAddress cannot be null');
-        }
         $this->container['ipAddress'] = $ipAddress;
 
         return $this;
@@ -336,9 +333,6 @@ class TerminalConnectivityWifi implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setMacAddress($macAddress)
     {
-        if (is_null($macAddress)) {
-            throw new \InvalidArgumentException('non-nullable macAddress cannot be null');
-        }
         $this->container['macAddress'] = $macAddress;
 
         return $this;
@@ -363,9 +357,6 @@ class TerminalConnectivityWifi implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setSsid($ssid)
     {
-        if (is_null($ssid)) {
-            throw new \InvalidArgumentException('non-nullable ssid cannot be null');
-        }
         $this->container['ssid'] = $ssid;
 
         return $this;

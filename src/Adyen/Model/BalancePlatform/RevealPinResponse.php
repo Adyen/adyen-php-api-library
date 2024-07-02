@@ -308,9 +308,6 @@ class RevealPinResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setEncryptedPinBlock($encryptedPinBlock)
     {
-        if (is_null($encryptedPinBlock)) {
-            throw new \InvalidArgumentException('non-nullable encryptedPinBlock cannot be null');
-        }
         $this->container['encryptedPinBlock'] = $encryptedPinBlock;
 
         return $this;
@@ -335,9 +332,6 @@ class RevealPinResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setToken($token)
     {
-        if (is_null($token)) {
-            throw new \InvalidArgumentException('non-nullable token cannot be null');
-        }
         $this->container['token'] = $token;
 
         return $this;

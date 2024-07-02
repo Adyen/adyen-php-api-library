@@ -305,9 +305,6 @@ class ReturnTransferRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setAmount($amount)
     {
-        if (is_null($amount)) {
-            throw new \InvalidArgumentException('non-nullable amount cannot be null');
-        }
         $this->container['amount'] = $amount;
 
         return $this;
@@ -332,9 +329,6 @@ class ReturnTransferRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;

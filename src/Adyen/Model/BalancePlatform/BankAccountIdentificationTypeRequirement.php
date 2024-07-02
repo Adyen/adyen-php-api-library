@@ -377,9 +377,6 @@ class BankAccountIdentificationTypeRequirement implements ModelInterface, ArrayA
      */
     public function setBankAccountIdentificationTypes($bankAccountIdentificationTypes)
     {
-        if (is_null($bankAccountIdentificationTypes)) {
-            throw new \InvalidArgumentException('non-nullable bankAccountIdentificationTypes cannot be null');
-        }
         $allowedValues = $this->getBankAccountIdentificationTypesAllowableValues();
         if (array_diff($bankAccountIdentificationTypes, $allowedValues)) {
             throw new \InvalidArgumentException(
@@ -413,9 +410,6 @@ class BankAccountIdentificationTypeRequirement implements ModelInterface, ArrayA
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -440,9 +434,6 @@ class BankAccountIdentificationTypeRequirement implements ModelInterface, ArrayA
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
