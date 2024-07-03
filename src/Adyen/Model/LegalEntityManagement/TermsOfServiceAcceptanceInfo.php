@@ -358,9 +358,6 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
      */
     public function setAcceptedBy($acceptedBy)
     {
-        if (is_null($acceptedBy)) {
-            throw new \InvalidArgumentException('non-nullable acceptedBy cannot be null');
-        }
         $this->container['acceptedBy'] = $acceptedBy;
 
         return $this;
@@ -385,9 +382,6 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
      */
     public function setAcceptedFor($acceptedFor)
     {
-        if (is_null($acceptedFor)) {
-            throw new \InvalidArgumentException('non-nullable acceptedFor cannot be null');
-        }
         $this->container['acceptedFor'] = $acceptedFor;
 
         return $this;
@@ -412,9 +406,6 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
      */
     public function setCreatedAt($createdAt)
     {
-        if (is_null($createdAt)) {
-            throw new \InvalidArgumentException('non-nullable createdAt cannot be null');
-        }
         $this->container['createdAt'] = $createdAt;
 
         return $this;
@@ -439,9 +430,6 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -466,9 +454,6 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

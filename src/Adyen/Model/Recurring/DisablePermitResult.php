@@ -302,9 +302,6 @@ class DisablePermitResult implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setPspReference($pspReference)
     {
-        if (is_null($pspReference)) {
-            throw new \InvalidArgumentException('non-nullable pspReference cannot be null');
-        }
         $this->container['pspReference'] = $pspReference;
 
         return $this;
@@ -329,9 +326,6 @@ class DisablePermitResult implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $this->container['status'] = $status;
 
         return $this;

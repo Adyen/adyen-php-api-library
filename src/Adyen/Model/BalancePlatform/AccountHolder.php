@@ -410,9 +410,6 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBalancePlatform($balancePlatform)
     {
-        if (is_null($balancePlatform)) {
-            throw new \InvalidArgumentException('non-nullable balancePlatform cannot be null');
-        }
         $this->container['balancePlatform'] = $balancePlatform;
 
         return $this;
@@ -437,9 +434,6 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCapabilities($capabilities)
     {
-        if (is_null($capabilities)) {
-            throw new \InvalidArgumentException('non-nullable capabilities cannot be null');
-        }
         $this->container['capabilities'] = $capabilities;
 
         return $this;
@@ -449,6 +443,7 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets contactDetails
      *
      * @return \Adyen\Model\BalancePlatform\ContactDetails|null
+     * @deprecated
      */
     public function getContactDetails()
     {
@@ -461,12 +456,10 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param \Adyen\Model\BalancePlatform\ContactDetails|null $contactDetails contactDetails
      *
      * @return self
+     * @deprecated
      */
     public function setContactDetails($contactDetails)
     {
-        if (is_null($contactDetails)) {
-            throw new \InvalidArgumentException('non-nullable contactDetails cannot be null');
-        }
         $this->container['contactDetails'] = $contactDetails;
 
         return $this;
@@ -491,9 +484,6 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -518,9 +508,6 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -545,9 +532,6 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLegalEntityId($legalEntityId)
     {
-        if (is_null($legalEntityId)) {
-            throw new \InvalidArgumentException('non-nullable legalEntityId cannot be null');
-        }
         $this->container['legalEntityId'] = $legalEntityId;
 
         return $this;
@@ -572,9 +556,6 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMetadata($metadata)
     {
-        if (is_null($metadata)) {
-            throw new \InvalidArgumentException('non-nullable metadata cannot be null');
-        }
         $this->container['metadata'] = $metadata;
 
         return $this;
@@ -599,9 +580,6 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMigratedAccountHolderCode($migratedAccountHolderCode)
     {
-        if (is_null($migratedAccountHolderCode)) {
-            throw new \InvalidArgumentException('non-nullable migratedAccountHolderCode cannot be null');
-        }
         $this->container['migratedAccountHolderCode'] = $migratedAccountHolderCode;
 
         return $this;
@@ -626,9 +604,6 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPrimaryBalanceAccount($primaryBalanceAccount)
     {
-        if (is_null($primaryBalanceAccount)) {
-            throw new \InvalidArgumentException('non-nullable primaryBalanceAccount cannot be null');
-        }
         $this->container['primaryBalanceAccount'] = $primaryBalanceAccount;
 
         return $this;
@@ -653,9 +628,6 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -680,9 +652,6 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -717,9 +686,6 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTimeZone($timeZone)
     {
-        if (is_null($timeZone)) {
-            throw new \InvalidArgumentException('non-nullable timeZone cannot be null');
-        }
         $this->container['timeZone'] = $timeZone;
 
         return $this;
@@ -744,9 +710,6 @@ class AccountHolder implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setVerificationDeadlines($verificationDeadlines)
     {
-        if (is_null($verificationDeadlines)) {
-            throw new \InvalidArgumentException('non-nullable verificationDeadlines cannot be null');
-        }
         $this->container['verificationDeadlines'] = $verificationDeadlines;
 
         return $this;

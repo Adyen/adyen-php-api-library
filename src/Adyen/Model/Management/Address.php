@@ -337,9 +337,6 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCity($city)
     {
-        if (is_null($city)) {
-            throw new \InvalidArgumentException('non-nullable city cannot be null');
-        }
         $this->container['city'] = $city;
 
         return $this;
@@ -364,9 +361,6 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCompanyName($companyName)
     {
-        if (is_null($companyName)) {
-            throw new \InvalidArgumentException('non-nullable companyName cannot be null');
-        }
         $this->container['companyName'] = $companyName;
 
         return $this;
@@ -391,9 +385,6 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCountry($country)
     {
-        if (is_null($country)) {
-            throw new \InvalidArgumentException('non-nullable country cannot be null');
-        }
         $this->container['country'] = $country;
 
         return $this;
@@ -418,9 +409,6 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPostalCode($postalCode)
     {
-        if (is_null($postalCode)) {
-            throw new \InvalidArgumentException('non-nullable postalCode cannot be null');
-        }
         $this->container['postalCode'] = $postalCode;
 
         return $this;
@@ -445,9 +433,6 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStateOrProvince($stateOrProvince)
     {
-        if (is_null($stateOrProvince)) {
-            throw new \InvalidArgumentException('non-nullable stateOrProvince cannot be null');
-        }
         $this->container['stateOrProvince'] = $stateOrProvince;
 
         return $this;
@@ -472,9 +457,6 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStreetAddress($streetAddress)
     {
-        if (is_null($streetAddress)) {
-            throw new \InvalidArgumentException('non-nullable streetAddress cannot be null');
-        }
         $this->container['streetAddress'] = $streetAddress;
 
         return $this;
@@ -499,9 +481,6 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStreetAddress2($streetAddress2)
     {
-        if (is_null($streetAddress2)) {
-            throw new \InvalidArgumentException('non-nullable streetAddress2 cannot be null');
-        }
         $this->container['streetAddress2'] = $streetAddress2;
 
         return $this;

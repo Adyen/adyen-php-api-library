@@ -316,9 +316,6 @@ class TransactionRulesResult implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setAdvice($advice)
     {
-        if (is_null($advice)) {
-            throw new \InvalidArgumentException('non-nullable advice cannot be null');
-        }
         $this->container['advice'] = $advice;
 
         return $this;
@@ -343,9 +340,6 @@ class TransactionRulesResult implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setAllHardBlockRulesPassed($allHardBlockRulesPassed)
     {
-        if (is_null($allHardBlockRulesPassed)) {
-            throw new \InvalidArgumentException('non-nullable allHardBlockRulesPassed cannot be null');
-        }
         $this->container['allHardBlockRulesPassed'] = $allHardBlockRulesPassed;
 
         return $this;
@@ -370,7 +364,6 @@ class TransactionRulesResult implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setScore($score)
     {
-        // Do nothing for nullable integers
         $this->container['score'] = $score;
 
         return $this;
@@ -395,9 +388,6 @@ class TransactionRulesResult implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setTriggeredTransactionRules($triggeredTransactionRules)
     {
-        if (is_null($triggeredTransactionRules)) {
-            throw new \InvalidArgumentException('non-nullable triggeredTransactionRules cannot be null');
-        }
         $this->container['triggeredTransactionRules'] = $triggeredTransactionRules;
 
         return $this;

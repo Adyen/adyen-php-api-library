@@ -308,9 +308,6 @@ class SofortInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCurrencyCode($currencyCode)
     {
-        if (is_null($currencyCode)) {
-            throw new \InvalidArgumentException('non-nullable currencyCode cannot be null');
-        }
         $this->container['currencyCode'] = $currencyCode;
 
         return $this;
@@ -335,9 +332,6 @@ class SofortInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLogo($logo)
     {
-        if (is_null($logo)) {
-            throw new \InvalidArgumentException('non-nullable logo cannot be null');
-        }
         $this->container['logo'] = $logo;
 
         return $this;

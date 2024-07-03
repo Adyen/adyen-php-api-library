@@ -315,9 +315,6 @@ class PaginatedGetCardOrderResponse implements ModelInterface, ArrayAccess, \Jso
      */
     public function setCardOrders($cardOrders)
     {
-        if (is_null($cardOrders)) {
-            throw new \InvalidArgumentException('non-nullable cardOrders cannot be null');
-        }
         $this->container['cardOrders'] = $cardOrders;
 
         return $this;
@@ -342,9 +339,6 @@ class PaginatedGetCardOrderResponse implements ModelInterface, ArrayAccess, \Jso
      */
     public function setHasNext($hasNext)
     {
-        if (is_null($hasNext)) {
-            throw new \InvalidArgumentException('non-nullable hasNext cannot be null');
-        }
         $this->container['hasNext'] = $hasNext;
 
         return $this;
@@ -369,9 +363,6 @@ class PaginatedGetCardOrderResponse implements ModelInterface, ArrayAccess, \Jso
      */
     public function setHasPrevious($hasPrevious)
     {
-        if (is_null($hasPrevious)) {
-            throw new \InvalidArgumentException('non-nullable hasPrevious cannot be null');
-        }
         $this->container['hasPrevious'] = $hasPrevious;
 
         return $this;

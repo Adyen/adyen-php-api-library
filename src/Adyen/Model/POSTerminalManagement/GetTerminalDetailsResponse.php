@@ -512,9 +512,6 @@ class GetTerminalDetailsResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setBluetoothIp($bluetoothIp)
     {
-        if (is_null($bluetoothIp)) {
-            throw new \InvalidArgumentException('non-nullable bluetoothIp cannot be null');
-        }
         $this->container['bluetoothIp'] = $bluetoothIp;
 
         return $this;
@@ -539,9 +536,6 @@ class GetTerminalDetailsResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setBluetoothMac($bluetoothMac)
     {
-        if (is_null($bluetoothMac)) {
-            throw new \InvalidArgumentException('non-nullable bluetoothMac cannot be null');
-        }
         $this->container['bluetoothMac'] = $bluetoothMac;
 
         return $this;
@@ -566,9 +560,6 @@ class GetTerminalDetailsResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setCompanyAccount($companyAccount)
     {
-        if (is_null($companyAccount)) {
-            throw new \InvalidArgumentException('non-nullable companyAccount cannot be null');
-        }
         $this->container['companyAccount'] = $companyAccount;
 
         return $this;
@@ -593,9 +584,6 @@ class GetTerminalDetailsResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setCountry($country)
     {
-        if (is_null($country)) {
-            throw new \InvalidArgumentException('non-nullable country cannot be null');
-        }
         $this->container['country'] = $country;
 
         return $this;
@@ -620,9 +608,6 @@ class GetTerminalDetailsResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setDeviceModel($deviceModel)
     {
-        if (is_null($deviceModel)) {
-            throw new \InvalidArgumentException('non-nullable deviceModel cannot be null');
-        }
         $this->container['deviceModel'] = $deviceModel;
 
         return $this;
@@ -647,9 +632,6 @@ class GetTerminalDetailsResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setDhcpEnabled($dhcpEnabled)
     {
-        if (is_null($dhcpEnabled)) {
-            throw new \InvalidArgumentException('non-nullable dhcpEnabled cannot be null');
-        }
         $this->container['dhcpEnabled'] = $dhcpEnabled;
 
         return $this;
@@ -674,9 +656,6 @@ class GetTerminalDetailsResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setDisplayLabel($displayLabel)
     {
-        if (is_null($displayLabel)) {
-            throw new \InvalidArgumentException('non-nullable displayLabel cannot be null');
-        }
         $this->container['displayLabel'] = $displayLabel;
 
         return $this;
@@ -701,9 +680,6 @@ class GetTerminalDetailsResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setEthernetIp($ethernetIp)
     {
-        if (is_null($ethernetIp)) {
-            throw new \InvalidArgumentException('non-nullable ethernetIp cannot be null');
-        }
         $this->container['ethernetIp'] = $ethernetIp;
 
         return $this;
@@ -728,9 +704,6 @@ class GetTerminalDetailsResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setEthernetMac($ethernetMac)
     {
-        if (is_null($ethernetMac)) {
-            throw new \InvalidArgumentException('non-nullable ethernetMac cannot be null');
-        }
         $this->container['ethernetMac'] = $ethernetMac;
 
         return $this;
@@ -755,9 +728,6 @@ class GetTerminalDetailsResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setFirmwareVersion($firmwareVersion)
     {
-        if (is_null($firmwareVersion)) {
-            throw new \InvalidArgumentException('non-nullable firmwareVersion cannot be null');
-        }
         $this->container['firmwareVersion'] = $firmwareVersion;
 
         return $this;
@@ -782,9 +752,6 @@ class GetTerminalDetailsResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setIccid($iccid)
     {
-        if (is_null($iccid)) {
-            throw new \InvalidArgumentException('non-nullable iccid cannot be null');
-        }
         $this->container['iccid'] = $iccid;
 
         return $this;
@@ -809,9 +776,6 @@ class GetTerminalDetailsResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setLastActivityDateTime($lastActivityDateTime)
     {
-        if (is_null($lastActivityDateTime)) {
-            throw new \InvalidArgumentException('non-nullable lastActivityDateTime cannot be null');
-        }
         $this->container['lastActivityDateTime'] = $lastActivityDateTime;
 
         return $this;
@@ -836,9 +800,6 @@ class GetTerminalDetailsResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setLastTransactionDateTime($lastTransactionDateTime)
     {
-        if (is_null($lastTransactionDateTime)) {
-            throw new \InvalidArgumentException('non-nullable lastTransactionDateTime cannot be null');
-        }
         $this->container['lastTransactionDateTime'] = $lastTransactionDateTime;
 
         return $this;
@@ -863,9 +824,6 @@ class GetTerminalDetailsResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setLinkNegotiation($linkNegotiation)
     {
-        if (is_null($linkNegotiation)) {
-            throw new \InvalidArgumentException('non-nullable linkNegotiation cannot be null');
-        }
         $this->container['linkNegotiation'] = $linkNegotiation;
 
         return $this;
@@ -890,9 +848,6 @@ class GetTerminalDetailsResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setMerchantAccount($merchantAccount)
     {
-        if (is_null($merchantAccount)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
-        }
         $this->container['merchantAccount'] = $merchantAccount;
 
         return $this;
@@ -917,9 +872,6 @@ class GetTerminalDetailsResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setMerchantInventory($merchantInventory)
     {
-        if (is_null($merchantInventory)) {
-            throw new \InvalidArgumentException('non-nullable merchantInventory cannot be null');
-        }
         $this->container['merchantInventory'] = $merchantInventory;
 
         return $this;
@@ -944,9 +896,6 @@ class GetTerminalDetailsResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setPermanentTerminalId($permanentTerminalId)
     {
-        if (is_null($permanentTerminalId)) {
-            throw new \InvalidArgumentException('non-nullable permanentTerminalId cannot be null');
-        }
         $this->container['permanentTerminalId'] = $permanentTerminalId;
 
         return $this;
@@ -971,9 +920,6 @@ class GetTerminalDetailsResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setSerialNumber($serialNumber)
     {
-        if (is_null($serialNumber)) {
-            throw new \InvalidArgumentException('non-nullable serialNumber cannot be null');
-        }
         $this->container['serialNumber'] = $serialNumber;
 
         return $this;
@@ -998,9 +944,6 @@ class GetTerminalDetailsResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setSimStatus($simStatus)
     {
-        if (is_null($simStatus)) {
-            throw new \InvalidArgumentException('non-nullable simStatus cannot be null');
-        }
         $this->container['simStatus'] = $simStatus;
 
         return $this;
@@ -1025,9 +968,6 @@ class GetTerminalDetailsResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setStore($store)
     {
-        if (is_null($store)) {
-            throw new \InvalidArgumentException('non-nullable store cannot be null');
-        }
         $this->container['store'] = $store;
 
         return $this;
@@ -1052,9 +992,6 @@ class GetTerminalDetailsResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setStoreDetails($storeDetails)
     {
-        if (is_null($storeDetails)) {
-            throw new \InvalidArgumentException('non-nullable storeDetails cannot be null');
-        }
         $this->container['storeDetails'] = $storeDetails;
 
         return $this;
@@ -1079,9 +1016,6 @@ class GetTerminalDetailsResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setTerminal($terminal)
     {
-        if (is_null($terminal)) {
-            throw new \InvalidArgumentException('non-nullable terminal cannot be null');
-        }
         $this->container['terminal'] = $terminal;
 
         return $this;
@@ -1106,9 +1040,6 @@ class GetTerminalDetailsResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setTerminalStatus($terminalStatus)
     {
-        if (is_null($terminalStatus)) {
-            throw new \InvalidArgumentException('non-nullable terminalStatus cannot be null');
-        }
         $allowedValues = $this->getTerminalStatusAllowableValues();
         if (!in_array($terminalStatus, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -1143,9 +1074,6 @@ class GetTerminalDetailsResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setWifiIp($wifiIp)
     {
-        if (is_null($wifiIp)) {
-            throw new \InvalidArgumentException('non-nullable wifiIp cannot be null');
-        }
         $this->container['wifiIp'] = $wifiIp;
 
         return $this;
@@ -1170,9 +1098,6 @@ class GetTerminalDetailsResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setWifiMac($wifiMac)
     {
-        if (is_null($wifiMac)) {
-            throw new \InvalidArgumentException('non-nullable wifiMac cannot be null');
-        }
         $this->container['wifiMac'] = $wifiMac;
 
         return $this;

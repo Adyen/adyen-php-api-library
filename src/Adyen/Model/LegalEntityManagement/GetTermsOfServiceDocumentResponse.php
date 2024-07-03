@@ -358,9 +358,6 @@ class GetTermsOfServiceDocumentResponse implements ModelInterface, ArrayAccess, 
      */
     public function setDocument($document)
     {
-        if (is_null($document)) {
-            throw new \InvalidArgumentException('non-nullable document cannot be null');
-        }
         $this->container['document'] = $document;
 
         return $this;
@@ -385,9 +382,6 @@ class GetTermsOfServiceDocumentResponse implements ModelInterface, ArrayAccess, 
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -412,9 +406,6 @@ class GetTermsOfServiceDocumentResponse implements ModelInterface, ArrayAccess, 
      */
     public function setLanguage($language)
     {
-        if (is_null($language)) {
-            throw new \InvalidArgumentException('non-nullable language cannot be null');
-        }
         $this->container['language'] = $language;
 
         return $this;
@@ -439,9 +430,6 @@ class GetTermsOfServiceDocumentResponse implements ModelInterface, ArrayAccess, 
      */
     public function setTermsOfServiceDocumentId($termsOfServiceDocumentId)
     {
-        if (is_null($termsOfServiceDocumentId)) {
-            throw new \InvalidArgumentException('non-nullable termsOfServiceDocumentId cannot be null');
-        }
         $this->container['termsOfServiceDocumentId'] = $termsOfServiceDocumentId;
 
         return $this;
@@ -466,9 +454,6 @@ class GetTermsOfServiceDocumentResponse implements ModelInterface, ArrayAccess, 
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

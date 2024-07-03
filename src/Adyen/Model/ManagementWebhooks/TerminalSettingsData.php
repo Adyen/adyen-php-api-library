@@ -359,9 +359,6 @@ class TerminalSettingsData implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setCompanyId($companyId)
     {
-        if (is_null($companyId)) {
-            throw new \InvalidArgumentException('non-nullable companyId cannot be null');
-        }
         $this->container['companyId'] = $companyId;
 
         return $this;
@@ -386,9 +383,6 @@ class TerminalSettingsData implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setMerchantId($merchantId)
     {
-        if (is_null($merchantId)) {
-            throw new \InvalidArgumentException('non-nullable merchantId cannot be null');
-        }
         $this->container['merchantId'] = $merchantId;
 
         return $this;
@@ -413,9 +407,6 @@ class TerminalSettingsData implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setStoreId($storeId)
     {
-        if (is_null($storeId)) {
-            throw new \InvalidArgumentException('non-nullable storeId cannot be null');
-        }
         $this->container['storeId'] = $storeId;
 
         return $this;
@@ -440,9 +431,6 @@ class TerminalSettingsData implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setTerminalId($terminalId)
     {
-        if (is_null($terminalId)) {
-            throw new \InvalidArgumentException('non-nullable terminalId cannot be null');
-        }
         $this->container['terminalId'] = $terminalId;
 
         return $this;
@@ -467,9 +455,6 @@ class TerminalSettingsData implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setUpdateSource($updateSource)
     {
-        if (is_null($updateSource)) {
-            throw new \InvalidArgumentException('non-nullable updateSource cannot be null');
-        }
         $allowedValues = $this->getUpdateSourceAllowableValues();
         if (!in_array($updateSource, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -504,9 +489,6 @@ class TerminalSettingsData implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setUser($user)
     {
-        if (is_null($user)) {
-            throw new \InvalidArgumentException('non-nullable user cannot be null');
-        }
         $this->container['user'] = $user;
 
         return $this;

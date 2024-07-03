@@ -351,9 +351,6 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
      */
     public function setEnhancedSchemeDataCustomerReference($enhancedSchemeDataCustomerReference)
     {
-        if (is_null($enhancedSchemeDataCustomerReference)) {
-            throw new \InvalidArgumentException('non-nullable enhancedSchemeDataCustomerReference cannot be null');
-        }
         $this->container['enhancedSchemeDataCustomerReference'] = $enhancedSchemeDataCustomerReference;
 
         return $this;
@@ -378,9 +375,6 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
      */
     public function setEnhancedSchemeDataEmployeeName($enhancedSchemeDataEmployeeName)
     {
-        if (is_null($enhancedSchemeDataEmployeeName)) {
-            throw new \InvalidArgumentException('non-nullable enhancedSchemeDataEmployeeName cannot be null');
-        }
         $this->container['enhancedSchemeDataEmployeeName'] = $enhancedSchemeDataEmployeeName;
 
         return $this;
@@ -405,9 +399,6 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
      */
     public function setEnhancedSchemeDataJobDescription($enhancedSchemeDataJobDescription)
     {
-        if (is_null($enhancedSchemeDataJobDescription)) {
-            throw new \InvalidArgumentException('non-nullable enhancedSchemeDataJobDescription cannot be null');
-        }
         $this->container['enhancedSchemeDataJobDescription'] = $enhancedSchemeDataJobDescription;
 
         return $this;
@@ -432,9 +423,6 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
      */
     public function setEnhancedSchemeDataRegularHoursRate($enhancedSchemeDataRegularHoursRate)
     {
-        if (is_null($enhancedSchemeDataRegularHoursRate)) {
-            throw new \InvalidArgumentException('non-nullable enhancedSchemeDataRegularHoursRate cannot be null');
-        }
         $this->container['enhancedSchemeDataRegularHoursRate'] = $enhancedSchemeDataRegularHoursRate;
 
         return $this;
@@ -459,9 +447,6 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
      */
     public function setEnhancedSchemeDataRegularHoursWorked($enhancedSchemeDataRegularHoursWorked)
     {
-        if (is_null($enhancedSchemeDataRegularHoursWorked)) {
-            throw new \InvalidArgumentException('non-nullable enhancedSchemeDataRegularHoursWorked cannot be null');
-        }
         $this->container['enhancedSchemeDataRegularHoursWorked'] = $enhancedSchemeDataRegularHoursWorked;
 
         return $this;
@@ -486,9 +471,6 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
      */
     public function setEnhancedSchemeDataRequestName($enhancedSchemeDataRequestName)
     {
-        if (is_null($enhancedSchemeDataRequestName)) {
-            throw new \InvalidArgumentException('non-nullable enhancedSchemeDataRequestName cannot be null');
-        }
         $this->container['enhancedSchemeDataRequestName'] = $enhancedSchemeDataRequestName;
 
         return $this;
@@ -513,9 +495,6 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
      */
     public function setEnhancedSchemeDataTempStartDate($enhancedSchemeDataTempStartDate)
     {
-        if (is_null($enhancedSchemeDataTempStartDate)) {
-            throw new \InvalidArgumentException('non-nullable enhancedSchemeDataTempStartDate cannot be null');
-        }
         $this->container['enhancedSchemeDataTempStartDate'] = $enhancedSchemeDataTempStartDate;
 
         return $this;
@@ -540,9 +519,6 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
      */
     public function setEnhancedSchemeDataTempWeekEnding($enhancedSchemeDataTempWeekEnding)
     {
-        if (is_null($enhancedSchemeDataTempWeekEnding)) {
-            throw new \InvalidArgumentException('non-nullable enhancedSchemeDataTempWeekEnding cannot be null');
-        }
         $this->container['enhancedSchemeDataTempWeekEnding'] = $enhancedSchemeDataTempWeekEnding;
 
         return $this;
@@ -567,9 +543,6 @@ class AdditionalDataTemporaryServices implements ModelInterface, ArrayAccess, \J
      */
     public function setEnhancedSchemeDataTotalTaxAmount($enhancedSchemeDataTotalTaxAmount)
     {
-        if (is_null($enhancedSchemeDataTotalTaxAmount)) {
-            throw new \InvalidArgumentException('non-nullable enhancedSchemeDataTotalTaxAmount cannot be null');
-        }
         $this->container['enhancedSchemeDataTotalTaxAmount'] = $enhancedSchemeDataTotalTaxAmount;
 
         return $this;

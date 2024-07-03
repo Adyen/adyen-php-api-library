@@ -302,9 +302,6 @@ class BalanceAccountNotificationData implements ModelInterface, ArrayAccess, \Js
      */
     public function setBalanceAccount($balanceAccount)
     {
-        if (is_null($balanceAccount)) {
-            throw new \InvalidArgumentException('non-nullable balanceAccount cannot be null');
-        }
         $this->container['balanceAccount'] = $balanceAccount;
 
         return $this;
@@ -329,9 +326,6 @@ class BalanceAccountNotificationData implements ModelInterface, ArrayAccess, \Js
      */
     public function setBalancePlatform($balancePlatform)
     {
-        if (is_null($balancePlatform)) {
-            throw new \InvalidArgumentException('non-nullable balancePlatform cannot be null');
-        }
         $this->container['balancePlatform'] = $balancePlatform;
 
         return $this;

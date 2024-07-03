@@ -302,9 +302,6 @@ class PlatformPaymentConfiguration implements ModelInterface, ArrayAccess, \Json
      */
     public function setSalesDayClosingTime($salesDayClosingTime)
     {
-        if (is_null($salesDayClosingTime)) {
-            throw new \InvalidArgumentException('non-nullable salesDayClosingTime cannot be null');
-        }
         $this->container['salesDayClosingTime'] = $salesDayClosingTime;
 
         return $this;
@@ -329,7 +326,6 @@ class PlatformPaymentConfiguration implements ModelInterface, ArrayAccess, \Json
      */
     public function setSettlementDelayDays($settlementDelayDays)
     {
-        // Do nothing for nullable integers
         $this->container['settlementDelayDays'] = $settlementDelayDays;
 
         return $this;

@@ -302,7 +302,6 @@ class RiskScores implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMastercard($mastercard)
     {
-        // Do nothing for nullable integers
         $this->container['mastercard'] = $mastercard;
 
         return $this;
@@ -327,7 +326,6 @@ class RiskScores implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setVisa($visa)
     {
-        // Do nothing for nullable integers
         $this->container['visa'] = $visa;
 
         return $this;

@@ -305,9 +305,6 @@ class VippsInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLogo($logo)
     {
-        if (is_null($logo)) {
-            throw new \InvalidArgumentException('non-nullable logo cannot be null');
-        }
         $this->container['logo'] = $logo;
 
         return $this;
@@ -332,9 +329,6 @@ class VippsInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSubscriptionCancelUrl($subscriptionCancelUrl)
     {
-        if (is_null($subscriptionCancelUrl)) {
-            throw new \InvalidArgumentException('non-nullable subscriptionCancelUrl cannot be null');
-        }
         $this->container['subscriptionCancelUrl'] = $subscriptionCancelUrl;
 
         return $this;

@@ -316,9 +316,6 @@ class SearchRegisteredDevicesResponse implements ModelInterface, ArrayAccess, \J
      */
     public function setData($data)
     {
-        if (is_null($data)) {
-            throw new \InvalidArgumentException('non-nullable data cannot be null');
-        }
         $this->container['data'] = $data;
 
         return $this;
@@ -343,7 +340,6 @@ class SearchRegisteredDevicesResponse implements ModelInterface, ArrayAccess, \J
      */
     public function setItemsTotal($itemsTotal)
     {
-        // Do nothing for nullable integers
         $this->container['itemsTotal'] = $itemsTotal;
 
         return $this;
@@ -368,9 +364,6 @@ class SearchRegisteredDevicesResponse implements ModelInterface, ArrayAccess, \J
      */
     public function setLink($link)
     {
-        if (is_null($link)) {
-            throw new \InvalidArgumentException('non-nullable link cannot be null');
-        }
         $this->container['link'] = $link;
 
         return $this;
@@ -395,7 +388,6 @@ class SearchRegisteredDevicesResponse implements ModelInterface, ArrayAccess, \J
      */
     public function setPagesTotal($pagesTotal)
     {
-        // Do nothing for nullable integers
         $this->container['pagesTotal'] = $pagesTotal;
 
         return $this;

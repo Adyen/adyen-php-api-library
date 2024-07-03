@@ -309,9 +309,6 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAccountHolderId($accountHolderId)
     {
-        if (is_null($accountHolderId)) {
-            throw new \InvalidArgumentException('non-nullable accountHolderId cannot be null');
-        }
         $this->container['accountHolderId'] = $accountHolderId;
 
         return $this;
@@ -336,9 +333,6 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBalanceAccountId($balanceAccountId)
     {
-        if (is_null($balanceAccountId)) {
-            throw new \InvalidArgumentException('non-nullable balanceAccountId cannot be null');
-        }
         $this->container['balanceAccountId'] = $balanceAccountId;
 
         return $this;
@@ -363,9 +357,6 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTransferInstrumentId($transferInstrumentId)
     {
-        if (is_null($transferInstrumentId)) {
-            throw new \InvalidArgumentException('non-nullable transferInstrumentId cannot be null');
-        }
         $this->container['transferInstrumentId'] = $transferInstrumentId;
 
         return $this;

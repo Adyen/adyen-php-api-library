@@ -309,9 +309,6 @@ class CostEstimateAssumptions implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setAssume3DSecureAuthenticated($assume3DSecureAuthenticated)
     {
-        if (is_null($assume3DSecureAuthenticated)) {
-            throw new \InvalidArgumentException('non-nullable assume3DSecureAuthenticated cannot be null');
-        }
         $this->container['assume3DSecureAuthenticated'] = $assume3DSecureAuthenticated;
 
         return $this;
@@ -336,9 +333,6 @@ class CostEstimateAssumptions implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setAssumeLevel3Data($assumeLevel3Data)
     {
-        if (is_null($assumeLevel3Data)) {
-            throw new \InvalidArgumentException('non-nullable assumeLevel3Data cannot be null');
-        }
         $this->container['assumeLevel3Data'] = $assumeLevel3Data;
 
         return $this;
@@ -363,7 +357,6 @@ class CostEstimateAssumptions implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setInstallments($installments)
     {
-        // Do nothing for nullable integers
         $this->container['installments'] = $installments;
 
         return $this;

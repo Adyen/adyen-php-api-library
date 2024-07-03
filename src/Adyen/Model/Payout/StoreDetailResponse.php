@@ -325,9 +325,6 @@ class StoreDetailResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setAdditionalData($additionalData)
     {
-        if (is_null($additionalData)) {
-            throw new \InvalidArgumentException('non-nullable additionalData cannot be null');
-        }
         $this->container['additionalData'] = $additionalData;
 
         return $this;
@@ -352,9 +349,6 @@ class StoreDetailResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setPspReference($pspReference)
     {
-        if (is_null($pspReference)) {
-            throw new \InvalidArgumentException('non-nullable pspReference cannot be null');
-        }
         $this->container['pspReference'] = $pspReference;
 
         return $this;
@@ -379,9 +373,6 @@ class StoreDetailResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setRecurringDetailReference($recurringDetailReference)
     {
-        if (is_null($recurringDetailReference)) {
-            throw new \InvalidArgumentException('non-nullable recurringDetailReference cannot be null');
-        }
         $this->container['recurringDetailReference'] = $recurringDetailReference;
 
         return $this;
@@ -406,9 +397,6 @@ class StoreDetailResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setResultCode($resultCode)
     {
-        if (is_null($resultCode)) {
-            throw new \InvalidArgumentException('non-nullable resultCode cannot be null');
-        }
         $this->container['resultCode'] = $resultCode;
 
         return $this;

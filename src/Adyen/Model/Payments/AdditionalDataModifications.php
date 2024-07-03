@@ -295,9 +295,6 @@ class AdditionalDataModifications implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setInstallmentPaymentDataSelectedInstallmentOption($installmentPaymentDataSelectedInstallmentOption)
     {
-        if (is_null($installmentPaymentDataSelectedInstallmentOption)) {
-            throw new \InvalidArgumentException('non-nullable installmentPaymentDataSelectedInstallmentOption cannot be null');
-        }
         $this->container['installmentPaymentDataSelectedInstallmentOption'] = $installmentPaymentDataSelectedInstallmentOption;
 
         return $this;

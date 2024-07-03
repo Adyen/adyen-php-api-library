@@ -380,9 +380,6 @@ class InternalReviewTrackingData implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setReason($reason)
     {
-        if (is_null($reason)) {
-            throw new \InvalidArgumentException('non-nullable reason cannot be null');
-        }
         $allowedValues = $this->getReasonAllowableValues();
         if (!in_array($reason, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -417,9 +414,6 @@ class InternalReviewTrackingData implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -454,9 +448,6 @@ class InternalReviewTrackingData implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

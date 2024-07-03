@@ -316,9 +316,6 @@ class Url implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEncrypted($encrypted)
     {
-        if (is_null($encrypted)) {
-            throw new \InvalidArgumentException('non-nullable encrypted cannot be null');
-        }
         $this->container['encrypted'] = $encrypted;
 
         return $this;
@@ -343,9 +340,6 @@ class Url implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPassword($password)
     {
-        if (is_null($password)) {
-            throw new \InvalidArgumentException('non-nullable password cannot be null');
-        }
         $this->container['password'] = $password;
 
         return $this;
@@ -370,9 +364,6 @@ class Url implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUrl($url)
     {
-        if (is_null($url)) {
-            throw new \InvalidArgumentException('non-nullable url cannot be null');
-        }
         $this->container['url'] = $url;
 
         return $this;
@@ -397,9 +388,6 @@ class Url implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUsername($username)
     {
-        if (is_null($username)) {
-            throw new \InvalidArgumentException('non-nullable username cannot be null');
-        }
         $this->container['username'] = $username;
 
         return $this;

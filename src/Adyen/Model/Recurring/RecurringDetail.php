@@ -413,9 +413,6 @@ class RecurringDetail implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAdditionalData($additionalData)
     {
-        if (is_null($additionalData)) {
-            throw new \InvalidArgumentException('non-nullable additionalData cannot be null');
-        }
         $this->container['additionalData'] = $additionalData;
 
         return $this;
@@ -440,9 +437,6 @@ class RecurringDetail implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAlias($alias)
     {
-        if (is_null($alias)) {
-            throw new \InvalidArgumentException('non-nullable alias cannot be null');
-        }
         $this->container['alias'] = $alias;
 
         return $this;
@@ -467,9 +461,6 @@ class RecurringDetail implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAliasType($aliasType)
     {
-        if (is_null($aliasType)) {
-            throw new \InvalidArgumentException('non-nullable aliasType cannot be null');
-        }
         $this->container['aliasType'] = $aliasType;
 
         return $this;
@@ -494,9 +485,6 @@ class RecurringDetail implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBank($bank)
     {
-        if (is_null($bank)) {
-            throw new \InvalidArgumentException('non-nullable bank cannot be null');
-        }
         $this->container['bank'] = $bank;
 
         return $this;
@@ -521,9 +509,6 @@ class RecurringDetail implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBillingAddress($billingAddress)
     {
-        if (is_null($billingAddress)) {
-            throw new \InvalidArgumentException('non-nullable billingAddress cannot be null');
-        }
         $this->container['billingAddress'] = $billingAddress;
 
         return $this;
@@ -548,9 +533,6 @@ class RecurringDetail implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCard($card)
     {
-        if (is_null($card)) {
-            throw new \InvalidArgumentException('non-nullable card cannot be null');
-        }
         $this->container['card'] = $card;
 
         return $this;
@@ -575,9 +557,6 @@ class RecurringDetail implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setContractTypes($contractTypes)
     {
-        if (is_null($contractTypes)) {
-            throw new \InvalidArgumentException('non-nullable contractTypes cannot be null');
-        }
         $this->container['contractTypes'] = $contractTypes;
 
         return $this;
@@ -602,9 +581,6 @@ class RecurringDetail implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCreationDate($creationDate)
     {
-        if (is_null($creationDate)) {
-            throw new \InvalidArgumentException('non-nullable creationDate cannot be null');
-        }
         $this->container['creationDate'] = $creationDate;
 
         return $this;
@@ -629,9 +605,6 @@ class RecurringDetail implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFirstPspReference($firstPspReference)
     {
-        if (is_null($firstPspReference)) {
-            throw new \InvalidArgumentException('non-nullable firstPspReference cannot be null');
-        }
         $this->container['firstPspReference'] = $firstPspReference;
 
         return $this;
@@ -656,9 +629,6 @@ class RecurringDetail implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setName($name)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
         $this->container['name'] = $name;
 
         return $this;
@@ -683,9 +653,6 @@ class RecurringDetail implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setNetworkTxReference($networkTxReference)
     {
-        if (is_null($networkTxReference)) {
-            throw new \InvalidArgumentException('non-nullable networkTxReference cannot be null');
-        }
         $this->container['networkTxReference'] = $networkTxReference;
 
         return $this;
@@ -710,9 +677,6 @@ class RecurringDetail implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPaymentMethodVariant($paymentMethodVariant)
     {
-        if (is_null($paymentMethodVariant)) {
-            throw new \InvalidArgumentException('non-nullable paymentMethodVariant cannot be null');
-        }
         $this->container['paymentMethodVariant'] = $paymentMethodVariant;
 
         return $this;
@@ -737,9 +701,6 @@ class RecurringDetail implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRecurringDetailReference($recurringDetailReference)
     {
-        if (is_null($recurringDetailReference)) {
-            throw new \InvalidArgumentException('non-nullable recurringDetailReference cannot be null');
-        }
         $this->container['recurringDetailReference'] = $recurringDetailReference;
 
         return $this;
@@ -764,9 +725,6 @@ class RecurringDetail implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setShopperName($shopperName)
     {
-        if (is_null($shopperName)) {
-            throw new \InvalidArgumentException('non-nullable shopperName cannot be null');
-        }
         $this->container['shopperName'] = $shopperName;
 
         return $this;
@@ -791,9 +749,6 @@ class RecurringDetail implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSocialSecurityNumber($socialSecurityNumber)
     {
-        if (is_null($socialSecurityNumber)) {
-            throw new \InvalidArgumentException('non-nullable socialSecurityNumber cannot be null');
-        }
         $this->container['socialSecurityNumber'] = $socialSecurityNumber;
 
         return $this;
@@ -818,9 +773,6 @@ class RecurringDetail implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTokenDetails($tokenDetails)
     {
-        if (is_null($tokenDetails)) {
-            throw new \InvalidArgumentException('non-nullable tokenDetails cannot be null');
-        }
         $this->container['tokenDetails'] = $tokenDetails;
 
         return $this;
@@ -845,9 +797,6 @@ class RecurringDetail implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setVariant($variant)
     {
-        if (is_null($variant)) {
-            throw new \InvalidArgumentException('non-nullable variant cannot be null');
-        }
         $this->container['variant'] = $variant;
 
         return $this;

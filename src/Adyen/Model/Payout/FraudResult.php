@@ -305,7 +305,6 @@ class FraudResult implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAccountScore($accountScore)
     {
-        // Do nothing for nullable integers
         $this->container['accountScore'] = $accountScore;
 
         return $this;
@@ -330,9 +329,6 @@ class FraudResult implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setResults($results)
     {
-        if (is_null($results)) {
-            throw new \InvalidArgumentException('non-nullable results cannot be null');
-        }
         $this->container['results'] = $results;
 
         return $this;

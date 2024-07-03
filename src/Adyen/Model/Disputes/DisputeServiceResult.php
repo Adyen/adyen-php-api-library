@@ -305,9 +305,6 @@ class DisputeServiceResult implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setErrorMessage($errorMessage)
     {
-        if (is_null($errorMessage)) {
-            throw new \InvalidArgumentException('non-nullable errorMessage cannot be null');
-        }
         $this->container['errorMessage'] = $errorMessage;
 
         return $this;
@@ -332,9 +329,6 @@ class DisputeServiceResult implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setSuccess($success)
     {
-        if (is_null($success)) {
-            throw new \InvalidArgumentException('non-nullable success cannot be null');
-        }
         $this->container['success'] = $success;
 
         return $this;

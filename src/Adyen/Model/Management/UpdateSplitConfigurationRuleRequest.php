@@ -325,9 +325,6 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
      */
     public function setCurrency($currency)
     {
-        if (is_null($currency)) {
-            throw new \InvalidArgumentException('non-nullable currency cannot be null');
-        }
         $this->container['currency'] = $currency;
 
         return $this;
@@ -352,9 +349,6 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
      */
     public function setFundingSource($fundingSource)
     {
-        if (is_null($fundingSource)) {
-            throw new \InvalidArgumentException('non-nullable fundingSource cannot be null');
-        }
         $this->container['fundingSource'] = $fundingSource;
 
         return $this;
@@ -379,9 +373,6 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
      */
     public function setPaymentMethod($paymentMethod)
     {
-        if (is_null($paymentMethod)) {
-            throw new \InvalidArgumentException('non-nullable paymentMethod cannot be null');
-        }
         $this->container['paymentMethod'] = $paymentMethod;
 
         return $this;
@@ -406,9 +397,6 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
      */
     public function setShopperInteraction($shopperInteraction)
     {
-        if (is_null($shopperInteraction)) {
-            throw new \InvalidArgumentException('non-nullable shopperInteraction cannot be null');
-        }
         $this->container['shopperInteraction'] = $shopperInteraction;
 
         return $this;

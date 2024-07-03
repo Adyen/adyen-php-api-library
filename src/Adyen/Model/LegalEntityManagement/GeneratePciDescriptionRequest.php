@@ -320,9 +320,6 @@ class GeneratePciDescriptionRequest implements ModelInterface, ArrayAccess, \Jso
      */
     public function setAdditionalSalesChannels($additionalSalesChannels)
     {
-        if (is_null($additionalSalesChannels)) {
-            throw new \InvalidArgumentException('non-nullable additionalSalesChannels cannot be null');
-        }
         $allowedValues = $this->getAdditionalSalesChannelsAllowableValues();
         if (array_diff($additionalSalesChannels, $allowedValues)) {
             throw new \InvalidArgumentException(
@@ -356,9 +353,6 @@ class GeneratePciDescriptionRequest implements ModelInterface, ArrayAccess, \Jso
      */
     public function setLanguage($language)
     {
-        if (is_null($language)) {
-            throw new \InvalidArgumentException('non-nullable language cannot be null');
-        }
         $this->container['language'] = $language;
 
         return $this;

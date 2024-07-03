@@ -412,9 +412,6 @@ class PaymentResult implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAdditionalData($additionalData)
     {
-        if (is_null($additionalData)) {
-            throw new \InvalidArgumentException('non-nullable additionalData cannot be null');
-        }
         $this->container['additionalData'] = $additionalData;
 
         return $this;
@@ -439,9 +436,6 @@ class PaymentResult implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAuthCode($authCode)
     {
-        if (is_null($authCode)) {
-            throw new \InvalidArgumentException('non-nullable authCode cannot be null');
-        }
         $this->container['authCode'] = $authCode;
 
         return $this;
@@ -466,9 +460,6 @@ class PaymentResult implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDccAmount($dccAmount)
     {
-        if (is_null($dccAmount)) {
-            throw new \InvalidArgumentException('non-nullable dccAmount cannot be null');
-        }
         $this->container['dccAmount'] = $dccAmount;
 
         return $this;
@@ -493,9 +484,6 @@ class PaymentResult implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDccSignature($dccSignature)
     {
-        if (is_null($dccSignature)) {
-            throw new \InvalidArgumentException('non-nullable dccSignature cannot be null');
-        }
         $this->container['dccSignature'] = $dccSignature;
 
         return $this;
@@ -520,9 +508,6 @@ class PaymentResult implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFraudResult($fraudResult)
     {
-        if (is_null($fraudResult)) {
-            throw new \InvalidArgumentException('non-nullable fraudResult cannot be null');
-        }
         $this->container['fraudResult'] = $fraudResult;
 
         return $this;
@@ -547,9 +532,6 @@ class PaymentResult implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setIssuerUrl($issuerUrl)
     {
-        if (is_null($issuerUrl)) {
-            throw new \InvalidArgumentException('non-nullable issuerUrl cannot be null');
-        }
         $this->container['issuerUrl'] = $issuerUrl;
 
         return $this;
@@ -574,9 +556,6 @@ class PaymentResult implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMd($md)
     {
-        if (is_null($md)) {
-            throw new \InvalidArgumentException('non-nullable md cannot be null');
-        }
         $this->container['md'] = $md;
 
         return $this;
@@ -601,9 +580,6 @@ class PaymentResult implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPaRequest($paRequest)
     {
-        if (is_null($paRequest)) {
-            throw new \InvalidArgumentException('non-nullable paRequest cannot be null');
-        }
         $this->container['paRequest'] = $paRequest;
 
         return $this;
@@ -628,9 +604,6 @@ class PaymentResult implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPspReference($pspReference)
     {
-        if (is_null($pspReference)) {
-            throw new \InvalidArgumentException('non-nullable pspReference cannot be null');
-        }
         $this->container['pspReference'] = $pspReference;
 
         return $this;
@@ -655,9 +628,6 @@ class PaymentResult implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRefusalReason($refusalReason)
     {
-        if (is_null($refusalReason)) {
-            throw new \InvalidArgumentException('non-nullable refusalReason cannot be null');
-        }
         $this->container['refusalReason'] = $refusalReason;
 
         return $this;
@@ -682,9 +652,6 @@ class PaymentResult implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setResultCode($resultCode)
     {
-        if (is_null($resultCode)) {
-            throw new \InvalidArgumentException('non-nullable resultCode cannot be null');
-        }
         $allowedValues = $this->getResultCodeAllowableValues();
         if (!in_array($resultCode, $allowedValues, true)) {
             throw new \InvalidArgumentException(

@@ -316,9 +316,6 @@ class Passcodes implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAdminMenuPin($adminMenuPin)
     {
-        if (is_null($adminMenuPin)) {
-            throw new \InvalidArgumentException('non-nullable adminMenuPin cannot be null');
-        }
         $this->container['adminMenuPin'] = $adminMenuPin;
 
         return $this;
@@ -343,9 +340,6 @@ class Passcodes implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRefundPin($refundPin)
     {
-        if (is_null($refundPin)) {
-            throw new \InvalidArgumentException('non-nullable refundPin cannot be null');
-        }
         $this->container['refundPin'] = $refundPin;
 
         return $this;
@@ -370,9 +364,6 @@ class Passcodes implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setScreenLockPin($screenLockPin)
     {
-        if (is_null($screenLockPin)) {
-            throw new \InvalidArgumentException('non-nullable screenLockPin cannot be null');
-        }
         $this->container['screenLockPin'] = $screenLockPin;
 
         return $this;
@@ -397,9 +388,6 @@ class Passcodes implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTxMenuPin($txMenuPin)
     {
-        if (is_null($txMenuPin)) {
-            throw new \InvalidArgumentException('non-nullable txMenuPin cannot be null');
-        }
         $this->container['txMenuPin'] = $txMenuPin;
 
         return $this;

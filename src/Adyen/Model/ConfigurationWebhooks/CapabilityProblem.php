@@ -302,9 +302,6 @@ class CapabilityProblem implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setEntity($entity)
     {
-        if (is_null($entity)) {
-            throw new \InvalidArgumentException('non-nullable entity cannot be null');
-        }
         $this->container['entity'] = $entity;
 
         return $this;
@@ -329,9 +326,6 @@ class CapabilityProblem implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setVerificationErrors($verificationErrors)
     {
-        if (is_null($verificationErrors)) {
-            throw new \InvalidArgumentException('non-nullable verificationErrors cannot be null');
-        }
         $this->container['verificationErrors'] = $verificationErrors;
 
         return $this;

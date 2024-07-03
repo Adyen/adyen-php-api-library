@@ -315,9 +315,6 @@ class DefenseReason implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDefenseDocumentTypes($defenseDocumentTypes)
     {
-        if (is_null($defenseDocumentTypes)) {
-            throw new \InvalidArgumentException('non-nullable defenseDocumentTypes cannot be null');
-        }
         $this->container['defenseDocumentTypes'] = $defenseDocumentTypes;
 
         return $this;
@@ -342,9 +339,6 @@ class DefenseReason implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDefenseReasonCode($defenseReasonCode)
     {
-        if (is_null($defenseReasonCode)) {
-            throw new \InvalidArgumentException('non-nullable defenseReasonCode cannot be null');
-        }
         $this->container['defenseReasonCode'] = $defenseReasonCode;
 
         return $this;
@@ -369,9 +363,6 @@ class DefenseReason implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSatisfied($satisfied)
     {
-        if (is_null($satisfied)) {
-            throw new \InvalidArgumentException('non-nullable satisfied cannot be null');
-        }
         $this->container['satisfied'] = $satisfied;
 
         return $this;

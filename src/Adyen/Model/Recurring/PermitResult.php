@@ -302,9 +302,6 @@ class PermitResult implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setResultKey($resultKey)
     {
-        if (is_null($resultKey)) {
-            throw new \InvalidArgumentException('non-nullable resultKey cannot be null');
-        }
         $this->container['resultKey'] = $resultKey;
 
         return $this;
@@ -329,9 +326,6 @@ class PermitResult implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setToken($token)
     {
-        if (is_null($token)) {
-            throw new \InvalidArgumentException('non-nullable token cannot be null');
-        }
         $this->container['token'] = $token;
 
         return $this;

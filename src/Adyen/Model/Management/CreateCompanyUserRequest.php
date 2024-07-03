@@ -346,9 +346,6 @@ class CreateCompanyUserRequest implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setAccountGroups($accountGroups)
     {
-        if (is_null($accountGroups)) {
-            throw new \InvalidArgumentException('non-nullable accountGroups cannot be null');
-        }
         $this->container['accountGroups'] = $accountGroups;
 
         return $this;
@@ -373,9 +370,6 @@ class CreateCompanyUserRequest implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setAssociatedMerchantAccounts($associatedMerchantAccounts)
     {
-        if (is_null($associatedMerchantAccounts)) {
-            throw new \InvalidArgumentException('non-nullable associatedMerchantAccounts cannot be null');
-        }
         $this->container['associatedMerchantAccounts'] = $associatedMerchantAccounts;
 
         return $this;
@@ -400,9 +394,6 @@ class CreateCompanyUserRequest implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setEmail($email)
     {
-        if (is_null($email)) {
-            throw new \InvalidArgumentException('non-nullable email cannot be null');
-        }
         $this->container['email'] = $email;
 
         return $this;
@@ -427,9 +418,6 @@ class CreateCompanyUserRequest implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setName($name)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
         $this->container['name'] = $name;
 
         return $this;
@@ -454,9 +442,6 @@ class CreateCompanyUserRequest implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setRoles($roles)
     {
-        if (is_null($roles)) {
-            throw new \InvalidArgumentException('non-nullable roles cannot be null');
-        }
         $this->container['roles'] = $roles;
 
         return $this;
@@ -481,9 +466,6 @@ class CreateCompanyUserRequest implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setTimeZoneCode($timeZoneCode)
     {
-        if (is_null($timeZoneCode)) {
-            throw new \InvalidArgumentException('non-nullable timeZoneCode cannot be null');
-        }
         $this->container['timeZoneCode'] = $timeZoneCode;
 
         return $this;
@@ -508,9 +490,6 @@ class CreateCompanyUserRequest implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setUsername($username)
     {
-        if (is_null($username)) {
-            throw new \InvalidArgumentException('non-nullable username cannot be null');
-        }
         $this->container['username'] = $username;
 
         return $this;

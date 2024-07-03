@@ -295,9 +295,6 @@ class UpdatePayoutSettingsRequest implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setEnabled($enabled)
     {
-        if (is_null($enabled)) {
-            throw new \InvalidArgumentException('non-nullable enabled cannot be null');
-        }
         $this->container['enabled'] = $enabled;
 
         return $this;

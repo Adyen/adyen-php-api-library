@@ -305,9 +305,6 @@ class CartesBancairesInfo implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setSiret($siret)
     {
-        if (is_null($siret)) {
-            throw new \InvalidArgumentException('non-nullable siret cannot be null');
-        }
         $this->container['siret'] = $siret;
 
         return $this;
@@ -332,9 +329,6 @@ class CartesBancairesInfo implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setTransactionDescription($transactionDescription)
     {
-        if (is_null($transactionDescription)) {
-            throw new \InvalidArgumentException('non-nullable transactionDescription cannot be null');
-        }
         $this->container['transactionDescription'] = $transactionDescription;
 
         return $this;

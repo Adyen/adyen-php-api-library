@@ -318,9 +318,6 @@ class DefenseDocument implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setContent($content)
     {
-        if (is_null($content)) {
-            throw new \InvalidArgumentException('non-nullable content cannot be null');
-        }
         $this->container['content'] = $content;
 
         return $this;
@@ -345,9 +342,6 @@ class DefenseDocument implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setContentType($contentType)
     {
-        if (is_null($contentType)) {
-            throw new \InvalidArgumentException('non-nullable contentType cannot be null');
-        }
         $this->container['contentType'] = $contentType;
 
         return $this;
@@ -372,9 +366,6 @@ class DefenseDocument implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDefenseDocumentTypeCode($defenseDocumentTypeCode)
     {
-        if (is_null($defenseDocumentTypeCode)) {
-            throw new \InvalidArgumentException('non-nullable defenseDocumentTypeCode cannot be null');
-        }
         $this->container['defenseDocumentTypeCode'] = $defenseDocumentTypeCode;
 
         return $this;

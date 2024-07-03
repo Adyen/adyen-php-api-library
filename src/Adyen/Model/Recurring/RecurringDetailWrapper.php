@@ -295,9 +295,6 @@ class RecurringDetailWrapper implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setRecurringDetail($recurringDetail)
     {
-        if (is_null($recurringDetail)) {
-            throw new \InvalidArgumentException('non-nullable recurringDetail cannot be null');
-        }
         $this->container['recurringDetail'] = $recurringDetail;
 
         return $this;

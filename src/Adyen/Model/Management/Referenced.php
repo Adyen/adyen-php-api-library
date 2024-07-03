@@ -295,9 +295,6 @@ class Referenced implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEnableStandaloneRefunds($enableStandaloneRefunds)
     {
-        if (is_null($enableStandaloneRefunds)) {
-            throw new \InvalidArgumentException('non-nullable enableStandaloneRefunds cannot be null');
-        }
         $this->container['enableStandaloneRefunds'] = $enableStandaloneRefunds;
 
         return $this;

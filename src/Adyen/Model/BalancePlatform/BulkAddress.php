@@ -354,9 +354,6 @@ class BulkAddress implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCity($city)
     {
-        if (is_null($city)) {
-            throw new \InvalidArgumentException('non-nullable city cannot be null');
-        }
         $this->container['city'] = $city;
 
         return $this;
@@ -381,9 +378,6 @@ class BulkAddress implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCompany($company)
     {
-        if (is_null($company)) {
-            throw new \InvalidArgumentException('non-nullable company cannot be null');
-        }
         $this->container['company'] = $company;
 
         return $this;
@@ -408,9 +402,6 @@ class BulkAddress implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCountry($country)
     {
-        if (is_null($country)) {
-            throw new \InvalidArgumentException('non-nullable country cannot be null');
-        }
         $this->container['country'] = $country;
 
         return $this;
@@ -435,9 +426,6 @@ class BulkAddress implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEmail($email)
     {
-        if (is_null($email)) {
-            throw new \InvalidArgumentException('non-nullable email cannot be null');
-        }
         $this->container['email'] = $email;
 
         return $this;
@@ -462,9 +450,6 @@ class BulkAddress implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setHouseNumberOrName($houseNumberOrName)
     {
-        if (is_null($houseNumberOrName)) {
-            throw new \InvalidArgumentException('non-nullable houseNumberOrName cannot be null');
-        }
         $this->container['houseNumberOrName'] = $houseNumberOrName;
 
         return $this;
@@ -489,9 +474,6 @@ class BulkAddress implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMobile($mobile)
     {
-        if (is_null($mobile)) {
-            throw new \InvalidArgumentException('non-nullable mobile cannot be null');
-        }
         $this->container['mobile'] = $mobile;
 
         return $this;
@@ -516,9 +498,6 @@ class BulkAddress implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPostalCode($postalCode)
     {
-        if (is_null($postalCode)) {
-            throw new \InvalidArgumentException('non-nullable postalCode cannot be null');
-        }
         $this->container['postalCode'] = $postalCode;
 
         return $this;
@@ -543,9 +522,6 @@ class BulkAddress implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStateOrProvince($stateOrProvince)
     {
-        if (is_null($stateOrProvince)) {
-            throw new \InvalidArgumentException('non-nullable stateOrProvince cannot be null');
-        }
         $this->container['stateOrProvince'] = $stateOrProvince;
 
         return $this;
@@ -570,9 +546,6 @@ class BulkAddress implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStreet($street)
     {
-        if (is_null($street)) {
-            throw new \InvalidArgumentException('non-nullable street cannot be null');
-        }
         $this->container['street'] = $street;
 
         return $this;

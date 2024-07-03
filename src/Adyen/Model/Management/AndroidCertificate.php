@@ -340,9 +340,6 @@ class AndroidCertificate implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -367,9 +364,6 @@ class AndroidCertificate implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setExtension($extension)
     {
-        if (is_null($extension)) {
-            throw new \InvalidArgumentException('non-nullable extension cannot be null');
-        }
         $this->container['extension'] = $extension;
 
         return $this;
@@ -394,9 +388,6 @@ class AndroidCertificate implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -421,9 +412,6 @@ class AndroidCertificate implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setName($name)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
         $this->container['name'] = $name;
 
         return $this;
@@ -448,9 +436,6 @@ class AndroidCertificate implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setNotAfter($notAfter)
     {
-        if (is_null($notAfter)) {
-            throw new \InvalidArgumentException('non-nullable notAfter cannot be null');
-        }
         $this->container['notAfter'] = $notAfter;
 
         return $this;
@@ -475,9 +460,6 @@ class AndroidCertificate implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setNotBefore($notBefore)
     {
-        if (is_null($notBefore)) {
-            throw new \InvalidArgumentException('non-nullable notBefore cannot be null');
-        }
         $this->container['notBefore'] = $notBefore;
 
         return $this;
@@ -502,9 +484,6 @@ class AndroidCertificate implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $this->container['status'] = $status;
 
         return $this;

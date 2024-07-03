@@ -318,9 +318,6 @@ class PaginatedAccountHoldersResponse implements ModelInterface, ArrayAccess, \J
      */
     public function setAccountHolders($accountHolders)
     {
-        if (is_null($accountHolders)) {
-            throw new \InvalidArgumentException('non-nullable accountHolders cannot be null');
-        }
         $this->container['accountHolders'] = $accountHolders;
 
         return $this;
@@ -345,9 +342,6 @@ class PaginatedAccountHoldersResponse implements ModelInterface, ArrayAccess, \J
      */
     public function setHasNext($hasNext)
     {
-        if (is_null($hasNext)) {
-            throw new \InvalidArgumentException('non-nullable hasNext cannot be null');
-        }
         $this->container['hasNext'] = $hasNext;
 
         return $this;
@@ -372,9 +366,6 @@ class PaginatedAccountHoldersResponse implements ModelInterface, ArrayAccess, \J
      */
     public function setHasPrevious($hasPrevious)
     {
-        if (is_null($hasPrevious)) {
-            throw new \InvalidArgumentException('non-nullable hasPrevious cannot be null');
-        }
         $this->container['hasPrevious'] = $hasPrevious;
 
         return $this;

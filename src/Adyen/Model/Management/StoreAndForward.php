@@ -309,9 +309,6 @@ class StoreAndForward implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMaxAmount($maxAmount)
     {
-        if (is_null($maxAmount)) {
-            throw new \InvalidArgumentException('non-nullable maxAmount cannot be null');
-        }
         $this->container['maxAmount'] = $maxAmount;
 
         return $this;
@@ -336,7 +333,6 @@ class StoreAndForward implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMaxPayments($maxPayments)
     {
-        // Do nothing for nullable integers
         $this->container['maxPayments'] = $maxPayments;
 
         return $this;
@@ -361,9 +357,6 @@ class StoreAndForward implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSupportedCardTypes($supportedCardTypes)
     {
-        if (is_null($supportedCardTypes)) {
-            throw new \InvalidArgumentException('non-nullable supportedCardTypes cannot be null');
-        }
         $this->container['supportedCardTypes'] = $supportedCardTypes;
 
         return $this;

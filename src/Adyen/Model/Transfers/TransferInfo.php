@@ -53,6 +53,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'priority' => 'string',
         'reference' => 'string',
         'referenceForBeneficiary' => 'string',
+        'type' => 'string',
         'ultimateParty' => '\Adyen\Model\Transfers\UltimatePartyIdentification'
     ];
 
@@ -73,6 +74,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'priority' => null,
         'reference' => null,
         'referenceForBeneficiary' => null,
+        'type' => null,
         'ultimateParty' => null
     ];
 
@@ -91,6 +93,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'priority' => false,
         'reference' => false,
         'referenceForBeneficiary' => false,
+        'type' => false,
         'ultimateParty' => false
     ];
 
@@ -189,6 +192,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'priority' => 'priority',
         'reference' => 'reference',
         'referenceForBeneficiary' => 'referenceForBeneficiary',
+        'type' => 'type',
         'ultimateParty' => 'ultimateParty'
     ];
 
@@ -207,6 +211,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'priority' => 'setPriority',
         'reference' => 'setReference',
         'referenceForBeneficiary' => 'setReferenceForBeneficiary',
+        'type' => 'setType',
         'ultimateParty' => 'setUltimateParty'
     ];
 
@@ -225,6 +230,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'priority' => 'getPriority',
         'reference' => 'getReference',
         'referenceForBeneficiary' => 'getReferenceForBeneficiary',
+        'type' => 'getType',
         'ultimateParty' => 'getUltimateParty'
     ];
 
@@ -280,6 +286,9 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     public const PRIORITY_INTERNAL = 'internal';
     public const PRIORITY_REGULAR = 'regular';
     public const PRIORITY_WIRE = 'wire';
+    public const TYPE_BANK_TRANSFER = 'bankTransfer';
+    public const TYPE_INTERNAL_TRANSFER = 'internalTransfer';
+    public const TYPE_INTERNAL_DIRECT_DEBIT = 'internalDirectDebit';
 
     /**
      * Gets allowable values of the enum
@@ -313,6 +322,19 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         ];
     }
     /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_BANK_TRANSFER,
+            self::TYPE_INTERNAL_TRANSFER,
+            self::TYPE_INTERNAL_DIRECT_DEBIT,
+        ];
+    }
+    /**
      * Associative array for storing property values
      *
      * @var mixed[]
@@ -336,6 +358,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('priority', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
         $this->setIfExists('referenceForBeneficiary', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('ultimateParty', $data ?? [], null);
     }
 
@@ -393,6 +416,15 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -427,9 +459,6 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAmount($amount)
     {
-        if (is_null($amount)) {
-            throw new \InvalidArgumentException('non-nullable amount cannot be null');
-        }
         $this->container['amount'] = $amount;
 
         return $this;
@@ -448,15 +477,12 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets balanceAccountId
      *
-     * @param string|null $balanceAccountId The unique identifier of the source [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id).
+     * @param string|null $balanceAccountId The unique identifier of the source [balance account](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id).  If you want to make a transfer using a **virtual** **bankAccount** assigned to the balance account, you must specify the [payment instrument ID](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/paymentInstruments#responses-200-id) of the **virtual** **bankAccount**. If you only specify a balance account ID, Adyen uses the default **physical** **bankAccount** payment instrument assigned to the balance account.
      *
      * @return self
      */
     public function setBalanceAccountId($balanceAccountId)
     {
-        if (is_null($balanceAccountId)) {
-            throw new \InvalidArgumentException('non-nullable balanceAccountId cannot be null');
-        }
         $this->container['balanceAccountId'] = $balanceAccountId;
 
         return $this;
@@ -481,9 +507,6 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCategory($category)
     {
-        if (is_null($category)) {
-            throw new \InvalidArgumentException('non-nullable category cannot be null');
-        }
         $allowedValues = $this->getCategoryAllowableValues();
         if (!in_array($category, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -518,9 +541,6 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCounterparty($counterparty)
     {
-        if (is_null($counterparty)) {
-            throw new \InvalidArgumentException('non-nullable counterparty cannot be null');
-        }
         $this->container['counterparty'] = $counterparty;
 
         return $this;
@@ -545,9 +565,6 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -566,15 +583,12 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets paymentInstrumentId
      *
-     * @param string|null $paymentInstrumentId The unique identifier of the source [payment instrument](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/paymentInstruments__resParam_id).
+     * @param string|null $paymentInstrumentId The unique identifier of the source [payment instrument](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/paymentInstruments#responses-200-id).  If you want to make a transfer using a **virtual** **bankAccount**, you must specify the payment instrument ID of the **virtual** **bankAccount**. If you only specify a balance account ID, Adyen uses the default **physical** **bankAccount** payment instrument assigned to the balance account.
      *
      * @return self
      */
     public function setPaymentInstrumentId($paymentInstrumentId)
     {
-        if (is_null($paymentInstrumentId)) {
-            throw new \InvalidArgumentException('non-nullable paymentInstrumentId cannot be null');
-        }
         $this->container['paymentInstrumentId'] = $paymentInstrumentId;
 
         return $this;
@@ -599,9 +613,6 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPriority($priority)
     {
-        if (is_null($priority)) {
-            throw new \InvalidArgumentException('non-nullable priority cannot be null');
-        }
         $allowedValues = $this->getPriorityAllowableValues();
         if (!in_array($priority, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -636,9 +647,6 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -663,10 +671,41 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setReferenceForBeneficiary($referenceForBeneficiary)
     {
-        if (is_null($referenceForBeneficiary)) {
-            throw new \InvalidArgumentException('non-nullable referenceForBeneficiary cannot be null');
-        }
         $this->container['referenceForBeneficiary'] = $referenceForBeneficiary;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string|null
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string|null $type The type of transfer.  Possible values:   - **bankTransfer**: for push transfers to a transfer instrument or a bank account. The `category` must be **bank**. - **internalTransfer**: for push transfers between balance accounts. The `category` must be **internal**. - **internalDirectDebit**: for pull transfers (direct debits) between balance accounts. The `category` must be **internal**.
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
 
         return $this;
     }
@@ -690,9 +729,6 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUltimateParty($ultimateParty)
     {
-        if (is_null($ultimateParty)) {
-            throw new \InvalidArgumentException('non-nullable ultimateParty cannot be null');
-        }
         $this->container['ultimateParty'] = $ultimateParty;
 
         return $this;

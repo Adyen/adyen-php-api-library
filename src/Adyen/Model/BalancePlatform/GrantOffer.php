@@ -370,9 +370,6 @@ class GrantOffer implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAccountHolderId($accountHolderId)
     {
-        if (is_null($accountHolderId)) {
-            throw new \InvalidArgumentException('non-nullable accountHolderId cannot be null');
-        }
         $this->container['accountHolderId'] = $accountHolderId;
 
         return $this;
@@ -397,9 +394,6 @@ class GrantOffer implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAmount($amount)
     {
-        if (is_null($amount)) {
-            throw new \InvalidArgumentException('non-nullable amount cannot be null');
-        }
         $this->container['amount'] = $amount;
 
         return $this;
@@ -424,9 +418,6 @@ class GrantOffer implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setContractType($contractType)
     {
-        if (is_null($contractType)) {
-            throw new \InvalidArgumentException('non-nullable contractType cannot be null');
-        }
         $allowedValues = $this->getContractTypeAllowableValues();
         if (!in_array($contractType, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -461,9 +452,6 @@ class GrantOffer implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setExpiresAt($expiresAt)
     {
-        if (is_null($expiresAt)) {
-            throw new \InvalidArgumentException('non-nullable expiresAt cannot be null');
-        }
         $this->container['expiresAt'] = $expiresAt;
 
         return $this;
@@ -488,9 +476,6 @@ class GrantOffer implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFee($fee)
     {
-        if (is_null($fee)) {
-            throw new \InvalidArgumentException('non-nullable fee cannot be null');
-        }
         $this->container['fee'] = $fee;
 
         return $this;
@@ -515,9 +500,6 @@ class GrantOffer implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -542,9 +524,6 @@ class GrantOffer implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRepayment($repayment)
     {
-        if (is_null($repayment)) {
-            throw new \InvalidArgumentException('non-nullable repayment cannot be null');
-        }
         $this->container['repayment'] = $repayment;
 
         return $this;
@@ -569,9 +548,6 @@ class GrantOffer implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStartsAt($startsAt)
     {
-        if (is_null($startsAt)) {
-            throw new \InvalidArgumentException('non-nullable startsAt cannot be null');
-        }
         $this->container['startsAt'] = $startsAt;
 
         return $this;

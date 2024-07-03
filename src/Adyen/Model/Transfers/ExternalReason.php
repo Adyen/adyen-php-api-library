@@ -309,9 +309,6 @@ class ExternalReason implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCode($code)
     {
-        if (is_null($code)) {
-            throw new \InvalidArgumentException('non-nullable code cannot be null');
-        }
         $this->container['code'] = $code;
 
         return $this;
@@ -336,9 +333,6 @@ class ExternalReason implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -363,9 +357,6 @@ class ExternalReason implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setNamespace($namespace)
     {
-        if (is_null($namespace)) {
-            throw new \InvalidArgumentException('non-nullable namespace cannot be null');
-        }
         $this->container['namespace'] = $namespace;
 
         return $this;

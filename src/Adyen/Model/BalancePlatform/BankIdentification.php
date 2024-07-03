@@ -334,9 +334,6 @@ class BankIdentification implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setCountry($country)
     {
-        if (is_null($country)) {
-            throw new \InvalidArgumentException('non-nullable country cannot be null');
-        }
         $this->container['country'] = $country;
 
         return $this;
@@ -361,9 +358,6 @@ class BankIdentification implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setIdentification($identification)
     {
-        if (is_null($identification)) {
-            throw new \InvalidArgumentException('non-nullable identification cannot be null');
-        }
         $this->container['identification'] = $identification;
 
         return $this;
@@ -388,9 +382,6 @@ class BankIdentification implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setIdentificationType($identificationType)
     {
-        if (is_null($identificationType)) {
-            throw new \InvalidArgumentException('non-nullable identificationType cannot be null');
-        }
         $allowedValues = $this->getIdentificationTypeAllowableValues();
         if (!in_array($identificationType, $allowedValues, true)) {
             throw new \InvalidArgumentException(

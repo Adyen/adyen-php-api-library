@@ -323,9 +323,6 @@ class MerchantData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAcquirerId($acquirerId)
     {
-        if (is_null($acquirerId)) {
-            throw new \InvalidArgumentException('non-nullable acquirerId cannot be null');
-        }
         $this->container['acquirerId'] = $acquirerId;
 
         return $this;
@@ -350,9 +347,6 @@ class MerchantData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMcc($mcc)
     {
-        if (is_null($mcc)) {
-            throw new \InvalidArgumentException('non-nullable mcc cannot be null');
-        }
         $this->container['mcc'] = $mcc;
 
         return $this;
@@ -377,9 +371,6 @@ class MerchantData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMerchantId($merchantId)
     {
-        if (is_null($merchantId)) {
-            throw new \InvalidArgumentException('non-nullable merchantId cannot be null');
-        }
         $this->container['merchantId'] = $merchantId;
 
         return $this;
@@ -404,9 +395,6 @@ class MerchantData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setNameLocation($nameLocation)
     {
-        if (is_null($nameLocation)) {
-            throw new \InvalidArgumentException('non-nullable nameLocation cannot be null');
-        }
         $this->container['nameLocation'] = $nameLocation;
 
         return $this;
@@ -431,9 +419,6 @@ class MerchantData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPostalCode($postalCode)
     {
-        if (is_null($postalCode)) {
-            throw new \InvalidArgumentException('non-nullable postalCode cannot be null');
-        }
         $this->container['postalCode'] = $postalCode;
 
         return $this;

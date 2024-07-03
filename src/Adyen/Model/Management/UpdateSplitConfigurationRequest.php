@@ -298,9 +298,6 @@ class UpdateSplitConfigurationRequest implements ModelInterface, ArrayAccess, \J
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;

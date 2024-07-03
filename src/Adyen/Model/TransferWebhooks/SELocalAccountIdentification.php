@@ -339,9 +339,6 @@ class SELocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      */
     public function setAccountNumber($accountNumber)
     {
-        if (is_null($accountNumber)) {
-            throw new \InvalidArgumentException('non-nullable accountNumber cannot be null');
-        }
         $this->container['accountNumber'] = $accountNumber;
 
         return $this;
@@ -366,9 +363,6 @@ class SELocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      */
     public function setClearingNumber($clearingNumber)
     {
-        if (is_null($clearingNumber)) {
-            throw new \InvalidArgumentException('non-nullable clearingNumber cannot be null');
-        }
         $this->container['clearingNumber'] = $clearingNumber;
 
         return $this;
@@ -393,9 +387,6 @@ class SELocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

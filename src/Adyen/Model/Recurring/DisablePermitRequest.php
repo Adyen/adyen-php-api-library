@@ -308,9 +308,6 @@ class DisablePermitRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setMerchantAccount($merchantAccount)
     {
-        if (is_null($merchantAccount)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
-        }
         $this->container['merchantAccount'] = $merchantAccount;
 
         return $this;
@@ -335,9 +332,6 @@ class DisablePermitRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setToken($token)
     {
-        if (is_null($token)) {
-            throw new \InvalidArgumentException('non-nullable token cannot be null');
-        }
         $this->container['token'] = $token;
 
         return $this;

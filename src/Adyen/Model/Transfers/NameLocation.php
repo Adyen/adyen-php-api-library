@@ -330,9 +330,6 @@ class NameLocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCity($city)
     {
-        if (is_null($city)) {
-            throw new \InvalidArgumentException('non-nullable city cannot be null');
-        }
         $this->container['city'] = $city;
 
         return $this;
@@ -357,9 +354,6 @@ class NameLocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCountry($country)
     {
-        if (is_null($country)) {
-            throw new \InvalidArgumentException('non-nullable country cannot be null');
-        }
         $this->container['country'] = $country;
 
         return $this;
@@ -384,9 +378,6 @@ class NameLocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCountryOfOrigin($countryOfOrigin)
     {
-        if (is_null($countryOfOrigin)) {
-            throw new \InvalidArgumentException('non-nullable countryOfOrigin cannot be null');
-        }
         $this->container['countryOfOrigin'] = $countryOfOrigin;
 
         return $this;
@@ -411,9 +402,6 @@ class NameLocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setName($name)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
         $this->container['name'] = $name;
 
         return $this;
@@ -438,9 +426,6 @@ class NameLocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRawData($rawData)
     {
-        if (is_null($rawData)) {
-            throw new \InvalidArgumentException('non-nullable rawData cannot be null');
-        }
         $this->container['rawData'] = $rawData;
 
         return $this;
@@ -465,9 +450,6 @@ class NameLocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setState($state)
     {
-        if (is_null($state)) {
-            throw new \InvalidArgumentException('non-nullable state cannot be null');
-        }
         $this->container['state'] = $state;
 
         return $this;

@@ -298,9 +298,6 @@ class GenerateHmacKeyResponse implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setHmacKey($hmacKey)
     {
-        if (is_null($hmacKey)) {
-            throw new \InvalidArgumentException('non-nullable hmacKey cannot be null');
-        }
         $this->container['hmacKey'] = $hmacKey;
 
         return $this;

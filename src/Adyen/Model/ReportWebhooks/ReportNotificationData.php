@@ -346,9 +346,6 @@ class ReportNotificationData implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setAccountHolder($accountHolder)
     {
-        if (is_null($accountHolder)) {
-            throw new \InvalidArgumentException('non-nullable accountHolder cannot be null');
-        }
         $this->container['accountHolder'] = $accountHolder;
 
         return $this;
@@ -373,9 +370,6 @@ class ReportNotificationData implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setBalanceAccount($balanceAccount)
     {
-        if (is_null($balanceAccount)) {
-            throw new \InvalidArgumentException('non-nullable balanceAccount cannot be null');
-        }
         $this->container['balanceAccount'] = $balanceAccount;
 
         return $this;
@@ -400,9 +394,6 @@ class ReportNotificationData implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setBalancePlatform($balancePlatform)
     {
-        if (is_null($balancePlatform)) {
-            throw new \InvalidArgumentException('non-nullable balancePlatform cannot be null');
-        }
         $this->container['balancePlatform'] = $balancePlatform;
 
         return $this;
@@ -427,9 +418,6 @@ class ReportNotificationData implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setCreationDate($creationDate)
     {
-        if (is_null($creationDate)) {
-            throw new \InvalidArgumentException('non-nullable creationDate cannot be null');
-        }
         $this->container['creationDate'] = $creationDate;
 
         return $this;
@@ -454,9 +442,6 @@ class ReportNotificationData implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setDownloadUrl($downloadUrl)
     {
-        if (is_null($downloadUrl)) {
-            throw new \InvalidArgumentException('non-nullable downloadUrl cannot be null');
-        }
         $this->container['downloadUrl'] = $downloadUrl;
 
         return $this;
@@ -481,9 +466,6 @@ class ReportNotificationData implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setFileName($fileName)
     {
-        if (is_null($fileName)) {
-            throw new \InvalidArgumentException('non-nullable fileName cannot be null');
-        }
         $this->container['fileName'] = $fileName;
 
         return $this;
@@ -508,9 +490,6 @@ class ReportNotificationData implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setReportType($reportType)
     {
-        if (is_null($reportType)) {
-            throw new \InvalidArgumentException('non-nullable reportType cannot be null');
-        }
         $this->container['reportType'] = $reportType;
 
         return $this;

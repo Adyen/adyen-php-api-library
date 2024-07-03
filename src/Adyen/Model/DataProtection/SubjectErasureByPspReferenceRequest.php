@@ -309,9 +309,6 @@ class SubjectErasureByPspReferenceRequest implements ModelInterface, ArrayAccess
      */
     public function setForceErasure($forceErasure)
     {
-        if (is_null($forceErasure)) {
-            throw new \InvalidArgumentException('non-nullable forceErasure cannot be null');
-        }
         $this->container['forceErasure'] = $forceErasure;
 
         return $this;
@@ -336,9 +333,6 @@ class SubjectErasureByPspReferenceRequest implements ModelInterface, ArrayAccess
      */
     public function setMerchantAccount($merchantAccount)
     {
-        if (is_null($merchantAccount)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
-        }
         $this->container['merchantAccount'] = $merchantAccount;
 
         return $this;
@@ -363,9 +357,6 @@ class SubjectErasureByPspReferenceRequest implements ModelInterface, ArrayAccess
      */
     public function setPspReference($pspReference)
     {
-        if (is_null($pspReference)) {
-            throw new \InvalidArgumentException('non-nullable pspReference cannot be null');
-        }
         $this->container['pspReference'] = $pspReference;
 
         return $this;

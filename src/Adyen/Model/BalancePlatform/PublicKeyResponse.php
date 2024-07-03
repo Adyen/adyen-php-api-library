@@ -308,9 +308,6 @@ class PublicKeyResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setPublicKey($publicKey)
     {
-        if (is_null($publicKey)) {
-            throw new \InvalidArgumentException('non-nullable publicKey cannot be null');
-        }
         $this->container['publicKey'] = $publicKey;
 
         return $this;
@@ -335,9 +332,6 @@ class PublicKeyResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setPublicKeyExpiryDate($publicKeyExpiryDate)
     {
-        if (is_null($publicKeyExpiryDate)) {
-            throw new \InvalidArgumentException('non-nullable publicKeyExpiryDate cannot be null');
-        }
         $this->container['publicKeyExpiryDate'] = $publicKeyExpiryDate;
 
         return $this;

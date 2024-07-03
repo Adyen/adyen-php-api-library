@@ -302,9 +302,6 @@ class Links implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setNext($next)
     {
-        if (is_null($next)) {
-            throw new \InvalidArgumentException('non-nullable next cannot be null');
-        }
         $this->container['next'] = $next;
 
         return $this;
@@ -329,9 +326,6 @@ class Links implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPrev($prev)
     {
-        if (is_null($prev)) {
-            throw new \InvalidArgumentException('non-nullable prev cannot be null');
-        }
         $this->container['prev'] = $prev;
 
         return $this;

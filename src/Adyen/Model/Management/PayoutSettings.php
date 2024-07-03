@@ -395,9 +395,6 @@ class PayoutSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAllowed($allowed)
     {
-        if (is_null($allowed)) {
-            throw new \InvalidArgumentException('non-nullable allowed cannot be null');
-        }
         $this->container['allowed'] = $allowed;
 
         return $this;
@@ -422,9 +419,6 @@ class PayoutSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEnabled($enabled)
     {
-        if (is_null($enabled)) {
-            throw new \InvalidArgumentException('non-nullable enabled cannot be null');
-        }
         $this->container['enabled'] = $enabled;
 
         return $this;
@@ -449,9 +443,6 @@ class PayoutSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEnabledFromDate($enabledFromDate)
     {
-        if (is_null($enabledFromDate)) {
-            throw new \InvalidArgumentException('non-nullable enabledFromDate cannot be null');
-        }
         $this->container['enabledFromDate'] = $enabledFromDate;
 
         return $this;
@@ -476,9 +467,6 @@ class PayoutSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -503,9 +491,6 @@ class PayoutSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPriority($priority)
     {
-        if (is_null($priority)) {
-            throw new \InvalidArgumentException('non-nullable priority cannot be null');
-        }
         $allowedValues = $this->getPriorityAllowableValues();
         if (!in_array($priority, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -540,9 +525,6 @@ class PayoutSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTransferInstrumentId($transferInstrumentId)
     {
-        if (is_null($transferInstrumentId)) {
-            throw new \InvalidArgumentException('non-nullable transferInstrumentId cannot be null');
-        }
         $this->container['transferInstrumentId'] = $transferInstrumentId;
 
         return $this;
@@ -567,9 +549,6 @@ class PayoutSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setVerificationStatus($verificationStatus)
     {
-        if (is_null($verificationStatus)) {
-            throw new \InvalidArgumentException('non-nullable verificationStatus cannot be null');
-        }
         $allowedValues = $this->getVerificationStatusAllowableValues();
         if (!in_array($verificationStatus, $allowedValues, true)) {
             throw new \InvalidArgumentException(

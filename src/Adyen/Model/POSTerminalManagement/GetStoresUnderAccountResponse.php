@@ -295,9 +295,6 @@ class GetStoresUnderAccountResponse implements ModelInterface, ArrayAccess, \Jso
      */
     public function setStores($stores)
     {
-        if (is_null($stores)) {
-            throw new \InvalidArgumentException('non-nullable stores cannot be null');
-        }
         $this->container['stores'] = $stores;
 
         return $this;

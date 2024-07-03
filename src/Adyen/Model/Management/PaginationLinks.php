@@ -332,9 +332,6 @@ class PaginationLinks implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFirst($first)
     {
-        if (is_null($first)) {
-            throw new \InvalidArgumentException('non-nullable first cannot be null');
-        }
         $this->container['first'] = $first;
 
         return $this;
@@ -359,9 +356,6 @@ class PaginationLinks implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLast($last)
     {
-        if (is_null($last)) {
-            throw new \InvalidArgumentException('non-nullable last cannot be null');
-        }
         $this->container['last'] = $last;
 
         return $this;
@@ -386,9 +380,6 @@ class PaginationLinks implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setNext($next)
     {
-        if (is_null($next)) {
-            throw new \InvalidArgumentException('non-nullable next cannot be null');
-        }
         $this->container['next'] = $next;
 
         return $this;
@@ -413,9 +404,6 @@ class PaginationLinks implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPrev($prev)
     {
-        if (is_null($prev)) {
-            throw new \InvalidArgumentException('non-nullable prev cannot be null');
-        }
         $this->container['prev'] = $prev;
 
         return $this;
@@ -440,9 +428,6 @@ class PaginationLinks implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSelf($self)
     {
-        if (is_null($self)) {
-            throw new \InvalidArgumentException('non-nullable self cannot be null');
-        }
         $this->container['self'] = $self;
 
         return $this;

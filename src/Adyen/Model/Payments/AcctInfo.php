@@ -587,9 +587,6 @@ class AcctInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setChAccAgeInd($chAccAgeInd)
     {
-        if (is_null($chAccAgeInd)) {
-            throw new \InvalidArgumentException('non-nullable chAccAgeInd cannot be null');
-        }
         $allowedValues = $this->getChAccAgeIndAllowableValues();
         if (!in_array($chAccAgeInd, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -624,9 +621,6 @@ class AcctInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setChAccChange($chAccChange)
     {
-        if (is_null($chAccChange)) {
-            throw new \InvalidArgumentException('non-nullable chAccChange cannot be null');
-        }
         $this->container['chAccChange'] = $chAccChange;
 
         return $this;
@@ -651,9 +645,6 @@ class AcctInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setChAccChangeInd($chAccChangeInd)
     {
-        if (is_null($chAccChangeInd)) {
-            throw new \InvalidArgumentException('non-nullable chAccChangeInd cannot be null');
-        }
         $allowedValues = $this->getChAccChangeIndAllowableValues();
         if (!in_array($chAccChangeInd, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -688,9 +679,6 @@ class AcctInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setChAccPwChange($chAccPwChange)
     {
-        if (is_null($chAccPwChange)) {
-            throw new \InvalidArgumentException('non-nullable chAccPwChange cannot be null');
-        }
         $this->container['chAccPwChange'] = $chAccPwChange;
 
         return $this;
@@ -715,9 +703,6 @@ class AcctInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setChAccPwChangeInd($chAccPwChangeInd)
     {
-        if (is_null($chAccPwChangeInd)) {
-            throw new \InvalidArgumentException('non-nullable chAccPwChangeInd cannot be null');
-        }
         $allowedValues = $this->getChAccPwChangeIndAllowableValues();
         if (!in_array($chAccPwChangeInd, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -752,9 +737,6 @@ class AcctInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setChAccString($chAccString)
     {
-        if (is_null($chAccString)) {
-            throw new \InvalidArgumentException('non-nullable chAccString cannot be null');
-        }
         $this->container['chAccString'] = $chAccString;
 
         return $this;
@@ -779,9 +761,6 @@ class AcctInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setNbPurchaseAccount($nbPurchaseAccount)
     {
-        if (is_null($nbPurchaseAccount)) {
-            throw new \InvalidArgumentException('non-nullable nbPurchaseAccount cannot be null');
-        }
         $this->container['nbPurchaseAccount'] = $nbPurchaseAccount;
 
         return $this;
@@ -806,9 +785,6 @@ class AcctInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPaymentAccAge($paymentAccAge)
     {
-        if (is_null($paymentAccAge)) {
-            throw new \InvalidArgumentException('non-nullable paymentAccAge cannot be null');
-        }
         $this->container['paymentAccAge'] = $paymentAccAge;
 
         return $this;
@@ -833,9 +809,6 @@ class AcctInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPaymentAccInd($paymentAccInd)
     {
-        if (is_null($paymentAccInd)) {
-            throw new \InvalidArgumentException('non-nullable paymentAccInd cannot be null');
-        }
         $allowedValues = $this->getPaymentAccIndAllowableValues();
         if (!in_array($paymentAccInd, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -870,9 +843,6 @@ class AcctInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setProvisionAttemptsDay($provisionAttemptsDay)
     {
-        if (is_null($provisionAttemptsDay)) {
-            throw new \InvalidArgumentException('non-nullable provisionAttemptsDay cannot be null');
-        }
         $this->container['provisionAttemptsDay'] = $provisionAttemptsDay;
 
         return $this;
@@ -897,9 +867,6 @@ class AcctInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setShipAddressUsage($shipAddressUsage)
     {
-        if (is_null($shipAddressUsage)) {
-            throw new \InvalidArgumentException('non-nullable shipAddressUsage cannot be null');
-        }
         $this->container['shipAddressUsage'] = $shipAddressUsage;
 
         return $this;
@@ -924,9 +891,6 @@ class AcctInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setShipAddressUsageInd($shipAddressUsageInd)
     {
-        if (is_null($shipAddressUsageInd)) {
-            throw new \InvalidArgumentException('non-nullable shipAddressUsageInd cannot be null');
-        }
         $allowedValues = $this->getShipAddressUsageIndAllowableValues();
         if (!in_array($shipAddressUsageInd, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -961,9 +925,6 @@ class AcctInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setShipNameIndicator($shipNameIndicator)
     {
-        if (is_null($shipNameIndicator)) {
-            throw new \InvalidArgumentException('non-nullable shipNameIndicator cannot be null');
-        }
         $allowedValues = $this->getShipNameIndicatorAllowableValues();
         if (!in_array($shipNameIndicator, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -998,9 +959,6 @@ class AcctInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSuspiciousAccActivity($suspiciousAccActivity)
     {
-        if (is_null($suspiciousAccActivity)) {
-            throw new \InvalidArgumentException('non-nullable suspiciousAccActivity cannot be null');
-        }
         $allowedValues = $this->getSuspiciousAccActivityAllowableValues();
         if (!in_array($suspiciousAccActivity, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -1035,9 +993,6 @@ class AcctInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTxnActivityDay($txnActivityDay)
     {
-        if (is_null($txnActivityDay)) {
-            throw new \InvalidArgumentException('non-nullable txnActivityDay cannot be null');
-        }
         $this->container['txnActivityDay'] = $txnActivityDay;
 
         return $this;
@@ -1062,9 +1017,6 @@ class AcctInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTxnActivityYear($txnActivityYear)
     {
-        if (is_null($txnActivityYear)) {
-            throw new \InvalidArgumentException('non-nullable txnActivityYear cannot be null');
-        }
         $this->container['txnActivityYear'] = $txnActivityYear;
 
         return $this;

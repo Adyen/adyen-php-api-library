@@ -322,9 +322,6 @@ class ListMerchantApiCredentialsResponse implements ModelInterface, ArrayAccess,
      */
     public function setLinks($links)
     {
-        if (is_null($links)) {
-            throw new \InvalidArgumentException('non-nullable links cannot be null');
-        }
         $this->container['links'] = $links;
 
         return $this;
@@ -349,9 +346,6 @@ class ListMerchantApiCredentialsResponse implements ModelInterface, ArrayAccess,
      */
     public function setData($data)
     {
-        if (is_null($data)) {
-            throw new \InvalidArgumentException('non-nullable data cannot be null');
-        }
         $this->container['data'] = $data;
 
         return $this;
@@ -376,7 +370,6 @@ class ListMerchantApiCredentialsResponse implements ModelInterface, ArrayAccess,
      */
     public function setItemsTotal($itemsTotal)
     {
-        // Do nothing for nullable integers
         $this->container['itemsTotal'] = $itemsTotal;
 
         return $this;
@@ -401,7 +394,6 @@ class ListMerchantApiCredentialsResponse implements ModelInterface, ArrayAccess,
      */
     public function setPagesTotal($pagesTotal)
     {
-        // Do nothing for nullable integers
         $this->container['pagesTotal'] = $pagesTotal;
 
         return $this;

@@ -315,9 +315,6 @@ class ModifyResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAdditionalData($additionalData)
     {
-        if (is_null($additionalData)) {
-            throw new \InvalidArgumentException('non-nullable additionalData cannot be null');
-        }
         $this->container['additionalData'] = $additionalData;
 
         return $this;
@@ -342,9 +339,6 @@ class ModifyResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPspReference($pspReference)
     {
-        if (is_null($pspReference)) {
-            throw new \InvalidArgumentException('non-nullable pspReference cannot be null');
-        }
         $this->container['pspReference'] = $pspReference;
 
         return $this;
@@ -369,9 +363,6 @@ class ModifyResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setResponse($response)
     {
-        if (is_null($response)) {
-            throw new \InvalidArgumentException('non-nullable response cannot be null');
-        }
         $this->container['response'] = $response;
 
         return $this;

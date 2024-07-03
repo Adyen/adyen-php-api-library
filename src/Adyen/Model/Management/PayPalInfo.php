@@ -315,9 +315,6 @@ class PayPalInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDirectCapture($directCapture)
     {
-        if (is_null($directCapture)) {
-            throw new \InvalidArgumentException('non-nullable directCapture cannot be null');
-        }
         $this->container['directCapture'] = $directCapture;
 
         return $this;
@@ -342,9 +339,6 @@ class PayPalInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPayerId($payerId)
     {
-        if (is_null($payerId)) {
-            throw new \InvalidArgumentException('non-nullable payerId cannot be null');
-        }
         $this->container['payerId'] = $payerId;
 
         return $this;
@@ -369,9 +363,6 @@ class PayPalInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSubject($subject)
     {
-        if (is_null($subject)) {
-            throw new \InvalidArgumentException('non-nullable subject cannot be null');
-        }
         $this->container['subject'] = $subject;
 
         return $this;

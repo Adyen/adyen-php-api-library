@@ -295,9 +295,6 @@ class ReprocessAndroidAppResponse implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setMessage($message)
     {
-        if (is_null($message)) {
-            throw new \InvalidArgumentException('non-nullable message cannot be null');
-        }
         $this->container['message'] = $message;
 
         return $this;

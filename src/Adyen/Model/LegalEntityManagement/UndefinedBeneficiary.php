@@ -302,9 +302,6 @@ class UndefinedBeneficiary implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -329,9 +326,6 @@ class UndefinedBeneficiary implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;

@@ -356,6 +356,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     public const REASON_COUNTERPARTY_ADDRESS_REQUIRED = 'counterpartyAddressRequired';
     public const REASON_COUNTERPARTY_BANK_TIMED_OUT = 'counterpartyBankTimedOut';
     public const REASON_COUNTERPARTY_BANK_UNAVAILABLE = 'counterpartyBankUnavailable';
+    public const REASON_DECLINED = 'declined';
     public const REASON_DECLINED_BY_TRANSACTION_RULE = 'declinedByTransactionRule';
     public const REASON_ERROR = 'error';
     public const REASON_NOT_ENOUGH_BALANCE = 'notEnoughBalance';
@@ -510,6 +511,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
             self::REASON_COUNTERPARTY_ADDRESS_REQUIRED,
             self::REASON_COUNTERPARTY_BANK_TIMED_OUT,
             self::REASON_COUNTERPARTY_BANK_UNAVAILABLE,
+            self::REASON_DECLINED,
             self::REASON_DECLINED_BY_TRANSACTION_RULE,
             self::REASON_ERROR,
             self::REASON_NOT_ENOUGH_BALANCE,
@@ -796,9 +798,6 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAccountHolder($accountHolder)
     {
-        if (is_null($accountHolder)) {
-            throw new \InvalidArgumentException('non-nullable accountHolder cannot be null');
-        }
         $this->container['accountHolder'] = $accountHolder;
 
         return $this;
@@ -823,9 +822,6 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAmount($amount)
     {
-        if (is_null($amount)) {
-            throw new \InvalidArgumentException('non-nullable amount cannot be null');
-        }
         $this->container['amount'] = $amount;
 
         return $this;
@@ -850,9 +846,6 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBalanceAccount($balanceAccount)
     {
-        if (is_null($balanceAccount)) {
-            throw new \InvalidArgumentException('non-nullable balanceAccount cannot be null');
-        }
         $this->container['balanceAccount'] = $balanceAccount;
 
         return $this;
@@ -877,9 +870,6 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBalancePlatform($balancePlatform)
     {
-        if (is_null($balancePlatform)) {
-            throw new \InvalidArgumentException('non-nullable balancePlatform cannot be null');
-        }
         $this->container['balancePlatform'] = $balancePlatform;
 
         return $this;
@@ -904,9 +894,6 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBalances($balances)
     {
-        if (is_null($balances)) {
-            throw new \InvalidArgumentException('non-nullable balances cannot be null');
-        }
         $this->container['balances'] = $balances;
 
         return $this;
@@ -931,9 +918,6 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCategory($category)
     {
-        if (is_null($category)) {
-            throw new \InvalidArgumentException('non-nullable category cannot be null');
-        }
         $allowedValues = $this->getCategoryAllowableValues();
         if (!in_array($category, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -968,9 +952,6 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCategoryData($categoryData)
     {
-        if (is_null($categoryData)) {
-            throw new \InvalidArgumentException('non-nullable categoryData cannot be null');
-        }
         $this->container['categoryData'] = $categoryData;
 
         return $this;
@@ -995,9 +976,6 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCounterparty($counterparty)
     {
-        if (is_null($counterparty)) {
-            throw new \InvalidArgumentException('non-nullable counterparty cannot be null');
-        }
         $this->container['counterparty'] = $counterparty;
 
         return $this;
@@ -1022,9 +1000,6 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCreationDate($creationDate)
     {
-        if (is_null($creationDate)) {
-            throw new \InvalidArgumentException('non-nullable creationDate cannot be null');
-        }
         $this->container['creationDate'] = $creationDate;
 
         return $this;
@@ -1049,9 +1024,6 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -1076,9 +1048,6 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDirection($direction)
     {
-        if (is_null($direction)) {
-            throw new \InvalidArgumentException('non-nullable direction cannot be null');
-        }
         $allowedValues = $this->getDirectionAllowableValues();
         if (!in_array($direction, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -1113,9 +1082,6 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEvents($events)
     {
-        if (is_null($events)) {
-            throw new \InvalidArgumentException('non-nullable events cannot be null');
-        }
         $this->container['events'] = $events;
 
         return $this;
@@ -1140,9 +1106,6 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -1167,9 +1130,6 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPaymentInstrument($paymentInstrument)
     {
-        if (is_null($paymentInstrument)) {
-            throw new \InvalidArgumentException('non-nullable paymentInstrument cannot be null');
-        }
         $this->container['paymentInstrument'] = $paymentInstrument;
 
         return $this;
@@ -1194,9 +1154,6 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setReason($reason)
     {
-        if (is_null($reason)) {
-            throw new \InvalidArgumentException('non-nullable reason cannot be null');
-        }
         $allowedValues = $this->getReasonAllowableValues();
         if (!in_array($reason, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -1231,9 +1188,6 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -1258,9 +1212,6 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setReferenceForBeneficiary($referenceForBeneficiary)
     {
-        if (is_null($referenceForBeneficiary)) {
-            throw new \InvalidArgumentException('non-nullable referenceForBeneficiary cannot be null');
-        }
         $this->container['referenceForBeneficiary'] = $referenceForBeneficiary;
 
         return $this;
@@ -1285,7 +1236,6 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSequenceNumber($sequenceNumber)
     {
-        // Do nothing for nullable integers
         $this->container['sequenceNumber'] = $sequenceNumber;
 
         return $this;
@@ -1310,9 +1260,6 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -1347,9 +1294,6 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTracking($tracking)
     {
-        if (is_null($tracking)) {
-            throw new \InvalidArgumentException('non-nullable tracking cannot be null');
-        }
         $this->container['tracking'] = $tracking;
 
         return $this;
@@ -1374,9 +1318,6 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTransactionRulesResult($transactionRulesResult)
     {
-        if (is_null($transactionRulesResult)) {
-            throw new \InvalidArgumentException('non-nullable transactionRulesResult cannot be null');
-        }
         $this->container['transactionRulesResult'] = $transactionRulesResult;
 
         return $this;
@@ -1401,9 +1342,6 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

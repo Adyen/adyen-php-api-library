@@ -302,9 +302,6 @@ class CommonField implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setName($name)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
         $this->container['name'] = $name;
 
         return $this;
@@ -329,9 +326,6 @@ class CommonField implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setVersion($version)
     {
-        if (is_null($version)) {
-            throw new \InvalidArgumentException('non-nullable version cannot be null');
-        }
         $this->container['version'] = $version;
 
         return $this;

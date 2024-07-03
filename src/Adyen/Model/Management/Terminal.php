@@ -351,9 +351,6 @@ class Terminal implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAssignment($assignment)
     {
-        if (is_null($assignment)) {
-            throw new \InvalidArgumentException('non-nullable assignment cannot be null');
-        }
         $this->container['assignment'] = $assignment;
 
         return $this;
@@ -378,9 +375,6 @@ class Terminal implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setConnectivity($connectivity)
     {
-        if (is_null($connectivity)) {
-            throw new \InvalidArgumentException('non-nullable connectivity cannot be null');
-        }
         $this->container['connectivity'] = $connectivity;
 
         return $this;
@@ -405,9 +399,6 @@ class Terminal implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFirmwareVersion($firmwareVersion)
     {
-        if (is_null($firmwareVersion)) {
-            throw new \InvalidArgumentException('non-nullable firmwareVersion cannot be null');
-        }
         $this->container['firmwareVersion'] = $firmwareVersion;
 
         return $this;
@@ -432,9 +423,6 @@ class Terminal implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -459,9 +447,6 @@ class Terminal implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLastActivityAt($lastActivityAt)
     {
-        if (is_null($lastActivityAt)) {
-            throw new \InvalidArgumentException('non-nullable lastActivityAt cannot be null');
-        }
         $this->container['lastActivityAt'] = $lastActivityAt;
 
         return $this;
@@ -486,9 +471,6 @@ class Terminal implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLastTransactionAt($lastTransactionAt)
     {
-        if (is_null($lastTransactionAt)) {
-            throw new \InvalidArgumentException('non-nullable lastTransactionAt cannot be null');
-        }
         $this->container['lastTransactionAt'] = $lastTransactionAt;
 
         return $this;
@@ -513,9 +495,6 @@ class Terminal implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setModel($model)
     {
-        if (is_null($model)) {
-            throw new \InvalidArgumentException('non-nullable model cannot be null');
-        }
         $this->container['model'] = $model;
 
         return $this;
@@ -540,9 +519,6 @@ class Terminal implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRestartLocalTime($restartLocalTime)
     {
-        if (is_null($restartLocalTime)) {
-            throw new \InvalidArgumentException('non-nullable restartLocalTime cannot be null');
-        }
         $this->container['restartLocalTime'] = $restartLocalTime;
 
         return $this;
@@ -567,9 +543,6 @@ class Terminal implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSerialNumber($serialNumber)
     {
-        if (is_null($serialNumber)) {
-            throw new \InvalidArgumentException('non-nullable serialNumber cannot be null');
-        }
         $this->container['serialNumber'] = $serialNumber;
 
         return $this;

@@ -344,9 +344,6 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setCardBin($cardBin)
     {
-        if (is_null($cardBin)) {
-            throw new \InvalidArgumentException('non-nullable cardBin cannot be null');
-        }
         $this->container['cardBin'] = $cardBin;
 
         return $this;
@@ -371,9 +368,6 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setCardHolderName($cardHolderName)
     {
-        if (is_null($cardHolderName)) {
-            throw new \InvalidArgumentException('non-nullable cardHolderName cannot be null');
-        }
         $this->container['cardHolderName'] = $cardHolderName;
 
         return $this;
@@ -398,9 +392,6 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setCardIssuingBank($cardIssuingBank)
     {
-        if (is_null($cardIssuingBank)) {
-            throw new \InvalidArgumentException('non-nullable cardIssuingBank cannot be null');
-        }
         $this->container['cardIssuingBank'] = $cardIssuingBank;
 
         return $this;
@@ -425,9 +416,6 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setCardIssuingCountry($cardIssuingCountry)
     {
-        if (is_null($cardIssuingCountry)) {
-            throw new \InvalidArgumentException('non-nullable cardIssuingCountry cannot be null');
-        }
         $this->container['cardIssuingCountry'] = $cardIssuingCountry;
 
         return $this;
@@ -452,9 +440,6 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setCardIssuingCurrency($cardIssuingCurrency)
     {
-        if (is_null($cardIssuingCurrency)) {
-            throw new \InvalidArgumentException('non-nullable cardIssuingCurrency cannot be null');
-        }
         $this->container['cardIssuingCurrency'] = $cardIssuingCurrency;
 
         return $this;
@@ -479,9 +464,6 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setCardPaymentMethod($cardPaymentMethod)
     {
-        if (is_null($cardPaymentMethod)) {
-            throw new \InvalidArgumentException('non-nullable cardPaymentMethod cannot be null');
-        }
         $this->container['cardPaymentMethod'] = $cardPaymentMethod;
 
         return $this;
@@ -506,9 +488,6 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setCardSummary($cardSummary)
     {
-        if (is_null($cardSummary)) {
-            throw new \InvalidArgumentException('non-nullable cardSummary cannot be null');
-        }
         $this->container['cardSummary'] = $cardSummary;
 
         return $this;
@@ -533,9 +512,6 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setIssuerBin($issuerBin)
     {
-        if (is_null($issuerBin)) {
-            throw new \InvalidArgumentException('non-nullable issuerBin cannot be null');
-        }
         $this->container['issuerBin'] = $issuerBin;
 
         return $this;

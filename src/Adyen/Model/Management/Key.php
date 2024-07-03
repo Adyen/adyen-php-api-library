@@ -309,9 +309,6 @@ class Key implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setIdentifier($identifier)
     {
-        if (is_null($identifier)) {
-            throw new \InvalidArgumentException('non-nullable identifier cannot be null');
-        }
         $this->container['identifier'] = $identifier;
 
         return $this;
@@ -336,9 +333,6 @@ class Key implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPassphrase($passphrase)
     {
-        if (is_null($passphrase)) {
-            throw new \InvalidArgumentException('non-nullable passphrase cannot be null');
-        }
         $this->container['passphrase'] = $passphrase;
 
         return $this;
@@ -363,7 +357,6 @@ class Key implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setVersion($version)
     {
-        // Do nothing for nullable integers
         $this->container['version'] = $version;
 
         return $this;

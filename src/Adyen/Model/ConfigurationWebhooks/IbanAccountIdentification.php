@@ -329,9 +329,6 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function setIban($iban)
     {
-        if (is_null($iban)) {
-            throw new \InvalidArgumentException('non-nullable iban cannot be null');
-        }
         $this->container['iban'] = $iban;
 
         return $this;
@@ -356,9 +353,6 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

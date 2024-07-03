@@ -333,9 +333,6 @@ class Store implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAddress($address)
     {
-        if (is_null($address)) {
-            throw new \InvalidArgumentException('non-nullable address cannot be null');
-        }
         $this->container['address'] = $address;
 
         return $this;
@@ -360,9 +357,6 @@ class Store implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -387,9 +381,6 @@ class Store implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setInStoreTerminals($inStoreTerminals)
     {
-        if (is_null($inStoreTerminals)) {
-            throw new \InvalidArgumentException('non-nullable inStoreTerminals cannot be null');
-        }
         $this->container['inStoreTerminals'] = $inStoreTerminals;
 
         return $this;
@@ -414,9 +405,6 @@ class Store implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMerchantAccountCode($merchantAccountCode)
     {
-        if (is_null($merchantAccountCode)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccountCode cannot be null');
-        }
         $this->container['merchantAccountCode'] = $merchantAccountCode;
 
         return $this;
@@ -441,9 +429,6 @@ class Store implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $this->container['status'] = $status;
 
         return $this;
@@ -468,9 +453,6 @@ class Store implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStore($store)
     {
-        if (is_null($store)) {
-            throw new \InvalidArgumentException('non-nullable store cannot be null');
-        }
         $this->container['store'] = $store;
 
         return $this;

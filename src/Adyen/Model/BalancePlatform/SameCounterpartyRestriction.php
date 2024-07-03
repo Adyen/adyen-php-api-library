@@ -305,9 +305,6 @@ class SameCounterpartyRestriction implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setOperation($operation)
     {
-        if (is_null($operation)) {
-            throw new \InvalidArgumentException('non-nullable operation cannot be null');
-        }
         $this->container['operation'] = $operation;
 
         return $this;
@@ -332,9 +329,6 @@ class SameCounterpartyRestriction implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setValue($value)
     {
-        if (is_null($value)) {
-            throw new \InvalidArgumentException('non-nullable value cannot be null');
-        }
         $this->container['value'] = $value;
 
         return $this;

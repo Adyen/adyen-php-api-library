@@ -439,9 +439,6 @@ class AccountHolderCapability implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setAllowed($allowed)
     {
-        if (is_null($allowed)) {
-            throw new \InvalidArgumentException('non-nullable allowed cannot be null');
-        }
         $this->container['allowed'] = $allowed;
 
         return $this;
@@ -466,9 +463,6 @@ class AccountHolderCapability implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setAllowedLevel($allowedLevel)
     {
-        if (is_null($allowedLevel)) {
-            throw new \InvalidArgumentException('non-nullable allowedLevel cannot be null');
-        }
         $allowedValues = $this->getAllowedLevelAllowableValues();
         if (!in_array($allowedLevel, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -503,9 +497,6 @@ class AccountHolderCapability implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setAllowedSettings($allowedSettings)
     {
-        if (is_null($allowedSettings)) {
-            throw new \InvalidArgumentException('non-nullable allowedSettings cannot be null');
-        }
         $this->container['allowedSettings'] = $allowedSettings;
 
         return $this;
@@ -530,9 +521,6 @@ class AccountHolderCapability implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setEnabled($enabled)
     {
-        if (is_null($enabled)) {
-            throw new \InvalidArgumentException('non-nullable enabled cannot be null');
-        }
         $this->container['enabled'] = $enabled;
 
         return $this;
@@ -557,9 +545,6 @@ class AccountHolderCapability implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setProblems($problems)
     {
-        if (is_null($problems)) {
-            throw new \InvalidArgumentException('non-nullable problems cannot be null');
-        }
         $this->container['problems'] = $problems;
 
         return $this;
@@ -584,9 +569,6 @@ class AccountHolderCapability implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setRequested($requested)
     {
-        if (is_null($requested)) {
-            throw new \InvalidArgumentException('non-nullable requested cannot be null');
-        }
         $this->container['requested'] = $requested;
 
         return $this;
@@ -611,9 +593,6 @@ class AccountHolderCapability implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setRequestedLevel($requestedLevel)
     {
-        if (is_null($requestedLevel)) {
-            throw new \InvalidArgumentException('non-nullable requestedLevel cannot be null');
-        }
         $allowedValues = $this->getRequestedLevelAllowableValues();
         if (!in_array($requestedLevel, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -648,9 +627,6 @@ class AccountHolderCapability implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setRequestedSettings($requestedSettings)
     {
-        if (is_null($requestedSettings)) {
-            throw new \InvalidArgumentException('non-nullable requestedSettings cannot be null');
-        }
         $this->container['requestedSettings'] = $requestedSettings;
 
         return $this;
@@ -675,9 +651,6 @@ class AccountHolderCapability implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setTransferInstruments($transferInstruments)
     {
-        if (is_null($transferInstruments)) {
-            throw new \InvalidArgumentException('non-nullable transferInstruments cannot be null');
-        }
         $this->container['transferInstruments'] = $transferInstruments;
 
         return $this;
@@ -702,9 +675,6 @@ class AccountHolderCapability implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setVerificationStatus($verificationStatus)
     {
-        if (is_null($verificationStatus)) {
-            throw new \InvalidArgumentException('non-nullable verificationStatus cannot be null');
-        }
         $allowedValues = $this->getVerificationStatusAllowableValues();
         if (!in_array($verificationStatus, $allowedValues, true)) {
             throw new \InvalidArgumentException(

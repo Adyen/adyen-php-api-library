@@ -323,9 +323,6 @@ class UninstallAndroidCertificateDetails implements ModelInterface, ArrayAccess,
      */
     public function setCertificateId($certificateId)
     {
-        if (is_null($certificateId)) {
-            throw new \InvalidArgumentException('non-nullable certificateId cannot be null');
-        }
         $this->container['certificateId'] = $certificateId;
 
         return $this;
@@ -350,9 +347,6 @@ class UninstallAndroidCertificateDetails implements ModelInterface, ArrayAccess,
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

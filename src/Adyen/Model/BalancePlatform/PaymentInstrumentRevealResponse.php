@@ -298,9 +298,6 @@ class PaymentInstrumentRevealResponse implements ModelInterface, ArrayAccess, \J
      */
     public function setEncryptedData($encryptedData)
     {
-        if (is_null($encryptedData)) {
-            throw new \InvalidArgumentException('non-nullable encryptedData cannot be null');
-        }
         $this->container['encryptedData'] = $encryptedData;
 
         return $this;

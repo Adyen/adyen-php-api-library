@@ -331,9 +331,6 @@ class Duration implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUnit($unit)
     {
-        if (is_null($unit)) {
-            throw new \InvalidArgumentException('non-nullable unit cannot be null');
-        }
         $allowedValues = $this->getUnitAllowableValues();
         if (!in_array($unit, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -368,7 +365,6 @@ class Duration implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setValue($value)
     {
-        // Do nothing for nullable integers
         $this->container['value'] = $value;
 
         return $this;

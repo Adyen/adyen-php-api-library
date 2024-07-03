@@ -344,9 +344,6 @@ class TerminalOrder implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBillingEntity($billingEntity)
     {
-        if (is_null($billingEntity)) {
-            throw new \InvalidArgumentException('non-nullable billingEntity cannot be null');
-        }
         $this->container['billingEntity'] = $billingEntity;
 
         return $this;
@@ -371,9 +368,6 @@ class TerminalOrder implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCustomerOrderReference($customerOrderReference)
     {
-        if (is_null($customerOrderReference)) {
-            throw new \InvalidArgumentException('non-nullable customerOrderReference cannot be null');
-        }
         $this->container['customerOrderReference'] = $customerOrderReference;
 
         return $this;
@@ -398,9 +392,6 @@ class TerminalOrder implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -425,9 +416,6 @@ class TerminalOrder implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setItems($items)
     {
-        if (is_null($items)) {
-            throw new \InvalidArgumentException('non-nullable items cannot be null');
-        }
         $this->container['items'] = $items;
 
         return $this;
@@ -452,9 +440,6 @@ class TerminalOrder implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setOrderDate($orderDate)
     {
-        if (is_null($orderDate)) {
-            throw new \InvalidArgumentException('non-nullable orderDate cannot be null');
-        }
         $this->container['orderDate'] = $orderDate;
 
         return $this;
@@ -479,9 +464,6 @@ class TerminalOrder implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setShippingLocation($shippingLocation)
     {
-        if (is_null($shippingLocation)) {
-            throw new \InvalidArgumentException('non-nullable shippingLocation cannot be null');
-        }
         $this->container['shippingLocation'] = $shippingLocation;
 
         return $this;
@@ -506,9 +488,6 @@ class TerminalOrder implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $this->container['status'] = $status;
 
         return $this;
@@ -533,9 +512,6 @@ class TerminalOrder implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTrackingUrl($trackingUrl)
     {
-        if (is_null($trackingUrl)) {
-            throw new \InvalidArgumentException('non-nullable trackingUrl cannot be null');
-        }
         $this->container['trackingUrl'] = $trackingUrl;
 
         return $this;

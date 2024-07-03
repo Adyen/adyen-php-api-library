@@ -400,9 +400,6 @@ class ReceiptPrinting implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMerchantApproved($merchantApproved)
     {
-        if (is_null($merchantApproved)) {
-            throw new \InvalidArgumentException('non-nullable merchantApproved cannot be null');
-        }
         $this->container['merchantApproved'] = $merchantApproved;
 
         return $this;
@@ -427,9 +424,6 @@ class ReceiptPrinting implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMerchantCancelled($merchantCancelled)
     {
-        if (is_null($merchantCancelled)) {
-            throw new \InvalidArgumentException('non-nullable merchantCancelled cannot be null');
-        }
         $this->container['merchantCancelled'] = $merchantCancelled;
 
         return $this;
@@ -454,9 +448,6 @@ class ReceiptPrinting implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMerchantCaptureApproved($merchantCaptureApproved)
     {
-        if (is_null($merchantCaptureApproved)) {
-            throw new \InvalidArgumentException('non-nullable merchantCaptureApproved cannot be null');
-        }
         $this->container['merchantCaptureApproved'] = $merchantCaptureApproved;
 
         return $this;
@@ -481,9 +472,6 @@ class ReceiptPrinting implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMerchantCaptureRefused($merchantCaptureRefused)
     {
-        if (is_null($merchantCaptureRefused)) {
-            throw new \InvalidArgumentException('non-nullable merchantCaptureRefused cannot be null');
-        }
         $this->container['merchantCaptureRefused'] = $merchantCaptureRefused;
 
         return $this;
@@ -508,9 +496,6 @@ class ReceiptPrinting implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMerchantRefundApproved($merchantRefundApproved)
     {
-        if (is_null($merchantRefundApproved)) {
-            throw new \InvalidArgumentException('non-nullable merchantRefundApproved cannot be null');
-        }
         $this->container['merchantRefundApproved'] = $merchantRefundApproved;
 
         return $this;
@@ -535,9 +520,6 @@ class ReceiptPrinting implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMerchantRefundRefused($merchantRefundRefused)
     {
-        if (is_null($merchantRefundRefused)) {
-            throw new \InvalidArgumentException('non-nullable merchantRefundRefused cannot be null');
-        }
         $this->container['merchantRefundRefused'] = $merchantRefundRefused;
 
         return $this;
@@ -562,9 +544,6 @@ class ReceiptPrinting implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMerchantRefused($merchantRefused)
     {
-        if (is_null($merchantRefused)) {
-            throw new \InvalidArgumentException('non-nullable merchantRefused cannot be null');
-        }
         $this->container['merchantRefused'] = $merchantRefused;
 
         return $this;
@@ -589,9 +568,6 @@ class ReceiptPrinting implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMerchantVoid($merchantVoid)
     {
-        if (is_null($merchantVoid)) {
-            throw new \InvalidArgumentException('non-nullable merchantVoid cannot be null');
-        }
         $this->container['merchantVoid'] = $merchantVoid;
 
         return $this;
@@ -616,9 +592,6 @@ class ReceiptPrinting implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setShopperApproved($shopperApproved)
     {
-        if (is_null($shopperApproved)) {
-            throw new \InvalidArgumentException('non-nullable shopperApproved cannot be null');
-        }
         $this->container['shopperApproved'] = $shopperApproved;
 
         return $this;
@@ -643,9 +616,6 @@ class ReceiptPrinting implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setShopperCancelled($shopperCancelled)
     {
-        if (is_null($shopperCancelled)) {
-            throw new \InvalidArgumentException('non-nullable shopperCancelled cannot be null');
-        }
         $this->container['shopperCancelled'] = $shopperCancelled;
 
         return $this;
@@ -670,9 +640,6 @@ class ReceiptPrinting implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setShopperCaptureApproved($shopperCaptureApproved)
     {
-        if (is_null($shopperCaptureApproved)) {
-            throw new \InvalidArgumentException('non-nullable shopperCaptureApproved cannot be null');
-        }
         $this->container['shopperCaptureApproved'] = $shopperCaptureApproved;
 
         return $this;
@@ -697,9 +664,6 @@ class ReceiptPrinting implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setShopperCaptureRefused($shopperCaptureRefused)
     {
-        if (is_null($shopperCaptureRefused)) {
-            throw new \InvalidArgumentException('non-nullable shopperCaptureRefused cannot be null');
-        }
         $this->container['shopperCaptureRefused'] = $shopperCaptureRefused;
 
         return $this;
@@ -724,9 +688,6 @@ class ReceiptPrinting implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setShopperRefundApproved($shopperRefundApproved)
     {
-        if (is_null($shopperRefundApproved)) {
-            throw new \InvalidArgumentException('non-nullable shopperRefundApproved cannot be null');
-        }
         $this->container['shopperRefundApproved'] = $shopperRefundApproved;
 
         return $this;
@@ -751,9 +712,6 @@ class ReceiptPrinting implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setShopperRefundRefused($shopperRefundRefused)
     {
-        if (is_null($shopperRefundRefused)) {
-            throw new \InvalidArgumentException('non-nullable shopperRefundRefused cannot be null');
-        }
         $this->container['shopperRefundRefused'] = $shopperRefundRefused;
 
         return $this;
@@ -778,9 +736,6 @@ class ReceiptPrinting implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setShopperRefused($shopperRefused)
     {
-        if (is_null($shopperRefused)) {
-            throw new \InvalidArgumentException('non-nullable shopperRefused cannot be null');
-        }
         $this->container['shopperRefused'] = $shopperRefused;
 
         return $this;
@@ -805,9 +760,6 @@ class ReceiptPrinting implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setShopperVoid($shopperVoid)
     {
-        if (is_null($shopperVoid)) {
-            throw new \InvalidArgumentException('non-nullable shopperVoid cannot be null');
-        }
         $this->container['shopperVoid'] = $shopperVoid;
 
         return $this;

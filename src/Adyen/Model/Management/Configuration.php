@@ -322,9 +322,6 @@ class Configuration implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBrand($brand)
     {
-        if (is_null($brand)) {
-            throw new \InvalidArgumentException('non-nullable brand cannot be null');
-        }
         $this->container['brand'] = $brand;
 
         return $this;
@@ -349,9 +346,6 @@ class Configuration implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCountry($country)
     {
-        if (is_null($country)) {
-            throw new \InvalidArgumentException('non-nullable country cannot be null');
-        }
         $this->container['country'] = $country;
 
         return $this;
@@ -376,9 +370,6 @@ class Configuration implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCurrencies($currencies)
     {
-        if (is_null($currencies)) {
-            throw new \InvalidArgumentException('non-nullable currencies cannot be null');
-        }
         $this->container['currencies'] = $currencies;
 
         return $this;
@@ -403,9 +394,6 @@ class Configuration implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSources($sources)
     {
-        if (is_null($sources)) {
-            throw new \InvalidArgumentException('non-nullable sources cannot be null');
-        }
         $this->container['sources'] = $sources;
 
         return $this;

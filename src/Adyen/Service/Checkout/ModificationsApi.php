@@ -55,22 +55,6 @@ class ModificationsApi extends Service
     }
 
     /**
-    * Update an authorised amount
-    *
-    * @param string $paymentPspReference
-    * @param \Adyen\Model\Checkout\PaymentAmountUpdateRequest $paymentAmountUpdateRequest
-    * @param array|null $requestOptions
-    * @return \Adyen\Model\Checkout\PaymentAmountUpdateResponse
-    * @throws AdyenException
-    */
-    public function updateAuthorisedAmount(string $paymentPspReference, \Adyen\Model\Checkout\PaymentAmountUpdateRequest $paymentAmountUpdateRequest, array $requestOptions = null): \Adyen\Model\Checkout\PaymentAmountUpdateResponse
-    {
-        $endpoint = $this->baseURL . str_replace(['{paymentPspReference}'], [$paymentPspReference], "/payments/{paymentPspReference}/amountUpdates");
-        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $paymentAmountUpdateRequest->jsonSerialize(), $requestOptions);
-        return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\PaymentAmountUpdateResponse::class);
-    }
-
-    /**
     * Cancel an authorised payment
     *
     * @param string $paymentPspReference
@@ -132,5 +116,21 @@ class ModificationsApi extends Service
         $endpoint = $this->baseURL . str_replace(['{paymentPspReference}'], [$paymentPspReference], "/payments/{paymentPspReference}/reversals");
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $paymentReversalRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\PaymentReversalResponse::class);
+    }
+
+    /**
+    * Update an authorised amount
+    *
+    * @param string $paymentPspReference
+    * @param \Adyen\Model\Checkout\PaymentAmountUpdateRequest $paymentAmountUpdateRequest
+    * @param array|null $requestOptions
+    * @return \Adyen\Model\Checkout\PaymentAmountUpdateResponse
+    * @throws AdyenException
+    */
+    public function updateAuthorisedAmount(string $paymentPspReference, \Adyen\Model\Checkout\PaymentAmountUpdateRequest $paymentAmountUpdateRequest, array $requestOptions = null): \Adyen\Model\Checkout\PaymentAmountUpdateResponse
+    {
+        $endpoint = $this->baseURL . str_replace(['{paymentPspReference}'], [$paymentPspReference], "/payments/{paymentPspReference}/amountUpdates");
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $paymentAmountUpdateRequest->jsonSerialize(), $requestOptions);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\PaymentAmountUpdateResponse::class);
     }
 }

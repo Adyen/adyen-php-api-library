@@ -308,9 +308,6 @@ class RevealPinRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEncryptedKey($encryptedKey)
     {
-        if (is_null($encryptedKey)) {
-            throw new \InvalidArgumentException('non-nullable encryptedKey cannot be null');
-        }
         $this->container['encryptedKey'] = $encryptedKey;
 
         return $this;
@@ -335,9 +332,6 @@ class RevealPinRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPaymentInstrumentId($paymentInstrumentId)
     {
-        if (is_null($paymentInstrumentId)) {
-            throw new \InvalidArgumentException('non-nullable paymentInstrumentId cannot be null');
-        }
         $this->container['paymentInstrumentId'] = $paymentInstrumentId;
 
         return $this;

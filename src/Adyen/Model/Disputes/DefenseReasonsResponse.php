@@ -305,9 +305,6 @@ class DefenseReasonsResponse implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setDefenseReasons($defenseReasons)
     {
-        if (is_null($defenseReasons)) {
-            throw new \InvalidArgumentException('non-nullable defenseReasons cannot be null');
-        }
         $this->container['defenseReasons'] = $defenseReasons;
 
         return $this;
@@ -332,9 +329,6 @@ class DefenseReasonsResponse implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setDisputeServiceResult($disputeServiceResult)
     {
-        if (is_null($disputeServiceResult)) {
-            throw new \InvalidArgumentException('non-nullable disputeServiceResult cannot be null');
-        }
         $this->container['disputeServiceResult'] = $disputeServiceResult;
 
         return $this;

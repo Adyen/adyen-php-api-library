@@ -316,9 +316,6 @@ class ScheduleTerminalActionsRequest implements ModelInterface, ArrayAccess, \Js
      */
     public function setActionDetails($actionDetails)
     {
-        if (is_null($actionDetails)) {
-            throw new \InvalidArgumentException('non-nullable actionDetails cannot be null');
-        }
         $this->container['actionDetails'] = $actionDetails;
 
         return $this;
@@ -343,9 +340,6 @@ class ScheduleTerminalActionsRequest implements ModelInterface, ArrayAccess, \Js
      */
     public function setScheduledAt($scheduledAt)
     {
-        if (is_null($scheduledAt)) {
-            throw new \InvalidArgumentException('non-nullable scheduledAt cannot be null');
-        }
         $this->container['scheduledAt'] = $scheduledAt;
 
         return $this;
@@ -370,9 +364,6 @@ class ScheduleTerminalActionsRequest implements ModelInterface, ArrayAccess, \Js
      */
     public function setStoreId($storeId)
     {
-        if (is_null($storeId)) {
-            throw new \InvalidArgumentException('non-nullable storeId cannot be null');
-        }
         $this->container['storeId'] = $storeId;
 
         return $this;
@@ -397,9 +388,6 @@ class ScheduleTerminalActionsRequest implements ModelInterface, ArrayAccess, \Js
      */
     public function setTerminalIds($terminalIds)
     {
-        if (is_null($terminalIds)) {
-            throw new \InvalidArgumentException('non-nullable terminalIds cannot be null');
-        }
         $this->container['terminalIds'] = $terminalIds;
 
         return $this;

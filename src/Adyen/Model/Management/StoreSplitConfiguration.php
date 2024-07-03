@@ -302,9 +302,6 @@ class StoreSplitConfiguration implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setBalanceAccountId($balanceAccountId)
     {
-        if (is_null($balanceAccountId)) {
-            throw new \InvalidArgumentException('non-nullable balanceAccountId cannot be null');
-        }
         $this->container['balanceAccountId'] = $balanceAccountId;
 
         return $this;
@@ -329,9 +326,6 @@ class StoreSplitConfiguration implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setSplitConfigurationId($splitConfigurationId)
     {
-        if (is_null($splitConfigurationId)) {
-            throw new \InvalidArgumentException('non-nullable splitConfigurationId cannot be null');
-        }
         $this->container['splitConfigurationId'] = $splitConfigurationId;
 
         return $this;

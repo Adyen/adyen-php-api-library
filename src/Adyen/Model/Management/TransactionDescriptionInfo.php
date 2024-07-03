@@ -327,9 +327,6 @@ class TransactionDescriptionInfo implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setDoingBusinessAsName($doingBusinessAsName)
     {
-        if (is_null($doingBusinessAsName)) {
-            throw new \InvalidArgumentException('non-nullable doingBusinessAsName cannot be null');
-        }
         $this->container['doingBusinessAsName'] = $doingBusinessAsName;
 
         return $this;
@@ -354,9 +351,6 @@ class TransactionDescriptionInfo implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

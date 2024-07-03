@@ -309,9 +309,6 @@ class GeneratePciDescriptionResponse implements ModelInterface, ArrayAccess, \Js
      */
     public function setContent($content)
     {
-        if (is_null($content)) {
-            throw new \InvalidArgumentException('non-nullable content cannot be null');
-        }
         $this->container['content'] = $content;
 
         return $this;
@@ -336,9 +333,6 @@ class GeneratePciDescriptionResponse implements ModelInterface, ArrayAccess, \Js
      */
     public function setLanguage($language)
     {
-        if (is_null($language)) {
-            throw new \InvalidArgumentException('non-nullable language cannot be null');
-        }
         $this->container['language'] = $language;
 
         return $this;
@@ -363,9 +357,6 @@ class GeneratePciDescriptionResponse implements ModelInterface, ArrayAccess, \Js
      */
     public function setPciTemplateReferences($pciTemplateReferences)
     {
-        if (is_null($pciTemplateReferences)) {
-            throw new \InvalidArgumentException('non-nullable pciTemplateReferences cannot be null');
-        }
         $this->container['pciTemplateReferences'] = $pciTemplateReferences;
 
         return $this;

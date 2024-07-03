@@ -334,9 +334,6 @@ class DocumentPage implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPageName($pageName)
     {
-        if (is_null($pageName)) {
-            throw new \InvalidArgumentException('non-nullable pageName cannot be null');
-        }
         $this->container['pageName'] = $pageName;
 
         return $this;
@@ -361,7 +358,6 @@ class DocumentPage implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPageNumber($pageNumber)
     {
-        // Do nothing for nullable integers
         $this->container['pageNumber'] = $pageNumber;
 
         return $this;
@@ -386,9 +382,6 @@ class DocumentPage implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

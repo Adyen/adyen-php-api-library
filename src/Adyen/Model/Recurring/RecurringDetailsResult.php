@@ -316,9 +316,6 @@ class RecurringDetailsResult implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setCreationDate($creationDate)
     {
-        if (is_null($creationDate)) {
-            throw new \InvalidArgumentException('non-nullable creationDate cannot be null');
-        }
         $this->container['creationDate'] = $creationDate;
 
         return $this;
@@ -343,9 +340,6 @@ class RecurringDetailsResult implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setDetails($details)
     {
-        if (is_null($details)) {
-            throw new \InvalidArgumentException('non-nullable details cannot be null');
-        }
         $this->container['details'] = $details;
 
         return $this;
@@ -370,9 +364,6 @@ class RecurringDetailsResult implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setLastKnownShopperEmail($lastKnownShopperEmail)
     {
-        if (is_null($lastKnownShopperEmail)) {
-            throw new \InvalidArgumentException('non-nullable lastKnownShopperEmail cannot be null');
-        }
         $this->container['lastKnownShopperEmail'] = $lastKnownShopperEmail;
 
         return $this;
@@ -397,9 +388,6 @@ class RecurringDetailsResult implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setShopperReference($shopperReference)
     {
-        if (is_null($shopperReference)) {
-            throw new \InvalidArgumentException('non-nullable shopperReference cannot be null');
-        }
         $this->container['shopperReference'] = $shopperReference;
 
         return $this;

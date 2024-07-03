@@ -309,9 +309,6 @@ class Opi implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEnablePayAtTable($enablePayAtTable)
     {
-        if (is_null($enablePayAtTable)) {
-            throw new \InvalidArgumentException('non-nullable enablePayAtTable cannot be null');
-        }
         $this->container['enablePayAtTable'] = $enablePayAtTable;
 
         return $this;
@@ -336,9 +333,6 @@ class Opi implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPayAtTableStoreNumber($payAtTableStoreNumber)
     {
-        if (is_null($payAtTableStoreNumber)) {
-            throw new \InvalidArgumentException('non-nullable payAtTableStoreNumber cannot be null');
-        }
         $this->container['payAtTableStoreNumber'] = $payAtTableStoreNumber;
 
         return $this;
@@ -363,9 +357,6 @@ class Opi implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPayAtTableURL($payAtTableURL)
     {
-        if (is_null($payAtTableURL)) {
-            throw new \InvalidArgumentException('non-nullable payAtTableURL cannot be null');
-        }
         $this->container['payAtTableURL'] = $payAtTableURL;
 
         return $this;

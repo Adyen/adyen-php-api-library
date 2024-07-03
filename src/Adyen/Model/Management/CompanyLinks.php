@@ -319,9 +319,6 @@ class CompanyLinks implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setApiCredentials($apiCredentials)
     {
-        if (is_null($apiCredentials)) {
-            throw new \InvalidArgumentException('non-nullable apiCredentials cannot be null');
-        }
         $this->container['apiCredentials'] = $apiCredentials;
 
         return $this;
@@ -346,9 +343,6 @@ class CompanyLinks implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSelf($self)
     {
-        if (is_null($self)) {
-            throw new \InvalidArgumentException('non-nullable self cannot be null');
-        }
         $this->container['self'] = $self;
 
         return $this;
@@ -373,9 +367,6 @@ class CompanyLinks implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUsers($users)
     {
-        if (is_null($users)) {
-            throw new \InvalidArgumentException('non-nullable users cannot be null');
-        }
         $this->container['users'] = $users;
 
         return $this;
@@ -400,9 +391,6 @@ class CompanyLinks implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setWebhooks($webhooks)
     {
-        if (is_null($webhooks)) {
-            throw new \InvalidArgumentException('non-nullable webhooks cannot be null');
-        }
         $this->container['webhooks'] = $webhooks;
 
         return $this;

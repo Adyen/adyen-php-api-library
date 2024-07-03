@@ -309,9 +309,6 @@ class TransactionEventViolation implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function setReason($reason)
     {
-        if (is_null($reason)) {
-            throw new \InvalidArgumentException('non-nullable reason cannot be null');
-        }
         $this->container['reason'] = $reason;
 
         return $this;
@@ -336,9 +333,6 @@ class TransactionEventViolation implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function setTransactionRule($transactionRule)
     {
-        if (is_null($transactionRule)) {
-            throw new \InvalidArgumentException('non-nullable transactionRule cannot be null');
-        }
         $this->container['transactionRule'] = $transactionRule;
 
         return $this;
@@ -363,9 +357,6 @@ class TransactionEventViolation implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function setTransactionRuleSource($transactionRuleSource)
     {
-        if (is_null($transactionRuleSource)) {
-            throw new \InvalidArgumentException('non-nullable transactionRuleSource cannot be null');
-        }
         $this->container['transactionRuleSource'] = $transactionRuleSource;
 
         return $this;

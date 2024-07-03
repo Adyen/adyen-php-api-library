@@ -330,9 +330,6 @@ class InternalCategoryData implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setModificationMerchantReference($modificationMerchantReference)
     {
-        if (is_null($modificationMerchantReference)) {
-            throw new \InvalidArgumentException('non-nullable modificationMerchantReference cannot be null');
-        }
         $this->container['modificationMerchantReference'] = $modificationMerchantReference;
 
         return $this;
@@ -357,9 +354,6 @@ class InternalCategoryData implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setModificationPspReference($modificationPspReference)
     {
-        if (is_null($modificationPspReference)) {
-            throw new \InvalidArgumentException('non-nullable modificationPspReference cannot be null');
-        }
         $this->container['modificationPspReference'] = $modificationPspReference;
 
         return $this;
@@ -384,9 +378,6 @@ class InternalCategoryData implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
