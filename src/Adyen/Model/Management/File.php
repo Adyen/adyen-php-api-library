@@ -308,9 +308,6 @@ class File implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setData($data)
     {
-        if (is_null($data)) {
-            throw new \InvalidArgumentException('non-nullable data cannot be null');
-        }
         $this->container['data'] = $data;
 
         return $this;
@@ -335,9 +332,6 @@ class File implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setName($name)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
         $this->container['name'] = $name;
 
         return $this;

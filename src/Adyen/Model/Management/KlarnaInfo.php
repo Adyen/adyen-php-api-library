@@ -352,9 +352,6 @@ class KlarnaInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAutoCapture($autoCapture)
     {
-        if (is_null($autoCapture)) {
-            throw new \InvalidArgumentException('non-nullable autoCapture cannot be null');
-        }
         $this->container['autoCapture'] = $autoCapture;
 
         return $this;
@@ -379,9 +376,6 @@ class KlarnaInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDisputeEmail($disputeEmail)
     {
-        if (is_null($disputeEmail)) {
-            throw new \InvalidArgumentException('non-nullable disputeEmail cannot be null');
-        }
         $this->container['disputeEmail'] = $disputeEmail;
 
         return $this;
@@ -406,9 +400,6 @@ class KlarnaInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRegion($region)
     {
-        if (is_null($region)) {
-            throw new \InvalidArgumentException('non-nullable region cannot be null');
-        }
         $allowedValues = $this->getRegionAllowableValues();
         if (!in_array($region, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -443,9 +434,6 @@ class KlarnaInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSupportEmail($supportEmail)
     {
-        if (is_null($supportEmail)) {
-            throw new \InvalidArgumentException('non-nullable supportEmail cannot be null');
-        }
         $this->container['supportEmail'] = $supportEmail;
 
         return $this;

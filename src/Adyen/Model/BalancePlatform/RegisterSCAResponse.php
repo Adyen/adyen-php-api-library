@@ -316,9 +316,6 @@ class RegisterSCAResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -343,9 +340,6 @@ class RegisterSCAResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setPaymentInstrumentId($paymentInstrumentId)
     {
-        if (is_null($paymentInstrumentId)) {
-            throw new \InvalidArgumentException('non-nullable paymentInstrumentId cannot be null');
-        }
         $this->container['paymentInstrumentId'] = $paymentInstrumentId;
 
         return $this;
@@ -370,9 +364,6 @@ class RegisterSCAResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setSdkInput($sdkInput)
     {
-        if (is_null($sdkInput)) {
-            throw new \InvalidArgumentException('non-nullable sdkInput cannot be null');
-        }
         $this->container['sdkInput'] = $sdkInput;
 
         return $this;
@@ -397,9 +388,6 @@ class RegisterSCAResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setSuccess($success)
     {
-        if (is_null($success)) {
-            throw new \InvalidArgumentException('non-nullable success cannot be null');
-        }
         $this->container['success'] = $success;
 
         return $this;

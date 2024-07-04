@@ -295,9 +295,6 @@ class Refunds implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setReferenced($referenced)
     {
-        if (is_null($referenced)) {
-            throw new \InvalidArgumentException('non-nullable referenced cannot be null');
-        }
         $this->container['referenced'] = $referenced;
 
         return $this;

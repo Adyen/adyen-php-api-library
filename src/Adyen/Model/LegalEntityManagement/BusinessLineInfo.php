@@ -403,9 +403,6 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCapability($capability)
     {
-        if (is_null($capability)) {
-            throw new \InvalidArgumentException('non-nullable capability cannot be null');
-        }
         $allowedValues = $this->getCapabilityAllowableValues();
         if (!in_array($capability, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -440,9 +437,6 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setIndustryCode($industryCode)
     {
-        if (is_null($industryCode)) {
-            throw new \InvalidArgumentException('non-nullable industryCode cannot be null');
-        }
         $this->container['industryCode'] = $industryCode;
 
         return $this;
@@ -467,9 +461,6 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLegalEntityId($legalEntityId)
     {
-        if (is_null($legalEntityId)) {
-            throw new \InvalidArgumentException('non-nullable legalEntityId cannot be null');
-        }
         $this->container['legalEntityId'] = $legalEntityId;
 
         return $this;
@@ -494,9 +485,6 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSalesChannels($salesChannels)
     {
-        if (is_null($salesChannels)) {
-            throw new \InvalidArgumentException('non-nullable salesChannels cannot be null');
-        }
         $this->container['salesChannels'] = $salesChannels;
 
         return $this;
@@ -521,9 +509,6 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setService($service)
     {
-        if (is_null($service)) {
-            throw new \InvalidArgumentException('non-nullable service cannot be null');
-        }
         $allowedValues = $this->getServiceAllowableValues();
         if (!in_array($service, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -558,9 +543,6 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSourceOfFunds($sourceOfFunds)
     {
-        if (is_null($sourceOfFunds)) {
-            throw new \InvalidArgumentException('non-nullable sourceOfFunds cannot be null');
-        }
         $this->container['sourceOfFunds'] = $sourceOfFunds;
 
         return $this;
@@ -585,9 +567,6 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setWebData($webData)
     {
-        if (is_null($webData)) {
-            throw new \InvalidArgumentException('non-nullable webData cannot be null');
-        }
         $this->container['webData'] = $webData;
 
         return $this;
@@ -612,9 +591,6 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setWebDataExemption($webDataExemption)
     {
-        if (is_null($webDataExemption)) {
-            throw new \InvalidArgumentException('non-nullable webDataExemption cannot be null');
-        }
         $this->container['webDataExemption'] = $webDataExemption;
 
         return $this;

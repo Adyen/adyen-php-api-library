@@ -305,9 +305,6 @@ class SplitAmount implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCurrency($currency)
     {
-        if (is_null($currency)) {
-            throw new \InvalidArgumentException('non-nullable currency cannot be null');
-        }
         $this->container['currency'] = $currency;
 
         return $this;
@@ -332,9 +329,6 @@ class SplitAmount implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setValue($value)
     {
-        if (is_null($value)) {
-            throw new \InvalidArgumentException('non-nullable value cannot be null');
-        }
         $this->container['value'] = $value;
 
         return $this;

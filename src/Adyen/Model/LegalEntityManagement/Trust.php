@@ -463,9 +463,6 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCountryOfGoverningLaw($countryOfGoverningLaw)
     {
-        if (is_null($countryOfGoverningLaw)) {
-            throw new \InvalidArgumentException('non-nullable countryOfGoverningLaw cannot be null');
-        }
         $this->container['countryOfGoverningLaw'] = $countryOfGoverningLaw;
 
         return $this;
@@ -490,9 +487,6 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDateOfIncorporation($dateOfIncorporation)
     {
-        if (is_null($dateOfIncorporation)) {
-            throw new \InvalidArgumentException('non-nullable dateOfIncorporation cannot be null');
-        }
         $this->container['dateOfIncorporation'] = $dateOfIncorporation;
 
         return $this;
@@ -517,9 +511,6 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDoingBusinessAs($doingBusinessAs)
     {
-        if (is_null($doingBusinessAs)) {
-            throw new \InvalidArgumentException('non-nullable doingBusinessAs cannot be null');
-        }
         $this->container['doingBusinessAs'] = $doingBusinessAs;
 
         return $this;
@@ -544,9 +535,6 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setName($name)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
         $this->container['name'] = $name;
 
         return $this;
@@ -571,9 +559,6 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPrincipalPlaceOfBusiness($principalPlaceOfBusiness)
     {
-        if (is_null($principalPlaceOfBusiness)) {
-            throw new \InvalidArgumentException('non-nullable principalPlaceOfBusiness cannot be null');
-        }
         $this->container['principalPlaceOfBusiness'] = $principalPlaceOfBusiness;
 
         return $this;
@@ -598,9 +583,6 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRegisteredAddress($registeredAddress)
     {
-        if (is_null($registeredAddress)) {
-            throw new \InvalidArgumentException('non-nullable registeredAddress cannot be null');
-        }
         $this->container['registeredAddress'] = $registeredAddress;
 
         return $this;
@@ -625,9 +607,6 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRegistrationNumber($registrationNumber)
     {
-        if (is_null($registrationNumber)) {
-            throw new \InvalidArgumentException('non-nullable registrationNumber cannot be null');
-        }
         $this->container['registrationNumber'] = $registrationNumber;
 
         return $this;
@@ -686,9 +665,6 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTaxInformation($taxInformation)
     {
-        if (is_null($taxInformation)) {
-            throw new \InvalidArgumentException('non-nullable taxInformation cannot be null');
-        }
         $this->container['taxInformation'] = $taxInformation;
 
         return $this;
@@ -713,9 +689,6 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -750,9 +723,6 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUndefinedBeneficiaryInfo($undefinedBeneficiaryInfo)
     {
-        if (is_null($undefinedBeneficiaryInfo)) {
-            throw new \InvalidArgumentException('non-nullable undefinedBeneficiaryInfo cannot be null');
-        }
         $this->container['undefinedBeneficiaryInfo'] = $undefinedBeneficiaryInfo;
 
         return $this;
@@ -777,9 +747,6 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setVatAbsenceReason($vatAbsenceReason)
     {
-        if (is_null($vatAbsenceReason)) {
-            throw new \InvalidArgumentException('non-nullable vatAbsenceReason cannot be null');
-        }
         $allowedValues = $this->getVatAbsenceReasonAllowableValues();
         if (!in_array($vatAbsenceReason, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -814,9 +781,6 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setVatNumber($vatNumber)
     {
-        if (is_null($vatNumber)) {
-            throw new \InvalidArgumentException('non-nullable vatNumber cannot be null');
-        }
         $this->container['vatNumber'] = $vatNumber;
 
         return $this;

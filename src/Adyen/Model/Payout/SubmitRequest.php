@@ -437,9 +437,6 @@ class SubmitRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAdditionalData($additionalData)
     {
-        if (is_null($additionalData)) {
-            throw new \InvalidArgumentException('non-nullable additionalData cannot be null');
-        }
         $this->container['additionalData'] = $additionalData;
 
         return $this;
@@ -464,9 +461,6 @@ class SubmitRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAmount($amount)
     {
-        if (is_null($amount)) {
-            throw new \InvalidArgumentException('non-nullable amount cannot be null');
-        }
         $this->container['amount'] = $amount;
 
         return $this;
@@ -491,9 +485,6 @@ class SubmitRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDateOfBirth($dateOfBirth)
     {
-        if (is_null($dateOfBirth)) {
-            throw new \InvalidArgumentException('non-nullable dateOfBirth cannot be null');
-        }
         $this->container['dateOfBirth'] = $dateOfBirth;
 
         return $this;
@@ -518,9 +509,6 @@ class SubmitRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEntityType($entityType)
     {
-        if (is_null($entityType)) {
-            throw new \InvalidArgumentException('non-nullable entityType cannot be null');
-        }
         $allowedValues = $this->getEntityTypeAllowableValues();
         if (!in_array($entityType, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -555,7 +543,6 @@ class SubmitRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFraudOffset($fraudOffset)
     {
-        // Do nothing for nullable integers
         $this->container['fraudOffset'] = $fraudOffset;
 
         return $this;
@@ -580,9 +567,6 @@ class SubmitRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMerchantAccount($merchantAccount)
     {
-        if (is_null($merchantAccount)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
-        }
         $this->container['merchantAccount'] = $merchantAccount;
 
         return $this;
@@ -607,9 +591,6 @@ class SubmitRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setNationality($nationality)
     {
-        if (is_null($nationality)) {
-            throw new \InvalidArgumentException('non-nullable nationality cannot be null');
-        }
         $this->container['nationality'] = $nationality;
 
         return $this;
@@ -634,9 +615,6 @@ class SubmitRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRecurring($recurring)
     {
-        if (is_null($recurring)) {
-            throw new \InvalidArgumentException('non-nullable recurring cannot be null');
-        }
         $this->container['recurring'] = $recurring;
 
         return $this;
@@ -661,9 +639,6 @@ class SubmitRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -688,9 +663,6 @@ class SubmitRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSelectedRecurringDetailReference($selectedRecurringDetailReference)
     {
-        if (is_null($selectedRecurringDetailReference)) {
-            throw new \InvalidArgumentException('non-nullable selectedRecurringDetailReference cannot be null');
-        }
         $this->container['selectedRecurringDetailReference'] = $selectedRecurringDetailReference;
 
         return $this;
@@ -715,9 +687,6 @@ class SubmitRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setShopperEmail($shopperEmail)
     {
-        if (is_null($shopperEmail)) {
-            throw new \InvalidArgumentException('non-nullable shopperEmail cannot be null');
-        }
         $this->container['shopperEmail'] = $shopperEmail;
 
         return $this;
@@ -742,9 +711,6 @@ class SubmitRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setShopperName($shopperName)
     {
-        if (is_null($shopperName)) {
-            throw new \InvalidArgumentException('non-nullable shopperName cannot be null');
-        }
         $this->container['shopperName'] = $shopperName;
 
         return $this;
@@ -769,9 +735,6 @@ class SubmitRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setShopperReference($shopperReference)
     {
-        if (is_null($shopperReference)) {
-            throw new \InvalidArgumentException('non-nullable shopperReference cannot be null');
-        }
         $this->container['shopperReference'] = $shopperReference;
 
         return $this;
@@ -796,9 +759,6 @@ class SubmitRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setShopperStatement($shopperStatement)
     {
-        if (is_null($shopperStatement)) {
-            throw new \InvalidArgumentException('non-nullable shopperStatement cannot be null');
-        }
         $this->container['shopperStatement'] = $shopperStatement;
 
         return $this;
@@ -823,9 +783,6 @@ class SubmitRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSocialSecurityNumber($socialSecurityNumber)
     {
-        if (is_null($socialSecurityNumber)) {
-            throw new \InvalidArgumentException('non-nullable socialSecurityNumber cannot be null');
-        }
         $this->container['socialSecurityNumber'] = $socialSecurityNumber;
 
         return $this;

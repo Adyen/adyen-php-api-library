@@ -403,9 +403,6 @@ class TaxReportingClassification implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setBusinessType($businessType)
     {
-        if (is_null($businessType)) {
-            throw new \InvalidArgumentException('non-nullable businessType cannot be null');
-        }
         $allowedValues = $this->getBusinessTypeAllowableValues();
         if (!in_array($businessType, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -440,9 +437,6 @@ class TaxReportingClassification implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setFinancialInstitutionNumber($financialInstitutionNumber)
     {
-        if (is_null($financialInstitutionNumber)) {
-            throw new \InvalidArgumentException('non-nullable financialInstitutionNumber cannot be null');
-        }
         $this->container['financialInstitutionNumber'] = $financialInstitutionNumber;
 
         return $this;
@@ -467,9 +461,6 @@ class TaxReportingClassification implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setMainSourceOfIncome($mainSourceOfIncome)
     {
-        if (is_null($mainSourceOfIncome)) {
-            throw new \InvalidArgumentException('non-nullable mainSourceOfIncome cannot be null');
-        }
         $allowedValues = $this->getMainSourceOfIncomeAllowableValues();
         if (!in_array($mainSourceOfIncome, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -504,9 +495,6 @@ class TaxReportingClassification implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

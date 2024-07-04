@@ -341,9 +341,6 @@ class VerificationErrorRecursive implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setCode($code)
     {
-        if (is_null($code)) {
-            throw new \InvalidArgumentException('non-nullable code cannot be null');
-        }
         $this->container['code'] = $code;
 
         return $this;
@@ -368,9 +365,6 @@ class VerificationErrorRecursive implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setMessage($message)
     {
-        if (is_null($message)) {
-            throw new \InvalidArgumentException('non-nullable message cannot be null');
-        }
         $this->container['message'] = $message;
 
         return $this;
@@ -395,9 +389,6 @@ class VerificationErrorRecursive implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -432,9 +423,6 @@ class VerificationErrorRecursive implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setRemediatingActions($remediatingActions)
     {
-        if (is_null($remediatingActions)) {
-            throw new \InvalidArgumentException('non-nullable remediatingActions cannot be null');
-        }
         $this->container['remediatingActions'] = $remediatingActions;
 
         return $this;

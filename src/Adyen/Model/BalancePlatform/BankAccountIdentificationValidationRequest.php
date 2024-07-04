@@ -298,9 +298,6 @@ class BankAccountIdentificationValidationRequest implements ModelInterface, Arra
      */
     public function setAccountIdentification($accountIdentification)
     {
-        if (is_null($accountIdentification)) {
-            throw new \InvalidArgumentException('non-nullable accountIdentification cannot be null');
-        }
         $this->container['accountIdentification'] = $accountIdentification;
 
         return $this;

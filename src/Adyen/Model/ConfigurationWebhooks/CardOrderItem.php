@@ -344,9 +344,6 @@ class CardOrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBalancePlatform($balancePlatform)
     {
-        if (is_null($balancePlatform)) {
-            throw new \InvalidArgumentException('non-nullable balancePlatform cannot be null');
-        }
         $this->container['balancePlatform'] = $balancePlatform;
 
         return $this;
@@ -371,9 +368,6 @@ class CardOrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCard($card)
     {
-        if (is_null($card)) {
-            throw new \InvalidArgumentException('non-nullable card cannot be null');
-        }
         $this->container['card'] = $card;
 
         return $this;
@@ -398,9 +392,6 @@ class CardOrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCardOrderItemId($cardOrderItemId)
     {
-        if (is_null($cardOrderItemId)) {
-            throw new \InvalidArgumentException('non-nullable cardOrderItemId cannot be null');
-        }
         $this->container['cardOrderItemId'] = $cardOrderItemId;
 
         return $this;
@@ -425,9 +416,6 @@ class CardOrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCreationDate($creationDate)
     {
-        if (is_null($creationDate)) {
-            throw new \InvalidArgumentException('non-nullable creationDate cannot be null');
-        }
         $this->container['creationDate'] = $creationDate;
 
         return $this;
@@ -452,9 +440,6 @@ class CardOrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -479,9 +464,6 @@ class CardOrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPaymentInstrumentId($paymentInstrumentId)
     {
-        if (is_null($paymentInstrumentId)) {
-            throw new \InvalidArgumentException('non-nullable paymentInstrumentId cannot be null');
-        }
         $this->container['paymentInstrumentId'] = $paymentInstrumentId;
 
         return $this;
@@ -506,9 +488,6 @@ class CardOrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPin($pin)
     {
-        if (is_null($pin)) {
-            throw new \InvalidArgumentException('non-nullable pin cannot be null');
-        }
         $this->container['pin'] = $pin;
 
         return $this;
@@ -533,9 +512,6 @@ class CardOrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setShippingMethod($shippingMethod)
     {
-        if (is_null($shippingMethod)) {
-            throw new \InvalidArgumentException('non-nullable shippingMethod cannot be null');
-        }
         $this->container['shippingMethod'] = $shippingMethod;
 
         return $this;

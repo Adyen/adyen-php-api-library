@@ -295,9 +295,6 @@ class DataReviewConfirmationResponse implements ModelInterface, ArrayAccess, \Js
      */
     public function setDataReviewedAt($dataReviewedAt)
     {
-        if (is_null($dataReviewedAt)) {
-            throw new \InvalidArgumentException('non-nullable dataReviewedAt cannot be null');
-        }
         $this->container['dataReviewedAt'] = $dataReviewedAt;
 
         return $this;

@@ -323,9 +323,6 @@ class Permit implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPartnerId($partnerId)
     {
-        if (is_null($partnerId)) {
-            throw new \InvalidArgumentException('non-nullable partnerId cannot be null');
-        }
         $this->container['partnerId'] = $partnerId;
 
         return $this;
@@ -350,9 +347,6 @@ class Permit implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setProfileReference($profileReference)
     {
-        if (is_null($profileReference)) {
-            throw new \InvalidArgumentException('non-nullable profileReference cannot be null');
-        }
         $this->container['profileReference'] = $profileReference;
 
         return $this;
@@ -377,9 +371,6 @@ class Permit implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRestriction($restriction)
     {
-        if (is_null($restriction)) {
-            throw new \InvalidArgumentException('non-nullable restriction cannot be null');
-        }
         $this->container['restriction'] = $restriction;
 
         return $this;
@@ -404,9 +395,6 @@ class Permit implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setResultKey($resultKey)
     {
-        if (is_null($resultKey)) {
-            throw new \InvalidArgumentException('non-nullable resultKey cannot be null');
-        }
         $this->container['resultKey'] = $resultKey;
 
         return $this;
@@ -431,9 +419,6 @@ class Permit implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setValidTillDate($validTillDate)
     {
-        if (is_null($validTillDate)) {
-            throw new \InvalidArgumentException('non-nullable validTillDate cannot be null');
-        }
         $this->container['validTillDate'] = $validTillDate;
 
         return $this;

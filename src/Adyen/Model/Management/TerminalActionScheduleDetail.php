@@ -302,9 +302,6 @@ class TerminalActionScheduleDetail implements ModelInterface, ArrayAccess, \Json
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -329,9 +326,6 @@ class TerminalActionScheduleDetail implements ModelInterface, ArrayAccess, \Json
      */
     public function setTerminalId($terminalId)
     {
-        if (is_null($terminalId)) {
-            throw new \InvalidArgumentException('non-nullable terminalId cannot be null');
-        }
         $this->container['terminalId'] = $terminalId;
 
         return $this;

@@ -298,9 +298,6 @@ class CapitalGrants implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setGrants($grants)
     {
-        if (is_null($grants)) {
-            throw new \InvalidArgumentException('non-nullable grants cannot be null');
-        }
         $this->container['grants'] = $grants;
 
         return $this;

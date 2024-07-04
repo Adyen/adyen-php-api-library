@@ -366,9 +366,6 @@ class StoreCreationWithMerchantCodeRequest implements ModelInterface, ArrayAcces
      */
     public function setAddress($address)
     {
-        if (is_null($address)) {
-            throw new \InvalidArgumentException('non-nullable address cannot be null');
-        }
         $this->container['address'] = $address;
 
         return $this;
@@ -393,9 +390,6 @@ class StoreCreationWithMerchantCodeRequest implements ModelInterface, ArrayAcces
      */
     public function setBusinessLineIds($businessLineIds)
     {
-        if (is_null($businessLineIds)) {
-            throw new \InvalidArgumentException('non-nullable businessLineIds cannot be null');
-        }
         $this->container['businessLineIds'] = $businessLineIds;
 
         return $this;
@@ -420,9 +414,6 @@ class StoreCreationWithMerchantCodeRequest implements ModelInterface, ArrayAcces
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -447,9 +438,6 @@ class StoreCreationWithMerchantCodeRequest implements ModelInterface, ArrayAcces
      */
     public function setExternalReferenceId($externalReferenceId)
     {
-        if (is_null($externalReferenceId)) {
-            throw new \InvalidArgumentException('non-nullable externalReferenceId cannot be null');
-        }
         $this->container['externalReferenceId'] = $externalReferenceId;
 
         return $this;
@@ -474,9 +462,6 @@ class StoreCreationWithMerchantCodeRequest implements ModelInterface, ArrayAcces
      */
     public function setMerchantId($merchantId)
     {
-        if (is_null($merchantId)) {
-            throw new \InvalidArgumentException('non-nullable merchantId cannot be null');
-        }
         $this->container['merchantId'] = $merchantId;
 
         return $this;
@@ -501,9 +486,6 @@ class StoreCreationWithMerchantCodeRequest implements ModelInterface, ArrayAcces
      */
     public function setPhoneNumber($phoneNumber)
     {
-        if (is_null($phoneNumber)) {
-            throw new \InvalidArgumentException('non-nullable phoneNumber cannot be null');
-        }
         $this->container['phoneNumber'] = $phoneNumber;
 
         return $this;
@@ -528,9 +510,6 @@ class StoreCreationWithMerchantCodeRequest implements ModelInterface, ArrayAcces
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -555,9 +534,6 @@ class StoreCreationWithMerchantCodeRequest implements ModelInterface, ArrayAcces
      */
     public function setShopperStatement($shopperStatement)
     {
-        if (is_null($shopperStatement)) {
-            throw new \InvalidArgumentException('non-nullable shopperStatement cannot be null');
-        }
         $this->container['shopperStatement'] = $shopperStatement;
 
         return $this;
@@ -582,9 +558,6 @@ class StoreCreationWithMerchantCodeRequest implements ModelInterface, ArrayAcces
      */
     public function setSplitConfiguration($splitConfiguration)
     {
-        if (is_null($splitConfiguration)) {
-            throw new \InvalidArgumentException('non-nullable splitConfiguration cannot be null');
-        }
         $this->container['splitConfiguration'] = $splitConfiguration;
 
         return $this;

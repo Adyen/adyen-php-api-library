@@ -332,9 +332,6 @@ class WebhookLinks implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCompany($company)
     {
-        if (is_null($company)) {
-            throw new \InvalidArgumentException('non-nullable company cannot be null');
-        }
         $this->container['company'] = $company;
 
         return $this;
@@ -359,9 +356,6 @@ class WebhookLinks implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setGenerateHmac($generateHmac)
     {
-        if (is_null($generateHmac)) {
-            throw new \InvalidArgumentException('non-nullable generateHmac cannot be null');
-        }
         $this->container['generateHmac'] = $generateHmac;
 
         return $this;
@@ -386,9 +380,6 @@ class WebhookLinks implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMerchant($merchant)
     {
-        if (is_null($merchant)) {
-            throw new \InvalidArgumentException('non-nullable merchant cannot be null');
-        }
         $this->container['merchant'] = $merchant;
 
         return $this;
@@ -413,9 +404,6 @@ class WebhookLinks implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSelf($self)
     {
-        if (is_null($self)) {
-            throw new \InvalidArgumentException('non-nullable self cannot be null');
-        }
         $this->container['self'] = $self;
 
         return $this;
@@ -440,9 +428,6 @@ class WebhookLinks implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTestWebhook($testWebhook)
     {
-        if (is_null($testWebhook)) {
-            throw new \InvalidArgumentException('non-nullable testWebhook cannot be null');
-        }
         $this->container['testWebhook'] = $testWebhook;
 
         return $this;

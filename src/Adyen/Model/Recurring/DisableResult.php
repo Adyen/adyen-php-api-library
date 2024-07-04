@@ -295,9 +295,6 @@ class DisableResult implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setResponse($response)
     {
-        if (is_null($response)) {
-            throw new \InvalidArgumentException('non-nullable response cannot be null');
-        }
         $this->container['response'] = $response;
 
         return $this;

@@ -302,9 +302,6 @@ class AdditionalSettings implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setIncludeEventCodes($includeEventCodes)
     {
-        if (is_null($includeEventCodes)) {
-            throw new \InvalidArgumentException('non-nullable includeEventCodes cannot be null');
-        }
         $this->container['includeEventCodes'] = $includeEventCodes;
 
         return $this;
@@ -329,9 +326,6 @@ class AdditionalSettings implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setProperties($properties)
     {
-        if (is_null($properties)) {
-            throw new \InvalidArgumentException('non-nullable properties cannot be null');
-        }
         $this->container['properties'] = $properties;
 
         return $this;

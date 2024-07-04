@@ -316,9 +316,6 @@ class Signature implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAskSignatureOnScreen($askSignatureOnScreen)
     {
-        if (is_null($askSignatureOnScreen)) {
-            throw new \InvalidArgumentException('non-nullable askSignatureOnScreen cannot be null');
-        }
         $this->container['askSignatureOnScreen'] = $askSignatureOnScreen;
 
         return $this;
@@ -343,9 +340,6 @@ class Signature implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDeviceName($deviceName)
     {
-        if (is_null($deviceName)) {
-            throw new \InvalidArgumentException('non-nullable deviceName cannot be null');
-        }
         $this->container['deviceName'] = $deviceName;
 
         return $this;
@@ -370,9 +364,6 @@ class Signature implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDeviceSlogan($deviceSlogan)
     {
-        if (is_null($deviceSlogan)) {
-            throw new \InvalidArgumentException('non-nullable deviceSlogan cannot be null');
-        }
         $this->container['deviceSlogan'] = $deviceSlogan;
 
         return $this;
@@ -397,9 +388,6 @@ class Signature implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSkipSignature($skipSignature)
     {
-        if (is_null($skipSignature)) {
-            throw new \InvalidArgumentException('non-nullable skipSignature cannot be null');
-        }
         $this->container['skipSignature'] = $skipSignature;
 
         return $this;

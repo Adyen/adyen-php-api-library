@@ -309,9 +309,6 @@ class ResourceReference implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -336,9 +333,6 @@ class ResourceReference implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -363,9 +357,6 @@ class ResourceReference implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;

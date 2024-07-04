@@ -407,9 +407,6 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setEnhancedSchemeDataCustomerReference($enhancedSchemeDataCustomerReference)
     {
-        if (is_null($enhancedSchemeDataCustomerReference)) {
-            throw new \InvalidArgumentException('non-nullable enhancedSchemeDataCustomerReference cannot be null');
-        }
         $this->container['enhancedSchemeDataCustomerReference'] = $enhancedSchemeDataCustomerReference;
 
         return $this;
@@ -434,9 +431,6 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setEnhancedSchemeDataDestinationCountryCode($enhancedSchemeDataDestinationCountryCode)
     {
-        if (is_null($enhancedSchemeDataDestinationCountryCode)) {
-            throw new \InvalidArgumentException('non-nullable enhancedSchemeDataDestinationCountryCode cannot be null');
-        }
         $this->container['enhancedSchemeDataDestinationCountryCode'] = $enhancedSchemeDataDestinationCountryCode;
 
         return $this;
@@ -461,9 +455,6 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setEnhancedSchemeDataDestinationPostalCode($enhancedSchemeDataDestinationPostalCode)
     {
-        if (is_null($enhancedSchemeDataDestinationPostalCode)) {
-            throw new \InvalidArgumentException('non-nullable enhancedSchemeDataDestinationPostalCode cannot be null');
-        }
         $this->container['enhancedSchemeDataDestinationPostalCode'] = $enhancedSchemeDataDestinationPostalCode;
 
         return $this;
@@ -488,9 +479,6 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setEnhancedSchemeDataDestinationStateProvinceCode($enhancedSchemeDataDestinationStateProvinceCode)
     {
-        if (is_null($enhancedSchemeDataDestinationStateProvinceCode)) {
-            throw new \InvalidArgumentException('non-nullable enhancedSchemeDataDestinationStateProvinceCode cannot be null');
-        }
         $this->container['enhancedSchemeDataDestinationStateProvinceCode'] = $enhancedSchemeDataDestinationStateProvinceCode;
 
         return $this;
@@ -515,9 +503,6 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setEnhancedSchemeDataDutyAmount($enhancedSchemeDataDutyAmount)
     {
-        if (is_null($enhancedSchemeDataDutyAmount)) {
-            throw new \InvalidArgumentException('non-nullable enhancedSchemeDataDutyAmount cannot be null');
-        }
         $this->container['enhancedSchemeDataDutyAmount'] = $enhancedSchemeDataDutyAmount;
 
         return $this;
@@ -542,9 +527,6 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setEnhancedSchemeDataFreightAmount($enhancedSchemeDataFreightAmount)
     {
-        if (is_null($enhancedSchemeDataFreightAmount)) {
-            throw new \InvalidArgumentException('non-nullable enhancedSchemeDataFreightAmount cannot be null');
-        }
         $this->container['enhancedSchemeDataFreightAmount'] = $enhancedSchemeDataFreightAmount;
 
         return $this;
@@ -569,9 +551,6 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setEnhancedSchemeDataItemDetailLineItemNrCommodityCode($enhancedSchemeDataItemDetailLineItemNrCommodityCode)
     {
-        if (is_null($enhancedSchemeDataItemDetailLineItemNrCommodityCode)) {
-            throw new \InvalidArgumentException('non-nullable enhancedSchemeDataItemDetailLineItemNrCommodityCode cannot be null');
-        }
         $this->container['enhancedSchemeDataItemDetailLineItemNrCommodityCode'] = $enhancedSchemeDataItemDetailLineItemNrCommodityCode;
 
         return $this;
@@ -596,9 +575,6 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setEnhancedSchemeDataItemDetailLineItemNrDescription($enhancedSchemeDataItemDetailLineItemNrDescription)
     {
-        if (is_null($enhancedSchemeDataItemDetailLineItemNrDescription)) {
-            throw new \InvalidArgumentException('non-nullable enhancedSchemeDataItemDetailLineItemNrDescription cannot be null');
-        }
         $this->container['enhancedSchemeDataItemDetailLineItemNrDescription'] = $enhancedSchemeDataItemDetailLineItemNrDescription;
 
         return $this;
@@ -623,9 +599,6 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setEnhancedSchemeDataItemDetailLineItemNrDiscountAmount($enhancedSchemeDataItemDetailLineItemNrDiscountAmount)
     {
-        if (is_null($enhancedSchemeDataItemDetailLineItemNrDiscountAmount)) {
-            throw new \InvalidArgumentException('non-nullable enhancedSchemeDataItemDetailLineItemNrDiscountAmount cannot be null');
-        }
         $this->container['enhancedSchemeDataItemDetailLineItemNrDiscountAmount'] = $enhancedSchemeDataItemDetailLineItemNrDiscountAmount;
 
         return $this;
@@ -650,9 +623,6 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setEnhancedSchemeDataItemDetailLineItemNrProductCode($enhancedSchemeDataItemDetailLineItemNrProductCode)
     {
-        if (is_null($enhancedSchemeDataItemDetailLineItemNrProductCode)) {
-            throw new \InvalidArgumentException('non-nullable enhancedSchemeDataItemDetailLineItemNrProductCode cannot be null');
-        }
         $this->container['enhancedSchemeDataItemDetailLineItemNrProductCode'] = $enhancedSchemeDataItemDetailLineItemNrProductCode;
 
         return $this;
@@ -677,9 +647,6 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setEnhancedSchemeDataItemDetailLineItemNrQuantity($enhancedSchemeDataItemDetailLineItemNrQuantity)
     {
-        if (is_null($enhancedSchemeDataItemDetailLineItemNrQuantity)) {
-            throw new \InvalidArgumentException('non-nullable enhancedSchemeDataItemDetailLineItemNrQuantity cannot be null');
-        }
         $this->container['enhancedSchemeDataItemDetailLineItemNrQuantity'] = $enhancedSchemeDataItemDetailLineItemNrQuantity;
 
         return $this;
@@ -704,9 +671,6 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setEnhancedSchemeDataItemDetailLineItemNrTotalAmount($enhancedSchemeDataItemDetailLineItemNrTotalAmount)
     {
-        if (is_null($enhancedSchemeDataItemDetailLineItemNrTotalAmount)) {
-            throw new \InvalidArgumentException('non-nullable enhancedSchemeDataItemDetailLineItemNrTotalAmount cannot be null');
-        }
         $this->container['enhancedSchemeDataItemDetailLineItemNrTotalAmount'] = $enhancedSchemeDataItemDetailLineItemNrTotalAmount;
 
         return $this;
@@ -731,9 +695,6 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setEnhancedSchemeDataItemDetailLineItemNrUnitOfMeasure($enhancedSchemeDataItemDetailLineItemNrUnitOfMeasure)
     {
-        if (is_null($enhancedSchemeDataItemDetailLineItemNrUnitOfMeasure)) {
-            throw new \InvalidArgumentException('non-nullable enhancedSchemeDataItemDetailLineItemNrUnitOfMeasure cannot be null');
-        }
         $this->container['enhancedSchemeDataItemDetailLineItemNrUnitOfMeasure'] = $enhancedSchemeDataItemDetailLineItemNrUnitOfMeasure;
 
         return $this;
@@ -758,9 +719,6 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setEnhancedSchemeDataItemDetailLineItemNrUnitPrice($enhancedSchemeDataItemDetailLineItemNrUnitPrice)
     {
-        if (is_null($enhancedSchemeDataItemDetailLineItemNrUnitPrice)) {
-            throw new \InvalidArgumentException('non-nullable enhancedSchemeDataItemDetailLineItemNrUnitPrice cannot be null');
-        }
         $this->container['enhancedSchemeDataItemDetailLineItemNrUnitPrice'] = $enhancedSchemeDataItemDetailLineItemNrUnitPrice;
 
         return $this;
@@ -785,9 +743,6 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setEnhancedSchemeDataOrderDate($enhancedSchemeDataOrderDate)
     {
-        if (is_null($enhancedSchemeDataOrderDate)) {
-            throw new \InvalidArgumentException('non-nullable enhancedSchemeDataOrderDate cannot be null');
-        }
         $this->container['enhancedSchemeDataOrderDate'] = $enhancedSchemeDataOrderDate;
 
         return $this;
@@ -812,9 +767,6 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setEnhancedSchemeDataShipFromPostalCode($enhancedSchemeDataShipFromPostalCode)
     {
-        if (is_null($enhancedSchemeDataShipFromPostalCode)) {
-            throw new \InvalidArgumentException('non-nullable enhancedSchemeDataShipFromPostalCode cannot be null');
-        }
         $this->container['enhancedSchemeDataShipFromPostalCode'] = $enhancedSchemeDataShipFromPostalCode;
 
         return $this;
@@ -839,9 +791,6 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setEnhancedSchemeDataTotalTaxAmount($enhancedSchemeDataTotalTaxAmount)
     {
-        if (is_null($enhancedSchemeDataTotalTaxAmount)) {
-            throw new \InvalidArgumentException('non-nullable enhancedSchemeDataTotalTaxAmount cannot be null');
-        }
         $this->container['enhancedSchemeDataTotalTaxAmount'] = $enhancedSchemeDataTotalTaxAmount;
 
         return $this;

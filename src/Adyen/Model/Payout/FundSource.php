@@ -330,9 +330,6 @@ class FundSource implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAdditionalData($additionalData)
     {
-        if (is_null($additionalData)) {
-            throw new \InvalidArgumentException('non-nullable additionalData cannot be null');
-        }
         $this->container['additionalData'] = $additionalData;
 
         return $this;
@@ -357,9 +354,6 @@ class FundSource implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBillingAddress($billingAddress)
     {
-        if (is_null($billingAddress)) {
-            throw new \InvalidArgumentException('non-nullable billingAddress cannot be null');
-        }
         $this->container['billingAddress'] = $billingAddress;
 
         return $this;
@@ -384,9 +378,6 @@ class FundSource implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCard($card)
     {
-        if (is_null($card)) {
-            throw new \InvalidArgumentException('non-nullable card cannot be null');
-        }
         $this->container['card'] = $card;
 
         return $this;
@@ -411,9 +402,6 @@ class FundSource implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setShopperEmail($shopperEmail)
     {
-        if (is_null($shopperEmail)) {
-            throw new \InvalidArgumentException('non-nullable shopperEmail cannot be null');
-        }
         $this->container['shopperEmail'] = $shopperEmail;
 
         return $this;
@@ -438,9 +426,6 @@ class FundSource implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setShopperName($shopperName)
     {
-        if (is_null($shopperName)) {
-            throw new \InvalidArgumentException('non-nullable shopperName cannot be null');
-        }
         $this->container['shopperName'] = $shopperName;
 
         return $this;
@@ -465,9 +450,6 @@ class FundSource implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTelephoneNumber($telephoneNumber)
     {
-        if (is_null($telephoneNumber)) {
-            throw new \InvalidArgumentException('non-nullable telephoneNumber cannot be null');
-        }
         $this->container['telephoneNumber'] = $telephoneNumber;
 
         return $this;

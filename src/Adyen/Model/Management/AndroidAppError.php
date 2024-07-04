@@ -302,9 +302,6 @@ class AndroidAppError implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setErrorCode($errorCode)
     {
-        if (is_null($errorCode)) {
-            throw new \InvalidArgumentException('non-nullable errorCode cannot be null');
-        }
         $this->container['errorCode'] = $errorCode;
 
         return $this;
@@ -329,9 +326,6 @@ class AndroidAppError implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTerminalModels($terminalModels)
     {
-        if (is_null($terminalModels)) {
-            throw new \InvalidArgumentException('non-nullable terminalModels cannot be null');
-        }
         $this->container['terminalModels'] = $terminalModels;
 
         return $this;

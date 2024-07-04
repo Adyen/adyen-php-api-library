@@ -298,9 +298,6 @@ class GrantOffers implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setGrantOffers($grantOffers)
     {
-        if (is_null($grantOffers)) {
-            throw new \InvalidArgumentException('non-nullable grantOffers cannot be null');
-        }
         $this->container['grantOffers'] = $grantOffers;
 
         return $this;

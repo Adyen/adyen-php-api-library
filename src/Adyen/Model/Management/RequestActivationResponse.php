@@ -302,9 +302,6 @@ class RequestActivationResponse implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function setCompanyId($companyId)
     {
-        if (is_null($companyId)) {
-            throw new \InvalidArgumentException('non-nullable companyId cannot be null');
-        }
         $this->container['companyId'] = $companyId;
 
         return $this;
@@ -329,9 +326,6 @@ class RequestActivationResponse implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function setMerchantId($merchantId)
     {
-        if (is_null($merchantId)) {
-            throw new \InvalidArgumentException('non-nullable merchantId cannot be null');
-        }
         $this->container['merchantId'] = $merchantId;
 
         return $this;

@@ -309,9 +309,6 @@ class AdditionalSettingsResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setExcludeEventCodes($excludeEventCodes)
     {
-        if (is_null($excludeEventCodes)) {
-            throw new \InvalidArgumentException('non-nullable excludeEventCodes cannot be null');
-        }
         $this->container['excludeEventCodes'] = $excludeEventCodes;
 
         return $this;
@@ -336,9 +333,6 @@ class AdditionalSettingsResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setIncludeEventCodes($includeEventCodes)
     {
-        if (is_null($includeEventCodes)) {
-            throw new \InvalidArgumentException('non-nullable includeEventCodes cannot be null');
-        }
         $this->container['includeEventCodes'] = $includeEventCodes;
 
         return $this;
@@ -363,9 +357,6 @@ class AdditionalSettingsResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setProperties($properties)
     {
-        if (is_null($properties)) {
-            throw new \InvalidArgumentException('non-nullable properties cannot be null');
-        }
         $this->container['properties'] = $properties;
 
         return $this;

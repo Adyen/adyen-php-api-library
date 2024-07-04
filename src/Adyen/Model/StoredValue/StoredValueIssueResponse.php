@@ -364,9 +364,6 @@ class StoredValueIssueResponse implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setAuthCode($authCode)
     {
-        if (is_null($authCode)) {
-            throw new \InvalidArgumentException('non-nullable authCode cannot be null');
-        }
         $this->container['authCode'] = $authCode;
 
         return $this;
@@ -391,9 +388,6 @@ class StoredValueIssueResponse implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setCurrentBalance($currentBalance)
     {
-        if (is_null($currentBalance)) {
-            throw new \InvalidArgumentException('non-nullable currentBalance cannot be null');
-        }
         $this->container['currentBalance'] = $currentBalance;
 
         return $this;
@@ -418,9 +412,6 @@ class StoredValueIssueResponse implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setPaymentMethod($paymentMethod)
     {
-        if (is_null($paymentMethod)) {
-            throw new \InvalidArgumentException('non-nullable paymentMethod cannot be null');
-        }
         $this->container['paymentMethod'] = $paymentMethod;
 
         return $this;
@@ -445,9 +436,6 @@ class StoredValueIssueResponse implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setPspReference($pspReference)
     {
-        if (is_null($pspReference)) {
-            throw new \InvalidArgumentException('non-nullable pspReference cannot be null');
-        }
         $this->container['pspReference'] = $pspReference;
 
         return $this;
@@ -472,9 +460,6 @@ class StoredValueIssueResponse implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setRefusalReason($refusalReason)
     {
-        if (is_null($refusalReason)) {
-            throw new \InvalidArgumentException('non-nullable refusalReason cannot be null');
-        }
         $this->container['refusalReason'] = $refusalReason;
 
         return $this;
@@ -499,9 +484,6 @@ class StoredValueIssueResponse implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setResultCode($resultCode)
     {
-        if (is_null($resultCode)) {
-            throw new \InvalidArgumentException('non-nullable resultCode cannot be null');
-        }
         $allowedValues = $this->getResultCodeAllowableValues();
         if (!in_array($resultCode, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -536,9 +518,6 @@ class StoredValueIssueResponse implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setThirdPartyRefusalReason($thirdPartyRefusalReason)
     {
-        if (is_null($thirdPartyRefusalReason)) {
-            throw new \InvalidArgumentException('non-nullable thirdPartyRefusalReason cannot be null');
-        }
         $this->container['thirdPartyRefusalReason'] = $thirdPartyRefusalReason;
 
         return $this;

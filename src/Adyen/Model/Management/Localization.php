@@ -309,9 +309,6 @@ class Localization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLanguage($language)
     {
-        if (is_null($language)) {
-            throw new \InvalidArgumentException('non-nullable language cannot be null');
-        }
         $this->container['language'] = $language;
 
         return $this;
@@ -336,9 +333,6 @@ class Localization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSecondaryLanguage($secondaryLanguage)
     {
-        if (is_null($secondaryLanguage)) {
-            throw new \InvalidArgumentException('non-nullable secondaryLanguage cannot be null');
-        }
         $this->container['secondaryLanguage'] = $secondaryLanguage;
 
         return $this;
@@ -363,9 +357,6 @@ class Localization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTimezone($timezone)
     {
-        if (is_null($timezone)) {
-            throw new \InvalidArgumentException('non-nullable timezone cannot be null');
-        }
         $this->container['timezone'] = $timezone;
 
         return $this;

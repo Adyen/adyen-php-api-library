@@ -295,9 +295,6 @@ class OnboardingLink implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUrl($url)
     {
-        if (is_null($url)) {
-            throw new \InvalidArgumentException('non-nullable url cannot be null');
-        }
         $this->container['url'] = $url;
 
         return $this;

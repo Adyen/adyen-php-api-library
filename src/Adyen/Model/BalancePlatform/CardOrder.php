@@ -367,9 +367,6 @@ class CardOrder implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBeginDate($beginDate)
     {
-        if (is_null($beginDate)) {
-            throw new \InvalidArgumentException('non-nullable beginDate cannot be null');
-        }
         $this->container['beginDate'] = $beginDate;
 
         return $this;
@@ -394,9 +391,6 @@ class CardOrder implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCardManufacturingProfileId($cardManufacturingProfileId)
     {
-        if (is_null($cardManufacturingProfileId)) {
-            throw new \InvalidArgumentException('non-nullable cardManufacturingProfileId cannot be null');
-        }
         $this->container['cardManufacturingProfileId'] = $cardManufacturingProfileId;
 
         return $this;
@@ -421,9 +415,6 @@ class CardOrder implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setClosedDate($closedDate)
     {
-        if (is_null($closedDate)) {
-            throw new \InvalidArgumentException('non-nullable closedDate cannot be null');
-        }
         $this->container['closedDate'] = $closedDate;
 
         return $this;
@@ -448,9 +439,6 @@ class CardOrder implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEndDate($endDate)
     {
-        if (is_null($endDate)) {
-            throw new \InvalidArgumentException('non-nullable endDate cannot be null');
-        }
         $this->container['endDate'] = $endDate;
 
         return $this;
@@ -475,9 +463,6 @@ class CardOrder implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -502,9 +487,6 @@ class CardOrder implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLockDate($lockDate)
     {
-        if (is_null($lockDate)) {
-            throw new \InvalidArgumentException('non-nullable lockDate cannot be null');
-        }
         $this->container['lockDate'] = $lockDate;
 
         return $this;
@@ -529,9 +511,6 @@ class CardOrder implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setServiceCenter($serviceCenter)
     {
-        if (is_null($serviceCenter)) {
-            throw new \InvalidArgumentException('non-nullable serviceCenter cannot be null');
-        }
         $this->container['serviceCenter'] = $serviceCenter;
 
         return $this;
@@ -556,9 +535,6 @@ class CardOrder implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(

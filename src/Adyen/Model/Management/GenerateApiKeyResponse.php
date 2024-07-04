@@ -298,9 +298,6 @@ class GenerateApiKeyResponse implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setApiKey($apiKey)
     {
-        if (is_null($apiKey)) {
-            throw new \InvalidArgumentException('non-nullable apiKey cannot be null');
-        }
         $this->container['apiKey'] = $apiKey;
 
         return $this;

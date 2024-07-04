@@ -53,6 +53,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'entryModes' => '\Adyen\Model\BalancePlatform\EntryModesRestriction',
         'internationalTransaction' => '\Adyen\Model\BalancePlatform\InternationalTransactionRestriction',
         'matchingTransactions' => '\Adyen\Model\BalancePlatform\MatchingTransactionsRestriction',
+        'matchingValues' => '\Adyen\Model\BalancePlatform\MatchingValuesRestriction',
         'mccs' => '\Adyen\Model\BalancePlatform\MccsRestriction',
         'merchantNames' => '\Adyen\Model\BalancePlatform\MerchantNamesRestriction',
         'merchants' => '\Adyen\Model\BalancePlatform\MerchantsRestriction',
@@ -81,6 +82,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'entryModes' => null,
         'internationalTransaction' => null,
         'matchingTransactions' => null,
+        'matchingValues' => null,
         'mccs' => null,
         'merchantNames' => null,
         'merchants' => null,
@@ -107,6 +109,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'entryModes' => false,
         'internationalTransaction' => false,
         'matchingTransactions' => false,
+        'matchingValues' => false,
         'mccs' => false,
         'merchantNames' => false,
         'merchants' => false,
@@ -213,6 +216,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'entryModes' => 'entryModes',
         'internationalTransaction' => 'internationalTransaction',
         'matchingTransactions' => 'matchingTransactions',
+        'matchingValues' => 'matchingValues',
         'mccs' => 'mccs',
         'merchantNames' => 'merchantNames',
         'merchants' => 'merchants',
@@ -239,6 +243,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'entryModes' => 'setEntryModes',
         'internationalTransaction' => 'setInternationalTransaction',
         'matchingTransactions' => 'setMatchingTransactions',
+        'matchingValues' => 'setMatchingValues',
         'mccs' => 'setMccs',
         'merchantNames' => 'setMerchantNames',
         'merchants' => 'setMerchants',
@@ -265,6 +270,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'entryModes' => 'getEntryModes',
         'internationalTransaction' => 'getInternationalTransaction',
         'matchingTransactions' => 'getMatchingTransactions',
+        'matchingValues' => 'getMatchingValues',
         'mccs' => 'getMccs',
         'merchantNames' => 'getMerchantNames',
         'merchants' => 'getMerchants',
@@ -342,6 +348,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('entryModes', $data ?? [], null);
         $this->setIfExists('internationalTransaction', $data ?? [], null);
         $this->setIfExists('matchingTransactions', $data ?? [], null);
+        $this->setIfExists('matchingValues', $data ?? [], null);
         $this->setIfExists('mccs', $data ?? [], null);
         $this->setIfExists('merchantNames', $data ?? [], null);
         $this->setIfExists('merchants', $data ?? [], null);
@@ -414,9 +421,6 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setActiveNetworkTokens($activeNetworkTokens)
     {
-        if (is_null($activeNetworkTokens)) {
-            throw new \InvalidArgumentException('non-nullable activeNetworkTokens cannot be null');
-        }
         $this->container['activeNetworkTokens'] = $activeNetworkTokens;
 
         return $this;
@@ -441,9 +445,6 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setBrandVariants($brandVariants)
     {
-        if (is_null($brandVariants)) {
-            throw new \InvalidArgumentException('non-nullable brandVariants cannot be null');
-        }
         $this->container['brandVariants'] = $brandVariants;
 
         return $this;
@@ -468,9 +469,6 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setCounterpartyBank($counterpartyBank)
     {
-        if (is_null($counterpartyBank)) {
-            throw new \InvalidArgumentException('non-nullable counterpartyBank cannot be null');
-        }
         $this->container['counterpartyBank'] = $counterpartyBank;
 
         return $this;
@@ -495,9 +493,6 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setCountries($countries)
     {
-        if (is_null($countries)) {
-            throw new \InvalidArgumentException('non-nullable countries cannot be null');
-        }
         $this->container['countries'] = $countries;
 
         return $this;
@@ -522,9 +517,6 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setDayOfWeek($dayOfWeek)
     {
-        if (is_null($dayOfWeek)) {
-            throw new \InvalidArgumentException('non-nullable dayOfWeek cannot be null');
-        }
         $this->container['dayOfWeek'] = $dayOfWeek;
 
         return $this;
@@ -549,9 +541,6 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setDifferentCurrencies($differentCurrencies)
     {
-        if (is_null($differentCurrencies)) {
-            throw new \InvalidArgumentException('non-nullable differentCurrencies cannot be null');
-        }
         $this->container['differentCurrencies'] = $differentCurrencies;
 
         return $this;
@@ -576,9 +565,6 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setEntryModes($entryModes)
     {
-        if (is_null($entryModes)) {
-            throw new \InvalidArgumentException('non-nullable entryModes cannot be null');
-        }
         $this->container['entryModes'] = $entryModes;
 
         return $this;
@@ -603,9 +589,6 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setInternationalTransaction($internationalTransaction)
     {
-        if (is_null($internationalTransaction)) {
-            throw new \InvalidArgumentException('non-nullable internationalTransaction cannot be null');
-        }
         $this->container['internationalTransaction'] = $internationalTransaction;
 
         return $this;
@@ -630,10 +613,31 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setMatchingTransactions($matchingTransactions)
     {
-        if (is_null($matchingTransactions)) {
-            throw new \InvalidArgumentException('non-nullable matchingTransactions cannot be null');
-        }
         $this->container['matchingTransactions'] = $matchingTransactions;
+
+        return $this;
+    }
+
+    /**
+     * Gets matchingValues
+     *
+     * @return \Adyen\Model\BalancePlatform\MatchingValuesRestriction|null
+     */
+    public function getMatchingValues()
+    {
+        return $this->container['matchingValues'];
+    }
+
+    /**
+     * Sets matchingValues
+     *
+     * @param \Adyen\Model\BalancePlatform\MatchingValuesRestriction|null $matchingValues matchingValues
+     *
+     * @return self
+     */
+    public function setMatchingValues($matchingValues)
+    {
+        $this->container['matchingValues'] = $matchingValues;
 
         return $this;
     }
@@ -657,9 +661,6 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setMccs($mccs)
     {
-        if (is_null($mccs)) {
-            throw new \InvalidArgumentException('non-nullable mccs cannot be null');
-        }
         $this->container['mccs'] = $mccs;
 
         return $this;
@@ -684,9 +685,6 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setMerchantNames($merchantNames)
     {
-        if (is_null($merchantNames)) {
-            throw new \InvalidArgumentException('non-nullable merchantNames cannot be null');
-        }
         $this->container['merchantNames'] = $merchantNames;
 
         return $this;
@@ -711,9 +709,6 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setMerchants($merchants)
     {
-        if (is_null($merchants)) {
-            throw new \InvalidArgumentException('non-nullable merchants cannot be null');
-        }
         $this->container['merchants'] = $merchants;
 
         return $this;
@@ -738,9 +733,6 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setProcessingTypes($processingTypes)
     {
-        if (is_null($processingTypes)) {
-            throw new \InvalidArgumentException('non-nullable processingTypes cannot be null');
-        }
         $this->container['processingTypes'] = $processingTypes;
 
         return $this;
@@ -765,9 +757,6 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setRiskScores($riskScores)
     {
-        if (is_null($riskScores)) {
-            throw new \InvalidArgumentException('non-nullable riskScores cannot be null');
-        }
         $this->container['riskScores'] = $riskScores;
 
         return $this;
@@ -792,9 +781,6 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setSameAmountRestriction($sameAmountRestriction)
     {
-        if (is_null($sameAmountRestriction)) {
-            throw new \InvalidArgumentException('non-nullable sameAmountRestriction cannot be null');
-        }
         $this->container['sameAmountRestriction'] = $sameAmountRestriction;
 
         return $this;
@@ -819,9 +805,6 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setSameCounterpartyRestriction($sameCounterpartyRestriction)
     {
-        if (is_null($sameCounterpartyRestriction)) {
-            throw new \InvalidArgumentException('non-nullable sameCounterpartyRestriction cannot be null');
-        }
         $this->container['sameCounterpartyRestriction'] = $sameCounterpartyRestriction;
 
         return $this;
@@ -846,9 +829,6 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setTimeOfDay($timeOfDay)
     {
-        if (is_null($timeOfDay)) {
-            throw new \InvalidArgumentException('non-nullable timeOfDay cannot be null');
-        }
         $this->container['timeOfDay'] = $timeOfDay;
 
         return $this;
@@ -873,9 +853,6 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setTotalAmount($totalAmount)
     {
-        if (is_null($totalAmount)) {
-            throw new \InvalidArgumentException('non-nullable totalAmount cannot be null');
-        }
         $this->container['totalAmount'] = $totalAmount;
 
         return $this;

@@ -365,9 +365,6 @@ class AcceptTermsOfServiceResponse implements ModelInterface, ArrayAccess, \Json
      */
     public function setAcceptedBy($acceptedBy)
     {
-        if (is_null($acceptedBy)) {
-            throw new \InvalidArgumentException('non-nullable acceptedBy cannot be null');
-        }
         $this->container['acceptedBy'] = $acceptedBy;
 
         return $this;
@@ -392,9 +389,6 @@ class AcceptTermsOfServiceResponse implements ModelInterface, ArrayAccess, \Json
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -419,9 +413,6 @@ class AcceptTermsOfServiceResponse implements ModelInterface, ArrayAccess, \Json
      */
     public function setIpAddress($ipAddress)
     {
-        if (is_null($ipAddress)) {
-            throw new \InvalidArgumentException('non-nullable ipAddress cannot be null');
-        }
         $this->container['ipAddress'] = $ipAddress;
 
         return $this;
@@ -446,9 +437,6 @@ class AcceptTermsOfServiceResponse implements ModelInterface, ArrayAccess, \Json
      */
     public function setLanguage($language)
     {
-        if (is_null($language)) {
-            throw new \InvalidArgumentException('non-nullable language cannot be null');
-        }
         $this->container['language'] = $language;
 
         return $this;
@@ -473,9 +461,6 @@ class AcceptTermsOfServiceResponse implements ModelInterface, ArrayAccess, \Json
      */
     public function setTermsOfServiceDocumentId($termsOfServiceDocumentId)
     {
-        if (is_null($termsOfServiceDocumentId)) {
-            throw new \InvalidArgumentException('non-nullable termsOfServiceDocumentId cannot be null');
-        }
         $this->container['termsOfServiceDocumentId'] = $termsOfServiceDocumentId;
 
         return $this;
@@ -500,9 +485,6 @@ class AcceptTermsOfServiceResponse implements ModelInterface, ArrayAccess, \Json
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

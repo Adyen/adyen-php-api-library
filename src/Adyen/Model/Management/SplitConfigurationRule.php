@@ -396,9 +396,6 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setCurrency($currency)
     {
-        if (is_null($currency)) {
-            throw new \InvalidArgumentException('non-nullable currency cannot be null');
-        }
         $this->container['currency'] = $currency;
 
         return $this;
@@ -423,9 +420,6 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setFundingSource($fundingSource)
     {
-        if (is_null($fundingSource)) {
-            throw new \InvalidArgumentException('non-nullable fundingSource cannot be null');
-        }
         $allowedValues = $this->getFundingSourceAllowableValues();
         if (!in_array($fundingSource, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -460,9 +454,6 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setPaymentMethod($paymentMethod)
     {
-        if (is_null($paymentMethod)) {
-            throw new \InvalidArgumentException('non-nullable paymentMethod cannot be null');
-        }
         $this->container['paymentMethod'] = $paymentMethod;
 
         return $this;
@@ -487,9 +478,6 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setRuleId($ruleId)
     {
-        if (is_null($ruleId)) {
-            throw new \InvalidArgumentException('non-nullable ruleId cannot be null');
-        }
         $this->container['ruleId'] = $ruleId;
 
         return $this;
@@ -514,9 +502,6 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setShopperInteraction($shopperInteraction)
     {
-        if (is_null($shopperInteraction)) {
-            throw new \InvalidArgumentException('non-nullable shopperInteraction cannot be null');
-        }
         $allowedValues = $this->getShopperInteractionAllowableValues();
         if (!in_array($shopperInteraction, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -551,9 +536,6 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setSplitLogic($splitLogic)
     {
-        if (is_null($splitLogic)) {
-            throw new \InvalidArgumentException('non-nullable splitLogic cannot be null');
-        }
         $this->container['splitLogic'] = $splitLogic;
 
         return $this;

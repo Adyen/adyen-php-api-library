@@ -323,9 +323,6 @@ class SupportedCardTypes implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setCredit($credit)
     {
-        if (is_null($credit)) {
-            throw new \InvalidArgumentException('non-nullable credit cannot be null');
-        }
         $this->container['credit'] = $credit;
 
         return $this;
@@ -350,9 +347,6 @@ class SupportedCardTypes implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setDebit($debit)
     {
-        if (is_null($debit)) {
-            throw new \InvalidArgumentException('non-nullable debit cannot be null');
-        }
         $this->container['debit'] = $debit;
 
         return $this;
@@ -377,9 +371,6 @@ class SupportedCardTypes implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setDeferredDebit($deferredDebit)
     {
-        if (is_null($deferredDebit)) {
-            throw new \InvalidArgumentException('non-nullable deferredDebit cannot be null');
-        }
         $this->container['deferredDebit'] = $deferredDebit;
 
         return $this;
@@ -404,9 +395,6 @@ class SupportedCardTypes implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setPrepaid($prepaid)
     {
-        if (is_null($prepaid)) {
-            throw new \InvalidArgumentException('non-nullable prepaid cannot be null');
-        }
         $this->container['prepaid'] = $prepaid;
 
         return $this;
@@ -431,9 +419,6 @@ class SupportedCardTypes implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setUnknown($unknown)
     {
-        if (is_null($unknown)) {
-            throw new \InvalidArgumentException('non-nullable unknown cannot be null');
-        }
         $this->container['unknown'] = $unknown;
 
         return $this;

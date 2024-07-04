@@ -333,9 +333,6 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCity($city)
     {
-        if (is_null($city)) {
-            throw new \InvalidArgumentException('non-nullable city cannot be null');
-        }
         $this->container['city'] = $city;
 
         return $this;
@@ -360,9 +357,6 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCountry($country)
     {
-        if (is_null($country)) {
-            throw new \InvalidArgumentException('non-nullable country cannot be null');
-        }
         $this->container['country'] = $country;
 
         return $this;
@@ -387,9 +381,6 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPostalCode($postalCode)
     {
-        if (is_null($postalCode)) {
-            throw new \InvalidArgumentException('non-nullable postalCode cannot be null');
-        }
         $this->container['postalCode'] = $postalCode;
 
         return $this;
@@ -414,9 +405,6 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStateOrProvince($stateOrProvince)
     {
-        if (is_null($stateOrProvince)) {
-            throw new \InvalidArgumentException('non-nullable stateOrProvince cannot be null');
-        }
         $this->container['stateOrProvince'] = $stateOrProvince;
 
         return $this;
@@ -441,9 +429,6 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStreet($street)
     {
-        if (is_null($street)) {
-            throw new \InvalidArgumentException('non-nullable street cannot be null');
-        }
         $this->container['street'] = $street;
 
         return $this;
@@ -468,9 +453,6 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStreet2($street2)
     {
-        if (is_null($street2)) {
-            throw new \InvalidArgumentException('non-nullable street2 cannot be null');
-        }
         $this->container['street2'] = $street2;
 
         return $this;

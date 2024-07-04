@@ -350,9 +350,6 @@ class AccountCapabilityData implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setAllowed($allowed)
     {
-        if (is_null($allowed)) {
-            throw new \InvalidArgumentException('non-nullable allowed cannot be null');
-        }
         $this->container['allowed'] = $allowed;
 
         return $this;
@@ -377,9 +374,6 @@ class AccountCapabilityData implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setAllowedLevel($allowedLevel)
     {
-        if (is_null($allowedLevel)) {
-            throw new \InvalidArgumentException('non-nullable allowedLevel cannot be null');
-        }
         $this->container['allowedLevel'] = $allowedLevel;
 
         return $this;
@@ -404,9 +398,6 @@ class AccountCapabilityData implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setCapability($capability)
     {
-        if (is_null($capability)) {
-            throw new \InvalidArgumentException('non-nullable capability cannot be null');
-        }
         $this->container['capability'] = $capability;
 
         return $this;
@@ -431,9 +422,6 @@ class AccountCapabilityData implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setProblems($problems)
     {
-        if (is_null($problems)) {
-            throw new \InvalidArgumentException('non-nullable problems cannot be null');
-        }
         $this->container['problems'] = $problems;
 
         return $this;
@@ -458,9 +446,6 @@ class AccountCapabilityData implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setRequested($requested)
     {
-        if (is_null($requested)) {
-            throw new \InvalidArgumentException('non-nullable requested cannot be null');
-        }
         $this->container['requested'] = $requested;
 
         return $this;
@@ -485,9 +470,6 @@ class AccountCapabilityData implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setRequestedLevel($requestedLevel)
     {
-        if (is_null($requestedLevel)) {
-            throw new \InvalidArgumentException('non-nullable requestedLevel cannot be null');
-        }
         $this->container['requestedLevel'] = $requestedLevel;
 
         return $this;
@@ -512,9 +494,6 @@ class AccountCapabilityData implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setVerificationDeadline($verificationDeadline)
     {
-        if (is_null($verificationDeadline)) {
-            throw new \InvalidArgumentException('non-nullable verificationDeadline cannot be null');
-        }
         $this->container['verificationDeadline'] = $verificationDeadline;
 
         return $this;
@@ -539,9 +518,6 @@ class AccountCapabilityData implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setVerificationStatus($verificationStatus)
     {
-        if (is_null($verificationStatus)) {
-            throw new \InvalidArgumentException('non-nullable verificationStatus cannot be null');
-        }
         $this->container['verificationStatus'] = $verificationStatus;
 
         return $this;

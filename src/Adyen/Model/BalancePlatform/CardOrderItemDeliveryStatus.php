@@ -344,9 +344,6 @@ class CardOrderItemDeliveryStatus implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setErrorMessage($errorMessage)
     {
-        if (is_null($errorMessage)) {
-            throw new \InvalidArgumentException('non-nullable errorMessage cannot be null');
-        }
         $this->container['errorMessage'] = $errorMessage;
 
         return $this;
@@ -371,9 +368,6 @@ class CardOrderItemDeliveryStatus implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -408,9 +402,6 @@ class CardOrderItemDeliveryStatus implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setTrackingNumber($trackingNumber)
     {
-        if (is_null($trackingNumber)) {
-            throw new \InvalidArgumentException('non-nullable trackingNumber cannot be null');
-        }
         $this->container['trackingNumber'] = $trackingNumber;
 
         return $this;

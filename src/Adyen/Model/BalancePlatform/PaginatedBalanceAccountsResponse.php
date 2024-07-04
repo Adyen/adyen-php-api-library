@@ -318,9 +318,6 @@ class PaginatedBalanceAccountsResponse implements ModelInterface, ArrayAccess, \
      */
     public function setBalanceAccounts($balanceAccounts)
     {
-        if (is_null($balanceAccounts)) {
-            throw new \InvalidArgumentException('non-nullable balanceAccounts cannot be null');
-        }
         $this->container['balanceAccounts'] = $balanceAccounts;
 
         return $this;
@@ -345,9 +342,6 @@ class PaginatedBalanceAccountsResponse implements ModelInterface, ArrayAccess, \
      */
     public function setHasNext($hasNext)
     {
-        if (is_null($hasNext)) {
-            throw new \InvalidArgumentException('non-nullable hasNext cannot be null');
-        }
         $this->container['hasNext'] = $hasNext;
 
         return $this;
@@ -372,9 +366,6 @@ class PaginatedBalanceAccountsResponse implements ModelInterface, ArrayAccess, \
      */
     public function setHasPrevious($hasPrevious)
     {
-        if (is_null($hasPrevious)) {
-            throw new \InvalidArgumentException('non-nullable hasPrevious cannot be null');
-        }
         $this->container['hasPrevious'] = $hasPrevious;
 
         return $this;

@@ -469,9 +469,6 @@ class VerificationError implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setCapabilities($capabilities)
     {
-        if (is_null($capabilities)) {
-            throw new \InvalidArgumentException('non-nullable capabilities cannot be null');
-        }
         $allowedValues = $this->getCapabilitiesAllowableValues();
         if (array_diff($capabilities, $allowedValues)) {
             throw new \InvalidArgumentException(
@@ -505,9 +502,6 @@ class VerificationError implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setCode($code)
     {
-        if (is_null($code)) {
-            throw new \InvalidArgumentException('non-nullable code cannot be null');
-        }
         $this->container['code'] = $code;
 
         return $this;
@@ -532,9 +526,6 @@ class VerificationError implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setMessage($message)
     {
-        if (is_null($message)) {
-            throw new \InvalidArgumentException('non-nullable message cannot be null');
-        }
         $this->container['message'] = $message;
 
         return $this;
@@ -559,9 +550,6 @@ class VerificationError implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setRemediatingActions($remediatingActions)
     {
-        if (is_null($remediatingActions)) {
-            throw new \InvalidArgumentException('non-nullable remediatingActions cannot be null');
-        }
         $this->container['remediatingActions'] = $remediatingActions;
 
         return $this;
@@ -586,9 +574,6 @@ class VerificationError implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setSubErrors($subErrors)
     {
-        if (is_null($subErrors)) {
-            throw new \InvalidArgumentException('non-nullable subErrors cannot be null');
-        }
         $this->container['subErrors'] = $subErrors;
 
         return $this;
@@ -613,9 +598,6 @@ class VerificationError implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

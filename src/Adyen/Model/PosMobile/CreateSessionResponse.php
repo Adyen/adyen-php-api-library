@@ -323,9 +323,6 @@ class CreateSessionResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -350,9 +347,6 @@ class CreateSessionResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setInstallationId($installationId)
     {
-        if (is_null($installationId)) {
-            throw new \InvalidArgumentException('non-nullable installationId cannot be null');
-        }
         $this->container['installationId'] = $installationId;
 
         return $this;
@@ -377,9 +371,6 @@ class CreateSessionResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setMerchantAccount($merchantAccount)
     {
-        if (is_null($merchantAccount)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
-        }
         $this->container['merchantAccount'] = $merchantAccount;
 
         return $this;
@@ -404,9 +395,6 @@ class CreateSessionResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setSdkData($sdkData)
     {
-        if (is_null($sdkData)) {
-            throw new \InvalidArgumentException('non-nullable sdkData cannot be null');
-        }
         $this->container['sdkData'] = $sdkData;
 
         return $this;
@@ -431,9 +419,6 @@ class CreateSessionResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setStore($store)
     {
-        if (is_null($store)) {
-            throw new \InvalidArgumentException('non-nullable store cannot be null');
-        }
         $this->container['store'] = $store;
 
         return $this;

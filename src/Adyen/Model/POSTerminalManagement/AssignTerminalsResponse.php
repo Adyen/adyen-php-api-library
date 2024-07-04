@@ -298,9 +298,6 @@ class AssignTerminalsResponse implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setResults($results)
     {
-        if (is_null($results)) {
-            throw new \InvalidArgumentException('non-nullable results cannot be null');
-        }
         $this->container['results'] = $results;
 
         return $this;

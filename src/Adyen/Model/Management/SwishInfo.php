@@ -298,9 +298,6 @@ class SwishInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSwishNumber($swishNumber)
     {
-        if (is_null($swishNumber)) {
-            throw new \InvalidArgumentException('non-nullable swishNumber cannot be null');
-        }
         $this->container['swishNumber'] = $swishNumber;
 
         return $this;

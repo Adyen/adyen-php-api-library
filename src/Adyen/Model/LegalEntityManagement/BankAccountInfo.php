@@ -323,9 +323,6 @@ class BankAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAccountIdentification($accountIdentification)
     {
-        if (is_null($accountIdentification)) {
-            throw new \InvalidArgumentException('non-nullable accountIdentification cannot be null');
-        }
         $this->container['accountIdentification'] = $accountIdentification;
 
         return $this;
@@ -352,9 +349,6 @@ class BankAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAccountType($accountType)
     {
-        if (is_null($accountType)) {
-            throw new \InvalidArgumentException('non-nullable accountType cannot be null');
-        }
         $this->container['accountType'] = $accountType;
 
         return $this;
@@ -379,9 +373,6 @@ class BankAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBankName($bankName)
     {
-        if (is_null($bankName)) {
-            throw new \InvalidArgumentException('non-nullable bankName cannot be null');
-        }
         $this->container['bankName'] = $bankName;
 
         return $this;
@@ -406,9 +397,6 @@ class BankAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCountryCode($countryCode)
     {
-        if (is_null($countryCode)) {
-            throw new \InvalidArgumentException('non-nullable countryCode cannot be null');
-        }
         $this->container['countryCode'] = $countryCode;
 
         return $this;
@@ -433,9 +421,6 @@ class BankAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTrustedSource($trustedSource)
     {
-        if (is_null($trustedSource)) {
-            throw new \InvalidArgumentException('non-nullable trustedSource cannot be null');
-        }
         $this->container['trustedSource'] = $trustedSource;
 
         return $this;

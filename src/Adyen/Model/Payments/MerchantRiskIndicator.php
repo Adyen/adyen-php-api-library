@@ -446,9 +446,6 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setAddressMatch($addressMatch)
     {
-        if (is_null($addressMatch)) {
-            throw new \InvalidArgumentException('non-nullable addressMatch cannot be null');
-        }
         $this->container['addressMatch'] = $addressMatch;
 
         return $this;
@@ -473,9 +470,6 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setDeliveryAddressIndicator($deliveryAddressIndicator)
     {
-        if (is_null($deliveryAddressIndicator)) {
-            throw new \InvalidArgumentException('non-nullable deliveryAddressIndicator cannot be null');
-        }
         $allowedValues = $this->getDeliveryAddressIndicatorAllowableValues();
         if (!in_array($deliveryAddressIndicator, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -512,9 +506,6 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setDeliveryEmail($deliveryEmail)
     {
-        if (is_null($deliveryEmail)) {
-            throw new \InvalidArgumentException('non-nullable deliveryEmail cannot be null');
-        }
         $this->container['deliveryEmail'] = $deliveryEmail;
 
         return $this;
@@ -539,9 +530,6 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setDeliveryEmailAddress($deliveryEmailAddress)
     {
-        if (is_null($deliveryEmailAddress)) {
-            throw new \InvalidArgumentException('non-nullable deliveryEmailAddress cannot be null');
-        }
         $this->container['deliveryEmailAddress'] = $deliveryEmailAddress;
 
         return $this;
@@ -566,9 +554,6 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setDeliveryTimeframe($deliveryTimeframe)
     {
-        if (is_null($deliveryTimeframe)) {
-            throw new \InvalidArgumentException('non-nullable deliveryTimeframe cannot be null');
-        }
         $allowedValues = $this->getDeliveryTimeframeAllowableValues();
         if (!in_array($deliveryTimeframe, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -603,9 +588,6 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setGiftCardAmount($giftCardAmount)
     {
-        if (is_null($giftCardAmount)) {
-            throw new \InvalidArgumentException('non-nullable giftCardAmount cannot be null');
-        }
         $this->container['giftCardAmount'] = $giftCardAmount;
 
         return $this;
@@ -630,7 +612,6 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setGiftCardCount($giftCardCount)
     {
-        // Do nothing for nullable integers
         $this->container['giftCardCount'] = $giftCardCount;
 
         return $this;
@@ -655,9 +636,6 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setGiftCardCurr($giftCardCurr)
     {
-        if (is_null($giftCardCurr)) {
-            throw new \InvalidArgumentException('non-nullable giftCardCurr cannot be null');
-        }
         $this->container['giftCardCurr'] = $giftCardCurr;
 
         return $this;
@@ -682,9 +660,6 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setPreOrderDate($preOrderDate)
     {
-        if (is_null($preOrderDate)) {
-            throw new \InvalidArgumentException('non-nullable preOrderDate cannot be null');
-        }
         $this->container['preOrderDate'] = $preOrderDate;
 
         return $this;
@@ -709,9 +684,6 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setPreOrderPurchase($preOrderPurchase)
     {
-        if (is_null($preOrderPurchase)) {
-            throw new \InvalidArgumentException('non-nullable preOrderPurchase cannot be null');
-        }
         $this->container['preOrderPurchase'] = $preOrderPurchase;
 
         return $this;
@@ -736,9 +708,6 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setPreOrderPurchaseInd($preOrderPurchaseInd)
     {
-        if (is_null($preOrderPurchaseInd)) {
-            throw new \InvalidArgumentException('non-nullable preOrderPurchaseInd cannot be null');
-        }
         $this->container['preOrderPurchaseInd'] = $preOrderPurchaseInd;
 
         return $this;
@@ -763,9 +732,6 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setReorderItems($reorderItems)
     {
-        if (is_null($reorderItems)) {
-            throw new \InvalidArgumentException('non-nullable reorderItems cannot be null');
-        }
         $this->container['reorderItems'] = $reorderItems;
 
         return $this;
@@ -790,9 +756,6 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setReorderItemsInd($reorderItemsInd)
     {
-        if (is_null($reorderItemsInd)) {
-            throw new \InvalidArgumentException('non-nullable reorderItemsInd cannot be null');
-        }
         $this->container['reorderItemsInd'] = $reorderItemsInd;
 
         return $this;
@@ -817,9 +780,6 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setShipIndicator($shipIndicator)
     {
-        if (is_null($shipIndicator)) {
-            throw new \InvalidArgumentException('non-nullable shipIndicator cannot be null');
-        }
         $this->container['shipIndicator'] = $shipIndicator;
 
         return $this;

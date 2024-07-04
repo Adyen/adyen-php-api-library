@@ -309,9 +309,6 @@ class TerminalConnectivityEthernet implements ModelInterface, ArrayAccess, \Json
      */
     public function setIpAddress($ipAddress)
     {
-        if (is_null($ipAddress)) {
-            throw new \InvalidArgumentException('non-nullable ipAddress cannot be null');
-        }
         $this->container['ipAddress'] = $ipAddress;
 
         return $this;
@@ -336,9 +333,6 @@ class TerminalConnectivityEthernet implements ModelInterface, ArrayAccess, \Json
      */
     public function setLinkNegotiation($linkNegotiation)
     {
-        if (is_null($linkNegotiation)) {
-            throw new \InvalidArgumentException('non-nullable linkNegotiation cannot be null');
-        }
         $this->container['linkNegotiation'] = $linkNegotiation;
 
         return $this;
@@ -363,9 +357,6 @@ class TerminalConnectivityEthernet implements ModelInterface, ArrayAccess, \Json
      */
     public function setMacAddress($macAddress)
     {
-        if (is_null($macAddress)) {
-            throw new \InvalidArgumentException('non-nullable macAddress cannot be null');
-        }
         $this->container['macAddress'] = $macAddress;
 
         return $this;

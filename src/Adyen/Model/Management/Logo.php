@@ -295,9 +295,6 @@ class Logo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setData($data)
     {
-        if (is_null($data)) {
-            throw new \InvalidArgumentException('non-nullable data cannot be null');
-        }
         $this->container['data'] = $data;
 
         return $this;

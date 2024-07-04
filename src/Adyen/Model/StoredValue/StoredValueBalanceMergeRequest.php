@@ -390,9 +390,6 @@ class StoredValueBalanceMergeRequest implements ModelInterface, ArrayAccess, \Js
      */
     public function setAmount($amount)
     {
-        if (is_null($amount)) {
-            throw new \InvalidArgumentException('non-nullable amount cannot be null');
-        }
         $this->container['amount'] = $amount;
 
         return $this;
@@ -417,9 +414,6 @@ class StoredValueBalanceMergeRequest implements ModelInterface, ArrayAccess, \Js
      */
     public function setMerchantAccount($merchantAccount)
     {
-        if (is_null($merchantAccount)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
-        }
         $this->container['merchantAccount'] = $merchantAccount;
 
         return $this;
@@ -444,9 +438,6 @@ class StoredValueBalanceMergeRequest implements ModelInterface, ArrayAccess, \Js
      */
     public function setPaymentMethod($paymentMethod)
     {
-        if (is_null($paymentMethod)) {
-            throw new \InvalidArgumentException('non-nullable paymentMethod cannot be null');
-        }
         $this->container['paymentMethod'] = $paymentMethod;
 
         return $this;
@@ -471,9 +462,6 @@ class StoredValueBalanceMergeRequest implements ModelInterface, ArrayAccess, \Js
      */
     public function setRecurringDetailReference($recurringDetailReference)
     {
-        if (is_null($recurringDetailReference)) {
-            throw new \InvalidArgumentException('non-nullable recurringDetailReference cannot be null');
-        }
         $this->container['recurringDetailReference'] = $recurringDetailReference;
 
         return $this;
@@ -498,9 +486,6 @@ class StoredValueBalanceMergeRequest implements ModelInterface, ArrayAccess, \Js
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -525,9 +510,6 @@ class StoredValueBalanceMergeRequest implements ModelInterface, ArrayAccess, \Js
      */
     public function setShopperInteraction($shopperInteraction)
     {
-        if (is_null($shopperInteraction)) {
-            throw new \InvalidArgumentException('non-nullable shopperInteraction cannot be null');
-        }
         $allowedValues = $this->getShopperInteractionAllowableValues();
         if (!in_array($shopperInteraction, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -562,9 +544,6 @@ class StoredValueBalanceMergeRequest implements ModelInterface, ArrayAccess, \Js
      */
     public function setShopperReference($shopperReference)
     {
-        if (is_null($shopperReference)) {
-            throw new \InvalidArgumentException('non-nullable shopperReference cannot be null');
-        }
         $this->container['shopperReference'] = $shopperReference;
 
         return $this;
@@ -589,9 +568,6 @@ class StoredValueBalanceMergeRequest implements ModelInterface, ArrayAccess, \Js
      */
     public function setSourcePaymentMethod($sourcePaymentMethod)
     {
-        if (is_null($sourcePaymentMethod)) {
-            throw new \InvalidArgumentException('non-nullable sourcePaymentMethod cannot be null');
-        }
         $this->container['sourcePaymentMethod'] = $sourcePaymentMethod;
 
         return $this;
@@ -616,9 +592,6 @@ class StoredValueBalanceMergeRequest implements ModelInterface, ArrayAccess, \Js
      */
     public function setStore($store)
     {
-        if (is_null($store)) {
-            throw new \InvalidArgumentException('non-nullable store cannot be null');
-        }
         $this->container['store'] = $store;
 
         return $this;

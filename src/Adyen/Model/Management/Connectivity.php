@@ -318,9 +318,6 @@ class Connectivity implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSimcardStatus($simcardStatus)
     {
-        if (is_null($simcardStatus)) {
-            throw new \InvalidArgumentException('non-nullable simcardStatus cannot be null');
-        }
         $allowedValues = $this->getSimcardStatusAllowableValues();
         if (!in_array($simcardStatus, $allowedValues, true)) {
             throw new \InvalidArgumentException(

@@ -552,9 +552,6 @@ class Webhook implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLinks($links)
     {
-        if (is_null($links)) {
-            throw new \InvalidArgumentException('non-nullable links cannot be null');
-        }
         $this->container['links'] = $links;
 
         return $this;
@@ -579,9 +576,6 @@ class Webhook implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAcceptsExpiredCertificate($acceptsExpiredCertificate)
     {
-        if (is_null($acceptsExpiredCertificate)) {
-            throw new \InvalidArgumentException('non-nullable acceptsExpiredCertificate cannot be null');
-        }
         $this->container['acceptsExpiredCertificate'] = $acceptsExpiredCertificate;
 
         return $this;
@@ -606,9 +600,6 @@ class Webhook implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAcceptsSelfSignedCertificate($acceptsSelfSignedCertificate)
     {
-        if (is_null($acceptsSelfSignedCertificate)) {
-            throw new \InvalidArgumentException('non-nullable acceptsSelfSignedCertificate cannot be null');
-        }
         $this->container['acceptsSelfSignedCertificate'] = $acceptsSelfSignedCertificate;
 
         return $this;
@@ -633,9 +624,6 @@ class Webhook implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAcceptsUntrustedRootCertificate($acceptsUntrustedRootCertificate)
     {
-        if (is_null($acceptsUntrustedRootCertificate)) {
-            throw new \InvalidArgumentException('non-nullable acceptsUntrustedRootCertificate cannot be null');
-        }
         $this->container['acceptsUntrustedRootCertificate'] = $acceptsUntrustedRootCertificate;
 
         return $this;
@@ -660,9 +648,6 @@ class Webhook implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAccountReference($accountReference)
     {
-        if (is_null($accountReference)) {
-            throw new \InvalidArgumentException('non-nullable accountReference cannot be null');
-        }
         $this->container['accountReference'] = $accountReference;
 
         return $this;
@@ -687,9 +672,6 @@ class Webhook implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
-        if (is_null($active)) {
-            throw new \InvalidArgumentException('non-nullable active cannot be null');
-        }
         $this->container['active'] = $active;
 
         return $this;
@@ -714,9 +696,6 @@ class Webhook implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAdditionalSettings($additionalSettings)
     {
-        if (is_null($additionalSettings)) {
-            throw new \InvalidArgumentException('non-nullable additionalSettings cannot be null');
-        }
         $this->container['additionalSettings'] = $additionalSettings;
 
         return $this;
@@ -741,9 +720,6 @@ class Webhook implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCertificateAlias($certificateAlias)
     {
-        if (is_null($certificateAlias)) {
-            throw new \InvalidArgumentException('non-nullable certificateAlias cannot be null');
-        }
         $this->container['certificateAlias'] = $certificateAlias;
 
         return $this;
@@ -768,9 +744,6 @@ class Webhook implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCommunicationFormat($communicationFormat)
     {
-        if (is_null($communicationFormat)) {
-            throw new \InvalidArgumentException('non-nullable communicationFormat cannot be null');
-        }
         $allowedValues = $this->getCommunicationFormatAllowableValues();
         if (!in_array($communicationFormat, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -805,9 +778,6 @@ class Webhook implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -832,9 +802,6 @@ class Webhook implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEncryptionProtocol($encryptionProtocol)
     {
-        if (is_null($encryptionProtocol)) {
-            throw new \InvalidArgumentException('non-nullable encryptionProtocol cannot be null');
-        }
         $allowedValues = $this->getEncryptionProtocolAllowableValues();
         if (!in_array($encryptionProtocol, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -869,9 +836,6 @@ class Webhook implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFilterMerchantAccountType($filterMerchantAccountType)
     {
-        if (is_null($filterMerchantAccountType)) {
-            throw new \InvalidArgumentException('non-nullable filterMerchantAccountType cannot be null');
-        }
         $allowedValues = $this->getFilterMerchantAccountTypeAllowableValues();
         if (!in_array($filterMerchantAccountType, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -906,9 +870,6 @@ class Webhook implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFilterMerchantAccounts($filterMerchantAccounts)
     {
-        if (is_null($filterMerchantAccounts)) {
-            throw new \InvalidArgumentException('non-nullable filterMerchantAccounts cannot be null');
-        }
         $this->container['filterMerchantAccounts'] = $filterMerchantAccounts;
 
         return $this;
@@ -933,9 +894,6 @@ class Webhook implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setHasError($hasError)
     {
-        if (is_null($hasError)) {
-            throw new \InvalidArgumentException('non-nullable hasError cannot be null');
-        }
         $this->container['hasError'] = $hasError;
 
         return $this;
@@ -960,9 +918,6 @@ class Webhook implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setHasPassword($hasPassword)
     {
-        if (is_null($hasPassword)) {
-            throw new \InvalidArgumentException('non-nullable hasPassword cannot be null');
-        }
         $this->container['hasPassword'] = $hasPassword;
 
         return $this;
@@ -987,9 +942,6 @@ class Webhook implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setHmacKeyCheckValue($hmacKeyCheckValue)
     {
-        if (is_null($hmacKeyCheckValue)) {
-            throw new \InvalidArgumentException('non-nullable hmacKeyCheckValue cannot be null');
-        }
         $this->container['hmacKeyCheckValue'] = $hmacKeyCheckValue;
 
         return $this;
@@ -1014,9 +966,6 @@ class Webhook implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -1041,9 +990,6 @@ class Webhook implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setNetworkType($networkType)
     {
-        if (is_null($networkType)) {
-            throw new \InvalidArgumentException('non-nullable networkType cannot be null');
-        }
         $allowedValues = $this->getNetworkTypeAllowableValues();
         if (!in_array($networkType, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -1078,9 +1024,6 @@ class Webhook implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPopulateSoapActionHeader($populateSoapActionHeader)
     {
-        if (is_null($populateSoapActionHeader)) {
-            throw new \InvalidArgumentException('non-nullable populateSoapActionHeader cannot be null');
-        }
         $this->container['populateSoapActionHeader'] = $populateSoapActionHeader;
 
         return $this;
@@ -1105,9 +1048,6 @@ class Webhook implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $this->container['type'] = $type;
 
         return $this;
@@ -1132,9 +1072,6 @@ class Webhook implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUrl($url)
     {
-        if (is_null($url)) {
-            throw new \InvalidArgumentException('non-nullable url cannot be null');
-        }
         $this->container['url'] = $url;
 
         return $this;
@@ -1159,9 +1096,6 @@ class Webhook implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUsername($username)
     {
-        if (is_null($username)) {
-            throw new \InvalidArgumentException('non-nullable username cannot be null');
-        }
         $this->container['username'] = $username;
 
         return $this;

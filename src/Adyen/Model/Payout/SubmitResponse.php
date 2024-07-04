@@ -322,9 +322,6 @@ class SubmitResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAdditionalData($additionalData)
     {
-        if (is_null($additionalData)) {
-            throw new \InvalidArgumentException('non-nullable additionalData cannot be null');
-        }
         $this->container['additionalData'] = $additionalData;
 
         return $this;
@@ -349,9 +346,6 @@ class SubmitResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPspReference($pspReference)
     {
-        if (is_null($pspReference)) {
-            throw new \InvalidArgumentException('non-nullable pspReference cannot be null');
-        }
         $this->container['pspReference'] = $pspReference;
 
         return $this;
@@ -376,9 +370,6 @@ class SubmitResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRefusalReason($refusalReason)
     {
-        if (is_null($refusalReason)) {
-            throw new \InvalidArgumentException('non-nullable refusalReason cannot be null');
-        }
         $this->container['refusalReason'] = $refusalReason;
 
         return $this;
@@ -403,9 +394,6 @@ class SubmitResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setResultCode($resultCode)
     {
-        if (is_null($resultCode)) {
-            throw new \InvalidArgumentException('non-nullable resultCode cannot be null');
-        }
         $this->container['resultCode'] = $resultCode;
 
         return $this;

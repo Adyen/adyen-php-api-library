@@ -400,9 +400,6 @@ class PlatformPayment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setModificationMerchantReference($modificationMerchantReference)
     {
-        if (is_null($modificationMerchantReference)) {
-            throw new \InvalidArgumentException('non-nullable modificationMerchantReference cannot be null');
-        }
         $this->container['modificationMerchantReference'] = $modificationMerchantReference;
 
         return $this;
@@ -427,9 +424,6 @@ class PlatformPayment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setModificationPspReference($modificationPspReference)
     {
-        if (is_null($modificationPspReference)) {
-            throw new \InvalidArgumentException('non-nullable modificationPspReference cannot be null');
-        }
         $this->container['modificationPspReference'] = $modificationPspReference;
 
         return $this;
@@ -454,9 +448,6 @@ class PlatformPayment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPaymentMerchantReference($paymentMerchantReference)
     {
-        if (is_null($paymentMerchantReference)) {
-            throw new \InvalidArgumentException('non-nullable paymentMerchantReference cannot be null');
-        }
         $this->container['paymentMerchantReference'] = $paymentMerchantReference;
 
         return $this;
@@ -481,9 +472,6 @@ class PlatformPayment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPlatformPaymentType($platformPaymentType)
     {
-        if (is_null($platformPaymentType)) {
-            throw new \InvalidArgumentException('non-nullable platformPaymentType cannot be null');
-        }
         $allowedValues = $this->getPlatformPaymentTypeAllowableValues();
         if (!in_array($platformPaymentType, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -518,9 +506,6 @@ class PlatformPayment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPspPaymentReference($pspPaymentReference)
     {
-        if (is_null($pspPaymentReference)) {
-            throw new \InvalidArgumentException('non-nullable pspPaymentReference cannot be null');
-        }
         $this->container['pspPaymentReference'] = $pspPaymentReference;
 
         return $this;
@@ -545,9 +530,6 @@ class PlatformPayment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

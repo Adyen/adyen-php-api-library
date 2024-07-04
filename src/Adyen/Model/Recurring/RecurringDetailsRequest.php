@@ -315,9 +315,6 @@ class RecurringDetailsRequest implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setMerchantAccount($merchantAccount)
     {
-        if (is_null($merchantAccount)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
-        }
         $this->container['merchantAccount'] = $merchantAccount;
 
         return $this;
@@ -342,9 +339,6 @@ class RecurringDetailsRequest implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setRecurring($recurring)
     {
-        if (is_null($recurring)) {
-            throw new \InvalidArgumentException('non-nullable recurring cannot be null');
-        }
         $this->container['recurring'] = $recurring;
 
         return $this;
@@ -369,9 +363,6 @@ class RecurringDetailsRequest implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setShopperReference($shopperReference)
     {
-        if (is_null($shopperReference)) {
-            throw new \InvalidArgumentException('non-nullable shopperReference cannot be null');
-        }
         $this->container['shopperReference'] = $shopperReference;
 
         return $this;

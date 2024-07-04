@@ -347,9 +347,6 @@ class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setAccountHolderId($accountHolderId)
     {
-        if (is_null($accountHolderId)) {
-            throw new \InvalidArgumentException('non-nullable accountHolderId cannot be null');
-        }
         $this->container['accountHolderId'] = $accountHolderId;
 
         return $this;
@@ -374,9 +371,6 @@ class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setDefaultCurrencyCode($defaultCurrencyCode)
     {
-        if (is_null($defaultCurrencyCode)) {
-            throw new \InvalidArgumentException('non-nullable defaultCurrencyCode cannot be null');
-        }
         $this->container['defaultCurrencyCode'] = $defaultCurrencyCode;
 
         return $this;
@@ -401,9 +395,6 @@ class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -428,9 +419,6 @@ class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setMetadata($metadata)
     {
-        if (is_null($metadata)) {
-            throw new \InvalidArgumentException('non-nullable metadata cannot be null');
-        }
         $this->container['metadata'] = $metadata;
 
         return $this;
@@ -455,9 +443,6 @@ class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setMigratedAccountCode($migratedAccountCode)
     {
-        if (is_null($migratedAccountCode)) {
-            throw new \InvalidArgumentException('non-nullable migratedAccountCode cannot be null');
-        }
         $this->container['migratedAccountCode'] = $migratedAccountCode;
 
         return $this;
@@ -482,9 +467,6 @@ class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setPlatformPaymentConfiguration($platformPaymentConfiguration)
     {
-        if (is_null($platformPaymentConfiguration)) {
-            throw new \InvalidArgumentException('non-nullable platformPaymentConfiguration cannot be null');
-        }
         $this->container['platformPaymentConfiguration'] = $platformPaymentConfiguration;
 
         return $this;
@@ -509,9 +491,6 @@ class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -536,9 +515,6 @@ class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setTimeZone($timeZone)
     {
-        if (is_null($timeZone)) {
-            throw new \InvalidArgumentException('non-nullable timeZone cannot be null');
-        }
         $this->container['timeZone'] = $timeZone;
 
         return $this;

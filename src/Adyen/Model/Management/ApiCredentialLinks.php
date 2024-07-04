@@ -333,9 +333,6 @@ class ApiCredentialLinks implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setAllowedOrigins($allowedOrigins)
     {
-        if (is_null($allowedOrigins)) {
-            throw new \InvalidArgumentException('non-nullable allowedOrigins cannot be null');
-        }
         $this->container['allowedOrigins'] = $allowedOrigins;
 
         return $this;
@@ -360,9 +357,6 @@ class ApiCredentialLinks implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setCompany($company)
     {
-        if (is_null($company)) {
-            throw new \InvalidArgumentException('non-nullable company cannot be null');
-        }
         $this->container['company'] = $company;
 
         return $this;
@@ -387,9 +381,6 @@ class ApiCredentialLinks implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setGenerateApiKey($generateApiKey)
     {
-        if (is_null($generateApiKey)) {
-            throw new \InvalidArgumentException('non-nullable generateApiKey cannot be null');
-        }
         $this->container['generateApiKey'] = $generateApiKey;
 
         return $this;
@@ -414,9 +405,6 @@ class ApiCredentialLinks implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setGenerateClientKey($generateClientKey)
     {
-        if (is_null($generateClientKey)) {
-            throw new \InvalidArgumentException('non-nullable generateClientKey cannot be null');
-        }
         $this->container['generateClientKey'] = $generateClientKey;
 
         return $this;
@@ -441,9 +429,6 @@ class ApiCredentialLinks implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setMerchant($merchant)
     {
-        if (is_null($merchant)) {
-            throw new \InvalidArgumentException('non-nullable merchant cannot be null');
-        }
         $this->container['merchant'] = $merchant;
 
         return $this;
@@ -468,9 +453,6 @@ class ApiCredentialLinks implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setSelf($self)
     {
-        if (is_null($self)) {
-            throw new \InvalidArgumentException('non-nullable self cannot be null');
-        }
         $this->container['self'] = $self;
 
         return $this;

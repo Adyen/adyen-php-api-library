@@ -302,9 +302,6 @@ class TransactionSearchResponse implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function setLinks($links)
     {
-        if (is_null($links)) {
-            throw new \InvalidArgumentException('non-nullable links cannot be null');
-        }
         $this->container['links'] = $links;
 
         return $this;
@@ -329,9 +326,6 @@ class TransactionSearchResponse implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function setData($data)
     {
-        if (is_null($data)) {
-            throw new \InvalidArgumentException('non-nullable data cannot be null');
-        }
         $this->container['data'] = $data;
 
         return $this;

@@ -332,9 +332,6 @@ class OnboardingTheme implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCreatedAt($createdAt)
     {
-        if (is_null($createdAt)) {
-            throw new \InvalidArgumentException('non-nullable createdAt cannot be null');
-        }
         $this->container['createdAt'] = $createdAt;
 
         return $this;
@@ -359,9 +356,6 @@ class OnboardingTheme implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -386,9 +380,6 @@ class OnboardingTheme implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -413,9 +404,6 @@ class OnboardingTheme implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setProperties($properties)
     {
-        if (is_null($properties)) {
-            throw new \InvalidArgumentException('non-nullable properties cannot be null');
-        }
         $this->container['properties'] = $properties;
 
         return $this;
@@ -440,9 +428,6 @@ class OnboardingTheme implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUpdatedAt($updatedAt)
     {
-        if (is_null($updatedAt)) {
-            throw new \InvalidArgumentException('non-nullable updatedAt cannot be null');
-        }
         $this->container['updatedAt'] = $updatedAt;
 
         return $this;

@@ -398,9 +398,6 @@ class LegalEntityCapability implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setAllowed($allowed)
     {
-        if (is_null($allowed)) {
-            throw new \InvalidArgumentException('non-nullable allowed cannot be null');
-        }
         $this->container['allowed'] = $allowed;
 
         return $this;
@@ -425,9 +422,6 @@ class LegalEntityCapability implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setAllowedLevel($allowedLevel)
     {
-        if (is_null($allowedLevel)) {
-            throw new \InvalidArgumentException('non-nullable allowedLevel cannot be null');
-        }
         $allowedValues = $this->getAllowedLevelAllowableValues();
         if (!in_array($allowedLevel, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -462,9 +456,6 @@ class LegalEntityCapability implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setAllowedSettings($allowedSettings)
     {
-        if (is_null($allowedSettings)) {
-            throw new \InvalidArgumentException('non-nullable allowedSettings cannot be null');
-        }
         $this->container['allowedSettings'] = $allowedSettings;
 
         return $this;
@@ -489,9 +480,6 @@ class LegalEntityCapability implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setRequested($requested)
     {
-        if (is_null($requested)) {
-            throw new \InvalidArgumentException('non-nullable requested cannot be null');
-        }
         $this->container['requested'] = $requested;
 
         return $this;
@@ -516,9 +504,6 @@ class LegalEntityCapability implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setRequestedLevel($requestedLevel)
     {
-        if (is_null($requestedLevel)) {
-            throw new \InvalidArgumentException('non-nullable requestedLevel cannot be null');
-        }
         $allowedValues = $this->getRequestedLevelAllowableValues();
         if (!in_array($requestedLevel, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -553,9 +538,6 @@ class LegalEntityCapability implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setRequestedSettings($requestedSettings)
     {
-        if (is_null($requestedSettings)) {
-            throw new \InvalidArgumentException('non-nullable requestedSettings cannot be null');
-        }
         $this->container['requestedSettings'] = $requestedSettings;
 
         return $this;
@@ -580,9 +562,6 @@ class LegalEntityCapability implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setTransferInstruments($transferInstruments)
     {
-        if (is_null($transferInstruments)) {
-            throw new \InvalidArgumentException('non-nullable transferInstruments cannot be null');
-        }
         $this->container['transferInstruments'] = $transferInstruments;
 
         return $this;
@@ -607,9 +586,6 @@ class LegalEntityCapability implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setVerificationStatus($verificationStatus)
     {
-        if (is_null($verificationStatus)) {
-            throw new \InvalidArgumentException('non-nullable verificationStatus cannot be null');
-        }
         $this->container['verificationStatus'] = $verificationStatus;
 
         return $this;

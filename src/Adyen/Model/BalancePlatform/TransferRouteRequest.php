@@ -389,9 +389,6 @@ class TransferRouteRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setBalanceAccountId($balanceAccountId)
     {
-        if (is_null($balanceAccountId)) {
-            throw new \InvalidArgumentException('non-nullable balanceAccountId cannot be null');
-        }
         $this->container['balanceAccountId'] = $balanceAccountId;
 
         return $this;
@@ -416,9 +413,6 @@ class TransferRouteRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setBalancePlatform($balancePlatform)
     {
-        if (is_null($balancePlatform)) {
-            throw new \InvalidArgumentException('non-nullable balancePlatform cannot be null');
-        }
         $this->container['balancePlatform'] = $balancePlatform;
 
         return $this;
@@ -443,9 +437,6 @@ class TransferRouteRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setCategory($category)
     {
-        if (is_null($category)) {
-            throw new \InvalidArgumentException('non-nullable category cannot be null');
-        }
         $allowedValues = $this->getCategoryAllowableValues();
         if (!in_array($category, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -480,9 +471,6 @@ class TransferRouteRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setCounterparty($counterparty)
     {
-        if (is_null($counterparty)) {
-            throw new \InvalidArgumentException('non-nullable counterparty cannot be null');
-        }
         $this->container['counterparty'] = $counterparty;
 
         return $this;
@@ -507,9 +495,6 @@ class TransferRouteRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setCountry($country)
     {
-        if (is_null($country)) {
-            throw new \InvalidArgumentException('non-nullable country cannot be null');
-        }
         $this->container['country'] = $country;
 
         return $this;
@@ -534,9 +519,6 @@ class TransferRouteRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setCurrency($currency)
     {
-        if (is_null($currency)) {
-            throw new \InvalidArgumentException('non-nullable currency cannot be null');
-        }
         $this->container['currency'] = $currency;
 
         return $this;
@@ -555,15 +537,12 @@ class TransferRouteRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets priorities
      *
-     * @param string[]|null $priorities The list of priorities for the bank transfer. Priorities set the speed at which the transfer is sent and the fees that you have to pay. Multiple values can be provided. Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN).
+     * @param string[]|null $priorities The list of priorities for the bank transfer. Priorities set the speed at which the transfer is sent and the fees that you have to pay. Multiple values can be provided. Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).
      *
      * @return self
      */
     public function setPriorities($priorities)
     {
-        if (is_null($priorities)) {
-            throw new \InvalidArgumentException('non-nullable priorities cannot be null');
-        }
         $allowedValues = $this->getPrioritiesAllowableValues();
         if (array_diff($priorities, $allowedValues)) {
             throw new \InvalidArgumentException(

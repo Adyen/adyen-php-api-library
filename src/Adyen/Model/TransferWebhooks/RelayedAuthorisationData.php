@@ -302,9 +302,6 @@ class RelayedAuthorisationData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setMetadata($metadata)
     {
-        if (is_null($metadata)) {
-            throw new \InvalidArgumentException('non-nullable metadata cannot be null');
-        }
         $this->container['metadata'] = $metadata;
 
         return $this;
@@ -329,9 +326,6 @@ class RelayedAuthorisationData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;

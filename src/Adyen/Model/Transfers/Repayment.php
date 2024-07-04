@@ -312,7 +312,6 @@ class Repayment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBasisPoints($basisPoints)
     {
-        // Do nothing for nullable integers
         $this->container['basisPoints'] = $basisPoints;
 
         return $this;
@@ -337,9 +336,6 @@ class Repayment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTerm($term)
     {
-        if (is_null($term)) {
-            throw new \InvalidArgumentException('non-nullable term cannot be null');
-        }
         $this->container['term'] = $term;
 
         return $this;
@@ -364,9 +360,6 @@ class Repayment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setThreshold($threshold)
     {
-        if (is_null($threshold)) {
-            throw new \InvalidArgumentException('non-nullable threshold cannot be null');
-        }
         $this->container['threshold'] = $threshold;
 
         return $this;

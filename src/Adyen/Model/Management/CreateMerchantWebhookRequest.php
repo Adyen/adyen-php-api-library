@@ -471,9 +471,6 @@ class CreateMerchantWebhookRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setAcceptsExpiredCertificate($acceptsExpiredCertificate)
     {
-        if (is_null($acceptsExpiredCertificate)) {
-            throw new \InvalidArgumentException('non-nullable acceptsExpiredCertificate cannot be null');
-        }
         $this->container['acceptsExpiredCertificate'] = $acceptsExpiredCertificate;
 
         return $this;
@@ -498,9 +495,6 @@ class CreateMerchantWebhookRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setAcceptsSelfSignedCertificate($acceptsSelfSignedCertificate)
     {
-        if (is_null($acceptsSelfSignedCertificate)) {
-            throw new \InvalidArgumentException('non-nullable acceptsSelfSignedCertificate cannot be null');
-        }
         $this->container['acceptsSelfSignedCertificate'] = $acceptsSelfSignedCertificate;
 
         return $this;
@@ -525,9 +519,6 @@ class CreateMerchantWebhookRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setAcceptsUntrustedRootCertificate($acceptsUntrustedRootCertificate)
     {
-        if (is_null($acceptsUntrustedRootCertificate)) {
-            throw new \InvalidArgumentException('non-nullable acceptsUntrustedRootCertificate cannot be null');
-        }
         $this->container['acceptsUntrustedRootCertificate'] = $acceptsUntrustedRootCertificate;
 
         return $this;
@@ -552,9 +543,6 @@ class CreateMerchantWebhookRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setActive($active)
     {
-        if (is_null($active)) {
-            throw new \InvalidArgumentException('non-nullable active cannot be null');
-        }
         $this->container['active'] = $active;
 
         return $this;
@@ -579,9 +567,6 @@ class CreateMerchantWebhookRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setAdditionalSettings($additionalSettings)
     {
-        if (is_null($additionalSettings)) {
-            throw new \InvalidArgumentException('non-nullable additionalSettings cannot be null');
-        }
         $this->container['additionalSettings'] = $additionalSettings;
 
         return $this;
@@ -606,9 +591,6 @@ class CreateMerchantWebhookRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setCommunicationFormat($communicationFormat)
     {
-        if (is_null($communicationFormat)) {
-            throw new \InvalidArgumentException('non-nullable communicationFormat cannot be null');
-        }
         $allowedValues = $this->getCommunicationFormatAllowableValues();
         if (!in_array($communicationFormat, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -643,9 +625,6 @@ class CreateMerchantWebhookRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -670,9 +649,6 @@ class CreateMerchantWebhookRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setEncryptionProtocol($encryptionProtocol)
     {
-        if (is_null($encryptionProtocol)) {
-            throw new \InvalidArgumentException('non-nullable encryptionProtocol cannot be null');
-        }
         $allowedValues = $this->getEncryptionProtocolAllowableValues();
         if (!in_array($encryptionProtocol, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -707,9 +683,6 @@ class CreateMerchantWebhookRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setNetworkType($networkType)
     {
-        if (is_null($networkType)) {
-            throw new \InvalidArgumentException('non-nullable networkType cannot be null');
-        }
         $allowedValues = $this->getNetworkTypeAllowableValues();
         if (!in_array($networkType, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -744,9 +717,6 @@ class CreateMerchantWebhookRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setPassword($password)
     {
-        if (is_null($password)) {
-            throw new \InvalidArgumentException('non-nullable password cannot be null');
-        }
         $this->container['password'] = $password;
 
         return $this;
@@ -771,9 +741,6 @@ class CreateMerchantWebhookRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setPopulateSoapActionHeader($populateSoapActionHeader)
     {
-        if (is_null($populateSoapActionHeader)) {
-            throw new \InvalidArgumentException('non-nullable populateSoapActionHeader cannot be null');
-        }
         $this->container['populateSoapActionHeader'] = $populateSoapActionHeader;
 
         return $this;
@@ -798,9 +765,6 @@ class CreateMerchantWebhookRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $this->container['type'] = $type;
 
         return $this;
@@ -825,9 +789,6 @@ class CreateMerchantWebhookRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setUrl($url)
     {
-        if (is_null($url)) {
-            throw new \InvalidArgumentException('non-nullable url cannot be null');
-        }
         $this->container['url'] = $url;
 
         return $this;
@@ -852,9 +813,6 @@ class CreateMerchantWebhookRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function setUsername($username)
     {
-        if (is_null($username)) {
-            throw new \InvalidArgumentException('non-nullable username cannot be null');
-        }
         $this->container['username'] = $username;
 
         return $this;

@@ -366,9 +366,6 @@ class RestServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDetail($detail)
     {
-        if (is_null($detail)) {
-            throw new \InvalidArgumentException('non-nullable detail cannot be null');
-        }
         $this->container['detail'] = $detail;
 
         return $this;
@@ -393,9 +390,6 @@ class RestServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setErrorCode($errorCode)
     {
-        if (is_null($errorCode)) {
-            throw new \InvalidArgumentException('non-nullable errorCode cannot be null');
-        }
         $this->container['errorCode'] = $errorCode;
 
         return $this;
@@ -420,9 +414,6 @@ class RestServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setInstance($instance)
     {
-        if (is_null($instance)) {
-            throw new \InvalidArgumentException('non-nullable instance cannot be null');
-        }
         $this->container['instance'] = $instance;
 
         return $this;
@@ -447,9 +438,6 @@ class RestServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setInvalidFields($invalidFields)
     {
-        if (is_null($invalidFields)) {
-            throw new \InvalidArgumentException('non-nullable invalidFields cannot be null');
-        }
         $this->container['invalidFields'] = $invalidFields;
 
         return $this;
@@ -474,9 +462,6 @@ class RestServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRequestId($requestId)
     {
-        if (is_null($requestId)) {
-            throw new \InvalidArgumentException('non-nullable requestId cannot be null');
-        }
         $this->container['requestId'] = $requestId;
 
         return $this;
@@ -501,9 +486,6 @@ class RestServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setResponse($response)
     {
-        if (is_null($response)) {
-            throw new \InvalidArgumentException('non-nullable response cannot be null');
-        }
         $this->container['response'] = $response;
 
         return $this;
@@ -528,7 +510,6 @@ class RestServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStatus($status)
     {
-        // Do nothing for nullable integers
         $this->container['status'] = $status;
 
         return $this;
@@ -553,9 +534,6 @@ class RestServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTitle($title)
     {
-        if (is_null($title)) {
-            throw new \InvalidArgumentException('non-nullable title cannot be null');
-        }
         $this->container['title'] = $title;
 
         return $this;
@@ -580,9 +558,6 @@ class RestServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $this->container['type'] = $type;
 
         return $this;

@@ -393,9 +393,6 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setAcceptedCountries($acceptedCountries)
     {
-        if (is_null($acceptedCountries)) {
-            throw new \InvalidArgumentException('non-nullable acceptedCountries cannot be null');
-        }
         $this->container['acceptedCountries'] = $acceptedCountries;
 
         return $this;
@@ -420,9 +417,6 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setAllowBankAccountFormatSelection($allowBankAccountFormatSelection)
     {
-        if (is_null($allowBankAccountFormatSelection)) {
-            throw new \InvalidArgumentException('non-nullable allowBankAccountFormatSelection cannot be null');
-        }
         $this->container['allowBankAccountFormatSelection'] = $allowBankAccountFormatSelection;
 
         return $this;
@@ -447,9 +441,6 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setAllowIntraRegionCrossBorderPayout($allowIntraRegionCrossBorderPayout)
     {
-        if (is_null($allowIntraRegionCrossBorderPayout)) {
-            throw new \InvalidArgumentException('non-nullable allowIntraRegionCrossBorderPayout cannot be null');
-        }
         $this->container['allowIntraRegionCrossBorderPayout'] = $allowIntraRegionCrossBorderPayout;
 
         return $this;
@@ -474,9 +465,6 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setChangeLegalEntityType($changeLegalEntityType)
     {
-        if (is_null($changeLegalEntityType)) {
-            throw new \InvalidArgumentException('non-nullable changeLegalEntityType cannot be null');
-        }
         $this->container['changeLegalEntityType'] = $changeLegalEntityType;
 
         return $this;
@@ -501,9 +489,6 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setEditPrefilledCountry($editPrefilledCountry)
     {
-        if (is_null($editPrefilledCountry)) {
-            throw new \InvalidArgumentException('non-nullable editPrefilledCountry cannot be null');
-        }
         $this->container['editPrefilledCountry'] = $editPrefilledCountry;
 
         return $this;
@@ -528,9 +513,6 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setHideOnboardingIntroductionIndividual($hideOnboardingIntroductionIndividual)
     {
-        if (is_null($hideOnboardingIntroductionIndividual)) {
-            throw new \InvalidArgumentException('non-nullable hideOnboardingIntroductionIndividual cannot be null');
-        }
         $this->container['hideOnboardingIntroductionIndividual'] = $hideOnboardingIntroductionIndividual;
 
         return $this;
@@ -555,9 +537,6 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setHideOnboardingIntroductionOrganization($hideOnboardingIntroductionOrganization)
     {
-        if (is_null($hideOnboardingIntroductionOrganization)) {
-            throw new \InvalidArgumentException('non-nullable hideOnboardingIntroductionOrganization cannot be null');
-        }
         $this->container['hideOnboardingIntroductionOrganization'] = $hideOnboardingIntroductionOrganization;
 
         return $this;
@@ -582,9 +561,6 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setHideOnboardingIntroductionSoleProprietor($hideOnboardingIntroductionSoleProprietor)
     {
-        if (is_null($hideOnboardingIntroductionSoleProprietor)) {
-            throw new \InvalidArgumentException('non-nullable hideOnboardingIntroductionSoleProprietor cannot be null');
-        }
         $this->container['hideOnboardingIntroductionSoleProprietor'] = $hideOnboardingIntroductionSoleProprietor;
 
         return $this;
@@ -609,9 +585,6 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setHideOnboardingIntroductionTrust($hideOnboardingIntroductionTrust)
     {
-        if (is_null($hideOnboardingIntroductionTrust)) {
-            throw new \InvalidArgumentException('non-nullable hideOnboardingIntroductionTrust cannot be null');
-        }
         $this->container['hideOnboardingIntroductionTrust'] = $hideOnboardingIntroductionTrust;
 
         return $this;
@@ -636,9 +609,6 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setInstantBankVerification($instantBankVerification)
     {
-        if (is_null($instantBankVerification)) {
-            throw new \InvalidArgumentException('non-nullable instantBankVerification cannot be null');
-        }
         $this->container['instantBankVerification'] = $instantBankVerification;
 
         return $this;
@@ -663,9 +633,6 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setRequirePciSignEcomMoto($requirePciSignEcomMoto)
     {
-        if (is_null($requirePciSignEcomMoto)) {
-            throw new \InvalidArgumentException('non-nullable requirePciSignEcomMoto cannot be null');
-        }
         $this->container['requirePciSignEcomMoto'] = $requirePciSignEcomMoto;
 
         return $this;
@@ -690,9 +657,6 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setRequirePciSignEcommerce($requirePciSignEcommerce)
     {
-        if (is_null($requirePciSignEcommerce)) {
-            throw new \InvalidArgumentException('non-nullable requirePciSignEcommerce cannot be null');
-        }
         $this->container['requirePciSignEcommerce'] = $requirePciSignEcommerce;
 
         return $this;
@@ -717,9 +681,6 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setRequirePciSignPos($requirePciSignPos)
     {
-        if (is_null($requirePciSignPos)) {
-            throw new \InvalidArgumentException('non-nullable requirePciSignPos cannot be null');
-        }
         $this->container['requirePciSignPos'] = $requirePciSignPos;
 
         return $this;
@@ -744,9 +705,6 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setRequirePciSignPosMoto($requirePciSignPosMoto)
     {
-        if (is_null($requirePciSignPosMoto)) {
-            throw new \InvalidArgumentException('non-nullable requirePciSignPosMoto cannot be null');
-        }
         $this->container['requirePciSignPosMoto'] = $requirePciSignPosMoto;
 
         return $this;
@@ -771,7 +729,6 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setTransferInstrumentLimit($transferInstrumentLimit)
     {
-        // Do nothing for nullable integers
         $this->container['transferInstrumentLimit'] = $transferInstrumentLimit;
 
         return $this;

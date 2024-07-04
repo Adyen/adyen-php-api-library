@@ -295,9 +295,6 @@ class BinDetail implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setIssuerCountry($issuerCountry)
     {
-        if (is_null($issuerCountry)) {
-            throw new \InvalidArgumentException('non-nullable issuerCountry cannot be null');
-        }
         $this->container['issuerCountry'] = $issuerCountry;
 
         return $this;

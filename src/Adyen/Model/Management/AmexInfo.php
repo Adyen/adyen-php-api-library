@@ -337,9 +337,6 @@ class AmexInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMidNumber($midNumber)
     {
-        if (is_null($midNumber)) {
-            throw new \InvalidArgumentException('non-nullable midNumber cannot be null');
-        }
         $this->container['midNumber'] = $midNumber;
 
         return $this;
@@ -364,9 +361,6 @@ class AmexInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setReuseMidNumber($reuseMidNumber)
     {
-        if (is_null($reuseMidNumber)) {
-            throw new \InvalidArgumentException('non-nullable reuseMidNumber cannot be null');
-        }
         $this->container['reuseMidNumber'] = $reuseMidNumber;
 
         return $this;
@@ -391,9 +385,6 @@ class AmexInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setServiceLevel($serviceLevel)
     {
-        if (is_null($serviceLevel)) {
-            throw new \InvalidArgumentException('non-nullable serviceLevel cannot be null');
-        }
         $allowedValues = $this->getServiceLevelAllowableValues();
         if (!in_array($serviceLevel, $allowedValues, true)) {
             throw new \InvalidArgumentException(

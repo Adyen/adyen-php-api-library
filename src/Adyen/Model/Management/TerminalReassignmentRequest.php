@@ -316,9 +316,6 @@ class TerminalReassignmentRequest implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setCompanyId($companyId)
     {
-        if (is_null($companyId)) {
-            throw new \InvalidArgumentException('non-nullable companyId cannot be null');
-        }
         $this->container['companyId'] = $companyId;
 
         return $this;
@@ -343,9 +340,6 @@ class TerminalReassignmentRequest implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setInventory($inventory)
     {
-        if (is_null($inventory)) {
-            throw new \InvalidArgumentException('non-nullable inventory cannot be null');
-        }
         $this->container['inventory'] = $inventory;
 
         return $this;
@@ -370,9 +364,6 @@ class TerminalReassignmentRequest implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setMerchantId($merchantId)
     {
-        if (is_null($merchantId)) {
-            throw new \InvalidArgumentException('non-nullable merchantId cannot be null');
-        }
         $this->container['merchantId'] = $merchantId;
 
         return $this;
@@ -397,9 +388,6 @@ class TerminalReassignmentRequest implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setStoreId($storeId)
     {
-        if (is_null($storeId)) {
-            throw new \InvalidArgumentException('non-nullable storeId cannot be null');
-        }
         $this->container['storeId'] = $storeId;
 
         return $this;

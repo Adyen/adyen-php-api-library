@@ -318,9 +318,6 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMessage($message)
     {
-        if (is_null($message)) {
-            throw new \InvalidArgumentException('non-nullable message cannot be null');
-        }
         $this->container['message'] = $message;
 
         return $this;
@@ -345,9 +342,6 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setName($name)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
         $this->container['name'] = $name;
 
         return $this;
@@ -372,9 +366,6 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setValue($value)
     {
-        if (is_null($value)) {
-            throw new \InvalidArgumentException('non-nullable value cannot be null');
-        }
         $this->container['value'] = $value;
 
         return $this;

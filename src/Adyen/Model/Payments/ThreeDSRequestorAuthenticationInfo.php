@@ -340,9 +340,6 @@ class ThreeDSRequestorAuthenticationInfo implements ModelInterface, ArrayAccess,
      */
     public function setThreeDSReqAuthData($threeDSReqAuthData)
     {
-        if (is_null($threeDSReqAuthData)) {
-            throw new \InvalidArgumentException('non-nullable threeDSReqAuthData cannot be null');
-        }
         $this->container['threeDSReqAuthData'] = $threeDSReqAuthData;
 
         return $this;
@@ -367,9 +364,6 @@ class ThreeDSRequestorAuthenticationInfo implements ModelInterface, ArrayAccess,
      */
     public function setThreeDSReqAuthMethod($threeDSReqAuthMethod)
     {
-        if (is_null($threeDSReqAuthMethod)) {
-            throw new \InvalidArgumentException('non-nullable threeDSReqAuthMethod cannot be null');
-        }
         $allowedValues = $this->getThreeDSReqAuthMethodAllowableValues();
         if (!in_array($threeDSReqAuthMethod, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -404,9 +398,6 @@ class ThreeDSRequestorAuthenticationInfo implements ModelInterface, ArrayAccess,
      */
     public function setThreeDSReqAuthTimestamp($threeDSReqAuthTimestamp)
     {
-        if (is_null($threeDSReqAuthTimestamp)) {
-            throw new \InvalidArgumentException('non-nullable threeDSReqAuthTimestamp cannot be null');
-        }
         $this->container['threeDSReqAuthTimestamp'] = $threeDSReqAuthTimestamp;
 
         return $this;

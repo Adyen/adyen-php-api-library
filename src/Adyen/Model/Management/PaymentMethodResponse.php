@@ -439,9 +439,6 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setLinks($links)
     {
-        if (is_null($links)) {
-            throw new \InvalidArgumentException('non-nullable links cannot be null');
-        }
         $this->container['links'] = $links;
 
         return $this;
@@ -466,9 +463,6 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setData($data)
     {
-        if (is_null($data)) {
-            throw new \InvalidArgumentException('non-nullable data cannot be null');
-        }
         $this->container['data'] = $data;
 
         return $this;
@@ -493,7 +487,6 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setItemsTotal($itemsTotal)
     {
-        // Do nothing for nullable integers
         $this->container['itemsTotal'] = $itemsTotal;
 
         return $this;
@@ -518,7 +511,6 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setPagesTotal($pagesTotal)
     {
-        // Do nothing for nullable integers
         $this->container['pagesTotal'] = $pagesTotal;
 
         return $this;
@@ -543,9 +535,6 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setTypesWithErrors($typesWithErrors)
     {
-        if (is_null($typesWithErrors)) {
-            throw new \InvalidArgumentException('non-nullable typesWithErrors cannot be null');
-        }
         $allowedValues = $this->getTypesWithErrorsAllowableValues();
         if (array_diff($typesWithErrors, $allowedValues)) {
             throw new \InvalidArgumentException(

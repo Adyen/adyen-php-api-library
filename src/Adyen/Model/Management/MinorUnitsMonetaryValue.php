@@ -302,7 +302,6 @@ class MinorUnitsMonetaryValue implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setAmount($amount)
     {
-        // Do nothing for nullable integers
         $this->container['amount'] = $amount;
 
         return $this;
@@ -327,9 +326,6 @@ class MinorUnitsMonetaryValue implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setCurrencyCode($currencyCode)
     {
-        if (is_null($currencyCode)) {
-            throw new \InvalidArgumentException('non-nullable currencyCode cannot be null');
-        }
         $this->container['currencyCode'] = $currencyCode;
 
         return $this;

@@ -343,9 +343,6 @@ class CapabilityProblemEntity implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setDocuments($documents)
     {
-        if (is_null($documents)) {
-            throw new \InvalidArgumentException('non-nullable documents cannot be null');
-        }
         $this->container['documents'] = $documents;
 
         return $this;
@@ -370,9 +367,6 @@ class CapabilityProblemEntity implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -397,9 +391,6 @@ class CapabilityProblemEntity implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setOwner($owner)
     {
-        if (is_null($owner)) {
-            throw new \InvalidArgumentException('non-nullable owner cannot be null');
-        }
         $this->container['owner'] = $owner;
 
         return $this;
@@ -424,9 +415,6 @@ class CapabilityProblemEntity implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

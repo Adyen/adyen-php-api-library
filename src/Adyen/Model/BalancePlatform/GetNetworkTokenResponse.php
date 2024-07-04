@@ -298,9 +298,6 @@ class GetNetworkTokenResponse implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setToken($token)
     {
-        if (is_null($token)) {
-            throw new \InvalidArgumentException('non-nullable token cannot be null');
-        }
         $this->container['token'] = $token;
 
         return $this;

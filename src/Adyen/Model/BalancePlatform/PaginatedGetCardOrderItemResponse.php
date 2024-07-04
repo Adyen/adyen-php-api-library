@@ -318,9 +318,6 @@ class PaginatedGetCardOrderItemResponse implements ModelInterface, ArrayAccess, 
      */
     public function setData($data)
     {
-        if (is_null($data)) {
-            throw new \InvalidArgumentException('non-nullable data cannot be null');
-        }
         $this->container['data'] = $data;
 
         return $this;
@@ -345,9 +342,6 @@ class PaginatedGetCardOrderItemResponse implements ModelInterface, ArrayAccess, 
      */
     public function setHasNext($hasNext)
     {
-        if (is_null($hasNext)) {
-            throw new \InvalidArgumentException('non-nullable hasNext cannot be null');
-        }
         $this->container['hasNext'] = $hasNext;
 
         return $this;
@@ -372,9 +366,6 @@ class PaginatedGetCardOrderItemResponse implements ModelInterface, ArrayAccess, 
      */
     public function setHasPrevious($hasPrevious)
     {
-        if (is_null($hasPrevious)) {
-            throw new \InvalidArgumentException('non-nullable hasPrevious cannot be null');
-        }
         $this->container['hasPrevious'] = $hasPrevious;
 
         return $this;

@@ -295,9 +295,6 @@ class CardholderReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setHeaderForAuthorizedReceipt($headerForAuthorizedReceipt)
     {
-        if (is_null($headerForAuthorizedReceipt)) {
-            throw new \InvalidArgumentException('non-nullable headerForAuthorizedReceipt cannot be null');
-        }
         $this->container['headerForAuthorizedReceipt'] = $headerForAuthorizedReceipt;
 
         return $this;

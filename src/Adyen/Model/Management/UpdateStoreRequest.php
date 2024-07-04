@@ -362,9 +362,6 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setAddress($address)
     {
-        if (is_null($address)) {
-            throw new \InvalidArgumentException('non-nullable address cannot be null');
-        }
         $this->container['address'] = $address;
 
         return $this;
@@ -389,9 +386,6 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setBusinessLineIds($businessLineIds)
     {
-        if (is_null($businessLineIds)) {
-            throw new \InvalidArgumentException('non-nullable businessLineIds cannot be null');
-        }
         $this->container['businessLineIds'] = $businessLineIds;
 
         return $this;
@@ -416,9 +410,6 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -443,9 +434,6 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setExternalReferenceId($externalReferenceId)
     {
-        if (is_null($externalReferenceId)) {
-            throw new \InvalidArgumentException('non-nullable externalReferenceId cannot be null');
-        }
         $this->container['externalReferenceId'] = $externalReferenceId;
 
         return $this;
@@ -470,9 +458,6 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setPhoneNumber($phoneNumber)
     {
-        if (is_null($phoneNumber)) {
-            throw new \InvalidArgumentException('non-nullable phoneNumber cannot be null');
-        }
         $this->container['phoneNumber'] = $phoneNumber;
 
         return $this;
@@ -497,9 +482,6 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setSplitConfiguration($splitConfiguration)
     {
-        if (is_null($splitConfiguration)) {
-            throw new \InvalidArgumentException('non-nullable splitConfiguration cannot be null');
-        }
         $this->container['splitConfiguration'] = $splitConfiguration;
 
         return $this;
@@ -524,9 +506,6 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(

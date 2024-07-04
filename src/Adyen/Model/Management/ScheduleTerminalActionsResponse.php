@@ -337,9 +337,6 @@ class ScheduleTerminalActionsResponse implements ModelInterface, ArrayAccess, \J
      */
     public function setActionDetails($actionDetails)
     {
-        if (is_null($actionDetails)) {
-            throw new \InvalidArgumentException('non-nullable actionDetails cannot be null');
-        }
         $this->container['actionDetails'] = $actionDetails;
 
         return $this;
@@ -364,9 +361,6 @@ class ScheduleTerminalActionsResponse implements ModelInterface, ArrayAccess, \J
      */
     public function setItems($items)
     {
-        if (is_null($items)) {
-            throw new \InvalidArgumentException('non-nullable items cannot be null');
-        }
         $this->container['items'] = $items;
 
         return $this;
@@ -391,9 +385,6 @@ class ScheduleTerminalActionsResponse implements ModelInterface, ArrayAccess, \J
      */
     public function setScheduledAt($scheduledAt)
     {
-        if (is_null($scheduledAt)) {
-            throw new \InvalidArgumentException('non-nullable scheduledAt cannot be null');
-        }
         $this->container['scheduledAt'] = $scheduledAt;
 
         return $this;
@@ -418,9 +409,6 @@ class ScheduleTerminalActionsResponse implements ModelInterface, ArrayAccess, \J
      */
     public function setStoreId($storeId)
     {
-        if (is_null($storeId)) {
-            throw new \InvalidArgumentException('non-nullable storeId cannot be null');
-        }
         $this->container['storeId'] = $storeId;
 
         return $this;
@@ -445,9 +433,6 @@ class ScheduleTerminalActionsResponse implements ModelInterface, ArrayAccess, \J
      */
     public function setTerminalsWithErrors($terminalsWithErrors)
     {
-        if (is_null($terminalsWithErrors)) {
-            throw new \InvalidArgumentException('non-nullable terminalsWithErrors cannot be null');
-        }
         $this->container['terminalsWithErrors'] = $terminalsWithErrors;
 
         return $this;
@@ -472,7 +457,6 @@ class ScheduleTerminalActionsResponse implements ModelInterface, ArrayAccess, \J
      */
     public function setTotalErrors($totalErrors)
     {
-        // Do nothing for nullable integers
         $this->container['totalErrors'] = $totalErrors;
 
         return $this;
@@ -497,7 +481,6 @@ class ScheduleTerminalActionsResponse implements ModelInterface, ArrayAccess, \J
      */
     public function setTotalScheduled($totalScheduled)
     {
-        // Do nothing for nullable integers
         $this->container['totalScheduled'] = $totalScheduled;
 
         return $this;

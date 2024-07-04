@@ -375,9 +375,6 @@ class Recurring implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setContract($contract)
     {
-        if (is_null($contract)) {
-            throw new \InvalidArgumentException('non-nullable contract cannot be null');
-        }
         $allowedValues = $this->getContractAllowableValues();
         if (!in_array($contract, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -412,9 +409,6 @@ class Recurring implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRecurringDetailName($recurringDetailName)
     {
-        if (is_null($recurringDetailName)) {
-            throw new \InvalidArgumentException('non-nullable recurringDetailName cannot be null');
-        }
         $this->container['recurringDetailName'] = $recurringDetailName;
 
         return $this;
@@ -439,9 +433,6 @@ class Recurring implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRecurringExpiry($recurringExpiry)
     {
-        if (is_null($recurringExpiry)) {
-            throw new \InvalidArgumentException('non-nullable recurringExpiry cannot be null');
-        }
         $this->container['recurringExpiry'] = $recurringExpiry;
 
         return $this;
@@ -466,9 +457,6 @@ class Recurring implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRecurringFrequency($recurringFrequency)
     {
-        if (is_null($recurringFrequency)) {
-            throw new \InvalidArgumentException('non-nullable recurringFrequency cannot be null');
-        }
         $this->container['recurringFrequency'] = $recurringFrequency;
 
         return $this;
@@ -493,9 +481,6 @@ class Recurring implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTokenService($tokenService)
     {
-        if (is_null($tokenService)) {
-            throw new \InvalidArgumentException('non-nullable tokenService cannot be null');
-        }
         $allowedValues = $this->getTokenServiceAllowableValues();
         if (!in_array($tokenService, $allowedValues, true)) {
             throw new \InvalidArgumentException(

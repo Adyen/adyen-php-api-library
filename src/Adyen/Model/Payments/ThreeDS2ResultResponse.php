@@ -295,9 +295,6 @@ class ThreeDS2ResultResponse implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setThreeDS2Result($threeDS2Result)
     {
-        if (is_null($threeDS2Result)) {
-            throw new \InvalidArgumentException('non-nullable threeDS2Result cannot be null');
-        }
         $this->container['threeDS2Result'] = $threeDS2Result;
 
         return $this;

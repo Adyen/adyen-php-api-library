@@ -356,9 +356,6 @@ class TerminalAssignment implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setCompanyId($companyId)
     {
-        if (is_null($companyId)) {
-            throw new \InvalidArgumentException('non-nullable companyId cannot be null');
-        }
         $this->container['companyId'] = $companyId;
 
         return $this;
@@ -383,9 +380,6 @@ class TerminalAssignment implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setMerchantId($merchantId)
     {
-        if (is_null($merchantId)) {
-            throw new \InvalidArgumentException('non-nullable merchantId cannot be null');
-        }
         $this->container['merchantId'] = $merchantId;
 
         return $this;
@@ -410,9 +404,6 @@ class TerminalAssignment implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setReassignmentTarget($reassignmentTarget)
     {
-        if (is_null($reassignmentTarget)) {
-            throw new \InvalidArgumentException('non-nullable reassignmentTarget cannot be null');
-        }
         $this->container['reassignmentTarget'] = $reassignmentTarget;
 
         return $this;
@@ -437,9 +428,6 @@ class TerminalAssignment implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -474,9 +462,6 @@ class TerminalAssignment implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setStoreId($storeId)
     {
-        if (is_null($storeId)) {
-            throw new \InvalidArgumentException('non-nullable storeId cannot be null');
-        }
         $this->container['storeId'] = $storeId;
 
         return $this;

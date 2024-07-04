@@ -309,9 +309,6 @@ class MerchantDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCountryCode($countryCode)
     {
-        if (is_null($countryCode)) {
-            throw new \InvalidArgumentException('non-nullable countryCode cannot be null');
-        }
         $this->container['countryCode'] = $countryCode;
 
         return $this;
@@ -336,9 +333,6 @@ class MerchantDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEnrolledIn3DSecure($enrolledIn3DSecure)
     {
-        if (is_null($enrolledIn3DSecure)) {
-            throw new \InvalidArgumentException('non-nullable enrolledIn3DSecure cannot be null');
-        }
         $this->container['enrolledIn3DSecure'] = $enrolledIn3DSecure;
 
         return $this;
@@ -363,9 +357,6 @@ class MerchantDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMcc($mcc)
     {
-        if (is_null($mcc)) {
-            throw new \InvalidArgumentException('non-nullable mcc cannot be null');
-        }
         $this->container['mcc'] = $mcc;
 
         return $this;

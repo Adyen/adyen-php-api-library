@@ -44,6 +44,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var string[]
       */
     protected static $openAPITypes = [
+        'lodgingSpecialProgramCode' => 'string',
         'lodgingCheckInDate' => 'string',
         'lodgingCheckOutDate' => 'string',
         'lodgingCustomerServiceTollFreeNumber' => 'string',
@@ -70,6 +71,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'lodgingSpecialProgramCode' => null,
         'lodgingCheckInDate' => null,
         'lodgingCheckOutDate' => null,
         'lodgingCustomerServiceTollFreeNumber' => null,
@@ -94,6 +96,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'lodgingSpecialProgramCode' => false,
         'lodgingCheckInDate' => false,
         'lodgingCheckOutDate' => false,
         'lodgingCustomerServiceTollFreeNumber' => false,
@@ -198,6 +201,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $attributeMap = [
+        'lodgingSpecialProgramCode' => 'lodging.SpecialProgramCode',
         'lodgingCheckInDate' => 'lodging.checkInDate',
         'lodgingCheckOutDate' => 'lodging.checkOutDate',
         'lodgingCustomerServiceTollFreeNumber' => 'lodging.customerServiceTollFreeNumber',
@@ -222,6 +226,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $setters = [
+        'lodgingSpecialProgramCode' => 'setLodgingSpecialProgramCode',
         'lodgingCheckInDate' => 'setLodgingCheckInDate',
         'lodgingCheckOutDate' => 'setLodgingCheckOutDate',
         'lodgingCustomerServiceTollFreeNumber' => 'setLodgingCustomerServiceTollFreeNumber',
@@ -246,6 +251,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $getters = [
+        'lodgingSpecialProgramCode' => 'getLodgingSpecialProgramCode',
         'lodgingCheckInDate' => 'getLodgingCheckInDate',
         'lodgingCheckOutDate' => 'getLodgingCheckOutDate',
         'lodgingCustomerServiceTollFreeNumber' => 'getLodgingCustomerServiceTollFreeNumber',
@@ -321,6 +327,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('lodgingSpecialProgramCode', $data ?? [], null);
         $this->setIfExists('lodgingCheckInDate', $data ?? [], null);
         $this->setIfExists('lodgingCheckOutDate', $data ?? [], null);
         $this->setIfExists('lodgingCustomerServiceTollFreeNumber', $data ?? [], null);
@@ -382,6 +389,30 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
 
 
     /**
+     * Gets lodgingSpecialProgramCode
+     *
+     * @return string|null
+     */
+    public function getLodgingSpecialProgramCode()
+    {
+        return $this->container['lodgingSpecialProgramCode'];
+    }
+
+    /**
+     * Sets lodgingSpecialProgramCode
+     *
+     * @param string|null $lodgingSpecialProgramCode A code that corresponds to the category of lodging charges for the payment. Possible values: * 1: Lodging * 2: No show reservation * 3: Advanced deposit
+     *
+     * @return self
+     */
+    public function setLodgingSpecialProgramCode($lodgingSpecialProgramCode)
+    {
+        $this->container['lodgingSpecialProgramCode'] = $lodgingSpecialProgramCode;
+
+        return $this;
+    }
+
+    /**
      * Gets lodgingCheckInDate
      *
      * @return string|null
@@ -400,9 +431,6 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setLodgingCheckInDate($lodgingCheckInDate)
     {
-        if (is_null($lodgingCheckInDate)) {
-            throw new \InvalidArgumentException('non-nullable lodgingCheckInDate cannot be null');
-        }
         $this->container['lodgingCheckInDate'] = $lodgingCheckInDate;
 
         return $this;
@@ -427,9 +455,6 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setLodgingCheckOutDate($lodgingCheckOutDate)
     {
-        if (is_null($lodgingCheckOutDate)) {
-            throw new \InvalidArgumentException('non-nullable lodgingCheckOutDate cannot be null');
-        }
         $this->container['lodgingCheckOutDate'] = $lodgingCheckOutDate;
 
         return $this;
@@ -454,9 +479,6 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setLodgingCustomerServiceTollFreeNumber($lodgingCustomerServiceTollFreeNumber)
     {
-        if (is_null($lodgingCustomerServiceTollFreeNumber)) {
-            throw new \InvalidArgumentException('non-nullable lodgingCustomerServiceTollFreeNumber cannot be null');
-        }
         $this->container['lodgingCustomerServiceTollFreeNumber'] = $lodgingCustomerServiceTollFreeNumber;
 
         return $this;
@@ -481,9 +503,6 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setLodgingFireSafetyActIndicator($lodgingFireSafetyActIndicator)
     {
-        if (is_null($lodgingFireSafetyActIndicator)) {
-            throw new \InvalidArgumentException('non-nullable lodgingFireSafetyActIndicator cannot be null');
-        }
         $this->container['lodgingFireSafetyActIndicator'] = $lodgingFireSafetyActIndicator;
 
         return $this;
@@ -508,9 +527,6 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setLodgingFolioCashAdvances($lodgingFolioCashAdvances)
     {
-        if (is_null($lodgingFolioCashAdvances)) {
-            throw new \InvalidArgumentException('non-nullable lodgingFolioCashAdvances cannot be null');
-        }
         $this->container['lodgingFolioCashAdvances'] = $lodgingFolioCashAdvances;
 
         return $this;
@@ -535,9 +551,6 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setLodgingFolioNumber($lodgingFolioNumber)
     {
-        if (is_null($lodgingFolioNumber)) {
-            throw new \InvalidArgumentException('non-nullable lodgingFolioNumber cannot be null');
-        }
         $this->container['lodgingFolioNumber'] = $lodgingFolioNumber;
 
         return $this;
@@ -562,9 +575,6 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setLodgingFoodBeverageCharges($lodgingFoodBeverageCharges)
     {
-        if (is_null($lodgingFoodBeverageCharges)) {
-            throw new \InvalidArgumentException('non-nullable lodgingFoodBeverageCharges cannot be null');
-        }
         $this->container['lodgingFoodBeverageCharges'] = $lodgingFoodBeverageCharges;
 
         return $this;
@@ -589,9 +599,6 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setLodgingNoShowIndicator($lodgingNoShowIndicator)
     {
-        if (is_null($lodgingNoShowIndicator)) {
-            throw new \InvalidArgumentException('non-nullable lodgingNoShowIndicator cannot be null');
-        }
         $this->container['lodgingNoShowIndicator'] = $lodgingNoShowIndicator;
 
         return $this;
@@ -616,9 +623,6 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setLodgingPrepaidExpenses($lodgingPrepaidExpenses)
     {
-        if (is_null($lodgingPrepaidExpenses)) {
-            throw new \InvalidArgumentException('non-nullable lodgingPrepaidExpenses cannot be null');
-        }
         $this->container['lodgingPrepaidExpenses'] = $lodgingPrepaidExpenses;
 
         return $this;
@@ -643,9 +647,6 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setLodgingPropertyPhoneNumber($lodgingPropertyPhoneNumber)
     {
-        if (is_null($lodgingPropertyPhoneNumber)) {
-            throw new \InvalidArgumentException('non-nullable lodgingPropertyPhoneNumber cannot be null');
-        }
         $this->container['lodgingPropertyPhoneNumber'] = $lodgingPropertyPhoneNumber;
 
         return $this;
@@ -670,9 +671,6 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setLodgingRoom1NumberOfNights($lodgingRoom1NumberOfNights)
     {
-        if (is_null($lodgingRoom1NumberOfNights)) {
-            throw new \InvalidArgumentException('non-nullable lodgingRoom1NumberOfNights cannot be null');
-        }
         $this->container['lodgingRoom1NumberOfNights'] = $lodgingRoom1NumberOfNights;
 
         return $this;
@@ -697,9 +695,6 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setLodgingRoom1Rate($lodgingRoom1Rate)
     {
-        if (is_null($lodgingRoom1Rate)) {
-            throw new \InvalidArgumentException('non-nullable lodgingRoom1Rate cannot be null');
-        }
         $this->container['lodgingRoom1Rate'] = $lodgingRoom1Rate;
 
         return $this;
@@ -724,9 +719,6 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setLodgingTotalRoomTax($lodgingTotalRoomTax)
     {
-        if (is_null($lodgingTotalRoomTax)) {
-            throw new \InvalidArgumentException('non-nullable lodgingTotalRoomTax cannot be null');
-        }
         $this->container['lodgingTotalRoomTax'] = $lodgingTotalRoomTax;
 
         return $this;
@@ -751,9 +743,6 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setLodgingTotalTax($lodgingTotalTax)
     {
-        if (is_null($lodgingTotalTax)) {
-            throw new \InvalidArgumentException('non-nullable lodgingTotalTax cannot be null');
-        }
         $this->container['lodgingTotalTax'] = $lodgingTotalTax;
 
         return $this;
@@ -778,9 +767,6 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setTravelEntertainmentAuthDataDuration($travelEntertainmentAuthDataDuration)
     {
-        if (is_null($travelEntertainmentAuthDataDuration)) {
-            throw new \InvalidArgumentException('non-nullable travelEntertainmentAuthDataDuration cannot be null');
-        }
         $this->container['travelEntertainmentAuthDataDuration'] = $travelEntertainmentAuthDataDuration;
 
         return $this;
@@ -805,9 +791,6 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setTravelEntertainmentAuthDataMarket($travelEntertainmentAuthDataMarket)
     {
-        if (is_null($travelEntertainmentAuthDataMarket)) {
-            throw new \InvalidArgumentException('non-nullable travelEntertainmentAuthDataMarket cannot be null');
-        }
         $this->container['travelEntertainmentAuthDataMarket'] = $travelEntertainmentAuthDataMarket;
 
         return $this;

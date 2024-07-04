@@ -308,9 +308,6 @@ class ScheduleAccountUpdaterResult implements ModelInterface, ArrayAccess, \Json
      */
     public function setPspReference($pspReference)
     {
-        if (is_null($pspReference)) {
-            throw new \InvalidArgumentException('non-nullable pspReference cannot be null');
-        }
         $this->container['pspReference'] = $pspReference;
 
         return $this;
@@ -335,9 +332,6 @@ class ScheduleAccountUpdaterResult implements ModelInterface, ArrayAccess, \Json
      */
     public function setResult($result)
     {
-        if (is_null($result)) {
-            throw new \InvalidArgumentException('non-nullable result cannot be null');
-        }
         $this->container['result'] = $result;
 
         return $this;

@@ -425,9 +425,6 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCapabilities($capabilities)
     {
-        if (is_null($capabilities)) {
-            throw new \InvalidArgumentException('non-nullable capabilities cannot be null');
-        }
         $this->container['capabilities'] = $capabilities;
 
         return $this;
@@ -452,9 +449,6 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDocumentDetails($documentDetails)
     {
-        if (is_null($documentDetails)) {
-            throw new \InvalidArgumentException('non-nullable documentDetails cannot be null');
-        }
         $this->container['documentDetails'] = $documentDetails;
 
         return $this;
@@ -481,9 +475,6 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDocuments($documents)
     {
-        if (is_null($documents)) {
-            throw new \InvalidArgumentException('non-nullable documents cannot be null');
-        }
         $this->container['documents'] = $documents;
 
         return $this;
@@ -508,9 +499,6 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEntityAssociations($entityAssociations)
     {
-        if (is_null($entityAssociations)) {
-            throw new \InvalidArgumentException('non-nullable entityAssociations cannot be null');
-        }
         $this->container['entityAssociations'] = $entityAssociations;
 
         return $this;
@@ -535,9 +523,6 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -562,9 +547,6 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setIndividual($individual)
     {
-        if (is_null($individual)) {
-            throw new \InvalidArgumentException('non-nullable individual cannot be null');
-        }
         $this->container['individual'] = $individual;
 
         return $this;
@@ -589,9 +571,6 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setOrganization($organization)
     {
-        if (is_null($organization)) {
-            throw new \InvalidArgumentException('non-nullable organization cannot be null');
-        }
         $this->container['organization'] = $organization;
 
         return $this;
@@ -616,9 +595,6 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setProblems($problems)
     {
-        if (is_null($problems)) {
-            throw new \InvalidArgumentException('non-nullable problems cannot be null');
-        }
         $this->container['problems'] = $problems;
 
         return $this;
@@ -643,9 +619,6 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -670,9 +643,6 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSoleProprietorship($soleProprietorship)
     {
-        if (is_null($soleProprietorship)) {
-            throw new \InvalidArgumentException('non-nullable soleProprietorship cannot be null');
-        }
         $this->container['soleProprietorship'] = $soleProprietorship;
 
         return $this;
@@ -697,9 +667,6 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTransferInstruments($transferInstruments)
     {
-        if (is_null($transferInstruments)) {
-            throw new \InvalidArgumentException('non-nullable transferInstruments cannot be null');
-        }
         $this->container['transferInstruments'] = $transferInstruments;
 
         return $this;
@@ -724,9 +691,6 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTrust($trust)
     {
-        if (is_null($trust)) {
-            throw new \InvalidArgumentException('non-nullable trust cannot be null');
-        }
         $this->container['trust'] = $trust;
 
         return $this;
@@ -751,9 +715,6 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -788,9 +749,6 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setVerificationDeadlines($verificationDeadlines)
     {
-        if (is_null($verificationDeadlines)) {
-            throw new \InvalidArgumentException('non-nullable verificationDeadlines cannot be null');
-        }
         $this->container['verificationDeadlines'] = $verificationDeadlines;
 
         return $this;
@@ -815,9 +773,6 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setVerificationPlan($verificationPlan)
     {
-        if (is_null($verificationPlan)) {
-            throw new \InvalidArgumentException('non-nullable verificationPlan cannot be null');
-        }
         $this->container['verificationPlan'] = $verificationPlan;
 
         return $this;

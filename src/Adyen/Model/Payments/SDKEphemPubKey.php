@@ -316,9 +316,6 @@ class SDKEphemPubKey implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCrv($crv)
     {
-        if (is_null($crv)) {
-            throw new \InvalidArgumentException('non-nullable crv cannot be null');
-        }
         $this->container['crv'] = $crv;
 
         return $this;
@@ -343,9 +340,6 @@ class SDKEphemPubKey implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setKty($kty)
     {
-        if (is_null($kty)) {
-            throw new \InvalidArgumentException('non-nullable kty cannot be null');
-        }
         $this->container['kty'] = $kty;
 
         return $this;
@@ -370,9 +364,6 @@ class SDKEphemPubKey implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setX($x)
     {
-        if (is_null($x)) {
-            throw new \InvalidArgumentException('non-nullable x cannot be null');
-        }
         $this->container['x'] = $x;
 
         return $this;
@@ -397,9 +388,6 @@ class SDKEphemPubKey implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setY($y)
     {
-        if (is_null($y)) {
-            throw new \InvalidArgumentException('non-nullable y cannot be null');
-        }
         $this->container['y'] = $y;
 
         return $this;

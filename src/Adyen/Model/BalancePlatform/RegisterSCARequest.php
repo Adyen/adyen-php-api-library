@@ -308,9 +308,6 @@ class RegisterSCARequest implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setPaymentInstrumentId($paymentInstrumentId)
     {
-        if (is_null($paymentInstrumentId)) {
-            throw new \InvalidArgumentException('non-nullable paymentInstrumentId cannot be null');
-        }
         $this->container['paymentInstrumentId'] = $paymentInstrumentId;
 
         return $this;
@@ -335,9 +332,6 @@ class RegisterSCARequest implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setStrongCustomerAuthentication($strongCustomerAuthentication)
     {
-        if (is_null($strongCustomerAuthentication)) {
-            throw new \InvalidArgumentException('non-nullable strongCustomerAuthentication cannot be null');
-        }
         $this->container['strongCustomerAuthentication'] = $strongCustomerAuthentication;
 
         return $this;

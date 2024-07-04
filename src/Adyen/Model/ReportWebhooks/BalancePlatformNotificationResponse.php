@@ -289,15 +289,12 @@ class BalancePlatformNotificationResponse implements ModelInterface, ArrayAccess
     /**
      * Sets notificationResponse
      *
-     * @param string|null $notificationResponse Respond with **HTTP 200 OK** and `[accepted]` in the response body to [accept the webhook](https://docs.adyen.com/development-resources/webhooks#accept-notifications).
+     * @param string|null $notificationResponse Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks#accept-notifications).
      *
      * @return self
      */
     public function setNotificationResponse($notificationResponse)
     {
-        if (is_null($notificationResponse)) {
-            throw new \InvalidArgumentException('non-nullable notificationResponse cannot be null');
-        }
         $this->container['notificationResponse'] = $notificationResponse;
 
         return $this;

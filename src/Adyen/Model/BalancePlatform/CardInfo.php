@@ -381,9 +381,6 @@ class CardInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAuthentication($authentication)
     {
-        if (is_null($authentication)) {
-            throw new \InvalidArgumentException('non-nullable authentication cannot be null');
-        }
         $this->container['authentication'] = $authentication;
 
         return $this;
@@ -408,9 +405,6 @@ class CardInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBrand($brand)
     {
-        if (is_null($brand)) {
-            throw new \InvalidArgumentException('non-nullable brand cannot be null');
-        }
         $this->container['brand'] = $brand;
 
         return $this;
@@ -435,9 +429,6 @@ class CardInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBrandVariant($brandVariant)
     {
-        if (is_null($brandVariant)) {
-            throw new \InvalidArgumentException('non-nullable brandVariant cannot be null');
-        }
         $this->container['brandVariant'] = $brandVariant;
 
         return $this;
@@ -462,9 +453,6 @@ class CardInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCardholderName($cardholderName)
     {
-        if (is_null($cardholderName)) {
-            throw new \InvalidArgumentException('non-nullable cardholderName cannot be null');
-        }
         $this->container['cardholderName'] = $cardholderName;
 
         return $this;
@@ -489,9 +477,6 @@ class CardInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setConfiguration($configuration)
     {
-        if (is_null($configuration)) {
-            throw new \InvalidArgumentException('non-nullable configuration cannot be null');
-        }
         $this->container['configuration'] = $configuration;
 
         return $this;
@@ -516,9 +501,6 @@ class CardInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDeliveryContact($deliveryContact)
     {
-        if (is_null($deliveryContact)) {
-            throw new \InvalidArgumentException('non-nullable deliveryContact cannot be null');
-        }
         $this->container['deliveryContact'] = $deliveryContact;
 
         return $this;
@@ -543,9 +525,6 @@ class CardInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFormFactor($formFactor)
     {
-        if (is_null($formFactor)) {
-            throw new \InvalidArgumentException('non-nullable formFactor cannot be null');
-        }
         $allowedValues = $this->getFormFactorAllowableValues();
         if (!in_array($formFactor, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -580,9 +559,6 @@ class CardInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setThreeDSecure($threeDSecure)
     {
-        if (is_null($threeDSecure)) {
-            throw new \InvalidArgumentException('non-nullable threeDSecure cannot be null');
-        }
         $this->container['threeDSecure'] = $threeDSecure;
 
         return $this;

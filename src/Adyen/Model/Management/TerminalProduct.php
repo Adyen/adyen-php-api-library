@@ -323,9 +323,6 @@ class TerminalProduct implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -350,9 +347,6 @@ class TerminalProduct implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -377,9 +371,6 @@ class TerminalProduct implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setItemsIncluded($itemsIncluded)
     {
-        if (is_null($itemsIncluded)) {
-            throw new \InvalidArgumentException('non-nullable itemsIncluded cannot be null');
-        }
         $this->container['itemsIncluded'] = $itemsIncluded;
 
         return $this;
@@ -404,9 +395,6 @@ class TerminalProduct implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setName($name)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
         $this->container['name'] = $name;
 
         return $this;
@@ -431,9 +419,6 @@ class TerminalProduct implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPrice($price)
     {
-        if (is_null($price)) {
-            throw new \InvalidArgumentException('non-nullable price cannot be null');
-        }
         $this->container['price'] = $price;
 
         return $this;

@@ -312,7 +312,6 @@ class Currency implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAmount($amount)
     {
-        // Do nothing for nullable integers
         $this->container['amount'] = $amount;
 
         return $this;
@@ -337,9 +336,6 @@ class Currency implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCurrencyCode($currencyCode)
     {
-        if (is_null($currencyCode)) {
-            throw new \InvalidArgumentException('non-nullable currencyCode cannot be null');
-        }
         $this->container['currencyCode'] = $currencyCode;
 
         return $this;
@@ -364,9 +360,6 @@ class Currency implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPercentage($percentage)
     {
-        if (is_null($percentage)) {
-            throw new \InvalidArgumentException('non-nullable percentage cannot be null');
-        }
         $this->container['percentage'] = $percentage;
 
         return $this;

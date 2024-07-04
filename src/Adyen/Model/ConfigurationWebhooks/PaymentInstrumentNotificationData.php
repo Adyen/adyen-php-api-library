@@ -302,9 +302,6 @@ class PaymentInstrumentNotificationData implements ModelInterface, ArrayAccess, 
      */
     public function setBalancePlatform($balancePlatform)
     {
-        if (is_null($balancePlatform)) {
-            throw new \InvalidArgumentException('non-nullable balancePlatform cannot be null');
-        }
         $this->container['balancePlatform'] = $balancePlatform;
 
         return $this;
@@ -329,9 +326,6 @@ class PaymentInstrumentNotificationData implements ModelInterface, ArrayAccess, 
      */
     public function setPaymentInstrument($paymentInstrument)
     {
-        if (is_null($paymentInstrument)) {
-            throw new \InvalidArgumentException('non-nullable paymentInstrument cannot be null');
-        }
         $this->container['paymentInstrument'] = $paymentInstrument;
 
         return $this;

@@ -305,9 +305,6 @@ class MatchingTransactionsRestriction implements ModelInterface, ArrayAccess, \J
      */
     public function setOperation($operation)
     {
-        if (is_null($operation)) {
-            throw new \InvalidArgumentException('non-nullable operation cannot be null');
-        }
         $this->container['operation'] = $operation;
 
         return $this;
@@ -332,7 +329,6 @@ class MatchingTransactionsRestriction implements ModelInterface, ArrayAccess, \J
      */
     public function setValue($value)
     {
-        // Do nothing for nullable integers
         $this->container['value'] = $value;
 
         return $this;

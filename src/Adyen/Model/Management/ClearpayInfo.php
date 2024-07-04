@@ -298,9 +298,6 @@ class ClearpayInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSupportUrl($supportUrl)
     {
-        if (is_null($supportUrl)) {
-            throw new \InvalidArgumentException('non-nullable supportUrl cannot be null');
-        }
         $this->container['supportUrl'] = $supportUrl;
 
         return $this;

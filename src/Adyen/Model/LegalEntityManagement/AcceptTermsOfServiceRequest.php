@@ -305,9 +305,6 @@ class AcceptTermsOfServiceRequest implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setAcceptedBy($acceptedBy)
     {
-        if (is_null($acceptedBy)) {
-            throw new \InvalidArgumentException('non-nullable acceptedBy cannot be null');
-        }
         $this->container['acceptedBy'] = $acceptedBy;
 
         return $this;
@@ -332,9 +329,6 @@ class AcceptTermsOfServiceRequest implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setIpAddress($ipAddress)
     {
-        if (is_null($ipAddress)) {
-            throw new \InvalidArgumentException('non-nullable ipAddress cannot be null');
-        }
         $this->container['ipAddress'] = $ipAddress;
 
         return $this;

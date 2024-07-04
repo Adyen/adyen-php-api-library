@@ -295,7 +295,6 @@ class Timeouts implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFromActiveToSleep($fromActiveToSleep)
     {
-        // Do nothing for nullable integers
         $this->container['fromActiveToSleep'] = $fromActiveToSleep;
 
         return $this;

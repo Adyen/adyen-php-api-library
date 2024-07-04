@@ -295,9 +295,6 @@ class TransactionRulesResponse implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function setTransactionRules($transactionRules)
     {
-        if (is_null($transactionRules)) {
-            throw new \InvalidArgumentException('non-nullable transactionRules cannot be null');
-        }
         $this->container['transactionRules'] = $transactionRules;
 
         return $this;

@@ -309,9 +309,6 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setSepadirectdebitDateOfSignature($sepadirectdebitDateOfSignature)
     {
-        if (is_null($sepadirectdebitDateOfSignature)) {
-            throw new \InvalidArgumentException('non-nullable sepadirectdebitDateOfSignature cannot be null');
-        }
         $this->container['sepadirectdebitDateOfSignature'] = $sepadirectdebitDateOfSignature;
 
         return $this;
@@ -336,9 +333,6 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setSepadirectdebitMandateId($sepadirectdebitMandateId)
     {
-        if (is_null($sepadirectdebitMandateId)) {
-            throw new \InvalidArgumentException('non-nullable sepadirectdebitMandateId cannot be null');
-        }
         $this->container['sepadirectdebitMandateId'] = $sepadirectdebitMandateId;
 
         return $this;
@@ -363,9 +357,6 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setSepadirectdebitSequenceType($sepadirectdebitSequenceType)
     {
-        if (is_null($sepadirectdebitSequenceType)) {
-            throw new \InvalidArgumentException('non-nullable sepadirectdebitSequenceType cannot be null');
-        }
         $this->container['sepadirectdebitSequenceType'] = $sepadirectdebitSequenceType;
 
         return $this;

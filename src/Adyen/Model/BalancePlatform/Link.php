@@ -323,9 +323,6 @@ class Link implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFirst($first)
     {
-        if (is_null($first)) {
-            throw new \InvalidArgumentException('non-nullable first cannot be null');
-        }
         $this->container['first'] = $first;
 
         return $this;
@@ -350,9 +347,6 @@ class Link implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLast($last)
     {
-        if (is_null($last)) {
-            throw new \InvalidArgumentException('non-nullable last cannot be null');
-        }
         $this->container['last'] = $last;
 
         return $this;
@@ -377,9 +371,6 @@ class Link implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setNext($next)
     {
-        if (is_null($next)) {
-            throw new \InvalidArgumentException('non-nullable next cannot be null');
-        }
         $this->container['next'] = $next;
 
         return $this;
@@ -404,9 +395,6 @@ class Link implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPrevious($previous)
     {
-        if (is_null($previous)) {
-            throw new \InvalidArgumentException('non-nullable previous cannot be null');
-        }
         $this->container['previous'] = $previous;
 
         return $this;
@@ -431,9 +419,6 @@ class Link implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSelf($self)
     {
-        if (is_null($self)) {
-            throw new \InvalidArgumentException('non-nullable self cannot be null');
-        }
         $this->container['self'] = $self;
 
         return $this;

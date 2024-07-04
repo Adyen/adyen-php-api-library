@@ -309,9 +309,6 @@ class Settings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBand($band)
     {
-        if (is_null($band)) {
-            throw new \InvalidArgumentException('non-nullable band cannot be null');
-        }
         $this->container['band'] = $band;
 
         return $this;
@@ -336,9 +333,6 @@ class Settings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRoaming($roaming)
     {
-        if (is_null($roaming)) {
-            throw new \InvalidArgumentException('non-nullable roaming cannot be null');
-        }
         $this->container['roaming'] = $roaming;
 
         return $this;
@@ -363,7 +357,6 @@ class Settings implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTimeout($timeout)
     {
-        // Do nothing for nullable integers
         $this->container['timeout'] = $timeout;
 
         return $this;

@@ -323,9 +323,6 @@ class CostEstimateResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setCardBin($cardBin)
     {
-        if (is_null($cardBin)) {
-            throw new \InvalidArgumentException('non-nullable cardBin cannot be null');
-        }
         $this->container['cardBin'] = $cardBin;
 
         return $this;
@@ -350,9 +347,6 @@ class CostEstimateResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setCostEstimateAmount($costEstimateAmount)
     {
-        if (is_null($costEstimateAmount)) {
-            throw new \InvalidArgumentException('non-nullable costEstimateAmount cannot be null');
-        }
         $this->container['costEstimateAmount'] = $costEstimateAmount;
 
         return $this;
@@ -377,9 +371,6 @@ class CostEstimateResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setCostEstimateReference($costEstimateReference)
     {
-        if (is_null($costEstimateReference)) {
-            throw new \InvalidArgumentException('non-nullable costEstimateReference cannot be null');
-        }
         $this->container['costEstimateReference'] = $costEstimateReference;
 
         return $this;
@@ -404,9 +395,6 @@ class CostEstimateResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setResultCode($resultCode)
     {
-        if (is_null($resultCode)) {
-            throw new \InvalidArgumentException('non-nullable resultCode cannot be null');
-        }
         $this->container['resultCode'] = $resultCode;
 
         return $this;
@@ -431,9 +419,6 @@ class CostEstimateResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setSurchargeType($surchargeType)
     {
-        if (is_null($surchargeType)) {
-            throw new \InvalidArgumentException('non-nullable surchargeType cannot be null');
-        }
         $this->container['surchargeType'] = $surchargeType;
 
         return $this;

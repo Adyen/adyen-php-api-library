@@ -433,9 +433,6 @@ class IssuedCard implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAuthorisationType($authorisationType)
     {
-        if (is_null($authorisationType)) {
-            throw new \InvalidArgumentException('non-nullable authorisationType cannot be null');
-        }
         $this->container['authorisationType'] = $authorisationType;
 
         return $this;
@@ -460,9 +457,6 @@ class IssuedCard implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPanEntryMode($panEntryMode)
     {
-        if (is_null($panEntryMode)) {
-            throw new \InvalidArgumentException('non-nullable panEntryMode cannot be null');
-        }
         $allowedValues = $this->getPanEntryModeAllowableValues();
         if (!in_array($panEntryMode, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -497,9 +491,6 @@ class IssuedCard implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setProcessingType($processingType)
     {
-        if (is_null($processingType)) {
-            throw new \InvalidArgumentException('non-nullable processingType cannot be null');
-        }
         $allowedValues = $this->getProcessingTypeAllowableValues();
         if (!in_array($processingType, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -534,9 +525,6 @@ class IssuedCard implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRelayedAuthorisationData($relayedAuthorisationData)
     {
-        if (is_null($relayedAuthorisationData)) {
-            throw new \InvalidArgumentException('non-nullable relayedAuthorisationData cannot be null');
-        }
         $this->container['relayedAuthorisationData'] = $relayedAuthorisationData;
 
         return $this;
@@ -561,9 +549,6 @@ class IssuedCard implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSchemeTraceId($schemeTraceId)
     {
-        if (is_null($schemeTraceId)) {
-            throw new \InvalidArgumentException('non-nullable schemeTraceId cannot be null');
-        }
         $this->container['schemeTraceId'] = $schemeTraceId;
 
         return $this;
@@ -588,9 +573,6 @@ class IssuedCard implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSchemeUniqueTransactionId($schemeUniqueTransactionId)
     {
-        if (is_null($schemeUniqueTransactionId)) {
-            throw new \InvalidArgumentException('non-nullable schemeUniqueTransactionId cannot be null');
-        }
         $this->container['schemeUniqueTransactionId'] = $schemeUniqueTransactionId;
 
         return $this;
@@ -615,9 +597,6 @@ class IssuedCard implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -652,9 +631,6 @@ class IssuedCard implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setValidationFacts($validationFacts)
     {
-        if (is_null($validationFacts)) {
-            throw new \InvalidArgumentException('non-nullable validationFacts cannot be null');
-        }
         $this->container['validationFacts'] = $validationFacts;
 
         return $this;

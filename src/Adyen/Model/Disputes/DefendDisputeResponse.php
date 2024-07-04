@@ -298,9 +298,6 @@ class DefendDisputeResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setDisputeServiceResult($disputeServiceResult)
     {
-        if (is_null($disputeServiceResult)) {
-            throw new \InvalidArgumentException('non-nullable disputeServiceResult cannot be null');
-        }
         $this->container['disputeServiceResult'] = $disputeServiceResult;
 
         return $this;

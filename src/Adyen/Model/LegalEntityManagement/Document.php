@@ -440,9 +440,6 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAttachment($attachment)
     {
-        if (is_null($attachment)) {
-            throw new \InvalidArgumentException('non-nullable attachment cannot be null');
-        }
         $this->container['attachment'] = $attachment;
 
         return $this;
@@ -467,9 +464,6 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAttachments($attachments)
     {
-        if (is_null($attachments)) {
-            throw new \InvalidArgumentException('non-nullable attachments cannot be null');
-        }
         $this->container['attachments'] = $attachments;
 
         return $this;
@@ -494,9 +488,6 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCreationDate($creationDate)
     {
-        if (is_null($creationDate)) {
-            throw new \InvalidArgumentException('non-nullable creationDate cannot be null');
-        }
         $this->container['creationDate'] = $creationDate;
 
         return $this;
@@ -521,9 +512,6 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -550,9 +538,6 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setExpiryDate($expiryDate)
     {
-        if (is_null($expiryDate)) {
-            throw new \InvalidArgumentException('non-nullable expiryDate cannot be null');
-        }
         $this->container['expiryDate'] = $expiryDate;
 
         return $this;
@@ -577,9 +562,6 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFileName($fileName)
     {
-        if (is_null($fileName)) {
-            throw new \InvalidArgumentException('non-nullable fileName cannot be null');
-        }
         $this->container['fileName'] = $fileName;
 
         return $this;
@@ -604,9 +586,6 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -633,9 +612,6 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setIssuerCountry($issuerCountry)
     {
-        if (is_null($issuerCountry)) {
-            throw new \InvalidArgumentException('non-nullable issuerCountry cannot be null');
-        }
         $this->container['issuerCountry'] = $issuerCountry;
 
         return $this;
@@ -662,9 +638,6 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setIssuerState($issuerState)
     {
-        if (is_null($issuerState)) {
-            throw new \InvalidArgumentException('non-nullable issuerState cannot be null');
-        }
         $this->container['issuerState'] = $issuerState;
 
         return $this;
@@ -689,9 +662,6 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setModificationDate($modificationDate)
     {
-        if (is_null($modificationDate)) {
-            throw new \InvalidArgumentException('non-nullable modificationDate cannot be null');
-        }
         $this->container['modificationDate'] = $modificationDate;
 
         return $this;
@@ -716,9 +686,6 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setNumber($number)
     {
-        if (is_null($number)) {
-            throw new \InvalidArgumentException('non-nullable number cannot be null');
-        }
         $this->container['number'] = $number;
 
         return $this;
@@ -743,9 +710,6 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setOwner($owner)
     {
-        if (is_null($owner)) {
-            throw new \InvalidArgumentException('non-nullable owner cannot be null');
-        }
         $this->container['owner'] = $owner;
 
         return $this;
@@ -770,9 +734,6 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

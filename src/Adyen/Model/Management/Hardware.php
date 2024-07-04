@@ -309,7 +309,6 @@ class Hardware implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDisplayMaximumBackLight($displayMaximumBackLight)
     {
-        // Do nothing for nullable integers
         $this->container['displayMaximumBackLight'] = $displayMaximumBackLight;
 
         return $this;
@@ -334,7 +333,6 @@ class Hardware implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setResetTotalsHour($resetTotalsHour)
     {
-        // Do nothing for nullable integers
         $this->container['resetTotalsHour'] = $resetTotalsHour;
 
         return $this;
@@ -359,7 +357,6 @@ class Hardware implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRestartHour($restartHour)
     {
-        // Do nothing for nullable integers
         $this->container['restartHour'] = $restartHour;
 
         return $this;

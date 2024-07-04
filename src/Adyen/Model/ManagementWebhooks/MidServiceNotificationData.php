@@ -419,9 +419,6 @@ class MidServiceNotificationData implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setAllowed($allowed)
     {
-        if (is_null($allowed)) {
-            throw new \InvalidArgumentException('non-nullable allowed cannot be null');
-        }
         $this->container['allowed'] = $allowed;
 
         return $this;
@@ -446,9 +443,6 @@ class MidServiceNotificationData implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setEnabled($enabled)
     {
-        if (is_null($enabled)) {
-            throw new \InvalidArgumentException('non-nullable enabled cannot be null');
-        }
         $this->container['enabled'] = $enabled;
 
         return $this;
@@ -473,9 +467,6 @@ class MidServiceNotificationData implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -500,9 +491,6 @@ class MidServiceNotificationData implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setMerchantId($merchantId)
     {
-        if (is_null($merchantId)) {
-            throw new \InvalidArgumentException('non-nullable merchantId cannot be null');
-        }
         $this->container['merchantId'] = $merchantId;
 
         return $this;
@@ -527,9 +515,6 @@ class MidServiceNotificationData implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -554,9 +539,6 @@ class MidServiceNotificationData implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -591,9 +573,6 @@ class MidServiceNotificationData implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setStoreId($storeId)
     {
-        if (is_null($storeId)) {
-            throw new \InvalidArgumentException('non-nullable storeId cannot be null');
-        }
         $this->container['storeId'] = $storeId;
 
         return $this;
@@ -618,9 +597,6 @@ class MidServiceNotificationData implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $this->container['type'] = $type;
 
         return $this;
@@ -645,9 +621,6 @@ class MidServiceNotificationData implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setVerificationStatus($verificationStatus)
     {
-        if (is_null($verificationStatus)) {
-            throw new \InvalidArgumentException('non-nullable verificationStatus cannot be null');
-        }
         $allowedValues = $this->getVerificationStatusAllowableValues();
         if (!in_array($verificationStatus, $allowedValues, true)) {
             throw new \InvalidArgumentException(

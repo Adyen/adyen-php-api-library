@@ -501,9 +501,6 @@ class TransactionRuleInfo implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setAggregationLevel($aggregationLevel)
     {
-        if (is_null($aggregationLevel)) {
-            throw new \InvalidArgumentException('non-nullable aggregationLevel cannot be null');
-        }
         $this->container['aggregationLevel'] = $aggregationLevel;
 
         return $this;
@@ -528,9 +525,6 @@ class TransactionRuleInfo implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
 
         return $this;
@@ -555,9 +549,6 @@ class TransactionRuleInfo implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setEndDate($endDate)
     {
-        if (is_null($endDate)) {
-            throw new \InvalidArgumentException('non-nullable endDate cannot be null');
-        }
         $this->container['endDate'] = $endDate;
 
         return $this;
@@ -582,9 +573,6 @@ class TransactionRuleInfo implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setEntityKey($entityKey)
     {
-        if (is_null($entityKey)) {
-            throw new \InvalidArgumentException('non-nullable entityKey cannot be null');
-        }
         $this->container['entityKey'] = $entityKey;
 
         return $this;
@@ -609,9 +597,6 @@ class TransactionRuleInfo implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setInterval($interval)
     {
-        if (is_null($interval)) {
-            throw new \InvalidArgumentException('non-nullable interval cannot be null');
-        }
         $this->container['interval'] = $interval;
 
         return $this;
@@ -636,9 +621,6 @@ class TransactionRuleInfo implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setOutcomeType($outcomeType)
     {
-        if (is_null($outcomeType)) {
-            throw new \InvalidArgumentException('non-nullable outcomeType cannot be null');
-        }
         $allowedValues = $this->getOutcomeTypeAllowableValues();
         if (!in_array($outcomeType, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -673,9 +655,6 @@ class TransactionRuleInfo implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -700,9 +679,6 @@ class TransactionRuleInfo implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setRequestType($requestType)
     {
-        if (is_null($requestType)) {
-            throw new \InvalidArgumentException('non-nullable requestType cannot be null');
-        }
         $allowedValues = $this->getRequestTypeAllowableValues();
         if (!in_array($requestType, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -737,9 +713,6 @@ class TransactionRuleInfo implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setRuleRestrictions($ruleRestrictions)
     {
-        if (is_null($ruleRestrictions)) {
-            throw new \InvalidArgumentException('non-nullable ruleRestrictions cannot be null');
-        }
         $this->container['ruleRestrictions'] = $ruleRestrictions;
 
         return $this;
@@ -764,7 +737,6 @@ class TransactionRuleInfo implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setScore($score)
     {
-        // Do nothing for nullable integers
         $this->container['score'] = $score;
 
         return $this;
@@ -789,9 +761,6 @@ class TransactionRuleInfo implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setStartDate($startDate)
     {
-        if (is_null($startDate)) {
-            throw new \InvalidArgumentException('non-nullable startDate cannot be null');
-        }
         $this->container['startDate'] = $startDate;
 
         return $this;
@@ -816,9 +785,6 @@ class TransactionRuleInfo implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -853,9 +819,6 @@ class TransactionRuleInfo implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

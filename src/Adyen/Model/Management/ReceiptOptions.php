@@ -309,9 +309,6 @@ class ReceiptOptions implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLogo($logo)
     {
-        if (is_null($logo)) {
-            throw new \InvalidArgumentException('non-nullable logo cannot be null');
-        }
         $this->container['logo'] = $logo;
 
         return $this;
@@ -336,9 +333,6 @@ class ReceiptOptions implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPromptBeforePrinting($promptBeforePrinting)
     {
-        if (is_null($promptBeforePrinting)) {
-            throw new \InvalidArgumentException('non-nullable promptBeforePrinting cannot be null');
-        }
         $this->container['promptBeforePrinting'] = $promptBeforePrinting;
 
         return $this;
@@ -363,9 +357,6 @@ class ReceiptOptions implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setQrCodeData($qrCodeData)
     {
-        if (is_null($qrCodeData)) {
-            throw new \InvalidArgumentException('non-nullable qrCodeData cannot be null');
-        }
         $this->container['qrCodeData'] = $qrCodeData;
 
         return $this;

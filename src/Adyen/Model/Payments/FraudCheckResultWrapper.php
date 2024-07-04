@@ -295,9 +295,6 @@ class FraudCheckResultWrapper implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setFraudCheckResult($fraudCheckResult)
     {
-        if (is_null($fraudCheckResult)) {
-            throw new \InvalidArgumentException('non-nullable fraudCheckResult cannot be null');
-        }
         $this->container['fraudCheckResult'] = $fraudCheckResult;
 
         return $this;

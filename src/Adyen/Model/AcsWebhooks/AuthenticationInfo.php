@@ -687,9 +687,6 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setAcsTransId($acsTransId)
     {
-        if (is_null($acsTransId)) {
-            throw new \InvalidArgumentException('non-nullable acsTransId cannot be null');
-        }
         $this->container['acsTransId'] = $acsTransId;
 
         return $this;
@@ -714,9 +711,6 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setChallenge($challenge)
     {
-        if (is_null($challenge)) {
-            throw new \InvalidArgumentException('non-nullable challenge cannot be null');
-        }
         $this->container['challenge'] = $challenge;
 
         return $this;
@@ -741,9 +735,6 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setChallengeIndicator($challengeIndicator)
     {
-        if (is_null($challengeIndicator)) {
-            throw new \InvalidArgumentException('non-nullable challengeIndicator cannot be null');
-        }
         $allowedValues = $this->getChallengeIndicatorAllowableValues();
         if (!in_array($challengeIndicator, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -778,9 +769,6 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setCreatedAt($createdAt)
     {
-        if (is_null($createdAt)) {
-            throw new \InvalidArgumentException('non-nullable createdAt cannot be null');
-        }
         $this->container['createdAt'] = $createdAt;
 
         return $this;
@@ -805,9 +793,6 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setDeviceChannel($deviceChannel)
     {
-        if (is_null($deviceChannel)) {
-            throw new \InvalidArgumentException('non-nullable deviceChannel cannot be null');
-        }
         $allowedValues = $this->getDeviceChannelAllowableValues();
         if (!in_array($deviceChannel, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -842,9 +827,6 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setDsTransID($dsTransID)
     {
-        if (is_null($dsTransID)) {
-            throw new \InvalidArgumentException('non-nullable dsTransID cannot be null');
-        }
         $this->container['dsTransID'] = $dsTransID;
 
         return $this;
@@ -869,9 +851,6 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setExemptionIndicator($exemptionIndicator)
     {
-        if (is_null($exemptionIndicator)) {
-            throw new \InvalidArgumentException('non-nullable exemptionIndicator cannot be null');
-        }
         $allowedValues = $this->getExemptionIndicatorAllowableValues();
         if (!in_array($exemptionIndicator, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -906,9 +885,6 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setInPSD2Scope($inPSD2Scope)
     {
-        if (is_null($inPSD2Scope)) {
-            throw new \InvalidArgumentException('non-nullable inPSD2Scope cannot be null');
-        }
         $this->container['inPSD2Scope'] = $inPSD2Scope;
 
         return $this;
@@ -933,9 +909,6 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setMessageCategory($messageCategory)
     {
-        if (is_null($messageCategory)) {
-            throw new \InvalidArgumentException('non-nullable messageCategory cannot be null');
-        }
         $allowedValues = $this->getMessageCategoryAllowableValues();
         if (!in_array($messageCategory, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -970,9 +943,6 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setMessageVersion($messageVersion)
     {
-        if (is_null($messageVersion)) {
-            throw new \InvalidArgumentException('non-nullable messageVersion cannot be null');
-        }
         $this->container['messageVersion'] = $messageVersion;
 
         return $this;
@@ -997,7 +967,6 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setRiskScore($riskScore)
     {
-        // Do nothing for nullable integers
         $this->container['riskScore'] = $riskScore;
 
         return $this;
@@ -1022,9 +991,6 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setThreeDSServerTransID($threeDSServerTransID)
     {
-        if (is_null($threeDSServerTransID)) {
-            throw new \InvalidArgumentException('non-nullable threeDSServerTransID cannot be null');
-        }
         $this->container['threeDSServerTransID'] = $threeDSServerTransID;
 
         return $this;
@@ -1049,9 +1015,6 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setTransStatus($transStatus)
     {
-        if (is_null($transStatus)) {
-            throw new \InvalidArgumentException('non-nullable transStatus cannot be null');
-        }
         $allowedValues = $this->getTransStatusAllowableValues();
         if (!in_array($transStatus, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -1086,9 +1049,6 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setTransStatusReason($transStatusReason)
     {
-        if (is_null($transStatusReason)) {
-            throw new \InvalidArgumentException('non-nullable transStatusReason cannot be null');
-        }
         $allowedValues = $this->getTransStatusReasonAllowableValues();
         if (!in_array($transStatusReason, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -1123,9 +1083,6 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

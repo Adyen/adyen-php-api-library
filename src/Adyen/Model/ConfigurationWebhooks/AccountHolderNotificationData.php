@@ -302,9 +302,6 @@ class AccountHolderNotificationData implements ModelInterface, ArrayAccess, \Jso
      */
     public function setAccountHolder($accountHolder)
     {
-        if (is_null($accountHolder)) {
-            throw new \InvalidArgumentException('non-nullable accountHolder cannot be null');
-        }
         $this->container['accountHolder'] = $accountHolder;
 
         return $this;
@@ -329,9 +326,6 @@ class AccountHolderNotificationData implements ModelInterface, ArrayAccess, \Jso
      */
     public function setBalancePlatform($balancePlatform)
     {
-        if (is_null($balancePlatform)) {
-            throw new \InvalidArgumentException('non-nullable balancePlatform cannot be null');
-        }
         $this->container['balancePlatform'] = $balancePlatform;
 
         return $this;

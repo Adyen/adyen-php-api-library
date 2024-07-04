@@ -316,9 +316,6 @@ class Gratuity implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAllowCustomAmount($allowCustomAmount)
     {
-        if (is_null($allowCustomAmount)) {
-            throw new \InvalidArgumentException('non-nullable allowCustomAmount cannot be null');
-        }
         $this->container['allowCustomAmount'] = $allowCustomAmount;
 
         return $this;
@@ -343,9 +340,6 @@ class Gratuity implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCurrency($currency)
     {
-        if (is_null($currency)) {
-            throw new \InvalidArgumentException('non-nullable currency cannot be null');
-        }
         $this->container['currency'] = $currency;
 
         return $this;
@@ -370,9 +364,6 @@ class Gratuity implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPredefinedTipEntries($predefinedTipEntries)
     {
-        if (is_null($predefinedTipEntries)) {
-            throw new \InvalidArgumentException('non-nullable predefinedTipEntries cannot be null');
-        }
         $this->container['predefinedTipEntries'] = $predefinedTipEntries;
 
         return $this;
@@ -397,9 +388,6 @@ class Gratuity implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUsePredefinedTipEntries($usePredefinedTipEntries)
     {
-        if (is_null($usePredefinedTipEntries)) {
-            throw new \InvalidArgumentException('non-nullable usePredefinedTipEntries cannot be null');
-        }
         $this->container['usePredefinedTipEntries'] = $usePredefinedTipEntries;
 
         return $this;

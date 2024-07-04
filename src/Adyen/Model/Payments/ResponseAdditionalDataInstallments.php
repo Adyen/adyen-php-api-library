@@ -372,9 +372,6 @@ class ResponseAdditionalDataInstallments implements ModelInterface, ArrayAccess,
      */
     public function setInstallmentPaymentDataInstallmentType($installmentPaymentDataInstallmentType)
     {
-        if (is_null($installmentPaymentDataInstallmentType)) {
-            throw new \InvalidArgumentException('non-nullable installmentPaymentDataInstallmentType cannot be null');
-        }
         $this->container['installmentPaymentDataInstallmentType'] = $installmentPaymentDataInstallmentType;
 
         return $this;
@@ -399,9 +396,6 @@ class ResponseAdditionalDataInstallments implements ModelInterface, ArrayAccess,
      */
     public function setInstallmentPaymentDataOptionItemNrAnnualPercentageRate($installmentPaymentDataOptionItemNrAnnualPercentageRate)
     {
-        if (is_null($installmentPaymentDataOptionItemNrAnnualPercentageRate)) {
-            throw new \InvalidArgumentException('non-nullable installmentPaymentDataOptionItemNrAnnualPercentageRate cannot be null');
-        }
         $this->container['installmentPaymentDataOptionItemNrAnnualPercentageRate'] = $installmentPaymentDataOptionItemNrAnnualPercentageRate;
 
         return $this;
@@ -426,9 +420,6 @@ class ResponseAdditionalDataInstallments implements ModelInterface, ArrayAccess,
      */
     public function setInstallmentPaymentDataOptionItemNrFirstInstallmentAmount($installmentPaymentDataOptionItemNrFirstInstallmentAmount)
     {
-        if (is_null($installmentPaymentDataOptionItemNrFirstInstallmentAmount)) {
-            throw new \InvalidArgumentException('non-nullable installmentPaymentDataOptionItemNrFirstInstallmentAmount cannot be null');
-        }
         $this->container['installmentPaymentDataOptionItemNrFirstInstallmentAmount'] = $installmentPaymentDataOptionItemNrFirstInstallmentAmount;
 
         return $this;
@@ -453,9 +444,6 @@ class ResponseAdditionalDataInstallments implements ModelInterface, ArrayAccess,
      */
     public function setInstallmentPaymentDataOptionItemNrInstallmentFee($installmentPaymentDataOptionItemNrInstallmentFee)
     {
-        if (is_null($installmentPaymentDataOptionItemNrInstallmentFee)) {
-            throw new \InvalidArgumentException('non-nullable installmentPaymentDataOptionItemNrInstallmentFee cannot be null');
-        }
         $this->container['installmentPaymentDataOptionItemNrInstallmentFee'] = $installmentPaymentDataOptionItemNrInstallmentFee;
 
         return $this;
@@ -480,9 +468,6 @@ class ResponseAdditionalDataInstallments implements ModelInterface, ArrayAccess,
      */
     public function setInstallmentPaymentDataOptionItemNrInterestRate($installmentPaymentDataOptionItemNrInterestRate)
     {
-        if (is_null($installmentPaymentDataOptionItemNrInterestRate)) {
-            throw new \InvalidArgumentException('non-nullable installmentPaymentDataOptionItemNrInterestRate cannot be null');
-        }
         $this->container['installmentPaymentDataOptionItemNrInterestRate'] = $installmentPaymentDataOptionItemNrInterestRate;
 
         return $this;
@@ -507,9 +492,6 @@ class ResponseAdditionalDataInstallments implements ModelInterface, ArrayAccess,
      */
     public function setInstallmentPaymentDataOptionItemNrMaximumNumberOfInstallments($installmentPaymentDataOptionItemNrMaximumNumberOfInstallments)
     {
-        if (is_null($installmentPaymentDataOptionItemNrMaximumNumberOfInstallments)) {
-            throw new \InvalidArgumentException('non-nullable installmentPaymentDataOptionItemNrMaximumNumberOfInstallments cannot be null');
-        }
         $this->container['installmentPaymentDataOptionItemNrMaximumNumberOfInstallments'] = $installmentPaymentDataOptionItemNrMaximumNumberOfInstallments;
 
         return $this;
@@ -534,9 +516,6 @@ class ResponseAdditionalDataInstallments implements ModelInterface, ArrayAccess,
      */
     public function setInstallmentPaymentDataOptionItemNrMinimumNumberOfInstallments($installmentPaymentDataOptionItemNrMinimumNumberOfInstallments)
     {
-        if (is_null($installmentPaymentDataOptionItemNrMinimumNumberOfInstallments)) {
-            throw new \InvalidArgumentException('non-nullable installmentPaymentDataOptionItemNrMinimumNumberOfInstallments cannot be null');
-        }
         $this->container['installmentPaymentDataOptionItemNrMinimumNumberOfInstallments'] = $installmentPaymentDataOptionItemNrMinimumNumberOfInstallments;
 
         return $this;
@@ -561,9 +540,6 @@ class ResponseAdditionalDataInstallments implements ModelInterface, ArrayAccess,
      */
     public function setInstallmentPaymentDataOptionItemNrNumberOfInstallments($installmentPaymentDataOptionItemNrNumberOfInstallments)
     {
-        if (is_null($installmentPaymentDataOptionItemNrNumberOfInstallments)) {
-            throw new \InvalidArgumentException('non-nullable installmentPaymentDataOptionItemNrNumberOfInstallments cannot be null');
-        }
         $this->container['installmentPaymentDataOptionItemNrNumberOfInstallments'] = $installmentPaymentDataOptionItemNrNumberOfInstallments;
 
         return $this;
@@ -588,9 +564,6 @@ class ResponseAdditionalDataInstallments implements ModelInterface, ArrayAccess,
      */
     public function setInstallmentPaymentDataOptionItemNrSubsequentInstallmentAmount($installmentPaymentDataOptionItemNrSubsequentInstallmentAmount)
     {
-        if (is_null($installmentPaymentDataOptionItemNrSubsequentInstallmentAmount)) {
-            throw new \InvalidArgumentException('non-nullable installmentPaymentDataOptionItemNrSubsequentInstallmentAmount cannot be null');
-        }
         $this->container['installmentPaymentDataOptionItemNrSubsequentInstallmentAmount'] = $installmentPaymentDataOptionItemNrSubsequentInstallmentAmount;
 
         return $this;
@@ -615,9 +588,6 @@ class ResponseAdditionalDataInstallments implements ModelInterface, ArrayAccess,
      */
     public function setInstallmentPaymentDataOptionItemNrTotalAmountDue($installmentPaymentDataOptionItemNrTotalAmountDue)
     {
-        if (is_null($installmentPaymentDataOptionItemNrTotalAmountDue)) {
-            throw new \InvalidArgumentException('non-nullable installmentPaymentDataOptionItemNrTotalAmountDue cannot be null');
-        }
         $this->container['installmentPaymentDataOptionItemNrTotalAmountDue'] = $installmentPaymentDataOptionItemNrTotalAmountDue;
 
         return $this;
@@ -642,9 +612,6 @@ class ResponseAdditionalDataInstallments implements ModelInterface, ArrayAccess,
      */
     public function setInstallmentPaymentDataPaymentOptions($installmentPaymentDataPaymentOptions)
     {
-        if (is_null($installmentPaymentDataPaymentOptions)) {
-            throw new \InvalidArgumentException('non-nullable installmentPaymentDataPaymentOptions cannot be null');
-        }
         $this->container['installmentPaymentDataPaymentOptions'] = $installmentPaymentDataPaymentOptions;
 
         return $this;
@@ -669,9 +636,6 @@ class ResponseAdditionalDataInstallments implements ModelInterface, ArrayAccess,
      */
     public function setInstallmentsValue($installmentsValue)
     {
-        if (is_null($installmentsValue)) {
-            throw new \InvalidArgumentException('non-nullable installmentsValue cannot be null');
-        }
         $this->container['installmentsValue'] = $installmentsValue;
 
         return $this;

@@ -336,9 +336,6 @@ class ScheduleAccountUpdaterRequest implements ModelInterface, ArrayAccess, \Jso
      */
     public function setAdditionalData($additionalData)
     {
-        if (is_null($additionalData)) {
-            throw new \InvalidArgumentException('non-nullable additionalData cannot be null');
-        }
         $this->container['additionalData'] = $additionalData;
 
         return $this;
@@ -363,9 +360,6 @@ class ScheduleAccountUpdaterRequest implements ModelInterface, ArrayAccess, \Jso
      */
     public function setCard($card)
     {
-        if (is_null($card)) {
-            throw new \InvalidArgumentException('non-nullable card cannot be null');
-        }
         $this->container['card'] = $card;
 
         return $this;
@@ -390,9 +384,6 @@ class ScheduleAccountUpdaterRequest implements ModelInterface, ArrayAccess, \Jso
      */
     public function setMerchantAccount($merchantAccount)
     {
-        if (is_null($merchantAccount)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
-        }
         $this->container['merchantAccount'] = $merchantAccount;
 
         return $this;
@@ -417,9 +408,6 @@ class ScheduleAccountUpdaterRequest implements ModelInterface, ArrayAccess, \Jso
      */
     public function setReference($reference)
     {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
         $this->container['reference'] = $reference;
 
         return $this;
@@ -444,9 +432,6 @@ class ScheduleAccountUpdaterRequest implements ModelInterface, ArrayAccess, \Jso
      */
     public function setSelectedRecurringDetailReference($selectedRecurringDetailReference)
     {
-        if (is_null($selectedRecurringDetailReference)) {
-            throw new \InvalidArgumentException('non-nullable selectedRecurringDetailReference cannot be null');
-        }
         $this->container['selectedRecurringDetailReference'] = $selectedRecurringDetailReference;
 
         return $this;
@@ -471,9 +456,6 @@ class ScheduleAccountUpdaterRequest implements ModelInterface, ArrayAccess, \Jso
      */
     public function setShopperReference($shopperReference)
     {
-        if (is_null($shopperReference)) {
-            throw new \InvalidArgumentException('non-nullable shopperReference cannot be null');
-        }
         $this->container['shopperReference'] = $shopperReference;
 
         return $this;

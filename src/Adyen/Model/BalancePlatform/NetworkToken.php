@@ -371,9 +371,6 @@ class NetworkToken implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBrandVariant($brandVariant)
     {
-        if (is_null($brandVariant)) {
-            throw new \InvalidArgumentException('non-nullable brandVariant cannot be null');
-        }
         $this->container['brandVariant'] = $brandVariant;
 
         return $this;
@@ -398,9 +395,6 @@ class NetworkToken implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCreationDate($creationDate)
     {
-        if (is_null($creationDate)) {
-            throw new \InvalidArgumentException('non-nullable creationDate cannot be null');
-        }
         $this->container['creationDate'] = $creationDate;
 
         return $this;
@@ -425,9 +419,6 @@ class NetworkToken implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDevice($device)
     {
-        if (is_null($device)) {
-            throw new \InvalidArgumentException('non-nullable device cannot be null');
-        }
         $this->container['device'] = $device;
 
         return $this;
@@ -452,9 +443,6 @@ class NetworkToken implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -479,9 +467,6 @@ class NetworkToken implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPaymentInstrumentId($paymentInstrumentId)
     {
-        if (is_null($paymentInstrumentId)) {
-            throw new \InvalidArgumentException('non-nullable paymentInstrumentId cannot be null');
-        }
         $this->container['paymentInstrumentId'] = $paymentInstrumentId;
 
         return $this;
@@ -506,9 +491,6 @@ class NetworkToken implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStatus($status)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(
@@ -543,9 +525,6 @@ class NetworkToken implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTokenLastFour($tokenLastFour)
     {
-        if (is_null($tokenLastFour)) {
-            throw new \InvalidArgumentException('non-nullable tokenLastFour cannot be null');
-        }
         $this->container['tokenLastFour'] = $tokenLastFour;
 
         return $this;
@@ -570,9 +549,6 @@ class NetworkToken implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $this->container['type'] = $type;
 
         return $this;

@@ -305,9 +305,6 @@ class GooglePayInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMerchantId($merchantId)
     {
-        if (is_null($merchantId)) {
-            throw new \InvalidArgumentException('non-nullable merchantId cannot be null');
-        }
         $this->container['merchantId'] = $merchantId;
 
         return $this;
@@ -332,9 +329,6 @@ class GooglePayInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setReuseMerchantId($reuseMerchantId)
     {
-        if (is_null($reuseMerchantId)) {
-            throw new \InvalidArgumentException('non-nullable reuseMerchantId cannot be null');
-        }
         $this->container['reuseMerchantId'] = $reuseMerchantId;
 
         return $this;

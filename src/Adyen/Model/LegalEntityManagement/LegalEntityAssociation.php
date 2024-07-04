@@ -392,9 +392,6 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setAssociatorId($associatorId)
     {
-        if (is_null($associatorId)) {
-            throw new \InvalidArgumentException('non-nullable associatorId cannot be null');
-        }
         $this->container['associatorId'] = $associatorId;
 
         return $this;
@@ -419,9 +416,6 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setEntityType($entityType)
     {
-        if (is_null($entityType)) {
-            throw new \InvalidArgumentException('non-nullable entityType cannot be null');
-        }
         $this->container['entityType'] = $entityType;
 
         return $this;
@@ -446,9 +440,6 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setJobTitle($jobTitle)
     {
-        if (is_null($jobTitle)) {
-            throw new \InvalidArgumentException('non-nullable jobTitle cannot be null');
-        }
         $this->container['jobTitle'] = $jobTitle;
 
         return $this;
@@ -473,9 +464,6 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setLegalEntityId($legalEntityId)
     {
-        if (is_null($legalEntityId)) {
-            throw new \InvalidArgumentException('non-nullable legalEntityId cannot be null');
-        }
         $this->container['legalEntityId'] = $legalEntityId;
 
         return $this;
@@ -500,9 +488,6 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setName($name)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
         $this->container['name'] = $name;
 
         return $this;
@@ -527,9 +512,6 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setSettlorExemptionReason($settlorExemptionReason)
     {
-        if (is_null($settlorExemptionReason)) {
-            throw new \InvalidArgumentException('non-nullable settlorExemptionReason cannot be null');
-        }
         $this->container['settlorExemptionReason'] = $settlorExemptionReason;
 
         return $this;
@@ -554,9 +536,6 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(

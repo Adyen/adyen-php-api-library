@@ -316,9 +316,6 @@ class SupportingEntityCapability implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setAllowed($allowed)
     {
-        if (is_null($allowed)) {
-            throw new \InvalidArgumentException('non-nullable allowed cannot be null');
-        }
         $this->container['allowed'] = $allowed;
 
         return $this;
@@ -343,9 +340,6 @@ class SupportingEntityCapability implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setId($id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
         $this->container['id'] = $id;
 
         return $this;
@@ -370,9 +364,6 @@ class SupportingEntityCapability implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setRequested($requested)
     {
-        if (is_null($requested)) {
-            throw new \InvalidArgumentException('non-nullable requested cannot be null');
-        }
         $this->container['requested'] = $requested;
 
         return $this;
@@ -397,9 +388,6 @@ class SupportingEntityCapability implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setVerificationStatus($verificationStatus)
     {
-        if (is_null($verificationStatus)) {
-            throw new \InvalidArgumentException('non-nullable verificationStatus cannot be null');
-        }
         $this->container['verificationStatus'] = $verificationStatus;
 
         return $this;

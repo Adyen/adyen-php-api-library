@@ -302,9 +302,6 @@ class WebData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setWebAddress($webAddress)
     {
-        if (is_null($webAddress)) {
-            throw new \InvalidArgumentException('non-nullable webAddress cannot be null');
-        }
         $this->container['webAddress'] = $webAddress;
 
         return $this;
@@ -329,9 +326,6 @@ class WebData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setWebAddressId($webAddressId)
     {
-        if (is_null($webAddressId)) {
-            throw new \InvalidArgumentException('non-nullable webAddressId cannot be null');
-        }
         $this->container['webAddressId'] = $webAddressId;
 
         return $this;

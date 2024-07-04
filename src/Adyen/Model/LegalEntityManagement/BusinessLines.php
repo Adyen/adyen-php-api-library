@@ -298,9 +298,6 @@ class BusinessLines implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBusinessLines($businessLines)
     {
-        if (is_null($businessLines)) {
-            throw new \InvalidArgumentException('non-nullable businessLines cannot be null');
-        }
         $this->container['businessLines'] = $businessLines;
 
         return $this;
