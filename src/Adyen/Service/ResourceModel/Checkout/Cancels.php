@@ -14,7 +14,7 @@ class Cancels extends \Adyen\Service\AbstractCheckoutResource
      *
      * @var bool
      */
-    protected $allowApplicationInfo = false;
+    protected $allowApplicationInfo = true;
 
     /**
      * Payments constructor.
