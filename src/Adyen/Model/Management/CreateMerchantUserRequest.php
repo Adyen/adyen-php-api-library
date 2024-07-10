@@ -46,6 +46,7 @@ class CreateMerchantUserRequest implements ModelInterface, ArrayAccess, \JsonSer
     protected static $openAPITypes = [
         'accountGroups' => 'string[]',
         'email' => 'string',
+        'loginMethod' => 'string',
         'name' => '\Adyen\Model\Management\Name',
         'roles' => 'string[]',
         'timeZoneCode' => 'string',
@@ -62,6 +63,7 @@ class CreateMerchantUserRequest implements ModelInterface, ArrayAccess, \JsonSer
     protected static $openAPIFormats = [
         'accountGroups' => null,
         'email' => null,
+        'loginMethod' => null,
         'name' => null,
         'roles' => null,
         'timeZoneCode' => null,
@@ -76,6 +78,7 @@ class CreateMerchantUserRequest implements ModelInterface, ArrayAccess, \JsonSer
     protected static $openAPINullables = [
         'accountGroups' => false,
         'email' => false,
+        'loginMethod' => false,
         'name' => false,
         'roles' => false,
         'timeZoneCode' => false,
@@ -170,6 +173,7 @@ class CreateMerchantUserRequest implements ModelInterface, ArrayAccess, \JsonSer
     protected static $attributeMap = [
         'accountGroups' => 'accountGroups',
         'email' => 'email',
+        'loginMethod' => 'loginMethod',
         'name' => 'name',
         'roles' => 'roles',
         'timeZoneCode' => 'timeZoneCode',
@@ -184,6 +188,7 @@ class CreateMerchantUserRequest implements ModelInterface, ArrayAccess, \JsonSer
     protected static $setters = [
         'accountGroups' => 'setAccountGroups',
         'email' => 'setEmail',
+        'loginMethod' => 'setLoginMethod',
         'name' => 'setName',
         'roles' => 'setRoles',
         'timeZoneCode' => 'setTimeZoneCode',
@@ -198,6 +203,7 @@ class CreateMerchantUserRequest implements ModelInterface, ArrayAccess, \JsonSer
     protected static $getters = [
         'accountGroups' => 'getAccountGroups',
         'email' => 'getEmail',
+        'loginMethod' => 'getLoginMethod',
         'name' => 'getName',
         'roles' => 'getRoles',
         'timeZoneCode' => 'getTimeZoneCode',
@@ -263,6 +269,7 @@ class CreateMerchantUserRequest implements ModelInterface, ArrayAccess, \JsonSer
     {
         $this->setIfExists('accountGroups', $data ?? [], null);
         $this->setIfExists('email', $data ?? [], null);
+        $this->setIfExists('loginMethod', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('roles', $data ?? [], null);
         $this->setIfExists('timeZoneCode', $data ?? [], null);
@@ -364,6 +371,30 @@ class CreateMerchantUserRequest implements ModelInterface, ArrayAccess, \JsonSer
     public function setEmail($email)
     {
         $this->container['email'] = $email;
+
+        return $this;
+    }
+
+    /**
+     * Gets loginMethod
+     *
+     * @return string|null
+     */
+    public function getLoginMethod()
+    {
+        return $this->container['loginMethod'];
+    }
+
+    /**
+     * Sets loginMethod
+     *
+     * @param string|null $loginMethod The requested login method for the user. To use SSO, you must already have SSO configured with Adyen before creating the user.  Possible values: **Username & account**, **Email**, or **SSO**
+     *
+     * @return self
+     */
+    public function setLoginMethod($loginMethod)
+    {
+        $this->container['loginMethod'] = $loginMethod;
 
         return $this;
     }
