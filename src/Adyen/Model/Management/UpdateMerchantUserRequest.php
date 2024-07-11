@@ -47,6 +47,7 @@ class UpdateMerchantUserRequest implements ModelInterface, ArrayAccess, \JsonSer
         'accountGroups' => 'string[]',
         'active' => 'bool',
         'email' => 'string',
+        'loginMethod' => 'string',
         'name' => '\Adyen\Model\Management\Name2',
         'roles' => 'string[]',
         'timeZoneCode' => 'string'
@@ -63,6 +64,7 @@ class UpdateMerchantUserRequest implements ModelInterface, ArrayAccess, \JsonSer
         'accountGroups' => null,
         'active' => null,
         'email' => null,
+        'loginMethod' => null,
         'name' => null,
         'roles' => null,
         'timeZoneCode' => null
@@ -77,6 +79,7 @@ class UpdateMerchantUserRequest implements ModelInterface, ArrayAccess, \JsonSer
         'accountGroups' => false,
         'active' => false,
         'email' => false,
+        'loginMethod' => false,
         'name' => false,
         'roles' => false,
         'timeZoneCode' => false
@@ -171,6 +174,7 @@ class UpdateMerchantUserRequest implements ModelInterface, ArrayAccess, \JsonSer
         'accountGroups' => 'accountGroups',
         'active' => 'active',
         'email' => 'email',
+        'loginMethod' => 'loginMethod',
         'name' => 'name',
         'roles' => 'roles',
         'timeZoneCode' => 'timeZoneCode'
@@ -185,6 +189,7 @@ class UpdateMerchantUserRequest implements ModelInterface, ArrayAccess, \JsonSer
         'accountGroups' => 'setAccountGroups',
         'active' => 'setActive',
         'email' => 'setEmail',
+        'loginMethod' => 'setLoginMethod',
         'name' => 'setName',
         'roles' => 'setRoles',
         'timeZoneCode' => 'setTimeZoneCode'
@@ -199,6 +204,7 @@ class UpdateMerchantUserRequest implements ModelInterface, ArrayAccess, \JsonSer
         'accountGroups' => 'getAccountGroups',
         'active' => 'getActive',
         'email' => 'getEmail',
+        'loginMethod' => 'getLoginMethod',
         'name' => 'getName',
         'roles' => 'getRoles',
         'timeZoneCode' => 'getTimeZoneCode'
@@ -264,6 +270,7 @@ class UpdateMerchantUserRequest implements ModelInterface, ArrayAccess, \JsonSer
         $this->setIfExists('accountGroups', $data ?? [], null);
         $this->setIfExists('active', $data ?? [], null);
         $this->setIfExists('email', $data ?? [], null);
+        $this->setIfExists('loginMethod', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('roles', $data ?? [], null);
         $this->setIfExists('timeZoneCode', $data ?? [], null);
@@ -379,6 +386,30 @@ class UpdateMerchantUserRequest implements ModelInterface, ArrayAccess, \JsonSer
     public function setEmail($email)
     {
         $this->container['email'] = $email;
+
+        return $this;
+    }
+
+    /**
+     * Gets loginMethod
+     *
+     * @return string|null
+     */
+    public function getLoginMethod()
+    {
+        return $this->container['loginMethod'];
+    }
+
+    /**
+     * Sets loginMethod
+     *
+     * @param string|null $loginMethod The requested login method for the user. To use SSO, you must already have SSO configured with Adyen before creating the user.  Possible values: **Username & account**, **Email**, or **SSO**
+     *
+     * @return self
+     */
+    public function setLoginMethod($loginMethod)
+    {
+        $this->container['loginMethod'] = $loginMethod;
 
         return $this;
     }

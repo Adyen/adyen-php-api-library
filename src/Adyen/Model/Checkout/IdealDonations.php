@@ -301,9 +301,6 @@ class IdealDonations implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['issuer'] === null) {
-            $invalidProperties[] = "'issuer' can't be null";
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -355,7 +352,7 @@ class IdealDonations implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets issuer
      *
-     * @return string
+     * @return string|null
      */
     public function getIssuer()
     {
@@ -365,7 +362,7 @@ class IdealDonations implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets issuer
      *
-     * @param string $issuer The iDEAL issuer value of the shopper's selected bank. Set this to an **id** of an iDEAL issuer to preselect it.
+     * @param string|null $issuer The iDEAL issuer value of the shopper's selected bank. Set this to an **id** of an iDEAL issuer to preselect it.
      *
      * @return self
      */

@@ -444,9 +444,6 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         if ($this->container['googlePayToken'] === null) {
             $invalidProperties[] = "'googlePayToken' can't be null";
         }
-        if ($this->container['issuer'] === null) {
-            $invalidProperties[] = "'issuer' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -1069,7 +1066,7 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets issuer
      *
-     * @return string
+     * @return string|null
      */
     public function getIssuer()
     {
@@ -1079,7 +1076,7 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets issuer
      *
-     * @param string $issuer The iDEAL issuer value of the shopper's selected bank. Set this to an **id** of an iDEAL issuer to preselect it.
+     * @param string|null $issuer The iDEAL issuer value of the shopper's selected bank. Set this to an **id** of an iDEAL issuer to preselect it.
      *
      * @return self
      */

@@ -223,7 +223,6 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 
     public const TYPE_ALIPAY = 'alipay';
     public const TYPE_MULTIBANCO = 'multibanco';
-    public const TYPE_BANK_TRANSFER_IBAN = 'bankTransfer_IBAN';
     public const TYPE_PAYBRIGHT = 'paybright';
     public const TYPE_PAYNOW = 'paynow';
     public const TYPE_AFFIRM = 'affirm';
@@ -322,7 +321,6 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         return [
             self::TYPE_ALIPAY,
             self::TYPE_MULTIBANCO,
-            self::TYPE_BANK_TRANSFER_IBAN,
             self::TYPE_PAYBRIGHT,
             self::TYPE_PAYNOW,
             self::TYPE_AFFIRM,

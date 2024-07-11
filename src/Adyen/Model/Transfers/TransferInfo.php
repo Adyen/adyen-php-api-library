@@ -50,6 +50,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'counterparty' => '\Adyen\Model\Transfers\CounterpartyInfoV3',
         'description' => 'string',
         'paymentInstrumentId' => 'string',
+        'priorities' => 'string[]',
         'priority' => 'string',
         'reference' => 'string',
         'referenceForBeneficiary' => 'string',
@@ -71,6 +72,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'counterparty' => null,
         'description' => null,
         'paymentInstrumentId' => null,
+        'priorities' => null,
         'priority' => null,
         'reference' => null,
         'referenceForBeneficiary' => null,
@@ -90,6 +92,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'counterparty' => false,
         'description' => false,
         'paymentInstrumentId' => false,
+        'priorities' => false,
         'priority' => false,
         'reference' => false,
         'referenceForBeneficiary' => false,
@@ -189,6 +192,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'counterparty' => 'counterparty',
         'description' => 'description',
         'paymentInstrumentId' => 'paymentInstrumentId',
+        'priorities' => 'priorities',
         'priority' => 'priority',
         'reference' => 'reference',
         'referenceForBeneficiary' => 'referenceForBeneficiary',
@@ -208,6 +212,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'counterparty' => 'setCounterparty',
         'description' => 'setDescription',
         'paymentInstrumentId' => 'setPaymentInstrumentId',
+        'priorities' => 'setPriorities',
         'priority' => 'setPriority',
         'reference' => 'setReference',
         'referenceForBeneficiary' => 'setReferenceForBeneficiary',
@@ -227,6 +232,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'counterparty' => 'getCounterparty',
         'description' => 'getDescription',
         'paymentInstrumentId' => 'getPaymentInstrumentId',
+        'priorities' => 'getPriorities',
         'priority' => 'getPriority',
         'reference' => 'getReference',
         'referenceForBeneficiary' => 'getReferenceForBeneficiary',
@@ -280,6 +286,12 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     public const CATEGORY_ISSUED_CARD = 'issuedCard';
     public const CATEGORY_PLATFORM_PAYMENT = 'platformPayment';
     public const CATEGORY_CARD = 'card';
+    public const PRIORITIES_CROSS_BORDER = 'crossBorder';
+    public const PRIORITIES_FAST = 'fast';
+    public const PRIORITIES_INSTANT = 'instant';
+    public const PRIORITIES_INTERNAL = 'internal';
+    public const PRIORITIES_REGULAR = 'regular';
+    public const PRIORITIES_WIRE = 'wire';
     public const PRIORITY_CROSS_BORDER = 'crossBorder';
     public const PRIORITY_FAST = 'fast';
     public const PRIORITY_INSTANT = 'instant';
@@ -303,6 +315,22 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
             self::CATEGORY_ISSUED_CARD,
             self::CATEGORY_PLATFORM_PAYMENT,
             self::CATEGORY_CARD,
+        ];
+    }
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getPrioritiesAllowableValues()
+    {
+        return [
+            self::PRIORITIES_CROSS_BORDER,
+            self::PRIORITIES_FAST,
+            self::PRIORITIES_INSTANT,
+            self::PRIORITIES_INTERNAL,
+            self::PRIORITIES_REGULAR,
+            self::PRIORITIES_WIRE,
         ];
     }
     /**
@@ -355,6 +383,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('counterparty', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('paymentInstrumentId', $data ?? [], null);
+        $this->setIfExists('priorities', $data ?? [], null);
         $this->setIfExists('priority', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
         $this->setIfExists('referenceForBeneficiary', $data ?? [], null);
@@ -590,6 +619,39 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setPaymentInstrumentId($paymentInstrumentId)
     {
         $this->container['paymentInstrumentId'] = $paymentInstrumentId;
+
+        return $this;
+    }
+
+    /**
+     * Gets priorities
+     *
+     * @return string[]|null
+     */
+    public function getPriorities()
+    {
+        return $this->container['priorities'];
+    }
+
+    /**
+     * Sets priorities
+     *
+     * @param string[]|null $priorities The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities. Adyen will try to pay out using the priority you list first. If that's not possible, it moves on to the next option in the order of your provided priorities.   Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).  Required for transfers with `category` **bank**. For more details, see [fallback priorities](https://docs.adyen.com/payouts/payout-service/payout-to-users/#fallback-priorities).
+     *
+     * @return self
+     */
+    public function setPriorities($priorities)
+    {
+        $allowedValues = $this->getPrioritiesAllowableValues();
+        if (array_diff($priorities, $allowedValues)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'priorities', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['priorities'] = $priorities;
 
         return $this;
     }
