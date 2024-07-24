@@ -109,13 +109,12 @@ class PaymentsAppApi extends Service
     * @param string $merchantId
     * @param string $installationId
     * @param array|null $requestOptions
-    
+
     * @throws AdyenException
     */
     public function revokePaymentsApp(string $merchantId, string $installationId, array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{installationId}'], [$merchantId, $installationId], "/merchants/{merchantId}/paymentsApps/{installationId}/revoke");
         $this->requestHttp($endpoint, strtolower('POST'), null, $requestOptions);
-        
     }
 }
