@@ -290,6 +290,7 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_MISC_COST_PENDING = 'miscCostPending';
     public const STATUS_PAYMENT_COST = 'paymentCost';
     public const STATUS_PAYMENT_COST_PENDING = 'paymentCostPending';
+    public const STATUS_PENDING_APPROVAL = 'pendingApproval';
     public const STATUS_RECEIVED = 'received';
     public const STATUS_REFUND_PENDING = 'refundPending';
     public const STATUS_REFUND_REVERSAL_PENDING = 'refundReversalPending';
@@ -364,6 +365,7 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_MISC_COST_PENDING,
             self::STATUS_PAYMENT_COST,
             self::STATUS_PAYMENT_COST_PENDING,
+            self::STATUS_PENDING_APPROVAL,
             self::STATUS_RECEIVED,
             self::STATUS_REFUND_PENDING,
             self::STATUS_REFUND_REVERSAL_PENDING,

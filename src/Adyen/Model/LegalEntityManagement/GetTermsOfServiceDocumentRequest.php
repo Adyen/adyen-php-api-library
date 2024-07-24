@@ -45,6 +45,7 @@ class GetTermsOfServiceDocumentRequest implements ModelInterface, ArrayAccess, \
       */
     protected static $openAPITypes = [
         'language' => 'string',
+        'termsOfServiceDocumentFormat' => 'string',
         'type' => 'string'
     ];
 
@@ -57,6 +58,7 @@ class GetTermsOfServiceDocumentRequest implements ModelInterface, ArrayAccess, \
       */
     protected static $openAPIFormats = [
         'language' => null,
+        'termsOfServiceDocumentFormat' => null,
         'type' => null
     ];
 
@@ -67,6 +69,7 @@ class GetTermsOfServiceDocumentRequest implements ModelInterface, ArrayAccess, \
       */
     protected static $openAPINullables = [
         'language' => false,
+        'termsOfServiceDocumentFormat' => false,
         'type' => false
     ];
 
@@ -157,6 +160,7 @@ class GetTermsOfServiceDocumentRequest implements ModelInterface, ArrayAccess, \
      */
     protected static $attributeMap = [
         'language' => 'language',
+        'termsOfServiceDocumentFormat' => 'termsOfServiceDocumentFormat',
         'type' => 'type'
     ];
 
@@ -167,6 +171,7 @@ class GetTermsOfServiceDocumentRequest implements ModelInterface, ArrayAccess, \
      */
     protected static $setters = [
         'language' => 'setLanguage',
+        'termsOfServiceDocumentFormat' => 'setTermsOfServiceDocumentFormat',
         'type' => 'setType'
     ];
 
@@ -177,6 +182,7 @@ class GetTermsOfServiceDocumentRequest implements ModelInterface, ArrayAccess, \
      */
     protected static $getters = [
         'language' => 'getLanguage',
+        'termsOfServiceDocumentFormat' => 'getTermsOfServiceDocumentFormat',
         'type' => 'getType'
     ];
 
@@ -264,6 +270,7 @@ class GetTermsOfServiceDocumentRequest implements ModelInterface, ArrayAccess, \
     public function __construct(array $data = null)
     {
         $this->setIfExists('language', $data ?? [], null);
+        $this->setIfExists('termsOfServiceDocumentFormat', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -344,6 +351,30 @@ class GetTermsOfServiceDocumentRequest implements ModelInterface, ArrayAccess, \
     public function setLanguage($language)
     {
         $this->container['language'] = $language;
+
+        return $this;
+    }
+
+    /**
+     * Gets termsOfServiceDocumentFormat
+     *
+     * @return string|null
+     */
+    public function getTermsOfServiceDocumentFormat()
+    {
+        return $this->container['termsOfServiceDocumentFormat'];
+    }
+
+    /**
+     * Sets termsOfServiceDocumentFormat
+     *
+     * @param string|null $termsOfServiceDocumentFormat The requested format for the Terms of Service document. Default value: JSON.
+     *
+     * @return self
+     */
+    public function setTermsOfServiceDocumentFormat($termsOfServiceDocumentFormat)
+    {
+        $this->container['termsOfServiceDocumentFormat'] = $termsOfServiceDocumentFormat;
 
         return $this;
     }

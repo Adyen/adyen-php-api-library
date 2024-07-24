@@ -387,7 +387,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets acceptedCountries
      *
-     * @param string[]|null $acceptedCountries acceptedCountries
+     * @param string[]|null $acceptedCountries The list of countries the user can choose from in hosted onboarding when `editPrefilledCountry` is allowed.  The value must be in the two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code format.  The array is empty by default, allowing all [countries and regions supported by hosted onboarding](https://docs.adyen.com/platforms/onboard-users/#hosted-onboarding).
      *
      * @return self
      */
@@ -411,7 +411,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets allowBankAccountFormatSelection
      *
-     * @param bool|null $allowBankAccountFormatSelection allowBankAccountFormatSelection
+     * @param bool|null $allowBankAccountFormatSelection Default value: **false**  Indicates if the user can select the format for their payout account (if applicable).
      *
      * @return self
      */
@@ -435,7 +435,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets allowIntraRegionCrossBorderPayout
      *
-     * @param bool|null $allowIntraRegionCrossBorderPayout allowIntraRegionCrossBorderPayout
+     * @param bool|null $allowIntraRegionCrossBorderPayout Default value: **false**  Indicates if the user can select a payout account in a different EU/EEA location (including Switzerland and the UK) than the location of their legal entity.
      *
      * @return self
      */
@@ -459,7 +459,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets changeLegalEntityType
      *
-     * @param bool|null $changeLegalEntityType changeLegalEntityType
+     * @param bool|null $changeLegalEntityType Default value: **true**  Indicates if the user can change their legal entity type.
      *
      * @return self
      */
@@ -483,7 +483,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets editPrefilledCountry
      *
-     * @param bool|null $editPrefilledCountry editPrefilledCountry
+     * @param bool|null $editPrefilledCountry Default value: **true**  Indicates if the user can change the country of their legal entity's address, for example the registered address of an organization.
      *
      * @return self
      */
@@ -507,7 +507,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets hideOnboardingIntroductionIndividual
      *
-     * @param bool|null $hideOnboardingIntroductionIndividual hideOnboardingIntroductionIndividual
+     * @param bool|null $hideOnboardingIntroductionIndividual Default value: **false**  Indicates if the user of the individual legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.
      *
      * @return self
      */
@@ -531,7 +531,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets hideOnboardingIntroductionOrganization
      *
-     * @param bool|null $hideOnboardingIntroductionOrganization hideOnboardingIntroductionOrganization
+     * @param bool|null $hideOnboardingIntroductionOrganization Default value: **false**  Indicates if the user of the organization legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.
      *
      * @return self
      */
@@ -555,7 +555,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets hideOnboardingIntroductionSoleProprietor
      *
-     * @param bool|null $hideOnboardingIntroductionSoleProprietor hideOnboardingIntroductionSoleProprietor
+     * @param bool|null $hideOnboardingIntroductionSoleProprietor Default value: **false**  Indicates if the user of the sole proprietorship legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.
      *
      * @return self
      */
@@ -579,7 +579,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets hideOnboardingIntroductionTrust
      *
-     * @param bool|null $hideOnboardingIntroductionTrust hideOnboardingIntroductionTrust
+     * @param bool|null $hideOnboardingIntroductionTrust Default value: **false**  Indicates if the user of the trust legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.
      *
      * @return self
      */
@@ -603,7 +603,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets instantBankVerification
      *
-     * @param bool|null $instantBankVerification instantBankVerification
+     * @param bool|null $instantBankVerification Default value: **true**  Indicates if the user can initiate the verification process through open banking providers, like Plaid or Tink.
      *
      * @return self
      */
@@ -627,7 +627,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets requirePciSignEcomMoto
      *
-     * @param bool|null $requirePciSignEcomMoto requirePciSignEcomMoto
+     * @param bool|null $requirePciSignEcomMoto Default value: **false**  Indicates if the user is required to sign a PCI questionnaires for the **ecomMoto** sales channel type.
      *
      * @return self
      */
@@ -651,7 +651,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets requirePciSignEcommerce
      *
-     * @param bool|null $requirePciSignEcommerce requirePciSignEcommerce
+     * @param bool|null $requirePciSignEcommerce Default value: **false**  Indicates if the user is required to sign a PCI questionnaires for the **eCommerce** sales channel type.
      *
      * @return self
      */
@@ -675,7 +675,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets requirePciSignPos
      *
-     * @param bool|null $requirePciSignPos requirePciSignPos
+     * @param bool|null $requirePciSignPos Default value: **false**  Indicates if the user is required to sign a PCI questionnaires for the **pos** sales channel type.
      *
      * @return self
      */
@@ -699,7 +699,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets requirePciSignPosMoto
      *
-     * @param bool|null $requirePciSignPosMoto requirePciSignPosMoto
+     * @param bool|null $requirePciSignPosMoto Default value: **false**  Indicates if the user is required to sign a PCI questionnaires for the **posMoto** sales channel type.
      *
      * @return self
      */
@@ -723,7 +723,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets transferInstrumentLimit
      *
-     * @param int|null $transferInstrumentLimit transferInstrumentLimit
+     * @param int|null $transferInstrumentLimit The maximum number of transfer instruments the user can create.
      *
      * @return self
      */

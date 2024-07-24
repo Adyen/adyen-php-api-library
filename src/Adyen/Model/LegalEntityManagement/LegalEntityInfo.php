@@ -576,7 +576,7 @@ class LegalEntityInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets verificationPlan
      *
-     * @param string|null $verificationPlan A key-value pair that specifies the verification process for a legal entity. Set to **upfront** for upfront verification for [marketplaces](https://docs.adyen.com/marketplaces/onboard-users#upfront).
+     * @param string|null $verificationPlan A key-value pair that specifies the verification process for a legal entity. Set to **upfront** for upfront verification for [marketplaces](https://docs.adyen.com/marketplaces/verification-overview/verification-types/#upfront-verification).
      *
      * @return self
      */

@@ -79,6 +79,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'number' => 'string',
         'shopperNotificationReference' => 'string',
         'srcCorrelationId' => 'string',
+        'srcDigitalCardId' => 'string',
         'srcScheme' => 'string',
         'srcTokenReference' => 'string',
         'threeDS2SdkVersion' => 'string',
@@ -151,6 +152,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'number' => null,
         'shopperNotificationReference' => null,
         'srcCorrelationId' => null,
+        'srcDigitalCardId' => null,
         'srcScheme' => null,
         'srcTokenReference' => null,
         'threeDS2SdkVersion' => null,
@@ -221,6 +223,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'number' => false,
         'shopperNotificationReference' => false,
         'srcCorrelationId' => false,
+        'srcDigitalCardId' => false,
         'srcScheme' => false,
         'srcTokenReference' => false,
         'threeDS2SdkVersion' => false,
@@ -371,6 +374,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'number' => 'number',
         'shopperNotificationReference' => 'shopperNotificationReference',
         'srcCorrelationId' => 'srcCorrelationId',
+        'srcDigitalCardId' => 'srcDigitalCardId',
         'srcScheme' => 'srcScheme',
         'srcTokenReference' => 'srcTokenReference',
         'threeDS2SdkVersion' => 'threeDS2SdkVersion',
@@ -441,6 +445,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'number' => 'setNumber',
         'shopperNotificationReference' => 'setShopperNotificationReference',
         'srcCorrelationId' => 'setSrcCorrelationId',
+        'srcDigitalCardId' => 'setSrcDigitalCardId',
         'srcScheme' => 'setSrcScheme',
         'srcTokenReference' => 'setSrcTokenReference',
         'threeDS2SdkVersion' => 'setThreeDS2SdkVersion',
@@ -511,6 +516,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'number' => 'getNumber',
         'shopperNotificationReference' => 'getShopperNotificationReference',
         'srcCorrelationId' => 'getSrcCorrelationId',
+        'srcDigitalCardId' => 'getSrcDigitalCardId',
         'srcScheme' => 'getSrcScheme',
         'srcTokenReference' => 'getSrcTokenReference',
         'threeDS2SdkVersion' => 'getThreeDS2SdkVersion',
@@ -631,6 +637,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('number', $data ?? [], null);
         $this->setIfExists('shopperNotificationReference', $data ?? [], null);
         $this->setIfExists('srcCorrelationId', $data ?? [], null);
+        $this->setIfExists('srcDigitalCardId', $data ?? [], null);
         $this->setIfExists('srcScheme', $data ?? [], null);
         $this->setIfExists('srcTokenReference', $data ?? [], null);
         $this->setIfExists('threeDS2SdkVersion', $data ?? [], null);
@@ -1570,6 +1577,30 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
+     * Gets srcDigitalCardId
+     *
+     * @return string|null
+     */
+    public function getSrcDigitalCardId()
+    {
+        return $this->container['srcDigitalCardId'];
+    }
+
+    /**
+     * Sets srcDigitalCardId
+     *
+     * @param string|null $srcDigitalCardId The SRC reference for the Click to Pay token.
+     *
+     * @return self
+     */
+    public function setSrcDigitalCardId($srcDigitalCardId)
+    {
+        $this->container['srcDigitalCardId'] = $srcDigitalCardId;
+
+        return $this;
+    }
+
+    /**
      * Gets srcScheme
      *
      * @return string|null
@@ -1846,7 +1877,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets shopperEmail
      *
-     * @param string $shopperEmail
+     * @param string $shopperEmail 
      *
      * @return self
      */
@@ -1870,7 +1901,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets telephoneNumber
      *
-     * @param string $telephoneNumber
+     * @param string $telephoneNumber 
      *
      * @return self
      */
