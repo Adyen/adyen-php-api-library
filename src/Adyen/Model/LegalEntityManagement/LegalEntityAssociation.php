@@ -49,6 +49,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
         'jobTitle' => 'string',
         'legalEntityId' => 'string',
         'name' => 'string',
+        'relationship' => 'string',
         'settlorExemptionReason' => 'string[]',
         'type' => 'string'
     ];
@@ -66,6 +67,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
         'jobTitle' => null,
         'legalEntityId' => null,
         'name' => null,
+        'relationship' => null,
         'settlorExemptionReason' => null,
         'type' => null
     ];
@@ -81,6 +83,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
         'jobTitle' => false,
         'legalEntityId' => false,
         'name' => false,
+        'relationship' => false,
         'settlorExemptionReason' => false,
         'type' => false
     ];
@@ -176,6 +179,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
         'jobTitle' => 'jobTitle',
         'legalEntityId' => 'legalEntityId',
         'name' => 'name',
+        'relationship' => 'relationship',
         'settlorExemptionReason' => 'settlorExemptionReason',
         'type' => 'type'
     ];
@@ -191,6 +195,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
         'jobTitle' => 'setJobTitle',
         'legalEntityId' => 'setLegalEntityId',
         'name' => 'setName',
+        'relationship' => 'setRelationship',
         'settlorExemptionReason' => 'setSettlorExemptionReason',
         'type' => 'setType'
     ];
@@ -206,6 +211,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
         'jobTitle' => 'getJobTitle',
         'legalEntityId' => 'getLegalEntityId',
         'name' => 'getName',
+        'relationship' => 'getRelationship',
         'settlorExemptionReason' => 'getSettlorExemptionReason',
         'type' => 'getType'
     ];
@@ -254,6 +260,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
     public const TYPE_DEFINED_BENEFICIARY = 'definedBeneficiary';
     public const TYPE_DIRECTOR = 'director';
     public const TYPE_IMMEDIATE_PARENT_COMPANY = 'immediateParentCompany';
+    public const TYPE_LEGAL_REPRESENTATIVE = 'legalRepresentative';
     public const TYPE_PCI_SIGNATORY = 'pciSignatory';
     public const TYPE_PROTECTOR = 'protector';
     public const TYPE_SECONDARY_TRUSTEE = 'secondaryTrustee';
@@ -278,6 +285,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
             self::TYPE_DEFINED_BENEFICIARY,
             self::TYPE_DIRECTOR,
             self::TYPE_IMMEDIATE_PARENT_COMPANY,
+            self::TYPE_LEGAL_REPRESENTATIVE,
             self::TYPE_PCI_SIGNATORY,
             self::TYPE_PROTECTOR,
             self::TYPE_SECONDARY_TRUSTEE,
@@ -312,6 +320,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('jobTitle', $data ?? [], null);
         $this->setIfExists('legalEntityId', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('relationship', $data ?? [], null);
         $this->setIfExists('settlorExemptionReason', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
@@ -494,6 +503,30 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
     }
 
     /**
+     * Gets relationship
+     *
+     * @return string|null
+     */
+    public function getRelationship()
+    {
+        return $this->container['relationship'];
+    }
+
+    /**
+     * Sets relationship
+     *
+     * @param string|null $relationship The individual's relationship to a legal representative if the `type` is **legalRepresentative**. Possible values: **parent**, **guardian**.
+     *
+     * @return self
+     */
+    public function setRelationship($relationship)
+    {
+        $this->container['relationship'] = $relationship;
+
+        return $this;
+    }
+
+    /**
      * Gets settlorExemptionReason
      *
      * @return string[]|null
@@ -530,7 +563,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets type
      *
-     * @param string $type Defines the relationship of the legal entity to the current legal entity.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **director**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.  Possible value for trusts: **trust**  Possible values for trust members: **definedBeneficiary**, **protector**, **secondaryTrustee**, **settlor**, **uboThroughControl**, or **uboThroughOwnership**.
+     * @param string $type Defines the relationship of the legal entity to the current legal entity.  Possible value for individuals: **legalRepresentative**.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **director**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.  Possible value for trusts: **trust**.  Possible values for trust members: **definedBeneficiary**, **protector**, **secondaryTrustee**, **settlor**, **uboThroughControl**, or **uboThroughOwnership**.
      *
      * @return self
      */

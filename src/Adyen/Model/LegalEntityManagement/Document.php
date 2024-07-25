@@ -305,6 +305,7 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_PROOF_OF_INDUSTRY = 'proofOfIndustry';
     public const TYPE_CONSTITUTIONAL_DOCUMENT = 'constitutionalDocument';
     public const TYPE_PROOF_OF_FUNDING_OR_WEALTH_SOURCE = 'proofOfFundingOrWealthSource';
+    public const TYPE_PROOF_OF_RELATIONSHIP = 'proofOfRelationship';
 
     /**
      * Gets allowable values of the enum
@@ -332,6 +333,7 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_PROOF_OF_INDUSTRY,
             self::TYPE_CONSTITUTIONAL_DOCUMENT,
             self::TYPE_PROOF_OF_FUNDING_OR_WEALTH_SOURCE,
+            self::TYPE_PROOF_OF_RELATIONSHIP,
         ];
     }
     /**
@@ -728,7 +730,7 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      *
-     * @param string $type Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  * For **organization**, the `type` values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, **proofOfIndustry**, **proofOfSignatory**, or **proofOfFundingOrWealthSource**.  * For **individual**, the `type` values can be **identityCard**, **driversLicense**, **passport**, **liveSelfie**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, **proofOfIndividualTaxId**, or **proofOfFundingOrWealthSource**.  * For **soleProprietorship**, the `type` values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * For **trust**, the `type` value can be **constitutionalDocument**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
+     * @param string $type Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  * For **organization**, the `type` values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, **proofOfIndustry**, **proofOfSignatory**, or **proofOfFundingOrWealthSource**.  * For **individual**, the `type` values can be **identityCard**, **driversLicense**, **passport**, **liveSelfie**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, **proofOfIndividualTaxId**, **proofOfFundingOrWealthSource** or **proofOfRelationship**.  * For **soleProprietorship**, the `type` values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * For **trust**, the `type` value can be **constitutionalDocument**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
      *
      * @return self
      */
