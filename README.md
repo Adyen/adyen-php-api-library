@@ -4,7 +4,7 @@
 
 This is the officially supported PHP library for using Adyen's APIs.
 
-[![version](https://img.shields.io/badge/version-19.0.0-blue.svg)](https://packagist.org/packages/adyen/php-api-library)
+[![version](https://img.shields.io/badge/version-19.1.0-blue.svg)](https://packagist.org/packages/adyen/php-api-library)
 
 ## Supported API versions
 The library supports all APIs under the following services:
