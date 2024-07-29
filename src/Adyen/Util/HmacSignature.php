@@ -9,7 +9,7 @@ class HmacSignature
     const EVENT_CODE = "eventCode";
 
     /**
-     * @deprecated Use validateHMACVSignature with correct parameter order instead
+     * @deprecated Use validateHMACSignature with correct parameter order instead
      * @param string $hmacKey Can be found in Customer Area
      * @param string $hmacSign Can be found in the Webhook headers
      * @param string $webhook The response from Adyen
