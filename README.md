@@ -4,7 +4,7 @@
 
 This is the officially supported PHP library for using Adyen's APIs.
 
-[![version](https://img.shields.io/badge/version-19.0.0-blue.svg)](https://packagist.org/packages/adyen/php-api-library)
+[![version](https://img.shields.io/badge/version-19.1.0-blue.svg)](https://packagist.org/packages/adyen/php-api-library)
 
 ## Supported API versions
 The library supports all APIs under the following services:
@@ -33,6 +33,8 @@ The library supports all APIs under the following services:
 | [POS Terminal Management API](https://docs.adyen.com/api-explorer/postfmapi/1/overview)                    | This API provides endpoints for managing your point-of-sale (POS) payment terminals. You can use the API to obtain information about a specific terminal, retrieve overviews of your terminals and stores, and assign terminals to a merchant account or store.                                                                         | [POSTerminalManagement](src/Adyen/Service/POSTerminalManagementApi.php) | **v1**                   |
 | [Disputes API](https://docs.adyen.com/api-explorer/Disputes/30/overview)                                   | You can use the [Disputes API](https://docs.adyen.com/risk-management/disputes-api) to automate the dispute handling process so that you can respond to disputes and chargebacks as soon as they are initiated. The Disputes API lets you retrieve defense reasons, supply and delete defense documents, and accept or defend disputes. | [Disputes](src/Adyen/Service/DisputesApi.php)                           | **v30**                  |
 | [POS Mobile API](https://docs.adyen.com/api-explorer/possdk/68/overview)                                   | The POS Mobile API is used in the mutual authentication flow between an Adyen Android or iOS [POS Mobile SDK](https://docs.adyen.com/point-of-sale/ipp-mobile/) and the Adyen payments platform. The POS Mobile SDK for Android or iOS devices enables businesses to accept in-person payments using a commercial off-the-shelf (COTS) device like a phone. For example, Tap to Pay transactions, or transactions on a mobile device in combination with a card reader | [POS Mobile](src/Adyen/Service/PosMobile.php)                           | **v68**                  |
+| [Payments App API]()                                  | The Payments App API is used to Board and manage the Adyen Payments App on your Android mobile devices. | [PaymentsAppApi](src/Adyen/Service/PaymentsApp/PaymentsAppApi.php)                         | **v1**                  |
+
 ## Supported Webhook versions
 The library supports all webhooks under the following model directories:
 

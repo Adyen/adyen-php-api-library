@@ -47,6 +47,7 @@ class GetTermsOfServiceDocumentResponse implements ModelInterface, ArrayAccess, 
         'document' => 'string',
         'id' => 'string',
         'language' => 'string',
+        'termsOfServiceDocumentFormat' => 'string',
         'termsOfServiceDocumentId' => 'string',
         'type' => 'string'
     ];
@@ -62,6 +63,7 @@ class GetTermsOfServiceDocumentResponse implements ModelInterface, ArrayAccess, 
         'document' => 'byte',
         'id' => null,
         'language' => null,
+        'termsOfServiceDocumentFormat' => null,
         'termsOfServiceDocumentId' => null,
         'type' => null
     ];
@@ -75,6 +77,7 @@ class GetTermsOfServiceDocumentResponse implements ModelInterface, ArrayAccess, 
         'document' => false,
         'id' => false,
         'language' => false,
+        'termsOfServiceDocumentFormat' => false,
         'termsOfServiceDocumentId' => false,
         'type' => false
     ];
@@ -168,6 +171,7 @@ class GetTermsOfServiceDocumentResponse implements ModelInterface, ArrayAccess, 
         'document' => 'document',
         'id' => 'id',
         'language' => 'language',
+        'termsOfServiceDocumentFormat' => 'termsOfServiceDocumentFormat',
         'termsOfServiceDocumentId' => 'termsOfServiceDocumentId',
         'type' => 'type'
     ];
@@ -181,6 +185,7 @@ class GetTermsOfServiceDocumentResponse implements ModelInterface, ArrayAccess, 
         'document' => 'setDocument',
         'id' => 'setId',
         'language' => 'setLanguage',
+        'termsOfServiceDocumentFormat' => 'setTermsOfServiceDocumentFormat',
         'termsOfServiceDocumentId' => 'setTermsOfServiceDocumentId',
         'type' => 'setType'
     ];
@@ -194,6 +199,7 @@ class GetTermsOfServiceDocumentResponse implements ModelInterface, ArrayAccess, 
         'document' => 'getDocument',
         'id' => 'getId',
         'language' => 'getLanguage',
+        'termsOfServiceDocumentFormat' => 'getTermsOfServiceDocumentFormat',
         'termsOfServiceDocumentId' => 'getTermsOfServiceDocumentId',
         'type' => 'getType'
     ];
@@ -284,6 +290,7 @@ class GetTermsOfServiceDocumentResponse implements ModelInterface, ArrayAccess, 
         $this->setIfExists('document', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('language', $data ?? [], null);
+        $this->setIfExists('termsOfServiceDocumentFormat', $data ?? [], null);
         $this->setIfExists('termsOfServiceDocumentId', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
@@ -407,6 +414,30 @@ class GetTermsOfServiceDocumentResponse implements ModelInterface, ArrayAccess, 
     public function setLanguage($language)
     {
         $this->container['language'] = $language;
+
+        return $this;
+    }
+
+    /**
+     * Gets termsOfServiceDocumentFormat
+     *
+     * @return string|null
+     */
+    public function getTermsOfServiceDocumentFormat()
+    {
+        return $this->container['termsOfServiceDocumentFormat'];
+    }
+
+    /**
+     * Sets termsOfServiceDocumentFormat
+     *
+     * @param string|null $termsOfServiceDocumentFormat The format of the Terms of Service document.
+     *
+     * @return self
+     */
+    public function setTermsOfServiceDocumentFormat($termsOfServiceDocumentFormat)
+    {
+        $this->container['termsOfServiceDocumentFormat'] = $termsOfServiceDocumentFormat;
 
         return $this;
     }

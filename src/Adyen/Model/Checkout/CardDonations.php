@@ -61,6 +61,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         'recurringDetailReference' => 'string',
         'shopperNotificationReference' => 'string',
         'srcCorrelationId' => 'string',
+        'srcDigitalCardId' => 'string',
         'srcScheme' => 'string',
         'srcTokenReference' => 'string',
         'storedPaymentMethodId' => 'string',
@@ -93,6 +94,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         'recurringDetailReference' => null,
         'shopperNotificationReference' => null,
         'srcCorrelationId' => null,
+        'srcDigitalCardId' => null,
         'srcScheme' => null,
         'srcTokenReference' => null,
         'storedPaymentMethodId' => null,
@@ -123,6 +125,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         'recurringDetailReference' => false,
         'shopperNotificationReference' => false,
         'srcCorrelationId' => false,
+        'srcDigitalCardId' => false,
         'srcScheme' => false,
         'srcTokenReference' => false,
         'storedPaymentMethodId' => false,
@@ -233,6 +236,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         'recurringDetailReference' => 'recurringDetailReference',
         'shopperNotificationReference' => 'shopperNotificationReference',
         'srcCorrelationId' => 'srcCorrelationId',
+        'srcDigitalCardId' => 'srcDigitalCardId',
         'srcScheme' => 'srcScheme',
         'srcTokenReference' => 'srcTokenReference',
         'storedPaymentMethodId' => 'storedPaymentMethodId',
@@ -263,6 +267,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         'recurringDetailReference' => 'setRecurringDetailReference',
         'shopperNotificationReference' => 'setShopperNotificationReference',
         'srcCorrelationId' => 'setSrcCorrelationId',
+        'srcDigitalCardId' => 'setSrcDigitalCardId',
         'srcScheme' => 'setSrcScheme',
         'srcTokenReference' => 'setSrcTokenReference',
         'storedPaymentMethodId' => 'setStoredPaymentMethodId',
@@ -293,6 +298,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         'recurringDetailReference' => 'getRecurringDetailReference',
         'shopperNotificationReference' => 'getShopperNotificationReference',
         'srcCorrelationId' => 'getSrcCorrelationId',
+        'srcDigitalCardId' => 'getSrcDigitalCardId',
         'srcScheme' => 'getSrcScheme',
         'srcTokenReference' => 'getSrcTokenReference',
         'storedPaymentMethodId' => 'getStoredPaymentMethodId',
@@ -408,6 +414,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
         $this->setIfExists('shopperNotificationReference', $data ?? [], null);
         $this->setIfExists('srcCorrelationId', $data ?? [], null);
+        $this->setIfExists('srcDigitalCardId', $data ?? [], null);
         $this->setIfExists('srcScheme', $data ?? [], null);
         $this->setIfExists('srcTokenReference', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
@@ -893,6 +900,30 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setSrcCorrelationId($srcCorrelationId)
     {
         $this->container['srcCorrelationId'] = $srcCorrelationId;
+
+        return $this;
+    }
+
+    /**
+     * Gets srcDigitalCardId
+     *
+     * @return string|null
+     */
+    public function getSrcDigitalCardId()
+    {
+        return $this->container['srcDigitalCardId'];
+    }
+
+    /**
+     * Sets srcDigitalCardId
+     *
+     * @param string|null $srcDigitalCardId The SRC reference for the Click to Pay token.
+     *
+     * @return self
+     */
+    public function setSrcDigitalCardId($srcDigitalCardId)
+    {
+        $this->container['srcDigitalCardId'] = $srcDigitalCardId;
 
         return $this;
     }
