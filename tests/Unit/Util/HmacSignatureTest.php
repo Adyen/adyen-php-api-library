@@ -164,9 +164,9 @@ JSON
             . "{\"balanceAccountId\":\"BA3227C223222H5HVKT3H9WLC\"},\"currency\":\"EUR\"}},\"environment\":"
             . "\"test\",\"type\":\"balancePlatform.balanceAccountSweep.updated\"}";
         $hmac = new HmacSignature();
-        $result = $hmac->validateHMAC(
-            "9Qz9S/0xpar1klkniKdshxpAhRKbiSAewPpWoxKefQA=",
+        $result = $hmac->validateHMACSignature(
             "D7DD5BA6146493707BF0BE7496F6404EC7A63616B7158EC927B9F54BB436765F",
+            "9Qz9S/0xpar1klkniKdshxpAhRKbiSAewPpWoxKefQA=",
             $params
         );
         self::assertTrue($result);
