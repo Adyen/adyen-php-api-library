@@ -18,16 +18,16 @@ class HmacSignature
      */
     public function validateHMAC(string $hmacKey, string $hmacSign, string $webhook): bool
     {
-        if (!ctype_xdigit($hmacKey)) {
+        if (!ctype_xdigit($hmacSign)) {
             throw new AdyenException("Invalid HMAC key: $hmacKey");
         }
         $expectedSign = base64_encode(hash_hmac(
             'sha256',
             $webhook,
-            pack("H*", $hmacKey),
+            pack("H*", $hmacSign),
             true
         ));
-        return hash_equals($expectedSign, $hmacSign);
+        return hash_equals($expectedSign, $hmacKey);
     }
 
     /**

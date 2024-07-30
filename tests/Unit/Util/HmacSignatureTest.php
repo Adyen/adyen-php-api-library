@@ -151,7 +151,6 @@ JSON
             $this->fail('Unexpected exception');
         }
     }
-
     /**
      * @deprecated
      * @throws AdyenException
@@ -176,7 +175,7 @@ JSON
     /**
      * @throws AdyenException
      */
-    public function testBankingWebhookHmacSignatureValidation()
+    public function testBankingWebhookHmacSignature()
     {
         $params = "{\"data\":{\"balancePlatform\":\"Integration_tools_test\","
             . "\"accountId\":\"BA32272223222H5HVKTBK4MLB\",\"sweep\":{\"id\":\"SWPC42272223222H5HVKV6H8C64DP5\","
