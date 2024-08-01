@@ -9,6 +9,7 @@ class HmacSignature
     const EVENT_CODE = "eventCode";
 
     /**
+     * @deprecated use Use validateHMACSignature with correct parameter order instead
      * @param string $hmacKey Can be found in Customer Area
      * @param string $hmacSign Can be found in the Webhook headers
      * @param string $webhook The response from Adyen
@@ -16,6 +17,27 @@ class HmacSignature
      * @throws AdyenException
      */
     public function validateHMAC(string $hmacKey, string $hmacSign, string $webhook): bool
+    {
+        if (!ctype_xdigit($hmacSign)) {
+            throw new AdyenException("Invalid HMAC key: $hmacKey");
+        }
+        $expectedSign = base64_encode(hash_hmac(
+            'sha256',
+            $webhook,
+            pack("H*", $hmacSign),
+            true
+        ));
+        return hash_equals($expectedSign, $hmacKey);
+    }
+
+    /**
+     * @param string $hmacKey Can be found in Customer Area
+     * @param string $hmacSign Can be found in the Webhook headers
+     * @param string $webhook The response from Adyen
+     * @return bool
+     * @throws AdyenException
+     */
+    public function validateHMACSignature(string $hmacKey, string $hmacSign, string $webhook): bool
     {
         if (!ctype_xdigit($hmacKey)) {
             throw new AdyenException("Invalid HMAC key: $hmacKey");
