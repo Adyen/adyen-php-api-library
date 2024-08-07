@@ -97,6 +97,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
         'splitCardFundingSources' => 'bool',
         'splits' => '\Adyen\Model\Checkout\Split[]',
         'store' => 'string',
+        'storeFiltrationMode' => 'string',
         'storePaymentMethod' => 'bool',
         'storePaymentMethodMode' => 'string',
         'telephoneNumber' => 'string',
@@ -167,6 +168,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
         'splitCardFundingSources' => null,
         'splits' => null,
         'store' => null,
+        'storeFiltrationMode' => null,
         'storePaymentMethod' => null,
         'storePaymentMethodMode' => null,
         'telephoneNumber' => null,
@@ -235,6 +237,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
         'splitCardFundingSources' => false,
         'splits' => false,
         'store' => false,
+        'storeFiltrationMode' => false,
         'storePaymentMethod' => false,
         'storePaymentMethodMode' => false,
         'telephoneNumber' => false,
@@ -383,6 +386,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
         'splitCardFundingSources' => 'splitCardFundingSources',
         'splits' => 'splits',
         'store' => 'store',
+        'storeFiltrationMode' => 'storeFiltrationMode',
         'storePaymentMethod' => 'storePaymentMethod',
         'storePaymentMethodMode' => 'storePaymentMethodMode',
         'telephoneNumber' => 'telephoneNumber',
@@ -451,6 +455,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
         'splitCardFundingSources' => 'setSplitCardFundingSources',
         'splits' => 'setSplits',
         'store' => 'setStore',
+        'storeFiltrationMode' => 'setStoreFiltrationMode',
         'storePaymentMethod' => 'setStorePaymentMethod',
         'storePaymentMethodMode' => 'setStorePaymentMethodMode',
         'telephoneNumber' => 'setTelephoneNumber',
@@ -519,6 +524,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
         'splitCardFundingSources' => 'getSplitCardFundingSources',
         'splits' => 'getSplits',
         'store' => 'getStore',
+        'storeFiltrationMode' => 'getStoreFiltrationMode',
         'storePaymentMethod' => 'getStorePaymentMethod',
         'storePaymentMethodMode' => 'getStorePaymentMethodMode',
         'telephoneNumber' => 'getTelephoneNumber',
@@ -581,6 +587,9 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
     public const SHOPPER_INTERACTION_CONT_AUTH = 'ContAuth';
     public const SHOPPER_INTERACTION_MOTO = 'Moto';
     public const SHOPPER_INTERACTION_POS = 'POS';
+    public const STORE_FILTRATION_MODE_EXCLUSIVE = 'exclusive';
+    public const STORE_FILTRATION_MODE_INCLUSIVE = 'inclusive';
+    public const STORE_FILTRATION_MODE_SKIP_FILTER = 'skipFilter';
     public const STORE_PAYMENT_METHOD_MODE_ASK_FOR_CONSENT = 'askForConsent';
     public const STORE_PAYMENT_METHOD_MODE_DISABLED = 'disabled';
     public const STORE_PAYMENT_METHOD_MODE_ENABLED = 'enabled';
@@ -635,6 +644,19 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
             self::SHOPPER_INTERACTION_CONT_AUTH,
             self::SHOPPER_INTERACTION_MOTO,
             self::SHOPPER_INTERACTION_POS,
+        ];
+    }
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getStoreFiltrationModeAllowableValues()
+    {
+        return [
+            self::STORE_FILTRATION_MODE_EXCLUSIVE,
+            self::STORE_FILTRATION_MODE_INCLUSIVE,
+            self::STORE_FILTRATION_MODE_SKIP_FILTER,
         ];
     }
     /**
@@ -718,6 +740,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
         $this->setIfExists('splitCardFundingSources', $data ?? [], null);
         $this->setIfExists('splits', $data ?? [], null);
         $this->setIfExists('store', $data ?? [], null);
+        $this->setIfExists('storeFiltrationMode', $data ?? [], null);
         $this->setIfExists('storePaymentMethod', $data ?? [], null);
         $this->setIfExists('storePaymentMethodMode', $data ?? [], null);
         $this->setIfExists('telephoneNumber', $data ?? [], null);
@@ -798,6 +821,15 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'shopperInteraction', must be one of '%s'",
                 $this->container['shopperInteraction'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getStoreFiltrationModeAllowableValues();
+        if (!is_null($this->container['storeFiltrationMode']) && !in_array($this->container['storeFiltrationMode'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'storeFiltrationMode', must be one of '%s'",
+                $this->container['storeFiltrationMode'],
                 implode("', '", $allowedValues)
             );
         }
@@ -2134,6 +2166,40 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
     public function setStore($store)
     {
         $this->container['store'] = $store;
+
+        return $this;
+    }
+
+    /**
+     * Gets storeFiltrationMode
+     *
+     * @return string|null
+     */
+    public function getStoreFiltrationMode()
+    {
+        return $this->container['storeFiltrationMode'];
+    }
+
+    /**
+     * Sets storeFiltrationMode
+     *
+     * @param string|null $storeFiltrationMode Specifies how payment methods should be filtered based on the 'store' parameter:   - 'exclusive': Only payment methods belonging to the specified 'store' are returned.   - 'inclusive': Payment methods from the 'store' and those not associated with any other store are returned.   - 'skipFilter': All payment methods are returned, regardless of store association.
+     *
+     * @return self
+     */
+    public function setStoreFiltrationMode($storeFiltrationMode)
+    {
+        $allowedValues = $this->getStoreFiltrationModeAllowableValues();
+        if (!in_array($storeFiltrationMode, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'storeFiltrationMode', must be one of '%s'",
+                    $storeFiltrationMode,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['storeFiltrationMode'] = $storeFiltrationMode;
 
         return $this;
     }

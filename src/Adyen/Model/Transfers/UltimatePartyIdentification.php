@@ -319,9 +319,6 @@ class UltimatePartyIdentification implements ModelInterface, ArrayAccess, \JsonS
     {
         $invalidProperties = [];
 
-        if ($this->container['fullName'] === null) {
-            $invalidProperties[] = "'fullName' can't be null";
-        }
         $allowedValues = $this->getTypeAllowableValues();
         if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -383,7 +380,7 @@ class UltimatePartyIdentification implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets dateOfBirth
      *
-     * @param \DateTime|null $dateOfBirth The date of birth of the individual in [ISO-8601](https://www.w3.org/TR/NOTE-datetime) format. For example, **YYYY-MM-DD**. Should not be before January 1, 1900.  Allowed only when `type` is **individual**.
+     * @param \DateTime|null $dateOfBirth The date of birth of the individual in [ISO-8601](https://www.w3.org/TR/NOTE-datetime) format. For example, **YYYY-MM-DD**.  Allowed only when `type` is **individual**.
      *
      * @return self
      */
@@ -407,7 +404,7 @@ class UltimatePartyIdentification implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets firstName
      *
-     * @param string|null $firstName First name of the individual.  Allowed only when `type` is **individual**.  Supported characters: [a-z] [A-Z] - . / — and Space.
+     * @param string|null $firstName The first name of the individual.  Supported characters: [a-z] [A-Z] - . / — and space.  This parameter is: - Allowed only when `type` is **individual**. - Required when `category` is **card**.
      *
      * @return self
      */
@@ -421,7 +418,7 @@ class UltimatePartyIdentification implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets fullName
      *
-     * @return string
+     * @return string|null
      */
     public function getFullName()
     {
@@ -431,7 +428,7 @@ class UltimatePartyIdentification implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets fullName
      *
-     * @param string $fullName The name of the entity.  Supported characters: [a-z] [A-Z] [0-9] , . ; : - — / \\ + & ! ? @ ( ) \" ' and Space.
+     * @param string|null $fullName The full name of the entity that owns the bank account or card.  Supported characters: [a-z] [A-Z] [0-9] , . ; : - — / \\ + & ! ? @ ( ) \" ' and space.  Required when `category` is **bank**.
      *
      * @return self
      */
@@ -455,7 +452,7 @@ class UltimatePartyIdentification implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets lastName
      *
-     * @param string|null $lastName Last name of the individual.  Allowed only when `type` is **individual**.  Supported characters: [a-z] [A-Z] - . / — and Space.
+     * @param string|null $lastName The last name of the individual.  Supported characters: [a-z] [A-Z] - . / — and space.  This parameter is: - Allowed only when `type` is **individual**. - Required when `category` is **card**.
      *
      * @return self
      */
@@ -479,7 +476,7 @@ class UltimatePartyIdentification implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets reference
      *
-     * @param string|null $reference A unique reference to identify the party or counterparty involved in transfers. This identifier ensures consistency and uniqueness throughout all transactions initiated to and from the same party. For example, your client's unique wallet or payee ID.
+     * @param string|null $reference A unique reference to identify the party or counterparty involved in the transfer. For example, your client's unique wallet or payee ID.  Required when you include `cardIdentification.storedPaymentMethodId`.
      *
      * @return self
      */
@@ -503,7 +500,7 @@ class UltimatePartyIdentification implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets type
      *
-     * @param string|null $type The type of entity that owns the bank account.   Possible values: **individual**, **organization**, or **unknown**.
+     * @param string|null $type The type of entity that owns the bank account or card.  Possible values: **individual**, **organization**, or **unknown**.  Required when `category` is **card**. In this case, the value must be **individual**.
      *
      * @return self
      */

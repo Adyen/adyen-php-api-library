@@ -306,6 +306,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     public const CATEGORY_BANK = 'bank';
+    public const CATEGORY_CARD = 'card';
     public const CATEGORY_INTERNAL = 'internal';
     public const CATEGORY_ISSUED_CARD = 'issuedCard';
     public const CATEGORY_PLATFORM_PAYMENT = 'platformPayment';
@@ -395,46 +396,44 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_SECOND_CHARGEBACK = 'secondChargeback';
     public const STATUS_SECOND_CHARGEBACK_PENDING = 'secondChargebackPending';
     public const STATUS_UNDEFINED = 'undefined';
-    public const TYPE_ATM_WITHDRAWAL = 'atmWithdrawal';
-    public const TYPE_ATM_WITHDRAWAL_REVERSAL = 'atmWithdrawalReversal';
-    public const TYPE_BALANCE_ADJUSTMENT = 'balanceAdjustment';
-    public const TYPE_BALANCE_MIGRATION = 'balanceMigration';
-    public const TYPE_BALANCE_ROLLOVER = 'balanceRollover';
-    public const TYPE_BANK_DIRECT_DEBIT = 'bankDirectDebit';
-    public const TYPE_BANK_TRANSFER = 'bankTransfer';
-    public const TYPE_CAPITAL_FUNDS_COLLECTION = 'capitalFundsCollection';
+    public const TYPE_PAYMENT = 'payment';
     public const TYPE_CAPTURE = 'capture';
     public const TYPE_CAPTURE_REVERSAL = 'captureReversal';
-    public const TYPE_CARD_TRANSFER = 'cardTransfer';
-    public const TYPE_CASH_OUT_FEE = 'cashOutFee';
-    public const TYPE_CASH_OUT_FUNDING = 'cashOutFunding';
-    public const TYPE_CASH_OUT_INSTRUCTION = 'cashOutInstruction';
-    public const TYPE_CASHOUT_FEE = 'cashoutFee';
-    public const TYPE_CASHOUT_FUNDING = 'cashoutFunding';
-    public const TYPE_CASHOUT_REPAYMENT = 'cashoutRepayment';
+    public const TYPE_REFUND = 'refund';
+    public const TYPE_REFUND_REVERSAL = 'refundReversal';
     public const TYPE_CHARGEBACK = 'chargeback';
     public const TYPE_CHARGEBACK_CORRECTION = 'chargebackCorrection';
     public const TYPE_CHARGEBACK_REVERSAL = 'chargebackReversal';
     public const TYPE_CHARGEBACK_REVERSAL_CORRECTION = 'chargebackReversalCorrection';
-    public const TYPE_DEPOSIT_CORRECTION = 'depositCorrection';
-    public const TYPE_FEE = 'fee';
-    public const TYPE_GRANT = 'grant';
-    public const TYPE_INSTALLMENT = 'installment';
-    public const TYPE_INSTALLMENT_REVERSAL = 'installmentReversal';
-    public const TYPE_INTERNAL_DIRECT_DEBIT = 'internalDirectDebit';
-    public const TYPE_INTERNAL_TRANSFER = 'internalTransfer';
-    public const TYPE_INVOICE_DEDUCTION = 'invoiceDeduction';
-    public const TYPE_LEFTOVER = 'leftover';
-    public const TYPE_MANUAL_CORRECTION = 'manualCorrection';
-    public const TYPE_MISC_COST = 'miscCost';
-    public const TYPE_PAYMENT = 'payment';
-    public const TYPE_PAYMENT_COST = 'paymentCost';
-    public const TYPE_REFUND = 'refund';
-    public const TYPE_REFUND_REVERSAL = 'refundReversal';
-    public const TYPE_REPAYMENT = 'repayment';
-    public const TYPE_RESERVE_ADJUSTMENT = 'reserveAdjustment';
     public const TYPE_SECOND_CHARGEBACK = 'secondChargeback';
     public const TYPE_SECOND_CHARGEBACK_CORRECTION = 'secondChargebackCorrection';
+    public const TYPE_ATM_WITHDRAWAL = 'atmWithdrawal';
+    public const TYPE_ATM_WITHDRAWAL_REVERSAL = 'atmWithdrawalReversal';
+    public const TYPE_INTERNAL_TRANSFER = 'internalTransfer';
+    public const TYPE_INTERNAL_DIRECT_DEBIT = 'internalDirectDebit';
+    public const TYPE_MANUAL_CORRECTION = 'manualCorrection';
+    public const TYPE_INVOICE_DEDUCTION = 'invoiceDeduction';
+    public const TYPE_DEPOSIT_CORRECTION = 'depositCorrection';
+    public const TYPE_RESERVE_ADJUSTMENT = 'reserveAdjustment';
+    public const TYPE_BANK_TRANSFER = 'bankTransfer';
+    public const TYPE_BANK_DIRECT_DEBIT = 'bankDirectDebit';
+    public const TYPE_CARD_TRANSFER = 'cardTransfer';
+    public const TYPE_MISC_COST = 'miscCost';
+    public const TYPE_PAYMENT_COST = 'paymentCost';
+    public const TYPE_FEE = 'fee';
+    public const TYPE_LEFTOVER = 'leftover';
+    public const TYPE_GRANT = 'grant';
+    public const TYPE_CAPITAL_FUNDS_COLLECTION = 'capitalFundsCollection';
+    public const TYPE_CASH_OUT_INSTRUCTION = 'cashOutInstruction';
+    public const TYPE_CASHOUT_FEE = 'cashoutFee';
+    public const TYPE_CASHOUT_REPAYMENT = 'cashoutRepayment';
+    public const TYPE_CASHOUT_FUNDING = 'cashoutFunding';
+    public const TYPE_REPAYMENT = 'repayment';
+    public const TYPE_INSTALLMENT = 'installment';
+    public const TYPE_INSTALLMENT_REVERSAL = 'installmentReversal';
+    public const TYPE_BALANCE_ADJUSTMENT = 'balanceAdjustment';
+    public const TYPE_BALANCE_ROLLOVER = 'balanceRollover';
+    public const TYPE_BALANCE_MIGRATION = 'balanceMigration';
 
     /**
      * Gets allowable values of the enum
@@ -445,6 +444,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return [
             self::CATEGORY_BANK,
+            self::CATEGORY_CARD,
             self::CATEGORY_INTERNAL,
             self::CATEGORY_ISSUED_CARD,
             self::CATEGORY_PLATFORM_PAYMENT,
@@ -574,46 +574,44 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     public function getTypeAllowableValues()
     {
         return [
-            self::TYPE_ATM_WITHDRAWAL,
-            self::TYPE_ATM_WITHDRAWAL_REVERSAL,
-            self::TYPE_BALANCE_ADJUSTMENT,
-            self::TYPE_BALANCE_MIGRATION,
-            self::TYPE_BALANCE_ROLLOVER,
-            self::TYPE_BANK_DIRECT_DEBIT,
-            self::TYPE_BANK_TRANSFER,
-            self::TYPE_CAPITAL_FUNDS_COLLECTION,
+            self::TYPE_PAYMENT,
             self::TYPE_CAPTURE,
             self::TYPE_CAPTURE_REVERSAL,
-            self::TYPE_CARD_TRANSFER,
-            self::TYPE_CASH_OUT_FEE,
-            self::TYPE_CASH_OUT_FUNDING,
-            self::TYPE_CASH_OUT_INSTRUCTION,
-            self::TYPE_CASHOUT_FEE,
-            self::TYPE_CASHOUT_FUNDING,
-            self::TYPE_CASHOUT_REPAYMENT,
+            self::TYPE_REFUND,
+            self::TYPE_REFUND_REVERSAL,
             self::TYPE_CHARGEBACK,
             self::TYPE_CHARGEBACK_CORRECTION,
             self::TYPE_CHARGEBACK_REVERSAL,
             self::TYPE_CHARGEBACK_REVERSAL_CORRECTION,
-            self::TYPE_DEPOSIT_CORRECTION,
-            self::TYPE_FEE,
-            self::TYPE_GRANT,
-            self::TYPE_INSTALLMENT,
-            self::TYPE_INSTALLMENT_REVERSAL,
-            self::TYPE_INTERNAL_DIRECT_DEBIT,
-            self::TYPE_INTERNAL_TRANSFER,
-            self::TYPE_INVOICE_DEDUCTION,
-            self::TYPE_LEFTOVER,
-            self::TYPE_MANUAL_CORRECTION,
-            self::TYPE_MISC_COST,
-            self::TYPE_PAYMENT,
-            self::TYPE_PAYMENT_COST,
-            self::TYPE_REFUND,
-            self::TYPE_REFUND_REVERSAL,
-            self::TYPE_REPAYMENT,
-            self::TYPE_RESERVE_ADJUSTMENT,
             self::TYPE_SECOND_CHARGEBACK,
             self::TYPE_SECOND_CHARGEBACK_CORRECTION,
+            self::TYPE_ATM_WITHDRAWAL,
+            self::TYPE_ATM_WITHDRAWAL_REVERSAL,
+            self::TYPE_INTERNAL_TRANSFER,
+            self::TYPE_INTERNAL_DIRECT_DEBIT,
+            self::TYPE_MANUAL_CORRECTION,
+            self::TYPE_INVOICE_DEDUCTION,
+            self::TYPE_DEPOSIT_CORRECTION,
+            self::TYPE_RESERVE_ADJUSTMENT,
+            self::TYPE_BANK_TRANSFER,
+            self::TYPE_BANK_DIRECT_DEBIT,
+            self::TYPE_CARD_TRANSFER,
+            self::TYPE_MISC_COST,
+            self::TYPE_PAYMENT_COST,
+            self::TYPE_FEE,
+            self::TYPE_LEFTOVER,
+            self::TYPE_GRANT,
+            self::TYPE_CAPITAL_FUNDS_COLLECTION,
+            self::TYPE_CASH_OUT_INSTRUCTION,
+            self::TYPE_CASHOUT_FEE,
+            self::TYPE_CASHOUT_REPAYMENT,
+            self::TYPE_CASHOUT_FUNDING,
+            self::TYPE_REPAYMENT,
+            self::TYPE_INSTALLMENT,
+            self::TYPE_INSTALLMENT_REVERSAL,
+            self::TYPE_BALANCE_ADJUSTMENT,
+            self::TYPE_BALANCE_ROLLOVER,
+            self::TYPE_BALANCE_MIGRATION,
         ];
     }
     /**
@@ -833,7 +831,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets category
      *
-     * @param string $category The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by an Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.
+     * @param string $category The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **card**: a transfer involving a third-party card.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by an Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.
      *
      * @return self
      */
