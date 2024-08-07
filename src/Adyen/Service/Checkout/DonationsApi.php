@@ -40,6 +40,21 @@ class DonationsApi extends Service
     }
 
     /**
+    * Get a list of donation campaigns.
+    *
+    * @param \Adyen\Model\Checkout\DonationCampaignsRequest $donationCampaignsRequest
+    * @param array|null $requestOptions
+    * @return \Adyen\Model\Checkout\DonationCampaignsResponse
+    * @throws AdyenException
+    */
+    public function donationCampaigns(\Adyen\Model\Checkout\DonationCampaignsRequest $donationCampaignsRequest, array $requestOptions = null): \Adyen\Model\Checkout\DonationCampaignsResponse
+    {
+        $endpoint = $this->baseURL . "/donationCampaigns";
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $donationCampaignsRequest->jsonSerialize(), $requestOptions);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\DonationCampaignsResponse::class);
+    }
+
+    /**
     * Start a transaction for donations
     *
     * @param \Adyen\Model\Checkout\DonationPaymentRequest $donationPaymentRequest

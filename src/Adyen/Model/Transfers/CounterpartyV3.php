@@ -46,6 +46,7 @@ class CounterpartyV3 implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'balanceAccountId' => 'string',
         'bankAccount' => '\Adyen\Model\Transfers\BankAccountV3',
+        'card' => '\Adyen\Model\Transfers\Card',
         'merchant' => '\Adyen\Model\Transfers\MerchantData',
         'transferInstrumentId' => 'string'
     ];
@@ -60,6 +61,7 @@ class CounterpartyV3 implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'balanceAccountId' => null,
         'bankAccount' => null,
+        'card' => null,
         'merchant' => null,
         'transferInstrumentId' => null
     ];
@@ -72,6 +74,7 @@ class CounterpartyV3 implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPINullables = [
         'balanceAccountId' => false,
         'bankAccount' => false,
+        'card' => false,
         'merchant' => false,
         'transferInstrumentId' => false
     ];
@@ -164,6 +167,7 @@ class CounterpartyV3 implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'balanceAccountId' => 'balanceAccountId',
         'bankAccount' => 'bankAccount',
+        'card' => 'card',
         'merchant' => 'merchant',
         'transferInstrumentId' => 'transferInstrumentId'
     ];
@@ -176,6 +180,7 @@ class CounterpartyV3 implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'balanceAccountId' => 'setBalanceAccountId',
         'bankAccount' => 'setBankAccount',
+        'card' => 'setCard',
         'merchant' => 'setMerchant',
         'transferInstrumentId' => 'setTransferInstrumentId'
     ];
@@ -188,6 +193,7 @@ class CounterpartyV3 implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'balanceAccountId' => 'getBalanceAccountId',
         'bankAccount' => 'getBankAccount',
+        'card' => 'getCard',
         'merchant' => 'getMerchant',
         'transferInstrumentId' => 'getTransferInstrumentId'
     ];
@@ -251,6 +257,7 @@ class CounterpartyV3 implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('balanceAccountId', $data ?? [], null);
         $this->setIfExists('bankAccount', $data ?? [], null);
+        $this->setIfExists('card', $data ?? [], null);
         $this->setIfExists('merchant', $data ?? [], null);
         $this->setIfExists('transferInstrumentId', $data ?? [], null);
     }
@@ -310,7 +317,7 @@ class CounterpartyV3 implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets balanceAccountId
      *
-     * @param string|null $balanceAccountId The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id).
+     * @param string|null $balanceAccountId The unique identifier of the counterparty [balance account](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id).
      *
      * @return self
      */
@@ -341,6 +348,30 @@ class CounterpartyV3 implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setBankAccount($bankAccount)
     {
         $this->container['bankAccount'] = $bankAccount;
+
+        return $this;
+    }
+
+    /**
+     * Gets card
+     *
+     * @return \Adyen\Model\Transfers\Card|null
+     */
+    public function getCard()
+    {
+        return $this->container['card'];
+    }
+
+    /**
+     * Sets card
+     *
+     * @param \Adyen\Model\Transfers\Card|null $card card
+     *
+     * @return self
+     */
+    public function setCard($card)
+    {
+        $this->container['card'] = $card;
 
         return $this;
     }
@@ -382,7 +413,7 @@ class CounterpartyV3 implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets transferInstrumentId
      *
-     * @param string|null $transferInstrumentId The unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
+     * @param string|null $transferInstrumentId The unique identifier of the counterparty [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id).
      *
      * @return self
      */

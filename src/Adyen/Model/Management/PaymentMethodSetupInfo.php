@@ -74,6 +74,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'sofort' => '\Adyen\Model\Management\SofortInfo',
         'storeIds' => 'string[]',
         'swish' => '\Adyen\Model\Management\SwishInfo',
+        'ticket' => '\Adyen\Model\Management\TicketInfo',
         'twint' => '\Adyen\Model\Management\TwintInfo',
         'type' => 'string',
         'vipps' => '\Adyen\Model\Management\VippsInfo',
@@ -120,6 +121,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'sofort' => null,
         'storeIds' => null,
         'swish' => null,
+        'ticket' => null,
         'twint' => null,
         'type' => null,
         'vipps' => null,
@@ -164,6 +166,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'sofort' => false,
         'storeIds' => false,
         'swish' => false,
+        'ticket' => false,
         'twint' => false,
         'type' => false,
         'vipps' => false,
@@ -288,6 +291,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'sofort' => 'sofort',
         'storeIds' => 'storeIds',
         'swish' => 'swish',
+        'ticket' => 'ticket',
         'twint' => 'twint',
         'type' => 'type',
         'vipps' => 'vipps',
@@ -332,6 +336,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'sofort' => 'setSofort',
         'storeIds' => 'setStoreIds',
         'swish' => 'setSwish',
+        'ticket' => 'setTicket',
         'twint' => 'setTwint',
         'type' => 'setType',
         'vipps' => 'setVipps',
@@ -376,6 +381,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'sofort' => 'getSofort',
         'storeIds' => 'getStoreIds',
         'swish' => 'getSwish',
+        'ticket' => 'getTicket',
         'twint' => 'getTwint',
         'type' => 'getType',
         'vipps' => 'getVipps',
@@ -467,9 +473,12 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     public const TYPE_MULTIBANCO = 'multibanco';
     public const TYPE_ONLINE_BANKING_PL = 'onlineBanking_PL';
     public const TYPE_PAYBYBANK = 'paybybank';
+    public const TYPE_PAYNOW = 'paynow';
+    public const TYPE_PAYNOW_POS = 'paynow_pos';
     public const TYPE_PAYPAL = 'paypal';
     public const TYPE_PAYSHOP = 'payshop';
     public const TYPE_SWISH = 'swish';
+    public const TYPE_TICKET = 'ticket';
     public const TYPE_TRUSTLY = 'trustly';
     public const TYPE_TWINT = 'twint';
     public const TYPE_TWINT_POS = 'twint_pos';
@@ -540,9 +549,12 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
             self::TYPE_MULTIBANCO,
             self::TYPE_ONLINE_BANKING_PL,
             self::TYPE_PAYBYBANK,
+            self::TYPE_PAYNOW,
+            self::TYPE_PAYNOW_POS,
             self::TYPE_PAYPAL,
             self::TYPE_PAYSHOP,
             self::TYPE_SWISH,
+            self::TYPE_TICKET,
             self::TYPE_TRUSTLY,
             self::TYPE_TWINT,
             self::TYPE_TWINT_POS,
@@ -599,6 +611,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('sofort', $data ?? [], null);
         $this->setIfExists('storeIds', $data ?? [], null);
         $this->setIfExists('swish', $data ?? [], null);
+        $this->setIfExists('ticket', $data ?? [], null);
         $this->setIfExists('twint', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('vipps', $data ?? [], null);
@@ -1396,6 +1409,30 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     public function setSwish($swish)
     {
         $this->container['swish'] = $swish;
+
+        return $this;
+    }
+
+    /**
+     * Gets ticket
+     *
+     * @return \Adyen\Model\Management\TicketInfo|null
+     */
+    public function getTicket()
+    {
+        return $this->container['ticket'];
+    }
+
+    /**
+     * Sets ticket
+     *
+     * @param \Adyen\Model\Management\TicketInfo|null $ticket ticket
+     *
+     * @return self
+     */
+    public function setTicket($ticket)
+    {
+        $this->container['ticket'] = $ticket;
 
         return $this;
     }

@@ -236,7 +236,6 @@ class StoredPaymentMethodDetails implements ModelInterface, ArrayAccess, \JsonSe
     public const TYPE_BCMC_MOBILE = 'bcmc_mobile';
     public const TYPE_BCMC_MOBILE_QR = 'bcmc_mobile_QR';
     public const TYPE_BCMC_MOBILE_APP = 'bcmc_mobile_app';
-    public const TYPE_BANK_TRANSFER_IBAN = 'bankTransfer_IBAN';
     public const TYPE_MOMO_WALLET = 'momo_wallet';
     public const TYPE_MOMO_WALLET_APP = 'momo_wallet_app';
     public const TYPE_TWINT = 'twint';
@@ -264,7 +263,6 @@ class StoredPaymentMethodDetails implements ModelInterface, ArrayAccess, \JsonSe
             self::TYPE_BCMC_MOBILE,
             self::TYPE_BCMC_MOBILE_QR,
             self::TYPE_BCMC_MOBILE_APP,
-            self::TYPE_BANK_TRANSFER_IBAN,
             self::TYPE_MOMO_WALLET,
             self::TYPE_MOMO_WALLET_APP,
             self::TYPE_TWINT,
