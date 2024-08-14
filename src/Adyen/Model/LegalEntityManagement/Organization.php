@@ -44,6 +44,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'countryOfGoverningLaw' => 'string',
         'dateOfIncorporation' => 'string',
         'description' => 'string',
         'doingBusinessAs' => 'string',
@@ -70,6 +71,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'countryOfGoverningLaw' => null,
         'dateOfIncorporation' => null,
         'description' => null,
         'doingBusinessAs' => null,
@@ -94,6 +96,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'countryOfGoverningLaw' => false,
         'dateOfIncorporation' => false,
         'description' => false,
         'doingBusinessAs' => false,
@@ -198,6 +201,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'countryOfGoverningLaw' => 'countryOfGoverningLaw',
         'dateOfIncorporation' => 'dateOfIncorporation',
         'description' => 'description',
         'doingBusinessAs' => 'doingBusinessAs',
@@ -222,6 +226,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'countryOfGoverningLaw' => 'setCountryOfGoverningLaw',
         'dateOfIncorporation' => 'setDateOfIncorporation',
         'description' => 'setDescription',
         'doingBusinessAs' => 'setDoingBusinessAs',
@@ -246,6 +251,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'countryOfGoverningLaw' => 'getCountryOfGoverningLaw',
         'dateOfIncorporation' => 'getDateOfIncorporation',
         'description' => 'getDescription',
         'doingBusinessAs' => 'getDoingBusinessAs',
@@ -357,6 +363,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('countryOfGoverningLaw', $data ?? [], null);
         $this->setIfExists('dateOfIncorporation', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('doingBusinessAs', $data ?? [], null);
@@ -440,6 +447,30 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets countryOfGoverningLaw
+     *
+     * @return string|null
+     */
+    public function getCountryOfGoverningLaw()
+    {
+        return $this->container['countryOfGoverningLaw'];
+    }
+
+    /**
+     * Sets countryOfGoverningLaw
+     *
+     * @param string|null $countryOfGoverningLaw The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code of the governing country.
+     *
+     * @return self
+     */
+    public function setCountryOfGoverningLaw($countryOfGoverningLaw)
+    {
+        $this->container['countryOfGoverningLaw'] = $countryOfGoverningLaw;
+
+        return $this;
+    }
 
     /**
      * Gets dateOfIncorporation

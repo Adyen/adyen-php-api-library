@@ -49,6 +49,7 @@ class SepaDirectDebitDetails implements ModelInterface, ArrayAccess, \JsonSerial
         'ownerName' => 'string',
         'recurringDetailReference' => 'string',
         'storedPaymentMethodId' => 'string',
+        'transferInstrumentId' => 'string',
         'type' => 'string'
     ];
 
@@ -65,6 +66,7 @@ class SepaDirectDebitDetails implements ModelInterface, ArrayAccess, \JsonSerial
         'ownerName' => null,
         'recurringDetailReference' => null,
         'storedPaymentMethodId' => null,
+        'transferInstrumentId' => null,
         'type' => null
     ];
 
@@ -79,6 +81,7 @@ class SepaDirectDebitDetails implements ModelInterface, ArrayAccess, \JsonSerial
         'ownerName' => false,
         'recurringDetailReference' => false,
         'storedPaymentMethodId' => false,
+        'transferInstrumentId' => false,
         'type' => false
     ];
 
@@ -173,6 +176,7 @@ class SepaDirectDebitDetails implements ModelInterface, ArrayAccess, \JsonSerial
         'ownerName' => 'ownerName',
         'recurringDetailReference' => 'recurringDetailReference',
         'storedPaymentMethodId' => 'storedPaymentMethodId',
+        'transferInstrumentId' => 'transferInstrumentId',
         'type' => 'type'
     ];
 
@@ -187,6 +191,7 @@ class SepaDirectDebitDetails implements ModelInterface, ArrayAccess, \JsonSerial
         'ownerName' => 'setOwnerName',
         'recurringDetailReference' => 'setRecurringDetailReference',
         'storedPaymentMethodId' => 'setStoredPaymentMethodId',
+        'transferInstrumentId' => 'setTransferInstrumentId',
         'type' => 'setType'
     ];
 
@@ -201,6 +206,7 @@ class SepaDirectDebitDetails implements ModelInterface, ArrayAccess, \JsonSerial
         'ownerName' => 'getOwnerName',
         'recurringDetailReference' => 'getRecurringDetailReference',
         'storedPaymentMethodId' => 'getStoredPaymentMethodId',
+        'transferInstrumentId' => 'getTransferInstrumentId',
         'type' => 'getType'
     ];
 
@@ -280,6 +286,7 @@ class SepaDirectDebitDetails implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('ownerName', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
+        $this->setIfExists('transferInstrumentId', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -458,6 +465,30 @@ class SepaDirectDebitDetails implements ModelInterface, ArrayAccess, \JsonSerial
     public function setStoredPaymentMethodId($storedPaymentMethodId)
     {
         $this->container['storedPaymentMethodId'] = $storedPaymentMethodId;
+
+        return $this;
+    }
+
+    /**
+     * Gets transferInstrumentId
+     *
+     * @return string|null
+     */
+    public function getTransferInstrumentId()
+    {
+        return $this->container['transferInstrumentId'];
+    }
+
+    /**
+     * Sets transferInstrumentId
+     *
+     * @param string|null $transferInstrumentId The unique identifier of your user's verified transfer instrument, which you can use to top up their balance accounts.
+     *
+     * @return self
+     */
+    public function setTransferInstrumentId($transferInstrumentId)
+    {
+        $this->container['transferInstrumentId'] = $transferInstrumentId;
 
         return $this;
     }

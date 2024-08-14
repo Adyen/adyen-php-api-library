@@ -77,6 +77,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'sofort' => '\Adyen\Model\Management\SofortInfo',
         'storeIds' => 'string[]',
         'swish' => '\Adyen\Model\Management\SwishInfo',
+        'ticket' => '\Adyen\Model\Management\TicketInfo',
         'twint' => '\Adyen\Model\Management\TwintInfo',
         'type' => 'string',
         'verificationStatus' => 'string',
@@ -127,6 +128,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'sofort' => null,
         'storeIds' => null,
         'swish' => null,
+        'ticket' => null,
         'twint' => null,
         'type' => null,
         'verificationStatus' => null,
@@ -175,6 +177,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'sofort' => false,
         'storeIds' => false,
         'swish' => false,
+        'ticket' => false,
         'twint' => false,
         'type' => false,
         'verificationStatus' => false,
@@ -303,6 +306,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'sofort' => 'sofort',
         'storeIds' => 'storeIds',
         'swish' => 'swish',
+        'ticket' => 'ticket',
         'twint' => 'twint',
         'type' => 'type',
         'verificationStatus' => 'verificationStatus',
@@ -351,6 +355,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'sofort' => 'setSofort',
         'storeIds' => 'setStoreIds',
         'swish' => 'setSwish',
+        'ticket' => 'setTicket',
         'twint' => 'setTwint',
         'type' => 'setType',
         'verificationStatus' => 'setVerificationStatus',
@@ -399,6 +404,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'sofort' => 'getSofort',
         'storeIds' => 'getStoreIds',
         'swish' => 'getSwish',
+        'ticket' => 'getTicket',
         'twint' => 'getTwint',
         'type' => 'getType',
         'verificationStatus' => 'getVerificationStatus',
@@ -516,6 +522,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('sofort', $data ?? [], null);
         $this->setIfExists('storeIds', $data ?? [], null);
         $this->setIfExists('swish', $data ?? [], null);
+        $this->setIfExists('ticket', $data ?? [], null);
         $this->setIfExists('twint', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('verificationStatus', $data ?? [], null);
@@ -1367,6 +1374,30 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setSwish($swish)
     {
         $this->container['swish'] = $swish;
+
+        return $this;
+    }
+
+    /**
+     * Gets ticket
+     *
+     * @return \Adyen\Model\Management\TicketInfo|null
+     */
+    public function getTicket()
+    {
+        return $this->container['ticket'];
+    }
+
+    /**
+     * Sets ticket
+     *
+     * @param \Adyen\Model\Management\TicketInfo|null $ticket ticket
+     *
+     * @return self
+     */
+    public function setTicket($ticket)
+    {
+        $this->container['ticket'] = $ticket;
 
         return $this;
     }

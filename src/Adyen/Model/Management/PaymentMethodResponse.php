@@ -277,9 +277,12 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public const TYPES_WITH_ERRORS_MULTIBANCO = 'multibanco';
     public const TYPES_WITH_ERRORS_ONLINE_BANKING_PL = 'onlineBanking_PL';
     public const TYPES_WITH_ERRORS_PAYBYBANK = 'paybybank';
+    public const TYPES_WITH_ERRORS_PAYNOW = 'paynow';
+    public const TYPES_WITH_ERRORS_PAYNOW_POS = 'paynow_pos';
     public const TYPES_WITH_ERRORS_PAYPAL = 'paypal';
     public const TYPES_WITH_ERRORS_PAYSHOP = 'payshop';
     public const TYPES_WITH_ERRORS_SWISH = 'swish';
+    public const TYPES_WITH_ERRORS_TICKET = 'ticket';
     public const TYPES_WITH_ERRORS_TRUSTLY = 'trustly';
     public const TYPES_WITH_ERRORS_TWINT = 'twint';
     public const TYPES_WITH_ERRORS_TWINT_POS = 'twint_pos';
@@ -336,9 +339,12 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             self::TYPES_WITH_ERRORS_MULTIBANCO,
             self::TYPES_WITH_ERRORS_ONLINE_BANKING_PL,
             self::TYPES_WITH_ERRORS_PAYBYBANK,
+            self::TYPES_WITH_ERRORS_PAYNOW,
+            self::TYPES_WITH_ERRORS_PAYNOW_POS,
             self::TYPES_WITH_ERRORS_PAYPAL,
             self::TYPES_WITH_ERRORS_PAYSHOP,
             self::TYPES_WITH_ERRORS_SWISH,
+            self::TYPES_WITH_ERRORS_TICKET,
             self::TYPES_WITH_ERRORS_TRUSTLY,
             self::TYPES_WITH_ERRORS_TWINT,
             self::TYPES_WITH_ERRORS_TWINT_POS,
