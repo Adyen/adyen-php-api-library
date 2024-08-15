@@ -46,6 +46,7 @@ class CounterpartyInfoV3 implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $openAPITypes = [
         'balanceAccountId' => 'string',
         'bankAccount' => '\Adyen\Model\Transfers\BankAccountV3',
+        'card' => '\Adyen\Model\Transfers\Card',
         'transferInstrumentId' => 'string'
     ];
 
@@ -59,6 +60,7 @@ class CounterpartyInfoV3 implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $openAPIFormats = [
         'balanceAccountId' => null,
         'bankAccount' => null,
+        'card' => null,
         'transferInstrumentId' => null
     ];
 
@@ -70,6 +72,7 @@ class CounterpartyInfoV3 implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $openAPINullables = [
         'balanceAccountId' => false,
         'bankAccount' => false,
+        'card' => false,
         'transferInstrumentId' => false
     ];
 
@@ -161,6 +164,7 @@ class CounterpartyInfoV3 implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $attributeMap = [
         'balanceAccountId' => 'balanceAccountId',
         'bankAccount' => 'bankAccount',
+        'card' => 'card',
         'transferInstrumentId' => 'transferInstrumentId'
     ];
 
@@ -172,6 +176,7 @@ class CounterpartyInfoV3 implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $setters = [
         'balanceAccountId' => 'setBalanceAccountId',
         'bankAccount' => 'setBankAccount',
+        'card' => 'setCard',
         'transferInstrumentId' => 'setTransferInstrumentId'
     ];
 
@@ -183,6 +188,7 @@ class CounterpartyInfoV3 implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $getters = [
         'balanceAccountId' => 'getBalanceAccountId',
         'bankAccount' => 'getBankAccount',
+        'card' => 'getCard',
         'transferInstrumentId' => 'getTransferInstrumentId'
     ];
 
@@ -245,6 +251,7 @@ class CounterpartyInfoV3 implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $this->setIfExists('balanceAccountId', $data ?? [], null);
         $this->setIfExists('bankAccount', $data ?? [], null);
+        $this->setIfExists('card', $data ?? [], null);
         $this->setIfExists('transferInstrumentId', $data ?? [], null);
     }
 
@@ -303,7 +310,7 @@ class CounterpartyInfoV3 implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets balanceAccountId
      *
-     * @param string|null $balanceAccountId The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id).
+     * @param string|null $balanceAccountId The unique identifier of the counterparty [balance account](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id).
      *
      * @return self
      */
@@ -339,6 +346,30 @@ class CounterpartyInfoV3 implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
+     * Gets card
+     *
+     * @return \Adyen\Model\Transfers\Card|null
+     */
+    public function getCard()
+    {
+        return $this->container['card'];
+    }
+
+    /**
+     * Sets card
+     *
+     * @param \Adyen\Model\Transfers\Card|null $card card
+     *
+     * @return self
+     */
+    public function setCard($card)
+    {
+        $this->container['card'] = $card;
+
+        return $this;
+    }
+
+    /**
      * Gets transferInstrumentId
      *
      * @return string|null
@@ -351,7 +382,7 @@ class CounterpartyInfoV3 implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets transferInstrumentId
      *
-     * @param string|null $transferInstrumentId The unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
+     * @param string|null $transferInstrumentId The unique identifier of the counterparty [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id).
      *
      * @return self
      */

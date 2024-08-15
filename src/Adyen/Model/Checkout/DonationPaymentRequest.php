@@ -60,6 +60,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'deliveryAddress' => '\Adyen\Model\Checkout\DeliveryAddress',
         'deviceFingerprint' => 'string',
         'donationAccount' => 'string',
+        'donationCampaignId' => 'string',
         'donationOriginalPspReference' => 'string',
         'donationToken' => 'string',
         'lineItems' => '\Adyen\Model\Checkout\LineItem[]',
@@ -111,6 +112,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'deliveryAddress' => null,
         'deviceFingerprint' => null,
         'donationAccount' => null,
+        'donationCampaignId' => null,
         'donationOriginalPspReference' => null,
         'donationToken' => null,
         'lineItems' => null,
@@ -160,6 +162,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'deliveryAddress' => false,
         'deviceFingerprint' => false,
         'donationAccount' => false,
+        'donationCampaignId' => false,
         'donationOriginalPspReference' => false,
         'donationToken' => false,
         'lineItems' => false,
@@ -289,6 +292,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'deliveryAddress' => 'deliveryAddress',
         'deviceFingerprint' => 'deviceFingerprint',
         'donationAccount' => 'donationAccount',
+        'donationCampaignId' => 'donationCampaignId',
         'donationOriginalPspReference' => 'donationOriginalPspReference',
         'donationToken' => 'donationToken',
         'lineItems' => 'lineItems',
@@ -338,6 +342,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'deliveryAddress' => 'setDeliveryAddress',
         'deviceFingerprint' => 'setDeviceFingerprint',
         'donationAccount' => 'setDonationAccount',
+        'donationCampaignId' => 'setDonationCampaignId',
         'donationOriginalPspReference' => 'setDonationOriginalPspReference',
         'donationToken' => 'setDonationToken',
         'lineItems' => 'setLineItems',
@@ -387,6 +392,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'deliveryAddress' => 'getDeliveryAddress',
         'deviceFingerprint' => 'getDeviceFingerprint',
         'donationAccount' => 'getDonationAccount',
+        'donationCampaignId' => 'getDonationCampaignId',
         'donationOriginalPspReference' => 'getDonationOriginalPspReference',
         'donationToken' => 'getDonationToken',
         'lineItems' => 'getLineItems',
@@ -537,6 +543,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('deliveryAddress', $data ?? [], null);
         $this->setIfExists('deviceFingerprint', $data ?? [], null);
         $this->setIfExists('donationAccount', $data ?? [], null);
+        $this->setIfExists('donationCampaignId', $data ?? [], null);
         $this->setIfExists('donationOriginalPspReference', $data ?? [], null);
         $this->setIfExists('donationToken', $data ?? [], null);
         $this->setIfExists('lineItems', $data ?? [], null);
@@ -1040,6 +1047,30 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
     public function setDonationAccount($donationAccount)
     {
         $this->container['donationAccount'] = $donationAccount;
+
+        return $this;
+    }
+
+    /**
+     * Gets donationCampaignId
+     *
+     * @return string|null
+     */
+    public function getDonationCampaignId()
+    {
+        return $this->container['donationCampaignId'];
+    }
+
+    /**
+     * Sets donationCampaignId
+     *
+     * @param string|null $donationCampaignId The donation campaign ID received in the `/donationCampaigns` call.
+     *
+     * @return self
+     */
+    public function setDonationCampaignId($donationCampaignId)
+    {
+        $this->container['donationCampaignId'] = $donationCampaignId;
 
         return $this;
     }

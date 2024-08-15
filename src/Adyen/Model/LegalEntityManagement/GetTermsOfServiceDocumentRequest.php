@@ -368,7 +368,7 @@ class GetTermsOfServiceDocumentRequest implements ModelInterface, ArrayAccess, \
     /**
      * Sets termsOfServiceDocumentFormat
      *
-     * @param string|null $termsOfServiceDocumentFormat The requested format for the Terms of Service document. Default value: JSON.
+     * @param string|null $termsOfServiceDocumentFormat The requested format for the Terms of Service document. Default value: JSON. Possible values: JSON or PDF.
      *
      * @return self
      */

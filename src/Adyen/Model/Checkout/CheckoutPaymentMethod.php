@@ -54,6 +54,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'ownerName' => 'string',
         'recurringDetailReference' => 'string',
         'storedPaymentMethodId' => 'string',
+        'transferInstrumentId' => 'string',
         'type' => 'string',
         'billingAddress' => 'string',
         'deliveryAddress' => 'string',
@@ -127,6 +128,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'ownerName' => null,
         'recurringDetailReference' => null,
         'storedPaymentMethodId' => null,
+        'transferInstrumentId' => null,
         'type' => null,
         'billingAddress' => null,
         'deliveryAddress' => null,
@@ -198,6 +200,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'ownerName' => false,
         'recurringDetailReference' => false,
         'storedPaymentMethodId' => false,
+        'transferInstrumentId' => false,
         'type' => false,
         'billingAddress' => false,
         'deliveryAddress' => false,
@@ -349,6 +352,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'ownerName' => 'ownerName',
         'recurringDetailReference' => 'recurringDetailReference',
         'storedPaymentMethodId' => 'storedPaymentMethodId',
+        'transferInstrumentId' => 'transferInstrumentId',
         'type' => 'type',
         'billingAddress' => 'billingAddress',
         'deliveryAddress' => 'deliveryAddress',
@@ -420,6 +424,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'ownerName' => 'setOwnerName',
         'recurringDetailReference' => 'setRecurringDetailReference',
         'storedPaymentMethodId' => 'setStoredPaymentMethodId',
+        'transferInstrumentId' => 'setTransferInstrumentId',
         'type' => 'setType',
         'billingAddress' => 'setBillingAddress',
         'deliveryAddress' => 'setDeliveryAddress',
@@ -491,6 +496,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'ownerName' => 'getOwnerName',
         'recurringDetailReference' => 'getRecurringDetailReference',
         'storedPaymentMethodId' => 'getStoredPaymentMethodId',
+        'transferInstrumentId' => 'getTransferInstrumentId',
         'type' => 'getType',
         'billingAddress' => 'getBillingAddress',
         'deliveryAddress' => 'getDeliveryAddress',
@@ -612,6 +618,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('ownerName', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
+        $this->setIfExists('transferInstrumentId', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('billingAddress', $data ?? [], null);
         $this->setIfExists('deliveryAddress', $data ?? [], null);
@@ -970,6 +977,30 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setStoredPaymentMethodId($storedPaymentMethodId)
     {
         $this->container['storedPaymentMethodId'] = $storedPaymentMethodId;
+
+        return $this;
+    }
+
+    /**
+     * Gets transferInstrumentId
+     *
+     * @return string|null
+     */
+    public function getTransferInstrumentId()
+    {
+        return $this->container['transferInstrumentId'];
+    }
+
+    /**
+     * Sets transferInstrumentId
+     *
+     * @param string|null $transferInstrumentId The unique identifier of your user's verified transfer instrument, which you can use to top up their balance accounts.
+     *
+     * @return self
+     */
+    public function setTransferInstrumentId($transferInstrumentId)
+    {
+        $this->container['transferInstrumentId'] = $transferInstrumentId;
 
         return $this;
     }
