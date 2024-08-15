@@ -145,6 +145,8 @@ class Service
 
             // Replace 'test' in string with 'live' for the other endpoints
             $url = str_replace('-test', '-live', $url);
+        } else {
+            $url = str_replace('-live', '-test', $url);
         }
         return $url;
     }
