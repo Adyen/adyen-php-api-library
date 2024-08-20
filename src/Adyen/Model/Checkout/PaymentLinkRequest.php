@@ -56,6 +56,8 @@ class PaymentLinkRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'deliveryAddress' => '\Adyen\Model\Checkout\Address',
         'description' => 'string',
         'expiresAt' => '\DateTime',
+        'fundOrigin' => '\Adyen\Model\Checkout\FundOrigin',
+        'fundRecipient' => '\Adyen\Model\Checkout\FundRecipient',
         'installmentOptions' => 'array<string,\Adyen\Model\Checkout\InstallmentOption>',
         'lineItems' => '\Adyen\Model\Checkout\LineItem[]',
         'manualCapture' => 'bool',
@@ -106,6 +108,8 @@ class PaymentLinkRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'deliveryAddress' => null,
         'description' => null,
         'expiresAt' => 'date-time',
+        'fundOrigin' => null,
+        'fundRecipient' => null,
         'installmentOptions' => null,
         'lineItems' => null,
         'manualCapture' => null,
@@ -154,6 +158,8 @@ class PaymentLinkRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'deliveryAddress' => false,
         'description' => false,
         'expiresAt' => false,
+        'fundOrigin' => false,
+        'fundRecipient' => false,
         'installmentOptions' => false,
         'lineItems' => false,
         'manualCapture' => false,
@@ -282,6 +288,8 @@ class PaymentLinkRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'deliveryAddress' => 'deliveryAddress',
         'description' => 'description',
         'expiresAt' => 'expiresAt',
+        'fundOrigin' => 'fundOrigin',
+        'fundRecipient' => 'fundRecipient',
         'installmentOptions' => 'installmentOptions',
         'lineItems' => 'lineItems',
         'manualCapture' => 'manualCapture',
@@ -330,6 +338,8 @@ class PaymentLinkRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'deliveryAddress' => 'setDeliveryAddress',
         'description' => 'setDescription',
         'expiresAt' => 'setExpiresAt',
+        'fundOrigin' => 'setFundOrigin',
+        'fundRecipient' => 'setFundRecipient',
         'installmentOptions' => 'setInstallmentOptions',
         'lineItems' => 'setLineItems',
         'manualCapture' => 'setManualCapture',
@@ -378,6 +388,8 @@ class PaymentLinkRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'deliveryAddress' => 'getDeliveryAddress',
         'description' => 'getDescription',
         'expiresAt' => 'getExpiresAt',
+        'fundOrigin' => 'getFundOrigin',
+        'fundRecipient' => 'getFundRecipient',
         'installmentOptions' => 'getInstallmentOptions',
         'lineItems' => 'getLineItems',
         'manualCapture' => 'getManualCapture',
@@ -529,6 +541,8 @@ class PaymentLinkRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('deliveryAddress', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('expiresAt', $data ?? [], null);
+        $this->setIfExists('fundOrigin', $data ?? [], null);
+        $this->setIfExists('fundRecipient', $data ?? [], null);
         $this->setIfExists('installmentOptions', $data ?? [], null);
         $this->setIfExists('lineItems', $data ?? [], null);
         $this->setIfExists('manualCapture', $data ?? [], null);
@@ -912,6 +926,54 @@ class PaymentLinkRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     public function setExpiresAt($expiresAt)
     {
         $this->container['expiresAt'] = $expiresAt;
+
+        return $this;
+    }
+
+    /**
+     * Gets fundOrigin
+     *
+     * @return \Adyen\Model\Checkout\FundOrigin|null
+     */
+    public function getFundOrigin()
+    {
+        return $this->container['fundOrigin'];
+    }
+
+    /**
+     * Sets fundOrigin
+     *
+     * @param \Adyen\Model\Checkout\FundOrigin|null $fundOrigin fundOrigin
+     *
+     * @return self
+     */
+    public function setFundOrigin($fundOrigin)
+    {
+        $this->container['fundOrigin'] = $fundOrigin;
+
+        return $this;
+    }
+
+    /**
+     * Gets fundRecipient
+     *
+     * @return \Adyen\Model\Checkout\FundRecipient|null
+     */
+    public function getFundRecipient()
+    {
+        return $this->container['fundRecipient'];
+    }
+
+    /**
+     * Sets fundRecipient
+     *
+     * @param \Adyen\Model\Checkout\FundRecipient|null $fundRecipient fundRecipient
+     *
+     * @return self
+     */
+    public function setFundRecipient($fundRecipient)
+    {
+        $this->container['fundRecipient'] = $fundRecipient;
 
         return $this;
     }

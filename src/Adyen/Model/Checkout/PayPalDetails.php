@@ -263,6 +263,7 @@ class PayPalDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const SUBTYPE_EXPRESS = 'express';
     public const SUBTYPE_REDIRECT = 'redirect';
     public const SUBTYPE_SDK = 'sdk';
     public const TYPE_PAYPAL = 'paypal';
@@ -275,6 +276,7 @@ class PayPalDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public function getSubtypeAllowableValues()
     {
         return [
+            self::SUBTYPE_EXPRESS,
             self::SUBTYPE_REDIRECT,
             self::SUBTYPE_SDK,
         ];
