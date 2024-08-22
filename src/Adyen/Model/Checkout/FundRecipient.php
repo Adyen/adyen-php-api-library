@@ -44,6 +44,7 @@ class FundRecipient implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'iBAN' => 'string',
         'billingAddress' => '\Adyen\Model\Checkout\Address',
         'paymentMethod' => '\Adyen\Model\Checkout\CardDetails',
         'shopperEmail' => 'string',
@@ -64,6 +65,7 @@ class FundRecipient implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'iBAN' => null,
         'billingAddress' => null,
         'paymentMethod' => null,
         'shopperEmail' => null,
@@ -82,6 +84,7 @@ class FundRecipient implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'iBAN' => false,
         'billingAddress' => false,
         'paymentMethod' => false,
         'shopperEmail' => false,
@@ -180,6 +183,7 @@ class FundRecipient implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'iBAN' => 'IBAN',
         'billingAddress' => 'billingAddress',
         'paymentMethod' => 'paymentMethod',
         'shopperEmail' => 'shopperEmail',
@@ -198,6 +202,7 @@ class FundRecipient implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'iBAN' => 'setIBAN',
         'billingAddress' => 'setBillingAddress',
         'paymentMethod' => 'setPaymentMethod',
         'shopperEmail' => 'setShopperEmail',
@@ -216,6 +221,7 @@ class FundRecipient implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'iBAN' => 'getIBAN',
         'billingAddress' => 'getBillingAddress',
         'paymentMethod' => 'getPaymentMethod',
         'shopperEmail' => 'getShopperEmail',
@@ -285,6 +291,7 @@ class FundRecipient implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('iBAN', $data ?? [], null);
         $this->setIfExists('billingAddress', $data ?? [], null);
         $this->setIfExists('paymentMethod', $data ?? [], null);
         $this->setIfExists('shopperEmail', $data ?? [], null);
@@ -338,6 +345,30 @@ class FundRecipient implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets iBAN
+     *
+     * @return string|null
+     */
+    public function getIBAN()
+    {
+        return $this->container['iBAN'];
+    }
+
+    /**
+     * Sets iBAN
+     *
+     * @param string|null $iBAN Fund Recipient Iban for C2C payments
+     *
+     * @return self
+     */
+    public function setIBAN($iBAN)
+    {
+        $this->container['iBAN'] = $iBAN;
+
+        return $this;
+    }
 
     /**
      * Gets billingAddress

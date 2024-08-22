@@ -101,6 +101,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'payeePreferred' => 'string',
         'payerID' => 'string',
         'payerSelected' => 'string',
+        'shopperAccountIdentifier' => 'string',
         'virtualPaymentAddress' => 'string',
         'samsungPayToken' => 'string',
         'iban' => 'string',
@@ -175,6 +176,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'payeePreferred' => null,
         'payerID' => null,
         'payerSelected' => null,
+        'shopperAccountIdentifier' => null,
         'virtualPaymentAddress' => null,
         'samsungPayToken' => null,
         'iban' => null,
@@ -247,6 +249,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'payeePreferred' => false,
         'payerID' => false,
         'payerSelected' => false,
+        'shopperAccountIdentifier' => false,
         'virtualPaymentAddress' => false,
         'samsungPayToken' => false,
         'iban' => false,
@@ -399,6 +402,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'payeePreferred' => 'payeePreferred',
         'payerID' => 'payerID',
         'payerSelected' => 'payerSelected',
+        'shopperAccountIdentifier' => 'shopperAccountIdentifier',
         'virtualPaymentAddress' => 'virtualPaymentAddress',
         'samsungPayToken' => 'samsungPayToken',
         'iban' => 'iban',
@@ -471,6 +475,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'payeePreferred' => 'setPayeePreferred',
         'payerID' => 'setPayerID',
         'payerSelected' => 'setPayerSelected',
+        'shopperAccountIdentifier' => 'setShopperAccountIdentifier',
         'virtualPaymentAddress' => 'setVirtualPaymentAddress',
         'samsungPayToken' => 'setSamsungPayToken',
         'iban' => 'setIban',
@@ -543,6 +548,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'payeePreferred' => 'getPayeePreferred',
         'payerID' => 'getPayerID',
         'payerSelected' => 'getPayerSelected',
+        'shopperAccountIdentifier' => 'getShopperAccountIdentifier',
         'virtualPaymentAddress' => 'getVirtualPaymentAddress',
         'samsungPayToken' => 'getSamsungPayToken',
         'iban' => 'getIban',
@@ -665,6 +671,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('payeePreferred', $data ?? [], null);
         $this->setIfExists('payerID', $data ?? [], null);
         $this->setIfExists('payerSelected', $data ?? [], null);
+        $this->setIfExists('shopperAccountIdentifier', $data ?? [], null);
         $this->setIfExists('virtualPaymentAddress', $data ?? [], null);
         $this->setIfExists('samsungPayToken', $data ?? [], null);
         $this->setIfExists('iban', $data ?? [], null);
@@ -2107,6 +2114,30 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setPayerSelected($payerSelected)
     {
         $this->container['payerSelected'] = $payerSelected;
+
+        return $this;
+    }
+
+    /**
+     * Gets shopperAccountIdentifier
+     *
+     * @return string|null
+     */
+    public function getShopperAccountIdentifier()
+    {
+        return $this->container['shopperAccountIdentifier'];
+    }
+
+    /**
+     * Sets shopperAccountIdentifier
+     *
+     * @param string|null $shopperAccountIdentifier The shopper's banking details or payId reference, used to complete payment.
+     *
+     * @return self
+     */
+    public function setShopperAccountIdentifier($shopperAccountIdentifier)
+    {
+        $this->container['shopperAccountIdentifier'] = $shopperAccountIdentifier;
 
         return $this;
     }

@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
- * Donation Class Doc Comment
+ * PayToDetails Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Donation implements ModelInterface, ArrayAccess, \JsonSerializable
+class PayToDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class Donation implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Donation';
+    protected static $openAPIModelName = 'PayToDetails';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,10 +44,9 @@ class Donation implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'currency' => 'string',
-        'donationType' => 'string',
-        'maxRoundupAmount' => 'int',
-        'values' => 'int[]'
+        'checkoutAttemptId' => 'string',
+        'shopperAccountIdentifier' => 'string',
+        'type' => 'string'
     ];
 
     /**
@@ -58,10 +57,9 @@ class Donation implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'currency' => null,
-        'donationType' => null,
-        'maxRoundupAmount' => 'int64',
-        'values' => 'int64'
+        'checkoutAttemptId' => null,
+        'shopperAccountIdentifier' => null,
+        'type' => null
     ];
 
     /**
@@ -70,10 +68,9 @@ class Donation implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'currency' => false,
-        'donationType' => false,
-        'maxRoundupAmount' => false,
-        'values' => false
+        'checkoutAttemptId' => false,
+        'shopperAccountIdentifier' => false,
+        'type' => false
     ];
 
     /**
@@ -162,10 +159,9 @@ class Donation implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'currency' => 'currency',
-        'donationType' => 'donationType',
-        'maxRoundupAmount' => 'maxRoundupAmount',
-        'values' => 'values'
+        'checkoutAttemptId' => 'checkoutAttemptId',
+        'shopperAccountIdentifier' => 'shopperAccountIdentifier',
+        'type' => 'type'
     ];
 
     /**
@@ -174,10 +170,9 @@ class Donation implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'currency' => 'setCurrency',
-        'donationType' => 'setDonationType',
-        'maxRoundupAmount' => 'setMaxRoundupAmount',
-        'values' => 'setValues'
+        'checkoutAttemptId' => 'setCheckoutAttemptId',
+        'shopperAccountIdentifier' => 'setShopperAccountIdentifier',
+        'type' => 'setType'
     ];
 
     /**
@@ -186,10 +181,9 @@ class Donation implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'currency' => 'getCurrency',
-        'donationType' => 'getDonationType',
-        'maxRoundupAmount' => 'getMaxRoundupAmount',
-        'values' => 'getValues'
+        'checkoutAttemptId' => 'getCheckoutAttemptId',
+        'shopperAccountIdentifier' => 'getShopperAccountIdentifier',
+        'type' => 'getType'
     ];
 
     /**
@@ -233,7 +227,19 @@ class Donation implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const TYPE_PAYTO = 'payto';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_PAYTO,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -249,10 +255,9 @@ class Donation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('currency', $data ?? [], null);
-        $this->setIfExists('donationType', $data ?? [], null);
-        $this->setIfExists('maxRoundupAmount', $data ?? [], null);
-        $this->setIfExists('values', $data ?? [], null);
+        $this->setIfExists('checkoutAttemptId', $data ?? [], null);
+        $this->setIfExists('shopperAccountIdentifier', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -282,12 +287,15 @@ class Donation implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['currency'] === null) {
-            $invalidProperties[] = "'currency' can't be null";
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
         }
-        if ($this->container['donationType'] === null) {
-            $invalidProperties[] = "'donationType' can't be null";
-        }
+
         return $invalidProperties;
     }
 
@@ -304,97 +312,83 @@ class Donation implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets currency
+     * Gets checkoutAttemptId
      *
-     * @return string
+     * @return string|null
      */
-    public function getCurrency()
+    public function getCheckoutAttemptId()
     {
-        return $this->container['currency'];
+        return $this->container['checkoutAttemptId'];
     }
 
     /**
-     * Sets currency
+     * Sets checkoutAttemptId
      *
-     * @param string $currency The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes/).
+     * @param string|null $checkoutAttemptId The checkout attempt identifier.
      *
      * @return self
      */
-    public function setCurrency($currency)
+    public function setCheckoutAttemptId($checkoutAttemptId)
     {
-        $this->container['currency'] = $currency;
+        $this->container['checkoutAttemptId'] = $checkoutAttemptId;
 
         return $this;
     }
 
     /**
-     * Gets donationType
+     * Gets shopperAccountIdentifier
      *
-     * @return string
+     * @return string|null
      */
-    public function getDonationType()
+    public function getShopperAccountIdentifier()
     {
-        return $this->container['donationType'];
+        return $this->container['shopperAccountIdentifier'];
     }
 
     /**
-     * Sets donationType
+     * Sets shopperAccountIdentifier
      *
-     * @param string $donationType The [type of donation](https://docs.adyen.com/online-payments/donations/#donation-types).  Possible values: * **roundup**: a donation where the original transaction amount is rounded up as a donation. * **fixedAmounts**: a donation where you show fixed donations amounts that the shopper can select from.
+     * @param string|null $shopperAccountIdentifier The shopper's banking details or payId reference, used to complete payment.
      *
      * @return self
      */
-    public function setDonationType($donationType)
+    public function setShopperAccountIdentifier($shopperAccountIdentifier)
     {
-        $this->container['donationType'] = $donationType;
+        $this->container['shopperAccountIdentifier'] = $shopperAccountIdentifier;
 
         return $this;
     }
 
     /**
-     * Gets maxRoundupAmount
+     * Gets type
      *
-     * @return int|null
+     * @return string|null
      */
-    public function getMaxRoundupAmount()
+    public function getType()
     {
-        return $this->container['maxRoundupAmount'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets maxRoundupAmount
+     * Sets type
      *
-     * @param int|null $maxRoundupAmount The maximum amount a transaction can be rounded up to make a donation. This field is only present when `donationType` is **roundup**.
+     * @param string|null $type **payto**
      *
      * @return self
      */
-    public function setMaxRoundupAmount($maxRoundupAmount)
+    public function setType($type)
     {
-        $this->container['maxRoundupAmount'] = $maxRoundupAmount;
-
-        return $this;
-    }
-
-    /**
-     * Gets values
-     *
-     * @return int[]|null
-     */
-    public function getValues()
-    {
-        return $this->container['values'];
-    }
-
-    /**
-     * Sets values
-     *
-     * @param int[]|null $values The fixed donation amounts in [minor units](https://docs.adyen.com/development-resources/currency-codes//#minor-units). This field is only present when `donationType` is **fixedAmounts**.
-     *
-     * @return self
-     */
-    public function setValues($values)
-    {
-        $this->container['values'] = $values;
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
 
         return $this;
     }
