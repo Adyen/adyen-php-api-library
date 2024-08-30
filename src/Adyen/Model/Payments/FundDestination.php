@@ -44,6 +44,7 @@ class FundDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'iBAN' => 'string',
         'additionalData' => 'array<string,string>',
         'billingAddress' => '\Adyen\Model\Payments\Address',
         'card' => '\Adyen\Model\Payments\Card',
@@ -64,6 +65,7 @@ class FundDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'iBAN' => null,
         'additionalData' => null,
         'billingAddress' => null,
         'card' => null,
@@ -82,6 +84,7 @@ class FundDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'iBAN' => false,
         'additionalData' => false,
         'billingAddress' => false,
         'card' => false,
@@ -180,6 +183,7 @@ class FundDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'iBAN' => 'IBAN',
         'additionalData' => 'additionalData',
         'billingAddress' => 'billingAddress',
         'card' => 'card',
@@ -198,6 +202,7 @@ class FundDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'iBAN' => 'setIBAN',
         'additionalData' => 'setAdditionalData',
         'billingAddress' => 'setBillingAddress',
         'card' => 'setCard',
@@ -216,6 +221,7 @@ class FundDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'iBAN' => 'getIBAN',
         'additionalData' => 'getAdditionalData',
         'billingAddress' => 'getBillingAddress',
         'card' => 'getCard',
@@ -285,6 +291,7 @@ class FundDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('iBAN', $data ?? [], null);
         $this->setIfExists('additionalData', $data ?? [], null);
         $this->setIfExists('billingAddress', $data ?? [], null);
         $this->setIfExists('card', $data ?? [], null);
@@ -338,6 +345,30 @@ class FundDestination implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets iBAN
+     *
+     * @return string|null
+     */
+    public function getIBAN()
+    {
+        return $this->container['iBAN'];
+    }
+
+    /**
+     * Sets iBAN
+     *
+     * @param string|null $iBAN Bank Account Number of the recipient
+     *
+     * @return self
+     */
+    public function setIBAN($iBAN)
+    {
+        $this->container['iBAN'] = $iBAN;
+
+        return $this;
+    }
 
     /**
      * Gets additionalData

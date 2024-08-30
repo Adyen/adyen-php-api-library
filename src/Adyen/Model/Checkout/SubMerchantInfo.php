@@ -400,7 +400,7 @@ class SubMerchantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets email
      *
-     * @param string|null $email email
+     * @param string|null $email Required for transactions performed by registered payment facilitators. The email associated with the sub-merchant's account.
      *
      * @return self
      */
@@ -424,7 +424,7 @@ class SubMerchantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      *
-     * @param string|null $id id
+     * @param string|null $id Required for transactions performed by registered payment facilitators. A unique identifier that you create for the sub-merchant, used by schemes to identify the sub-merchant.  * Format: Alphanumeric * Maximum length: 15 characters
      *
      * @return self
      */
@@ -448,7 +448,7 @@ class SubMerchantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets mcc
      *
-     * @param string|null $mcc mcc
+     * @param string|null $mcc Required for transactions performed by registered payment facilitators. The sub-merchant's 4-digit Merchant Category Code (MCC).  * Format: Numeric * Fixed length: 4 digits
      *
      * @return self
      */
@@ -472,7 +472,7 @@ class SubMerchantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets name
      *
-     * @param string|null $name name
+     * @param string|null $name Required for transactions performed by registered payment facilitators. The name of the sub-merchant. Based on scheme specifications, this value will overwrite the shopper statement that will appear in the card statement. * Format: Alphanumeric * Maximum length: 22 characters
      *
      * @return self
      */
@@ -496,7 +496,7 @@ class SubMerchantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets phoneNumber
      *
-     * @param string|null $phoneNumber phoneNumber
+     * @param string|null $phoneNumber Required for transactions performed by registered payment facilitators. The phone number associated with the sub-merchant's account.
      *
      * @return self
      */
@@ -544,7 +544,7 @@ class SubMerchantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets taxId
      *
-     * @param string|null $taxId taxId
+     * @param string|null $taxId Required for transactions performed by registered payment facilitators. The tax ID of the sub-merchant. * Format: Numeric * Fixed length: 11 digits for the CPF or 14 digits for the CNPJ
      *
      * @return self
      */
@@ -568,7 +568,7 @@ class SubMerchantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets url
      *
-     * @param string|null $url url
+     * @param string|null $url Required for transactions performed by registered payment facilitators. The sub-merchant's URL on the platform, i.e. the sub-merchant's shop.
      *
      * @return self
      */
