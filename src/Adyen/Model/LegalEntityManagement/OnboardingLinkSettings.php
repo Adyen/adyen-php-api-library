@@ -507,7 +507,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets hideOnboardingIntroductionIndividual
      *
-     * @param bool|null $hideOnboardingIntroductionIndividual Default value: **false**  Indicates if the user of the individual legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.
+     * @param bool|null $hideOnboardingIntroductionIndividual Default value: **true**  Indicates whether the introduction screen is hidden for the user of the individual legal entity type. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.
      *
      * @return self
      */
@@ -531,7 +531,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets hideOnboardingIntroductionOrganization
      *
-     * @param bool|null $hideOnboardingIntroductionOrganization Default value: **false**  Indicates if the user of the organization legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.
+     * @param bool|null $hideOnboardingIntroductionOrganization Default value: **true**  Indicates whether the introduction screen is hidden for the user of the organization legal entity type. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.
      *
      * @return self
      */
@@ -555,7 +555,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets hideOnboardingIntroductionSoleProprietor
      *
-     * @param bool|null $hideOnboardingIntroductionSoleProprietor Default value: **false**  Indicates if the user of the sole proprietorship legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.
+     * @param bool|null $hideOnboardingIntroductionSoleProprietor Default value: **true**  Indicates whether the introduction screen is hidden for the user of the sole proprietorship legal entity type. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.
      *
      * @return self
      */
@@ -579,7 +579,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets hideOnboardingIntroductionTrust
      *
-     * @param bool|null $hideOnboardingIntroductionTrust Default value: **false**  Indicates if the user of the trust legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.
+     * @param bool|null $hideOnboardingIntroductionTrust Default value: **true**  Indicates whether the introduction screen is hidden for the user of the trust legal entity type. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.
      *
      * @return self
      */

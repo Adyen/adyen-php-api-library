@@ -107,6 +107,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'splits' => '\Adyen\Model\Checkout\Split[]',
         'store' => 'string',
         'storePaymentMethod' => 'bool',
+        'subMerchants' => '\Adyen\Model\Checkout\SubMerchantInfo[]',
         'telephoneNumber' => 'string',
         'threeDS2RequestData' => '\Adyen\Model\Checkout\ThreeDS2RequestFields',
         'threeDSAuthenticationOnly' => 'bool',
@@ -184,6 +185,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'splits' => null,
         'store' => null,
         'storePaymentMethod' => null,
+        'subMerchants' => null,
         'telephoneNumber' => null,
         'threeDS2RequestData' => null,
         'threeDSAuthenticationOnly' => null,
@@ -259,6 +261,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'splits' => false,
         'store' => false,
         'storePaymentMethod' => false,
+        'subMerchants' => false,
         'telephoneNumber' => false,
         'threeDS2RequestData' => false,
         'threeDSAuthenticationOnly' => false,
@@ -414,6 +417,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'splits' => 'splits',
         'store' => 'store',
         'storePaymentMethod' => 'storePaymentMethod',
+        'subMerchants' => 'subMerchants',
         'telephoneNumber' => 'telephoneNumber',
         'threeDS2RequestData' => 'threeDS2RequestData',
         'threeDSAuthenticationOnly' => 'threeDSAuthenticationOnly',
@@ -489,6 +493,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'splits' => 'setSplits',
         'store' => 'setStore',
         'storePaymentMethod' => 'setStorePaymentMethod',
+        'subMerchants' => 'setSubMerchants',
         'telephoneNumber' => 'setTelephoneNumber',
         'threeDS2RequestData' => 'setThreeDS2RequestData',
         'threeDSAuthenticationOnly' => 'setThreeDSAuthenticationOnly',
@@ -564,6 +569,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'splits' => 'getSplits',
         'store' => 'getStore',
         'storePaymentMethod' => 'getStorePaymentMethod',
+        'subMerchants' => 'getSubMerchants',
         'telephoneNumber' => 'getTelephoneNumber',
         'threeDS2RequestData' => 'getThreeDS2RequestData',
         'threeDSAuthenticationOnly' => 'getThreeDSAuthenticationOnly',
@@ -770,6 +776,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('splits', $data ?? [], null);
         $this->setIfExists('store', $data ?? [], null);
         $this->setIfExists('storePaymentMethod', $data ?? [], null);
+        $this->setIfExists('subMerchants', $data ?? [], null);
         $this->setIfExists('telephoneNumber', $data ?? [], null);
         $this->setIfExists('threeDS2RequestData', $data ?? [], null);
         $this->setIfExists('threeDSAuthenticationOnly', $data ?? [], null);
@@ -2440,6 +2447,30 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setStorePaymentMethod($storePaymentMethod)
     {
         $this->container['storePaymentMethod'] = $storePaymentMethod;
+
+        return $this;
+    }
+
+    /**
+     * Gets subMerchants
+     *
+     * @return \Adyen\Model\Checkout\SubMerchantInfo[]|null
+     */
+    public function getSubMerchants()
+    {
+        return $this->container['subMerchants'];
+    }
+
+    /**
+     * Sets subMerchants
+     *
+     * @param \Adyen\Model\Checkout\SubMerchantInfo[]|null $subMerchants This field contains additional information on the submerchant, who is onboarded to an acquirer through a payment facilitator or aggregator
+     *
+     * @return self
+     */
+    public function setSubMerchants($subMerchants)
+    {
+        $this->container['subMerchants'] = $subMerchants;
 
         return $this;
     }

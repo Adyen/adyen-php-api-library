@@ -867,7 +867,7 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets networkPaymentReference
      *
-     * @param string|null $networkPaymentReference The network token reference. This is the [`networkTxReference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_additionalData-ResponseAdditionalDataCommon-networkTxReference) from the response to the first payment.
+     * @param string|null $networkPaymentReference The transaction identifier from card schemes. This is the [`networkTxReference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_additionalData-ResponseAdditionalDataCommon-networkTxReference) from the response to the first payment.
      *
      * @return self
      */

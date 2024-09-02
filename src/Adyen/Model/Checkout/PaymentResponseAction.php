@@ -49,6 +49,13 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'paymentMethodType' => 'string',
         'type' => 'string',
         'url' => 'string',
+        'beneficiary' => 'string',
+        'bic' => 'string',
+        'downloadUrl' => 'string',
+        'iban' => 'string',
+        'reference' => 'string',
+        'shopperEmail' => 'string',
+        'totalAmount' => '\Adyen\Model\Checkout\Amount',
         'authorisationToken' => 'string',
         'token' => 'string',
         'data' => 'array<string,string>',
@@ -60,7 +67,6 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'subtype' => 'string',
         'alternativeReference' => 'string',
         'collectionInstitutionNumber' => 'string',
-        'downloadUrl' => 'string',
         'entity' => 'string',
         'initialAmount' => '\Adyen\Model\Checkout\Amount',
         'instructionsUrl' => 'string',
@@ -69,11 +75,8 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'merchantName' => 'string',
         'merchantReference' => 'string',
         'passCreationToken' => 'string',
-        'reference' => 'string',
-        'shopperEmail' => 'string',
         'shopperName' => 'string',
-        'surcharge' => '\Adyen\Model\Checkout\Amount',
-        'totalAmount' => '\Adyen\Model\Checkout\Amount'
+        'surcharge' => '\Adyen\Model\Checkout\Amount'
     ];
 
     /**
@@ -88,6 +91,13 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'paymentMethodType' => null,
         'type' => null,
         'url' => null,
+        'beneficiary' => null,
+        'bic' => null,
+        'downloadUrl' => null,
+        'iban' => null,
+        'reference' => null,
+        'shopperEmail' => null,
+        'totalAmount' => null,
         'authorisationToken' => null,
         'token' => null,
         'data' => null,
@@ -99,7 +109,6 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'subtype' => null,
         'alternativeReference' => null,
         'collectionInstitutionNumber' => null,
-        'downloadUrl' => null,
         'entity' => null,
         'initialAmount' => null,
         'instructionsUrl' => null,
@@ -108,11 +117,8 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'merchantName' => null,
         'merchantReference' => null,
         'passCreationToken' => null,
-        'reference' => null,
-        'shopperEmail' => null,
         'shopperName' => null,
-        'surcharge' => null,
-        'totalAmount' => null
+        'surcharge' => null
     ];
 
     /**
@@ -125,6 +131,13 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'paymentMethodType' => false,
         'type' => false,
         'url' => false,
+        'beneficiary' => false,
+        'bic' => false,
+        'downloadUrl' => false,
+        'iban' => false,
+        'reference' => false,
+        'shopperEmail' => false,
+        'totalAmount' => false,
         'authorisationToken' => false,
         'token' => false,
         'data' => false,
@@ -136,7 +149,6 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'subtype' => false,
         'alternativeReference' => false,
         'collectionInstitutionNumber' => false,
-        'downloadUrl' => false,
         'entity' => false,
         'initialAmount' => false,
         'instructionsUrl' => false,
@@ -145,11 +157,8 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'merchantName' => false,
         'merchantReference' => false,
         'passCreationToken' => false,
-        'reference' => false,
-        'shopperEmail' => false,
         'shopperName' => false,
-        'surcharge' => false,
-        'totalAmount' => false
+        'surcharge' => false
     ];
 
     /**
@@ -242,6 +251,13 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'paymentMethodType' => 'paymentMethodType',
         'type' => 'type',
         'url' => 'url',
+        'beneficiary' => 'beneficiary',
+        'bic' => 'bic',
+        'downloadUrl' => 'downloadUrl',
+        'iban' => 'iban',
+        'reference' => 'reference',
+        'shopperEmail' => 'shopperEmail',
+        'totalAmount' => 'totalAmount',
         'authorisationToken' => 'authorisationToken',
         'token' => 'token',
         'data' => 'data',
@@ -253,7 +269,6 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'subtype' => 'subtype',
         'alternativeReference' => 'alternativeReference',
         'collectionInstitutionNumber' => 'collectionInstitutionNumber',
-        'downloadUrl' => 'downloadUrl',
         'entity' => 'entity',
         'initialAmount' => 'initialAmount',
         'instructionsUrl' => 'instructionsUrl',
@@ -262,11 +277,8 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'merchantName' => 'merchantName',
         'merchantReference' => 'merchantReference',
         'passCreationToken' => 'passCreationToken',
-        'reference' => 'reference',
-        'shopperEmail' => 'shopperEmail',
         'shopperName' => 'shopperName',
-        'surcharge' => 'surcharge',
-        'totalAmount' => 'totalAmount'
+        'surcharge' => 'surcharge'
     ];
 
     /**
@@ -279,6 +291,13 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'paymentMethodType' => 'setPaymentMethodType',
         'type' => 'setType',
         'url' => 'setUrl',
+        'beneficiary' => 'setBeneficiary',
+        'bic' => 'setBic',
+        'downloadUrl' => 'setDownloadUrl',
+        'iban' => 'setIban',
+        'reference' => 'setReference',
+        'shopperEmail' => 'setShopperEmail',
+        'totalAmount' => 'setTotalAmount',
         'authorisationToken' => 'setAuthorisationToken',
         'token' => 'setToken',
         'data' => 'setData',
@@ -290,7 +309,6 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'subtype' => 'setSubtype',
         'alternativeReference' => 'setAlternativeReference',
         'collectionInstitutionNumber' => 'setCollectionInstitutionNumber',
-        'downloadUrl' => 'setDownloadUrl',
         'entity' => 'setEntity',
         'initialAmount' => 'setInitialAmount',
         'instructionsUrl' => 'setInstructionsUrl',
@@ -299,11 +317,8 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'merchantName' => 'setMerchantName',
         'merchantReference' => 'setMerchantReference',
         'passCreationToken' => 'setPassCreationToken',
-        'reference' => 'setReference',
-        'shopperEmail' => 'setShopperEmail',
         'shopperName' => 'setShopperName',
-        'surcharge' => 'setSurcharge',
-        'totalAmount' => 'setTotalAmount'
+        'surcharge' => 'setSurcharge'
     ];
 
     /**
@@ -316,6 +331,13 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'paymentMethodType' => 'getPaymentMethodType',
         'type' => 'getType',
         'url' => 'getUrl',
+        'beneficiary' => 'getBeneficiary',
+        'bic' => 'getBic',
+        'downloadUrl' => 'getDownloadUrl',
+        'iban' => 'getIban',
+        'reference' => 'getReference',
+        'shopperEmail' => 'getShopperEmail',
+        'totalAmount' => 'getTotalAmount',
         'authorisationToken' => 'getAuthorisationToken',
         'token' => 'getToken',
         'data' => 'getData',
@@ -327,7 +349,6 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'subtype' => 'getSubtype',
         'alternativeReference' => 'getAlternativeReference',
         'collectionInstitutionNumber' => 'getCollectionInstitutionNumber',
-        'downloadUrl' => 'getDownloadUrl',
         'entity' => 'getEntity',
         'initialAmount' => 'getInitialAmount',
         'instructionsUrl' => 'getInstructionsUrl',
@@ -336,11 +357,8 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'merchantName' => 'getMerchantName',
         'merchantReference' => 'getMerchantReference',
         'passCreationToken' => 'getPassCreationToken',
-        'reference' => 'getReference',
-        'shopperEmail' => 'getShopperEmail',
         'shopperName' => 'getShopperName',
-        'surcharge' => 'getSurcharge',
-        'totalAmount' => 'getTotalAmount'
+        'surcharge' => 'getSurcharge'
     ];
 
     /**
@@ -403,6 +421,13 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('paymentMethodType', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('url', $data ?? [], null);
+        $this->setIfExists('beneficiary', $data ?? [], null);
+        $this->setIfExists('bic', $data ?? [], null);
+        $this->setIfExists('downloadUrl', $data ?? [], null);
+        $this->setIfExists('iban', $data ?? [], null);
+        $this->setIfExists('reference', $data ?? [], null);
+        $this->setIfExists('shopperEmail', $data ?? [], null);
+        $this->setIfExists('totalAmount', $data ?? [], null);
         $this->setIfExists('authorisationToken', $data ?? [], null);
         $this->setIfExists('token', $data ?? [], null);
         $this->setIfExists('data', $data ?? [], null);
@@ -414,7 +439,6 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('subtype', $data ?? [], null);
         $this->setIfExists('alternativeReference', $data ?? [], null);
         $this->setIfExists('collectionInstitutionNumber', $data ?? [], null);
-        $this->setIfExists('downloadUrl', $data ?? [], null);
         $this->setIfExists('entity', $data ?? [], null);
         $this->setIfExists('initialAmount', $data ?? [], null);
         $this->setIfExists('instructionsUrl', $data ?? [], null);
@@ -423,11 +447,8 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('merchantName', $data ?? [], null);
         $this->setIfExists('merchantReference', $data ?? [], null);
         $this->setIfExists('passCreationToken', $data ?? [], null);
-        $this->setIfExists('reference', $data ?? [], null);
-        $this->setIfExists('shopperEmail', $data ?? [], null);
         $this->setIfExists('shopperName', $data ?? [], null);
         $this->setIfExists('surcharge', $data ?? [], null);
-        $this->setIfExists('totalAmount', $data ?? [], null);
     }
 
     /**
@@ -568,6 +589,174 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setUrl($url)
     {
         $this->container['url'] = $url;
+
+        return $this;
+    }
+
+    /**
+     * Gets beneficiary
+     *
+     * @return string|null
+     */
+    public function getBeneficiary()
+    {
+        return $this->container['beneficiary'];
+    }
+
+    /**
+     * Sets beneficiary
+     *
+     * @param string|null $beneficiary The name of the account holder.
+     *
+     * @return self
+     */
+    public function setBeneficiary($beneficiary)
+    {
+        $this->container['beneficiary'] = $beneficiary;
+
+        return $this;
+    }
+
+    /**
+     * Gets bic
+     *
+     * @return string|null
+     */
+    public function getBic()
+    {
+        return $this->container['bic'];
+    }
+
+    /**
+     * Sets bic
+     *
+     * @param string|null $bic The BIC of the IBAN.
+     *
+     * @return self
+     */
+    public function setBic($bic)
+    {
+        $this->container['bic'] = $bic;
+
+        return $this;
+    }
+
+    /**
+     * Gets downloadUrl
+     *
+     * @return string|null
+     */
+    public function getDownloadUrl()
+    {
+        return $this->container['downloadUrl'];
+    }
+
+    /**
+     * Sets downloadUrl
+     *
+     * @param string|null $downloadUrl The URL to download the voucher.
+     *
+     * @return self
+     */
+    public function setDownloadUrl($downloadUrl)
+    {
+        $this->container['downloadUrl'] = $downloadUrl;
+
+        return $this;
+    }
+
+    /**
+     * Gets iban
+     *
+     * @return string|null
+     */
+    public function getIban()
+    {
+        return $this->container['iban'];
+    }
+
+    /**
+     * Sets iban
+     *
+     * @param string|null $iban The IBAN of the bank transfer.
+     *
+     * @return self
+     */
+    public function setIban($iban)
+    {
+        $this->container['iban'] = $iban;
+
+        return $this;
+    }
+
+    /**
+     * Gets reference
+     *
+     * @return string|null
+     */
+    public function getReference()
+    {
+        return $this->container['reference'];
+    }
+
+    /**
+     * Sets reference
+     *
+     * @param string|null $reference The voucher reference code.
+     *
+     * @return self
+     */
+    public function setReference($reference)
+    {
+        $this->container['reference'] = $reference;
+
+        return $this;
+    }
+
+    /**
+     * Gets shopperEmail
+     *
+     * @return string|null
+     */
+    public function getShopperEmail()
+    {
+        return $this->container['shopperEmail'];
+    }
+
+    /**
+     * Sets shopperEmail
+     *
+     * @param string|null $shopperEmail The shopper email.
+     *
+     * @return self
+     */
+    public function setShopperEmail($shopperEmail)
+    {
+        $this->container['shopperEmail'] = $shopperEmail;
+
+        return $this;
+    }
+
+    /**
+     * Gets totalAmount
+     *
+     * @return \Adyen\Model\Checkout\Amount|null
+     */
+    public function getTotalAmount()
+    {
+        return $this->container['totalAmount'];
+    }
+
+    /**
+     * Sets totalAmount
+     *
+     * @param \Adyen\Model\Checkout\Amount|null $totalAmount totalAmount
+     *
+     * @return self
+     */
+    public function setTotalAmount($totalAmount)
+    {
+        $this->container['totalAmount'] = $totalAmount;
 
         return $this;
     }
@@ -837,30 +1026,6 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Gets downloadUrl
-     *
-     * @return string|null
-     */
-    public function getDownloadUrl()
-    {
-        return $this->container['downloadUrl'];
-    }
-
-    /**
-     * Sets downloadUrl
-     *
-     * @param string|null $downloadUrl The URL to download the voucher.
-     *
-     * @return self
-     */
-    public function setDownloadUrl($downloadUrl)
-    {
-        $this->container['downloadUrl'] = $downloadUrl;
-
-        return $this;
-    }
-
-    /**
      * Gets entity
      *
      * @return string|null
@@ -1053,54 +1218,6 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Gets reference
-     *
-     * @return string|null
-     */
-    public function getReference()
-    {
-        return $this->container['reference'];
-    }
-
-    /**
-     * Sets reference
-     *
-     * @param string|null $reference The voucher reference code.
-     *
-     * @return self
-     */
-    public function setReference($reference)
-    {
-        $this->container['reference'] = $reference;
-
-        return $this;
-    }
-
-    /**
-     * Gets shopperEmail
-     *
-     * @return string|null
-     */
-    public function getShopperEmail()
-    {
-        return $this->container['shopperEmail'];
-    }
-
-    /**
-     * Sets shopperEmail
-     *
-     * @param string|null $shopperEmail The shopper email.
-     *
-     * @return self
-     */
-    public function setShopperEmail($shopperEmail)
-    {
-        $this->container['shopperEmail'] = $shopperEmail;
-
-        return $this;
-    }
-
-    /**
      * Gets shopperName
      *
      * @return string|null
@@ -1144,30 +1261,6 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setSurcharge($surcharge)
     {
         $this->container['surcharge'] = $surcharge;
-
-        return $this;
-    }
-
-    /**
-     * Gets totalAmount
-     *
-     * @return \Adyen\Model\Checkout\Amount|null
-     */
-    public function getTotalAmount()
-    {
-        return $this->container['totalAmount'];
-    }
-
-    /**
-     * Sets totalAmount
-     *
-     * @param \Adyen\Model\Checkout\Amount|null $totalAmount totalAmount
-     *
-     * @return self
-     */
-    public function setTotalAmount($totalAmount)
-    {
-        $this->container['totalAmount'] = $totalAmount;
 
         return $this;
     }

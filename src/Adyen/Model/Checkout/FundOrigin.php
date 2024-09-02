@@ -341,7 +341,7 @@ class FundOrigin implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets shopperEmail
      *
-     * @param string|null $shopperEmail Email address of the person.
+     * @param string|null $shopperEmail The email address of the person funding the money.
      *
      * @return self
      */
@@ -389,7 +389,7 @@ class FundOrigin implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets telephoneNumber
      *
-     * @param string|null $telephoneNumber Phone number of the person
+     * @param string|null $telephoneNumber The phone number of the person funding the money.
      *
      * @return self
      */
@@ -413,7 +413,7 @@ class FundOrigin implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets walletIdentifier
      *
-     * @param string|null $walletIdentifier walletIdentifier
+     * @param string|null $walletIdentifier The unique identifier of the wallet where the funds are coming from.
      *
      * @return self
      */
