@@ -44,6 +44,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
       * @var string[]
       */
     protected static $openAPITypes = [
+        'accel' => '\Adyen\Model\Management\AccelInfo',
         'bcmc' => '\Adyen\Model\Management\BcmcInfo',
         'cartesBancaires' => '\Adyen\Model\Management\CartesBancairesInfo',
         'countries' => 'string[]',
@@ -60,6 +61,9 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'jcb' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'maestro' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'mc' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
+        'nyce' => '\Adyen\Model\Management\NyceInfo',
+        'pulse' => '\Adyen\Model\Management\PulseInfo',
+        'star' => '\Adyen\Model\Management\StarInfo',
         'storeIds' => 'string[]',
         'visa' => '\Adyen\Model\Management\GenericPmWithTdiInfo'
     ];
@@ -72,6 +76,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'accel' => null,
         'bcmc' => null,
         'cartesBancaires' => null,
         'countries' => null,
@@ -88,6 +93,9 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'jcb' => null,
         'maestro' => null,
         'mc' => null,
+        'nyce' => null,
+        'pulse' => null,
+        'star' => null,
         'storeIds' => null,
         'visa' => null
     ];
@@ -98,6 +106,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'accel' => false,
         'bcmc' => false,
         'cartesBancaires' => false,
         'countries' => false,
@@ -114,6 +123,9 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'jcb' => false,
         'maestro' => false,
         'mc' => false,
+        'nyce' => false,
+        'pulse' => false,
+        'star' => false,
         'storeIds' => false,
         'visa' => false
     ];
@@ -204,6 +216,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $attributeMap = [
+        'accel' => 'accel',
         'bcmc' => 'bcmc',
         'cartesBancaires' => 'cartesBancaires',
         'countries' => 'countries',
@@ -220,6 +233,9 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'jcb' => 'jcb',
         'maestro' => 'maestro',
         'mc' => 'mc',
+        'nyce' => 'nyce',
+        'pulse' => 'pulse',
+        'star' => 'star',
         'storeIds' => 'storeIds',
         'visa' => 'visa'
     ];
@@ -230,6 +246,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $setters = [
+        'accel' => 'setAccel',
         'bcmc' => 'setBcmc',
         'cartesBancaires' => 'setCartesBancaires',
         'countries' => 'setCountries',
@@ -246,6 +263,9 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'jcb' => 'setJcb',
         'maestro' => 'setMaestro',
         'mc' => 'setMc',
+        'nyce' => 'setNyce',
+        'pulse' => 'setPulse',
+        'star' => 'setStar',
         'storeIds' => 'setStoreIds',
         'visa' => 'setVisa'
     ];
@@ -256,6 +276,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $getters = [
+        'accel' => 'getAccel',
         'bcmc' => 'getBcmc',
         'cartesBancaires' => 'getCartesBancaires',
         'countries' => 'getCountries',
@@ -272,6 +293,9 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'jcb' => 'getJcb',
         'maestro' => 'getMaestro',
         'mc' => 'getMc',
+        'nyce' => 'getNyce',
+        'pulse' => 'getPulse',
+        'star' => 'getStar',
         'storeIds' => 'getStoreIds',
         'visa' => 'getVisa'
     ];
@@ -333,6 +357,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('accel', $data ?? [], null);
         $this->setIfExists('bcmc', $data ?? [], null);
         $this->setIfExists('cartesBancaires', $data ?? [], null);
         $this->setIfExists('countries', $data ?? [], null);
@@ -349,6 +374,9 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('jcb', $data ?? [], null);
         $this->setIfExists('maestro', $data ?? [], null);
         $this->setIfExists('mc', $data ?? [], null);
+        $this->setIfExists('nyce', $data ?? [], null);
+        $this->setIfExists('pulse', $data ?? [], null);
+        $this->setIfExists('star', $data ?? [], null);
         $this->setIfExists('storeIds', $data ?? [], null);
         $this->setIfExists('visa', $data ?? [], null);
     }
@@ -394,6 +422,30 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets accel
+     *
+     * @return \Adyen\Model\Management\AccelInfo|null
+     */
+    public function getAccel()
+    {
+        return $this->container['accel'];
+    }
+
+    /**
+     * Sets accel
+     *
+     * @param \Adyen\Model\Management\AccelInfo|null $accel accel
+     *
+     * @return self
+     */
+    public function setAccel($accel)
+    {
+        $this->container['accel'] = $accel;
+
+        return $this;
+    }
 
     /**
      * Gets bcmc
@@ -775,6 +827,78 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     public function setMc($mc)
     {
         $this->container['mc'] = $mc;
+
+        return $this;
+    }
+
+    /**
+     * Gets nyce
+     *
+     * @return \Adyen\Model\Management\NyceInfo|null
+     */
+    public function getNyce()
+    {
+        return $this->container['nyce'];
+    }
+
+    /**
+     * Sets nyce
+     *
+     * @param \Adyen\Model\Management\NyceInfo|null $nyce nyce
+     *
+     * @return self
+     */
+    public function setNyce($nyce)
+    {
+        $this->container['nyce'] = $nyce;
+
+        return $this;
+    }
+
+    /**
+     * Gets pulse
+     *
+     * @return \Adyen\Model\Management\PulseInfo|null
+     */
+    public function getPulse()
+    {
+        return $this->container['pulse'];
+    }
+
+    /**
+     * Sets pulse
+     *
+     * @param \Adyen\Model\Management\PulseInfo|null $pulse pulse
+     *
+     * @return self
+     */
+    public function setPulse($pulse)
+    {
+        $this->container['pulse'] = $pulse;
+
+        return $this;
+    }
+
+    /**
+     * Gets star
+     *
+     * @return \Adyen\Model\Management\StarInfo|null
+     */
+    public function getStar()
+    {
+        return $this->container['star'];
+    }
+
+    /**
+     * Sets star
+     *
+     * @param \Adyen\Model\Management\StarInfo|null $star star
+     *
+     * @return self
+     */
+    public function setStar($star)
+    {
+        $this->container['star'] = $star;
 
         return $this;
     }

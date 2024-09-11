@@ -44,6 +44,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'accel' => '\Adyen\Model\Management\AccelInfo',
         'afterpayTouch' => '\Adyen\Model\Management\AfterpayTouchInfo',
         'allowed' => 'bool',
         'amex' => '\Adyen\Model\Management\AmexInfo',
@@ -71,10 +72,15 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'maestro' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'mc' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'mealVoucherFR' => '\Adyen\Model\Management\MealVoucherFRInfo',
+        'nyce' => '\Adyen\Model\Management\NyceInfo',
+        'payme' => '\Adyen\Model\Management\PayMeInfo',
         'paypal' => '\Adyen\Model\Management\PayPalInfo',
+        'pulse' => '\Adyen\Model\Management\PulseInfo',
         'reference' => 'string',
         'shopperInteraction' => 'string',
+        'sodexo' => '\Adyen\Model\Management\SodexoInfo',
         'sofort' => '\Adyen\Model\Management\SofortInfo',
+        'star' => '\Adyen\Model\Management\StarInfo',
         'storeIds' => 'string[]',
         'swish' => '\Adyen\Model\Management\SwishInfo',
         'ticket' => '\Adyen\Model\Management\TicketInfo',
@@ -95,6 +101,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'accel' => null,
         'afterpayTouch' => null,
         'allowed' => null,
         'amex' => null,
@@ -122,10 +129,15 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'maestro' => null,
         'mc' => null,
         'mealVoucherFR' => null,
+        'nyce' => null,
+        'payme' => null,
         'paypal' => null,
+        'pulse' => null,
         'reference' => null,
         'shopperInteraction' => null,
+        'sodexo' => null,
         'sofort' => null,
+        'star' => null,
         'storeIds' => null,
         'swish' => null,
         'ticket' => null,
@@ -144,6 +156,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'accel' => false,
         'afterpayTouch' => false,
         'allowed' => false,
         'amex' => false,
@@ -171,10 +184,15 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'maestro' => false,
         'mc' => false,
         'mealVoucherFR' => false,
+        'nyce' => false,
+        'payme' => false,
         'paypal' => false,
+        'pulse' => false,
         'reference' => false,
         'shopperInteraction' => false,
+        'sodexo' => false,
         'sofort' => false,
+        'star' => false,
         'storeIds' => false,
         'swish' => false,
         'ticket' => false,
@@ -273,6 +291,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'accel' => 'accel',
         'afterpayTouch' => 'afterpayTouch',
         'allowed' => 'allowed',
         'amex' => 'amex',
@@ -300,10 +319,15 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'maestro' => 'maestro',
         'mc' => 'mc',
         'mealVoucherFR' => 'mealVoucher_FR',
+        'nyce' => 'nyce',
+        'payme' => 'payme',
         'paypal' => 'paypal',
+        'pulse' => 'pulse',
         'reference' => 'reference',
         'shopperInteraction' => 'shopperInteraction',
+        'sodexo' => 'sodexo',
         'sofort' => 'sofort',
+        'star' => 'star',
         'storeIds' => 'storeIds',
         'swish' => 'swish',
         'ticket' => 'ticket',
@@ -322,6 +346,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'accel' => 'setAccel',
         'afterpayTouch' => 'setAfterpayTouch',
         'allowed' => 'setAllowed',
         'amex' => 'setAmex',
@@ -349,10 +374,15 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'maestro' => 'setMaestro',
         'mc' => 'setMc',
         'mealVoucherFR' => 'setMealVoucherFR',
+        'nyce' => 'setNyce',
+        'payme' => 'setPayme',
         'paypal' => 'setPaypal',
+        'pulse' => 'setPulse',
         'reference' => 'setReference',
         'shopperInteraction' => 'setShopperInteraction',
+        'sodexo' => 'setSodexo',
         'sofort' => 'setSofort',
+        'star' => 'setStar',
         'storeIds' => 'setStoreIds',
         'swish' => 'setSwish',
         'ticket' => 'setTicket',
@@ -371,6 +401,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'accel' => 'getAccel',
         'afterpayTouch' => 'getAfterpayTouch',
         'allowed' => 'getAllowed',
         'amex' => 'getAmex',
@@ -398,10 +429,15 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'maestro' => 'getMaestro',
         'mc' => 'getMc',
         'mealVoucherFR' => 'getMealVoucherFR',
+        'nyce' => 'getNyce',
+        'payme' => 'getPayme',
         'paypal' => 'getPaypal',
+        'pulse' => 'getPulse',
         'reference' => 'getReference',
         'shopperInteraction' => 'getShopperInteraction',
+        'sodexo' => 'getSodexo',
         'sofort' => 'getSofort',
+        'star' => 'getStar',
         'storeIds' => 'getStoreIds',
         'swish' => 'getSwish',
         'ticket' => 'getTicket',
@@ -489,6 +525,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('accel', $data ?? [], null);
         $this->setIfExists('afterpayTouch', $data ?? [], null);
         $this->setIfExists('allowed', $data ?? [], null);
         $this->setIfExists('amex', $data ?? [], null);
@@ -516,10 +553,15 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('maestro', $data ?? [], null);
         $this->setIfExists('mc', $data ?? [], null);
         $this->setIfExists('mealVoucherFR', $data ?? [], null);
+        $this->setIfExists('nyce', $data ?? [], null);
+        $this->setIfExists('payme', $data ?? [], null);
         $this->setIfExists('paypal', $data ?? [], null);
+        $this->setIfExists('pulse', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
         $this->setIfExists('shopperInteraction', $data ?? [], null);
+        $this->setIfExists('sodexo', $data ?? [], null);
         $this->setIfExists('sofort', $data ?? [], null);
+        $this->setIfExists('star', $data ?? [], null);
         $this->setIfExists('storeIds', $data ?? [], null);
         $this->setIfExists('swish', $data ?? [], null);
         $this->setIfExists('ticket', $data ?? [], null);
@@ -585,6 +627,30 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets accel
+     *
+     * @return \Adyen\Model\Management\AccelInfo|null
+     */
+    public function getAccel()
+    {
+        return $this->container['accel'];
+    }
+
+    /**
+     * Sets accel
+     *
+     * @param \Adyen\Model\Management\AccelInfo|null $accel accel
+     *
+     * @return self
+     */
+    public function setAccel($accel)
+    {
+        $this->container['accel'] = $accel;
+
+        return $this;
+    }
 
     /**
      * Gets afterpayTouch
@@ -1235,6 +1301,54 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets nyce
+     *
+     * @return \Adyen\Model\Management\NyceInfo|null
+     */
+    public function getNyce()
+    {
+        return $this->container['nyce'];
+    }
+
+    /**
+     * Sets nyce
+     *
+     * @param \Adyen\Model\Management\NyceInfo|null $nyce nyce
+     *
+     * @return self
+     */
+    public function setNyce($nyce)
+    {
+        $this->container['nyce'] = $nyce;
+
+        return $this;
+    }
+
+    /**
+     * Gets payme
+     *
+     * @return \Adyen\Model\Management\PayMeInfo|null
+     */
+    public function getPayme()
+    {
+        return $this->container['payme'];
+    }
+
+    /**
+     * Sets payme
+     *
+     * @param \Adyen\Model\Management\PayMeInfo|null $payme payme
+     *
+     * @return self
+     */
+    public function setPayme($payme)
+    {
+        $this->container['payme'] = $payme;
+
+        return $this;
+    }
+
+    /**
      * Gets paypal
      *
      * @return \Adyen\Model\Management\PayPalInfo|null
@@ -1254,6 +1368,30 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setPaypal($paypal)
     {
         $this->container['paypal'] = $paypal;
+
+        return $this;
+    }
+
+    /**
+     * Gets pulse
+     *
+     * @return \Adyen\Model\Management\PulseInfo|null
+     */
+    public function getPulse()
+    {
+        return $this->container['pulse'];
+    }
+
+    /**
+     * Sets pulse
+     *
+     * @param \Adyen\Model\Management\PulseInfo|null $pulse pulse
+     *
+     * @return self
+     */
+    public function setPulse($pulse)
+    {
+        $this->container['pulse'] = $pulse;
 
         return $this;
     }
@@ -1307,6 +1445,30 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets sodexo
+     *
+     * @return \Adyen\Model\Management\SodexoInfo|null
+     */
+    public function getSodexo()
+    {
+        return $this->container['sodexo'];
+    }
+
+    /**
+     * Sets sodexo
+     *
+     * @param \Adyen\Model\Management\SodexoInfo|null $sodexo sodexo
+     *
+     * @return self
+     */
+    public function setSodexo($sodexo)
+    {
+        $this->container['sodexo'] = $sodexo;
+
+        return $this;
+    }
+
+    /**
      * Gets sofort
      *
      * @return \Adyen\Model\Management\SofortInfo|null
@@ -1326,6 +1488,30 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setSofort($sofort)
     {
         $this->container['sofort'] = $sofort;
+
+        return $this;
+    }
+
+    /**
+     * Gets star
+     *
+     * @return \Adyen\Model\Management\StarInfo|null
+     */
+    public function getStar()
+    {
+        return $this->container['star'];
+    }
+
+    /**
+     * Sets star
+     *
+     * @param \Adyen\Model\Management\StarInfo|null $star star
+     *
+     * @return self
+     */
+    public function setStar($star)
+    {
+        $this->container['star'] = $star;
 
         return $this;
     }

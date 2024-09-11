@@ -239,16 +239,25 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
         return self::$openAPIModelName;
     }
 
+    public const TYPES_WITH_ERRORS_ACCEL = 'accel';
     public const TYPES_WITH_ERRORS_AFTERPAYTOUCH = 'afterpaytouch';
+    public const TYPES_WITH_ERRORS_ALELO = 'alelo';
     public const TYPES_WITH_ERRORS_ALIPAY = 'alipay';
     public const TYPES_WITH_ERRORS_ALIPAY_HK = 'alipay_hk';
     public const TYPES_WITH_ERRORS_AMEX = 'amex';
     public const TYPES_WITH_ERRORS_APPLEPAY = 'applepay';
+    public const TYPES_WITH_ERRORS_BANESE_CARD = 'banese_card';
+    public const TYPES_WITH_ERRORS_BANESE_CARD_CREDIT = 'banese_card_credit';
+    public const TYPES_WITH_ERRORS_BANESE_CARD_DEBIT = 'banese_card_debit';
+    public const TYPES_WITH_ERRORS_BANESE_CARD_PREPAID = 'banese_card_prepaid';
     public const TYPES_WITH_ERRORS_BCMC = 'bcmc';
     public const TYPES_WITH_ERRORS_BLIK = 'blik';
     public const TYPES_WITH_ERRORS_CARTEBANCAIRE = 'cartebancaire';
     public const TYPES_WITH_ERRORS_CLEARPAY = 'clearpay';
     public const TYPES_WITH_ERRORS_CLICKTOPAY = 'clicktopay';
+    public const TYPES_WITH_ERRORS_CREDTODOS = 'credtodos';
+    public const TYPES_WITH_ERRORS_CREDTODOS_PRIVATE_CREDIT = 'credtodos_private_credit';
+    public const TYPES_WITH_ERRORS_CREDTODOS_PRIVATE_DEBIT = 'credtodos_private_debit';
     public const TYPES_WITH_ERRORS_CUP = 'cup';
     public const TYPES_WITH_ERRORS_DINERS = 'diners';
     public const TYPES_WITH_ERRORS_DIRECTDEBIT_GB = 'directdebit_GB';
@@ -275,17 +284,27 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public const TYPES_WITH_ERRORS_MEAL_VOUCHER_FR = 'mealVoucher_FR';
     public const TYPES_WITH_ERRORS_MOBILEPAY = 'mobilepay';
     public const TYPES_WITH_ERRORS_MULTIBANCO = 'multibanco';
+    public const TYPES_WITH_ERRORS_NYCE = 'nyce';
     public const TYPES_WITH_ERRORS_ONLINE_BANKING_PL = 'onlineBanking_PL';
     public const TYPES_WITH_ERRORS_PAYBYBANK = 'paybybank';
+    public const TYPES_WITH_ERRORS_PAYME = 'payme';
+    public const TYPES_WITH_ERRORS_PAYME_POS = 'payme_pos';
     public const TYPES_WITH_ERRORS_PAYNOW = 'paynow';
     public const TYPES_WITH_ERRORS_PAYNOW_POS = 'paynow_pos';
     public const TYPES_WITH_ERRORS_PAYPAL = 'paypal';
     public const TYPES_WITH_ERRORS_PAYSHOP = 'payshop';
+    public const TYPES_WITH_ERRORS_PULSE = 'pulse';
+    public const TYPES_WITH_ERRORS_SODEXO = 'sodexo';
+    public const TYPES_WITH_ERRORS_STAR = 'star';
     public const TYPES_WITH_ERRORS_SWISH = 'swish';
     public const TYPES_WITH_ERRORS_TICKET = 'ticket';
+    public const TYPES_WITH_ERRORS_TODO_GIFTCARD = 'todo_giftcard';
     public const TYPES_WITH_ERRORS_TRUSTLY = 'trustly';
     public const TYPES_WITH_ERRORS_TWINT = 'twint';
     public const TYPES_WITH_ERRORS_TWINT_POS = 'twint_pos';
+    public const TYPES_WITH_ERRORS_UP_BRAZIL_CREDIT = 'up_brazil_credit';
+    public const TYPES_WITH_ERRORS_VALE_REFEICAO = 'vale_refeicao';
+    public const TYPES_WITH_ERRORS_VALE_REFEICAO_PREPAID = 'vale_refeicao_prepaid';
     public const TYPES_WITH_ERRORS_VIPPS = 'vipps';
     public const TYPES_WITH_ERRORS_VISA = 'visa';
     public const TYPES_WITH_ERRORS_VISADEBIT = 'visadebit';
@@ -301,16 +320,25 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public function getTypesWithErrorsAllowableValues()
     {
         return [
+            self::TYPES_WITH_ERRORS_ACCEL,
             self::TYPES_WITH_ERRORS_AFTERPAYTOUCH,
+            self::TYPES_WITH_ERRORS_ALELO,
             self::TYPES_WITH_ERRORS_ALIPAY,
             self::TYPES_WITH_ERRORS_ALIPAY_HK,
             self::TYPES_WITH_ERRORS_AMEX,
             self::TYPES_WITH_ERRORS_APPLEPAY,
+            self::TYPES_WITH_ERRORS_BANESE_CARD,
+            self::TYPES_WITH_ERRORS_BANESE_CARD_CREDIT,
+            self::TYPES_WITH_ERRORS_BANESE_CARD_DEBIT,
+            self::TYPES_WITH_ERRORS_BANESE_CARD_PREPAID,
             self::TYPES_WITH_ERRORS_BCMC,
             self::TYPES_WITH_ERRORS_BLIK,
             self::TYPES_WITH_ERRORS_CARTEBANCAIRE,
             self::TYPES_WITH_ERRORS_CLEARPAY,
             self::TYPES_WITH_ERRORS_CLICKTOPAY,
+            self::TYPES_WITH_ERRORS_CREDTODOS,
+            self::TYPES_WITH_ERRORS_CREDTODOS_PRIVATE_CREDIT,
+            self::TYPES_WITH_ERRORS_CREDTODOS_PRIVATE_DEBIT,
             self::TYPES_WITH_ERRORS_CUP,
             self::TYPES_WITH_ERRORS_DINERS,
             self::TYPES_WITH_ERRORS_DIRECTDEBIT_GB,
@@ -337,17 +365,27 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             self::TYPES_WITH_ERRORS_MEAL_VOUCHER_FR,
             self::TYPES_WITH_ERRORS_MOBILEPAY,
             self::TYPES_WITH_ERRORS_MULTIBANCO,
+            self::TYPES_WITH_ERRORS_NYCE,
             self::TYPES_WITH_ERRORS_ONLINE_BANKING_PL,
             self::TYPES_WITH_ERRORS_PAYBYBANK,
+            self::TYPES_WITH_ERRORS_PAYME,
+            self::TYPES_WITH_ERRORS_PAYME_POS,
             self::TYPES_WITH_ERRORS_PAYNOW,
             self::TYPES_WITH_ERRORS_PAYNOW_POS,
             self::TYPES_WITH_ERRORS_PAYPAL,
             self::TYPES_WITH_ERRORS_PAYSHOP,
+            self::TYPES_WITH_ERRORS_PULSE,
+            self::TYPES_WITH_ERRORS_SODEXO,
+            self::TYPES_WITH_ERRORS_STAR,
             self::TYPES_WITH_ERRORS_SWISH,
             self::TYPES_WITH_ERRORS_TICKET,
+            self::TYPES_WITH_ERRORS_TODO_GIFTCARD,
             self::TYPES_WITH_ERRORS_TRUSTLY,
             self::TYPES_WITH_ERRORS_TWINT,
             self::TYPES_WITH_ERRORS_TWINT_POS,
+            self::TYPES_WITH_ERRORS_UP_BRAZIL_CREDIT,
+            self::TYPES_WITH_ERRORS_VALE_REFEICAO,
+            self::TYPES_WITH_ERRORS_VALE_REFEICAO_PREPAID,
             self::TYPES_WITH_ERRORS_VIPPS,
             self::TYPES_WITH_ERRORS_VISA,
             self::TYPES_WITH_ERRORS_VISADEBIT,

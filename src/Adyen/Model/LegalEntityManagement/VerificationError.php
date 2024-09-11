@@ -266,6 +266,7 @@ class VerificationError implements ModelInterface, ArrayAccess, \JsonSerializabl
     public const CAPABILITIES_ISSUE_CARD = 'issueCard';
     public const CAPABILITIES_ISSUE_CARD_COMMERCIAL = 'issueCardCommercial';
     public const CAPABILITIES_ISSUE_CARD_CONSUMER = 'issueCardConsumer';
+    public const CAPABILITIES_ISSUE_CREDIT_LIMIT = 'issueCreditLimit';
     public const CAPABILITIES_LOCAL_ACCEPTANCE = 'localAcceptance';
     public const CAPABILITIES_PAYOUT = 'payout';
     public const CAPABILITIES_PAYOUT_TO_TRANSFER_INSTRUMENT = 'payoutToTransferInstrument';
@@ -330,6 +331,7 @@ class VerificationError implements ModelInterface, ArrayAccess, \JsonSerializabl
             self::CAPABILITIES_ISSUE_CARD,
             self::CAPABILITIES_ISSUE_CARD_COMMERCIAL,
             self::CAPABILITIES_ISSUE_CARD_CONSUMER,
+            self::CAPABILITIES_ISSUE_CREDIT_LIMIT,
             self::CAPABILITIES_LOCAL_ACCEPTANCE,
             self::CAPABILITIES_PAYOUT,
             self::CAPABILITIES_PAYOUT_TO_TRANSFER_INSTRUMENT,
@@ -592,7 +594,7 @@ class VerificationError implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets type
      *
-     * @param string|null $type The type of error.
+     * @param string|null $type The type of error.  Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus** *  **rejected** *  **dataReview**
      *
      * @return self
      */

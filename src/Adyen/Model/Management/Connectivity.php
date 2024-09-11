@@ -44,7 +44,8 @@ class Connectivity implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'simcardStatus' => 'string'
+        'simcardStatus' => 'string',
+        'terminalIPAddressURL' => '\Adyen\Model\Management\EventUrl'
     ];
 
     /**
@@ -55,7 +56,8 @@ class Connectivity implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'simcardStatus' => null
+        'simcardStatus' => null,
+        'terminalIPAddressURL' => null
     ];
 
     /**
@@ -64,7 +66,8 @@ class Connectivity implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'simcardStatus' => false
+        'simcardStatus' => false,
+        'terminalIPAddressURL' => false
     ];
 
     /**
@@ -153,7 +156,8 @@ class Connectivity implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'simcardStatus' => 'simcardStatus'
+        'simcardStatus' => 'simcardStatus',
+        'terminalIPAddressURL' => 'terminalIPAddressURL'
     ];
 
     /**
@@ -162,7 +166,8 @@ class Connectivity implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'simcardStatus' => 'setSimcardStatus'
+        'simcardStatus' => 'setSimcardStatus',
+        'terminalIPAddressURL' => 'setTerminalIPAddressURL'
     ];
 
     /**
@@ -171,7 +176,8 @@ class Connectivity implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'simcardStatus' => 'getSimcardStatus'
+        'simcardStatus' => 'getSimcardStatus',
+        'terminalIPAddressURL' => 'getTerminalIPAddressURL'
     ];
 
     /**
@@ -246,6 +252,7 @@ class Connectivity implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('simcardStatus', $data ?? [], null);
+        $this->setIfExists('terminalIPAddressURL', $data ?? [], null);
     }
 
     /**
@@ -329,6 +336,30 @@ class Connectivity implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['simcardStatus'] = $simcardStatus;
+
+        return $this;
+    }
+
+    /**
+     * Gets terminalIPAddressURL
+     *
+     * @return \Adyen\Model\Management\EventUrl|null
+     */
+    public function getTerminalIPAddressURL()
+    {
+        return $this->container['terminalIPAddressURL'];
+    }
+
+    /**
+     * Sets terminalIPAddressURL
+     *
+     * @param \Adyen\Model\Management\EventUrl|null $terminalIPAddressURL terminalIPAddressURL
+     *
+     * @return self
+     */
+    public function setTerminalIPAddressURL($terminalIPAddressURL)
+    {
+        $this->container['terminalIPAddressURL'] = $terminalIPAddressURL;
 
         return $this;
     }

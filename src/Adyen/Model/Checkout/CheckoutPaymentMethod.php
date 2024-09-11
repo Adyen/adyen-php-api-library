@@ -94,6 +94,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'lastName' => 'string',
         'shopperEmail' => 'string',
         'telephoneNumber' => 'string',
+        'bankCode' => 'string',
         'googlePayCardNetwork' => 'string',
         'googlePayToken' => 'string',
         'masterpassTransactionId' => 'string',
@@ -169,6 +170,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'lastName' => null,
         'shopperEmail' => null,
         'telephoneNumber' => null,
+        'bankCode' => null,
         'googlePayCardNetwork' => null,
         'googlePayToken' => null,
         'masterpassTransactionId' => null,
@@ -242,6 +244,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'lastName' => false,
         'shopperEmail' => false,
         'telephoneNumber' => false,
+        'bankCode' => false,
         'googlePayCardNetwork' => false,
         'googlePayToken' => false,
         'masterpassTransactionId' => false,
@@ -395,6 +398,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'lastName' => 'lastName',
         'shopperEmail' => 'shopperEmail',
         'telephoneNumber' => 'telephoneNumber',
+        'bankCode' => 'bankCode',
         'googlePayCardNetwork' => 'googlePayCardNetwork',
         'googlePayToken' => 'googlePayToken',
         'masterpassTransactionId' => 'masterpassTransactionId',
@@ -468,6 +472,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'lastName' => 'setLastName',
         'shopperEmail' => 'setShopperEmail',
         'telephoneNumber' => 'setTelephoneNumber',
+        'bankCode' => 'setBankCode',
         'googlePayCardNetwork' => 'setGooglePayCardNetwork',
         'googlePayToken' => 'setGooglePayToken',
         'masterpassTransactionId' => 'setMasterpassTransactionId',
@@ -541,6 +546,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'lastName' => 'getLastName',
         'shopperEmail' => 'getShopperEmail',
         'telephoneNumber' => 'getTelephoneNumber',
+        'bankCode' => 'getBankCode',
         'googlePayCardNetwork' => 'getGooglePayCardNetwork',
         'googlePayToken' => 'getGooglePayToken',
         'masterpassTransactionId' => 'getMasterpassTransactionId',
@@ -664,6 +670,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('lastName', $data ?? [], null);
         $this->setIfExists('shopperEmail', $data ?? [], null);
         $this->setIfExists('telephoneNumber', $data ?? [], null);
+        $this->setIfExists('bankCode', $data ?? [], null);
         $this->setIfExists('googlePayCardNetwork', $data ?? [], null);
         $this->setIfExists('googlePayToken', $data ?? [], null);
         $this->setIfExists('masterpassTransactionId', $data ?? [], null);
@@ -1915,7 +1922,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets shopperEmail
      *
-     * @param string $shopperEmail
+     * @param string $shopperEmail 
      *
      * @return self
      */
@@ -1939,13 +1946,37 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets telephoneNumber
      *
-     * @param string $telephoneNumber
+     * @param string $telephoneNumber 
      *
      * @return self
      */
     public function setTelephoneNumber($telephoneNumber)
     {
         $this->container['telephoneNumber'] = $telephoneNumber;
+
+        return $this;
+    }
+
+    /**
+     * Gets bankCode
+     *
+     * @return string|null
+     */
+    public function getBankCode()
+    {
+        return $this->container['bankCode'];
+    }
+
+    /**
+     * Sets bankCode
+     *
+     * @param string|null $bankCode The financial institution code.
+     *
+     * @return self
+     */
+    public function setBankCode($bankCode)
+    {
+        $this->container['bankCode'] = $bankCode;
 
         return $this;
     }
