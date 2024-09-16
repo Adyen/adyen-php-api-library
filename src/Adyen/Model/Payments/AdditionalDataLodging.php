@@ -473,7 +473,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets lodgingCustomerServiceTollFreeNumber
      *
-     * @param string|null $lodgingCustomerServiceTollFreeNumber The toll-free phone number for the lodging. * Format: numeric * Max length: 17 characters. * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not contain any special characters such as + or - *Must not be all zeros.
+     * @param string|null $lodgingCustomerServiceTollFreeNumber The toll-free phone number for the lodging. * Format: numeric * Max length: 17 characters. * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not contain any special characters such as + or - * Must not be all zeros.
      *
      * @return self
      */
@@ -545,7 +545,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets lodgingFolioNumber
      *
-     * @param string|null $lodgingFolioNumber The card acceptor’s internal invoice or billing ID reference number. * Max length: 25 characters. * Must not start with a space *Must not be all zeros.
+     * @param string|null $lodgingFolioNumber The card acceptor’s internal invoice or billing ID reference number. * Max length: 25 characters * Must not start with a space * Must not contain any special characters * Must not be all zeros.
      *
      * @return self
      */
@@ -641,7 +641,7 @@ class AdditionalDataLodging implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets lodgingPropertyPhoneNumber
      *
-     * @param string|null $lodgingPropertyPhoneNumber The lodging property location's phone number. * Format: numeric. * Min length: 10 characters * Max length: 17 characters * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not contain any special characters such as + or - *Must not be all zeros.
+     * @param string|null $lodgingPropertyPhoneNumber The lodging property location's phone number. * Format: numeric * Min length: 10 characters * Max length: 17 characters * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not contain any special characters such as + or - * Must not be all zeros.
      *
      * @return self
      */

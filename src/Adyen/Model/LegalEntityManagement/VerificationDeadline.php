@@ -248,6 +248,7 @@ class VerificationDeadline implements ModelInterface, ArrayAccess, \JsonSerializ
     public const CAPABILITIES_ISSUE_CARD = 'issueCard';
     public const CAPABILITIES_ISSUE_CARD_COMMERCIAL = 'issueCardCommercial';
     public const CAPABILITIES_ISSUE_CARD_CONSUMER = 'issueCardConsumer';
+    public const CAPABILITIES_ISSUE_CREDIT_LIMIT = 'issueCreditLimit';
     public const CAPABILITIES_LOCAL_ACCEPTANCE = 'localAcceptance';
     public const CAPABILITIES_PAYOUT = 'payout';
     public const CAPABILITIES_PAYOUT_TO_TRANSFER_INSTRUMENT = 'payoutToTransferInstrument';
@@ -307,6 +308,7 @@ class VerificationDeadline implements ModelInterface, ArrayAccess, \JsonSerializ
             self::CAPABILITIES_ISSUE_CARD,
             self::CAPABILITIES_ISSUE_CARD_COMMERCIAL,
             self::CAPABILITIES_ISSUE_CARD_CONSUMER,
+            self::CAPABILITIES_ISSUE_CREDIT_LIMIT,
             self::CAPABILITIES_LOCAL_ACCEPTANCE,
             self::CAPABILITIES_PAYOUT,
             self::CAPABILITIES_PAYOUT_TO_TRANSFER_INSTRUMENT,

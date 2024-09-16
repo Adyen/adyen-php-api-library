@@ -49,12 +49,15 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'paymentMethodType' => 'string',
         'type' => 'string',
         'url' => 'string',
+        'accountNumber' => 'string',
         'beneficiary' => 'string',
         'bic' => 'string',
         'downloadUrl' => 'string',
         'iban' => 'string',
         'reference' => 'string',
+        'routingNumber' => 'string',
         'shopperEmail' => 'string',
+        'sortCode' => 'string',
         'totalAmount' => '\Adyen\Model\Checkout\Amount',
         'authorisationToken' => 'string',
         'token' => 'string',
@@ -91,12 +94,15 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'paymentMethodType' => null,
         'type' => null,
         'url' => null,
+        'accountNumber' => null,
         'beneficiary' => null,
         'bic' => null,
         'downloadUrl' => null,
         'iban' => null,
         'reference' => null,
+        'routingNumber' => null,
         'shopperEmail' => null,
+        'sortCode' => null,
         'totalAmount' => null,
         'authorisationToken' => null,
         'token' => null,
@@ -131,12 +137,15 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'paymentMethodType' => false,
         'type' => false,
         'url' => false,
+        'accountNumber' => false,
         'beneficiary' => false,
         'bic' => false,
         'downloadUrl' => false,
         'iban' => false,
         'reference' => false,
+        'routingNumber' => false,
         'shopperEmail' => false,
+        'sortCode' => false,
         'totalAmount' => false,
         'authorisationToken' => false,
         'token' => false,
@@ -251,12 +260,15 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'paymentMethodType' => 'paymentMethodType',
         'type' => 'type',
         'url' => 'url',
+        'accountNumber' => 'accountNumber',
         'beneficiary' => 'beneficiary',
         'bic' => 'bic',
         'downloadUrl' => 'downloadUrl',
         'iban' => 'iban',
         'reference' => 'reference',
+        'routingNumber' => 'routingNumber',
         'shopperEmail' => 'shopperEmail',
+        'sortCode' => 'sortCode',
         'totalAmount' => 'totalAmount',
         'authorisationToken' => 'authorisationToken',
         'token' => 'token',
@@ -291,12 +303,15 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'paymentMethodType' => 'setPaymentMethodType',
         'type' => 'setType',
         'url' => 'setUrl',
+        'accountNumber' => 'setAccountNumber',
         'beneficiary' => 'setBeneficiary',
         'bic' => 'setBic',
         'downloadUrl' => 'setDownloadUrl',
         'iban' => 'setIban',
         'reference' => 'setReference',
+        'routingNumber' => 'setRoutingNumber',
         'shopperEmail' => 'setShopperEmail',
+        'sortCode' => 'setSortCode',
         'totalAmount' => 'setTotalAmount',
         'authorisationToken' => 'setAuthorisationToken',
         'token' => 'setToken',
@@ -331,12 +346,15 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'paymentMethodType' => 'getPaymentMethodType',
         'type' => 'getType',
         'url' => 'getUrl',
+        'accountNumber' => 'getAccountNumber',
         'beneficiary' => 'getBeneficiary',
         'bic' => 'getBic',
         'downloadUrl' => 'getDownloadUrl',
         'iban' => 'getIban',
         'reference' => 'getReference',
+        'routingNumber' => 'getRoutingNumber',
         'shopperEmail' => 'getShopperEmail',
+        'sortCode' => 'getSortCode',
         'totalAmount' => 'getTotalAmount',
         'authorisationToken' => 'getAuthorisationToken',
         'token' => 'getToken',
@@ -421,12 +439,15 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('paymentMethodType', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('url', $data ?? [], null);
+        $this->setIfExists('accountNumber', $data ?? [], null);
         $this->setIfExists('beneficiary', $data ?? [], null);
         $this->setIfExists('bic', $data ?? [], null);
         $this->setIfExists('downloadUrl', $data ?? [], null);
         $this->setIfExists('iban', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
+        $this->setIfExists('routingNumber', $data ?? [], null);
         $this->setIfExists('shopperEmail', $data ?? [], null);
+        $this->setIfExists('sortCode', $data ?? [], null);
         $this->setIfExists('totalAmount', $data ?? [], null);
         $this->setIfExists('authorisationToken', $data ?? [], null);
         $this->setIfExists('token', $data ?? [], null);
@@ -594,6 +615,30 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
+     * Gets accountNumber
+     *
+     * @return string|null
+     */
+    public function getAccountNumber()
+    {
+        return $this->container['accountNumber'];
+    }
+
+    /**
+     * Sets accountNumber
+     *
+     * @param string|null $accountNumber The account number of the bank transfer.
+     *
+     * @return self
+     */
+    public function setAccountNumber($accountNumber)
+    {
+        $this->container['accountNumber'] = $accountNumber;
+
+        return $this;
+    }
+
+    /**
      * Gets beneficiary
      *
      * @return string|null
@@ -714,6 +759,30 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
+     * Gets routingNumber
+     *
+     * @return string|null
+     */
+    public function getRoutingNumber()
+    {
+        return $this->container['routingNumber'];
+    }
+
+    /**
+     * Sets routingNumber
+     *
+     * @param string|null $routingNumber The routing number of the bank transfer.
+     *
+     * @return self
+     */
+    public function setRoutingNumber($routingNumber)
+    {
+        $this->container['routingNumber'] = $routingNumber;
+
+        return $this;
+    }
+
+    /**
      * Gets shopperEmail
      *
      * @return string|null
@@ -733,6 +802,30 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setShopperEmail($shopperEmail)
     {
         $this->container['shopperEmail'] = $shopperEmail;
+
+        return $this;
+    }
+
+    /**
+     * Gets sortCode
+     *
+     * @return string|null
+     */
+    public function getSortCode()
+    {
+        return $this->container['sortCode'];
+    }
+
+    /**
+     * Sets sortCode
+     *
+     * @param string|null $sortCode The sort code of the bank transfer.
+     *
+     * @return self
+     */
+    public function setSortCode($sortCode)
+    {
+        $this->container['sortCode'] = $sortCode;
 
         return $this;
     }

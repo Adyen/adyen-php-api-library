@@ -44,13 +44,16 @@ class CheckoutBankTransferAction implements ModelInterface, ArrayAccess, \JsonSe
       * @var string[]
       */
     protected static $openAPITypes = [
+        'accountNumber' => 'string',
         'beneficiary' => 'string',
         'bic' => 'string',
         'downloadUrl' => 'string',
         'iban' => 'string',
         'paymentMethodType' => 'string',
         'reference' => 'string',
+        'routingNumber' => 'string',
         'shopperEmail' => 'string',
+        'sortCode' => 'string',
         'totalAmount' => '\Adyen\Model\Checkout\Amount',
         'type' => 'string',
         'url' => 'string'
@@ -64,13 +67,16 @@ class CheckoutBankTransferAction implements ModelInterface, ArrayAccess, \JsonSe
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'accountNumber' => null,
         'beneficiary' => null,
         'bic' => null,
         'downloadUrl' => null,
         'iban' => null,
         'paymentMethodType' => null,
         'reference' => null,
+        'routingNumber' => null,
         'shopperEmail' => null,
+        'sortCode' => null,
         'totalAmount' => null,
         'type' => null,
         'url' => null
@@ -82,13 +88,16 @@ class CheckoutBankTransferAction implements ModelInterface, ArrayAccess, \JsonSe
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'accountNumber' => false,
         'beneficiary' => false,
         'bic' => false,
         'downloadUrl' => false,
         'iban' => false,
         'paymentMethodType' => false,
         'reference' => false,
+        'routingNumber' => false,
         'shopperEmail' => false,
+        'sortCode' => false,
         'totalAmount' => false,
         'type' => false,
         'url' => false
@@ -180,13 +189,16 @@ class CheckoutBankTransferAction implements ModelInterface, ArrayAccess, \JsonSe
      * @var string[]
      */
     protected static $attributeMap = [
+        'accountNumber' => 'accountNumber',
         'beneficiary' => 'beneficiary',
         'bic' => 'bic',
         'downloadUrl' => 'downloadUrl',
         'iban' => 'iban',
         'paymentMethodType' => 'paymentMethodType',
         'reference' => 'reference',
+        'routingNumber' => 'routingNumber',
         'shopperEmail' => 'shopperEmail',
+        'sortCode' => 'sortCode',
         'totalAmount' => 'totalAmount',
         'type' => 'type',
         'url' => 'url'
@@ -198,13 +210,16 @@ class CheckoutBankTransferAction implements ModelInterface, ArrayAccess, \JsonSe
      * @var string[]
      */
     protected static $setters = [
+        'accountNumber' => 'setAccountNumber',
         'beneficiary' => 'setBeneficiary',
         'bic' => 'setBic',
         'downloadUrl' => 'setDownloadUrl',
         'iban' => 'setIban',
         'paymentMethodType' => 'setPaymentMethodType',
         'reference' => 'setReference',
+        'routingNumber' => 'setRoutingNumber',
         'shopperEmail' => 'setShopperEmail',
+        'sortCode' => 'setSortCode',
         'totalAmount' => 'setTotalAmount',
         'type' => 'setType',
         'url' => 'setUrl'
@@ -216,13 +231,16 @@ class CheckoutBankTransferAction implements ModelInterface, ArrayAccess, \JsonSe
      * @var string[]
      */
     protected static $getters = [
+        'accountNumber' => 'getAccountNumber',
         'beneficiary' => 'getBeneficiary',
         'bic' => 'getBic',
         'downloadUrl' => 'getDownloadUrl',
         'iban' => 'getIban',
         'paymentMethodType' => 'getPaymentMethodType',
         'reference' => 'getReference',
+        'routingNumber' => 'getRoutingNumber',
         'shopperEmail' => 'getShopperEmail',
+        'sortCode' => 'getSortCode',
         'totalAmount' => 'getTotalAmount',
         'type' => 'getType',
         'url' => 'getUrl'
@@ -297,13 +315,16 @@ class CheckoutBankTransferAction implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('accountNumber', $data ?? [], null);
         $this->setIfExists('beneficiary', $data ?? [], null);
         $this->setIfExists('bic', $data ?? [], null);
         $this->setIfExists('downloadUrl', $data ?? [], null);
         $this->setIfExists('iban', $data ?? [], null);
         $this->setIfExists('paymentMethodType', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
+        $this->setIfExists('routingNumber', $data ?? [], null);
         $this->setIfExists('shopperEmail', $data ?? [], null);
+        $this->setIfExists('sortCode', $data ?? [], null);
         $this->setIfExists('totalAmount', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('url', $data ?? [], null);
@@ -362,6 +383,30 @@ class CheckoutBankTransferAction implements ModelInterface, ArrayAccess, \JsonSe
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets accountNumber
+     *
+     * @return string|null
+     */
+    public function getAccountNumber()
+    {
+        return $this->container['accountNumber'];
+    }
+
+    /**
+     * Sets accountNumber
+     *
+     * @param string|null $accountNumber The account number of the bank transfer.
+     *
+     * @return self
+     */
+    public function setAccountNumber($accountNumber)
+    {
+        $this->container['accountNumber'] = $accountNumber;
+
+        return $this;
+    }
 
     /**
      * Gets beneficiary
@@ -508,6 +553,30 @@ class CheckoutBankTransferAction implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
+     * Gets routingNumber
+     *
+     * @return string|null
+     */
+    public function getRoutingNumber()
+    {
+        return $this->container['routingNumber'];
+    }
+
+    /**
+     * Sets routingNumber
+     *
+     * @param string|null $routingNumber The routing number of the bank transfer.
+     *
+     * @return self
+     */
+    public function setRoutingNumber($routingNumber)
+    {
+        $this->container['routingNumber'] = $routingNumber;
+
+        return $this;
+    }
+
+    /**
      * Gets shopperEmail
      *
      * @return string|null
@@ -527,6 +596,30 @@ class CheckoutBankTransferAction implements ModelInterface, ArrayAccess, \JsonSe
     public function setShopperEmail($shopperEmail)
     {
         $this->container['shopperEmail'] = $shopperEmail;
+
+        return $this;
+    }
+
+    /**
+     * Gets sortCode
+     *
+     * @return string|null
+     */
+    public function getSortCode()
+    {
+        return $this->container['sortCode'];
+    }
+
+    /**
+     * Sets sortCode
+     *
+     * @param string|null $sortCode The sort code of the bank transfer.
+     *
+     * @return self
+     */
+    public function setSortCode($sortCode)
+    {
+        $this->container['sortCode'] = $sortCode;
 
         return $this;
     }
