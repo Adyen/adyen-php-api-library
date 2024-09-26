@@ -303,7 +303,7 @@ class AdditionalSettingsResponse implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets excludeEventCodes
      *
-     * @param string[]|null $excludeEventCodes Object containing list of event codes for which the notifcation will not be sent.
+     * @param string[]|null $excludeEventCodes Object containing list of event codes for which the notification will not be sent.
      *
      * @return self
      */
@@ -327,7 +327,7 @@ class AdditionalSettingsResponse implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets includeEventCodes
      *
-     * @param string[]|null $includeEventCodes Object containing list of event codes for which the notifcation will be sent.
+     * @param string[]|null $includeEventCodes Object containing list of event codes for which the notification will be sent.
      *
      * @return self
      */

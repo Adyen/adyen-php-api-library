@@ -46,6 +46,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
     protected static $openAPITypes = [
         'acceptedCountries' => 'string[]',
         'allowBankAccountFormatSelection' => 'bool',
+        'allowDebugUi' => 'bool',
         'allowIntraRegionCrossBorderPayout' => 'bool',
         'changeLegalEntityType' => 'bool',
         'editPrefilledCountry' => 'bool',
@@ -71,6 +72,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
     protected static $openAPIFormats = [
         'acceptedCountries' => null,
         'allowBankAccountFormatSelection' => null,
+        'allowDebugUi' => null,
         'allowIntraRegionCrossBorderPayout' => null,
         'changeLegalEntityType' => null,
         'editPrefilledCountry' => null,
@@ -94,6 +96,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
     protected static $openAPINullables = [
         'acceptedCountries' => false,
         'allowBankAccountFormatSelection' => false,
+        'allowDebugUi' => false,
         'allowIntraRegionCrossBorderPayout' => false,
         'changeLegalEntityType' => false,
         'editPrefilledCountry' => false,
@@ -197,6 +200,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
     protected static $attributeMap = [
         'acceptedCountries' => 'acceptedCountries',
         'allowBankAccountFormatSelection' => 'allowBankAccountFormatSelection',
+        'allowDebugUi' => 'allowDebugUi',
         'allowIntraRegionCrossBorderPayout' => 'allowIntraRegionCrossBorderPayout',
         'changeLegalEntityType' => 'changeLegalEntityType',
         'editPrefilledCountry' => 'editPrefilledCountry',
@@ -220,6 +224,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
     protected static $setters = [
         'acceptedCountries' => 'setAcceptedCountries',
         'allowBankAccountFormatSelection' => 'setAllowBankAccountFormatSelection',
+        'allowDebugUi' => 'setAllowDebugUi',
         'allowIntraRegionCrossBorderPayout' => 'setAllowIntraRegionCrossBorderPayout',
         'changeLegalEntityType' => 'setChangeLegalEntityType',
         'editPrefilledCountry' => 'setEditPrefilledCountry',
@@ -243,6 +248,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
     protected static $getters = [
         'acceptedCountries' => 'getAcceptedCountries',
         'allowBankAccountFormatSelection' => 'getAllowBankAccountFormatSelection',
+        'allowDebugUi' => 'getAllowDebugUi',
         'allowIntraRegionCrossBorderPayout' => 'getAllowIntraRegionCrossBorderPayout',
         'changeLegalEntityType' => 'getChangeLegalEntityType',
         'editPrefilledCountry' => 'getEditPrefilledCountry',
@@ -317,6 +323,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $this->setIfExists('acceptedCountries', $data ?? [], null);
         $this->setIfExists('allowBankAccountFormatSelection', $data ?? [], null);
+        $this->setIfExists('allowDebugUi', $data ?? [], null);
         $this->setIfExists('allowIntraRegionCrossBorderPayout', $data ?? [], null);
         $this->setIfExists('changeLegalEntityType', $data ?? [], null);
         $this->setIfExists('editPrefilledCountry', $data ?? [], null);
@@ -418,6 +425,30 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
     public function setAllowBankAccountFormatSelection($allowBankAccountFormatSelection)
     {
         $this->container['allowBankAccountFormatSelection'] = $allowBankAccountFormatSelection;
+
+        return $this;
+    }
+
+    /**
+     * Gets allowDebugUi
+     *
+     * @return bool|null
+     */
+    public function getAllowDebugUi()
+    {
+        return $this->container['allowDebugUi'];
+    }
+
+    /**
+     * Sets allowDebugUi
+     *
+     * @param bool|null $allowDebugUi Default value: **true**  Indicates if the user may press a hidden key combination to open the HO debugging UI.
+     *
+     * @return self
+     */
+    public function setAllowDebugUi($allowDebugUi)
+    {
+        $this->container['allowDebugUi'] = $allowDebugUi;
 
         return $this;
     }
