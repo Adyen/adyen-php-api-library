@@ -1105,7 +1105,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets lineItems
      *
-     * @param \Adyen\Model\Checkout\LineItem[]|null $lineItems Price and product information about the purchased items, to be included on the invoice sent to the shopper. This parameter is required for open invoice (_buy now, pay later_) payment methods such Afterpay, Clearpay, Klarna, RatePay, and Zip.
+     * @param \Adyen\Model\Checkout\LineItem[]|null $lineItems Price and product information about the purchased items, to be included on the invoice sent to the shopper. This parameter is required for open invoice (_buy now, pay later_) payment methods such Afterpay, Clearpay, Klarna, RatePay, Riverty, and Zip.
      *
      * @return self
      */

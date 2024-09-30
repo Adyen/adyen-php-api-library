@@ -48,6 +48,7 @@ class Mandate implements ModelInterface, ArrayAccess, \JsonSerializable
         'amountRule' => 'string',
         'billingAttemptsRule' => 'string',
         'billingDay' => 'string',
+        'count' => 'string',
         'endsAt' => 'string',
         'frequency' => 'string',
         'remarks' => 'string',
@@ -66,6 +67,7 @@ class Mandate implements ModelInterface, ArrayAccess, \JsonSerializable
         'amountRule' => null,
         'billingAttemptsRule' => null,
         'billingDay' => null,
+        'count' => null,
         'endsAt' => null,
         'frequency' => null,
         'remarks' => null,
@@ -82,6 +84,7 @@ class Mandate implements ModelInterface, ArrayAccess, \JsonSerializable
         'amountRule' => false,
         'billingAttemptsRule' => false,
         'billingDay' => false,
+        'count' => false,
         'endsAt' => false,
         'frequency' => false,
         'remarks' => false,
@@ -178,6 +181,7 @@ class Mandate implements ModelInterface, ArrayAccess, \JsonSerializable
         'amountRule' => 'amountRule',
         'billingAttemptsRule' => 'billingAttemptsRule',
         'billingDay' => 'billingDay',
+        'count' => 'count',
         'endsAt' => 'endsAt',
         'frequency' => 'frequency',
         'remarks' => 'remarks',
@@ -194,6 +198,7 @@ class Mandate implements ModelInterface, ArrayAccess, \JsonSerializable
         'amountRule' => 'setAmountRule',
         'billingAttemptsRule' => 'setBillingAttemptsRule',
         'billingDay' => 'setBillingDay',
+        'count' => 'setCount',
         'endsAt' => 'setEndsAt',
         'frequency' => 'setFrequency',
         'remarks' => 'setRemarks',
@@ -210,6 +215,7 @@ class Mandate implements ModelInterface, ArrayAccess, \JsonSerializable
         'amountRule' => 'getAmountRule',
         'billingAttemptsRule' => 'getBillingAttemptsRule',
         'billingDay' => 'getBillingDay',
+        'count' => 'getCount',
         'endsAt' => 'getEndsAt',
         'frequency' => 'getFrequency',
         'remarks' => 'getRemarks',
@@ -333,6 +339,7 @@ class Mandate implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('amountRule', $data ?? [], null);
         $this->setIfExists('billingAttemptsRule', $data ?? [], null);
         $this->setIfExists('billingDay', $data ?? [], null);
+        $this->setIfExists('count', $data ?? [], null);
         $this->setIfExists('endsAt', $data ?? [], null);
         $this->setIfExists('frequency', $data ?? [], null);
         $this->setIfExists('remarks', $data ?? [], null);
@@ -529,6 +536,30 @@ class Mandate implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setBillingDay($billingDay)
     {
         $this->container['billingDay'] = $billingDay;
+
+        return $this;
+    }
+
+    /**
+     * Gets count
+     *
+     * @return string|null
+     */
+    public function getCount()
+    {
+        return $this->container['count'];
+    }
+
+    /**
+     * Sets count
+     *
+     * @param string|null $count The number of transactions that can be performed within the given frequency.
+     *
+     * @return self
+     */
+    public function setCount($count)
+    {
+        $this->container['count'] = $count;
 
         return $this;
     }
