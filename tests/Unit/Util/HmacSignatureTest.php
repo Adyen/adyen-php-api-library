@@ -58,7 +58,6 @@ class HmacSignatureTest extends TestCase
         }
     }
 
-
     public function testMerchantReferenceWithSpace()
     {
         $params = json_decode('{
