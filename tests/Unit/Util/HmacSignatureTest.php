@@ -57,6 +57,28 @@ class HmacSignatureTest extends TestCase
             $this->fail('Unexpected exception');
         }
     }
+
+
+    public function testMerchantReferenceWithSpace()
+    {
+        $params = json_decode('{
+            "pspReference": "7914073381342284",
+            "merchantAccountCode": "TestMerchant",
+            "merchantReference": " TestPayment-1407325143704",
+            "amount": {
+                "value": 1130,
+                "currency": "EUR"
+            },
+            "eventCode": "AUTHORISATION",
+            "success": "true"
+        }', true);
+        $hmacKey = "DFB1EB5485895CFA84146406857104ABB4CBCABDC8AAF103A624C8F6A3EAAB00";
+        $hmac = new HmacSignature();
+        $hmacCalculation = $hmac->calculateNotificationHMAC($hmacKey, $params);
+        $expectedHmac = "kLZtgnXU86m/yjnpBD4aqESFgnoDcy1fGOP1Db/L3+4=";
+        $this->assertEquals($expectedHmac, $hmacCalculation, "The recalculated HMAC does not match the expected value.");        
+    }
+
     public function testHmacSignatureForRefundWithZeroValue()
     {
         $params = json_decode('{
