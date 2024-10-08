@@ -75,7 +75,7 @@ class HmacSignatureTest extends TestCase
         $hmac = new HmacSignature();
         $hmacCalculation = $hmac->calculateNotificationHMAC($hmacKey, $params);
         $expectedHmac = "kLZtgnXU86m/yjnpBD4aqESFgnoDcy1fGOP1Db/L3+4=";
-        $this->assertEquals($expectedHmac, $hmacCalculation, "The recalculated HMAC does not match the expected value.");        
+        $this->assertEquals($expectedHmac, $hmacCalculation, "The recalculated HMAC does not match the expected value."); 
     }
 
     public function testHmacSignatureForRefundWithZeroValue()
