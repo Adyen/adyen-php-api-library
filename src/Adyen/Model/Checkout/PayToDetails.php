@@ -45,7 +45,9 @@ class PayToDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'checkoutAttemptId' => 'string',
+        'recurringDetailReference' => 'string',
         'shopperAccountIdentifier' => 'string',
+        'storedPaymentMethodId' => 'string',
         'type' => 'string'
     ];
 
@@ -58,7 +60,9 @@ class PayToDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'checkoutAttemptId' => null,
+        'recurringDetailReference' => null,
         'shopperAccountIdentifier' => null,
+        'storedPaymentMethodId' => null,
         'type' => null
     ];
 
@@ -69,7 +73,9 @@ class PayToDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'checkoutAttemptId' => false,
+        'recurringDetailReference' => false,
         'shopperAccountIdentifier' => false,
+        'storedPaymentMethodId' => false,
         'type' => false
     ];
 
@@ -160,7 +166,9 @@ class PayToDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'checkoutAttemptId' => 'checkoutAttemptId',
+        'recurringDetailReference' => 'recurringDetailReference',
         'shopperAccountIdentifier' => 'shopperAccountIdentifier',
+        'storedPaymentMethodId' => 'storedPaymentMethodId',
         'type' => 'type'
     ];
 
@@ -171,7 +179,9 @@ class PayToDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'checkoutAttemptId' => 'setCheckoutAttemptId',
+        'recurringDetailReference' => 'setRecurringDetailReference',
         'shopperAccountIdentifier' => 'setShopperAccountIdentifier',
+        'storedPaymentMethodId' => 'setStoredPaymentMethodId',
         'type' => 'setType'
     ];
 
@@ -182,7 +192,9 @@ class PayToDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'checkoutAttemptId' => 'getCheckoutAttemptId',
+        'recurringDetailReference' => 'getRecurringDetailReference',
         'shopperAccountIdentifier' => 'getShopperAccountIdentifier',
+        'storedPaymentMethodId' => 'getStoredPaymentMethodId',
         'type' => 'getType'
     ];
 
@@ -256,7 +268,9 @@ class PayToDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
+        $this->setIfExists('recurringDetailReference', $data ?? [], null);
         $this->setIfExists('shopperAccountIdentifier', $data ?? [], null);
+        $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -336,6 +350,32 @@ class PayToDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets recurringDetailReference
+     *
+     * @return string|null
+     * @deprecated
+     */
+    public function getRecurringDetailReference()
+    {
+        return $this->container['recurringDetailReference'];
+    }
+
+    /**
+     * Sets recurringDetailReference
+     *
+     * @param string|null $recurringDetailReference This is the `recurringDetailReference` returned in the response when you created the token.
+     *
+     * @return self
+     * @deprecated
+     */
+    public function setRecurringDetailReference($recurringDetailReference)
+    {
+        $this->container['recurringDetailReference'] = $recurringDetailReference;
+
+        return $this;
+    }
+
+    /**
      * Gets shopperAccountIdentifier
      *
      * @return string|null
@@ -355,6 +395,30 @@ class PayToDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setShopperAccountIdentifier($shopperAccountIdentifier)
     {
         $this->container['shopperAccountIdentifier'] = $shopperAccountIdentifier;
+
+        return $this;
+    }
+
+    /**
+     * Gets storedPaymentMethodId
+     *
+     * @return string|null
+     */
+    public function getStoredPaymentMethodId()
+    {
+        return $this->container['storedPaymentMethodId'];
+    }
+
+    /**
+     * Sets storedPaymentMethodId
+     *
+     * @param string|null $storedPaymentMethodId This is the `recurringDetailReference` returned in the response when you created the token.
+     *
+     * @return self
+     */
+    public function setStoredPaymentMethodId($storedPaymentMethodId)
+    {
+        $this->container['storedPaymentMethodId'] = $storedPaymentMethodId;
 
         return $this;
     }

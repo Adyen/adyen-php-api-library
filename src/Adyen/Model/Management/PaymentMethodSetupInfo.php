@@ -64,7 +64,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'googlePay' => '\Adyen\Model\Management\GooglePayInfo',
         'ideal' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'interacCard' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
-        'jcb' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
+        'jcb' => '\Adyen\Model\Management\JCBInfo',
         'klarna' => '\Adyen\Model\Management\KlarnaInfo',
         'maestro' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'mc' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
@@ -1246,7 +1246,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets jcb
      *
-     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     * @return \Adyen\Model\Management\JCBInfo|null
      */
     public function getJcb()
     {
@@ -1256,7 +1256,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets jcb
      *
-     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $jcb jcb
+     * @param \Adyen\Model\Management\JCBInfo|null $jcb jcb
      *
      * @return self
      */

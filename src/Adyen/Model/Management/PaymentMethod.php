@@ -67,7 +67,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'string',
         'ideal' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'interacCard' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
-        'jcb' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
+        'jcb' => '\Adyen\Model\Management\JCBInfo',
         'klarna' => '\Adyen\Model\Management\KlarnaInfo',
         'maestro' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'mc' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
@@ -1183,7 +1183,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets jcb
      *
-     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     * @return \Adyen\Model\Management\JCBInfo|null
      */
     public function getJcb()
     {
@@ -1193,7 +1193,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets jcb
      *
-     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $jcb jcb
+     * @param \Adyen\Model\Management\JCBInfo|null $jcb jcb
      *
      * @return self
      */
