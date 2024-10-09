@@ -44,11 +44,8 @@ class BusinessLineInfoUpdate implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
-        'capability' => 'string',
         'industryCode' => 'string',
-        'legalEntityId' => 'string',
         'salesChannels' => 'string[]',
-        'service' => 'string',
         'sourceOfFunds' => '\Adyen\Model\LegalEntityManagement\SourceOfFunds',
         'webData' => '\Adyen\Model\LegalEntityManagement\WebData[]',
         'webDataExemption' => '\Adyen\Model\LegalEntityManagement\WebDataExemption'
@@ -62,11 +59,8 @@ class BusinessLineInfoUpdate implements ModelInterface, ArrayAccess, \JsonSerial
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'capability' => null,
         'industryCode' => null,
-        'legalEntityId' => null,
         'salesChannels' => null,
-        'service' => null,
         'sourceOfFunds' => null,
         'webData' => null,
         'webDataExemption' => null
@@ -78,11 +72,8 @@ class BusinessLineInfoUpdate implements ModelInterface, ArrayAccess, \JsonSerial
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'capability' => false,
         'industryCode' => false,
-        'legalEntityId' => false,
         'salesChannels' => false,
-        'service' => false,
         'sourceOfFunds' => false,
         'webData' => false,
         'webDataExemption' => false
@@ -174,11 +165,8 @@ class BusinessLineInfoUpdate implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
-        'capability' => 'capability',
         'industryCode' => 'industryCode',
-        'legalEntityId' => 'legalEntityId',
         'salesChannels' => 'salesChannels',
-        'service' => 'service',
         'sourceOfFunds' => 'sourceOfFunds',
         'webData' => 'webData',
         'webDataExemption' => 'webDataExemption'
@@ -190,11 +178,8 @@ class BusinessLineInfoUpdate implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
-        'capability' => 'setCapability',
         'industryCode' => 'setIndustryCode',
-        'legalEntityId' => 'setLegalEntityId',
         'salesChannels' => 'setSalesChannels',
-        'service' => 'setService',
         'sourceOfFunds' => 'setSourceOfFunds',
         'webData' => 'setWebData',
         'webDataExemption' => 'setWebDataExemption'
@@ -206,11 +191,8 @@ class BusinessLineInfoUpdate implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
-        'capability' => 'getCapability',
         'industryCode' => 'getIndustryCode',
-        'legalEntityId' => 'getLegalEntityId',
         'salesChannels' => 'getSalesChannels',
-        'service' => 'getService',
         'sourceOfFunds' => 'getSourceOfFunds',
         'webData' => 'getWebData',
         'webDataExemption' => 'getWebDataExemption'
@@ -257,37 +239,7 @@ class BusinessLineInfoUpdate implements ModelInterface, ArrayAccess, \JsonSerial
         return self::$openAPIModelName;
     }
 
-    public const CAPABILITY_RECEIVE_PAYMENTS = 'receivePayments';
-    public const CAPABILITY_RECEIVE_FROM_PLATFORM_PAYMENTS = 'receiveFromPlatformPayments';
-    public const CAPABILITY_ISSUE_BANK_ACCOUNT = 'issueBankAccount';
-    public const SERVICE_PAYMENT_PROCESSING = 'paymentProcessing';
-    public const SERVICE_BANKING = 'banking';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getCapabilityAllowableValues()
-    {
-        return [
-            self::CAPABILITY_RECEIVE_PAYMENTS,
-            self::CAPABILITY_RECEIVE_FROM_PLATFORM_PAYMENTS,
-            self::CAPABILITY_ISSUE_BANK_ACCOUNT,
-        ];
-    }
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getServiceAllowableValues()
-    {
-        return [
-            self::SERVICE_PAYMENT_PROCESSING,
-            self::SERVICE_BANKING,
-        ];
-    }
     /**
      * Associative array for storing property values
      *
@@ -303,11 +255,8 @@ class BusinessLineInfoUpdate implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('capability', $data ?? [], null);
         $this->setIfExists('industryCode', $data ?? [], null);
-        $this->setIfExists('legalEntityId', $data ?? [], null);
         $this->setIfExists('salesChannels', $data ?? [], null);
-        $this->setIfExists('service', $data ?? [], null);
         $this->setIfExists('sourceOfFunds', $data ?? [], null);
         $this->setIfExists('webData', $data ?? [], null);
         $this->setIfExists('webDataExemption', $data ?? [], null);
@@ -340,24 +289,6 @@ class BusinessLineInfoUpdate implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getCapabilityAllowableValues();
-        if (!is_null($this->container['capability']) && !in_array($this->container['capability'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'capability', must be one of '%s'",
-                $this->container['capability'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        $allowedValues = $this->getServiceAllowableValues();
-        if (!is_null($this->container['service']) && !in_array($this->container['service'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'service', must be one of '%s'",
-                $this->container['service'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -372,42 +303,6 @@ class BusinessLineInfoUpdate implements ModelInterface, ArrayAccess, \JsonSerial
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets capability
-     *
-     * @return string|null
-     * @deprecated
-     */
-    public function getCapability()
-    {
-        return $this->container['capability'];
-    }
-
-    /**
-     * Sets capability
-     *
-     * @param string|null $capability The capability for which you are creating the business line. For example, **receivePayments**.
-     *
-     * @return self
-     * @deprecated
-     */
-    public function setCapability($capability)
-    {
-        $allowedValues = $this->getCapabilityAllowableValues();
-        if (!in_array($capability, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'capability', must be one of '%s'",
-                    $capability,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['capability'] = $capability;
-
-        return $this;
-    }
 
     /**
      * Gets industryCode
@@ -434,30 +329,6 @@ class BusinessLineInfoUpdate implements ModelInterface, ArrayAccess, \JsonSerial
     }
 
     /**
-     * Gets legalEntityId
-     *
-     * @return string|null
-     */
-    public function getLegalEntityId()
-    {
-        return $this->container['legalEntityId'];
-    }
-
-    /**
-     * Sets legalEntityId
-     *
-     * @param string|null $legalEntityId Unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) that owns the business line.
-     *
-     * @return self
-     */
-    public function setLegalEntityId($legalEntityId)
-    {
-        $this->container['legalEntityId'] = $legalEntityId;
-
-        return $this;
-    }
-
-    /**
      * Gets salesChannels
      *
      * @return string[]|null
@@ -477,40 +348,6 @@ class BusinessLineInfoUpdate implements ModelInterface, ArrayAccess, \JsonSerial
     public function setSalesChannels($salesChannels)
     {
         $this->container['salesChannels'] = $salesChannels;
-
-        return $this;
-    }
-
-    /**
-     * Gets service
-     *
-     * @return string|null
-     */
-    public function getService()
-    {
-        return $this->container['service'];
-    }
-
-    /**
-     * Sets service
-     *
-     * @param string|null $service The service for which you are creating the business line.    Possible values: *  **paymentProcessing** *  **banking**
-     *
-     * @return self
-     */
-    public function setService($service)
-    {
-        $allowedValues = $this->getServiceAllowableValues();
-        if (!in_array($service, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'service', must be one of '%s'",
-                    $service,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['service'] = $service;
 
         return $this;
     }

@@ -343,7 +343,7 @@ class CreateOrderRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets expiresAt
      *
-     * @param string|null $expiresAt The date that order expires; e.g. 2019-03-23T12:25:28Z. If not provided, the default expiry duration is 1 day.
+     * @param string|null $expiresAt The date when the order should expire. If not provided, the default expiry duration is 1 day.  [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**.
      *
      * @return self
      */
