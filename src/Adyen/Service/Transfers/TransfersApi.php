@@ -40,6 +40,34 @@ class TransfersApi extends Service
     }
 
     /**
+    * Approve initiated transfers
+    *
+    * @param \Adyen\Model\Transfers\ApproveTransfersRequest $approveTransfersRequest
+    * @param array|null $requestOptions
+
+    * @throws AdyenException
+    */
+    public function approveInitiatedTransfers(\Adyen\Model\Transfers\ApproveTransfersRequest $approveTransfersRequest, array $requestOptions = null)
+    {
+        $endpoint = $this->baseURL . "/transfers/approve";
+        $this->requestHttp($endpoint, strtolower('POST'), (array) $approveTransfersRequest->jsonSerialize(), $requestOptions);
+    }
+
+    /**
+    * Cancel initiated transfers
+    *
+    * @param \Adyen\Model\Transfers\CancelTransfersRequest $cancelTransfersRequest
+    * @param array|null $requestOptions
+
+    * @throws AdyenException
+    */
+    public function cancelInitiatedTransfers(\Adyen\Model\Transfers\CancelTransfersRequest $cancelTransfersRequest, array $requestOptions = null)
+    {
+        $endpoint = $this->baseURL . "/transfers/cancel";
+        $this->requestHttp($endpoint, strtolower('POST'), (array) $cancelTransfersRequest->jsonSerialize(), $requestOptions);
+    }
+
+    /**
     * Get all transfers
     *
     * @param array|null $requestOptions ['queryParams' => ['balancePlatform'=> string, 'accountHolderId'=> string, 'balanceAccountId'=> string, 'paymentInstrumentId'=> string, 'reference'=> string, 'category'=> string, 'createdSince'=> \DateTime, 'createdUntil'=> \DateTime, 'cursor'=> string, 'limit'=> int]]

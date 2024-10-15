@@ -484,7 +484,7 @@ class ReportNotificationData implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets reportType
      *
-     * @param string $reportType Type of report.
+     * @param string $reportType The type of report. Possible values:  - `balanceplatform_accounting_interactive_report` - `balanceplatform_accounting_report` - `balanceplatform_balance_report` - `balanceplatform_fee_report` - `balanceplatform_payment_instrument_report` - `balanceplatform_payout_report` - `balanceplatform_statement_report`
      *
      * @return self
      */

@@ -46,6 +46,7 @@ class Currency implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'amount' => 'int',
         'currencyCode' => 'string',
+        'maxAmount' => 'int',
         'percentage' => 'double'
     ];
 
@@ -59,6 +60,7 @@ class Currency implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'amount' => 'int32',
         'currencyCode' => null,
+        'maxAmount' => 'int32',
         'percentage' => 'double'
     ];
 
@@ -70,6 +72,7 @@ class Currency implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPINullables = [
         'amount' => true,
         'currencyCode' => false,
+        'maxAmount' => true,
         'percentage' => false
     ];
 
@@ -161,6 +164,7 @@ class Currency implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'amount' => 'amount',
         'currencyCode' => 'currencyCode',
+        'maxAmount' => 'maxAmount',
         'percentage' => 'percentage'
     ];
 
@@ -172,6 +176,7 @@ class Currency implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'amount' => 'setAmount',
         'currencyCode' => 'setCurrencyCode',
+        'maxAmount' => 'setMaxAmount',
         'percentage' => 'setPercentage'
     ];
 
@@ -183,6 +188,7 @@ class Currency implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'amount' => 'getAmount',
         'currencyCode' => 'getCurrencyCode',
+        'maxAmount' => 'getMaxAmount',
         'percentage' => 'getPercentage'
     ];
 
@@ -245,6 +251,7 @@ class Currency implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('amount', $data ?? [], null);
         $this->setIfExists('currencyCode', $data ?? [], null);
+        $this->setIfExists('maxAmount', $data ?? [], null);
         $this->setIfExists('percentage', $data ?? [], null);
     }
 
@@ -337,6 +344,30 @@ class Currency implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setCurrencyCode($currencyCode)
     {
         $this->container['currencyCode'] = $currencyCode;
+
+        return $this;
+    }
+
+    /**
+     * Gets maxAmount
+     *
+     * @return int|null
+     */
+    public function getMaxAmount()
+    {
+        return $this->container['maxAmount'];
+    }
+
+    /**
+     * Sets maxAmount
+     *
+     * @param int|null $maxAmount The maximum surcharge amount per transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+     *
+     * @return self
+     */
+    public function setMaxAmount($maxAmount)
+    {
+        $this->container['maxAmount'] = $maxAmount;
 
         return $this;
     }

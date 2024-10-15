@@ -46,8 +46,7 @@ class SplitConfiguration implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $openAPITypes = [
         'description' => 'string',
         'rules' => '\Adyen\Model\Management\SplitConfigurationRule[]',
-        'splitConfigurationId' => 'string',
-        'stores' => 'string[]'
+        'splitConfigurationId' => 'string'
     ];
 
     /**
@@ -60,8 +59,7 @@ class SplitConfiguration implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $openAPIFormats = [
         'description' => null,
         'rules' => null,
-        'splitConfigurationId' => null,
-        'stores' => null
+        'splitConfigurationId' => null
     ];
 
     /**
@@ -72,8 +70,7 @@ class SplitConfiguration implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $openAPINullables = [
         'description' => false,
         'rules' => false,
-        'splitConfigurationId' => false,
-        'stores' => false
+        'splitConfigurationId' => false
     ];
 
     /**
@@ -164,8 +161,7 @@ class SplitConfiguration implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $attributeMap = [
         'description' => 'description',
         'rules' => 'rules',
-        'splitConfigurationId' => 'splitConfigurationId',
-        'stores' => 'stores'
+        'splitConfigurationId' => 'splitConfigurationId'
     ];
 
     /**
@@ -176,8 +172,7 @@ class SplitConfiguration implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $setters = [
         'description' => 'setDescription',
         'rules' => 'setRules',
-        'splitConfigurationId' => 'setSplitConfigurationId',
-        'stores' => 'setStores'
+        'splitConfigurationId' => 'setSplitConfigurationId'
     ];
 
     /**
@@ -188,8 +183,7 @@ class SplitConfiguration implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $getters = [
         'description' => 'getDescription',
         'rules' => 'getRules',
-        'splitConfigurationId' => 'getSplitConfigurationId',
-        'stores' => 'getStores'
+        'splitConfigurationId' => 'getSplitConfigurationId'
     ];
 
     /**
@@ -252,7 +246,6 @@ class SplitConfiguration implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('rules', $data ?? [], null);
         $this->setIfExists('splitConfigurationId', $data ?? [], null);
-        $this->setIfExists('stores', $data ?? [], null);
     }
 
     /**
@@ -371,30 +364,6 @@ class SplitConfiguration implements ModelInterface, ArrayAccess, \JsonSerializab
     public function setSplitConfigurationId($splitConfigurationId)
     {
         $this->container['splitConfigurationId'] = $splitConfigurationId;
-
-        return $this;
-    }
-
-    /**
-     * Gets stores
-     *
-     * @return string[]|null
-     */
-    public function getStores()
-    {
-        return $this->container['stores'];
-    }
-
-    /**
-     * Sets stores
-     *
-     * @param string[]|null $stores List of stores to which the split configuration applies.
-     *
-     * @return self
-     */
-    public function setStores($stores)
-    {
-        $this->container['stores'] = $stores;
 
         return $this;
     }

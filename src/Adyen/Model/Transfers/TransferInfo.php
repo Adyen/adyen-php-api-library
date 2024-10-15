@@ -54,6 +54,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'priority' => 'string',
         'reference' => 'string',
         'referenceForBeneficiary' => 'string',
+        'review' => '\Adyen\Model\Transfers\TransferRequestReview',
         'type' => 'string',
         'ultimateParty' => '\Adyen\Model\Transfers\UltimatePartyIdentification'
     ];
@@ -76,6 +77,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'priority' => null,
         'reference' => null,
         'referenceForBeneficiary' => null,
+        'review' => null,
         'type' => null,
         'ultimateParty' => null
     ];
@@ -96,6 +98,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'priority' => false,
         'reference' => false,
         'referenceForBeneficiary' => false,
+        'review' => false,
         'type' => false,
         'ultimateParty' => false
     ];
@@ -196,6 +199,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'priority' => 'priority',
         'reference' => 'reference',
         'referenceForBeneficiary' => 'referenceForBeneficiary',
+        'review' => 'review',
         'type' => 'type',
         'ultimateParty' => 'ultimateParty'
     ];
@@ -216,6 +220,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'priority' => 'setPriority',
         'reference' => 'setReference',
         'referenceForBeneficiary' => 'setReferenceForBeneficiary',
+        'review' => 'setReview',
         'type' => 'setType',
         'ultimateParty' => 'setUltimateParty'
     ];
@@ -236,6 +241,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'priority' => 'getPriority',
         'reference' => 'getReference',
         'referenceForBeneficiary' => 'getReferenceForBeneficiary',
+        'review' => 'getReview',
         'type' => 'getType',
         'ultimateParty' => 'getUltimateParty'
     ];
@@ -387,6 +393,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('priority', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
         $this->setIfExists('referenceForBeneficiary', $data ?? [], null);
+        $this->setIfExists('review', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('ultimateParty', $data ?? [], null);
     }
@@ -734,6 +741,30 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setReferenceForBeneficiary($referenceForBeneficiary)
     {
         $this->container['referenceForBeneficiary'] = $referenceForBeneficiary;
+
+        return $this;
+    }
+
+    /**
+     * Gets review
+     *
+     * @return \Adyen\Model\Transfers\TransferRequestReview|null
+     */
+    public function getReview()
+    {
+        return $this->container['review'];
+    }
+
+    /**
+     * Sets review
+     *
+     * @param \Adyen\Model\Transfers\TransferRequestReview|null $review review
+     *
+     * @return self
+     */
+    public function setReview($review)
+    {
+        $this->container['review'] = $review;
 
         return $this;
     }

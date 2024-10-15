@@ -320,7 +320,7 @@ class Surcharge implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets configurations
      *
-     * @param \Adyen\Model\Management\Configuration[]|null $configurations Surcharge fees or percentages for specific payment methods, funding sources (credit or debit), and currencies.
+     * @param \Adyen\Model\Management\Configuration[]|null $configurations Surcharge fees or percentages for specific cards, funding sources (credit or debit), and currencies.
      *
      * @return self
      */

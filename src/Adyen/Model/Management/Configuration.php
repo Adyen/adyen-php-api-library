@@ -45,6 +45,7 @@ class Configuration implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'brand' => 'string',
+        'commercial' => 'bool',
         'country' => 'string[]',
         'currencies' => '\Adyen\Model\Management\Currency[]',
         'sources' => 'string[]'
@@ -59,6 +60,7 @@ class Configuration implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'brand' => null,
+        'commercial' => null,
         'country' => null,
         'currencies' => null,
         'sources' => null
@@ -71,6 +73,7 @@ class Configuration implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'brand' => false,
+        'commercial' => false,
         'country' => false,
         'currencies' => false,
         'sources' => false
@@ -163,6 +166,7 @@ class Configuration implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'brand' => 'brand',
+        'commercial' => 'commercial',
         'country' => 'country',
         'currencies' => 'currencies',
         'sources' => 'sources'
@@ -175,6 +179,7 @@ class Configuration implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'brand' => 'setBrand',
+        'commercial' => 'setCommercial',
         'country' => 'setCountry',
         'currencies' => 'setCurrencies',
         'sources' => 'setSources'
@@ -187,6 +192,7 @@ class Configuration implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'brand' => 'getBrand',
+        'commercial' => 'getCommercial',
         'country' => 'getCountry',
         'currencies' => 'getCurrencies',
         'sources' => 'getSources'
@@ -250,6 +256,7 @@ class Configuration implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('brand', $data ?? [], null);
+        $this->setIfExists('commercial', $data ?? [], null);
         $this->setIfExists('country', $data ?? [], null);
         $this->setIfExists('currencies', $data ?? [], null);
         $this->setIfExists('sources', $data ?? [], null);
@@ -328,6 +335,30 @@ class Configuration implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets commercial
+     *
+     * @return bool|null
+     */
+    public function getCommercial()
+    {
+        return $this->container['commercial'];
+    }
+
+    /**
+     * Sets commercial
+     *
+     * @param bool|null $commercial Set to **true** to apply surcharges only to commercial/business cards.
+     *
+     * @return self
+     */
+    public function setCommercial($commercial)
+    {
+        $this->container['commercial'] = $commercial;
+
+        return $this;
+    }
+
+    /**
      * Gets country
      *
      * @return string[]|null
@@ -340,7 +371,7 @@ class Configuration implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets country
      *
-     * @param string[]|null $country Countries, to filter different surcharge amounts for domestic or international cards.
+     * @param string[]|null $country The country/region of the card issuer. If used, the surcharge settings only apply to the card issued in that country/region.
      *
      * @return self
      */
@@ -364,7 +395,7 @@ class Configuration implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets currencies
      *
-     * @param \Adyen\Model\Management\Currency[] $currencies Currency, and surcharge percentage or amount.
+     * @param \Adyen\Model\Management\Currency[] $currencies Currency and percentage or amount of the surcharge.
      *
      * @return self
      */

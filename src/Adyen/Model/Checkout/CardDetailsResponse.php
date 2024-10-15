@@ -45,6 +45,8 @@ class CardDetailsResponse implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static $openAPITypes = [
         'brands' => '\Adyen\Model\Checkout\CardBrandDetails[]',
+        'fundingSource' => 'string',
+        'isCardCommercial' => 'bool',
         'issuingCountryCode' => 'string'
     ];
 
@@ -57,6 +59,8 @@ class CardDetailsResponse implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static $openAPIFormats = [
         'brands' => null,
+        'fundingSource' => null,
+        'isCardCommercial' => null,
         'issuingCountryCode' => null
     ];
 
@@ -67,6 +71,8 @@ class CardDetailsResponse implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static $openAPINullables = [
         'brands' => false,
+        'fundingSource' => false,
+        'isCardCommercial' => false,
         'issuingCountryCode' => false
     ];
 
@@ -157,6 +163,8 @@ class CardDetailsResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     protected static $attributeMap = [
         'brands' => 'brands',
+        'fundingSource' => 'fundingSource',
+        'isCardCommercial' => 'isCardCommercial',
         'issuingCountryCode' => 'issuingCountryCode'
     ];
 
@@ -167,6 +175,8 @@ class CardDetailsResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     protected static $setters = [
         'brands' => 'setBrands',
+        'fundingSource' => 'setFundingSource',
+        'isCardCommercial' => 'setIsCardCommercial',
         'issuingCountryCode' => 'setIssuingCountryCode'
     ];
 
@@ -177,6 +187,8 @@ class CardDetailsResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     protected static $getters = [
         'brands' => 'getBrands',
+        'fundingSource' => 'getFundingSource',
+        'isCardCommercial' => 'getIsCardCommercial',
         'issuingCountryCode' => 'getIssuingCountryCode'
     ];
 
@@ -238,6 +250,8 @@ class CardDetailsResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     public function __construct(array $data = null)
     {
         $this->setIfExists('brands', $data ?? [], null);
+        $this->setIfExists('fundingSource', $data ?? [], null);
+        $this->setIfExists('isCardCommercial', $data ?? [], null);
         $this->setIfExists('issuingCountryCode', $data ?? [], null);
     }
 
@@ -303,6 +317,54 @@ class CardDetailsResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     public function setBrands($brands)
     {
         $this->container['brands'] = $brands;
+
+        return $this;
+    }
+
+    /**
+     * Gets fundingSource
+     *
+     * @return string|null
+     */
+    public function getFundingSource()
+    {
+        return $this->container['fundingSource'];
+    }
+
+    /**
+     * Sets fundingSource
+     *
+     * @param string|null $fundingSource The funding source of the card, for example **DEBIT**, **CREDIT**, or **PREPAID**.
+     *
+     * @return self
+     */
+    public function setFundingSource($fundingSource)
+    {
+        $this->container['fundingSource'] = $fundingSource;
+
+        return $this;
+    }
+
+    /**
+     * Gets isCardCommercial
+     *
+     * @return bool|null
+     */
+    public function getIsCardCommercial()
+    {
+        return $this->container['isCardCommercial'];
+    }
+
+    /**
+     * Sets isCardCommercial
+     *
+     * @param bool|null $isCardCommercial Indicates if this is a commercial card or a consumer card. If **true**, it is a commercial card. If **false**, it is a consumer card.
+     *
+     * @return self
+     */
+    public function setIsCardCommercial($isCardCommercial)
+    {
+        $this->container['isCardCommercial'] = $isCardCommercial;
 
         return $this;
     }
