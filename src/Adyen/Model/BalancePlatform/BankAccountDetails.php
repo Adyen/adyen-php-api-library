@@ -46,6 +46,7 @@ class BankAccountDetails implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $openAPITypes = [
         'accountNumber' => 'string',
         'accountType' => 'string',
+        'branchNumber' => 'string',
         'formFactor' => 'string',
         'iban' => 'string',
         'routingNumber' => 'string',
@@ -63,6 +64,7 @@ class BankAccountDetails implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $openAPIFormats = [
         'accountNumber' => null,
         'accountType' => null,
+        'branchNumber' => null,
         'formFactor' => null,
         'iban' => null,
         'routingNumber' => null,
@@ -78,6 +80,7 @@ class BankAccountDetails implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $openAPINullables = [
         'accountNumber' => false,
         'accountType' => false,
+        'branchNumber' => false,
         'formFactor' => false,
         'iban' => false,
         'routingNumber' => false,
@@ -173,6 +176,7 @@ class BankAccountDetails implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $attributeMap = [
         'accountNumber' => 'accountNumber',
         'accountType' => 'accountType',
+        'branchNumber' => 'branchNumber',
         'formFactor' => 'formFactor',
         'iban' => 'iban',
         'routingNumber' => 'routingNumber',
@@ -188,6 +192,7 @@ class BankAccountDetails implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $setters = [
         'accountNumber' => 'setAccountNumber',
         'accountType' => 'setAccountType',
+        'branchNumber' => 'setBranchNumber',
         'formFactor' => 'setFormFactor',
         'iban' => 'setIban',
         'routingNumber' => 'setRoutingNumber',
@@ -203,6 +208,7 @@ class BankAccountDetails implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $getters = [
         'accountNumber' => 'getAccountNumber',
         'accountType' => 'getAccountType',
+        'branchNumber' => 'getBranchNumber',
         'formFactor' => 'getFormFactor',
         'iban' => 'getIban',
         'routingNumber' => 'getRoutingNumber',
@@ -269,6 +275,7 @@ class BankAccountDetails implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $this->setIfExists('accountNumber', $data ?? [], null);
         $this->setIfExists('accountType', $data ?? [], null);
+        $this->setIfExists('branchNumber', $data ?? [], null);
         $this->setIfExists('formFactor', $data ?? [], null);
         $this->setIfExists('iban', $data ?? [], null);
         $this->setIfExists('routingNumber', $data ?? [], null);
@@ -365,6 +372,30 @@ class BankAccountDetails implements ModelInterface, ArrayAccess, \JsonSerializab
     public function setAccountType($accountType)
     {
         $this->container['accountType'] = $accountType;
+
+        return $this;
+    }
+
+    /**
+     * Gets branchNumber
+     *
+     * @return string|null
+     */
+    public function getBranchNumber()
+    {
+        return $this->container['branchNumber'];
+    }
+
+    /**
+     * Sets branchNumber
+     *
+     * @param string|null $branchNumber The bank account branch number, without separators or whitespace
+     *
+     * @return self
+     */
+    public function setBranchNumber($branchNumber)
+    {
+        $this->container['branchNumber'] = $branchNumber;
 
         return $this;
     }

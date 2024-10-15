@@ -44,6 +44,7 @@ class RegisterSCARequest implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var string[]
       */
     protected static $openAPITypes = [
+        'name' => 'string',
         'paymentInstrumentId' => 'string',
         'strongCustomerAuthentication' => '\Adyen\Model\BalancePlatform\DelegatedAuthenticationData'
     ];
@@ -56,6 +57,7 @@ class RegisterSCARequest implements ModelInterface, ArrayAccess, \JsonSerializab
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'name' => null,
         'paymentInstrumentId' => null,
         'strongCustomerAuthentication' => null
     ];
@@ -66,6 +68,7 @@ class RegisterSCARequest implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'name' => false,
         'paymentInstrumentId' => false,
         'strongCustomerAuthentication' => false
     ];
@@ -156,6 +159,7 @@ class RegisterSCARequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $attributeMap = [
+        'name' => 'name',
         'paymentInstrumentId' => 'paymentInstrumentId',
         'strongCustomerAuthentication' => 'strongCustomerAuthentication'
     ];
@@ -166,6 +170,7 @@ class RegisterSCARequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $setters = [
+        'name' => 'setName',
         'paymentInstrumentId' => 'setPaymentInstrumentId',
         'strongCustomerAuthentication' => 'setStrongCustomerAuthentication'
     ];
@@ -176,6 +181,7 @@ class RegisterSCARequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $getters = [
+        'name' => 'getName',
         'paymentInstrumentId' => 'getPaymentInstrumentId',
         'strongCustomerAuthentication' => 'getStrongCustomerAuthentication'
     ];
@@ -237,6 +243,7 @@ class RegisterSCARequest implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('paymentInstrumentId', $data ?? [], null);
         $this->setIfExists('strongCustomerAuthentication', $data ?? [], null);
     }
@@ -288,6 +295,30 @@ class RegisterSCARequest implements ModelInterface, ArrayAccess, \JsonSerializab
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets name
+     *
+     * @return string|null
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     *
+     * @param string|null $name The name of the SCA device that you are registering. You can use it to help your users identify the device.  If you do not specify a `name`, Adyen automatically generates one.
+     *
+     * @return self
+     */
+    public function setName($name)
+    {
+        $this->container['name'] = $name;
+
+        return $this;
+    }
 
     /**
      * Gets paymentInstrumentId

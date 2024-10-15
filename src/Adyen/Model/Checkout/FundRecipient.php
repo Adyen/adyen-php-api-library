@@ -54,7 +54,8 @@ class FundRecipient implements ModelInterface, ArrayAccess, \JsonSerializable
         'subMerchant' => '\Adyen\Model\Checkout\SubMerchant',
         'telephoneNumber' => 'string',
         'walletIdentifier' => 'string',
-        'walletOwnerTaxId' => 'string'
+        'walletOwnerTaxId' => 'string',
+        'walletPurpose' => 'string'
     ];
 
     /**
@@ -75,7 +76,8 @@ class FundRecipient implements ModelInterface, ArrayAccess, \JsonSerializable
         'subMerchant' => null,
         'telephoneNumber' => null,
         'walletIdentifier' => null,
-        'walletOwnerTaxId' => null
+        'walletOwnerTaxId' => null,
+        'walletPurpose' => null
     ];
 
     /**
@@ -94,7 +96,8 @@ class FundRecipient implements ModelInterface, ArrayAccess, \JsonSerializable
         'subMerchant' => false,
         'telephoneNumber' => false,
         'walletIdentifier' => false,
-        'walletOwnerTaxId' => false
+        'walletOwnerTaxId' => false,
+        'walletPurpose' => false
     ];
 
     /**
@@ -193,7 +196,8 @@ class FundRecipient implements ModelInterface, ArrayAccess, \JsonSerializable
         'subMerchant' => 'subMerchant',
         'telephoneNumber' => 'telephoneNumber',
         'walletIdentifier' => 'walletIdentifier',
-        'walletOwnerTaxId' => 'walletOwnerTaxId'
+        'walletOwnerTaxId' => 'walletOwnerTaxId',
+        'walletPurpose' => 'walletPurpose'
     ];
 
     /**
@@ -212,7 +216,8 @@ class FundRecipient implements ModelInterface, ArrayAccess, \JsonSerializable
         'subMerchant' => 'setSubMerchant',
         'telephoneNumber' => 'setTelephoneNumber',
         'walletIdentifier' => 'setWalletIdentifier',
-        'walletOwnerTaxId' => 'setWalletOwnerTaxId'
+        'walletOwnerTaxId' => 'setWalletOwnerTaxId',
+        'walletPurpose' => 'setWalletPurpose'
     ];
 
     /**
@@ -231,7 +236,8 @@ class FundRecipient implements ModelInterface, ArrayAccess, \JsonSerializable
         'subMerchant' => 'getSubMerchant',
         'telephoneNumber' => 'getTelephoneNumber',
         'walletIdentifier' => 'getWalletIdentifier',
-        'walletOwnerTaxId' => 'getWalletOwnerTaxId'
+        'walletOwnerTaxId' => 'getWalletOwnerTaxId',
+        'walletPurpose' => 'getWalletPurpose'
     ];
 
     /**
@@ -275,7 +281,27 @@ class FundRecipient implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const WALLET_PURPOSE_IDENTIFIED_BOLETO = 'identifiedBoleto';
+    public const WALLET_PURPOSE_TRANSFER_DIFFERENT_WALLET = 'transferDifferentWallet';
+    public const WALLET_PURPOSE_TRANSFER_OWN_WALLET = 'transferOwnWallet';
+    public const WALLET_PURPOSE_TRANSFER_SAME_WALLET = 'transferSameWallet';
+    public const WALLET_PURPOSE_UNIDENTIFIED_BOLETO = 'unidentifiedBoleto';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getWalletPurposeAllowableValues()
+    {
+        return [
+            self::WALLET_PURPOSE_IDENTIFIED_BOLETO,
+            self::WALLET_PURPOSE_TRANSFER_DIFFERENT_WALLET,
+            self::WALLET_PURPOSE_TRANSFER_OWN_WALLET,
+            self::WALLET_PURPOSE_TRANSFER_SAME_WALLET,
+            self::WALLET_PURPOSE_UNIDENTIFIED_BOLETO,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -302,6 +328,7 @@ class FundRecipient implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('telephoneNumber', $data ?? [], null);
         $this->setIfExists('walletIdentifier', $data ?? [], null);
         $this->setIfExists('walletOwnerTaxId', $data ?? [], null);
+        $this->setIfExists('walletPurpose', $data ?? [], null);
     }
 
     /**
@@ -330,6 +357,15 @@ class FundRecipient implements ModelInterface, ArrayAccess, \JsonSerializable
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        $allowedValues = $this->getWalletPurposeAllowableValues();
+        if (!is_null($this->container['walletPurpose']) && !in_array($this->container['walletPurpose'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'walletPurpose', must be one of '%s'",
+                $this->container['walletPurpose'],
+                implode("', '", $allowedValues)
+            );
+        }
 
         return $invalidProperties;
     }
@@ -606,6 +642,40 @@ class FundRecipient implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setWalletOwnerTaxId($walletOwnerTaxId)
     {
         $this->container['walletOwnerTaxId'] = $walletOwnerTaxId;
+
+        return $this;
+    }
+
+    /**
+     * Gets walletPurpose
+     *
+     * @return string|null
+     */
+    public function getWalletPurpose()
+    {
+        return $this->container['walletPurpose'];
+    }
+
+    /**
+     * Sets walletPurpose
+     *
+     * @param string|null $walletPurpose The purpose of a digital wallet transaction
+     *
+     * @return self
+     */
+    public function setWalletPurpose($walletPurpose)
+    {
+        $allowedValues = $this->getWalletPurposeAllowableValues();
+        if (!in_array($walletPurpose, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'walletPurpose', must be one of '%s'",
+                    $walletPurpose,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['walletPurpose'] = $walletPurpose;
 
         return $this;
     }

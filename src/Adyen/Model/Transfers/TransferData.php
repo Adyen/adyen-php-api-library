@@ -54,6 +54,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'counterparty' => '\Adyen\Model\Transfers\TransferNotificationCounterParty',
         'creationDate' => '\DateTime',
         'description' => 'string',
+        'directDebitInformation' => '\Adyen\Model\Transfers\DirectDebitInformation',
         'direction' => 'string',
         'events' => '\Adyen\Model\Transfers\TransferEvent[]',
         'id' => 'string',
@@ -61,6 +62,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'reason' => 'string',
         'reference' => 'string',
         'referenceForBeneficiary' => 'string',
+        'review' => '\Adyen\Model\Transfers\TransferReview',
         'sequenceNumber' => 'int',
         'status' => 'string',
         'tracking' => '\Adyen\Model\Transfers\TransferDataTracking',
@@ -86,6 +88,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'counterparty' => null,
         'creationDate' => 'date-time',
         'description' => null,
+        'directDebitInformation' => null,
         'direction' => null,
         'events' => null,
         'id' => null,
@@ -93,6 +96,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'reason' => null,
         'reference' => null,
         'referenceForBeneficiary' => null,
+        'review' => null,
         'sequenceNumber' => 'int32',
         'status' => null,
         'tracking' => null,
@@ -116,6 +120,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'counterparty' => false,
         'creationDate' => false,
         'description' => false,
+        'directDebitInformation' => false,
         'direction' => false,
         'events' => false,
         'id' => false,
@@ -123,6 +128,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'reason' => false,
         'reference' => false,
         'referenceForBeneficiary' => false,
+        'review' => false,
         'sequenceNumber' => true,
         'status' => false,
         'tracking' => false,
@@ -226,6 +232,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'counterparty' => 'counterparty',
         'creationDate' => 'creationDate',
         'description' => 'description',
+        'directDebitInformation' => 'directDebitInformation',
         'direction' => 'direction',
         'events' => 'events',
         'id' => 'id',
@@ -233,6 +240,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'reason' => 'reason',
         'reference' => 'reference',
         'referenceForBeneficiary' => 'referenceForBeneficiary',
+        'review' => 'review',
         'sequenceNumber' => 'sequenceNumber',
         'status' => 'status',
         'tracking' => 'tracking',
@@ -256,6 +264,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'counterparty' => 'setCounterparty',
         'creationDate' => 'setCreationDate',
         'description' => 'setDescription',
+        'directDebitInformation' => 'setDirectDebitInformation',
         'direction' => 'setDirection',
         'events' => 'setEvents',
         'id' => 'setId',
@@ -263,6 +272,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'reason' => 'setReason',
         'reference' => 'setReference',
         'referenceForBeneficiary' => 'setReferenceForBeneficiary',
+        'review' => 'setReview',
         'sequenceNumber' => 'setSequenceNumber',
         'status' => 'setStatus',
         'tracking' => 'setTracking',
@@ -286,6 +296,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'counterparty' => 'getCounterparty',
         'creationDate' => 'getCreationDate',
         'description' => 'getDescription',
+        'directDebitInformation' => 'getDirectDebitInformation',
         'direction' => 'getDirection',
         'events' => 'getEvents',
         'id' => 'getId',
@@ -293,6 +304,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'reason' => 'getReason',
         'reference' => 'getReference',
         'referenceForBeneficiary' => 'getReferenceForBeneficiary',
+        'review' => 'getReview',
         'sequenceNumber' => 'getSequenceNumber',
         'status' => 'getStatus',
         'tracking' => 'getTracking',
@@ -348,6 +360,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     public const CATEGORY_PLATFORM_PAYMENT = 'platformPayment';
     public const DIRECTION_INCOMING = 'incoming';
     public const DIRECTION_OUTGOING = 'outgoing';
+    public const REASON_ACCOUNT_HIERARCHY_NOT_ACTIVE = 'accountHierarchyNotActive';
     public const REASON_AMOUNT_LIMIT_EXCEEDED = 'amountLimitExceeded';
     public const REASON_APPROVED = 'approved';
     public const REASON_BALANCE_ACCOUNT_TEMPORARILY_BLOCKED_BY_TRANSACTION_RULE = 'balanceAccountTemporarilyBlockedByTransactionRule';
@@ -359,12 +372,15 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     public const REASON_COUNTERPARTY_BANK_UNAVAILABLE = 'counterpartyBankUnavailable';
     public const REASON_DECLINED = 'declined';
     public const REASON_DECLINED_BY_TRANSACTION_RULE = 'declinedByTransactionRule';
+    public const REASON_DIRECT_DEBIT_NOT_SUPPORTED = 'directDebitNotSupported';
     public const REASON_ERROR = 'error';
     public const REASON_NOT_ENOUGH_BALANCE = 'notEnoughBalance';
     public const REASON_PENDING_APPROVAL = 'pendingApproval';
+    public const REASON_PENDING_EXECUTION = 'pendingExecution';
     public const REASON_REFUSED_BY_COUNTERPARTY_BANK = 'refusedByCounterpartyBank';
     public const REASON_ROUTE_NOT_FOUND = 'routeNotFound';
     public const REASON_SCA_FAILED = 'scaFailed';
+    public const REASON_TRANSFER_INSTRUMENT_DOES_NOT_EXIST = 'transferInstrumentDoesNotExist';
     public const REASON_UNKNOWN = 'unknown';
     public const STATUS_APPROVAL_PENDING = 'approvalPending';
     public const STATUS_ATM_WITHDRAWAL = 'atmWithdrawal';
@@ -418,6 +434,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_PAYMENT_COST = 'paymentCost';
     public const STATUS_PAYMENT_COST_PENDING = 'paymentCostPending';
     public const STATUS_PENDING_APPROVAL = 'pendingApproval';
+    public const STATUS_PENDING_EXECUTION = 'pendingExecution';
     public const STATUS_RECEIVED = 'received';
     public const STATUS_REFUND_PENDING = 'refundPending';
     public const STATUS_REFUND_REVERSAL_PENDING = 'refundReversalPending';
@@ -506,6 +523,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     public function getReasonAllowableValues()
     {
         return [
+            self::REASON_ACCOUNT_HIERARCHY_NOT_ACTIVE,
             self::REASON_AMOUNT_LIMIT_EXCEEDED,
             self::REASON_APPROVED,
             self::REASON_BALANCE_ACCOUNT_TEMPORARILY_BLOCKED_BY_TRANSACTION_RULE,
@@ -517,12 +535,15 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
             self::REASON_COUNTERPARTY_BANK_UNAVAILABLE,
             self::REASON_DECLINED,
             self::REASON_DECLINED_BY_TRANSACTION_RULE,
+            self::REASON_DIRECT_DEBIT_NOT_SUPPORTED,
             self::REASON_ERROR,
             self::REASON_NOT_ENOUGH_BALANCE,
             self::REASON_PENDING_APPROVAL,
+            self::REASON_PENDING_EXECUTION,
             self::REASON_REFUSED_BY_COUNTERPARTY_BANK,
             self::REASON_ROUTE_NOT_FOUND,
             self::REASON_SCA_FAILED,
+            self::REASON_TRANSFER_INSTRUMENT_DOES_NOT_EXIST,
             self::REASON_UNKNOWN,
         ];
     }
@@ -586,6 +607,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_PAYMENT_COST,
             self::STATUS_PAYMENT_COST_PENDING,
             self::STATUS_PENDING_APPROVAL,
+            self::STATUS_PENDING_EXECUTION,
             self::STATUS_RECEIVED,
             self::STATUS_REFUND_PENDING,
             self::STATUS_REFUND_REVERSAL_PENDING,
@@ -675,6 +697,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('counterparty', $data ?? [], null);
         $this->setIfExists('creationDate', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('directDebitInformation', $data ?? [], null);
         $this->setIfExists('direction', $data ?? [], null);
         $this->setIfExists('events', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
@@ -682,6 +705,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('reason', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
         $this->setIfExists('referenceForBeneficiary', $data ?? [], null);
+        $this->setIfExists('review', $data ?? [], null);
         $this->setIfExists('sequenceNumber', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('tracking', $data ?? [], null);
@@ -1036,6 +1060,30 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets directDebitInformation
+     *
+     * @return \Adyen\Model\Transfers\DirectDebitInformation|null
+     */
+    public function getDirectDebitInformation()
+    {
+        return $this->container['directDebitInformation'];
+    }
+
+    /**
+     * Sets directDebitInformation
+     *
+     * @param \Adyen\Model\Transfers\DirectDebitInformation|null $directDebitInformation directDebitInformation
+     *
+     * @return self
+     */
+    public function setDirectDebitInformation($directDebitInformation)
+    {
+        $this->container['directDebitInformation'] = $directDebitInformation;
+
+        return $this;
+    }
+
+    /**
      * Gets direction
      *
      * @return string|null
@@ -1219,6 +1267,30 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setReferenceForBeneficiary($referenceForBeneficiary)
     {
         $this->container['referenceForBeneficiary'] = $referenceForBeneficiary;
+
+        return $this;
+    }
+
+    /**
+     * Gets review
+     *
+     * @return \Adyen\Model\Transfers\TransferReview|null
+     */
+    public function getReview()
+    {
+        return $this->container['review'];
+    }
+
+    /**
+     * Sets review
+     *
+     * @param \Adyen\Model\Transfers\TransferReview|null $review review
+     *
+     * @return self
+     */
+    public function setReview($review)
+    {
+        $this->container['review'] = $review;
 
         return $this;
     }
