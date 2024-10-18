@@ -92,14 +92,13 @@ class WebhooksMerchantLevelApi extends Service
     * @param string $merchantId
     * @param string $webhookId
     * @param array|null $requestOptions
-    
+
     * @throws AdyenException
     */
     public function removeWebhook(string $merchantId, string $webhookId, array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{webhookId}'], [$merchantId, $webhookId], "/merchants/{merchantId}/webhooks/{webhookId}");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
-        
     }
 
     /**
