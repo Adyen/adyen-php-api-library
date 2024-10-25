@@ -235,6 +235,7 @@ class ModificationResult implements ModelInterface, ArrayAccess, \JsonSerializab
     public const RESPONSE_DONATION_RECEIVED = '[donation-received]';
     public const RESPONSE_TECHNICAL_CANCEL_RECEIVED = '[technical-cancel-received]';
     public const RESPONSE_VOID_PENDING_REFUND_RECEIVED = '[voidPendingRefund-received]';
+    public const RESPONSE_AUTHORISED = 'Authorised';
 
     /**
      * Gets allowable values of the enum
@@ -252,6 +253,7 @@ class ModificationResult implements ModelInterface, ArrayAccess, \JsonSerializab
             self::RESPONSE_DONATION_RECEIVED,
             self::RESPONSE_TECHNICAL_CANCEL_RECEIVED,
             self::RESPONSE_VOID_PENDING_REFUND_RECEIVED,
+            self::RESPONSE_AUTHORISED,
         ];
     }
     /**
