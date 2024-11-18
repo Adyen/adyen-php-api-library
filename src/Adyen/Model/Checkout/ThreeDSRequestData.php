@@ -241,6 +241,7 @@ class ThreeDSRequestData implements ModelInterface, ArrayAccess, \JsonSerializab
     public const DATA_ONLY_FALSE = 'false';
     public const DATA_ONLY_TRUE = 'true';
     public const NATIVE_THREE_DS_PREFERRED = 'preferred';
+    public const NATIVE_THREE_DS_DISABLED = 'disabled';
     public const THREE_DS_VERSION__1_0 = '2.1.0';
     public const THREE_DS_VERSION__2_0 = '2.2.0';
 
@@ -280,6 +281,7 @@ class ThreeDSRequestData implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         return [
             self::NATIVE_THREE_DS_PREFERRED,
+            self::NATIVE_THREE_DS_DISABLED,
         ];
     }
     /**
@@ -474,7 +476,7 @@ class ThreeDSRequestData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets nativeThreeDS
      *
-     * @param string|null $nativeThreeDS Indicates if [native 3D Secure authentication](https://docs.adyen.com/online-payments/3d-secure/native-3ds2) should be used when available.  Possible values: * **preferred**: Use native 3D Secure authentication when available.
+     * @param string|null $nativeThreeDS Indicates if [native 3D Secure authentication](https://docs.adyen.com/online-payments/3d-secure/native-3ds2) should be used when available.  Possible values: * **preferred**: Use native 3D Secure authentication when available. * **disabled**: Only use the redirect 3D Secure authentication flow.
      *
      * @return self
      */

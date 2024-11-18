@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\TransactionWebhooks\ObjectSerializer;
 
 /**
- * TransferData Class Doc Comment
+ * RelayedAuthorisationData Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\TransactionWebhooks\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
+class RelayedAuthorisationData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'TransferData';
+    protected static $openAPIModelName = 'RelayedAuthorisationData';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,7 +44,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'string',
+        'metadata' => 'array<string,string>',
         'reference' => 'string'
     ];
 
@@ -56,7 +56,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => null,
+        'metadata' => null,
         'reference' => null
     ];
 
@@ -66,7 +66,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'id' => false,
+        'metadata' => false,
         'reference' => false
     ];
 
@@ -156,7 +156,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
+        'metadata' => 'metadata',
         'reference' => 'reference'
     ];
 
@@ -166,7 +166,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
+        'metadata' => 'setMetadata',
         'reference' => 'setReference'
     ];
 
@@ -176,7 +176,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
+        'metadata' => 'getMetadata',
         'reference' => 'getReference'
     ];
 
@@ -237,7 +237,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('metadata', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
     }
 
@@ -268,9 +268,6 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['reference'] === null) {
-            $invalidProperties[] = "'reference' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -287,25 +284,25 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets id
+     * Gets metadata
      *
-     * @return string|null
+     * @return array<string,string>|null
      */
-    public function getId()
+    public function getMetadata()
     {
-        return $this->container['id'];
+        return $this->container['metadata'];
     }
 
     /**
-     * Sets id
+     * Sets metadata
      *
-     * @param string|null $id The ID of the resource.
+     * @param array<string,string>|null $metadata Contains key-value pairs of your references and descriptions, for example, `customId`:`your-own-custom-field-12345`.
      *
      * @return self
      */
-    public function setId($id)
+    public function setMetadata($metadata)
     {
-        $this->container['id'] = $id;
+        $this->container['metadata'] = $metadata;
 
         return $this;
     }
@@ -313,7 +310,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets reference
      *
-     * @return string
+     * @return string|null
      */
     public function getReference()
     {
@@ -323,7 +320,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets reference
      *
-     * @param string $reference The [`reference`](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__reqParam_reference) from the `/transfers` request. If you haven't provided any, Adyen generates a unique reference.
+     * @param string|null $reference Your reference for the relayed authorisation data.
      *
      * @return self
      */

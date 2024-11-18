@@ -76,13 +76,14 @@ class BalanceAccountsApi extends Service
     * @param string $balanceAccountId
     * @param string $sweepId
     * @param array|null $requestOptions
-
+    
     * @throws AdyenException
     */
     public function deleteSweep(string $balanceAccountId, string $sweepId, array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{balanceAccountId}', '{sweepId}'], [$balanceAccountId, $sweepId], "/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
+        
     }
 
     /**
@@ -98,6 +99,21 @@ class BalanceAccountsApi extends Service
         $endpoint = $this->baseURL . str_replace(['{balanceAccountId}'], [$balanceAccountId], "/balanceAccounts/{balanceAccountId}/sweeps");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\BalancePlatform\BalanceSweepConfigurationsResponse::class);
+    }
+
+    /**
+    * Get all transaction rules for a balance account
+    *
+    * @param string $id
+    * @param array|null $requestOptions
+    * @return \Adyen\Model\BalancePlatform\TransactionRulesResponse
+    * @throws AdyenException
+    */
+    public function getAllTransactionRulesForBalanceAccount(string $id, array $requestOptions = null): \Adyen\Model\BalancePlatform\TransactionRulesResponse
+    {
+        $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/balanceAccounts/{id}/transactionRules");
+        $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\BalancePlatform\TransactionRulesResponse::class);
     }
 
     /**

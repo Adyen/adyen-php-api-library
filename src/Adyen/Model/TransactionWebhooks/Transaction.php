@@ -50,9 +50,12 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
         'balancePlatform' => 'string',
         'bookingDate' => '\DateTime',
         'creationDate' => '\DateTime',
+        'description' => 'string',
         'id' => 'string',
+        'paymentInstrument' => '\Adyen\Model\TransactionWebhooks\PaymentInstrument',
+        'referenceForBeneficiary' => 'string',
         'status' => 'string',
-        'transfer' => '\Adyen\Model\TransactionWebhooks\TransferData',
+        'transfer' => '\Adyen\Model\TransactionWebhooks\TransferView',
         'valueDate' => '\DateTime'
     ];
 
@@ -70,7 +73,10 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
         'balancePlatform' => null,
         'bookingDate' => 'date-time',
         'creationDate' => 'date-time',
+        'description' => null,
         'id' => null,
+        'paymentInstrument' => null,
+        'referenceForBeneficiary' => null,
         'status' => null,
         'transfer' => null,
         'valueDate' => 'date-time'
@@ -88,7 +94,10 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
         'balancePlatform' => false,
         'bookingDate' => false,
         'creationDate' => false,
+        'description' => false,
         'id' => false,
+        'paymentInstrument' => false,
+        'referenceForBeneficiary' => false,
         'status' => false,
         'transfer' => false,
         'valueDate' => false
@@ -186,7 +195,10 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
         'balancePlatform' => 'balancePlatform',
         'bookingDate' => 'bookingDate',
         'creationDate' => 'creationDate',
+        'description' => 'description',
         'id' => 'id',
+        'paymentInstrument' => 'paymentInstrument',
+        'referenceForBeneficiary' => 'referenceForBeneficiary',
         'status' => 'status',
         'transfer' => 'transfer',
         'valueDate' => 'valueDate'
@@ -204,7 +216,10 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
         'balancePlatform' => 'setBalancePlatform',
         'bookingDate' => 'setBookingDate',
         'creationDate' => 'setCreationDate',
+        'description' => 'setDescription',
         'id' => 'setId',
+        'paymentInstrument' => 'setPaymentInstrument',
+        'referenceForBeneficiary' => 'setReferenceForBeneficiary',
         'status' => 'setStatus',
         'transfer' => 'setTransfer',
         'valueDate' => 'setValueDate'
@@ -222,7 +237,10 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
         'balancePlatform' => 'getBalancePlatform',
         'bookingDate' => 'getBookingDate',
         'creationDate' => 'getCreationDate',
+        'description' => 'getDescription',
         'id' => 'getId',
+        'paymentInstrument' => 'getPaymentInstrument',
+        'referenceForBeneficiary' => 'getReferenceForBeneficiary',
         'status' => 'getStatus',
         'transfer' => 'getTransfer',
         'valueDate' => 'getValueDate'
@@ -305,7 +323,10 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('balancePlatform', $data ?? [], null);
         $this->setIfExists('bookingDate', $data ?? [], null);
         $this->setIfExists('creationDate', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('paymentInstrument', $data ?? [], null);
+        $this->setIfExists('referenceForBeneficiary', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('transfer', $data ?? [], null);
         $this->setIfExists('valueDate', $data ?? [], null);
@@ -531,6 +552,30 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets description
+     *
+     * @return string|null
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string|null $description The `description` from the `/transfers` request.
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
      * Gets id
      *
      * @return string
@@ -550,6 +595,54 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setId($id)
     {
         $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets paymentInstrument
+     *
+     * @return \Adyen\Model\TransactionWebhooks\PaymentInstrument|null
+     */
+    public function getPaymentInstrument()
+    {
+        return $this->container['paymentInstrument'];
+    }
+
+    /**
+     * Sets paymentInstrument
+     *
+     * @param \Adyen\Model\TransactionWebhooks\PaymentInstrument|null $paymentInstrument paymentInstrument
+     *
+     * @return self
+     */
+    public function setPaymentInstrument($paymentInstrument)
+    {
+        $this->container['paymentInstrument'] = $paymentInstrument;
+
+        return $this;
+    }
+
+    /**
+     * Gets referenceForBeneficiary
+     *
+     * @return string|null
+     */
+    public function getReferenceForBeneficiary()
+    {
+        return $this->container['referenceForBeneficiary'];
+    }
+
+    /**
+     * Sets referenceForBeneficiary
+     *
+     * @param string|null $referenceForBeneficiary The reference sent to or received from the counterparty.  * For outgoing funds, this is the [`referenceForBeneficiary`](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__resParam_referenceForBeneficiary) from the  [`/transfers`](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__reqParam_referenceForBeneficiary) request.   * For incoming funds, this is the reference from the sender.
+     *
+     * @return self
+     */
+    public function setReferenceForBeneficiary($referenceForBeneficiary)
+    {
+        $this->container['referenceForBeneficiary'] = $referenceForBeneficiary;
 
         return $this;
     }
@@ -591,7 +684,7 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets transfer
      *
-     * @return \Adyen\Model\TransactionWebhooks\TransferData|null
+     * @return \Adyen\Model\TransactionWebhooks\TransferView|null
      */
     public function getTransfer()
     {
@@ -601,7 +694,7 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets transfer
      *
-     * @param \Adyen\Model\TransactionWebhooks\TransferData|null $transfer transfer
+     * @param \Adyen\Model\TransactionWebhooks\TransferView|null $transfer transfer
      *
      * @return self
      */

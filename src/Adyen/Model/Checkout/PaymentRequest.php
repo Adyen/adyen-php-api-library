@@ -50,6 +50,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'amount' => '\Adyen\Model\Checkout\Amount',
         'applicationInfo' => '\Adyen\Model\Checkout\ApplicationInfo',
         'authenticationData' => '\Adyen\Model\Checkout\AuthenticationData',
+        'bankAccount' => '\Adyen\Model\Checkout\CheckoutBankAccount',
         'billingAddress' => '\Adyen\Model\Checkout\BillingAddress',
         'browserInfo' => '\Adyen\Model\Checkout\BrowserInfo',
         'captureDelayHours' => 'int',
@@ -96,6 +97,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'returnUrl' => 'string',
         'riskData' => '\Adyen\Model\Checkout\RiskData',
         'sessionValidity' => 'string',
+        'shopperConversionId' => 'string',
         'shopperEmail' => 'string',
         'shopperIP' => 'string',
         'shopperInteraction' => 'string',
@@ -128,6 +130,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'amount' => null,
         'applicationInfo' => null,
         'authenticationData' => null,
+        'bankAccount' => null,
         'billingAddress' => null,
         'browserInfo' => null,
         'captureDelayHours' => 'int32',
@@ -174,6 +177,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'returnUrl' => null,
         'riskData' => null,
         'sessionValidity' => null,
+        'shopperConversionId' => null,
         'shopperEmail' => null,
         'shopperIP' => null,
         'shopperInteraction' => null,
@@ -204,6 +208,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'amount' => false,
         'applicationInfo' => false,
         'authenticationData' => false,
+        'bankAccount' => false,
         'billingAddress' => false,
         'browserInfo' => false,
         'captureDelayHours' => true,
@@ -250,6 +255,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'returnUrl' => false,
         'riskData' => false,
         'sessionValidity' => false,
+        'shopperConversionId' => false,
         'shopperEmail' => false,
         'shopperIP' => false,
         'shopperInteraction' => false,
@@ -360,6 +366,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'amount' => 'amount',
         'applicationInfo' => 'applicationInfo',
         'authenticationData' => 'authenticationData',
+        'bankAccount' => 'bankAccount',
         'billingAddress' => 'billingAddress',
         'browserInfo' => 'browserInfo',
         'captureDelayHours' => 'captureDelayHours',
@@ -406,6 +413,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'returnUrl' => 'returnUrl',
         'riskData' => 'riskData',
         'sessionValidity' => 'sessionValidity',
+        'shopperConversionId' => 'shopperConversionId',
         'shopperEmail' => 'shopperEmail',
         'shopperIP' => 'shopperIP',
         'shopperInteraction' => 'shopperInteraction',
@@ -436,6 +444,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'amount' => 'setAmount',
         'applicationInfo' => 'setApplicationInfo',
         'authenticationData' => 'setAuthenticationData',
+        'bankAccount' => 'setBankAccount',
         'billingAddress' => 'setBillingAddress',
         'browserInfo' => 'setBrowserInfo',
         'captureDelayHours' => 'setCaptureDelayHours',
@@ -482,6 +491,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'returnUrl' => 'setReturnUrl',
         'riskData' => 'setRiskData',
         'sessionValidity' => 'setSessionValidity',
+        'shopperConversionId' => 'setShopperConversionId',
         'shopperEmail' => 'setShopperEmail',
         'shopperIP' => 'setShopperIP',
         'shopperInteraction' => 'setShopperInteraction',
@@ -512,6 +522,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'amount' => 'getAmount',
         'applicationInfo' => 'getApplicationInfo',
         'authenticationData' => 'getAuthenticationData',
+        'bankAccount' => 'getBankAccount',
         'billingAddress' => 'getBillingAddress',
         'browserInfo' => 'getBrowserInfo',
         'captureDelayHours' => 'getCaptureDelayHours',
@@ -558,6 +569,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'returnUrl' => 'getReturnUrl',
         'riskData' => 'getRiskData',
         'sessionValidity' => 'getSessionValidity',
+        'shopperConversionId' => 'getShopperConversionId',
         'shopperEmail' => 'getShopperEmail',
         'shopperIP' => 'getShopperIP',
         'shopperInteraction' => 'getShopperInteraction',
@@ -719,6 +731,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('amount', $data ?? [], null);
         $this->setIfExists('applicationInfo', $data ?? [], null);
         $this->setIfExists('authenticationData', $data ?? [], null);
+        $this->setIfExists('bankAccount', $data ?? [], null);
         $this->setIfExists('billingAddress', $data ?? [], null);
         $this->setIfExists('browserInfo', $data ?? [], null);
         $this->setIfExists('captureDelayHours', $data ?? [], null);
@@ -765,6 +778,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('returnUrl', $data ?? [], null);
         $this->setIfExists('riskData', $data ?? [], null);
         $this->setIfExists('sessionValidity', $data ?? [], null);
+        $this->setIfExists('shopperConversionId', $data ?? [], null);
         $this->setIfExists('shopperEmail', $data ?? [], null);
         $this->setIfExists('shopperIP', $data ?? [], null);
         $this->setIfExists('shopperInteraction', $data ?? [], null);
@@ -1025,6 +1039,30 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setAuthenticationData($authenticationData)
     {
         $this->container['authenticationData'] = $authenticationData;
+
+        return $this;
+    }
+
+    /**
+     * Gets bankAccount
+     *
+     * @return \Adyen\Model\Checkout\CheckoutBankAccount|null
+     */
+    public function getBankAccount()
+    {
+        return $this->container['bankAccount'];
+    }
+
+    /**
+     * Sets bankAccount
+     *
+     * @param \Adyen\Model\Checkout\CheckoutBankAccount|null $bankAccount bankAccount
+     *
+     * @return self
+     */
+    public function setBankAccount($bankAccount)
+    {
+        $this->container['bankAccount'] = $bankAccount;
 
         return $this;
     }
@@ -2173,6 +2211,30 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setSessionValidity($sessionValidity)
     {
         $this->container['sessionValidity'] = $sessionValidity;
+
+        return $this;
+    }
+
+    /**
+     * Gets shopperConversionId
+     *
+     * @return string|null
+     */
+    public function getShopperConversionId()
+    {
+        return $this->container['shopperConversionId'];
+    }
+
+    /**
+     * Sets shopperConversionId
+     *
+     * @param string|null $shopperConversionId A unique ID that can be used to associate `/paymentMethods` and `/payments` requests with the same shopper transaction, offering insights into conversion rates.
+     *
+     * @return self
+     */
+    public function setShopperConversionId($shopperConversionId)
+    {
+        $this->container['shopperConversionId'] = $shopperConversionId;
 
         return $this;
     }

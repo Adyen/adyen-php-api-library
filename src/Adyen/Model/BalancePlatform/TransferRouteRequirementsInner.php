@@ -50,6 +50,7 @@ class TransferRouteRequirementsInner implements ModelInterface, ArrayAccess, \Js
         'max' => 'int',
         'min' => 'int',
         'bankAccountIdentificationTypes' => 'string[]',
+        'ibanPrefixes' => 'string[]',
         'issuingCountryCode' => 'string',
         'issuingCountryCodes' => 'string[]',
         'onlyForCrossBalancePlatform' => 'bool',
@@ -70,6 +71,7 @@ class TransferRouteRequirementsInner implements ModelInterface, ArrayAccess, \Js
         'max' => 'int64',
         'min' => 'int64',
         'bankAccountIdentificationTypes' => null,
+        'ibanPrefixes' => null,
         'issuingCountryCode' => null,
         'issuingCountryCodes' => null,
         'onlyForCrossBalancePlatform' => null,
@@ -88,6 +90,7 @@ class TransferRouteRequirementsInner implements ModelInterface, ArrayAccess, \Js
         'max' => false,
         'min' => false,
         'bankAccountIdentificationTypes' => false,
+        'ibanPrefixes' => false,
         'issuingCountryCode' => false,
         'issuingCountryCodes' => false,
         'onlyForCrossBalancePlatform' => false,
@@ -186,6 +189,7 @@ class TransferRouteRequirementsInner implements ModelInterface, ArrayAccess, \Js
         'max' => 'max',
         'min' => 'min',
         'bankAccountIdentificationTypes' => 'bankAccountIdentificationTypes',
+        'ibanPrefixes' => 'ibanPrefixes',
         'issuingCountryCode' => 'issuingCountryCode',
         'issuingCountryCodes' => 'issuingCountryCodes',
         'onlyForCrossBalancePlatform' => 'onlyForCrossBalancePlatform',
@@ -204,6 +208,7 @@ class TransferRouteRequirementsInner implements ModelInterface, ArrayAccess, \Js
         'max' => 'setMax',
         'min' => 'setMin',
         'bankAccountIdentificationTypes' => 'setBankAccountIdentificationTypes',
+        'ibanPrefixes' => 'setIbanPrefixes',
         'issuingCountryCode' => 'setIssuingCountryCode',
         'issuingCountryCodes' => 'setIssuingCountryCodes',
         'onlyForCrossBalancePlatform' => 'setOnlyForCrossBalancePlatform',
@@ -222,6 +227,7 @@ class TransferRouteRequirementsInner implements ModelInterface, ArrayAccess, \Js
         'max' => 'getMax',
         'min' => 'getMin',
         'bankAccountIdentificationTypes' => 'getBankAccountIdentificationTypes',
+        'ibanPrefixes' => 'getIbanPrefixes',
         'issuingCountryCode' => 'getIssuingCountryCode',
         'issuingCountryCodes' => 'getIssuingCountryCodes',
         'onlyForCrossBalancePlatform' => 'getOnlyForCrossBalancePlatform',
@@ -290,6 +296,7 @@ class TransferRouteRequirementsInner implements ModelInterface, ArrayAccess, \Js
         $this->setIfExists('max', $data ?? [], null);
         $this->setIfExists('min', $data ?? [], null);
         $this->setIfExists('bankAccountIdentificationTypes', $data ?? [], null);
+        $this->setIfExists('ibanPrefixes', $data ?? [], null);
         $this->setIfExists('issuingCountryCode', $data ?? [], null);
         $this->setIfExists('issuingCountryCodes', $data ?? [], null);
         $this->setIfExists('onlyForCrossBalancePlatform', $data ?? [], null);
@@ -356,7 +363,7 @@ class TransferRouteRequirementsInner implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets description
      *
-     * @param string|null $description Specifies the requirements for the payment instrument that need to be included in the request for a particular route.
+     * @param string|null $description Specifies that you must provide a complete street address for International ACH (IAT) transactions.
      *
      * @return self
      */
@@ -404,7 +411,7 @@ class TransferRouteRequirementsInner implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets type
      *
-     * @param string $type **paymentInstrumentRequirement**
+     * @param string $type **usInternationalAchAddressRequirement**
      *
      * @return self
      */
@@ -483,6 +490,30 @@ class TransferRouteRequirementsInner implements ModelInterface, ArrayAccess, \Js
     public function setBankAccountIdentificationTypes($bankAccountIdentificationTypes)
     {
         $this->container['bankAccountIdentificationTypes'] = $bankAccountIdentificationTypes;
+
+        return $this;
+    }
+
+    /**
+     * Gets ibanPrefixes
+     *
+     * @return string[]|null
+     */
+    public function getIbanPrefixes()
+    {
+        return $this->container['ibanPrefixes'];
+    }
+
+    /**
+     * Sets ibanPrefixes
+     *
+     * @param string[]|null $ibanPrefixes Contains the list of allowed prefixes for international bank accounts. For example: NL, US, UK.
+     *
+     * @return self
+     */
+    public function setIbanPrefixes($ibanPrefixes)
+    {
+        $this->container['ibanPrefixes'] = $ibanPrefixes;
 
         return $this;
     }

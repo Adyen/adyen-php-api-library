@@ -395,7 +395,7 @@ class FundRecipient implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets iBAN
      *
-     * @param string|null $iBAN Fund Recipient Iban for C2C payments
+     * @param string|null $iBAN The IBAN of the bank account where the funds are being transferred to.
      *
      * @return self
      */
@@ -611,7 +611,7 @@ class FundRecipient implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets walletIdentifier
      *
-     * @param string|null $walletIdentifier Indicates where the money is going.
+     * @param string|null $walletIdentifier The unique identifier for the wallet the funds are being transferred to. You can use the shopper reference or any other identifier.
      *
      * @return self
      */
@@ -635,7 +635,7 @@ class FundRecipient implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets walletOwnerTaxId
      *
-     * @param string|null $walletOwnerTaxId Indicates the tax identifier of the fund recipient
+     * @param string|null $walletOwnerTaxId The tax identifier of the person receiving the funds.
      *
      * @return self
      */
@@ -659,7 +659,7 @@ class FundRecipient implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets walletPurpose
      *
-     * @param string|null $walletPurpose The purpose of a digital wallet transaction
+     * @param string|null $walletPurpose The purpose of a digital wallet transaction.
      *
      * @return self
      */

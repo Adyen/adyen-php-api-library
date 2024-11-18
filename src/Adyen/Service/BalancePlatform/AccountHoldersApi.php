@@ -85,6 +85,21 @@ class AccountHoldersApi extends Service
     }
 
     /**
+    * Get all transaction rules for an account holder
+    *
+    * @param string $id
+    * @param array|null $requestOptions
+    * @return \Adyen\Model\BalancePlatform\TransactionRulesResponse
+    * @throws AdyenException
+    */
+    public function getAllTransactionRulesForAccountHolder(string $id, array $requestOptions = null): \Adyen\Model\BalancePlatform\TransactionRulesResponse
+    {
+        $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/accountHolders/{id}/transactionRules");
+        $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\BalancePlatform\TransactionRulesResponse::class);
+    }
+
+    /**
     * Get a tax form
     *
     * @param string $id

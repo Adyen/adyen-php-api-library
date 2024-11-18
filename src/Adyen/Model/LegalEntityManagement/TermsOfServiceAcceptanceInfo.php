@@ -242,6 +242,7 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
     public const TYPE_ADYEN_ACCOUNT = 'adyenAccount';
     public const TYPE_ADYEN_CAPITAL = 'adyenCapital';
     public const TYPE_ADYEN_CARD = 'adyenCard';
+    public const TYPE_ADYEN_CHARGE_CARD = 'adyenChargeCard';
     public const TYPE_ADYEN_FOR_PLATFORMS_ADVANCED = 'adyenForPlatformsAdvanced';
     public const TYPE_ADYEN_FOR_PLATFORMS_MANAGE = 'adyenForPlatformsManage';
     public const TYPE_ADYEN_FRANCHISEE = 'adyenFranchisee';
@@ -259,6 +260,7 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
             self::TYPE_ADYEN_ACCOUNT,
             self::TYPE_ADYEN_CAPITAL,
             self::TYPE_ADYEN_CARD,
+            self::TYPE_ADYEN_CHARGE_CARD,
             self::TYPE_ADYEN_FOR_PLATFORMS_ADVANCED,
             self::TYPE_ADYEN_FOR_PLATFORMS_MANAGE,
             self::TYPE_ADYEN_FRANCHISEE,
@@ -448,7 +450,7 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets type
      *
-     * @param string|null $type The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr**
+     * @param string|null $type The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard**
      *
      * @return self
      */

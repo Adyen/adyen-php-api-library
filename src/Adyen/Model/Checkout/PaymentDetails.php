@@ -251,7 +251,6 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_UPI_QR = 'upi_qr';
     public const TYPE_PAYTM = 'paytm';
     public const TYPE_MOLPAY_EBANKING_VN = 'molpay_ebanking_VN';
-    public const TYPE_EBANKING_FI = 'ebanking_FI';
     public const TYPE_MOLPAY_EBANKING_MY = 'molpay_ebanking_MY';
     public const TYPE_MOLPAY_EBANKING_DIRECT_MY = 'molpay_ebanking_direct_MY';
     public const TYPE_SWISH = 'swish';
@@ -351,7 +350,6 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_UPI_QR,
             self::TYPE_PAYTM,
             self::TYPE_MOLPAY_EBANKING_VN,
-            self::TYPE_EBANKING_FI,
             self::TYPE_MOLPAY_EBANKING_MY,
             self::TYPE_MOLPAY_EBANKING_DIRECT_MY,
             self::TYPE_SWISH,
