@@ -52,6 +52,7 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'countryCode' => 'string',
         'merchantAccount' => 'string',
         'order' => '\Adyen\Model\Checkout\EncryptedOrderData',
+        'shopperConversionId' => 'string',
         'shopperLocale' => 'string',
         'shopperReference' => 'string',
         'splitCardFundingSources' => 'bool',
@@ -75,6 +76,7 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'countryCode' => null,
         'merchantAccount' => null,
         'order' => null,
+        'shopperConversionId' => null,
         'shopperLocale' => null,
         'shopperReference' => null,
         'splitCardFundingSources' => null,
@@ -96,6 +98,7 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'countryCode' => false,
         'merchantAccount' => false,
         'order' => false,
+        'shopperConversionId' => false,
         'shopperLocale' => false,
         'shopperReference' => false,
         'splitCardFundingSources' => false,
@@ -197,6 +200,7 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'countryCode' => 'countryCode',
         'merchantAccount' => 'merchantAccount',
         'order' => 'order',
+        'shopperConversionId' => 'shopperConversionId',
         'shopperLocale' => 'shopperLocale',
         'shopperReference' => 'shopperReference',
         'splitCardFundingSources' => 'splitCardFundingSources',
@@ -218,6 +222,7 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'countryCode' => 'setCountryCode',
         'merchantAccount' => 'setMerchantAccount',
         'order' => 'setOrder',
+        'shopperConversionId' => 'setShopperConversionId',
         'shopperLocale' => 'setShopperLocale',
         'shopperReference' => 'setShopperReference',
         'splitCardFundingSources' => 'setSplitCardFundingSources',
@@ -239,6 +244,7 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'countryCode' => 'getCountryCode',
         'merchantAccount' => 'getMerchantAccount',
         'order' => 'getOrder',
+        'shopperConversionId' => 'getShopperConversionId',
         'shopperLocale' => 'getShopperLocale',
         'shopperReference' => 'getShopperReference',
         'splitCardFundingSources' => 'getSplitCardFundingSources',
@@ -343,6 +349,7 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('countryCode', $data ?? [], null);
         $this->setIfExists('merchantAccount', $data ?? [], null);
         $this->setIfExists('order', $data ?? [], null);
+        $this->setIfExists('shopperConversionId', $data ?? [], null);
         $this->setIfExists('shopperLocale', $data ?? [], null);
         $this->setIfExists('shopperReference', $data ?? [], null);
         $this->setIfExists('splitCardFundingSources', $data ?? [], null);
@@ -611,6 +618,30 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setOrder($order)
     {
         $this->container['order'] = $order;
+
+        return $this;
+    }
+
+    /**
+     * Gets shopperConversionId
+     *
+     * @return string|null
+     */
+    public function getShopperConversionId()
+    {
+        return $this->container['shopperConversionId'];
+    }
+
+    /**
+     * Sets shopperConversionId
+     *
+     * @param string|null $shopperConversionId A unique ID that can be used to associate `/paymentMethods` and `/payments` requests with the same shopper transaction, offering insights into conversion rates.
+     *
+     * @return self
+     */
+    public function setShopperConversionId($shopperConversionId)
+    {
+        $this->container['shopperConversionId'] = $shopperConversionId;
 
         return $this;
     }

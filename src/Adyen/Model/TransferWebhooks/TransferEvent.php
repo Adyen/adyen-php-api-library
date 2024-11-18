@@ -329,6 +329,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     public const REASON_PENDING_APPROVAL = 'pendingApproval';
     public const REASON_PENDING_EXECUTION = 'pendingExecution';
     public const REASON_REFUSED_BY_COUNTERPARTY_BANK = 'refusedByCounterpartyBank';
+    public const REASON_REFUSED_BY_CUSTOMER = 'refusedByCustomer';
     public const REASON_ROUTE_NOT_FOUND = 'routeNotFound';
     public const REASON_SCA_FAILED = 'scaFailed';
     public const REASON_TRANSFER_INSTRUMENT_DOES_NOT_EXIST = 'transferInstrumentDoesNotExist';
@@ -429,6 +430,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
             self::REASON_PENDING_APPROVAL,
             self::REASON_PENDING_EXECUTION,
             self::REASON_REFUSED_BY_COUNTERPARTY_BANK,
+            self::REASON_REFUSED_BY_CUSTOMER,
             self::REASON_ROUTE_NOT_FOUND,
             self::REASON_SCA_FAILED,
             self::REASON_TRANSFER_INSTRUMENT_DOES_NOT_EXIST,
@@ -1054,7 +1056,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets valueDate
      *
-     * @param \DateTime|null $valueDate A future date, when the funds are expected to be deducted from or credited to the balance account.
+     * @param \DateTime|null $valueDate The date when the funds are expected to be deducted from or credited to the balance account. This date can be in either the past or future.
      *
      * @return self
      */

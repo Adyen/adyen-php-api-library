@@ -19,16 +19,15 @@ use \ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * TransferRouteRequirements Class Doc Comment
+ * USInternationalAchAddressRequirement Class Doc Comment
  *
  * @category Class
- * @description A set of rules defined by clearing houses and banking partners. Your transfer request must adhere to these rules to ensure successful initiation of transfer. Based on the priority, one or more requirements may be returned. Each requirement is defined with a &#x60;type&#x60; and &#x60;description&#x60;.
  * @package  Adyen
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class TransferRouteRequirements implements ModelInterface, ArrayAccess, \JsonSerializable
+class USInternationalAchAddressRequirement implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -37,7 +36,7 @@ class TransferRouteRequirements implements ModelInterface, ArrayAccess, \JsonSer
       *
       * @var string
       */
-    protected static $openAPIModelName = 'TransferRoute_requirements';
+    protected static $openAPIModelName = 'USInternationalAchAddressRequirement';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -46,14 +45,7 @@ class TransferRouteRequirements implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static $openAPITypes = [
         'description' => 'string',
-        'requiredAddressFields' => 'string[]',
-        'type' => 'string',
-        'max' => 'int',
-        'min' => 'int',
-        'bankAccountIdentificationTypes' => 'string[]',
-        'issuingCountryCode' => 'string',
-        'onlyForCrossBalancePlatform' => 'bool',
-        'paymentInstrumentType' => 'string'
+        'type' => 'string'
     ];
 
     /**
@@ -65,14 +57,7 @@ class TransferRouteRequirements implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static $openAPIFormats = [
         'description' => null,
-        'requiredAddressFields' => null,
-        'type' => null,
-        'max' => 'int64',
-        'min' => 'int64',
-        'bankAccountIdentificationTypes' => null,
-        'issuingCountryCode' => null,
-        'onlyForCrossBalancePlatform' => null,
-        'paymentInstrumentType' => null
+        'type' => null
     ];
 
     /**
@@ -82,14 +67,7 @@ class TransferRouteRequirements implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static $openAPINullables = [
         'description' => false,
-        'requiredAddressFields' => false,
-        'type' => false,
-        'max' => false,
-        'min' => false,
-        'bankAccountIdentificationTypes' => false,
-        'issuingCountryCode' => false,
-        'onlyForCrossBalancePlatform' => false,
-        'paymentInstrumentType' => false
+        'type' => false
     ];
 
     /**
@@ -179,14 +157,7 @@ class TransferRouteRequirements implements ModelInterface, ArrayAccess, \JsonSer
      */
     protected static $attributeMap = [
         'description' => 'description',
-        'requiredAddressFields' => 'requiredAddressFields',
-        'type' => 'type',
-        'max' => 'max',
-        'min' => 'min',
-        'bankAccountIdentificationTypes' => 'bankAccountIdentificationTypes',
-        'issuingCountryCode' => 'issuingCountryCode',
-        'onlyForCrossBalancePlatform' => 'onlyForCrossBalancePlatform',
-        'paymentInstrumentType' => 'paymentInstrumentType'
+        'type' => 'type'
     ];
 
     /**
@@ -196,14 +167,7 @@ class TransferRouteRequirements implements ModelInterface, ArrayAccess, \JsonSer
      */
     protected static $setters = [
         'description' => 'setDescription',
-        'requiredAddressFields' => 'setRequiredAddressFields',
-        'type' => 'setType',
-        'max' => 'setMax',
-        'min' => 'setMin',
-        'bankAccountIdentificationTypes' => 'setBankAccountIdentificationTypes',
-        'issuingCountryCode' => 'setIssuingCountryCode',
-        'onlyForCrossBalancePlatform' => 'setOnlyForCrossBalancePlatform',
-        'paymentInstrumentType' => 'setPaymentInstrumentType'
+        'type' => 'setType'
     ];
 
     /**
@@ -213,14 +177,7 @@ class TransferRouteRequirements implements ModelInterface, ArrayAccess, \JsonSer
      */
     protected static $getters = [
         'description' => 'getDescription',
-        'requiredAddressFields' => 'getRequiredAddressFields',
-        'type' => 'getType',
-        'max' => 'getMax',
-        'min' => 'getMin',
-        'bankAccountIdentificationTypes' => 'getBankAccountIdentificationTypes',
-        'issuingCountryCode' => 'getIssuingCountryCode',
-        'onlyForCrossBalancePlatform' => 'getOnlyForCrossBalancePlatform',
-        'paymentInstrumentType' => 'getPaymentInstrumentType'
+        'type' => 'getType'
     ];
 
     /**
@@ -264,6 +221,19 @@ class TransferRouteRequirements implements ModelInterface, ArrayAccess, \JsonSer
         return self::$openAPIModelName;
     }
 
+    public const TYPE_US_INTERNATIONAL_ACH_ADDRESS_REQUIREMENT = 'usInternationalAchAddressRequirement';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_US_INTERNATIONAL_ACH_ADDRESS_REQUIREMENT,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -280,14 +250,7 @@ class TransferRouteRequirements implements ModelInterface, ArrayAccess, \JsonSer
     public function __construct(array $data = null)
     {
         $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('requiredAddressFields', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('max', $data ?? [], null);
-        $this->setIfExists('min', $data ?? [], null);
-        $this->setIfExists('bankAccountIdentificationTypes', $data ?? [], null);
-        $this->setIfExists('issuingCountryCode', $data ?? [], null);
-        $this->setIfExists('onlyForCrossBalancePlatform', $data ?? [], null);
-        $this->setIfExists('paymentInstrumentType', $data ?? [], null);
     }
 
     /**
@@ -320,7 +283,14 @@ class TransferRouteRequirements implements ModelInterface, ArrayAccess, \JsonSer
         if ($this->container['type'] === null) {
             $invalidProperties[] = "'type' can't be null";
         }
-
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
+        }
 
         return $invalidProperties;
     }
@@ -350,43 +320,13 @@ class TransferRouteRequirements implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets description
      *
-     * @param string|null $description Specifies the requirements for the payment instrument that need to be included in the request for a particular route.
+     * @param string|null $description Specifies that you must provide a complete street address for International ACH (IAT) transactions.
      *
      * @return self
      */
     public function setDescription($description)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
         $this->container['description'] = $description;
-
-        return $this;
-    }
-
-    /**
-     * Gets requiredAddressFields
-     *
-     * @return string[]|null
-     */
-    public function getRequiredAddressFields()
-    {
-        return $this->container['requiredAddressFields'];
-    }
-
-    /**
-     * Sets requiredAddressFields
-     *
-     * @param string[]|null $requiredAddressFields List of address fields.
-     *
-     * @return self
-     */
-    public function setRequiredAddressFields($requiredAddressFields)
-    {
-        if (is_null($requiredAddressFields)) {
-            throw new \InvalidArgumentException('non-nullable requiredAddressFields cannot be null');
-        }
-        $this->container['requiredAddressFields'] = $requiredAddressFields;
 
         return $this;
     }
@@ -404,178 +344,23 @@ class TransferRouteRequirements implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets type
      *
-     * @param string $type **paymentInstrumentRequirement**
+     * @param string $type **usInternationalAchAddressRequirement**
      *
      * @return self
      */
     public function setType($type)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
+                    implode("', '", $allowedValues)
+                )
+            );
         }
         $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets max
-     *
-     * @return int|null
-     */
-    public function getMax()
-    {
-        return $this->container['max'];
-    }
-
-    /**
-     * Sets max
-     *
-     * @param int|null $max Maximum amount.
-     *
-     * @return self
-     */
-    public function setMax($max)
-    {
-        if (is_null($max)) {
-            throw new \InvalidArgumentException('non-nullable max cannot be null');
-        }
-        $this->container['max'] = $max;
-
-        return $this;
-    }
-
-    /**
-     * Gets min
-     *
-     * @return int|null
-     */
-    public function getMin()
-    {
-        return $this->container['min'];
-    }
-
-    /**
-     * Sets min
-     *
-     * @param int|null $min Minimum amount.
-     *
-     * @return self
-     */
-    public function setMin($min)
-    {
-        if (is_null($min)) {
-            throw new \InvalidArgumentException('non-nullable min cannot be null');
-        }
-        $this->container['min'] = $min;
-
-        return $this;
-    }
-
-    /**
-     * Gets bankAccountIdentificationTypes
-     *
-     * @return string[]|null
-     */
-    public function getBankAccountIdentificationTypes()
-    {
-        return $this->container['bankAccountIdentificationTypes'];
-    }
-
-    /**
-     * Sets bankAccountIdentificationTypes
-     *
-     * @param string[]|null $bankAccountIdentificationTypes List of bank account identification types: eg.; [iban , numberAndBic]
-     *
-     * @return self
-     */
-    public function setBankAccountIdentificationTypes($bankAccountIdentificationTypes)
-    {
-        if (is_null($bankAccountIdentificationTypes)) {
-            throw new \InvalidArgumentException('non-nullable bankAccountIdentificationTypes cannot be null');
-        }
-        $this->container['bankAccountIdentificationTypes'] = $bankAccountIdentificationTypes;
-
-        return $this;
-    }
-
-    /**
-     * Gets issuingCountryCode
-     *
-     * @return string|null
-     */
-    public function getIssuingCountryCode()
-    {
-        return $this->container['issuingCountryCode'];
-    }
-
-    /**
-     * Sets issuingCountryCode
-     *
-     * @param string|null $issuingCountryCode The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the payment instrument is issued. For example, **NL** or **US**.
-     *
-     * @return self
-     */
-    public function setIssuingCountryCode($issuingCountryCode)
-    {
-        if (is_null($issuingCountryCode)) {
-            throw new \InvalidArgumentException('non-nullable issuingCountryCode cannot be null');
-        }
-        $this->container['issuingCountryCode'] = $issuingCountryCode;
-
-        return $this;
-    }
-
-    /**
-     * Gets onlyForCrossBalancePlatform
-     *
-     * @return bool|null
-     */
-    public function getOnlyForCrossBalancePlatform()
-    {
-        return $this->container['onlyForCrossBalancePlatform'];
-    }
-
-    /**
-     * Sets onlyForCrossBalancePlatform
-     *
-     * @param bool|null $onlyForCrossBalancePlatform Specifies if the requirement only applies to transfers to another balance platform.
-     *
-     * @return self
-     */
-    public function setOnlyForCrossBalancePlatform($onlyForCrossBalancePlatform)
-    {
-        if (is_null($onlyForCrossBalancePlatform)) {
-            throw new \InvalidArgumentException('non-nullable onlyForCrossBalancePlatform cannot be null');
-        }
-        $this->container['onlyForCrossBalancePlatform'] = $onlyForCrossBalancePlatform;
-
-        return $this;
-    }
-
-    /**
-     * Gets paymentInstrumentType
-     *
-     * @return string|null
-     */
-    public function getPaymentInstrumentType()
-    {
-        return $this->container['paymentInstrumentType'];
-    }
-
-    /**
-     * Sets paymentInstrumentType
-     *
-     * @param string|null $paymentInstrumentType The type of the payment instrument. For example, \"BankAccount\" or \"Card\".
-     *
-     * @return self
-     */
-    public function setPaymentInstrumentType($paymentInstrumentType)
-    {
-        if (is_null($paymentInstrumentType)) {
-            throw new \InvalidArgumentException('non-nullable paymentInstrumentType cannot be null');
-        }
-        $this->container['paymentInstrumentType'] = $paymentInstrumentType;
 
         return $this;
     }
@@ -644,6 +429,32 @@ class TransferRouteRequirements implements ModelInterface, ArrayAccess, \JsonSer
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    public function toArray(): array
+    {
+        $array = [];
+        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+            $propertyValue = $this[$propertyName];
+            if ($propertyValue !== null) {
+                // Check if the property value is an object and has a toArray() method
+                if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
+                    $array[$propertyName] = $propertyValue->toArray();
+                // Check if it's type datetime
+                } elseif ($propertyValue instanceof \DateTime) {
+                    $array[$propertyName] = $propertyValue->format(DATE_ATOM);
+                // If it's an array type we should check whether it contains objects and if so call toArray method
+                } elseif (is_array($propertyValue)) {
+                    $array[$propertyName] = array_map(function ($item) {
+                        return $item instanceof ModelInterface ? $item->toArray() : $item;
+                    }, $propertyValue);
+                } else {
+                    // Otherwise, directly assign the property value to the array
+                    $array[$propertyName] = $propertyValue;
+                }
+            }
+        }
+        return $array;
     }
 
     /**

@@ -320,6 +320,7 @@ class CreateSweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSe
     public const REASON_PENDING_APPROVAL = 'pendingApproval';
     public const REASON_PENDING_EXECUTION = 'pendingExecution';
     public const REASON_REFUSED_BY_COUNTERPARTY_BANK = 'refusedByCounterpartyBank';
+    public const REASON_REFUSED_BY_CUSTOMER = 'refusedByCustomer';
     public const REASON_ROUTE_NOT_FOUND = 'routeNotFound';
     public const REASON_SCA_FAILED = 'scaFailed';
     public const REASON_TRANSFER_INSTRUMENT_DOES_NOT_EXIST = 'transferInstrumentDoesNotExist';
@@ -384,6 +385,7 @@ class CreateSweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSe
             self::REASON_PENDING_APPROVAL,
             self::REASON_PENDING_EXECUTION,
             self::REASON_REFUSED_BY_COUNTERPARTY_BANK,
+            self::REASON_REFUSED_BY_CUSTOMER,
             self::REASON_ROUTE_NOT_FOUND,
             self::REASON_SCA_FAILED,
             self::REASON_TRANSFER_INSTRUMENT_DOES_NOT_EXIST,

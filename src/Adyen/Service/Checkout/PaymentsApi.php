@@ -40,7 +40,7 @@ class PaymentsApi extends Service
     }
 
     /**
-    * Get the list of brands on the card
+    * Get the brands and other details of a card
     *
     * @param \Adyen\Model\Checkout\CardDetailsRequest $cardDetailsRequest
     * @param array|null $requestOptions

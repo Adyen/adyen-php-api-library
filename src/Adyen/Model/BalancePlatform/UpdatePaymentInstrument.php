@@ -782,7 +782,7 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets type
      *
-     * @param string $type Type of payment instrument.  Possible value: **card**, **bankAccount**.
+     * @param string $type The type of payment instrument.  Possible values: **card**, **bankAccount**.
      *
      * @return self
      */

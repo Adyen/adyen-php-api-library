@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
- * StoredDetails Class Doc Comment
+ * TwintDetails Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class StoredDetails implements ModelInterface, ArrayAccess, \JsonSerializable
+class TwintDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class StoredDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'StoredDetails';
+    protected static $openAPIModelName = 'TwintDetails';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,9 +44,11 @@ class StoredDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'bank' => '\Adyen\Model\Checkout\BankAccount',
-        'card' => '\Adyen\Model\Checkout\Card',
-        'emailAddress' => 'string'
+        'checkoutAttemptId' => 'string',
+        'recurringDetailReference' => 'string',
+        'storedPaymentMethodId' => 'string',
+        'subtype' => 'string',
+        'type' => 'string'
     ];
 
     /**
@@ -57,9 +59,11 @@ class StoredDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'bank' => null,
-        'card' => null,
-        'emailAddress' => null
+        'checkoutAttemptId' => null,
+        'recurringDetailReference' => null,
+        'storedPaymentMethodId' => null,
+        'subtype' => null,
+        'type' => null
     ];
 
     /**
@@ -68,9 +72,11 @@ class StoredDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'bank' => false,
-        'card' => false,
-        'emailAddress' => false
+        'checkoutAttemptId' => false,
+        'recurringDetailReference' => false,
+        'storedPaymentMethodId' => false,
+        'subtype' => false,
+        'type' => false
     ];
 
     /**
@@ -159,9 +165,11 @@ class StoredDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'bank' => 'bank',
-        'card' => 'card',
-        'emailAddress' => 'emailAddress'
+        'checkoutAttemptId' => 'checkoutAttemptId',
+        'recurringDetailReference' => 'recurringDetailReference',
+        'storedPaymentMethodId' => 'storedPaymentMethodId',
+        'subtype' => 'subtype',
+        'type' => 'type'
     ];
 
     /**
@@ -170,9 +178,11 @@ class StoredDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'bank' => 'setBank',
-        'card' => 'setCard',
-        'emailAddress' => 'setEmailAddress'
+        'checkoutAttemptId' => 'setCheckoutAttemptId',
+        'recurringDetailReference' => 'setRecurringDetailReference',
+        'storedPaymentMethodId' => 'setStoredPaymentMethodId',
+        'subtype' => 'setSubtype',
+        'type' => 'setType'
     ];
 
     /**
@@ -181,9 +191,11 @@ class StoredDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'bank' => 'getBank',
-        'card' => 'getCard',
-        'emailAddress' => 'getEmailAddress'
+        'checkoutAttemptId' => 'getCheckoutAttemptId',
+        'recurringDetailReference' => 'getRecurringDetailReference',
+        'storedPaymentMethodId' => 'getStoredPaymentMethodId',
+        'subtype' => 'getSubtype',
+        'type' => 'getType'
     ];
 
     /**
@@ -227,7 +239,19 @@ class StoredDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const TYPE_TWINT = 'twint';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_TWINT,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -243,9 +267,11 @@ class StoredDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('bank', $data ?? [], null);
-        $this->setIfExists('card', $data ?? [], null);
-        $this->setIfExists('emailAddress', $data ?? [], null);
+        $this->setIfExists('checkoutAttemptId', $data ?? [], null);
+        $this->setIfExists('recurringDetailReference', $data ?? [], null);
+        $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
+        $this->setIfExists('subtype', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -275,6 +301,15 @@ class StoredDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -291,73 +326,133 @@ class StoredDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets bank
-     *
-     * @return \Adyen\Model\Checkout\BankAccount|null
-     */
-    public function getBank()
-    {
-        return $this->container['bank'];
-    }
-
-    /**
-     * Sets bank
-     *
-     * @param \Adyen\Model\Checkout\BankAccount|null $bank bank
-     *
-     * @return self
-     */
-    public function setBank($bank)
-    {
-        $this->container['bank'] = $bank;
-
-        return $this;
-    }
-
-    /**
-     * Gets card
-     *
-     * @return \Adyen\Model\Checkout\Card|null
-     */
-    public function getCard()
-    {
-        return $this->container['card'];
-    }
-
-    /**
-     * Sets card
-     *
-     * @param \Adyen\Model\Checkout\Card|null $card card
-     *
-     * @return self
-     */
-    public function setCard($card)
-    {
-        $this->container['card'] = $card;
-
-        return $this;
-    }
-
-    /**
-     * Gets emailAddress
+     * Gets checkoutAttemptId
      *
      * @return string|null
      */
-    public function getEmailAddress()
+    public function getCheckoutAttemptId()
     {
-        return $this->container['emailAddress'];
+        return $this->container['checkoutAttemptId'];
     }
 
     /**
-     * Sets emailAddress
+     * Sets checkoutAttemptId
      *
-     * @param string|null $emailAddress The email associated with stored payment details.
+     * @param string|null $checkoutAttemptId The checkout attempt identifier.
      *
      * @return self
      */
-    public function setEmailAddress($emailAddress)
+    public function setCheckoutAttemptId($checkoutAttemptId)
     {
-        $this->container['emailAddress'] = $emailAddress;
+        $this->container['checkoutAttemptId'] = $checkoutAttemptId;
+
+        return $this;
+    }
+
+    /**
+     * Gets recurringDetailReference
+     *
+     * @return string|null
+     * @deprecated
+     */
+    public function getRecurringDetailReference()
+    {
+        return $this->container['recurringDetailReference'];
+    }
+
+    /**
+     * Sets recurringDetailReference
+     *
+     * @param string|null $recurringDetailReference This is the `recurringDetailReference` returned in the response when you created the token.
+     *
+     * @return self
+     * @deprecated
+     */
+    public function setRecurringDetailReference($recurringDetailReference)
+    {
+        $this->container['recurringDetailReference'] = $recurringDetailReference;
+
+        return $this;
+    }
+
+    /**
+     * Gets storedPaymentMethodId
+     *
+     * @return string|null
+     */
+    public function getStoredPaymentMethodId()
+    {
+        return $this->container['storedPaymentMethodId'];
+    }
+
+    /**
+     * Sets storedPaymentMethodId
+     *
+     * @param string|null $storedPaymentMethodId This is the `recurringDetailReference` returned in the response when you created the token.
+     *
+     * @return self
+     */
+    public function setStoredPaymentMethodId($storedPaymentMethodId)
+    {
+        $this->container['storedPaymentMethodId'] = $storedPaymentMethodId;
+
+        return $this;
+    }
+
+    /**
+     * Gets subtype
+     *
+     * @return string|null
+     */
+    public function getSubtype()
+    {
+        return $this->container['subtype'];
+    }
+
+    /**
+     * Sets subtype
+     *
+     * @param string|null $subtype The type of flow to initiate.
+     *
+     * @return self
+     */
+    public function setSubtype($subtype)
+    {
+        $this->container['subtype'] = $subtype;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string|null
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string|null $type The payment method type.
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
 
         return $this;
     }

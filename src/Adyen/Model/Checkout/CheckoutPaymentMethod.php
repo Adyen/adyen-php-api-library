@@ -104,8 +104,9 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'payerSelected' => 'string',
         'shopperAccountIdentifier' => 'string',
         'virtualPaymentAddress' => 'string',
-        'samsungPayToken' => 'string',
+        'deviceFingerprint' => 'string',
         'iban' => 'string',
+        'samsungPayToken' => 'string',
         'billingSequenceNumber' => 'string',
         'appId' => 'string',
         'visaCheckoutCallId' => 'string',
@@ -180,8 +181,9 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'payerSelected' => null,
         'shopperAccountIdentifier' => null,
         'virtualPaymentAddress' => null,
-        'samsungPayToken' => null,
+        'deviceFingerprint' => null,
         'iban' => null,
+        'samsungPayToken' => null,
         'billingSequenceNumber' => null,
         'appId' => null,
         'visaCheckoutCallId' => null,
@@ -254,8 +256,9 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'payerSelected' => false,
         'shopperAccountIdentifier' => false,
         'virtualPaymentAddress' => false,
-        'samsungPayToken' => false,
+        'deviceFingerprint' => false,
         'iban' => false,
+        'samsungPayToken' => false,
         'billingSequenceNumber' => false,
         'appId' => false,
         'visaCheckoutCallId' => false,
@@ -408,8 +411,9 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'payerSelected' => 'payerSelected',
         'shopperAccountIdentifier' => 'shopperAccountIdentifier',
         'virtualPaymentAddress' => 'virtualPaymentAddress',
-        'samsungPayToken' => 'samsungPayToken',
+        'deviceFingerprint' => 'deviceFingerprint',
         'iban' => 'iban',
+        'samsungPayToken' => 'samsungPayToken',
         'billingSequenceNumber' => 'billingSequenceNumber',
         'appId' => 'appId',
         'visaCheckoutCallId' => 'visaCheckoutCallId',
@@ -482,8 +486,9 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'payerSelected' => 'setPayerSelected',
         'shopperAccountIdentifier' => 'setShopperAccountIdentifier',
         'virtualPaymentAddress' => 'setVirtualPaymentAddress',
-        'samsungPayToken' => 'setSamsungPayToken',
+        'deviceFingerprint' => 'setDeviceFingerprint',
         'iban' => 'setIban',
+        'samsungPayToken' => 'setSamsungPayToken',
         'billingSequenceNumber' => 'setBillingSequenceNumber',
         'appId' => 'setAppId',
         'visaCheckoutCallId' => 'setVisaCheckoutCallId',
@@ -556,8 +561,9 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'payerSelected' => 'getPayerSelected',
         'shopperAccountIdentifier' => 'getShopperAccountIdentifier',
         'virtualPaymentAddress' => 'getVirtualPaymentAddress',
-        'samsungPayToken' => 'getSamsungPayToken',
+        'deviceFingerprint' => 'getDeviceFingerprint',
         'iban' => 'getIban',
+        'samsungPayToken' => 'getSamsungPayToken',
         'billingSequenceNumber' => 'getBillingSequenceNumber',
         'appId' => 'getAppId',
         'visaCheckoutCallId' => 'getVisaCheckoutCallId',
@@ -680,8 +686,9 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('payerSelected', $data ?? [], null);
         $this->setIfExists('shopperAccountIdentifier', $data ?? [], null);
         $this->setIfExists('virtualPaymentAddress', $data ?? [], null);
-        $this->setIfExists('samsungPayToken', $data ?? [], null);
+        $this->setIfExists('deviceFingerprint', $data ?? [], null);
         $this->setIfExists('iban', $data ?? [], null);
+        $this->setIfExists('samsungPayToken', $data ?? [], null);
         $this->setIfExists('billingSequenceNumber', $data ?? [], null);
         $this->setIfExists('appId', $data ?? [], null);
         $this->setIfExists('visaCheckoutCallId', $data ?? [], null);
@@ -731,7 +738,6 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         if ($this->container['issuer'] === null) {
             $invalidProperties[] = "'issuer' can't be null";
         }
-
         if ($this->container['firstName'] === null) {
             $invalidProperties[] = "'firstName' can't be null";
         }
@@ -750,11 +756,11 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         if ($this->container['masterpassTransactionId'] === null) {
             $invalidProperties[] = "'masterpassTransactionId' can't be null";
         }
-        if ($this->container['samsungPayToken'] === null) {
-            $invalidProperties[] = "'samsungPayToken' can't be null";
-        }
         if ($this->container['iban'] === null) {
             $invalidProperties[] = "'iban' can't be null";
+        }
+        if ($this->container['samsungPayToken'] === null) {
+            $invalidProperties[] = "'samsungPayToken' can't be null";
         }
         if ($this->container['billingSequenceNumber'] === null) {
             $invalidProperties[] = "'billingSequenceNumber' can't be null";
@@ -2198,25 +2204,25 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Gets samsungPayToken
+     * Gets deviceFingerprint
      *
-     * @return string
+     * @return string|null
      */
-    public function getSamsungPayToken()
+    public function getDeviceFingerprint()
     {
-        return $this->container['samsungPayToken'];
+        return $this->container['deviceFingerprint'];
     }
 
     /**
-     * Sets samsungPayToken
+     * Sets deviceFingerprint
      *
-     * @param string $samsungPayToken The payload you received from the Samsung Pay SDK response.
+     * @param string|null $deviceFingerprint A string containing the shopper's device fingerprint. For more information, refer to [Device fingerprinting](https://docs.adyen.com/risk-management/device-fingerprinting).
      *
      * @return self
      */
-    public function setSamsungPayToken($samsungPayToken)
+    public function setDeviceFingerprint($deviceFingerprint)
     {
-        $this->container['samsungPayToken'] = $samsungPayToken;
+        $this->container['deviceFingerprint'] = $deviceFingerprint;
 
         return $this;
     }
@@ -2241,6 +2247,30 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setIban($iban)
     {
         $this->container['iban'] = $iban;
+
+        return $this;
+    }
+
+    /**
+     * Gets samsungPayToken
+     *
+     * @return string
+     */
+    public function getSamsungPayToken()
+    {
+        return $this->container['samsungPayToken'];
+    }
+
+    /**
+     * Sets samsungPayToken
+     *
+     * @param string $samsungPayToken The payload you received from the Samsung Pay SDK response.
+     *
+     * @return self
+     */
+    public function setSamsungPayToken($samsungPayToken)
+    {
+        $this->container['samsungPayToken'] = $samsungPayToken;
 
         return $this;
     }

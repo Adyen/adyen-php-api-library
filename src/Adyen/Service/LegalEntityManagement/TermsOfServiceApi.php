@@ -57,6 +57,22 @@ class TermsOfServiceApi extends Service
     }
 
     /**
+    * Get accepted Terms of Service document
+    *
+    * @param string $id
+    * @param string $termsofserviceacceptancereference
+    * @param array|null $requestOptions ['queryParams' => ['termsOfServiceDocumentFormat'=> string]]
+    * @return \Adyen\Model\LegalEntityManagement\GetAcceptedTermsOfServiceDocumentResponse
+    * @throws AdyenException
+    */
+    public function getAcceptedTermsOfServiceDocument(string $id, string $termsofserviceacceptancereference, array $requestOptions = null): \Adyen\Model\LegalEntityManagement\GetAcceptedTermsOfServiceDocumentResponse
+    {
+        $endpoint = $this->baseURL . str_replace(['{id}', '{termsofserviceacceptancereference}'], [$id, $termsofserviceacceptancereference], "/legalEntities/{id}/acceptedTermsOfServiceDocument/{termsofserviceacceptancereference}");
+        $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\LegalEntityManagement\GetAcceptedTermsOfServiceDocumentResponse::class);
+    }
+
+    /**
     * Get Terms of Service document
     *
     * @param string $id

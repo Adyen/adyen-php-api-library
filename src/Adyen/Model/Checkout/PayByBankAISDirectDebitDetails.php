@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
- * ServiceErrorDetails Class Doc Comment
+ * PayByBankAISDirectDebitDetails Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ServiceErrorDetails implements ModelInterface, ArrayAccess, \JsonSerializable
+class PayByBankAISDirectDebitDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class ServiceErrorDetails implements ModelInterface, ArrayAccess, \JsonSerializa
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ServiceErrorDetails';
+    protected static $openAPIModelName = 'PayByBankAISDirectDebitDetails';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,10 +44,10 @@ class ServiceErrorDetails implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var string[]
       */
     protected static $openAPITypes = [
-        'errorCode' => 'string',
-        'errorType' => 'string',
-        'message' => 'string',
-        'pspReference' => 'string'
+        'checkoutAttemptId' => 'string',
+        'recurringDetailReference' => 'string',
+        'storedPaymentMethodId' => 'string',
+        'type' => 'string'
     ];
 
     /**
@@ -58,10 +58,10 @@ class ServiceErrorDetails implements ModelInterface, ArrayAccess, \JsonSerializa
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'errorCode' => null,
-        'errorType' => null,
-        'message' => null,
-        'pspReference' => null
+        'checkoutAttemptId' => null,
+        'recurringDetailReference' => null,
+        'storedPaymentMethodId' => null,
+        'type' => null
     ];
 
     /**
@@ -70,10 +70,10 @@ class ServiceErrorDetails implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'errorCode' => false,
-        'errorType' => false,
-        'message' => false,
-        'pspReference' => false
+        'checkoutAttemptId' => false,
+        'recurringDetailReference' => false,
+        'storedPaymentMethodId' => false,
+        'type' => false
     ];
 
     /**
@@ -162,10 +162,10 @@ class ServiceErrorDetails implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $attributeMap = [
-        'errorCode' => 'errorCode',
-        'errorType' => 'errorType',
-        'message' => 'message',
-        'pspReference' => 'pspReference'
+        'checkoutAttemptId' => 'checkoutAttemptId',
+        'recurringDetailReference' => 'recurringDetailReference',
+        'storedPaymentMethodId' => 'storedPaymentMethodId',
+        'type' => 'type'
     ];
 
     /**
@@ -174,10 +174,10 @@ class ServiceErrorDetails implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $setters = [
-        'errorCode' => 'setErrorCode',
-        'errorType' => 'setErrorType',
-        'message' => 'setMessage',
-        'pspReference' => 'setPspReference'
+        'checkoutAttemptId' => 'setCheckoutAttemptId',
+        'recurringDetailReference' => 'setRecurringDetailReference',
+        'storedPaymentMethodId' => 'setStoredPaymentMethodId',
+        'type' => 'setType'
     ];
 
     /**
@@ -186,10 +186,10 @@ class ServiceErrorDetails implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $getters = [
-        'errorCode' => 'getErrorCode',
-        'errorType' => 'getErrorType',
-        'message' => 'getMessage',
-        'pspReference' => 'getPspReference'
+        'checkoutAttemptId' => 'getCheckoutAttemptId',
+        'recurringDetailReference' => 'getRecurringDetailReference',
+        'storedPaymentMethodId' => 'getStoredPaymentMethodId',
+        'type' => 'getType'
     ];
 
     /**
@@ -233,7 +233,19 @@ class ServiceErrorDetails implements ModelInterface, ArrayAccess, \JsonSerializa
         return self::$openAPIModelName;
     }
 
+    public const TYPE_PAYBYBANK_AIS_DD = 'paybybank_AIS_DD';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_PAYBYBANK_AIS_DD,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -249,10 +261,10 @@ class ServiceErrorDetails implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('errorCode', $data ?? [], null);
-        $this->setIfExists('errorType', $data ?? [], null);
-        $this->setIfExists('message', $data ?? [], null);
-        $this->setIfExists('pspReference', $data ?? [], null);
+        $this->setIfExists('checkoutAttemptId', $data ?? [], null);
+        $this->setIfExists('recurringDetailReference', $data ?? [], null);
+        $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -282,6 +294,18 @@ class ServiceErrorDetails implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $invalidProperties = [];
 
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -298,97 +322,109 @@ class ServiceErrorDetails implements ModelInterface, ArrayAccess, \JsonSerializa
 
 
     /**
-     * Gets errorCode
+     * Gets checkoutAttemptId
      *
      * @return string|null
      */
-    public function getErrorCode()
+    public function getCheckoutAttemptId()
     {
-        return $this->container['errorCode'];
+        return $this->container['checkoutAttemptId'];
     }
 
     /**
-     * Sets errorCode
+     * Sets checkoutAttemptId
      *
-     * @param string|null $errorCode errorCode
+     * @param string|null $checkoutAttemptId The checkout attempt identifier.
      *
      * @return self
      */
-    public function setErrorCode($errorCode)
+    public function setCheckoutAttemptId($checkoutAttemptId)
     {
-        $this->container['errorCode'] = $errorCode;
+        $this->container['checkoutAttemptId'] = $checkoutAttemptId;
 
         return $this;
     }
 
     /**
-     * Gets errorType
+     * Gets recurringDetailReference
      *
      * @return string|null
+     * @deprecated
      */
-    public function getErrorType()
+    public function getRecurringDetailReference()
     {
-        return $this->container['errorType'];
+        return $this->container['recurringDetailReference'];
     }
 
     /**
-     * Sets errorType
+     * Sets recurringDetailReference
      *
-     * @param string|null $errorType errorType
+     * @param string|null $recurringDetailReference This is the `recurringDetailReference` returned in the response when you created the token.
      *
      * @return self
+     * @deprecated
      */
-    public function setErrorType($errorType)
+    public function setRecurringDetailReference($recurringDetailReference)
     {
-        $this->container['errorType'] = $errorType;
+        $this->container['recurringDetailReference'] = $recurringDetailReference;
 
         return $this;
     }
 
     /**
-     * Gets message
+     * Gets storedPaymentMethodId
      *
      * @return string|null
      */
-    public function getMessage()
+    public function getStoredPaymentMethodId()
     {
-        return $this->container['message'];
+        return $this->container['storedPaymentMethodId'];
     }
 
     /**
-     * Sets message
+     * Sets storedPaymentMethodId
      *
-     * @param string|null $message message
+     * @param string|null $storedPaymentMethodId This is the `recurringDetailReference` returned in the response when you created the token.
      *
      * @return self
      */
-    public function setMessage($message)
+    public function setStoredPaymentMethodId($storedPaymentMethodId)
     {
-        $this->container['message'] = $message;
+        $this->container['storedPaymentMethodId'] = $storedPaymentMethodId;
 
         return $this;
     }
 
     /**
-     * Gets pspReference
+     * Gets type
      *
-     * @return string|null
+     * @return string
      */
-    public function getPspReference()
+    public function getType()
     {
-        return $this->container['pspReference'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets pspReference
+     * Sets type
      *
-     * @param string|null $pspReference pspReference
+     * @param string $type **paybybank_**
      *
      * @return self
      */
-    public function setPspReference($pspReference)
+    public function setType($type)
     {
-        $this->container['pspReference'] = $pspReference;
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
 
         return $this;
     }

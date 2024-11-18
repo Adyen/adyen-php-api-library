@@ -601,7 +601,7 @@ class Mandate implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets frequency
      *
-     * @param string $frequency The frequency with which a shopper should be charged.  Possible values: **daily**, **weekly**, **biWeekly**, **monthly**, **quarterly**, **halfYearly**, **yearly**.
+     * @param string $frequency The frequency with which a shopper should be charged.  Possible values: **adhoc**, **daily**, **weekly**, **biWeekly**, **monthly**, **quarterly**, **halfYearly**, **yearly**.
      *
      * @return self
      */

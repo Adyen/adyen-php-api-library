@@ -218,6 +218,7 @@ class CalculateTermsOfServiceStatusResponse implements ModelInterface, ArrayAcce
     public const TERMS_OF_SERVICE_TYPES_ADYEN_ACCOUNT = 'adyenAccount';
     public const TERMS_OF_SERVICE_TYPES_ADYEN_CAPITAL = 'adyenCapital';
     public const TERMS_OF_SERVICE_TYPES_ADYEN_CARD = 'adyenCard';
+    public const TERMS_OF_SERVICE_TYPES_ADYEN_CHARGE_CARD = 'adyenChargeCard';
     public const TERMS_OF_SERVICE_TYPES_ADYEN_FOR_PLATFORMS_ADVANCED = 'adyenForPlatformsAdvanced';
     public const TERMS_OF_SERVICE_TYPES_ADYEN_FOR_PLATFORMS_MANAGE = 'adyenForPlatformsManage';
     public const TERMS_OF_SERVICE_TYPES_ADYEN_FRANCHISEE = 'adyenFranchisee';
@@ -235,6 +236,7 @@ class CalculateTermsOfServiceStatusResponse implements ModelInterface, ArrayAcce
             self::TERMS_OF_SERVICE_TYPES_ADYEN_ACCOUNT,
             self::TERMS_OF_SERVICE_TYPES_ADYEN_CAPITAL,
             self::TERMS_OF_SERVICE_TYPES_ADYEN_CARD,
+            self::TERMS_OF_SERVICE_TYPES_ADYEN_CHARGE_CARD,
             self::TERMS_OF_SERVICE_TYPES_ADYEN_FOR_PLATFORMS_ADVANCED,
             self::TERMS_OF_SERVICE_TYPES_ADYEN_FOR_PLATFORMS_MANAGE,
             self::TERMS_OF_SERVICE_TYPES_ADYEN_FRANCHISEE,

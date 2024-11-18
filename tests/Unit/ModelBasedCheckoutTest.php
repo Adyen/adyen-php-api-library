@@ -15,7 +15,6 @@ use Adyen\Model\Checkout\PaymentMethodsRequest;
 use Adyen\Model\Checkout\PaymentRequest;
 use Adyen\Model\Checkout\PaymentSetupRequest;
 use Adyen\Model\Checkout\PaymentVerificationRequest;
-use Adyen\Service\Checkout\ClassicCheckoutSDKApi;
 use Adyen\Service\Checkout\DonationsApi;
 use Adyen\Service\Checkout\PaymentLinksApi;
 use Adyen\Service\Checkout\PaymentsApi;
@@ -147,56 +146,11 @@ class ModelBasedCheckoutTest extends TestCaseMock
         );
     }
 
-    /**
-     * @dataProvider successPaymentSessionProvider
-     */
-    public function testPaymentSessionSuccess($jsonFile, $httpStatus)
-    {
-        // create Checkout client
-        $client = $this->createMockClient($jsonFile, $httpStatus);
-
-        // initialize service
-        $service = new ClassicCheckoutSDKApi($client);
-
-        $params = array(
-            'merchant_account' => "YourMerchantAccount",
-            'amount' => array('currency' => "EUR", 'value' => 1000),
-            'country_code' => "NL",
-            'reference' => "Your order number",
-            'return_url' => self::RETURN_URL,
-            "sdk_version" => "1.3.0"
-        );
-
-        $result = $service->paymentSession(new PaymentSetupRequest($params));
-
-        $this->assertNotNull($result->getPaymentSession());
-    }
-
     public static function successPaymentSessionProvider()
     {
         return array(
             array('tests/Resources/ModelBasedCheckout/payment-session-success.json', 200)
         );
-    }
-
-    /**
-     * @dataProvider successPaymentsResultProvider
-     */
-    public function testPaymentsResultSuccess($jsonFile, $httpStatus)
-    {
-        // create Checkout client
-        $client = $this->createMockClient($jsonFile, $httpStatus);
-
-        // initialize service
-        $service = new ClassicCheckoutSDKApi($client);
-
-        $params = array(
-            'payload' => "YourPayload"
-        );
-
-        $result = $service->verifyPaymentResult(new PaymentVerificationRequest($params));
-
-        $this->assertContains($result->getResultCode(), array('Authorised'));
     }
 
     public static function successPaymentsResultProvider()

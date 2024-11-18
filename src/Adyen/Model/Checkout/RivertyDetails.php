@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
- * InstallmentsNumber Class Doc Comment
+ * RivertyDetails Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class InstallmentsNumber implements ModelInterface, ArrayAccess, \JsonSerializable
+class RivertyDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class InstallmentsNumber implements ModelInterface, ArrayAccess, \JsonSerializab
       *
       * @var string
       */
-    protected static $openAPIModelName = 'InstallmentsNumber';
+    protected static $openAPIModelName = 'RivertyDetails';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,7 +44,15 @@ class InstallmentsNumber implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var string[]
       */
     protected static $openAPITypes = [
-        'maxNumberOfInstallments' => 'int'
+        'billingAddress' => 'string',
+        'checkoutAttemptId' => 'string',
+        'deliveryAddress' => 'string',
+        'deviceFingerprint' => 'string',
+        'iban' => 'string',
+        'personalDetails' => 'string',
+        'recurringDetailReference' => 'string',
+        'storedPaymentMethodId' => 'string',
+        'type' => 'string'
     ];
 
     /**
@@ -55,7 +63,15 @@ class InstallmentsNumber implements ModelInterface, ArrayAccess, \JsonSerializab
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'maxNumberOfInstallments' => 'int32'
+        'billingAddress' => null,
+        'checkoutAttemptId' => null,
+        'deliveryAddress' => null,
+        'deviceFingerprint' => null,
+        'iban' => null,
+        'personalDetails' => null,
+        'recurringDetailReference' => null,
+        'storedPaymentMethodId' => null,
+        'type' => null
     ];
 
     /**
@@ -64,7 +80,15 @@ class InstallmentsNumber implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'maxNumberOfInstallments' => true
+        'billingAddress' => false,
+        'checkoutAttemptId' => false,
+        'deliveryAddress' => false,
+        'deviceFingerprint' => false,
+        'iban' => false,
+        'personalDetails' => false,
+        'recurringDetailReference' => false,
+        'storedPaymentMethodId' => false,
+        'type' => false
     ];
 
     /**
@@ -153,7 +177,15 @@ class InstallmentsNumber implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $attributeMap = [
-        'maxNumberOfInstallments' => 'maxNumberOfInstallments'
+        'billingAddress' => 'billingAddress',
+        'checkoutAttemptId' => 'checkoutAttemptId',
+        'deliveryAddress' => 'deliveryAddress',
+        'deviceFingerprint' => 'deviceFingerprint',
+        'iban' => 'iban',
+        'personalDetails' => 'personalDetails',
+        'recurringDetailReference' => 'recurringDetailReference',
+        'storedPaymentMethodId' => 'storedPaymentMethodId',
+        'type' => 'type'
     ];
 
     /**
@@ -162,7 +194,15 @@ class InstallmentsNumber implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $setters = [
-        'maxNumberOfInstallments' => 'setMaxNumberOfInstallments'
+        'billingAddress' => 'setBillingAddress',
+        'checkoutAttemptId' => 'setCheckoutAttemptId',
+        'deliveryAddress' => 'setDeliveryAddress',
+        'deviceFingerprint' => 'setDeviceFingerprint',
+        'iban' => 'setIban',
+        'personalDetails' => 'setPersonalDetails',
+        'recurringDetailReference' => 'setRecurringDetailReference',
+        'storedPaymentMethodId' => 'setStoredPaymentMethodId',
+        'type' => 'setType'
     ];
 
     /**
@@ -171,7 +211,15 @@ class InstallmentsNumber implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $getters = [
-        'maxNumberOfInstallments' => 'getMaxNumberOfInstallments'
+        'billingAddress' => 'getBillingAddress',
+        'checkoutAttemptId' => 'getCheckoutAttemptId',
+        'deliveryAddress' => 'getDeliveryAddress',
+        'deviceFingerprint' => 'getDeviceFingerprint',
+        'iban' => 'getIban',
+        'personalDetails' => 'getPersonalDetails',
+        'recurringDetailReference' => 'getRecurringDetailReference',
+        'storedPaymentMethodId' => 'getStoredPaymentMethodId',
+        'type' => 'getType'
     ];
 
     /**
@@ -215,7 +263,23 @@ class InstallmentsNumber implements ModelInterface, ArrayAccess, \JsonSerializab
         return self::$openAPIModelName;
     }
 
+    public const TYPE_RIVERTY = 'riverty';
+    public const TYPE_RIVERTY_ACCOUNT = 'riverty_account';
+    public const TYPE_SEPADIRECTDEBIT_RIVERTY = 'sepadirectdebit_riverty';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_RIVERTY,
+            self::TYPE_RIVERTY_ACCOUNT,
+            self::TYPE_SEPADIRECTDEBIT_RIVERTY,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -231,7 +295,15 @@ class InstallmentsNumber implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('maxNumberOfInstallments', $data ?? [], null);
+        $this->setIfExists('billingAddress', $data ?? [], null);
+        $this->setIfExists('checkoutAttemptId', $data ?? [], null);
+        $this->setIfExists('deliveryAddress', $data ?? [], null);
+        $this->setIfExists('deviceFingerprint', $data ?? [], null);
+        $this->setIfExists('iban', $data ?? [], null);
+        $this->setIfExists('personalDetails', $data ?? [], null);
+        $this->setIfExists('recurringDetailReference', $data ?? [], null);
+        $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -261,9 +333,18 @@ class InstallmentsNumber implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $invalidProperties = [];
 
-        if ($this->container['maxNumberOfInstallments'] === null) {
-            $invalidProperties[] = "'maxNumberOfInstallments' can't be null";
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
         }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -280,25 +361,229 @@ class InstallmentsNumber implements ModelInterface, ArrayAccess, \JsonSerializab
 
 
     /**
-     * Gets maxNumberOfInstallments
+     * Gets billingAddress
      *
-     * @return int
+     * @return string|null
      */
-    public function getMaxNumberOfInstallments()
+    public function getBillingAddress()
     {
-        return $this->container['maxNumberOfInstallments'];
+        return $this->container['billingAddress'];
     }
 
     /**
-     * Sets maxNumberOfInstallments
+     * Sets billingAddress
      *
-     * @param int $maxNumberOfInstallments Maximum number of installments
+     * @param string|null $billingAddress The address where to send the invoice.
      *
      * @return self
      */
-    public function setMaxNumberOfInstallments($maxNumberOfInstallments)
+    public function setBillingAddress($billingAddress)
     {
-        $this->container['maxNumberOfInstallments'] = $maxNumberOfInstallments;
+        $this->container['billingAddress'] = $billingAddress;
+
+        return $this;
+    }
+
+    /**
+     * Gets checkoutAttemptId
+     *
+     * @return string|null
+     */
+    public function getCheckoutAttemptId()
+    {
+        return $this->container['checkoutAttemptId'];
+    }
+
+    /**
+     * Sets checkoutAttemptId
+     *
+     * @param string|null $checkoutAttemptId The checkout attempt identifier.
+     *
+     * @return self
+     */
+    public function setCheckoutAttemptId($checkoutAttemptId)
+    {
+        $this->container['checkoutAttemptId'] = $checkoutAttemptId;
+
+        return $this;
+    }
+
+    /**
+     * Gets deliveryAddress
+     *
+     * @return string|null
+     */
+    public function getDeliveryAddress()
+    {
+        return $this->container['deliveryAddress'];
+    }
+
+    /**
+     * Sets deliveryAddress
+     *
+     * @param string|null $deliveryAddress The address where the goods should be delivered.
+     *
+     * @return self
+     */
+    public function setDeliveryAddress($deliveryAddress)
+    {
+        $this->container['deliveryAddress'] = $deliveryAddress;
+
+        return $this;
+    }
+
+    /**
+     * Gets deviceFingerprint
+     *
+     * @return string|null
+     */
+    public function getDeviceFingerprint()
+    {
+        return $this->container['deviceFingerprint'];
+    }
+
+    /**
+     * Sets deviceFingerprint
+     *
+     * @param string|null $deviceFingerprint A string containing the shopper's device fingerprint. For more information, refer to [Device fingerprinting](https://docs.adyen.com/risk-management/device-fingerprinting).
+     *
+     * @return self
+     */
+    public function setDeviceFingerprint($deviceFingerprint)
+    {
+        $this->container['deviceFingerprint'] = $deviceFingerprint;
+
+        return $this;
+    }
+
+    /**
+     * Gets iban
+     *
+     * @return string|null
+     */
+    public function getIban()
+    {
+        return $this->container['iban'];
+    }
+
+    /**
+     * Sets iban
+     *
+     * @param string|null $iban The iban number of the customer
+     *
+     * @return self
+     */
+    public function setIban($iban)
+    {
+        $this->container['iban'] = $iban;
+
+        return $this;
+    }
+
+    /**
+     * Gets personalDetails
+     *
+     * @return string|null
+     */
+    public function getPersonalDetails()
+    {
+        return $this->container['personalDetails'];
+    }
+
+    /**
+     * Sets personalDetails
+     *
+     * @param string|null $personalDetails Shopper name, date of birth, phone number, and email address.
+     *
+     * @return self
+     */
+    public function setPersonalDetails($personalDetails)
+    {
+        $this->container['personalDetails'] = $personalDetails;
+
+        return $this;
+    }
+
+    /**
+     * Gets recurringDetailReference
+     *
+     * @return string|null
+     * @deprecated
+     */
+    public function getRecurringDetailReference()
+    {
+        return $this->container['recurringDetailReference'];
+    }
+
+    /**
+     * Sets recurringDetailReference
+     *
+     * @param string|null $recurringDetailReference This is the `recurringDetailReference` returned in the response when you created the token.
+     *
+     * @return self
+     * @deprecated
+     */
+    public function setRecurringDetailReference($recurringDetailReference)
+    {
+        $this->container['recurringDetailReference'] = $recurringDetailReference;
+
+        return $this;
+    }
+
+    /**
+     * Gets storedPaymentMethodId
+     *
+     * @return string|null
+     */
+    public function getStoredPaymentMethodId()
+    {
+        return $this->container['storedPaymentMethodId'];
+    }
+
+    /**
+     * Sets storedPaymentMethodId
+     *
+     * @param string|null $storedPaymentMethodId This is the `recurringDetailReference` returned in the response when you created the token.
+     *
+     * @return self
+     */
+    public function setStoredPaymentMethodId($storedPaymentMethodId)
+    {
+        $this->container['storedPaymentMethodId'] = $storedPaymentMethodId;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string $type **riverty**
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
 
         return $this;
     }

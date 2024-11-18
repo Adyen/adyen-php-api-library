@@ -101,6 +101,21 @@ class BalanceAccountsApi extends Service
     }
 
     /**
+    * Get all transaction rules for a balance account
+    *
+    * @param string $id
+    * @param array|null $requestOptions
+    * @return \Adyen\Model\BalancePlatform\TransactionRulesResponse
+    * @throws AdyenException
+    */
+    public function getAllTransactionRulesForBalanceAccount(string $id, array $requestOptions = null): \Adyen\Model\BalancePlatform\TransactionRulesResponse
+    {
+        $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/balanceAccounts/{id}/transactionRules");
+        $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\BalancePlatform\TransactionRulesResponse::class);
+    }
+
+    /**
     * Get a balance account
     *
     * @param string $id

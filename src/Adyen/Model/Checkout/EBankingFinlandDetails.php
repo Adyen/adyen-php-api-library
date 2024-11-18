@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
- * Avs Class Doc Comment
+ * EBankingFinlandDetails Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Avs implements ModelInterface, ArrayAccess, \JsonSerializable
+class EBankingFinlandDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class Avs implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Avs';
+    protected static $openAPIModelName = 'EBankingFinlandDetails';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,8 +44,9 @@ class Avs implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'addressEditable' => 'bool',
-        'enabled' => 'string'
+        'checkoutAttemptId' => 'string',
+        'issuer' => 'string',
+        'type' => 'string'
     ];
 
     /**
@@ -56,8 +57,9 @@ class Avs implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'addressEditable' => null,
-        'enabled' => null
+        'checkoutAttemptId' => null,
+        'issuer' => null,
+        'type' => null
     ];
 
     /**
@@ -66,8 +68,9 @@ class Avs implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'addressEditable' => false,
-        'enabled' => false
+        'checkoutAttemptId' => false,
+        'issuer' => false,
+        'type' => false
     ];
 
     /**
@@ -156,8 +159,9 @@ class Avs implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'addressEditable' => 'addressEditable',
-        'enabled' => 'enabled'
+        'checkoutAttemptId' => 'checkoutAttemptId',
+        'issuer' => 'issuer',
+        'type' => 'type'
     ];
 
     /**
@@ -166,8 +170,9 @@ class Avs implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'addressEditable' => 'setAddressEditable',
-        'enabled' => 'setEnabled'
+        'checkoutAttemptId' => 'setCheckoutAttemptId',
+        'issuer' => 'setIssuer',
+        'type' => 'setType'
     ];
 
     /**
@@ -176,8 +181,9 @@ class Avs implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'addressEditable' => 'getAddressEditable',
-        'enabled' => 'getEnabled'
+        'checkoutAttemptId' => 'getCheckoutAttemptId',
+        'issuer' => 'getIssuer',
+        'type' => 'getType'
     ];
 
     /**
@@ -221,21 +227,17 @@ class Avs implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const ENABLED_YES = 'yes';
-    public const ENABLED_NO = 'no';
-    public const ENABLED_AUTOMATIC = 'automatic';
+    public const TYPE_EBANKING_FI = 'ebanking_FI';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getEnabledAllowableValues()
+    public function getTypeAllowableValues()
     {
         return [
-            self::ENABLED_YES,
-            self::ENABLED_NO,
-            self::ENABLED_AUTOMATIC,
+            self::TYPE_EBANKING_FI,
         ];
     }
     /**
@@ -253,8 +255,9 @@ class Avs implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('addressEditable', $data ?? [], null);
-        $this->setIfExists('enabled', $data ?? [], null);
+        $this->setIfExists('checkoutAttemptId', $data ?? [], null);
+        $this->setIfExists('issuer', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -284,11 +287,14 @@ class Avs implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getEnabledAllowableValues();
-        if (!is_null($this->container['enabled']) && !in_array($this->container['enabled'], $allowedValues, true)) {
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'enabled', must be one of '%s'",
-                $this->container['enabled'],
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
                 implode("', '", $allowedValues)
             );
         }
@@ -309,59 +315,83 @@ class Avs implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets addressEditable
+     * Gets checkoutAttemptId
      *
-     * @return bool|null
+     * @return string|null
      */
-    public function getAddressEditable()
+    public function getCheckoutAttemptId()
     {
-        return $this->container['addressEditable'];
+        return $this->container['checkoutAttemptId'];
     }
 
     /**
-     * Sets addressEditable
+     * Sets checkoutAttemptId
      *
-     * @param bool|null $addressEditable Indicates whether the shopper is allowed to modify the billing address for the current payment request.
+     * @param string|null $checkoutAttemptId The checkout attempt identifier.
      *
      * @return self
      */
-    public function setAddressEditable($addressEditable)
+    public function setCheckoutAttemptId($checkoutAttemptId)
     {
-        $this->container['addressEditable'] = $addressEditable;
+        $this->container['checkoutAttemptId'] = $checkoutAttemptId;
 
         return $this;
     }
 
     /**
-     * Gets enabled
+     * Gets issuer
      *
      * @return string|null
      */
-    public function getEnabled()
+    public function getIssuer()
     {
-        return $this->container['enabled'];
+        return $this->container['issuer'];
     }
 
     /**
-     * Sets enabled
+     * Sets issuer
      *
-     * @param string|null $enabled Specifies whether the shopper should enter their billing address during checkout.  Allowed values: * yes — Perform AVS checks for every card payment. * automatic — Perform AVS checks only when required to optimize the conversion rate. * no — Do not perform AVS checks.
+     * @param string|null $issuer The Ebanking Finland issuer value of the shopper's selected bank.
      *
      * @return self
      */
-    public function setEnabled($enabled)
+    public function setIssuer($issuer)
     {
-        $allowedValues = $this->getEnabledAllowableValues();
-        if (!in_array($enabled, $allowedValues, true)) {
+        $this->container['issuer'] = $issuer;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string $type **ebanking_FI**
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value '%s' for 'enabled', must be one of '%s'",
-                    $enabled,
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
                     implode("', '", $allowedValues)
                 )
             );
         }
-        $this->container['enabled'] = $enabled;
+        $this->container['type'] = $type;
 
         return $this;
     }
