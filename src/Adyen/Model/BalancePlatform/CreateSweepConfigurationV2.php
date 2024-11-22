@@ -50,6 +50,7 @@ class CreateSweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSe
         'description' => 'string',
         'priorities' => 'string[]',
         'reason' => 'string',
+        'reasonDetail' => 'string',
         'reference' => 'string',
         'referenceForBeneficiary' => 'string',
         'schedule' => '\Adyen\Model\BalancePlatform\SweepSchedule',
@@ -74,6 +75,7 @@ class CreateSweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSe
         'description' => null,
         'priorities' => null,
         'reason' => null,
+        'reasonDetail' => null,
         'reference' => null,
         'referenceForBeneficiary' => null,
         'schedule' => null,
@@ -96,6 +98,7 @@ class CreateSweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSe
         'description' => false,
         'priorities' => false,
         'reason' => false,
+        'reasonDetail' => false,
         'reference' => false,
         'referenceForBeneficiary' => false,
         'schedule' => false,
@@ -198,6 +201,7 @@ class CreateSweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSe
         'description' => 'description',
         'priorities' => 'priorities',
         'reason' => 'reason',
+        'reasonDetail' => 'reasonDetail',
         'reference' => 'reference',
         'referenceForBeneficiary' => 'referenceForBeneficiary',
         'schedule' => 'schedule',
@@ -220,6 +224,7 @@ class CreateSweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSe
         'description' => 'setDescription',
         'priorities' => 'setPriorities',
         'reason' => 'setReason',
+        'reasonDetail' => 'setReasonDetail',
         'reference' => 'setReference',
         'referenceForBeneficiary' => 'setReferenceForBeneficiary',
         'schedule' => 'setSchedule',
@@ -242,6 +247,7 @@ class CreateSweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSe
         'description' => 'getDescription',
         'priorities' => 'getPriorities',
         'reason' => 'getReason',
+        'reasonDetail' => 'getReasonDetail',
         'reference' => 'getReference',
         'referenceForBeneficiary' => 'getReferenceForBeneficiary',
         'schedule' => 'getSchedule',
@@ -437,6 +443,7 @@ class CreateSweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSe
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('priorities', $data ?? [], null);
         $this->setIfExists('reason', $data ?? [], null);
+        $this->setIfExists('reasonDetail', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
         $this->setIfExists('referenceForBeneficiary', $data ?? [], null);
         $this->setIfExists('schedule', $data ?? [], null);
@@ -703,6 +710,30 @@ class CreateSweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSe
             );
         }
         $this->container['reason'] = $reason;
+
+        return $this;
+    }
+
+    /**
+     * Gets reasonDetail
+     *
+     * @return string|null
+     */
+    public function getReasonDetail()
+    {
+        return $this->container['reasonDetail'];
+    }
+
+    /**
+     * Sets reasonDetail
+     *
+     * @param string|null $reasonDetail The human readable reason for disabling the sweep.
+     *
+     * @return self
+     */
+    public function setReasonDetail($reasonDetail)
+    {
+        $this->container['reasonDetail'] = $reasonDetail;
 
         return $this;
     }
