@@ -20,5 +20,6 @@ class Region
         self::EU => Client::ENDPOINT_TERMINAL_CLOUD_LIVE,
         self::US => Client::ENDPOINT_TERMINAL_CLOUD_US_LIVE,
         self::AU => Client::ENDPOINT_TERMINAL_CLOUD_AU_LIVE,
+        self::APSE => Client::ENDPOINT_TERMINAL_CLOUD_APSE_LIVE,
     ];
 }
