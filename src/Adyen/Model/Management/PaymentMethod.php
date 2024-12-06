@@ -57,7 +57,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'cup' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'currencies' => 'string[]',
         'customRoutingFlags' => 'string[]',
-        'diners' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
+        'diners' => '\Adyen\Model\Management\DinersInfo',
         'discover' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'eftposAustralia' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'enabled' => 'bool',
@@ -943,7 +943,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets diners
      *
-     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     * @return \Adyen\Model\Management\DinersInfo|null
      */
     public function getDiners()
     {
@@ -953,7 +953,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets diners
      *
-     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $diners diners
+     * @param \Adyen\Model\Management\DinersInfo|null $diners diners
      *
      * @return self
      */

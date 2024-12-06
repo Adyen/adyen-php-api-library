@@ -240,6 +240,7 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     public const TYPES_WITH_ERRORS_ACCEL = 'accel';
+    public const TYPES_WITH_ERRORS_AFFIRM = 'affirm';
     public const TYPES_WITH_ERRORS_AFTERPAYTOUCH = 'afterpaytouch';
     public const TYPES_WITH_ERRORS_ALELO = 'alelo';
     public const TYPES_WITH_ERRORS_ALIPAY = 'alipay';
@@ -321,6 +322,7 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         return [
             self::TYPES_WITH_ERRORS_ACCEL,
+            self::TYPES_WITH_ERRORS_AFFIRM,
             self::TYPES_WITH_ERRORS_AFTERPAYTOUCH,
             self::TYPES_WITH_ERRORS_ALELO,
             self::TYPES_WITH_ERRORS_ALIPAY,

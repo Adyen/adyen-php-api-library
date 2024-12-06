@@ -54,6 +54,7 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'brand' => 'string',
         'cupsecureplusSmscode' => 'string',
         'cvc' => 'string',
+        'encryptedCard' => 'string',
         'encryptedCardNumber' => 'string',
         'encryptedExpiryMonth' => 'string',
         'encryptedExpiryYear' => 'string',
@@ -91,6 +92,7 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'brand' => null,
         'cupsecureplusSmscode' => null,
         'cvc' => null,
+        'encryptedCard' => null,
         'encryptedCardNumber' => null,
         'encryptedExpiryMonth' => null,
         'encryptedExpiryYear' => null,
@@ -126,6 +128,7 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'brand' => false,
         'cupsecureplusSmscode' => false,
         'cvc' => false,
+        'encryptedCard' => false,
         'encryptedCardNumber' => false,
         'encryptedExpiryMonth' => false,
         'encryptedExpiryYear' => false,
@@ -241,6 +244,7 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'brand' => 'brand',
         'cupsecureplusSmscode' => 'cupsecureplus.smscode',
         'cvc' => 'cvc',
+        'encryptedCard' => 'encryptedCard',
         'encryptedCardNumber' => 'encryptedCardNumber',
         'encryptedExpiryMonth' => 'encryptedExpiryMonth',
         'encryptedExpiryYear' => 'encryptedExpiryYear',
@@ -276,6 +280,7 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'brand' => 'setBrand',
         'cupsecureplusSmscode' => 'setCupsecureplusSmscode',
         'cvc' => 'setCvc',
+        'encryptedCard' => 'setEncryptedCard',
         'encryptedCardNumber' => 'setEncryptedCardNumber',
         'encryptedExpiryMonth' => 'setEncryptedExpiryMonth',
         'encryptedExpiryYear' => 'setEncryptedExpiryYear',
@@ -311,6 +316,7 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'brand' => 'getBrand',
         'cupsecureplusSmscode' => 'getCupsecureplusSmscode',
         'cvc' => 'getCvc',
+        'encryptedCard' => 'getEncryptedCard',
         'encryptedCardNumber' => 'getEncryptedCardNumber',
         'encryptedExpiryMonth' => 'getEncryptedExpiryMonth',
         'encryptedExpiryYear' => 'getEncryptedExpiryYear',
@@ -396,6 +402,7 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('brand', $data ?? [], null);
         $this->setIfExists('cupsecureplusSmscode', $data ?? [], null);
         $this->setIfExists('cvc', $data ?? [], null);
+        $this->setIfExists('encryptedCard', $data ?? [], null);
         $this->setIfExists('encryptedCardNumber', $data ?? [], null);
         $this->setIfExists('encryptedExpiryMonth', $data ?? [], null);
         $this->setIfExists('encryptedExpiryYear', $data ?? [], null);
@@ -682,6 +689,30 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setCvc($cvc)
     {
         $this->container['cvc'] = $cvc;
+
+        return $this;
+    }
+
+    /**
+     * Gets encryptedCard
+     *
+     * @return string|null
+     */
+    public function getEncryptedCard()
+    {
+        return $this->container['encryptedCard'];
+    }
+
+    /**
+     * Sets encryptedCard
+     *
+     * @param string|null $encryptedCard Only include this for JSON Web Encryption (JWE) implementations. The JWE-encrypted card details.
+     *
+     * @return self
+     */
+    public function setEncryptedCard($encryptedCard)
+    {
+        $this->container['encryptedCard'] = $encryptedCard;
 
         return $this;
     }

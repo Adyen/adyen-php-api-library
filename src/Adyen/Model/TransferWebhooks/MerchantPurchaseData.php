@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\TransferWebhooks\ObjectSerializer;
 
 /**
- * Amount Class Doc Comment
+ * MerchantPurchaseData Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\TransferWebhooks\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
+class MerchantPurchaseData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Amount';
+    protected static $openAPIModelName = 'MerchantPurchaseData';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,8 +44,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'currency' => 'string',
-        'value' => 'int'
+        'airline' => '\Adyen\Model\TransferWebhooks\Airline',
+        'type' => 'string'
     ];
 
     /**
@@ -56,8 +56,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'currency' => null,
-        'value' => 'int64'
+        'airline' => null,
+        'type' => null
     ];
 
     /**
@@ -66,8 +66,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'currency' => false,
-        'value' => false
+        'airline' => false,
+        'type' => false
     ];
 
     /**
@@ -156,8 +156,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'currency' => 'currency',
-        'value' => 'value'
+        'airline' => 'airline',
+        'type' => 'type'
     ];
 
     /**
@@ -166,8 +166,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'currency' => 'setCurrency',
-        'value' => 'setValue'
+        'airline' => 'setAirline',
+        'type' => 'setType'
     ];
 
     /**
@@ -176,8 +176,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'currency' => 'getCurrency',
-        'value' => 'getValue'
+        'airline' => 'getAirline',
+        'type' => 'getType'
     ];
 
     /**
@@ -221,7 +221,19 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const TYPE_MERCHANT_PURCHASE_DATA = 'merchantPurchaseData';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_MERCHANT_PURCHASE_DATA,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -237,8 +249,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('currency', $data ?? [], null);
-        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('airline', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -268,12 +280,18 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['currency'] === null) {
-            $invalidProperties[] = "'currency' can't be null";
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
         }
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
         }
+
         return $invalidProperties;
     }
 
@@ -290,49 +308,59 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets currency
+     * Gets airline
      *
-     * @return string
+     * @return \Adyen\Model\TransferWebhooks\Airline|null
      */
-    public function getCurrency()
+    public function getAirline()
     {
-        return $this->container['currency'];
+        return $this->container['airline'];
     }
 
     /**
-     * Sets currency
+     * Sets airline
      *
-     * @param string $currency The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes).
+     * @param \Adyen\Model\TransferWebhooks\Airline|null $airline airline
      *
      * @return self
      */
-    public function setCurrency($currency)
+    public function setAirline($airline)
     {
-        $this->container['currency'] = $currency;
+        $this->container['airline'] = $airline;
 
         return $this;
     }
 
     /**
-     * Gets value
+     * Gets type
      *
-     * @return int
+     * @return string
      */
-    public function getValue()
+    public function getType()
     {
-        return $this->container['value'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets value
+     * Sets type
      *
-     * @param int $value The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).
+     * @param string $type The type of events data.   Possible values:    - **merchantPurchaseData**: merchant purchase data
      *
      * @return self
      */
-    public function setValue($value)
+    public function setType($type)
     {
-        $this->container['value'] = $value;
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
 
         return $this;
     }

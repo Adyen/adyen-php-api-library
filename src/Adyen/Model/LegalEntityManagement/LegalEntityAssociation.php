@@ -263,6 +263,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
     public const TYPE_LEGAL_REPRESENTATIVE = 'legalRepresentative';
     public const TYPE_PCI_SIGNATORY = 'pciSignatory';
     public const TYPE_PROTECTOR = 'protector';
+    public const TYPE_SECONDARY_PARTNER = 'secondaryPartner';
     public const TYPE_SECONDARY_TRUSTEE = 'secondaryTrustee';
     public const TYPE_SETTLOR = 'settlor';
     public const TYPE_SIGNATORY = 'signatory';
@@ -273,6 +274,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
     public const TYPE_UBO_THROUGH_OWNERSHIP = 'uboThroughOwnership';
     public const TYPE_ULTIMATE_PARENT_COMPANY = 'ultimateParentCompany';
     public const TYPE_UNDEFINED_BENEFICIARY = 'undefinedBeneficiary';
+    public const TYPE_UNINCORPORATED_PARTNERSHIP = 'unincorporatedPartnership';
 
     /**
      * Gets allowable values of the enum
@@ -288,6 +290,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
             self::TYPE_LEGAL_REPRESENTATIVE,
             self::TYPE_PCI_SIGNATORY,
             self::TYPE_PROTECTOR,
+            self::TYPE_SECONDARY_PARTNER,
             self::TYPE_SECONDARY_TRUSTEE,
             self::TYPE_SETTLOR,
             self::TYPE_SIGNATORY,
@@ -298,6 +301,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
             self::TYPE_UBO_THROUGH_OWNERSHIP,
             self::TYPE_ULTIMATE_PARENT_COMPANY,
             self::TYPE_UNDEFINED_BENEFICIARY,
+            self::TYPE_UNINCORPORATED_PARTNERSHIP,
         ];
     }
     /**
@@ -539,7 +543,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets settlorExemptionReason
      *
-     * @param string[]|null $settlorExemptionReason Defines the Kyc Exemption Reason for a Settlor associated with a trust.  For example, **professionalServiceProvider**, **deceased**, or **contributionBelowThreshold**.
+     * @param string[]|null $settlorExemptionReason Defines the KYC exemption reason for a settlor associated with a trust. Only applicable to trusts in Australia.  For example, **professionalServiceProvider**, **deceased**, or **contributionBelowThreshold**.
      *
      * @return self
      */
@@ -563,7 +567,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets type
      *
-     * @param string $type Defines the relationship of the legal entity to the current legal entity.  Possible value for individuals: **legalRepresentative**.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **director**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.  Possible value for trusts: **trust**.  Possible values for trust members: **definedBeneficiary**, **protector**, **secondaryTrustee**, **settlor**, **uboThroughControl**, or **uboThroughOwnership**.
+     * @param string $type Defines the relationship of the legal entity to the current legal entity.  Possible value for individuals: **legalRepresentative**.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **director**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.  Possible value for trusts: **trust**.  Possible values for trust members: **definedBeneficiary**, **protector**, **secondaryTrustee**, **settlor**, **uboThroughControl**, or **uboThroughOwnership**.  Possible value for unincorporated partnership: **unincorporatedPartnership**.  Possible values for unincorporated partnership members: **secondaryPartner**, **uboThroughControl**, **uboThroughOwnership**
      *
      * @return self
      */
