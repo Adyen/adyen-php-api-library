@@ -46,12 +46,12 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'countryOfGoverningLaw' => 'string',
         'dateOfIncorporation' => 'string',
+        'description' => 'string',
         'doingBusinessAs' => 'string',
         'name' => 'string',
         'principalPlaceOfBusiness' => '\Adyen\Model\LegalEntityManagement\Address',
         'registeredAddress' => '\Adyen\Model\LegalEntityManagement\Address',
         'registrationNumber' => 'string',
-        'taxAbsent' => 'bool',
         'taxInformation' => '\Adyen\Model\LegalEntityManagement\TaxInformation[]',
         'type' => 'string',
         'undefinedBeneficiaryInfo' => '\Adyen\Model\LegalEntityManagement\UndefinedBeneficiary[]',
@@ -69,12 +69,12 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'countryOfGoverningLaw' => null,
         'dateOfIncorporation' => null,
+        'description' => null,
         'doingBusinessAs' => null,
         'name' => null,
         'principalPlaceOfBusiness' => null,
         'registeredAddress' => null,
         'registrationNumber' => null,
-        'taxAbsent' => null,
         'taxInformation' => null,
         'type' => null,
         'undefinedBeneficiaryInfo' => null,
@@ -90,12 +90,12 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPINullables = [
         'countryOfGoverningLaw' => false,
         'dateOfIncorporation' => false,
+        'description' => false,
         'doingBusinessAs' => false,
         'name' => false,
         'principalPlaceOfBusiness' => false,
         'registeredAddress' => false,
         'registrationNumber' => false,
-        'taxAbsent' => true,
         'taxInformation' => false,
         'type' => false,
         'undefinedBeneficiaryInfo' => false,
@@ -191,12 +191,12 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'countryOfGoverningLaw' => 'countryOfGoverningLaw',
         'dateOfIncorporation' => 'dateOfIncorporation',
+        'description' => 'description',
         'doingBusinessAs' => 'doingBusinessAs',
         'name' => 'name',
         'principalPlaceOfBusiness' => 'principalPlaceOfBusiness',
         'registeredAddress' => 'registeredAddress',
         'registrationNumber' => 'registrationNumber',
-        'taxAbsent' => 'taxAbsent',
         'taxInformation' => 'taxInformation',
         'type' => 'type',
         'undefinedBeneficiaryInfo' => 'undefinedBeneficiaryInfo',
@@ -212,12 +212,12 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'countryOfGoverningLaw' => 'setCountryOfGoverningLaw',
         'dateOfIncorporation' => 'setDateOfIncorporation',
+        'description' => 'setDescription',
         'doingBusinessAs' => 'setDoingBusinessAs',
         'name' => 'setName',
         'principalPlaceOfBusiness' => 'setPrincipalPlaceOfBusiness',
         'registeredAddress' => 'setRegisteredAddress',
         'registrationNumber' => 'setRegistrationNumber',
-        'taxAbsent' => 'setTaxAbsent',
         'taxInformation' => 'setTaxInformation',
         'type' => 'setType',
         'undefinedBeneficiaryInfo' => 'setUndefinedBeneficiaryInfo',
@@ -233,12 +233,12 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'countryOfGoverningLaw' => 'getCountryOfGoverningLaw',
         'dateOfIncorporation' => 'getDateOfIncorporation',
+        'description' => 'getDescription',
         'doingBusinessAs' => 'getDoingBusinessAs',
         'name' => 'getName',
         'principalPlaceOfBusiness' => 'getPrincipalPlaceOfBusiness',
         'registeredAddress' => 'getRegisteredAddress',
         'registrationNumber' => 'getRegistrationNumber',
-        'taxAbsent' => 'getTaxAbsent',
         'taxInformation' => 'getTaxInformation',
         'type' => 'getType',
         'undefinedBeneficiaryInfo' => 'getUndefinedBeneficiaryInfo',
@@ -287,12 +287,16 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const TYPE_BUSINESS_TRUST = 'businessTrust';
     public const TYPE_CASH_MANAGEMENT_TRUST = 'cashManagementTrust';
+    public const TYPE_CHARITABLE_TRUST = 'charitableTrust';
     public const TYPE_CORPORATE_UNIT_TRUST = 'corporateUnitTrust';
     public const TYPE_DECEASED_ESTATE = 'deceasedEstate';
+    public const TYPE_DISCRETIONARY_TRUST = 'discretionaryTrust';
     public const TYPE_DISCRETIONARY_INVESTMENT_TRUST = 'discretionaryInvestmentTrust';
     public const TYPE_DISCRETIONARY_SERVICES_MANAGEMENT_TRUST = 'discretionaryServicesManagementTrust';
     public const TYPE_DISCRETIONARY_TRADING_TRUST = 'discretionaryTradingTrust';
+    public const TYPE_FAMILY_TRUST = 'familyTrust';
     public const TYPE_FIRST_HOME_SAVER_ACCOUNTS_TRUST = 'firstHomeSaverAccountsTrust';
     public const TYPE_FIXED_TRUST = 'fixedTrust';
     public const TYPE_FIXED_UNIT_TRUST = 'fixedUnitTrust';
@@ -313,12 +317,16 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
     public function getTypeAllowableValues()
     {
         return [
+            self::TYPE_BUSINESS_TRUST,
             self::TYPE_CASH_MANAGEMENT_TRUST,
+            self::TYPE_CHARITABLE_TRUST,
             self::TYPE_CORPORATE_UNIT_TRUST,
             self::TYPE_DECEASED_ESTATE,
+            self::TYPE_DISCRETIONARY_TRUST,
             self::TYPE_DISCRETIONARY_INVESTMENT_TRUST,
             self::TYPE_DISCRETIONARY_SERVICES_MANAGEMENT_TRUST,
             self::TYPE_DISCRETIONARY_TRADING_TRUST,
+            self::TYPE_FAMILY_TRUST,
             self::TYPE_FIRST_HOME_SAVER_ACCOUNTS_TRUST,
             self::TYPE_FIXED_TRUST,
             self::TYPE_FIXED_UNIT_TRUST,
@@ -359,12 +367,12 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('countryOfGoverningLaw', $data ?? [], null);
         $this->setIfExists('dateOfIncorporation', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('doingBusinessAs', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('principalPlaceOfBusiness', $data ?? [], null);
         $this->setIfExists('registeredAddress', $data ?? [], null);
         $this->setIfExists('registrationNumber', $data ?? [], null);
-        $this->setIfExists('taxAbsent', $data ?? [], null);
         $this->setIfExists('taxInformation', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('undefinedBeneficiaryInfo', $data ?? [], null);
@@ -493,6 +501,30 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets description
+     *
+     * @return string|null
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string|null $description A short description about the trust. Only applicable for charitable trusts in New Zealand.
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
      * Gets doingBusinessAs
      *
      * @return string|null
@@ -613,40 +645,6 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets taxAbsent
-     *
-     * @return bool|null
-     */
-    public function getTaxAbsent()
-    {
-        return $this->container['taxAbsent'];
-    }
-
-    /**
-     * Sets taxAbsent
-     *
-     * @param bool|null $taxAbsent The tax information is absent.
-     *
-     * @return self
-     */
-    public function setTaxAbsent($taxAbsent)
-    {
-        if (is_null($taxAbsent)) {
-            array_push($this->openAPINullablesSetToNull, 'taxAbsent');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('taxAbsent', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['taxAbsent'] = $taxAbsent;
-
-        return $this;
-    }
-
-    /**
      * Gets taxInformation
      *
      * @return \Adyen\Model\LegalEntityManagement\TaxInformation[]|null
@@ -683,7 +681,7 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      *
-     * @param string $type Type of trust.  Possible values for Australian trusts: **cashManagementTrust**, **corporateUnitTrust**, **deceasedEstate**, **discretionaryInvestmentTrust**, **discretionaryServicesManagementTrust**, **discretionaryTradingTrust**, **firstHomeSaverAccountsTrust**, **fixedTrust**, **fixedUnitTrust**, **hybridTrust**, **listedPublicUnitTrust**, **otherTrust**, **pooledSuperannuationTrust**, **publicTradingTrust**, **unlistedPublicUnitTrust**.
+     * @param string $type Type of trust.  See possible values for trusts in [Australia](https://docs.adyen.com/platforms/verification-requirements/?tab=trust_3_4#trust-types-in-australia) and [New Zealand](https://docs.adyen.com/platforms/verification-requirements/?tab=trust_3_4#trust-types-in-new-zealand).
      *
      * @return self
      */

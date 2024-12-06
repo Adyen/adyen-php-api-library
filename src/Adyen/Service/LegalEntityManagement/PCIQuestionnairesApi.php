@@ -40,6 +40,22 @@ class PCIQuestionnairesApi extends Service
     }
 
     /**
+    * Calculate PCI status of a legal entity
+    *
+    * @param string $id
+    * @param \Adyen\Model\LegalEntityManagement\CalculatePciStatusRequest $calculatePciStatusRequest
+    * @param array|null $requestOptions
+    * @return \Adyen\Model\LegalEntityManagement\CalculatePciStatusResponse
+    * @throws AdyenException
+    */
+    public function calculatePciStatusOfLegalEntity(string $id, \Adyen\Model\LegalEntityManagement\CalculatePciStatusRequest $calculatePciStatusRequest, array $requestOptions = null): \Adyen\Model\LegalEntityManagement\CalculatePciStatusResponse
+    {
+        $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/legalEntities/{id}/pciQuestionnaires/signingRequired");
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $calculatePciStatusRequest->jsonSerialize(), $requestOptions);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\LegalEntityManagement\CalculatePciStatusResponse::class);
+    }
+
+    /**
     * Generate PCI questionnaire
     *
     * @param string $id
