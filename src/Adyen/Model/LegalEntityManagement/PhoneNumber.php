@@ -45,6 +45,7 @@ class PhoneNumber implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'number' => 'string',
+        'phoneCountryCode' => 'string',
         'type' => 'string'
     ];
 
@@ -57,6 +58,7 @@ class PhoneNumber implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'number' => null,
+        'phoneCountryCode' => null,
         'type' => null
     ];
 
@@ -67,6 +69,7 @@ class PhoneNumber implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'number' => false,
+        'phoneCountryCode' => false,
         'type' => false
     ];
 
@@ -157,6 +160,7 @@ class PhoneNumber implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'number' => 'number',
+        'phoneCountryCode' => 'phoneCountryCode',
         'type' => 'type'
     ];
 
@@ -167,6 +171,7 @@ class PhoneNumber implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'number' => 'setNumber',
+        'phoneCountryCode' => 'setPhoneCountryCode',
         'type' => 'setType'
     ];
 
@@ -177,6 +182,7 @@ class PhoneNumber implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'number' => 'getNumber',
+        'phoneCountryCode' => 'getPhoneCountryCode',
         'type' => 'getType'
     ];
 
@@ -238,6 +244,7 @@ class PhoneNumber implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('number', $data ?? [], null);
+        $this->setIfExists('phoneCountryCode', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -306,6 +313,30 @@ class PhoneNumber implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setNumber($number)
     {
         $this->container['number'] = $number;
+
+        return $this;
+    }
+
+    /**
+     * Gets phoneCountryCode
+     *
+     * @return string|null
+     */
+    public function getPhoneCountryCode()
+    {
+        return $this->container['phoneCountryCode'];
+    }
+
+    /**
+     * Sets phoneCountryCode
+     *
+     * @param string|null $phoneCountryCode The two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code prefix of the phone number. For example, **US** or **NL**.  The value of the `phoneCountryCode` is determined by the country code digit(s) of `phone.number`
+     *
+     * @return self
+     */
+    public function setPhoneCountryCode($phoneCountryCode)
+    {
+        $this->container['phoneCountryCode'] = $phoneCountryCode;
 
         return $this;
     }

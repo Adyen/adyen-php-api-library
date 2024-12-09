@@ -49,6 +49,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'arn' => 'string',
         'bookingDate' => '\DateTime',
         'estimatedArrivalTime' => '\DateTime',
+        'eventsData' => '\Adyen\Model\TransferWebhooks\TransferEventEventsDataInner[]',
         'externalReason' => '\Adyen\Model\TransferWebhooks\ExternalReason',
         'id' => 'string',
         'modification' => '\Adyen\Model\TransferWebhooks\Modification',
@@ -76,6 +77,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'arn' => null,
         'bookingDate' => 'date-time',
         'estimatedArrivalTime' => 'date-time',
+        'eventsData' => null,
         'externalReason' => null,
         'id' => null,
         'modification' => null,
@@ -101,6 +103,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'arn' => false,
         'bookingDate' => false,
         'estimatedArrivalTime' => false,
+        'eventsData' => false,
         'externalReason' => false,
         'id' => false,
         'modification' => false,
@@ -206,6 +209,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'arn' => 'arn',
         'bookingDate' => 'bookingDate',
         'estimatedArrivalTime' => 'estimatedArrivalTime',
+        'eventsData' => 'eventsData',
         'externalReason' => 'externalReason',
         'id' => 'id',
         'modification' => 'modification',
@@ -231,6 +235,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'arn' => 'setArn',
         'bookingDate' => 'setBookingDate',
         'estimatedArrivalTime' => 'setEstimatedArrivalTime',
+        'eventsData' => 'setEventsData',
         'externalReason' => 'setExternalReason',
         'id' => 'setId',
         'modification' => 'setModification',
@@ -256,6 +261,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'arn' => 'getArn',
         'bookingDate' => 'getBookingDate',
         'estimatedArrivalTime' => 'getEstimatedArrivalTime',
+        'eventsData' => 'getEventsData',
         'externalReason' => 'getExternalReason',
         'id' => 'getId',
         'modification' => 'getModification',
@@ -546,6 +552,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('arn', $data ?? [], null);
         $this->setIfExists('bookingDate', $data ?? [], null);
         $this->setIfExists('estimatedArrivalTime', $data ?? [], null);
+        $this->setIfExists('eventsData', $data ?? [], null);
         $this->setIfExists('externalReason', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('modification', $data ?? [], null);
@@ -745,6 +752,30 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setEstimatedArrivalTime($estimatedArrivalTime)
     {
         $this->container['estimatedArrivalTime'] = $estimatedArrivalTime;
+
+        return $this;
+    }
+
+    /**
+     * Gets eventsData
+     *
+     * @return \Adyen\Model\TransferWebhooks\TransferEventEventsDataInner[]|null
+     */
+    public function getEventsData()
+    {
+        return $this->container['eventsData'];
+    }
+
+    /**
+     * Sets eventsData
+     *
+     * @param \Adyen\Model\TransferWebhooks\TransferEventEventsDataInner[]|null $eventsData A list of event data.
+     *
+     * @return self
+     */
+    public function setEventsData($eventsData)
+    {
+        $this->container['eventsData'] = $eventsData;
 
         return $this;
     }

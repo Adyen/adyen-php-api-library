@@ -52,6 +52,7 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
         'soleProprietorship' => '\Adyen\Model\LegalEntityManagement\SoleProprietorship',
         'trust' => '\Adyen\Model\LegalEntityManagement\Trust',
         'type' => 'string',
+        'unincorporatedPartnership' => '\Adyen\Model\LegalEntityManagement\UnincorporatedPartnership',
         'verificationPlan' => 'string'
     ];
 
@@ -71,6 +72,7 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
         'soleProprietorship' => null,
         'trust' => null,
         'type' => null,
+        'unincorporatedPartnership' => null,
         'verificationPlan' => null
     ];
 
@@ -88,6 +90,7 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
         'soleProprietorship' => false,
         'trust' => false,
         'type' => false,
+        'unincorporatedPartnership' => false,
         'verificationPlan' => false
     ];
 
@@ -185,6 +188,7 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
         'soleProprietorship' => 'soleProprietorship',
         'trust' => 'trust',
         'type' => 'type',
+        'unincorporatedPartnership' => 'unincorporatedPartnership',
         'verificationPlan' => 'verificationPlan'
     ];
 
@@ -202,6 +206,7 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
         'soleProprietorship' => 'setSoleProprietorship',
         'trust' => 'setTrust',
         'type' => 'setType',
+        'unincorporatedPartnership' => 'setUnincorporatedPartnership',
         'verificationPlan' => 'setVerificationPlan'
     ];
 
@@ -219,6 +224,7 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
         'soleProprietorship' => 'getSoleProprietorship',
         'trust' => 'getTrust',
         'type' => 'getType',
+        'unincorporatedPartnership' => 'getUnincorporatedPartnership',
         'verificationPlan' => 'getVerificationPlan'
     ];
 
@@ -307,6 +313,7 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('soleProprietorship', $data ?? [], null);
         $this->setIfExists('trust', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('unincorporatedPartnership', $data ?? [], null);
         $this->setIfExists('verificationPlan', $data ?? [], null);
     }
 
@@ -562,6 +569,30 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
             );
         }
         $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets unincorporatedPartnership
+     *
+     * @return \Adyen\Model\LegalEntityManagement\UnincorporatedPartnership|null
+     */
+    public function getUnincorporatedPartnership()
+    {
+        return $this->container['unincorporatedPartnership'];
+    }
+
+    /**
+     * Sets unincorporatedPartnership
+     *
+     * @param \Adyen\Model\LegalEntityManagement\UnincorporatedPartnership|null $unincorporatedPartnership unincorporatedPartnership
+     *
+     * @return self
+     */
+    public function setUnincorporatedPartnership($unincorporatedPartnership)
+    {
+        $this->container['unincorporatedPartnership'] = $unincorporatedPartnership;
 
         return $this;
     }

@@ -49,6 +49,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
         'allowIntraRegionCrossBorderPayout' => 'bool',
         'changeLegalEntityType' => 'bool',
         'editPrefilledCountry' => 'bool',
+        'enforceLegalAge' => 'bool',
         'hideOnboardingIntroductionIndividual' => 'bool',
         'hideOnboardingIntroductionOrganization' => 'bool',
         'hideOnboardingIntroductionSoleProprietor' => 'bool',
@@ -74,6 +75,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
         'allowIntraRegionCrossBorderPayout' => null,
         'changeLegalEntityType' => null,
         'editPrefilledCountry' => null,
+        'enforceLegalAge' => null,
         'hideOnboardingIntroductionIndividual' => null,
         'hideOnboardingIntroductionOrganization' => null,
         'hideOnboardingIntroductionSoleProprietor' => null,
@@ -97,6 +99,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
         'allowIntraRegionCrossBorderPayout' => false,
         'changeLegalEntityType' => false,
         'editPrefilledCountry' => false,
+        'enforceLegalAge' => false,
         'hideOnboardingIntroductionIndividual' => false,
         'hideOnboardingIntroductionOrganization' => false,
         'hideOnboardingIntroductionSoleProprietor' => false,
@@ -200,6 +203,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
         'allowIntraRegionCrossBorderPayout' => 'allowIntraRegionCrossBorderPayout',
         'changeLegalEntityType' => 'changeLegalEntityType',
         'editPrefilledCountry' => 'editPrefilledCountry',
+        'enforceLegalAge' => 'enforceLegalAge',
         'hideOnboardingIntroductionIndividual' => 'hideOnboardingIntroductionIndividual',
         'hideOnboardingIntroductionOrganization' => 'hideOnboardingIntroductionOrganization',
         'hideOnboardingIntroductionSoleProprietor' => 'hideOnboardingIntroductionSoleProprietor',
@@ -223,6 +227,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
         'allowIntraRegionCrossBorderPayout' => 'setAllowIntraRegionCrossBorderPayout',
         'changeLegalEntityType' => 'setChangeLegalEntityType',
         'editPrefilledCountry' => 'setEditPrefilledCountry',
+        'enforceLegalAge' => 'setEnforceLegalAge',
         'hideOnboardingIntroductionIndividual' => 'setHideOnboardingIntroductionIndividual',
         'hideOnboardingIntroductionOrganization' => 'setHideOnboardingIntroductionOrganization',
         'hideOnboardingIntroductionSoleProprietor' => 'setHideOnboardingIntroductionSoleProprietor',
@@ -246,6 +251,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
         'allowIntraRegionCrossBorderPayout' => 'getAllowIntraRegionCrossBorderPayout',
         'changeLegalEntityType' => 'getChangeLegalEntityType',
         'editPrefilledCountry' => 'getEditPrefilledCountry',
+        'enforceLegalAge' => 'getEnforceLegalAge',
         'hideOnboardingIntroductionIndividual' => 'getHideOnboardingIntroductionIndividual',
         'hideOnboardingIntroductionOrganization' => 'getHideOnboardingIntroductionOrganization',
         'hideOnboardingIntroductionSoleProprietor' => 'getHideOnboardingIntroductionSoleProprietor',
@@ -320,6 +326,7 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('allowIntraRegionCrossBorderPayout', $data ?? [], null);
         $this->setIfExists('changeLegalEntityType', $data ?? [], null);
         $this->setIfExists('editPrefilledCountry', $data ?? [], null);
+        $this->setIfExists('enforceLegalAge', $data ?? [], null);
         $this->setIfExists('hideOnboardingIntroductionIndividual', $data ?? [], null);
         $this->setIfExists('hideOnboardingIntroductionOrganization', $data ?? [], null);
         $this->setIfExists('hideOnboardingIntroductionSoleProprietor', $data ?? [], null);
@@ -490,6 +497,30 @@ class OnboardingLinkSettings implements ModelInterface, ArrayAccess, \JsonSerial
     public function setEditPrefilledCountry($editPrefilledCountry)
     {
         $this->container['editPrefilledCountry'] = $editPrefilledCountry;
+
+        return $this;
+    }
+
+    /**
+     * Gets enforceLegalAge
+     *
+     * @return bool|null
+     */
+    public function getEnforceLegalAge()
+    {
+        return $this->container['enforceLegalAge'];
+    }
+
+    /**
+     * Sets enforceLegalAge
+     *
+     * @param bool|null $enforceLegalAge Default value: **false**  Indicates if only users above the age of 18 can be onboarded.
+     *
+     * @return self
+     */
+    public function setEnforceLegalAge($enforceLegalAge)
+    {
+        $this->container['enforceLegalAge'] = $enforceLegalAge;
 
         return $this;
     }

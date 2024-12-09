@@ -48,6 +48,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         'checkoutAttemptId' => 'string',
         'cupsecureplusSmscode' => 'string',
         'cvc' => 'string',
+        'encryptedCard' => 'string',
         'encryptedCardNumber' => 'string',
         'encryptedExpiryMonth' => 'string',
         'encryptedExpiryYear' => 'string',
@@ -81,6 +82,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         'checkoutAttemptId' => null,
         'cupsecureplusSmscode' => null,
         'cvc' => null,
+        'encryptedCard' => null,
         'encryptedCardNumber' => null,
         'encryptedExpiryMonth' => null,
         'encryptedExpiryYear' => null,
@@ -112,6 +114,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         'checkoutAttemptId' => false,
         'cupsecureplusSmscode' => false,
         'cvc' => false,
+        'encryptedCard' => false,
         'encryptedCardNumber' => false,
         'encryptedExpiryMonth' => false,
         'encryptedExpiryYear' => false,
@@ -223,6 +226,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         'checkoutAttemptId' => 'checkoutAttemptId',
         'cupsecureplusSmscode' => 'cupsecureplus.smscode',
         'cvc' => 'cvc',
+        'encryptedCard' => 'encryptedCard',
         'encryptedCardNumber' => 'encryptedCardNumber',
         'encryptedExpiryMonth' => 'encryptedExpiryMonth',
         'encryptedExpiryYear' => 'encryptedExpiryYear',
@@ -254,6 +258,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         'checkoutAttemptId' => 'setCheckoutAttemptId',
         'cupsecureplusSmscode' => 'setCupsecureplusSmscode',
         'cvc' => 'setCvc',
+        'encryptedCard' => 'setEncryptedCard',
         'encryptedCardNumber' => 'setEncryptedCardNumber',
         'encryptedExpiryMonth' => 'setEncryptedExpiryMonth',
         'encryptedExpiryYear' => 'setEncryptedExpiryYear',
@@ -285,6 +290,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         'checkoutAttemptId' => 'getCheckoutAttemptId',
         'cupsecureplusSmscode' => 'getCupsecureplusSmscode',
         'cvc' => 'getCvc',
+        'encryptedCard' => 'getEncryptedCard',
         'encryptedCardNumber' => 'getEncryptedCardNumber',
         'encryptedExpiryMonth' => 'getEncryptedExpiryMonth',
         'encryptedExpiryYear' => 'getEncryptedExpiryYear',
@@ -354,6 +360,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_NETWORK_TOKEN = 'networkToken';
     public const TYPE_GIFTCARD = 'giftcard';
     public const TYPE_CARD = 'card';
+    public const TYPE_CLICKTOPAY = 'clicktopay';
 
     /**
      * Gets allowable values of the enum
@@ -380,6 +387,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_NETWORK_TOKEN,
             self::TYPE_GIFTCARD,
             self::TYPE_CARD,
+            self::TYPE_CLICKTOPAY,
         ];
     }
     /**
@@ -401,6 +409,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('cupsecureplusSmscode', $data ?? [], null);
         $this->setIfExists('cvc', $data ?? [], null);
+        $this->setIfExists('encryptedCard', $data ?? [], null);
         $this->setIfExists('encryptedCardNumber', $data ?? [], null);
         $this->setIfExists('encryptedExpiryMonth', $data ?? [], null);
         $this->setIfExists('encryptedExpiryYear', $data ?? [], null);
@@ -576,6 +585,30 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setCvc($cvc)
     {
         $this->container['cvc'] = $cvc;
+
+        return $this;
+    }
+
+    /**
+     * Gets encryptedCard
+     *
+     * @return string|null
+     */
+    public function getEncryptedCard()
+    {
+        return $this->container['encryptedCard'];
+    }
+
+    /**
+     * Sets encryptedCard
+     *
+     * @param string|null $encryptedCard Only include this for JSON Web Encryption (JWE) implementations. The JWE-encrypted card details.
+     *
+     * @return self
+     */
+    public function setEncryptedCard($encryptedCard)
+    {
+        $this->container['encryptedCard'] = $encryptedCard;
 
         return $this;
     }

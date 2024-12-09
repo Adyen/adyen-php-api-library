@@ -56,7 +56,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'cup' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'currencies' => 'string[]',
         'customRoutingFlags' => 'string[]',
-        'diners' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
+        'diners' => '\Adyen\Model\Management\DinersInfo',
         'discover' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'eftposAustralia' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'giroPay' => '\Adyen\Model\Management\GiroPayInfo',
@@ -472,6 +472,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     public const SHOPPER_INTERACTION_MOTO = 'moto';
     public const SHOPPER_INTERACTION_CONT_AUTH = 'contAuth';
     public const TYPE_ACCEL = 'accel';
+    public const TYPE_AFFIRM = 'affirm';
     public const TYPE_AFTERPAYTOUCH = 'afterpaytouch';
     public const TYPE_ALELO = 'alelo';
     public const TYPE_ALIPAY = 'alipay';
@@ -567,6 +568,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     {
         return [
             self::TYPE_ACCEL,
+            self::TYPE_AFFIRM,
             self::TYPE_AFTERPAYTOUCH,
             self::TYPE_ALELO,
             self::TYPE_ALIPAY,
@@ -1054,7 +1056,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets diners
      *
-     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     * @return \Adyen\Model\Management\DinersInfo|null
      */
     public function getDiners()
     {
@@ -1064,7 +1066,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets diners
      *
-     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $diners diners
+     * @param \Adyen\Model\Management\DinersInfo|null $diners diners
      *
      * @return self
      */
