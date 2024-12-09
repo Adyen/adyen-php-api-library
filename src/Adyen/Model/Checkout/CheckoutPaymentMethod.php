@@ -70,6 +70,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'brand' => 'string',
         'cupsecureplusSmscode' => 'string',
         'cvc' => 'string',
+        'encryptedCard' => 'string',
         'encryptedCardNumber' => 'string',
         'encryptedExpiryMonth' => 'string',
         'encryptedExpiryYear' => 'string',
@@ -104,6 +105,10 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'payerSelected' => 'string',
         'shopperAccountIdentifier' => 'string',
         'virtualPaymentAddress' => 'string',
+        'bank' => 'string',
+        'clientType' => 'string',
+        'identification' => 'string',
+        'identificationType' => 'string',
         'deviceFingerprint' => 'string',
         'iban' => 'string',
         'samsungPayToken' => 'string',
@@ -147,6 +152,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'brand' => null,
         'cupsecureplusSmscode' => null,
         'cvc' => null,
+        'encryptedCard' => null,
         'encryptedCardNumber' => null,
         'encryptedExpiryMonth' => null,
         'encryptedExpiryYear' => null,
@@ -181,6 +187,10 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'payerSelected' => null,
         'shopperAccountIdentifier' => null,
         'virtualPaymentAddress' => null,
+        'bank' => null,
+        'clientType' => null,
+        'identification' => null,
+        'identificationType' => null,
         'deviceFingerprint' => null,
         'iban' => null,
         'samsungPayToken' => null,
@@ -222,6 +232,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'brand' => false,
         'cupsecureplusSmscode' => false,
         'cvc' => false,
+        'encryptedCard' => false,
         'encryptedCardNumber' => false,
         'encryptedExpiryMonth' => false,
         'encryptedExpiryYear' => false,
@@ -256,6 +267,10 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'payerSelected' => false,
         'shopperAccountIdentifier' => false,
         'virtualPaymentAddress' => false,
+        'bank' => false,
+        'clientType' => false,
+        'identification' => false,
+        'identificationType' => false,
         'deviceFingerprint' => false,
         'iban' => false,
         'samsungPayToken' => false,
@@ -377,6 +392,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'brand' => 'brand',
         'cupsecureplusSmscode' => 'cupsecureplus.smscode',
         'cvc' => 'cvc',
+        'encryptedCard' => 'encryptedCard',
         'encryptedCardNumber' => 'encryptedCardNumber',
         'encryptedExpiryMonth' => 'encryptedExpiryMonth',
         'encryptedExpiryYear' => 'encryptedExpiryYear',
@@ -411,6 +427,10 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'payerSelected' => 'payerSelected',
         'shopperAccountIdentifier' => 'shopperAccountIdentifier',
         'virtualPaymentAddress' => 'virtualPaymentAddress',
+        'bank' => 'bank',
+        'clientType' => 'clientType',
+        'identification' => 'identification',
+        'identificationType' => 'identificationType',
         'deviceFingerprint' => 'deviceFingerprint',
         'iban' => 'iban',
         'samsungPayToken' => 'samsungPayToken',
@@ -452,6 +472,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'brand' => 'setBrand',
         'cupsecureplusSmscode' => 'setCupsecureplusSmscode',
         'cvc' => 'setCvc',
+        'encryptedCard' => 'setEncryptedCard',
         'encryptedCardNumber' => 'setEncryptedCardNumber',
         'encryptedExpiryMonth' => 'setEncryptedExpiryMonth',
         'encryptedExpiryYear' => 'setEncryptedExpiryYear',
@@ -486,6 +507,10 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'payerSelected' => 'setPayerSelected',
         'shopperAccountIdentifier' => 'setShopperAccountIdentifier',
         'virtualPaymentAddress' => 'setVirtualPaymentAddress',
+        'bank' => 'setBank',
+        'clientType' => 'setClientType',
+        'identification' => 'setIdentification',
+        'identificationType' => 'setIdentificationType',
         'deviceFingerprint' => 'setDeviceFingerprint',
         'iban' => 'setIban',
         'samsungPayToken' => 'setSamsungPayToken',
@@ -527,6 +552,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'brand' => 'getBrand',
         'cupsecureplusSmscode' => 'getCupsecureplusSmscode',
         'cvc' => 'getCvc',
+        'encryptedCard' => 'getEncryptedCard',
         'encryptedCardNumber' => 'getEncryptedCardNumber',
         'encryptedExpiryMonth' => 'getEncryptedExpiryMonth',
         'encryptedExpiryYear' => 'getEncryptedExpiryYear',
@@ -561,6 +587,10 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'payerSelected' => 'getPayerSelected',
         'shopperAccountIdentifier' => 'getShopperAccountIdentifier',
         'virtualPaymentAddress' => 'getVirtualPaymentAddress',
+        'bank' => 'getBank',
+        'clientType' => 'getClientType',
+        'identification' => 'getIdentification',
+        'identificationType' => 'getIdentificationType',
         'deviceFingerprint' => 'getDeviceFingerprint',
         'iban' => 'getIban',
         'samsungPayToken' => 'getSamsungPayToken',
@@ -652,6 +682,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('brand', $data ?? [], null);
         $this->setIfExists('cupsecureplusSmscode', $data ?? [], null);
         $this->setIfExists('cvc', $data ?? [], null);
+        $this->setIfExists('encryptedCard', $data ?? [], null);
         $this->setIfExists('encryptedCardNumber', $data ?? [], null);
         $this->setIfExists('encryptedExpiryMonth', $data ?? [], null);
         $this->setIfExists('encryptedExpiryYear', $data ?? [], null);
@@ -686,6 +717,10 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('payerSelected', $data ?? [], null);
         $this->setIfExists('shopperAccountIdentifier', $data ?? [], null);
         $this->setIfExists('virtualPaymentAddress', $data ?? [], null);
+        $this->setIfExists('bank', $data ?? [], null);
+        $this->setIfExists('clientType', $data ?? [], null);
+        $this->setIfExists('identification', $data ?? [], null);
+        $this->setIfExists('identificationType', $data ?? [], null);
         $this->setIfExists('deviceFingerprint', $data ?? [], null);
         $this->setIfExists('iban', $data ?? [], null);
         $this->setIfExists('samsungPayToken', $data ?? [], null);
@@ -755,6 +790,18 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         }
         if ($this->container['masterpassTransactionId'] === null) {
             $invalidProperties[] = "'masterpassTransactionId' can't be null";
+        }
+        if ($this->container['bank'] === null) {
+            $invalidProperties[] = "'bank' can't be null";
+        }
+        if ($this->container['clientType'] === null) {
+            $invalidProperties[] = "'clientType' can't be null";
+        }
+        if ($this->container['identification'] === null) {
+            $invalidProperties[] = "'identification' can't be null";
+        }
+        if ($this->container['identificationType'] === null) {
+            $invalidProperties[] = "'identificationType' can't be null";
         }
         if ($this->container['iban'] === null) {
             $invalidProperties[] = "'iban' can't be null";
@@ -1383,6 +1430,30 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setCvc($cvc)
     {
         $this->container['cvc'] = $cvc;
+
+        return $this;
+    }
+
+    /**
+     * Gets encryptedCard
+     *
+     * @return string|null
+     */
+    public function getEncryptedCard()
+    {
+        return $this->container['encryptedCard'];
+    }
+
+    /**
+     * Sets encryptedCard
+     *
+     * @param string|null $encryptedCard Only include this for JSON Web Encryption (JWE) implementations. The JWE-encrypted card details.
+     *
+     * @return self
+     */
+    public function setEncryptedCard($encryptedCard)
+    {
+        $this->container['encryptedCard'] = $encryptedCard;
 
         return $this;
     }
@@ -2199,6 +2270,102 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setVirtualPaymentAddress($virtualPaymentAddress)
     {
         $this->container['virtualPaymentAddress'] = $virtualPaymentAddress;
+
+        return $this;
+    }
+
+    /**
+     * Gets bank
+     *
+     * @return string
+     */
+    public function getBank()
+    {
+        return $this->container['bank'];
+    }
+
+    /**
+     * Sets bank
+     *
+     * @param string $bank The shopper's bank.
+     *
+     * @return self
+     */
+    public function setBank($bank)
+    {
+        $this->container['bank'] = $bank;
+
+        return $this;
+    }
+
+    /**
+     * Gets clientType
+     *
+     * @return string
+     */
+    public function getClientType()
+    {
+        return $this->container['clientType'];
+    }
+
+    /**
+     * Sets clientType
+     *
+     * @param string $clientType The client type.
+     *
+     * @return self
+     */
+    public function setClientType($clientType)
+    {
+        $this->container['clientType'] = $clientType;
+
+        return $this;
+    }
+
+    /**
+     * Gets identification
+     *
+     * @return string
+     */
+    public function getIdentification()
+    {
+        return $this->container['identification'];
+    }
+
+    /**
+     * Sets identification
+     *
+     * @param string $identification The identification code.
+     *
+     * @return self
+     */
+    public function setIdentification($identification)
+    {
+        $this->container['identification'] = $identification;
+
+        return $this;
+    }
+
+    /**
+     * Gets identificationType
+     *
+     * @return string
+     */
+    public function getIdentificationType()
+    {
+        return $this->container['identificationType'];
+    }
+
+    /**
+     * Sets identificationType
+     *
+     * @param string $identificationType The identification type.
+     *
+     * @return self
+     */
+    public function setIdentificationType($identificationType)
+    {
+        $this->container['identificationType'] = $identificationType;
 
         return $this;
     }

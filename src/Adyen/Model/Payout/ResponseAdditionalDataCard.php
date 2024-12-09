@@ -50,6 +50,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
         'cardIssuingCountry' => 'string',
         'cardIssuingCurrency' => 'string',
         'cardPaymentMethod' => 'string',
+        'cardProductId' => 'string',
         'cardSummary' => 'string',
         'issuerBin' => 'string'
     ];
@@ -68,6 +69,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
         'cardIssuingCountry' => null,
         'cardIssuingCurrency' => null,
         'cardPaymentMethod' => null,
+        'cardProductId' => null,
         'cardSummary' => null,
         'issuerBin' => null
     ];
@@ -84,6 +86,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
         'cardIssuingCountry' => false,
         'cardIssuingCurrency' => false,
         'cardPaymentMethod' => false,
+        'cardProductId' => false,
         'cardSummary' => false,
         'issuerBin' => false
     ];
@@ -180,6 +183,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
         'cardIssuingCountry' => 'cardIssuingCountry',
         'cardIssuingCurrency' => 'cardIssuingCurrency',
         'cardPaymentMethod' => 'cardPaymentMethod',
+        'cardProductId' => 'cardProductId',
         'cardSummary' => 'cardSummary',
         'issuerBin' => 'issuerBin'
     ];
@@ -196,6 +200,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
         'cardIssuingCountry' => 'setCardIssuingCountry',
         'cardIssuingCurrency' => 'setCardIssuingCurrency',
         'cardPaymentMethod' => 'setCardPaymentMethod',
+        'cardProductId' => 'setCardProductId',
         'cardSummary' => 'setCardSummary',
         'issuerBin' => 'setIssuerBin'
     ];
@@ -212,6 +217,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
         'cardIssuingCountry' => 'getCardIssuingCountry',
         'cardIssuingCurrency' => 'getCardIssuingCurrency',
         'cardPaymentMethod' => 'getCardPaymentMethod',
+        'cardProductId' => 'getCardProductId',
         'cardSummary' => 'getCardSummary',
         'issuerBin' => 'getIssuerBin'
     ];
@@ -257,7 +263,39 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
         return self::$openAPIModelName;
     }
 
+    public const CARD_PRODUCT_ID_A = 'A';
+    public const CARD_PRODUCT_ID_B = 'B';
+    public const CARD_PRODUCT_ID_C = 'C';
+    public const CARD_PRODUCT_ID_D = 'D';
+    public const CARD_PRODUCT_ID_F = 'F';
+    public const CARD_PRODUCT_ID_MCC = 'MCC';
+    public const CARD_PRODUCT_ID_MCE = 'MCE';
+    public const CARD_PRODUCT_ID_MCF = 'MCF';
+    public const CARD_PRODUCT_ID_MCG = 'MCG';
+    public const CARD_PRODUCT_ID_MCH = 'MCH';
+    public const CARD_PRODUCT_ID_MCI = 'MCI';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getCardProductIdAllowableValues()
+    {
+        return [
+            self::CARD_PRODUCT_ID_A,
+            self::CARD_PRODUCT_ID_B,
+            self::CARD_PRODUCT_ID_C,
+            self::CARD_PRODUCT_ID_D,
+            self::CARD_PRODUCT_ID_F,
+            self::CARD_PRODUCT_ID_MCC,
+            self::CARD_PRODUCT_ID_MCE,
+            self::CARD_PRODUCT_ID_MCF,
+            self::CARD_PRODUCT_ID_MCG,
+            self::CARD_PRODUCT_ID_MCH,
+            self::CARD_PRODUCT_ID_MCI,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -279,6 +317,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
         $this->setIfExists('cardIssuingCountry', $data ?? [], null);
         $this->setIfExists('cardIssuingCurrency', $data ?? [], null);
         $this->setIfExists('cardPaymentMethod', $data ?? [], null);
+        $this->setIfExists('cardProductId', $data ?? [], null);
         $this->setIfExists('cardSummary', $data ?? [], null);
         $this->setIfExists('issuerBin', $data ?? [], null);
     }
@@ -309,6 +348,15 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        $allowedValues = $this->getCardProductIdAllowableValues();
+        if (!is_null($this->container['cardProductId']) && !in_array($this->container['cardProductId'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'cardProductId', must be one of '%s'",
+                $this->container['cardProductId'],
+                implode("', '", $allowedValues)
+            );
+        }
 
         return $invalidProperties;
     }
@@ -465,6 +513,40 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
     public function setCardPaymentMethod($cardPaymentMethod)
     {
         $this->container['cardPaymentMethod'] = $cardPaymentMethod;
+
+        return $this;
+    }
+
+    /**
+     * Gets cardProductId
+     *
+     * @return string|null
+     */
+    public function getCardProductId()
+    {
+        return $this->container['cardProductId'];
+    }
+
+    /**
+     * Sets cardProductId
+     *
+     * @param string|null $cardProductId The Card Product ID represents the type of card following card scheme product definitions and can be returned for Adyen Acquiring service level payments.  Possible values Visa: * **A** - Visa Traditional * **B** - Visa Traditional Rewards * **C** - Visa Signature * **D** - Visa Signature Preferred * **F** - Visa Classic  Possible values Mastercard: * **MCC** - Mastercard Card * **MCE** - Mastercard Electronic Card * **MCF** - Mastercard Corporate Fleet Card * **MCG** - Gold Mastercard Card * **MCH** - Mastercard Premium Charge * **MCI** - Mastercard Select Debit
+     *
+     * @return self
+     */
+    public function setCardProductId($cardProductId)
+    {
+        $allowedValues = $this->getCardProductIdAllowableValues();
+        if (!in_array($cardProductId, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'cardProductId', must be one of '%s'",
+                    $cardProductId,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['cardProductId'] = $cardProductId;
 
         return $this;
     }

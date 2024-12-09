@@ -296,9 +296,6 @@ class JCBInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['serviceLevel'] === null) {
-            $invalidProperties[] = "'serviceLevel' can't be null";
-        }
         $allowedValues = $this->getServiceLevelAllowableValues();
         if (!is_null($this->container['serviceLevel']) && !in_array($this->container['serviceLevel'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -336,7 +333,7 @@ class JCBInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets midNumber
      *
-     * @param string|null $midNumber MID (Merchant ID) number. Format: 10 numeric characters.  Must be provided for both `noContract` and `gatewayContract` service levels.
+     * @param string|null $midNumber MID (Merchant ID) number. Required for merchants operating in Japan.Format: 14 numeric characters.
      *
      * @return self
      */
@@ -360,7 +357,7 @@ class JCBInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets reuseMidNumber
      *
-     * @param bool|null $reuseMidNumber Indicates whether the JCB Merchant ID is reused from a previously setup JCB payment method.  This is applicable for both `noContract` and `gatewayContract` service levels.  The default value is `false`.
+     * @param bool|null $reuseMidNumber Indicates whether the JCB Merchant ID is reused from a previously setup JCB payment method.  The default value is **false**.For merchants operating in Japan, this field is required and must be set to **true**.
      *
      * @return self
      */
@@ -374,7 +371,7 @@ class JCBInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets serviceLevel
      *
-     * @return string
+     * @return string|null
      */
     public function getServiceLevel()
     {
@@ -384,7 +381,7 @@ class JCBInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets serviceLevel
      *
-     * @param string $serviceLevel Specifies the service level (settlement type) of this payment method. Possible values: * **noContract** — Adyen holds the contract with JCB. * **gatewayContract** — JCB receives the settlement and handles disputes. They then pay out to the merchant directly.
+     * @param string|null $serviceLevel Specifies the service level (settlement type) of this payment method. Required for merchants operating in Japan. Possible values: * **noContract**: Adyen holds the contract with JCB. * **gatewayContract**: JCB receives the settlement and handles disputes, then pays out to you or your sub-merchant directly.
      *
      * @return self
      */

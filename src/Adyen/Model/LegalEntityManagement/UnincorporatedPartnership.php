@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\LegalEntityManagement\ObjectSerializer;
 
 /**
- * Trust Class Doc Comment
+ * UnincorporatedPartnership Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\LegalEntityManagement\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
+class UnincorporatedPartnership implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Trust';
+    protected static $openAPIModelName = 'UnincorporatedPartnership';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -54,7 +54,6 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
         'registrationNumber' => 'string',
         'taxInformation' => '\Adyen\Model\LegalEntityManagement\TaxInformation[]',
         'type' => 'string',
-        'undefinedBeneficiaryInfo' => '\Adyen\Model\LegalEntityManagement\UndefinedBeneficiary[]',
         'vatAbsenceReason' => 'string',
         'vatNumber' => 'string'
     ];
@@ -77,7 +76,6 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
         'registrationNumber' => null,
         'taxInformation' => null,
         'type' => null,
-        'undefinedBeneficiaryInfo' => null,
         'vatAbsenceReason' => null,
         'vatNumber' => null
     ];
@@ -98,7 +96,6 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
         'registrationNumber' => false,
         'taxInformation' => false,
         'type' => false,
-        'undefinedBeneficiaryInfo' => false,
         'vatAbsenceReason' => false,
         'vatNumber' => false
     ];
@@ -199,7 +196,6 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
         'registrationNumber' => 'registrationNumber',
         'taxInformation' => 'taxInformation',
         'type' => 'type',
-        'undefinedBeneficiaryInfo' => 'undefinedBeneficiaryInfo',
         'vatAbsenceReason' => 'vatAbsenceReason',
         'vatNumber' => 'vatNumber'
     ];
@@ -220,7 +216,6 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
         'registrationNumber' => 'setRegistrationNumber',
         'taxInformation' => 'setTaxInformation',
         'type' => 'setType',
-        'undefinedBeneficiaryInfo' => 'setUndefinedBeneficiaryInfo',
         'vatAbsenceReason' => 'setVatAbsenceReason',
         'vatNumber' => 'setVatNumber'
     ];
@@ -241,7 +236,6 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
         'registrationNumber' => 'getRegistrationNumber',
         'taxInformation' => 'getTaxInformation',
         'type' => 'getType',
-        'undefinedBeneficiaryInfo' => 'getUndefinedBeneficiaryInfo',
         'vatAbsenceReason' => 'getVatAbsenceReason',
         'vatNumber' => 'getVatNumber'
     ];
@@ -287,25 +281,34 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const TYPE_BUSINESS_TRUST = 'businessTrust';
-    public const TYPE_CASH_MANAGEMENT_TRUST = 'cashManagementTrust';
-    public const TYPE_CHARITABLE_TRUST = 'charitableTrust';
-    public const TYPE_CORPORATE_UNIT_TRUST = 'corporateUnitTrust';
-    public const TYPE_DECEASED_ESTATE = 'deceasedEstate';
-    public const TYPE_DISCRETIONARY_TRUST = 'discretionaryTrust';
-    public const TYPE_DISCRETIONARY_INVESTMENT_TRUST = 'discretionaryInvestmentTrust';
-    public const TYPE_DISCRETIONARY_SERVICES_MANAGEMENT_TRUST = 'discretionaryServicesManagementTrust';
-    public const TYPE_DISCRETIONARY_TRADING_TRUST = 'discretionaryTradingTrust';
-    public const TYPE_FAMILY_TRUST = 'familyTrust';
-    public const TYPE_FIRST_HOME_SAVER_ACCOUNTS_TRUST = 'firstHomeSaverAccountsTrust';
-    public const TYPE_FIXED_TRUST = 'fixedTrust';
-    public const TYPE_FIXED_UNIT_TRUST = 'fixedUnitTrust';
-    public const TYPE_HYBRID_TRUST = 'hybridTrust';
-    public const TYPE_LISTED_PUBLIC_UNIT_TRUST = 'listedPublicUnitTrust';
-    public const TYPE_OTHER_TRUST = 'otherTrust';
-    public const TYPE_POOLED_SUPERANNUATION_TRUST = 'pooledSuperannuationTrust';
-    public const TYPE_PUBLIC_TRADING_TRUST = 'publicTradingTrust';
-    public const TYPE_UNLISTED_PUBLIC_UNIT_TRUST = 'unlistedPublicUnitTrust';
+    public const TYPE_LIMITED_PARTNERSHIP = 'limitedPartnership';
+    public const TYPE_GENERAL_PARTNERSHIP = 'generalPartnership';
+    public const TYPE_FAMILY_PARTNERSHIP = 'familyPartnership';
+    public const TYPE_COMMERCIAL_PARTNERSHIP = 'commercialPartnership';
+    public const TYPE_PUBLIC_PARTNERSHIP = 'publicPartnership';
+    public const TYPE_OTHER_PARTNERSHIP = 'otherPartnership';
+    public const TYPE_GBR = 'gbr';
+    public const TYPE_GMBH = 'gmbh';
+    public const TYPE_KGAA = 'kgaa';
+    public const TYPE_CV = 'cv';
+    public const TYPE_VOF = 'vof';
+    public const TYPE_MAATSCHAP = 'maatschap';
+    public const TYPE_PRIVATE_FUND_LIMITED_PARTNERSHIP = 'privateFundLimitedPartnership';
+    public const TYPE_BUSINESS_TRUST_ENTITY = 'businessTrustEntity';
+    public const TYPE_BUSINESS_PARTNERSHIP = 'businessPartnership';
+    public const TYPE_LIMITED_LIABILITY_PARTNERSHIP = 'limitedLiabilityPartnership';
+    public const TYPE_EG = 'eg';
+    public const TYPE_COOPERATIVE = 'cooperative';
+    public const TYPE_VOS = 'vos';
+    public const TYPE_COMUNIDAD_DE_BIENES = 'comunidadDeBienes';
+    public const TYPE_HERENCIA_YACENTE = 'herenciaYacente';
+    public const TYPE_COMUNIDAD_DE_PROPIETARIOS = 'comunidadDePropietarios';
+    public const TYPE_SEP = 'sep';
+    public const TYPE_SCA = 'sca';
+    public const TYPE_BT = 'bt';
+    public const TYPE_KKT = 'kkt';
+    public const TYPE_SCS = 'scs';
+    public const TYPE_SNC = 'snc';
     public const VAT_ABSENCE_REASON_INDUSTRY_EXEMPTION = 'industryExemption';
     public const VAT_ABSENCE_REASON_BELOW_TAX_THRESHOLD = 'belowTaxThreshold';
 
@@ -317,25 +320,34 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
     public function getTypeAllowableValues()
     {
         return [
-            self::TYPE_BUSINESS_TRUST,
-            self::TYPE_CASH_MANAGEMENT_TRUST,
-            self::TYPE_CHARITABLE_TRUST,
-            self::TYPE_CORPORATE_UNIT_TRUST,
-            self::TYPE_DECEASED_ESTATE,
-            self::TYPE_DISCRETIONARY_TRUST,
-            self::TYPE_DISCRETIONARY_INVESTMENT_TRUST,
-            self::TYPE_DISCRETIONARY_SERVICES_MANAGEMENT_TRUST,
-            self::TYPE_DISCRETIONARY_TRADING_TRUST,
-            self::TYPE_FAMILY_TRUST,
-            self::TYPE_FIRST_HOME_SAVER_ACCOUNTS_TRUST,
-            self::TYPE_FIXED_TRUST,
-            self::TYPE_FIXED_UNIT_TRUST,
-            self::TYPE_HYBRID_TRUST,
-            self::TYPE_LISTED_PUBLIC_UNIT_TRUST,
-            self::TYPE_OTHER_TRUST,
-            self::TYPE_POOLED_SUPERANNUATION_TRUST,
-            self::TYPE_PUBLIC_TRADING_TRUST,
-            self::TYPE_UNLISTED_PUBLIC_UNIT_TRUST,
+            self::TYPE_LIMITED_PARTNERSHIP,
+            self::TYPE_GENERAL_PARTNERSHIP,
+            self::TYPE_FAMILY_PARTNERSHIP,
+            self::TYPE_COMMERCIAL_PARTNERSHIP,
+            self::TYPE_PUBLIC_PARTNERSHIP,
+            self::TYPE_OTHER_PARTNERSHIP,
+            self::TYPE_GBR,
+            self::TYPE_GMBH,
+            self::TYPE_KGAA,
+            self::TYPE_CV,
+            self::TYPE_VOF,
+            self::TYPE_MAATSCHAP,
+            self::TYPE_PRIVATE_FUND_LIMITED_PARTNERSHIP,
+            self::TYPE_BUSINESS_TRUST_ENTITY,
+            self::TYPE_BUSINESS_PARTNERSHIP,
+            self::TYPE_LIMITED_LIABILITY_PARTNERSHIP,
+            self::TYPE_EG,
+            self::TYPE_COOPERATIVE,
+            self::TYPE_VOS,
+            self::TYPE_COMUNIDAD_DE_BIENES,
+            self::TYPE_HERENCIA_YACENTE,
+            self::TYPE_COMUNIDAD_DE_PROPIETARIOS,
+            self::TYPE_SEP,
+            self::TYPE_SCA,
+            self::TYPE_BT,
+            self::TYPE_KKT,
+            self::TYPE_SCS,
+            self::TYPE_SNC,
         ];
     }
     /**
@@ -375,7 +387,6 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('registrationNumber', $data ?? [], null);
         $this->setIfExists('taxInformation', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('undefinedBeneficiaryInfo', $data ?? [], null);
         $this->setIfExists('vatAbsenceReason', $data ?? [], null);
         $this->setIfExists('vatNumber', $data ?? [], null);
     }
@@ -415,9 +426,6 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['registeredAddress'] === null) {
             $invalidProperties[] = "'registeredAddress' can't be null";
-        }
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
         }
         $allowedValues = $this->getTypeAllowableValues();
         if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
@@ -513,7 +521,7 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets description
      *
-     * @param string|null $description A short description about the trust. Only applicable for charitable trusts in New Zealand.
+     * @param string|null $description Short description about the Legal Arrangement.
      *
      * @return self
      */
@@ -671,7 +679,7 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets type
      *
-     * @return string
+     * @return string|null
      */
     public function getType()
     {
@@ -681,7 +689,7 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      *
-     * @param string $type Type of trust.  See possible values for trusts in [Australia](https://docs.adyen.com/platforms/verification-requirements/?tab=trust_3_4#trust-types-in-australia) and [New Zealand](https://docs.adyen.com/platforms/verification-requirements/?tab=trust_3_4#trust-types-in-new-zealand).
+     * @param string|null $type Type of Partnership.  Possible values: *  **limitedPartnership** *  **generalPartnership** *  **familyPartnership** *  **commercialPartnership** *  **publicPartnership** *  **otherPartnership** *  **gbr** *  **gmbh** *  **kgaa** *  **cv** *  **vof** *  **maatschap** *  **privateFundLimitedPartnership** *  **businessTrustEntity** *  **businessPartnership** *  **limitedLiabilityPartnership** *  **eg** *  **cooperative** *  **vos** *  **comunidadDeBienes** *  **herenciaYacente** *  **comunidadDePropietarios** *  **sep** *  **sca** *  **bt** *  **kkt** *  **scs** *  **snc**
      *
      * @return self
      */
@@ -698,30 +706,6 @@ class Trust implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets undefinedBeneficiaryInfo
-     *
-     * @return \Adyen\Model\LegalEntityManagement\UndefinedBeneficiary[]|null
-     */
-    public function getUndefinedBeneficiaryInfo()
-    {
-        return $this->container['undefinedBeneficiaryInfo'];
-    }
-
-    /**
-     * Sets undefinedBeneficiaryInfo
-     *
-     * @param \Adyen\Model\LegalEntityManagement\UndefinedBeneficiary[]|null $undefinedBeneficiaryInfo The undefined beneficiary information of the entity.
-     *
-     * @return self
-     */
-    public function setUndefinedBeneficiaryInfo($undefinedBeneficiaryInfo)
-    {
-        $this->container['undefinedBeneficiaryInfo'] = $undefinedBeneficiaryInfo;
 
         return $this;
     }
