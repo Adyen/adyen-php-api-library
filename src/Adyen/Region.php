@@ -8,12 +8,14 @@ class Region
     const US = "us";
     const AU = "au";
     const IN = "in";
+    const APSE = "apse";
 
     const VALID_REGIONS = [
         self::EU,
         self::US,
         self::AU,
-        self::IN
+        self::IN,
+        self::APSE
     ];
 
     const TERMINAL_API_ENDPOINTS_MAPPING = [
