@@ -358,7 +358,7 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets amountPerIndustry
      *
-     * @param array<string,\Adyen\Model\BalancePlatform\Amount>|null $amountPerIndustry 
+     * @param array<string,\Adyen\Model\BalancePlatform\Amount>|null $amountPerIndustry
      *
      * @return self
      */
@@ -382,7 +382,7 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets authorizedCardUsers
      *
-     * @param bool|null $authorizedCardUsers 
+     * @param bool|null $authorizedCardUsers
      *
      * @return self
      */
@@ -406,7 +406,7 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets fundingSource
      *
-     * @param string[]|null $fundingSource 
+     * @param string[]|null $fundingSource
      *
      * @return self
      */
@@ -439,7 +439,7 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets interval
      *
-     * @param string|null $interval 
+     * @param string|null $interval
      *
      * @return self
      */

@@ -59,13 +59,12 @@ class TerminalsTerminalLevelApi extends Service
     * @param string $terminalId
     * @param \Adyen\Model\Management\TerminalReassignmentRequest $terminalReassignmentRequest
     * @param array|null $requestOptions
-    
+
     * @throws AdyenException
     */
     public function reassignTerminal(string $terminalId, \Adyen\Model\Management\TerminalReassignmentRequest $terminalReassignmentRequest, array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{terminalId}'], [$terminalId], "/terminals/{terminalId}/reassign");
         $this->requestHttp($endpoint, strtolower('POST'), (array) $terminalReassignmentRequest->jsonSerialize(), $requestOptions);
-        
     }
 }
