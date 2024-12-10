@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\TransferWebhooks\ObjectSerializer;
 
 /**
- * Amount Class Doc Comment
+ * Leg Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\TransferWebhooks\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
+class Leg implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Amount';
+    protected static $openAPIModelName = 'Leg';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,8 +44,12 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'currency' => 'string',
-        'value' => 'int'
+        'arrivalAirportCode' => 'string',
+        'basicFareCode' => 'string',
+        'carrierCode' => 'string',
+        'departureAirportCode' => 'string',
+        'departureDate' => 'string',
+        'flightNumber' => 'string'
     ];
 
     /**
@@ -56,8 +60,12 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'currency' => null,
-        'value' => 'int64'
+        'arrivalAirportCode' => null,
+        'basicFareCode' => null,
+        'carrierCode' => null,
+        'departureAirportCode' => null,
+        'departureDate' => null,
+        'flightNumber' => null
     ];
 
     /**
@@ -66,8 +74,12 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'currency' => false,
-        'value' => false
+        'arrivalAirportCode' => false,
+        'basicFareCode' => false,
+        'carrierCode' => false,
+        'departureAirportCode' => false,
+        'departureDate' => false,
+        'flightNumber' => false
     ];
 
     /**
@@ -156,8 +168,12 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'currency' => 'currency',
-        'value' => 'value'
+        'arrivalAirportCode' => 'arrivalAirportCode',
+        'basicFareCode' => 'basicFareCode',
+        'carrierCode' => 'carrierCode',
+        'departureAirportCode' => 'departureAirportCode',
+        'departureDate' => 'departureDate',
+        'flightNumber' => 'flightNumber'
     ];
 
     /**
@@ -166,8 +182,12 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'currency' => 'setCurrency',
-        'value' => 'setValue'
+        'arrivalAirportCode' => 'setArrivalAirportCode',
+        'basicFareCode' => 'setBasicFareCode',
+        'carrierCode' => 'setCarrierCode',
+        'departureAirportCode' => 'setDepartureAirportCode',
+        'departureDate' => 'setDepartureDate',
+        'flightNumber' => 'setFlightNumber'
     ];
 
     /**
@@ -176,8 +196,12 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'currency' => 'getCurrency',
-        'value' => 'getValue'
+        'arrivalAirportCode' => 'getArrivalAirportCode',
+        'basicFareCode' => 'getBasicFareCode',
+        'carrierCode' => 'getCarrierCode',
+        'departureAirportCode' => 'getDepartureAirportCode',
+        'departureDate' => 'getDepartureDate',
+        'flightNumber' => 'getFlightNumber'
     ];
 
     /**
@@ -237,8 +261,12 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('currency', $data ?? [], null);
-        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('arrivalAirportCode', $data ?? [], null);
+        $this->setIfExists('basicFareCode', $data ?? [], null);
+        $this->setIfExists('carrierCode', $data ?? [], null);
+        $this->setIfExists('departureAirportCode', $data ?? [], null);
+        $this->setIfExists('departureDate', $data ?? [], null);
+        $this->setIfExists('flightNumber', $data ?? [], null);
     }
 
     /**
@@ -268,12 +296,6 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['currency'] === null) {
-            $invalidProperties[] = "'currency' can't be null";
-        }
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -290,49 +312,145 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets currency
+     * Gets arrivalAirportCode
      *
-     * @return string
+     * @return string|null
      */
-    public function getCurrency()
+    public function getArrivalAirportCode()
     {
-        return $this->container['currency'];
+        return $this->container['arrivalAirportCode'];
     }
 
     /**
-     * Sets currency
+     * Sets arrivalAirportCode
      *
-     * @param string $currency The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes).
+     * @param string|null $arrivalAirportCode The IATA 3-letter airport code of the destination airport. This field is required if the airline data includes leg details.
      *
      * @return self
      */
-    public function setCurrency($currency)
+    public function setArrivalAirportCode($arrivalAirportCode)
     {
-        $this->container['currency'] = $currency;
+        $this->container['arrivalAirportCode'] = $arrivalAirportCode;
 
         return $this;
     }
 
     /**
-     * Gets value
+     * Gets basicFareCode
      *
-     * @return int
+     * @return string|null
      */
-    public function getValue()
+    public function getBasicFareCode()
     {
-        return $this->container['value'];
+        return $this->container['basicFareCode'];
     }
 
     /**
-     * Sets value
+     * Sets basicFareCode
      *
-     * @param int $value The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).
+     * @param string|null $basicFareCode The basic fare code for this leg.
      *
      * @return self
      */
-    public function setValue($value)
+    public function setBasicFareCode($basicFareCode)
     {
-        $this->container['value'] = $value;
+        $this->container['basicFareCode'] = $basicFareCode;
+
+        return $this;
+    }
+
+    /**
+     * Gets carrierCode
+     *
+     * @return string|null
+     */
+    public function getCarrierCode()
+    {
+        return $this->container['carrierCode'];
+    }
+
+    /**
+     * Sets carrierCode
+     *
+     * @param string|null $carrierCode IATA code of the carrier operating the flight.
+     *
+     * @return self
+     */
+    public function setCarrierCode($carrierCode)
+    {
+        $this->container['carrierCode'] = $carrierCode;
+
+        return $this;
+    }
+
+    /**
+     * Gets departureAirportCode
+     *
+     * @return string|null
+     */
+    public function getDepartureAirportCode()
+    {
+        return $this->container['departureAirportCode'];
+    }
+
+    /**
+     * Sets departureAirportCode
+     *
+     * @param string|null $departureAirportCode The IATA three-letter airport code of the departure airport. This field is required if the airline data includes leg details
+     *
+     * @return self
+     */
+    public function setDepartureAirportCode($departureAirportCode)
+    {
+        $this->container['departureAirportCode'] = $departureAirportCode;
+
+        return $this;
+    }
+
+    /**
+     * Gets departureDate
+     *
+     * @return string|null
+     */
+    public function getDepartureDate()
+    {
+        return $this->container['departureDate'];
+    }
+
+    /**
+     * Sets departureDate
+     *
+     * @param string|null $departureDate The flight departure date.
+     *
+     * @return self
+     */
+    public function setDepartureDate($departureDate)
+    {
+        $this->container['departureDate'] = $departureDate;
+
+        return $this;
+    }
+
+    /**
+     * Gets flightNumber
+     *
+     * @return string|null
+     */
+    public function getFlightNumber()
+    {
+        return $this->container['flightNumber'];
+    }
+
+    /**
+     * Sets flightNumber
+     *
+     * @param string|null $flightNumber The flight identifier.
+     *
+     * @return self
+     */
+    public function setFlightNumber($flightNumber)
+    {
+        $this->container['flightNumber'] = $flightNumber;
 
         return $this;
     }

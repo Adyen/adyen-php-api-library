@@ -351,7 +351,7 @@ class GeneratePciDescriptionResponse implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets pciTemplateReferences
      *
-     * @param string[]|null $pciTemplateReferences The array of Adyen-generated unique identifiers for the questionnaires.
+     * @param string[]|null $pciTemplateReferences The array of Adyen-generated unique identifiers for the questionnaires. If empty, the user is not required to sign questionnaires.
      *
      * @return self
      */

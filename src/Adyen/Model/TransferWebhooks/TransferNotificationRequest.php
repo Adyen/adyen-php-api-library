@@ -46,6 +46,7 @@ class TransferNotificationRequest implements ModelInterface, ArrayAccess, \JsonS
     protected static $openAPITypes = [
         'data' => '\Adyen\Model\TransferWebhooks\TransferData',
         'environment' => 'string',
+        'timestamp' => '\DateTime',
         'type' => 'string'
     ];
 
@@ -59,6 +60,7 @@ class TransferNotificationRequest implements ModelInterface, ArrayAccess, \JsonS
     protected static $openAPIFormats = [
         'data' => null,
         'environment' => null,
+        'timestamp' => 'date-time',
         'type' => null
     ];
 
@@ -70,6 +72,7 @@ class TransferNotificationRequest implements ModelInterface, ArrayAccess, \JsonS
     protected static $openAPINullables = [
         'data' => false,
         'environment' => false,
+        'timestamp' => false,
         'type' => false
     ];
 
@@ -161,6 +164,7 @@ class TransferNotificationRequest implements ModelInterface, ArrayAccess, \JsonS
     protected static $attributeMap = [
         'data' => 'data',
         'environment' => 'environment',
+        'timestamp' => 'timestamp',
         'type' => 'type'
     ];
 
@@ -172,6 +176,7 @@ class TransferNotificationRequest implements ModelInterface, ArrayAccess, \JsonS
     protected static $setters = [
         'data' => 'setData',
         'environment' => 'setEnvironment',
+        'timestamp' => 'setTimestamp',
         'type' => 'setType'
     ];
 
@@ -183,6 +188,7 @@ class TransferNotificationRequest implements ModelInterface, ArrayAccess, \JsonS
     protected static $getters = [
         'data' => 'getData',
         'environment' => 'getEnvironment',
+        'timestamp' => 'getTimestamp',
         'type' => 'getType'
     ];
 
@@ -259,6 +265,7 @@ class TransferNotificationRequest implements ModelInterface, ArrayAccess, \JsonS
     {
         $this->setIfExists('data', $data ?? [], null);
         $this->setIfExists('environment', $data ?? [], null);
+        $this->setIfExists('timestamp', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -363,6 +370,30 @@ class TransferNotificationRequest implements ModelInterface, ArrayAccess, \JsonS
     public function setEnvironment($environment)
     {
         $this->container['environment'] = $environment;
+
+        return $this;
+    }
+
+    /**
+     * Gets timestamp
+     *
+     * @return \DateTime|null
+     */
+    public function getTimestamp()
+    {
+        return $this->container['timestamp'];
+    }
+
+    /**
+     * Sets timestamp
+     *
+     * @param \DateTime|null $timestamp When the event was queued.
+     *
+     * @return self
+     */
+    public function setTimestamp($timestamp)
+    {
+        $this->container['timestamp'] = $timestamp;
 
         return $this;
     }

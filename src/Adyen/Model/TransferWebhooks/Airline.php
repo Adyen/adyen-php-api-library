@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\TransferWebhooks\ObjectSerializer;
 
 /**
- * Amount Class Doc Comment
+ * Airline Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\TransferWebhooks\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
+class Airline implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Amount';
+    protected static $openAPIModelName = 'Airline';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,8 +44,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'currency' => 'string',
-        'value' => 'int'
+        'legs' => '\Adyen\Model\TransferWebhooks\Leg[]',
+        'ticketNumber' => 'string'
     ];
 
     /**
@@ -56,8 +56,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'currency' => null,
-        'value' => 'int64'
+        'legs' => null,
+        'ticketNumber' => null
     ];
 
     /**
@@ -66,8 +66,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'currency' => false,
-        'value' => false
+        'legs' => false,
+        'ticketNumber' => false
     ];
 
     /**
@@ -156,8 +156,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'currency' => 'currency',
-        'value' => 'value'
+        'legs' => 'legs',
+        'ticketNumber' => 'ticketNumber'
     ];
 
     /**
@@ -166,8 +166,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'currency' => 'setCurrency',
-        'value' => 'setValue'
+        'legs' => 'setLegs',
+        'ticketNumber' => 'setTicketNumber'
     ];
 
     /**
@@ -176,8 +176,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'currency' => 'getCurrency',
-        'value' => 'getValue'
+        'legs' => 'getLegs',
+        'ticketNumber' => 'getTicketNumber'
     ];
 
     /**
@@ -237,8 +237,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('currency', $data ?? [], null);
-        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('legs', $data ?? [], null);
+        $this->setIfExists('ticketNumber', $data ?? [], null);
     }
 
     /**
@@ -268,12 +268,6 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['currency'] === null) {
-            $invalidProperties[] = "'currency' can't be null";
-        }
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -290,49 +284,49 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets currency
+     * Gets legs
      *
-     * @return string
+     * @return \Adyen\Model\TransferWebhooks\Leg[]|null
      */
-    public function getCurrency()
+    public function getLegs()
     {
-        return $this->container['currency'];
+        return $this->container['legs'];
     }
 
     /**
-     * Sets currency
+     * Sets legs
      *
-     * @param string $currency The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes).
+     * @param \Adyen\Model\TransferWebhooks\Leg[]|null $legs Details about the flight legs for this ticket.
      *
      * @return self
      */
-    public function setCurrency($currency)
+    public function setLegs($legs)
     {
-        $this->container['currency'] = $currency;
+        $this->container['legs'] = $legs;
 
         return $this;
     }
 
     /**
-     * Gets value
+     * Gets ticketNumber
      *
-     * @return int
+     * @return string|null
      */
-    public function getValue()
+    public function getTicketNumber()
     {
-        return $this->container['value'];
+        return $this->container['ticketNumber'];
     }
 
     /**
-     * Sets value
+     * Sets ticketNumber
      *
-     * @param int $value The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).
+     * @param string|null $ticketNumber The ticket's unique identifier
      *
      * @return self
      */
-    public function setValue($value)
+    public function setTicketNumber($ticketNumber)
     {
-        $this->container['value'] = $value;
+        $this->container['ticketNumber'] = $ticketNumber;
 
         return $this;
     }
