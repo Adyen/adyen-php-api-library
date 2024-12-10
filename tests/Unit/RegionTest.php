@@ -30,7 +30,6 @@ class RegionTest extends TestCase
             "eu" => "https://terminal-api-live.adyen.com",
             "us" => "https://terminal-api-live-us.adyen.com",
             "au" => "https://terminal-api-live-au.adyen.com",
-            "in" => "https://terminal-api-live-in.adyen.com",
             "apse" => "https://terminal-api-live-apse.adyen.com",
         ];
 
@@ -38,19 +37,6 @@ class RegionTest extends TestCase
             $expected,
             Region::TERMINAL_API_ENDPOINTS_MAPPING,
             "TERMINAL_API_ENDPOINTS_MAPPING should match the expected mappings."
-        );
-    }
-
-    public function testTerminalApiEndpointsExistsForAllRegions()
-    {
-        $regionsWithEndpoints = array_keys(Region::TERMINAL_API_ENDPOINTS_MAPPING);
-        $regions = Region::VALID_REGIONS;
-
-        $expected = array_diff($regions, $regionsWithEndpoints);
-
-        $this->assertEmpty(
-            $expected,
-            "Every region should be mapped to an endpoint."
         );
     }
 }

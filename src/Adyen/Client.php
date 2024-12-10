@@ -30,7 +30,6 @@ class Client
     const ENDPOINT_TERMINAL_CLOUD_LIVE = "https://terminal-api-live.adyen.com";
     const ENDPOINT_TERMINAL_CLOUD_US_LIVE = "https://terminal-api-live-us.adyen.com";
     const ENDPOINT_TERMINAL_CLOUD_AU_LIVE = "https://terminal-api-live-au.adyen.com";
-    const ENDPOINT_TERMINAL_CLOUD_IN_LIVE = "https://terminal-api-live-in.adyen.com";
     const ENDPOINT_TERMINAL_CLOUD_APSE_LIVE = "https://terminal-api-live-apse.adyen.com";
     const ENDPOINT_CHECKOUT_TEST = "https://checkout-test.adyen.com";
     const ENDPOINT_CHECKOUT_LIVE_SUFFIX = "-checkout-live.adyenpayments.com/checkout";
