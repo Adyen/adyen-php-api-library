@@ -18,7 +18,7 @@ class RegionTest extends TestCase
         ];
 
         $this->assertEquals(
-            $expected, 
+            $expected,
             Region::VALID_REGIONS,
             "VALID_REGIONS should match the expected regions."
         );
@@ -35,9 +35,10 @@ class RegionTest extends TestCase
         ];
 
         $this->assertEquals(
-            $expected, 
-            Region::TERMINAL_API_ENDPOINTS_MAPPING, 
-            "TERMINAL_API_ENDPOINTS_MAPPING should match the expected mappings.");
+            $expected,
+            Region::TERMINAL_API_ENDPOINTS_MAPPING,
+            "TERMINAL_API_ENDPOINTS_MAPPING should match the expected mappings."
+        );
     }
 
     public function testTerminalApiEndpointsExistsForAllRegions()
