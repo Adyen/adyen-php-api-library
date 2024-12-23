@@ -64,6 +64,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'nyce' => '\Adyen\Model\Management\NyceInfo',
         'pulse' => '\Adyen\Model\Management\PulseInfo',
         'star' => '\Adyen\Model\Management\StarInfo',
+        'storeId' => 'string',
         'storeIds' => 'string[]',
         'visa' => '\Adyen\Model\Management\GenericPmWithTdiInfo'
     ];
@@ -96,6 +97,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'nyce' => null,
         'pulse' => null,
         'star' => null,
+        'storeId' => null,
         'storeIds' => null,
         'visa' => null
     ];
@@ -126,6 +128,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'nyce' => false,
         'pulse' => false,
         'star' => false,
+        'storeId' => false,
         'storeIds' => false,
         'visa' => false
     ];
@@ -236,6 +239,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'nyce' => 'nyce',
         'pulse' => 'pulse',
         'star' => 'star',
+        'storeId' => 'storeId',
         'storeIds' => 'storeIds',
         'visa' => 'visa'
     ];
@@ -266,6 +270,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'nyce' => 'setNyce',
         'pulse' => 'setPulse',
         'star' => 'setStar',
+        'storeId' => 'setStoreId',
         'storeIds' => 'setStoreIds',
         'visa' => 'setVisa'
     ];
@@ -296,6 +301,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'nyce' => 'getNyce',
         'pulse' => 'getPulse',
         'star' => 'getStar',
+        'storeId' => 'getStoreId',
         'storeIds' => 'getStoreIds',
         'visa' => 'getVisa'
     ];
@@ -377,6 +383,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('nyce', $data ?? [], null);
         $this->setIfExists('pulse', $data ?? [], null);
         $this->setIfExists('star', $data ?? [], null);
+        $this->setIfExists('storeId', $data ?? [], null);
         $this->setIfExists('storeIds', $data ?? [], null);
         $this->setIfExists('visa', $data ?? [], null);
     }
@@ -904,9 +911,34 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
+     * Gets storeId
+     *
+     * @return string|null
+     */
+    public function getStoreId()
+    {
+        return $this->container['storeId'];
+    }
+
+    /**
+     * Sets storeId
+     *
+     * @param string|null $storeId The store for this payment method
+     *
+     * @return self
+     */
+    public function setStoreId($storeId)
+    {
+        $this->container['storeId'] = $storeId;
+
+        return $this;
+    }
+
+    /**
      * Gets storeIds
      *
      * @return string[]|null
+     * @deprecated
      */
     public function getStoreIds()
     {
@@ -919,6 +951,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
      * @param string[]|null $storeIds The list of stores for this payment method
      *
      * @return self
+     * @deprecated
      */
     public function setStoreIds($storeIds)
     {
