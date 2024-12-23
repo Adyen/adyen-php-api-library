@@ -323,7 +323,7 @@ class CounterpartyBankRestriction implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets value
      *
-     * @param \Adyen\Model\BalancePlatform\BankIdentification[]|null $value List of counterparty Bank Institutions and the operation.
+     * @param \Adyen\Model\BalancePlatform\BankIdentification[]|null $value The list of counterparty bank institutions to be evaluated.
      *
      * @return self
      */

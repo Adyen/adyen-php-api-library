@@ -45,6 +45,7 @@ class TerminalConnectivityCellular implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPITypes = [
         'iccid' => 'string',
+        'iccid2' => 'string',
         'status' => 'string'
     ];
 
@@ -57,6 +58,7 @@ class TerminalConnectivityCellular implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPIFormats = [
         'iccid' => null,
+        'iccid2' => null,
         'status' => null
     ];
 
@@ -67,6 +69,7 @@ class TerminalConnectivityCellular implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPINullables = [
         'iccid' => false,
+        'iccid2' => false,
         'status' => false
     ];
 
@@ -157,6 +160,7 @@ class TerminalConnectivityCellular implements ModelInterface, ArrayAccess, \Json
      */
     protected static $attributeMap = [
         'iccid' => 'iccid',
+        'iccid2' => 'iccid2',
         'status' => 'status'
     ];
 
@@ -167,6 +171,7 @@ class TerminalConnectivityCellular implements ModelInterface, ArrayAccess, \Json
      */
     protected static $setters = [
         'iccid' => 'setIccid',
+        'iccid2' => 'setIccid2',
         'status' => 'setStatus'
     ];
 
@@ -177,6 +182,7 @@ class TerminalConnectivityCellular implements ModelInterface, ArrayAccess, \Json
      */
     protected static $getters = [
         'iccid' => 'getIccid',
+        'iccid2' => 'getIccid2',
         'status' => 'getStatus'
     ];
 
@@ -258,6 +264,7 @@ class TerminalConnectivityCellular implements ModelInterface, ArrayAccess, \Json
     public function __construct(array $data = null)
     {
         $this->setIfExists('iccid', $data ?? [], null);
+        $this->setIfExists('iccid2', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
     }
 
@@ -325,13 +332,37 @@ class TerminalConnectivityCellular implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets iccid
      *
-     * @param string|null $iccid The integrated circuit card identifier (ICCID) of the SIM card in the terminal.
+     * @param string|null $iccid The integrated circuit card identifier (ICCID) of the primary SIM card in the terminal.
      *
      * @return self
      */
     public function setIccid($iccid)
     {
         $this->container['iccid'] = $iccid;
+
+        return $this;
+    }
+
+    /**
+     * Gets iccid2
+     *
+     * @return string|null
+     */
+    public function getIccid2()
+    {
+        return $this->container['iccid2'];
+    }
+
+    /**
+     * Sets iccid2
+     *
+     * @param string|null $iccid2 The integrated circuit card identifier (ICCID) of the secondary SIM card in the terminal, typically used for a [third-party SIM card](https://docs.adyen.com/point-of-sale/design-your-integration/network-and-connectivity/cellular-failover/#using-a-third-party-sim-card).
+     *
+     * @return self
+     */
+    public function setIccid2($iccid2)
+    {
+        $this->container['iccid2'] = $iccid2;
 
         return $this;
     }
@@ -349,7 +380,7 @@ class TerminalConnectivityCellular implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets status
      *
-     * @param string|null $status On a terminal that supports 3G or 4G connectivity, indicates the status of the SIM card in the terminal.
+     * @param string|null $status On a terminal that supports 3G or 4G connectivity, indicates the status of the primary SIM card in the terminal.
      *
      * @return self
      */
