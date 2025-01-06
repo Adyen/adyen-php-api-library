@@ -7,12 +7,13 @@ use Adyen\Region;
 
 class RegionTest extends TestCase
 {
+
     public function testValidRegions()
     {
         $expected = [
             "eu",
-            "us",
             "au",
+            "us",
             "in",
             "apse",
         ];
@@ -28,8 +29,8 @@ class RegionTest extends TestCase
     {
         $expected = [
             "eu" => "https://terminal-api-live.adyen.com",
-            "us" => "https://terminal-api-live-us.adyen.com",
             "au" => "https://terminal-api-live-au.adyen.com",
+            "us" => "https://terminal-api-live-us.adyen.com",
             "apse" => "https://terminal-api-live-apse.adyen.com",
         ];
 

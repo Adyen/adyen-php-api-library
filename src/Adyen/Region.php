@@ -10,15 +10,15 @@ class Region
     const EU = "eu";
     
     /**
+     * Australia region
+     */
+    const AU = "au";
+
+    /**
      * United States region
      */
     const US = "us";
 
-    /**
-     * Australia region
-     */
-    const AU = "au";
-    
     /**
      * India region
      */
@@ -35,8 +35,8 @@ class Region
      */
     const VALID_REGIONS = [
         self::EU,
-        self::US,
         self::AU,
+        self::US,
         self::IN,
         self::APSE
     ];
@@ -47,8 +47,8 @@ class Region
      */
     const TERMINAL_API_ENDPOINTS_MAPPING = [
         self::EU => Client::ENDPOINT_TERMINAL_CLOUD_LIVE,
-        self::US => Client::ENDPOINT_TERMINAL_CLOUD_US_LIVE,
         self::AU => Client::ENDPOINT_TERMINAL_CLOUD_AU_LIVE,
+        self::US => Client::ENDPOINT_TERMINAL_CLOUD_US_LIVE,
         self::APSE => Client::ENDPOINT_TERMINAL_CLOUD_APSE_LIVE,
     ];
 }
