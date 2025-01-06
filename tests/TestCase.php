@@ -365,4 +365,64 @@ class TestCase extends \PHPUnit\Framework\TestCase
         $actualEndpoint = "https://terminal-api-test.adyen.com";
         $this->assertEquals($expectedEndpoint, $actualEndpoint);
     }
+
+    /**
+     * Data provider for cloud live endpoint test cases.
+     *
+     * @return array[]
+     */
+    public function provideCloudLiveEndpointTestCases(): array
+    {
+        return [
+            [null, Environment::LIVE, "https://terminal-api-live.adyen.com"],
+            [Region::EU, Environment::LIVE, "https://terminal-api-live.adyen.com"],
+            [Region::AU, Environment::LIVE, "https://terminal-api-live-au.adyen.com"],
+            [Region::US, Environment::LIVE, "https://terminal-api-live-us.adyen.com"],
+            [Region::APSE, Environment::LIVE, "https://terminal-api-live-apse.adyen.com"]
+        ];
+    }
+
+    /**
+     * Test retrieving the correct Terminal API Cloud endpoint for the LIVE environment.
+     *
+     * @dataProvider provideCloudLiveEndpointTestCases
+     *
+     * @param string|null $region The region for which the endpoint is being retrieved.
+     * @param string $environment The environment being tested (e.g., LIVE).
+     * @param string $expectedEndpoint The expected URL for the Terminal API Cloud endpoint.
+     */
+    public function testGetCloudEndpointForLiveEnvironment(?string $region, string $environment, string $expectedEndpoint): void
+    {
+        $testConfig = new Config();
+        $testConfig->set("environment", $environment);
+        $testConfig->set("terminalApiRegion", $region);
+
+        $testClient = new Client($testConfig);
+
+        $actualEndpoint = $testClient->retrieveCloudEndpoint($region, $environment);
+        $this->assertEquals($expectedEndpoint, $actualEndpoint);
+    }
+
+    /**
+     * @throws \Adyen\AdyenException
+     */
+    public function testUnmappedIndiaRegionThrowsException(): void
+    {
+        $testConfig = new Config();
+        $testConfig->set("environment", Environment::LIVE);
+        $testConfig->set("terminalApiRegion", Region::IN);
+
+        $testClient = new Client($testConfig);
+
+        try {
+            $region = Region::IN;
+            $environment = Environment::LIVE;
+
+            $testClient->retrieveCloudEndpoint($region, $environment);
+        } catch (AdyenException $e) {
+            $this->assertEquals("TerminalAPI endpoint for in is not supported yet", $e->getMessage());
+            return;
+        }
+        $this->fail("Expected AdyenException was not thrown for unmapped region.");
+    }
 }
