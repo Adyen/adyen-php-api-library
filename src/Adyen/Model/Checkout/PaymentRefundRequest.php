@@ -469,7 +469,7 @@ class PaymentRefundRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets merchantRefundReason
      *
-     * @param string|null $merchantRefundReason Your reason for the refund request
+     * @param string|null $merchantRefundReason The reason for the refund request.  Possible values:  * **FRAUD**  * **CUSTOMER REQUEST**  * **RETURN**  * **DUPLICATE**  * **OTHER**
      *
      * @return self
      */

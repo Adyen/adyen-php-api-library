@@ -50,6 +50,7 @@ class ReportNotificationData implements ModelInterface, ArrayAccess, \JsonSerial
         'creationDate' => '\DateTime',
         'downloadUrl' => 'string',
         'fileName' => 'string',
+        'id' => 'string',
         'reportType' => 'string'
     ];
 
@@ -67,6 +68,7 @@ class ReportNotificationData implements ModelInterface, ArrayAccess, \JsonSerial
         'creationDate' => 'date-time',
         'downloadUrl' => null,
         'fileName' => null,
+        'id' => null,
         'reportType' => null
     ];
 
@@ -82,6 +84,7 @@ class ReportNotificationData implements ModelInterface, ArrayAccess, \JsonSerial
         'creationDate' => false,
         'downloadUrl' => false,
         'fileName' => false,
+        'id' => false,
         'reportType' => false
     ];
 
@@ -177,6 +180,7 @@ class ReportNotificationData implements ModelInterface, ArrayAccess, \JsonSerial
         'creationDate' => 'creationDate',
         'downloadUrl' => 'downloadUrl',
         'fileName' => 'fileName',
+        'id' => 'id',
         'reportType' => 'reportType'
     ];
 
@@ -192,6 +196,7 @@ class ReportNotificationData implements ModelInterface, ArrayAccess, \JsonSerial
         'creationDate' => 'setCreationDate',
         'downloadUrl' => 'setDownloadUrl',
         'fileName' => 'setFileName',
+        'id' => 'setId',
         'reportType' => 'setReportType'
     ];
 
@@ -207,6 +212,7 @@ class ReportNotificationData implements ModelInterface, ArrayAccess, \JsonSerial
         'creationDate' => 'getCreationDate',
         'downloadUrl' => 'getDownloadUrl',
         'fileName' => 'getFileName',
+        'id' => 'getId',
         'reportType' => 'getReportType'
     ];
 
@@ -273,6 +279,7 @@ class ReportNotificationData implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('creationDate', $data ?? [], null);
         $this->setIfExists('downloadUrl', $data ?? [], null);
         $this->setIfExists('fileName', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('reportType', $data ?? [], null);
     }
 
@@ -467,6 +474,30 @@ class ReportNotificationData implements ModelInterface, ArrayAccess, \JsonSerial
     public function setFileName($fileName)
     {
         $this->container['fileName'] = $fileName;
+
+        return $this;
+    }
+
+    /**
+     * Gets id
+     *
+     * @return string|null
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param string|null $id The ID of the resource.
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        $this->container['id'] = $id;
 
         return $this;
     }

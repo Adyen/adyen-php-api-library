@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * Balance Class Doc Comment
+ * PriorityRestriction Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\BalancePlatform\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
+class PriorityRestriction implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Balance';
+    protected static $openAPIModelName = 'PriorityRestriction';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,11 +44,8 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'available' => 'int',
-        'balance' => 'int',
-        'currency' => 'string',
-        'pending' => 'int',
-        'reserved' => 'int'
+        'operation' => 'string',
+        'value' => 'string[]'
     ];
 
     /**
@@ -59,11 +56,8 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'available' => 'int64',
-        'balance' => 'int64',
-        'currency' => null,
-        'pending' => 'int64',
-        'reserved' => 'int64'
+        'operation' => null,
+        'value' => null
     ];
 
     /**
@@ -72,11 +66,8 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'available' => false,
-        'balance' => false,
-        'currency' => false,
-        'pending' => false,
-        'reserved' => false
+        'operation' => false,
+        'value' => false
     ];
 
     /**
@@ -165,11 +156,8 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'available' => 'available',
-        'balance' => 'balance',
-        'currency' => 'currency',
-        'pending' => 'pending',
-        'reserved' => 'reserved'
+        'operation' => 'operation',
+        'value' => 'value'
     ];
 
     /**
@@ -178,11 +166,8 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'available' => 'setAvailable',
-        'balance' => 'setBalance',
-        'currency' => 'setCurrency',
-        'pending' => 'setPending',
-        'reserved' => 'setReserved'
+        'operation' => 'setOperation',
+        'value' => 'setValue'
     ];
 
     /**
@@ -191,11 +176,8 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'available' => 'getAvailable',
-        'balance' => 'getBalance',
-        'currency' => 'getCurrency',
-        'pending' => 'getPending',
-        'reserved' => 'getReserved'
+        'operation' => 'getOperation',
+        'value' => 'getValue'
     ];
 
     /**
@@ -239,7 +221,27 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const VALUE_CROSS_BORDER = 'crossBorder';
+    public const VALUE_FAST = 'fast';
+    public const VALUE_INSTANT = 'instant';
+    public const VALUE_INTRA_BANK = 'intraBank';
+    public const VALUE_REGULAR = 'regular';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getValueAllowableValues()
+    {
+        return [
+            self::VALUE_CROSS_BORDER,
+            self::VALUE_FAST,
+            self::VALUE_INSTANT,
+            self::VALUE_INTRA_BANK,
+            self::VALUE_REGULAR,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -255,11 +257,8 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('available', $data ?? [], null);
-        $this->setIfExists('balance', $data ?? [], null);
-        $this->setIfExists('currency', $data ?? [], null);
-        $this->setIfExists('pending', $data ?? [], null);
-        $this->setIfExists('reserved', $data ?? [], null);
+        $this->setIfExists('operation', $data ?? [], null);
+        $this->setIfExists('value', $data ?? [], null);
     }
 
     /**
@@ -289,17 +288,8 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['available'] === null) {
-            $invalidProperties[] = "'available' can't be null";
-        }
-        if ($this->container['balance'] === null) {
-            $invalidProperties[] = "'balance' can't be null";
-        }
-        if ($this->container['currency'] === null) {
-            $invalidProperties[] = "'currency' can't be null";
-        }
-        if ($this->container['reserved'] === null) {
-            $invalidProperties[] = "'reserved' can't be null";
+        if ($this->container['operation'] === null) {
+            $invalidProperties[] = "'operation' can't be null";
         }
         return $invalidProperties;
     }
@@ -317,121 +307,58 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets available
-     *
-     * @return int
-     */
-    public function getAvailable()
-    {
-        return $this->container['available'];
-    }
-
-    /**
-     * Sets available
-     *
-     * @param int $available The balance available for use.
-     *
-     * @return self
-     */
-    public function setAvailable($available)
-    {
-        $this->container['available'] = $available;
-
-        return $this;
-    }
-
-    /**
-     * Gets balance
-     *
-     * @return int
-     */
-    public function getBalance()
-    {
-        return $this->container['balance'];
-    }
-
-    /**
-     * Sets balance
-     *
-     * @param int $balance The sum of the transactions that have already been settled.
-     *
-     * @return self
-     */
-    public function setBalance($balance)
-    {
-        $this->container['balance'] = $balance;
-
-        return $this;
-    }
-
-    /**
-     * Gets currency
+     * Gets operation
      *
      * @return string
      */
-    public function getCurrency()
+    public function getOperation()
     {
-        return $this->container['currency'];
+        return $this->container['operation'];
     }
 
     /**
-     * Sets currency
+     * Sets operation
      *
-     * @param string $currency The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) of the balance.
+     * @param string $operation Defines how the condition must be evaluated.
      *
      * @return self
      */
-    public function setCurrency($currency)
+    public function setOperation($operation)
     {
-        $this->container['currency'] = $currency;
+        $this->container['operation'] = $operation;
 
         return $this;
     }
 
     /**
-     * Gets pending
+     * Gets value
      *
-     * @return int|null
+     * @return string[]|null
      */
-    public function getPending()
+    public function getValue()
     {
-        return $this->container['pending'];
+        return $this->container['value'];
     }
 
     /**
-     * Sets pending
+     * Sets value
      *
-     * @param int|null $pending The sum of the transactions that will be settled in the future.
+     * @param string[]|null $value value
      *
      * @return self
      */
-    public function setPending($pending)
+    public function setValue($value)
     {
-        $this->container['pending'] = $pending;
-
-        return $this;
-    }
-
-    /**
-     * Gets reserved
-     *
-     * @return int
-     */
-    public function getReserved()
-    {
-        return $this->container['reserved'];
-    }
-
-    /**
-     * Sets reserved
-     *
-     * @param int $reserved The balance currently held in reserve.
-     *
-     * @return self
-     */
-    public function setReserved($reserved)
-    {
-        $this->container['reserved'] = $reserved;
+        $allowedValues = $this->getValueAllowableValues();
+        if (array_diff($value, $allowedValues)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'value', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['value'] = $value;
 
         return $this;
     }
