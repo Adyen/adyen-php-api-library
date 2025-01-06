@@ -353,7 +353,7 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets balance
      *
-     * @param int $balance The sum of transactions that have already been settled.
+     * @param int $balance The sum of the transactions that have already been settled.
      *
      * @return self
      */

@@ -260,6 +260,8 @@ class VerificationErrorRecursive implements ModelInterface, ArrayAccess, \JsonSe
     public const CAPABILITIES_ISSUE_CARD = 'issueCard';
     public const CAPABILITIES_ISSUE_CARD_COMMERCIAL = 'issueCardCommercial';
     public const CAPABILITIES_ISSUE_CARD_CONSUMER = 'issueCardConsumer';
+    public const CAPABILITIES_ISSUE_CHARGE_CARD = 'issueChargeCard';
+    public const CAPABILITIES_ISSUE_CHARGE_CARD_COMMERCIAL = 'issueChargeCardCommercial';
     public const CAPABILITIES_ISSUE_CREDIT_LIMIT = 'issueCreditLimit';
     public const CAPABILITIES_LOCAL_ACCEPTANCE = 'localAcceptance';
     public const CAPABILITIES_PAYOUT = 'payout';
@@ -284,6 +286,8 @@ class VerificationErrorRecursive implements ModelInterface, ArrayAccess, \JsonSe
     public const CAPABILITIES_USE_CARD_IN_RESTRICTED_INDUSTRIES = 'useCardInRestrictedIndustries';
     public const CAPABILITIES_USE_CARD_IN_RESTRICTED_INDUSTRIES_COMMERCIAL = 'useCardInRestrictedIndustriesCommercial';
     public const CAPABILITIES_USE_CARD_IN_RESTRICTED_INDUSTRIES_CONSUMER = 'useCardInRestrictedIndustriesConsumer';
+    public const CAPABILITIES_USE_CHARGE_CARD = 'useChargeCard';
+    public const CAPABILITIES_USE_CHARGE_CARD_COMMERCIAL = 'useChargeCardCommercial';
     public const CAPABILITIES_WITHDRAW_FROM_ATM = 'withdrawFromAtm';
     public const CAPABILITIES_WITHDRAW_FROM_ATM_COMMERCIAL = 'withdrawFromAtmCommercial';
     public const CAPABILITIES_WITHDRAW_FROM_ATM_CONSUMER = 'withdrawFromAtmConsumer';
@@ -323,6 +327,8 @@ class VerificationErrorRecursive implements ModelInterface, ArrayAccess, \JsonSe
             self::CAPABILITIES_ISSUE_CARD,
             self::CAPABILITIES_ISSUE_CARD_COMMERCIAL,
             self::CAPABILITIES_ISSUE_CARD_CONSUMER,
+            self::CAPABILITIES_ISSUE_CHARGE_CARD,
+            self::CAPABILITIES_ISSUE_CHARGE_CARD_COMMERCIAL,
             self::CAPABILITIES_ISSUE_CREDIT_LIMIT,
             self::CAPABILITIES_LOCAL_ACCEPTANCE,
             self::CAPABILITIES_PAYOUT,
@@ -347,6 +353,8 @@ class VerificationErrorRecursive implements ModelInterface, ArrayAccess, \JsonSe
             self::CAPABILITIES_USE_CARD_IN_RESTRICTED_INDUSTRIES,
             self::CAPABILITIES_USE_CARD_IN_RESTRICTED_INDUSTRIES_COMMERCIAL,
             self::CAPABILITIES_USE_CARD_IN_RESTRICTED_INDUSTRIES_CONSUMER,
+            self::CAPABILITIES_USE_CHARGE_CARD,
+            self::CAPABILITIES_USE_CHARGE_CARD_COMMERCIAL,
             self::CAPABILITIES_WITHDRAW_FROM_ATM,
             self::CAPABILITIES_WITHDRAW_FROM_ATM_COMMERCIAL,
             self::CAPABILITIES_WITHDRAW_FROM_ATM_CONSUMER,

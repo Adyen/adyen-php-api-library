@@ -58,6 +58,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'mccs' => '\Adyen\Model\BalancePlatform\MccsRestriction',
         'merchantNames' => '\Adyen\Model\BalancePlatform\MerchantNamesRestriction',
         'merchants' => '\Adyen\Model\BalancePlatform\MerchantsRestriction',
+        'priority' => '\Adyen\Model\BalancePlatform\PriorityRestriction',
         'processingTypes' => '\Adyen\Model\BalancePlatform\ProcessingTypesRestriction',
         'riskScores' => '\Adyen\Model\BalancePlatform\RiskScoresRestriction',
         'sameAmountRestriction' => '\Adyen\Model\BalancePlatform\SameAmountRestriction',
@@ -89,6 +90,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'mccs' => null,
         'merchantNames' => null,
         'merchants' => null,
+        'priority' => null,
         'processingTypes' => null,
         'riskScores' => null,
         'sameAmountRestriction' => null,
@@ -118,6 +120,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'mccs' => false,
         'merchantNames' => false,
         'merchants' => false,
+        'priority' => false,
         'processingTypes' => false,
         'riskScores' => false,
         'sameAmountRestriction' => false,
@@ -227,6 +230,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'mccs' => 'mccs',
         'merchantNames' => 'merchantNames',
         'merchants' => 'merchants',
+        'priority' => 'priority',
         'processingTypes' => 'processingTypes',
         'riskScores' => 'riskScores',
         'sameAmountRestriction' => 'sameAmountRestriction',
@@ -256,6 +260,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'mccs' => 'setMccs',
         'merchantNames' => 'setMerchantNames',
         'merchants' => 'setMerchants',
+        'priority' => 'setPriority',
         'processingTypes' => 'setProcessingTypes',
         'riskScores' => 'setRiskScores',
         'sameAmountRestriction' => 'setSameAmountRestriction',
@@ -285,6 +290,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'mccs' => 'getMccs',
         'merchantNames' => 'getMerchantNames',
         'merchants' => 'getMerchants',
+        'priority' => 'getPriority',
         'processingTypes' => 'getProcessingTypes',
         'riskScores' => 'getRiskScores',
         'sameAmountRestriction' => 'getSameAmountRestriction',
@@ -365,6 +371,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('mccs', $data ?? [], null);
         $this->setIfExists('merchantNames', $data ?? [], null);
         $this->setIfExists('merchants', $data ?? [], null);
+        $this->setIfExists('priority', $data ?? [], null);
         $this->setIfExists('processingTypes', $data ?? [], null);
         $this->setIfExists('riskScores', $data ?? [], null);
         $this->setIfExists('sameAmountRestriction', $data ?? [], null);
@@ -748,6 +755,30 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
     public function setMerchants($merchants)
     {
         $this->container['merchants'] = $merchants;
+
+        return $this;
+    }
+
+    /**
+     * Gets priority
+     *
+     * @return \Adyen\Model\BalancePlatform\PriorityRestriction|null
+     */
+    public function getPriority()
+    {
+        return $this->container['priority'];
+    }
+
+    /**
+     * Sets priority
+     *
+     * @param \Adyen\Model\BalancePlatform\PriorityRestriction|null $priority priority
+     *
+     * @return self
+     */
+    public function setPriority($priority)
+    {
+        $this->container['priority'] = $priority;
 
         return $this;
     }
