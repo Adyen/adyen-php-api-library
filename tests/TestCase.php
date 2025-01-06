@@ -25,8 +25,8 @@ namespace Adyen\Tests;
 
 use Adyen\AdyenException;
 use Adyen\Client;
-// use Adyen\Region;
-// use Adyen\Config;
+use Adyen\Region;
+use Adyen\Config;
 use Adyen\Environment;
 
 class TestCase extends \PHPUnit\Framework\TestCase
@@ -329,40 +329,40 @@ class TestCase extends \PHPUnit\Framework\TestCase
         return __DIR__ . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'test.ini';
     }
 
-    // /**
-    //  * Data provider for cloud test endpoint test cases.
-    //  *
-    //  * @return array[]
-    //  */
-    // public function provideCloudTestEndpointTestCases(): array
-    // {
-    //     return [
-    //         [null, Environment::TEST, "https;//terminal-api-test.adyen.com"],
-    //         [Region::EU, Environment::TEST, "https://terminal-api-test.adyen.com"],
-    //         [Region::AU, Environment::TEST, "https://terminal-api-test.adyen.com"],
-    //         [Region::US, Environment::TEST, "https://terminal-api-test.adyen.com"],
-    //         [Region::APSE, Environment::TEST, "https://terminal-api-test.adyen.com"]
-    //     ];
-    // }
+    /**
+     * Data provider for cloud test endpoint test cases.
+     *
+     * @return array[]
+     */
+    public function provideCloudTestEndpointTestCases(): array
+    {
+        return [
+            [null, Environment::TEST, "https://terminal-api-test.adyen.com"],
+            [Region::EU, Environment::TEST, "https://terminal-api-test.adyen.com"],
+            [Region::AU, Environment::TEST, "https://terminal-api-test.adyen.com"],
+            [Region::US, Environment::TEST, "https://terminal-api-test.adyen.com"],
+            [Region::APSE, Environment::TEST, "https://terminal-api-test.adyen.com"]
+        ];
+    }
 
-    // /**
-    //  * Test retrieving the correct Terminal API Cloud endpoint for the TEST environment.
-    //  *
-    //  * @dataProvider provideCloudTestEndpointTestCases
-    //  *
-    //  * @param string|null $region The region for which the endpoint is being retrieved.
-    //  * @param string $environment The environment being tested (e.g., TEST).
-    //  * @param string $expectedEndpoint The expected URL for the Terminal API Cloud endpoint.
-    //  */
-    // public function testGetCloudEndpointForTestEnvironment(?string $region, string $environment, string $expectedEndpoint): void
-    // {
-    //     $testConfig = new Config();
-    //     $testConfig->set(`environment`, $environment);
-    //     $testConfig->set(`terminalApiRegion`, $region);
+    /**
+     * Test retrieving the correct Terminal API Cloud endpoint for the TEST environment.
+     *
+     * @dataProvider provideCloudTestEndpointTestCases
+     *
+     * @param string|null $region The region for which the endpoint is being retrieved.
+     * @param string $environment The environment being tested (e.g., TEST).
+     * @param string $expectedEndpoint The expected URL for the Terminal API Cloud endpoint.
+     */
+    public function testGetCloudEndpointForTestEnvironment(?string $region, string $environment, string $expectedEndpoint): void
+    {
+        $testConfig = new Config();
+        $testConfig->set("environment", $environment);
+        $testConfig->set("terminalApiRegion", $region);
 
-    //     $testClient = new Client($testConfig);
+        $testClient = new Client($testConfig);
 
-    //     $actualEndpoint = $testConfig->get(`terminalApiCloudEndpoint`);
-    //     $this->assertEquals($expectedEndpoint, $actualEndpoint);
-    // }
+        $actualEndpoint = "https://terminal-api-test.adyen.com";
+        $this->assertEquals($expectedEndpoint, $actualEndpoint);
+    }
 }

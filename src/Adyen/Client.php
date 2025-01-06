@@ -196,18 +196,13 @@ class Client
 
         // Check if the environment is LIVE
         if ($environment === Environment::LIVE) {
-            // Use the default EU endpoint if the region is null
-            if ($region === null) {
-                return Region::TERMINAL_API_ENDPOINTS_MAPPING[Region::EU];
+            if ($environment === Environment::LIVE) {
+                $region = $region ?? Region::EU;
+                if (!array_key_exists($region, Region::TERMINAL_API_ENDPOINTS_MAPPING)) {
+                    throw new AdyenException("TerminalAPI endpoint for $region is not supported yet");
+                }
+                return Region::TERMINAL_API_ENDPOINTS_MAPPING[$region];
             }
-
-            // Throw an exception if the region is not supported
-            if (!array_key_exists($region, Region::TERMINAL_API_ENDPOINTS_MAPPING)) {
-                throw new AdyenException("TerminalAPI endpoint for $region is not supported yet");
-            }
-
-            // Return the mapped endpoint or the default LIVE endpoint
-            return Region::TERMINAL_API_ENDPOINTS_MAPPING[$region] ?? self::ENDPOINT_TERMINAL_CLOUD_LIVE;
         }
 
         // Default to TEST endpoint if no valid environment is specified
