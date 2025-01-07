@@ -204,7 +204,6 @@ class Client
                 return Region::TERMINAL_API_ENDPOINTS_MAPPING[$region];
             }
         }
-
         // Default to TEST endpoint if no valid environment is specified
         return self::ENDPOINT_TERMINAL_CLOUD_TEST;
     }

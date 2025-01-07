@@ -7,26 +7,34 @@ use Adyen\Region;
 
 class RegionTest extends TestCase
 {
-
+    /**
+     * Dynamically retrieves all region constants for comparison.
+     * Filters out non-string values to exclude mappings.
+     *
+     * @return array<string> A list of valid regions.
+     */
     private function getRegionValues(): array
     {
         $reflection = new \ReflectionClass(Region::class);
         $constants = $reflection->getConstants();
     
-        // Filter constants to include only string values (exclude mappings)
         $enumConstants = array_filter($constants, function ($value) {
             return is_string($value);
         });
 
-        return array_values($enumConstants); // Return an indexed array of region values
+        return array_values($enumConstants);
     }
 
+    /**
+     * Tests that the list of valid regions matches the expected list.
+     * Compares the dynamically retrieved region constants with the expected list.
+     *
+     * @return void
+     */
     public function testValidRegions(): void
     {
-        // Dynamically fetch all region values
         $allRegions = $this->getRegionValues();
 
-        // Define the expected list of valid regions
         $expected = [
             "eu",
             "au",
@@ -35,7 +43,6 @@ class RegionTest extends TestCase
             "apse",
         ];
 
-        // Assert that the dynamically retrieved regions match the expected list
         $this->assertEquals(
             $expected,
             $allRegions,
@@ -43,9 +50,14 @@ class RegionTest extends TestCase
         );
     }
 
+    /**
+     * Tests that the Terminal API endpoints mapping matches the expected values.
+     * Compares the predefined endpoint mappings with the expected mappings.
+     *
+     * @return void
+     */
     public function testTerminalApiEndpointsMapping(): void
     {
-        // Define the expected map of region to endpoint mappings
         $expected = [
             "eu" => "https://terminal-api-live.adyen.com",
             "au" => "https://terminal-api-live-au.adyen.com",
@@ -53,7 +65,6 @@ class RegionTest extends TestCase
             "apse" => "https://terminal-api-live-apse.adyen.com",
         ];
 
-        // Assert that the TERMINAL_API_ENDPOINTS_MAPPING matches the expected mappings
         $this->assertEquals(
             $expected,
             Region::TERMINAL_API_ENDPOINTS_MAPPING,
