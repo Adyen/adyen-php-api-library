@@ -8,7 +8,7 @@ use Adyen\Region;
 class RegionTest extends TestCase
 {
     /**
-     * Dynamically retrieves all region constants for comparison.
+     * Retrieves all region constants for comparison.
      * Filters out non-string values to exclude mappings.
      *
      * @return array<string> A list of valid regions.
@@ -27,7 +27,7 @@ class RegionTest extends TestCase
 
     /**
      * Tests that the list of valid regions matches the expected list.
-     * Compares the dynamically retrieved region constants with the expected list.
+     * Compares the retrieved region constants with the expected list.
      *
      * @return void
      */

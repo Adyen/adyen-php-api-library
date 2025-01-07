@@ -404,6 +404,8 @@ class TestCase extends \PHPUnit\Framework\TestCase
     }
 
     /**
+     * Ensures an exception is thrown for unsupported region India in LIVE environment
+     * 
      * @throws \Adyen\AdyenException
      */
     public function testUnmappedIndiaRegionThrowsException(): void
