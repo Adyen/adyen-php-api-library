@@ -29,18 +29,6 @@ class Region
      */
     const APSE = "apse";
 
-   /**
-     * List of all valid regions
-     * @var array<int,string>
-     */
-    const VALID_REGIONS = [
-        self::EU,
-        self::AU,
-        self::US,
-        self::IN,
-        self::APSE
-    ];
-
     /**
      * Maps regions to their respective Terminal API endpoints.
      * @var array<string, string>

@@ -480,18 +480,4 @@ class Client
     {
         return new CurlClient();
     }
-
-    /**
-     * @param string $region
-     * @return void
-     * @throws AdyenException
-     */
-    public function setRegion(string $region): void
-    {
-        if (!in_array($region, Region::VALID_REGIONS)) {
-            throw new AdyenException('Trying to set an invalid region!');
-        }
-
-        $this->config->set('region', $region);
-    }
 }
