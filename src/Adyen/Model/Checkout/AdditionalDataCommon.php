@@ -47,9 +47,11 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
         'requestedTestErrorResponseCode' => 'string',
         'allowPartialAuth' => 'string',
         'authorisationType' => 'string',
+        'autoRescue' => 'string',
         'customRoutingFlag' => 'string',
         'industryUsage' => 'string',
         'manualCapture' => 'string',
+        'maxDaysToRescue' => 'string',
         'networkTxReference' => 'string',
         'overwriteBrand' => 'string',
         'subMerchantCity' => 'string',
@@ -73,9 +75,11 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
         'requestedTestErrorResponseCode' => null,
         'allowPartialAuth' => null,
         'authorisationType' => null,
+        'autoRescue' => null,
         'customRoutingFlag' => null,
         'industryUsage' => null,
         'manualCapture' => null,
+        'maxDaysToRescue' => null,
         'networkTxReference' => null,
         'overwriteBrand' => null,
         'subMerchantCity' => null,
@@ -97,9 +101,11 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
         'requestedTestErrorResponseCode' => false,
         'allowPartialAuth' => false,
         'authorisationType' => false,
+        'autoRescue' => false,
         'customRoutingFlag' => false,
         'industryUsage' => false,
         'manualCapture' => false,
+        'maxDaysToRescue' => false,
         'networkTxReference' => false,
         'overwriteBrand' => false,
         'subMerchantCity' => false,
@@ -201,9 +207,11 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
         'requestedTestErrorResponseCode' => 'RequestedTestErrorResponseCode',
         'allowPartialAuth' => 'allowPartialAuth',
         'authorisationType' => 'authorisationType',
+        'autoRescue' => 'autoRescue',
         'customRoutingFlag' => 'customRoutingFlag',
         'industryUsage' => 'industryUsage',
         'manualCapture' => 'manualCapture',
+        'maxDaysToRescue' => 'maxDaysToRescue',
         'networkTxReference' => 'networkTxReference',
         'overwriteBrand' => 'overwriteBrand',
         'subMerchantCity' => 'subMerchantCity',
@@ -225,9 +233,11 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
         'requestedTestErrorResponseCode' => 'setRequestedTestErrorResponseCode',
         'allowPartialAuth' => 'setAllowPartialAuth',
         'authorisationType' => 'setAuthorisationType',
+        'autoRescue' => 'setAutoRescue',
         'customRoutingFlag' => 'setCustomRoutingFlag',
         'industryUsage' => 'setIndustryUsage',
         'manualCapture' => 'setManualCapture',
+        'maxDaysToRescue' => 'setMaxDaysToRescue',
         'networkTxReference' => 'setNetworkTxReference',
         'overwriteBrand' => 'setOverwriteBrand',
         'subMerchantCity' => 'setSubMerchantCity',
@@ -249,9 +259,11 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
         'requestedTestErrorResponseCode' => 'getRequestedTestErrorResponseCode',
         'allowPartialAuth' => 'getAllowPartialAuth',
         'authorisationType' => 'getAuthorisationType',
+        'autoRescue' => 'getAutoRescue',
         'customRoutingFlag' => 'getCustomRoutingFlag',
         'industryUsage' => 'getIndustryUsage',
         'manualCapture' => 'getManualCapture',
+        'maxDaysToRescue' => 'getMaxDaysToRescue',
         'networkTxReference' => 'getNetworkTxReference',
         'overwriteBrand' => 'getOverwriteBrand',
         'subMerchantCity' => 'getSubMerchantCity',
@@ -338,9 +350,11 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('requestedTestErrorResponseCode', $data ?? [], null);
         $this->setIfExists('allowPartialAuth', $data ?? [], null);
         $this->setIfExists('authorisationType', $data ?? [], null);
+        $this->setIfExists('autoRescue', $data ?? [], null);
         $this->setIfExists('customRoutingFlag', $data ?? [], null);
         $this->setIfExists('industryUsage', $data ?? [], null);
         $this->setIfExists('manualCapture', $data ?? [], null);
+        $this->setIfExists('maxDaysToRescue', $data ?? [], null);
         $this->setIfExists('networkTxReference', $data ?? [], null);
         $this->setIfExists('overwriteBrand', $data ?? [], null);
         $this->setIfExists('subMerchantCity', $data ?? [], null);
@@ -477,6 +491,30 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
     }
 
     /**
+     * Gets autoRescue
+     *
+     * @return string|null
+     */
+    public function getAutoRescue()
+    {
+        return $this->container['autoRescue'];
+    }
+
+    /**
+     * Sets autoRescue
+     *
+     * @param string|null $autoRescue Set to **true** to enable [Auto Rescue](https://docs.adyen.com/online-payments/auto-rescue/) for a transaction. Use the `maxDaysToRescue` to specify a rescue window.
+     *
+     * @return self
+     */
+    public function setAutoRescue($autoRescue)
+    {
+        $this->container['autoRescue'] = $autoRescue;
+
+        return $this;
+    }
+
+    /**
      * Gets customRoutingFlag
      *
      * @return string|null
@@ -554,6 +592,30 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setManualCapture($manualCapture)
     {
         $this->container['manualCapture'] = $manualCapture;
+
+        return $this;
+    }
+
+    /**
+     * Gets maxDaysToRescue
+     *
+     * @return string|null
+     */
+    public function getMaxDaysToRescue()
+    {
+        return $this->container['maxDaysToRescue'];
+    }
+
+    /**
+     * Sets maxDaysToRescue
+     *
+     * @param string|null $maxDaysToRescue The rescue window for a transaction, in days, when `autoRescue` is set to **true**. You can specify a value between 1 and 48.  * For [cards](https://docs.adyen.com/online-payments/auto-rescue/cards/), the default is one calendar month.  * For [SEPA](https://docs.adyen.com/online-payments/auto-rescue/sepa/), the default is 42 days.
+     *
+     * @return self
+     */
+    public function setMaxDaysToRescue($maxDaysToRescue)
+    {
+        $this->container['maxDaysToRescue'] = $maxDaysToRescue;
 
         return $this;
     }
