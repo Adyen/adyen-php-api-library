@@ -362,7 +362,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
 
         $testClient = new Client($testConfig);
 
-        $actualEndpoint = "https://terminal-api-test.adyen.com";
+        $actualEndpoint = $testClient->retrieveCloudEndpoint($region, $environment);
         $this->assertEquals($expectedEndpoint, $actualEndpoint);
     }
 
