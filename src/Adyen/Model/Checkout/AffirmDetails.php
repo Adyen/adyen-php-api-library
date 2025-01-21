@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
- * PaymentDetails Class Doc Comment
+ * AffirmDetails Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
+class AffirmDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PaymentDetails';
+    protected static $openAPIModelName = 'AffirmDetails';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -221,95 +221,7 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const TYPE_ALIPAY = 'alipay';
-    public const TYPE_MULTIBANCO = 'multibanco';
-    public const TYPE_BANK_TRANSFER_IBAN = 'bankTransfer_IBAN';
-    public const TYPE_PAYBRIGHT = 'paybright';
-    public const TYPE_PAYNOW = 'paynow';
-    public const TYPE_AFFIRM_POS = 'affirm_pos';
-    public const TYPE_TRUSTLY = 'trustly';
-    public const TYPE_TRUSTLYVECTOR = 'trustlyvector';
-    public const TYPE_ONEY = 'oney';
-    public const TYPE_FACILYPAY = 'facilypay';
-    public const TYPE_FACILYPAY_3X = 'facilypay_3x';
-    public const TYPE_FACILYPAY_4X = 'facilypay_4x';
-    public const TYPE_FACILYPAY_6X = 'facilypay_6x';
-    public const TYPE_FACILYPAY_10X = 'facilypay_10x';
-    public const TYPE_FACILYPAY_12X = 'facilypay_12x';
-    public const TYPE_UNIONPAY = 'unionpay';
-    public const TYPE_KCP_BANKTRANSFER = 'kcp_banktransfer';
-    public const TYPE_KCP_PAYCO = 'kcp_payco';
-    public const TYPE_KCP_CREDITCARD = 'kcp_creditcard';
-    public const TYPE_WECHATPAY_SDK = 'wechatpaySDK';
-    public const TYPE_WECHATPAY_QR = 'wechatpayQR';
-    public const TYPE_WECHATPAY_WEB = 'wechatpayWeb';
-    public const TYPE_MOLPAY_BOOST = 'molpay_boost';
-    public const TYPE_WALLET_IN = 'wallet_IN';
-    public const TYPE_PAYU_IN_CASHCARD = 'payu_IN_cashcard';
-    public const TYPE_PAYU_IN_NB = 'payu_IN_nb';
-    public const TYPE_UPI_QR = 'upi_qr';
-    public const TYPE_PAYTM = 'paytm';
-    public const TYPE_MOLPAY_EBANKING_VN = 'molpay_ebanking_VN';
-    public const TYPE_MOLPAY_EBANKING_MY = 'molpay_ebanking_MY';
-    public const TYPE_MOLPAY_EBANKING_DIRECT_MY = 'molpay_ebanking_direct_MY';
-    public const TYPE_SWISH = 'swish';
-    public const TYPE_PIX = 'pix';
-    public const TYPE_BIZUM = 'bizum';
-    public const TYPE_WALLEY = 'walley';
-    public const TYPE_WALLEY_B2B = 'walley_b2b';
-    public const TYPE_ALMA = 'alma';
-    public const TYPE_PAYPO = 'paypo';
-    public const TYPE_SCALAPAY = 'scalapay';
-    public const TYPE_SCALAPAY_3X = 'scalapay_3x';
-    public const TYPE_SCALAPAY_4X = 'scalapay_4x';
-    public const TYPE_MOLPAY_FPX = 'molpay_fpx';
-    public const TYPE_KONBINI = 'konbini';
-    public const TYPE_DIRECT_EBANKING = 'directEbanking';
-    public const TYPE_BOLETOBANCARIO = 'boletobancario';
-    public const TYPE_NETELLER = 'neteller';
-    public const TYPE_PAYSAFECARD = 'paysafecard';
-    public const TYPE_CASHTICKET = 'cashticket';
-    public const TYPE_IKANO = 'ikano';
-    public const TYPE_KARENMILLEN = 'karenmillen';
-    public const TYPE_OASIS = 'oasis';
-    public const TYPE_WAREHOUSE = 'warehouse';
-    public const TYPE_PRIMEIROPAY_BOLETO = 'primeiropay_boleto';
-    public const TYPE_MADA = 'mada';
-    public const TYPE_BENEFIT = 'benefit';
-    public const TYPE_KNET = 'knet';
-    public const TYPE_OMANNET = 'omannet';
-    public const TYPE_GOPAY_WALLET = 'gopay_wallet';
-    public const TYPE_KCP_NAVERPAY = 'kcp_naverpay';
-    public const TYPE_ONLINEBANKING_IN = 'onlinebanking_IN';
-    public const TYPE_FAWRY = 'fawry';
-    public const TYPE_ATOME = 'atome';
-    public const TYPE_MONEYBOOKERS = 'moneybookers';
-    public const TYPE_NAPS = 'naps';
-    public const TYPE_NORDEA = 'nordea';
-    public const TYPE_BOLETOBANCARIO_BRADESCO = 'boletobancario_bradesco';
-    public const TYPE_BOLETOBANCARIO_ITAU = 'boletobancario_itau';
-    public const TYPE_BOLETOBANCARIO_SANTANDER = 'boletobancario_santander';
-    public const TYPE_BOLETOBANCARIO_BANCODOBRASIL = 'boletobancario_bancodobrasil';
-    public const TYPE_BOLETOBANCARIO_HSBC = 'boletobancario_hsbc';
-    public const TYPE_MOLPAY_MAYBANK2U = 'molpay_maybank2u';
-    public const TYPE_MOLPAY_CIMB = 'molpay_cimb';
-    public const TYPE_MOLPAY_RHB = 'molpay_rhb';
-    public const TYPE_MOLPAY_AMB = 'molpay_amb';
-    public const TYPE_MOLPAY_HLB = 'molpay_hlb';
-    public const TYPE_MOLPAY_AFFIN_EPG = 'molpay_affin_epg';
-    public const TYPE_MOLPAY_BANKISLAM = 'molpay_bankislam';
-    public const TYPE_MOLPAY_PUBLICBANK = 'molpay_publicbank';
-    public const TYPE_FPX_AGROBANK = 'fpx_agrobank';
-    public const TYPE_TOUCHNGO = 'touchngo';
-    public const TYPE_MAYBANK2U_MAE = 'maybank2u_mae';
-    public const TYPE_DUITNOW = 'duitnow';
-    public const TYPE_PROMPTPAY = 'promptpay';
-    public const TYPE_TWINT_POS = 'twint_pos';
-    public const TYPE_ALIPAY_HK = 'alipay_hk';
-    public const TYPE_ALIPAY_HK_WEB = 'alipay_hk_web';
-    public const TYPE_ALIPAY_HK_WAP = 'alipay_hk_wap';
-    public const TYPE_ALIPAY_WAP = 'alipay_wap';
-    public const TYPE_BALANCEPLATFORM = 'balanceplatform';
+    public const TYPE_AFFIRM = 'affirm';
 
     /**
      * Gets allowable values of the enum
@@ -319,95 +231,7 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public function getTypeAllowableValues()
     {
         return [
-            self::TYPE_ALIPAY,
-            self::TYPE_MULTIBANCO,
-            self::TYPE_BANK_TRANSFER_IBAN,
-            self::TYPE_PAYBRIGHT,
-            self::TYPE_PAYNOW,
-            self::TYPE_AFFIRM_POS,
-            self::TYPE_TRUSTLY,
-            self::TYPE_TRUSTLYVECTOR,
-            self::TYPE_ONEY,
-            self::TYPE_FACILYPAY,
-            self::TYPE_FACILYPAY_3X,
-            self::TYPE_FACILYPAY_4X,
-            self::TYPE_FACILYPAY_6X,
-            self::TYPE_FACILYPAY_10X,
-            self::TYPE_FACILYPAY_12X,
-            self::TYPE_UNIONPAY,
-            self::TYPE_KCP_BANKTRANSFER,
-            self::TYPE_KCP_PAYCO,
-            self::TYPE_KCP_CREDITCARD,
-            self::TYPE_WECHATPAY_SDK,
-            self::TYPE_WECHATPAY_QR,
-            self::TYPE_WECHATPAY_WEB,
-            self::TYPE_MOLPAY_BOOST,
-            self::TYPE_WALLET_IN,
-            self::TYPE_PAYU_IN_CASHCARD,
-            self::TYPE_PAYU_IN_NB,
-            self::TYPE_UPI_QR,
-            self::TYPE_PAYTM,
-            self::TYPE_MOLPAY_EBANKING_VN,
-            self::TYPE_MOLPAY_EBANKING_MY,
-            self::TYPE_MOLPAY_EBANKING_DIRECT_MY,
-            self::TYPE_SWISH,
-            self::TYPE_PIX,
-            self::TYPE_BIZUM,
-            self::TYPE_WALLEY,
-            self::TYPE_WALLEY_B2B,
-            self::TYPE_ALMA,
-            self::TYPE_PAYPO,
-            self::TYPE_SCALAPAY,
-            self::TYPE_SCALAPAY_3X,
-            self::TYPE_SCALAPAY_4X,
-            self::TYPE_MOLPAY_FPX,
-            self::TYPE_KONBINI,
-            self::TYPE_DIRECT_EBANKING,
-            self::TYPE_BOLETOBANCARIO,
-            self::TYPE_NETELLER,
-            self::TYPE_PAYSAFECARD,
-            self::TYPE_CASHTICKET,
-            self::TYPE_IKANO,
-            self::TYPE_KARENMILLEN,
-            self::TYPE_OASIS,
-            self::TYPE_WAREHOUSE,
-            self::TYPE_PRIMEIROPAY_BOLETO,
-            self::TYPE_MADA,
-            self::TYPE_BENEFIT,
-            self::TYPE_KNET,
-            self::TYPE_OMANNET,
-            self::TYPE_GOPAY_WALLET,
-            self::TYPE_KCP_NAVERPAY,
-            self::TYPE_ONLINEBANKING_IN,
-            self::TYPE_FAWRY,
-            self::TYPE_ATOME,
-            self::TYPE_MONEYBOOKERS,
-            self::TYPE_NAPS,
-            self::TYPE_NORDEA,
-            self::TYPE_BOLETOBANCARIO_BRADESCO,
-            self::TYPE_BOLETOBANCARIO_ITAU,
-            self::TYPE_BOLETOBANCARIO_SANTANDER,
-            self::TYPE_BOLETOBANCARIO_BANCODOBRASIL,
-            self::TYPE_BOLETOBANCARIO_HSBC,
-            self::TYPE_MOLPAY_MAYBANK2U,
-            self::TYPE_MOLPAY_CIMB,
-            self::TYPE_MOLPAY_RHB,
-            self::TYPE_MOLPAY_AMB,
-            self::TYPE_MOLPAY_HLB,
-            self::TYPE_MOLPAY_AFFIN_EPG,
-            self::TYPE_MOLPAY_BANKISLAM,
-            self::TYPE_MOLPAY_PUBLICBANK,
-            self::TYPE_FPX_AGROBANK,
-            self::TYPE_TOUCHNGO,
-            self::TYPE_MAYBANK2U_MAE,
-            self::TYPE_DUITNOW,
-            self::TYPE_PROMPTPAY,
-            self::TYPE_TWINT_POS,
-            self::TYPE_ALIPAY_HK,
-            self::TYPE_ALIPAY_HK_WEB,
-            self::TYPE_ALIPAY_HK_WAP,
-            self::TYPE_ALIPAY_WAP,
-            self::TYPE_BALANCEPLATFORM,
+            self::TYPE_AFFIRM,
         ];
     }
     /**
@@ -517,7 +341,7 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      *
-     * @param string|null $type The payment method type.
+     * @param string|null $type **affirm**
      *
      * @return self
      */
