@@ -226,6 +226,7 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_BANK_TRANSFER_IBAN = 'bankTransfer_IBAN';
     public const TYPE_PAYBRIGHT = 'paybright';
     public const TYPE_PAYNOW = 'paynow';
+    public const TYPE_AFFIRM = 'affirm';
     public const TYPE_AFFIRM_POS = 'affirm_pos';
     public const TYPE_TRUSTLY = 'trustly';
     public const TYPE_TRUSTLYVECTOR = 'trustlyvector';
@@ -324,6 +325,7 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_BANK_TRANSFER_IBAN,
             self::TYPE_PAYBRIGHT,
             self::TYPE_PAYNOW,
+            self::TYPE_AFFIRM,
             self::TYPE_AFFIRM_POS,
             self::TYPE_TRUSTLY,
             self::TYPE_TRUSTLYVECTOR,
