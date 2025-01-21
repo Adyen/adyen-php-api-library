@@ -44,14 +44,13 @@ class RecurringApi extends Service
     *
     * @param string $storedPaymentMethodId
     * @param array|null $requestOptions ['queryParams' => ['shopperReference'=> string, 'merchantAccount'=> string]]
-    
+
     * @throws AdyenException
     */
     public function deleteTokenForStoredPaymentDetails(string $storedPaymentMethodId, array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{storedPaymentMethodId}'], [$storedPaymentMethodId], "/storedPaymentMethods/{storedPaymentMethodId}");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
-        
     }
 
     /**
