@@ -253,6 +253,7 @@ class Split implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_SCHEME_FEE = 'SchemeFee';
     public const TYPE_SURCHARGE = 'Surcharge';
     public const TYPE_TIP = 'Tip';
+    public const TYPE_TOP_UP = 'TopUp';
     public const TYPE_VAT = 'VAT';
 
     /**
@@ -277,6 +278,7 @@ class Split implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_SCHEME_FEE,
             self::TYPE_SURCHARGE,
             self::TYPE_TIP,
+            self::TYPE_TOP_UP,
             self::TYPE_VAT,
         ];
     }
