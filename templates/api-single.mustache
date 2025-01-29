@@ -38,6 +38,10 @@ class {{customApi}}Api extends Service
     * Description: {{.}}
     *
     {{/description}}
+    {{#deprecated}}
+    * @deprecated {{^vendorExtensions.x-deprecatedInVersion}}{{/vendorExtensions.x-deprecatedInVersion}}{{#vendorExtensions.x-deprecatedInVersion}} since {{#appName}}{{{.}}}{{/appName}} v{{.}}. {{#vendorExtensions.x-deprecatedMessage}}"{{{.}}}"{{/vendorExtensions.x-deprecatedMessage}}
+      {{/vendorExtensions.x-deprecatedInVersion}}
+    {{/deprecated}}
     {{#pathParams}}
     * @param {{{dataType}}} ${{#lambda.camelcase}}{{paramName}}{{/lambda.camelcase}}
     {{/pathParams}}
