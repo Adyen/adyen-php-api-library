@@ -330,8 +330,7 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
      *
      * @return {{{dataType}}}{{^required}}|null{{/required}}
      {{#deprecated}}
-     * @deprecated {{^vendorExtensions.x-deprecatedInVersion}}{{/vendorExtensions.x-deprecatedInVersion}}{{#vendorExtensions.x-deprecatedInVersion}} since {{#appName}}{{{.}}}{{/appName}} v{{.}}. {{#vendorExtensions.x-deprecatedMessage}}"{{{.}}}"{{/vendorExtensions.x-deprecatedMessage}}
-      {{/vendorExtensions.x-deprecatedInVersion}}
+     * @deprecated{{#vendorExtensions.x-deprecatedInVersion}} since {{#appName}}{{{.}}}{{/appName}} v{{.}}. {{#vendorExtensions.x-deprecatedMessage}}"{{{.}}}"{{/vendorExtensions.x-deprecatedMessage}}{{/vendorExtensions.x-deprecatedInVersion}}
      {{/deprecated}}
      */
     public function {{getter}}()
@@ -346,8 +345,7 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
      *
      * @return self
      {{#deprecated}}
-     * @deprecated {{^vendorExtensions.x-deprecatedInVersion}}{{/vendorExtensions.x-deprecatedInVersion}}{{#vendorExtensions.x-deprecatedInVersion}} since {{#appName}}{{{.}}}{{/appName}} v{{.}}. {{#vendorExtensions.x-deprecatedMessage}}"{{{.}}}"{{/vendorExtensions.x-deprecatedMessage}}
-       {{/vendorExtensions.x-deprecatedInVersion}}
+     * @deprecated{{#vendorExtensions.x-deprecatedInVersion}} since {{#appName}}{{{.}}}{{/appName}} v{{.}}. {{#vendorExtensions.x-deprecatedMessage}}"{{{.}}}"{{/vendorExtensions.x-deprecatedMessage}}{{/vendorExtensions.x-deprecatedInVersion}}
      {{/deprecated}}
      */
     public function {{setter}}(${{name}})
