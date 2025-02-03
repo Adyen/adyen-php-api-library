@@ -489,7 +489,7 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
      * Gets deliveryEmail
      *
      * @return string|null
-     * @deprecated
+     * @deprecated since Adyen Payment API v68. "Use `deliveryEmailAddress` instead."
      */
     public function getDeliveryEmail()
     {
@@ -502,7 +502,7 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
      * @param string|null $deliveryEmail The delivery email address (for digital goods).
      *
      * @return self
-     * @deprecated
+     * @deprecated since Adyen Payment API v68. "Use `deliveryEmailAddress` instead."
      */
     public function setDeliveryEmail($deliveryEmail)
     {

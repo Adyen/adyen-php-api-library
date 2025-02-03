@@ -463,7 +463,7 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
      * Gets additionalBankAccountIdentifications
      *
      * @return \Adyen\Model\BalancePlatform\PaymentInstrumentAdditionalBankAccountIdentificationsInner[]|null
-     * @deprecated
+     * @deprecated since Configuration API v2. "Please use `bankAccount` object instead"
      */
     public function getAdditionalBankAccountIdentifications()
     {
@@ -476,7 +476,7 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
      * @param \Adyen\Model\BalancePlatform\PaymentInstrumentAdditionalBankAccountIdentificationsInner[]|null $additionalBankAccountIdentifications Contains optional, additional business account details. Returned when you create a payment instrument with `type` **bankAccount**.
      *
      * @return self
-     * @deprecated
+     * @deprecated since Configuration API v2. "Please use `bankAccount` object instead"
      */
     public function setAdditionalBankAccountIdentifications($additionalBankAccountIdentifications)
     {

@@ -1646,7 +1646,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      * Gets threeDSAuthenticationOnly
      *
      * @return bool|null
-     * @deprecated
+     * @deprecated since Adyen Checkout API v69. "Use `authenticationData.authenticationOnly` instead."
      */
     public function getThreeDSAuthenticationOnly()
     {
@@ -1659,7 +1659,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      * @param bool|null $threeDSAuthenticationOnly If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.
      *
      * @return self
-     * @deprecated
+     * @deprecated since Adyen Checkout API v69. "Use `authenticationData.authenticationOnly` instead."
      */
     public function setThreeDSAuthenticationOnly($threeDSAuthenticationOnly)
     {

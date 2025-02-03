@@ -465,7 +465,7 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets documents
      *
      * @return \Adyen\Model\LegalEntityManagement\EntityReference[]|null
-     * @deprecated
+     * @deprecated since Legal Entity Management API v1. "Use the `documentDetails` array instead."
      */
     public function getDocuments()
     {
@@ -478,7 +478,7 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param \Adyen\Model\LegalEntityManagement\EntityReference[]|null $documents List of documents uploaded for the legal entity.
      *
      * @return self
-     * @deprecated
+     * @deprecated since Legal Entity Management API v1. "Use the `documentDetails` array instead."
      */
     public function setDocuments($documents)
     {

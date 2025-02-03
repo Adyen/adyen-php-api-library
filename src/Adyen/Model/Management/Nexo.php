@@ -380,7 +380,7 @@ class Nexo implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets nexoEventUrls
      *
      * @return string[]|null
-     * @deprecated
+     * @deprecated since Management API v1. "Use `eventUrls` instead."
      */
     public function getNexoEventUrls()
     {
@@ -393,7 +393,7 @@ class Nexo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param string[]|null $nexoEventUrls One or more URLs to send event messages to when using Terminal API.
      *
      * @return self
-     * @deprecated
+     * @deprecated since Management API v1. "Use `eventUrls` instead."
      */
     public function setNexoEventUrls($nexoEventUrls)
     {
