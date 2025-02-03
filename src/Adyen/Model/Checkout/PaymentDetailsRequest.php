@@ -376,7 +376,7 @@ class PaymentDetailsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      * Gets threeDSAuthenticationOnly
      *
      * @return bool|null
-     * @deprecated
+     * @deprecated since Adyen Checkout API v69. "Use `authenticationData.authenticationOnly` instead."
      */
     public function getThreeDSAuthenticationOnly()
     {
@@ -389,7 +389,7 @@ class PaymentDetailsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      * @param bool|null $threeDSAuthenticationOnly Change the `authenticationOnly` indicator originally set in the `/payments` request. Only needs to be set if you want to modify the value set previously.
      *
      * @return self
-     * @deprecated
+     * @deprecated since Adyen Checkout API v69. "Use `authenticationData.authenticationOnly` instead."
      */
     public function setThreeDSAuthenticationOnly($threeDSAuthenticationOnly)
     {

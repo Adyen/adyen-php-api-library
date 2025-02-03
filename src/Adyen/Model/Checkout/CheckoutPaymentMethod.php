@@ -1002,7 +1002,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      * Gets recurringDetailReference
      *
      * @return string|null
-     * @deprecated
+     * @deprecated since Adyen Checkout API v49. "Use `storedPaymentMethodId` instead."
      */
     public function getRecurringDetailReference()
     {
@@ -1015,7 +1015,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      * @param string|null $recurringDetailReference This is the `recurringDetailReference` returned in the response when you created the token.
      *
      * @return self
-     * @deprecated
+     * @deprecated since Adyen Checkout API v49. "Use `storedPaymentMethodId` instead."
      */
     public function setRecurringDetailReference($recurringDetailReference)
     {
@@ -1999,7 +1999,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets shopperEmail
      *
-     * @param string $shopperEmail
+     * @param string $shopperEmail 
      *
      * @return self
      */
@@ -2023,7 +2023,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets telephoneNumber
      *
-     * @param string $telephoneNumber
+     * @param string $telephoneNumber 
      *
      * @return self
      */

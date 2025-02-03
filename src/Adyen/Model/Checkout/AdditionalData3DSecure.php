@@ -344,7 +344,7 @@ class AdditionalData3DSecure implements ModelInterface, ArrayAccess, \JsonSerial
      * Gets allow3DS2
      *
      * @return string|null
-     * @deprecated
+     * @deprecated since Adyen Checkout API v69. "Use `authenticationData.threeDSRequestData.nativeThreeDS` instead."
      */
     public function getAllow3DS2()
     {
@@ -357,7 +357,7 @@ class AdditionalData3DSecure implements ModelInterface, ArrayAccess, \JsonSerial
      * @param string|null $allow3DS2 Indicates if you are able to process 3D Secure 2 transactions natively on your payment page. Send this parameter when you are using `/payments` endpoint with any of our [native 3D Secure 2 solutions](https://docs.adyen.com/online-payments/3d-secure/native-3ds2).   > This parameter only indicates readiness to support native 3D Secure 2 authentication. To specify if you _want_ to perform 3D Secure, use [Dynamic 3D Secure](/risk-management/dynamic-3d-secure) or send the `executeThreeD` parameter.  Possible values: * **true** - Ready to support native 3D Secure 2 authentication. Setting this to true does not mean always applying 3D Secure 2. Adyen selects redirect or native authentication based on your configuration to optimize authorization rates and improve the shopper's experience. * **false** – Not ready to support native 3D Secure 2 authentication. Adyen offers redirect 3D Secure 2 authentication instead, based on your configuration.
      *
      * @return self
-     * @deprecated
+     * @deprecated since Adyen Checkout API v69. "Use `authenticationData.threeDSRequestData.nativeThreeDS` instead."
      */
     public function setAllow3DS2($allow3DS2)
     {
@@ -404,7 +404,7 @@ class AdditionalData3DSecure implements ModelInterface, ArrayAccess, \JsonSerial
      * Gets executeThreeD
      *
      * @return string|null
-     * @deprecated
+     * @deprecated since Adyen Checkout API v69. "Use [`authenticationData.attemptAuthentication`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments?target=_blank#request-authenticationData-attemptAuthentication) instead"
      */
     public function getExecuteThreeD()
     {
@@ -417,7 +417,7 @@ class AdditionalData3DSecure implements ModelInterface, ArrayAccess, \JsonSerial
      * @param string|null $executeThreeD Indicates if you want to perform 3D Secure authentication on a transaction.   > Alternatively, you can use [Dynamic 3D Secure](/risk-management/dynamic-3d-secure) to configure rules for applying 3D Secure.  Possible values: * **true** – Perform 3D Secure authentication. * **false** – Don't perform 3D Secure authentication. Note that this setting results in refusals if the issuer mandates 3D Secure because of the PSD2 directive  or other, national regulations.
      *
      * @return self
-     * @deprecated
+     * @deprecated since Adyen Checkout API v69. "Use [`authenticationData.attemptAuthentication`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments?target=_blank#request-authenticationData-attemptAuthentication) instead"
      */
     public function setExecuteThreeD($executeThreeD)
     {

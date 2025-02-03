@@ -938,7 +938,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
      * Gets storeIds
      *
      * @return string[]|null
-     * @deprecated
+     * @deprecated since Management API v3. "Use `storeId` instead. Only one store per payment method is allowed."
      */
     public function getStoreIds()
     {
@@ -951,7 +951,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
      * @param string[]|null $storeIds The list of stores for this payment method
      *
      * @return self
-     * @deprecated
+     * @deprecated since Management API v3. "Use `storeId` instead. Only one store per payment method is allowed."
      */
     public function setStoreIds($storeIds)
     {

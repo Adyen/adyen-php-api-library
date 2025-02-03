@@ -366,7 +366,7 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets errorCode
      *
      * @return string|null
-     * @deprecated
+     * @deprecated since Management API v3. "Use `errors` instead."
      */
     public function getErrorCode()
     {
@@ -379,7 +379,7 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param string|null $errorCode The error code of the Android app with the `status` of either **error** or **invalid**.
      *
      * @return self
-     * @deprecated
+     * @deprecated since Management API v3. "Use `errors` instead."
      */
     public function setErrorCode($errorCode)
     {

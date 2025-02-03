@@ -332,7 +332,7 @@ class BankAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets accountType
      *
      * @return string|null
-     * @deprecated
+     * @deprecated since Legal Entity Management API v2. 
      */
     public function getAccountType()
     {
@@ -345,7 +345,7 @@ class BankAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param string|null $accountType The type of bank account.
      *
      * @return self
-     * @deprecated
+     * @deprecated since Legal Entity Management API v2. 
      */
     public function setAccountType($accountType)
     {

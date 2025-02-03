@@ -804,7 +804,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets homePhone
      *
      * @return string|null
-     * @deprecated
+     * @deprecated since Adyen Payment API v68. "Use `ThreeDS2RequestData.homePhone` instead."
      */
     public function getHomePhone()
     {
@@ -817,7 +817,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param string|null $homePhone Shopper's home phone number (including the country code).
      *
      * @return self
-     * @deprecated
+     * @deprecated since Adyen Payment API v68. "Use `ThreeDS2RequestData.homePhone` instead."
      */
     public function setHomePhone($homePhone)
     {
@@ -830,7 +830,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets mobilePhone
      *
      * @return string|null
-     * @deprecated
+     * @deprecated since Adyen Payment API v68. "Use `ThreeDS2RequestData.mobilePhone` instead."
      */
     public function getMobilePhone()
     {
@@ -843,7 +843,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param string|null $mobilePhone Shopper's mobile phone number (including the country code).
      *
      * @return self
-     * @deprecated
+     * @deprecated since Adyen Payment API v68. "Use `ThreeDS2RequestData.mobilePhone` instead."
      */
     public function setMobilePhone($mobilePhone)
     {
@@ -1068,7 +1068,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets workPhone
      *
      * @return string|null
-     * @deprecated
+     * @deprecated since Adyen Payment API v68. "Use `ThreeDS2RequestData.workPhone` instead."
      */
     public function getWorkPhone()
     {
@@ -1081,7 +1081,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param string|null $workPhone Shopper's work phone number (including the country code).
      *
      * @return self
-     * @deprecated
+     * @deprecated since Adyen Payment API v68. "Use `ThreeDS2RequestData.workPhone` instead."
      */
     public function setWorkPhone($workPhone)
     {

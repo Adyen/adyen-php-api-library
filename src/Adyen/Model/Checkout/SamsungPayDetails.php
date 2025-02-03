@@ -420,7 +420,7 @@ class SamsungPayDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
      * Gets recurringDetailReference
      *
      * @return string|null
-     * @deprecated
+     * @deprecated since Adyen Checkout API v49. "Use `storedPaymentMethodId` instead."
      */
     public function getRecurringDetailReference()
     {
@@ -433,7 +433,7 @@ class SamsungPayDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @param string|null $recurringDetailReference This is the `recurringDetailReference` returned in the response when you created the token.
      *
      * @return self
-     * @deprecated
+     * @deprecated since Adyen Checkout API v49. "Use `storedPaymentMethodId` instead."
      */
     public function setRecurringDetailReference($recurringDetailReference)
     {

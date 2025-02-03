@@ -335,7 +335,7 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets contentType
      *
      * @return string|null
-     * @deprecated
+     * @deprecated since Legal Entity Management API v1. 
      */
     public function getContentType()
     {
@@ -348,7 +348,7 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param string|null $contentType The file format.   Possible values: **application/pdf**, **image/jpg**, **image/jpeg**, **image/png**.
      *
      * @return self
-     * @deprecated
+     * @deprecated since Legal Entity Management API v1. 
      */
     public function setContentType($contentType)
     {
@@ -361,7 +361,7 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets filename
      *
      * @return string|null
-     * @deprecated
+     * @deprecated since Legal Entity Management API v1. 
      */
     public function getFilename()
     {
@@ -374,7 +374,7 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param string|null $filename The name of the file including the file extension.
      *
      * @return self
-     * @deprecated
+     * @deprecated since Legal Entity Management API v1. 
      */
     public function setFilename($filename)
     {
