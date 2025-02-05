@@ -245,6 +245,7 @@ class ChallengeInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const CHALLENGE_CANCEL__00 = '00';
     public const CHALLENGE_CANCEL__01 = '01';
     public const CHALLENGE_CANCEL__02 = '02';
     public const CHALLENGE_CANCEL__03 = '03';
@@ -252,6 +253,7 @@ class ChallengeInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     public const CHALLENGE_CANCEL__05 = '05';
     public const CHALLENGE_CANCEL__06 = '06';
     public const CHALLENGE_CANCEL__07 = '07';
+    public const CHALLENGE_CANCEL__08 = '08';
     public const FLOW_OTP_SMS = 'OTP_SMS';
     public const FLOW_OOB = 'OOB';
 
@@ -263,6 +265,7 @@ class ChallengeInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     public function getChallengeCancelAllowableValues()
     {
         return [
+            self::CHALLENGE_CANCEL__00,
             self::CHALLENGE_CANCEL__01,
             self::CHALLENGE_CANCEL__02,
             self::CHALLENGE_CANCEL__03,
@@ -270,6 +273,7 @@ class ChallengeInfo implements ModelInterface, ArrayAccess, \JsonSerializable
             self::CHALLENGE_CANCEL__05,
             self::CHALLENGE_CANCEL__06,
             self::CHALLENGE_CANCEL__07,
+            self::CHALLENGE_CANCEL__08,
         ];
     }
     /**
@@ -386,7 +390,7 @@ class ChallengeInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets challengeCancel
      *
-     * @param string|null $challengeCancel Indicator informing the Access Control Server (ACS) and the Directory Server (DS) that the authentication has been cancelled. For possible values, refer to [3D Secure API reference](https://docs.adyen.com/online-payments/3d-secure/api-reference#mpidata).
+     * @param string|null $challengeCancel Indicator informing the Access Control Server (ACS) and the Directory Server (DS) that the authentication has been cancelled. Possible values: * **00**: Data element is absent or value has been sent back with the key `challengeCancel`. * **01**: Cardholder selected **Cancel**. * **02**: 3DS Requestor cancelled Authentication. * **03**: Transaction abandoned. * **04**: Transaction timed out at ACS — other timeouts. * **05**: Transaction timed out at ACS — first CReq not received by ACS. * **06**: Transaction error. * **07**: Unknown. * **08**: Transaction time out at SDK.
      *
      * @return self
      */

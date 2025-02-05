@@ -42,6 +42,7 @@ class CapitalApi extends Service
     /**
     * Get a capital account
     *
+    * @deprecated since Transfers API v4. "Use the `/grants` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grants) instead."
     * @param array|null $requestOptions ['queryParams' => ['counterpartyAccountHolderId'=> string]]
     * @return \Adyen\Model\Transfers\CapitalGrants
     * @throws AdyenException
@@ -56,6 +57,7 @@ class CapitalApi extends Service
     /**
     * Get grant reference details
     *
+    * @deprecated since Transfers API v4. "Use the `/grants/{grantId}` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grants/(grantId)) instead."
     * @param string $id
     * @param array|null $requestOptions
     * @return \Adyen\Model\Transfers\CapitalGrant
@@ -71,6 +73,7 @@ class CapitalApi extends Service
     /**
     * Request a grant payout
     *
+    * @deprecated since Transfers API v4. "Use the `/grants` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/post/grants) instead."
     * @param \Adyen\Model\Transfers\CapitalGrantInfo $capitalGrantInfo
     * @param array|null $requestOptions
     * @return \Adyen\Model\Transfers\CapitalGrant
