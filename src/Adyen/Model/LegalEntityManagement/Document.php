@@ -523,7 +523,7 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets expiryDate
      *
      * @return string|null
-     * @deprecated since Legal Entity Management API v1.
+     * @deprecated since Legal Entity Management API v1. 
      */
     public function getExpiryDate()
     {
@@ -536,7 +536,7 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param string|null $expiryDate The expiry date of the document, in YYYY-MM-DD format.
      *
      * @return self
-     * @deprecated since Legal Entity Management API v1.
+     * @deprecated since Legal Entity Management API v1. 
      */
     public function setExpiryDate($expiryDate)
     {
@@ -597,7 +597,7 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets issuerCountry
      *
      * @return string|null
-     * @deprecated since Legal Entity Management API v1.
+     * @deprecated since Legal Entity Management API v1. 
      */
     public function getIssuerCountry()
     {
@@ -610,7 +610,7 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param string|null $issuerCountry The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the document was issued. For example, **US**.
      *
      * @return self
-     * @deprecated since Legal Entity Management API v1.
+     * @deprecated since Legal Entity Management API v1. 
      */
     public function setIssuerCountry($issuerCountry)
     {
@@ -623,7 +623,7 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets issuerState
      *
      * @return string|null
-     * @deprecated since Legal Entity Management API v1.
+     * @deprecated since Legal Entity Management API v1. 
      */
     public function getIssuerState()
     {
@@ -636,7 +636,7 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param string|null $issuerState The state or province where the document was issued (AU only).
      *
      * @return self
-     * @deprecated since Legal Entity Management API v1.
+     * @deprecated since Legal Entity Management API v1. 
      */
     public function setIssuerState($issuerState)
     {

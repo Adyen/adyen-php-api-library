@@ -47,8 +47,7 @@ class CostEstimateResponse implements ModelInterface, ArrayAccess, \JsonSerializ
         'cardBin' => '\Adyen\Model\BinLookup\CardBin',
         'costEstimateAmount' => '\Adyen\Model\BinLookup\Amount',
         'costEstimateReference' => 'string',
-        'resultCode' => 'string',
-        'surchargeType' => 'string'
+        'resultCode' => 'string'
     ];
 
     /**
@@ -62,8 +61,7 @@ class CostEstimateResponse implements ModelInterface, ArrayAccess, \JsonSerializ
         'cardBin' => null,
         'costEstimateAmount' => null,
         'costEstimateReference' => null,
-        'resultCode' => null,
-        'surchargeType' => null
+        'resultCode' => null
     ];
 
     /**
@@ -75,8 +73,7 @@ class CostEstimateResponse implements ModelInterface, ArrayAccess, \JsonSerializ
         'cardBin' => false,
         'costEstimateAmount' => false,
         'costEstimateReference' => false,
-        'resultCode' => false,
-        'surchargeType' => false
+        'resultCode' => false
     ];
 
     /**
@@ -168,8 +165,7 @@ class CostEstimateResponse implements ModelInterface, ArrayAccess, \JsonSerializ
         'cardBin' => 'cardBin',
         'costEstimateAmount' => 'costEstimateAmount',
         'costEstimateReference' => 'costEstimateReference',
-        'resultCode' => 'resultCode',
-        'surchargeType' => 'surchargeType'
+        'resultCode' => 'resultCode'
     ];
 
     /**
@@ -181,8 +177,7 @@ class CostEstimateResponse implements ModelInterface, ArrayAccess, \JsonSerializ
         'cardBin' => 'setCardBin',
         'costEstimateAmount' => 'setCostEstimateAmount',
         'costEstimateReference' => 'setCostEstimateReference',
-        'resultCode' => 'setResultCode',
-        'surchargeType' => 'setSurchargeType'
+        'resultCode' => 'setResultCode'
     ];
 
     /**
@@ -194,8 +189,7 @@ class CostEstimateResponse implements ModelInterface, ArrayAccess, \JsonSerializ
         'cardBin' => 'getCardBin',
         'costEstimateAmount' => 'getCostEstimateAmount',
         'costEstimateReference' => 'getCostEstimateReference',
-        'resultCode' => 'getResultCode',
-        'surchargeType' => 'getSurchargeType'
+        'resultCode' => 'getResultCode'
     ];
 
     /**
@@ -259,7 +253,6 @@ class CostEstimateResponse implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('costEstimateAmount', $data ?? [], null);
         $this->setIfExists('costEstimateReference', $data ?? [], null);
         $this->setIfExists('resultCode', $data ?? [], null);
-        $this->setIfExists('surchargeType', $data ?? [], null);
     }
 
     /**
@@ -396,30 +389,6 @@ class CostEstimateResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setResultCode($resultCode)
     {
         $this->container['resultCode'] = $resultCode;
-
-        return $this;
-    }
-
-    /**
-     * Gets surchargeType
-     *
-     * @return string|null
-     */
-    public function getSurchargeType()
-    {
-        return $this->container['surchargeType'];
-    }
-
-    /**
-     * Sets surchargeType
-     *
-     * @param string|null $surchargeType Indicates the way the charges can be passed on to the cardholder. The following values are possible: * `ZERO` - the charges are not allowed to pass on * `PASSTHROUGH` - the charges can be passed on * `UNLIMITED` - there is no limit on how much surcharge is passed on
-     *
-     * @return self
-     */
-    public function setSurchargeType($surchargeType)
-    {
-        $this->container['surchargeType'] = $surchargeType;
 
         return $this;
     }

@@ -47,6 +47,7 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
         'countryOfGoverningLaw' => 'string',
         'dateOfIncorporation' => 'string',
         'doingBusinessAs' => 'string',
+        'financialReports' => '\Adyen\Model\LegalEntityManagement\FinancialReport[]',
         'name' => 'string',
         'principalPlaceOfBusiness' => '\Adyen\Model\LegalEntityManagement\Address',
         'registeredAddress' => '\Adyen\Model\LegalEntityManagement\Address',
@@ -68,6 +69,7 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
         'countryOfGoverningLaw' => null,
         'dateOfIncorporation' => null,
         'doingBusinessAs' => null,
+        'financialReports' => null,
         'name' => null,
         'principalPlaceOfBusiness' => null,
         'registeredAddress' => null,
@@ -87,6 +89,7 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
         'countryOfGoverningLaw' => false,
         'dateOfIncorporation' => false,
         'doingBusinessAs' => false,
+        'financialReports' => false,
         'name' => false,
         'principalPlaceOfBusiness' => false,
         'registeredAddress' => false,
@@ -186,6 +189,7 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
         'countryOfGoverningLaw' => 'countryOfGoverningLaw',
         'dateOfIncorporation' => 'dateOfIncorporation',
         'doingBusinessAs' => 'doingBusinessAs',
+        'financialReports' => 'financialReports',
         'name' => 'name',
         'principalPlaceOfBusiness' => 'principalPlaceOfBusiness',
         'registeredAddress' => 'registeredAddress',
@@ -205,6 +209,7 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
         'countryOfGoverningLaw' => 'setCountryOfGoverningLaw',
         'dateOfIncorporation' => 'setDateOfIncorporation',
         'doingBusinessAs' => 'setDoingBusinessAs',
+        'financialReports' => 'setFinancialReports',
         'name' => 'setName',
         'principalPlaceOfBusiness' => 'setPrincipalPlaceOfBusiness',
         'registeredAddress' => 'setRegisteredAddress',
@@ -224,6 +229,7 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
         'countryOfGoverningLaw' => 'getCountryOfGoverningLaw',
         'dateOfIncorporation' => 'getDateOfIncorporation',
         'doingBusinessAs' => 'getDoingBusinessAs',
+        'financialReports' => 'getFinancialReports',
         'name' => 'getName',
         'principalPlaceOfBusiness' => 'getPrincipalPlaceOfBusiness',
         'registeredAddress' => 'getRegisteredAddress',
@@ -308,6 +314,7 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('countryOfGoverningLaw', $data ?? [], null);
         $this->setIfExists('dateOfIncorporation', $data ?? [], null);
         $this->setIfExists('doingBusinessAs', $data ?? [], null);
+        $this->setIfExists('financialReports', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('principalPlaceOfBusiness', $data ?? [], null);
         $this->setIfExists('registeredAddress', $data ?? [], null);
@@ -446,6 +453,30 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
     public function setDoingBusinessAs($doingBusinessAs)
     {
         $this->container['doingBusinessAs'] = $doingBusinessAs;
+
+        return $this;
+    }
+
+    /**
+     * Gets financialReports
+     *
+     * @return \Adyen\Model\LegalEntityManagement\FinancialReport[]|null
+     */
+    public function getFinancialReports()
+    {
+        return $this->container['financialReports'];
+    }
+
+    /**
+     * Sets financialReports
+     *
+     * @param \Adyen\Model\LegalEntityManagement\FinancialReport[]|null $financialReports The information from the financial report of the sole proprietorship.
+     *
+     * @return self
+     */
+    public function setFinancialReports($financialReports)
+    {
+        $this->container['financialReports'] = $financialReports;
 
         return $this;
     }

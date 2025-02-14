@@ -40,6 +40,22 @@ class ManageSCADevicesApi extends Service
     }
 
     /**
+    * Complete an association between an SCA device and a resource
+    *
+    * @param string $deviceId
+    * @param \Adyen\Model\BalancePlatform\AssociationFinaliseRequest $associationFinaliseRequest
+    * @param array|null $requestOptions
+    * @return \Adyen\Model\BalancePlatform\AssociationFinaliseResponse
+    * @throws AdyenException
+    */
+    public function completeAssociationBetweenScaDeviceAndResource(string $deviceId, \Adyen\Model\BalancePlatform\AssociationFinaliseRequest $associationFinaliseRequest, array $requestOptions = null): \Adyen\Model\BalancePlatform\AssociationFinaliseResponse
+    {
+        $endpoint = $this->baseURL . str_replace(['{deviceId}'], [$deviceId], "/registeredDevices/{deviceId}/associations");
+        $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $associationFinaliseRequest->jsonSerialize(), $requestOptions);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\BalancePlatform\AssociationFinaliseResponse::class);
+    }
+
+    /**
     * Complete the registration of an SCA device
     *
     * @param string $id
@@ -60,13 +76,30 @@ class ManageSCADevicesApi extends Service
     *
     * @param string $id
     * @param array|null $requestOptions ['queryParams' => ['paymentInstrumentId'=> string]]
-
+    
     * @throws AdyenException
     */
     public function deleteRegistrationOfScaDevice(string $id, array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/registeredDevices/{id}");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
+        
+    }
+
+    /**
+    * Initiate an association between an SCA device and a resource
+    *
+    * @param string $deviceId
+    * @param \Adyen\Model\BalancePlatform\AssociationInitiateRequest $associationInitiateRequest
+    * @param array|null $requestOptions
+    * @return \Adyen\Model\BalancePlatform\AssociationInitiateResponse
+    * @throws AdyenException
+    */
+    public function initiateAssociationBetweenScaDeviceAndResource(string $deviceId, \Adyen\Model\BalancePlatform\AssociationInitiateRequest $associationInitiateRequest, array $requestOptions = null): \Adyen\Model\BalancePlatform\AssociationInitiateResponse
+    {
+        $endpoint = $this->baseURL . str_replace(['{deviceId}'], [$deviceId], "/registeredDevices/{deviceId}/associations");
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $associationInitiateRequest->jsonSerialize(), $requestOptions);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\BalancePlatform\AssociationInitiateResponse::class);
     }
 
     /**

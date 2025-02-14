@@ -55,6 +55,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         'encryptedSecurityCode' => 'string',
         'expiryMonth' => 'string',
         'expiryYear' => 'string',
+        'fastlaneData' => 'string',
         'fundingSource' => 'string',
         'holderName' => 'string',
         'networkPaymentReference' => 'string',
@@ -89,6 +90,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         'encryptedSecurityCode' => null,
         'expiryMonth' => null,
         'expiryYear' => null,
+        'fastlaneData' => null,
         'fundingSource' => null,
         'holderName' => null,
         'networkPaymentReference' => null,
@@ -121,6 +123,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         'encryptedSecurityCode' => false,
         'expiryMonth' => false,
         'expiryYear' => false,
+        'fastlaneData' => false,
         'fundingSource' => false,
         'holderName' => false,
         'networkPaymentReference' => false,
@@ -233,6 +236,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         'encryptedSecurityCode' => 'encryptedSecurityCode',
         'expiryMonth' => 'expiryMonth',
         'expiryYear' => 'expiryYear',
+        'fastlaneData' => 'fastlaneData',
         'fundingSource' => 'fundingSource',
         'holderName' => 'holderName',
         'networkPaymentReference' => 'networkPaymentReference',
@@ -265,6 +269,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         'encryptedSecurityCode' => 'setEncryptedSecurityCode',
         'expiryMonth' => 'setExpiryMonth',
         'expiryYear' => 'setExpiryYear',
+        'fastlaneData' => 'setFastlaneData',
         'fundingSource' => 'setFundingSource',
         'holderName' => 'setHolderName',
         'networkPaymentReference' => 'setNetworkPaymentReference',
@@ -297,6 +302,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         'encryptedSecurityCode' => 'getEncryptedSecurityCode',
         'expiryMonth' => 'getExpiryMonth',
         'expiryYear' => 'getExpiryYear',
+        'fastlaneData' => 'getFastlaneData',
         'fundingSource' => 'getFundingSource',
         'holderName' => 'getHolderName',
         'networkPaymentReference' => 'getNetworkPaymentReference',
@@ -416,6 +422,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('encryptedSecurityCode', $data ?? [], null);
         $this->setIfExists('expiryMonth', $data ?? [], null);
         $this->setIfExists('expiryYear', $data ?? [], null);
+        $this->setIfExists('fastlaneData', $data ?? [], null);
         $this->setIfExists('fundingSource', $data ?? [], null);
         $this->setIfExists('holderName', $data ?? [], null);
         $this->setIfExists('networkPaymentReference', $data ?? [], null);
@@ -753,6 +760,30 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setExpiryYear($expiryYear)
     {
         $this->container['expiryYear'] = $expiryYear;
+
+        return $this;
+    }
+
+    /**
+     * Gets fastlaneData
+     *
+     * @return string|null
+     */
+    public function getFastlaneData()
+    {
+        return $this->container['fastlaneData'];
+    }
+
+    /**
+     * Sets fastlaneData
+     *
+     * @param string|null $fastlaneData The encoded fastlane data blob
+     *
+     * @return self
+     */
+    public function setFastlaneData($fastlaneData)
+    {
+        $this->container['fastlaneData'] = $fastlaneData;
 
         return $this;
     }

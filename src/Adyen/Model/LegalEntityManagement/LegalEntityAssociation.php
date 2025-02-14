@@ -49,6 +49,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
         'jobTitle' => 'string',
         'legalEntityId' => 'string',
         'name' => 'string',
+        'nominee' => 'bool',
         'relationship' => 'string',
         'settlorExemptionReason' => 'string[]',
         'type' => 'string'
@@ -67,6 +68,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
         'jobTitle' => null,
         'legalEntityId' => null,
         'name' => null,
+        'nominee' => null,
         'relationship' => null,
         'settlorExemptionReason' => null,
         'type' => null
@@ -83,6 +85,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
         'jobTitle' => false,
         'legalEntityId' => false,
         'name' => false,
+        'nominee' => false,
         'relationship' => false,
         'settlorExemptionReason' => false,
         'type' => false
@@ -179,6 +182,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
         'jobTitle' => 'jobTitle',
         'legalEntityId' => 'legalEntityId',
         'name' => 'name',
+        'nominee' => 'nominee',
         'relationship' => 'relationship',
         'settlorExemptionReason' => 'settlorExemptionReason',
         'type' => 'type'
@@ -195,6 +199,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
         'jobTitle' => 'setJobTitle',
         'legalEntityId' => 'setLegalEntityId',
         'name' => 'setName',
+        'nominee' => 'setNominee',
         'relationship' => 'setRelationship',
         'settlorExemptionReason' => 'setSettlorExemptionReason',
         'type' => 'setType'
@@ -211,6 +216,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
         'jobTitle' => 'getJobTitle',
         'legalEntityId' => 'getLegalEntityId',
         'name' => 'getName',
+        'nominee' => 'getNominee',
         'relationship' => 'getRelationship',
         'settlorExemptionReason' => 'getSettlorExemptionReason',
         'type' => 'getType'
@@ -324,6 +330,7 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('jobTitle', $data ?? [], null);
         $this->setIfExists('legalEntityId', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('nominee', $data ?? [], null);
         $this->setIfExists('relationship', $data ?? [], null);
         $this->setIfExists('settlorExemptionReason', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
@@ -502,6 +509,30 @@ class LegalEntityAssociation implements ModelInterface, ArrayAccess, \JsonSerial
     public function setName($name)
     {
         $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets nominee
+     *
+     * @return bool|null
+     */
+    public function getNominee()
+    {
+        return $this->container['nominee'];
+    }
+
+    /**
+     * Sets nominee
+     *
+     * @param bool|null $nominee Default value: **false** Set to **true** if the entity association `type` **director**, **secondaryPartner** or **shareholder** is also a nominee. Only applicable to New Zealand.
+     *
+     * @return self
+     */
+    public function setNominee($nominee)
+    {
+        $this->container['nominee'] = $nominee;
 
         return $this;
     }
