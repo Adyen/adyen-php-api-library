@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\LegalEntityManagement\ObjectSerializer;
 
 /**
- * SourceOfFunds Class Doc Comment
+ * FinancialReport Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\LegalEntityManagement\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class SourceOfFunds implements ModelInterface, ArrayAccess, \JsonSerializable
+class FinancialReport implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class SourceOfFunds implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'SourceOfFunds';
+    protected static $openAPIModelName = 'FinancialReport';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,10 +44,12 @@ class SourceOfFunds implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'acquiringBusinessLineId' => 'string',
-        'adyenProcessedFunds' => 'bool',
-        'description' => 'string',
-        'type' => 'string'
+        'annualTurnover' => 'string',
+        'balanceSheetTotal' => 'string',
+        'currencyOfFinancialData' => 'string',
+        'dateOfFinancialData' => 'string',
+        'employeeCount' => 'string',
+        'netAssets' => 'string'
     ];
 
     /**
@@ -58,10 +60,12 @@ class SourceOfFunds implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'acquiringBusinessLineId' => null,
-        'adyenProcessedFunds' => null,
-        'description' => null,
-        'type' => null
+        'annualTurnover' => null,
+        'balanceSheetTotal' => null,
+        'currencyOfFinancialData' => null,
+        'dateOfFinancialData' => null,
+        'employeeCount' => null,
+        'netAssets' => null
     ];
 
     /**
@@ -70,10 +74,12 @@ class SourceOfFunds implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'acquiringBusinessLineId' => false,
-        'adyenProcessedFunds' => false,
-        'description' => false,
-        'type' => false
+        'annualTurnover' => false,
+        'balanceSheetTotal' => false,
+        'currencyOfFinancialData' => false,
+        'dateOfFinancialData' => false,
+        'employeeCount' => false,
+        'netAssets' => false
     ];
 
     /**
@@ -162,10 +168,12 @@ class SourceOfFunds implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'acquiringBusinessLineId' => 'acquiringBusinessLineId',
-        'adyenProcessedFunds' => 'adyenProcessedFunds',
-        'description' => 'description',
-        'type' => 'type'
+        'annualTurnover' => 'annualTurnover',
+        'balanceSheetTotal' => 'balanceSheetTotal',
+        'currencyOfFinancialData' => 'currencyOfFinancialData',
+        'dateOfFinancialData' => 'dateOfFinancialData',
+        'employeeCount' => 'employeeCount',
+        'netAssets' => 'netAssets'
     ];
 
     /**
@@ -174,10 +182,12 @@ class SourceOfFunds implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'acquiringBusinessLineId' => 'setAcquiringBusinessLineId',
-        'adyenProcessedFunds' => 'setAdyenProcessedFunds',
-        'description' => 'setDescription',
-        'type' => 'setType'
+        'annualTurnover' => 'setAnnualTurnover',
+        'balanceSheetTotal' => 'setBalanceSheetTotal',
+        'currencyOfFinancialData' => 'setCurrencyOfFinancialData',
+        'dateOfFinancialData' => 'setDateOfFinancialData',
+        'employeeCount' => 'setEmployeeCount',
+        'netAssets' => 'setNetAssets'
     ];
 
     /**
@@ -186,10 +196,12 @@ class SourceOfFunds implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'acquiringBusinessLineId' => 'getAcquiringBusinessLineId',
-        'adyenProcessedFunds' => 'getAdyenProcessedFunds',
-        'description' => 'getDescription',
-        'type' => 'getType'
+        'annualTurnover' => 'getAnnualTurnover',
+        'balanceSheetTotal' => 'getBalanceSheetTotal',
+        'currencyOfFinancialData' => 'getCurrencyOfFinancialData',
+        'dateOfFinancialData' => 'getDateOfFinancialData',
+        'employeeCount' => 'getEmployeeCount',
+        'netAssets' => 'getNetAssets'
     ];
 
     /**
@@ -233,19 +245,7 @@ class SourceOfFunds implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const TYPE_BUSINESS = 'business';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_BUSINESS,
-        ];
-    }
     /**
      * Associative array for storing property values
      *
@@ -261,10 +261,12 @@ class SourceOfFunds implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('acquiringBusinessLineId', $data ?? [], null);
-        $this->setIfExists('adyenProcessedFunds', $data ?? [], null);
-        $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('annualTurnover', $data ?? [], null);
+        $this->setIfExists('balanceSheetTotal', $data ?? [], null);
+        $this->setIfExists('currencyOfFinancialData', $data ?? [], null);
+        $this->setIfExists('dateOfFinancialData', $data ?? [], null);
+        $this->setIfExists('employeeCount', $data ?? [], null);
+        $this->setIfExists('netAssets', $data ?? [], null);
     }
 
     /**
@@ -294,15 +296,6 @@ class SourceOfFunds implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -319,109 +312,145 @@ class SourceOfFunds implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets acquiringBusinessLineId
+     * Gets annualTurnover
      *
      * @return string|null
-     * @deprecated since Legal Entity Management API v3. "This field will be removed in v4."
      */
-    public function getAcquiringBusinessLineId()
+    public function getAnnualTurnover()
     {
-        return $this->container['acquiringBusinessLineId'];
+        return $this->container['annualTurnover'];
     }
 
     /**
-     * Sets acquiringBusinessLineId
+     * Sets annualTurnover
      *
-     * @param string|null $acquiringBusinessLineId The unique identifier of the business line that is the source of funds.This must be a business line for a **receivePayments** or **receiveFromPlatformPayments** capability.
+     * @param string|null $annualTurnover The annual turnover of the business.
      *
      * @return self
-     * @deprecated since Legal Entity Management API v3. "This field will be removed in v4."
      */
-    public function setAcquiringBusinessLineId($acquiringBusinessLineId)
+    public function setAnnualTurnover($annualTurnover)
     {
-        $this->container['acquiringBusinessLineId'] = $acquiringBusinessLineId;
+        $this->container['annualTurnover'] = $annualTurnover;
 
         return $this;
     }
 
     /**
-     * Gets adyenProcessedFunds
+     * Gets balanceSheetTotal
      *
-     * @return bool|null
+     * @return string|null
      */
-    public function getAdyenProcessedFunds()
+    public function getBalanceSheetTotal()
     {
-        return $this->container['adyenProcessedFunds'];
+        return $this->container['balanceSheetTotal'];
     }
 
     /**
-     * Sets adyenProcessedFunds
+     * Sets balanceSheetTotal
      *
-     * @param bool|null $adyenProcessedFunds Indicates whether the funds are coming from transactions processed by Adyen. If **false**, a `description` is required.
+     * @param string|null $balanceSheetTotal The balance sheet total of the business.
      *
      * @return self
      */
-    public function setAdyenProcessedFunds($adyenProcessedFunds)
+    public function setBalanceSheetTotal($balanceSheetTotal)
     {
-        $this->container['adyenProcessedFunds'] = $adyenProcessedFunds;
+        $this->container['balanceSheetTotal'] = $balanceSheetTotal;
 
         return $this;
     }
 
     /**
-     * Gets description
+     * Gets currencyOfFinancialData
      *
      * @return string|null
      */
-    public function getDescription()
+    public function getCurrencyOfFinancialData()
     {
-        return $this->container['description'];
+        return $this->container['currencyOfFinancialData'];
     }
 
     /**
-     * Sets description
+     * Sets currencyOfFinancialData
      *
-     * @param string|null $description Text describing the source of funds. For example, for `type` **business**, provide a description of where the business transactions come from, such as payments through bank transfer. Required when `adyenProcessedFunds` is **false**.
+     * @param string|null $currencyOfFinancialData The currency used for the net assets and balance sheet total.
      *
      * @return self
      */
-    public function setDescription($description)
+    public function setCurrencyOfFinancialData($currencyOfFinancialData)
     {
-        $this->container['description'] = $description;
+        $this->container['currencyOfFinancialData'] = $currencyOfFinancialData;
 
         return $this;
     }
 
     /**
-     * Gets type
+     * Gets dateOfFinancialData
      *
      * @return string|null
      */
-    public function getType()
+    public function getDateOfFinancialData()
     {
-        return $this->container['type'];
+        return $this->container['dateOfFinancialData'];
     }
 
     /**
-     * Sets type
+     * Sets dateOfFinancialData
      *
-     * @param string|null $type The type of the source of funds. Possible value: **business**.
+     * @param string|null $dateOfFinancialData The date the financial data were provided, in YYYY-MM-DD format.
      *
      * @return self
      */
-    public function setType($type)
+    public function setDateOfFinancialData($dateOfFinancialData)
     {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
+        $this->container['dateOfFinancialData'] = $dateOfFinancialData;
+
+        return $this;
+    }
+
+    /**
+     * Gets employeeCount
+     *
+     * @return string|null
+     */
+    public function getEmployeeCount()
+    {
+        return $this->container['employeeCount'];
+    }
+
+    /**
+     * Sets employeeCount
+     *
+     * @param string|null $employeeCount The number of employees of the business.
+     *
+     * @return self
+     */
+    public function setEmployeeCount($employeeCount)
+    {
+        $this->container['employeeCount'] = $employeeCount;
+
+        return $this;
+    }
+
+    /**
+     * Gets netAssets
+     *
+     * @return string|null
+     */
+    public function getNetAssets()
+    {
+        return $this->container['netAssets'];
+    }
+
+    /**
+     * Sets netAssets
+     *
+     * @param string|null $netAssets The net assets of the business.
+     *
+     * @return self
+     */
+    public function setNetAssets($netAssets)
+    {
+        $this->container['netAssets'] = $netAssets;
 
         return $this;
     }

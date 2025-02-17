@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * PriorityRestriction Class Doc Comment
+ * AssociationDelegatedAuthenticationData Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\BalancePlatform\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class PriorityRestriction implements ModelInterface, ArrayAccess, \JsonSerializable
+class AssociationDelegatedAuthenticationData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class PriorityRestriction implements ModelInterface, ArrayAccess, \JsonSerializa
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PriorityRestriction';
+    protected static $openAPIModelName = 'AssociationDelegatedAuthenticationData';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,8 +44,7 @@ class PriorityRestriction implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var string[]
       */
     protected static $openAPITypes = [
-        'operation' => 'string',
-        'value' => 'string[]'
+        'sdkOutput' => 'string'
     ];
 
     /**
@@ -56,8 +55,7 @@ class PriorityRestriction implements ModelInterface, ArrayAccess, \JsonSerializa
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'operation' => null,
-        'value' => null
+        'sdkOutput' => null
     ];
 
     /**
@@ -66,8 +64,7 @@ class PriorityRestriction implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'operation' => false,
-        'value' => false
+        'sdkOutput' => false
     ];
 
     /**
@@ -156,8 +153,7 @@ class PriorityRestriction implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $attributeMap = [
-        'operation' => 'operation',
-        'value' => 'value'
+        'sdkOutput' => 'sdkOutput'
     ];
 
     /**
@@ -166,8 +162,7 @@ class PriorityRestriction implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $setters = [
-        'operation' => 'setOperation',
-        'value' => 'setValue'
+        'sdkOutput' => 'setSdkOutput'
     ];
 
     /**
@@ -176,8 +171,7 @@ class PriorityRestriction implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $getters = [
-        'operation' => 'getOperation',
-        'value' => 'getValue'
+        'sdkOutput' => 'getSdkOutput'
     ];
 
     /**
@@ -221,27 +215,7 @@ class PriorityRestriction implements ModelInterface, ArrayAccess, \JsonSerializa
         return self::$openAPIModelName;
     }
 
-    public const VALUE_CROSS_BORDER = 'crossBorder';
-    public const VALUE_FAST = 'fast';
-    public const VALUE_INSTANT = 'instant';
-    public const VALUE_INTRA_BANK = 'intraBank';
-    public const VALUE_REGULAR = 'regular';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getValueAllowableValues()
-    {
-        return [
-            self::VALUE_CROSS_BORDER,
-            self::VALUE_FAST,
-            self::VALUE_INSTANT,
-            self::VALUE_INTRA_BANK,
-            self::VALUE_REGULAR,
-        ];
-    }
     /**
      * Associative array for storing property values
      *
@@ -257,8 +231,7 @@ class PriorityRestriction implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('operation', $data ?? [], null);
-        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('sdkOutput', $data ?? [], null);
     }
 
     /**
@@ -288,8 +261,8 @@ class PriorityRestriction implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $invalidProperties = [];
 
-        if ($this->container['operation'] === null) {
-            $invalidProperties[] = "'operation' can't be null";
+        if ($this->container['sdkOutput'] === null) {
+            $invalidProperties[] = "'sdkOutput' can't be null";
         }
         return $invalidProperties;
     }
@@ -307,58 +280,25 @@ class PriorityRestriction implements ModelInterface, ArrayAccess, \JsonSerializa
 
 
     /**
-     * Gets operation
+     * Gets sdkOutput
      *
      * @return string
      */
-    public function getOperation()
+    public function getSdkOutput()
     {
-        return $this->container['operation'];
+        return $this->container['sdkOutput'];
     }
 
     /**
-     * Sets operation
+     * Sets sdkOutput
      *
-     * @param string $operation Defines how the condition must be evaluated.
+     * @param string $sdkOutput A base64-encoded block with the data required to authenticate the request. You obtain this information by using our authentication SDK.
      *
      * @return self
      */
-    public function setOperation($operation)
+    public function setSdkOutput($sdkOutput)
     {
-        $this->container['operation'] = $operation;
-
-        return $this;
-    }
-
-    /**
-     * Gets value
-     *
-     * @return string[]|null
-     */
-    public function getValue()
-    {
-        return $this->container['value'];
-    }
-
-    /**
-     * Sets value
-     *
-     * @param string[]|null $value value
-     *
-     * @return self
-     */
-    public function setValue($value)
-    {
-        $allowedValues = $this->getValueAllowableValues();
-        if (array_diff($value, $allowedValues)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value for 'value', must be one of '%s'",
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['value'] = $value;
+        $this->container['sdkOutput'] = $sdkOutput;
 
         return $this;
     }

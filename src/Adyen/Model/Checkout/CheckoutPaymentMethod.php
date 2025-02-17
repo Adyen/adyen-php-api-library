@@ -77,6 +77,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedSecurityCode' => 'string',
         'expiryMonth' => 'string',
         'expiryYear' => 'string',
+        'fastlaneData' => 'string',
         'networkPaymentReference' => 'string',
         'number' => 'string',
         'shopperNotificationReference' => 'string',
@@ -159,6 +160,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedSecurityCode' => null,
         'expiryMonth' => null,
         'expiryYear' => null,
+        'fastlaneData' => null,
         'networkPaymentReference' => null,
         'number' => null,
         'shopperNotificationReference' => null,
@@ -239,6 +241,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedSecurityCode' => false,
         'expiryMonth' => false,
         'expiryYear' => false,
+        'fastlaneData' => false,
         'networkPaymentReference' => false,
         'number' => false,
         'shopperNotificationReference' => false,
@@ -399,6 +402,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedSecurityCode' => 'encryptedSecurityCode',
         'expiryMonth' => 'expiryMonth',
         'expiryYear' => 'expiryYear',
+        'fastlaneData' => 'fastlaneData',
         'networkPaymentReference' => 'networkPaymentReference',
         'number' => 'number',
         'shopperNotificationReference' => 'shopperNotificationReference',
@@ -479,6 +483,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedSecurityCode' => 'setEncryptedSecurityCode',
         'expiryMonth' => 'setExpiryMonth',
         'expiryYear' => 'setExpiryYear',
+        'fastlaneData' => 'setFastlaneData',
         'networkPaymentReference' => 'setNetworkPaymentReference',
         'number' => 'setNumber',
         'shopperNotificationReference' => 'setShopperNotificationReference',
@@ -559,6 +564,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedSecurityCode' => 'getEncryptedSecurityCode',
         'expiryMonth' => 'getExpiryMonth',
         'expiryYear' => 'getExpiryYear',
+        'fastlaneData' => 'getFastlaneData',
         'networkPaymentReference' => 'getNetworkPaymentReference',
         'number' => 'getNumber',
         'shopperNotificationReference' => 'getShopperNotificationReference',
@@ -689,6 +695,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('encryptedSecurityCode', $data ?? [], null);
         $this->setIfExists('expiryMonth', $data ?? [], null);
         $this->setIfExists('expiryYear', $data ?? [], null);
+        $this->setIfExists('fastlaneData', $data ?? [], null);
         $this->setIfExists('networkPaymentReference', $data ?? [], null);
         $this->setIfExists('number', $data ?? [], null);
         $this->setIfExists('shopperNotificationReference', $data ?? [], null);
@@ -772,6 +779,9 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
 
         if ($this->container['issuer'] === null) {
             $invalidProperties[] = "'issuer' can't be null";
+        }
+        if ($this->container['fastlaneData'] === null) {
+            $invalidProperties[] = "'fastlaneData' can't be null";
         }
         if ($this->container['firstName'] === null) {
             $invalidProperties[] = "'firstName' can't be null";
@@ -1598,6 +1608,30 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setExpiryYear($expiryYear)
     {
         $this->container['expiryYear'] = $expiryYear;
+
+        return $this;
+    }
+
+    /**
+     * Gets fastlaneData
+     *
+     * @return string
+     */
+    public function getFastlaneData()
+    {
+        return $this->container['fastlaneData'];
+    }
+
+    /**
+     * Sets fastlaneData
+     *
+     * @param string $fastlaneData The encoded fastlane data blob
+     *
+     * @return self
+     */
+    public function setFastlaneData($fastlaneData)
+    {
+        $this->container['fastlaneData'] = $fastlaneData;
 
         return $this;
     }

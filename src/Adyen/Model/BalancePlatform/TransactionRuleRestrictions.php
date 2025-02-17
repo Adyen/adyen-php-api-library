@@ -58,13 +58,13 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'mccs' => '\Adyen\Model\BalancePlatform\MccsRestriction',
         'merchantNames' => '\Adyen\Model\BalancePlatform\MerchantNamesRestriction',
         'merchants' => '\Adyen\Model\BalancePlatform\MerchantsRestriction',
-        'priority' => '\Adyen\Model\BalancePlatform\PriorityRestriction',
         'processingTypes' => '\Adyen\Model\BalancePlatform\ProcessingTypesRestriction',
         'riskScores' => '\Adyen\Model\BalancePlatform\RiskScoresRestriction',
         'sameAmountRestriction' => '\Adyen\Model\BalancePlatform\SameAmountRestriction',
         'sameCounterpartyRestriction' => '\Adyen\Model\BalancePlatform\SameCounterpartyRestriction',
         'sourceAccountTypes' => '\Adyen\Model\BalancePlatform\SourceAccountTypesRestriction',
         'timeOfDay' => '\Adyen\Model\BalancePlatform\TimeOfDayRestriction',
+        'tokenRequestors' => '\Adyen\Model\BalancePlatform\TokenRequestorsRestriction',
         'totalAmount' => '\Adyen\Model\BalancePlatform\TotalAmountRestriction'
     ];
 
@@ -90,13 +90,13 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'mccs' => null,
         'merchantNames' => null,
         'merchants' => null,
-        'priority' => null,
         'processingTypes' => null,
         'riskScores' => null,
         'sameAmountRestriction' => null,
         'sameCounterpartyRestriction' => null,
         'sourceAccountTypes' => null,
         'timeOfDay' => null,
+        'tokenRequestors' => null,
         'totalAmount' => null
     ];
 
@@ -120,13 +120,13 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'mccs' => false,
         'merchantNames' => false,
         'merchants' => false,
-        'priority' => false,
         'processingTypes' => false,
         'riskScores' => false,
         'sameAmountRestriction' => false,
         'sameCounterpartyRestriction' => false,
         'sourceAccountTypes' => false,
         'timeOfDay' => false,
+        'tokenRequestors' => false,
         'totalAmount' => false
     ];
 
@@ -230,13 +230,13 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'mccs' => 'mccs',
         'merchantNames' => 'merchantNames',
         'merchants' => 'merchants',
-        'priority' => 'priority',
         'processingTypes' => 'processingTypes',
         'riskScores' => 'riskScores',
         'sameAmountRestriction' => 'sameAmountRestriction',
         'sameCounterpartyRestriction' => 'sameCounterpartyRestriction',
         'sourceAccountTypes' => 'sourceAccountTypes',
         'timeOfDay' => 'timeOfDay',
+        'tokenRequestors' => 'tokenRequestors',
         'totalAmount' => 'totalAmount'
     ];
 
@@ -260,13 +260,13 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'mccs' => 'setMccs',
         'merchantNames' => 'setMerchantNames',
         'merchants' => 'setMerchants',
-        'priority' => 'setPriority',
         'processingTypes' => 'setProcessingTypes',
         'riskScores' => 'setRiskScores',
         'sameAmountRestriction' => 'setSameAmountRestriction',
         'sameCounterpartyRestriction' => 'setSameCounterpartyRestriction',
         'sourceAccountTypes' => 'setSourceAccountTypes',
         'timeOfDay' => 'setTimeOfDay',
+        'tokenRequestors' => 'setTokenRequestors',
         'totalAmount' => 'setTotalAmount'
     ];
 
@@ -290,13 +290,13 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'mccs' => 'getMccs',
         'merchantNames' => 'getMerchantNames',
         'merchants' => 'getMerchants',
-        'priority' => 'getPriority',
         'processingTypes' => 'getProcessingTypes',
         'riskScores' => 'getRiskScores',
         'sameAmountRestriction' => 'getSameAmountRestriction',
         'sameCounterpartyRestriction' => 'getSameCounterpartyRestriction',
         'sourceAccountTypes' => 'getSourceAccountTypes',
         'timeOfDay' => 'getTimeOfDay',
+        'tokenRequestors' => 'getTokenRequestors',
         'totalAmount' => 'getTotalAmount'
     ];
 
@@ -371,13 +371,13 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('mccs', $data ?? [], null);
         $this->setIfExists('merchantNames', $data ?? [], null);
         $this->setIfExists('merchants', $data ?? [], null);
-        $this->setIfExists('priority', $data ?? [], null);
         $this->setIfExists('processingTypes', $data ?? [], null);
         $this->setIfExists('riskScores', $data ?? [], null);
         $this->setIfExists('sameAmountRestriction', $data ?? [], null);
         $this->setIfExists('sameCounterpartyRestriction', $data ?? [], null);
         $this->setIfExists('sourceAccountTypes', $data ?? [], null);
         $this->setIfExists('timeOfDay', $data ?? [], null);
+        $this->setIfExists('tokenRequestors', $data ?? [], null);
         $this->setIfExists('totalAmount', $data ?? [], null);
     }
 
@@ -760,30 +760,6 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
-     * Gets priority
-     *
-     * @return \Adyen\Model\BalancePlatform\PriorityRestriction|null
-     */
-    public function getPriority()
-    {
-        return $this->container['priority'];
-    }
-
-    /**
-     * Sets priority
-     *
-     * @param \Adyen\Model\BalancePlatform\PriorityRestriction|null $priority priority
-     *
-     * @return self
-     */
-    public function setPriority($priority)
-    {
-        $this->container['priority'] = $priority;
-
-        return $this;
-    }
-
-    /**
      * Gets processingTypes
      *
      * @return \Adyen\Model\BalancePlatform\ProcessingTypesRestriction|null
@@ -923,6 +899,30 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
     public function setTimeOfDay($timeOfDay)
     {
         $this->container['timeOfDay'] = $timeOfDay;
+
+        return $this;
+    }
+
+    /**
+     * Gets tokenRequestors
+     *
+     * @return \Adyen\Model\BalancePlatform\TokenRequestorsRestriction|null
+     */
+    public function getTokenRequestors()
+    {
+        return $this->container['tokenRequestors'];
+    }
+
+    /**
+     * Sets tokenRequestors
+     *
+     * @param \Adyen\Model\BalancePlatform\TokenRequestorsRestriction|null $tokenRequestors tokenRequestors
+     *
+     * @return self
+     */
+    public function setTokenRequestors($tokenRequestors)
+    {
+        $this->container['tokenRequestors'] = $tokenRequestors;
 
         return $this;
     }

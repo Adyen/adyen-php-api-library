@@ -42,6 +42,7 @@ class GrantOffersApi extends Service
     /**
     * Get all available grant offers
     *
+    * @deprecated since Configuration API v2. "Use the `/grantOffers` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grantOffers) instead."
     * @param array|null $requestOptions ['queryParams' => ['accountHolderId'=> string]]
     * @return \Adyen\Model\BalancePlatform\GrantOffers
     * @throws AdyenException
@@ -56,6 +57,7 @@ class GrantOffersApi extends Service
     /**
     * Get a grant offer
     *
+    * @deprecated since Configuration API v2. "Use the `/grantOffers/{id}` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grantOffers/(id)) instead."
     * @param string $grantOfferId
     * @param array|null $requestOptions
     * @return \Adyen\Model\BalancePlatform\GrantOffer

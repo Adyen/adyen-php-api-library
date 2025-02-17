@@ -49,6 +49,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'string',
         'doingBusinessAs' => 'string',
         'email' => 'string',
+        'financialReports' => '\Adyen\Model\LegalEntityManagement\FinancialReport[]',
         'legalName' => 'string',
         'phone' => '\Adyen\Model\LegalEntityManagement\PhoneNumber',
         'principalPlaceOfBusiness' => '\Adyen\Model\LegalEntityManagement\Address',
@@ -76,6 +77,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => null,
         'doingBusinessAs' => null,
         'email' => null,
+        'financialReports' => null,
         'legalName' => null,
         'phone' => null,
         'principalPlaceOfBusiness' => null,
@@ -101,6 +103,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => false,
         'doingBusinessAs' => false,
         'email' => false,
+        'financialReports' => false,
         'legalName' => false,
         'phone' => false,
         'principalPlaceOfBusiness' => false,
@@ -206,6 +209,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'description',
         'doingBusinessAs' => 'doingBusinessAs',
         'email' => 'email',
+        'financialReports' => 'financialReports',
         'legalName' => 'legalName',
         'phone' => 'phone',
         'principalPlaceOfBusiness' => 'principalPlaceOfBusiness',
@@ -231,6 +235,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'setDescription',
         'doingBusinessAs' => 'setDoingBusinessAs',
         'email' => 'setEmail',
+        'financialReports' => 'setFinancialReports',
         'legalName' => 'setLegalName',
         'phone' => 'setPhone',
         'principalPlaceOfBusiness' => 'setPrincipalPlaceOfBusiness',
@@ -256,6 +261,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'getDescription',
         'doingBusinessAs' => 'getDoingBusinessAs',
         'email' => 'getEmail',
+        'financialReports' => 'getFinancialReports',
         'legalName' => 'getLegalName',
         'phone' => 'getPhone',
         'principalPlaceOfBusiness' => 'getPrincipalPlaceOfBusiness',
@@ -368,6 +374,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('doingBusinessAs', $data ?? [], null);
         $this->setIfExists('email', $data ?? [], null);
+        $this->setIfExists('financialReports', $data ?? [], null);
         $this->setIfExists('legalName', $data ?? [], null);
         $this->setIfExists('phone', $data ?? [], null);
         $this->setIfExists('principalPlaceOfBusiness', $data ?? [], null);
@@ -564,6 +571,30 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setEmail($email)
     {
         $this->container['email'] = $email;
+
+        return $this;
+    }
+
+    /**
+     * Gets financialReports
+     *
+     * @return \Adyen\Model\LegalEntityManagement\FinancialReport[]|null
+     */
+    public function getFinancialReports()
+    {
+        return $this->container['financialReports'];
+    }
+
+    /**
+     * Sets financialReports
+     *
+     * @param \Adyen\Model\LegalEntityManagement\FinancialReport[]|null $financialReports The financial report information of the organization.
+     *
+     * @return self
+     */
+    public function setFinancialReports($financialReports)
+    {
+        $this->container['financialReports'] = $financialReports;
 
         return $this;
     }

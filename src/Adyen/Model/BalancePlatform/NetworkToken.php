@@ -543,7 +543,7 @@ class NetworkToken implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      *
-     * @param string|null $type The type of wallet the network token is associated with. For example, **applePay**.
+     * @param string|null $type The type of network token. For example, **wallet**, **cof**.
      *
      * @return self
      */
