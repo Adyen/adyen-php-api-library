@@ -1,0 +1,93 @@
+name: Bug report
+description: Report a bug or issue. See closed issues before reporting to confirm issue has not been reported or resolved.
+title: "[Bug]: "
+labels: ["bug"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: "#### Thank you for reporting this issue. Please provide all the required information to help us understand and resolve the issue."
+  
+  - type: input
+    id: bug-description
+    attributes:
+      label: "Description"
+      description: "Provide a summary of the issue."
+      placeholder: "Example: Adyen Checkout API returns an unexpected error when..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce-steps
+    attributes:
+      label: "Steps to reproduce"
+      description: "List necessary steps to help us reproduce the issue."
+      placeholder: |
+        1. Install the Adyen API'...'
+        2. Create '...'
+        3. Import and use the NotificationRequest object '...'
+        3. Run '...'
+        4. Observer error '...'
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: "Actual behavior"
+      description: "Describe what happened - the error or unexpected behaviour you see."
+      placeholder: "Example: The API returns a 500 internal server error."
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: "Expected behavior"
+      description: "Describe what you expected to happen."
+      placeholder: "Example: The Adyen Checkout API should return a 200 status with the correct response payload."
+    validations:
+      required: true
+
+  - type: textarea
+    id: code-snippet
+    attributes:
+      label: "Code snippet or screenshots (if applicable)"
+      description: "Provide relevant code snippets or screenshots to illustrate the issue."
+      placeholder: "```php\n// Your code here\n```"
+
+  - type: input
+    id: adyen-api-version
+    attributes:
+      label: "Adyen PHP API Library version"
+      description: "Specify the version of the Adyen API library you're using."
+      placeholder: "Example: 20.1.2"
+    validations:
+      required: true
+
+  - type: input
+    id: php-version
+    attributes:
+      label: "PHP version"
+      description: "Specify the PHP version you're using."
+      placeholder: "Example: 20"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: operating-system
+    attributes:
+      label: "Operating System"
+      description: "Select your operating system."
+      options:
+        - Windows
+        - macOS
+        - Linux
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: "Additional context"
+      description: "Provide any other relevant details."
+      placeholder: "Example: This issue started after updating to version X."
