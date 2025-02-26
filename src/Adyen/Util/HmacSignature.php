@@ -42,12 +42,7 @@ class HmacSignature
         if (!ctype_xdigit($hmacKey)) {
             throw new AdyenException("Invalid HMAC key: $hmacKey");
         }
-        $expectedSign = base64_encode(hash_hmac(
-            'sha256',
-            $webhook,
-            pack("H*", $hmacKey),
-            true
-        ));
+        $expectedSign = self::calculateHmacSignature($hmacKey, $webhook);
         return hash_equals($expectedSign, $hmacSign);
     }
     /**
@@ -76,7 +71,7 @@ class HmacSignature
 
 
         // base64-encode the binary result of the HMAC computation
-        $merchantSig = base64_encode(hash_hmac('sha256', $dataToSign, pack("H*", $hmacKey), true));
+        $merchantSig = self::calculateHmacSignature($hmacKey, $dataToSign);
         return $merchantSig;
     }
 
@@ -180,4 +175,25 @@ class HmacSignature
         );
         return array_key_exists(self::EVENT_CODE, $response) && in_array($response[self::EVENT_CODE], $eventCodes);
     }
+
+    /**
+    * Calculate HMAC signature
+    *
+    * @param string $hmacKey Can be found in Customer Area
+    * @param string $payload The response from Adyen
+    * @return string
+    * @throws AdyenException
+    */
+    public function calculateHmacSignature(string $hmacKey, string $payload): string
+    {
+        if (empty($hmacKey)) {
+        throw new AdyenException("You did not provide a HMAC key");
+        }
+
+        if (!ctype_xdigit($hmacKey)) {
+            throw new AdyenException("Invalid HMAC key: $hmacKey");
+        }
+
+        return base64_encode(hash_hmac('sha256', $payload, pack("H*", $hmacKey), true));
+    }    
 }
