@@ -1,0 +1,29 @@
+{
+    "live": "false",
+    "notificationItems": [
+        {
+            "NotificationRequestItem": {
+                "additionalData": {
+                    "metadata.orderTransactionId": "63",
+                    "bookingDate": "2025-02-24T15:21:41Z",
+                    "paymentMethodVariant": "mc",
+                    "store": "Store Amsterdam",
+                    "hmacSignature": "1mSRodZGRNebcLHRXqGxCVa9bbCupkyHkcEUj51wves="
+                },
+                "amount": {
+                    "currency": "EUR",
+                    "value": 32500
+                },
+                "eventCode": "CAPTURE",
+                "eventDate": "2025-02-24T15:21:00+01:00",
+                "merchantAccountCode": "Merchant 1",
+                "merchantReference": "1143-R2",
+                "originalReference": "AB1234567890",
+                "paymentMethod": "mc",
+                "pspReference": "LR1234567890",
+                "reason": "",
+                "success": "true"
+            }
+        }
+    ]
+}
