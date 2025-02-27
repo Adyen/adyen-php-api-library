@@ -4,7 +4,7 @@
 // a subset of the fields in the payload - i.e. NotificationRequestItem object)
 //
 // Run with: `php tools/hmac/HMACValidatorPayments.php {hmacKey} {path to JSON file}
-// php tools/hmac/HMACValidatorPayments.php 51757397D785FBAE710E7F943F307971BB61B21281C98C9129B3D4018A57B2EB tools/hmac/payload.json
+// php tools/hmac/HMACValidatorPayments.php 11223344D785FBAE710E7F943F307971BB61B21281C98C9129B3D4018A57B2EB tools/hmac/payload.json
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
