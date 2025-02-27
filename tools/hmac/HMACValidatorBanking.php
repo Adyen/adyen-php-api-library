@@ -1,9 +1,10 @@
 <?php
 
-// script to calculate the HMAC signature using the PHP library `calculateHmacSignature` function
+// script to calculate the HMAC signature of Banking/Management webhooks (where the signature is calculated over the
+// entire webhook payload)
 //
-// Run with: `php tools/hmac/HMACValidator.php {hmacKey} {path to JSON file}
-// php tools/hmac/HMACValidator.php 51757397D785FBAE710E7F943F307971BB61B21281C98C9129B3D4018A57B2EB tools/hmac/payload.json
+// Run with: `php tools/hmac/HMACValidatorBanking.php {hmacKey} {path to JSON file}
+// php tools/hmac/HMACValidatorBanking.php 51757397D785FBAE710E7F943F307971BB61B21281C98C9129B3D4018A57B2EB tools/hmac/payload2.json
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
