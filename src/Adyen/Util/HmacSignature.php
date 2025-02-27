@@ -31,9 +31,13 @@ class HmacSignature
     }
 
     /**
+     * Validate the HMAC Signature of the webhook payload
+     * Used for BankingWebhooks and ManagementWebhooks (where HMAC signature is provided in the HTTP header)
+     * Note: HMAC signature is calculated considering the entire payload
+     *
      * @param string $hmacKey Can be found in Customer Area
      * @param string $hmacSign Can be found in the Webhook headers
-     * @param string $webhook The response from Adyen
+     * @param string $webhook The webhook payload 
      * @return bool
      * @throws AdyenException
      */
@@ -46,8 +50,9 @@ class HmacSignature
         return hash_equals($expectedSign, $hmacSign);
     }
     /**
+     * Calculate HMAC Signature for Payments webhooks
      * @param string $hmacKey Can be found in Customer Area
-     * @param array $params The response from Adyen
+     * @param array $params NotificationRequestItem object inside the webhook payload
      * @return string
      * @throws AdyenException
      */
@@ -106,6 +111,10 @@ class HmacSignature
     }
 
     /**
+     * Validate the HMAC Signature of the requestItem object included in the webhook payload
+     * Used for Payment Webhooks (where HMAC signature is provided in the `additionalData` field)
+     * Note: HMAC signature is calculated considering a subset of the fields (see `calculateNotificationHMAC` function)
+     *
      * @param string $hmacKey
      * @param array $params
      * @return bool
