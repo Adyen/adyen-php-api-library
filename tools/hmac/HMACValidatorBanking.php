@@ -4,7 +4,7 @@
 // entire webhook payload)
 //
 // Run with: `php tools/hmac/HMACValidatorBanking.php {hmacKey} {path to JSON file}
-// php tools/hmac/HMACValidatorBanking.php 51757397D785FBAE710E7F943F307971BB61B21281C98C9129B3D4018A57B2EB tools/hmac/payload2.json
+// php tools/hmac/HMACValidatorBanking.php 11223344D785FBAE710E7F943F307971BB61B21281C98C9129B3D4018A57B2EB tools/hmac/payload2.json
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
