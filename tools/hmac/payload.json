@@ -5,7 +5,7 @@
             "NotificationRequestItem": {
                 "additionalData": {
                     "cardSummary": "0010",
-                    "hmacSignature": "eEPKSnC7WYakDGfgnf2R8dH7briE2ljZ\/C9133CZcfQ=",
+                    "hmacSignature": "e7qQumH1fdt5NHb6e62jq6hIGUCpfhAAFXhUXqXcJAQ=",
                     "expiryDate": "03\/2030",
                     "recurring.contractTypes": "ONECLICK,RECURRING",
                     "cardBin": "222241",
