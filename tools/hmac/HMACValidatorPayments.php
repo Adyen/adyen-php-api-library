@@ -27,11 +27,28 @@ echo "Calculating HMAC signature with payload from '$payloadFile'\n";
 
 // load payload as JSON
 $payload = file_get_contents($payloadFile);
-$payload = json_decode($payload, true);
+$jsonData = json_decode($payload, true);
+
+if (json_last_error() !== JSON_ERROR_NONE) {
+    echo "Error: Invalid JSON in payload file.\n";
+    exit(1);
+}
+
+if (!isset($jsonData['notificationItems']) || !is_array($jsonData['notificationItems'])) {
+    echo "Error: 'notificationItems' key is missing or not an array.\n";
+    exit(1);
+}
 
 // Fetch the first (and only) NotificationRequestItem
-$notificationItems = $payload['notificationItems'];
-$notificationRequestItem = array_shift($notificationItems);
+$notificationRequestItem = $jsonData['notificationItems'][0]['NotificationRequestItem'] ?? null;
+
+if ($notificationRequestItem === null) {
+    echo "Error: 'NotificationRequestItem' is not found.\n";
+    exit(1);
+}
+
+// Log notificationRequestItem
+//print_r($notificationRequestItem);
 
 $hmacSignature = new HmacSignature();
 $signature = $hmacSignature->calculateNotificationHMAC($hmacKey, $notificationRequestItem);
