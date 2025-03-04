@@ -253,7 +253,6 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_MOLPAY_EBANKING_MY = 'molpay_ebanking_MY';
     public const TYPE_MOLPAY_EBANKING_DIRECT_MY = 'molpay_ebanking_direct_MY';
     public const TYPE_SWISH = 'swish';
-    public const TYPE_PIX = 'pix';
     public const TYPE_BIZUM = 'bizum';
     public const TYPE_WALLEY = 'walley';
     public const TYPE_WALLEY_B2B = 'walley_b2b';
@@ -351,7 +350,6 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_MOLPAY_EBANKING_MY,
             self::TYPE_MOLPAY_EBANKING_DIRECT_MY,
             self::TYPE_SWISH,
-            self::TYPE_PIX,
             self::TYPE_BIZUM,
             self::TYPE_WALLEY,
             self::TYPE_WALLEY_B2B,

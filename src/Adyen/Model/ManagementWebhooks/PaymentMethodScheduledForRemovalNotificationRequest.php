@@ -233,7 +233,7 @@ class PaymentMethodScheduledForRemovalNotificationRequest implements ModelInterf
         return self::$openAPIModelName;
     }
 
-    public const TYPE_PAYMENT_METHOD_REQUEST_SCHEDULED_FOR_REMOVAL = 'paymentMethod.requestScheduledForRemoval';
+    public const TYPE_PAYMENT_METHOD_REQUEST_SCHEDULED_FOR_REMOVAL = 'paymentMethodRequest.scheduledForRemoval';
 
     /**
      * Gets allowable values of the enum

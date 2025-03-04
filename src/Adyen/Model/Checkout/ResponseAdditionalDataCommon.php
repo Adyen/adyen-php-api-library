@@ -101,6 +101,9 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'threeDOffered' => 'string',
         'threeDOfferedResponse' => 'string',
         'threeDSVersion' => 'string',
+        'tokenizationShopperReference' => 'string',
+        'tokenizationStoreOperationType' => 'string',
+        'tokenizationStoredPaymentMethodId' => 'string',
         'visaTransactionId' => 'string',
         'xid' => 'string'
     ];
@@ -170,6 +173,9 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'threeDOffered' => null,
         'threeDOfferedResponse' => null,
         'threeDSVersion' => null,
+        'tokenizationShopperReference' => null,
+        'tokenizationStoreOperationType' => null,
+        'tokenizationStoredPaymentMethodId' => null,
         'visaTransactionId' => null,
         'xid' => null
     ];
@@ -237,6 +243,9 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'threeDOffered' => false,
         'threeDOfferedResponse' => false,
         'threeDSVersion' => false,
+        'tokenizationShopperReference' => false,
+        'tokenizationStoreOperationType' => false,
+        'tokenizationStoredPaymentMethodId' => false,
         'visaTransactionId' => false,
         'xid' => false
     ];
@@ -384,6 +393,9 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'threeDOffered' => 'threeDOffered',
         'threeDOfferedResponse' => 'threeDOfferedResponse',
         'threeDSVersion' => 'threeDSVersion',
+        'tokenizationShopperReference' => 'tokenization.shopperReference',
+        'tokenizationStoreOperationType' => 'tokenization.store.operationType',
+        'tokenizationStoredPaymentMethodId' => 'tokenization.storedPaymentMethodId',
         'visaTransactionId' => 'visaTransactionId',
         'xid' => 'xid'
     ];
@@ -451,6 +463,9 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'threeDOffered' => 'setThreeDOffered',
         'threeDOfferedResponse' => 'setThreeDOfferedResponse',
         'threeDSVersion' => 'setThreeDSVersion',
+        'tokenizationShopperReference' => 'setTokenizationShopperReference',
+        'tokenizationStoreOperationType' => 'setTokenizationStoreOperationType',
+        'tokenizationStoredPaymentMethodId' => 'setTokenizationStoredPaymentMethodId',
         'visaTransactionId' => 'setVisaTransactionId',
         'xid' => 'setXid'
     ];
@@ -518,6 +533,9 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'threeDOffered' => 'getThreeDOffered',
         'threeDOfferedResponse' => 'getThreeDOfferedResponse',
         'threeDSVersion' => 'getThreeDSVersion',
+        'tokenizationShopperReference' => 'getTokenizationShopperReference',
+        'tokenizationStoreOperationType' => 'getTokenizationStoreOperationType',
+        'tokenizationStoredPaymentMethodId' => 'getTokenizationStoredPaymentMethodId',
         'visaTransactionId' => 'getVisaTransactionId',
         'xid' => 'getXid'
     ];
@@ -568,6 +586,9 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
     public const RECURRING_PROCESSING_MODEL_CARD_ON_FILE = 'CardOnFile';
     public const RECURRING_PROCESSING_MODEL_SUBSCRIPTION = 'Subscription';
     public const RECURRING_PROCESSING_MODEL_UNSCHEDULED_CARD_ON_FILE = 'UnscheduledCardOnFile';
+    public const TOKENIZATION_STORE_OPERATION_TYPE_CREATED = 'created';
+    public const TOKENIZATION_STORE_OPERATION_TYPE_UPDATED = 'updated';
+    public const TOKENIZATION_STORE_OPERATION_TYPE_ALREADY_EXISTING = 'alreadyExisting';
 
     /**
      * Gets allowable values of the enum
@@ -592,6 +613,19 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
             self::RECURRING_PROCESSING_MODEL_CARD_ON_FILE,
             self::RECURRING_PROCESSING_MODEL_SUBSCRIPTION,
             self::RECURRING_PROCESSING_MODEL_UNSCHEDULED_CARD_ON_FILE,
+        ];
+    }
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTokenizationStoreOperationTypeAllowableValues()
+    {
+        return [
+            self::TOKENIZATION_STORE_OPERATION_TYPE_CREATED,
+            self::TOKENIZATION_STORE_OPERATION_TYPE_UPDATED,
+            self::TOKENIZATION_STORE_OPERATION_TYPE_ALREADY_EXISTING,
         ];
     }
     /**
@@ -666,6 +700,9 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         $this->setIfExists('threeDOffered', $data ?? [], null);
         $this->setIfExists('threeDOfferedResponse', $data ?? [], null);
         $this->setIfExists('threeDSVersion', $data ?? [], null);
+        $this->setIfExists('tokenizationShopperReference', $data ?? [], null);
+        $this->setIfExists('tokenizationStoreOperationType', $data ?? [], null);
+        $this->setIfExists('tokenizationStoredPaymentMethodId', $data ?? [], null);
         $this->setIfExists('visaTransactionId', $data ?? [], null);
         $this->setIfExists('xid', $data ?? [], null);
     }
@@ -711,6 +748,15 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'recurringProcessingModel', must be one of '%s'",
                 $this->container['recurringProcessingModel'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getTokenizationStoreOperationTypeAllowableValues();
+        if (!is_null($this->container['tokenizationStoreOperationType']) && !in_array($this->container['tokenizationStoreOperationType'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'tokenizationStoreOperationType', must be one of '%s'",
+                $this->container['tokenizationStoreOperationType'],
                 implode("', '", $allowedValues)
             );
         }
@@ -1752,6 +1798,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      * Gets recurringRecurringDetailReference
      *
      * @return string|null
+     * @deprecated since Adyen Checkout API v68. "Use tokenization.storedPaymentMethodId instead."
      */
     public function getRecurringRecurringDetailReference()
     {
@@ -1764,6 +1811,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      * @param string|null $recurringRecurringDetailReference The reference that uniquely identifies the recurring transaction.
      *
      * @return self
+     * @deprecated since Adyen Checkout API v68. "Use tokenization.storedPaymentMethodId instead."
      */
     public function setRecurringRecurringDetailReference($recurringRecurringDetailReference)
     {
@@ -1776,6 +1824,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      * Gets recurringShopperReference
      *
      * @return string|null
+     * @deprecated since Adyen Checkout API v68. "Use tokenization.shopperReference instead."
      */
     public function getRecurringShopperReference()
     {
@@ -1788,6 +1837,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      * @param string|null $recurringShopperReference The provided reference of the shopper for a recurring transaction.
      *
      * @return self
+     * @deprecated since Adyen Checkout API v68. "Use tokenization.shopperReference instead."
      */
     public function setRecurringShopperReference($recurringShopperReference)
     {
@@ -2119,6 +2169,88 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
     }
 
     /**
+     * Gets tokenizationShopperReference
+     *
+     * @return string|null
+     */
+    public function getTokenizationShopperReference()
+    {
+        return $this->container['tokenizationShopperReference'];
+    }
+
+    /**
+     * Sets tokenizationShopperReference
+     *
+     * @param string|null $tokenizationShopperReference The reference for the shopper that you sent when tokenizing the payment details.
+     *
+     * @return self
+     */
+    public function setTokenizationShopperReference($tokenizationShopperReference)
+    {
+        $this->container['tokenizationShopperReference'] = $tokenizationShopperReference;
+
+        return $this;
+    }
+
+    /**
+     * Gets tokenizationStoreOperationType
+     *
+     * @return string|null
+     */
+    public function getTokenizationStoreOperationType()
+    {
+        return $this->container['tokenizationStoreOperationType'];
+    }
+
+    /**
+     * Sets tokenizationStoreOperationType
+     *
+     * @param string|null $tokenizationStoreOperationType The operation performed on the token. Possible values:  * **created**: the token has been created. * **updated**: the existing token has been updated. * **alreadyExisting**: the details have already been stored.
+     *
+     * @return self
+     */
+    public function setTokenizationStoreOperationType($tokenizationStoreOperationType)
+    {
+        $allowedValues = $this->getTokenizationStoreOperationTypeAllowableValues();
+        if (!in_array($tokenizationStoreOperationType, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'tokenizationStoreOperationType', must be one of '%s'",
+                    $tokenizationStoreOperationType,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['tokenizationStoreOperationType'] = $tokenizationStoreOperationType;
+
+        return $this;
+    }
+
+    /**
+     * Gets tokenizationStoredPaymentMethodId
+     *
+     * @return string|null
+     */
+    public function getTokenizationStoredPaymentMethodId()
+    {
+        return $this->container['tokenizationStoredPaymentMethodId'];
+    }
+
+    /**
+     * Sets tokenizationStoredPaymentMethodId
+     *
+     * @param string|null $tokenizationStoredPaymentMethodId The reference that uniquely identifies tokenized payment details.
+     *
+     * @return self
+     */
+    public function setTokenizationStoredPaymentMethodId($tokenizationStoredPaymentMethodId)
+    {
+        $this->container['tokenizationStoredPaymentMethodId'] = $tokenizationStoredPaymentMethodId;
+
+        return $this;
+    }
+
+    /**
      * Gets visaTransactionId
      *
      * @return string|null
@@ -2155,7 +2287,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets xid
      *
-     * @param string|null $xid The 3DS transaction ID of the 3DS session sent in notifications. The value is Base64-encoded and is returned for transactions with directoryResponse 'N' or 'Y'. If you want to submit the xid in your 3D Secure 1 request, use the `mpiData.xid`, field.  Example: ODgxNDc2MDg2MDExODk5MAAAAAA=
+     * @param string|null $xid The 3DS transaction ID of the 3DS session sent in notifications. The value is Base64-encoded and is returned for transactions with directoryResponse 'N' or 'Y'.   Example: ODgxNDc2MDg2MDExODk5MAAAAAA=
      *
      * @return self
      */

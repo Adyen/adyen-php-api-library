@@ -263,7 +263,27 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const STATUS_ARCHIVED = 'archived';
+    public const STATUS_ERROR = 'error';
+    public const STATUS_INVALID = 'invalid';
+    public const STATUS_PROCESSING = 'processing';
+    public const STATUS_READY = 'ready';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getStatusAllowableValues()
+    {
+        return [
+            self::STATUS_ARCHIVED,
+            self::STATUS_ERROR,
+            self::STATUS_INVALID,
+            self::STATUS_PROCESSING,
+            self::STATUS_READY,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -323,6 +343,15 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['status'] === null) {
             $invalidProperties[] = "'status' can't be null";
         }
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'status', must be one of '%s'",
+                $this->container['status'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -503,6 +532,16 @@ class AndroidApp implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStatus($status)
     {
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!in_array($status, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    $status,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
         $this->container['status'] = $status;
 
         return $this;

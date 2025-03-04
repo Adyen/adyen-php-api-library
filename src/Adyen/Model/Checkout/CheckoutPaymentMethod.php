@@ -106,6 +106,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'payerSelected' => 'string',
         'shopperAccountIdentifier' => 'string',
         'virtualPaymentAddress' => 'string',
+        'pixRecurring' => '\Adyen\Model\Checkout\PixRecurring',
         'bank' => 'string',
         'clientType' => 'string',
         'identification' => 'string',
@@ -189,6 +190,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'payerSelected' => null,
         'shopperAccountIdentifier' => null,
         'virtualPaymentAddress' => null,
+        'pixRecurring' => null,
         'bank' => null,
         'clientType' => null,
         'identification' => null,
@@ -270,6 +272,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'payerSelected' => false,
         'shopperAccountIdentifier' => false,
         'virtualPaymentAddress' => false,
+        'pixRecurring' => false,
         'bank' => false,
         'clientType' => false,
         'identification' => false,
@@ -431,6 +434,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'payerSelected' => 'payerSelected',
         'shopperAccountIdentifier' => 'shopperAccountIdentifier',
         'virtualPaymentAddress' => 'virtualPaymentAddress',
+        'pixRecurring' => 'pixRecurring',
         'bank' => 'bank',
         'clientType' => 'clientType',
         'identification' => 'identification',
@@ -512,6 +516,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'payerSelected' => 'setPayerSelected',
         'shopperAccountIdentifier' => 'setShopperAccountIdentifier',
         'virtualPaymentAddress' => 'setVirtualPaymentAddress',
+        'pixRecurring' => 'setPixRecurring',
         'bank' => 'setBank',
         'clientType' => 'setClientType',
         'identification' => 'setIdentification',
@@ -593,6 +598,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'payerSelected' => 'getPayerSelected',
         'shopperAccountIdentifier' => 'getShopperAccountIdentifier',
         'virtualPaymentAddress' => 'getVirtualPaymentAddress',
+        'pixRecurring' => 'getPixRecurring',
         'bank' => 'getBank',
         'clientType' => 'getClientType',
         'identification' => 'getIdentification',
@@ -724,6 +730,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('payerSelected', $data ?? [], null);
         $this->setIfExists('shopperAccountIdentifier', $data ?? [], null);
         $this->setIfExists('virtualPaymentAddress', $data ?? [], null);
+        $this->setIfExists('pixRecurring', $data ?? [], null);
         $this->setIfExists('bank', $data ?? [], null);
         $this->setIfExists('clientType', $data ?? [], null);
         $this->setIfExists('identification', $data ?? [], null);
@@ -2033,7 +2040,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets shopperEmail
      *
-     * @param string $shopperEmail
+     * @param string $shopperEmail 
      *
      * @return self
      */
@@ -2057,7 +2064,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets telephoneNumber
      *
-     * @param string $telephoneNumber
+     * @param string $telephoneNumber 
      *
      * @return self
      */
@@ -2304,6 +2311,30 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setVirtualPaymentAddress($virtualPaymentAddress)
     {
         $this->container['virtualPaymentAddress'] = $virtualPaymentAddress;
+
+        return $this;
+    }
+
+    /**
+     * Gets pixRecurring
+     *
+     * @return \Adyen\Model\Checkout\PixRecurring|null
+     */
+    public function getPixRecurring()
+    {
+        return $this->container['pixRecurring'];
+    }
+
+    /**
+     * Sets pixRecurring
+     *
+     * @param \Adyen\Model\Checkout\PixRecurring|null $pixRecurring pixRecurring
+     *
+     * @return self
+     */
+    public function setPixRecurring($pixRecurring)
+    {
+        $this->container['pixRecurring'] = $pixRecurring;
 
         return $this;
     }

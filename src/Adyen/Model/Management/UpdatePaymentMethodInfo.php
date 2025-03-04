@@ -53,6 +53,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'customRoutingFlags' => 'string[]',
         'diners' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'discover' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
+        'eftDirectdebitCA' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'eftposAustralia' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'enabled' => 'bool',
         'girocard' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
@@ -86,6 +87,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'customRoutingFlags' => null,
         'diners' => null,
         'discover' => null,
+        'eftDirectdebitCA' => null,
         'eftposAustralia' => null,
         'enabled' => null,
         'girocard' => null,
@@ -117,6 +119,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'customRoutingFlags' => false,
         'diners' => false,
         'discover' => false,
+        'eftDirectdebitCA' => false,
         'eftposAustralia' => false,
         'enabled' => false,
         'girocard' => false,
@@ -228,6 +231,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'customRoutingFlags' => 'customRoutingFlags',
         'diners' => 'diners',
         'discover' => 'discover',
+        'eftDirectdebitCA' => 'eft_directdebit_CA',
         'eftposAustralia' => 'eftpos_australia',
         'enabled' => 'enabled',
         'girocard' => 'girocard',
@@ -259,6 +263,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'customRoutingFlags' => 'setCustomRoutingFlags',
         'diners' => 'setDiners',
         'discover' => 'setDiscover',
+        'eftDirectdebitCA' => 'setEftDirectdebitCA',
         'eftposAustralia' => 'setEftposAustralia',
         'enabled' => 'setEnabled',
         'girocard' => 'setGirocard',
@@ -290,6 +295,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'customRoutingFlags' => 'getCustomRoutingFlags',
         'diners' => 'getDiners',
         'discover' => 'getDiscover',
+        'eftDirectdebitCA' => 'getEftDirectdebitCA',
         'eftposAustralia' => 'getEftposAustralia',
         'enabled' => 'getEnabled',
         'girocard' => 'getGirocard',
@@ -372,6 +378,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('customRoutingFlags', $data ?? [], null);
         $this->setIfExists('diners', $data ?? [], null);
         $this->setIfExists('discover', $data ?? [], null);
+        $this->setIfExists('eftDirectdebitCA', $data ?? [], null);
         $this->setIfExists('eftposAustralia', $data ?? [], null);
         $this->setIfExists('enabled', $data ?? [], null);
         $this->setIfExists('girocard', $data ?? [], null);
@@ -642,6 +649,30 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     public function setDiscover($discover)
     {
         $this->container['discover'] = $discover;
+
+        return $this;
+    }
+
+    /**
+     * Gets eftDirectdebitCA
+     *
+     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     */
+    public function getEftDirectdebitCA()
+    {
+        return $this->container['eftDirectdebitCA'];
+    }
+
+    /**
+     * Sets eftDirectdebitCA
+     *
+     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $eftDirectdebitCA eftDirectdebitCA
+     *
+     * @return self
+     */
+    public function setEftDirectdebitCA($eftDirectdebitCA)
+    {
+        $this->container['eftDirectdebitCA'] = $eftDirectdebitCA;
 
         return $this;
     }
