@@ -45,6 +45,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPITypes = [
         'accel' => '\Adyen\Model\Management\AccelInfo',
+        'affirm' => '\Adyen\Model\Management\AffirmInfo',
         'afterpayTouch' => '\Adyen\Model\Management\AfterpayTouchInfo',
         'amex' => '\Adyen\Model\Management\AmexInfo',
         'applePay' => '\Adyen\Model\Management\ApplePayInfo',
@@ -58,6 +59,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'customRoutingFlags' => 'string[]',
         'diners' => '\Adyen\Model\Management\DinersInfo',
         'discover' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
+        'eftDirectdebitCA' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'eftposAustralia' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'giroPay' => '\Adyen\Model\Management\GiroPayInfo',
         'girocard' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
@@ -72,6 +74,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'nyce' => '\Adyen\Model\Management\NyceInfo',
         'payme' => '\Adyen\Model\Management\PayMeInfo',
         'paypal' => '\Adyen\Model\Management\PayPalInfo',
+        'payto' => '\Adyen\Model\Management\PayToInfo',
         'pulse' => '\Adyen\Model\Management\PulseInfo',
         'reference' => 'string',
         'shopperInteraction' => 'string',
@@ -98,6 +101,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPIFormats = [
         'accel' => null,
+        'affirm' => null,
         'afterpayTouch' => null,
         'amex' => null,
         'applePay' => null,
@@ -111,6 +115,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'customRoutingFlags' => null,
         'diners' => null,
         'discover' => null,
+        'eftDirectdebitCA' => null,
         'eftposAustralia' => null,
         'giroPay' => null,
         'girocard' => null,
@@ -125,6 +130,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'nyce' => null,
         'payme' => null,
         'paypal' => null,
+        'payto' => null,
         'pulse' => null,
         'reference' => null,
         'shopperInteraction' => null,
@@ -149,6 +155,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPINullables = [
         'accel' => false,
+        'affirm' => false,
         'afterpayTouch' => false,
         'amex' => false,
         'applePay' => false,
@@ -162,6 +169,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'customRoutingFlags' => false,
         'diners' => false,
         'discover' => false,
+        'eftDirectdebitCA' => false,
         'eftposAustralia' => false,
         'giroPay' => false,
         'girocard' => false,
@@ -176,6 +184,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'nyce' => false,
         'payme' => false,
         'paypal' => false,
+        'payto' => false,
         'pulse' => false,
         'reference' => false,
         'shopperInteraction' => false,
@@ -280,6 +289,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static $attributeMap = [
         'accel' => 'accel',
+        'affirm' => 'affirm',
         'afterpayTouch' => 'afterpayTouch',
         'amex' => 'amex',
         'applePay' => 'applePay',
@@ -293,6 +303,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'customRoutingFlags' => 'customRoutingFlags',
         'diners' => 'diners',
         'discover' => 'discover',
+        'eftDirectdebitCA' => 'eft_directdebit_CA',
         'eftposAustralia' => 'eftpos_australia',
         'giroPay' => 'giroPay',
         'girocard' => 'girocard',
@@ -307,6 +318,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'nyce' => 'nyce',
         'payme' => 'payme',
         'paypal' => 'paypal',
+        'payto' => 'payto',
         'pulse' => 'pulse',
         'reference' => 'reference',
         'shopperInteraction' => 'shopperInteraction',
@@ -331,6 +343,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static $setters = [
         'accel' => 'setAccel',
+        'affirm' => 'setAffirm',
         'afterpayTouch' => 'setAfterpayTouch',
         'amex' => 'setAmex',
         'applePay' => 'setApplePay',
@@ -344,6 +357,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'customRoutingFlags' => 'setCustomRoutingFlags',
         'diners' => 'setDiners',
         'discover' => 'setDiscover',
+        'eftDirectdebitCA' => 'setEftDirectdebitCA',
         'eftposAustralia' => 'setEftposAustralia',
         'giroPay' => 'setGiroPay',
         'girocard' => 'setGirocard',
@@ -358,6 +372,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'nyce' => 'setNyce',
         'payme' => 'setPayme',
         'paypal' => 'setPaypal',
+        'payto' => 'setPayto',
         'pulse' => 'setPulse',
         'reference' => 'setReference',
         'shopperInteraction' => 'setShopperInteraction',
@@ -382,6 +397,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static $getters = [
         'accel' => 'getAccel',
+        'affirm' => 'getAffirm',
         'afterpayTouch' => 'getAfterpayTouch',
         'amex' => 'getAmex',
         'applePay' => 'getApplePay',
@@ -395,6 +411,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'customRoutingFlags' => 'getCustomRoutingFlags',
         'diners' => 'getDiners',
         'discover' => 'getDiscover',
+        'eftDirectdebitCA' => 'getEftDirectdebitCA',
         'eftposAustralia' => 'getEftposAustralia',
         'giroPay' => 'getGiroPay',
         'girocard' => 'getGirocard',
@@ -409,6 +426,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'nyce' => 'getNyce',
         'payme' => 'getPayme',
         'paypal' => 'getPaypal',
+        'payto' => 'getPayto',
         'pulse' => 'getPulse',
         'reference' => 'getReference',
         'shopperInteraction' => 'getShopperInteraction',
@@ -472,11 +490,13 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     public const SHOPPER_INTERACTION_MOTO = 'moto';
     public const SHOPPER_INTERACTION_CONT_AUTH = 'contAuth';
     public const TYPE_ACCEL = 'accel';
+    public const TYPE_ACH = 'ach';
     public const TYPE_AFFIRM = 'affirm';
     public const TYPE_AFTERPAYTOUCH = 'afterpaytouch';
     public const TYPE_ALELO = 'alelo';
     public const TYPE_ALIPAY = 'alipay';
     public const TYPE_ALIPAY_HK = 'alipay_hk';
+    public const TYPE_ALIPAY_WAP = 'alipay_wap';
     public const TYPE_AMEX = 'amex';
     public const TYPE_APPLEPAY = 'applepay';
     public const TYPE_BANESE_CARD = 'banese_card';
@@ -496,6 +516,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     public const TYPE_DIRECTDEBIT_GB = 'directdebit_GB';
     public const TYPE_DISCOVER = 'discover';
     public const TYPE_EBANKING_FI = 'ebanking_FI';
+    public const TYPE_EFT_DIRECTDEBIT_CA = 'eft_directdebit_CA';
     public const TYPE_EFTPOS_AUSTRALIA = 'eftpos_australia';
     public const TYPE_ELO = 'elo';
     public const TYPE_ELOCREDIT = 'elocredit';
@@ -526,6 +547,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     public const TYPE_PAYNOW_POS = 'paynow_pos';
     public const TYPE_PAYPAL = 'paypal';
     public const TYPE_PAYSHOP = 'payshop';
+    public const TYPE_PAYTO = 'payto';
     public const TYPE_PULSE = 'pulse';
     public const TYPE_SODEXO = 'sodexo';
     public const TYPE_STAR = 'star';
@@ -568,11 +590,13 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     {
         return [
             self::TYPE_ACCEL,
+            self::TYPE_ACH,
             self::TYPE_AFFIRM,
             self::TYPE_AFTERPAYTOUCH,
             self::TYPE_ALELO,
             self::TYPE_ALIPAY,
             self::TYPE_ALIPAY_HK,
+            self::TYPE_ALIPAY_WAP,
             self::TYPE_AMEX,
             self::TYPE_APPLEPAY,
             self::TYPE_BANESE_CARD,
@@ -592,6 +616,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
             self::TYPE_DIRECTDEBIT_GB,
             self::TYPE_DISCOVER,
             self::TYPE_EBANKING_FI,
+            self::TYPE_EFT_DIRECTDEBIT_CA,
             self::TYPE_EFTPOS_AUSTRALIA,
             self::TYPE_ELO,
             self::TYPE_ELOCREDIT,
@@ -622,6 +647,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
             self::TYPE_PAYNOW_POS,
             self::TYPE_PAYPAL,
             self::TYPE_PAYSHOP,
+            self::TYPE_PAYTO,
             self::TYPE_PULSE,
             self::TYPE_SODEXO,
             self::TYPE_STAR,
@@ -658,6 +684,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     public function __construct(array $data = null)
     {
         $this->setIfExists('accel', $data ?? [], null);
+        $this->setIfExists('affirm', $data ?? [], null);
         $this->setIfExists('afterpayTouch', $data ?? [], null);
         $this->setIfExists('amex', $data ?? [], null);
         $this->setIfExists('applePay', $data ?? [], null);
@@ -671,6 +698,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('customRoutingFlags', $data ?? [], null);
         $this->setIfExists('diners', $data ?? [], null);
         $this->setIfExists('discover', $data ?? [], null);
+        $this->setIfExists('eftDirectdebitCA', $data ?? [], null);
         $this->setIfExists('eftposAustralia', $data ?? [], null);
         $this->setIfExists('giroPay', $data ?? [], null);
         $this->setIfExists('girocard', $data ?? [], null);
@@ -685,6 +713,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('nyce', $data ?? [], null);
         $this->setIfExists('payme', $data ?? [], null);
         $this->setIfExists('paypal', $data ?? [], null);
+        $this->setIfExists('payto', $data ?? [], null);
         $this->setIfExists('pulse', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
         $this->setIfExists('shopperInteraction', $data ?? [], null);
@@ -785,6 +814,30 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     public function setAccel($accel)
     {
         $this->container['accel'] = $accel;
+
+        return $this;
+    }
+
+    /**
+     * Gets affirm
+     *
+     * @return \Adyen\Model\Management\AffirmInfo|null
+     */
+    public function getAffirm()
+    {
+        return $this->container['affirm'];
+    }
+
+    /**
+     * Sets affirm
+     *
+     * @param \Adyen\Model\Management\AffirmInfo|null $affirm affirm
+     *
+     * @return self
+     */
+    public function setAffirm($affirm)
+    {
+        $this->container['affirm'] = $affirm;
 
         return $this;
     }
@@ -1097,6 +1150,30 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     public function setDiscover($discover)
     {
         $this->container['discover'] = $discover;
+
+        return $this;
+    }
+
+    /**
+     * Gets eftDirectdebitCA
+     *
+     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     */
+    public function getEftDirectdebitCA()
+    {
+        return $this->container['eftDirectdebitCA'];
+    }
+
+    /**
+     * Sets eftDirectdebitCA
+     *
+     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $eftDirectdebitCA eftDirectdebitCA
+     *
+     * @return self
+     */
+    public function setEftDirectdebitCA($eftDirectdebitCA)
+    {
+        $this->container['eftDirectdebitCA'] = $eftDirectdebitCA;
 
         return $this;
     }
@@ -1433,6 +1510,30 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     public function setPaypal($paypal)
     {
         $this->container['paypal'] = $paypal;
+
+        return $this;
+    }
+
+    /**
+     * Gets payto
+     *
+     * @return \Adyen\Model\Management\PayToInfo|null
+     */
+    public function getPayto()
+    {
+        return $this->container['payto'];
+    }
+
+    /**
+     * Sets payto
+     *
+     * @param \Adyen\Model\Management\PayToInfo|null $payto payto
+     *
+     * @return self
+     */
+    public function setPayto($payto)
+    {
+        $this->container['payto'] = $payto;
 
         return $this;
     }

@@ -240,11 +240,13 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     public const TYPES_WITH_ERRORS_ACCEL = 'accel';
+    public const TYPES_WITH_ERRORS_ACH = 'ach';
     public const TYPES_WITH_ERRORS_AFFIRM = 'affirm';
     public const TYPES_WITH_ERRORS_AFTERPAYTOUCH = 'afterpaytouch';
     public const TYPES_WITH_ERRORS_ALELO = 'alelo';
     public const TYPES_WITH_ERRORS_ALIPAY = 'alipay';
     public const TYPES_WITH_ERRORS_ALIPAY_HK = 'alipay_hk';
+    public const TYPES_WITH_ERRORS_ALIPAY_WAP = 'alipay_wap';
     public const TYPES_WITH_ERRORS_AMEX = 'amex';
     public const TYPES_WITH_ERRORS_APPLEPAY = 'applepay';
     public const TYPES_WITH_ERRORS_BANESE_CARD = 'banese_card';
@@ -264,6 +266,7 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public const TYPES_WITH_ERRORS_DIRECTDEBIT_GB = 'directdebit_GB';
     public const TYPES_WITH_ERRORS_DISCOVER = 'discover';
     public const TYPES_WITH_ERRORS_EBANKING_FI = 'ebanking_FI';
+    public const TYPES_WITH_ERRORS_EFT_DIRECTDEBIT_CA = 'eft_directdebit_CA';
     public const TYPES_WITH_ERRORS_EFTPOS_AUSTRALIA = 'eftpos_australia';
     public const TYPES_WITH_ERRORS_ELO = 'elo';
     public const TYPES_WITH_ERRORS_ELOCREDIT = 'elocredit';
@@ -294,6 +297,7 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public const TYPES_WITH_ERRORS_PAYNOW_POS = 'paynow_pos';
     public const TYPES_WITH_ERRORS_PAYPAL = 'paypal';
     public const TYPES_WITH_ERRORS_PAYSHOP = 'payshop';
+    public const TYPES_WITH_ERRORS_PAYTO = 'payto';
     public const TYPES_WITH_ERRORS_PULSE = 'pulse';
     public const TYPES_WITH_ERRORS_SODEXO = 'sodexo';
     public const TYPES_WITH_ERRORS_STAR = 'star';
@@ -322,11 +326,13 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         return [
             self::TYPES_WITH_ERRORS_ACCEL,
+            self::TYPES_WITH_ERRORS_ACH,
             self::TYPES_WITH_ERRORS_AFFIRM,
             self::TYPES_WITH_ERRORS_AFTERPAYTOUCH,
             self::TYPES_WITH_ERRORS_ALELO,
             self::TYPES_WITH_ERRORS_ALIPAY,
             self::TYPES_WITH_ERRORS_ALIPAY_HK,
+            self::TYPES_WITH_ERRORS_ALIPAY_WAP,
             self::TYPES_WITH_ERRORS_AMEX,
             self::TYPES_WITH_ERRORS_APPLEPAY,
             self::TYPES_WITH_ERRORS_BANESE_CARD,
@@ -346,6 +352,7 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             self::TYPES_WITH_ERRORS_DIRECTDEBIT_GB,
             self::TYPES_WITH_ERRORS_DISCOVER,
             self::TYPES_WITH_ERRORS_EBANKING_FI,
+            self::TYPES_WITH_ERRORS_EFT_DIRECTDEBIT_CA,
             self::TYPES_WITH_ERRORS_EFTPOS_AUSTRALIA,
             self::TYPES_WITH_ERRORS_ELO,
             self::TYPES_WITH_ERRORS_ELOCREDIT,
@@ -376,6 +383,7 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             self::TYPES_WITH_ERRORS_PAYNOW_POS,
             self::TYPES_WITH_ERRORS_PAYPAL,
             self::TYPES_WITH_ERRORS_PAYSHOP,
+            self::TYPES_WITH_ERRORS_PAYTO,
             self::TYPES_WITH_ERRORS_PULSE,
             self::TYPES_WITH_ERRORS_SODEXO,
             self::TYPES_WITH_ERRORS_STAR,

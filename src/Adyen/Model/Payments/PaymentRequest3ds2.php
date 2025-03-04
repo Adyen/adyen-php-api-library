@@ -1470,7 +1470,7 @@ class PaymentRequest3ds2 implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets shopperReference
      *
-     * @param string|null $shopperReference Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. > Your reference must not include personally identifiable information (PII), for example name or email address.
+     * @param string|null $shopperReference Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. > Your reference must not include personally identifiable information (PII) such as name or email address.
      *
      * @return self
      */
@@ -1542,7 +1542,7 @@ class PaymentRequest3ds2 implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets splits
      *
-     * @param \Adyen\Model\Payments\Split[]|null $splits An array of objects specifying how the payment should be split when using either Adyen for Platforms for [marketplaces](https://docs.adyen.com/marketplaces/split-payments) or [platforms]((https://docs.adyen.com/platforms/split-payments), or standalone [Issuing](https://docs.adyen.com/issuing/add-manage-funds#split).
+     * @param \Adyen\Model\Payments\Split[]|null $splits An array of objects specifying how the payment should be split when using either Adyen for Platforms for [marketplaces](https://docs.adyen.com/marketplaces/split-payments) or [platforms](https://docs.adyen.com/platforms/split-payments), or standalone [Issuing](https://docs.adyen.com/issuing/add-manage-funds#split).
      *
      * @return self
      */
