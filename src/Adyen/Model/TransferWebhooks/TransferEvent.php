@@ -673,7 +673,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets amountAdjustments
      *
-     * @param \Adyen\Model\TransferWebhooks\AmountAdjustment[]|null $amountAdjustments The amount adjustments in this transfer.
+     * @param \Adyen\Model\TransferWebhooks\AmountAdjustment[]|null $amountAdjustments The amount adjustments in this transfer. Only applicable for [issuing](https://docs.adyen.com/issuing/) integrations.
      *
      * @return self
      */
