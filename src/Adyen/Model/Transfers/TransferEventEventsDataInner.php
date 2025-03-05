@@ -45,6 +45,7 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPITypes = [
         'airline' => '\Adyen\Model\Transfers\Airline',
+        'lodging' => '\Adyen\Model\Transfers\Lodging[]',
         'type' => 'string'
     ];
 
@@ -57,6 +58,7 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPIFormats = [
         'airline' => null,
+        'lodging' => null,
         'type' => null
     ];
 
@@ -67,6 +69,7 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPINullables = [
         'airline' => false,
+        'lodging' => false,
         'type' => false
     ];
 
@@ -157,6 +160,7 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
      */
     protected static $attributeMap = [
         'airline' => 'airline',
+        'lodging' => 'lodging',
         'type' => 'type'
     ];
 
@@ -167,6 +171,7 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
      */
     protected static $setters = [
         'airline' => 'setAirline',
+        'lodging' => 'setLodging',
         'type' => 'setType'
     ];
 
@@ -177,6 +182,7 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
      */
     protected static $getters = [
         'airline' => 'getAirline',
+        'lodging' => 'getLodging',
         'type' => 'getType'
     ];
 
@@ -237,6 +243,7 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
     public function __construct(array $data = null)
     {
         $this->setIfExists('airline', $data ?? [], null);
+        $this->setIfExists('lodging', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -306,6 +313,30 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
     public function setAirline($airline)
     {
         $this->container['airline'] = $airline;
+
+        return $this;
+    }
+
+    /**
+     * Gets lodging
+     *
+     * @return \Adyen\Model\Transfers\Lodging[]|null
+     */
+    public function getLodging()
+    {
+        return $this->container['lodging'];
+    }
+
+    /**
+     * Sets lodging
+     *
+     * @param \Adyen\Model\Transfers\Lodging[]|null $lodging Lodging information.
+     *
+     * @return self
+     */
+    public function setLodging($lodging)
+    {
+        $this->container['lodging'] = $lodging;
 
         return $this;
     }
