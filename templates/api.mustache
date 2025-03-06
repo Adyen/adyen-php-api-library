@@ -53,7 +53,7 @@ class {{classname}} extends Service
     {{#returnType}}* @return {{returnType}}{{/returnType}}
     * @throws AdyenException
     */
-    public function {{#lambda.camelcase}}{{vendorExtensions.x-methodName}}{{/lambda.camelcase}}({{>api_parameters}}){{#returnType}}: {{{.}}}{{/returnType}}
+    public function {{#lambda.camelcase}}{{vendorExtensions.x-methodName}}{{/lambda.camelcase}}({{>api_parameters}}){{#returnType}}: ?{{{.}}}{{/returnType}}
     {
         $endpoint = $this->baseURL . {{#hasPathParams}}str_replace([{{#pathParams}}'{{>left_bracket}}{{baseName}}{{>right_bracket}}'{{^-last}}, {{/-last}}{{/pathParams}}], [{{#pathParams}}${{baseName}}{{^-last}}, {{/-last}}{{/pathParams}}], {{/hasPathParams}}"{{{path}}}"{{#hasPathParams}}){{/hasPathParams}};
         {{#returnType}}$response = {{/returnType}}$this->requestHttp($endpoint, strtolower('{{httpMethod}}'), {{#bodyParam}}(array) ${{#lambda.camelcase}}{{paramName}}{{/lambda.camelcase}}->jsonSerialize(){{/bodyParam}}{{^bodyParam}}null{{/bodyParam}}, $requestOptions);
