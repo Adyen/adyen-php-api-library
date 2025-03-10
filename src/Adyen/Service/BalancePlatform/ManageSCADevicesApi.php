@@ -76,13 +76,14 @@ class ManageSCADevicesApi extends Service
     *
     * @param string $id
     * @param array|null $requestOptions ['queryParams' => ['paymentInstrumentId'=> string]]
-
+    
     * @throws AdyenException
     */
     public function deleteRegistrationOfScaDevice(string $id, array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/registeredDevices/{id}");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
+        
     }
 
     /**

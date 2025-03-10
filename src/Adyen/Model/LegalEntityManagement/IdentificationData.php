@@ -400,7 +400,7 @@ class IdentificationData implements ModelInterface, ArrayAccess, \JsonSerializab
      * Gets issuerCountry
      *
      * @return string|null
-     * @deprecated since Legal Entity Management API v1.
+     * @deprecated since Legal Entity Management API v1. 
      */
     public function getIssuerCountry()
     {
@@ -413,7 +413,7 @@ class IdentificationData implements ModelInterface, ArrayAccess, \JsonSerializab
      * @param string|null $issuerCountry The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the document was issued. For example, **US**.
      *
      * @return self
-     * @deprecated since Legal Entity Management API v1.
+     * @deprecated since Legal Entity Management API v1. 
      */
     public function setIssuerCountry($issuerCountry)
     {
