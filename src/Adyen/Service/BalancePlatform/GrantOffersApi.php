@@ -47,7 +47,7 @@ class GrantOffersApi extends Service
     * @return \Adyen\Model\BalancePlatform\GrantOffers
     * @throws AdyenException
     */
-    public function getAllAvailableGrantOffers(array $requestOptions = null): \Adyen\Model\BalancePlatform\GrantOffers
+    public function getAllAvailableGrantOffers(?array $requestOptions = null): \Adyen\Model\BalancePlatform\GrantOffers
     {
         $endpoint = $this->baseURL . "/grantOffers";
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -63,7 +63,7 @@ class GrantOffersApi extends Service
     * @return \Adyen\Model\BalancePlatform\GrantOffer
     * @throws AdyenException
     */
-    public function getGrantOffer(string $grantOfferId, array $requestOptions = null): \Adyen\Model\BalancePlatform\GrantOffer
+    public function getGrantOffer(string $grantOfferId, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\GrantOffer
     {
         $endpoint = $this->baseURL . str_replace(['{grantOfferId}'], [$grantOfferId], "/grantOffers/{grantOfferId}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);

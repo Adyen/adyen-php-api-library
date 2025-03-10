@@ -48,7 +48,7 @@ class TerminalSettingsStoreLevelApi extends Service
     * @return \Adyen\Model\Management\Logo
     * @throws AdyenException
     */
-    public function getTerminalLogo(string $merchantId, string $reference, array $requestOptions = null): \Adyen\Model\Management\Logo
+    public function getTerminalLogo(string $merchantId, string $reference, ?array $requestOptions = null): \Adyen\Model\Management\Logo
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{reference}'], [$merchantId, $reference], "/merchants/{merchantId}/stores/{reference}/terminalLogos");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -63,7 +63,7 @@ class TerminalSettingsStoreLevelApi extends Service
     * @return \Adyen\Model\Management\Logo
     * @throws AdyenException
     */
-    public function getTerminalLogoByStoreId(string $storeId, array $requestOptions = null): \Adyen\Model\Management\Logo
+    public function getTerminalLogoByStoreId(string $storeId, ?array $requestOptions = null): \Adyen\Model\Management\Logo
     {
         $endpoint = $this->baseURL . str_replace(['{storeId}'], [$storeId], "/stores/{storeId}/terminalLogos");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -79,7 +79,7 @@ class TerminalSettingsStoreLevelApi extends Service
     * @return \Adyen\Model\Management\TerminalSettings
     * @throws AdyenException
     */
-    public function getTerminalSettings(string $merchantId, string $reference, array $requestOptions = null): \Adyen\Model\Management\TerminalSettings
+    public function getTerminalSettings(string $merchantId, string $reference, ?array $requestOptions = null): \Adyen\Model\Management\TerminalSettings
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{reference}'], [$merchantId, $reference], "/merchants/{merchantId}/stores/{reference}/terminalSettings");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -94,7 +94,7 @@ class TerminalSettingsStoreLevelApi extends Service
     * @return \Adyen\Model\Management\TerminalSettings
     * @throws AdyenException
     */
-    public function getTerminalSettingsByStoreId(string $storeId, array $requestOptions = null): \Adyen\Model\Management\TerminalSettings
+    public function getTerminalSettingsByStoreId(string $storeId, ?array $requestOptions = null): \Adyen\Model\Management\TerminalSettings
     {
         $endpoint = $this->baseURL . str_replace(['{storeId}'], [$storeId], "/stores/{storeId}/terminalSettings");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -111,7 +111,7 @@ class TerminalSettingsStoreLevelApi extends Service
     * @return \Adyen\Model\Management\Logo
     * @throws AdyenException
     */
-    public function updateTerminalLogo(string $merchantId, string $reference, \Adyen\Model\Management\Logo $logo, array $requestOptions = null): \Adyen\Model\Management\Logo
+    public function updateTerminalLogo(string $merchantId, string $reference, \Adyen\Model\Management\Logo $logo, ?array $requestOptions = null): \Adyen\Model\Management\Logo
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{reference}'], [$merchantId, $reference], "/merchants/{merchantId}/stores/{reference}/terminalLogos");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $logo->jsonSerialize(), $requestOptions);
@@ -127,7 +127,7 @@ class TerminalSettingsStoreLevelApi extends Service
     * @return \Adyen\Model\Management\Logo
     * @throws AdyenException
     */
-    public function updateTerminalLogoByStoreId(string $storeId, \Adyen\Model\Management\Logo $logo, array $requestOptions = null): \Adyen\Model\Management\Logo
+    public function updateTerminalLogoByStoreId(string $storeId, \Adyen\Model\Management\Logo $logo, ?array $requestOptions = null): \Adyen\Model\Management\Logo
     {
         $endpoint = $this->baseURL . str_replace(['{storeId}'], [$storeId], "/stores/{storeId}/terminalLogos");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $logo->jsonSerialize(), $requestOptions);
@@ -144,7 +144,7 @@ class TerminalSettingsStoreLevelApi extends Service
     * @return \Adyen\Model\Management\TerminalSettings
     * @throws AdyenException
     */
-    public function updateTerminalSettings(string $merchantId, string $reference, \Adyen\Model\Management\TerminalSettings $terminalSettings, array $requestOptions = null): \Adyen\Model\Management\TerminalSettings
+    public function updateTerminalSettings(string $merchantId, string $reference, \Adyen\Model\Management\TerminalSettings $terminalSettings, ?array $requestOptions = null): \Adyen\Model\Management\TerminalSettings
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{reference}'], [$merchantId, $reference], "/merchants/{merchantId}/stores/{reference}/terminalSettings");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $terminalSettings->jsonSerialize(), $requestOptions);
@@ -160,7 +160,7 @@ class TerminalSettingsStoreLevelApi extends Service
     * @return \Adyen\Model\Management\TerminalSettings
     * @throws AdyenException
     */
-    public function updateTerminalSettingsByStoreId(string $storeId, \Adyen\Model\Management\TerminalSettings $terminalSettings, array $requestOptions = null): \Adyen\Model\Management\TerminalSettings
+    public function updateTerminalSettingsByStoreId(string $storeId, \Adyen\Model\Management\TerminalSettings $terminalSettings, ?array $requestOptions = null): \Adyen\Model\Management\TerminalSettings
     {
         $endpoint = $this->baseURL . str_replace(['{storeId}'], [$storeId], "/stores/{storeId}/terminalSettings");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $terminalSettings->jsonSerialize(), $requestOptions);

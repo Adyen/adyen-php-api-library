@@ -47,7 +47,7 @@ class BalanceControlApi extends Service
     * @return \Adyen\Model\BalanceControl\BalanceTransferResponse
     * @throws AdyenException
     */
-    public function balanceTransfer(\Adyen\Model\BalanceControl\BalanceTransferRequest $balanceTransferRequest, array $requestOptions = null): \Adyen\Model\BalanceControl\BalanceTransferResponse
+    public function balanceTransfer(\Adyen\Model\BalanceControl\BalanceTransferRequest $balanceTransferRequest, ?array $requestOptions = null): \Adyen\Model\BalanceControl\BalanceTransferResponse
     {
         $endpoint = $this->baseURL . "/balanceTransfer";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $balanceTransferRequest->jsonSerialize(), $requestOptions);

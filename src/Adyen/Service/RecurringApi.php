@@ -47,7 +47,7 @@ class RecurringApi extends Service
     * @return \Adyen\Model\Recurring\CreatePermitResult
     * @throws AdyenException
     */
-    public function createPermit(\Adyen\Model\Recurring\CreatePermitRequest $createPermitRequest, array $requestOptions = null): \Adyen\Model\Recurring\CreatePermitResult
+    public function createPermit(\Adyen\Model\Recurring\CreatePermitRequest $createPermitRequest, ?array $requestOptions = null): \Adyen\Model\Recurring\CreatePermitResult
     {
         $endpoint = $this->baseURL . "/createPermit";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $createPermitRequest->jsonSerialize(), $requestOptions);
@@ -62,7 +62,7 @@ class RecurringApi extends Service
     * @return \Adyen\Model\Recurring\DisableResult
     * @throws AdyenException
     */
-    public function disable(\Adyen\Model\Recurring\DisableRequest $disableRequest, array $requestOptions = null): \Adyen\Model\Recurring\DisableResult
+    public function disable(\Adyen\Model\Recurring\DisableRequest $disableRequest, ?array $requestOptions = null): \Adyen\Model\Recurring\DisableResult
     {
         $endpoint = $this->baseURL . "/disable";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $disableRequest->jsonSerialize(), $requestOptions);
@@ -77,7 +77,7 @@ class RecurringApi extends Service
     * @return \Adyen\Model\Recurring\DisablePermitResult
     * @throws AdyenException
     */
-    public function disablePermit(\Adyen\Model\Recurring\DisablePermitRequest $disablePermitRequest, array $requestOptions = null): \Adyen\Model\Recurring\DisablePermitResult
+    public function disablePermit(\Adyen\Model\Recurring\DisablePermitRequest $disablePermitRequest, ?array $requestOptions = null): \Adyen\Model\Recurring\DisablePermitResult
     {
         $endpoint = $this->baseURL . "/disablePermit";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $disablePermitRequest->jsonSerialize(), $requestOptions);
@@ -92,7 +92,7 @@ class RecurringApi extends Service
     * @return \Adyen\Model\Recurring\RecurringDetailsResult
     * @throws AdyenException
     */
-    public function listRecurringDetails(\Adyen\Model\Recurring\RecurringDetailsRequest $recurringDetailsRequest, array $requestOptions = null): \Adyen\Model\Recurring\RecurringDetailsResult
+    public function listRecurringDetails(\Adyen\Model\Recurring\RecurringDetailsRequest $recurringDetailsRequest, ?array $requestOptions = null): \Adyen\Model\Recurring\RecurringDetailsResult
     {
         $endpoint = $this->baseURL . "/listRecurringDetails";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $recurringDetailsRequest->jsonSerialize(), $requestOptions);
@@ -107,7 +107,7 @@ class RecurringApi extends Service
     * @return \Adyen\Model\Recurring\NotifyShopperResult
     * @throws AdyenException
     */
-    public function notifyShopper(\Adyen\Model\Recurring\NotifyShopperRequest $notifyShopperRequest, array $requestOptions = null): \Adyen\Model\Recurring\NotifyShopperResult
+    public function notifyShopper(\Adyen\Model\Recurring\NotifyShopperRequest $notifyShopperRequest, ?array $requestOptions = null): \Adyen\Model\Recurring\NotifyShopperResult
     {
         $endpoint = $this->baseURL . "/notifyShopper";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $notifyShopperRequest->jsonSerialize(), $requestOptions);
@@ -122,7 +122,7 @@ class RecurringApi extends Service
     * @return \Adyen\Model\Recurring\ScheduleAccountUpdaterResult
     * @throws AdyenException
     */
-    public function scheduleAccountUpdater(\Adyen\Model\Recurring\ScheduleAccountUpdaterRequest $scheduleAccountUpdaterRequest, array $requestOptions = null): \Adyen\Model\Recurring\ScheduleAccountUpdaterResult
+    public function scheduleAccountUpdater(\Adyen\Model\Recurring\ScheduleAccountUpdaterRequest $scheduleAccountUpdaterRequest, ?array $requestOptions = null): \Adyen\Model\Recurring\ScheduleAccountUpdaterResult
     {
         $endpoint = $this->baseURL . "/scheduleAccountUpdater";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $scheduleAccountUpdaterRequest->jsonSerialize(), $requestOptions);
