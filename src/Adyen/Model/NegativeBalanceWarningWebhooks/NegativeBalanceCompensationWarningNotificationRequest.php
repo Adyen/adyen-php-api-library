@@ -259,7 +259,7 @@ class NegativeBalanceCompensationWarningNotificationRequest implements ModelInte
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('data', $data ?? [], null);
         $this->setIfExists('environment', $data ?? [], null);

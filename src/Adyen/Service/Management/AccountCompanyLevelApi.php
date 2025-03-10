@@ -47,7 +47,7 @@ class AccountCompanyLevelApi extends Service
     * @return \Adyen\Model\Management\Company
     * @throws AdyenException
     */
-    public function getCompanyAccount(string $companyId, array $requestOptions = null): \Adyen\Model\Management\Company
+    public function getCompanyAccount(string $companyId, ?array $requestOptions = null): \Adyen\Model\Management\Company
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}'], [$companyId], "/companies/{companyId}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -61,7 +61,7 @@ class AccountCompanyLevelApi extends Service
     * @return \Adyen\Model\Management\ListCompanyResponse
     * @throws AdyenException
     */
-    public function listCompanyAccounts(array $requestOptions = null): \Adyen\Model\Management\ListCompanyResponse
+    public function listCompanyAccounts(?array $requestOptions = null): \Adyen\Model\Management\ListCompanyResponse
     {
         $endpoint = $this->baseURL . "/companies";
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -76,7 +76,7 @@ class AccountCompanyLevelApi extends Service
     * @return \Adyen\Model\Management\ListMerchantResponse
     * @throws AdyenException
     */
-    public function listMerchantAccounts(string $companyId, array $requestOptions = null): \Adyen\Model\Management\ListMerchantResponse
+    public function listMerchantAccounts(string $companyId, ?array $requestOptions = null): \Adyen\Model\Management\ListMerchantResponse
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}'], [$companyId], "/companies/{companyId}/merchants");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);

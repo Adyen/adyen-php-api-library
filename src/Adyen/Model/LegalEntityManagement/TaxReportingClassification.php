@@ -307,7 +307,7 @@ class TaxReportingClassification implements ModelInterface, ArrayAccess, \JsonSe
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('businessType', $data ?? [], null);
         $this->setIfExists('financialInstitutionNumber', $data ?? [], null);

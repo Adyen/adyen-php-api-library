@@ -259,7 +259,7 @@ class TestOutput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('merchantId', $data ?? [], null);
         $this->setIfExists('output', $data ?? [], null);

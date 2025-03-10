@@ -47,7 +47,7 @@ class LegalEntitiesApi extends Service
     * @return \Adyen\Model\LegalEntityManagement\VerificationErrors
     * @throws AdyenException
     */
-    public function checkLegalEntitysVerificationErrors(string $id, array $requestOptions = null): \Adyen\Model\LegalEntityManagement\VerificationErrors
+    public function checkLegalEntitysVerificationErrors(string $id, ?array $requestOptions = null): \Adyen\Model\LegalEntityManagement\VerificationErrors
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/legalEntities/{id}/checkVerificationErrors");
         $response = $this->requestHttp($endpoint, strtolower('POST'), null, $requestOptions);
@@ -62,7 +62,7 @@ class LegalEntitiesApi extends Service
     * @return \Adyen\Model\LegalEntityManagement\DataReviewConfirmationResponse
     * @throws AdyenException
     */
-    public function confirmDataReview(string $id, array $requestOptions = null): \Adyen\Model\LegalEntityManagement\DataReviewConfirmationResponse
+    public function confirmDataReview(string $id, ?array $requestOptions = null): \Adyen\Model\LegalEntityManagement\DataReviewConfirmationResponse
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/legalEntities/{id}/confirmDataReview");
         $response = $this->requestHttp($endpoint, strtolower('POST'), null, $requestOptions);
@@ -77,7 +77,7 @@ class LegalEntitiesApi extends Service
     * @return \Adyen\Model\LegalEntityManagement\LegalEntity
     * @throws AdyenException
     */
-    public function createLegalEntity(\Adyen\Model\LegalEntityManagement\LegalEntityInfoRequiredType $legalEntityInfoRequiredType, array $requestOptions = null): \Adyen\Model\LegalEntityManagement\LegalEntity
+    public function createLegalEntity(\Adyen\Model\LegalEntityManagement\LegalEntityInfoRequiredType $legalEntityInfoRequiredType, ?array $requestOptions = null): \Adyen\Model\LegalEntityManagement\LegalEntity
     {
         $endpoint = $this->baseURL . "/legalEntities";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $legalEntityInfoRequiredType->jsonSerialize(), $requestOptions);
@@ -92,7 +92,7 @@ class LegalEntitiesApi extends Service
     * @return \Adyen\Model\LegalEntityManagement\BusinessLines
     * @throws AdyenException
     */
-    public function getAllBusinessLinesUnderLegalEntity(string $id, array $requestOptions = null): \Adyen\Model\LegalEntityManagement\BusinessLines
+    public function getAllBusinessLinesUnderLegalEntity(string $id, ?array $requestOptions = null): \Adyen\Model\LegalEntityManagement\BusinessLines
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/legalEntities/{id}/businessLines");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -107,7 +107,7 @@ class LegalEntitiesApi extends Service
     * @return \Adyen\Model\LegalEntityManagement\LegalEntity
     * @throws AdyenException
     */
-    public function getLegalEntity(string $id, array $requestOptions = null): \Adyen\Model\LegalEntityManagement\LegalEntity
+    public function getLegalEntity(string $id, ?array $requestOptions = null): \Adyen\Model\LegalEntityManagement\LegalEntity
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/legalEntities/{id}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -123,7 +123,7 @@ class LegalEntitiesApi extends Service
     * @return \Adyen\Model\LegalEntityManagement\LegalEntity
     * @throws AdyenException
     */
-    public function updateLegalEntity(string $id, \Adyen\Model\LegalEntityManagement\LegalEntityInfo $legalEntityInfo, array $requestOptions = null): \Adyen\Model\LegalEntityManagement\LegalEntity
+    public function updateLegalEntity(string $id, \Adyen\Model\LegalEntityManagement\LegalEntityInfo $legalEntityInfo, ?array $requestOptions = null): \Adyen\Model\LegalEntityManagement\LegalEntity
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/legalEntities/{id}");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $legalEntityInfo->jsonSerialize(), $requestOptions);

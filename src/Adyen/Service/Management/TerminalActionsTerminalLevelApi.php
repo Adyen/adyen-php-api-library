@@ -47,7 +47,7 @@ class TerminalActionsTerminalLevelApi extends Service
     * @return \Adyen\Model\Management\ScheduleTerminalActionsResponse
     * @throws AdyenException
     */
-    public function createTerminalAction(\Adyen\Model\Management\ScheduleTerminalActionsRequest $scheduleTerminalActionsRequest, array $requestOptions = null): \Adyen\Model\Management\ScheduleTerminalActionsResponse
+    public function createTerminalAction(\Adyen\Model\Management\ScheduleTerminalActionsRequest $scheduleTerminalActionsRequest, ?array $requestOptions = null): \Adyen\Model\Management\ScheduleTerminalActionsResponse
     {
         $endpoint = $this->baseURL . "/terminals/scheduleActions";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $scheduleTerminalActionsRequest->jsonSerialize(), $requestOptions);

@@ -46,7 +46,7 @@ class TransactionsApi extends Service
     * @return \Adyen\Model\Transfers\TransactionSearchResponse
     * @throws AdyenException
     */
-    public function getAllTransactions(array $requestOptions = null): \Adyen\Model\Transfers\TransactionSearchResponse
+    public function getAllTransactions(?array $requestOptions = null): \Adyen\Model\Transfers\TransactionSearchResponse
     {
         $endpoint = $this->baseURL . "/transactions";
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -61,7 +61,7 @@ class TransactionsApi extends Service
     * @return \Adyen\Model\Transfers\Transaction
     * @throws AdyenException
     */
-    public function getTransaction(string $id, array $requestOptions = null): \Adyen\Model\Transfers\Transaction
+    public function getTransaction(string $id, ?array $requestOptions = null): \Adyen\Model\Transfers\Transaction
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/transactions/{id}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);

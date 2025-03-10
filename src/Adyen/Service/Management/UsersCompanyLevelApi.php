@@ -48,7 +48,7 @@ class UsersCompanyLevelApi extends Service
     * @return \Adyen\Model\Management\CreateCompanyUserResponse
     * @throws AdyenException
     */
-    public function createNewUser(string $companyId, \Adyen\Model\Management\CreateCompanyUserRequest $createCompanyUserRequest, array $requestOptions = null): \Adyen\Model\Management\CreateCompanyUserResponse
+    public function createNewUser(string $companyId, \Adyen\Model\Management\CreateCompanyUserRequest $createCompanyUserRequest, ?array $requestOptions = null): \Adyen\Model\Management\CreateCompanyUserResponse
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}'], [$companyId], "/companies/{companyId}/users");
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $createCompanyUserRequest->jsonSerialize(), $requestOptions);
@@ -64,7 +64,7 @@ class UsersCompanyLevelApi extends Service
     * @return \Adyen\Model\Management\CompanyUser
     * @throws AdyenException
     */
-    public function getUserDetails(string $companyId, string $userId, array $requestOptions = null): \Adyen\Model\Management\CompanyUser
+    public function getUserDetails(string $companyId, string $userId, ?array $requestOptions = null): \Adyen\Model\Management\CompanyUser
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}', '{userId}'], [$companyId, $userId], "/companies/{companyId}/users/{userId}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -79,7 +79,7 @@ class UsersCompanyLevelApi extends Service
     * @return \Adyen\Model\Management\ListCompanyUsersResponse
     * @throws AdyenException
     */
-    public function listUsers(string $companyId, array $requestOptions = null): \Adyen\Model\Management\ListCompanyUsersResponse
+    public function listUsers(string $companyId, ?array $requestOptions = null): \Adyen\Model\Management\ListCompanyUsersResponse
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}'], [$companyId], "/companies/{companyId}/users");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -96,7 +96,7 @@ class UsersCompanyLevelApi extends Service
     * @return \Adyen\Model\Management\CompanyUser
     * @throws AdyenException
     */
-    public function updateUserDetails(string $companyId, string $userId, \Adyen\Model\Management\UpdateCompanyUserRequest $updateCompanyUserRequest, array $requestOptions = null): \Adyen\Model\Management\CompanyUser
+    public function updateUserDetails(string $companyId, string $userId, \Adyen\Model\Management\UpdateCompanyUserRequest $updateCompanyUserRequest, ?array $requestOptions = null): \Adyen\Model\Management\CompanyUser
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}', '{userId}'], [$companyId, $userId], "/companies/{companyId}/users/{userId}");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $updateCompanyUserRequest->jsonSerialize(), $requestOptions);

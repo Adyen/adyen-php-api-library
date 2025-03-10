@@ -49,7 +49,7 @@ class PaymentMethodsMerchantLevelApi extends Service
 
     * @throws AdyenException
     */
-    public function addApplePayDomain(string $merchantId, string $paymentMethodId, \Adyen\Model\Management\ApplePayInfo $applePayInfo, array $requestOptions = null)
+    public function addApplePayDomain(string $merchantId, string $paymentMethodId, \Adyen\Model\Management\ApplePayInfo $applePayInfo, ?array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{paymentMethodId}'], [$merchantId, $paymentMethodId], "/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}/addApplePayDomains");
         $this->requestHttp($endpoint, strtolower('POST'), (array) $applePayInfo->jsonSerialize(), $requestOptions);
@@ -63,7 +63,7 @@ class PaymentMethodsMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\PaymentMethodResponse
     * @throws AdyenException
     */
-    public function getAllPaymentMethods(string $merchantId, array $requestOptions = null): \Adyen\Model\Management\PaymentMethodResponse
+    public function getAllPaymentMethods(string $merchantId, ?array $requestOptions = null): \Adyen\Model\Management\PaymentMethodResponse
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}'], [$merchantId], "/merchants/{merchantId}/paymentMethodSettings");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -79,7 +79,7 @@ class PaymentMethodsMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\ApplePayInfo
     * @throws AdyenException
     */
-    public function getApplePayDomains(string $merchantId, string $paymentMethodId, array $requestOptions = null): \Adyen\Model\Management\ApplePayInfo
+    public function getApplePayDomains(string $merchantId, string $paymentMethodId, ?array $requestOptions = null): \Adyen\Model\Management\ApplePayInfo
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{paymentMethodId}'], [$merchantId, $paymentMethodId], "/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}/getApplePayDomains");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -95,7 +95,7 @@ class PaymentMethodsMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\PaymentMethod
     * @throws AdyenException
     */
-    public function getPaymentMethodDetails(string $merchantId, string $paymentMethodId, array $requestOptions = null): \Adyen\Model\Management\PaymentMethod
+    public function getPaymentMethodDetails(string $merchantId, string $paymentMethodId, ?array $requestOptions = null): \Adyen\Model\Management\PaymentMethod
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{paymentMethodId}'], [$merchantId, $paymentMethodId], "/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -111,7 +111,7 @@ class PaymentMethodsMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\PaymentMethod
     * @throws AdyenException
     */
-    public function requestPaymentMethod(string $merchantId, \Adyen\Model\Management\PaymentMethodSetupInfo $paymentMethodSetupInfo, array $requestOptions = null): \Adyen\Model\Management\PaymentMethod
+    public function requestPaymentMethod(string $merchantId, \Adyen\Model\Management\PaymentMethodSetupInfo $paymentMethodSetupInfo, ?array $requestOptions = null): \Adyen\Model\Management\PaymentMethod
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}'], [$merchantId], "/merchants/{merchantId}/paymentMethodSettings");
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $paymentMethodSetupInfo->jsonSerialize(), $requestOptions);
@@ -128,7 +128,7 @@ class PaymentMethodsMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\PaymentMethod
     * @throws AdyenException
     */
-    public function updatePaymentMethod(string $merchantId, string $paymentMethodId, \Adyen\Model\Management\UpdatePaymentMethodInfo $updatePaymentMethodInfo, array $requestOptions = null): \Adyen\Model\Management\PaymentMethod
+    public function updatePaymentMethod(string $merchantId, string $paymentMethodId, \Adyen\Model\Management\UpdatePaymentMethodInfo $updatePaymentMethodInfo, ?array $requestOptions = null): \Adyen\Model\Management\PaymentMethod
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{paymentMethodId}'], [$merchantId, $paymentMethodId], "/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $updatePaymentMethodInfo->jsonSerialize(), $requestOptions);

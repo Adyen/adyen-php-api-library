@@ -48,7 +48,7 @@ class ClientKeyCompanyLevelApi extends Service
     * @return \Adyen\Model\Management\GenerateClientKeyResponse
     * @throws AdyenException
     */
-    public function generateNewClientKey(string $companyId, string $apiCredentialId, array $requestOptions = null): \Adyen\Model\Management\GenerateClientKeyResponse
+    public function generateNewClientKey(string $companyId, string $apiCredentialId, ?array $requestOptions = null): \Adyen\Model\Management\GenerateClientKeyResponse
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}', '{apiCredentialId}'], [$companyId, $apiCredentialId], "/companies/{companyId}/apiCredentials/{apiCredentialId}/generateClientKey");
         $response = $this->requestHttp($endpoint, strtolower('POST'), null, $requestOptions);

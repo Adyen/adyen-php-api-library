@@ -48,7 +48,7 @@ class WebhooksCompanyLevelApi extends Service
     * @return \Adyen\Model\Management\GenerateHmacKeyResponse
     * @throws AdyenException
     */
-    public function generateHmacKey(string $companyId, string $webhookId, array $requestOptions = null): \Adyen\Model\Management\GenerateHmacKeyResponse
+    public function generateHmacKey(string $companyId, string $webhookId, ?array $requestOptions = null): \Adyen\Model\Management\GenerateHmacKeyResponse
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}', '{webhookId}'], [$companyId, $webhookId], "/companies/{companyId}/webhooks/{webhookId}/generateHmac");
         $response = $this->requestHttp($endpoint, strtolower('POST'), null, $requestOptions);
@@ -64,7 +64,7 @@ class WebhooksCompanyLevelApi extends Service
     * @return \Adyen\Model\Management\Webhook
     * @throws AdyenException
     */
-    public function getWebhook(string $companyId, string $webhookId, array $requestOptions = null): \Adyen\Model\Management\Webhook
+    public function getWebhook(string $companyId, string $webhookId, ?array $requestOptions = null): \Adyen\Model\Management\Webhook
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}', '{webhookId}'], [$companyId, $webhookId], "/companies/{companyId}/webhooks/{webhookId}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -79,7 +79,7 @@ class WebhooksCompanyLevelApi extends Service
     * @return \Adyen\Model\Management\ListWebhooksResponse
     * @throws AdyenException
     */
-    public function listAllWebhooks(string $companyId, array $requestOptions = null): \Adyen\Model\Management\ListWebhooksResponse
+    public function listAllWebhooks(string $companyId, ?array $requestOptions = null): \Adyen\Model\Management\ListWebhooksResponse
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}'], [$companyId], "/companies/{companyId}/webhooks");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -95,7 +95,7 @@ class WebhooksCompanyLevelApi extends Service
 
     * @throws AdyenException
     */
-    public function removeWebhook(string $companyId, string $webhookId, array $requestOptions = null)
+    public function removeWebhook(string $companyId, string $webhookId, ?array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}', '{webhookId}'], [$companyId, $webhookId], "/companies/{companyId}/webhooks/{webhookId}");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
@@ -110,7 +110,7 @@ class WebhooksCompanyLevelApi extends Service
     * @return \Adyen\Model\Management\Webhook
     * @throws AdyenException
     */
-    public function setUpWebhook(string $companyId, \Adyen\Model\Management\CreateCompanyWebhookRequest $createCompanyWebhookRequest, array $requestOptions = null): \Adyen\Model\Management\Webhook
+    public function setUpWebhook(string $companyId, \Adyen\Model\Management\CreateCompanyWebhookRequest $createCompanyWebhookRequest, ?array $requestOptions = null): \Adyen\Model\Management\Webhook
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}'], [$companyId], "/companies/{companyId}/webhooks");
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $createCompanyWebhookRequest->jsonSerialize(), $requestOptions);
@@ -127,7 +127,7 @@ class WebhooksCompanyLevelApi extends Service
     * @return \Adyen\Model\Management\TestWebhookResponse
     * @throws AdyenException
     */
-    public function testWebhook(string $companyId, string $webhookId, \Adyen\Model\Management\TestCompanyWebhookRequest $testCompanyWebhookRequest, array $requestOptions = null): \Adyen\Model\Management\TestWebhookResponse
+    public function testWebhook(string $companyId, string $webhookId, \Adyen\Model\Management\TestCompanyWebhookRequest $testCompanyWebhookRequest, ?array $requestOptions = null): \Adyen\Model\Management\TestWebhookResponse
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}', '{webhookId}'], [$companyId, $webhookId], "/companies/{companyId}/webhooks/{webhookId}/test");
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $testCompanyWebhookRequest->jsonSerialize(), $requestOptions);
@@ -144,7 +144,7 @@ class WebhooksCompanyLevelApi extends Service
     * @return \Adyen\Model\Management\Webhook
     * @throws AdyenException
     */
-    public function updateWebhook(string $companyId, string $webhookId, \Adyen\Model\Management\UpdateCompanyWebhookRequest $updateCompanyWebhookRequest, array $requestOptions = null): \Adyen\Model\Management\Webhook
+    public function updateWebhook(string $companyId, string $webhookId, \Adyen\Model\Management\UpdateCompanyWebhookRequest $updateCompanyWebhookRequest, ?array $requestOptions = null): \Adyen\Model\Management\Webhook
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}', '{webhookId}'], [$companyId, $webhookId], "/companies/{companyId}/webhooks/{webhookId}");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $updateCompanyWebhookRequest->jsonSerialize(), $requestOptions);

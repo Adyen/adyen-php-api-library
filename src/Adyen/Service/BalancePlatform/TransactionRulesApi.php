@@ -47,7 +47,7 @@ class TransactionRulesApi extends Service
     * @return \Adyen\Model\BalancePlatform\TransactionRule
     * @throws AdyenException
     */
-    public function createTransactionRule(\Adyen\Model\BalancePlatform\TransactionRuleInfo $transactionRuleInfo, array $requestOptions = null): \Adyen\Model\BalancePlatform\TransactionRule
+    public function createTransactionRule(\Adyen\Model\BalancePlatform\TransactionRuleInfo $transactionRuleInfo, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\TransactionRule
     {
         $endpoint = $this->baseURL . "/transactionRules";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $transactionRuleInfo->jsonSerialize(), $requestOptions);
@@ -62,7 +62,7 @@ class TransactionRulesApi extends Service
     * @return \Adyen\Model\BalancePlatform\TransactionRule
     * @throws AdyenException
     */
-    public function deleteTransactionRule(string $transactionRuleId, array $requestOptions = null): \Adyen\Model\BalancePlatform\TransactionRule
+    public function deleteTransactionRule(string $transactionRuleId, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\TransactionRule
     {
         $endpoint = $this->baseURL . str_replace(['{transactionRuleId}'], [$transactionRuleId], "/transactionRules/{transactionRuleId}");
         $response = $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
@@ -77,7 +77,7 @@ class TransactionRulesApi extends Service
     * @return \Adyen\Model\BalancePlatform\TransactionRuleResponse
     * @throws AdyenException
     */
-    public function getTransactionRule(string $transactionRuleId, array $requestOptions = null): \Adyen\Model\BalancePlatform\TransactionRuleResponse
+    public function getTransactionRule(string $transactionRuleId, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\TransactionRuleResponse
     {
         $endpoint = $this->baseURL . str_replace(['{transactionRuleId}'], [$transactionRuleId], "/transactionRules/{transactionRuleId}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -93,7 +93,7 @@ class TransactionRulesApi extends Service
     * @return \Adyen\Model\BalancePlatform\TransactionRule
     * @throws AdyenException
     */
-    public function updateTransactionRule(string $transactionRuleId, \Adyen\Model\BalancePlatform\TransactionRuleInfo $transactionRuleInfo, array $requestOptions = null): \Adyen\Model\BalancePlatform\TransactionRule
+    public function updateTransactionRule(string $transactionRuleId, \Adyen\Model\BalancePlatform\TransactionRuleInfo $transactionRuleInfo, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\TransactionRule
     {
         $endpoint = $this->baseURL . str_replace(['{transactionRuleId}'], [$transactionRuleId], "/transactionRules/{transactionRuleId}");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $transactionRuleInfo->jsonSerialize(), $requestOptions);

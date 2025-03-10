@@ -48,7 +48,7 @@ class AndroidFilesCompanyLevelApi extends Service
     * @return \Adyen\Model\Management\AndroidApp
     * @throws AdyenException
     */
-    public function getAndroidApp(string $companyId, string $id, array $requestOptions = null): \Adyen\Model\Management\AndroidApp
+    public function getAndroidApp(string $companyId, string $id, ?array $requestOptions = null): \Adyen\Model\Management\AndroidApp
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}', '{id}'], [$companyId, $id], "/companies/{companyId}/androidApps/{id}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -63,7 +63,7 @@ class AndroidFilesCompanyLevelApi extends Service
     * @return \Adyen\Model\Management\AndroidAppsResponse
     * @throws AdyenException
     */
-    public function listAndroidApps(string $companyId, array $requestOptions = null): \Adyen\Model\Management\AndroidAppsResponse
+    public function listAndroidApps(string $companyId, ?array $requestOptions = null): \Adyen\Model\Management\AndroidAppsResponse
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}'], [$companyId], "/companies/{companyId}/androidApps");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -78,7 +78,7 @@ class AndroidFilesCompanyLevelApi extends Service
     * @return \Adyen\Model\Management\AndroidCertificatesResponse
     * @throws AdyenException
     */
-    public function listAndroidCertificates(string $companyId, array $requestOptions = null): \Adyen\Model\Management\AndroidCertificatesResponse
+    public function listAndroidCertificates(string $companyId, ?array $requestOptions = null): \Adyen\Model\Management\AndroidCertificatesResponse
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}'], [$companyId], "/companies/{companyId}/androidCertificates");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -94,7 +94,7 @@ class AndroidFilesCompanyLevelApi extends Service
     * @return \Adyen\Model\Management\ReprocessAndroidAppResponse
     * @throws AdyenException
     */
-    public function reprocessAndroidApp(string $companyId, string $id, array $requestOptions = null): \Adyen\Model\Management\ReprocessAndroidAppResponse
+    public function reprocessAndroidApp(string $companyId, string $id, ?array $requestOptions = null): \Adyen\Model\Management\ReprocessAndroidAppResponse
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}', '{id}'], [$companyId, $id], "/companies/{companyId}/androidApps/{id}");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), null, $requestOptions);
@@ -109,7 +109,7 @@ class AndroidFilesCompanyLevelApi extends Service
     * @return \Adyen\Model\Management\UploadAndroidAppResponse
     * @throws AdyenException
     */
-    public function uploadAndroidApp(string $companyId, array $requestOptions = null): \Adyen\Model\Management\UploadAndroidAppResponse
+    public function uploadAndroidApp(string $companyId, ?array $requestOptions = null): \Adyen\Model\Management\UploadAndroidAppResponse
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}'], [$companyId], "/companies/{companyId}/androidApps");
         $response = $this->requestHttp($endpoint, strtolower('POST'), null, $requestOptions);
@@ -124,7 +124,7 @@ class AndroidFilesCompanyLevelApi extends Service
     * @return \Adyen\Model\Management\UploadAndroidCertificateResponse
     * @throws AdyenException
     */
-    public function uploadAndroidCertificate(string $companyId, array $requestOptions = null): \Adyen\Model\Management\UploadAndroidCertificateResponse
+    public function uploadAndroidCertificate(string $companyId, ?array $requestOptions = null): \Adyen\Model\Management\UploadAndroidCertificateResponse
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}'], [$companyId], "/companies/{companyId}/androidCertificates");
         $response = $this->requestHttp($endpoint, strtolower('POST'), null, $requestOptions);
