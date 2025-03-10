@@ -427,7 +427,7 @@ class TransferNotificationMerchantData implements ModelInterface, ArrayAccess, \
     /**
      * Sets merchantId
      *
-     * @param string|null $merchantId The merchant identifier.
+     * @param string|null $merchantId The unique identifier of the merchant.
      *
      * @return self
      */
@@ -475,7 +475,7 @@ class TransferNotificationMerchantData implements ModelInterface, ArrayAccess, \
     /**
      * Sets postalCode
      *
-     * @param string|null $postalCode The merchant postal code.
+     * @param string|null $postalCode The postal code of the merchant.
      *
      * @return self
      */

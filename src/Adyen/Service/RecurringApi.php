@@ -42,6 +42,7 @@ class RecurringApi extends Service
     /**
     * Create new permits linked to a recurring contract.
     *
+    * @deprecated since Adyen Recurring API (deprecated) v68.
     * @param \Adyen\Model\Recurring\CreatePermitRequest $createPermitRequest
     * @param array|null $requestOptions
     * @return \Adyen\Model\Recurring\CreatePermitResult
@@ -57,6 +58,7 @@ class RecurringApi extends Service
     /**
     * Disable stored payment details
     *
+    * @deprecated since Adyen Recurring API (deprecated) v68.
     * @param \Adyen\Model\Recurring\DisableRequest $disableRequest
     * @param array|null $requestOptions
     * @return \Adyen\Model\Recurring\DisableResult
@@ -72,6 +74,7 @@ class RecurringApi extends Service
     /**
     * Disable an existing permit.
     *
+    * @deprecated since Adyen Recurring API (deprecated) v68.
     * @param \Adyen\Model\Recurring\DisablePermitRequest $disablePermitRequest
     * @param array|null $requestOptions
     * @return \Adyen\Model\Recurring\DisablePermitResult
@@ -87,6 +90,7 @@ class RecurringApi extends Service
     /**
     * Get stored payment details
     *
+    * @deprecated since Adyen Recurring API (deprecated) v68.
     * @param \Adyen\Model\Recurring\RecurringDetailsRequest $recurringDetailsRequest
     * @param array|null $requestOptions
     * @return \Adyen\Model\Recurring\RecurringDetailsResult
@@ -102,6 +106,7 @@ class RecurringApi extends Service
     /**
     * Ask issuer to notify the shopper
     *
+    * @deprecated since Adyen Recurring API (deprecated) v68.
     * @param \Adyen\Model\Recurring\NotifyShopperRequest $notifyShopperRequest
     * @param array|null $requestOptions
     * @return \Adyen\Model\Recurring\NotifyShopperResult
@@ -117,6 +122,7 @@ class RecurringApi extends Service
     /**
     * Schedule running the Account Updater
     *
+    * @deprecated since Adyen Recurring API (deprecated) v68.
     * @param \Adyen\Model\Recurring\ScheduleAccountUpdaterRequest $scheduleAccountUpdaterRequest
     * @param array|null $requestOptions
     * @return \Adyen\Model\Recurring\ScheduleAccountUpdaterResult
