@@ -1,0 +1,47 @@
+name: Feature request
+description: Request a new feature or improvement. See open issues before requesting.
+title: "[Feature]: "
+labels: ["Feature"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: "#### Is your feature request related to a problem? Please describe."
+
+  - type: input
+    id: feature-summary
+    attributes:
+      label: "Feature summary"
+      description: "Provide a short description of the feature request."
+      placeholder: "Example: Add support for donation event."
+
+  - type: textarea
+    id: problem-statement
+    attributes:
+      label: "Problem statement"
+      description: "Explain the problem this feature aims to solve."
+      placeholder: "Example: I have an issue with consuming the donations webhook."
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: "Proposed solution"
+      description: "Describe how you want this feature to work."
+      placeholder: "Example: Add Donation enum to ..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: "Alternatives considered"
+      description: "Describe any alternative solutions you've explored."
+      placeholder: "Example: I tried to extend the current namespace but ..."
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: "Additional context"
+      description: "Provide any extra details, references, or screenshots."
