@@ -46,14 +46,13 @@ class PaymentMethodsMerchantLevelApi extends Service
     * @param string $paymentMethodId
     * @param \Adyen\Model\Management\ApplePayInfo $applePayInfo
     * @param array|null $requestOptions
-    
+
     * @throws AdyenException
     */
     public function addApplePayDomain(string $merchantId, string $paymentMethodId, \Adyen\Model\Management\ApplePayInfo $applePayInfo, array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{paymentMethodId}'], [$merchantId, $paymentMethodId], "/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}/addApplePayDomains");
         $this->requestHttp($endpoint, strtolower('POST'), (array) $applePayInfo->jsonSerialize(), $requestOptions);
-        
     }
 
     /**
