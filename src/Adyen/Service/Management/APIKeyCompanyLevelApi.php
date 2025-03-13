@@ -48,7 +48,7 @@ class APIKeyCompanyLevelApi extends Service
     * @return \Adyen\Model\Management\GenerateApiKeyResponse
     * @throws AdyenException
     */
-    public function generateNewApiKey(string $companyId, string $apiCredentialId, array $requestOptions = null): \Adyen\Model\Management\GenerateApiKeyResponse
+    public function generateNewApiKey(string $companyId, string $apiCredentialId, ?array $requestOptions = null): \Adyen\Model\Management\GenerateApiKeyResponse
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}', '{apiCredentialId}'], [$companyId, $apiCredentialId], "/companies/{companyId}/apiCredentials/{apiCredentialId}/generateApiKey");
         $response = $this->requestHttp($endpoint, strtolower('POST'), null, $requestOptions);

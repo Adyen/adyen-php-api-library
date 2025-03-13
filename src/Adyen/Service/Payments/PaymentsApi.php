@@ -47,7 +47,7 @@ class PaymentsApi extends Service
     * @return \Adyen\Model\Payments\PaymentResult
     * @throws AdyenException
     */
-    public function authorise(\Adyen\Model\Payments\PaymentRequest $paymentRequest, array $requestOptions = null): \Adyen\Model\Payments\PaymentResult
+    public function authorise(\Adyen\Model\Payments\PaymentRequest $paymentRequest, ?array $requestOptions = null): \Adyen\Model\Payments\PaymentResult
     {
         $endpoint = $this->baseURL . "/authorise";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $paymentRequest->jsonSerialize(), $requestOptions);
@@ -62,7 +62,7 @@ class PaymentsApi extends Service
     * @return \Adyen\Model\Payments\PaymentResult
     * @throws AdyenException
     */
-    public function authorise3d(\Adyen\Model\Payments\PaymentRequest3d $paymentRequest3d, array $requestOptions = null): \Adyen\Model\Payments\PaymentResult
+    public function authorise3d(\Adyen\Model\Payments\PaymentRequest3d $paymentRequest3d, ?array $requestOptions = null): \Adyen\Model\Payments\PaymentResult
     {
         $endpoint = $this->baseURL . "/authorise3d";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $paymentRequest3d->jsonSerialize(), $requestOptions);
@@ -77,7 +77,7 @@ class PaymentsApi extends Service
     * @return \Adyen\Model\Payments\PaymentResult
     * @throws AdyenException
     */
-    public function authorise3ds2(\Adyen\Model\Payments\PaymentRequest3ds2 $paymentRequest3ds2, array $requestOptions = null): \Adyen\Model\Payments\PaymentResult
+    public function authorise3ds2(\Adyen\Model\Payments\PaymentRequest3ds2 $paymentRequest3ds2, ?array $requestOptions = null): \Adyen\Model\Payments\PaymentResult
     {
         $endpoint = $this->baseURL . "/authorise3ds2";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $paymentRequest3ds2->jsonSerialize(), $requestOptions);
@@ -92,7 +92,7 @@ class PaymentsApi extends Service
     * @return \Adyen\Model\Payments\AuthenticationResultResponse
     * @throws AdyenException
     */
-    public function getAuthenticationResult(\Adyen\Model\Payments\AuthenticationResultRequest $authenticationResultRequest, array $requestOptions = null): \Adyen\Model\Payments\AuthenticationResultResponse
+    public function getAuthenticationResult(\Adyen\Model\Payments\AuthenticationResultRequest $authenticationResultRequest, ?array $requestOptions = null): \Adyen\Model\Payments\AuthenticationResultResponse
     {
         $endpoint = $this->baseURL . "/getAuthenticationResult";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $authenticationResultRequest->jsonSerialize(), $requestOptions);
@@ -107,7 +107,7 @@ class PaymentsApi extends Service
     * @return \Adyen\Model\Payments\ThreeDS2ResultResponse
     * @throws AdyenException
     */
-    public function retrieve3ds2Result(\Adyen\Model\Payments\ThreeDS2ResultRequest $threeDS2ResultRequest, array $requestOptions = null): \Adyen\Model\Payments\ThreeDS2ResultResponse
+    public function retrieve3ds2Result(\Adyen\Model\Payments\ThreeDS2ResultRequest $threeDS2ResultRequest, ?array $requestOptions = null): \Adyen\Model\Payments\ThreeDS2ResultResponse
     {
         $endpoint = $this->baseURL . "/retrieve3ds2Result";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $threeDS2ResultRequest->jsonSerialize(), $requestOptions);

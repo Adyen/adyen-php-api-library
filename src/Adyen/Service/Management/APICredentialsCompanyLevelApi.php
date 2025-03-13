@@ -48,7 +48,7 @@ class APICredentialsCompanyLevelApi extends Service
     * @return \Adyen\Model\Management\CreateCompanyApiCredentialResponse
     * @throws AdyenException
     */
-    public function createApiCredential(string $companyId, \Adyen\Model\Management\CreateCompanyApiCredentialRequest $createCompanyApiCredentialRequest, array $requestOptions = null): \Adyen\Model\Management\CreateCompanyApiCredentialResponse
+    public function createApiCredential(string $companyId, \Adyen\Model\Management\CreateCompanyApiCredentialRequest $createCompanyApiCredentialRequest, ?array $requestOptions = null): \Adyen\Model\Management\CreateCompanyApiCredentialResponse
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}'], [$companyId], "/companies/{companyId}/apiCredentials");
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $createCompanyApiCredentialRequest->jsonSerialize(), $requestOptions);
@@ -64,7 +64,7 @@ class APICredentialsCompanyLevelApi extends Service
     * @return \Adyen\Model\Management\CompanyApiCredential
     * @throws AdyenException
     */
-    public function getApiCredential(string $companyId, string $apiCredentialId, array $requestOptions = null): \Adyen\Model\Management\CompanyApiCredential
+    public function getApiCredential(string $companyId, string $apiCredentialId, ?array $requestOptions = null): \Adyen\Model\Management\CompanyApiCredential
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}', '{apiCredentialId}'], [$companyId, $apiCredentialId], "/companies/{companyId}/apiCredentials/{apiCredentialId}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -79,7 +79,7 @@ class APICredentialsCompanyLevelApi extends Service
     * @return \Adyen\Model\Management\ListCompanyApiCredentialsResponse
     * @throws AdyenException
     */
-    public function listApiCredentials(string $companyId, array $requestOptions = null): \Adyen\Model\Management\ListCompanyApiCredentialsResponse
+    public function listApiCredentials(string $companyId, ?array $requestOptions = null): \Adyen\Model\Management\ListCompanyApiCredentialsResponse
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}'], [$companyId], "/companies/{companyId}/apiCredentials");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -96,7 +96,7 @@ class APICredentialsCompanyLevelApi extends Service
     * @return \Adyen\Model\Management\CompanyApiCredential
     * @throws AdyenException
     */
-    public function updateApiCredential(string $companyId, string $apiCredentialId, \Adyen\Model\Management\UpdateCompanyApiCredentialRequest $updateCompanyApiCredentialRequest, array $requestOptions = null): \Adyen\Model\Management\CompanyApiCredential
+    public function updateApiCredential(string $companyId, string $apiCredentialId, \Adyen\Model\Management\UpdateCompanyApiCredentialRequest $updateCompanyApiCredentialRequest, ?array $requestOptions = null): \Adyen\Model\Management\CompanyApiCredential
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}', '{apiCredentialId}'], [$companyId, $apiCredentialId], "/companies/{companyId}/apiCredentials/{apiCredentialId}");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $updateCompanyApiCredentialRequest->jsonSerialize(), $requestOptions);
