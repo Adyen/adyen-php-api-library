@@ -45,6 +45,7 @@ class MerchantPurchaseData implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPITypes = [
         'airline' => '\Adyen\Model\TransferWebhooks\Airline',
+        'lodging' => '\Adyen\Model\TransferWebhooks\Lodging[]',
         'type' => 'string'
     ];
 
@@ -57,6 +58,7 @@ class MerchantPurchaseData implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPIFormats = [
         'airline' => null,
+        'lodging' => null,
         'type' => null
     ];
 
@@ -67,6 +69,7 @@ class MerchantPurchaseData implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPINullables = [
         'airline' => false,
+        'lodging' => false,
         'type' => false
     ];
 
@@ -157,6 +160,7 @@ class MerchantPurchaseData implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $attributeMap = [
         'airline' => 'airline',
+        'lodging' => 'lodging',
         'type' => 'type'
     ];
 
@@ -167,6 +171,7 @@ class MerchantPurchaseData implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $setters = [
         'airline' => 'setAirline',
+        'lodging' => 'setLodging',
         'type' => 'setType'
     ];
 
@@ -177,6 +182,7 @@ class MerchantPurchaseData implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $getters = [
         'airline' => 'getAirline',
+        'lodging' => 'getLodging',
         'type' => 'getType'
     ];
 
@@ -250,6 +256,7 @@ class MerchantPurchaseData implements ModelInterface, ArrayAccess, \JsonSerializ
     public function __construct(array $data = null)
     {
         $this->setIfExists('airline', $data ?? [], null);
+        $this->setIfExists('lodging', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -327,6 +334,30 @@ class MerchantPurchaseData implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setAirline($airline)
     {
         $this->container['airline'] = $airline;
+
+        return $this;
+    }
+
+    /**
+     * Gets lodging
+     *
+     * @return \Adyen\Model\TransferWebhooks\Lodging[]|null
+     */
+    public function getLodging()
+    {
+        return $this->container['lodging'];
+    }
+
+    /**
+     * Sets lodging
+     *
+     * @param \Adyen\Model\TransferWebhooks\Lodging[]|null $lodging Lodging information.
+     *
+     * @return self
+     */
+    public function setLodging($lodging)
+    {
+        $this->container['lodging'] = $lodging;
 
         return $this;
     }
