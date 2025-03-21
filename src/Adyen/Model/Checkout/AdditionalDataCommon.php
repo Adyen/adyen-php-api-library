@@ -44,6 +44,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var string[]
       */
     protected static $openAPITypes = [
+        'requestedTestAcquirerResponseCode' => 'string',
         'requestedTestErrorResponseCode' => 'string',
         'allowPartialAuth' => 'string',
         'authorisationType' => 'string',
@@ -72,6 +73,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'requestedTestAcquirerResponseCode' => null,
         'requestedTestErrorResponseCode' => null,
         'allowPartialAuth' => null,
         'authorisationType' => null,
@@ -98,6 +100,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'requestedTestAcquirerResponseCode' => false,
         'requestedTestErrorResponseCode' => false,
         'allowPartialAuth' => false,
         'authorisationType' => false,
@@ -204,6 +207,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $attributeMap = [
+        'requestedTestAcquirerResponseCode' => 'RequestedTestAcquirerResponseCode',
         'requestedTestErrorResponseCode' => 'RequestedTestErrorResponseCode',
         'allowPartialAuth' => 'allowPartialAuth',
         'authorisationType' => 'authorisationType',
@@ -230,6 +234,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $setters = [
+        'requestedTestAcquirerResponseCode' => 'setRequestedTestAcquirerResponseCode',
         'requestedTestErrorResponseCode' => 'setRequestedTestErrorResponseCode',
         'allowPartialAuth' => 'setAllowPartialAuth',
         'authorisationType' => 'setAuthorisationType',
@@ -256,6 +261,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $getters = [
+        'requestedTestAcquirerResponseCode' => 'getRequestedTestAcquirerResponseCode',
         'requestedTestErrorResponseCode' => 'getRequestedTestErrorResponseCode',
         'allowPartialAuth' => 'getAllowPartialAuth',
         'authorisationType' => 'getAuthorisationType',
@@ -345,8 +351,9 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
+        $this->setIfExists('requestedTestAcquirerResponseCode', $data ?? [], null);
         $this->setIfExists('requestedTestErrorResponseCode', $data ?? [], null);
         $this->setIfExists('allowPartialAuth', $data ?? [], null);
         $this->setIfExists('authorisationType', $data ?? [], null);
@@ -417,6 +424,30 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets requestedTestAcquirerResponseCode
+     *
+     * @return string|null
+     */
+    public function getRequestedTestAcquirerResponseCode()
+    {
+        return $this->container['requestedTestAcquirerResponseCode'];
+    }
+
+    /**
+     * Sets requestedTestAcquirerResponseCode
+     *
+     * @param string|null $requestedTestAcquirerResponseCode Triggers test scenarios that allow to replicate certain acquirer response codes. See [Testing result codes and refusal reasons](https://docs.adyen.com/development-resources/testing/result-codes/) to learn about the possible values, and the `refusalReason` values you can trigger.
+     *
+     * @return self
+     */
+    public function setRequestedTestAcquirerResponseCode($requestedTestAcquirerResponseCode)
+    {
+        $this->container['requestedTestAcquirerResponseCode'] = $requestedTestAcquirerResponseCode;
+
+        return $this;
+    }
 
     /**
      * Gets requestedTestErrorResponseCode

@@ -47,7 +47,7 @@ class PaymentsApi extends Service
     * @return \Adyen\Model\Checkout\CardDetailsResponse
     * @throws AdyenException
     */
-    public function cardDetails(\Adyen\Model\Checkout\CardDetailsRequest $cardDetailsRequest, array $requestOptions = null): \Adyen\Model\Checkout\CardDetailsResponse
+    public function cardDetails(\Adyen\Model\Checkout\CardDetailsRequest $cardDetailsRequest, ?array $requestOptions = null): \Adyen\Model\Checkout\CardDetailsResponse
     {
         $endpoint = $this->baseURL . "/cardDetails";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $cardDetailsRequest->jsonSerialize(), $requestOptions);
@@ -62,7 +62,7 @@ class PaymentsApi extends Service
     * @return \Adyen\Model\Checkout\SessionResultResponse
     * @throws AdyenException
     */
-    public function getResultOfPaymentSession(string $sessionId, array $requestOptions = null): \Adyen\Model\Checkout\SessionResultResponse
+    public function getResultOfPaymentSession(string $sessionId, ?array $requestOptions = null): \Adyen\Model\Checkout\SessionResultResponse
     {
         $endpoint = $this->baseURL . str_replace(['{sessionId}'], [$sessionId], "/sessions/{sessionId}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -77,7 +77,7 @@ class PaymentsApi extends Service
     * @return \Adyen\Model\Checkout\PaymentMethodsResponse
     * @throws AdyenException
     */
-    public function paymentMethods(\Adyen\Model\Checkout\PaymentMethodsRequest $paymentMethodsRequest, array $requestOptions = null): \Adyen\Model\Checkout\PaymentMethodsResponse
+    public function paymentMethods(\Adyen\Model\Checkout\PaymentMethodsRequest $paymentMethodsRequest, ?array $requestOptions = null): \Adyen\Model\Checkout\PaymentMethodsResponse
     {
         $endpoint = $this->baseURL . "/paymentMethods";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $paymentMethodsRequest->jsonSerialize(), $requestOptions);
@@ -92,7 +92,7 @@ class PaymentsApi extends Service
     * @return \Adyen\Model\Checkout\PaymentResponse
     * @throws AdyenException
     */
-    public function payments(\Adyen\Model\Checkout\PaymentRequest $paymentRequest, array $requestOptions = null): \Adyen\Model\Checkout\PaymentResponse
+    public function payments(\Adyen\Model\Checkout\PaymentRequest $paymentRequest, ?array $requestOptions = null): \Adyen\Model\Checkout\PaymentResponse
     {
         $endpoint = $this->baseURL . "/payments";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $paymentRequest->jsonSerialize(), $requestOptions);
@@ -107,7 +107,7 @@ class PaymentsApi extends Service
     * @return \Adyen\Model\Checkout\PaymentDetailsResponse
     * @throws AdyenException
     */
-    public function paymentsDetails(\Adyen\Model\Checkout\PaymentDetailsRequest $paymentDetailsRequest, array $requestOptions = null): \Adyen\Model\Checkout\PaymentDetailsResponse
+    public function paymentsDetails(\Adyen\Model\Checkout\PaymentDetailsRequest $paymentDetailsRequest, ?array $requestOptions = null): \Adyen\Model\Checkout\PaymentDetailsResponse
     {
         $endpoint = $this->baseURL . "/payments/details";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $paymentDetailsRequest->jsonSerialize(), $requestOptions);
@@ -122,7 +122,7 @@ class PaymentsApi extends Service
     * @return \Adyen\Model\Checkout\CreateCheckoutSessionResponse
     * @throws AdyenException
     */
-    public function sessions(\Adyen\Model\Checkout\CreateCheckoutSessionRequest $createCheckoutSessionRequest, array $requestOptions = null): \Adyen\Model\Checkout\CreateCheckoutSessionResponse
+    public function sessions(\Adyen\Model\Checkout\CreateCheckoutSessionRequest $createCheckoutSessionRequest, ?array $requestOptions = null): \Adyen\Model\Checkout\CreateCheckoutSessionResponse
     {
         $endpoint = $this->baseURL . "/sessions";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $createCheckoutSessionRequest->jsonSerialize(), $requestOptions);

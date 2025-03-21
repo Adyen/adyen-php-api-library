@@ -48,7 +48,7 @@ class PCIQuestionnairesApi extends Service
     * @return \Adyen\Model\LegalEntityManagement\CalculatePciStatusResponse
     * @throws AdyenException
     */
-    public function calculatePciStatusOfLegalEntity(string $id, \Adyen\Model\LegalEntityManagement\CalculatePciStatusRequest $calculatePciStatusRequest, array $requestOptions = null): \Adyen\Model\LegalEntityManagement\CalculatePciStatusResponse
+    public function calculatePciStatusOfLegalEntity(string $id, \Adyen\Model\LegalEntityManagement\CalculatePciStatusRequest $calculatePciStatusRequest, ?array $requestOptions = null): \Adyen\Model\LegalEntityManagement\CalculatePciStatusResponse
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/legalEntities/{id}/pciQuestionnaires/signingRequired");
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $calculatePciStatusRequest->jsonSerialize(), $requestOptions);
@@ -64,7 +64,7 @@ class PCIQuestionnairesApi extends Service
     * @return \Adyen\Model\LegalEntityManagement\GeneratePciDescriptionResponse
     * @throws AdyenException
     */
-    public function generatePciQuestionnaire(string $id, \Adyen\Model\LegalEntityManagement\GeneratePciDescriptionRequest $generatePciDescriptionRequest, array $requestOptions = null): \Adyen\Model\LegalEntityManagement\GeneratePciDescriptionResponse
+    public function generatePciQuestionnaire(string $id, \Adyen\Model\LegalEntityManagement\GeneratePciDescriptionRequest $generatePciDescriptionRequest, ?array $requestOptions = null): \Adyen\Model\LegalEntityManagement\GeneratePciDescriptionResponse
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/legalEntities/{id}/pciQuestionnaires/generatePciTemplates");
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $generatePciDescriptionRequest->jsonSerialize(), $requestOptions);
@@ -80,7 +80,7 @@ class PCIQuestionnairesApi extends Service
     * @return \Adyen\Model\LegalEntityManagement\GetPciQuestionnaireResponse
     * @throws AdyenException
     */
-    public function getPciQuestionnaire(string $id, string $pciid, array $requestOptions = null): \Adyen\Model\LegalEntityManagement\GetPciQuestionnaireResponse
+    public function getPciQuestionnaire(string $id, string $pciid, ?array $requestOptions = null): \Adyen\Model\LegalEntityManagement\GetPciQuestionnaireResponse
     {
         $endpoint = $this->baseURL . str_replace(['{id}', '{pciid}'], [$id, $pciid], "/legalEntities/{id}/pciQuestionnaires/{pciid}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -95,7 +95,7 @@ class PCIQuestionnairesApi extends Service
     * @return \Adyen\Model\LegalEntityManagement\GetPciQuestionnaireInfosResponse
     * @throws AdyenException
     */
-    public function getPciQuestionnaireDetails(string $id, array $requestOptions = null): \Adyen\Model\LegalEntityManagement\GetPciQuestionnaireInfosResponse
+    public function getPciQuestionnaireDetails(string $id, ?array $requestOptions = null): \Adyen\Model\LegalEntityManagement\GetPciQuestionnaireInfosResponse
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/legalEntities/{id}/pciQuestionnaires");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -111,7 +111,7 @@ class PCIQuestionnairesApi extends Service
     * @return \Adyen\Model\LegalEntityManagement\PciSigningResponse
     * @throws AdyenException
     */
-    public function signPciQuestionnaire(string $id, \Adyen\Model\LegalEntityManagement\PciSigningRequest $pciSigningRequest, array $requestOptions = null): \Adyen\Model\LegalEntityManagement\PciSigningResponse
+    public function signPciQuestionnaire(string $id, \Adyen\Model\LegalEntityManagement\PciSigningRequest $pciSigningRequest, ?array $requestOptions = null): \Adyen\Model\LegalEntityManagement\PciSigningResponse
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/legalEntities/{id}/pciQuestionnaires/signPciTemplates");
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $pciSigningRequest->jsonSerialize(), $requestOptions);

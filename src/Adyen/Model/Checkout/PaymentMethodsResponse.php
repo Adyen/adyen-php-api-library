@@ -45,7 +45,7 @@ class PaymentMethodsResponse implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPITypes = [
         'paymentMethods' => '\Adyen\Model\Checkout\PaymentMethod[]',
-        'storedPaymentMethods' => '\Adyen\Model\Checkout\StoredPaymentMethod[]'
+        'storedPaymentMethods' => '\Adyen\Model\Checkout\PaymentMethodsResponseStoredPaymentMethodsInner[]'
     ];
 
     /**
@@ -235,7 +235,7 @@ class PaymentMethodsResponse implements ModelInterface, ArrayAccess, \JsonSerial
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('paymentMethods', $data ?? [], null);
         $this->setIfExists('storedPaymentMethods', $data ?? [], null);
@@ -310,7 +310,7 @@ class PaymentMethodsResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets storedPaymentMethods
      *
-     * @return \Adyen\Model\Checkout\StoredPaymentMethod[]|null
+     * @return \Adyen\Model\Checkout\PaymentMethodsResponseStoredPaymentMethodsInner[]|null
      */
     public function getStoredPaymentMethods()
     {
@@ -320,7 +320,7 @@ class PaymentMethodsResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets storedPaymentMethods
      *
-     * @param \Adyen\Model\Checkout\StoredPaymentMethod[]|null $storedPaymentMethods List of all stored payment methods.
+     * @param \Adyen\Model\Checkout\PaymentMethodsResponseStoredPaymentMethodsInner[]|null $storedPaymentMethods List of all stored payment methods.
      *
      * @return self
      */

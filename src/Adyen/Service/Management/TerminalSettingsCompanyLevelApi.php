@@ -47,7 +47,7 @@ class TerminalSettingsCompanyLevelApi extends Service
     * @return \Adyen\Model\Management\Logo
     * @throws AdyenException
     */
-    public function getTerminalLogo(string $companyId, array $requestOptions = null): \Adyen\Model\Management\Logo
+    public function getTerminalLogo(string $companyId, ?array $requestOptions = null): \Adyen\Model\Management\Logo
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}'], [$companyId], "/companies/{companyId}/terminalLogos");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -62,7 +62,7 @@ class TerminalSettingsCompanyLevelApi extends Service
     * @return \Adyen\Model\Management\TerminalSettings
     * @throws AdyenException
     */
-    public function getTerminalSettings(string $companyId, array $requestOptions = null): \Adyen\Model\Management\TerminalSettings
+    public function getTerminalSettings(string $companyId, ?array $requestOptions = null): \Adyen\Model\Management\TerminalSettings
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}'], [$companyId], "/companies/{companyId}/terminalSettings");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -78,7 +78,7 @@ class TerminalSettingsCompanyLevelApi extends Service
     * @return \Adyen\Model\Management\Logo
     * @throws AdyenException
     */
-    public function updateTerminalLogo(string $companyId, \Adyen\Model\Management\Logo $logo, array $requestOptions = null): \Adyen\Model\Management\Logo
+    public function updateTerminalLogo(string $companyId, \Adyen\Model\Management\Logo $logo, ?array $requestOptions = null): \Adyen\Model\Management\Logo
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}'], [$companyId], "/companies/{companyId}/terminalLogos");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $logo->jsonSerialize(), $requestOptions);
@@ -94,7 +94,7 @@ class TerminalSettingsCompanyLevelApi extends Service
     * @return \Adyen\Model\Management\TerminalSettings
     * @throws AdyenException
     */
-    public function updateTerminalSettings(string $companyId, \Adyen\Model\Management\TerminalSettings $terminalSettings, array $requestOptions = null): \Adyen\Model\Management\TerminalSettings
+    public function updateTerminalSettings(string $companyId, \Adyen\Model\Management\TerminalSettings $terminalSettings, ?array $requestOptions = null): \Adyen\Model\Management\TerminalSettings
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}'], [$companyId], "/companies/{companyId}/terminalSettings");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $terminalSettings->jsonSerialize(), $requestOptions);

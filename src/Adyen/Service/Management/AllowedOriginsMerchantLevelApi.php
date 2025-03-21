@@ -49,7 +49,7 @@ class AllowedOriginsMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\AllowedOrigin
     * @throws AdyenException
     */
-    public function createAllowedOrigin(string $merchantId, string $apiCredentialId, \Adyen\Model\Management\AllowedOrigin $allowedOrigin, array $requestOptions = null): \Adyen\Model\Management\AllowedOrigin
+    public function createAllowedOrigin(string $merchantId, string $apiCredentialId, \Adyen\Model\Management\AllowedOrigin $allowedOrigin, ?array $requestOptions = null): \Adyen\Model\Management\AllowedOrigin
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{apiCredentialId}'], [$merchantId, $apiCredentialId], "/merchants/{merchantId}/apiCredentials/{apiCredentialId}/allowedOrigins");
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $allowedOrigin->jsonSerialize(), $requestOptions);
@@ -63,13 +63,14 @@ class AllowedOriginsMerchantLevelApi extends Service
     * @param string $apiCredentialId
     * @param string $originId
     * @param array|null $requestOptions
-
+    
     * @throws AdyenException
     */
-    public function deleteAllowedOrigin(string $merchantId, string $apiCredentialId, string $originId, array $requestOptions = null)
+    public function deleteAllowedOrigin(string $merchantId, string $apiCredentialId, string $originId, ?array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{apiCredentialId}', '{originId}'], [$merchantId, $apiCredentialId, $originId], "/merchants/{merchantId}/apiCredentials/{apiCredentialId}/allowedOrigins/{originId}");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
+        
     }
 
     /**
@@ -82,7 +83,7 @@ class AllowedOriginsMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\AllowedOrigin
     * @throws AdyenException
     */
-    public function getAllowedOrigin(string $merchantId, string $apiCredentialId, string $originId, array $requestOptions = null): \Adyen\Model\Management\AllowedOrigin
+    public function getAllowedOrigin(string $merchantId, string $apiCredentialId, string $originId, ?array $requestOptions = null): \Adyen\Model\Management\AllowedOrigin
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{apiCredentialId}', '{originId}'], [$merchantId, $apiCredentialId, $originId], "/merchants/{merchantId}/apiCredentials/{apiCredentialId}/allowedOrigins/{originId}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -98,7 +99,7 @@ class AllowedOriginsMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\AllowedOriginsResponse
     * @throws AdyenException
     */
-    public function listAllowedOrigins(string $merchantId, string $apiCredentialId, array $requestOptions = null): \Adyen\Model\Management\AllowedOriginsResponse
+    public function listAllowedOrigins(string $merchantId, string $apiCredentialId, ?array $requestOptions = null): \Adyen\Model\Management\AllowedOriginsResponse
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{apiCredentialId}'], [$merchantId, $apiCredentialId], "/merchants/{merchantId}/apiCredentials/{apiCredentialId}/allowedOrigins");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);

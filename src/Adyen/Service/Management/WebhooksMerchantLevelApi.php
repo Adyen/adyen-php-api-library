@@ -48,7 +48,7 @@ class WebhooksMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\GenerateHmacKeyResponse
     * @throws AdyenException
     */
-    public function generateHmacKey(string $merchantId, string $webhookId, array $requestOptions = null): \Adyen\Model\Management\GenerateHmacKeyResponse
+    public function generateHmacKey(string $merchantId, string $webhookId, ?array $requestOptions = null): \Adyen\Model\Management\GenerateHmacKeyResponse
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{webhookId}'], [$merchantId, $webhookId], "/merchants/{merchantId}/webhooks/{webhookId}/generateHmac");
         $response = $this->requestHttp($endpoint, strtolower('POST'), null, $requestOptions);
@@ -64,7 +64,7 @@ class WebhooksMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\Webhook
     * @throws AdyenException
     */
-    public function getWebhook(string $merchantId, string $webhookId, array $requestOptions = null): \Adyen\Model\Management\Webhook
+    public function getWebhook(string $merchantId, string $webhookId, ?array $requestOptions = null): \Adyen\Model\Management\Webhook
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{webhookId}'], [$merchantId, $webhookId], "/merchants/{merchantId}/webhooks/{webhookId}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -79,7 +79,7 @@ class WebhooksMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\ListWebhooksResponse
     * @throws AdyenException
     */
-    public function listAllWebhooks(string $merchantId, array $requestOptions = null): \Adyen\Model\Management\ListWebhooksResponse
+    public function listAllWebhooks(string $merchantId, ?array $requestOptions = null): \Adyen\Model\Management\ListWebhooksResponse
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}'], [$merchantId], "/merchants/{merchantId}/webhooks");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -92,13 +92,14 @@ class WebhooksMerchantLevelApi extends Service
     * @param string $merchantId
     * @param string $webhookId
     * @param array|null $requestOptions
-
+    
     * @throws AdyenException
     */
-    public function removeWebhook(string $merchantId, string $webhookId, array $requestOptions = null)
+    public function removeWebhook(string $merchantId, string $webhookId, ?array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{webhookId}'], [$merchantId, $webhookId], "/merchants/{merchantId}/webhooks/{webhookId}");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
+        
     }
 
     /**
@@ -110,7 +111,7 @@ class WebhooksMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\Webhook
     * @throws AdyenException
     */
-    public function setUpWebhook(string $merchantId, \Adyen\Model\Management\CreateMerchantWebhookRequest $createMerchantWebhookRequest, array $requestOptions = null): \Adyen\Model\Management\Webhook
+    public function setUpWebhook(string $merchantId, \Adyen\Model\Management\CreateMerchantWebhookRequest $createMerchantWebhookRequest, ?array $requestOptions = null): \Adyen\Model\Management\Webhook
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}'], [$merchantId], "/merchants/{merchantId}/webhooks");
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $createMerchantWebhookRequest->jsonSerialize(), $requestOptions);
@@ -127,7 +128,7 @@ class WebhooksMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\TestWebhookResponse
     * @throws AdyenException
     */
-    public function testWebhook(string $merchantId, string $webhookId, \Adyen\Model\Management\TestWebhookRequest $testWebhookRequest, array $requestOptions = null): \Adyen\Model\Management\TestWebhookResponse
+    public function testWebhook(string $merchantId, string $webhookId, \Adyen\Model\Management\TestWebhookRequest $testWebhookRequest, ?array $requestOptions = null): \Adyen\Model\Management\TestWebhookResponse
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{webhookId}'], [$merchantId, $webhookId], "/merchants/{merchantId}/webhooks/{webhookId}/test");
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $testWebhookRequest->jsonSerialize(), $requestOptions);
@@ -144,7 +145,7 @@ class WebhooksMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\Webhook
     * @throws AdyenException
     */
-    public function updateWebhook(string $merchantId, string $webhookId, \Adyen\Model\Management\UpdateMerchantWebhookRequest $updateMerchantWebhookRequest, array $requestOptions = null): \Adyen\Model\Management\Webhook
+    public function updateWebhook(string $merchantId, string $webhookId, \Adyen\Model\Management\UpdateMerchantWebhookRequest $updateMerchantWebhookRequest, ?array $requestOptions = null): \Adyen\Model\Management\Webhook
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{webhookId}'], [$merchantId, $webhookId], "/merchants/{merchantId}/webhooks/{webhookId}");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $updateMerchantWebhookRequest->jsonSerialize(), $requestOptions);

@@ -49,7 +49,7 @@ class SplitConfigurationMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\SplitConfiguration
     * @throws AdyenException
     */
-    public function createRule(string $merchantId, string $splitConfigurationId, \Adyen\Model\Management\SplitConfigurationRule $splitConfigurationRule, array $requestOptions = null): \Adyen\Model\Management\SplitConfiguration
+    public function createRule(string $merchantId, string $splitConfigurationId, \Adyen\Model\Management\SplitConfigurationRule $splitConfigurationRule, ?array $requestOptions = null): \Adyen\Model\Management\SplitConfiguration
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{splitConfigurationId}'], [$merchantId, $splitConfigurationId], "/merchants/{merchantId}/splitConfigurations/{splitConfigurationId}");
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $splitConfigurationRule->jsonSerialize(), $requestOptions);
@@ -65,7 +65,7 @@ class SplitConfigurationMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\SplitConfiguration
     * @throws AdyenException
     */
-    public function createSplitConfiguration(string $merchantId, \Adyen\Model\Management\SplitConfiguration $splitConfiguration, array $requestOptions = null): \Adyen\Model\Management\SplitConfiguration
+    public function createSplitConfiguration(string $merchantId, \Adyen\Model\Management\SplitConfiguration $splitConfiguration, ?array $requestOptions = null): \Adyen\Model\Management\SplitConfiguration
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}'], [$merchantId], "/merchants/{merchantId}/splitConfigurations");
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $splitConfiguration->jsonSerialize(), $requestOptions);
@@ -81,7 +81,7 @@ class SplitConfigurationMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\SplitConfiguration
     * @throws AdyenException
     */
-    public function deleteSplitConfiguration(string $merchantId, string $splitConfigurationId, array $requestOptions = null): \Adyen\Model\Management\SplitConfiguration
+    public function deleteSplitConfiguration(string $merchantId, string $splitConfigurationId, ?array $requestOptions = null): \Adyen\Model\Management\SplitConfiguration
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{splitConfigurationId}'], [$merchantId, $splitConfigurationId], "/merchants/{merchantId}/splitConfigurations/{splitConfigurationId}");
         $response = $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
@@ -98,7 +98,7 @@ class SplitConfigurationMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\SplitConfiguration
     * @throws AdyenException
     */
-    public function deleteSplitConfigurationRule(string $merchantId, string $splitConfigurationId, string $ruleId, array $requestOptions = null): \Adyen\Model\Management\SplitConfiguration
+    public function deleteSplitConfigurationRule(string $merchantId, string $splitConfigurationId, string $ruleId, ?array $requestOptions = null): \Adyen\Model\Management\SplitConfiguration
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{splitConfigurationId}', '{ruleId}'], [$merchantId, $splitConfigurationId, $ruleId], "/merchants/{merchantId}/splitConfigurations/{splitConfigurationId}/rules/{ruleId}");
         $response = $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
@@ -114,7 +114,7 @@ class SplitConfigurationMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\SplitConfiguration
     * @throws AdyenException
     */
-    public function getSplitConfiguration(string $merchantId, string $splitConfigurationId, array $requestOptions = null): \Adyen\Model\Management\SplitConfiguration
+    public function getSplitConfiguration(string $merchantId, string $splitConfigurationId, ?array $requestOptions = null): \Adyen\Model\Management\SplitConfiguration
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{splitConfigurationId}'], [$merchantId, $splitConfigurationId], "/merchants/{merchantId}/splitConfigurations/{splitConfigurationId}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -129,7 +129,7 @@ class SplitConfigurationMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\SplitConfigurationList
     * @throws AdyenException
     */
-    public function listSplitConfigurations(string $merchantId, array $requestOptions = null): \Adyen\Model\Management\SplitConfigurationList
+    public function listSplitConfigurations(string $merchantId, ?array $requestOptions = null): \Adyen\Model\Management\SplitConfigurationList
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}'], [$merchantId], "/merchants/{merchantId}/splitConfigurations");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -147,7 +147,7 @@ class SplitConfigurationMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\SplitConfiguration
     * @throws AdyenException
     */
-    public function updateSplitConditions(string $merchantId, string $splitConfigurationId, string $ruleId, \Adyen\Model\Management\UpdateSplitConfigurationRuleRequest $updateSplitConfigurationRuleRequest, array $requestOptions = null): \Adyen\Model\Management\SplitConfiguration
+    public function updateSplitConditions(string $merchantId, string $splitConfigurationId, string $ruleId, \Adyen\Model\Management\UpdateSplitConfigurationRuleRequest $updateSplitConfigurationRuleRequest, ?array $requestOptions = null): \Adyen\Model\Management\SplitConfiguration
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{splitConfigurationId}', '{ruleId}'], [$merchantId, $splitConfigurationId, $ruleId], "/merchants/{merchantId}/splitConfigurations/{splitConfigurationId}/rules/{ruleId}");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $updateSplitConfigurationRuleRequest->jsonSerialize(), $requestOptions);
@@ -164,7 +164,7 @@ class SplitConfigurationMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\SplitConfiguration
     * @throws AdyenException
     */
-    public function updateSplitConfigurationDescription(string $merchantId, string $splitConfigurationId, \Adyen\Model\Management\UpdateSplitConfigurationRequest $updateSplitConfigurationRequest, array $requestOptions = null): \Adyen\Model\Management\SplitConfiguration
+    public function updateSplitConfigurationDescription(string $merchantId, string $splitConfigurationId, \Adyen\Model\Management\UpdateSplitConfigurationRequest $updateSplitConfigurationRequest, ?array $requestOptions = null): \Adyen\Model\Management\SplitConfiguration
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{splitConfigurationId}'], [$merchantId, $splitConfigurationId], "/merchants/{merchantId}/splitConfigurations/{splitConfigurationId}");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $updateSplitConfigurationRequest->jsonSerialize(), $requestOptions);
@@ -183,7 +183,7 @@ class SplitConfigurationMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\SplitConfiguration
     * @throws AdyenException
     */
-    public function updateSplitLogic(string $merchantId, string $splitConfigurationId, string $ruleId, string $splitLogicId, \Adyen\Model\Management\UpdateSplitConfigurationLogicRequest $updateSplitConfigurationLogicRequest, array $requestOptions = null): \Adyen\Model\Management\SplitConfiguration
+    public function updateSplitLogic(string $merchantId, string $splitConfigurationId, string $ruleId, string $splitLogicId, \Adyen\Model\Management\UpdateSplitConfigurationLogicRequest $updateSplitConfigurationLogicRequest, ?array $requestOptions = null): \Adyen\Model\Management\SplitConfiguration
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{splitConfigurationId}', '{ruleId}', '{splitLogicId}'], [$merchantId, $splitConfigurationId, $ruleId, $splitLogicId], "/merchants/{merchantId}/splitConfigurations/{splitConfigurationId}/rules/{ruleId}/splitLogic/{splitLogicId}");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $updateSplitConfigurationLogicRequest->jsonSerialize(), $requestOptions);
