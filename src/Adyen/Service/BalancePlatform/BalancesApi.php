@@ -48,8 +48,7 @@ class BalancesApi extends Service
     * @return \Adyen\Model\BalancePlatform\WebhookSettingResponse[]
     * @throws AdyenException
     */
-    public function (string $balancePlatformId, string $webhookId, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\WebhookSettingResponse[]
-    {
+    public function (string $balancePlatformId, string $webhookId, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\WebhookSettingResponse[] {
         $endpoint = $this->baseURL . str_replace(['{balancePlatformId}', '{webhookId}'], [$balancePlatformId, $webhookId], "/balancePlatforms/{balancePlatformId}/webhooks/{webhookId}/settings");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\BalancePlatform\WebhookSettingResponse[]::class);
@@ -65,8 +64,7 @@ class BalancesApi extends Service
     * @return \Adyen\Model\BalancePlatform\WebhookSettingResponse
     * @throws AdyenException
     */
-    public function (string $balancePlatformId, string $webhookId, \Adyen\Model\BalancePlatform\BalanceWebhookSettingsRequest $balanceWebhookSettingsRequest, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\WebhookSettingResponse
-    {
+    public function (string $balancePlatformId, string $webhookId, \Adyen\Model\BalancePlatform\BalanceWebhookSettingsRequest $balanceWebhookSettingsRequest, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\WebhookSettingResponse {
         $endpoint = $this->baseURL . str_replace(['{balancePlatformId}', '{webhookId}'], [$balancePlatformId, $webhookId], "/balancePlatforms/{balancePlatformId}/webhooks/{webhookId}/settings");
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $balanceWebhookSettingsRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\BalancePlatform\WebhookSettingResponse::class);
@@ -79,14 +77,12 @@ class BalancesApi extends Service
     * @param string $webhookId
     * @param string $settingId
     * @param array|null $requestOptions
-    
+
     * @throws AdyenException
     */
-    public function (string $balancePlatformId, string $webhookId, string $settingId, ?array $requestOptions = null)
-    {
+    public function (string $balancePlatformId, string $webhookId, string $settingId, ?array $requestOptions = null) {
         $endpoint = $this->baseURL . str_replace(['{balancePlatformId}', '{webhookId}', '{settingId}'], [$balancePlatformId, $webhookId, $settingId], "/balancePlatforms/{balancePlatformId}/webhooks/{webhookId}/settings/{settingId}");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
-        
     }
 
     /**
@@ -99,8 +95,7 @@ class BalancesApi extends Service
     * @return \Adyen\Model\BalancePlatform\WebhookSettingResponse
     * @throws AdyenException
     */
-    public function (string $balancePlatformId, string $webhookId, string $settingId, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\WebhookSettingResponse
-    {
+    public function (string $balancePlatformId, string $webhookId, string $settingId, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\WebhookSettingResponse {
         $endpoint = $this->baseURL . str_replace(['{balancePlatformId}', '{webhookId}', '{settingId}'], [$balancePlatformId, $webhookId, $settingId], "/balancePlatforms/{balancePlatformId}/webhooks/{webhookId}/settings/{settingId}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\BalancePlatform\WebhookSettingResponse::class);
@@ -117,8 +112,7 @@ class BalancesApi extends Service
     * @return \Adyen\Model\BalancePlatform\WebhookSettingResponse
     * @throws AdyenException
     */
-    public function (string $balancePlatformId, string $webhookId, string $settingId, \Adyen\Model\BalancePlatform\PatchableBalanceWebhookSettingsRequest $patchableBalanceWebhookSettingsRequest, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\WebhookSettingResponse
-    {
+    public function (string $balancePlatformId, string $webhookId, string $settingId, \Adyen\Model\BalancePlatform\PatchableBalanceWebhookSettingsRequest $patchableBalanceWebhookSettingsRequest, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\WebhookSettingResponse {
         $endpoint = $this->baseURL . str_replace(['{balancePlatformId}', '{webhookId}', '{settingId}'], [$balancePlatformId, $webhookId, $settingId], "/balancePlatforms/{balancePlatformId}/webhooks/{webhookId}/settings/{settingId}");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $patchableBalanceWebhookSettingsRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\BalancePlatform\WebhookSettingResponse::class);
