@@ -382,6 +382,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     public const REASON_DIRECT_DEBIT_NOT_SUPPORTED = 'directDebitNotSupported';
     public const REASON_ERROR = 'error';
     public const REASON_NOT_ENOUGH_BALANCE = 'notEnoughBalance';
+    public const REASON_PENDING = 'pending';
     public const REASON_PENDING_APPROVAL = 'pendingApproval';
     public const REASON_PENDING_EXECUTION = 'pendingExecution';
     public const REASON_REFUSED_BY_COUNTERPARTY_BANK = 'refusedByCounterpartyBank';
@@ -547,6 +548,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
             self::REASON_DIRECT_DEBIT_NOT_SUPPORTED,
             self::REASON_ERROR,
             self::REASON_NOT_ENOUGH_BALANCE,
+            self::REASON_PENDING,
             self::REASON_PENDING_APPROVAL,
             self::REASON_PENDING_EXECUTION,
             self::REASON_REFUSED_BY_COUNTERPARTY_BANK,
@@ -695,7 +697,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('accountHolder', $data ?? [], null);
         $this->setIfExists('amount', $data ?? [], null);
@@ -1141,7 +1143,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets eventId
      *
-     * @param string|null $eventId The event id listed under events, that triggered the notification.
+     * @param string|null $eventId The unique identifier of the latest transfer event. Included only when the `category` is **issuedCard**.
      *
      * @return self
      */

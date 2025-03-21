@@ -47,7 +47,7 @@ class PaymentInstrumentGroupsApi extends Service
     * @return \Adyen\Model\BalancePlatform\PaymentInstrumentGroup
     * @throws AdyenException
     */
-    public function createPaymentInstrumentGroup(\Adyen\Model\BalancePlatform\PaymentInstrumentGroupInfo $paymentInstrumentGroupInfo, array $requestOptions = null): \Adyen\Model\BalancePlatform\PaymentInstrumentGroup
+    public function createPaymentInstrumentGroup(\Adyen\Model\BalancePlatform\PaymentInstrumentGroupInfo $paymentInstrumentGroupInfo, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\PaymentInstrumentGroup
     {
         $endpoint = $this->baseURL . "/paymentInstrumentGroups";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $paymentInstrumentGroupInfo->jsonSerialize(), $requestOptions);
@@ -62,7 +62,7 @@ class PaymentInstrumentGroupsApi extends Service
     * @return \Adyen\Model\BalancePlatform\TransactionRulesResponse
     * @throws AdyenException
     */
-    public function getAllTransactionRulesForPaymentInstrumentGroup(string $id, array $requestOptions = null): \Adyen\Model\BalancePlatform\TransactionRulesResponse
+    public function getAllTransactionRulesForPaymentInstrumentGroup(string $id, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\TransactionRulesResponse
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/paymentInstrumentGroups/{id}/transactionRules");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -77,7 +77,7 @@ class PaymentInstrumentGroupsApi extends Service
     * @return \Adyen\Model\BalancePlatform\PaymentInstrumentGroup
     * @throws AdyenException
     */
-    public function getPaymentInstrumentGroup(string $id, array $requestOptions = null): \Adyen\Model\BalancePlatform\PaymentInstrumentGroup
+    public function getPaymentInstrumentGroup(string $id, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\PaymentInstrumentGroup
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/paymentInstrumentGroups/{id}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);

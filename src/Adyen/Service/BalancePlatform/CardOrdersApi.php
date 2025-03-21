@@ -47,7 +47,7 @@ class CardOrdersApi extends Service
     * @return \Adyen\Model\BalancePlatform\PaginatedGetCardOrderItemResponse
     * @throws AdyenException
     */
-    public function getCardOrderItems(string $id, array $requestOptions = null): \Adyen\Model\BalancePlatform\PaginatedGetCardOrderItemResponse
+    public function getCardOrderItems(string $id, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\PaginatedGetCardOrderItemResponse
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/cardorders/{id}/items");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -61,7 +61,7 @@ class CardOrdersApi extends Service
     * @return \Adyen\Model\BalancePlatform\PaginatedGetCardOrderResponse
     * @throws AdyenException
     */
-    public function listCardOrders(array $requestOptions = null): \Adyen\Model\BalancePlatform\PaginatedGetCardOrderResponse
+    public function listCardOrders(?array $requestOptions = null): \Adyen\Model\BalancePlatform\PaginatedGetCardOrderResponse
     {
         $endpoint = $this->baseURL . "/cardorders";
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);

@@ -375,7 +375,7 @@ class UpdateCompanyWebhookRequest implements ModelInterface, ArrayAccess, \JsonS
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('acceptsExpiredCertificate', $data ?? [], null);
         $this->setIfExists('acceptsSelfSignedCertificate', $data ?? [], null);

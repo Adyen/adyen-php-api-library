@@ -47,7 +47,7 @@ class DonationsApi extends Service
     * @return \Adyen\Model\Checkout\DonationCampaignsResponse
     * @throws AdyenException
     */
-    public function donationCampaigns(\Adyen\Model\Checkout\DonationCampaignsRequest $donationCampaignsRequest, array $requestOptions = null): \Adyen\Model\Checkout\DonationCampaignsResponse
+    public function donationCampaigns(\Adyen\Model\Checkout\DonationCampaignsRequest $donationCampaignsRequest, ?array $requestOptions = null): \Adyen\Model\Checkout\DonationCampaignsResponse
     {
         $endpoint = $this->baseURL . "/donationCampaigns";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $donationCampaignsRequest->jsonSerialize(), $requestOptions);
@@ -62,7 +62,7 @@ class DonationsApi extends Service
     * @return \Adyen\Model\Checkout\DonationPaymentResponse
     * @throws AdyenException
     */
-    public function donations(\Adyen\Model\Checkout\DonationPaymentRequest $donationPaymentRequest, array $requestOptions = null): \Adyen\Model\Checkout\DonationPaymentResponse
+    public function donations(\Adyen\Model\Checkout\DonationPaymentRequest $donationPaymentRequest, ?array $requestOptions = null): \Adyen\Model\Checkout\DonationPaymentResponse
     {
         $endpoint = $this->baseURL . "/donations";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $donationPaymentRequest->jsonSerialize(), $requestOptions);
