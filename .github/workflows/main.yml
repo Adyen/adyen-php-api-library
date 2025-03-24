@@ -53,7 +53,7 @@ jobs:
 
   lint:
     name: Lint
-    needs: test
+    needs: php-test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -75,7 +75,7 @@ jobs:
 
   integration-tests:
     name: Integration Tests
-    needs: [test, lint]
+    needs: [php-test, lint]
     runs-on: ubuntu-latest
     
     # Only run integration tests on pull requests with release label and from the main repository
