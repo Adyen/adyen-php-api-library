@@ -12,8 +12,8 @@ on:
   workflow_dispatch: {}
 
 jobs:
-  test:
-    name: Test
+  php-test:
+    name: PHP Test
     runs-on: ubuntu-latest
     strategy:
       matrix:
