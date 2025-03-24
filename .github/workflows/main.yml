@@ -1,31 +1,100 @@
-name: Main Workflow
+name: PHP CI
 
-on: ["pull_request"]
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+  workflow_dispatch: {}
 
 jobs:
-  run:
-    name: Run
+  test:
+    name: Test
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
-        php-version: [ 7.3, 8.2 ]
+        php-version: [ '7.3', '8.2', '8.4' ]
+        include:
+          - php-version: '8.2'
+            validate: true
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-version }}
           tools: composer:v2
 
+      - name: Validate composer.json and composer.lock
+        if: matrix.validate
+        run: composer validate --strict
+
+      - name: Check PHP syntax
+        if: matrix.validate
+        run: find -L . -path ./vendor -prune -o -path ./tests -prune -o -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Run unit tests
+        run: vendor/bin/phpunit --testsuite=unit --coverage-clover build/clover.xml --log-junit build/tests-log.xml
+
+      - name: Clean up reports
+        run: sed -i "s;`pwd`/;;g" build/*.xml
+
+  lint:
+    name: Lint
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          # Disabling shallow clone to improve relevancy of SonarCloud reporting
           fetch-depth: 0
 
-      - name: Validate composer.json and composer.lock
-        run: composer validate --strict
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer:v2
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Run PHP Code Sniffer
+        run: vendor/bin/phpcs --exclude=Generic.Files.LineLength
+
+  integration-tests:
+    name: Integration Tests
+    needs: [test, lint]
+    runs-on: ubuntu-latest
+    
+    # Only run integration tests on pull requests with release label and from the main repository
+    if: |
+      github.event_name == 'pull_request' &&
+      contains(github.event.pull_request.labels.*.name, 'release') &&
+      github.event.pull_request.head.repo.full_name == github.repository
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer:v2
 
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
@@ -44,17 +113,3 @@ jobs:
           INTEGRATION_STORE_PAYOUT_PASSWORD: ${{ secrets.INTEGRATION_STORE_PAYOUT_PASSWORD }}
           INTEGRATION_REVIEW_PAYOUT_USERNAME: ${{ secrets.INTEGRATION_REVIEW_PAYOUT_USERNAME }}
           INTEGRATION_REVIEW_PAYOUT_PASSWORD: ${{ secrets.INTEGRATION_REVIEW_PAYOUT_PASSWORD }}
-
-      - name: Run unit tests
-        run: vendor/bin/phpunit --testsuite=unit --coverage-clover build/clover.xml --log-junit build/tests-log.xml
-
-      # PHPUnit generates absolute file paths and SonarCloud expects relative file paths. This command removes the
-      # current working directory from the report files.
-      - name: Clean up reports
-        run: sed -i "s;`pwd`/;;g" build/*.xml
-
-      - name: Run PHP Code Sniffer
-        run: vendor/bin/phpcs --exclude=Generic.Files.LineLength
-
-      - name: Make sure project files are compilable
-        run: find -L . -path ./vendor -prune -o -path ./tests -prune -o -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l
