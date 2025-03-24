@@ -51,8 +51,8 @@ jobs:
       - name: Clean up reports
         run: sed -i "s;`pwd`/;;g" build/*.xml
 
-  lint:
-    name: Lint
+  php-lint:
+    name: PHP Lint
     needs: php-test
     runs-on: ubuntu-latest
     steps:
@@ -75,7 +75,7 @@ jobs:
 
   integration-tests:
     name: Integration Tests
-    needs: [php-test, lint]
+    needs: [php-test, php-lint]
     runs-on: ubuntu-latest
     
     # Only run integration tests on pull requests with release label and from the main repository
