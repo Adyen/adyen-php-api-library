@@ -11,9 +11,11 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 use Adyen\Util\HmacSignature;
 
 if ($argc !== 3) {
-    echo "Usage: php calculate_hmac.php <hmacKey> <payloadFile>\n";
+    echo "‼️Error running the script\n";
+    echo "Usage: php HMACValidatorBanking.php <hmacKey> <payloadFile>\n";
     exit(1);
 }
+
 
 $hmacKey = $argv[1];
 $payloadFile = $argv[2];
@@ -23,10 +25,13 @@ if (!file_exists($payloadFile)) {
     exit(1);
 }
 
-echo "Calculating HMAC signature with payload from '$payloadFile'\n";
-
 // load payload
 $payload = file_get_contents($payloadFile);
+
+echo "Calculating HMAC signature with payload from '$payloadFile'\n";
+echo "********\n";
+echo "Payload file: '$payloadFile'\n";
+echo "Payload length: " . strlen($payload) . "\n";
 
 $hmacSignature = new HmacSignature();
 $signature = $hmacSignature->calculateHmacSignature($hmacKey, $payload);

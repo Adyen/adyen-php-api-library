@@ -11,7 +11,8 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 use Adyen\Util\HmacSignature;
 
 if ($argc !== 3) {
-    echo "Usage: php calculate_hmac.php <hmacKey> <payloadFile>\n";
+    echo "‼️Error running the script\n";
+    echo "Usage: php HMACValidatorPayments.php <hmacKey> <payloadFile>\n";
     exit(1);
 }
 
@@ -22,8 +23,6 @@ if (!file_exists($payloadFile)) {
     echo "Error: File '$payloadFile' not found.\n";
     exit(1);
 }
-
-echo "Calculating HMAC signature with payload from '$payloadFile'\n";
 
 // load payload as JSON
 $payload = file_get_contents($payloadFile);
@@ -46,6 +45,12 @@ if ($notificationRequestItem === null) {
     echo "Error: 'NotificationRequestItem' is not found.\n";
     exit(1);
 }
+
+echo "Calculating HMAC signature with payload from '$payloadFile'\n";
+echo "********\n";
+echo "Payload file: '$payloadFile'\n";
+echo "Payload length: " . strlen($payload) . "\n";
+
 
 // Log notificationRequestItem
 //print_r($notificationRequestItem);
