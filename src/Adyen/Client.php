@@ -49,6 +49,8 @@ class Client
     const MANAGEMENT_API_TEST = "https://management-test.adyen.com";
     const MANAGEMENT_API_LIVE = "https://management-live.adyen.com";
     const MANAGEMENT_API = "v1";
+    const DEFAULT_CURLOPT_TIMEOUT = 60;
+    const DEFAULT_CURLOPT_CONNECTTIMEOUT = 30;
 
     /**
      * @var Config
@@ -297,6 +299,14 @@ class Client
     public function setTimeout($value)
     {
         $this->config->set('timeout', $value);
+    }
+
+    /**
+     * @param $value
+     */
+    public function setConnectionTimeout($value)
+    {
+        $this->config->set('connectionTimeout', $value);
     }
 
     /**

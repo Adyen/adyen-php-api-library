@@ -32,6 +32,8 @@ class TestCaseMock extends TestCase
         $client->setApplicationName("My Test Application");
         $client->setEnvironment($environment);
         $client->setXApiKey("MockAPIKey");
+        $client->setTimeout(60);
+        $client->setConnectionTimeout(30);
 
         $json = null;
         if ($jsonFile != null) {
