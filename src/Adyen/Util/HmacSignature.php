@@ -37,7 +37,7 @@ class HmacSignature
      *
      * @param string $hmacKey Can be found in Customer Area
      * @param string $hmacSign Can be found in the Webhook headers
-     * @param string $webhook The webhook payload 
+     * @param string $webhook The webhook payload
      * @return bool
      * @throws AdyenException
      */
@@ -196,7 +196,7 @@ class HmacSignature
     public function calculateHmacSignature(string $hmacKey, string $payload): string
     {
         if (empty($hmacKey)) {
-        throw new AdyenException("You did not provide a HMAC key");
+            throw new AdyenException("You did not provide a HMAC key");
         }
 
         if (!ctype_xdigit($hmacKey)) {
@@ -204,5 +204,5 @@ class HmacSignature
         }
 
         return base64_encode(hash_hmac('sha256', $payload, pack("H*", $hmacKey), true));
-    }    
+    }
 }
