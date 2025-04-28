@@ -48,7 +48,6 @@ class MeApiCredential implements ModelInterface, ArrayAccess, \JsonSerializable
         'active' => 'bool',
         'allowedIpAddresses' => 'string[]',
         'allowedOrigins' => '\Adyen\Model\Management\AllowedOrigin[]',
-        'associatedMerchantAccounts' => 'string[]',
         'clientKey' => 'string',
         'companyName' => 'string',
         'description' => 'string',
@@ -69,7 +68,6 @@ class MeApiCredential implements ModelInterface, ArrayAccess, \JsonSerializable
         'active' => null,
         'allowedIpAddresses' => null,
         'allowedOrigins' => null,
-        'associatedMerchantAccounts' => null,
         'clientKey' => null,
         'companyName' => null,
         'description' => null,
@@ -88,7 +86,6 @@ class MeApiCredential implements ModelInterface, ArrayAccess, \JsonSerializable
         'active' => false,
         'allowedIpAddresses' => false,
         'allowedOrigins' => false,
-        'associatedMerchantAccounts' => false,
         'clientKey' => false,
         'companyName' => false,
         'description' => false,
@@ -187,7 +184,6 @@ class MeApiCredential implements ModelInterface, ArrayAccess, \JsonSerializable
         'active' => 'active',
         'allowedIpAddresses' => 'allowedIpAddresses',
         'allowedOrigins' => 'allowedOrigins',
-        'associatedMerchantAccounts' => 'associatedMerchantAccounts',
         'clientKey' => 'clientKey',
         'companyName' => 'companyName',
         'description' => 'description',
@@ -206,7 +202,6 @@ class MeApiCredential implements ModelInterface, ArrayAccess, \JsonSerializable
         'active' => 'setActive',
         'allowedIpAddresses' => 'setAllowedIpAddresses',
         'allowedOrigins' => 'setAllowedOrigins',
-        'associatedMerchantAccounts' => 'setAssociatedMerchantAccounts',
         'clientKey' => 'setClientKey',
         'companyName' => 'setCompanyName',
         'description' => 'setDescription',
@@ -225,7 +220,6 @@ class MeApiCredential implements ModelInterface, ArrayAccess, \JsonSerializable
         'active' => 'getActive',
         'allowedIpAddresses' => 'getAllowedIpAddresses',
         'allowedOrigins' => 'getAllowedOrigins',
-        'associatedMerchantAccounts' => 'getAssociatedMerchantAccounts',
         'clientKey' => 'getClientKey',
         'companyName' => 'getCompanyName',
         'description' => 'getDescription',
@@ -295,7 +289,6 @@ class MeApiCredential implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('active', $data ?? [], null);
         $this->setIfExists('allowedIpAddresses', $data ?? [], null);
         $this->setIfExists('allowedOrigins', $data ?? [], null);
-        $this->setIfExists('associatedMerchantAccounts', $data ?? [], null);
         $this->setIfExists('clientKey', $data ?? [], null);
         $this->setIfExists('companyName', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
@@ -456,30 +449,6 @@ class MeApiCredential implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setAllowedOrigins($allowedOrigins)
     {
         $this->container['allowedOrigins'] = $allowedOrigins;
-
-        return $this;
-    }
-
-    /**
-     * Gets associatedMerchantAccounts
-     *
-     * @return string[]|null
-     */
-    public function getAssociatedMerchantAccounts()
-    {
-        return $this->container['associatedMerchantAccounts'];
-    }
-
-    /**
-     * Sets associatedMerchantAccounts
-     *
-     * @param string[]|null $associatedMerchantAccounts List of merchant accounts that the API credential has explicit access to.   If the credential has access to a company, this implies access to all merchant accounts and no merchants for that company will be included.
-     *
-     * @return self
-     */
-    public function setAssociatedMerchantAccounts($associatedMerchantAccounts)
-    {
-        $this->container['associatedMerchantAccounts'] = $associatedMerchantAccounts;
 
         return $this;
     }

@@ -233,7 +233,7 @@ class PaymentMethodRequestRemovedNotificationRequest implements ModelInterface, 
         return self::$openAPIModelName;
     }
 
-    public const TYPE_PAYMENT_METHOD_REQUEST_REMOVED = 'paymentMethod.requestRemoved';
+    public const TYPE_PAYMENT_METHOD_REQUEST_REMOVED = 'paymentMethodRequest.removed';
 
     /**
      * Gets allowable values of the enum

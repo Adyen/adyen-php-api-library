@@ -45,7 +45,8 @@ class Surcharge implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'askConfirmation' => 'bool',
-        'configurations' => '\Adyen\Model\Management\Configuration[]'
+        'configurations' => '\Adyen\Model\Management\Configuration[]',
+        'excludeGratuityFromSurcharge' => 'bool'
     ];
 
     /**
@@ -57,7 +58,8 @@ class Surcharge implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'askConfirmation' => null,
-        'configurations' => null
+        'configurations' => null,
+        'excludeGratuityFromSurcharge' => null
     ];
 
     /**
@@ -67,7 +69,8 @@ class Surcharge implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'askConfirmation' => false,
-        'configurations' => false
+        'configurations' => false,
+        'excludeGratuityFromSurcharge' => false
     ];
 
     /**
@@ -157,7 +160,8 @@ class Surcharge implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'askConfirmation' => 'askConfirmation',
-        'configurations' => 'configurations'
+        'configurations' => 'configurations',
+        'excludeGratuityFromSurcharge' => 'excludeGratuityFromSurcharge'
     ];
 
     /**
@@ -167,7 +171,8 @@ class Surcharge implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'askConfirmation' => 'setAskConfirmation',
-        'configurations' => 'setConfigurations'
+        'configurations' => 'setConfigurations',
+        'excludeGratuityFromSurcharge' => 'setExcludeGratuityFromSurcharge'
     ];
 
     /**
@@ -177,7 +182,8 @@ class Surcharge implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'askConfirmation' => 'getAskConfirmation',
-        'configurations' => 'getConfigurations'
+        'configurations' => 'getConfigurations',
+        'excludeGratuityFromSurcharge' => 'getExcludeGratuityFromSurcharge'
     ];
 
     /**
@@ -239,6 +245,7 @@ class Surcharge implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('askConfirmation', $data ?? [], null);
         $this->setIfExists('configurations', $data ?? [], null);
+        $this->setIfExists('excludeGratuityFromSurcharge', $data ?? [], null);
     }
 
     /**
@@ -327,6 +334,30 @@ class Surcharge implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setConfigurations($configurations)
     {
         $this->container['configurations'] = $configurations;
+
+        return $this;
+    }
+
+    /**
+     * Gets excludeGratuityFromSurcharge
+     *
+     * @return bool|null
+     */
+    public function getExcludeGratuityFromSurcharge()
+    {
+        return $this->container['excludeGratuityFromSurcharge'];
+    }
+
+    /**
+     * Sets excludeGratuityFromSurcharge
+     *
+     * @param bool|null $excludeGratuityFromSurcharge Exclude the tip amount from the surcharge calculation.
+     *
+     * @return self
+     */
+    public function setExcludeGratuityFromSurcharge($excludeGratuityFromSurcharge)
+    {
+        $this->container['excludeGratuityFromSurcharge'] = $excludeGratuityFromSurcharge;
 
         return $this;
     }

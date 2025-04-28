@@ -34,7 +34,7 @@ class Config
      *
      * @param array|null $params
      */
-    public function __construct(array $params = null)
+    public function __construct(?array $params = null)
     {
         if ($params) {
             foreach ($params as $key => $param) {

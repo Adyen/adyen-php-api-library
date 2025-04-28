@@ -461,7 +461,7 @@ class ThreeDSecureData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets authenticationResponse
      *
-     * @param string|null $authenticationResponse In 3D Secure 1, the authentication response if the shopper was redirected.  In 3D Secure 2, this is the `transStatus` from the challenge result. If the transaction was frictionless, omit this parameter.
+     * @param string|null $authenticationResponse In 3D Secure 2, this is the `transStatus` from the challenge result. If the transaction was frictionless, omit this parameter.
      *
      * @return self
      */
@@ -577,7 +577,7 @@ class ThreeDSecureData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets directoryResponse
      *
-     * @param string|null $directoryResponse In 3D Secure 1, this is the enrollment response from the 3D directory server.  In 3D Secure 2, this is the `transStatus` from the `ARes`.
+     * @param string|null $directoryResponse In 3D Secure 2, this is the `transStatus` from the `ARes`.
      *
      * @return self
      */
