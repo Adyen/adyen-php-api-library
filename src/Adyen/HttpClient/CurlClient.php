@@ -336,6 +336,11 @@ class CurlClient implements ClientInterface
             curl_setopt($ch, CURLOPT_TIMEOUT, $config->getTimeout());
         }
 
+        // Set the connection timeout
+        if ($config->getConnectionTimeout() != null) {
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $config->getConnectionTimeout());
+        }
+
         // Set the headers
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 

@@ -141,7 +141,19 @@ class Config
      */
     public function getTimeout()
     {
-        return !empty($this->data['timeout']) ? $this->data['timeout'] : null;
+        return !empty($this->data['timeout']) ?
+            $this->data['timeout'] :
+            Client::DEFAULT_CURLOPT_TIMEOUT;
+    }
+
+    /**
+     * @return mixed|null
+     */
+    public function getConnectionTimeout()
+    {
+        return !empty($this->data['connectionTimeout']) ?
+            $this->data['connectionTimeout'] :
+            Client::DEFAULT_CURLOPT_CONNECTTIMEOUT;
     }
 
     /**
