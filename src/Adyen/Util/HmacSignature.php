@@ -31,9 +31,13 @@ class HmacSignature
     }
 
     /**
+     * Validate the HMAC Signature of the webhook payload
+     * Used for BankingWebhooks and ManagementWebhooks (where HMAC signature is provided in the HTTP header)
+     * Note: HMAC signature is calculated considering the entire payload
+     *
      * @param string $hmacKey Can be found in Customer Area
      * @param string $hmacSign Can be found in the Webhook headers
-     * @param string $webhook The response from Adyen
+     * @param string $webhook The webhook payload
      * @return bool
      * @throws AdyenException
      */
@@ -42,17 +46,13 @@ class HmacSignature
         if (!ctype_xdigit($hmacKey)) {
             throw new AdyenException("Invalid HMAC key: $hmacKey");
         }
-        $expectedSign = base64_encode(hash_hmac(
-            'sha256',
-            $webhook,
-            pack("H*", $hmacKey),
-            true
-        ));
+        $expectedSign = self::calculateHmacSignature($hmacKey, $webhook);
         return hash_equals($expectedSign, $hmacSign);
     }
     /**
+     * Calculate HMAC Signature for Payments webhooks
      * @param string $hmacKey Can be found in Customer Area
-     * @param array $params The response from Adyen
+     * @param array $params NotificationRequestItem object inside the webhook payload
      * @return string
      * @throws AdyenException
      */
@@ -76,7 +76,7 @@ class HmacSignature
 
 
         // base64-encode the binary result of the HMAC computation
-        $merchantSig = base64_encode(hash_hmac('sha256', $dataToSign, pack("H*", $hmacKey), true));
+        $merchantSig = self::calculateHmacSignature($hmacKey, $dataToSign);
         return $merchantSig;
     }
 
@@ -111,6 +111,10 @@ class HmacSignature
     }
 
     /**
+     * Validate the HMAC Signature of the requestItem object included in the webhook payload
+     * Used for Payment Webhooks (where HMAC signature is provided in the `additionalData` field)
+     * Note: HMAC signature is calculated considering a subset of the fields (see `calculateNotificationHMAC` function)
+     *
      * @param string $hmacKey
      * @param array $params
      * @return bool
@@ -179,5 +183,26 @@ class HmacSignature
             "AUTORESCUE"
         );
         return array_key_exists(self::EVENT_CODE, $response) && in_array($response[self::EVENT_CODE], $eventCodes);
+    }
+
+    /**
+    * Calculate HMAC signature
+    *
+    * @param string $hmacKey Can be found in Customer Area
+    * @param string $payload The response from Adyen
+    * @return string
+    * @throws AdyenException
+    */
+    public function calculateHmacSignature(string $hmacKey, string $payload): string
+    {
+        if (empty($hmacKey)) {
+            throw new AdyenException("You did not provide a HMAC key");
+        }
+
+        if (!ctype_xdigit($hmacKey)) {
+            throw new AdyenException("Invalid HMAC key: $hmacKey");
+        }
+
+        return base64_encode(hash_hmac('sha256', $payload, pack("H*", $hmacKey), true));
     }
 }
