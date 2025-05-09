@@ -47,7 +47,7 @@ class PlatformApi extends Service
     * @return \Adyen\Model\BalancePlatform\PaginatedAccountHoldersResponse
     * @throws AdyenException
     */
-    public function getAllAccountHoldersUnderBalancePlatform(string $id, array $requestOptions = null): \Adyen\Model\BalancePlatform\PaginatedAccountHoldersResponse
+    public function getAllAccountHoldersUnderBalancePlatform(string $id, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\PaginatedAccountHoldersResponse
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/balancePlatforms/{id}/accountHolders");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -62,7 +62,7 @@ class PlatformApi extends Service
     * @return \Adyen\Model\BalancePlatform\TransactionRulesResponse
     * @throws AdyenException
     */
-    public function getAllTransactionRulesForBalancePlatform(string $id, array $requestOptions = null): \Adyen\Model\BalancePlatform\TransactionRulesResponse
+    public function getAllTransactionRulesForBalancePlatform(string $id, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\TransactionRulesResponse
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/balancePlatforms/{id}/transactionRules");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -77,7 +77,7 @@ class PlatformApi extends Service
     * @return \Adyen\Model\BalancePlatform\BalancePlatform
     * @throws AdyenException
     */
-    public function getBalancePlatform(string $id, array $requestOptions = null): \Adyen\Model\BalancePlatform\BalancePlatform
+    public function getBalancePlatform(string $id, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\BalancePlatform
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/balancePlatforms/{id}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);

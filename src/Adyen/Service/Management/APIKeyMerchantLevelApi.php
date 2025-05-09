@@ -48,7 +48,7 @@ class APIKeyMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\GenerateApiKeyResponse
     * @throws AdyenException
     */
-    public function generateNewApiKey(string $merchantId, string $apiCredentialId, array $requestOptions = null): \Adyen\Model\Management\GenerateApiKeyResponse
+    public function generateNewApiKey(string $merchantId, string $apiCredentialId, ?array $requestOptions = null): \Adyen\Model\Management\GenerateApiKeyResponse
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{apiCredentialId}'], [$merchantId, $apiCredentialId], "/merchants/{merchantId}/apiCredentials/{apiCredentialId}/generateApiKey");
         $response = $this->requestHttp($endpoint, strtolower('POST'), null, $requestOptions);

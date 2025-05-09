@@ -47,7 +47,7 @@ class ManageCardPINApi extends Service
     * @return \Adyen\Model\BalancePlatform\PinChangeResponse
     * @throws AdyenException
     */
-    public function changeCardPin(\Adyen\Model\BalancePlatform\PinChangeRequest $pinChangeRequest, array $requestOptions = null): \Adyen\Model\BalancePlatform\PinChangeResponse
+    public function changeCardPin(\Adyen\Model\BalancePlatform\PinChangeRequest $pinChangeRequest, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\PinChangeResponse
     {
         $endpoint = $this->baseURL . "/pins/change";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $pinChangeRequest->jsonSerialize(), $requestOptions);
@@ -61,7 +61,7 @@ class ManageCardPINApi extends Service
     * @return \Adyen\Model\BalancePlatform\PublicKeyResponse
     * @throws AdyenException
     */
-    public function publicKey(array $requestOptions = null): \Adyen\Model\BalancePlatform\PublicKeyResponse
+    public function publicKey(?array $requestOptions = null): \Adyen\Model\BalancePlatform\PublicKeyResponse
     {
         $endpoint = $this->baseURL . "/publicKey";
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -76,7 +76,7 @@ class ManageCardPINApi extends Service
     * @return \Adyen\Model\BalancePlatform\RevealPinResponse
     * @throws AdyenException
     */
-    public function revealCardPin(\Adyen\Model\BalancePlatform\RevealPinRequest $revealPinRequest, array $requestOptions = null): \Adyen\Model\BalancePlatform\RevealPinResponse
+    public function revealCardPin(\Adyen\Model\BalancePlatform\RevealPinRequest $revealPinRequest, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\RevealPinResponse
     {
         $endpoint = $this->baseURL . "/pins/reveal";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $revealPinRequest->jsonSerialize(), $requestOptions);

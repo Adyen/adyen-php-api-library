@@ -257,7 +257,7 @@ class SessionResultResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
@@ -351,7 +351,7 @@ class SessionResultResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets status
      *
-     * @param string|null $status The status of the session. The status included in the response doesn't get updated. Don't make the request again to check for payment status updates.  Possible values:           * **completed** – The shopper completed the payment. This means that the payment was authorized.          * **paymentPending** – The shopper is in the process of making the payment. This applies to payment methods with an asynchronous flow.          * **refused** – The session has been refused, due to too many refused payment attempts. Shoppers can no longer complete the payment with this session.          * **canceled** – The shopper canceled the payment.          * **active** – The session is still active and can be paid.          * **expired** – The session expired (default: 1 hour after session creation). Shoppers can no longer complete the payment with this session.
+     * @param string|null $status The status of the session. The status included in the response doesn't get updated. Don't make the request again to check for payment status updates.  Possible values: * **completed**: the shopper completed the payment, and the payment was authorized. * **paymentPending**: the shopper is in the process of making the payment. This applies to payment methods with an asynchronous flow, like voucher payments where the shopper completes the payment in a physical shop. * **refused**: the session has been refused, because of too many refused payment attempts. The shopper can no longer complete the payment with this session. * **canceled**: the shopper canceled the payment. * **expired**: the session expired. The shopper can no longer complete the payment with this session. By default, the session expires one hour after it is created.
      *
      * @return self
      */

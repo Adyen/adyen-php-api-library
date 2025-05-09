@@ -44,7 +44,8 @@ class TransferReview implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'numberOfApprovalsRequired' => 'int'
+        'numberOfApprovalsRequired' => 'int',
+        'scaOnApproval' => 'string'
     ];
 
     /**
@@ -55,7 +56,8 @@ class TransferReview implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'numberOfApprovalsRequired' => 'int32'
+        'numberOfApprovalsRequired' => 'int32',
+        'scaOnApproval' => null
     ];
 
     /**
@@ -64,7 +66,8 @@ class TransferReview implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'numberOfApprovalsRequired' => true
+        'numberOfApprovalsRequired' => true,
+        'scaOnApproval' => false
     ];
 
     /**
@@ -153,7 +156,8 @@ class TransferReview implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'numberOfApprovalsRequired' => 'numberOfApprovalsRequired'
+        'numberOfApprovalsRequired' => 'numberOfApprovalsRequired',
+        'scaOnApproval' => 'scaOnApproval'
     ];
 
     /**
@@ -162,7 +166,8 @@ class TransferReview implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'numberOfApprovalsRequired' => 'setNumberOfApprovalsRequired'
+        'numberOfApprovalsRequired' => 'setNumberOfApprovalsRequired',
+        'scaOnApproval' => 'setScaOnApproval'
     ];
 
     /**
@@ -171,7 +176,8 @@ class TransferReview implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'numberOfApprovalsRequired' => 'getNumberOfApprovalsRequired'
+        'numberOfApprovalsRequired' => 'getNumberOfApprovalsRequired',
+        'scaOnApproval' => 'getScaOnApproval'
     ];
 
     /**
@@ -215,7 +221,23 @@ class TransferReview implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const SCA_ON_APPROVAL_COMPLETED = 'completed';
+    public const SCA_ON_APPROVAL_NOT_APPLICABLE = 'notApplicable';
+    public const SCA_ON_APPROVAL_REQUIRED = 'required';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getScaOnApprovalAllowableValues()
+    {
+        return [
+            self::SCA_ON_APPROVAL_COMPLETED,
+            self::SCA_ON_APPROVAL_NOT_APPLICABLE,
+            self::SCA_ON_APPROVAL_REQUIRED,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -229,9 +251,10 @@ class TransferReview implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('numberOfApprovalsRequired', $data ?? [], null);
+        $this->setIfExists('scaOnApproval', $data ?? [], null);
     }
 
     /**
@@ -260,6 +283,15 @@ class TransferReview implements ModelInterface, ArrayAccess, \JsonSerializable
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        $allowedValues = $this->getScaOnApprovalAllowableValues();
+        if (!is_null($this->container['scaOnApproval']) && !in_array($this->container['scaOnApproval'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'scaOnApproval', must be one of '%s'",
+                $this->container['scaOnApproval'],
+                implode("', '", $allowedValues)
+            );
+        }
 
         return $invalidProperties;
     }
@@ -296,6 +328,40 @@ class TransferReview implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setNumberOfApprovalsRequired($numberOfApprovalsRequired)
     {
         $this->container['numberOfApprovalsRequired'] = $numberOfApprovalsRequired;
+
+        return $this;
+    }
+
+    /**
+     * Gets scaOnApproval
+     *
+     * @return string|null
+     */
+    public function getScaOnApproval()
+    {
+        return $this->container['scaOnApproval'];
+    }
+
+    /**
+     * Sets scaOnApproval
+     *
+     * @param string|null $scaOnApproval Shows the status of the Strong Customer Authentication (SCA) process.  Possible values: **required**, **notApplicable**.
+     *
+     * @return self
+     */
+    public function setScaOnApproval($scaOnApproval)
+    {
+        $allowedValues = $this->getScaOnApprovalAllowableValues();
+        if (!in_array($scaOnApproval, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'scaOnApproval', must be one of '%s'",
+                    $scaOnApproval,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['scaOnApproval'] = $scaOnApproval;
 
         return $this;
     }

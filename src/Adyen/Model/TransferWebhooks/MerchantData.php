@@ -253,7 +253,7 @@ class MerchantData implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('acquirerId', $data ?? [], null);
         $this->setIfExists('mcc', $data ?? [], null);
@@ -365,7 +365,7 @@ class MerchantData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets merchantId
      *
-     * @param string|null $merchantId The merchant identifier.
+     * @param string|null $merchantId The unique identifier of the merchant.
      *
      * @return self
      */
@@ -413,7 +413,7 @@ class MerchantData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets postalCode
      *
-     * @param string|null $postalCode The merchant postal code.
+     * @param string|null $postalCode The postal code of the merchant.
      *
      * @return self
      */
