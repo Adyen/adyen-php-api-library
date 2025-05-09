@@ -48,7 +48,7 @@ class GrantAccountsApi extends Service
     * @return \Adyen\Model\BalancePlatform\CapitalGrantAccount
     * @throws AdyenException
     */
-    public function getGrantAccount(string $id, array $requestOptions = null): \Adyen\Model\BalancePlatform\CapitalGrantAccount
+    public function getGrantAccount(string $id, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\CapitalGrantAccount
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/grantAccounts/{id}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);

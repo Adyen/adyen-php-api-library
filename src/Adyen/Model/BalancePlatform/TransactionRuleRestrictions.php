@@ -65,7 +65,9 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'sourceAccountTypes' => '\Adyen\Model\BalancePlatform\SourceAccountTypesRestriction',
         'timeOfDay' => '\Adyen\Model\BalancePlatform\TimeOfDayRestriction',
         'tokenRequestors' => '\Adyen\Model\BalancePlatform\TokenRequestorsRestriction',
-        'totalAmount' => '\Adyen\Model\BalancePlatform\TotalAmountRestriction'
+        'totalAmount' => '\Adyen\Model\BalancePlatform\TotalAmountRestriction',
+        'walletProviderAccountScore' => '\Adyen\Model\BalancePlatform\WalletProviderAccountScoreRestriction',
+        'walletProviderDeviceScore' => '\Adyen\Model\BalancePlatform\WalletProviderDeviceScore'
     ];
 
     /**
@@ -97,7 +99,9 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'sourceAccountTypes' => null,
         'timeOfDay' => null,
         'tokenRequestors' => null,
-        'totalAmount' => null
+        'totalAmount' => null,
+        'walletProviderAccountScore' => null,
+        'walletProviderDeviceScore' => null
     ];
 
     /**
@@ -127,7 +131,9 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'sourceAccountTypes' => false,
         'timeOfDay' => false,
         'tokenRequestors' => false,
-        'totalAmount' => false
+        'totalAmount' => false,
+        'walletProviderAccountScore' => false,
+        'walletProviderDeviceScore' => false
     ];
 
     /**
@@ -237,7 +243,9 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'sourceAccountTypes' => 'sourceAccountTypes',
         'timeOfDay' => 'timeOfDay',
         'tokenRequestors' => 'tokenRequestors',
-        'totalAmount' => 'totalAmount'
+        'totalAmount' => 'totalAmount',
+        'walletProviderAccountScore' => 'walletProviderAccountScore',
+        'walletProviderDeviceScore' => 'walletProviderDeviceScore'
     ];
 
     /**
@@ -267,7 +275,9 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'sourceAccountTypes' => 'setSourceAccountTypes',
         'timeOfDay' => 'setTimeOfDay',
         'tokenRequestors' => 'setTokenRequestors',
-        'totalAmount' => 'setTotalAmount'
+        'totalAmount' => 'setTotalAmount',
+        'walletProviderAccountScore' => 'setWalletProviderAccountScore',
+        'walletProviderDeviceScore' => 'setWalletProviderDeviceScore'
     ];
 
     /**
@@ -297,7 +307,9 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'sourceAccountTypes' => 'getSourceAccountTypes',
         'timeOfDay' => 'getTimeOfDay',
         'tokenRequestors' => 'getTokenRequestors',
-        'totalAmount' => 'getTotalAmount'
+        'totalAmount' => 'getTotalAmount',
+        'walletProviderAccountScore' => 'getWalletProviderAccountScore',
+        'walletProviderDeviceScore' => 'getWalletProviderDeviceScore'
     ];
 
     /**
@@ -355,7 +367,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('activeNetworkTokens', $data ?? [], null);
         $this->setIfExists('brandVariants', $data ?? [], null);
@@ -379,6 +391,8 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('timeOfDay', $data ?? [], null);
         $this->setIfExists('tokenRequestors', $data ?? [], null);
         $this->setIfExists('totalAmount', $data ?? [], null);
+        $this->setIfExists('walletProviderAccountScore', $data ?? [], null);
+        $this->setIfExists('walletProviderDeviceScore', $data ?? [], null);
     }
 
     /**
@@ -947,6 +961,54 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
     public function setTotalAmount($totalAmount)
     {
         $this->container['totalAmount'] = $totalAmount;
+
+        return $this;
+    }
+
+    /**
+     * Gets walletProviderAccountScore
+     *
+     * @return \Adyen\Model\BalancePlatform\WalletProviderAccountScoreRestriction|null
+     */
+    public function getWalletProviderAccountScore()
+    {
+        return $this->container['walletProviderAccountScore'];
+    }
+
+    /**
+     * Sets walletProviderAccountScore
+     *
+     * @param \Adyen\Model\BalancePlatform\WalletProviderAccountScoreRestriction|null $walletProviderAccountScore walletProviderAccountScore
+     *
+     * @return self
+     */
+    public function setWalletProviderAccountScore($walletProviderAccountScore)
+    {
+        $this->container['walletProviderAccountScore'] = $walletProviderAccountScore;
+
+        return $this;
+    }
+
+    /**
+     * Gets walletProviderDeviceScore
+     *
+     * @return \Adyen\Model\BalancePlatform\WalletProviderDeviceScore|null
+     */
+    public function getWalletProviderDeviceScore()
+    {
+        return $this->container['walletProviderDeviceScore'];
+    }
+
+    /**
+     * Sets walletProviderDeviceScore
+     *
+     * @param \Adyen\Model\BalancePlatform\WalletProviderDeviceScore|null $walletProviderDeviceScore walletProviderDeviceScore
+     *
+     * @return self
+     */
+    public function setWalletProviderDeviceScore($walletProviderDeviceScore)
+    {
+        $this->container['walletProviderDeviceScore'] = $walletProviderDeviceScore;
 
         return $this;
     }

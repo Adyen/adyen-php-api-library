@@ -261,7 +261,7 @@ class TerminalConnectivityCellular implements ModelInterface, ArrayAccess, \Json
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('iccid', $data ?? [], null);
         $this->setIfExists('iccid2', $data ?? [], null);
