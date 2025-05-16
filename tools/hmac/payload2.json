@@ -1,0 +1,61 @@
+{
+    "data": {
+      "balancePlatform": "YOUR_BALANCE_PLATFORM",
+      "accountHolder": {
+        "contactDetails": {
+          "email": "test@adyen.com",
+          "phone": {
+            "number": "0612345678",
+            "type": "mobile"
+          },
+          "address": {
+            "houseNumberOrName": "23",
+            "city": "Amsterdam",
+            "country": "NL",
+            "postalCode": "12345",
+            "street": "Main Street 1"
+          }
+        },
+        "description": "Shelly Eller",
+        "legalEntityId": "LE00000000000000000001",
+        "reference": "YOUR_REFERENCE-2412C",
+        "capabilities": {
+          "issueCard": {
+            "enabled": true,
+            "requested": true,
+            "allowed": false,
+            "verificationStatus": "pending"
+          },
+          "receiveFromTransferInstrument": {
+            "enabled": true,
+            "requested": true,
+            "allowed": false,
+            "verificationStatus": "pending"
+          },
+          "sendToTransferInstrument": {
+            "enabled": true,
+            "requested": true,
+            "allowed": false,
+            "verificationStatus": "pending"
+          },
+          "sendToBalanceAccount": {
+            "enabled": true,
+            "requested": true,
+            "allowed": false,
+            "verificationStatus": "pending"
+          },
+          "receiveFromBalanceAccount": {
+            "enabled": true,
+            "requested": true,
+            "allowed": false,
+            "verificationStatus": "pending"
+          }
+        },
+        "id": "AH00000000000000000001",
+        "status": "active"
+      }
+    },
+    "environment": "test",
+    "timestamp": "2024-12-15T15:42:03+01:00",
+    "type": "balancePlatform.accountHolder.created"
+  }
