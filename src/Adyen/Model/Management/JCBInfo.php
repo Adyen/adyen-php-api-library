@@ -235,6 +235,7 @@ class JCBInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 
     public const SERVICE_LEVEL_NO_CONTRACT = 'noContract';
     public const SERVICE_LEVEL_GATEWAY_CONTRACT = 'gatewayContract';
+    public const SERVICE_LEVEL_PAYMENT_DESIGNATOR_CONTRACT = 'paymentDesignatorContract';
 
     /**
      * Gets allowable values of the enum
@@ -246,6 +247,7 @@ class JCBInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         return [
             self::SERVICE_LEVEL_NO_CONTRACT,
             self::SERVICE_LEVEL_GATEWAY_CONTRACT,
+            self::SERVICE_LEVEL_PAYMENT_DESIGNATOR_CONTRACT,
         ];
     }
     /**
@@ -261,7 +263,7 @@ class JCBInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('midNumber', $data ?? [], null);
         $this->setIfExists('reuseMidNumber', $data ?? [], null);
@@ -333,7 +335,7 @@ class JCBInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets midNumber
      *
-     * @param string|null $midNumber MID (Merchant ID) number. Required for merchants operating in Japan.Format: 14 numeric characters.
+     * @param string|null $midNumber MID (Merchant ID) number. Required for merchants operating in Japan or merchants operating in Canada, Australia and New Zealand when requesting `gatewayContract` or `paymentDesignatorContract` service levels.Format: 14 numeric characters for Japan, 10 numeric characters for Canada, Australia and New Zealand.
      *
      * @return self
      */
@@ -381,7 +383,7 @@ class JCBInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets serviceLevel
      *
-     * @param string|null $serviceLevel Specifies the service level (settlement type) of this payment method. Required for merchants operating in Japan. Possible values: * **noContract**: Adyen holds the contract with JCB. * **gatewayContract**: JCB receives the settlement and handles disputes, then pays out to you or your sub-merchant directly.
+     * @param string|null $serviceLevel Specifies the service level (settlement type) of this payment method. Required for merchants operating in Japan. Possible values: * **noContract**: Adyen holds the contract with JCB for merchants operating in Japan or American Express for merchants operating in Canada, Australia and New Zealand. * **gatewayContract**: JCB or American Express receives the settlement and handles disputes, then pays out to you or your sub-merchant directly. * **paymentDesignatorContract**: Available only for merchants operating in Canada, Australia and New Zealand. Adyen receives the settlement, and handles disputes and payouts.
      *
      * @return self
      */

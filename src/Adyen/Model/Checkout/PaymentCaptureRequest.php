@@ -46,6 +46,7 @@ class PaymentCaptureRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $openAPITypes = [
         'amount' => '\Adyen\Model\Checkout\Amount',
         'applicationInfo' => '\Adyen\Model\Checkout\ApplicationInfo',
+        'enhancedSchemeData' => '\Adyen\Model\Checkout\EnhancedSchemeData',
         'lineItems' => '\Adyen\Model\Checkout\LineItem[]',
         'merchantAccount' => 'string',
         'platformChargebackLogic' => '\Adyen\Model\Checkout\PlatformChargebackLogic',
@@ -64,6 +65,7 @@ class PaymentCaptureRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $openAPIFormats = [
         'amount' => null,
         'applicationInfo' => null,
+        'enhancedSchemeData' => null,
         'lineItems' => null,
         'merchantAccount' => null,
         'platformChargebackLogic' => null,
@@ -80,6 +82,7 @@ class PaymentCaptureRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $openAPINullables = [
         'amount' => false,
         'applicationInfo' => false,
+        'enhancedSchemeData' => false,
         'lineItems' => false,
         'merchantAccount' => false,
         'platformChargebackLogic' => false,
@@ -176,6 +179,7 @@ class PaymentCaptureRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $attributeMap = [
         'amount' => 'amount',
         'applicationInfo' => 'applicationInfo',
+        'enhancedSchemeData' => 'enhancedSchemeData',
         'lineItems' => 'lineItems',
         'merchantAccount' => 'merchantAccount',
         'platformChargebackLogic' => 'platformChargebackLogic',
@@ -192,6 +196,7 @@ class PaymentCaptureRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $setters = [
         'amount' => 'setAmount',
         'applicationInfo' => 'setApplicationInfo',
+        'enhancedSchemeData' => 'setEnhancedSchemeData',
         'lineItems' => 'setLineItems',
         'merchantAccount' => 'setMerchantAccount',
         'platformChargebackLogic' => 'setPlatformChargebackLogic',
@@ -208,6 +213,7 @@ class PaymentCaptureRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $getters = [
         'amount' => 'getAmount',
         'applicationInfo' => 'getApplicationInfo',
+        'enhancedSchemeData' => 'getEnhancedSchemeData',
         'lineItems' => 'getLineItems',
         'merchantAccount' => 'getMerchantAccount',
         'platformChargebackLogic' => 'getPlatformChargebackLogic',
@@ -271,10 +277,11 @@ class PaymentCaptureRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('amount', $data ?? [], null);
         $this->setIfExists('applicationInfo', $data ?? [], null);
+        $this->setIfExists('enhancedSchemeData', $data ?? [], null);
         $this->setIfExists('lineItems', $data ?? [], null);
         $this->setIfExists('merchantAccount', $data ?? [], null);
         $this->setIfExists('platformChargebackLogic', $data ?? [], null);
@@ -375,6 +382,30 @@ class PaymentCaptureRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setApplicationInfo($applicationInfo)
     {
         $this->container['applicationInfo'] = $applicationInfo;
+
+        return $this;
+    }
+
+    /**
+     * Gets enhancedSchemeData
+     *
+     * @return \Adyen\Model\Checkout\EnhancedSchemeData|null
+     */
+    public function getEnhancedSchemeData()
+    {
+        return $this->container['enhancedSchemeData'];
+    }
+
+    /**
+     * Sets enhancedSchemeData
+     *
+     * @param \Adyen\Model\Checkout\EnhancedSchemeData|null $enhancedSchemeData enhancedSchemeData
+     *
+     * @return self
+     */
+    public function setEnhancedSchemeData($enhancedSchemeData)
+    {
+        $this->container['enhancedSchemeData'] = $enhancedSchemeData;
 
         return $this;
     }

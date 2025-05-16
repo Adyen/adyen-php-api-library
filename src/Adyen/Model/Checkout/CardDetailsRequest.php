@@ -253,7 +253,7 @@ class CardDetailsRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('cardNumber', $data ?? [], null);
         $this->setIfExists('countryCode', $data ?? [], null);
@@ -323,7 +323,7 @@ class CardDetailsRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets cardNumber
      *
-     * @param string $cardNumber A minimum of the first eight digits of the card number. The full card number gives the best result.   You must be [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide) to collect raw card data.
+     * @param string $cardNumber A minimum of the first eight digits of the card number. The full card number gives the best result.   You must be [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide) to collect raw card data. Alternatively, you can use the `encryptedCardNumber` field.
      *
      * @return self
      */

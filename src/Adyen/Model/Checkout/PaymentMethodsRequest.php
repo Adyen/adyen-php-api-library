@@ -48,16 +48,20 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'allowedPaymentMethods' => 'string[]',
         'amount' => '\Adyen\Model\Checkout\Amount',
         'blockedPaymentMethods' => 'string[]',
+        'browserInfo' => '\Adyen\Model\Checkout\BrowserInfo',
         'channel' => 'string',
         'countryCode' => 'string',
         'merchantAccount' => 'string',
         'order' => '\Adyen\Model\Checkout\EncryptedOrderData',
         'shopperConversionId' => 'string',
+        'shopperEmail' => 'string',
+        'shopperIP' => 'string',
         'shopperLocale' => 'string',
         'shopperReference' => 'string',
         'splitCardFundingSources' => 'bool',
         'store' => 'string',
-        'storeFiltrationMode' => 'string'
+        'storeFiltrationMode' => 'string',
+        'telephoneNumber' => 'string'
     ];
 
     /**
@@ -72,16 +76,20 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'allowedPaymentMethods' => null,
         'amount' => null,
         'blockedPaymentMethods' => null,
+        'browserInfo' => null,
         'channel' => null,
         'countryCode' => null,
         'merchantAccount' => null,
         'order' => null,
         'shopperConversionId' => null,
+        'shopperEmail' => null,
+        'shopperIP' => null,
         'shopperLocale' => null,
         'shopperReference' => null,
         'splitCardFundingSources' => null,
         'store' => null,
-        'storeFiltrationMode' => null
+        'storeFiltrationMode' => null,
+        'telephoneNumber' => null
     ];
 
     /**
@@ -94,16 +102,20 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'allowedPaymentMethods' => false,
         'amount' => false,
         'blockedPaymentMethods' => false,
+        'browserInfo' => false,
         'channel' => false,
         'countryCode' => false,
         'merchantAccount' => false,
         'order' => false,
         'shopperConversionId' => false,
+        'shopperEmail' => false,
+        'shopperIP' => false,
         'shopperLocale' => false,
         'shopperReference' => false,
         'splitCardFundingSources' => false,
         'store' => false,
-        'storeFiltrationMode' => false
+        'storeFiltrationMode' => false,
+        'telephoneNumber' => false
     ];
 
     /**
@@ -196,16 +208,20 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'allowedPaymentMethods' => 'allowedPaymentMethods',
         'amount' => 'amount',
         'blockedPaymentMethods' => 'blockedPaymentMethods',
+        'browserInfo' => 'browserInfo',
         'channel' => 'channel',
         'countryCode' => 'countryCode',
         'merchantAccount' => 'merchantAccount',
         'order' => 'order',
         'shopperConversionId' => 'shopperConversionId',
+        'shopperEmail' => 'shopperEmail',
+        'shopperIP' => 'shopperIP',
         'shopperLocale' => 'shopperLocale',
         'shopperReference' => 'shopperReference',
         'splitCardFundingSources' => 'splitCardFundingSources',
         'store' => 'store',
-        'storeFiltrationMode' => 'storeFiltrationMode'
+        'storeFiltrationMode' => 'storeFiltrationMode',
+        'telephoneNumber' => 'telephoneNumber'
     ];
 
     /**
@@ -218,16 +234,20 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'allowedPaymentMethods' => 'setAllowedPaymentMethods',
         'amount' => 'setAmount',
         'blockedPaymentMethods' => 'setBlockedPaymentMethods',
+        'browserInfo' => 'setBrowserInfo',
         'channel' => 'setChannel',
         'countryCode' => 'setCountryCode',
         'merchantAccount' => 'setMerchantAccount',
         'order' => 'setOrder',
         'shopperConversionId' => 'setShopperConversionId',
+        'shopperEmail' => 'setShopperEmail',
+        'shopperIP' => 'setShopperIP',
         'shopperLocale' => 'setShopperLocale',
         'shopperReference' => 'setShopperReference',
         'splitCardFundingSources' => 'setSplitCardFundingSources',
         'store' => 'setStore',
-        'storeFiltrationMode' => 'setStoreFiltrationMode'
+        'storeFiltrationMode' => 'setStoreFiltrationMode',
+        'telephoneNumber' => 'setTelephoneNumber'
     ];
 
     /**
@@ -240,16 +260,20 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'allowedPaymentMethods' => 'getAllowedPaymentMethods',
         'amount' => 'getAmount',
         'blockedPaymentMethods' => 'getBlockedPaymentMethods',
+        'browserInfo' => 'getBrowserInfo',
         'channel' => 'getChannel',
         'countryCode' => 'getCountryCode',
         'merchantAccount' => 'getMerchantAccount',
         'order' => 'getOrder',
         'shopperConversionId' => 'getShopperConversionId',
+        'shopperEmail' => 'getShopperEmail',
+        'shopperIP' => 'getShopperIP',
         'shopperLocale' => 'getShopperLocale',
         'shopperReference' => 'getShopperReference',
         'splitCardFundingSources' => 'getSplitCardFundingSources',
         'store' => 'getStore',
-        'storeFiltrationMode' => 'getStoreFiltrationMode'
+        'storeFiltrationMode' => 'getStoreFiltrationMode',
+        'telephoneNumber' => 'getTelephoneNumber'
     ];
 
     /**
@@ -339,22 +363,26 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('additionalData', $data ?? [], null);
         $this->setIfExists('allowedPaymentMethods', $data ?? [], null);
         $this->setIfExists('amount', $data ?? [], null);
         $this->setIfExists('blockedPaymentMethods', $data ?? [], null);
+        $this->setIfExists('browserInfo', $data ?? [], null);
         $this->setIfExists('channel', $data ?? [], null);
         $this->setIfExists('countryCode', $data ?? [], null);
         $this->setIfExists('merchantAccount', $data ?? [], null);
         $this->setIfExists('order', $data ?? [], null);
         $this->setIfExists('shopperConversionId', $data ?? [], null);
+        $this->setIfExists('shopperEmail', $data ?? [], null);
+        $this->setIfExists('shopperIP', $data ?? [], null);
         $this->setIfExists('shopperLocale', $data ?? [], null);
         $this->setIfExists('shopperReference', $data ?? [], null);
         $this->setIfExists('splitCardFundingSources', $data ?? [], null);
         $this->setIfExists('store', $data ?? [], null);
         $this->setIfExists('storeFiltrationMode', $data ?? [], null);
+        $this->setIfExists('telephoneNumber', $data ?? [], null);
     }
 
     /**
@@ -457,7 +485,7 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets allowedPaymentMethods
      *
-     * @param string[]|null $allowedPaymentMethods List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"allowedPaymentMethods\":[\"ideal\",\"giropay\"]`
+     * @param string[]|null $allowedPaymentMethods List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"allowedPaymentMethods\":[\"ideal\",\"applepay\"]`
      *
      * @return self
      */
@@ -505,13 +533,37 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets blockedPaymentMethods
      *
-     * @param string[]|null $blockedPaymentMethods List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"blockedPaymentMethods\":[\"ideal\",\"giropay\"]`
+     * @param string[]|null $blockedPaymentMethods List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"blockedPaymentMethods\":[\"ideal\",\"applepay\"]`
      *
      * @return self
      */
     public function setBlockedPaymentMethods($blockedPaymentMethods)
     {
         $this->container['blockedPaymentMethods'] = $blockedPaymentMethods;
+
+        return $this;
+    }
+
+    /**
+     * Gets browserInfo
+     *
+     * @return \Adyen\Model\Checkout\BrowserInfo|null
+     */
+    public function getBrowserInfo()
+    {
+        return $this->container['browserInfo'];
+    }
+
+    /**
+     * Sets browserInfo
+     *
+     * @param \Adyen\Model\Checkout\BrowserInfo|null $browserInfo browserInfo
+     *
+     * @return self
+     */
+    public function setBrowserInfo($browserInfo)
+    {
+        $this->container['browserInfo'] = $browserInfo;
 
         return $this;
     }
@@ -647,6 +699,54 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
+     * Gets shopperEmail
+     *
+     * @return string|null
+     */
+    public function getShopperEmail()
+    {
+        return $this->container['shopperEmail'];
+    }
+
+    /**
+     * Sets shopperEmail
+     *
+     * @param string|null $shopperEmail The shopper's email address. We recommend that you provide this data, as it is used in velocity fraud checks. > For 3D Secure 2 transactions, schemes require `shopperEmail` for all browser-based and mobile implementations.
+     *
+     * @return self
+     */
+    public function setShopperEmail($shopperEmail)
+    {
+        $this->container['shopperEmail'] = $shopperEmail;
+
+        return $this;
+    }
+
+    /**
+     * Gets shopperIP
+     *
+     * @return string|null
+     */
+    public function getShopperIP()
+    {
+        return $this->container['shopperIP'];
+    }
+
+    /**
+     * Sets shopperIP
+     *
+     * @param string|null $shopperIP The shopper's IP address. In general, we recommend that you provide this data, as it is used in a number of risk checks (for instance, number of payment attempts or location-based checks). > For 3D Secure 2 transactions, schemes require `shopperIP` for all browser-based implementations. This field is also mandatory for some merchants depending on your business model. For more information, [contact Support](https://www.adyen.help/hc/en-us/requests/new).
+     *
+     * @return self
+     */
+    public function setShopperIP($shopperIP)
+    {
+        $this->container['shopperIP'] = $shopperIP;
+
+        return $this;
+    }
+
+    /**
      * Gets shopperLocale
      *
      * @return string|null
@@ -772,6 +872,30 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
             );
         }
         $this->container['storeFiltrationMode'] = $storeFiltrationMode;
+
+        return $this;
+    }
+
+    /**
+     * Gets telephoneNumber
+     *
+     * @return string|null
+     */
+    public function getTelephoneNumber()
+    {
+        return $this->container['telephoneNumber'];
+    }
+
+    /**
+     * Sets telephoneNumber
+     *
+     * @param string|null $telephoneNumber The shopper's telephone number.
+     *
+     * @return self
+     */
+    public function setTelephoneNumber($telephoneNumber)
+    {
+        $this->container['telephoneNumber'] = $telephoneNumber;
 
         return $this;
     }

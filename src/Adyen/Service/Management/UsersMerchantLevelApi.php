@@ -48,7 +48,7 @@ class UsersMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\CreateUserResponse
     * @throws AdyenException
     */
-    public function createNewUser(string $merchantId, \Adyen\Model\Management\CreateMerchantUserRequest $createMerchantUserRequest, array $requestOptions = null): \Adyen\Model\Management\CreateUserResponse
+    public function createNewUser(string $merchantId, \Adyen\Model\Management\CreateMerchantUserRequest $createMerchantUserRequest, ?array $requestOptions = null): \Adyen\Model\Management\CreateUserResponse
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}'], [$merchantId], "/merchants/{merchantId}/users");
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $createMerchantUserRequest->jsonSerialize(), $requestOptions);
@@ -64,7 +64,7 @@ class UsersMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\User
     * @throws AdyenException
     */
-    public function getUserDetails(string $merchantId, string $userId, array $requestOptions = null): \Adyen\Model\Management\User
+    public function getUserDetails(string $merchantId, string $userId, ?array $requestOptions = null): \Adyen\Model\Management\User
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{userId}'], [$merchantId, $userId], "/merchants/{merchantId}/users/{userId}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -79,7 +79,7 @@ class UsersMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\ListMerchantUsersResponse
     * @throws AdyenException
     */
-    public function listUsers(string $merchantId, array $requestOptions = null): \Adyen\Model\Management\ListMerchantUsersResponse
+    public function listUsers(string $merchantId, ?array $requestOptions = null): \Adyen\Model\Management\ListMerchantUsersResponse
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}'], [$merchantId], "/merchants/{merchantId}/users");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -96,7 +96,7 @@ class UsersMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\User
     * @throws AdyenException
     */
-    public function updateUser(string $merchantId, string $userId, \Adyen\Model\Management\UpdateMerchantUserRequest $updateMerchantUserRequest, array $requestOptions = null): \Adyen\Model\Management\User
+    public function updateUser(string $merchantId, string $userId, \Adyen\Model\Management\UpdateMerchantUserRequest $updateMerchantUserRequest, ?array $requestOptions = null): \Adyen\Model\Management\User
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{userId}'], [$merchantId, $userId], "/merchants/{merchantId}/users/{userId}");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $updateMerchantUserRequest->jsonSerialize(), $requestOptions);

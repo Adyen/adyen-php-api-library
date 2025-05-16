@@ -291,12 +291,12 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public const TYPES_WITH_ERRORS_NYCE = 'nyce';
     public const TYPES_WITH_ERRORS_ONLINE_BANKING_PL = 'onlineBanking_PL';
     public const TYPES_WITH_ERRORS_PAYBYBANK = 'paybybank';
+    public const TYPES_WITH_ERRORS_PAYBYBANK_PLAID = 'paybybank_plaid';
     public const TYPES_WITH_ERRORS_PAYME = 'payme';
     public const TYPES_WITH_ERRORS_PAYME_POS = 'payme_pos';
     public const TYPES_WITH_ERRORS_PAYNOW = 'paynow';
     public const TYPES_WITH_ERRORS_PAYNOW_POS = 'paynow_pos';
     public const TYPES_WITH_ERRORS_PAYPAL = 'paypal';
-    public const TYPES_WITH_ERRORS_PAYSHOP = 'payshop';
     public const TYPES_WITH_ERRORS_PAYTO = 'payto';
     public const TYPES_WITH_ERRORS_PULSE = 'pulse';
     public const TYPES_WITH_ERRORS_SODEXO = 'sodexo';
@@ -377,12 +377,12 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             self::TYPES_WITH_ERRORS_NYCE,
             self::TYPES_WITH_ERRORS_ONLINE_BANKING_PL,
             self::TYPES_WITH_ERRORS_PAYBYBANK,
+            self::TYPES_WITH_ERRORS_PAYBYBANK_PLAID,
             self::TYPES_WITH_ERRORS_PAYME,
             self::TYPES_WITH_ERRORS_PAYME_POS,
             self::TYPES_WITH_ERRORS_PAYNOW,
             self::TYPES_WITH_ERRORS_PAYNOW_POS,
             self::TYPES_WITH_ERRORS_PAYPAL,
-            self::TYPES_WITH_ERRORS_PAYSHOP,
             self::TYPES_WITH_ERRORS_PAYTO,
             self::TYPES_WITH_ERRORS_PULSE,
             self::TYPES_WITH_ERRORS_SODEXO,
@@ -417,7 +417,7 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('links', $data ?? [], null);
         $this->setIfExists('data', $data ?? [], null);

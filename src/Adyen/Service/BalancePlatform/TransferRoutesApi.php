@@ -47,7 +47,7 @@ class TransferRoutesApi extends Service
     * @return \Adyen\Model\BalancePlatform\TransferRouteResponse
     * @throws AdyenException
     */
-    public function calculateTransferRoutes(\Adyen\Model\BalancePlatform\TransferRouteRequest $transferRouteRequest, array $requestOptions = null): \Adyen\Model\BalancePlatform\TransferRouteResponse
+    public function calculateTransferRoutes(\Adyen\Model\BalancePlatform\TransferRouteRequest $transferRouteRequest, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\TransferRouteResponse
     {
         $endpoint = $this->baseURL . "/transferRoutes/calculate";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $transferRouteRequest->jsonSerialize(), $requestOptions);
