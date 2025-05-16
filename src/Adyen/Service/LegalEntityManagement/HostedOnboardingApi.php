@@ -48,7 +48,7 @@ class HostedOnboardingApi extends Service
     * @return \Adyen\Model\LegalEntityManagement\OnboardingLink
     * @throws AdyenException
     */
-    public function getLinkToAdyenhostedOnboardingPage(string $id, \Adyen\Model\LegalEntityManagement\OnboardingLinkInfo $onboardingLinkInfo, array $requestOptions = null): \Adyen\Model\LegalEntityManagement\OnboardingLink
+    public function getLinkToAdyenhostedOnboardingPage(string $id, \Adyen\Model\LegalEntityManagement\OnboardingLinkInfo $onboardingLinkInfo, ?array $requestOptions = null): \Adyen\Model\LegalEntityManagement\OnboardingLink
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/legalEntities/{id}/onboardingLinks");
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $onboardingLinkInfo->jsonSerialize(), $requestOptions);
@@ -63,7 +63,7 @@ class HostedOnboardingApi extends Service
     * @return \Adyen\Model\LegalEntityManagement\OnboardingTheme
     * @throws AdyenException
     */
-    public function getOnboardingLinkTheme(string $id, array $requestOptions = null): \Adyen\Model\LegalEntityManagement\OnboardingTheme
+    public function getOnboardingLinkTheme(string $id, ?array $requestOptions = null): \Adyen\Model\LegalEntityManagement\OnboardingTheme
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/themes/{id}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -77,7 +77,7 @@ class HostedOnboardingApi extends Service
     * @return \Adyen\Model\LegalEntityManagement\OnboardingThemes
     * @throws AdyenException
     */
-    public function listHostedOnboardingPageThemes(array $requestOptions = null): \Adyen\Model\LegalEntityManagement\OnboardingThemes
+    public function listHostedOnboardingPageThemes(?array $requestOptions = null): \Adyen\Model\LegalEntityManagement\OnboardingThemes
     {
         $endpoint = $this->baseURL . "/themes";
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);

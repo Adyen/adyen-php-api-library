@@ -443,7 +443,7 @@ class AcctInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('chAccAgeInd', $data ?? [], null);
         $this->setIfExists('chAccChange', $data ?? [], null);

@@ -58,6 +58,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'direction' => 'string',
         'eventId' => 'string',
         'events' => '\Adyen\Model\Transfers\TransferEvent[]',
+        'externalReason' => '\Adyen\Model\Transfers\ExternalReason',
         'id' => 'string',
         'paymentInstrument' => '\Adyen\Model\Transfers\PaymentInstrument',
         'reason' => 'string',
@@ -93,6 +94,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'direction' => null,
         'eventId' => null,
         'events' => null,
+        'externalReason' => null,
         'id' => null,
         'paymentInstrument' => null,
         'reason' => null,
@@ -126,6 +128,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'direction' => false,
         'eventId' => false,
         'events' => false,
+        'externalReason' => false,
         'id' => false,
         'paymentInstrument' => false,
         'reason' => false,
@@ -239,6 +242,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'direction' => 'direction',
         'eventId' => 'eventId',
         'events' => 'events',
+        'externalReason' => 'externalReason',
         'id' => 'id',
         'paymentInstrument' => 'paymentInstrument',
         'reason' => 'reason',
@@ -272,6 +276,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'direction' => 'setDirection',
         'eventId' => 'setEventId',
         'events' => 'setEvents',
+        'externalReason' => 'setExternalReason',
         'id' => 'setId',
         'paymentInstrument' => 'setPaymentInstrument',
         'reason' => 'setReason',
@@ -305,6 +310,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'direction' => 'getDirection',
         'eventId' => 'getEventId',
         'events' => 'getEvents',
+        'externalReason' => 'getExternalReason',
         'id' => 'getId',
         'paymentInstrument' => 'getPaymentInstrument',
         'reason' => 'getReason',
@@ -382,6 +388,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     public const REASON_DIRECT_DEBIT_NOT_SUPPORTED = 'directDebitNotSupported';
     public const REASON_ERROR = 'error';
     public const REASON_NOT_ENOUGH_BALANCE = 'notEnoughBalance';
+    public const REASON_PENDING = 'pending';
     public const REASON_PENDING_APPROVAL = 'pendingApproval';
     public const REASON_PENDING_EXECUTION = 'pendingExecution';
     public const REASON_REFUSED_BY_COUNTERPARTY_BANK = 'refusedByCounterpartyBank';
@@ -547,6 +554,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
             self::REASON_DIRECT_DEBIT_NOT_SUPPORTED,
             self::REASON_ERROR,
             self::REASON_NOT_ENOUGH_BALANCE,
+            self::REASON_PENDING,
             self::REASON_PENDING_APPROVAL,
             self::REASON_PENDING_EXECUTION,
             self::REASON_REFUSED_BY_COUNTERPARTY_BANK,
@@ -695,7 +703,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('accountHolder', $data ?? [], null);
         $this->setIfExists('amount', $data ?? [], null);
@@ -711,6 +719,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('direction', $data ?? [], null);
         $this->setIfExists('eventId', $data ?? [], null);
         $this->setIfExists('events', $data ?? [], null);
+        $this->setIfExists('externalReason', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('paymentInstrument', $data ?? [], null);
         $this->setIfExists('reason', $data ?? [], null);
@@ -1141,7 +1150,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets eventId
      *
-     * @param string|null $eventId The event id listed under events, that triggered the notification.
+     * @param string|null $eventId The unique identifier of the latest transfer event. Included only when the `category` is **issuedCard**.
      *
      * @return self
      */
@@ -1172,6 +1181,30 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setEvents($events)
     {
         $this->container['events'] = $events;
+
+        return $this;
+    }
+
+    /**
+     * Gets externalReason
+     *
+     * @return \Adyen\Model\Transfers\ExternalReason|null
+     */
+    public function getExternalReason()
+    {
+        return $this->container['externalReason'];
+    }
+
+    /**
+     * Sets externalReason
+     *
+     * @param \Adyen\Model\Transfers\ExternalReason|null $externalReason externalReason
+     *
+     * @return self
+     */
+    public function setExternalReason($externalReason)
+    {
+        $this->container['externalReason'] = $externalReason;
 
         return $this;
     }

@@ -45,6 +45,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var string[]
       */
     protected static $openAPITypes = [
+        'accountHolderType' => 'string',
         'bankAccountNumber' => 'string',
         'bankAccountType' => 'string',
         'bankLocationId' => 'string',
@@ -129,6 +130,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'accountHolderType' => null,
         'bankAccountNumber' => null,
         'bankAccountType' => null,
         'bankLocationId' => null,
@@ -211,6 +213,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'accountHolderType' => false,
         'bankAccountNumber' => false,
         'bankAccountType' => false,
         'bankLocationId' => false,
@@ -373,6 +376,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $attributeMap = [
+        'accountHolderType' => 'accountHolderType',
         'bankAccountNumber' => 'bankAccountNumber',
         'bankAccountType' => 'bankAccountType',
         'bankLocationId' => 'bankLocationId',
@@ -455,6 +459,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $setters = [
+        'accountHolderType' => 'setAccountHolderType',
         'bankAccountNumber' => 'setBankAccountNumber',
         'bankAccountType' => 'setBankAccountType',
         'bankLocationId' => 'setBankLocationId',
@@ -537,6 +542,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $getters = [
+        'accountHolderType' => 'getAccountHolderType',
         'bankAccountNumber' => 'getBankAccountNumber',
         'bankAccountType' => 'getBankAccountType',
         'bankLocationId' => 'getBankLocationId',
@@ -667,8 +673,9 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
+        $this->setIfExists('accountHolderType', $data ?? [], null);
         $this->setIfExists('bankAccountNumber', $data ?? [], null);
         $this->setIfExists('bankAccountType', $data ?? [], null);
         $this->setIfExists('bankLocationId', $data ?? [], null);
@@ -773,6 +780,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $invalidProperties = [];
 
 
+
         if ($this->container['ownerName'] === null) {
             $invalidProperties[] = "'ownerName' can't be null";
         }
@@ -846,6 +854,30 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets accountHolderType
+     *
+     * @return string|null
+     */
+    public function getAccountHolderType()
+    {
+        return $this->container['accountHolderType'];
+    }
+
+    /**
+     * Sets accountHolderType
+     *
+     * @param string|null $accountHolderType The account holder type (personal or business).
+     *
+     * @return self
+     */
+    public function setAccountHolderType($accountHolderType)
+    {
+        $this->container['accountHolderType'] = $accountHolderType;
+
+        return $this;
+    }
 
     /**
      * Gets bankAccountNumber
@@ -2040,7 +2072,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets shopperEmail
      *
-     * @param string $shopperEmail
+     * @param string $shopperEmail 
      *
      * @return self
      */
@@ -2064,7 +2096,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets telephoneNumber
      *
-     * @param string $telephoneNumber
+     * @param string $telephoneNumber 
      *
      * @return self
      */

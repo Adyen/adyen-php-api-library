@@ -47,7 +47,7 @@ class TransferInstrumentsApi extends Service
     * @return \Adyen\Model\LegalEntityManagement\TransferInstrument
     * @throws AdyenException
     */
-    public function createTransferInstrument(\Adyen\Model\LegalEntityManagement\TransferInstrumentInfo $transferInstrumentInfo, array $requestOptions = null): \Adyen\Model\LegalEntityManagement\TransferInstrument
+    public function createTransferInstrument(\Adyen\Model\LegalEntityManagement\TransferInstrumentInfo $transferInstrumentInfo, ?array $requestOptions = null): \Adyen\Model\LegalEntityManagement\TransferInstrument
     {
         $endpoint = $this->baseURL . "/transferInstruments";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $transferInstrumentInfo->jsonSerialize(), $requestOptions);
@@ -59,13 +59,14 @@ class TransferInstrumentsApi extends Service
     *
     * @param string $id
     * @param array|null $requestOptions
-
+    
     * @throws AdyenException
     */
-    public function deleteTransferInstrument(string $id, array $requestOptions = null)
+    public function deleteTransferInstrument(string $id, ?array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/transferInstruments/{id}");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
+        
     }
 
     /**
@@ -76,7 +77,7 @@ class TransferInstrumentsApi extends Service
     * @return \Adyen\Model\LegalEntityManagement\TransferInstrument
     * @throws AdyenException
     */
-    public function getTransferInstrument(string $id, array $requestOptions = null): \Adyen\Model\LegalEntityManagement\TransferInstrument
+    public function getTransferInstrument(string $id, ?array $requestOptions = null): \Adyen\Model\LegalEntityManagement\TransferInstrument
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/transferInstruments/{id}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -92,7 +93,7 @@ class TransferInstrumentsApi extends Service
     * @return \Adyen\Model\LegalEntityManagement\TransferInstrument
     * @throws AdyenException
     */
-    public function updateTransferInstrument(string $id, \Adyen\Model\LegalEntityManagement\TransferInstrumentInfo $transferInstrumentInfo, array $requestOptions = null): \Adyen\Model\LegalEntityManagement\TransferInstrument
+    public function updateTransferInstrument(string $id, \Adyen\Model\LegalEntityManagement\TransferInstrumentInfo $transferInstrumentInfo, ?array $requestOptions = null): \Adyen\Model\LegalEntityManagement\TransferInstrument
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/transferInstruments/{id}");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $transferInstrumentInfo->jsonSerialize(), $requestOptions);

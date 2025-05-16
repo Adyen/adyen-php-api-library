@@ -63,6 +63,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'maestro' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'mc' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'nyce' => '\Adyen\Model\Management\NyceInfo',
+        'paybybankPlaid' => '\Adyen\Model\Management\PayByBankPlaidInfo',
         'pulse' => '\Adyen\Model\Management\PulseInfo',
         'star' => '\Adyen\Model\Management\StarInfo',
         'storeId' => 'string',
@@ -97,6 +98,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'maestro' => null,
         'mc' => null,
         'nyce' => null,
+        'paybybankPlaid' => null,
         'pulse' => null,
         'star' => null,
         'storeId' => null,
@@ -129,6 +131,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'maestro' => false,
         'mc' => false,
         'nyce' => false,
+        'paybybankPlaid' => false,
         'pulse' => false,
         'star' => false,
         'storeId' => false,
@@ -241,6 +244,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'maestro' => 'maestro',
         'mc' => 'mc',
         'nyce' => 'nyce',
+        'paybybankPlaid' => 'paybybank_plaid',
         'pulse' => 'pulse',
         'star' => 'star',
         'storeId' => 'storeId',
@@ -273,6 +277,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'maestro' => 'setMaestro',
         'mc' => 'setMc',
         'nyce' => 'setNyce',
+        'paybybankPlaid' => 'setPaybybankPlaid',
         'pulse' => 'setPulse',
         'star' => 'setStar',
         'storeId' => 'setStoreId',
@@ -305,6 +310,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'maestro' => 'getMaestro',
         'mc' => 'getMc',
         'nyce' => 'getNyce',
+        'paybybankPlaid' => 'getPaybybankPlaid',
         'pulse' => 'getPulse',
         'star' => 'getStar',
         'storeId' => 'getStoreId',
@@ -367,7 +373,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('accel', $data ?? [], null);
         $this->setIfExists('bcmc', $data ?? [], null);
@@ -388,6 +394,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('maestro', $data ?? [], null);
         $this->setIfExists('mc', $data ?? [], null);
         $this->setIfExists('nyce', $data ?? [], null);
+        $this->setIfExists('paybybankPlaid', $data ?? [], null);
         $this->setIfExists('pulse', $data ?? [], null);
         $this->setIfExists('star', $data ?? [], null);
         $this->setIfExists('storeId', $data ?? [], null);
@@ -889,6 +896,30 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     public function setNyce($nyce)
     {
         $this->container['nyce'] = $nyce;
+
+        return $this;
+    }
+
+    /**
+     * Gets paybybankPlaid
+     *
+     * @return \Adyen\Model\Management\PayByBankPlaidInfo|null
+     */
+    public function getPaybybankPlaid()
+    {
+        return $this->container['paybybankPlaid'];
+    }
+
+    /**
+     * Sets paybybankPlaid
+     *
+     * @param \Adyen\Model\Management\PayByBankPlaidInfo|null $paybybankPlaid paybybankPlaid
+     *
+     * @return self
+     */
+    public function setPaybybankPlaid($paybybankPlaid)
+    {
+        $this->container['paybybankPlaid'] = $paybybankPlaid;
 
         return $this;
     }

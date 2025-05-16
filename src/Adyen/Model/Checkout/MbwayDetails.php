@@ -259,7 +259,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('shopperEmail', $data ?? [], null);
@@ -361,7 +361,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets shopperEmail
      *
-     * @param string $shopperEmail
+     * @param string $shopperEmail 
      *
      * @return self
      */
@@ -385,7 +385,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets telephoneNumber
      *
-     * @param string $telephoneNumber
+     * @param string $telephoneNumber 
      *
      * @return self
      */
