@@ -141,14 +141,14 @@ class Service
                         "https://checkout-test.adyen.com/",
                         "https://" . $config->get('prefix') . '-checkout-live.adyenpayments.com/',
                         $url
-                    );                    
+                    );
                 } else {
                     // Other services: inject the live prefix like "https://{PREFIX}-"
                     $url = str_replace(
                         "https://checkout-test.adyen.com/",
                         "https://" . $config->get('prefix') . '-checkout-live.adyenpayments.com/checkout/',
                         $url
-                    );                    
+                    );
                 }
             }
 

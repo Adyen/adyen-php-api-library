@@ -45,5 +45,4 @@ class PosMobileApiTest extends TestCaseMock
             array('tests/Resources/PosMobileApp/create-auth-session.json', 200),
         );
     }
-   
 }

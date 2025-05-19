@@ -35,7 +35,6 @@ class ClientTest extends TestCase
             "https://terminal-api-live.adyen.com",
             $client->getConfig()->get('endpointTerminalCloud')
         );
-
     }
 
     public function testCreateWithInvalidPrefix(): void
@@ -47,5 +46,4 @@ class ClientTest extends TestCase
         $client->setEnvironment("Invalid");
         $client->setXApiKey("MockAPIKey");
     }
-
 }
