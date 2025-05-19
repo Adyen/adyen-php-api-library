@@ -135,12 +135,21 @@ class Service
                     );
                 }
 
-                // We inject the live prefix like "https://{PREFIX}-"
-                $url = str_replace(
-                    "https://checkout-test.adyen.com/",
-                    "https://" . $config->get('prefix') . '-checkout-live.adyenpayments.com/checkout/',
-                    $url
-                );
+                if (strpos($url, "possdk") !== false) {
+                    // PosSdk (PosMobileApi): inject the live prefix like "https://{PREFIX}-" without duplicating `/checkout` in path
+                    $url = str_replace(
+                        "https://checkout-test.adyen.com/",
+                        "https://" . $config->get('prefix') . '-checkout-live.adyenpayments.com/',
+                        $url
+                    );                    
+                } else {
+                    // Other services: inject the live prefix like "https://{PREFIX}-"
+                    $url = str_replace(
+                        "https://checkout-test.adyen.com/",
+                        "https://" . $config->get('prefix') . '-checkout-live.adyenpayments.com/checkout/',
+                        $url
+                    );                    
+                }
             }
 
             // Replace 'test' in string with 'live' for the other endpoints
