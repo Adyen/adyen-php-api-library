@@ -77,6 +77,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedSecurityCode' => 'string',
         'expiryMonth' => 'string',
         'expiryYear' => 'string',
+        'fastlaneData' => 'string',
         'networkPaymentReference' => 'string',
         'number' => 'string',
         'shopperNotificationReference' => 'string',
@@ -105,6 +106,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'payerSelected' => 'string',
         'shopperAccountIdentifier' => 'string',
         'virtualPaymentAddress' => 'string',
+        'pixRecurring' => '\Adyen\Model\Checkout\PixRecurring',
         'bank' => 'string',
         'clientType' => 'string',
         'identification' => 'string',
@@ -159,6 +161,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedSecurityCode' => null,
         'expiryMonth' => null,
         'expiryYear' => null,
+        'fastlaneData' => null,
         'networkPaymentReference' => null,
         'number' => null,
         'shopperNotificationReference' => null,
@@ -187,6 +190,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'payerSelected' => null,
         'shopperAccountIdentifier' => null,
         'virtualPaymentAddress' => null,
+        'pixRecurring' => null,
         'bank' => null,
         'clientType' => null,
         'identification' => null,
@@ -239,6 +243,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedSecurityCode' => false,
         'expiryMonth' => false,
         'expiryYear' => false,
+        'fastlaneData' => false,
         'networkPaymentReference' => false,
         'number' => false,
         'shopperNotificationReference' => false,
@@ -267,6 +272,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'payerSelected' => false,
         'shopperAccountIdentifier' => false,
         'virtualPaymentAddress' => false,
+        'pixRecurring' => false,
         'bank' => false,
         'clientType' => false,
         'identification' => false,
@@ -399,6 +405,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedSecurityCode' => 'encryptedSecurityCode',
         'expiryMonth' => 'expiryMonth',
         'expiryYear' => 'expiryYear',
+        'fastlaneData' => 'fastlaneData',
         'networkPaymentReference' => 'networkPaymentReference',
         'number' => 'number',
         'shopperNotificationReference' => 'shopperNotificationReference',
@@ -427,6 +434,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'payerSelected' => 'payerSelected',
         'shopperAccountIdentifier' => 'shopperAccountIdentifier',
         'virtualPaymentAddress' => 'virtualPaymentAddress',
+        'pixRecurring' => 'pixRecurring',
         'bank' => 'bank',
         'clientType' => 'clientType',
         'identification' => 'identification',
@@ -479,6 +487,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedSecurityCode' => 'setEncryptedSecurityCode',
         'expiryMonth' => 'setExpiryMonth',
         'expiryYear' => 'setExpiryYear',
+        'fastlaneData' => 'setFastlaneData',
         'networkPaymentReference' => 'setNetworkPaymentReference',
         'number' => 'setNumber',
         'shopperNotificationReference' => 'setShopperNotificationReference',
@@ -507,6 +516,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'payerSelected' => 'setPayerSelected',
         'shopperAccountIdentifier' => 'setShopperAccountIdentifier',
         'virtualPaymentAddress' => 'setVirtualPaymentAddress',
+        'pixRecurring' => 'setPixRecurring',
         'bank' => 'setBank',
         'clientType' => 'setClientType',
         'identification' => 'setIdentification',
@@ -559,6 +569,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedSecurityCode' => 'getEncryptedSecurityCode',
         'expiryMonth' => 'getExpiryMonth',
         'expiryYear' => 'getExpiryYear',
+        'fastlaneData' => 'getFastlaneData',
         'networkPaymentReference' => 'getNetworkPaymentReference',
         'number' => 'getNumber',
         'shopperNotificationReference' => 'getShopperNotificationReference',
@@ -587,6 +598,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'payerSelected' => 'getPayerSelected',
         'shopperAccountIdentifier' => 'getShopperAccountIdentifier',
         'virtualPaymentAddress' => 'getVirtualPaymentAddress',
+        'pixRecurring' => 'getPixRecurring',
         'bank' => 'getBank',
         'clientType' => 'getClientType',
         'identification' => 'getIdentification',
@@ -689,6 +701,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('encryptedSecurityCode', $data ?? [], null);
         $this->setIfExists('expiryMonth', $data ?? [], null);
         $this->setIfExists('expiryYear', $data ?? [], null);
+        $this->setIfExists('fastlaneData', $data ?? [], null);
         $this->setIfExists('networkPaymentReference', $data ?? [], null);
         $this->setIfExists('number', $data ?? [], null);
         $this->setIfExists('shopperNotificationReference', $data ?? [], null);
@@ -717,6 +730,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('payerSelected', $data ?? [], null);
         $this->setIfExists('shopperAccountIdentifier', $data ?? [], null);
         $this->setIfExists('virtualPaymentAddress', $data ?? [], null);
+        $this->setIfExists('pixRecurring', $data ?? [], null);
         $this->setIfExists('bank', $data ?? [], null);
         $this->setIfExists('clientType', $data ?? [], null);
         $this->setIfExists('identification', $data ?? [], null);
@@ -772,6 +786,9 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
 
         if ($this->container['issuer'] === null) {
             $invalidProperties[] = "'issuer' can't be null";
+        }
+        if ($this->container['fastlaneData'] === null) {
+            $invalidProperties[] = "'fastlaneData' can't be null";
         }
         if ($this->container['firstName'] === null) {
             $invalidProperties[] = "'firstName' can't be null";
@@ -1002,7 +1019,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      * Gets recurringDetailReference
      *
      * @return string|null
-     * @deprecated
+     * @deprecated since Adyen Checkout API v49. "Use `storedPaymentMethodId` instead."
      */
     public function getRecurringDetailReference()
     {
@@ -1015,7 +1032,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      * @param string|null $recurringDetailReference This is the `recurringDetailReference` returned in the response when you created the token.
      *
      * @return self
-     * @deprecated
+     * @deprecated since Adyen Checkout API v49. "Use `storedPaymentMethodId` instead."
      */
     public function setRecurringDetailReference($recurringDetailReference)
     {
@@ -1598,6 +1615,30 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setExpiryYear($expiryYear)
     {
         $this->container['expiryYear'] = $expiryYear;
+
+        return $this;
+    }
+
+    /**
+     * Gets fastlaneData
+     *
+     * @return string
+     */
+    public function getFastlaneData()
+    {
+        return $this->container['fastlaneData'];
+    }
+
+    /**
+     * Sets fastlaneData
+     *
+     * @param string $fastlaneData The encoded fastlane data blob
+     *
+     * @return self
+     */
+    public function setFastlaneData($fastlaneData)
+    {
+        $this->container['fastlaneData'] = $fastlaneData;
 
         return $this;
     }
@@ -2270,6 +2311,30 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setVirtualPaymentAddress($virtualPaymentAddress)
     {
         $this->container['virtualPaymentAddress'] = $virtualPaymentAddress;
+
+        return $this;
+    }
+
+    /**
+     * Gets pixRecurring
+     *
+     * @return \Adyen\Model\Checkout\PixRecurring|null
+     */
+    public function getPixRecurring()
+    {
+        return $this->container['pixRecurring'];
+    }
+
+    /**
+     * Sets pixRecurring
+     *
+     * @param \Adyen\Model\Checkout\PixRecurring|null $pixRecurring pixRecurring
+     *
+     * @return self
+     */
+    public function setPixRecurring($pixRecurring)
+    {
+        $this->container['pixRecurring'] = $pixRecurring;
 
         return $this;
     }

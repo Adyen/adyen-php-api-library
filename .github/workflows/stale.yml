@@ -18,6 +18,7 @@ jobs:
           days-before-issue-stale: 14
           days-before-issue-close: 7
           stale-issue-label: 'stale'
+          close-issue-label: 'closed-due-to-inactivity'
           exempt-issue-labels: 'do not stale, needs response'
           days-before-pr-stale: 365
           days-before-pr-close: 30

@@ -1,0 +1,54 @@
+{
+    "live": "false",
+    "notificationItems": [
+        {
+            "NotificationRequestItem": {
+                "additionalData": {
+                    "cardSummary": "0010",
+                    "hmacSignature": "qHNSvxCCix79xgBdWemxf0rcNMWoLrMK/4IgMnkOsWI=",
+                    "expiryDate": "03\/2030",
+                    "recurring.contractTypes": "ONECLICK,RECURRING",
+                    "cardBin": "222241",
+                    "recurring.recurringDetailReference": "DQWW2BQ9FX2R7475",
+                    "recurringProcessingModel": "Subscription",
+                    "metadata.orderTransactionId": "63",
+                    "alias": "F758505419855455",
+                    "paymentMethodVariant": "m1",
+                    "acquirerReference": "JQBMF3P3FJM",
+                    "issuerBin": "22224107",
+                    "cardIssuingCountry": "NL",
+                    "authCode": "060494",
+                    "cardHolderName": "Checkout Test",
+                    "PaymentAccountReference": "Jj3gVfMpPcpKzmHrHmpxqgfsvGaVa",
+                    "checkout.cardAddedBrand": "mc",
+                    "store": "None",
+                    "tokenization.shopperReference": "4d74f0727a318b13f85aee28ae556a08d7d9cf9e6d67b70a62e60e334aa7090d",
+                    "recurring.firstPspReference": "P9M9CTGJKKKKP275",
+                    "tokenization.storedPaymentMethodId": "DQWW2BQ9FX2R7475",
+                    "issuerCountry": "NL",
+                    "aliasType": "Default",
+                    "paymentMethod": "mc",
+                    "recurring.shopperReference": "4d74f0727a318b13f85aee28ae556a08d7d9cf9e6d67b70a62e60e334aa7090d",
+                    "cardPaymentMethod": "mc2"
+                },
+                "amount": {
+                    "currency": "EUR",
+                    "value": 32500
+                },
+                "eventCode": "AUTHORISATION",
+                "eventDate": "2025-02-24T15:20:56+01:00",
+                "merchantAccountCode": "Merchant 1",
+                "merchantReference": "1143-R2",
+                "operations": [
+                    "CANCEL",
+                    "CAPTURE",
+                    "REFUND"
+                ],
+                "paymentMethod": "mc",
+                "pspReference": "AB1234567890",
+                "reason": "060494:0010:03\/2030",
+                "success": "true"
+            }
+        }
+    ]
+}

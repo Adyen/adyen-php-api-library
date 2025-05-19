@@ -47,6 +47,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'activeNetworkTokens' => '\Adyen\Model\BalancePlatform\ActiveNetworkTokensRestriction',
         'brandVariants' => '\Adyen\Model\BalancePlatform\BrandVariantsRestriction',
         'counterpartyBank' => '\Adyen\Model\BalancePlatform\CounterpartyBankRestriction',
+        'counterpartyTypes' => '\Adyen\Model\BalancePlatform\CounterpartyTypesRestriction',
         'countries' => '\Adyen\Model\BalancePlatform\CountriesRestriction',
         'dayOfWeek' => '\Adyen\Model\BalancePlatform\DayOfWeekRestriction',
         'differentCurrencies' => '\Adyen\Model\BalancePlatform\DifferentCurrenciesRestriction',
@@ -61,7 +62,9 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'riskScores' => '\Adyen\Model\BalancePlatform\RiskScoresRestriction',
         'sameAmountRestriction' => '\Adyen\Model\BalancePlatform\SameAmountRestriction',
         'sameCounterpartyRestriction' => '\Adyen\Model\BalancePlatform\SameCounterpartyRestriction',
+        'sourceAccountTypes' => '\Adyen\Model\BalancePlatform\SourceAccountTypesRestriction',
         'timeOfDay' => '\Adyen\Model\BalancePlatform\TimeOfDayRestriction',
+        'tokenRequestors' => '\Adyen\Model\BalancePlatform\TokenRequestorsRestriction',
         'totalAmount' => '\Adyen\Model\BalancePlatform\TotalAmountRestriction'
     ];
 
@@ -76,6 +79,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'activeNetworkTokens' => null,
         'brandVariants' => null,
         'counterpartyBank' => null,
+        'counterpartyTypes' => null,
         'countries' => null,
         'dayOfWeek' => null,
         'differentCurrencies' => null,
@@ -90,7 +94,9 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'riskScores' => null,
         'sameAmountRestriction' => null,
         'sameCounterpartyRestriction' => null,
+        'sourceAccountTypes' => null,
         'timeOfDay' => null,
+        'tokenRequestors' => null,
         'totalAmount' => null
     ];
 
@@ -103,6 +109,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'activeNetworkTokens' => false,
         'brandVariants' => false,
         'counterpartyBank' => false,
+        'counterpartyTypes' => false,
         'countries' => false,
         'dayOfWeek' => false,
         'differentCurrencies' => false,
@@ -117,7 +124,9 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'riskScores' => false,
         'sameAmountRestriction' => false,
         'sameCounterpartyRestriction' => false,
+        'sourceAccountTypes' => false,
         'timeOfDay' => false,
+        'tokenRequestors' => false,
         'totalAmount' => false
     ];
 
@@ -210,6 +219,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'activeNetworkTokens' => 'activeNetworkTokens',
         'brandVariants' => 'brandVariants',
         'counterpartyBank' => 'counterpartyBank',
+        'counterpartyTypes' => 'counterpartyTypes',
         'countries' => 'countries',
         'dayOfWeek' => 'dayOfWeek',
         'differentCurrencies' => 'differentCurrencies',
@@ -224,7 +234,9 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'riskScores' => 'riskScores',
         'sameAmountRestriction' => 'sameAmountRestriction',
         'sameCounterpartyRestriction' => 'sameCounterpartyRestriction',
+        'sourceAccountTypes' => 'sourceAccountTypes',
         'timeOfDay' => 'timeOfDay',
+        'tokenRequestors' => 'tokenRequestors',
         'totalAmount' => 'totalAmount'
     ];
 
@@ -237,6 +249,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'activeNetworkTokens' => 'setActiveNetworkTokens',
         'brandVariants' => 'setBrandVariants',
         'counterpartyBank' => 'setCounterpartyBank',
+        'counterpartyTypes' => 'setCounterpartyTypes',
         'countries' => 'setCountries',
         'dayOfWeek' => 'setDayOfWeek',
         'differentCurrencies' => 'setDifferentCurrencies',
@@ -251,7 +264,9 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'riskScores' => 'setRiskScores',
         'sameAmountRestriction' => 'setSameAmountRestriction',
         'sameCounterpartyRestriction' => 'setSameCounterpartyRestriction',
+        'sourceAccountTypes' => 'setSourceAccountTypes',
         'timeOfDay' => 'setTimeOfDay',
+        'tokenRequestors' => 'setTokenRequestors',
         'totalAmount' => 'setTotalAmount'
     ];
 
@@ -264,6 +279,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'activeNetworkTokens' => 'getActiveNetworkTokens',
         'brandVariants' => 'getBrandVariants',
         'counterpartyBank' => 'getCounterpartyBank',
+        'counterpartyTypes' => 'getCounterpartyTypes',
         'countries' => 'getCountries',
         'dayOfWeek' => 'getDayOfWeek',
         'differentCurrencies' => 'getDifferentCurrencies',
@@ -278,7 +294,9 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'riskScores' => 'getRiskScores',
         'sameAmountRestriction' => 'getSameAmountRestriction',
         'sameCounterpartyRestriction' => 'getSameCounterpartyRestriction',
+        'sourceAccountTypes' => 'getSourceAccountTypes',
         'timeOfDay' => 'getTimeOfDay',
+        'tokenRequestors' => 'getTokenRequestors',
         'totalAmount' => 'getTotalAmount'
     ];
 
@@ -342,6 +360,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('activeNetworkTokens', $data ?? [], null);
         $this->setIfExists('brandVariants', $data ?? [], null);
         $this->setIfExists('counterpartyBank', $data ?? [], null);
+        $this->setIfExists('counterpartyTypes', $data ?? [], null);
         $this->setIfExists('countries', $data ?? [], null);
         $this->setIfExists('dayOfWeek', $data ?? [], null);
         $this->setIfExists('differentCurrencies', $data ?? [], null);
@@ -356,7 +375,9 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('riskScores', $data ?? [], null);
         $this->setIfExists('sameAmountRestriction', $data ?? [], null);
         $this->setIfExists('sameCounterpartyRestriction', $data ?? [], null);
+        $this->setIfExists('sourceAccountTypes', $data ?? [], null);
         $this->setIfExists('timeOfDay', $data ?? [], null);
+        $this->setIfExists('tokenRequestors', $data ?? [], null);
         $this->setIfExists('totalAmount', $data ?? [], null);
     }
 
@@ -470,6 +491,30 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
     public function setCounterpartyBank($counterpartyBank)
     {
         $this->container['counterpartyBank'] = $counterpartyBank;
+
+        return $this;
+    }
+
+    /**
+     * Gets counterpartyTypes
+     *
+     * @return \Adyen\Model\BalancePlatform\CounterpartyTypesRestriction|null
+     */
+    public function getCounterpartyTypes()
+    {
+        return $this->container['counterpartyTypes'];
+    }
+
+    /**
+     * Sets counterpartyTypes
+     *
+     * @param \Adyen\Model\BalancePlatform\CounterpartyTypesRestriction|null $counterpartyTypes counterpartyTypes
+     *
+     * @return self
+     */
+    public function setCounterpartyTypes($counterpartyTypes)
+    {
+        $this->container['counterpartyTypes'] = $counterpartyTypes;
 
         return $this;
     }
@@ -811,6 +856,30 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
+     * Gets sourceAccountTypes
+     *
+     * @return \Adyen\Model\BalancePlatform\SourceAccountTypesRestriction|null
+     */
+    public function getSourceAccountTypes()
+    {
+        return $this->container['sourceAccountTypes'];
+    }
+
+    /**
+     * Sets sourceAccountTypes
+     *
+     * @param \Adyen\Model\BalancePlatform\SourceAccountTypesRestriction|null $sourceAccountTypes sourceAccountTypes
+     *
+     * @return self
+     */
+    public function setSourceAccountTypes($sourceAccountTypes)
+    {
+        $this->container['sourceAccountTypes'] = $sourceAccountTypes;
+
+        return $this;
+    }
+
+    /**
      * Gets timeOfDay
      *
      * @return \Adyen\Model\BalancePlatform\TimeOfDayRestriction|null
@@ -830,6 +899,30 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
     public function setTimeOfDay($timeOfDay)
     {
         $this->container['timeOfDay'] = $timeOfDay;
+
+        return $this;
+    }
+
+    /**
+     * Gets tokenRequestors
+     *
+     * @return \Adyen\Model\BalancePlatform\TokenRequestorsRestriction|null
+     */
+    public function getTokenRequestors()
+    {
+        return $this->container['tokenRequestors'];
+    }
+
+    /**
+     * Sets tokenRequestors
+     *
+     * @param \Adyen\Model\BalancePlatform\TokenRequestorsRestriction|null $tokenRequestors tokenRequestors
+     *
+     * @return self
+     */
+    public function setTokenRequestors($tokenRequestors)
+    {
+        $this->container['tokenRequestors'] = $tokenRequestors;
 
         return $this;
     }

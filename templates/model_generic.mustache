@@ -72,6 +72,10 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
      * Array of nullable properties
      *
      * @return array
+     {{#deprecated}}
+     * @deprecated {{^vendorExtensions.x-deprecatedInVersion}}{{/vendorExtensions.x-deprecatedInVersion}}{{#vendorExtensions.x-deprecatedInVersion}} since {{#appName}}{{{.}}}{{/appName}} v{{.}}. {{#vendorExtensions.x-deprecatedMessage}}"{{{.}}}"{{/vendorExtensions.x-deprecatedMessage}}
+       {{/vendorExtensions.x-deprecatedInVersion}}
+     {{/deprecated}}
      */
     protected static function openAPINullables(): array
     {
@@ -235,7 +239,7 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         {{#parentSchema}}
         parent::__construct($data);
@@ -325,9 +329,9 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
      * Gets {{name}}
      *
      * @return {{{dataType}}}{{^required}}|null{{/required}}
-    {{#deprecated}}
-     * @deprecated
-    {{/deprecated}}
+     {{#deprecated}}
+     * @deprecated{{#vendorExtensions.x-deprecatedInVersion}} since {{#appName}}{{{.}}}{{/appName}} v{{.}}. {{#vendorExtensions.x-deprecatedMessage}}"{{{.}}}"{{/vendorExtensions.x-deprecatedMessage}}{{/vendorExtensions.x-deprecatedInVersion}}
+     {{/deprecated}}
      */
     public function {{getter}}()
     {
@@ -340,9 +344,9 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
      * @param {{{dataType}}}{{^required}}|null{{/required}} ${{name}}{{#description}} {{{.}}}{{/description}}{{^description}} {{{name}}}{{/description}}
      *
      * @return self
-    {{#deprecated}}
-     * @deprecated
-    {{/deprecated}}
+     {{#deprecated}}
+     * @deprecated{{#vendorExtensions.x-deprecatedInVersion}} since {{#appName}}{{{.}}}{{/appName}} v{{.}}. {{#vendorExtensions.x-deprecatedMessage}}"{{{.}}}"{{/vendorExtensions.x-deprecatedMessage}}{{/vendorExtensions.x-deprecatedInVersion}}
+     {{/deprecated}}
      */
     public function {{setter}}(${{name}})
     {

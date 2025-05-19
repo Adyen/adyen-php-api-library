@@ -39,6 +39,10 @@ class {{classname}} extends Service
     * Description: {{.}}
     *
     {{/description}}
+    {{#isDeprecated}}
+    * @deprecated {{^vendorExtensions.x-deprecatedInVersion}}{{/vendorExtensions.x-deprecatedInVersion}}{{#vendorExtensions.x-deprecatedInVersion}}since {{#appName}}{{{.}}}{{/appName}} v{{.}}. {{#vendorExtensions.x-deprecatedMessage}}"{{{.}}}"{{/vendorExtensions.x-deprecatedMessage}}
+      {{/vendorExtensions.x-deprecatedInVersion}}
+    {{/isDeprecated}}
     {{#pathParams}}
     * @param {{{dataType}}} ${{#lambda.camelcase}}{{paramName}}{{/lambda.camelcase}}
     {{/pathParams}}

@@ -53,6 +53,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'customRoutingFlags' => 'string[]',
         'diners' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'discover' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
+        'eftDirectdebitCA' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'eftposAustralia' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'enabled' => 'bool',
         'girocard' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
@@ -64,6 +65,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'nyce' => '\Adyen\Model\Management\NyceInfo',
         'pulse' => '\Adyen\Model\Management\PulseInfo',
         'star' => '\Adyen\Model\Management\StarInfo',
+        'storeId' => 'string',
         'storeIds' => 'string[]',
         'visa' => '\Adyen\Model\Management\GenericPmWithTdiInfo'
     ];
@@ -85,6 +87,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'customRoutingFlags' => null,
         'diners' => null,
         'discover' => null,
+        'eftDirectdebitCA' => null,
         'eftposAustralia' => null,
         'enabled' => null,
         'girocard' => null,
@@ -96,6 +99,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'nyce' => null,
         'pulse' => null,
         'star' => null,
+        'storeId' => null,
         'storeIds' => null,
         'visa' => null
     ];
@@ -115,6 +119,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'customRoutingFlags' => false,
         'diners' => false,
         'discover' => false,
+        'eftDirectdebitCA' => false,
         'eftposAustralia' => false,
         'enabled' => false,
         'girocard' => false,
@@ -126,6 +131,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'nyce' => false,
         'pulse' => false,
         'star' => false,
+        'storeId' => false,
         'storeIds' => false,
         'visa' => false
     ];
@@ -225,6 +231,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'customRoutingFlags' => 'customRoutingFlags',
         'diners' => 'diners',
         'discover' => 'discover',
+        'eftDirectdebitCA' => 'eft_directdebit_CA',
         'eftposAustralia' => 'eftpos_australia',
         'enabled' => 'enabled',
         'girocard' => 'girocard',
@@ -236,6 +243,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'nyce' => 'nyce',
         'pulse' => 'pulse',
         'star' => 'star',
+        'storeId' => 'storeId',
         'storeIds' => 'storeIds',
         'visa' => 'visa'
     ];
@@ -255,6 +263,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'customRoutingFlags' => 'setCustomRoutingFlags',
         'diners' => 'setDiners',
         'discover' => 'setDiscover',
+        'eftDirectdebitCA' => 'setEftDirectdebitCA',
         'eftposAustralia' => 'setEftposAustralia',
         'enabled' => 'setEnabled',
         'girocard' => 'setGirocard',
@@ -266,6 +275,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'nyce' => 'setNyce',
         'pulse' => 'setPulse',
         'star' => 'setStar',
+        'storeId' => 'setStoreId',
         'storeIds' => 'setStoreIds',
         'visa' => 'setVisa'
     ];
@@ -285,6 +295,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'customRoutingFlags' => 'getCustomRoutingFlags',
         'diners' => 'getDiners',
         'discover' => 'getDiscover',
+        'eftDirectdebitCA' => 'getEftDirectdebitCA',
         'eftposAustralia' => 'getEftposAustralia',
         'enabled' => 'getEnabled',
         'girocard' => 'getGirocard',
@@ -296,6 +307,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'nyce' => 'getNyce',
         'pulse' => 'getPulse',
         'star' => 'getStar',
+        'storeId' => 'getStoreId',
         'storeIds' => 'getStoreIds',
         'visa' => 'getVisa'
     ];
@@ -366,6 +378,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('customRoutingFlags', $data ?? [], null);
         $this->setIfExists('diners', $data ?? [], null);
         $this->setIfExists('discover', $data ?? [], null);
+        $this->setIfExists('eftDirectdebitCA', $data ?? [], null);
         $this->setIfExists('eftposAustralia', $data ?? [], null);
         $this->setIfExists('enabled', $data ?? [], null);
         $this->setIfExists('girocard', $data ?? [], null);
@@ -377,6 +390,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('nyce', $data ?? [], null);
         $this->setIfExists('pulse', $data ?? [], null);
         $this->setIfExists('star', $data ?? [], null);
+        $this->setIfExists('storeId', $data ?? [], null);
         $this->setIfExists('storeIds', $data ?? [], null);
         $this->setIfExists('visa', $data ?? [], null);
     }
@@ -635,6 +649,30 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     public function setDiscover($discover)
     {
         $this->container['discover'] = $discover;
+
+        return $this;
+    }
+
+    /**
+     * Gets eftDirectdebitCA
+     *
+     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     */
+    public function getEftDirectdebitCA()
+    {
+        return $this->container['eftDirectdebitCA'];
+    }
+
+    /**
+     * Sets eftDirectdebitCA
+     *
+     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $eftDirectdebitCA eftDirectdebitCA
+     *
+     * @return self
+     */
+    public function setEftDirectdebitCA($eftDirectdebitCA)
+    {
+        $this->container['eftDirectdebitCA'] = $eftDirectdebitCA;
 
         return $this;
     }
@@ -904,9 +942,34 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
+     * Gets storeId
+     *
+     * @return string|null
+     */
+    public function getStoreId()
+    {
+        return $this->container['storeId'];
+    }
+
+    /**
+     * Sets storeId
+     *
+     * @param string|null $storeId The store for this payment method
+     *
+     * @return self
+     */
+    public function setStoreId($storeId)
+    {
+        $this->container['storeId'] = $storeId;
+
+        return $this;
+    }
+
+    /**
      * Gets storeIds
      *
      * @return string[]|null
+     * @deprecated since Management API v3. "Use `storeId` instead. Only one store per payment method is allowed."
      */
     public function getStoreIds()
     {
@@ -919,6 +982,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
      * @param string[]|null $storeIds The list of stores for this payment method
      *
      * @return self
+     * @deprecated since Management API v3. "Use `storeId` instead. Only one store per payment method is allowed."
      */
     public function setStoreIds($storeIds)
     {

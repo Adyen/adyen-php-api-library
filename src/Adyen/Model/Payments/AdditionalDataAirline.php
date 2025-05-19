@@ -66,7 +66,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
         'airlinePassengerDateOfBirth' => 'string',
         'airlinePassengerFirstName' => 'string',
         'airlinePassengerLastName' => 'string',
-        'airlinePassengerTelephoneNumber' => 'string',
+        'airlinePassengerPhoneNumber' => 'string',
         'airlinePassengerTravellerType' => 'string',
         'airlinePassengerName' => 'string',
         'airlineTicketIssueAddress' => 'string',
@@ -105,7 +105,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
         'airlinePassengerDateOfBirth' => null,
         'airlinePassengerFirstName' => null,
         'airlinePassengerLastName' => null,
-        'airlinePassengerTelephoneNumber' => null,
+        'airlinePassengerPhoneNumber' => null,
         'airlinePassengerTravellerType' => null,
         'airlinePassengerName' => null,
         'airlineTicketIssueAddress' => null,
@@ -142,7 +142,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
         'airlinePassengerDateOfBirth' => false,
         'airlinePassengerFirstName' => false,
         'airlinePassengerLastName' => false,
-        'airlinePassengerTelephoneNumber' => false,
+        'airlinePassengerPhoneNumber' => false,
         'airlinePassengerTravellerType' => false,
         'airlinePassengerName' => false,
         'airlineTicketIssueAddress' => false,
@@ -259,7 +259,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
         'airlinePassengerDateOfBirth' => 'airline.passenger.date_of_birth',
         'airlinePassengerFirstName' => 'airline.passenger.first_name',
         'airlinePassengerLastName' => 'airline.passenger.last_name',
-        'airlinePassengerTelephoneNumber' => 'airline.passenger.telephone_number',
+        'airlinePassengerPhoneNumber' => 'airline.passenger.phone_number',
         'airlinePassengerTravellerType' => 'airline.passenger.traveller_type',
         'airlinePassengerName' => 'airline.passenger_name',
         'airlineTicketIssueAddress' => 'airline.ticket_issue_address',
@@ -296,7 +296,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
         'airlinePassengerDateOfBirth' => 'setAirlinePassengerDateOfBirth',
         'airlinePassengerFirstName' => 'setAirlinePassengerFirstName',
         'airlinePassengerLastName' => 'setAirlinePassengerLastName',
-        'airlinePassengerTelephoneNumber' => 'setAirlinePassengerTelephoneNumber',
+        'airlinePassengerPhoneNumber' => 'setAirlinePassengerPhoneNumber',
         'airlinePassengerTravellerType' => 'setAirlinePassengerTravellerType',
         'airlinePassengerName' => 'setAirlinePassengerName',
         'airlineTicketIssueAddress' => 'setAirlineTicketIssueAddress',
@@ -333,7 +333,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
         'airlinePassengerDateOfBirth' => 'getAirlinePassengerDateOfBirth',
         'airlinePassengerFirstName' => 'getAirlinePassengerFirstName',
         'airlinePassengerLastName' => 'getAirlinePassengerLastName',
-        'airlinePassengerTelephoneNumber' => 'getAirlinePassengerTelephoneNumber',
+        'airlinePassengerPhoneNumber' => 'getAirlinePassengerPhoneNumber',
         'airlinePassengerTravellerType' => 'getAirlinePassengerTravellerType',
         'airlinePassengerName' => 'getAirlinePassengerName',
         'airlineTicketIssueAddress' => 'getAirlineTicketIssueAddress',
@@ -421,7 +421,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('airlinePassengerDateOfBirth', $data ?? [], null);
         $this->setIfExists('airlinePassengerFirstName', $data ?? [], null);
         $this->setIfExists('airlinePassengerLastName', $data ?? [], null);
-        $this->setIfExists('airlinePassengerTelephoneNumber', $data ?? [], null);
+        $this->setIfExists('airlinePassengerPhoneNumber', $data ?? [], null);
         $this->setIfExists('airlinePassengerTravellerType', $data ?? [], null);
         $this->setIfExists('airlinePassengerName', $data ?? [], null);
         $this->setIfExists('airlineTicketIssueAddress', $data ?? [], null);
@@ -1004,25 +1004,25 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Gets airlinePassengerTelephoneNumber
+     * Gets airlinePassengerPhoneNumber
      *
      * @return string|null
      */
-    public function getAirlinePassengerTelephoneNumber()
+    public function getAirlinePassengerPhoneNumber()
     {
-        return $this->container['airlinePassengerTelephoneNumber'];
+        return $this->container['airlinePassengerPhoneNumber'];
     }
 
     /**
-     * Sets airlinePassengerTelephoneNumber
+     * Sets airlinePassengerPhoneNumber
      *
-     * @param string|null $airlinePassengerTelephoneNumber The passenger's telephone number, including country code. This is an alphanumeric field that can include the '+' and '-' signs. * Encoding: ASCII * minLength: 3 characters * maxLength: 30 characters
+     * @param string|null $airlinePassengerPhoneNumber The passenger's phone number, including country code. This is an alphanumeric field that can include the '+' and '-' signs. * Encoding: ASCII * minLength: 3 characters * maxLength: 30 characters
      *
      * @return self
      */
-    public function setAirlinePassengerTelephoneNumber($airlinePassengerTelephoneNumber)
+    public function setAirlinePassengerPhoneNumber($airlinePassengerPhoneNumber)
     {
-        $this->container['airlinePassengerTelephoneNumber'] = $airlinePassengerTelephoneNumber;
+        $this->container['airlinePassengerPhoneNumber'] = $airlinePassengerPhoneNumber;
 
         return $this;
     }

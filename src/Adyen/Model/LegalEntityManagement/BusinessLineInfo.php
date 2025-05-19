@@ -386,7 +386,7 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets capability
      *
      * @return string|null
-     * @deprecated
+     * @deprecated since Legal Entity Management API v3. "Use `service` instead."
      */
     public function getCapability()
     {
@@ -399,7 +399,7 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param string|null $capability The capability for which you are creating the business line.  Possible values: **receivePayments**, **receiveFromPlatformPayments**, **issueBankAccount**
      *
      * @return self
-     * @deprecated
+     * @deprecated since Legal Entity Management API v3. "Use `service` instead."
      */
     public function setCapability($capability)
     {

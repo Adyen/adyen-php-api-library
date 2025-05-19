@@ -61,6 +61,7 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedSecurityCode' => 'string',
         'expiryMonth' => 'string',
         'expiryYear' => 'string',
+        'fastlaneData' => 'string',
         'holderName' => 'string',
         'networkPaymentReference' => 'string',
         'number' => 'string',
@@ -99,6 +100,7 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedSecurityCode' => null,
         'expiryMonth' => null,
         'expiryYear' => null,
+        'fastlaneData' => null,
         'holderName' => null,
         'networkPaymentReference' => null,
         'number' => null,
@@ -135,6 +137,7 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedSecurityCode' => false,
         'expiryMonth' => false,
         'expiryYear' => false,
+        'fastlaneData' => false,
         'holderName' => false,
         'networkPaymentReference' => false,
         'number' => false,
@@ -251,6 +254,7 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedSecurityCode' => 'encryptedSecurityCode',
         'expiryMonth' => 'expiryMonth',
         'expiryYear' => 'expiryYear',
+        'fastlaneData' => 'fastlaneData',
         'holderName' => 'holderName',
         'networkPaymentReference' => 'networkPaymentReference',
         'number' => 'number',
@@ -287,6 +291,7 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedSecurityCode' => 'setEncryptedSecurityCode',
         'expiryMonth' => 'setExpiryMonth',
         'expiryYear' => 'setExpiryYear',
+        'fastlaneData' => 'setFastlaneData',
         'holderName' => 'setHolderName',
         'networkPaymentReference' => 'setNetworkPaymentReference',
         'number' => 'setNumber',
@@ -323,6 +328,7 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedSecurityCode' => 'getEncryptedSecurityCode',
         'expiryMonth' => 'getExpiryMonth',
         'expiryYear' => 'getExpiryYear',
+        'fastlaneData' => 'getFastlaneData',
         'holderName' => 'getHolderName',
         'networkPaymentReference' => 'getNetworkPaymentReference',
         'number' => 'getNumber',
@@ -409,6 +415,7 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('encryptedSecurityCode', $data ?? [], null);
         $this->setIfExists('expiryMonth', $data ?? [], null);
         $this->setIfExists('expiryYear', $data ?? [], null);
+        $this->setIfExists('fastlaneData', $data ?? [], null);
         $this->setIfExists('holderName', $data ?? [], null);
         $this->setIfExists('networkPaymentReference', $data ?? [], null);
         $this->setIfExists('number', $data ?? [], null);
@@ -549,7 +556,7 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      * Gets recurringDetailReference
      *
      * @return string|null
-     * @deprecated
+     * @deprecated since Adyen Checkout API v49. "Use `storedPaymentMethodId` instead."
      */
     public function getRecurringDetailReference()
     {
@@ -562,7 +569,7 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      * @param string|null $recurringDetailReference This is the `recurringDetailReference` returned in the response when you created the token.
      *
      * @return self
-     * @deprecated
+     * @deprecated since Adyen Checkout API v49. "Use `storedPaymentMethodId` instead."
      */
     public function setRecurringDetailReference($recurringDetailReference)
     {
@@ -857,6 +864,30 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setExpiryYear($expiryYear)
     {
         $this->container['expiryYear'] = $expiryYear;
+
+        return $this;
+    }
+
+    /**
+     * Gets fastlaneData
+     *
+     * @return string|null
+     */
+    public function getFastlaneData()
+    {
+        return $this->container['fastlaneData'];
+    }
+
+    /**
+     * Sets fastlaneData
+     *
+     * @param string|null $fastlaneData The encoded fastlane data blob
+     *
+     * @return self
+     */
+    public function setFastlaneData($fastlaneData)
+    {
+        $this->container['fastlaneData'] = $fastlaneData;
 
         return $this;
     }

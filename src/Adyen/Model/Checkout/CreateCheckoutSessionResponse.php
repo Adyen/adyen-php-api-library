@@ -2066,7 +2066,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets shopperReference
      *
-     * @param string|null $shopperReference Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. > Your reference must not include personally identifiable information (PII), for example name or email address.
+     * @param string|null $shopperReference Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. > Your reference must not include personally identifiable information (PII) such as name or email address.
      *
      * @return self
      */
@@ -2413,7 +2413,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
      * Gets threeDSAuthenticationOnly
      *
      * @return bool|null
-     * @deprecated
+     * @deprecated since Adyen Checkout API v69. "Use `authenticationData.authenticationOnly` instead."
      */
     public function getThreeDSAuthenticationOnly()
     {
@@ -2426,7 +2426,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
      * @param bool|null $threeDSAuthenticationOnly If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.
      *
      * @return self
-     * @deprecated
+     * @deprecated since Adyen Checkout API v69. "Use `authenticationData.authenticationOnly` instead."
      */
     public function setThreeDSAuthenticationOnly($threeDSAuthenticationOnly)
     {

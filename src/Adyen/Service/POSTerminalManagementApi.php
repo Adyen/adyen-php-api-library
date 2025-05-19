@@ -42,6 +42,7 @@ class POSTerminalManagementApi extends Service
     /**
     * Assign terminals
     *
+    * @deprecated since POS Terminal Management API v1. "Use [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview)."
     * @param \Adyen\Model\POSTerminalManagement\AssignTerminalsRequest $assignTerminalsRequest
     * @param array|null $requestOptions
     * @return \Adyen\Model\POSTerminalManagement\AssignTerminalsResponse
@@ -57,6 +58,7 @@ class POSTerminalManagementApi extends Service
     /**
     * Get the account or store of a terminal
     *
+    * @deprecated since POS Terminal Management API v1. "Use [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview)."
     * @param \Adyen\Model\POSTerminalManagement\FindTerminalRequest $findTerminalRequest
     * @param array|null $requestOptions
     * @return \Adyen\Model\POSTerminalManagement\FindTerminalResponse
@@ -72,6 +74,7 @@ class POSTerminalManagementApi extends Service
     /**
     * Get the stores of an account
     *
+    * @deprecated since POS Terminal Management API v1. "Use [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview)."
     * @param \Adyen\Model\POSTerminalManagement\GetStoresUnderAccountRequest $getStoresUnderAccountRequest
     * @param array|null $requestOptions
     * @return \Adyen\Model\POSTerminalManagement\GetStoresUnderAccountResponse
@@ -87,6 +90,7 @@ class POSTerminalManagementApi extends Service
     /**
     * Get the details of a terminal
     *
+    * @deprecated since POS Terminal Management API v1. "Use [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview)."
     * @param \Adyen\Model\POSTerminalManagement\GetTerminalDetailsRequest $getTerminalDetailsRequest
     * @param array|null $requestOptions
     * @return \Adyen\Model\POSTerminalManagement\GetTerminalDetailsResponse
@@ -102,6 +106,7 @@ class POSTerminalManagementApi extends Service
     /**
     * Get the list of terminals
     *
+    * @deprecated since POS Terminal Management API v1. "Use [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview)."
     * @param \Adyen\Model\POSTerminalManagement\GetTerminalsUnderAccountRequest $getTerminalsUnderAccountRequest
     * @param array|null $requestOptions
     * @return \Adyen\Model\POSTerminalManagement\GetTerminalsUnderAccountResponse

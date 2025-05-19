@@ -322,7 +322,7 @@ class SourceOfFunds implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets acquiringBusinessLineId
      *
      * @return string|null
-     * @deprecated
+     * @deprecated since Legal Entity Management API v3. "This field will be removed in v4."
      */
     public function getAcquiringBusinessLineId()
     {
@@ -332,10 +332,10 @@ class SourceOfFunds implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets acquiringBusinessLineId
      *
-     * @param string|null $acquiringBusinessLineId The unique identifier of the business line that will be the source of funds.This must be a business line for a **receivePayments** or **receiveFromPlatformPayments** capability.
+     * @param string|null $acquiringBusinessLineId The unique identifier of the business line that is the source of funds.This must be a business line for a **receivePayments** or **receiveFromPlatformPayments** capability.
      *
      * @return self
-     * @deprecated
+     * @deprecated since Legal Entity Management API v3. "This field will be removed in v4."
      */
     public function setAcquiringBusinessLineId($acquiringBusinessLineId)
     {

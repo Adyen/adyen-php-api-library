@@ -34,7 +34,7 @@ class Config
      *
      * @param array|null $params
      */
-    public function __construct(array $params = null)
+    public function __construct(?array $params = null)
     {
         if ($params) {
             foreach ($params as $key => $param) {
@@ -141,7 +141,19 @@ class Config
      */
     public function getTimeout()
     {
-        return !empty($this->data['timeout']) ? $this->data['timeout'] : null;
+        return !empty($this->data['timeout']) ?
+            $this->data['timeout'] :
+            Client::DEFAULT_CURLOPT_TIMEOUT;
+    }
+
+    /**
+     * @return mixed|null
+     */
+    public function getConnectionTimeout()
+    {
+        return !empty($this->data['connectionTimeout']) ?
+            $this->data['connectionTimeout'] :
+            Client::DEFAULT_CURLOPT_CONNECTTIMEOUT;
     }
 
     /**

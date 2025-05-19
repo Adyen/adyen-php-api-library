@@ -853,7 +853,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      * Gets authenticationOnly
      *
      * @return bool|null
-     * @deprecated
+     * @deprecated since Adyen Payment API v50. "Use `threeDSAuthenticationOnly` instead."
      */
     public function getAuthenticationOnly()
     {
@@ -866,7 +866,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      * @param bool|null $authenticationOnly If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.
      *
      * @return self
-     * @deprecated
+     * @deprecated since Adyen Payment API v50. "Use `threeDSAuthenticationOnly` instead."
      */
     public function setAuthenticationOnly($authenticationOnly)
     {
@@ -879,7 +879,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      * Gets challengeIndicator
      *
      * @return string|null
-     * @deprecated
+     * @deprecated since Adyen Payment API v68. "Use `threeDSRequestorChallengeInd` instead."
      */
     public function getChallengeIndicator()
     {
@@ -892,7 +892,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      * @param string|null $challengeIndicator Possibility to specify a preference for receiving a challenge from the issuer. Allowed values: * `noPreference` * `requestNoChallenge` * `requestChallenge` * `requestChallengeAsMandate`
      *
      * @return self
-     * @deprecated
+     * @deprecated since Adyen Payment API v68. "Use `threeDSRequestorChallengeInd` instead."
      */
     public function setChallengeIndicator($challengeIndicator)
     {

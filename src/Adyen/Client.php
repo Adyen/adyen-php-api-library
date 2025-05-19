@@ -7,7 +7,7 @@ use Adyen\HttpClient\CurlClient;
 
 class Client
 {
-    const LIB_VERSION = "23.0.0";
+    const LIB_VERSION = "27.0.0";
     const LIB_NAME = "adyen-php-api-library";
     const USER_AGENT_SUFFIX = "adyen-php-api-library/";
     const ENDPOINT_TEST = "https://pal-test.adyen.com";
@@ -49,6 +49,8 @@ class Client
     const MANAGEMENT_API_TEST = "https://management-test.adyen.com";
     const MANAGEMENT_API_LIVE = "https://management-live.adyen.com";
     const MANAGEMENT_API = "v1";
+    const DEFAULT_CURLOPT_TIMEOUT = 60;
+    const DEFAULT_CURLOPT_CONNECTTIMEOUT = 30;
 
     /**
      * @var Config
@@ -173,6 +175,39 @@ class Client
             $msg = "This environment does not exist, use " . Environment::TEST . ' or ' . Environment::LIVE;
             throw new AdyenException($msg);
         }
+
+        // Retrieve and set the Terminal API Cloud Endpoint
+        $endpoint = $this->retrieveCloudEndpoint($this->config->get('terminalApiRegion'), $environment);
+        $this->config->set('terminalApiCloudEndpoint', $endpoint);
+    }
+
+    /**
+     * Retrieve the cloud endpoint for a given region and environment.
+     *
+     * @param string|null $region The region for which the endpoint is requested. Defaults to the EU endpoint if null or unsupported.
+     * @param string $environment The environment, either 'test' or 'live'.
+     * @return string The endpoint URL.
+     * @throws AdyenException
+     */
+    public function retrieveCloudEndpoint(?string $region, string $environment): string
+    {
+        // Check if the environment is TEST
+        if ($environment === Environment::TEST) {
+            return self::ENDPOINT_TERMINAL_CLOUD_TEST;
+        }
+
+        // Check if the environment is LIVE
+        if ($environment === Environment::LIVE) {
+            if ($environment === Environment::LIVE) {
+                $region = $region ?? Region::EU;
+                if (!array_key_exists($region, Region::TERMINAL_API_ENDPOINTS_MAPPING)) {
+                    throw new AdyenException("TerminalAPI endpoint for $region is not supported yet");
+                }
+                return Region::TERMINAL_API_ENDPOINTS_MAPPING[$region];
+            }
+        }
+        // Default to TEST endpoint if no valid environment is specified
+        return self::ENDPOINT_TERMINAL_CLOUD_TEST;
     }
 
     /**
@@ -264,6 +299,14 @@ class Client
     public function setTimeout($value)
     {
         $this->config->set('timeout', $value);
+    }
+
+    /**
+     * @param $value
+     */
+    public function setConnectionTimeout($value)
+    {
+        $this->config->set('connectionTimeout', $value);
     }
 
     /**
@@ -445,19 +488,5 @@ class Client
     protected function createDefaultHttpClient(): CurlClient
     {
         return new CurlClient();
-    }
-
-    /**
-     * @param string $region
-     * @return void
-     * @throws AdyenException
-     */
-    public function setRegion(string $region): void
-    {
-        if (!in_array($region, Region::VALID_REGIONS)) {
-            throw new AdyenException('Trying to set an invalid region!');
-        }
-
-        $this->config->set('region', $region);
     }
 }
