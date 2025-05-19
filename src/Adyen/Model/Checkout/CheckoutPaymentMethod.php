@@ -21,11 +21,9 @@ use Adyen\Model\Checkout\ObjectSerializer;
 /**
  * CheckoutPaymentMethod Class Doc Comment
  *
- * @category Class
  * The type and required details of a payment method to use.
+ *
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -2072,7 +2070,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets shopperEmail
      *
-     * @param string $shopperEmail
+     * @param string $shopperEmail 
      *
      * @return self
      */
@@ -2096,7 +2094,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets telephoneNumber
      *
-     * @param string $telephoneNumber
+     * @param string $telephoneNumber 
      *
      * @return self
      */

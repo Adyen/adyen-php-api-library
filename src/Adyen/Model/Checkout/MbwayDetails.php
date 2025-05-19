@@ -21,10 +21,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
 /**
  * MbwayDetails Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -361,7 +358,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets shopperEmail
      *
-     * @param string $shopperEmail
+     * @param string $shopperEmail 
      *
      * @return self
      */
@@ -385,7 +382,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets telephoneNumber
      *
-     * @param string $telephoneNumber
+     * @param string $telephoneNumber 
      *
      * @return self
      */

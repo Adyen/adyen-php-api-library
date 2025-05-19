@@ -21,11 +21,9 @@ use Adyen\Model\Checkout\ObjectSerializer;
 /**
  * DonationPaymentMethod Class Doc Comment
  *
- * @category Class
  * The type and required details of a payment method to use.
+ *
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable

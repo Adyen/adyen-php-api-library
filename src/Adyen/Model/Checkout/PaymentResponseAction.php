@@ -21,11 +21,9 @@ use Adyen\Model\Checkout\ObjectSerializer;
 /**
  * PaymentResponseAction Class Doc Comment
  *
- * @category Class
  * Action to be taken for completing the payment.
+ *
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSerializable
