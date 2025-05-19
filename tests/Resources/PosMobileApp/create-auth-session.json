@@ -1,0 +1,7 @@
+{
+  "id": "APP_SESSION_ID",
+  "installationId": "INSTALLATION_ID",
+  "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+  "store": "YOUR_STORE_ID",
+  "sdkData": "SDK_DATA_BLOB"
+}
