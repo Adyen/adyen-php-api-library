@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\Transfers\ObjectSerializer;
 
 /**
- * Repayment Class Doc Comment
+ * IssuingTransactionData Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\Transfers\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Repayment implements ModelInterface, ArrayAccess, \JsonSerializable
+class IssuingTransactionData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class Repayment implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Repayment';
+    protected static $openAPIModelName = 'IssuingTransactionData';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,9 +44,8 @@ class Repayment implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'basisPoints' => 'int',
-        'term' => '\Adyen\Model\Transfers\RepaymentTerm',
-        'threshold' => '\Adyen\Model\Transfers\ThresholdRepayment'
+        'captureCycleId' => 'string',
+        'type' => 'string'
     ];
 
     /**
@@ -57,9 +56,8 @@ class Repayment implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'basisPoints' => 'int32',
-        'term' => null,
-        'threshold' => null
+        'captureCycleId' => null,
+        'type' => null
     ];
 
     /**
@@ -68,9 +66,8 @@ class Repayment implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'basisPoints' => true,
-        'term' => false,
-        'threshold' => false
+        'captureCycleId' => false,
+        'type' => false
     ];
 
     /**
@@ -159,9 +156,8 @@ class Repayment implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'basisPoints' => 'basisPoints',
-        'term' => 'term',
-        'threshold' => 'threshold'
+        'captureCycleId' => 'captureCycleId',
+        'type' => 'type'
     ];
 
     /**
@@ -170,9 +166,8 @@ class Repayment implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'basisPoints' => 'setBasisPoints',
-        'term' => 'setTerm',
-        'threshold' => 'setThreshold'
+        'captureCycleId' => 'setCaptureCycleId',
+        'type' => 'setType'
     ];
 
     /**
@@ -181,9 +176,8 @@ class Repayment implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'basisPoints' => 'getBasisPoints',
-        'term' => 'getTerm',
-        'threshold' => 'getThreshold'
+        'captureCycleId' => 'getCaptureCycleId',
+        'type' => 'getType'
     ];
 
     /**
@@ -227,7 +221,19 @@ class Repayment implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const TYPE_ISSUING_TRANSACTION_DATA = 'issuingTransactionData';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_ISSUING_TRANSACTION_DATA,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -243,9 +249,8 @@ class Repayment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('basisPoints', $data ?? [], null);
-        $this->setIfExists('term', $data ?? [], null);
-        $this->setIfExists('threshold', $data ?? [], null);
+        $this->setIfExists('captureCycleId', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -275,9 +280,18 @@ class Repayment implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['basisPoints'] === null) {
-            $invalidProperties[] = "'basisPoints' can't be null";
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
         }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -294,73 +308,59 @@ class Repayment implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets basisPoints
+     * Gets captureCycleId
      *
-     * @return int
+     * @return string|null
      */
-    public function getBasisPoints()
+    public function getCaptureCycleId()
     {
-        return $this->container['basisPoints'];
+        return $this->container['captureCycleId'];
     }
 
     /**
-     * Sets basisPoints
+     * Sets captureCycleId
      *
-     * @param int $basisPoints The repayment that is deducted daily from incoming net volume, in [basis points](https://www.investopedia.com/terms/b/basispoint.asp).
+     * @param string|null $captureCycleId captureCycleId associated with transfer event.
      *
      * @return self
      */
-    public function setBasisPoints($basisPoints)
+    public function setCaptureCycleId($captureCycleId)
     {
-        $this->container['basisPoints'] = $basisPoints;
+        $this->container['captureCycleId'] = $captureCycleId;
 
         return $this;
     }
 
     /**
-     * Gets term
+     * Gets type
      *
-     * @return \Adyen\Model\Transfers\RepaymentTerm|null
+     * @return string
      */
-    public function getTerm()
+    public function getType()
     {
-        return $this->container['term'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets term
+     * Sets type
      *
-     * @param \Adyen\Model\Transfers\RepaymentTerm|null $term term
+     * @param string $type The type of events data.   Possible values:    - **issuingTransactionData**: issuing transaction data
      *
      * @return self
      */
-    public function setTerm($term)
+    public function setType($type)
     {
-        $this->container['term'] = $term;
-
-        return $this;
-    }
-
-    /**
-     * Gets threshold
-     *
-     * @return \Adyen\Model\Transfers\ThresholdRepayment|null
-     */
-    public function getThreshold()
-    {
-        return $this->container['threshold'];
-    }
-
-    /**
-     * Sets threshold
-     *
-     * @param \Adyen\Model\Transfers\ThresholdRepayment|null $threshold threshold
-     *
-     * @return self
-     */
-    public function setThreshold($threshold)
-    {
-        $this->container['threshold'] = $threshold;
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
 
         return $this;
     }

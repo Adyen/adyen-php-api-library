@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\Transfers\ObjectSerializer;
 
 /**
- * Repayment Class Doc Comment
+ * Lodging Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\Transfers\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Repayment implements ModelInterface, ArrayAccess, \JsonSerializable
+class Lodging implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class Repayment implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Repayment';
+    protected static $openAPIModelName = 'Lodging';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,9 +44,8 @@ class Repayment implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'basisPoints' => 'int',
-        'term' => '\Adyen\Model\Transfers\RepaymentTerm',
-        'threshold' => '\Adyen\Model\Transfers\ThresholdRepayment'
+        'checkInDate' => 'string',
+        'numberOfNights' => 'int'
     ];
 
     /**
@@ -57,9 +56,8 @@ class Repayment implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'basisPoints' => 'int32',
-        'term' => null,
-        'threshold' => null
+        'checkInDate' => null,
+        'numberOfNights' => 'int32'
     ];
 
     /**
@@ -68,9 +66,8 @@ class Repayment implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'basisPoints' => true,
-        'term' => false,
-        'threshold' => false
+        'checkInDate' => false,
+        'numberOfNights' => true
     ];
 
     /**
@@ -159,9 +156,8 @@ class Repayment implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'basisPoints' => 'basisPoints',
-        'term' => 'term',
-        'threshold' => 'threshold'
+        'checkInDate' => 'checkInDate',
+        'numberOfNights' => 'numberOfNights'
     ];
 
     /**
@@ -170,9 +166,8 @@ class Repayment implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'basisPoints' => 'setBasisPoints',
-        'term' => 'setTerm',
-        'threshold' => 'setThreshold'
+        'checkInDate' => 'setCheckInDate',
+        'numberOfNights' => 'setNumberOfNights'
     ];
 
     /**
@@ -181,9 +176,8 @@ class Repayment implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'basisPoints' => 'getBasisPoints',
-        'term' => 'getTerm',
-        'threshold' => 'getThreshold'
+        'checkInDate' => 'getCheckInDate',
+        'numberOfNights' => 'getNumberOfNights'
     ];
 
     /**
@@ -243,9 +237,8 @@ class Repayment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('basisPoints', $data ?? [], null);
-        $this->setIfExists('term', $data ?? [], null);
-        $this->setIfExists('threshold', $data ?? [], null);
+        $this->setIfExists('checkInDate', $data ?? [], null);
+        $this->setIfExists('numberOfNights', $data ?? [], null);
     }
 
     /**
@@ -275,9 +268,6 @@ class Repayment implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['basisPoints'] === null) {
-            $invalidProperties[] = "'basisPoints' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -294,73 +284,49 @@ class Repayment implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets basisPoints
+     * Gets checkInDate
      *
-     * @return int
+     * @return string|null
      */
-    public function getBasisPoints()
+    public function getCheckInDate()
     {
-        return $this->container['basisPoints'];
+        return $this->container['checkInDate'];
     }
 
     /**
-     * Sets basisPoints
+     * Sets checkInDate
      *
-     * @param int $basisPoints The repayment that is deducted daily from incoming net volume, in [basis points](https://www.investopedia.com/terms/b/basispoint.asp).
+     * @param string|null $checkInDate The check-in date.
      *
      * @return self
      */
-    public function setBasisPoints($basisPoints)
+    public function setCheckInDate($checkInDate)
     {
-        $this->container['basisPoints'] = $basisPoints;
+        $this->container['checkInDate'] = $checkInDate;
 
         return $this;
     }
 
     /**
-     * Gets term
+     * Gets numberOfNights
      *
-     * @return \Adyen\Model\Transfers\RepaymentTerm|null
+     * @return int|null
      */
-    public function getTerm()
+    public function getNumberOfNights()
     {
-        return $this->container['term'];
+        return $this->container['numberOfNights'];
     }
 
     /**
-     * Sets term
+     * Sets numberOfNights
      *
-     * @param \Adyen\Model\Transfers\RepaymentTerm|null $term term
+     * @param int|null $numberOfNights The total number of nights the room is booked for.
      *
      * @return self
      */
-    public function setTerm($term)
+    public function setNumberOfNights($numberOfNights)
     {
-        $this->container['term'] = $term;
-
-        return $this;
-    }
-
-    /**
-     * Gets threshold
-     *
-     * @return \Adyen\Model\Transfers\ThresholdRepayment|null
-     */
-    public function getThreshold()
-    {
-        return $this->container['threshold'];
-    }
-
-    /**
-     * Sets threshold
-     *
-     * @param \Adyen\Model\Transfers\ThresholdRepayment|null $threshold threshold
-     *
-     * @return self
-     */
-    public function setThreshold($threshold)
-    {
-        $this->container['threshold'] = $threshold;
+        $this->container['numberOfNights'] = $numberOfNights;
 
         return $this;
     }

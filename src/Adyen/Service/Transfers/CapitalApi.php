@@ -47,7 +47,7 @@ class CapitalApi extends Service
     * @return \Adyen\Model\Transfers\CapitalGrants
     * @throws AdyenException
     */
-    public function getCapitalAccount(array $requestOptions = null): \Adyen\Model\Transfers\CapitalGrants
+    public function getCapitalAccount(?array $requestOptions = null): \Adyen\Model\Transfers\CapitalGrants
     {
         $endpoint = $this->baseURL . "/grants";
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -63,7 +63,7 @@ class CapitalApi extends Service
     * @return \Adyen\Model\Transfers\CapitalGrant
     * @throws AdyenException
     */
-    public function getGrantReferenceDetails(string $id, array $requestOptions = null): \Adyen\Model\Transfers\CapitalGrant
+    public function getGrantReferenceDetails(string $id, ?array $requestOptions = null): \Adyen\Model\Transfers\CapitalGrant
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/grants/{id}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -79,7 +79,7 @@ class CapitalApi extends Service
     * @return \Adyen\Model\Transfers\CapitalGrant
     * @throws AdyenException
     */
-    public function requestGrantPayout(\Adyen\Model\Transfers\CapitalGrantInfo $capitalGrantInfo, array $requestOptions = null): \Adyen\Model\Transfers\CapitalGrant
+    public function requestGrantPayout(\Adyen\Model\Transfers\CapitalGrantInfo $capitalGrantInfo, ?array $requestOptions = null): \Adyen\Model\Transfers\CapitalGrant
     {
         $endpoint = $this->baseURL . "/grants";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $capitalGrantInfo->jsonSerialize(), $requestOptions);

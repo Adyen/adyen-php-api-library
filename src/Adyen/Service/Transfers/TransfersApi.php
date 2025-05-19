@@ -44,13 +44,14 @@ class TransfersApi extends Service
     *
     * @param \Adyen\Model\Transfers\ApproveTransfersRequest $approveTransfersRequest
     * @param array|null $requestOptions
-
+    
     * @throws AdyenException
     */
-    public function approveInitiatedTransfers(\Adyen\Model\Transfers\ApproveTransfersRequest $approveTransfersRequest, array $requestOptions = null)
+    public function approveInitiatedTransfers(\Adyen\Model\Transfers\ApproveTransfersRequest $approveTransfersRequest, ?array $requestOptions = null)
     {
         $endpoint = $this->baseURL . "/transfers/approve";
         $this->requestHttp($endpoint, strtolower('POST'), (array) $approveTransfersRequest->jsonSerialize(), $requestOptions);
+        
     }
 
     /**
@@ -58,13 +59,14 @@ class TransfersApi extends Service
     *
     * @param \Adyen\Model\Transfers\CancelTransfersRequest $cancelTransfersRequest
     * @param array|null $requestOptions
-
+    
     * @throws AdyenException
     */
-    public function cancelInitiatedTransfers(\Adyen\Model\Transfers\CancelTransfersRequest $cancelTransfersRequest, array $requestOptions = null)
+    public function cancelInitiatedTransfers(\Adyen\Model\Transfers\CancelTransfersRequest $cancelTransfersRequest, ?array $requestOptions = null)
     {
         $endpoint = $this->baseURL . "/transfers/cancel";
         $this->requestHttp($endpoint, strtolower('POST'), (array) $cancelTransfersRequest->jsonSerialize(), $requestOptions);
+        
     }
 
     /**
@@ -74,7 +76,7 @@ class TransfersApi extends Service
     * @return \Adyen\Model\Transfers\FindTransfersResponse
     * @throws AdyenException
     */
-    public function getAllTransfers(array $requestOptions = null): \Adyen\Model\Transfers\FindTransfersResponse
+    public function getAllTransfers(?array $requestOptions = null): \Adyen\Model\Transfers\FindTransfersResponse
     {
         $endpoint = $this->baseURL . "/transfers";
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -89,7 +91,7 @@ class TransfersApi extends Service
     * @return \Adyen\Model\Transfers\TransferData
     * @throws AdyenException
     */
-    public function getTransfer(string $id, array $requestOptions = null): \Adyen\Model\Transfers\TransferData
+    public function getTransfer(string $id, ?array $requestOptions = null): \Adyen\Model\Transfers\TransferData
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/transfers/{id}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -105,7 +107,7 @@ class TransfersApi extends Service
     * @return \Adyen\Model\Transfers\ReturnTransferResponse
     * @throws AdyenException
     */
-    public function returnTransfer(string $transferId, \Adyen\Model\Transfers\ReturnTransferRequest $returnTransferRequest, array $requestOptions = null): \Adyen\Model\Transfers\ReturnTransferResponse
+    public function returnTransfer(string $transferId, \Adyen\Model\Transfers\ReturnTransferRequest $returnTransferRequest, ?array $requestOptions = null): \Adyen\Model\Transfers\ReturnTransferResponse
     {
         $endpoint = $this->baseURL . str_replace(['{transferId}'], [$transferId], "/transfers/{transferId}/returns");
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $returnTransferRequest->jsonSerialize(), $requestOptions);
@@ -120,7 +122,7 @@ class TransfersApi extends Service
     * @return \Adyen\Model\Transfers\Transfer
     * @throws AdyenException
     */
-    public function transferFunds(\Adyen\Model\Transfers\TransferInfo $transferInfo, array $requestOptions = null): \Adyen\Model\Transfers\Transfer
+    public function transferFunds(\Adyen\Model\Transfers\TransferInfo $transferInfo, ?array $requestOptions = null): \Adyen\Model\Transfers\Transfer
     {
         $endpoint = $this->baseURL . "/transfers";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $transferInfo->jsonSerialize(), $requestOptions);
