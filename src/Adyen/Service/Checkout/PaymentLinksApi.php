@@ -47,7 +47,7 @@ class PaymentLinksApi extends Service
     * @return \Adyen\Model\Checkout\PaymentLinkResponse
     * @throws AdyenException
     */
-    public function getPaymentLink(string $linkId, array $requestOptions = null): \Adyen\Model\Checkout\PaymentLinkResponse
+    public function getPaymentLink(string $linkId, ?array $requestOptions = null): \Adyen\Model\Checkout\PaymentLinkResponse
     {
         $endpoint = $this->baseURL . str_replace(['{linkId}'], [$linkId], "/paymentLinks/{linkId}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -62,7 +62,7 @@ class PaymentLinksApi extends Service
     * @return \Adyen\Model\Checkout\PaymentLinkResponse
     * @throws AdyenException
     */
-    public function paymentLinks(\Adyen\Model\Checkout\PaymentLinkRequest $paymentLinkRequest, array $requestOptions = null): \Adyen\Model\Checkout\PaymentLinkResponse
+    public function paymentLinks(\Adyen\Model\Checkout\PaymentLinkRequest $paymentLinkRequest, ?array $requestOptions = null): \Adyen\Model\Checkout\PaymentLinkResponse
     {
         $endpoint = $this->baseURL . "/paymentLinks";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $paymentLinkRequest->jsonSerialize(), $requestOptions);
@@ -78,7 +78,7 @@ class PaymentLinksApi extends Service
     * @return \Adyen\Model\Checkout\PaymentLinkResponse
     * @throws AdyenException
     */
-    public function updatePaymentLink(string $linkId, \Adyen\Model\Checkout\UpdatePaymentLinkRequest $updatePaymentLinkRequest, array $requestOptions = null): \Adyen\Model\Checkout\PaymentLinkResponse
+    public function updatePaymentLink(string $linkId, \Adyen\Model\Checkout\UpdatePaymentLinkRequest $updatePaymentLinkRequest, ?array $requestOptions = null): \Adyen\Model\Checkout\PaymentLinkResponse
     {
         $endpoint = $this->baseURL . str_replace(['{linkId}'], [$linkId], "/paymentLinks/{linkId}");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $updatePaymentLinkRequest->jsonSerialize(), $requestOptions);

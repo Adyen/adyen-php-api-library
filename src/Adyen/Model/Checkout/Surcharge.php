@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
- * DotpayDetails Class Doc Comment
+ * Surcharge Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class DotpayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
+class Surcharge implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class DotpayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'DotpayDetails';
+    protected static $openAPIModelName = 'Surcharge';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,9 +44,7 @@ class DotpayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'checkoutAttemptId' => 'string',
-        'issuer' => 'string',
-        'type' => 'string'
+        'value' => 'int'
     ];
 
     /**
@@ -57,9 +55,7 @@ class DotpayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'checkoutAttemptId' => null,
-        'issuer' => null,
-        'type' => null
+        'value' => 'int64'
     ];
 
     /**
@@ -68,9 +64,7 @@ class DotpayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'checkoutAttemptId' => false,
-        'issuer' => false,
-        'type' => false
+        'value' => false
     ];
 
     /**
@@ -159,9 +153,7 @@ class DotpayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'checkoutAttemptId' => 'checkoutAttemptId',
-        'issuer' => 'issuer',
-        'type' => 'type'
+        'value' => 'value'
     ];
 
     /**
@@ -170,9 +162,7 @@ class DotpayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'checkoutAttemptId' => 'setCheckoutAttemptId',
-        'issuer' => 'setIssuer',
-        'type' => 'setType'
+        'value' => 'setValue'
     ];
 
     /**
@@ -181,9 +171,7 @@ class DotpayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'checkoutAttemptId' => 'getCheckoutAttemptId',
-        'issuer' => 'getIssuer',
-        'type' => 'getType'
+        'value' => 'getValue'
     ];
 
     /**
@@ -227,19 +215,7 @@ class DotpayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const TYPE_DOTPAY = 'dotpay';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_DOTPAY,
-        ];
-    }
     /**
      * Associative array for storing property values
      *
@@ -253,11 +229,9 @@ class DotpayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
-        $this->setIfExists('checkoutAttemptId', $data ?? [], null);
-        $this->setIfExists('issuer', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('value', $data ?? [], null);
     }
 
     /**
@@ -287,18 +261,9 @@ class DotpayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['issuer'] === null) {
-            $invalidProperties[] = "'issuer' can't be null";
+        if ($this->container['value'] === null) {
+            $invalidProperties[] = "'value' can't be null";
         }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -315,83 +280,25 @@ class DotpayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets checkoutAttemptId
+     * Gets value
      *
-     * @return string|null
+     * @return int
      */
-    public function getCheckoutAttemptId()
+    public function getValue()
     {
-        return $this->container['checkoutAttemptId'];
+        return $this->container['value'];
     }
 
     /**
-     * Sets checkoutAttemptId
+     * Sets value
      *
-     * @param string|null $checkoutAttemptId The checkout attempt identifier.
+     * @param int $value The [surcharge](https://docs.adyen.com/online-payments/surcharge/) amount to apply to the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes). When you apply surcharge, include the surcharge in the `amount.value` field.  Review our [Surcharge compliance guide](https://docs.adyen.com/development-resources/surcharge-compliance/) to learn about how to comply with regulatory requirements when applying surcharge.
      *
      * @return self
      */
-    public function setCheckoutAttemptId($checkoutAttemptId)
+    public function setValue($value)
     {
-        $this->container['checkoutAttemptId'] = $checkoutAttemptId;
-
-        return $this;
-    }
-
-    /**
-     * Gets issuer
-     *
-     * @return string
-     */
-    public function getIssuer()
-    {
-        return $this->container['issuer'];
-    }
-
-    /**
-     * Sets issuer
-     *
-     * @param string $issuer The Dotpay issuer value of the shopper's selected bank. Set this to an **id** of a Dotpay issuer to preselect it.
-     *
-     * @return self
-     */
-    public function setIssuer($issuer)
-    {
-        $this->container['issuer'] = $issuer;
-
-        return $this;
-    }
-
-    /**
-     * Gets type
-     *
-     * @return string|null
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string|null $type **dotpay**
-     *
-     * @return self
-     */
-    public function setType($type)
-    {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
+        $this->container['value'] = $value;
 
         return $this;
     }

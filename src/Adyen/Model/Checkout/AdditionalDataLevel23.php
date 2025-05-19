@@ -325,7 +325,7 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('enhancedSchemeDataCustomerReference', $data ?? [], null);
         $this->setIfExists('enhancedSchemeDataDestinationCountryCode', $data ?? [], null);
@@ -401,7 +401,7 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets enhancedSchemeDataCustomerReference
      *
-     * @param string|null $enhancedSchemeDataCustomerReference The customer code. * Encoding: ASCII * Max length: 25 characters * Must not start with a space or be all spaces * Must not be all zeros.
+     * @param string|null $enhancedSchemeDataCustomerReference The reference number to identify the customer and their order.  * Encoding: ASCII * Max length: 25 characters * Must not start with a space or be all spaces. * Must not be all zeros.
      *
      * @return self
      */
@@ -449,7 +449,7 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets enhancedSchemeDataDestinationPostalCode
      *
-     * @param string|null $enhancedSchemeDataDestinationPostalCode The postal code of the destination address. * Encoding: ASCII * Max length: 10 characters * Must not start with a space
+     * @param string|null $enhancedSchemeDataDestinationPostalCode The postal code of the destination address. * Encoding: ASCII * Max length: 10 characters * Must not start with a space. * For the US, it must be in five or nine digits format. For example, 10001 or 10001-0000. * For Canada, it must be in 6 digits format. For example, M4B 1G5.
      *
      * @return self
      */
@@ -473,7 +473,7 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets enhancedSchemeDataDestinationStateProvinceCode
      *
-     * @param string|null $enhancedSchemeDataDestinationStateProvinceCode Destination state or province code. * Encoding: ASCII * Max length: 3 characters * Must not start with a space
+     * @param string|null $enhancedSchemeDataDestinationStateProvinceCode The state or province code of the destination address. * Encoding: ASCII * Max length: 3 characters * Must not start with a space.
      *
      * @return self
      */
@@ -497,7 +497,7 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets enhancedSchemeDataDutyAmount
      *
-     * @param string|null $enhancedSchemeDataDutyAmount The duty amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * For example, 2000 means USD 20.00. * Encoding: Numeric * Max length: 12 characters
+     * @param string|null $enhancedSchemeDataDutyAmount The duty tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * For example, 2000 means USD 20.00. * Encoding: Numeric * Max length: 12 characters
      *
      * @return self
      */
@@ -521,7 +521,7 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets enhancedSchemeDataFreightAmount
      *
-     * @param string|null $enhancedSchemeDataFreightAmount The shipping amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * For example, 2000 means USD 20.00. * Encoding: Numeric *Max length: 12 characters
+     * @param string|null $enhancedSchemeDataFreightAmount The shipping amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * For example, 2000 means USD 20.00. * Encoding: Numeric * Max length: 12 characters
      *
      * @return self
      */
@@ -545,7 +545,7 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets enhancedSchemeDataItemDetailLineItemNrCommodityCode
      *
-     * @param string|null $enhancedSchemeDataItemDetailLineItemNrCommodityCode The [UNSPC commodity code](https://www.unspsc.org/) of the item. * Encoding: ASCII * Max length: 12 characters * Must not start with a space or be all spaces * Must not be all zeros.
+     * @param string|null $enhancedSchemeDataItemDetailLineItemNrCommodityCode The code that identifies the item in a standardized commodity coding scheme. There are different commodity coding schemes: * [UNSPSC commodity codes](https://www.unspsc.org/) * [HS commodity codes](https://www.wcoomd.org/en/topics/nomenclature/overview.aspx) * [NAICS commodity codes](https://www.census.gov/naics/) * [NAPCS commodity codes](https://www.census.gov/naics/napcs/)   * Encoding: ASCII * Max length: 12 characters * Must not start with a space or be all spaces. * Must not be all zeros.
      *
      * @return self
      */
@@ -569,7 +569,7 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets enhancedSchemeDataItemDetailLineItemNrDescription
      *
-     * @param string|null $enhancedSchemeDataItemDetailLineItemNrDescription A description of the item. * Encoding: ASCII * Max length: 26 characters * Must not start with a space or be all spaces * Must not be all zeros.
+     * @param string|null $enhancedSchemeDataItemDetailLineItemNrDescription A description of the item. * Encoding: ASCII * Max length: 26 characters * Must not be a single character. * Must not be blank. * Must not start with a space or be all spaces. * Must not be all zeros.
      *
      * @return self
      */
@@ -617,7 +617,7 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets enhancedSchemeDataItemDetailLineItemNrProductCode
      *
-     * @param string|null $enhancedSchemeDataItemDetailLineItemNrProductCode The product code. * Encoding: ASCII. * Max length: 12 characters * Must not start with a space or be all spaces * Must not be all zeros.
+     * @param string|null $enhancedSchemeDataItemDetailLineItemNrProductCode The product code. Must be a unique product code associated with the item or service. This can be your unique code for the item, or the manufacturer's product code.  * Encoding: ASCII. * Max length: 12 characters * Must not start with a space or be all spaces. * Must not be all zeros.
      *
      * @return self
      */
@@ -641,7 +641,7 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets enhancedSchemeDataItemDetailLineItemNrQuantity
      *
-     * @param string|null $enhancedSchemeDataItemDetailLineItemNrQuantity The number of items. Must be an integer greater than zero. * Encoding: Numeric * Max length: 12 characters * Must not start with a space or be all spaces
+     * @param string|null $enhancedSchemeDataItemDetailLineItemNrQuantity The number of items. Must be an integer greater than zero. * Encoding: Numeric * Max length: 12 characters * Must not start with a space or be all spaces.
      *
      * @return self
      */
@@ -665,7 +665,7 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets enhancedSchemeDataItemDetailLineItemNrTotalAmount
      *
-     * @param string|null $enhancedSchemeDataItemDetailLineItemNrTotalAmount The total amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * For example, 2000 means USD 20.00. * Max length: 12 characters * Must not start with a space or be all spaces * Must not be all zeros.
+     * @param string|null $enhancedSchemeDataItemDetailLineItemNrTotalAmount The total amount for the line item, in [minor units](https://docs.adyen.com/development-resources/currency-codes). See [Amount requirements for level 2/3 ESD](https://docs.adyen.com//payment-methods/cards/enhanced-scheme-data/l2-l3#amount-requirements) to learn more about how to calculate the line item total. * For example, 2000 means USD 20.00. * Max length: 12 characters * Must not start with a space or be all spaces. * Must not be all zeros.
      *
      * @return self
      */
@@ -689,7 +689,7 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets enhancedSchemeDataItemDetailLineItemNrUnitOfMeasure
      *
-     * @param string|null $enhancedSchemeDataItemDetailLineItemNrUnitOfMeasure The unit of measurement for an item. * Encoding: ASCII  Max length: 3 characters * Must not start with a space or be all spaces * Must not be all zeros.
+     * @param string|null $enhancedSchemeDataItemDetailLineItemNrUnitOfMeasure The unit of measurement for an item. * Encoding: ASCII * Max length: 3 characters * Must not start with a space or be all spaces. * Must not be all zeros.
      *
      * @return self
      */
@@ -761,7 +761,7 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets enhancedSchemeDataShipFromPostalCode
      *
-     * @param string|null $enhancedSchemeDataShipFromPostalCode The postal code of the address the item is shipped from. * Encoding: ASCII * Max length: 10 characters * Must not start with a space or be all spaces * Must not be all zeros.
+     * @param string|null $enhancedSchemeDataShipFromPostalCode The postal code of the address where the item is shipped from. * Encoding: ASCII * Max length: 10 characters * Must not start with a space or be all spaces. * Must not be all zeros.For the US, it must be in five or nine digits format. For example, 10001 or 10001-0000. * For Canada, it must be in 6 digits format. For example, M4B 1G5.
      *
      * @return self
      */
@@ -785,7 +785,7 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets enhancedSchemeDataTotalTaxAmount
      *
-     * @param string|null $enhancedSchemeDataTotalTaxAmount The total tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * For example, 2000 means USD 20.00. *Encoding: Numeric *Max length: 12 characters * Must not be all zeros.
+     * @param string|null $enhancedSchemeDataTotalTaxAmount The amount of state or provincial [tax included in the total transaction amount](https://docs.adyen.com/payment-methods/cards/enhanced-scheme-data/l2-l3#requirements-to-send-level-2-3-esd), in [minor units](https://docs.adyen.com/development-resources/currency-codes).  * For example, 2000 means USD 20.00. * Encoding: Numeric  * Max length: 12 characters * Must not be all zeros.
      *
      * @return self
      */

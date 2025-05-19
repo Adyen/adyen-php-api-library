@@ -47,6 +47,7 @@ class Donation implements ModelInterface, ArrayAccess, \JsonSerializable
         'currency' => 'string',
         'donationType' => 'string',
         'maxRoundupAmount' => 'int',
+        'type' => 'string',
         'values' => 'int[]'
     ];
 
@@ -61,6 +62,7 @@ class Donation implements ModelInterface, ArrayAccess, \JsonSerializable
         'currency' => null,
         'donationType' => null,
         'maxRoundupAmount' => 'int64',
+        'type' => null,
         'values' => 'int64'
     ];
 
@@ -73,6 +75,7 @@ class Donation implements ModelInterface, ArrayAccess, \JsonSerializable
         'currency' => false,
         'donationType' => false,
         'maxRoundupAmount' => false,
+        'type' => false,
         'values' => false
     ];
 
@@ -165,6 +168,7 @@ class Donation implements ModelInterface, ArrayAccess, \JsonSerializable
         'currency' => 'currency',
         'donationType' => 'donationType',
         'maxRoundupAmount' => 'maxRoundupAmount',
+        'type' => 'type',
         'values' => 'values'
     ];
 
@@ -177,6 +181,7 @@ class Donation implements ModelInterface, ArrayAccess, \JsonSerializable
         'currency' => 'setCurrency',
         'donationType' => 'setDonationType',
         'maxRoundupAmount' => 'setMaxRoundupAmount',
+        'type' => 'setType',
         'values' => 'setValues'
     ];
 
@@ -189,6 +194,7 @@ class Donation implements ModelInterface, ArrayAccess, \JsonSerializable
         'currency' => 'getCurrency',
         'donationType' => 'getDonationType',
         'maxRoundupAmount' => 'getMaxRoundupAmount',
+        'type' => 'getType',
         'values' => 'getValues'
     ];
 
@@ -247,11 +253,12 @@ class Donation implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('currency', $data ?? [], null);
         $this->setIfExists('donationType', $data ?? [], null);
         $this->setIfExists('maxRoundupAmount', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('values', $data ?? [], null);
     }
 
@@ -287,6 +294,9 @@ class Donation implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['donationType'] === null) {
             $invalidProperties[] = "'donationType' can't be null";
+        }
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
         }
         return $invalidProperties;
     }
@@ -371,6 +381,30 @@ class Donation implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setMaxRoundupAmount($maxRoundupAmount)
     {
         $this->container['maxRoundupAmount'] = $maxRoundupAmount;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string $type The [type of donation](https://docs.adyen.com/online-payments/donations/#donation-types).  Possible values: * **roundup**: a donation where the original transaction amount is rounded up as a donation. * **fixedAmounts**: a donation where you show fixed donation amounts that the shopper can select from.
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        $this->container['type'] = $type;
 
         return $this;
     }

@@ -44,7 +44,10 @@ class SessionResultResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var string[]
       */
     protected static $openAPITypes = [
+        'additionalData' => 'array<string,string>',
         'id' => 'string',
+        'payments' => '\Adyen\Model\Checkout\Payment[]',
+        'reference' => 'string',
         'status' => 'string'
     ];
 
@@ -56,7 +59,10 @@ class SessionResultResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'additionalData' => null,
         'id' => null,
+        'payments' => null,
+        'reference' => null,
         'status' => null
     ];
 
@@ -66,7 +72,10 @@ class SessionResultResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'additionalData' => false,
         'id' => false,
+        'payments' => false,
+        'reference' => false,
         'status' => false
     ];
 
@@ -156,7 +165,10 @@ class SessionResultResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $attributeMap = [
+        'additionalData' => 'additionalData',
         'id' => 'id',
+        'payments' => 'payments',
+        'reference' => 'reference',
         'status' => 'status'
     ];
 
@@ -166,7 +178,10 @@ class SessionResultResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $setters = [
+        'additionalData' => 'setAdditionalData',
         'id' => 'setId',
+        'payments' => 'setPayments',
+        'reference' => 'setReference',
         'status' => 'setStatus'
     ];
 
@@ -176,7 +191,10 @@ class SessionResultResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $getters = [
+        'additionalData' => 'getAdditionalData',
         'id' => 'getId',
+        'payments' => 'getPayments',
+        'reference' => 'getReference',
         'status' => 'getStatus'
     ];
 
@@ -257,9 +275,12 @@ class SessionResultResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
+        $this->setIfExists('additionalData', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('payments', $data ?? [], null);
+        $this->setIfExists('reference', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
     }
 
@@ -315,6 +336,30 @@ class SessionResultResponse implements ModelInterface, ArrayAccess, \JsonSeriali
 
 
     /**
+     * Gets additionalData
+     *
+     * @return array<string,string>|null
+     */
+    public function getAdditionalData()
+    {
+        return $this->container['additionalData'];
+    }
+
+    /**
+     * Sets additionalData
+     *
+     * @param array<string,string>|null $additionalData Contains additional information about the payment. Some fields are included only if you enable them. To enable these fields in your Customer Area, go to **Developers** > **Additional data**.
+     *
+     * @return self
+     */
+    public function setAdditionalData($additionalData)
+    {
+        $this->container['additionalData'] = $additionalData;
+
+        return $this;
+    }
+
+    /**
      * Gets id
      *
      * @return string|null
@@ -339,6 +384,54 @@ class SessionResultResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
+     * Gets payments
+     *
+     * @return \Adyen\Model\Checkout\Payment[]|null
+     */
+    public function getPayments()
+    {
+        return $this->container['payments'];
+    }
+
+    /**
+     * Sets payments
+     *
+     * @param \Adyen\Model\Checkout\Payment[]|null $payments A list of all authorised payments done for this session.
+     *
+     * @return self
+     */
+    public function setPayments($payments)
+    {
+        $this->container['payments'] = $payments;
+
+        return $this;
+    }
+
+    /**
+     * Gets reference
+     *
+     * @return string|null
+     */
+    public function getReference()
+    {
+        return $this->container['reference'];
+    }
+
+    /**
+     * Sets reference
+     *
+     * @param string|null $reference The unique reference that you provided in the original `/sessions` request. This identifies the payment and is used in all communication with you about the payment status.
+     *
+     * @return self
+     */
+    public function setReference($reference)
+    {
+        $this->container['reference'] = $reference;
+
+        return $this;
+    }
+
+    /**
      * Gets status
      *
      * @return string|null
@@ -351,7 +444,7 @@ class SessionResultResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets status
      *
-     * @param string|null $status The status of the session. The status included in the response doesn't get updated. Don't make the request again to check for payment status updates.  Possible values:           * **completed** – The shopper completed the payment. This means that the payment was authorized.          * **paymentPending** – The shopper is in the process of making the payment. This applies to payment methods with an asynchronous flow.          * **refused** – The session has been refused, due to too many refused payment attempts. Shoppers can no longer complete the payment with this session.          * **canceled** – The shopper canceled the payment.          * **active** – The session is still active and can be paid.          * **expired** – The session expired (default: 1 hour after session creation). Shoppers can no longer complete the payment with this session.
+     * @param string|null $status The status of the session. The status included in the response doesn't get updated. Don't make the request again to check for payment status updates.  Possible values: * **completed**: the shopper completed the payment, and the payment was authorized. * **paymentPending**: the shopper is in the process of making the payment. This applies to payment methods with an asynchronous flow, like voucher payments where the shopper completes the payment in a physical shop. * **refused**: the session has been refused, because of too many refused payment attempts. The shopper can no longer complete the payment with this session. * **canceled**: the shopper canceled the payment. * **expired**: the session expired. The shopper can no longer complete the payment with this session. By default, the session expires one hour after it is created.
      *
      * @return self
      */

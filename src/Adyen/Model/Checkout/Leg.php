@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
- * GiropayDetails Class Doc Comment
+ * Leg Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class GiropayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
+class Leg implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class GiropayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'GiropayDetails';
+    protected static $openAPIModelName = 'Leg';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,10 +44,15 @@ class GiropayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'checkoutAttemptId' => 'string',
-        'recurringDetailReference' => 'string',
-        'storedPaymentMethodId' => 'string',
-        'type' => 'string'
+        'carrierCode' => 'string',
+        'classOfTravel' => 'string',
+        'dateOfTravel' => '\DateTime',
+        'departureAirportCode' => 'string',
+        'departureTax' => 'int',
+        'destinationAirportCode' => 'string',
+        'fareBasisCode' => 'string',
+        'flightNumber' => 'string',
+        'stopOverCode' => 'string'
     ];
 
     /**
@@ -58,10 +63,15 @@ class GiropayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'checkoutAttemptId' => null,
-        'recurringDetailReference' => null,
-        'storedPaymentMethodId' => null,
-        'type' => null
+        'carrierCode' => null,
+        'classOfTravel' => null,
+        'dateOfTravel' => 'date-time',
+        'departureAirportCode' => null,
+        'departureTax' => 'int64',
+        'destinationAirportCode' => null,
+        'fareBasisCode' => null,
+        'flightNumber' => null,
+        'stopOverCode' => null
     ];
 
     /**
@@ -70,10 +80,15 @@ class GiropayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'checkoutAttemptId' => false,
-        'recurringDetailReference' => false,
-        'storedPaymentMethodId' => false,
-        'type' => false
+        'carrierCode' => false,
+        'classOfTravel' => false,
+        'dateOfTravel' => false,
+        'departureAirportCode' => false,
+        'departureTax' => false,
+        'destinationAirportCode' => false,
+        'fareBasisCode' => false,
+        'flightNumber' => false,
+        'stopOverCode' => false
     ];
 
     /**
@@ -162,10 +177,15 @@ class GiropayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'checkoutAttemptId' => 'checkoutAttemptId',
-        'recurringDetailReference' => 'recurringDetailReference',
-        'storedPaymentMethodId' => 'storedPaymentMethodId',
-        'type' => 'type'
+        'carrierCode' => 'carrierCode',
+        'classOfTravel' => 'classOfTravel',
+        'dateOfTravel' => 'dateOfTravel',
+        'departureAirportCode' => 'departureAirportCode',
+        'departureTax' => 'departureTax',
+        'destinationAirportCode' => 'destinationAirportCode',
+        'fareBasisCode' => 'fareBasisCode',
+        'flightNumber' => 'flightNumber',
+        'stopOverCode' => 'stopOverCode'
     ];
 
     /**
@@ -174,10 +194,15 @@ class GiropayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'checkoutAttemptId' => 'setCheckoutAttemptId',
-        'recurringDetailReference' => 'setRecurringDetailReference',
-        'storedPaymentMethodId' => 'setStoredPaymentMethodId',
-        'type' => 'setType'
+        'carrierCode' => 'setCarrierCode',
+        'classOfTravel' => 'setClassOfTravel',
+        'dateOfTravel' => 'setDateOfTravel',
+        'departureAirportCode' => 'setDepartureAirportCode',
+        'departureTax' => 'setDepartureTax',
+        'destinationAirportCode' => 'setDestinationAirportCode',
+        'fareBasisCode' => 'setFareBasisCode',
+        'flightNumber' => 'setFlightNumber',
+        'stopOverCode' => 'setStopOverCode'
     ];
 
     /**
@@ -186,10 +211,15 @@ class GiropayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'checkoutAttemptId' => 'getCheckoutAttemptId',
-        'recurringDetailReference' => 'getRecurringDetailReference',
-        'storedPaymentMethodId' => 'getStoredPaymentMethodId',
-        'type' => 'getType'
+        'carrierCode' => 'getCarrierCode',
+        'classOfTravel' => 'getClassOfTravel',
+        'dateOfTravel' => 'getDateOfTravel',
+        'departureAirportCode' => 'getDepartureAirportCode',
+        'departureTax' => 'getDepartureTax',
+        'destinationAirportCode' => 'getDestinationAirportCode',
+        'fareBasisCode' => 'getFareBasisCode',
+        'flightNumber' => 'getFlightNumber',
+        'stopOverCode' => 'getStopOverCode'
     ];
 
     /**
@@ -233,19 +263,7 @@ class GiropayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const TYPE_GIROPAY = 'giropay';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_GIROPAY,
-        ];
-    }
     /**
      * Associative array for storing property values
      *
@@ -259,12 +277,17 @@ class GiropayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
-        $this->setIfExists('checkoutAttemptId', $data ?? [], null);
-        $this->setIfExists('recurringDetailReference', $data ?? [], null);
-        $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('carrierCode', $data ?? [], null);
+        $this->setIfExists('classOfTravel', $data ?? [], null);
+        $this->setIfExists('dateOfTravel', $data ?? [], null);
+        $this->setIfExists('departureAirportCode', $data ?? [], null);
+        $this->setIfExists('departureTax', $data ?? [], null);
+        $this->setIfExists('destinationAirportCode', $data ?? [], null);
+        $this->setIfExists('fareBasisCode', $data ?? [], null);
+        $this->setIfExists('flightNumber', $data ?? [], null);
+        $this->setIfExists('stopOverCode', $data ?? [], null);
     }
 
     /**
@@ -294,15 +317,6 @@ class GiropayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -319,109 +333,217 @@ class GiropayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets checkoutAttemptId
+     * Gets carrierCode
      *
      * @return string|null
      */
-    public function getCheckoutAttemptId()
+    public function getCarrierCode()
     {
-        return $this->container['checkoutAttemptId'];
+        return $this->container['carrierCode'];
     }
 
     /**
-     * Sets checkoutAttemptId
+     * Sets carrierCode
      *
-     * @param string|null $checkoutAttemptId The checkout attempt identifier.
+     * @param string|null $carrierCode The [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter accounting code (PAX) that identifies the carrier. This field is required if the airline data includes leg details. * Example: KLM = KL * minLength: 2 characters * maxLength: 2 characters * Must not start with a space or be all spaces. * Must not be all zeros.
      *
      * @return self
      */
-    public function setCheckoutAttemptId($checkoutAttemptId)
+    public function setCarrierCode($carrierCode)
     {
-        $this->container['checkoutAttemptId'] = $checkoutAttemptId;
+        $this->container['carrierCode'] = $carrierCode;
 
         return $this;
     }
 
     /**
-     * Gets recurringDetailReference
+     * Gets classOfTravel
      *
      * @return string|null
-     * @deprecated since Adyen Checkout API v49. "Use `storedPaymentMethodId` instead."
      */
-    public function getRecurringDetailReference()
+    public function getClassOfTravel()
     {
-        return $this->container['recurringDetailReference'];
+        return $this->container['classOfTravel'];
     }
 
     /**
-     * Sets recurringDetailReference
+     * Sets classOfTravel
      *
-     * @param string|null $recurringDetailReference This is the `recurringDetailReference` returned in the response when you created the token.
+     * @param string|null $classOfTravel A one-letter travel class identifier.  The following are common:  * F: first class * J: business class * Y: economy class * W: premium economy  * Encoding: ASCII * minLength: 1 character * maxLength: 1 character * Must not start with a space or be all spaces. * Must not be all zeros.
      *
      * @return self
-     * @deprecated since Adyen Checkout API v49. "Use `storedPaymentMethodId` instead."
      */
-    public function setRecurringDetailReference($recurringDetailReference)
+    public function setClassOfTravel($classOfTravel)
     {
-        $this->container['recurringDetailReference'] = $recurringDetailReference;
+        $this->container['classOfTravel'] = $classOfTravel;
 
         return $this;
     }
 
     /**
-     * Gets storedPaymentMethodId
+     * Gets dateOfTravel
      *
-     * @return string|null
+     * @return \DateTime|null
      */
-    public function getStoredPaymentMethodId()
+    public function getDateOfTravel()
     {
-        return $this->container['storedPaymentMethodId'];
+        return $this->container['dateOfTravel'];
     }
 
     /**
-     * Sets storedPaymentMethodId
+     * Sets dateOfTravel
      *
-     * @param string|null $storedPaymentMethodId This is the `recurringDetailReference` returned in the response when you created the token.
+     * @param \DateTime|null $dateOfTravel Date and time of travel in format `yyyy-MM-ddTHH:mm`. * Use local time of departure airport. * minLength: 16 characters * maxLength: 16 characters
      *
      * @return self
      */
-    public function setStoredPaymentMethodId($storedPaymentMethodId)
+    public function setDateOfTravel($dateOfTravel)
     {
-        $this->container['storedPaymentMethodId'] = $storedPaymentMethodId;
+        $this->container['dateOfTravel'] = $dateOfTravel;
 
         return $this;
     }
 
     /**
-     * Gets type
+     * Gets departureAirportCode
      *
      * @return string|null
      */
-    public function getType()
+    public function getDepartureAirportCode()
     {
-        return $this->container['type'];
+        return $this->container['departureAirportCode'];
     }
 
     /**
-     * Sets type
+     * Sets departureAirportCode
      *
-     * @param string|null $type **giropay**
+     * @param string|null $departureAirportCode The [IATA](https://www.iata.org/services/pages/codes.aspx) three-letter airport code of the departure airport. This field is required if the airline data includes leg details.  * Encoding: ASCII * Example: Amsterdam = AMS * minLength: 3 characters * maxLength: 3 characters * Must not start with a space or be all spaces. * Must not be all zeros.
      *
      * @return self
      */
-    public function setType($type)
+    public function setDepartureAirportCode($departureAirportCode)
     {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
+        $this->container['departureAirportCode'] = $departureAirportCode;
+
+        return $this;
+    }
+
+    /**
+     * Gets departureTax
+     *
+     * @return int|null
+     */
+    public function getDepartureTax()
+    {
+        return $this->container['departureTax'];
+    }
+
+    /**
+     * Sets departureTax
+     *
+     * @param int|null $departureTax The amount of [departure tax](https://en.wikipedia.org/wiki/Departure_tax) charged, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Encoding: Numeric * minLength: 1 * maxLength: 11 * Must not be all zeros.
+     *
+     * @return self
+     */
+    public function setDepartureTax($departureTax)
+    {
+        $this->container['departureTax'] = $departureTax;
+
+        return $this;
+    }
+
+    /**
+     * Gets destinationAirportCode
+     *
+     * @return string|null
+     */
+    public function getDestinationAirportCode()
+    {
+        return $this->container['destinationAirportCode'];
+    }
+
+    /**
+     * Sets destinationAirportCode
+     *
+     * @param string|null $destinationAirportCode The [IATA](https://www.iata.org/services/pages/codes.aspx) 3-letter airport code of the destination airport. This field is required if the airline data includes leg details. * Example: Amsterdam = AMS * Encoding: ASCII * minLength: 3 characters * maxLength: 3 characters * Must not start with a space or be all spaces. * Must not be all zeros.
+     *
+     * @return self
+     */
+    public function setDestinationAirportCode($destinationAirportCode)
+    {
+        $this->container['destinationAirportCode'] = $destinationAirportCode;
+
+        return $this;
+    }
+
+    /**
+     * Gets fareBasisCode
+     *
+     * @return string|null
+     */
+    public function getFareBasisCode()
+    {
+        return $this->container['fareBasisCode'];
+    }
+
+    /**
+     * Sets fareBasisCode
+     *
+     * @param string|null $fareBasisCode The [fare basis code](https://en.wikipedia.org/wiki/Fare_basis_code), alphanumeric. * minLength: 1 character * maxLength: 6 characters * Must not start with a space or be all spaces. * Must not be all zeros.
+     *
+     * @return self
+     */
+    public function setFareBasisCode($fareBasisCode)
+    {
+        $this->container['fareBasisCode'] = $fareBasisCode;
+
+        return $this;
+    }
+
+    /**
+     * Gets flightNumber
+     *
+     * @return string|null
+     */
+    public function getFlightNumber()
+    {
+        return $this->container['flightNumber'];
+    }
+
+    /**
+     * Sets flightNumber
+     *
+     * @param string|null $flightNumber The flight identifier. * minLength: 1 character * maxLength: 5 characters * Must not start with a space or be all spaces. * Must not be all zeros.
+     *
+     * @return self
+     */
+    public function setFlightNumber($flightNumber)
+    {
+        $this->container['flightNumber'] = $flightNumber;
+
+        return $this;
+    }
+
+    /**
+     * Gets stopOverCode
+     *
+     * @return string|null
+     */
+    public function getStopOverCode()
+    {
+        return $this->container['stopOverCode'];
+    }
+
+    /**
+     * Sets stopOverCode
+     *
+     * @param string|null $stopOverCode A one-letter code that indicates whether the passenger is entitled to make a stopover. Can be a space, O if the passenger is entitled to make a stopover, or X if they are not. * Encoding: ASCII * minLength: 1 character * maxLength: 1 character
+     *
+     * @return self
+     */
+    public function setStopOverCode($stopOverCode)
+    {
+        $this->container['stopOverCode'] = $stopOverCode;
 
         return $this;
     }

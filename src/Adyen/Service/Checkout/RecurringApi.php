@@ -44,13 +44,14 @@ class RecurringApi extends Service
     *
     * @param string $storedPaymentMethodId
     * @param array|null $requestOptions ['queryParams' => ['shopperReference'=> string, 'merchantAccount'=> string]]
-
+    
     * @throws AdyenException
     */
-    public function deleteTokenForStoredPaymentDetails(string $storedPaymentMethodId, array $requestOptions = null)
+    public function deleteTokenForStoredPaymentDetails(string $storedPaymentMethodId, ?array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{storedPaymentMethodId}'], [$storedPaymentMethodId], "/storedPaymentMethods/{storedPaymentMethodId}");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
+        
     }
 
     /**
@@ -60,7 +61,7 @@ class RecurringApi extends Service
     * @return \Adyen\Model\Checkout\ListStoredPaymentMethodsResponse
     * @throws AdyenException
     */
-    public function getTokensForStoredPaymentDetails(array $requestOptions = null): \Adyen\Model\Checkout\ListStoredPaymentMethodsResponse
+    public function getTokensForStoredPaymentDetails(?array $requestOptions = null): \Adyen\Model\Checkout\ListStoredPaymentMethodsResponse
     {
         $endpoint = $this->baseURL . "/storedPaymentMethods";
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -75,7 +76,7 @@ class RecurringApi extends Service
     * @return \Adyen\Model\Checkout\StoredPaymentMethodResource
     * @throws AdyenException
     */
-    public function storedPaymentMethods(\Adyen\Model\Checkout\StoredPaymentMethodRequest $storedPaymentMethodRequest, array $requestOptions = null): \Adyen\Model\Checkout\StoredPaymentMethodResource
+    public function storedPaymentMethods(\Adyen\Model\Checkout\StoredPaymentMethodRequest $storedPaymentMethodRequest, ?array $requestOptions = null): \Adyen\Model\Checkout\StoredPaymentMethodResource
     {
         $endpoint = $this->baseURL . "/storedPaymentMethods";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $storedPaymentMethodRequest->jsonSerialize(), $requestOptions);

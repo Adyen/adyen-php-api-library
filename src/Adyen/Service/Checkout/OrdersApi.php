@@ -47,7 +47,7 @@ class OrdersApi extends Service
     * @return \Adyen\Model\Checkout\CancelOrderResponse
     * @throws AdyenException
     */
-    public function cancelOrder(\Adyen\Model\Checkout\CancelOrderRequest $cancelOrderRequest, array $requestOptions = null): \Adyen\Model\Checkout\CancelOrderResponse
+    public function cancelOrder(\Adyen\Model\Checkout\CancelOrderRequest $cancelOrderRequest, ?array $requestOptions = null): \Adyen\Model\Checkout\CancelOrderResponse
     {
         $endpoint = $this->baseURL . "/orders/cancel";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $cancelOrderRequest->jsonSerialize(), $requestOptions);
@@ -62,7 +62,7 @@ class OrdersApi extends Service
     * @return \Adyen\Model\Checkout\BalanceCheckResponse
     * @throws AdyenException
     */
-    public function getBalanceOfGiftCard(\Adyen\Model\Checkout\BalanceCheckRequest $balanceCheckRequest, array $requestOptions = null): \Adyen\Model\Checkout\BalanceCheckResponse
+    public function getBalanceOfGiftCard(\Adyen\Model\Checkout\BalanceCheckRequest $balanceCheckRequest, ?array $requestOptions = null): \Adyen\Model\Checkout\BalanceCheckResponse
     {
         $endpoint = $this->baseURL . "/paymentMethods/balance";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $balanceCheckRequest->jsonSerialize(), $requestOptions);
@@ -77,7 +77,7 @@ class OrdersApi extends Service
     * @return \Adyen\Model\Checkout\CreateOrderResponse
     * @throws AdyenException
     */
-    public function orders(\Adyen\Model\Checkout\CreateOrderRequest $createOrderRequest, array $requestOptions = null): \Adyen\Model\Checkout\CreateOrderResponse
+    public function orders(\Adyen\Model\Checkout\CreateOrderRequest $createOrderRequest, ?array $requestOptions = null): \Adyen\Model\Checkout\CreateOrderResponse
     {
         $endpoint = $this->baseURL . "/orders";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $createOrderRequest->jsonSerialize(), $requestOptions);
