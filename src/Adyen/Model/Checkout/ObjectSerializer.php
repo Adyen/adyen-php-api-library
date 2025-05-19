@@ -16,6 +16,7 @@
 namespace Adyen\Model\Checkout;
 
 use Adyen\Model\Checkout\ModelInterface;
+use GuzzleHttp\Utils;
 
 class ObjectSerializer
 {
@@ -81,7 +82,7 @@ class ObjectSerializer
                     }
                 }
             } else {
-                foreach ($data as $property => $value) {
+                foreach($data as $property => $value) {
                     $values[$property] = self::sanitizeForSerialization($value);
                 }
             }
@@ -117,9 +118,7 @@ class ObjectSerializer
      */
     public static function sanitizeTimestamp($timestamp)
     {
-        if (!is_string($timestamp)) {
-            return $timestamp;
-        }
+        if (!is_string($timestamp)) return $timestamp;
 
         return preg_replace('/(:\d{2}.\d{6})\d*/', '$1', $timestamp);
     }
@@ -242,7 +241,8 @@ class ObjectSerializer
             /** @var \Psr\Http\Message\StreamInterface $data */
 
             // determine file name
-            if (is_array($httpHeaders)
+            if (
+                is_array($httpHeaders)
                 && array_key_exists('Content-Disposition', $httpHeaders)
                 && preg_match('/inline; filename=[\'"]?([^\'"\s]+)[\'"]?$/i', $httpHeaders['Content-Disposition'], $match)
             ) {
