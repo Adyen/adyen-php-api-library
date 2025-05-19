@@ -235,7 +235,7 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('currency', $data ?? [], null);
         $this->setIfExists('value', $data ?? [], null);
@@ -302,7 +302,7 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets currency
      *
-     * @param string $currency The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
+     * @param string $currency The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes).
      *
      * @return self
      */
@@ -326,7 +326,7 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets value
      *
-     * @param int $value The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+     * @param int $value The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).
      *
      * @return self
      */
