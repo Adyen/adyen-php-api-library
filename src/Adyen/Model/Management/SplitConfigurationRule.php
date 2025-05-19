@@ -245,8 +245,11 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
         return self::$openAPIModelName;
     }
 
+    public const FUNDING_SOURCE_CHARGED = 'charged';
     public const FUNDING_SOURCE_CREDIT = 'credit';
     public const FUNDING_SOURCE_DEBIT = 'debit';
+    public const FUNDING_SOURCE_DEFERRED_DEBIT = 'deferred_debit';
+    public const FUNDING_SOURCE_PREPAID = 'prepaid';
     public const FUNDING_SOURCE_ANY = 'ANY';
     public const SHOPPER_INTERACTION_ECOMMERCE = 'Ecommerce';
     public const SHOPPER_INTERACTION_CONT_AUTH = 'ContAuth';
@@ -262,8 +265,11 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
     public function getFundingSourceAllowableValues()
     {
         return [
+            self::FUNDING_SOURCE_CHARGED,
             self::FUNDING_SOURCE_CREDIT,
             self::FUNDING_SOURCE_DEBIT,
+            self::FUNDING_SOURCE_DEFERRED_DEBIT,
+            self::FUNDING_SOURCE_PREPAID,
             self::FUNDING_SOURCE_ANY,
         ];
     }
@@ -295,7 +301,7 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('currency', $data ?? [], null);
         $this->setIfExists('fundingSource', $data ?? [], null);

@@ -46,7 +46,7 @@ class TerminalsTerminalLevelApi extends Service
     * @return \Adyen\Model\Management\ListTerminalsResponse
     * @throws AdyenException
     */
-    public function listTerminals(array $requestOptions = null): \Adyen\Model\Management\ListTerminalsResponse
+    public function listTerminals(?array $requestOptions = null): \Adyen\Model\Management\ListTerminalsResponse
     {
         $endpoint = $this->baseURL . "/terminals";
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -59,12 +59,13 @@ class TerminalsTerminalLevelApi extends Service
     * @param string $terminalId
     * @param \Adyen\Model\Management\TerminalReassignmentRequest $terminalReassignmentRequest
     * @param array|null $requestOptions
-
+    
     * @throws AdyenException
     */
-    public function reassignTerminal(string $terminalId, \Adyen\Model\Management\TerminalReassignmentRequest $terminalReassignmentRequest, array $requestOptions = null)
+    public function reassignTerminal(string $terminalId, \Adyen\Model\Management\TerminalReassignmentRequest $terminalReassignmentRequest, ?array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{terminalId}'], [$terminalId], "/terminals/{terminalId}/reassign");
         $this->requestHttp($endpoint, strtolower('POST'), (array) $terminalReassignmentRequest->jsonSerialize(), $requestOptions);
+        
     }
 }

@@ -48,7 +48,7 @@ class APICredentialsMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\CreateApiCredentialResponse
     * @throws AdyenException
     */
-    public function createApiCredential(string $merchantId, \Adyen\Model\Management\CreateMerchantApiCredentialRequest $createMerchantApiCredentialRequest, array $requestOptions = null): \Adyen\Model\Management\CreateApiCredentialResponse
+    public function createApiCredential(string $merchantId, \Adyen\Model\Management\CreateMerchantApiCredentialRequest $createMerchantApiCredentialRequest, ?array $requestOptions = null): \Adyen\Model\Management\CreateApiCredentialResponse
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}'], [$merchantId], "/merchants/{merchantId}/apiCredentials");
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $createMerchantApiCredentialRequest->jsonSerialize(), $requestOptions);
@@ -64,7 +64,7 @@ class APICredentialsMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\ApiCredential
     * @throws AdyenException
     */
-    public function getApiCredential(string $merchantId, string $apiCredentialId, array $requestOptions = null): \Adyen\Model\Management\ApiCredential
+    public function getApiCredential(string $merchantId, string $apiCredentialId, ?array $requestOptions = null): \Adyen\Model\Management\ApiCredential
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{apiCredentialId}'], [$merchantId, $apiCredentialId], "/merchants/{merchantId}/apiCredentials/{apiCredentialId}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -79,7 +79,7 @@ class APICredentialsMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\ListMerchantApiCredentialsResponse
     * @throws AdyenException
     */
-    public function listApiCredentials(string $merchantId, array $requestOptions = null): \Adyen\Model\Management\ListMerchantApiCredentialsResponse
+    public function listApiCredentials(string $merchantId, ?array $requestOptions = null): \Adyen\Model\Management\ListMerchantApiCredentialsResponse
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}'], [$merchantId], "/merchants/{merchantId}/apiCredentials");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -96,7 +96,7 @@ class APICredentialsMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\ApiCredential
     * @throws AdyenException
     */
-    public function updateApiCredential(string $merchantId, string $apiCredentialId, \Adyen\Model\Management\UpdateMerchantApiCredentialRequest $updateMerchantApiCredentialRequest, array $requestOptions = null): \Adyen\Model\Management\ApiCredential
+    public function updateApiCredential(string $merchantId, string $apiCredentialId, \Adyen\Model\Management\UpdateMerchantApiCredentialRequest $updateMerchantApiCredentialRequest, ?array $requestOptions = null): \Adyen\Model\Management\ApiCredential
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{apiCredentialId}'], [$merchantId, $apiCredentialId], "/merchants/{merchantId}/apiCredentials/{apiCredentialId}");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $updateMerchantApiCredentialRequest->jsonSerialize(), $requestOptions);

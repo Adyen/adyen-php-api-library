@@ -19,7 +19,7 @@ use \ArrayAccess;
 use Adyen\Model\Management\ObjectSerializer;
 
 /**
- * GiroPayInfo Class Doc Comment
+ * PayByBankPlaidInfo Class Doc Comment
  *
  * @category Class
  * @package  Adyen
@@ -27,7 +27,7 @@ use Adyen\Model\Management\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class GiroPayInfo implements ModelInterface, ArrayAccess, \JsonSerializable
+class PayByBankPlaidInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +36,7 @@ class GiroPayInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'GiroPayInfo';
+    protected static $openAPIModelName = 'PayByBankPlaidInfo';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,7 +44,15 @@ class GiroPayInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'supportEmail' => 'string'
+        'countryCode' => 'string',
+        'logo' => 'string',
+        'merchantCity' => 'string',
+        'merchantLegalName' => 'string',
+        'merchantShopUrl' => 'string',
+        'merchantStateProvince' => 'string',
+        'merchantStreetAddress' => 'string',
+        'transactionDescription' => '\Adyen\Model\Management\TransactionDescriptionInfo',
+        'zipCode' => 'string'
     ];
 
     /**
@@ -55,7 +63,15 @@ class GiroPayInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'supportEmail' => null
+        'countryCode' => null,
+        'logo' => null,
+        'merchantCity' => null,
+        'merchantLegalName' => null,
+        'merchantShopUrl' => null,
+        'merchantStateProvince' => null,
+        'merchantStreetAddress' => null,
+        'transactionDescription' => null,
+        'zipCode' => null
     ];
 
     /**
@@ -64,7 +80,15 @@ class GiroPayInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'supportEmail' => false
+        'countryCode' => false,
+        'logo' => false,
+        'merchantCity' => false,
+        'merchantLegalName' => false,
+        'merchantShopUrl' => false,
+        'merchantStateProvince' => false,
+        'merchantStreetAddress' => false,
+        'transactionDescription' => false,
+        'zipCode' => false
     ];
 
     /**
@@ -153,7 +177,15 @@ class GiroPayInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'supportEmail' => 'supportEmail'
+        'countryCode' => 'countryCode',
+        'logo' => 'logo',
+        'merchantCity' => 'merchantCity',
+        'merchantLegalName' => 'merchantLegalName',
+        'merchantShopUrl' => 'merchantShopUrl',
+        'merchantStateProvince' => 'merchantStateProvince',
+        'merchantStreetAddress' => 'merchantStreetAddress',
+        'transactionDescription' => 'transactionDescription',
+        'zipCode' => 'zipCode'
     ];
 
     /**
@@ -162,7 +194,15 @@ class GiroPayInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'supportEmail' => 'setSupportEmail'
+        'countryCode' => 'setCountryCode',
+        'logo' => 'setLogo',
+        'merchantCity' => 'setMerchantCity',
+        'merchantLegalName' => 'setMerchantLegalName',
+        'merchantShopUrl' => 'setMerchantShopUrl',
+        'merchantStateProvince' => 'setMerchantStateProvince',
+        'merchantStreetAddress' => 'setMerchantStreetAddress',
+        'transactionDescription' => 'setTransactionDescription',
+        'zipCode' => 'setZipCode'
     ];
 
     /**
@@ -171,7 +211,15 @@ class GiroPayInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'supportEmail' => 'getSupportEmail'
+        'countryCode' => 'getCountryCode',
+        'logo' => 'getLogo',
+        'merchantCity' => 'getMerchantCity',
+        'merchantLegalName' => 'getMerchantLegalName',
+        'merchantShopUrl' => 'getMerchantShopUrl',
+        'merchantStateProvince' => 'getMerchantStateProvince',
+        'merchantStreetAddress' => 'getMerchantStreetAddress',
+        'transactionDescription' => 'getTransactionDescription',
+        'zipCode' => 'getZipCode'
     ];
 
     /**
@@ -229,9 +277,17 @@ class GiroPayInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
-        $this->setIfExists('supportEmail', $data ?? [], null);
+        $this->setIfExists('countryCode', $data ?? [], null);
+        $this->setIfExists('logo', $data ?? [], null);
+        $this->setIfExists('merchantCity', $data ?? [], null);
+        $this->setIfExists('merchantLegalName', $data ?? [], null);
+        $this->setIfExists('merchantShopUrl', $data ?? [], null);
+        $this->setIfExists('merchantStateProvince', $data ?? [], null);
+        $this->setIfExists('merchantStreetAddress', $data ?? [], null);
+        $this->setIfExists('transactionDescription', $data ?? [], null);
+        $this->setIfExists('zipCode', $data ?? [], null);
     }
 
     /**
@@ -261,9 +317,6 @@ class GiroPayInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['supportEmail'] === null) {
-            $invalidProperties[] = "'supportEmail' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -280,25 +333,217 @@ class GiroPayInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets supportEmail
+     * Gets countryCode
      *
-     * @return string
+     * @return string|null
      */
-    public function getSupportEmail()
+    public function getCountryCode()
     {
-        return $this->container['supportEmail'];
+        return $this->container['countryCode'];
     }
 
     /**
-     * Sets supportEmail
+     * Sets countryCode
      *
-     * @param string $supportEmail The email address of merchant support.
+     * @param string|null $countryCode Country Code.
      *
      * @return self
      */
-    public function setSupportEmail($supportEmail)
+    public function setCountryCode($countryCode)
     {
-        $this->container['supportEmail'] = $supportEmail;
+        $this->container['countryCode'] = $countryCode;
+
+        return $this;
+    }
+
+    /**
+     * Gets logo
+     *
+     * @return string|null
+     */
+    public function getLogo()
+    {
+        return $this->container['logo'];
+    }
+
+    /**
+     * Sets logo
+     *
+     * @param string|null $logo Merchant logo (max. size 150kB). Format: Base64-encoded string.
+     *
+     * @return self
+     */
+    public function setLogo($logo)
+    {
+        $this->container['logo'] = $logo;
+
+        return $this;
+    }
+
+    /**
+     * Gets merchantCity
+     *
+     * @return string|null
+     */
+    public function getMerchantCity()
+    {
+        return $this->container['merchantCity'];
+    }
+
+    /**
+     * Sets merchantCity
+     *
+     * @param string|null $merchantCity The city the merchant is doing business in.
+     *
+     * @return self
+     */
+    public function setMerchantCity($merchantCity)
+    {
+        $this->container['merchantCity'] = $merchantCity;
+
+        return $this;
+    }
+
+    /**
+     * Gets merchantLegalName
+     *
+     * @return string|null
+     */
+    public function getMerchantLegalName()
+    {
+        return $this->container['merchantLegalName'];
+    }
+
+    /**
+     * Sets merchantLegalName
+     *
+     * @param string|null $merchantLegalName Legal Business Name of the Merchant.
+     *
+     * @return self
+     */
+    public function setMerchantLegalName($merchantLegalName)
+    {
+        $this->container['merchantLegalName'] = $merchantLegalName;
+
+        return $this;
+    }
+
+    /**
+     * Gets merchantShopUrl
+     *
+     * @return string|null
+     */
+    public function getMerchantShopUrl()
+    {
+        return $this->container['merchantShopUrl'];
+    }
+
+    /**
+     * Sets merchantShopUrl
+     *
+     * @param string|null $merchantShopUrl Merchant shop url.
+     *
+     * @return self
+     */
+    public function setMerchantShopUrl($merchantShopUrl)
+    {
+        $this->container['merchantShopUrl'] = $merchantShopUrl;
+
+        return $this;
+    }
+
+    /**
+     * Gets merchantStateProvince
+     *
+     * @return string|null
+     */
+    public function getMerchantStateProvince()
+    {
+        return $this->container['merchantStateProvince'];
+    }
+
+    /**
+     * Sets merchantStateProvince
+     *
+     * @param string|null $merchantStateProvince The state/province of the merchant.
+     *
+     * @return self
+     */
+    public function setMerchantStateProvince($merchantStateProvince)
+    {
+        $this->container['merchantStateProvince'] = $merchantStateProvince;
+
+        return $this;
+    }
+
+    /**
+     * Gets merchantStreetAddress
+     *
+     * @return string|null
+     */
+    public function getMerchantStreetAddress()
+    {
+        return $this->container['merchantStreetAddress'];
+    }
+
+    /**
+     * Sets merchantStreetAddress
+     *
+     * @param string|null $merchantStreetAddress The street address of the merchant.
+     *
+     * @return self
+     */
+    public function setMerchantStreetAddress($merchantStreetAddress)
+    {
+        $this->container['merchantStreetAddress'] = $merchantStreetAddress;
+
+        return $this;
+    }
+
+    /**
+     * Gets transactionDescription
+     *
+     * @return \Adyen\Model\Management\TransactionDescriptionInfo|null
+     */
+    public function getTransactionDescription()
+    {
+        return $this->container['transactionDescription'];
+    }
+
+    /**
+     * Sets transactionDescription
+     *
+     * @param \Adyen\Model\Management\TransactionDescriptionInfo|null $transactionDescription transactionDescription
+     *
+     * @return self
+     */
+    public function setTransactionDescription($transactionDescription)
+    {
+        $this->container['transactionDescription'] = $transactionDescription;
+
+        return $this;
+    }
+
+    /**
+     * Gets zipCode
+     *
+     * @return string|null
+     */
+    public function getZipCode()
+    {
+        return $this->container['zipCode'];
+    }
+
+    /**
+     * Sets zipCode
+     *
+     * @param string|null $zipCode The zip code of the account.
+     *
+     * @return self
+     */
+    public function setZipCode($zipCode)
+    {
+        $this->container['zipCode'] = $zipCode;
 
         return $this;
     }
