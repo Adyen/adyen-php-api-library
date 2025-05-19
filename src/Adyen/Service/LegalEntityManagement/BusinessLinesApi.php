@@ -47,7 +47,7 @@ class BusinessLinesApi extends Service
     * @return \Adyen\Model\LegalEntityManagement\BusinessLine
     * @throws AdyenException
     */
-    public function createBusinessLine(\Adyen\Model\LegalEntityManagement\BusinessLineInfo $businessLineInfo, array $requestOptions = null): \Adyen\Model\LegalEntityManagement\BusinessLine
+    public function createBusinessLine(\Adyen\Model\LegalEntityManagement\BusinessLineInfo $businessLineInfo, ?array $requestOptions = null): \Adyen\Model\LegalEntityManagement\BusinessLine
     {
         $endpoint = $this->baseURL . "/businessLines";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $businessLineInfo->jsonSerialize(), $requestOptions);
@@ -59,13 +59,14 @@ class BusinessLinesApi extends Service
     *
     * @param string $id
     * @param array|null $requestOptions
-
+    
     * @throws AdyenException
     */
-    public function deleteBusinessLine(string $id, array $requestOptions = null)
+    public function deleteBusinessLine(string $id, ?array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/businessLines/{id}");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
+        
     }
 
     /**
@@ -76,7 +77,7 @@ class BusinessLinesApi extends Service
     * @return \Adyen\Model\LegalEntityManagement\BusinessLine
     * @throws AdyenException
     */
-    public function getBusinessLine(string $id, array $requestOptions = null): \Adyen\Model\LegalEntityManagement\BusinessLine
+    public function getBusinessLine(string $id, ?array $requestOptions = null): \Adyen\Model\LegalEntityManagement\BusinessLine
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/businessLines/{id}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -92,7 +93,7 @@ class BusinessLinesApi extends Service
     * @return \Adyen\Model\LegalEntityManagement\BusinessLine
     * @throws AdyenException
     */
-    public function updateBusinessLine(string $id, \Adyen\Model\LegalEntityManagement\BusinessLineInfoUpdate $businessLineInfoUpdate, array $requestOptions = null): \Adyen\Model\LegalEntityManagement\BusinessLine
+    public function updateBusinessLine(string $id, \Adyen\Model\LegalEntityManagement\BusinessLineInfoUpdate $businessLineInfoUpdate, ?array $requestOptions = null): \Adyen\Model\LegalEntityManagement\BusinessLine
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/businessLines/{id}");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $businessLineInfoUpdate->jsonSerialize(), $requestOptions);

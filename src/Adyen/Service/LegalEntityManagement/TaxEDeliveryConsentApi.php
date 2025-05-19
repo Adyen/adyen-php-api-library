@@ -47,7 +47,7 @@ class TaxEDeliveryConsentApi extends Service
     * @return \Adyen\Model\LegalEntityManagement\CheckTaxElectronicDeliveryConsentResponse
     * @throws AdyenException
     */
-    public function checkStatusOfConsentForElectronicDeliveryOfTaxForms(string $id, array $requestOptions = null): \Adyen\Model\LegalEntityManagement\CheckTaxElectronicDeliveryConsentResponse
+    public function checkStatusOfConsentForElectronicDeliveryOfTaxForms(string $id, ?array $requestOptions = null): \Adyen\Model\LegalEntityManagement\CheckTaxElectronicDeliveryConsentResponse
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/legalEntities/{id}/checkTaxElectronicDeliveryConsent");
         $response = $this->requestHttp($endpoint, strtolower('POST'), null, $requestOptions);
@@ -60,12 +60,13 @@ class TaxEDeliveryConsentApi extends Service
     * @param string $id
     * @param \Adyen\Model\LegalEntityManagement\SetTaxElectronicDeliveryConsentRequest $setTaxElectronicDeliveryConsentRequest
     * @param array|null $requestOptions
-
+    
     * @throws AdyenException
     */
-    public function setConsentStatusForElectronicDeliveryOfTaxForms(string $id, \Adyen\Model\LegalEntityManagement\SetTaxElectronicDeliveryConsentRequest $setTaxElectronicDeliveryConsentRequest, array $requestOptions = null)
+    public function setConsentStatusForElectronicDeliveryOfTaxForms(string $id, \Adyen\Model\LegalEntityManagement\SetTaxElectronicDeliveryConsentRequest $setTaxElectronicDeliveryConsentRequest, ?array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/legalEntities/{id}/setTaxElectronicDeliveryConsent");
         $this->requestHttp($endpoint, strtolower('POST'), (array) $setTaxElectronicDeliveryConsentRequest->jsonSerialize(), $requestOptions);
+        
     }
 }

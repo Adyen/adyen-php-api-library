@@ -236,6 +236,7 @@ class GetTermsOfServiceDocumentRequest implements ModelInterface, ArrayAccess, \
     public const TYPE_ADYEN_FRANCHISEE = 'adyenFranchisee';
     public const TYPE_ADYEN_ISSUING = 'adyenIssuing';
     public const TYPE_ADYEN_PCCR = 'adyenPccr';
+    public const TYPE_KYC_ON_INVITE = 'kycOnInvite';
 
     /**
      * Gets allowable values of the enum
@@ -254,6 +255,7 @@ class GetTermsOfServiceDocumentRequest implements ModelInterface, ArrayAccess, \
             self::TYPE_ADYEN_FRANCHISEE,
             self::TYPE_ADYEN_ISSUING,
             self::TYPE_ADYEN_PCCR,
+            self::TYPE_KYC_ON_INVITE,
         ];
     }
     /**
@@ -269,7 +271,7 @@ class GetTermsOfServiceDocumentRequest implements ModelInterface, ArrayAccess, \
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('language', $data ?? [], null);
         $this->setIfExists('termsOfServiceDocumentFormat', $data ?? [], null);
@@ -394,7 +396,7 @@ class GetTermsOfServiceDocumentRequest implements ModelInterface, ArrayAccess, \
     /**
      * Sets type
      *
-     * @param string $type The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard**
+     * @param string $type The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard** *  **kycOnInvite**
      *
      * @return self
      */

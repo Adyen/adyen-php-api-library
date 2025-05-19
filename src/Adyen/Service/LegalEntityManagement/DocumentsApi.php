@@ -44,13 +44,14 @@ class DocumentsApi extends Service
     *
     * @param string $id
     * @param array|null $requestOptions
-
+    
     * @throws AdyenException
     */
-    public function deleteDocument(string $id, array $requestOptions = null)
+    public function deleteDocument(string $id, ?array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/documents/{id}");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
+        
     }
 
     /**
@@ -61,7 +62,7 @@ class DocumentsApi extends Service
     * @return \Adyen\Model\LegalEntityManagement\Document
     * @throws AdyenException
     */
-    public function getDocument(string $id, array $requestOptions = null): \Adyen\Model\LegalEntityManagement\Document
+    public function getDocument(string $id, ?array $requestOptions = null): \Adyen\Model\LegalEntityManagement\Document
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/documents/{id}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -77,7 +78,7 @@ class DocumentsApi extends Service
     * @return \Adyen\Model\LegalEntityManagement\Document
     * @throws AdyenException
     */
-    public function updateDocument(string $id, \Adyen\Model\LegalEntityManagement\Document $document, array $requestOptions = null): \Adyen\Model\LegalEntityManagement\Document
+    public function updateDocument(string $id, \Adyen\Model\LegalEntityManagement\Document $document, ?array $requestOptions = null): \Adyen\Model\LegalEntityManagement\Document
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/documents/{id}");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $document->jsonSerialize(), $requestOptions);
@@ -92,7 +93,7 @@ class DocumentsApi extends Service
     * @return \Adyen\Model\LegalEntityManagement\Document
     * @throws AdyenException
     */
-    public function uploadDocumentForVerificationChecks(\Adyen\Model\LegalEntityManagement\Document $document, array $requestOptions = null): \Adyen\Model\LegalEntityManagement\Document
+    public function uploadDocumentForVerificationChecks(\Adyen\Model\LegalEntityManagement\Document $document, ?array $requestOptions = null): \Adyen\Model\LegalEntityManagement\Document
     {
         $endpoint = $this->baseURL . "/documents";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $document->jsonSerialize(), $requestOptions);
