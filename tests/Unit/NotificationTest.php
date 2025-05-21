@@ -363,4 +363,32 @@ class NotificationTest extends TestCaseMock
             $webhookParser->getTransactionNotificationRequestV4()->getType()
         );
     }
+
+    public function testBankingWebhookParserBalanceAccountBalanceNotificationRequest()
+    {
+        $jsonString = '{
+                         "data": {
+                           "balanceAccountId": "BWHS00000000000000000000000001",
+                           "balancePlatform": "YOUR_BALANCE_PLATFORM",
+                           "balances": {
+                             "available": 499900,
+                             "pending": 350000,
+                             "reserved": 120000,
+                             "balance": 470000
+                           },
+                           "creationDate": "2025-01-19T13:37:38+02:00",
+                           "currency": "USD",
+                           "settingIds": ["WK1", "WK2"]
+                         },
+                         "environment": "test",
+                         "type": "balancePlatform.balanceAccount.balance.updated"
+                       }';
+
+        $webhookParser = new BankingWebhookParser($jsonString);
+        $result = $webhookParser->getGenericWebhook();
+        self::assertEquals(BalanceAccountBalanceNotificationRequest::class, get_class($result));
+        self::assertEquals("balancePlatform.balanceAccount.balance.updated", $result->getType());
+        self::assertEquals("test", $result->getEnvironment());
+    }
+
 }
