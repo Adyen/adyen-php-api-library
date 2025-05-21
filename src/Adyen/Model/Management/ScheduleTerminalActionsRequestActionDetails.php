@@ -21,11 +21,9 @@ use Adyen\Model\Management\ObjectSerializer;
 /**
  * ScheduleTerminalActionsRequestActionDetails Class Doc Comment
  *
- * @category Class
- * @description Information about the action to take.
+ * Information about the action to take.
+ *
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class ScheduleTerminalActionsRequestActionDetails implements ModelInterface, ArrayAccess, \JsonSerializable
