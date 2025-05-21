@@ -21,10 +21,7 @@ use Adyen\Model\ConfigurationWebhooks\ObjectSerializer;
 /**
  * Authentication Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class Authentication implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -241,7 +238,7 @@ class Authentication implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('email', $data ?? [], null);
         $this->setIfExists('password', $data ?? [], null);
