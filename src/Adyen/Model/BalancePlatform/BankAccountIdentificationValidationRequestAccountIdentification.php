@@ -21,11 +21,9 @@ use Adyen\Model\BalancePlatform\ObjectSerializer;
 /**
  * BankAccountIdentificationValidationRequestAccountIdentification Class Doc Comment
  *
- * @category Class
- * @description Bank account identification.
+ * Bank account identification.
+ *
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class BankAccountIdentificationValidationRequestAccountIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -319,7 +317,7 @@ class BankAccountIdentificationValidationRequestAccountIdentification implements
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('accountNumber', $data ?? [], null);
         $this->setIfExists('bsbCode', $data ?? [], null);

@@ -21,10 +21,7 @@ use Adyen\Model\Management\ObjectSerializer;
 /**
  * Standalone Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class Standalone implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -45,6 +42,7 @@ class Standalone implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'currencyCode' => 'string',
+        'enableGratuities' => 'bool',
         'enableStandalone' => 'bool'
     ];
 
@@ -57,6 +55,7 @@ class Standalone implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'currencyCode' => null,
+        'enableGratuities' => null,
         'enableStandalone' => null
     ];
 
@@ -67,6 +66,7 @@ class Standalone implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'currencyCode' => false,
+        'enableGratuities' => false,
         'enableStandalone' => false
     ];
 
@@ -157,6 +157,7 @@ class Standalone implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'currencyCode' => 'currencyCode',
+        'enableGratuities' => 'enableGratuities',
         'enableStandalone' => 'enableStandalone'
     ];
 
@@ -167,6 +168,7 @@ class Standalone implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'currencyCode' => 'setCurrencyCode',
+        'enableGratuities' => 'setEnableGratuities',
         'enableStandalone' => 'setEnableStandalone'
     ];
 
@@ -177,6 +179,7 @@ class Standalone implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'currencyCode' => 'getCurrencyCode',
+        'enableGratuities' => 'getEnableGratuities',
         'enableStandalone' => 'getEnableStandalone'
     ];
 
@@ -235,9 +238,10 @@ class Standalone implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('currencyCode', $data ?? [], null);
+        $this->setIfExists('enableGratuities', $data ?? [], null);
         $this->setIfExists('enableStandalone', $data ?? [], null);
     }
 
@@ -303,6 +307,30 @@ class Standalone implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setCurrencyCode($currencyCode)
     {
         $this->container['currencyCode'] = $currencyCode;
+
+        return $this;
+    }
+
+    /**
+     * Gets enableGratuities
+     *
+     * @return bool|null
+     */
+    public function getEnableGratuities()
+    {
+        return $this->container['enableGratuities'];
+    }
+
+    /**
+     * Sets enableGratuities
+     *
+     * @param bool|null $enableGratuities Indicates whether the tipping options specified in `gratuities` are enabled on the standalone terminal.
+     *
+     * @return self
+     */
+    public function setEnableGratuities($enableGratuities)
+    {
+        $this->container['enableGratuities'] = $enableGratuities;
 
         return $this;
     }

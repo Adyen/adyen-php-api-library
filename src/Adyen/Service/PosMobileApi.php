@@ -47,7 +47,7 @@ class PosMobileApi extends Service
     * @return \Adyen\Model\PosMobile\CreateSessionResponse
     * @throws AdyenException
     */
-    public function createCommunicationSession(\Adyen\Model\PosMobile\CreateSessionRequest $createSessionRequest, array $requestOptions = null): \Adyen\Model\PosMobile\CreateSessionResponse
+    public function createCommunicationSession(\Adyen\Model\PosMobile\CreateSessionRequest $createSessionRequest, ?array $requestOptions = null): \Adyen\Model\PosMobile\CreateSessionResponse
     {
         $endpoint = $this->baseURL . "/sessions";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $createSessionRequest->jsonSerialize(), $requestOptions);

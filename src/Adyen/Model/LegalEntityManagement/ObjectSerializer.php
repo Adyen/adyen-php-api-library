@@ -16,6 +16,7 @@
 namespace Adyen\Model\LegalEntityManagement;
 
 use Adyen\Model\LegalEntityManagement\ModelInterface;
+use GuzzleHttp\Utils;
 
 class ObjectSerializer
 {

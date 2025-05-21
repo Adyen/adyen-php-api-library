@@ -16,6 +16,7 @@
 namespace Adyen\Model\PosMobile;
 
 use Adyen\Model\PosMobile\ModelInterface;
+use GuzzleHttp\Utils;
 
 class ObjectSerializer
 {

@@ -21,10 +21,7 @@ use Adyen\Model\LegalEntityManagement\ObjectSerializer;
 /**
  * BusinessLineInfo Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -301,7 +298,7 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('capability', $data ?? [], null);
         $this->setIfExists('industryCode', $data ?? [], null);

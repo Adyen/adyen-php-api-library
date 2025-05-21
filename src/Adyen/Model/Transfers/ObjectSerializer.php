@@ -16,6 +16,7 @@
 namespace Adyen\Model\Transfers;
 
 use Adyen\Model\Transfers\ModelInterface;
+use GuzzleHttp\Utils;
 
 class ObjectSerializer
 {

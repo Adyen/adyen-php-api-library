@@ -49,7 +49,7 @@ class TermsOfServiceApi extends Service
     * @return \Adyen\Model\LegalEntityManagement\AcceptTermsOfServiceResponse
     * @throws AdyenException
     */
-    public function acceptTermsOfService(string $id, string $termsofservicedocumentid, \Adyen\Model\LegalEntityManagement\AcceptTermsOfServiceRequest $acceptTermsOfServiceRequest, array $requestOptions = null): \Adyen\Model\LegalEntityManagement\AcceptTermsOfServiceResponse
+    public function acceptTermsOfService(string $id, string $termsofservicedocumentid, \Adyen\Model\LegalEntityManagement\AcceptTermsOfServiceRequest $acceptTermsOfServiceRequest, ?array $requestOptions = null): \Adyen\Model\LegalEntityManagement\AcceptTermsOfServiceResponse
     {
         $endpoint = $this->baseURL . str_replace(['{id}', '{termsofservicedocumentid}'], [$id, $termsofservicedocumentid], "/legalEntities/{id}/termsOfService/{termsofservicedocumentid}");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $acceptTermsOfServiceRequest->jsonSerialize(), $requestOptions);
@@ -65,7 +65,7 @@ class TermsOfServiceApi extends Service
     * @return \Adyen\Model\LegalEntityManagement\GetAcceptedTermsOfServiceDocumentResponse
     * @throws AdyenException
     */
-    public function getAcceptedTermsOfServiceDocument(string $id, string $termsofserviceacceptancereference, array $requestOptions = null): \Adyen\Model\LegalEntityManagement\GetAcceptedTermsOfServiceDocumentResponse
+    public function getAcceptedTermsOfServiceDocument(string $id, string $termsofserviceacceptancereference, ?array $requestOptions = null): \Adyen\Model\LegalEntityManagement\GetAcceptedTermsOfServiceDocumentResponse
     {
         $endpoint = $this->baseURL . str_replace(['{id}', '{termsofserviceacceptancereference}'], [$id, $termsofserviceacceptancereference], "/legalEntities/{id}/acceptedTermsOfServiceDocument/{termsofserviceacceptancereference}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -81,7 +81,7 @@ class TermsOfServiceApi extends Service
     * @return \Adyen\Model\LegalEntityManagement\GetTermsOfServiceDocumentResponse
     * @throws AdyenException
     */
-    public function getTermsOfServiceDocument(string $id, \Adyen\Model\LegalEntityManagement\GetTermsOfServiceDocumentRequest $getTermsOfServiceDocumentRequest, array $requestOptions = null): \Adyen\Model\LegalEntityManagement\GetTermsOfServiceDocumentResponse
+    public function getTermsOfServiceDocument(string $id, \Adyen\Model\LegalEntityManagement\GetTermsOfServiceDocumentRequest $getTermsOfServiceDocumentRequest, ?array $requestOptions = null): \Adyen\Model\LegalEntityManagement\GetTermsOfServiceDocumentResponse
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/legalEntities/{id}/termsOfService");
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $getTermsOfServiceDocumentRequest->jsonSerialize(), $requestOptions);
@@ -96,7 +96,7 @@ class TermsOfServiceApi extends Service
     * @return \Adyen\Model\LegalEntityManagement\GetTermsOfServiceAcceptanceInfosResponse
     * @throws AdyenException
     */
-    public function getTermsOfServiceInformationForLegalEntity(string $id, array $requestOptions = null): \Adyen\Model\LegalEntityManagement\GetTermsOfServiceAcceptanceInfosResponse
+    public function getTermsOfServiceInformationForLegalEntity(string $id, ?array $requestOptions = null): \Adyen\Model\LegalEntityManagement\GetTermsOfServiceAcceptanceInfosResponse
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/legalEntities/{id}/termsOfServiceAcceptanceInfos");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -111,7 +111,7 @@ class TermsOfServiceApi extends Service
     * @return \Adyen\Model\LegalEntityManagement\CalculateTermsOfServiceStatusResponse
     * @throws AdyenException
     */
-    public function getTermsOfServiceStatus(string $id, array $requestOptions = null): \Adyen\Model\LegalEntityManagement\CalculateTermsOfServiceStatusResponse
+    public function getTermsOfServiceStatus(string $id, ?array $requestOptions = null): \Adyen\Model\LegalEntityManagement\CalculateTermsOfServiceStatusResponse
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/legalEntities/{id}/termsOfServiceStatus");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);

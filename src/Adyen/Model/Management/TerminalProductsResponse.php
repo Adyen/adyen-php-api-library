@@ -21,10 +21,7 @@ use Adyen\Model\Management\ObjectSerializer;
 /**
  * TerminalProductsResponse Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class TerminalProductsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -229,7 +226,7 @@ class TerminalProductsResponse implements ModelInterface, ArrayAccess, \JsonSeri
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('data', $data ?? [], null);
     }

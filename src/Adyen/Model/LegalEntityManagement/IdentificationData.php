@@ -21,10 +21,7 @@ use Adyen\Model\LegalEntityManagement\ObjectSerializer;
 /**
  * IdentificationData Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class IdentificationData implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -283,7 +280,7 @@ class IdentificationData implements ModelInterface, ArrayAccess, \JsonSerializab
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('cardNumber', $data ?? [], null);
         $this->setIfExists('expiryDate', $data ?? [], null);

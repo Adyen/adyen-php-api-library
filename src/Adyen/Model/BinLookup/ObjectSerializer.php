@@ -16,6 +16,7 @@
 namespace Adyen\Model\BinLookup;
 
 use Adyen\Model\BinLookup\ModelInterface;
+use GuzzleHttp\Utils;
 
 class ObjectSerializer
 {

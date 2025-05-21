@@ -21,10 +21,7 @@ use Adyen\Model\BalancePlatform\ObjectSerializer;
 /**
  * TransactionRuleInfo Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class TransactionRuleInfo implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -369,7 +366,7 @@ class TransactionRuleInfo implements ModelInterface, ArrayAccess, \JsonSerializa
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('aggregationLevel', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);

@@ -21,10 +21,7 @@ use Adyen\Model\Transfers\ObjectSerializer;
 /**
  * TransferEvent Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -332,6 +329,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     public const REASON_DIRECT_DEBIT_NOT_SUPPORTED = 'directDebitNotSupported';
     public const REASON_ERROR = 'error';
     public const REASON_NOT_ENOUGH_BALANCE = 'notEnoughBalance';
+    public const REASON_PENDING = 'pending';
     public const REASON_PENDING_APPROVAL = 'pendingApproval';
     public const REASON_PENDING_EXECUTION = 'pendingExecution';
     public const REASON_REFUSED_BY_COUNTERPARTY_BANK = 'refusedByCounterpartyBank';
@@ -433,6 +431,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
             self::REASON_DIRECT_DEBIT_NOT_SUPPORTED,
             self::REASON_ERROR,
             self::REASON_NOT_ENOUGH_BALANCE,
+            self::REASON_PENDING,
             self::REASON_PENDING_APPROVAL,
             self::REASON_PENDING_EXECUTION,
             self::REASON_REFUSED_BY_COUNTERPARTY_BANK,
@@ -545,7 +544,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('amount', $data ?? [], null);
         $this->setIfExists('amountAdjustments', $data ?? [], null);
@@ -673,7 +672,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets amountAdjustments
      *
-     * @param \Adyen\Model\Transfers\AmountAdjustment[]|null $amountAdjustments The amount adjustments in this transfer.
+     * @param \Adyen\Model\Transfers\AmountAdjustment[]|null $amountAdjustments The amount adjustments in this transfer. Only applicable for [issuing](https://docs.adyen.com/issuing/) integrations.
      *
      * @return self
      */

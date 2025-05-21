@@ -21,10 +21,7 @@ use Adyen\Model\LegalEntityManagement\ObjectSerializer;
 /**
  * TransferInstrumentInfo Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class TransferInstrumentInfo implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -255,7 +252,7 @@ class TransferInstrumentInfo implements ModelInterface, ArrayAccess, \JsonSerial
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('bankAccount', $data ?? [], null);
         $this->setIfExists('legalEntityId', $data ?? [], null);

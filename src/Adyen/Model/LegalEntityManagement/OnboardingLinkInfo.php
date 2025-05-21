@@ -21,10 +21,7 @@ use Adyen\Model\LegalEntityManagement\ObjectSerializer;
 /**
  * OnboardingLinkInfo Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class OnboardingLinkInfo implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -247,7 +244,7 @@ class OnboardingLinkInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('locale', $data ?? [], null);
         $this->setIfExists('redirectUrl', $data ?? [], null);

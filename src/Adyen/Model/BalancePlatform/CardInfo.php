@@ -21,10 +21,7 @@ use Adyen\Model\BalancePlatform\ObjectSerializer;
 /**
  * CardInfo Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class CardInfo implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -287,7 +284,7 @@ class CardInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('authentication', $data ?? [], null);
         $this->setIfExists('brand', $data ?? [], null);
@@ -553,7 +550,7 @@ class CardInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets threeDSecure
      *
-     * @param string|null $threeDSecure Allocates a specific product range for either a physical or a virtual card. Possible values: **fullySupported**, **secureCorporate**. >Reach out to your Adyen contact to get the values relevant for your integration.
+     * @param string|null $threeDSecure Allocates a specific product range for either a physical or a virtual card. Possible values: **fullySupported**, **secureCorporate**. > Reach out to your Adyen contact to get the values relevant for your integration.
      *
      * @return self
      */

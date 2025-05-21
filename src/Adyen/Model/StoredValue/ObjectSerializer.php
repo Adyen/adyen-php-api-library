@@ -16,6 +16,7 @@
 namespace Adyen\Model\StoredValue;
 
 use Adyen\Model\StoredValue\ModelInterface;
+use GuzzleHttp\Utils;
 
 class ObjectSerializer
 {

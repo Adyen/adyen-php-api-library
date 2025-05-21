@@ -16,6 +16,7 @@
 namespace Adyen\Model\BalancePlatform;
 
 use Adyen\Model\BalancePlatform\ModelInterface;
+use GuzzleHttp\Utils;
 
 class ObjectSerializer
 {

@@ -21,10 +21,7 @@ use Adyen\Model\BalancePlatform\ObjectSerializer;
 /**
  * AccountHolderCapability Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class AccountHolderCapability implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -337,7 +334,7 @@ class AccountHolderCapability implements ModelInterface, ArrayAccess, \JsonSeria
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('allowed', $data ?? [], null);
         $this->setIfExists('allowedLevel', $data ?? [], null);

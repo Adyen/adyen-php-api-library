@@ -21,10 +21,7 @@ use Adyen\Model\Payments\ObjectSerializer;
 /**
  * AdditionalDataRisk Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -349,7 +346,7 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('riskdataCustomFieldName', $data ?? [], null);
         $this->setIfExists('riskdataBasketItemItemNrAmountPerItem', $data ?? [], null);

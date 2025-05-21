@@ -16,6 +16,7 @@
 namespace Adyen\Model\Disputes;
 
 use Adyen\Model\Disputes\ModelInterface;
+use GuzzleHttp\Utils;
 
 class ObjectSerializer
 {

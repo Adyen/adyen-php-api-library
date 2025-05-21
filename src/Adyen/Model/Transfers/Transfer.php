@@ -21,10 +21,7 @@ use Adyen\Model\Transfers\ObjectSerializer;
 /**
  * Transfer Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -54,6 +51,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'string',
         'directDebitInformation' => '\Adyen\Model\Transfers\DirectDebitInformation',
         'direction' => 'string',
+        'executionDate' => '\Adyen\Model\Transfers\ExecutionDate',
         'id' => 'string',
         'paymentInstrument' => '\Adyen\Model\Transfers\PaymentInstrument',
         'reason' => 'string',
@@ -82,6 +80,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => null,
         'directDebitInformation' => null,
         'direction' => null,
+        'executionDate' => null,
         'id' => null,
         'paymentInstrument' => null,
         'reason' => null,
@@ -108,6 +107,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => false,
         'directDebitInformation' => false,
         'direction' => false,
+        'executionDate' => false,
         'id' => false,
         'paymentInstrument' => false,
         'reason' => false,
@@ -214,6 +214,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'description',
         'directDebitInformation' => 'directDebitInformation',
         'direction' => 'direction',
+        'executionDate' => 'executionDate',
         'id' => 'id',
         'paymentInstrument' => 'paymentInstrument',
         'reason' => 'reason',
@@ -240,6 +241,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'setDescription',
         'directDebitInformation' => 'setDirectDebitInformation',
         'direction' => 'setDirection',
+        'executionDate' => 'setExecutionDate',
         'id' => 'setId',
         'paymentInstrument' => 'setPaymentInstrument',
         'reason' => 'setReason',
@@ -266,6 +268,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'getDescription',
         'directDebitInformation' => 'getDirectDebitInformation',
         'direction' => 'getDirection',
+        'executionDate' => 'getExecutionDate',
         'id' => 'getId',
         'paymentInstrument' => 'getPaymentInstrument',
         'reason' => 'getReason',
@@ -340,6 +343,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     public const REASON_DIRECT_DEBIT_NOT_SUPPORTED = 'directDebitNotSupported';
     public const REASON_ERROR = 'error';
     public const REASON_NOT_ENOUGH_BALANCE = 'notEnoughBalance';
+    public const REASON_PENDING = 'pending';
     public const REASON_PENDING_APPROVAL = 'pendingApproval';
     public const REASON_PENDING_EXECUTION = 'pendingExecution';
     public const REASON_REFUSED_BY_COUNTERPARTY_BANK = 'refusedByCounterpartyBank';
@@ -505,6 +509,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
             self::REASON_DIRECT_DEBIT_NOT_SUPPORTED,
             self::REASON_ERROR,
             self::REASON_NOT_ENOUGH_BALANCE,
+            self::REASON_PENDING,
             self::REASON_PENDING_APPROVAL,
             self::REASON_PENDING_EXECUTION,
             self::REASON_REFUSED_BY_COUNTERPARTY_BANK,
@@ -653,7 +658,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('accountHolder', $data ?? [], null);
         $this->setIfExists('amount', $data ?? [], null);
@@ -665,6 +670,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('directDebitInformation', $data ?? [], null);
         $this->setIfExists('direction', $data ?? [], null);
+        $this->setIfExists('executionDate', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('paymentInstrument', $data ?? [], null);
         $this->setIfExists('reason', $data ?? [], null);
@@ -1030,6 +1036,30 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['direction'] = $direction;
+
+        return $this;
+    }
+
+    /**
+     * Gets executionDate
+     *
+     * @return \Adyen\Model\Transfers\ExecutionDate|null
+     */
+    public function getExecutionDate()
+    {
+        return $this->container['executionDate'];
+    }
+
+    /**
+     * Sets executionDate
+     *
+     * @param \Adyen\Model\Transfers\ExecutionDate|null $executionDate executionDate
+     *
+     * @return self
+     */
+    public function setExecutionDate($executionDate)
+    {
+        $this->container['executionDate'] = $executionDate;
 
         return $this;
     }

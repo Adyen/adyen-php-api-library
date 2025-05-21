@@ -21,10 +21,7 @@ use Adyen\Model\Management\ObjectSerializer;
 /**
  * InstallAndroidAppDetails Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class InstallAndroidAppDetails implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -247,7 +244,7 @@ class InstallAndroidAppDetails implements ModelInterface, ArrayAccess, \JsonSeri
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('appId', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);

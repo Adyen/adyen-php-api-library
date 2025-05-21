@@ -16,6 +16,7 @@
 namespace Adyen\Model\DataProtection;
 
 use Adyen\Model\DataProtection\ModelInterface;
+use GuzzleHttp\Utils;
 
 class ObjectSerializer
 {

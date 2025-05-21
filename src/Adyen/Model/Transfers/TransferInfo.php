@@ -21,10 +21,7 @@ use Adyen\Model\Transfers\ObjectSerializer;
 /**
  * TransferInfo Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -49,6 +46,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => 'string',
         'counterparty' => '\Adyen\Model\Transfers\CounterpartyInfoV3',
         'description' => 'string',
+        'executionDate' => '\Adyen\Model\Transfers\ExecutionDate',
         'paymentInstrumentId' => 'string',
         'priorities' => 'string[]',
         'priority' => 'string',
@@ -72,6 +70,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => null,
         'counterparty' => null,
         'description' => null,
+        'executionDate' => null,
         'paymentInstrumentId' => null,
         'priorities' => null,
         'priority' => null,
@@ -93,6 +92,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => false,
         'counterparty' => false,
         'description' => false,
+        'executionDate' => false,
         'paymentInstrumentId' => false,
         'priorities' => false,
         'priority' => false,
@@ -194,6 +194,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => 'category',
         'counterparty' => 'counterparty',
         'description' => 'description',
+        'executionDate' => 'executionDate',
         'paymentInstrumentId' => 'paymentInstrumentId',
         'priorities' => 'priorities',
         'priority' => 'priority',
@@ -215,6 +216,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => 'setCategory',
         'counterparty' => 'setCounterparty',
         'description' => 'setDescription',
+        'executionDate' => 'setExecutionDate',
         'paymentInstrumentId' => 'setPaymentInstrumentId',
         'priorities' => 'setPriorities',
         'priority' => 'setPriority',
@@ -236,6 +238,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => 'getCategory',
         'counterparty' => 'getCounterparty',
         'description' => 'getDescription',
+        'executionDate' => 'getExecutionDate',
         'paymentInstrumentId' => 'getPaymentInstrumentId',
         'priorities' => 'getPriorities',
         'priority' => 'getPriority',
@@ -383,13 +386,14 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('amount', $data ?? [], null);
         $this->setIfExists('balanceAccountId', $data ?? [], null);
         $this->setIfExists('category', $data ?? [], null);
         $this->setIfExists('counterparty', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('executionDate', $data ?? [], null);
         $this->setIfExists('paymentInstrumentId', $data ?? [], null);
         $this->setIfExists('priorities', $data ?? [], null);
         $this->setIfExists('priority', $data ?? [], null);
@@ -604,6 +608,30 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setDescription($description)
     {
         $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets executionDate
+     *
+     * @return \Adyen\Model\Transfers\ExecutionDate|null
+     */
+    public function getExecutionDate()
+    {
+        return $this->container['executionDate'];
+    }
+
+    /**
+     * Sets executionDate
+     *
+     * @param \Adyen\Model\Transfers\ExecutionDate|null $executionDate executionDate
+     *
+     * @return self
+     */
+    public function setExecutionDate($executionDate)
+    {
+        $this->container['executionDate'] = $executionDate;
 
         return $this;
     }

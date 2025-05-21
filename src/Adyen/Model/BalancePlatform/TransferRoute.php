@@ -21,10 +21,7 @@ use Adyen\Model\BalancePlatform\ObjectSerializer;
 /**
  * TransferRoute Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class TransferRoute implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -242,6 +239,7 @@ class TransferRoute implements ModelInterface, ArrayAccess, \JsonSerializable
     public const CATEGORY_BANK = 'bank';
     public const CATEGORY_CARD = 'card';
     public const CATEGORY_GRANTS = 'grants';
+    public const CATEGORY_INTEREST = 'interest';
     public const CATEGORY_INTERNAL = 'internal';
     public const CATEGORY_ISSUED_CARD = 'issuedCard';
     public const CATEGORY_MIGRATION = 'migration';
@@ -266,6 +264,7 @@ class TransferRoute implements ModelInterface, ArrayAccess, \JsonSerializable
             self::CATEGORY_BANK,
             self::CATEGORY_CARD,
             self::CATEGORY_GRANTS,
+            self::CATEGORY_INTEREST,
             self::CATEGORY_INTERNAL,
             self::CATEGORY_ISSUED_CARD,
             self::CATEGORY_MIGRATION,
@@ -303,7 +302,7 @@ class TransferRoute implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('category', $data ?? [], null);
         $this->setIfExists('country', $data ?? [], null);

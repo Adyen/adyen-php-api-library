@@ -21,10 +21,7 @@ use Adyen\Model\Transfers\ObjectSerializer;
 /**
  * PartyIdentification Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class PartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -281,7 +278,7 @@ class PartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializa
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('address', $data ?? [], null);
         $this->setIfExists('dateOfBirth', $data ?? [], null);

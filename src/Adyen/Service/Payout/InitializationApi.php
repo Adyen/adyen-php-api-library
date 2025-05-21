@@ -47,7 +47,7 @@ class InitializationApi extends Service
     * @return \Adyen\Model\Payout\StoreDetailResponse
     * @throws AdyenException
     */
-    public function storeDetail(\Adyen\Model\Payout\StoreDetailRequest $storeDetailRequest, array $requestOptions = null): \Adyen\Model\Payout\StoreDetailResponse
+    public function storeDetail(\Adyen\Model\Payout\StoreDetailRequest $storeDetailRequest, ?array $requestOptions = null): \Adyen\Model\Payout\StoreDetailResponse
     {
         $endpoint = $this->baseURL . "/storeDetail";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $storeDetailRequest->jsonSerialize(), $requestOptions);
@@ -62,7 +62,7 @@ class InitializationApi extends Service
     * @return \Adyen\Model\Payout\StoreDetailAndSubmitResponse
     * @throws AdyenException
     */
-    public function storeDetailAndSubmitThirdParty(\Adyen\Model\Payout\StoreDetailAndSubmitRequest $storeDetailAndSubmitRequest, array $requestOptions = null): \Adyen\Model\Payout\StoreDetailAndSubmitResponse
+    public function storeDetailAndSubmitThirdParty(\Adyen\Model\Payout\StoreDetailAndSubmitRequest $storeDetailAndSubmitRequest, ?array $requestOptions = null): \Adyen\Model\Payout\StoreDetailAndSubmitResponse
     {
         $endpoint = $this->baseURL . "/storeDetailAndSubmitThirdParty";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $storeDetailAndSubmitRequest->jsonSerialize(), $requestOptions);
@@ -77,7 +77,7 @@ class InitializationApi extends Service
     * @return \Adyen\Model\Payout\SubmitResponse
     * @throws AdyenException
     */
-    public function submitThirdParty(\Adyen\Model\Payout\SubmitRequest $submitRequest, array $requestOptions = null): \Adyen\Model\Payout\SubmitResponse
+    public function submitThirdParty(\Adyen\Model\Payout\SubmitRequest $submitRequest, ?array $requestOptions = null): \Adyen\Model\Payout\SubmitResponse
     {
         $endpoint = $this->baseURL . "/submitThirdParty";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $submitRequest->jsonSerialize(), $requestOptions);

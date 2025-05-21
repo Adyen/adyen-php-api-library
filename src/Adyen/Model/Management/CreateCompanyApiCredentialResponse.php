@@ -21,10 +21,7 @@ use Adyen\Model\Management\ObjectSerializer;
 /**
  * CreateCompanyApiCredentialResponse Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class CreateCompanyApiCredentialResponse implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -295,7 +292,7 @@ class CreateCompanyApiCredentialResponse implements ModelInterface, ArrayAccess,
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('links', $data ?? [], null);
         $this->setIfExists('active', $data ?? [], null);

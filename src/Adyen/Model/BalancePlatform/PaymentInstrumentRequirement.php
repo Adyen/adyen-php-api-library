@@ -21,10 +21,7 @@ use Adyen\Model\BalancePlatform\ObjectSerializer;
 /**
  * PaymentInstrumentRequirement Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -285,7 +282,7 @@ class PaymentInstrumentRequirement implements ModelInterface, ArrayAccess, \Json
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('issuingCountryCode', $data ?? [], null);

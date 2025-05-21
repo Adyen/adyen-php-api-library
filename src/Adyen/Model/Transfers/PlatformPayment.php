@@ -21,10 +21,7 @@ use Adyen\Model\Transfers\ObjectSerializer;
 /**
  * PlatformPayment Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class PlatformPayment implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -250,7 +247,9 @@ class PlatformPayment implements ModelInterface, ArrayAccess, \JsonSerializable
     public const PLATFORM_PAYMENT_TYPE_ADYEN_FEES = 'AdyenFees';
     public const PLATFORM_PAYMENT_TYPE_ADYEN_MARKUP = 'AdyenMarkup';
     public const PLATFORM_PAYMENT_TYPE_BALANCE_ACCOUNT = 'BalanceAccount';
+    public const PLATFORM_PAYMENT_TYPE_CHARGEBACK_REMAINDER = 'ChargebackRemainder';
     public const PLATFORM_PAYMENT_TYPE_COMMISSION = 'Commission';
+    public const PLATFORM_PAYMENT_TYPE_DCC_PLATFORM_COMMISSION = 'DCCPlatformCommission';
     public const PLATFORM_PAYMENT_TYPE__DEFAULT = 'Default';
     public const PLATFORM_PAYMENT_TYPE_INTERCHANGE = 'Interchange';
     public const PLATFORM_PAYMENT_TYPE_PAYMENT_FEE = 'PaymentFee';
@@ -275,7 +274,9 @@ class PlatformPayment implements ModelInterface, ArrayAccess, \JsonSerializable
             self::PLATFORM_PAYMENT_TYPE_ADYEN_FEES,
             self::PLATFORM_PAYMENT_TYPE_ADYEN_MARKUP,
             self::PLATFORM_PAYMENT_TYPE_BALANCE_ACCOUNT,
+            self::PLATFORM_PAYMENT_TYPE_CHARGEBACK_REMAINDER,
             self::PLATFORM_PAYMENT_TYPE_COMMISSION,
+            self::PLATFORM_PAYMENT_TYPE_DCC_PLATFORM_COMMISSION,
             self::PLATFORM_PAYMENT_TYPE__DEFAULT,
             self::PLATFORM_PAYMENT_TYPE_INTERCHANGE,
             self::PLATFORM_PAYMENT_TYPE_PAYMENT_FEE,
@@ -311,7 +312,7 @@ class PlatformPayment implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('modificationMerchantReference', $data ?? [], null);
         $this->setIfExists('modificationPspReference', $data ?? [], null);
@@ -466,7 +467,7 @@ class PlatformPayment implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets platformPaymentType
      *
-     * @param string|null $platformPaymentType Specifies the nature of the transfer. This parameter helps categorize transfers so you can reconcile transactions at a later time, using the Balance Platform Accounting Report for [marketplaces](https://docs.adyen.com/marketplaces/reports-and-fees/balance-platform-accounting-report/) or [platforms](https://docs.adyen.com/platforms/reports-and-fees/balance-platform-accounting-report/).  Possible values:  * **AcquiringFees**: for the acquiring fee incurred on a transaction.  * **AdyenCommission**: for the transaction fee due to Adyen under [blended rates](https://www.adyen.com/knowledge-hub/guides/payments-training-guide/get-the-best-from-your-card-processing).  * **AdyenFees**: for all the transaction fees due to Adyen. This is the sum of Adyen's commission and Adyen's markup.  * **AdyenMarkup**: for the transaction fee due to Adyen under [Interchange++ pricing](https://www.adyen.com/pricing).  * **BalanceAccount**: or the sale amount of a transaction.  * **Commission**: for your platform's commission on a transaction.  * **Interchange**: for the interchange fee (fee paid to the issuer) incurred on a transaction.  * **PaymentFee**: for all of the transaction fees.  * **Remainder**: for the left over amount after currency conversion.  * **SchemeFee**: for the scheme fee incurred on a transaction. This is the sum of the interchange fees and the acquiring fees.  * **Surcharge**: for the surcharge paid by the customer on a transaction.  * **Tip**: for the tip paid by the customer.  * **TopUp**: for an incoming transfer to top up your user's balance account.  * **VAT**: for the Value Added Tax.
+     * @param string|null $platformPaymentType Specifies the nature of the transfer. This parameter helps categorize transfers so you can reconcile transactions at a later time, using the Balance Platform Accounting Report for [marketplaces](https://docs.adyen.com/marketplaces/reports-and-fees/balance-platform-accounting-report/) or [platforms](https://docs.adyen.com/platforms/reports-and-fees/balance-platform-accounting-report/).  Possible values:  * **AcquiringFees**: for the acquiring fee incurred on a transaction.  * **AdyenCommission**: for the transaction fee due to Adyen under [blended rates](https://www.adyen.com/knowledge-hub/guides/payments-training-guide/get-the-best-from-your-card-processing).  * **AdyenFees**: for all the transaction fees due to Adyen. This is the sum of Adyen's commission and Adyen's markup.  * **AdyenMarkup**: for the transaction fee due to Adyen under [Interchange++ pricing](https://www.adyen.com/pricing).  * **BalanceAccount**: or the sale amount of a transaction.  * **Commission**: for your platform's commission on a transaction.  * **DCCPlatformCommission**: for the DCC Commission for the platform on a transaction.  * **Interchange**: for the interchange fee (fee paid to the issuer) incurred on a transaction.  * **PaymentFee**: for all of the transaction fees.  * **Remainder**: for the left over amount after currency conversion.  * **SchemeFee**: for the scheme fee incurred on a transaction. This is the sum of the interchange fees and the acquiring fees.  * **Surcharge**: for the surcharge paid by the customer on a transaction.  * **Tip**: for the tip paid by the customer.  * **TopUp**: for an incoming transfer to top up your user's balance account.  * **VAT**: for the Value Added Tax.
      *
      * @return self
      */

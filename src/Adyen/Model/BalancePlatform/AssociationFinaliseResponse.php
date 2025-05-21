@@ -21,10 +21,7 @@ use Adyen\Model\BalancePlatform\ObjectSerializer;
 /**
  * AssociationFinaliseResponse Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class AssociationFinaliseResponse implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -253,7 +250,7 @@ class AssociationFinaliseResponse implements ModelInterface, ArrayAccess, \JsonS
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('deviceId', $data ?? [], null);
         $this->setIfExists('ids', $data ?? [], null);

@@ -21,10 +21,7 @@ use Adyen\Model\BinLookup\ObjectSerializer;
 /**
  * BinDetail Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class BinDetail implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -229,7 +226,7 @@ class BinDetail implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('issuerCountry', $data ?? [], null);
     }
