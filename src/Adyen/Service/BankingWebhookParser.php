@@ -38,7 +38,10 @@ class BankingWebhookParser
             return (object)$this->deserializewebhook($clazz);
         }
 
-        if (in_array($type, ($clazz = new RelayedAuthenticationRequest())->getTypeAllowableValues())) {
+        // custom check for RelayedAuthenticationRequest as it doesn't include the attribute 'type'
+        if (is_array($jsonPayload) &&
+            array_key_exists('id', $jsonPayload) &&
+            array_key_exists('paymentInstrumentId', $jsonPayload)) {
             return (object)$this->deserializewebhook($clazz);
         }
 

@@ -27,6 +27,7 @@ use Adyen\Model\ConfigurationWebhooks\SweepConfigurationNotificationRequest;
 use Adyen\Model\ManagementWebhooks\PaymentMethodCreatedNotificationRequest;
 use Adyen\Model\AcsWebhooks\AuthenticationNotificationRequest;
 use Adyen\Model\TransactionWebhooks\TransactionNotificationRequestV4;
+use Adyen\Model\BalanceWebhooks\BalanceAccountBalanceNotificationRequest;
 use Adyen\Service\BankingWebhookParser;
 use Adyen\Service\ManagementWebhookParser;
 use Adyen\Service\Notification;
@@ -307,7 +308,7 @@ class NotificationTest extends TestCaseMock
             "authentication": {
               "acsTransId": "6a4c1709-a42e-4c7f-96c7-1043adacfc97",
               "challenge": {
-                "flow": "OOB",
+                "flow": "OOB_TRIGGER_FL",
                 "lastInteraction": "2022-12-22T15:49:03+01:00"
               },
               "challengeIndicator": "01",
