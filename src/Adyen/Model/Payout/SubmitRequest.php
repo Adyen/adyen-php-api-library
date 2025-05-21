@@ -21,10 +21,7 @@ use Adyen\Model\Payout\ObjectSerializer;
 /**
  * SubmitRequest Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class SubmitRequest implements ModelInterface, ArrayAccess, \JsonSerializable

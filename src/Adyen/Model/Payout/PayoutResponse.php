@@ -21,10 +21,7 @@ use Adyen\Model\Payout\ObjectSerializer;
 /**
  * PayoutResponse Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class PayoutResponse implements ModelInterface, ArrayAccess, \JsonSerializable
