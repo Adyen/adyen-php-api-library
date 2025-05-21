@@ -21,10 +21,7 @@ use Adyen\Model\Recurring\ObjectSerializer;
 /**
  * ScheduleAccountUpdaterRequest Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class ScheduleAccountUpdaterRequest implements ModelInterface, ArrayAccess, \JsonSerializable

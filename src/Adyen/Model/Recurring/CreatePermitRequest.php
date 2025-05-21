@@ -21,10 +21,7 @@ use Adyen\Model\Recurring\ObjectSerializer;
 /**
  * CreatePermitRequest Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class CreatePermitRequest implements ModelInterface, ArrayAccess, \JsonSerializable

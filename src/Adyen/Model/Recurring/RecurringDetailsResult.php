@@ -21,10 +21,7 @@ use Adyen\Model\Recurring\ObjectSerializer;
 /**
  * RecurringDetailsResult Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class RecurringDetailsResult implements ModelInterface, ArrayAccess, \JsonSerializable
