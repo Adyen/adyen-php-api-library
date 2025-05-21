@@ -21,10 +21,7 @@ use Adyen\Model\Management\ObjectSerializer;
 /**
  * PaymentMethodSetupInfo Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -61,7 +58,6 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'discover' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'eftDirectdebitCA' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'eftposAustralia' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
-        'giroPay' => '\Adyen\Model\Management\GiroPayInfo',
         'girocard' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'googlePay' => '\Adyen\Model\Management\GooglePayInfo',
         'ideal' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
@@ -72,6 +68,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'mc' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'mealVoucherFR' => '\Adyen\Model\Management\MealVoucherFRInfo',
         'nyce' => '\Adyen\Model\Management\NyceInfo',
+        'paybybankPlaid' => '\Adyen\Model\Management\PayByBankPlaidInfo',
         'payme' => '\Adyen\Model\Management\PayMeInfo',
         'paypal' => '\Adyen\Model\Management\PayPalInfo',
         'payto' => '\Adyen\Model\Management\PayToInfo',
@@ -117,7 +114,6 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'discover' => null,
         'eftDirectdebitCA' => null,
         'eftposAustralia' => null,
-        'giroPay' => null,
         'girocard' => null,
         'googlePay' => null,
         'ideal' => null,
@@ -128,6 +124,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'mc' => null,
         'mealVoucherFR' => null,
         'nyce' => null,
+        'paybybankPlaid' => null,
         'payme' => null,
         'paypal' => null,
         'payto' => null,
@@ -171,7 +168,6 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'discover' => false,
         'eftDirectdebitCA' => false,
         'eftposAustralia' => false,
-        'giroPay' => false,
         'girocard' => false,
         'googlePay' => false,
         'ideal' => false,
@@ -182,6 +178,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'mc' => false,
         'mealVoucherFR' => false,
         'nyce' => false,
+        'paybybankPlaid' => false,
         'payme' => false,
         'paypal' => false,
         'payto' => false,
@@ -305,7 +302,6 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'discover' => 'discover',
         'eftDirectdebitCA' => 'eft_directdebit_CA',
         'eftposAustralia' => 'eftpos_australia',
-        'giroPay' => 'giroPay',
         'girocard' => 'girocard',
         'googlePay' => 'googlePay',
         'ideal' => 'ideal',
@@ -316,6 +312,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'mc' => 'mc',
         'mealVoucherFR' => 'mealVoucher_FR',
         'nyce' => 'nyce',
+        'paybybankPlaid' => 'paybybank_plaid',
         'payme' => 'payme',
         'paypal' => 'paypal',
         'payto' => 'payto',
@@ -359,7 +356,6 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'discover' => 'setDiscover',
         'eftDirectdebitCA' => 'setEftDirectdebitCA',
         'eftposAustralia' => 'setEftposAustralia',
-        'giroPay' => 'setGiroPay',
         'girocard' => 'setGirocard',
         'googlePay' => 'setGooglePay',
         'ideal' => 'setIdeal',
@@ -370,6 +366,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'mc' => 'setMc',
         'mealVoucherFR' => 'setMealVoucherFR',
         'nyce' => 'setNyce',
+        'paybybankPlaid' => 'setPaybybankPlaid',
         'payme' => 'setPayme',
         'paypal' => 'setPaypal',
         'payto' => 'setPayto',
@@ -413,7 +410,6 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'discover' => 'getDiscover',
         'eftDirectdebitCA' => 'getEftDirectdebitCA',
         'eftposAustralia' => 'getEftposAustralia',
-        'giroPay' => 'getGiroPay',
         'girocard' => 'getGirocard',
         'googlePay' => 'getGooglePay',
         'ideal' => 'getIdeal',
@@ -424,6 +420,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'mc' => 'getMc',
         'mealVoucherFR' => 'getMealVoucherFR',
         'nyce' => 'getNyce',
+        'paybybankPlaid' => 'getPaybybankPlaid',
         'payme' => 'getPayme',
         'paypal' => 'getPaypal',
         'payto' => 'getPayto',
@@ -541,12 +538,12 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     public const TYPE_NYCE = 'nyce';
     public const TYPE_ONLINE_BANKING_PL = 'onlineBanking_PL';
     public const TYPE_PAYBYBANK = 'paybybank';
+    public const TYPE_PAYBYBANK_PLAID = 'paybybank_plaid';
     public const TYPE_PAYME = 'payme';
     public const TYPE_PAYME_POS = 'payme_pos';
     public const TYPE_PAYNOW = 'paynow';
     public const TYPE_PAYNOW_POS = 'paynow_pos';
     public const TYPE_PAYPAL = 'paypal';
-    public const TYPE_PAYSHOP = 'payshop';
     public const TYPE_PAYTO = 'payto';
     public const TYPE_PULSE = 'pulse';
     public const TYPE_SODEXO = 'sodexo';
@@ -641,12 +638,12 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
             self::TYPE_NYCE,
             self::TYPE_ONLINE_BANKING_PL,
             self::TYPE_PAYBYBANK,
+            self::TYPE_PAYBYBANK_PLAID,
             self::TYPE_PAYME,
             self::TYPE_PAYME_POS,
             self::TYPE_PAYNOW,
             self::TYPE_PAYNOW_POS,
             self::TYPE_PAYPAL,
-            self::TYPE_PAYSHOP,
             self::TYPE_PAYTO,
             self::TYPE_PULSE,
             self::TYPE_SODEXO,
@@ -681,7 +678,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('accel', $data ?? [], null);
         $this->setIfExists('affirm', $data ?? [], null);
@@ -700,7 +697,6 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('discover', $data ?? [], null);
         $this->setIfExists('eftDirectdebitCA', $data ?? [], null);
         $this->setIfExists('eftposAustralia', $data ?? [], null);
-        $this->setIfExists('giroPay', $data ?? [], null);
         $this->setIfExists('girocard', $data ?? [], null);
         $this->setIfExists('googlePay', $data ?? [], null);
         $this->setIfExists('ideal', $data ?? [], null);
@@ -711,6 +707,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('mc', $data ?? [], null);
         $this->setIfExists('mealVoucherFR', $data ?? [], null);
         $this->setIfExists('nyce', $data ?? [], null);
+        $this->setIfExists('paybybankPlaid', $data ?? [], null);
         $this->setIfExists('payme', $data ?? [], null);
         $this->setIfExists('paypal', $data ?? [], null);
         $this->setIfExists('payto', $data ?? [], null);
@@ -1203,30 +1200,6 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     }
 
     /**
-     * Gets giroPay
-     *
-     * @return \Adyen\Model\Management\GiroPayInfo|null
-     */
-    public function getGiroPay()
-    {
-        return $this->container['giroPay'];
-    }
-
-    /**
-     * Sets giroPay
-     *
-     * @param \Adyen\Model\Management\GiroPayInfo|null $giroPay giroPay
-     *
-     * @return self
-     */
-    public function setGiroPay($giroPay)
-    {
-        $this->container['giroPay'] = $giroPay;
-
-        return $this;
-    }
-
-    /**
      * Gets girocard
      *
      * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
@@ -1462,6 +1435,30 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     public function setNyce($nyce)
     {
         $this->container['nyce'] = $nyce;
+
+        return $this;
+    }
+
+    /**
+     * Gets paybybankPlaid
+     *
+     * @return \Adyen\Model\Management\PayByBankPlaidInfo|null
+     */
+    public function getPaybybankPlaid()
+    {
+        return $this->container['paybybankPlaid'];
+    }
+
+    /**
+     * Sets paybybankPlaid
+     *
+     * @param \Adyen\Model\Management\PayByBankPlaidInfo|null $paybybankPlaid paybybankPlaid
+     *
+     * @return self
+     */
+    public function setPaybybankPlaid($paybybankPlaid)
+    {
+        $this->container['paybybankPlaid'] = $paybybankPlaid;
 
         return $this;
     }

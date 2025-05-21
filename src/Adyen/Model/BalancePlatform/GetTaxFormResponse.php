@@ -21,10 +21,7 @@ use Adyen\Model\BalancePlatform\ObjectSerializer;
 /**
  * GetTaxFormResponse Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class GetTaxFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -247,7 +244,7 @@ class GetTaxFormResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('content', $data ?? [], null);
         $this->setIfExists('contentType', $data ?? [], null);

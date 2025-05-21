@@ -21,10 +21,7 @@ use Adyen\Model\LegalEntityManagement\ObjectSerializer;
 /**
  * CheckTaxElectronicDeliveryConsentResponse Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class CheckTaxElectronicDeliveryConsentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -229,7 +226,7 @@ class CheckTaxElectronicDeliveryConsentResponse implements ModelInterface, Array
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('uS1099k', $data ?? [], null);
     }

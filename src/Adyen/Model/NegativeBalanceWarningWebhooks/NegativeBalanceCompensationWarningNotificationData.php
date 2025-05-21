@@ -21,10 +21,7 @@ use Adyen\Model\NegativeBalanceWarningWebhooks\ObjectSerializer;
 /**
  * NegativeBalanceCompensationWarningNotificationData Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class NegativeBalanceCompensationWarningNotificationData implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -271,7 +268,7 @@ class NegativeBalanceCompensationWarningNotificationData implements ModelInterfa
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('accountHolder', $data ?? [], null);
         $this->setIfExists('amount', $data ?? [], null);

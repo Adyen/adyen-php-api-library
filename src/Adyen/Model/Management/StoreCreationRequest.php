@@ -21,10 +21,7 @@ use Adyen\Model\Management\ObjectSerializer;
 /**
  * StoreCreationRequest Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class StoreCreationRequest implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -271,7 +268,7 @@ class StoreCreationRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('address', $data ?? [], null);
         $this->setIfExists('businessLineIds', $data ?? [], null);

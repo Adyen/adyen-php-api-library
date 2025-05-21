@@ -48,7 +48,7 @@ class PayoutSettingsMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\PayoutSettings
     * @throws AdyenException
     */
-    public function addPayoutSetting(string $merchantId, \Adyen\Model\Management\PayoutSettingsRequest $payoutSettingsRequest, array $requestOptions = null): \Adyen\Model\Management\PayoutSettings
+    public function addPayoutSetting(string $merchantId, \Adyen\Model\Management\PayoutSettingsRequest $payoutSettingsRequest, ?array $requestOptions = null): \Adyen\Model\Management\PayoutSettings
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}'], [$merchantId], "/merchants/{merchantId}/payoutSettings");
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $payoutSettingsRequest->jsonSerialize(), $requestOptions);
@@ -61,13 +61,14 @@ class PayoutSettingsMerchantLevelApi extends Service
     * @param string $merchantId
     * @param string $payoutSettingsId
     * @param array|null $requestOptions
-
+    
     * @throws AdyenException
     */
-    public function deletePayoutSetting(string $merchantId, string $payoutSettingsId, array $requestOptions = null)
+    public function deletePayoutSetting(string $merchantId, string $payoutSettingsId, ?array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{payoutSettingsId}'], [$merchantId, $payoutSettingsId], "/merchants/{merchantId}/payoutSettings/{payoutSettingsId}");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
+        
     }
 
     /**
@@ -79,7 +80,7 @@ class PayoutSettingsMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\PayoutSettings
     * @throws AdyenException
     */
-    public function getPayoutSetting(string $merchantId, string $payoutSettingsId, array $requestOptions = null): \Adyen\Model\Management\PayoutSettings
+    public function getPayoutSetting(string $merchantId, string $payoutSettingsId, ?array $requestOptions = null): \Adyen\Model\Management\PayoutSettings
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{payoutSettingsId}'], [$merchantId, $payoutSettingsId], "/merchants/{merchantId}/payoutSettings/{payoutSettingsId}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -94,7 +95,7 @@ class PayoutSettingsMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\PayoutSettingsResponse
     * @throws AdyenException
     */
-    public function listPayoutSettings(string $merchantId, array $requestOptions = null): \Adyen\Model\Management\PayoutSettingsResponse
+    public function listPayoutSettings(string $merchantId, ?array $requestOptions = null): \Adyen\Model\Management\PayoutSettingsResponse
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}'], [$merchantId], "/merchants/{merchantId}/payoutSettings");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -111,7 +112,7 @@ class PayoutSettingsMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\PayoutSettings
     * @throws AdyenException
     */
-    public function updatePayoutSetting(string $merchantId, string $payoutSettingsId, \Adyen\Model\Management\UpdatePayoutSettingsRequest $updatePayoutSettingsRequest, array $requestOptions = null): \Adyen\Model\Management\PayoutSettings
+    public function updatePayoutSetting(string $merchantId, string $payoutSettingsId, \Adyen\Model\Management\UpdatePayoutSettingsRequest $updatePayoutSettingsRequest, ?array $requestOptions = null): \Adyen\Model\Management\PayoutSettings
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{payoutSettingsId}'], [$merchantId, $payoutSettingsId], "/merchants/{merchantId}/payoutSettings/{payoutSettingsId}");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $updatePayoutSettingsRequest->jsonSerialize(), $requestOptions);

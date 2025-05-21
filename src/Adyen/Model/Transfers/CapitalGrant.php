@@ -21,10 +21,7 @@ use Adyen\Model\Transfers\ObjectSerializer;
 /**
  * CapitalGrant Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class CapitalGrant implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -266,6 +263,9 @@ class CapitalGrant implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_PENDING = 'Pending';
     public const STATUS_ACTIVE = 'Active';
     public const STATUS_REPAID = 'Repaid';
+    public const STATUS_FAILED = 'Failed';
+    public const STATUS_WRITTEN_OFF = 'WrittenOff';
+    public const STATUS_REVOKED = 'Revoked';
 
     /**
      * Gets allowable values of the enum
@@ -278,6 +278,9 @@ class CapitalGrant implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_PENDING,
             self::STATUS_ACTIVE,
             self::STATUS_REPAID,
+            self::STATUS_FAILED,
+            self::STATUS_WRITTEN_OFF,
+            self::STATUS_REVOKED,
         ];
     }
     /**
@@ -293,7 +296,7 @@ class CapitalGrant implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('amount', $data ?? [], null);
         $this->setIfExists('balances', $data ?? [], null);
@@ -577,7 +580,7 @@ class CapitalGrant implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      *
-     * @param string $status The current status of the grant. Possible values: **Pending**, **Active**, **Repaid**.
+     * @param string $status The current status of the grant. Possible values: **Pending**, **Active**, **Repaid**, **WrittenOff**, **Failed**, **Revoked**.
      *
      * @return self
      */

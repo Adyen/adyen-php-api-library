@@ -47,7 +47,7 @@ class PaymentInstrumentsApi extends Service
     * @return \Adyen\Model\BalancePlatform\PaymentInstrument
     * @throws AdyenException
     */
-    public function createPaymentInstrument(\Adyen\Model\BalancePlatform\PaymentInstrumentInfo $paymentInstrumentInfo, array $requestOptions = null): \Adyen\Model\BalancePlatform\PaymentInstrument
+    public function createPaymentInstrument(\Adyen\Model\BalancePlatform\PaymentInstrumentInfo $paymentInstrumentInfo, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\PaymentInstrument
     {
         $endpoint = $this->baseURL . "/paymentInstruments";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $paymentInstrumentInfo->jsonSerialize(), $requestOptions);
@@ -62,7 +62,7 @@ class PaymentInstrumentsApi extends Service
     * @return \Adyen\Model\BalancePlatform\TransactionRulesResponse
     * @throws AdyenException
     */
-    public function getAllTransactionRulesForPaymentInstrument(string $id, array $requestOptions = null): \Adyen\Model\BalancePlatform\TransactionRulesResponse
+    public function getAllTransactionRulesForPaymentInstrument(string $id, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\TransactionRulesResponse
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/paymentInstruments/{id}/transactionRules");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -77,7 +77,7 @@ class PaymentInstrumentsApi extends Service
     * @return \Adyen\Model\BalancePlatform\PaymentInstrumentRevealInfo
     * @throws AdyenException
     */
-    public function getPanOfPaymentInstrument(string $id, array $requestOptions = null): \Adyen\Model\BalancePlatform\PaymentInstrumentRevealInfo
+    public function getPanOfPaymentInstrument(string $id, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\PaymentInstrumentRevealInfo
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/paymentInstruments/{id}/reveal");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -92,7 +92,7 @@ class PaymentInstrumentsApi extends Service
     * @return \Adyen\Model\BalancePlatform\PaymentInstrument
     * @throws AdyenException
     */
-    public function getPaymentInstrument(string $id, array $requestOptions = null): \Adyen\Model\BalancePlatform\PaymentInstrument
+    public function getPaymentInstrument(string $id, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\PaymentInstrument
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/paymentInstruments/{id}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -107,7 +107,7 @@ class PaymentInstrumentsApi extends Service
     * @return \Adyen\Model\BalancePlatform\ListNetworkTokensResponse
     * @throws AdyenException
     */
-    public function listNetworkTokens(string $id, array $requestOptions = null): \Adyen\Model\BalancePlatform\ListNetworkTokensResponse
+    public function listNetworkTokens(string $id, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\ListNetworkTokensResponse
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/paymentInstruments/{id}/networkTokens");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -122,7 +122,7 @@ class PaymentInstrumentsApi extends Service
     * @return \Adyen\Model\BalancePlatform\PaymentInstrumentRevealResponse
     * @throws AdyenException
     */
-    public function revealDataOfPaymentInstrument(\Adyen\Model\BalancePlatform\PaymentInstrumentRevealRequest $paymentInstrumentRevealRequest, array $requestOptions = null): \Adyen\Model\BalancePlatform\PaymentInstrumentRevealResponse
+    public function revealDataOfPaymentInstrument(\Adyen\Model\BalancePlatform\PaymentInstrumentRevealRequest $paymentInstrumentRevealRequest, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\PaymentInstrumentRevealResponse
     {
         $endpoint = $this->baseURL . "/paymentInstruments/reveal";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $paymentInstrumentRevealRequest->jsonSerialize(), $requestOptions);
@@ -138,7 +138,7 @@ class PaymentInstrumentsApi extends Service
     * @return \Adyen\Model\BalancePlatform\UpdatePaymentInstrument
     * @throws AdyenException
     */
-    public function updatePaymentInstrument(string $id, \Adyen\Model\BalancePlatform\PaymentInstrumentUpdateRequest $paymentInstrumentUpdateRequest, array $requestOptions = null): \Adyen\Model\BalancePlatform\UpdatePaymentInstrument
+    public function updatePaymentInstrument(string $id, \Adyen\Model\BalancePlatform\PaymentInstrumentUpdateRequest $paymentInstrumentUpdateRequest, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\UpdatePaymentInstrument
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/paymentInstruments/{id}");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $paymentInstrumentUpdateRequest->jsonSerialize(), $requestOptions);

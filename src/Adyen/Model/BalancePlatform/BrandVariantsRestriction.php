@@ -21,10 +21,7 @@ use Adyen\Model\BalancePlatform\ObjectSerializer;
 /**
  * BrandVariantsRestriction Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class BrandVariantsRestriction implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -235,7 +232,7 @@ class BrandVariantsRestriction implements ModelInterface, ArrayAccess, \JsonSeri
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('operation', $data ?? [], null);
         $this->setIfExists('value', $data ?? [], null);

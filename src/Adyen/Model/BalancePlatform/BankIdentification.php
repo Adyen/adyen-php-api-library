@@ -21,10 +21,7 @@ use Adyen\Model\BalancePlatform\ObjectSerializer;
 /**
  * BankIdentification Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class BankIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -227,6 +224,7 @@ class BankIdentification implements ModelInterface, ArrayAccess, \JsonSerializab
         return self::$openAPIModelName;
     }
 
+    public const IDENTIFICATION_TYPE_BIC = 'bic';
     public const IDENTIFICATION_TYPE_IBAN = 'iban';
     public const IDENTIFICATION_TYPE_ROUTING_NUMBER = 'routingNumber';
     public const IDENTIFICATION_TYPE_SORT_CODE = 'sortCode';
@@ -239,6 +237,7 @@ class BankIdentification implements ModelInterface, ArrayAccess, \JsonSerializab
     public function getIdentificationTypeAllowableValues()
     {
         return [
+            self::IDENTIFICATION_TYPE_BIC,
             self::IDENTIFICATION_TYPE_IBAN,
             self::IDENTIFICATION_TYPE_ROUTING_NUMBER,
             self::IDENTIFICATION_TYPE_SORT_CODE,
@@ -257,7 +256,7 @@ class BankIdentification implements ModelInterface, ArrayAccess, \JsonSerializab
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('country', $data ?? [], null);
         $this->setIfExists('identification', $data ?? [], null);
@@ -376,7 +375,7 @@ class BankIdentification implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets identificationType
      *
-     * @param string|null $identificationType The type of the identification.  Possible values: **iban**, **routingNumber**, **sortCode**.
+     * @param string|null $identificationType The type of the identification.  Possible values: **iban**, **routingNumber**, **sortCode**, **bic**.
      *
      * @return self
      */

@@ -21,10 +21,7 @@ use Adyen\Model\ManagementWebhooks\ObjectSerializer;
 /**
  * MerchantUpdatedNotificationRequest Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class MerchantUpdatedNotificationRequest implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -259,7 +256,7 @@ class MerchantUpdatedNotificationRequest implements ModelInterface, ArrayAccess,
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('createdAt', $data ?? [], null);
         $this->setIfExists('data', $data ?? [], null);

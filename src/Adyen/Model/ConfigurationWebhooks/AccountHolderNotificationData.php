@@ -21,10 +21,7 @@ use Adyen\Model\ConfigurationWebhooks\ObjectSerializer;
 /**
  * AccountHolderNotificationData Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class AccountHolderNotificationData implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -235,7 +232,7 @@ class AccountHolderNotificationData implements ModelInterface, ArrayAccess, \Jso
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('accountHolder', $data ?? [], null);
         $this->setIfExists('balancePlatform', $data ?? [], null);

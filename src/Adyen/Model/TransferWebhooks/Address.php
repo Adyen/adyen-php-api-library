@@ -21,10 +21,7 @@ use Adyen\Model\TransferWebhooks\ObjectSerializer;
 /**
  * Address Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class Address implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -259,7 +256,7 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('city', $data ?? [], null);
         $this->setIfExists('country', $data ?? [], null);
@@ -327,7 +324,7 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets city
      *
-     * @param string|null $city The name of the city.  Supported characters: [a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] & \\ | and Space.
+     * @param string|null $city The name of the city.  Supported characters: **[a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] & \\ |** and Space.  > Required when the `category` is **card**.
      *
      * @return self
      */
@@ -375,7 +372,7 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets line1
      *
-     * @param string|null $line1 First line of the street address.  Supported characters: [a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] & \\ | and Space.
+     * @param string|null $line1 The first line of the street address.  Supported characters: **[a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] & \\ |** and Space.  > Required when the `category` is **card**.
      *
      * @return self
      */
@@ -399,7 +396,7 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets line2
      *
-     * @param string|null $line2 Second line of the street address.  Supported characters: [a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] & \\ | and Space.
+     * @param string|null $line2 The second line of the street address.  Supported characters: **[a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] & \\ |** and Space.  > Required when the `category` is **card**.
      *
      * @return self
      */
@@ -423,7 +420,7 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets postalCode
      *
-     * @param string|null $postalCode The postal code. Maximum length: * 5 digits for an address in the US. * 10 characters for an address in all other countries.  Supported characters: [a-z] [A-Z] [0-9] and Space.
+     * @param string|null $postalCode The postal code. Maximum length: * 5 digits for an address in the US. * 10 characters for an address in all other countries.  Supported characters: **[a-z] [A-Z] [0-9]** and Space.  > Required for addresses in the US.
      *
      * @return self
      */
@@ -447,7 +444,7 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets stateOrProvince
      *
-     * @param string|null $stateOrProvince The two-letter ISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada.    > Required for the US and Canada.
+     * @param string|null $stateOrProvince The two-letter ISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada.     > Required for the US and Canada.
      *
      * @return self
      */

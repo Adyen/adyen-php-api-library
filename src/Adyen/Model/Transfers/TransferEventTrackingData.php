@@ -21,11 +21,9 @@ use Adyen\Model\Transfers\ObjectSerializer;
 /**
  * TransferEventTrackingData Class Doc Comment
  *
- * @category Class
- * @description Additional information for the tracking event.
+ * Additional information for the tracking event.
+ *
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class TransferEventTrackingData implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -247,7 +245,7 @@ class TransferEventTrackingData implements ModelInterface, ArrayAccess, \JsonSer
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);

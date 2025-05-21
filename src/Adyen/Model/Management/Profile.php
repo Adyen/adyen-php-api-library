@@ -21,10 +21,7 @@ use Adyen\Model\Management\ObjectSerializer;
 /**
  * Profile Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -49,6 +46,7 @@ class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
         'bssType' => 'string',
         'channel' => 'int',
         'defaultProfile' => 'bool',
+        'domainSuffix' => 'string',
         'eap' => 'string',
         'eapCaCert' => '\Adyen\Model\Management\File',
         'eapClientCert' => '\Adyen\Model\Management\File',
@@ -77,6 +75,7 @@ class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
         'bssType' => null,
         'channel' => 'int32',
         'defaultProfile' => null,
+        'domainSuffix' => null,
         'eap' => null,
         'eapCaCert' => null,
         'eapClientCert' => null,
@@ -103,6 +102,7 @@ class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
         'bssType' => false,
         'channel' => true,
         'defaultProfile' => false,
+        'domainSuffix' => false,
         'eap' => false,
         'eapCaCert' => false,
         'eapClientCert' => false,
@@ -209,6 +209,7 @@ class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
         'bssType' => 'bssType',
         'channel' => 'channel',
         'defaultProfile' => 'defaultProfile',
+        'domainSuffix' => 'domainSuffix',
         'eap' => 'eap',
         'eapCaCert' => 'eapCaCert',
         'eapClientCert' => 'eapClientCert',
@@ -235,6 +236,7 @@ class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
         'bssType' => 'setBssType',
         'channel' => 'setChannel',
         'defaultProfile' => 'setDefaultProfile',
+        'domainSuffix' => 'setDomainSuffix',
         'eap' => 'setEap',
         'eapCaCert' => 'setEapCaCert',
         'eapClientCert' => 'setEapClientCert',
@@ -261,6 +263,7 @@ class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
         'bssType' => 'getBssType',
         'channel' => 'getChannel',
         'defaultProfile' => 'getDefaultProfile',
+        'domainSuffix' => 'getDomainSuffix',
         'eap' => 'getEap',
         'eapCaCert' => 'getEapCaCert',
         'eapClientCert' => 'getEapClientCert',
@@ -331,13 +334,14 @@ class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('authType', $data ?? [], null);
         $this->setIfExists('autoWifi', $data ?? [], null);
         $this->setIfExists('bssType', $data ?? [], null);
         $this->setIfExists('channel', $data ?? [], null);
         $this->setIfExists('defaultProfile', $data ?? [], null);
+        $this->setIfExists('domainSuffix', $data ?? [], null);
         $this->setIfExists('eap', $data ?? [], null);
         $this->setIfExists('eapCaCert', $data ?? [], null);
         $this->setIfExists('eapClientCert', $data ?? [], null);
@@ -523,6 +527,30 @@ class Profile implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setDefaultProfile($defaultProfile)
     {
         $this->container['defaultProfile'] = $defaultProfile;
+
+        return $this;
+    }
+
+    /**
+     * Gets domainSuffix
+     *
+     * @return string|null
+     */
+    public function getDomainSuffix()
+    {
+        return $this->container['domainSuffix'];
+    }
+
+    /**
+     * Sets domainSuffix
+     *
+     * @param string|null $domainSuffix Specifies the server domain name for EAP-TLS and EAP-PEAP WiFi profiles on Android 11 and above.
+     *
+     * @return self
+     */
+    public function setDomainSuffix($domainSuffix)
+    {
+        $this->container['domainSuffix'] = $domainSuffix;
 
         return $this;
     }

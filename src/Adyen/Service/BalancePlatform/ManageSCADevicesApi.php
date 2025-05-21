@@ -48,7 +48,7 @@ class ManageSCADevicesApi extends Service
     * @return \Adyen\Model\BalancePlatform\AssociationFinaliseResponse
     * @throws AdyenException
     */
-    public function completeAssociationBetweenScaDeviceAndResource(string $deviceId, \Adyen\Model\BalancePlatform\AssociationFinaliseRequest $associationFinaliseRequest, array $requestOptions = null): \Adyen\Model\BalancePlatform\AssociationFinaliseResponse
+    public function completeAssociationBetweenScaDeviceAndResource(string $deviceId, \Adyen\Model\BalancePlatform\AssociationFinaliseRequest $associationFinaliseRequest, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\AssociationFinaliseResponse
     {
         $endpoint = $this->baseURL . str_replace(['{deviceId}'], [$deviceId], "/registeredDevices/{deviceId}/associations");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $associationFinaliseRequest->jsonSerialize(), $requestOptions);
@@ -64,7 +64,7 @@ class ManageSCADevicesApi extends Service
     * @return \Adyen\Model\BalancePlatform\RegisterSCAFinalResponse
     * @throws AdyenException
     */
-    public function completeRegistrationOfScaDevice(string $id, \Adyen\Model\BalancePlatform\RegisterSCARequest $registerSCARequest, array $requestOptions = null): \Adyen\Model\BalancePlatform\RegisterSCAFinalResponse
+    public function completeRegistrationOfScaDevice(string $id, \Adyen\Model\BalancePlatform\RegisterSCARequest $registerSCARequest, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\RegisterSCAFinalResponse
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/registeredDevices/{id}");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $registerSCARequest->jsonSerialize(), $requestOptions);
@@ -76,13 +76,14 @@ class ManageSCADevicesApi extends Service
     *
     * @param string $id
     * @param array|null $requestOptions ['queryParams' => ['paymentInstrumentId'=> string]]
-
+    
     * @throws AdyenException
     */
-    public function deleteRegistrationOfScaDevice(string $id, array $requestOptions = null)
+    public function deleteRegistrationOfScaDevice(string $id, ?array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/registeredDevices/{id}");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
+        
     }
 
     /**
@@ -94,7 +95,7 @@ class ManageSCADevicesApi extends Service
     * @return \Adyen\Model\BalancePlatform\AssociationInitiateResponse
     * @throws AdyenException
     */
-    public function initiateAssociationBetweenScaDeviceAndResource(string $deviceId, \Adyen\Model\BalancePlatform\AssociationInitiateRequest $associationInitiateRequest, array $requestOptions = null): \Adyen\Model\BalancePlatform\AssociationInitiateResponse
+    public function initiateAssociationBetweenScaDeviceAndResource(string $deviceId, \Adyen\Model\BalancePlatform\AssociationInitiateRequest $associationInitiateRequest, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\AssociationInitiateResponse
     {
         $endpoint = $this->baseURL . str_replace(['{deviceId}'], [$deviceId], "/registeredDevices/{deviceId}/associations");
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $associationInitiateRequest->jsonSerialize(), $requestOptions);
@@ -109,7 +110,7 @@ class ManageSCADevicesApi extends Service
     * @return \Adyen\Model\BalancePlatform\RegisterSCAResponse
     * @throws AdyenException
     */
-    public function initiateRegistrationOfScaDevice(\Adyen\Model\BalancePlatform\RegisterSCARequest $registerSCARequest, array $requestOptions = null): \Adyen\Model\BalancePlatform\RegisterSCAResponse
+    public function initiateRegistrationOfScaDevice(\Adyen\Model\BalancePlatform\RegisterSCARequest $registerSCARequest, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\RegisterSCAResponse
     {
         $endpoint = $this->baseURL . "/registeredDevices";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $registerSCARequest->jsonSerialize(), $requestOptions);
@@ -123,7 +124,7 @@ class ManageSCADevicesApi extends Service
     * @return \Adyen\Model\BalancePlatform\SearchRegisteredDevicesResponse
     * @throws AdyenException
     */
-    public function listRegisteredScaDevices(array $requestOptions = null): \Adyen\Model\BalancePlatform\SearchRegisteredDevicesResponse
+    public function listRegisteredScaDevices(?array $requestOptions = null): \Adyen\Model\BalancePlatform\SearchRegisteredDevicesResponse
     {
         $endpoint = $this->baseURL . "/registeredDevices";
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);

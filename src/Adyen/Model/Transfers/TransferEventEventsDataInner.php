@@ -21,10 +21,7 @@ use Adyen\Model\Transfers\ObjectSerializer;
 /**
  * TransferEventEventsDataInner Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -44,8 +41,10 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
       * @var string[]
       */
     protected static $openAPITypes = [
+        'captureCycleId' => 'string',
+        'type' => 'string',
         'airline' => '\Adyen\Model\Transfers\Airline',
-        'type' => 'string'
+        'lodging' => '\Adyen\Model\Transfers\Lodging[]'
     ];
 
     /**
@@ -56,8 +55,10 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'captureCycleId' => null,
+        'type' => null,
         'airline' => null,
-        'type' => null
+        'lodging' => null
     ];
 
     /**
@@ -66,8 +67,10 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'captureCycleId' => false,
+        'type' => false,
         'airline' => false,
-        'type' => false
+        'lodging' => false
     ];
 
     /**
@@ -156,8 +159,10 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $attributeMap = [
+        'captureCycleId' => 'captureCycleId',
+        'type' => 'type',
         'airline' => 'airline',
-        'type' => 'type'
+        'lodging' => 'lodging'
     ];
 
     /**
@@ -166,8 +171,10 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $setters = [
+        'captureCycleId' => 'setCaptureCycleId',
+        'type' => 'setType',
         'airline' => 'setAirline',
-        'type' => 'setType'
+        'lodging' => 'setLodging'
     ];
 
     /**
@@ -176,8 +183,10 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $getters = [
+        'captureCycleId' => 'getCaptureCycleId',
+        'type' => 'getType',
         'airline' => 'getAirline',
-        'type' => 'getType'
+        'lodging' => 'getLodging'
     ];
 
     /**
@@ -234,10 +243,12 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
-        $this->setIfExists('airline', $data ?? [], null);
+        $this->setIfExists('captureCycleId', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('airline', $data ?? [], null);
+        $this->setIfExists('lodging', $data ?? [], null);
     }
 
     /**
@@ -287,25 +298,25 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
 
 
     /**
-     * Gets airline
+     * Gets captureCycleId
      *
-     * @return \Adyen\Model\Transfers\Airline|null
+     * @return string|null
      */
-    public function getAirline()
+    public function getCaptureCycleId()
     {
-        return $this->container['airline'];
+        return $this->container['captureCycleId'];
     }
 
     /**
-     * Sets airline
+     * Sets captureCycleId
      *
-     * @param \Adyen\Model\Transfers\Airline|null $airline airline
+     * @param string|null $captureCycleId captureCycleId associated with transfer event.
      *
      * @return self
      */
-    public function setAirline($airline)
+    public function setCaptureCycleId($captureCycleId)
     {
-        $this->container['airline'] = $airline;
+        $this->container['captureCycleId'] = $captureCycleId;
 
         return $this;
     }
@@ -330,6 +341,54 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
     public function setType($type)
     {
         $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets airline
+     *
+     * @return \Adyen\Model\Transfers\Airline|null
+     */
+    public function getAirline()
+    {
+        return $this->container['airline'];
+    }
+
+    /**
+     * Sets airline
+     *
+     * @param \Adyen\Model\Transfers\Airline|null $airline airline
+     *
+     * @return self
+     */
+    public function setAirline($airline)
+    {
+        $this->container['airline'] = $airline;
+
+        return $this;
+    }
+
+    /**
+     * Gets lodging
+     *
+     * @return \Adyen\Model\Transfers\Lodging[]|null
+     */
+    public function getLodging()
+    {
+        return $this->container['lodging'];
+    }
+
+    /**
+     * Sets lodging
+     *
+     * @param \Adyen\Model\Transfers\Lodging[]|null $lodging Lodging information.
+     *
+     * @return self
+     */
+    public function setLodging($lodging)
+    {
+        $this->container['lodging'] = $lodging;
 
         return $this;
     }

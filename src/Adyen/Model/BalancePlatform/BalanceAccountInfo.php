@@ -21,10 +21,7 @@ use Adyen\Model\BalancePlatform\ObjectSerializer;
 /**
  * BalanceAccountInfo Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -271,7 +268,7 @@ class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('accountHolderId', $data ?? [], null);
         $this->setIfExists('defaultCurrencyCode', $data ?? [], null);
@@ -365,7 +362,7 @@ class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets defaultCurrencyCode
      *
-     * @param string|null $defaultCurrencyCode The default three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) of the balance account. The default value is **EUR**. > After a balance account is created, you cannot change its default currency.
+     * @param string|null $defaultCurrencyCode The default three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) of the balance account. This is the currency displayed on the Balance Account overview page in your Customer Area. The default value is **EUR**. > After a balance account is created, you cannot change its default currency.
      *
      * @return self
      */
