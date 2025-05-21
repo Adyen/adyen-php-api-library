@@ -21,10 +21,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
 /**
  * PaymentDetails Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -266,7 +263,6 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_DIRECT_EBANKING = 'directEbanking';
     public const TYPE_BOLETOBANCARIO = 'boletobancario';
     public const TYPE_NETELLER = 'neteller';
-    public const TYPE_PAYSAFECARD = 'paysafecard';
     public const TYPE_CASHTICKET = 'cashticket';
     public const TYPE_IKANO = 'ikano';
     public const TYPE_KARENMILLEN = 'karenmillen';
@@ -363,7 +359,6 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_DIRECT_EBANKING,
             self::TYPE_BOLETOBANCARIO,
             self::TYPE_NETELLER,
-            self::TYPE_PAYSAFECARD,
             self::TYPE_CASHTICKET,
             self::TYPE_IKANO,
             self::TYPE_KARENMILLEN,
@@ -421,7 +416,7 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);

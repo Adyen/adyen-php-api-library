@@ -21,10 +21,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
 /**
  * StoredPaymentMethodDetails Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class StoredPaymentMethodDetails implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -250,6 +247,7 @@ class StoredPaymentMethodDetails implements ModelInterface, ArrayAccess, \JsonSe
     public const TYPE_DANA = 'dana';
     public const TYPE_KAKAOPAY = 'kakaopay';
     public const TYPE_TRUEMONEY = 'truemoney';
+    public const TYPE_PAYSAFECARD = 'paysafecard';
 
     /**
      * Gets allowable values of the enum
@@ -276,6 +274,7 @@ class StoredPaymentMethodDetails implements ModelInterface, ArrayAccess, \JsonSe
             self::TYPE_DANA,
             self::TYPE_KAKAOPAY,
             self::TYPE_TRUEMONEY,
+            self::TYPE_PAYSAFECARD,
         ];
     }
     /**
@@ -291,7 +290,7 @@ class StoredPaymentMethodDetails implements ModelInterface, ArrayAccess, \JsonSe
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);

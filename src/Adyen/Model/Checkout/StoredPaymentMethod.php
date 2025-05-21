@@ -21,10 +21,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
 /**
  * StoredPaymentMethod Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class StoredPaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -325,7 +322,7 @@ class StoredPaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializa
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('bankAccountNumber', $data ?? [], null);
         $this->setIfExists('bankLocationId', $data ?? [], null);
@@ -473,7 +470,7 @@ class StoredPaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets expiryMonth
      *
-     * @param string|null $expiryMonth The month the card expires.
+     * @param string|null $expiryMonth The two-digit month when the card expires
      *
      * @return self
      */

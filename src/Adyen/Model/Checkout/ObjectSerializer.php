@@ -16,6 +16,7 @@
 namespace Adyen\Model\Checkout;
 
 use Adyen\Model\Checkout\ModelInterface;
+use GuzzleHttp\Utils;
 
 class ObjectSerializer
 {

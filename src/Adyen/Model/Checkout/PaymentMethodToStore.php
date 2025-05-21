@@ -21,10 +21,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
 /**
  * PaymentMethodToStore Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class PaymentMethodToStore implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -46,6 +43,7 @@ class PaymentMethodToStore implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static $openAPITypes = [
         'brand' => 'string',
         'cvc' => 'string',
+        'encryptedCard' => 'string',
         'encryptedCardNumber' => 'string',
         'encryptedExpiryMonth' => 'string',
         'encryptedExpiryYear' => 'string',
@@ -67,6 +65,7 @@ class PaymentMethodToStore implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static $openAPIFormats = [
         'brand' => null,
         'cvc' => null,
+        'encryptedCard' => null,
         'encryptedCardNumber' => null,
         'encryptedExpiryMonth' => null,
         'encryptedExpiryYear' => null,
@@ -86,6 +85,7 @@ class PaymentMethodToStore implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static $openAPINullables = [
         'brand' => false,
         'cvc' => false,
+        'encryptedCard' => false,
         'encryptedCardNumber' => false,
         'encryptedExpiryMonth' => false,
         'encryptedExpiryYear' => false,
@@ -185,6 +185,7 @@ class PaymentMethodToStore implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static $attributeMap = [
         'brand' => 'brand',
         'cvc' => 'cvc',
+        'encryptedCard' => 'encryptedCard',
         'encryptedCardNumber' => 'encryptedCardNumber',
         'encryptedExpiryMonth' => 'encryptedExpiryMonth',
         'encryptedExpiryYear' => 'encryptedExpiryYear',
@@ -204,6 +205,7 @@ class PaymentMethodToStore implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static $setters = [
         'brand' => 'setBrand',
         'cvc' => 'setCvc',
+        'encryptedCard' => 'setEncryptedCard',
         'encryptedCardNumber' => 'setEncryptedCardNumber',
         'encryptedExpiryMonth' => 'setEncryptedExpiryMonth',
         'encryptedExpiryYear' => 'setEncryptedExpiryYear',
@@ -223,6 +225,7 @@ class PaymentMethodToStore implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static $getters = [
         'brand' => 'getBrand',
         'cvc' => 'getCvc',
+        'encryptedCard' => 'getEncryptedCard',
         'encryptedCardNumber' => 'getEncryptedCardNumber',
         'encryptedExpiryMonth' => 'getEncryptedExpiryMonth',
         'encryptedExpiryYear' => 'getEncryptedExpiryYear',
@@ -289,10 +292,11 @@ class PaymentMethodToStore implements ModelInterface, ArrayAccess, \JsonSerializ
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('brand', $data ?? [], null);
         $this->setIfExists('cvc', $data ?? [], null);
+        $this->setIfExists('encryptedCard', $data ?? [], null);
         $this->setIfExists('encryptedCardNumber', $data ?? [], null);
         $this->setIfExists('encryptedExpiryMonth', $data ?? [], null);
         $this->setIfExists('encryptedExpiryYear', $data ?? [], null);
@@ -390,6 +394,30 @@ class PaymentMethodToStore implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setCvc($cvc)
     {
         $this->container['cvc'] = $cvc;
+
+        return $this;
+    }
+
+    /**
+     * Gets encryptedCard
+     *
+     * @return string|null
+     */
+    public function getEncryptedCard()
+    {
+        return $this->container['encryptedCard'];
+    }
+
+    /**
+     * Sets encryptedCard
+     *
+     * @param string|null $encryptedCard The encrypted card.
+     *
+     * @return self
+     */
+    public function setEncryptedCard($encryptedCard)
+    {
+        $this->container['encryptedCard'] = $encryptedCard;
 
         return $this;
     }

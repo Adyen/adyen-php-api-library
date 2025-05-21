@@ -21,10 +21,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
 /**
  * DonationCampaign Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class DonationCampaign implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -289,7 +286,7 @@ class DonationCampaign implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('amounts', $data ?? [], null);
         $this->setIfExists('bannerUrl', $data ?? [], null);

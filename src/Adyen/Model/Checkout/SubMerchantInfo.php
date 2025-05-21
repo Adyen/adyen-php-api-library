@@ -21,10 +21,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
 /**
  * SubMerchantInfo Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class SubMerchantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -283,7 +280,7 @@ class SubMerchantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('address', $data ?? [], null);
         $this->setIfExists('amount', $data ?? [], null);

@@ -47,7 +47,7 @@ class UtilityApi extends Service
     * @return \Adyen\Model\Checkout\ApplePaySessionResponse
     * @throws AdyenException
     */
-    public function getApplePaySession(\Adyen\Model\Checkout\ApplePaySessionRequest $applePaySessionRequest, array $requestOptions = null): \Adyen\Model\Checkout\ApplePaySessionResponse
+    public function getApplePaySession(\Adyen\Model\Checkout\ApplePaySessionRequest $applePaySessionRequest, ?array $requestOptions = null): \Adyen\Model\Checkout\ApplePaySessionResponse
     {
         $endpoint = $this->baseURL . "/applePay/sessions";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $applePaySessionRequest->jsonSerialize(), $requestOptions);
@@ -63,7 +63,7 @@ class UtilityApi extends Service
     * @return \Adyen\Model\Checkout\UtilityResponse
     * @throws AdyenException
     */
-    public function originKeys(\Adyen\Model\Checkout\UtilityRequest $utilityRequest, array $requestOptions = null): \Adyen\Model\Checkout\UtilityResponse
+    public function originKeys(\Adyen\Model\Checkout\UtilityRequest $utilityRequest, ?array $requestOptions = null): \Adyen\Model\Checkout\UtilityResponse
     {
         $endpoint = $this->baseURL . "/originKeys";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $utilityRequest->jsonSerialize(), $requestOptions);
@@ -78,7 +78,7 @@ class UtilityApi extends Service
     * @return \Adyen\Model\Checkout\PaypalUpdateOrderResponse
     * @throws AdyenException
     */
-    public function updatesOrderForPaypalExpressCheckout(\Adyen\Model\Checkout\PaypalUpdateOrderRequest $paypalUpdateOrderRequest, array $requestOptions = null): \Adyen\Model\Checkout\PaypalUpdateOrderResponse
+    public function updatesOrderForPaypalExpressCheckout(\Adyen\Model\Checkout\PaypalUpdateOrderRequest $paypalUpdateOrderRequest, ?array $requestOptions = null): \Adyen\Model\Checkout\PaypalUpdateOrderResponse
     {
         $endpoint = $this->baseURL . "/paypal/updateOrder";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $paypalUpdateOrderRequest->jsonSerialize(), $requestOptions);

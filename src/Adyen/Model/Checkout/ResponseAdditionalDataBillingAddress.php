@@ -21,10 +21,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
 /**
  * ResponseAdditionalDataBillingAddress Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class ResponseAdditionalDataBillingAddress implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -259,7 +256,7 @@ class ResponseAdditionalDataBillingAddress implements ModelInterface, ArrayAcces
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('billingAddressCity', $data ?? [], null);
         $this->setIfExists('billingAddressCountry', $data ?? [], null);

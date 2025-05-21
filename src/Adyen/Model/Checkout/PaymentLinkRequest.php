@@ -21,10 +21,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
 /**
  * PaymentLinkRequest Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class PaymentLinkRequest implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -527,7 +524,7 @@ class PaymentLinkRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('allowedPaymentMethods', $data ?? [], null);
         $this->setIfExists('amount', $data ?? [], null);
@@ -655,7 +652,7 @@ class PaymentLinkRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets allowedPaymentMethods
      *
-     * @param string[]|null $allowedPaymentMethods List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"allowedPaymentMethods\":[\"ideal\",\"giropay\"]`
+     * @param string[]|null $allowedPaymentMethods List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"allowedPaymentMethods\":[\"ideal\",\"applepay\"]`
      *
      * @return self
      */
@@ -751,7 +748,7 @@ class PaymentLinkRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets blockedPaymentMethods
      *
-     * @param string[]|null $blockedPaymentMethods List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"blockedPaymentMethods\":[\"ideal\",\"giropay\"]`
+     * @param string[]|null $blockedPaymentMethods List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"blockedPaymentMethods\":[\"ideal\",\"applepay\"]`
      *
      * @return self
      */

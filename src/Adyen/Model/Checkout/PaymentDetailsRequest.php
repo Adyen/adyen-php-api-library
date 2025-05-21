@@ -21,10 +21,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
 /**
  * PaymentDetailsRequest Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class PaymentDetailsRequest implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -247,7 +244,7 @@ class PaymentDetailsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('authenticationData', $data ?? [], null);
         $this->setIfExists('details', $data ?? [], null);

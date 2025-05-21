@@ -21,10 +21,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
 /**
  * AdditionalDataCommon Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -44,6 +41,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var string[]
       */
     protected static $openAPITypes = [
+        'requestedTestAcquirerResponseCode' => 'string',
         'requestedTestErrorResponseCode' => 'string',
         'allowPartialAuth' => 'string',
         'authorisationType' => 'string',
@@ -56,8 +54,10 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
         'overwriteBrand' => 'string',
         'subMerchantCity' => 'string',
         'subMerchantCountry' => 'string',
+        'subMerchantEmail' => 'string',
         'subMerchantID' => 'string',
         'subMerchantName' => 'string',
+        'subMerchantPhoneNumber' => 'string',
         'subMerchantPostalCode' => 'string',
         'subMerchantState' => 'string',
         'subMerchantStreet' => 'string',
@@ -72,6 +72,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'requestedTestAcquirerResponseCode' => null,
         'requestedTestErrorResponseCode' => null,
         'allowPartialAuth' => null,
         'authorisationType' => null,
@@ -84,8 +85,10 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
         'overwriteBrand' => null,
         'subMerchantCity' => null,
         'subMerchantCountry' => null,
+        'subMerchantEmail' => null,
         'subMerchantID' => null,
         'subMerchantName' => null,
+        'subMerchantPhoneNumber' => null,
         'subMerchantPostalCode' => null,
         'subMerchantState' => null,
         'subMerchantStreet' => null,
@@ -98,6 +101,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'requestedTestAcquirerResponseCode' => false,
         'requestedTestErrorResponseCode' => false,
         'allowPartialAuth' => false,
         'authorisationType' => false,
@@ -110,8 +114,10 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
         'overwriteBrand' => false,
         'subMerchantCity' => false,
         'subMerchantCountry' => false,
+        'subMerchantEmail' => false,
         'subMerchantID' => false,
         'subMerchantName' => false,
+        'subMerchantPhoneNumber' => false,
         'subMerchantPostalCode' => false,
         'subMerchantState' => false,
         'subMerchantStreet' => false,
@@ -204,6 +210,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $attributeMap = [
+        'requestedTestAcquirerResponseCode' => 'RequestedTestAcquirerResponseCode',
         'requestedTestErrorResponseCode' => 'RequestedTestErrorResponseCode',
         'allowPartialAuth' => 'allowPartialAuth',
         'authorisationType' => 'authorisationType',
@@ -216,8 +223,10 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
         'overwriteBrand' => 'overwriteBrand',
         'subMerchantCity' => 'subMerchantCity',
         'subMerchantCountry' => 'subMerchantCountry',
+        'subMerchantEmail' => 'subMerchantEmail',
         'subMerchantID' => 'subMerchantID',
         'subMerchantName' => 'subMerchantName',
+        'subMerchantPhoneNumber' => 'subMerchantPhoneNumber',
         'subMerchantPostalCode' => 'subMerchantPostalCode',
         'subMerchantState' => 'subMerchantState',
         'subMerchantStreet' => 'subMerchantStreet',
@@ -230,6 +239,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $setters = [
+        'requestedTestAcquirerResponseCode' => 'setRequestedTestAcquirerResponseCode',
         'requestedTestErrorResponseCode' => 'setRequestedTestErrorResponseCode',
         'allowPartialAuth' => 'setAllowPartialAuth',
         'authorisationType' => 'setAuthorisationType',
@@ -242,8 +252,10 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
         'overwriteBrand' => 'setOverwriteBrand',
         'subMerchantCity' => 'setSubMerchantCity',
         'subMerchantCountry' => 'setSubMerchantCountry',
+        'subMerchantEmail' => 'setSubMerchantEmail',
         'subMerchantID' => 'setSubMerchantID',
         'subMerchantName' => 'setSubMerchantName',
+        'subMerchantPhoneNumber' => 'setSubMerchantPhoneNumber',
         'subMerchantPostalCode' => 'setSubMerchantPostalCode',
         'subMerchantState' => 'setSubMerchantState',
         'subMerchantStreet' => 'setSubMerchantStreet',
@@ -256,6 +268,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $getters = [
+        'requestedTestAcquirerResponseCode' => 'getRequestedTestAcquirerResponseCode',
         'requestedTestErrorResponseCode' => 'getRequestedTestErrorResponseCode',
         'allowPartialAuth' => 'getAllowPartialAuth',
         'authorisationType' => 'getAuthorisationType',
@@ -268,8 +281,10 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
         'overwriteBrand' => 'getOverwriteBrand',
         'subMerchantCity' => 'getSubMerchantCity',
         'subMerchantCountry' => 'getSubMerchantCountry',
+        'subMerchantEmail' => 'getSubMerchantEmail',
         'subMerchantID' => 'getSubMerchantID',
         'subMerchantName' => 'getSubMerchantName',
+        'subMerchantPhoneNumber' => 'getSubMerchantPhoneNumber',
         'subMerchantPostalCode' => 'getSubMerchantPostalCode',
         'subMerchantState' => 'getSubMerchantState',
         'subMerchantStreet' => 'getSubMerchantStreet',
@@ -345,8 +360,9 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
+        $this->setIfExists('requestedTestAcquirerResponseCode', $data ?? [], null);
         $this->setIfExists('requestedTestErrorResponseCode', $data ?? [], null);
         $this->setIfExists('allowPartialAuth', $data ?? [], null);
         $this->setIfExists('authorisationType', $data ?? [], null);
@@ -359,8 +375,10 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('overwriteBrand', $data ?? [], null);
         $this->setIfExists('subMerchantCity', $data ?? [], null);
         $this->setIfExists('subMerchantCountry', $data ?? [], null);
+        $this->setIfExists('subMerchantEmail', $data ?? [], null);
         $this->setIfExists('subMerchantID', $data ?? [], null);
         $this->setIfExists('subMerchantName', $data ?? [], null);
+        $this->setIfExists('subMerchantPhoneNumber', $data ?? [], null);
         $this->setIfExists('subMerchantPostalCode', $data ?? [], null);
         $this->setIfExists('subMerchantState', $data ?? [], null);
         $this->setIfExists('subMerchantStreet', $data ?? [], null);
@@ -417,6 +435,30 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets requestedTestAcquirerResponseCode
+     *
+     * @return string|null
+     */
+    public function getRequestedTestAcquirerResponseCode()
+    {
+        return $this->container['requestedTestAcquirerResponseCode'];
+    }
+
+    /**
+     * Sets requestedTestAcquirerResponseCode
+     *
+     * @param string|null $requestedTestAcquirerResponseCode Triggers test scenarios that allow to replicate certain acquirer response codes. See [Testing result codes and refusal reasons](https://docs.adyen.com/development-resources/testing/result-codes/) to learn about the possible values, and the `refusalReason` values you can trigger.
+     *
+     * @return self
+     */
+    public function setRequestedTestAcquirerResponseCode($requestedTestAcquirerResponseCode)
+    {
+        $this->container['requestedTestAcquirerResponseCode'] = $requestedTestAcquirerResponseCode;
+
+        return $this;
+    }
 
     /**
      * Gets requestedTestErrorResponseCode
@@ -717,6 +759,30 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
     }
 
     /**
+     * Gets subMerchantEmail
+     *
+     * @return string|null
+     */
+    public function getSubMerchantEmail()
+    {
+        return $this->container['subMerchantEmail'];
+    }
+
+    /**
+     * Sets subMerchantEmail
+     *
+     * @param string|null $subMerchantEmail This field is required for transactions performed by registered payment facilitators. This field contains the email address of the sub-merchant. * Format: Alphanumeric * Maximum length: 40 characters
+     *
+     * @return self
+     */
+    public function setSubMerchantEmail($subMerchantEmail)
+    {
+        $this->container['subMerchantEmail'] = $subMerchantEmail;
+
+        return $this;
+    }
+
+    /**
      * Gets subMerchantID
      *
      * @return string|null
@@ -760,6 +826,30 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setSubMerchantName($subMerchantName)
     {
         $this->container['subMerchantName'] = $subMerchantName;
+
+        return $this;
+    }
+
+    /**
+     * Gets subMerchantPhoneNumber
+     *
+     * @return string|null
+     */
+    public function getSubMerchantPhoneNumber()
+    {
+        return $this->container['subMerchantPhoneNumber'];
+    }
+
+    /**
+     * Sets subMerchantPhoneNumber
+     *
+     * @param string|null $subMerchantPhoneNumber This field is required for transactions performed by registered payment facilitators. This field contains the phone number of the sub-merchant.* Format: Alphanumeric * Maximum length: 20 characters
+     *
+     * @return self
+     */
+    public function setSubMerchantPhoneNumber($subMerchantPhoneNumber)
+    {
+        $this->container['subMerchantPhoneNumber'] = $subMerchantPhoneNumber;
 
         return $this;
     }

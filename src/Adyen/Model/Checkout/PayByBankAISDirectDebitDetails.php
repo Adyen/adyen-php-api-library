@@ -21,10 +21,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
 /**
  * PayByBankAISDirectDebitDetails Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class PayByBankAISDirectDebitDetails implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -259,7 +256,7 @@ class PayByBankAISDirectDebitDetails implements ModelInterface, ArrayAccess, \Js
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
@@ -408,7 +405,7 @@ class PayByBankAISDirectDebitDetails implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets type
      *
-     * @param string $type **paybybank_**
+     * @param string $type **paybybank_AIS_DD**
      *
      * @return self
      */

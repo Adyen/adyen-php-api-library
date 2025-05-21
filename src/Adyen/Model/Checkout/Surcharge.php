@@ -19,15 +19,12 @@ use \ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
- * GiropayDetails Class Doc Comment
+ * Surcharge Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class GiropayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
+class Surcharge implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -36,7 +33,7 @@ class GiropayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'GiropayDetails';
+    protected static $openAPIModelName = 'Surcharge';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -44,10 +41,7 @@ class GiropayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'checkoutAttemptId' => 'string',
-        'recurringDetailReference' => 'string',
-        'storedPaymentMethodId' => 'string',
-        'type' => 'string'
+        'value' => 'int'
     ];
 
     /**
@@ -58,10 +52,7 @@ class GiropayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'checkoutAttemptId' => null,
-        'recurringDetailReference' => null,
-        'storedPaymentMethodId' => null,
-        'type' => null
+        'value' => 'int64'
     ];
 
     /**
@@ -70,10 +61,7 @@ class GiropayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'checkoutAttemptId' => false,
-        'recurringDetailReference' => false,
-        'storedPaymentMethodId' => false,
-        'type' => false
+        'value' => false
     ];
 
     /**
@@ -162,10 +150,7 @@ class GiropayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'checkoutAttemptId' => 'checkoutAttemptId',
-        'recurringDetailReference' => 'recurringDetailReference',
-        'storedPaymentMethodId' => 'storedPaymentMethodId',
-        'type' => 'type'
+        'value' => 'value'
     ];
 
     /**
@@ -174,10 +159,7 @@ class GiropayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'checkoutAttemptId' => 'setCheckoutAttemptId',
-        'recurringDetailReference' => 'setRecurringDetailReference',
-        'storedPaymentMethodId' => 'setStoredPaymentMethodId',
-        'type' => 'setType'
+        'value' => 'setValue'
     ];
 
     /**
@@ -186,10 +168,7 @@ class GiropayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'checkoutAttemptId' => 'getCheckoutAttemptId',
-        'recurringDetailReference' => 'getRecurringDetailReference',
-        'storedPaymentMethodId' => 'getStoredPaymentMethodId',
-        'type' => 'getType'
+        'value' => 'getValue'
     ];
 
     /**
@@ -233,19 +212,7 @@ class GiropayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const TYPE_GIROPAY = 'giropay';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_GIROPAY,
-        ];
-    }
     /**
      * Associative array for storing property values
      *
@@ -259,12 +226,9 @@ class GiropayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
-        $this->setIfExists('checkoutAttemptId', $data ?? [], null);
-        $this->setIfExists('recurringDetailReference', $data ?? [], null);
-        $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('value', $data ?? [], null);
     }
 
     /**
@@ -294,15 +258,9 @@ class GiropayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
-                implode("', '", $allowedValues)
-            );
+        if ($this->container['value'] === null) {
+            $invalidProperties[] = "'value' can't be null";
         }
-
         return $invalidProperties;
     }
 
@@ -319,109 +277,25 @@ class GiropayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets checkoutAttemptId
+     * Gets value
      *
-     * @return string|null
+     * @return int
      */
-    public function getCheckoutAttemptId()
+    public function getValue()
     {
-        return $this->container['checkoutAttemptId'];
+        return $this->container['value'];
     }
 
     /**
-     * Sets checkoutAttemptId
+     * Sets value
      *
-     * @param string|null $checkoutAttemptId The checkout attempt identifier.
+     * @param int $value The [surcharge](https://docs.adyen.com/online-payments/surcharge/) amount to apply to the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes). When you apply surcharge, include the surcharge in the `amount.value` field.  Review our [Surcharge compliance guide](https://docs.adyen.com/development-resources/surcharge-compliance/) to learn about how to comply with regulatory requirements when applying surcharge.
      *
      * @return self
      */
-    public function setCheckoutAttemptId($checkoutAttemptId)
+    public function setValue($value)
     {
-        $this->container['checkoutAttemptId'] = $checkoutAttemptId;
-
-        return $this;
-    }
-
-    /**
-     * Gets recurringDetailReference
-     *
-     * @return string|null
-     * @deprecated since Adyen Checkout API v49. "Use `storedPaymentMethodId` instead."
-     */
-    public function getRecurringDetailReference()
-    {
-        return $this->container['recurringDetailReference'];
-    }
-
-    /**
-     * Sets recurringDetailReference
-     *
-     * @param string|null $recurringDetailReference This is the `recurringDetailReference` returned in the response when you created the token.
-     *
-     * @return self
-     * @deprecated since Adyen Checkout API v49. "Use `storedPaymentMethodId` instead."
-     */
-    public function setRecurringDetailReference($recurringDetailReference)
-    {
-        $this->container['recurringDetailReference'] = $recurringDetailReference;
-
-        return $this;
-    }
-
-    /**
-     * Gets storedPaymentMethodId
-     *
-     * @return string|null
-     */
-    public function getStoredPaymentMethodId()
-    {
-        return $this->container['storedPaymentMethodId'];
-    }
-
-    /**
-     * Sets storedPaymentMethodId
-     *
-     * @param string|null $storedPaymentMethodId This is the `recurringDetailReference` returned in the response when you created the token.
-     *
-     * @return self
-     */
-    public function setStoredPaymentMethodId($storedPaymentMethodId)
-    {
-        $this->container['storedPaymentMethodId'] = $storedPaymentMethodId;
-
-        return $this;
-    }
-
-    /**
-     * Gets type
-     *
-     * @return string|null
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string|null $type **giropay**
-     *
-     * @return self
-     */
-    public function setType($type)
-    {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
+        $this->container['value'] = $value;
 
         return $this;
     }

@@ -21,10 +21,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
 /**
  * PaymentAmountUpdateRequest Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class PaymentAmountUpdateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -281,7 +278,7 @@ class PaymentAmountUpdateRequest implements ModelInterface, ArrayAccess, \JsonSe
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('amount', $data ?? [], null);
         $this->setIfExists('applicationInfo', $data ?? [], null);

@@ -21,10 +21,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
 /**
  * CheckoutSessionThreeDS2RequestData Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class CheckoutSessionThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -269,7 +266,7 @@ class CheckoutSessionThreeDS2RequestData implements ModelInterface, ArrayAccess,
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('homePhone', $data ?? [], null);
         $this->setIfExists('mobilePhone', $data ?? [], null);

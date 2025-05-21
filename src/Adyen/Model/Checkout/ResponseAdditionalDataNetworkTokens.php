@@ -21,10 +21,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
 /**
  * ResponseAdditionalDataNetworkTokens Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class ResponseAdditionalDataNetworkTokens implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -241,7 +238,7 @@ class ResponseAdditionalDataNetworkTokens implements ModelInterface, ArrayAccess
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('networkTokenAvailable', $data ?? [], null);
         $this->setIfExists('networkTokenBin', $data ?? [], null);

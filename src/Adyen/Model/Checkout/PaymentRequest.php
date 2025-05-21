@@ -21,10 +21,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
 /**
  * PaymentRequest Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -68,6 +65,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'enableOneClick' => 'bool',
         'enablePayOut' => 'bool',
         'enableRecurring' => 'bool',
+        'enhancedSchemeData' => '\Adyen\Model\Checkout\EnhancedSchemeData',
         'entityType' => 'string',
         'fraudOffset' => 'int',
         'fundOrigin' => '\Adyen\Model\Checkout\FundOrigin',
@@ -110,6 +108,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'store' => 'string',
         'storePaymentMethod' => 'bool',
         'subMerchants' => '\Adyen\Model\Checkout\SubMerchantInfo[]',
+        'surcharge' => '\Adyen\Model\Checkout\Surcharge',
         'telephoneNumber' => 'string',
         'threeDS2RequestData' => '\Adyen\Model\Checkout\ThreeDS2RequestFields',
         'threeDSAuthenticationOnly' => 'bool',
@@ -148,6 +147,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'enableOneClick' => null,
         'enablePayOut' => null,
         'enableRecurring' => null,
+        'enhancedSchemeData' => null,
         'entityType' => null,
         'fraudOffset' => 'int32',
         'fundOrigin' => null,
@@ -190,6 +190,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'store' => null,
         'storePaymentMethod' => null,
         'subMerchants' => null,
+        'surcharge' => null,
         'telephoneNumber' => null,
         'threeDS2RequestData' => null,
         'threeDSAuthenticationOnly' => null,
@@ -226,6 +227,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'enableOneClick' => false,
         'enablePayOut' => false,
         'enableRecurring' => false,
+        'enhancedSchemeData' => false,
         'entityType' => false,
         'fraudOffset' => true,
         'fundOrigin' => false,
@@ -268,6 +270,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'store' => false,
         'storePaymentMethod' => false,
         'subMerchants' => false,
+        'surcharge' => false,
         'telephoneNumber' => false,
         'threeDS2RequestData' => false,
         'threeDSAuthenticationOnly' => false,
@@ -384,6 +387,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'enableOneClick' => 'enableOneClick',
         'enablePayOut' => 'enablePayOut',
         'enableRecurring' => 'enableRecurring',
+        'enhancedSchemeData' => 'enhancedSchemeData',
         'entityType' => 'entityType',
         'fraudOffset' => 'fraudOffset',
         'fundOrigin' => 'fundOrigin',
@@ -426,6 +430,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'store' => 'store',
         'storePaymentMethod' => 'storePaymentMethod',
         'subMerchants' => 'subMerchants',
+        'surcharge' => 'surcharge',
         'telephoneNumber' => 'telephoneNumber',
         'threeDS2RequestData' => 'threeDS2RequestData',
         'threeDSAuthenticationOnly' => 'threeDSAuthenticationOnly',
@@ -462,6 +467,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'enableOneClick' => 'setEnableOneClick',
         'enablePayOut' => 'setEnablePayOut',
         'enableRecurring' => 'setEnableRecurring',
+        'enhancedSchemeData' => 'setEnhancedSchemeData',
         'entityType' => 'setEntityType',
         'fraudOffset' => 'setFraudOffset',
         'fundOrigin' => 'setFundOrigin',
@@ -504,6 +510,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'store' => 'setStore',
         'storePaymentMethod' => 'setStorePaymentMethod',
         'subMerchants' => 'setSubMerchants',
+        'surcharge' => 'setSurcharge',
         'telephoneNumber' => 'setTelephoneNumber',
         'threeDS2RequestData' => 'setThreeDS2RequestData',
         'threeDSAuthenticationOnly' => 'setThreeDSAuthenticationOnly',
@@ -540,6 +547,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'enableOneClick' => 'getEnableOneClick',
         'enablePayOut' => 'getEnablePayOut',
         'enableRecurring' => 'getEnableRecurring',
+        'enhancedSchemeData' => 'getEnhancedSchemeData',
         'entityType' => 'getEntityType',
         'fraudOffset' => 'getFraudOffset',
         'fundOrigin' => 'getFundOrigin',
@@ -582,6 +590,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'store' => 'getStore',
         'storePaymentMethod' => 'getStorePaymentMethod',
         'subMerchants' => 'getSubMerchants',
+        'surcharge' => 'getSurcharge',
         'telephoneNumber' => 'getTelephoneNumber',
         'threeDS2RequestData' => 'getThreeDS2RequestData',
         'threeDSAuthenticationOnly' => 'getThreeDSAuthenticationOnly',
@@ -723,7 +732,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('accountInfo', $data ?? [], null);
         $this->setIfExists('additionalAmount', $data ?? [], null);
@@ -749,6 +758,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('enableOneClick', $data ?? [], null);
         $this->setIfExists('enablePayOut', $data ?? [], null);
         $this->setIfExists('enableRecurring', $data ?? [], null);
+        $this->setIfExists('enhancedSchemeData', $data ?? [], null);
         $this->setIfExists('entityType', $data ?? [], null);
         $this->setIfExists('fraudOffset', $data ?? [], null);
         $this->setIfExists('fundOrigin', $data ?? [], null);
@@ -791,6 +801,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('store', $data ?? [], null);
         $this->setIfExists('storePaymentMethod', $data ?? [], null);
         $this->setIfExists('subMerchants', $data ?? [], null);
+        $this->setIfExists('surcharge', $data ?? [], null);
         $this->setIfExists('telephoneNumber', $data ?? [], null);
         $this->setIfExists('threeDS2RequestData', $data ?? [], null);
         $this->setIfExists('threeDSAuthenticationOnly', $data ?? [], null);
@@ -1490,6 +1501,30 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets enhancedSchemeData
+     *
+     * @return \Adyen\Model\Checkout\EnhancedSchemeData|null
+     */
+    public function getEnhancedSchemeData()
+    {
+        return $this->container['enhancedSchemeData'];
+    }
+
+    /**
+     * Sets enhancedSchemeData
+     *
+     * @param \Adyen\Model\Checkout\EnhancedSchemeData|null $enhancedSchemeData enhancedSchemeData
+     *
+     * @return self
+     */
+    public function setEnhancedSchemeData($enhancedSchemeData)
+    {
+        $this->container['enhancedSchemeData'] = $enhancedSchemeData;
+
+        return $this;
+    }
+
+    /**
      * Gets entityType
      *
      * @return string|null
@@ -2156,7 +2191,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets returnUrl
      *
-     * @param string $returnUrl The URL to return to in case of a redirection. The format depends on the channel.  * For web, include the protocol `http://` or `https://`. You can also include your own additional query parameters, for example, shopper ID or order reference number. Example: `https://your-company.com/checkout?shopperOrder=12xy` * For iOS, use the custom URL for your app. To know more about setting custom URL schemes, refer to the [Apple Developer documentation](https://developer.apple.com/documentation/uikit/inter-process_communication/allowing_apps_and_websites_to_link_to_your_content/defining_a_custom_url_scheme_for_your_app). Example: `my-app://` * For Android, use a custom URL handled by an Activity on your app. You can configure it with an [intent filter](https://developer.android.com/guide/components/intents-filters). Example: `my-app://your.package.name`  If the URL to return to includes non-ASCII characters, like spaces or special letters, URL encode the value. > The URL must not include personally identifiable information (PII), for example name or email address.
+     * @param string $returnUrl The URL to return to in case of a redirection. The format depends on the channel.  * For web, include the protocol `http://` or `https://`. You can also include your own additional query parameters, for example, shopper ID or order reference number. Example: `https://your-company.example.com/checkout?shopperOrder=12xy` * For iOS, use the custom URL for your app. To know more about setting custom URL schemes, refer to the [Apple Developer documentation](https://developer.apple.com/documentation/uikit/inter-process_communication/allowing_apps_and_websites_to_link_to_your_content/defining_a_custom_url_scheme_for_your_app). Example: `my-app://` * For Android, use a custom URL handled by an Activity on your app. You can configure it with an [intent filter](https://developer.android.com/guide/components/intents-filters). Example: `my-app://your.package.name`  If the URL to return to includes non-ASCII characters, like spaces or special letters, URL encode the value. > The URL must not include personally identifiable information (PII), for example name or email address.
      *
      * @return self
      */
@@ -2533,6 +2568,30 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setSubMerchants($subMerchants)
     {
         $this->container['subMerchants'] = $subMerchants;
+
+        return $this;
+    }
+
+    /**
+     * Gets surcharge
+     *
+     * @return \Adyen\Model\Checkout\Surcharge|null
+     */
+    public function getSurcharge()
+    {
+        return $this->container['surcharge'];
+    }
+
+    /**
+     * Sets surcharge
+     *
+     * @param \Adyen\Model\Checkout\Surcharge|null $surcharge surcharge
+     *
+     * @return self
+     */
+    public function setSurcharge($surcharge)
+    {
+        $this->container['surcharge'] = $surcharge;
 
         return $this;
     }

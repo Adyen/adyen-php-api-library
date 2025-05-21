@@ -21,10 +21,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
 /**
  * InstallmentOption Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class InstallmentOption implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -233,6 +230,7 @@ class InstallmentOption implements ModelInterface, ArrayAccess, \JsonSerializabl
         return self::$openAPIModelName;
     }
 
+    public const PLANS_BONUS = 'bonus';
     public const PLANS_BUYNOW_PAYLATER = 'buynow_paylater';
     public const PLANS_INTERES_REFUND_PRCTG = 'interes_refund_prctg';
     public const PLANS_INTEREST_BONUS = 'interest_bonus';
@@ -251,6 +249,7 @@ class InstallmentOption implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function getPlansAllowableValues()
     {
         return [
+            self::PLANS_BONUS,
             self::PLANS_BUYNOW_PAYLATER,
             self::PLANS_INTERES_REFUND_PRCTG,
             self::PLANS_INTEREST_BONUS,
@@ -275,7 +274,7 @@ class InstallmentOption implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('maxValue', $data ?? [], null);
         $this->setIfExists('plans', $data ?? [], null);

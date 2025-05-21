@@ -21,11 +21,9 @@ use Adyen\Model\Checkout\ObjectSerializer;
 /**
  * DonationPaymentMethod Class Doc Comment
  *
- * @category Class
- * @description The type and required details of a payment method to use.
+ * The type and required details of a payment method to use.
+ *
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -397,7 +395,7 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('applePayToken', $data ?? [], null);
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);

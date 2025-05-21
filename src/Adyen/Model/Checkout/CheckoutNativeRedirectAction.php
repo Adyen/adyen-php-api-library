@@ -21,10 +21,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
 /**
  * CheckoutNativeRedirectAction Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class CheckoutNativeRedirectAction implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -271,7 +268,7 @@ class CheckoutNativeRedirectAction implements ModelInterface, ArrayAccess, \Json
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('data', $data ?? [], null);
         $this->setIfExists('method', $data ?? [], null);

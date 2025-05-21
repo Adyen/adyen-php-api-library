@@ -21,10 +21,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
 /**
  * ThreeDS2ResponseData Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class ThreeDS2ResponseData implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -337,7 +334,7 @@ class ThreeDS2ResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('acsChallengeMandated', $data ?? [], null);
         $this->setIfExists('acsOperatorID', $data ?? [], null);

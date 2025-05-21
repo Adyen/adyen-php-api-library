@@ -21,10 +21,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
 /**
  * AchDetails Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class AchDetails implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -44,6 +41,7 @@ class AchDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'accountHolderType' => 'string',
         'bankAccountNumber' => 'string',
         'bankAccountType' => 'string',
         'bankLocationId' => 'string',
@@ -65,6 +63,7 @@ class AchDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'accountHolderType' => null,
         'bankAccountNumber' => null,
         'bankAccountType' => null,
         'bankLocationId' => null,
@@ -84,6 +83,7 @@ class AchDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'accountHolderType' => false,
         'bankAccountNumber' => false,
         'bankAccountType' => false,
         'bankLocationId' => false,
@@ -183,6 +183,7 @@ class AchDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'accountHolderType' => 'accountHolderType',
         'bankAccountNumber' => 'bankAccountNumber',
         'bankAccountType' => 'bankAccountType',
         'bankLocationId' => 'bankLocationId',
@@ -202,6 +203,7 @@ class AchDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'accountHolderType' => 'setAccountHolderType',
         'bankAccountNumber' => 'setBankAccountNumber',
         'bankAccountType' => 'setBankAccountType',
         'bankLocationId' => 'setBankLocationId',
@@ -221,6 +223,7 @@ class AchDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'accountHolderType' => 'getAccountHolderType',
         'bankAccountNumber' => 'getBankAccountNumber',
         'bankAccountType' => 'getBankAccountType',
         'bankLocationId' => 'getBankLocationId',
@@ -275,6 +278,8 @@ class AchDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const ACCOUNT_HOLDER_TYPE_BUSINESS = 'business';
+    public const ACCOUNT_HOLDER_TYPE_PERSONAL = 'personal';
     public const BANK_ACCOUNT_TYPE_BALANCE = 'balance';
     public const BANK_ACCOUNT_TYPE_CHECKING = 'checking';
     public const BANK_ACCOUNT_TYPE_DEPOSIT = 'deposit';
@@ -285,6 +290,18 @@ class AchDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_ACH = 'ach';
     public const TYPE_ACH_PLAID = 'ach_plaid';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getAccountHolderTypeAllowableValues()
+    {
+        return [
+            self::ACCOUNT_HOLDER_TYPE_BUSINESS,
+            self::ACCOUNT_HOLDER_TYPE_PERSONAL,
+        ];
+    }
     /**
      * Gets allowable values of the enum
      *
@@ -327,8 +344,9 @@ class AchDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
+        $this->setIfExists('accountHolderType', $data ?? [], null);
         $this->setIfExists('bankAccountNumber', $data ?? [], null);
         $this->setIfExists('bankAccountType', $data ?? [], null);
         $this->setIfExists('bankLocationId', $data ?? [], null);
@@ -369,6 +387,15 @@ class AchDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        $allowedValues = $this->getAccountHolderTypeAllowableValues();
+        if (!is_null($this->container['accountHolderType']) && !in_array($this->container['accountHolderType'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'accountHolderType', must be one of '%s'",
+                $this->container['accountHolderType'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         $allowedValues = $this->getBankAccountTypeAllowableValues();
         if (!is_null($this->container['bankAccountType']) && !in_array($this->container['bankAccountType'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -401,6 +428,40 @@ class AchDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets accountHolderType
+     *
+     * @return string|null
+     */
+    public function getAccountHolderType()
+    {
+        return $this->container['accountHolderType'];
+    }
+
+    /**
+     * Sets accountHolderType
+     *
+     * @param string|null $accountHolderType The account holder type (personal or business).
+     *
+     * @return self
+     */
+    public function setAccountHolderType($accountHolderType)
+    {
+        $allowedValues = $this->getAccountHolderTypeAllowableValues();
+        if (!in_array($accountHolderType, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'accountHolderType', must be one of '%s'",
+                    $accountHolderType,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['accountHolderType'] = $accountHolderType;
+
+        return $this;
+    }
 
     /**
      * Gets bankAccountNumber

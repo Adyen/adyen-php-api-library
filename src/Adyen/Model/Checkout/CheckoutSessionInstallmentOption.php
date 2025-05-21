@@ -21,10 +21,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
 /**
  * CheckoutSessionInstallmentOption Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class CheckoutSessionInstallmentOption implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -227,6 +224,7 @@ class CheckoutSessionInstallmentOption implements ModelInterface, ArrayAccess, \
         return self::$openAPIModelName;
     }
 
+    public const PLANS_BONUS = 'bonus';
     public const PLANS_BUYNOW_PAYLATER = 'buynow_paylater';
     public const PLANS_INTERES_REFUND_PRCTG = 'interes_refund_prctg';
     public const PLANS_INTEREST_BONUS = 'interest_bonus';
@@ -245,6 +243,7 @@ class CheckoutSessionInstallmentOption implements ModelInterface, ArrayAccess, \
     public function getPlansAllowableValues()
     {
         return [
+            self::PLANS_BONUS,
             self::PLANS_BUYNOW_PAYLATER,
             self::PLANS_INTERES_REFUND_PRCTG,
             self::PLANS_INTEREST_BONUS,
@@ -269,7 +268,7 @@ class CheckoutSessionInstallmentOption implements ModelInterface, ArrayAccess, \
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('plans', $data ?? [], null);
         $this->setIfExists('preselectedValue', $data ?? [], null);
@@ -331,7 +330,7 @@ class CheckoutSessionInstallmentOption implements ModelInterface, ArrayAccess, \
     /**
      * Sets plans
      *
-     * @param string[]|null $plans Defines the type of installment plan. If not set, defaults to **regular**.  Possible values: * **regular** * **revolving**
+     * @param string[]|null $plans Defines the type of installment plan. If not set, defaults to **regular**.  Possible values: * **regular** * **revolving*** **bonus** * **with_interest** * **buynow_paylater** * **nointerest_bonus** * **interest_bonus** * **refund_prctg** * **nointeres_refund_prctg** * **interes_refund_prctg**
      *
      * @return self
      */

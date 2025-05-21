@@ -21,10 +21,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
 /**
  * AdditionalDataSubMerchant Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -47,9 +44,11 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
         'subMerchantNumberOfSubSellers' => 'string',
         'subMerchantSubSellerSubSellerNrCity' => 'string',
         'subMerchantSubSellerSubSellerNrCountry' => 'string',
+        'subMerchantSubSellerSubSellerNrEmail' => 'string',
         'subMerchantSubSellerSubSellerNrId' => 'string',
         'subMerchantSubSellerSubSellerNrMcc' => 'string',
         'subMerchantSubSellerSubSellerNrName' => 'string',
+        'subMerchantSubSellerSubSellerNrPhoneNumber' => 'string',
         'subMerchantSubSellerSubSellerNrPostalCode' => 'string',
         'subMerchantSubSellerSubSellerNrState' => 'string',
         'subMerchantSubSellerSubSellerNrStreet' => 'string',
@@ -67,9 +66,11 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
         'subMerchantNumberOfSubSellers' => null,
         'subMerchantSubSellerSubSellerNrCity' => null,
         'subMerchantSubSellerSubSellerNrCountry' => null,
+        'subMerchantSubSellerSubSellerNrEmail' => null,
         'subMerchantSubSellerSubSellerNrId' => null,
         'subMerchantSubSellerSubSellerNrMcc' => null,
         'subMerchantSubSellerSubSellerNrName' => null,
+        'subMerchantSubSellerSubSellerNrPhoneNumber' => null,
         'subMerchantSubSellerSubSellerNrPostalCode' => null,
         'subMerchantSubSellerSubSellerNrState' => null,
         'subMerchantSubSellerSubSellerNrStreet' => null,
@@ -85,9 +86,11 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
         'subMerchantNumberOfSubSellers' => false,
         'subMerchantSubSellerSubSellerNrCity' => false,
         'subMerchantSubSellerSubSellerNrCountry' => false,
+        'subMerchantSubSellerSubSellerNrEmail' => false,
         'subMerchantSubSellerSubSellerNrId' => false,
         'subMerchantSubSellerSubSellerNrMcc' => false,
         'subMerchantSubSellerSubSellerNrName' => false,
+        'subMerchantSubSellerSubSellerNrPhoneNumber' => false,
         'subMerchantSubSellerSubSellerNrPostalCode' => false,
         'subMerchantSubSellerSubSellerNrState' => false,
         'subMerchantSubSellerSubSellerNrStreet' => false,
@@ -183,9 +186,11 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
         'subMerchantNumberOfSubSellers' => 'subMerchant.numberOfSubSellers',
         'subMerchantSubSellerSubSellerNrCity' => 'subMerchant.subSeller[subSellerNr].city',
         'subMerchantSubSellerSubSellerNrCountry' => 'subMerchant.subSeller[subSellerNr].country',
+        'subMerchantSubSellerSubSellerNrEmail' => 'subMerchant.subSeller[subSellerNr].email',
         'subMerchantSubSellerSubSellerNrId' => 'subMerchant.subSeller[subSellerNr].id',
         'subMerchantSubSellerSubSellerNrMcc' => 'subMerchant.subSeller[subSellerNr].mcc',
         'subMerchantSubSellerSubSellerNrName' => 'subMerchant.subSeller[subSellerNr].name',
+        'subMerchantSubSellerSubSellerNrPhoneNumber' => 'subMerchant.subSeller[subSellerNr].phoneNumber',
         'subMerchantSubSellerSubSellerNrPostalCode' => 'subMerchant.subSeller[subSellerNr].postalCode',
         'subMerchantSubSellerSubSellerNrState' => 'subMerchant.subSeller[subSellerNr].state',
         'subMerchantSubSellerSubSellerNrStreet' => 'subMerchant.subSeller[subSellerNr].street',
@@ -201,9 +206,11 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
         'subMerchantNumberOfSubSellers' => 'setSubMerchantNumberOfSubSellers',
         'subMerchantSubSellerSubSellerNrCity' => 'setSubMerchantSubSellerSubSellerNrCity',
         'subMerchantSubSellerSubSellerNrCountry' => 'setSubMerchantSubSellerSubSellerNrCountry',
+        'subMerchantSubSellerSubSellerNrEmail' => 'setSubMerchantSubSellerSubSellerNrEmail',
         'subMerchantSubSellerSubSellerNrId' => 'setSubMerchantSubSellerSubSellerNrId',
         'subMerchantSubSellerSubSellerNrMcc' => 'setSubMerchantSubSellerSubSellerNrMcc',
         'subMerchantSubSellerSubSellerNrName' => 'setSubMerchantSubSellerSubSellerNrName',
+        'subMerchantSubSellerSubSellerNrPhoneNumber' => 'setSubMerchantSubSellerSubSellerNrPhoneNumber',
         'subMerchantSubSellerSubSellerNrPostalCode' => 'setSubMerchantSubSellerSubSellerNrPostalCode',
         'subMerchantSubSellerSubSellerNrState' => 'setSubMerchantSubSellerSubSellerNrState',
         'subMerchantSubSellerSubSellerNrStreet' => 'setSubMerchantSubSellerSubSellerNrStreet',
@@ -219,9 +226,11 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
         'subMerchantNumberOfSubSellers' => 'getSubMerchantNumberOfSubSellers',
         'subMerchantSubSellerSubSellerNrCity' => 'getSubMerchantSubSellerSubSellerNrCity',
         'subMerchantSubSellerSubSellerNrCountry' => 'getSubMerchantSubSellerSubSellerNrCountry',
+        'subMerchantSubSellerSubSellerNrEmail' => 'getSubMerchantSubSellerSubSellerNrEmail',
         'subMerchantSubSellerSubSellerNrId' => 'getSubMerchantSubSellerSubSellerNrId',
         'subMerchantSubSellerSubSellerNrMcc' => 'getSubMerchantSubSellerSubSellerNrMcc',
         'subMerchantSubSellerSubSellerNrName' => 'getSubMerchantSubSellerSubSellerNrName',
+        'subMerchantSubSellerSubSellerNrPhoneNumber' => 'getSubMerchantSubSellerSubSellerNrPhoneNumber',
         'subMerchantSubSellerSubSellerNrPostalCode' => 'getSubMerchantSubSellerSubSellerNrPostalCode',
         'subMerchantSubSellerSubSellerNrState' => 'getSubMerchantSubSellerSubSellerNrState',
         'subMerchantSubSellerSubSellerNrStreet' => 'getSubMerchantSubSellerSubSellerNrStreet',
@@ -283,14 +292,16 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('subMerchantNumberOfSubSellers', $data ?? [], null);
         $this->setIfExists('subMerchantSubSellerSubSellerNrCity', $data ?? [], null);
         $this->setIfExists('subMerchantSubSellerSubSellerNrCountry', $data ?? [], null);
+        $this->setIfExists('subMerchantSubSellerSubSellerNrEmail', $data ?? [], null);
         $this->setIfExists('subMerchantSubSellerSubSellerNrId', $data ?? [], null);
         $this->setIfExists('subMerchantSubSellerSubSellerNrMcc', $data ?? [], null);
         $this->setIfExists('subMerchantSubSellerSubSellerNrName', $data ?? [], null);
+        $this->setIfExists('subMerchantSubSellerSubSellerNrPhoneNumber', $data ?? [], null);
         $this->setIfExists('subMerchantSubSellerSubSellerNrPostalCode', $data ?? [], null);
         $this->setIfExists('subMerchantSubSellerSubSellerNrState', $data ?? [], null);
         $this->setIfExists('subMerchantSubSellerSubSellerNrStreet', $data ?? [], null);
@@ -412,6 +423,30 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
+     * Gets subMerchantSubSellerSubSellerNrEmail
+     *
+     * @return string|null
+     */
+    public function getSubMerchantSubSellerSubSellerNrEmail()
+    {
+        return $this->container['subMerchantSubSellerSubSellerNrEmail'];
+    }
+
+    /**
+     * Sets subMerchantSubSellerSubSellerNrEmail
+     *
+     * @param string|null $subMerchantSubSellerSubSellerNrEmail Required for transactions performed by registered payment facilitators. The email address of the sub-merchant. * Format: Alphanumeric * Maximum length: 40 characters
+     *
+     * @return self
+     */
+    public function setSubMerchantSubSellerSubSellerNrEmail($subMerchantSubSellerSubSellerNrEmail)
+    {
+        $this->container['subMerchantSubSellerSubSellerNrEmail'] = $subMerchantSubSellerSubSellerNrEmail;
+
+        return $this;
+    }
+
+    /**
      * Gets subMerchantSubSellerSubSellerNrId
      *
      * @return string|null
@@ -479,6 +514,30 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
     public function setSubMerchantSubSellerSubSellerNrName($subMerchantSubSellerSubSellerNrName)
     {
         $this->container['subMerchantSubSellerSubSellerNrName'] = $subMerchantSubSellerSubSellerNrName;
+
+        return $this;
+    }
+
+    /**
+     * Gets subMerchantSubSellerSubSellerNrPhoneNumber
+     *
+     * @return string|null
+     */
+    public function getSubMerchantSubSellerSubSellerNrPhoneNumber()
+    {
+        return $this->container['subMerchantSubSellerSubSellerNrPhoneNumber'];
+    }
+
+    /**
+     * Sets subMerchantSubSellerSubSellerNrPhoneNumber
+     *
+     * @param string|null $subMerchantSubSellerSubSellerNrPhoneNumber Required for transactions performed by registered payment facilitators. The phone number of the sub-merchant.* Format: Alphanumeric * Maximum length: 20 characters
+     *
+     * @return self
+     */
+    public function setSubMerchantSubSellerSubSellerNrPhoneNumber($subMerchantSubSellerSubSellerNrPhoneNumber)
+    {
+        $this->container['subMerchantSubSellerSubSellerNrPhoneNumber'] = $subMerchantSubSellerSubSellerNrPhoneNumber;
 
         return $this;
     }
