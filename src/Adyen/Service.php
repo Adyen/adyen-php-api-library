@@ -55,8 +55,8 @@ class Service
     protected function requestHttp(
         string $url,
         string $method = 'get',
-        array $bodyParams = null,
-        array $requestOptions = null
+        ?array $bodyParams = null,
+        ?array $requestOptions = null
     ): array {
         // check if rest api method has a value
         if (!$method) {
