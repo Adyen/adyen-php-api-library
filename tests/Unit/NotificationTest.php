@@ -391,5 +391,4 @@ class NotificationTest extends TestCaseMock
         self::assertEquals("balancePlatform.balanceAccount.balance.updated", $result->getType());
         self::assertEquals("test", $result->getEnvironment());
     }
-
 }
