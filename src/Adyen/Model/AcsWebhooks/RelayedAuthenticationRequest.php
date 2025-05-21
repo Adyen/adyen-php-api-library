@@ -19,12 +19,12 @@ use \ArrayAccess;
 use Adyen\Model\AcsWebhooks\ObjectSerializer;
 
 /**
- * PurchaseInfo Class Doc Comment
+ * RelayedAuthenticationRequest Class Doc Comment
  *
  * @package  Adyen
  * @implements \ArrayAccess<string, mixed>
  */
-class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
+class RelayedAuthenticationRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PurchaseInfo';
+    protected static $openAPIModelName = 'RelayedAuthenticationRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,9 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'date' => 'string',
-        'merchantName' => 'string',
-        'originalAmount' => '\Adyen\Model\AcsWebhooks\Amount'
+        'id' => 'string',
+        'paymentInstrumentId' => 'string',
+        'purchase' => '\Adyen\Model\AcsWebhooks\Purchase'
     ];
 
     /**
@@ -54,9 +54,9 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'date' => null,
-        'merchantName' => null,
-        'originalAmount' => null
+        'id' => null,
+        'paymentInstrumentId' => null,
+        'purchase' => null
     ];
 
     /**
@@ -65,9 +65,9 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'date' => false,
-        'merchantName' => false,
-        'originalAmount' => false
+        'id' => false,
+        'paymentInstrumentId' => false,
+        'purchase' => false
     ];
 
     /**
@@ -156,9 +156,9 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'date' => 'date',
-        'merchantName' => 'merchantName',
-        'originalAmount' => 'originalAmount'
+        'id' => 'id',
+        'paymentInstrumentId' => 'paymentInstrumentId',
+        'purchase' => 'purchase'
     ];
 
     /**
@@ -167,9 +167,9 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'date' => 'setDate',
-        'merchantName' => 'setMerchantName',
-        'originalAmount' => 'setOriginalAmount'
+        'id' => 'setId',
+        'paymentInstrumentId' => 'setPaymentInstrumentId',
+        'purchase' => 'setPurchase'
     ];
 
     /**
@@ -178,9 +178,9 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'date' => 'getDate',
-        'merchantName' => 'getMerchantName',
-        'originalAmount' => 'getOriginalAmount'
+        'id' => 'getId',
+        'paymentInstrumentId' => 'getPaymentInstrumentId',
+        'purchase' => 'getPurchase'
     ];
 
     /**
@@ -240,9 +240,9 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('date', $data ?? [], null);
-        $this->setIfExists('merchantName', $data ?? [], null);
-        $this->setIfExists('originalAmount', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('paymentInstrumentId', $data ?? [], null);
+        $this->setIfExists('purchase', $data ?? [], null);
     }
 
     /**
@@ -272,14 +272,14 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['date'] === null) {
-            $invalidProperties[] = "'date' can't be null";
+        if ($this->container['id'] === null) {
+            $invalidProperties[] = "'id' can't be null";
         }
-        if ($this->container['merchantName'] === null) {
-            $invalidProperties[] = "'merchantName' can't be null";
+        if ($this->container['paymentInstrumentId'] === null) {
+            $invalidProperties[] = "'paymentInstrumentId' can't be null";
         }
-        if ($this->container['originalAmount'] === null) {
-            $invalidProperties[] = "'originalAmount' can't be null";
+        if ($this->container['purchase'] === null) {
+            $invalidProperties[] = "'purchase' can't be null";
         }
         return $invalidProperties;
     }
@@ -297,73 +297,73 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets date
+     * Gets id
      *
      * @return string
      */
-    public function getDate()
+    public function getId()
     {
-        return $this->container['date'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets date
+     * Sets id
      *
-     * @param string $date Date of the purchase.
+     * @param string $id The unique identifier of the challenge.
      *
      * @return self
      */
-    public function setDate($date)
+    public function setId($id)
     {
-        $this->container['date'] = $date;
+        $this->container['id'] = $id;
 
         return $this;
     }
 
     /**
-     * Gets merchantName
+     * Gets paymentInstrumentId
      *
      * @return string
      */
-    public function getMerchantName()
+    public function getPaymentInstrumentId()
     {
-        return $this->container['merchantName'];
+        return $this->container['paymentInstrumentId'];
     }
 
     /**
-     * Sets merchantName
+     * Sets paymentInstrumentId
      *
-     * @param string $merchantName Name of the merchant.
+     * @param string $paymentInstrumentId The unique identifier of the [payment instrument](https://docs.adyen.com/api-explorer/balanceplatform/latest/get/paymentInstruments/_id_) used for the purchase.
      *
      * @return self
      */
-    public function setMerchantName($merchantName)
+    public function setPaymentInstrumentId($paymentInstrumentId)
     {
-        $this->container['merchantName'] = $merchantName;
+        $this->container['paymentInstrumentId'] = $paymentInstrumentId;
 
         return $this;
     }
 
     /**
-     * Gets originalAmount
+     * Gets purchase
      *
-     * @return \Adyen\Model\AcsWebhooks\Amount
+     * @return \Adyen\Model\AcsWebhooks\Purchase
      */
-    public function getOriginalAmount()
+    public function getPurchase()
     {
-        return $this->container['originalAmount'];
+        return $this->container['purchase'];
     }
 
     /**
-     * Sets originalAmount
+     * Sets purchase
      *
-     * @param \Adyen\Model\AcsWebhooks\Amount $originalAmount originalAmount
+     * @param \Adyen\Model\AcsWebhooks\Purchase $purchase purchase
      *
      * @return self
      */
-    public function setOriginalAmount($originalAmount)
+    public function setPurchase($purchase)
     {
-        $this->container['originalAmount'] = $originalAmount;
+        $this->container['purchase'] = $purchase;
 
         return $this;
     }

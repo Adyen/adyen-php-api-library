@@ -19,12 +19,12 @@ use \ArrayAccess;
 use Adyen\Model\AcsWebhooks\ObjectSerializer;
 
 /**
- * PurchaseInfo Class Doc Comment
+ * Purchase Class Doc Comment
  *
  * @package  Adyen
  * @implements \ArrayAccess<string, mixed>
  */
-class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
+class Purchase implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PurchaseInfo';
+    protected static $openAPIModelName = 'Purchase';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,7 +41,7 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'date' => 'string',
+        'date' => '\DateTime',
         'merchantName' => 'string',
         'originalAmount' => '\Adyen\Model\AcsWebhooks\Amount'
     ];
@@ -54,7 +54,7 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'date' => null,
+        'date' => 'date-time',
         'merchantName' => null,
         'originalAmount' => null
     ];
@@ -299,7 +299,7 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets date
      *
-     * @return string
+     * @return \DateTime
      */
     public function getDate()
     {
@@ -309,7 +309,7 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets date
      *
-     * @param string $date Date of the purchase.
+     * @param \DateTime $date The time of the purchase.
      *
      * @return self
      */
@@ -333,7 +333,7 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets merchantName
      *
-     * @param string $merchantName Name of the merchant.
+     * @param string $merchantName The name of the merchant.
      *
      * @return self
      */

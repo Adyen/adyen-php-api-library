@@ -3,6 +3,7 @@
 namespace Adyen\Service;
 
 use Adyen\Model\AcsWebhooks\AuthenticationNotificationRequest;
+use Adyen\Model\AcsWebhooks\RelayedAuthenticationRequest;
 use Adyen\Model\ConfigurationWebhooks\AccountHolderNotificationRequest;
 use Adyen\Model\ConfigurationWebhooks\BalanceAccountNotificationRequest;
 use Adyen\Model\ConfigurationWebhooks\ObjectSerializer;
@@ -33,6 +34,10 @@ class BankingWebhookParser
         }
 
         if (in_array($type, ($clazz = new AuthenticationNotificationRequest())->getTypeAllowableValues())) {
+            return (object)$this->deserializewebhook($clazz);
+        }
+
+        if (in_array($type, ($clazz = new RelayedAuthenticationRequest())->getTypeAllowableValues())) {
             return (object)$this->deserializewebhook($clazz);
         }
 
@@ -70,6 +75,12 @@ class BankingWebhookParser
 
     /** @noinspection PhpIncompatibleReturnTypeInspection */
     public function getAuthenticationNotificationRequest(): AuthenticationNotificationRequest
+    {
+        return $this->getGenericWebhook();
+    }
+
+    /** @noinspection PhpIncompatibleReturnTypeInspection */
+    public function getRelayedAuthenticationRequest(): RelayedAuthenticationRequest
     {
         return $this->getGenericWebhook();
     }

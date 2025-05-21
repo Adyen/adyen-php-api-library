@@ -19,12 +19,12 @@ use \ArrayAccess;
 use Adyen\Model\AcsWebhooks\ObjectSerializer;
 
 /**
- * PurchaseInfo Class Doc Comment
+ * ServiceError Class Doc Comment
  *
  * @package  Adyen
  * @implements \ArrayAccess<string, mixed>
  */
-class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
+class ServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PurchaseInfo';
+    protected static $openAPIModelName = 'ServiceError';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,11 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'date' => 'string',
-        'merchantName' => 'string',
-        'originalAmount' => '\Adyen\Model\AcsWebhooks\Amount'
+        'errorCode' => 'string',
+        'errorType' => 'string',
+        'message' => 'string',
+        'pspReference' => 'string',
+        'status' => 'int'
     ];
 
     /**
@@ -54,9 +56,11 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'date' => null,
-        'merchantName' => null,
-        'originalAmount' => null
+        'errorCode' => null,
+        'errorType' => null,
+        'message' => null,
+        'pspReference' => null,
+        'status' => 'int32'
     ];
 
     /**
@@ -65,9 +69,11 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'date' => false,
-        'merchantName' => false,
-        'originalAmount' => false
+        'errorCode' => false,
+        'errorType' => false,
+        'message' => false,
+        'pspReference' => false,
+        'status' => true
     ];
 
     /**
@@ -156,9 +162,11 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'date' => 'date',
-        'merchantName' => 'merchantName',
-        'originalAmount' => 'originalAmount'
+        'errorCode' => 'errorCode',
+        'errorType' => 'errorType',
+        'message' => 'message',
+        'pspReference' => 'pspReference',
+        'status' => 'status'
     ];
 
     /**
@@ -167,9 +175,11 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'date' => 'setDate',
-        'merchantName' => 'setMerchantName',
-        'originalAmount' => 'setOriginalAmount'
+        'errorCode' => 'setErrorCode',
+        'errorType' => 'setErrorType',
+        'message' => 'setMessage',
+        'pspReference' => 'setPspReference',
+        'status' => 'setStatus'
     ];
 
     /**
@@ -178,9 +188,11 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'date' => 'getDate',
-        'merchantName' => 'getMerchantName',
-        'originalAmount' => 'getOriginalAmount'
+        'errorCode' => 'getErrorCode',
+        'errorType' => 'getErrorType',
+        'message' => 'getMessage',
+        'pspReference' => 'getPspReference',
+        'status' => 'getStatus'
     ];
 
     /**
@@ -240,9 +252,11 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('date', $data ?? [], null);
-        $this->setIfExists('merchantName', $data ?? [], null);
-        $this->setIfExists('originalAmount', $data ?? [], null);
+        $this->setIfExists('errorCode', $data ?? [], null);
+        $this->setIfExists('errorType', $data ?? [], null);
+        $this->setIfExists('message', $data ?? [], null);
+        $this->setIfExists('pspReference', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
     }
 
     /**
@@ -272,15 +286,6 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['date'] === null) {
-            $invalidProperties[] = "'date' can't be null";
-        }
-        if ($this->container['merchantName'] === null) {
-            $invalidProperties[] = "'merchantName' can't be null";
-        }
-        if ($this->container['originalAmount'] === null) {
-            $invalidProperties[] = "'originalAmount' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -297,73 +302,121 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets date
+     * Gets errorCode
      *
-     * @return string
+     * @return string|null
      */
-    public function getDate()
+    public function getErrorCode()
     {
-        return $this->container['date'];
+        return $this->container['errorCode'];
     }
 
     /**
-     * Sets date
+     * Sets errorCode
      *
-     * @param string $date Date of the purchase.
+     * @param string|null $errorCode The error code mapped to the error message.
      *
      * @return self
      */
-    public function setDate($date)
+    public function setErrorCode($errorCode)
     {
-        $this->container['date'] = $date;
+        $this->container['errorCode'] = $errorCode;
 
         return $this;
     }
 
     /**
-     * Gets merchantName
+     * Gets errorType
      *
-     * @return string
+     * @return string|null
      */
-    public function getMerchantName()
+    public function getErrorType()
     {
-        return $this->container['merchantName'];
+        return $this->container['errorType'];
     }
 
     /**
-     * Sets merchantName
+     * Sets errorType
      *
-     * @param string $merchantName Name of the merchant.
+     * @param string|null $errorType The category of the error.
      *
      * @return self
      */
-    public function setMerchantName($merchantName)
+    public function setErrorType($errorType)
     {
-        $this->container['merchantName'] = $merchantName;
+        $this->container['errorType'] = $errorType;
 
         return $this;
     }
 
     /**
-     * Gets originalAmount
+     * Gets message
      *
-     * @return \Adyen\Model\AcsWebhooks\Amount
+     * @return string|null
      */
-    public function getOriginalAmount()
+    public function getMessage()
     {
-        return $this->container['originalAmount'];
+        return $this->container['message'];
     }
 
     /**
-     * Sets originalAmount
+     * Sets message
      *
-     * @param \Adyen\Model\AcsWebhooks\Amount $originalAmount originalAmount
+     * @param string|null $message A short explanation of the issue.
      *
      * @return self
      */
-    public function setOriginalAmount($originalAmount)
+    public function setMessage($message)
     {
-        $this->container['originalAmount'] = $originalAmount;
+        $this->container['message'] = $message;
+
+        return $this;
+    }
+
+    /**
+     * Gets pspReference
+     *
+     * @return string|null
+     */
+    public function getPspReference()
+    {
+        return $this->container['pspReference'];
+    }
+
+    /**
+     * Sets pspReference
+     *
+     * @param string|null $pspReference The PSP reference of the payment.
+     *
+     * @return self
+     */
+    public function setPspReference($pspReference)
+    {
+        $this->container['pspReference'] = $pspReference;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return int|null
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     *
+     * @param int|null $status The HTTP response status.
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        $this->container['status'] = $status;
 
         return $this;
     }

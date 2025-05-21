@@ -19,12 +19,12 @@ use \ArrayAccess;
 use Adyen\Model\AcsWebhooks\ObjectSerializer;
 
 /**
- * PurchaseInfo Class Doc Comment
+ * RelayedAuthenticationResponse Class Doc Comment
  *
  * @package  Adyen
  * @implements \ArrayAccess<string, mixed>
  */
-class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
+class RelayedAuthenticationResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PurchaseInfo';
+    protected static $openAPIModelName = 'RelayedAuthenticationResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,7 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'date' => 'string',
-        'merchantName' => 'string',
-        'originalAmount' => '\Adyen\Model\AcsWebhooks\Amount'
+        'authenticationDecision' => '\Adyen\Model\AcsWebhooks\AuthenticationDecision'
     ];
 
     /**
@@ -54,9 +52,7 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'date' => null,
-        'merchantName' => null,
-        'originalAmount' => null
+        'authenticationDecision' => null
     ];
 
     /**
@@ -65,9 +61,7 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'date' => false,
-        'merchantName' => false,
-        'originalAmount' => false
+        'authenticationDecision' => false
     ];
 
     /**
@@ -156,9 +150,7 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'date' => 'date',
-        'merchantName' => 'merchantName',
-        'originalAmount' => 'originalAmount'
+        'authenticationDecision' => 'authenticationDecision'
     ];
 
     /**
@@ -167,9 +159,7 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'date' => 'setDate',
-        'merchantName' => 'setMerchantName',
-        'originalAmount' => 'setOriginalAmount'
+        'authenticationDecision' => 'setAuthenticationDecision'
     ];
 
     /**
@@ -178,9 +168,7 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'date' => 'getDate',
-        'merchantName' => 'getMerchantName',
-        'originalAmount' => 'getOriginalAmount'
+        'authenticationDecision' => 'getAuthenticationDecision'
     ];
 
     /**
@@ -240,9 +228,7 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('date', $data ?? [], null);
-        $this->setIfExists('merchantName', $data ?? [], null);
-        $this->setIfExists('originalAmount', $data ?? [], null);
+        $this->setIfExists('authenticationDecision', $data ?? [], null);
     }
 
     /**
@@ -272,14 +258,8 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['date'] === null) {
-            $invalidProperties[] = "'date' can't be null";
-        }
-        if ($this->container['merchantName'] === null) {
-            $invalidProperties[] = "'merchantName' can't be null";
-        }
-        if ($this->container['originalAmount'] === null) {
-            $invalidProperties[] = "'originalAmount' can't be null";
+        if ($this->container['authenticationDecision'] === null) {
+            $invalidProperties[] = "'authenticationDecision' can't be null";
         }
         return $invalidProperties;
     }
@@ -297,73 +277,25 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets date
+     * Gets authenticationDecision
      *
-     * @return string
+     * @return \Adyen\Model\AcsWebhooks\AuthenticationDecision
      */
-    public function getDate()
+    public function getAuthenticationDecision()
     {
-        return $this->container['date'];
+        return $this->container['authenticationDecision'];
     }
 
     /**
-     * Sets date
+     * Sets authenticationDecision
      *
-     * @param string $date Date of the purchase.
+     * @param \Adyen\Model\AcsWebhooks\AuthenticationDecision $authenticationDecision authenticationDecision
      *
      * @return self
      */
-    public function setDate($date)
+    public function setAuthenticationDecision($authenticationDecision)
     {
-        $this->container['date'] = $date;
-
-        return $this;
-    }
-
-    /**
-     * Gets merchantName
-     *
-     * @return string
-     */
-    public function getMerchantName()
-    {
-        return $this->container['merchantName'];
-    }
-
-    /**
-     * Sets merchantName
-     *
-     * @param string $merchantName Name of the merchant.
-     *
-     * @return self
-     */
-    public function setMerchantName($merchantName)
-    {
-        $this->container['merchantName'] = $merchantName;
-
-        return $this;
-    }
-
-    /**
-     * Gets originalAmount
-     *
-     * @return \Adyen\Model\AcsWebhooks\Amount
-     */
-    public function getOriginalAmount()
-    {
-        return $this->container['originalAmount'];
-    }
-
-    /**
-     * Sets originalAmount
-     *
-     * @param \Adyen\Model\AcsWebhooks\Amount $originalAmount originalAmount
-     *
-     * @return self
-     */
-    public function setOriginalAmount($originalAmount)
-    {
-        $this->container['originalAmount'] = $originalAmount;
+        $this->container['authenticationDecision'] = $authenticationDecision;
 
         return $this;
     }

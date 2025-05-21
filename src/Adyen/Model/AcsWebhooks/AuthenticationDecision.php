@@ -19,12 +19,12 @@ use \ArrayAccess;
 use Adyen\Model\AcsWebhooks\ObjectSerializer;
 
 /**
- * PurchaseInfo Class Doc Comment
+ * AuthenticationDecision Class Doc Comment
  *
  * @package  Adyen
  * @implements \ArrayAccess<string, mixed>
  */
-class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
+class AuthenticationDecision implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PurchaseInfo';
+    protected static $openAPIModelName = 'AuthenticationDecision';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,7 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'date' => 'string',
-        'merchantName' => 'string',
-        'originalAmount' => '\Adyen\Model\AcsWebhooks\Amount'
+        'status' => 'string'
     ];
 
     /**
@@ -54,9 +52,7 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'date' => null,
-        'merchantName' => null,
-        'originalAmount' => null
+        'status' => null
     ];
 
     /**
@@ -65,9 +61,7 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'date' => false,
-        'merchantName' => false,
-        'originalAmount' => false
+        'status' => false
     ];
 
     /**
@@ -156,9 +150,7 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'date' => 'date',
-        'merchantName' => 'merchantName',
-        'originalAmount' => 'originalAmount'
+        'status' => 'status'
     ];
 
     /**
@@ -167,9 +159,7 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'date' => 'setDate',
-        'merchantName' => 'setMerchantName',
-        'originalAmount' => 'setOriginalAmount'
+        'status' => 'setStatus'
     ];
 
     /**
@@ -178,9 +168,7 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'date' => 'getDate',
-        'merchantName' => 'getMerchantName',
-        'originalAmount' => 'getOriginalAmount'
+        'status' => 'getStatus'
     ];
 
     /**
@@ -224,7 +212,21 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const STATUS_PROCEED = 'proceed';
+    public const STATUS_REFUSED = 'refused';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getStatusAllowableValues()
+    {
+        return [
+            self::STATUS_PROCEED,
+            self::STATUS_REFUSED,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -240,9 +242,7 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('date', $data ?? [], null);
-        $this->setIfExists('merchantName', $data ?? [], null);
-        $this->setIfExists('originalAmount', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
     }
 
     /**
@@ -272,15 +272,18 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['date'] === null) {
-            $invalidProperties[] = "'date' can't be null";
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
         }
-        if ($this->container['merchantName'] === null) {
-            $invalidProperties[] = "'merchantName' can't be null";
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'status', must be one of '%s'",
+                $this->container['status'],
+                implode("', '", $allowedValues)
+            );
         }
-        if ($this->container['originalAmount'] === null) {
-            $invalidProperties[] = "'originalAmount' can't be null";
-        }
+
         return $invalidProperties;
     }
 
@@ -297,73 +300,35 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets date
+     * Gets status
      *
      * @return string
      */
-    public function getDate()
+    public function getStatus()
     {
-        return $this->container['date'];
+        return $this->container['status'];
     }
 
     /**
-     * Sets date
+     * Sets status
      *
-     * @param string $date Date of the purchase.
+     * @param string $status The status of the authentication.   Possible values:   * **refused**   * **proceed**   For more information, refer to [Authenticate cardholders using the Authentication SDK](https://docs.adyen.com/issuing/3d-secure/oob-auth-sdk/authenticate-cardholders/).
      *
      * @return self
      */
-    public function setDate($date)
+    public function setStatus($status)
     {
-        $this->container['date'] = $date;
-
-        return $this;
-    }
-
-    /**
-     * Gets merchantName
-     *
-     * @return string
-     */
-    public function getMerchantName()
-    {
-        return $this->container['merchantName'];
-    }
-
-    /**
-     * Sets merchantName
-     *
-     * @param string $merchantName Name of the merchant.
-     *
-     * @return self
-     */
-    public function setMerchantName($merchantName)
-    {
-        $this->container['merchantName'] = $merchantName;
-
-        return $this;
-    }
-
-    /**
-     * Gets originalAmount
-     *
-     * @return \Adyen\Model\AcsWebhooks\Amount
-     */
-    public function getOriginalAmount()
-    {
-        return $this->container['originalAmount'];
-    }
-
-    /**
-     * Sets originalAmount
-     *
-     * @param \Adyen\Model\AcsWebhooks\Amount $originalAmount originalAmount
-     *
-     * @return self
-     */
-    public function setOriginalAmount($originalAmount)
-    {
-        $this->container['originalAmount'] = $originalAmount;
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!in_array($status, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    $status,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['status'] = $status;
 
         return $this;
     }

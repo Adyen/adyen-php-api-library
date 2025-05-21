@@ -21,10 +21,7 @@ use Adyen\Model\AcsWebhooks\ObjectSerializer;
 /**
  * ChallengeInfo Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class ChallengeInfo implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -254,8 +251,9 @@ class ChallengeInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     public const CHALLENGE_CANCEL__06 = '06';
     public const CHALLENGE_CANCEL__07 = '07';
     public const CHALLENGE_CANCEL__08 = '08';
-    public const FLOW_OTP_SMS = 'OTP_SMS';
-    public const FLOW_OOB = 'OOB';
+    public const FLOW_PWD_OTP_PHONE_FL = 'PWD_OTP_PHONE_FL';
+    public const FLOW_PWD_OTP_EMAIL_FL = 'PWD_OTP_EMAIL_FL';
+    public const FLOW_OOB_TRIGGER_FL = 'OOB_TRIGGER_FL';
 
     /**
      * Gets allowable values of the enum
@@ -284,8 +282,9 @@ class ChallengeInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     public function getFlowAllowableValues()
     {
         return [
-            self::FLOW_OTP_SMS,
-            self::FLOW_OOB,
+            self::FLOW_PWD_OTP_PHONE_FL,
+            self::FLOW_PWD_OTP_EMAIL_FL,
+            self::FLOW_OOB_TRIGGER_FL,
         ];
     }
     /**
@@ -301,7 +300,7 @@ class ChallengeInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('challengeCancel', $data ?? [], null);
         $this->setIfExists('flow', $data ?? [], null);
@@ -424,7 +423,7 @@ class ChallengeInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets flow
      *
-     * @param string $flow The flow used in the challenge. Possible values:  * **OTP_SMS**: one-time password (OTP) flow * **OOB**: out-of-band (OOB) flow
+     * @param string $flow The flow used in the challenge. Possible values:  * **PWD_OTP_PHONE_FL**: one-time password (OTP) flow via SMS * **PWD_OTP_EMAIL_FL**: one-time password (OTP) flow via email * **OOB_TRIGGER_FL**: out-of-band (OOB) flow
      *
      * @return self
      */
