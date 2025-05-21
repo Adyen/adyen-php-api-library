@@ -47,7 +47,7 @@ class AccountHoldersApi extends Service
     * @return \Adyen\Model\BalancePlatform\AccountHolder
     * @throws AdyenException
     */
-    public function createAccountHolder(\Adyen\Model\BalancePlatform\AccountHolderInfo $accountHolderInfo, array $requestOptions = null): \Adyen\Model\BalancePlatform\AccountHolder
+    public function createAccountHolder(\Adyen\Model\BalancePlatform\AccountHolderInfo $accountHolderInfo, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\AccountHolder
     {
         $endpoint = $this->baseURL . "/accountHolders";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $accountHolderInfo->jsonSerialize(), $requestOptions);
@@ -62,7 +62,7 @@ class AccountHoldersApi extends Service
     * @return \Adyen\Model\BalancePlatform\AccountHolder
     * @throws AdyenException
     */
-    public function getAccountHolder(string $id, array $requestOptions = null): \Adyen\Model\BalancePlatform\AccountHolder
+    public function getAccountHolder(string $id, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\AccountHolder
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/accountHolders/{id}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -77,7 +77,7 @@ class AccountHoldersApi extends Service
     * @return \Adyen\Model\BalancePlatform\PaginatedBalanceAccountsResponse
     * @throws AdyenException
     */
-    public function getAllBalanceAccountsOfAccountHolder(string $id, array $requestOptions = null): \Adyen\Model\BalancePlatform\PaginatedBalanceAccountsResponse
+    public function getAllBalanceAccountsOfAccountHolder(string $id, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\PaginatedBalanceAccountsResponse
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/accountHolders/{id}/balanceAccounts");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -92,7 +92,7 @@ class AccountHoldersApi extends Service
     * @return \Adyen\Model\BalancePlatform\TransactionRulesResponse
     * @throws AdyenException
     */
-    public function getAllTransactionRulesForAccountHolder(string $id, array $requestOptions = null): \Adyen\Model\BalancePlatform\TransactionRulesResponse
+    public function getAllTransactionRulesForAccountHolder(string $id, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\TransactionRulesResponse
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/accountHolders/{id}/transactionRules");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -107,7 +107,7 @@ class AccountHoldersApi extends Service
     * @return \Adyen\Model\BalancePlatform\GetTaxFormResponse
     * @throws AdyenException
     */
-    public function getTaxForm(string $id, array $requestOptions = null): \Adyen\Model\BalancePlatform\GetTaxFormResponse
+    public function getTaxForm(string $id, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\GetTaxFormResponse
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/accountHolders/{id}/taxForms");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -123,7 +123,7 @@ class AccountHoldersApi extends Service
     * @return \Adyen\Model\BalancePlatform\AccountHolder
     * @throws AdyenException
     */
-    public function updateAccountHolder(string $id, \Adyen\Model\BalancePlatform\AccountHolderUpdateRequest $accountHolderUpdateRequest, array $requestOptions = null): \Adyen\Model\BalancePlatform\AccountHolder
+    public function updateAccountHolder(string $id, \Adyen\Model\BalancePlatform\AccountHolderUpdateRequest $accountHolderUpdateRequest, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\AccountHolder
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/accountHolders/{id}");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $accountHolderUpdateRequest->jsonSerialize(), $requestOptions);

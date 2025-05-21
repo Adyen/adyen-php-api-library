@@ -19,12 +19,12 @@ use \ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * BankAccountModel Class Doc Comment
+ * USInstantPayoutAddressRequirement Class Doc Comment
  *
  * @package  Adyen
  * @implements \ArrayAccess<string, mixed>
  */
-class BankAccountModel implements ModelInterface, ArrayAccess, \JsonSerializable
+class USInstantPayoutAddressRequirement implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class BankAccountModel implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'BankAccountModel';
+    protected static $openAPIModelName = 'USInstantPayoutAddressRequirement';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,7 +41,8 @@ class BankAccountModel implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'formFactor' => 'string'
+        'description' => 'string',
+        'type' => 'string'
     ];
 
     /**
@@ -52,7 +53,8 @@ class BankAccountModel implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'formFactor' => null
+        'description' => null,
+        'type' => null
     ];
 
     /**
@@ -61,7 +63,8 @@ class BankAccountModel implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'formFactor' => true
+        'description' => false,
+        'type' => false
     ];
 
     /**
@@ -150,7 +153,8 @@ class BankAccountModel implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'formFactor' => 'formFactor'
+        'description' => 'description',
+        'type' => 'type'
     ];
 
     /**
@@ -159,7 +163,8 @@ class BankAccountModel implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'formFactor' => 'setFormFactor'
+        'description' => 'setDescription',
+        'type' => 'setType'
     ];
 
     /**
@@ -168,7 +173,8 @@ class BankAccountModel implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'formFactor' => 'getFormFactor'
+        'description' => 'getDescription',
+        'type' => 'getType'
     ];
 
     /**
@@ -212,21 +218,17 @@ class BankAccountModel implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const FORM_FACTOR_PHYSICAL = 'physical';
-    public const FORM_FACTOR_UNKNOWN = 'unknown';
-    public const FORM_FACTOR_VIRTUAL = 'virtual';
+    public const TYPE_US_INSTANT_PAYOUT_ADDRESS_REQUIREMENT = 'usInstantPayoutAddressRequirement';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getFormFactorAllowableValues()
+    public function getTypeAllowableValues()
     {
         return [
-            self::FORM_FACTOR_PHYSICAL,
-            self::FORM_FACTOR_UNKNOWN,
-            self::FORM_FACTOR_VIRTUAL,
+            self::TYPE_US_INSTANT_PAYOUT_ADDRESS_REQUIREMENT,
         ];
     }
     /**
@@ -244,7 +246,8 @@ class BankAccountModel implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('formFactor', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -274,11 +277,14 @@ class BankAccountModel implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getFormFactorAllowableValues();
-        if (!is_null($this->container['formFactor']) && !in_array($this->container['formFactor'], $allowedValues, true)) {
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'formFactor', must be one of '%s'",
-                $this->container['formFactor'],
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
                 implode("', '", $allowedValues)
             );
         }
@@ -299,45 +305,59 @@ class BankAccountModel implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets formFactor
+     * Gets description
      *
      * @return string|null
      */
-    public function getFormFactor()
+    public function getDescription()
     {
-        return $this->container['formFactor'];
+        return $this->container['description'];
     }
 
     /**
-     * Sets formFactor
+     * Sets description
      *
-     * @param string|null $formFactor Business accounts with a `formFactor` value of **physical** are business accounts issued under the central bank of that country. The default value is **physical** for NL, US, and UK business accounts.   Adyen creates a local IBAN for business accounts when the `formFactor` value is set to **virtual**. The local IBANs that are supported are for DE and FR, which reference a physical NL account, with funds being routed through the central bank of NL.
+     * @param string|null $description Specifies that you must provide complete street addresses for the party and counterParty for transactions greater than USD 3000.
      *
      * @return self
      */
-    public function setFormFactor($formFactor)
+    public function setDescription($description)
     {
-        if (is_null($formFactor)) {
-            array_push($this->openAPINullablesSetToNull, 'formFactor');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('formFactor', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $allowedValues = $this->getFormFactorAllowableValues();
-        if (!is_null($formFactor) && !in_array($formFactor, $allowedValues, true)) {
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string $type **usInstantPayoutAddressRequirement**
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value '%s' for 'formFactor', must be one of '%s'",
-                    $formFactor,
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
                     implode("', '", $allowedValues)
                 )
             );
         }
-        $this->container['formFactor'] = $formFactor;
+        $this->container['type'] = $type;
 
         return $this;
     }

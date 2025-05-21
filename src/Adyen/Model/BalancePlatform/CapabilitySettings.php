@@ -21,10 +21,7 @@ use Adyen\Model\BalancePlatform\ObjectSerializer;
 /**
  * CapabilitySettings Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -285,7 +282,7 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('amountPerIndustry', $data ?? [], null);
         $this->setIfExists('authorizedCardUsers', $data ?? [], null);
@@ -358,7 +355,7 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets amountPerIndustry
      *
-     * @param array<string,\Adyen\Model\BalancePlatform\Amount>|null $amountPerIndustry
+     * @param array<string,\Adyen\Model\BalancePlatform\Amount>|null $amountPerIndustry 
      *
      * @return self
      */
@@ -382,7 +379,7 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets authorizedCardUsers
      *
-     * @param bool|null $authorizedCardUsers
+     * @param bool|null $authorizedCardUsers 
      *
      * @return self
      */
@@ -406,7 +403,7 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets fundingSource
      *
-     * @param string[]|null $fundingSource
+     * @param string[]|null $fundingSource 
      *
      * @return self
      */
@@ -439,7 +436,7 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets interval
      *
-     * @param string|null $interval
+     * @param string|null $interval 
      *
      * @return self
      */

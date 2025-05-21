@@ -19,12 +19,12 @@ use \ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * BankAccountModel Class Doc Comment
+ * WalletProviderDeviceScore Class Doc Comment
  *
  * @package  Adyen
  * @implements \ArrayAccess<string, mixed>
  */
-class BankAccountModel implements ModelInterface, ArrayAccess, \JsonSerializable
+class WalletProviderDeviceScore implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class BankAccountModel implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'BankAccountModel';
+    protected static $openAPIModelName = 'WalletProviderDeviceScore';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,7 +41,8 @@ class BankAccountModel implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'formFactor' => 'string'
+        'operation' => 'string',
+        'value' => 'int'
     ];
 
     /**
@@ -52,7 +53,8 @@ class BankAccountModel implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'formFactor' => null
+        'operation' => null,
+        'value' => 'int32'
     ];
 
     /**
@@ -61,7 +63,8 @@ class BankAccountModel implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'formFactor' => true
+        'operation' => false,
+        'value' => true
     ];
 
     /**
@@ -150,7 +153,8 @@ class BankAccountModel implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'formFactor' => 'formFactor'
+        'operation' => 'operation',
+        'value' => 'value'
     ];
 
     /**
@@ -159,7 +163,8 @@ class BankAccountModel implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'formFactor' => 'setFormFactor'
+        'operation' => 'setOperation',
+        'value' => 'setValue'
     ];
 
     /**
@@ -168,7 +173,8 @@ class BankAccountModel implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'formFactor' => 'getFormFactor'
+        'operation' => 'getOperation',
+        'value' => 'getValue'
     ];
 
     /**
@@ -212,23 +218,7 @@ class BankAccountModel implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const FORM_FACTOR_PHYSICAL = 'physical';
-    public const FORM_FACTOR_UNKNOWN = 'unknown';
-    public const FORM_FACTOR_VIRTUAL = 'virtual';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getFormFactorAllowableValues()
-    {
-        return [
-            self::FORM_FACTOR_PHYSICAL,
-            self::FORM_FACTOR_UNKNOWN,
-            self::FORM_FACTOR_VIRTUAL,
-        ];
-    }
     /**
      * Associative array for storing property values
      *
@@ -244,7 +234,8 @@ class BankAccountModel implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('formFactor', $data ?? [], null);
+        $this->setIfExists('operation', $data ?? [], null);
+        $this->setIfExists('value', $data ?? [], null);
     }
 
     /**
@@ -274,15 +265,9 @@ class BankAccountModel implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getFormFactorAllowableValues();
-        if (!is_null($this->container['formFactor']) && !in_array($this->container['formFactor'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'formFactor', must be one of '%s'",
-                $this->container['formFactor'],
-                implode("', '", $allowedValues)
-            );
+        if ($this->container['operation'] === null) {
+            $invalidProperties[] = "'operation' can't be null";
         }
-
         return $invalidProperties;
     }
 
@@ -299,45 +284,49 @@ class BankAccountModel implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets formFactor
+     * Gets operation
      *
-     * @return string|null
+     * @return string
      */
-    public function getFormFactor()
+    public function getOperation()
     {
-        return $this->container['formFactor'];
+        return $this->container['operation'];
     }
 
     /**
-     * Sets formFactor
+     * Sets operation
      *
-     * @param string|null $formFactor Business accounts with a `formFactor` value of **physical** are business accounts issued under the central bank of that country. The default value is **physical** for NL, US, and UK business accounts.   Adyen creates a local IBAN for business accounts when the `formFactor` value is set to **virtual**. The local IBANs that are supported are for DE and FR, which reference a physical NL account, with funds being routed through the central bank of NL.
+     * @param string $operation Defines how the condition must be evaluated.
      *
      * @return self
      */
-    public function setFormFactor($formFactor)
+    public function setOperation($operation)
     {
-        if (is_null($formFactor)) {
-            array_push($this->openAPINullablesSetToNull, 'formFactor');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('formFactor', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $allowedValues = $this->getFormFactorAllowableValues();
-        if (!is_null($formFactor) && !in_array($formFactor, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'formFactor', must be one of '%s'",
-                    $formFactor,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['formFactor'] = $formFactor;
+        $this->container['operation'] = $operation;
+
+        return $this;
+    }
+
+    /**
+     * Gets value
+     *
+     * @return int|null
+     */
+    public function getValue()
+    {
+        return $this->container['value'];
+    }
+
+    /**
+     * Sets value
+     *
+     * @param int|null $value value
+     *
+     * @return self
+     */
+    public function setValue($value)
+    {
+        $this->container['value'] = $value;
 
         return $this;
     }

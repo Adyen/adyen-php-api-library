@@ -47,7 +47,7 @@ class BalanceAccountsApi extends Service
     * @return \Adyen\Model\BalancePlatform\BalanceAccount
     * @throws AdyenException
     */
-    public function createBalanceAccount(\Adyen\Model\BalancePlatform\BalanceAccountInfo $balanceAccountInfo, array $requestOptions = null): \Adyen\Model\BalancePlatform\BalanceAccount
+    public function createBalanceAccount(\Adyen\Model\BalancePlatform\BalanceAccountInfo $balanceAccountInfo, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\BalanceAccount
     {
         $endpoint = $this->baseURL . "/balanceAccounts";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $balanceAccountInfo->jsonSerialize(), $requestOptions);
@@ -63,7 +63,7 @@ class BalanceAccountsApi extends Service
     * @return \Adyen\Model\BalancePlatform\SweepConfigurationV2
     * @throws AdyenException
     */
-    public function createSweep(string $balanceAccountId, \Adyen\Model\BalancePlatform\CreateSweepConfigurationV2 $createSweepConfigurationV2, array $requestOptions = null): \Adyen\Model\BalancePlatform\SweepConfigurationV2
+    public function createSweep(string $balanceAccountId, \Adyen\Model\BalancePlatform\CreateSweepConfigurationV2 $createSweepConfigurationV2, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\SweepConfigurationV2
     {
         $endpoint = $this->baseURL . str_replace(['{balanceAccountId}'], [$balanceAccountId], "/balanceAccounts/{balanceAccountId}/sweeps");
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $createSweepConfigurationV2->jsonSerialize(), $requestOptions);
@@ -76,13 +76,14 @@ class BalanceAccountsApi extends Service
     * @param string $balanceAccountId
     * @param string $sweepId
     * @param array|null $requestOptions
-
+    
     * @throws AdyenException
     */
-    public function deleteSweep(string $balanceAccountId, string $sweepId, array $requestOptions = null)
+    public function deleteSweep(string $balanceAccountId, string $sweepId, ?array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{balanceAccountId}', '{sweepId}'], [$balanceAccountId, $sweepId], "/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
+        
     }
 
     /**
@@ -93,7 +94,7 @@ class BalanceAccountsApi extends Service
     * @return \Adyen\Model\BalancePlatform\BalanceSweepConfigurationsResponse
     * @throws AdyenException
     */
-    public function getAllSweepsForBalanceAccount(string $balanceAccountId, array $requestOptions = null): \Adyen\Model\BalancePlatform\BalanceSweepConfigurationsResponse
+    public function getAllSweepsForBalanceAccount(string $balanceAccountId, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\BalanceSweepConfigurationsResponse
     {
         $endpoint = $this->baseURL . str_replace(['{balanceAccountId}'], [$balanceAccountId], "/balanceAccounts/{balanceAccountId}/sweeps");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -108,7 +109,7 @@ class BalanceAccountsApi extends Service
     * @return \Adyen\Model\BalancePlatform\TransactionRulesResponse
     * @throws AdyenException
     */
-    public function getAllTransactionRulesForBalanceAccount(string $id, array $requestOptions = null): \Adyen\Model\BalancePlatform\TransactionRulesResponse
+    public function getAllTransactionRulesForBalanceAccount(string $id, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\TransactionRulesResponse
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/balanceAccounts/{id}/transactionRules");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -123,7 +124,7 @@ class BalanceAccountsApi extends Service
     * @return \Adyen\Model\BalancePlatform\BalanceAccount
     * @throws AdyenException
     */
-    public function getBalanceAccount(string $id, array $requestOptions = null): \Adyen\Model\BalancePlatform\BalanceAccount
+    public function getBalanceAccount(string $id, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\BalanceAccount
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/balanceAccounts/{id}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -138,7 +139,7 @@ class BalanceAccountsApi extends Service
     * @return \Adyen\Model\BalancePlatform\PaginatedPaymentInstrumentsResponse
     * @throws AdyenException
     */
-    public function getPaymentInstrumentsLinkedToBalanceAccount(string $id, array $requestOptions = null): \Adyen\Model\BalancePlatform\PaginatedPaymentInstrumentsResponse
+    public function getPaymentInstrumentsLinkedToBalanceAccount(string $id, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\PaginatedPaymentInstrumentsResponse
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/balanceAccounts/{id}/paymentInstruments");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -154,7 +155,7 @@ class BalanceAccountsApi extends Service
     * @return \Adyen\Model\BalancePlatform\SweepConfigurationV2
     * @throws AdyenException
     */
-    public function getSweep(string $balanceAccountId, string $sweepId, array $requestOptions = null): \Adyen\Model\BalancePlatform\SweepConfigurationV2
+    public function getSweep(string $balanceAccountId, string $sweepId, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\SweepConfigurationV2
     {
         $endpoint = $this->baseURL . str_replace(['{balanceAccountId}', '{sweepId}'], [$balanceAccountId, $sweepId], "/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -170,7 +171,7 @@ class BalanceAccountsApi extends Service
     * @return \Adyen\Model\BalancePlatform\BalanceAccount
     * @throws AdyenException
     */
-    public function updateBalanceAccount(string $id, \Adyen\Model\BalancePlatform\BalanceAccountUpdateRequest $balanceAccountUpdateRequest, array $requestOptions = null): \Adyen\Model\BalancePlatform\BalanceAccount
+    public function updateBalanceAccount(string $id, \Adyen\Model\BalancePlatform\BalanceAccountUpdateRequest $balanceAccountUpdateRequest, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\BalanceAccount
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/balanceAccounts/{id}");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $balanceAccountUpdateRequest->jsonSerialize(), $requestOptions);
@@ -187,7 +188,7 @@ class BalanceAccountsApi extends Service
     * @return \Adyen\Model\BalancePlatform\SweepConfigurationV2
     * @throws AdyenException
     */
-    public function updateSweep(string $balanceAccountId, string $sweepId, \Adyen\Model\BalancePlatform\UpdateSweepConfigurationV2 $updateSweepConfigurationV2, array $requestOptions = null): \Adyen\Model\BalancePlatform\SweepConfigurationV2
+    public function updateSweep(string $balanceAccountId, string $sweepId, \Adyen\Model\BalancePlatform\UpdateSweepConfigurationV2 $updateSweepConfigurationV2, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\SweepConfigurationV2
     {
         $endpoint = $this->baseURL . str_replace(['{balanceAccountId}', '{sweepId}'], [$balanceAccountId, $sweepId], "/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $updateSweepConfigurationV2->jsonSerialize(), $requestOptions);

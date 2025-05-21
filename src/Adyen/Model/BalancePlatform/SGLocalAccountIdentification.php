@@ -21,10 +21,7 @@ use Adyen\Model\BalancePlatform\ObjectSerializer;
 /**
  * SGLocalAccountIdentification Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class SGLocalAccountIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -253,7 +250,7 @@ class SGLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('accountNumber', $data ?? [], null);
         $this->setIfExists('bic', $data ?? [], null);

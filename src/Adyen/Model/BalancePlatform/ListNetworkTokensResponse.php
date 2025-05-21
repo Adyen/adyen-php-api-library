@@ -21,10 +21,7 @@ use Adyen\Model\BalancePlatform\ObjectSerializer;
 /**
  * ListNetworkTokensResponse Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class ListNetworkTokensResponse implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -229,7 +226,7 @@ class ListNetworkTokensResponse implements ModelInterface, ArrayAccess, \JsonSer
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('networkTokens', $data ?? [], null);
     }

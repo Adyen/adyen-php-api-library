@@ -21,10 +21,7 @@ use Adyen\Model\BalancePlatform\ObjectSerializer;
 /**
  * UpdatePaymentInstrument Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -53,6 +50,8 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
         'issuingCountryCode' => 'string',
         'paymentInstrumentGroupId' => 'string',
         'reference' => 'string',
+        'replacedById' => 'string',
+        'replacementOfId' => 'string',
         'status' => 'string',
         'statusComment' => 'string',
         'statusReason' => 'string',
@@ -76,6 +75,8 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
         'issuingCountryCode' => null,
         'paymentInstrumentGroupId' => null,
         'reference' => null,
+        'replacedById' => null,
+        'replacementOfId' => null,
         'status' => null,
         'statusComment' => null,
         'statusReason' => null,
@@ -97,6 +98,8 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
         'issuingCountryCode' => false,
         'paymentInstrumentGroupId' => false,
         'reference' => false,
+        'replacedById' => false,
+        'replacementOfId' => false,
         'status' => false,
         'statusComment' => false,
         'statusReason' => false,
@@ -198,6 +201,8 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
         'issuingCountryCode' => 'issuingCountryCode',
         'paymentInstrumentGroupId' => 'paymentInstrumentGroupId',
         'reference' => 'reference',
+        'replacedById' => 'replacedById',
+        'replacementOfId' => 'replacementOfId',
         'status' => 'status',
         'statusComment' => 'statusComment',
         'statusReason' => 'statusReason',
@@ -219,6 +224,8 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
         'issuingCountryCode' => 'setIssuingCountryCode',
         'paymentInstrumentGroupId' => 'setPaymentInstrumentGroupId',
         'reference' => 'setReference',
+        'replacedById' => 'setReplacedById',
+        'replacementOfId' => 'setReplacementOfId',
         'status' => 'setStatus',
         'statusComment' => 'setStatusComment',
         'statusReason' => 'setStatusReason',
@@ -240,6 +247,8 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
         'issuingCountryCode' => 'getIssuingCountryCode',
         'paymentInstrumentGroupId' => 'getPaymentInstrumentGroupId',
         'reference' => 'getReference',
+        'replacedById' => 'getReplacedById',
+        'replacementOfId' => 'getReplacementOfId',
         'status' => 'getStatus',
         'statusComment' => 'getStatusComment',
         'statusReason' => 'getStatusReason',
@@ -361,7 +370,7 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('additionalBankAccountIdentifications', $data ?? [], null);
         $this->setIfExists('balanceAccountId', $data ?? [], null);
@@ -372,6 +381,8 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('issuingCountryCode', $data ?? [], null);
         $this->setIfExists('paymentInstrumentGroupId', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
+        $this->setIfExists('replacedById', $data ?? [], null);
+        $this->setIfExists('replacementOfId', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('statusComment', $data ?? [], null);
         $this->setIfExists('statusReason', $data ?? [], null);
@@ -673,6 +684,54 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
     public function setReference($reference)
     {
         $this->container['reference'] = $reference;
+
+        return $this;
+    }
+
+    /**
+     * Gets replacedById
+     *
+     * @return string|null
+     */
+    public function getReplacedById()
+    {
+        return $this->container['replacedById'];
+    }
+
+    /**
+     * Sets replacedById
+     *
+     * @param string|null $replacedById The unique identifier of the payment instrument that replaced this payment instrument.
+     *
+     * @return self
+     */
+    public function setReplacedById($replacedById)
+    {
+        $this->container['replacedById'] = $replacedById;
+
+        return $this;
+    }
+
+    /**
+     * Gets replacementOfId
+     *
+     * @return string|null
+     */
+    public function getReplacementOfId()
+    {
+        return $this->container['replacementOfId'];
+    }
+
+    /**
+     * Sets replacementOfId
+     *
+     * @param string|null $replacementOfId The unique identifier of the payment instrument that is replaced by this payment instrument.
+     *
+     * @return self
+     */
+    public function setReplacementOfId($replacementOfId)
+    {
+        $this->container['replacementOfId'] = $replacementOfId;
 
         return $this;
     }
