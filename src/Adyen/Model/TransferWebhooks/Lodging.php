@@ -19,12 +19,12 @@ use \ArrayAccess;
 use Adyen\Model\TransferWebhooks\ObjectSerializer;
 
 /**
- * AmountAdjustment Class Doc Comment
+ * Lodging Class Doc Comment
  *
  * @package  Adyen
  * @implements \ArrayAccess<string, mixed>
  */
-class AmountAdjustment implements ModelInterface, ArrayAccess, \JsonSerializable
+class Lodging implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class AmountAdjustment implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'AmountAdjustment';
+    protected static $openAPIModelName = 'Lodging';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,8 @@ class AmountAdjustment implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'amount' => '\Adyen\Model\TransferWebhooks\Amount',
-        'amountAdjustmentType' => 'string',
-        'basepoints' => 'int'
+        'checkInDate' => 'string',
+        'numberOfNights' => 'int'
     ];
 
     /**
@@ -54,9 +53,8 @@ class AmountAdjustment implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'amount' => null,
-        'amountAdjustmentType' => null,
-        'basepoints' => 'int32'
+        'checkInDate' => null,
+        'numberOfNights' => 'int32'
     ];
 
     /**
@@ -65,9 +63,8 @@ class AmountAdjustment implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'amount' => false,
-        'amountAdjustmentType' => false,
-        'basepoints' => true
+        'checkInDate' => false,
+        'numberOfNights' => true
     ];
 
     /**
@@ -156,9 +153,8 @@ class AmountAdjustment implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'amount' => 'amount',
-        'amountAdjustmentType' => 'amountAdjustmentType',
-        'basepoints' => 'basepoints'
+        'checkInDate' => 'checkInDate',
+        'numberOfNights' => 'numberOfNights'
     ];
 
     /**
@@ -167,9 +163,8 @@ class AmountAdjustment implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'amount' => 'setAmount',
-        'amountAdjustmentType' => 'setAmountAdjustmentType',
-        'basepoints' => 'setBasepoints'
+        'checkInDate' => 'setCheckInDate',
+        'numberOfNights' => 'setNumberOfNights'
     ];
 
     /**
@@ -178,9 +173,8 @@ class AmountAdjustment implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'amount' => 'getAmount',
-        'amountAdjustmentType' => 'getAmountAdjustmentType',
-        'basepoints' => 'getBasepoints'
+        'checkInDate' => 'getCheckInDate',
+        'numberOfNights' => 'getNumberOfNights'
     ];
 
     /**
@@ -224,25 +218,7 @@ class AmountAdjustment implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const AMOUNT_ADJUSTMENT_TYPE_ATM_MARKUP = 'atmMarkup';
-    public const AMOUNT_ADJUSTMENT_TYPE_AUTH_HOLD_RESERVE = 'authHoldReserve';
-    public const AMOUNT_ADJUSTMENT_TYPE_EXCHANGE = 'exchange';
-    public const AMOUNT_ADJUSTMENT_TYPE_FOREX_MARKUP = 'forexMarkup';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getAmountAdjustmentTypeAllowableValues()
-    {
-        return [
-            self::AMOUNT_ADJUSTMENT_TYPE_ATM_MARKUP,
-            self::AMOUNT_ADJUSTMENT_TYPE_AUTH_HOLD_RESERVE,
-            self::AMOUNT_ADJUSTMENT_TYPE_EXCHANGE,
-            self::AMOUNT_ADJUSTMENT_TYPE_FOREX_MARKUP,
-        ];
-    }
     /**
      * Associative array for storing property values
      *
@@ -258,9 +234,8 @@ class AmountAdjustment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('amount', $data ?? [], null);
-        $this->setIfExists('amountAdjustmentType', $data ?? [], null);
-        $this->setIfExists('basepoints', $data ?? [], null);
+        $this->setIfExists('checkInDate', $data ?? [], null);
+        $this->setIfExists('numberOfNights', $data ?? [], null);
     }
 
     /**
@@ -290,15 +265,6 @@ class AmountAdjustment implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getAmountAdjustmentTypeAllowableValues();
-        if (!is_null($this->container['amountAdjustmentType']) && !in_array($this->container['amountAdjustmentType'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'amountAdjustmentType', must be one of '%s'",
-                $this->container['amountAdjustmentType'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -315,83 +281,49 @@ class AmountAdjustment implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets amount
-     *
-     * @return \Adyen\Model\TransferWebhooks\Amount|null
-     */
-    public function getAmount()
-    {
-        return $this->container['amount'];
-    }
-
-    /**
-     * Sets amount
-     *
-     * @param \Adyen\Model\TransferWebhooks\Amount|null $amount amount
-     *
-     * @return self
-     */
-    public function setAmount($amount)
-    {
-        $this->container['amount'] = $amount;
-
-        return $this;
-    }
-
-    /**
-     * Gets amountAdjustmentType
+     * Gets checkInDate
      *
      * @return string|null
      */
-    public function getAmountAdjustmentType()
+    public function getCheckInDate()
     {
-        return $this->container['amountAdjustmentType'];
+        return $this->container['checkInDate'];
     }
 
     /**
-     * Sets amountAdjustmentType
+     * Sets checkInDate
      *
-     * @param string|null $amountAdjustmentType The type of markup that is applied to an authorised payment.  Possible values: **exchange**, **forexMarkup**, **authHoldReserve**, **atmMarkup**.
+     * @param string|null $checkInDate The check-in date.
      *
      * @return self
      */
-    public function setAmountAdjustmentType($amountAdjustmentType)
+    public function setCheckInDate($checkInDate)
     {
-        $allowedValues = $this->getAmountAdjustmentTypeAllowableValues();
-        if (!in_array($amountAdjustmentType, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'amountAdjustmentType', must be one of '%s'",
-                    $amountAdjustmentType,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['amountAdjustmentType'] = $amountAdjustmentType;
+        $this->container['checkInDate'] = $checkInDate;
 
         return $this;
     }
 
     /**
-     * Gets basepoints
+     * Gets numberOfNights
      *
      * @return int|null
      */
-    public function getBasepoints()
+    public function getNumberOfNights()
     {
-        return $this->container['basepoints'];
+        return $this->container['numberOfNights'];
     }
 
     /**
-     * Sets basepoints
+     * Sets numberOfNights
      *
-     * @param int|null $basepoints The basepoints associated with the applied markup.
+     * @param int|null $numberOfNights The total number of nights the room is booked for.
      *
      * @return self
      */
-    public function setBasepoints($basepoints)
+    public function setNumberOfNights($numberOfNights)
     {
-        $this->container['basepoints'] = $basepoints;
+        $this->container['numberOfNights'] = $numberOfNights;
 
         return $this;
     }

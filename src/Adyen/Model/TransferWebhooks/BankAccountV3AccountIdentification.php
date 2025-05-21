@@ -21,11 +21,9 @@ use Adyen\Model\TransferWebhooks\ObjectSerializer;
 /**
  * BankAccountV3AccountIdentification Class Doc Comment
  *
- * @category Class
- * @description Contains the bank account details. The fields required in this object depend on the country of the bank account and the currency of the transfer.
+ * Contains the bank account details. The fields required in this object depend on the country of the bank account and the currency of the transfer.
+ *
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -319,7 +317,7 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('accountNumber', $data ?? [], null);
         $this->setIfExists('bsbCode', $data ?? [], null);

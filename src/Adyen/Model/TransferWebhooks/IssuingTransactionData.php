@@ -19,12 +19,12 @@ use \ArrayAccess;
 use Adyen\Model\TransferWebhooks\ObjectSerializer;
 
 /**
- * AmountAdjustment Class Doc Comment
+ * IssuingTransactionData Class Doc Comment
  *
  * @package  Adyen
  * @implements \ArrayAccess<string, mixed>
  */
-class AmountAdjustment implements ModelInterface, ArrayAccess, \JsonSerializable
+class IssuingTransactionData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class AmountAdjustment implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'AmountAdjustment';
+    protected static $openAPIModelName = 'IssuingTransactionData';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,8 @@ class AmountAdjustment implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'amount' => '\Adyen\Model\TransferWebhooks\Amount',
-        'amountAdjustmentType' => 'string',
-        'basepoints' => 'int'
+        'captureCycleId' => 'string',
+        'type' => 'string'
     ];
 
     /**
@@ -54,9 +53,8 @@ class AmountAdjustment implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'amount' => null,
-        'amountAdjustmentType' => null,
-        'basepoints' => 'int32'
+        'captureCycleId' => null,
+        'type' => null
     ];
 
     /**
@@ -65,9 +63,8 @@ class AmountAdjustment implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'amount' => false,
-        'amountAdjustmentType' => false,
-        'basepoints' => true
+        'captureCycleId' => false,
+        'type' => false
     ];
 
     /**
@@ -156,9 +153,8 @@ class AmountAdjustment implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'amount' => 'amount',
-        'amountAdjustmentType' => 'amountAdjustmentType',
-        'basepoints' => 'basepoints'
+        'captureCycleId' => 'captureCycleId',
+        'type' => 'type'
     ];
 
     /**
@@ -167,9 +163,8 @@ class AmountAdjustment implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'amount' => 'setAmount',
-        'amountAdjustmentType' => 'setAmountAdjustmentType',
-        'basepoints' => 'setBasepoints'
+        'captureCycleId' => 'setCaptureCycleId',
+        'type' => 'setType'
     ];
 
     /**
@@ -178,9 +173,8 @@ class AmountAdjustment implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'amount' => 'getAmount',
-        'amountAdjustmentType' => 'getAmountAdjustmentType',
-        'basepoints' => 'getBasepoints'
+        'captureCycleId' => 'getCaptureCycleId',
+        'type' => 'getType'
     ];
 
     /**
@@ -224,23 +218,17 @@ class AmountAdjustment implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const AMOUNT_ADJUSTMENT_TYPE_ATM_MARKUP = 'atmMarkup';
-    public const AMOUNT_ADJUSTMENT_TYPE_AUTH_HOLD_RESERVE = 'authHoldReserve';
-    public const AMOUNT_ADJUSTMENT_TYPE_EXCHANGE = 'exchange';
-    public const AMOUNT_ADJUSTMENT_TYPE_FOREX_MARKUP = 'forexMarkup';
+    public const TYPE_ISSUING_TRANSACTION_DATA = 'issuingTransactionData';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getAmountAdjustmentTypeAllowableValues()
+    public function getTypeAllowableValues()
     {
         return [
-            self::AMOUNT_ADJUSTMENT_TYPE_ATM_MARKUP,
-            self::AMOUNT_ADJUSTMENT_TYPE_AUTH_HOLD_RESERVE,
-            self::AMOUNT_ADJUSTMENT_TYPE_EXCHANGE,
-            self::AMOUNT_ADJUSTMENT_TYPE_FOREX_MARKUP,
+            self::TYPE_ISSUING_TRANSACTION_DATA,
         ];
     }
     /**
@@ -258,9 +246,8 @@ class AmountAdjustment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('amount', $data ?? [], null);
-        $this->setIfExists('amountAdjustmentType', $data ?? [], null);
-        $this->setIfExists('basepoints', $data ?? [], null);
+        $this->setIfExists('captureCycleId', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -290,11 +277,14 @@ class AmountAdjustment implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getAmountAdjustmentTypeAllowableValues();
-        if (!is_null($this->container['amountAdjustmentType']) && !in_array($this->container['amountAdjustmentType'], $allowedValues, true)) {
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'amountAdjustmentType', must be one of '%s'",
-                $this->container['amountAdjustmentType'],
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
                 implode("', '", $allowedValues)
             );
         }
@@ -315,83 +305,59 @@ class AmountAdjustment implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets amount
+     * Gets captureCycleId
      *
-     * @return \Adyen\Model\TransferWebhooks\Amount|null
+     * @return string|null
      */
-    public function getAmount()
+    public function getCaptureCycleId()
     {
-        return $this->container['amount'];
+        return $this->container['captureCycleId'];
     }
 
     /**
-     * Sets amount
+     * Sets captureCycleId
      *
-     * @param \Adyen\Model\TransferWebhooks\Amount|null $amount amount
+     * @param string|null $captureCycleId captureCycleId associated with transfer event.
      *
      * @return self
      */
-    public function setAmount($amount)
+    public function setCaptureCycleId($captureCycleId)
     {
-        $this->container['amount'] = $amount;
+        $this->container['captureCycleId'] = $captureCycleId;
 
         return $this;
     }
 
     /**
-     * Gets amountAdjustmentType
+     * Gets type
      *
-     * @return string|null
+     * @return string
      */
-    public function getAmountAdjustmentType()
+    public function getType()
     {
-        return $this->container['amountAdjustmentType'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets amountAdjustmentType
+     * Sets type
      *
-     * @param string|null $amountAdjustmentType The type of markup that is applied to an authorised payment.  Possible values: **exchange**, **forexMarkup**, **authHoldReserve**, **atmMarkup**.
+     * @param string $type The type of events data.   Possible values:    - **issuingTransactionData**: issuing transaction data
      *
      * @return self
      */
-    public function setAmountAdjustmentType($amountAdjustmentType)
+    public function setType($type)
     {
-        $allowedValues = $this->getAmountAdjustmentTypeAllowableValues();
-        if (!in_array($amountAdjustmentType, $allowedValues, true)) {
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value '%s' for 'amountAdjustmentType', must be one of '%s'",
-                    $amountAdjustmentType,
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
                     implode("', '", $allowedValues)
                 )
             );
         }
-        $this->container['amountAdjustmentType'] = $amountAdjustmentType;
-
-        return $this;
-    }
-
-    /**
-     * Gets basepoints
-     *
-     * @return int|null
-     */
-    public function getBasepoints()
-    {
-        return $this->container['basepoints'];
-    }
-
-    /**
-     * Sets basepoints
-     *
-     * @param int|null $basepoints The basepoints associated with the applied markup.
-     *
-     * @return self
-     */
-    public function setBasepoints($basepoints)
-    {
-        $this->container['basepoints'] = $basepoints;
+        $this->container['type'] = $type;
 
         return $this;
     }
