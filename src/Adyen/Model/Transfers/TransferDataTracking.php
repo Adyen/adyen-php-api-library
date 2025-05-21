@@ -21,11 +21,9 @@ use Adyen\Model\Transfers\ObjectSerializer;
 /**
  * TransferDataTracking Class Doc Comment
  *
- * @category Class
- * @description The latest tracking information of the transfer.
+ * The latest tracking information of the transfer.
+ *
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class TransferDataTracking implements ModelInterface, ArrayAccess, \JsonSerializable

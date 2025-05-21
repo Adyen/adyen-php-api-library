@@ -21,11 +21,9 @@ use Adyen\Model\Transfers\ObjectSerializer;
 /**
  * TransferCategoryData Class Doc Comment
  *
- * @category Class
- * @description The relevant data according to the transfer category.
+ * The relevant data according to the transfer category.
+ *
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class TransferCategoryData implements ModelInterface, ArrayAccess, \JsonSerializable
