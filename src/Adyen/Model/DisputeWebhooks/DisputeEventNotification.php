@@ -21,10 +21,7 @@ use Adyen\Model\DisputeWebhooks\ObjectSerializer;
 /**
  * DisputeEventNotification Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class DisputeEventNotification implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -271,6 +268,7 @@ class DisputeEventNotification implements ModelInterface, ArrayAccess, \JsonSeri
 
     public const TYPE_FRAUD = 'fraud';
     public const TYPE_NOT_DELIVERED = 'notDelivered';
+    public const TYPE_DUPLICATE = 'duplicate';
 
     /**
      * Gets allowable values of the enum
@@ -282,6 +280,7 @@ class DisputeEventNotification implements ModelInterface, ArrayAccess, \JsonSeri
         return [
             self::TYPE_FRAUD,
             self::TYPE_NOT_DELIVERED,
+            self::TYPE_DUPLICATE,
         ];
     }
     /**
@@ -297,7 +296,7 @@ class DisputeEventNotification implements ModelInterface, ArrayAccess, \JsonSeri
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('arn', $data ?? [], null);
         $this->setIfExists('balancePlatform', $data ?? [], null);
