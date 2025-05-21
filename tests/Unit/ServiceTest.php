@@ -57,4 +57,44 @@ class ServiceTest extends TestCaseMock
         $url = $service->createBaseUrl("https://kyc-test.adyen.com/lem/v3/legalEntities");
         self::assertEquals("https://kyc-live.adyen.com/lem/v3/legalEntities", $url);
     }
+
+    // test PosMobileApi LIVE url with prefix
+    public function testLiveURLPosSdkWithPrefix()
+    {
+        $client = new Client();
+        $client->setEnvironment(Environment::LIVE, "myCompany");
+        $service = new Service($client);
+        $url = $service->createBaseUrl("https://checkout-test.adyen.com/checkout/possdk/v68");
+        self::assertEquals(
+            "https://myCompany-checkout-live.adyenpayments.com/checkout/possdk/v68",
+            $url
+        );
+    }
+
+    // test PosMobileApi TEST url without prefx
+    public function testTestURLPosSdk()
+    {
+        $client = new Client();
+        $client->setEnvironment(Environment::TEST);
+        $service = new Service($client);
+        $url = $service->createBaseUrl("https://checkout-test.adyen.com/checkout/possdk/v68");
+        self::assertEquals(
+            "https://checkout-test.adyen.com/checkout/possdk/v68",
+            $url
+        );
+    }
+
+    // test PosMobileApi TEST url with prefix
+    public function testTestURLPosSdkWithPrefix()
+    {
+        $client = new Client();
+        $client->setEnvironment(Environment::TEST, "myCompany");
+        $service = new Service($client);
+        $url = $service->createBaseUrl("https://checkout-test.adyen.com/checkout/possdk/v68");
+        // check prefix is ignored on TEST
+        self::assertEquals(
+            "https://checkout-test.adyen.com/checkout/possdk/v68",
+            $url
+        );
+    }
 }
