@@ -21,11 +21,9 @@ use Adyen\Model\LegalEntityManagement\ObjectSerializer;
 /**
  * BankAccountInfoAccountIdentification Class Doc Comment
  *
- * @category Class
- * @description Identification of the bank account.
+ * Identification of the bank account.
+ *
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class BankAccountInfoAccountIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
