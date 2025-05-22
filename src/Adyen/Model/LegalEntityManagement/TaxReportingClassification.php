@@ -21,10 +21,7 @@ use Adyen\Model\LegalEntityManagement\ObjectSerializer;
 /**
  * TaxReportingClassification Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class TaxReportingClassification implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -307,7 +304,7 @@ class TaxReportingClassification implements ModelInterface, ArrayAccess, \JsonSe
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('businessType', $data ?? [], null);
         $this->setIfExists('financialInstitutionNumber', $data ?? [], null);

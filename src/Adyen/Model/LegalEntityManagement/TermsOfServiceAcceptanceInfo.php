@@ -21,10 +21,7 @@ use Adyen\Model\LegalEntityManagement\ObjectSerializer;
 /**
  * TermsOfServiceAcceptanceInfo Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -48,7 +45,8 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
         'acceptedFor' => 'string',
         'createdAt' => '\DateTime',
         'id' => 'string',
-        'type' => 'string'
+        'type' => 'string',
+        'validTo' => '\DateTime'
     ];
 
     /**
@@ -63,7 +61,8 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
         'acceptedFor' => null,
         'createdAt' => 'date-time',
         'id' => null,
-        'type' => null
+        'type' => null,
+        'validTo' => 'date-time'
     ];
 
     /**
@@ -76,7 +75,8 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
         'acceptedFor' => false,
         'createdAt' => false,
         'id' => false,
-        'type' => false
+        'type' => false,
+        'validTo' => false
     ];
 
     /**
@@ -169,7 +169,8 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
         'acceptedFor' => 'acceptedFor',
         'createdAt' => 'createdAt',
         'id' => 'id',
-        'type' => 'type'
+        'type' => 'type',
+        'validTo' => 'validTo'
     ];
 
     /**
@@ -182,7 +183,8 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
         'acceptedFor' => 'setAcceptedFor',
         'createdAt' => 'setCreatedAt',
         'id' => 'setId',
-        'type' => 'setType'
+        'type' => 'setType',
+        'validTo' => 'setValidTo'
     ];
 
     /**
@@ -195,7 +197,8 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
         'acceptedFor' => 'getAcceptedFor',
         'createdAt' => 'getCreatedAt',
         'id' => 'getId',
-        'type' => 'getType'
+        'type' => 'getType',
+        'validTo' => 'getValidTo'
     ];
 
     /**
@@ -248,6 +251,7 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
     public const TYPE_ADYEN_FRANCHISEE = 'adyenFranchisee';
     public const TYPE_ADYEN_ISSUING = 'adyenIssuing';
     public const TYPE_ADYEN_PCCR = 'adyenPccr';
+    public const TYPE_KYC_ON_INVITE = 'kycOnInvite';
 
     /**
      * Gets allowable values of the enum
@@ -266,6 +270,7 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
             self::TYPE_ADYEN_FRANCHISEE,
             self::TYPE_ADYEN_ISSUING,
             self::TYPE_ADYEN_PCCR,
+            self::TYPE_KYC_ON_INVITE,
         ];
     }
     /**
@@ -281,13 +286,14 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('acceptedBy', $data ?? [], null);
         $this->setIfExists('acceptedFor', $data ?? [], null);
         $this->setIfExists('createdAt', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('validTo', $data ?? [], null);
     }
 
     /**
@@ -402,7 +408,7 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets createdAt
      *
-     * @param \DateTime|null $createdAt The date when the Terms of Service were accepted.
+     * @param \DateTime|null $createdAt The date when the Terms of Service were accepted, in ISO 8601 extended format. For example, 2022-12-18T10:15:30+01:00.
      *
      * @return self
      */
@@ -450,7 +456,7 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets type
      *
-     * @param string|null $type The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard**
+     * @param string|null $type The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard** *  **kycOnInvite**
      *
      * @return self
      */
@@ -467,6 +473,30 @@ class TermsOfServiceAcceptanceInfo implements ModelInterface, ArrayAccess, \Json
             );
         }
         $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets validTo
+     *
+     * @return \DateTime|null
+     */
+    public function getValidTo()
+    {
+        return $this->container['validTo'];
+    }
+
+    /**
+     * Sets validTo
+     *
+     * @param \DateTime|null $validTo The expiration date for the Terms of Service acceptance, in ISO 8601 extended format. For example, 2022-12-18T00:00:00+01:00.
+     *
+     * @return self
+     */
+    public function setValidTo($validTo)
+    {
+        $this->container['validTo'] = $validTo;
 
         return $this;
     }

@@ -21,10 +21,7 @@ use Adyen\Model\LegalEntityManagement\ObjectSerializer;
 /**
  * FinancialReport Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class FinancialReport implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -259,7 +256,7 @@ class FinancialReport implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('annualTurnover', $data ?? [], null);
         $this->setIfExists('balanceSheetTotal', $data ?? [], null);
@@ -296,6 +293,9 @@ class FinancialReport implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['dateOfFinancialData'] === null) {
+            $invalidProperties[] = "'dateOfFinancialData' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -372,7 +372,7 @@ class FinancialReport implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets currencyOfFinancialData
      *
-     * @param string|null $currencyOfFinancialData The currency used for the net assets and balance sheet total.
+     * @param string|null $currencyOfFinancialData The currency used for the annual turnover, balance sheet total, and net assets.
      *
      * @return self
      */
@@ -386,7 +386,7 @@ class FinancialReport implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets dateOfFinancialData
      *
-     * @return string|null
+     * @return string
      */
     public function getDateOfFinancialData()
     {
@@ -396,7 +396,7 @@ class FinancialReport implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets dateOfFinancialData
      *
-     * @param string|null $dateOfFinancialData The date the financial data were provided, in YYYY-MM-DD format.
+     * @param string $dateOfFinancialData The date the financial data were provided, in YYYY-MM-DD format.
      *
      * @return self
      */

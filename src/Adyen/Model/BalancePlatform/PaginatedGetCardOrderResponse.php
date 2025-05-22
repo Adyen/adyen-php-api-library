@@ -21,10 +21,7 @@ use Adyen\Model\BalancePlatform\ObjectSerializer;
 /**
  * PaginatedGetCardOrderResponse Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class PaginatedGetCardOrderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -241,7 +238,7 @@ class PaginatedGetCardOrderResponse implements ModelInterface, ArrayAccess, \Jso
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('cardOrders', $data ?? [], null);
         $this->setIfExists('hasNext', $data ?? [], null);

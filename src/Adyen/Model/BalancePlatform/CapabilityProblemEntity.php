@@ -21,10 +21,7 @@ use Adyen\Model\BalancePlatform\ObjectSerializer;
 /**
  * CapabilityProblemEntity Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class CapabilityProblemEntity implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -263,7 +260,7 @@ class CapabilityProblemEntity implements ModelInterface, ArrayAccess, \JsonSeria
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('documents', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);

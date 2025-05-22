@@ -21,10 +21,7 @@ use Adyen\Model\LegalEntityManagement\ObjectSerializer;
 /**
  * AcceptTermsOfServiceResponse Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class AcceptTermsOfServiceResponse implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -254,6 +251,7 @@ class AcceptTermsOfServiceResponse implements ModelInterface, ArrayAccess, \Json
     public const TYPE_ADYEN_FRANCHISEE = 'adyenFranchisee';
     public const TYPE_ADYEN_ISSUING = 'adyenIssuing';
     public const TYPE_ADYEN_PCCR = 'adyenPccr';
+    public const TYPE_KYC_ON_INVITE = 'kycOnInvite';
 
     /**
      * Gets allowable values of the enum
@@ -272,6 +270,7 @@ class AcceptTermsOfServiceResponse implements ModelInterface, ArrayAccess, \Json
             self::TYPE_ADYEN_FRANCHISEE,
             self::TYPE_ADYEN_ISSUING,
             self::TYPE_ADYEN_PCCR,
+            self::TYPE_KYC_ON_INVITE,
         ];
     }
     /**
@@ -287,7 +286,7 @@ class AcceptTermsOfServiceResponse implements ModelInterface, ArrayAccess, \Json
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('acceptedBy', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
@@ -481,7 +480,7 @@ class AcceptTermsOfServiceResponse implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets type
      *
-     * @param string|null $type The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard**
+     * @param string|null $type The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard** *  **kycOnInvite**
      *
      * @return self
      */

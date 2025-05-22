@@ -42,12 +42,13 @@ class BalanceControlApi extends Service
     /**
     * Start a balance transfer
     *
+    * @deprecated since Adyen Balance Control API v1.
     * @param \Adyen\Model\BalanceControl\BalanceTransferRequest $balanceTransferRequest
     * @param array|null $requestOptions
     * @return \Adyen\Model\BalanceControl\BalanceTransferResponse
     * @throws AdyenException
     */
-    public function balanceTransfer(\Adyen\Model\BalanceControl\BalanceTransferRequest $balanceTransferRequest, array $requestOptions = null): \Adyen\Model\BalanceControl\BalanceTransferResponse
+    public function balanceTransfer(\Adyen\Model\BalanceControl\BalanceTransferRequest $balanceTransferRequest, ?array $requestOptions = null): \Adyen\Model\BalanceControl\BalanceTransferResponse
     {
         $endpoint = $this->baseURL . "/balanceTransfer";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $balanceTransferRequest->jsonSerialize(), $requestOptions);

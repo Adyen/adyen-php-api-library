@@ -21,10 +21,7 @@ use Adyen\Model\LegalEntityManagement\ObjectSerializer;
 /**
  * CalculateTermsOfServiceStatusResponse Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class CalculateTermsOfServiceStatusResponse implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -224,6 +221,7 @@ class CalculateTermsOfServiceStatusResponse implements ModelInterface, ArrayAcce
     public const TERMS_OF_SERVICE_TYPES_ADYEN_FRANCHISEE = 'adyenFranchisee';
     public const TERMS_OF_SERVICE_TYPES_ADYEN_ISSUING = 'adyenIssuing';
     public const TERMS_OF_SERVICE_TYPES_ADYEN_PCCR = 'adyenPccr';
+    public const TERMS_OF_SERVICE_TYPES_KYC_ON_INVITE = 'kycOnInvite';
 
     /**
      * Gets allowable values of the enum
@@ -242,6 +240,7 @@ class CalculateTermsOfServiceStatusResponse implements ModelInterface, ArrayAcce
             self::TERMS_OF_SERVICE_TYPES_ADYEN_FRANCHISEE,
             self::TERMS_OF_SERVICE_TYPES_ADYEN_ISSUING,
             self::TERMS_OF_SERVICE_TYPES_ADYEN_PCCR,
+            self::TERMS_OF_SERVICE_TYPES_KYC_ON_INVITE,
         ];
     }
     /**
@@ -257,7 +256,7 @@ class CalculateTermsOfServiceStatusResponse implements ModelInterface, ArrayAcce
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('termsOfServiceTypes', $data ?? [], null);
     }

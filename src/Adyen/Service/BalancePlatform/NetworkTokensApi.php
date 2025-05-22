@@ -47,7 +47,7 @@ class NetworkTokensApi extends Service
     * @return \Adyen\Model\BalancePlatform\GetNetworkTokenResponse
     * @throws AdyenException
     */
-    public function getNetworkToken(string $networkTokenId, array $requestOptions = null): \Adyen\Model\BalancePlatform\GetNetworkTokenResponse
+    public function getNetworkToken(string $networkTokenId, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\GetNetworkTokenResponse
     {
         $endpoint = $this->baseURL . str_replace(['{networkTokenId}'], [$networkTokenId], "/networkTokens/{networkTokenId}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -63,7 +63,7 @@ class NetworkTokensApi extends Service
 
     * @throws AdyenException
     */
-    public function updateNetworkToken(string $networkTokenId, \Adyen\Model\BalancePlatform\UpdateNetworkTokenRequest $updateNetworkTokenRequest, array $requestOptions = null)
+    public function updateNetworkToken(string $networkTokenId, \Adyen\Model\BalancePlatform\UpdateNetworkTokenRequest $updateNetworkTokenRequest, ?array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{networkTokenId}'], [$networkTokenId], "/networkTokens/{networkTokenId}");
         $this->requestHttp($endpoint, strtolower('PATCH'), (array) $updateNetworkTokenRequest->jsonSerialize(), $requestOptions);

@@ -21,10 +21,7 @@ use Adyen\Model\Transfers\ObjectSerializer;
 /**
  * TransactionEventViolation Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class TransactionEventViolation implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -241,7 +238,7 @@ class TransactionEventViolation implements ModelInterface, ArrayAccess, \JsonSer
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('reason', $data ?? [], null);
         $this->setIfExists('transactionRule', $data ?? [], null);

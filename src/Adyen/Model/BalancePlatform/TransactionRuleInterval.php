@@ -21,10 +21,7 @@ use Adyen\Model\BalancePlatform\ObjectSerializer;
 /**
  * TransactionRuleInterval Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class TransactionRuleInterval implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -307,7 +304,7 @@ class TransactionRuleInterval implements ModelInterface, ArrayAccess, \JsonSeria
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('dayOfMonth', $data ?? [], null);
         $this->setIfExists('dayOfWeek', $data ?? [], null);

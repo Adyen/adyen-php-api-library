@@ -21,10 +21,7 @@ use Adyen\Model\Transfers\ObjectSerializer;
 /**
  * TransferNotificationMerchantData Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class TransferNotificationMerchantData implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -265,7 +262,7 @@ class TransferNotificationMerchantData implements ModelInterface, ArrayAccess, \
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('acquirerId', $data ?? [], null);
         $this->setIfExists('city', $data ?? [], null);
@@ -427,7 +424,7 @@ class TransferNotificationMerchantData implements ModelInterface, ArrayAccess, \
     /**
      * Sets merchantId
      *
-     * @param string|null $merchantId The merchant identifier.
+     * @param string|null $merchantId The unique identifier of the merchant.
      *
      * @return self
      */
@@ -475,7 +472,7 @@ class TransferNotificationMerchantData implements ModelInterface, ArrayAccess, \
     /**
      * Sets postalCode
      *
-     * @param string|null $postalCode The merchant postal code.
+     * @param string|null $postalCode The postal code of the merchant.
      *
      * @return self
      */
