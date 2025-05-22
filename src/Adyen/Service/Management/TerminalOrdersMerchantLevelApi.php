@@ -48,7 +48,7 @@ class TerminalOrdersMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\TerminalOrder
     * @throws AdyenException
     */
-    public function cancelOrder(string $merchantId, string $orderId, array $requestOptions = null): \Adyen\Model\Management\TerminalOrder
+    public function cancelOrder(string $merchantId, string $orderId, ?array $requestOptions = null): \Adyen\Model\Management\TerminalOrder
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{orderId}'], [$merchantId, $orderId], "/merchants/{merchantId}/terminalOrders/{orderId}/cancel");
         $response = $this->requestHttp($endpoint, strtolower('POST'), null, $requestOptions);
@@ -64,7 +64,7 @@ class TerminalOrdersMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\TerminalOrder
     * @throws AdyenException
     */
-    public function createOrder(string $merchantId, \Adyen\Model\Management\TerminalOrderRequest $terminalOrderRequest, array $requestOptions = null): \Adyen\Model\Management\TerminalOrder
+    public function createOrder(string $merchantId, \Adyen\Model\Management\TerminalOrderRequest $terminalOrderRequest, ?array $requestOptions = null): \Adyen\Model\Management\TerminalOrder
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}'], [$merchantId], "/merchants/{merchantId}/terminalOrders");
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $terminalOrderRequest->jsonSerialize(), $requestOptions);
@@ -80,7 +80,7 @@ class TerminalOrdersMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\ShippingLocation
     * @throws AdyenException
     */
-    public function createShippingLocation(string $merchantId, \Adyen\Model\Management\ShippingLocation $shippingLocation, array $requestOptions = null): \Adyen\Model\Management\ShippingLocation
+    public function createShippingLocation(string $merchantId, \Adyen\Model\Management\ShippingLocation $shippingLocation, ?array $requestOptions = null): \Adyen\Model\Management\ShippingLocation
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}'], [$merchantId], "/merchants/{merchantId}/shippingLocations");
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $shippingLocation->jsonSerialize(), $requestOptions);
@@ -96,7 +96,7 @@ class TerminalOrdersMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\TerminalOrder
     * @throws AdyenException
     */
-    public function getOrder(string $merchantId, string $orderId, array $requestOptions = null): \Adyen\Model\Management\TerminalOrder
+    public function getOrder(string $merchantId, string $orderId, ?array $requestOptions = null): \Adyen\Model\Management\TerminalOrder
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{orderId}'], [$merchantId, $orderId], "/merchants/{merchantId}/terminalOrders/{orderId}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -111,7 +111,7 @@ class TerminalOrdersMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\BillingEntitiesResponse
     * @throws AdyenException
     */
-    public function listBillingEntities(string $merchantId, array $requestOptions = null): \Adyen\Model\Management\BillingEntitiesResponse
+    public function listBillingEntities(string $merchantId, ?array $requestOptions = null): \Adyen\Model\Management\BillingEntitiesResponse
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}'], [$merchantId], "/merchants/{merchantId}/billingEntities");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -126,7 +126,7 @@ class TerminalOrdersMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\TerminalOrdersResponse
     * @throws AdyenException
     */
-    public function listOrders(string $merchantId, array $requestOptions = null): \Adyen\Model\Management\TerminalOrdersResponse
+    public function listOrders(string $merchantId, ?array $requestOptions = null): \Adyen\Model\Management\TerminalOrdersResponse
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}'], [$merchantId], "/merchants/{merchantId}/terminalOrders");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -141,7 +141,7 @@ class TerminalOrdersMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\ShippingLocationsResponse
     * @throws AdyenException
     */
-    public function listShippingLocations(string $merchantId, array $requestOptions = null): \Adyen\Model\Management\ShippingLocationsResponse
+    public function listShippingLocations(string $merchantId, ?array $requestOptions = null): \Adyen\Model\Management\ShippingLocationsResponse
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}'], [$merchantId], "/merchants/{merchantId}/shippingLocations");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -156,7 +156,7 @@ class TerminalOrdersMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\TerminalModelsResponse
     * @throws AdyenException
     */
-    public function listTerminalModels(string $merchantId, array $requestOptions = null): \Adyen\Model\Management\TerminalModelsResponse
+    public function listTerminalModels(string $merchantId, ?array $requestOptions = null): \Adyen\Model\Management\TerminalModelsResponse
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}'], [$merchantId], "/merchants/{merchantId}/terminalModels");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -171,7 +171,7 @@ class TerminalOrdersMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\TerminalProductsResponse
     * @throws AdyenException
     */
-    public function listTerminalProducts(string $merchantId, array $requestOptions = null): \Adyen\Model\Management\TerminalProductsResponse
+    public function listTerminalProducts(string $merchantId, ?array $requestOptions = null): \Adyen\Model\Management\TerminalProductsResponse
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}'], [$merchantId], "/merchants/{merchantId}/terminalProducts");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -188,7 +188,7 @@ class TerminalOrdersMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\TerminalOrder
     * @throws AdyenException
     */
-    public function updateOrder(string $merchantId, string $orderId, \Adyen\Model\Management\TerminalOrderRequest $terminalOrderRequest, array $requestOptions = null): \Adyen\Model\Management\TerminalOrder
+    public function updateOrder(string $merchantId, string $orderId, \Adyen\Model\Management\TerminalOrderRequest $terminalOrderRequest, ?array $requestOptions = null): \Adyen\Model\Management\TerminalOrder
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{orderId}'], [$merchantId, $orderId], "/merchants/{merchantId}/terminalOrders/{orderId}");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $terminalOrderRequest->jsonSerialize(), $requestOptions);

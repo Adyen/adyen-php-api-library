@@ -21,10 +21,7 @@ use Adyen\Model\Management\ObjectSerializer;
 /**
  * TestWebhookRequest Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class TestWebhookRequest implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -235,7 +232,7 @@ class TestWebhookRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('notification', $data ?? [], null);
         $this->setIfExists('types', $data ?? [], null);

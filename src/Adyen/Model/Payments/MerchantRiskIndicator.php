@@ -21,10 +21,7 @@ use Adyen\Model\Payments\ObjectSerializer;
 /**
  * MerchantRiskIndicator Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -349,7 +346,7 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('addressMatch', $data ?? [], null);
         $this->setIfExists('deliveryAddressIndicator', $data ?? [], null);

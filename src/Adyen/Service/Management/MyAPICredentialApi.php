@@ -47,7 +47,7 @@ class MyAPICredentialApi extends Service
     * @return \Adyen\Model\Management\AllowedOrigin
     * @throws AdyenException
     */
-    public function addAllowedOrigin(\Adyen\Model\Management\CreateAllowedOriginRequest $createAllowedOriginRequest, array $requestOptions = null): \Adyen\Model\Management\AllowedOrigin
+    public function addAllowedOrigin(\Adyen\Model\Management\CreateAllowedOriginRequest $createAllowedOriginRequest, ?array $requestOptions = null): \Adyen\Model\Management\AllowedOrigin
     {
         $endpoint = $this->baseURL . "/me/allowedOrigins";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $createAllowedOriginRequest->jsonSerialize(), $requestOptions);
@@ -61,7 +61,7 @@ class MyAPICredentialApi extends Service
     * @return \Adyen\Model\Management\GenerateClientKeyResponse
     * @throws AdyenException
     */
-    public function generateClientKey(array $requestOptions = null): \Adyen\Model\Management\GenerateClientKeyResponse
+    public function generateClientKey(?array $requestOptions = null): \Adyen\Model\Management\GenerateClientKeyResponse
     {
         $endpoint = $this->baseURL . "/me/generateClientKey";
         $response = $this->requestHttp($endpoint, strtolower('POST'), null, $requestOptions);
@@ -76,7 +76,7 @@ class MyAPICredentialApi extends Service
     * @return \Adyen\Model\Management\AllowedOrigin
     * @throws AdyenException
     */
-    public function getAllowedOriginDetails(string $originId, array $requestOptions = null): \Adyen\Model\Management\AllowedOrigin
+    public function getAllowedOriginDetails(string $originId, ?array $requestOptions = null): \Adyen\Model\Management\AllowedOrigin
     {
         $endpoint = $this->baseURL . str_replace(['{originId}'], [$originId], "/me/allowedOrigins/{originId}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -90,7 +90,7 @@ class MyAPICredentialApi extends Service
     * @return \Adyen\Model\Management\AllowedOriginsResponse
     * @throws AdyenException
     */
-    public function getAllowedOrigins(array $requestOptions = null): \Adyen\Model\Management\AllowedOriginsResponse
+    public function getAllowedOrigins(?array $requestOptions = null): \Adyen\Model\Management\AllowedOriginsResponse
     {
         $endpoint = $this->baseURL . "/me/allowedOrigins";
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -104,7 +104,7 @@ class MyAPICredentialApi extends Service
     * @return \Adyen\Model\Management\MeApiCredential
     * @throws AdyenException
     */
-    public function getApiCredentialDetails(array $requestOptions = null): \Adyen\Model\Management\MeApiCredential
+    public function getApiCredentialDetails(?array $requestOptions = null): \Adyen\Model\Management\MeApiCredential
     {
         $endpoint = $this->baseURL . "/me";
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -119,7 +119,7 @@ class MyAPICredentialApi extends Service
 
     * @throws AdyenException
     */
-    public function removeAllowedOrigin(string $originId, array $requestOptions = null)
+    public function removeAllowedOrigin(string $originId, ?array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{originId}'], [$originId], "/me/allowedOrigins/{originId}");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);

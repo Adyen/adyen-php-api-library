@@ -21,10 +21,7 @@ use Adyen\Model\Management\ObjectSerializer;
 /**
  * TerminalConnectivityBluetooth Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class TerminalConnectivityBluetooth implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -235,7 +232,7 @@ class TerminalConnectivityBluetooth implements ModelInterface, ArrayAccess, \Jso
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('ipAddress', $data ?? [], null);
         $this->setIfExists('macAddress', $data ?? [], null);

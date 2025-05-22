@@ -21,10 +21,7 @@ use Adyen\Model\Management\ObjectSerializer;
 /**
  * AdditionalSettings Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class AdditionalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -235,7 +232,7 @@ class AdditionalSettings implements ModelInterface, ArrayAccess, \JsonSerializab
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('includeEventCodes', $data ?? [], null);
         $this->setIfExists('properties', $data ?? [], null);

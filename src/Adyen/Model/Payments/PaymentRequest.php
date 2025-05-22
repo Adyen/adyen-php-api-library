@@ -21,10 +21,7 @@ use Adyen\Model\Payments\ObjectSerializer;
 /**
  * PaymentRequest Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -609,7 +606,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('accountInfo', $data ?? [], null);
         $this->setIfExists('additionalAmount', $data ?? [], null);
@@ -1291,7 +1288,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets localizedShopperStatement
      *
-     * @param array<string,string>|null $localizedShopperStatement The `localizedShopperStatement` field lets you use dynamic values for your shopper statement in a local character set. If not supplied, left empty, or for cross-border transactions, **shopperStatement** is used.  Adyen currently supports the ja-Kana character set for Visa and Mastercard payments in Japan using Japanese cards. This character set supports:  * UTF-8 based Katakana, capital letters, numbers and special characters.  * Half-width or full-width characters.
+     * @param array<string,string>|null $localizedShopperStatement The `localizedShopperStatement` field lets you use dynamic values for your shopper statement in a local character set. If not supplied, left empty, or for cross-border transactions, **shopperStatement** is used.  Adyen currently supports the ja-Kana and ja-Hani character set for Visa, Mastercard and JCB payments in Japan using Japanese cards. This character set supports:  * UTF-8 based Katakana, Kanji, capital letters, numbers and special characters.  * Half-width or full-width characters.
      *
      * @return self
      */

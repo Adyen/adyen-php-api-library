@@ -21,10 +21,7 @@ use Adyen\Model\Management\ObjectSerializer;
 /**
  * TerminalConnectivityEthernet Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class TerminalConnectivityEthernet implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -241,7 +238,7 @@ class TerminalConnectivityEthernet implements ModelInterface, ArrayAccess, \Json
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('ipAddress', $data ?? [], null);
         $this->setIfExists('linkNegotiation', $data ?? [], null);

@@ -21,10 +21,7 @@ use Adyen\Model\Payout\ObjectSerializer;
 /**
  * StoreDetailAndSubmitResponse Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class StoreDetailAndSubmitResponse implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -247,7 +244,7 @@ class StoreDetailAndSubmitResponse implements ModelInterface, ArrayAccess, \Json
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('additionalData', $data ?? [], null);
         $this->setIfExists('pspReference', $data ?? [], null);

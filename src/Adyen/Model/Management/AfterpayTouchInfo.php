@@ -21,10 +21,7 @@ use Adyen\Model\Management\ObjectSerializer;
 /**
  * AfterpayTouchInfo Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class AfterpayTouchInfo implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -44,6 +41,7 @@ class AfterpayTouchInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
+        'supportEmail' => 'string',
         'supportUrl' => 'string'
     ];
 
@@ -55,6 +53,7 @@ class AfterpayTouchInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'supportEmail' => null,
         'supportUrl' => null
     ];
 
@@ -64,6 +63,7 @@ class AfterpayTouchInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'supportEmail' => false,
         'supportUrl' => false
     ];
 
@@ -153,6 +153,7 @@ class AfterpayTouchInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
+        'supportEmail' => 'supportEmail',
         'supportUrl' => 'supportUrl'
     ];
 
@@ -162,6 +163,7 @@ class AfterpayTouchInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
+        'supportEmail' => 'setSupportEmail',
         'supportUrl' => 'setSupportUrl'
     ];
 
@@ -171,6 +173,7 @@ class AfterpayTouchInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
+        'supportEmail' => 'getSupportEmail',
         'supportUrl' => 'getSupportUrl'
     ];
 
@@ -229,8 +232,9 @@ class AfterpayTouchInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
+        $this->setIfExists('supportEmail', $data ?? [], null);
         $this->setIfExists('supportUrl', $data ?? [], null);
     }
 
@@ -278,6 +282,30 @@ class AfterpayTouchInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets supportEmail
+     *
+     * @return string|null
+     */
+    public function getSupportEmail()
+    {
+        return $this->container['supportEmail'];
+    }
+
+    /**
+     * Sets supportEmail
+     *
+     * @param string|null $supportEmail Support Email
+     *
+     * @return self
+     */
+    public function setSupportEmail($supportEmail)
+    {
+        $this->container['supportEmail'] = $supportEmail;
+
+        return $this;
+    }
 
     /**
      * Gets supportUrl

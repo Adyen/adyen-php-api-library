@@ -21,10 +21,7 @@ use Adyen\Model\Payments\ObjectSerializer;
 /**
  * AdditionalDataOpenInvoice Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class AdditionalDataOpenInvoice implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -331,7 +328,7 @@ class AdditionalDataOpenInvoice implements ModelInterface, ArrayAccess, \JsonSer
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('openinvoicedataMerchantData', $data ?? [], null);
         $this->setIfExists('openinvoicedataNumberOfLines', $data ?? [], null);

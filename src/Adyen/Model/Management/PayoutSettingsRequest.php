@@ -21,10 +21,7 @@ use Adyen\Model\Management\ObjectSerializer;
 /**
  * PayoutSettingsRequest Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class PayoutSettingsRequest implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -241,7 +238,7 @@ class PayoutSettingsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('enabled', $data ?? [], null);
         $this->setIfExists('enabledFromDate', $data ?? [], null);

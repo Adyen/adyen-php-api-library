@@ -47,7 +47,7 @@ class AccountStoreLevelApi extends Service
     * @return \Adyen\Model\Management\Store
     * @throws AdyenException
     */
-    public function createStore(\Adyen\Model\Management\StoreCreationWithMerchantCodeRequest $storeCreationWithMerchantCodeRequest, array $requestOptions = null): \Adyen\Model\Management\Store
+    public function createStore(\Adyen\Model\Management\StoreCreationWithMerchantCodeRequest $storeCreationWithMerchantCodeRequest, ?array $requestOptions = null): \Adyen\Model\Management\Store
     {
         $endpoint = $this->baseURL . "/stores";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $storeCreationWithMerchantCodeRequest->jsonSerialize(), $requestOptions);
@@ -63,7 +63,7 @@ class AccountStoreLevelApi extends Service
     * @return \Adyen\Model\Management\Store
     * @throws AdyenException
     */
-    public function createStoreByMerchantId(string $merchantId, \Adyen\Model\Management\StoreCreationRequest $storeCreationRequest, array $requestOptions = null): \Adyen\Model\Management\Store
+    public function createStoreByMerchantId(string $merchantId, \Adyen\Model\Management\StoreCreationRequest $storeCreationRequest, ?array $requestOptions = null): \Adyen\Model\Management\Store
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}'], [$merchantId], "/merchants/{merchantId}/stores");
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $storeCreationRequest->jsonSerialize(), $requestOptions);
@@ -79,7 +79,7 @@ class AccountStoreLevelApi extends Service
     * @return \Adyen\Model\Management\Store
     * @throws AdyenException
     */
-    public function getStore(string $merchantId, string $storeId, array $requestOptions = null): \Adyen\Model\Management\Store
+    public function getStore(string $merchantId, string $storeId, ?array $requestOptions = null): \Adyen\Model\Management\Store
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{storeId}'], [$merchantId, $storeId], "/merchants/{merchantId}/stores/{storeId}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -94,7 +94,7 @@ class AccountStoreLevelApi extends Service
     * @return \Adyen\Model\Management\Store
     * @throws AdyenException
     */
-    public function getStoreById(string $storeId, array $requestOptions = null): \Adyen\Model\Management\Store
+    public function getStoreById(string $storeId, ?array $requestOptions = null): \Adyen\Model\Management\Store
     {
         $endpoint = $this->baseURL . str_replace(['{storeId}'], [$storeId], "/stores/{storeId}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -108,7 +108,7 @@ class AccountStoreLevelApi extends Service
     * @return \Adyen\Model\Management\ListStoresResponse
     * @throws AdyenException
     */
-    public function listStores(array $requestOptions = null): \Adyen\Model\Management\ListStoresResponse
+    public function listStores(?array $requestOptions = null): \Adyen\Model\Management\ListStoresResponse
     {
         $endpoint = $this->baseURL . "/stores";
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -123,7 +123,7 @@ class AccountStoreLevelApi extends Service
     * @return \Adyen\Model\Management\ListStoresResponse
     * @throws AdyenException
     */
-    public function listStoresByMerchantId(string $merchantId, array $requestOptions = null): \Adyen\Model\Management\ListStoresResponse
+    public function listStoresByMerchantId(string $merchantId, ?array $requestOptions = null): \Adyen\Model\Management\ListStoresResponse
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}'], [$merchantId], "/merchants/{merchantId}/stores");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -140,7 +140,7 @@ class AccountStoreLevelApi extends Service
     * @return \Adyen\Model\Management\Store
     * @throws AdyenException
     */
-    public function updateStore(string $merchantId, string $storeId, \Adyen\Model\Management\UpdateStoreRequest $updateStoreRequest, array $requestOptions = null): \Adyen\Model\Management\Store
+    public function updateStore(string $merchantId, string $storeId, \Adyen\Model\Management\UpdateStoreRequest $updateStoreRequest, ?array $requestOptions = null): \Adyen\Model\Management\Store
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{storeId}'], [$merchantId, $storeId], "/merchants/{merchantId}/stores/{storeId}");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $updateStoreRequest->jsonSerialize(), $requestOptions);
@@ -156,7 +156,7 @@ class AccountStoreLevelApi extends Service
     * @return \Adyen\Model\Management\Store
     * @throws AdyenException
     */
-    public function updateStoreById(string $storeId, \Adyen\Model\Management\UpdateStoreRequest $updateStoreRequest, array $requestOptions = null): \Adyen\Model\Management\Store
+    public function updateStoreById(string $storeId, \Adyen\Model\Management\UpdateStoreRequest $updateStoreRequest, ?array $requestOptions = null): \Adyen\Model\Management\Store
     {
         $endpoint = $this->baseURL . str_replace(['{storeId}'], [$storeId], "/stores/{storeId}");
         $response = $this->requestHttp($endpoint, strtolower('PATCH'), (array) $updateStoreRequest->jsonSerialize(), $requestOptions);

@@ -21,10 +21,7 @@ use Adyen\Model\Management\ObjectSerializer;
 /**
  * UpdateMerchantWebhookRequest Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class UpdateMerchantWebhookRequest implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -347,7 +344,7 @@ class UpdateMerchantWebhookRequest implements ModelInterface, ArrayAccess, \Json
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('acceptsExpiredCertificate', $data ?? [], null);
         $this->setIfExists('acceptsSelfSignedCertificate', $data ?? [], null);

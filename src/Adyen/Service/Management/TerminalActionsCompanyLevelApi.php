@@ -48,7 +48,7 @@ class TerminalActionsCompanyLevelApi extends Service
     * @return \Adyen\Model\Management\ExternalTerminalAction
     * @throws AdyenException
     */
-    public function getTerminalAction(string $companyId, string $actionId, array $requestOptions = null): \Adyen\Model\Management\ExternalTerminalAction
+    public function getTerminalAction(string $companyId, string $actionId, ?array $requestOptions = null): \Adyen\Model\Management\ExternalTerminalAction
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}', '{actionId}'], [$companyId, $actionId], "/companies/{companyId}/terminalActions/{actionId}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -63,7 +63,7 @@ class TerminalActionsCompanyLevelApi extends Service
     * @return \Adyen\Model\Management\ListExternalTerminalActionsResponse
     * @throws AdyenException
     */
-    public function listTerminalActions(string $companyId, array $requestOptions = null): \Adyen\Model\Management\ListExternalTerminalActionsResponse
+    public function listTerminalActions(string $companyId, ?array $requestOptions = null): \Adyen\Model\Management\ListExternalTerminalActionsResponse
     {
         $endpoint = $this->baseURL . str_replace(['{companyId}'], [$companyId], "/companies/{companyId}/terminalActions");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);

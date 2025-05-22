@@ -21,10 +21,7 @@ use Adyen\Model\Payout\ObjectSerializer;
 /**
  * ResponseAdditionalDataCommon Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -67,6 +64,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'fraudCheckItemNrFraudCheckname' => 'string',
         'fraudManualReview' => 'string',
         'fraudResultType' => 'string',
+        'fraudRiskLevel' => 'string',
         'fundingSource' => 'string',
         'fundsAvailability' => 'string',
         'inferredRefusalReason' => 'string',
@@ -139,6 +137,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'fraudCheckItemNrFraudCheckname' => null,
         'fraudManualReview' => null,
         'fraudResultType' => null,
+        'fraudRiskLevel' => null,
         'fundingSource' => null,
         'fundsAvailability' => null,
         'inferredRefusalReason' => null,
@@ -209,6 +208,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'fraudCheckItemNrFraudCheckname' => false,
         'fraudManualReview' => false,
         'fraudResultType' => false,
+        'fraudRiskLevel' => false,
         'fundingSource' => false,
         'fundsAvailability' => false,
         'inferredRefusalReason' => false,
@@ -359,6 +359,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'fraudCheckItemNrFraudCheckname' => 'fraudCheck-[itemNr]-[FraudCheckname]',
         'fraudManualReview' => 'fraudManualReview',
         'fraudResultType' => 'fraudResultType',
+        'fraudRiskLevel' => 'fraudRiskLevel',
         'fundingSource' => 'fundingSource',
         'fundsAvailability' => 'fundsAvailability',
         'inferredRefusalReason' => 'inferredRefusalReason',
@@ -429,6 +430,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'fraudCheckItemNrFraudCheckname' => 'setFraudCheckItemNrFraudCheckname',
         'fraudManualReview' => 'setFraudManualReview',
         'fraudResultType' => 'setFraudResultType',
+        'fraudRiskLevel' => 'setFraudRiskLevel',
         'fundingSource' => 'setFundingSource',
         'fundsAvailability' => 'setFundsAvailability',
         'inferredRefusalReason' => 'setInferredRefusalReason',
@@ -499,6 +501,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'fraudCheckItemNrFraudCheckname' => 'getFraudCheckItemNrFraudCheckname',
         'fraudManualReview' => 'getFraudManualReview',
         'fraudResultType' => 'getFraudResultType',
+        'fraudRiskLevel' => 'getFraudRiskLevel',
         'fundingSource' => 'getFundingSource',
         'fundsAvailability' => 'getFundsAvailability',
         'inferredRefusalReason' => 'getInferredRefusalReason',
@@ -583,6 +586,11 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
 
     public const FRAUD_RESULT_TYPE_GREEN = 'GREEN';
     public const FRAUD_RESULT_TYPE_FRAUD = 'FRAUD';
+    public const FRAUD_RISK_LEVEL_VERY_LOW = 'veryLow';
+    public const FRAUD_RISK_LEVEL_LOW = 'low';
+    public const FRAUD_RISK_LEVEL_MEDIUM = 'medium';
+    public const FRAUD_RISK_LEVEL_HIGH = 'high';
+    public const FRAUD_RISK_LEVEL_VERY_HIGH = 'veryHigh';
     public const RECURRING_PROCESSING_MODEL_CARD_ON_FILE = 'CardOnFile';
     public const RECURRING_PROCESSING_MODEL_SUBSCRIPTION = 'Subscription';
     public const RECURRING_PROCESSING_MODEL_UNSCHEDULED_CARD_ON_FILE = 'UnscheduledCardOnFile';
@@ -600,6 +608,21 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         return [
             self::FRAUD_RESULT_TYPE_GREEN,
             self::FRAUD_RESULT_TYPE_FRAUD,
+        ];
+    }
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getFraudRiskLevelAllowableValues()
+    {
+        return [
+            self::FRAUD_RISK_LEVEL_VERY_LOW,
+            self::FRAUD_RISK_LEVEL_LOW,
+            self::FRAUD_RISK_LEVEL_MEDIUM,
+            self::FRAUD_RISK_LEVEL_HIGH,
+            self::FRAUD_RISK_LEVEL_VERY_HIGH,
         ];
     }
     /**
@@ -641,7 +664,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('acquirerAccountCode', $data ?? [], null);
         $this->setIfExists('acquirerCode', $data ?? [], null);
@@ -666,6 +689,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         $this->setIfExists('fraudCheckItemNrFraudCheckname', $data ?? [], null);
         $this->setIfExists('fraudManualReview', $data ?? [], null);
         $this->setIfExists('fraudResultType', $data ?? [], null);
+        $this->setIfExists('fraudRiskLevel', $data ?? [], null);
         $this->setIfExists('fundingSource', $data ?? [], null);
         $this->setIfExists('fundsAvailability', $data ?? [], null);
         $this->setIfExists('inferredRefusalReason', $data ?? [], null);
@@ -739,6 +763,15 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'fraudResultType', must be one of '%s'",
                 $this->container['fraudResultType'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getFraudRiskLevelAllowableValues();
+        if (!is_null($this->container['fraudRiskLevel']) && !in_array($this->container['fraudRiskLevel'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'fraudRiskLevel', must be one of '%s'",
+                $this->container['fraudRiskLevel'],
                 implode("', '", $allowedValues)
             );
         }
@@ -1334,6 +1367,40 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
             );
         }
         $this->container['fraudResultType'] = $fraudResultType;
+
+        return $this;
+    }
+
+    /**
+     * Gets fraudRiskLevel
+     *
+     * @return string|null
+     */
+    public function getFraudRiskLevel()
+    {
+        return $this->container['fraudRiskLevel'];
+    }
+
+    /**
+     * Sets fraudRiskLevel
+     *
+     * @param string|null $fraudRiskLevel The risk level of the transaction as classified by the [machine learning](https://docs.adyen.com/risk-management/configure-your-risk-profile/machine-learning-rules/) fraud risk rule. The risk level indicates the likelihood that a transaction will result in a fraudulent dispute. The possible return values are:\\n* veryLow\\n* low\\n* medium\\n* high\\n* veryHigh\\n\\n>
+     *
+     * @return self
+     */
+    public function setFraudRiskLevel($fraudRiskLevel)
+    {
+        $allowedValues = $this->getFraudRiskLevelAllowableValues();
+        if (!in_array($fraudRiskLevel, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'fraudRiskLevel', must be one of '%s'",
+                    $fraudRiskLevel,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['fraudRiskLevel'] = $fraudRiskLevel;
 
         return $this;
     }

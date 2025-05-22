@@ -21,10 +21,7 @@ use Adyen\Model\Payments\ObjectSerializer;
 /**
  * DeviceRenderOptions Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class DeviceRenderOptions implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -271,7 +268,7 @@ class DeviceRenderOptions implements ModelInterface, ArrayAccess, \JsonSerializa
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('sdkInterface', $data ?? [], null);
         $this->setIfExists('sdkUiType', $data ?? [], null);

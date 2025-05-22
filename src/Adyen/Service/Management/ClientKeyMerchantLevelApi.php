@@ -48,7 +48,7 @@ class ClientKeyMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\GenerateClientKeyResponse
     * @throws AdyenException
     */
-    public function generateNewClientKey(string $merchantId, string $apiCredentialId, array $requestOptions = null): \Adyen\Model\Management\GenerateClientKeyResponse
+    public function generateNewClientKey(string $merchantId, string $apiCredentialId, ?array $requestOptions = null): \Adyen\Model\Management\GenerateClientKeyResponse
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{apiCredentialId}'], [$merchantId, $apiCredentialId], "/merchants/{merchantId}/apiCredentials/{apiCredentialId}/generateClientKey");
         $response = $this->requestHttp($endpoint, strtolower('POST'), null, $requestOptions);

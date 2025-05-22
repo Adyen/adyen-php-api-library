@@ -47,7 +47,7 @@ class AccountMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\CreateMerchantResponse
     * @throws AdyenException
     */
-    public function createMerchantAccount(\Adyen\Model\Management\CreateMerchantRequest $createMerchantRequest, array $requestOptions = null): \Adyen\Model\Management\CreateMerchantResponse
+    public function createMerchantAccount(\Adyen\Model\Management\CreateMerchantRequest $createMerchantRequest, ?array $requestOptions = null): \Adyen\Model\Management\CreateMerchantResponse
     {
         $endpoint = $this->baseURL . "/merchants";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $createMerchantRequest->jsonSerialize(), $requestOptions);
@@ -62,7 +62,7 @@ class AccountMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\Merchant
     * @throws AdyenException
     */
-    public function getMerchantAccount(string $merchantId, array $requestOptions = null): \Adyen\Model\Management\Merchant
+    public function getMerchantAccount(string $merchantId, ?array $requestOptions = null): \Adyen\Model\Management\Merchant
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}'], [$merchantId], "/merchants/{merchantId}");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -76,7 +76,7 @@ class AccountMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\ListMerchantResponse
     * @throws AdyenException
     */
-    public function listMerchantAccounts(array $requestOptions = null): \Adyen\Model\Management\ListMerchantResponse
+    public function listMerchantAccounts(?array $requestOptions = null): \Adyen\Model\Management\ListMerchantResponse
     {
         $endpoint = $this->baseURL . "/merchants";
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -91,7 +91,7 @@ class AccountMerchantLevelApi extends Service
     * @return \Adyen\Model\Management\RequestActivationResponse
     * @throws AdyenException
     */
-    public function requestToActivateMerchantAccount(string $merchantId, array $requestOptions = null): \Adyen\Model\Management\RequestActivationResponse
+    public function requestToActivateMerchantAccount(string $merchantId, ?array $requestOptions = null): \Adyen\Model\Management\RequestActivationResponse
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}'], [$merchantId], "/merchants/{merchantId}/activate");
         $response = $this->requestHttp($endpoint, strtolower('POST'), null, $requestOptions);

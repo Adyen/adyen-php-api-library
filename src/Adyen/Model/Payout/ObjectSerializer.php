@@ -16,6 +16,7 @@
 namespace Adyen\Model\Payout;
 
 use Adyen\Model\Payout\ModelInterface;
+use GuzzleHttp\Utils;
 
 class ObjectSerializer
 {

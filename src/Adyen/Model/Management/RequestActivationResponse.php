@@ -21,10 +21,7 @@ use Adyen\Model\Management\ObjectSerializer;
 /**
  * RequestActivationResponse Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class RequestActivationResponse implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -235,7 +232,7 @@ class RequestActivationResponse implements ModelInterface, ArrayAccess, \JsonSer
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('companyId', $data ?? [], null);
         $this->setIfExists('merchantId', $data ?? [], null);
