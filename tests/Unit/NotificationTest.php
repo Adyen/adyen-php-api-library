@@ -26,6 +26,7 @@ namespace Adyen\Tests\Unit;
 use Adyen\Model\ConfigurationWebhooks\SweepConfigurationNotificationRequest;
 use Adyen\Model\ManagementWebhooks\PaymentMethodCreatedNotificationRequest;
 use Adyen\Model\AcsWebhooks\AuthenticationNotificationRequest;
+use Adyen\Model\AcsWebhooks\RelayedAuthenticationRequest;
 use Adyen\Model\TransactionWebhooks\TransactionNotificationRequestV4;
 use Adyen\Model\BalanceWebhooks\BalanceAccountBalanceNotificationRequest;
 use Adyen\Service\BankingWebhookParser;
@@ -390,5 +391,27 @@ class NotificationTest extends TestCaseMock
         self::assertEquals(BalanceAccountBalanceNotificationRequest::class, get_class($result));
         self::assertEquals("balancePlatform.balanceAccount.balance.updated", $result->getType());
         self::assertEquals("test", $result->getEnvironment());
+    }
+
+    public function testRelayedAuthenticationRequest()
+    {
+        $jsonString = '{
+                        "id": "1ea64f8e-d1e1-4b9d-a3a2-3953e385b2c8",
+                        "paymentInstrumentId": "PI123ABCDEFGHIJKLMN45678",
+                        "purchase": {
+                          "date": "2025-03-06T15:17:55Z",
+                          "merchantName": "widgetsInc",
+                          "originalAmount": {
+                            "currency": "EUR",
+                            "value": 14548
+                          }
+                        }
+                      }';
+
+        $webhookParser = new BankingWebhookParser($jsonString);
+        $result = $webhookParser->getGenericWebhook();
+        self::assertEquals(RelayedAuthenticationRequest::class, get_class($result));
+        self::assertEquals("1ea64f8e-d1e1-4b9d-a3a2-3953e385b2c8", $result->getId());
+        self::assertEquals("widgetsInc", $result->getPurchase()->getMerchantName());
     }
 }

@@ -28,6 +28,16 @@ class BankingWebhookParser
     public function getGenericWebhook()
     {
         $jsonPayload = (array)json_decode($this->payload, true);
+
+        // custom check for RelayedAuthenticationRequest as it doesn't include the attribute 'type'
+        if (is_array($jsonPayload) &&
+            array_key_exists('id', $jsonPayload) &&
+            array_key_exists('paymentInstrumentId', $jsonPayload)) {
+                $clazz = new RelayedAuthenticationRequest();
+                return (object)$this->deserializewebhook($clazz);
+        }
+
+        // handle other webhook events using `type attribute
         try {
             $type = $jsonPayload['type'];
         } catch (Exception $ex) {
@@ -35,13 +45,6 @@ class BankingWebhookParser
         }
 
         if (in_array($type, ($clazz = new AuthenticationNotificationRequest())->getTypeAllowableValues())) {
-            return (object)$this->deserializewebhook($clazz);
-        }
-
-        // custom check for RelayedAuthenticationRequest as it doesn't include the attribute 'type'
-        if (is_array($jsonPayload) &&
-            array_key_exists('id', $jsonPayload) &&
-            array_key_exists('paymentInstrumentId', $jsonPayload)) {
             return (object)$this->deserializewebhook($clazz);
         }
 
