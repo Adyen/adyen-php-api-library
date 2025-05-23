@@ -16,6 +16,7 @@
 namespace Adyen\Model\AcsWebhooks;
 
 use Adyen\Model\AcsWebhooks\ModelInterface;
+use GuzzleHttp\Utils;
 
 class ObjectSerializer
 {

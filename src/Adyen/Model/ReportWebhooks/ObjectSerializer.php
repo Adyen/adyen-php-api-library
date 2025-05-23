@@ -16,6 +16,7 @@
 namespace Adyen\Model\ReportWebhooks;
 
 use Adyen\Model\ReportWebhooks\ModelInterface;
+use GuzzleHttp\Utils;
 
 class ObjectSerializer
 {

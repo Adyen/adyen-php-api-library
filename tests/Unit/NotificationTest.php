@@ -26,7 +26,9 @@ namespace Adyen\Tests\Unit;
 use Adyen\Model\ConfigurationWebhooks\SweepConfigurationNotificationRequest;
 use Adyen\Model\ManagementWebhooks\PaymentMethodCreatedNotificationRequest;
 use Adyen\Model\AcsWebhooks\AuthenticationNotificationRequest;
+use Adyen\Model\AcsWebhooks\RelayedAuthenticationRequest;
 use Adyen\Model\TransactionWebhooks\TransactionNotificationRequestV4;
+use Adyen\Model\BalanceWebhooks\BalanceAccountBalanceNotificationRequest;
 use Adyen\Service\BankingWebhookParser;
 use Adyen\Service\ManagementWebhookParser;
 use Adyen\Service\Notification;
@@ -307,7 +309,7 @@ class NotificationTest extends TestCaseMock
             "authentication": {
               "acsTransId": "6a4c1709-a42e-4c7f-96c7-1043adacfc97",
               "challenge": {
-                "flow": "OOB",
+                "flow": "OOB_TRIGGER_FL",
                 "lastInteraction": "2022-12-22T15:49:03+01:00"
               },
               "challengeIndicator": "01",
@@ -362,5 +364,54 @@ class NotificationTest extends TestCaseMock
             $authenticationRequest->getTypeAllowableValues()[0],
             $webhookParser->getTransactionNotificationRequestV4()->getType()
         );
+    }
+
+    public function testBankingWebhookParserBalanceAccountBalanceNotificationRequest()
+    {
+        $jsonString = '{
+                         "data": {
+                           "balanceAccountId": "BWHS00000000000000000000000001",
+                           "balancePlatform": "YOUR_BALANCE_PLATFORM",
+                           "balances": {
+                             "available": 499900,
+                             "pending": 350000,
+                             "reserved": 120000,
+                             "balance": 470000
+                           },
+                           "creationDate": "2025-01-19T13:37:38+02:00",
+                           "currency": "USD",
+                           "settingIds": ["WK1", "WK2"]
+                         },
+                         "environment": "test",
+                         "type": "balancePlatform.balanceAccount.balance.updated"
+                       }';
+
+        $webhookParser = new BankingWebhookParser($jsonString);
+        $result = $webhookParser->getGenericWebhook();
+        self::assertEquals(BalanceAccountBalanceNotificationRequest::class, get_class($result));
+        self::assertEquals("balancePlatform.balanceAccount.balance.updated", $result->getType());
+        self::assertEquals("test", $result->getEnvironment());
+    }
+
+    public function testRelayedAuthenticationRequest()
+    {
+        $jsonString = '{
+                        "id": "1ea64f8e-d1e1-4b9d-a3a2-3953e385b2c8",
+                        "paymentInstrumentId": "PI123ABCDEFGHIJKLMN45678",
+                        "purchase": {
+                          "date": "2025-03-06T15:17:55Z",
+                          "merchantName": "widgetsInc",
+                          "originalAmount": {
+                            "currency": "EUR",
+                            "value": 14548
+                          }
+                        }
+                      }';
+
+        $webhookParser = new BankingWebhookParser($jsonString);
+        $result = $webhookParser->getGenericWebhook();
+        self::assertEquals(RelayedAuthenticationRequest::class, get_class($result));
+        self::assertEquals("1ea64f8e-d1e1-4b9d-a3a2-3953e385b2c8", $result->getId());
+        self::assertEquals("widgetsInc", $result->getPurchase()->getMerchantName());
     }
 }

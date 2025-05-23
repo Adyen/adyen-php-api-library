@@ -3,6 +3,8 @@
 namespace Adyen\Service;
 
 use Adyen\Model\AcsWebhooks\AuthenticationNotificationRequest;
+use Adyen\Model\AcsWebhooks\RelayedAuthenticationRequest;
+use Adyen\Model\BalanceWebhooks\BalanceAccountBalanceNotificationRequest;
 use Adyen\Model\ConfigurationWebhooks\AccountHolderNotificationRequest;
 use Adyen\Model\ConfigurationWebhooks\BalanceAccountNotificationRequest;
 use Adyen\Model\ConfigurationWebhooks\ObjectSerializer;
@@ -26,6 +28,16 @@ class BankingWebhookParser
     public function getGenericWebhook()
     {
         $jsonPayload = (array)json_decode($this->payload, true);
+
+        // custom check for RelayedAuthenticationRequest as it doesn't include the attribute 'type'
+        if (is_array($jsonPayload) &&
+            array_key_exists('id', $jsonPayload) &&
+            array_key_exists('paymentInstrumentId', $jsonPayload)) {
+                $clazz = new RelayedAuthenticationRequest();
+                return (object)$this->deserializewebhook($clazz);
+        }
+
+        // handle other webhook events using `type attribute
         try {
             $type = $jsonPayload['type'];
         } catch (Exception $ex) {
@@ -33,6 +45,10 @@ class BankingWebhookParser
         }
 
         if (in_array($type, ($clazz = new AuthenticationNotificationRequest())->getTypeAllowableValues())) {
+            return (object)$this->deserializewebhook($clazz);
+        }
+
+        if (in_array($type, ($clazz = new BalanceAccountBalanceNotificationRequest())->getTypeAllowableValues())) {
             return (object)$this->deserializewebhook($clazz);
         }
 
@@ -70,6 +86,18 @@ class BankingWebhookParser
 
     /** @noinspection PhpIncompatibleReturnTypeInspection */
     public function getAuthenticationNotificationRequest(): AuthenticationNotificationRequest
+    {
+        return $this->getGenericWebhook();
+    }
+
+    /** @noinspection PhpIncompatibleReturnTypeInspection */
+    public function getRelayedAuthenticationRequest(): RelayedAuthenticationRequest
+    {
+        return $this->getGenericWebhook();
+    }
+
+    /** @noinspection PhpIncompatibleReturnTypeInspection */
+    public function getBalanceAccountBalanceNotificationRequest(): BalanceAccountBalanceNotificationRequest
     {
         return $this->getGenericWebhook();
     }

@@ -16,6 +16,7 @@
 namespace Adyen\Model\NegativeBalanceWarningWebhooks;
 
 use Adyen\Model\NegativeBalanceWarningWebhooks\ModelInterface;
+use GuzzleHttp\Utils;
 
 class ObjectSerializer
 {

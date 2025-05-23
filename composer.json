@@ -33,6 +33,6 @@
     }
   },
   "scripts": {
-    "fmt": "phpcbf src/Adyen/Service/** src/Adyen/Model/**"
+    "fmt": "phpcbf src/Adyen/Service/** src/Adyen/Model/** tests/Unit/**"
   }
 }
