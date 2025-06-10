@@ -239,6 +239,7 @@ class TransferRoute implements ModelInterface, ArrayAccess, \JsonSerializable
     public const CATEGORY_BANK = 'bank';
     public const CATEGORY_CARD = 'card';
     public const CATEGORY_GRANTS = 'grants';
+    public const CATEGORY_INTEREST = 'interest';
     public const CATEGORY_INTERNAL = 'internal';
     public const CATEGORY_ISSUED_CARD = 'issuedCard';
     public const CATEGORY_MIGRATION = 'migration';
@@ -263,6 +264,7 @@ class TransferRoute implements ModelInterface, ArrayAccess, \JsonSerializable
             self::CATEGORY_BANK,
             self::CATEGORY_CARD,
             self::CATEGORY_GRANTS,
+            self::CATEGORY_INTEREST,
             self::CATEGORY_INTERNAL,
             self::CATEGORY_ISSUED_CARD,
             self::CATEGORY_MIGRATION,

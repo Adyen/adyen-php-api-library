@@ -55,6 +55,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'direction' => 'string',
         'eventId' => 'string',
         'events' => '\Adyen\Model\TransferWebhooks\TransferEvent[]',
+        'executionDate' => '\Adyen\Model\TransferWebhooks\ExecutionDate',
         'externalReason' => '\Adyen\Model\TransferWebhooks\ExternalReason',
         'id' => 'string',
         'paymentInstrument' => '\Adyen\Model\TransferWebhooks\PaymentInstrument',
@@ -91,6 +92,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'direction' => null,
         'eventId' => null,
         'events' => null,
+        'executionDate' => null,
         'externalReason' => null,
         'id' => null,
         'paymentInstrument' => null,
@@ -125,6 +127,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'direction' => false,
         'eventId' => false,
         'events' => false,
+        'executionDate' => false,
         'externalReason' => false,
         'id' => false,
         'paymentInstrument' => false,
@@ -239,6 +242,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'direction' => 'direction',
         'eventId' => 'eventId',
         'events' => 'events',
+        'executionDate' => 'executionDate',
         'externalReason' => 'externalReason',
         'id' => 'id',
         'paymentInstrument' => 'paymentInstrument',
@@ -273,6 +277,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'direction' => 'setDirection',
         'eventId' => 'setEventId',
         'events' => 'setEvents',
+        'executionDate' => 'setExecutionDate',
         'externalReason' => 'setExternalReason',
         'id' => 'setId',
         'paymentInstrument' => 'setPaymentInstrument',
@@ -307,6 +312,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'direction' => 'getDirection',
         'eventId' => 'getEventId',
         'events' => 'getEvents',
+        'executionDate' => 'getExecutionDate',
         'externalReason' => 'getExternalReason',
         'id' => 'getId',
         'paymentInstrument' => 'getPaymentInstrument',
@@ -716,6 +722,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('direction', $data ?? [], null);
         $this->setIfExists('eventId', $data ?? [], null);
         $this->setIfExists('events', $data ?? [], null);
+        $this->setIfExists('executionDate', $data ?? [], null);
         $this->setIfExists('externalReason', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('paymentInstrument', $data ?? [], null);
@@ -1178,6 +1185,30 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setEvents($events)
     {
         $this->container['events'] = $events;
+
+        return $this;
+    }
+
+    /**
+     * Gets executionDate
+     *
+     * @return \Adyen\Model\TransferWebhooks\ExecutionDate|null
+     */
+    public function getExecutionDate()
+    {
+        return $this->container['executionDate'];
+    }
+
+    /**
+     * Sets executionDate
+     *
+     * @param \Adyen\Model\TransferWebhooks\ExecutionDate|null $executionDate executionDate
+     *
+     * @return self
+     */
+    public function setExecutionDate($executionDate)
+    {
+        $this->container['executionDate'] = $executionDate;
 
         return $this;
     }
