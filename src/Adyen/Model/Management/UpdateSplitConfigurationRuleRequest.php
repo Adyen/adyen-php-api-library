@@ -395,7 +395,7 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
     /**
      * Sets regionality
      *
-     * @param string|null $regionality 
+     * @param string|null $regionality
      *
      * @return self
      */

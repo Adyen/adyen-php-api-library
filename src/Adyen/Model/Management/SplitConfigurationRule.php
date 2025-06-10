@@ -509,7 +509,7 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets regionality
      *
-     * @param string|null $regionality 
+     * @param string|null $regionality
      *
      * @return self
      */

@@ -44,14 +44,12 @@ class AuthorizedCardUsersApi extends Service
     *
     * @param string $paymentInstrumentId
     * @param array|null $requestOptions
-    
+
     * @throws AdyenException
     */
-    public function (string $paymentInstrumentId, ?array $requestOptions = null)
-    {
+    public function (string $paymentInstrumentId, ?array $requestOptions = null) {
         $endpoint = $this->baseURL . str_replace(['{paymentInstrumentId}'], [$paymentInstrumentId], "/paymentInstruments/{paymentInstrumentId}/authorisedCardUsers");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
-        
     }
 
     /**
@@ -62,8 +60,7 @@ class AuthorizedCardUsersApi extends Service
     * @return \Adyen\Model\BalancePlatform\AuthorisedCardUsers
     * @throws AdyenException
     */
-    public function (string $paymentInstrumentId, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\AuthorisedCardUsers
-    {
+    public function (string $paymentInstrumentId, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\AuthorisedCardUsers {
         $endpoint = $this->baseURL . str_replace(['{paymentInstrumentId}'], [$paymentInstrumentId], "/paymentInstruments/{paymentInstrumentId}/authorisedCardUsers");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\BalancePlatform\AuthorisedCardUsers::class);
@@ -75,14 +72,12 @@ class AuthorizedCardUsersApi extends Service
     * @param string $paymentInstrumentId
     * @param \Adyen\Model\BalancePlatform\AuthorisedCardUsers $authorisedCardUsers
     * @param array|null $requestOptions
-    
+
     * @throws AdyenException
     */
-    public function (string $paymentInstrumentId, \Adyen\Model\BalancePlatform\AuthorisedCardUsers $authorisedCardUsers, ?array $requestOptions = null)
-    {
+    public function (string $paymentInstrumentId, \Adyen\Model\BalancePlatform\AuthorisedCardUsers $authorisedCardUsers, ?array $requestOptions = null) {
         $endpoint = $this->baseURL . str_replace(['{paymentInstrumentId}'], [$paymentInstrumentId], "/paymentInstruments/{paymentInstrumentId}/authorisedCardUsers");
         $this->requestHttp($endpoint, strtolower('PATCH'), (array) $authorisedCardUsers->jsonSerialize(), $requestOptions);
-        
     }
 
     /**
@@ -91,13 +86,11 @@ class AuthorizedCardUsersApi extends Service
     * @param string $paymentInstrumentId
     * @param \Adyen\Model\BalancePlatform\AuthorisedCardUsers $authorisedCardUsers
     * @param array|null $requestOptions
-    
+
     * @throws AdyenException
     */
-    public function (string $paymentInstrumentId, \Adyen\Model\BalancePlatform\AuthorisedCardUsers $authorisedCardUsers, ?array $requestOptions = null)
-    {
+    public function (string $paymentInstrumentId, \Adyen\Model\BalancePlatform\AuthorisedCardUsers $authorisedCardUsers, ?array $requestOptions = null) {
         $endpoint = $this->baseURL . str_replace(['{paymentInstrumentId}'], [$paymentInstrumentId], "/paymentInstruments/{paymentInstrumentId}/authorisedCardUsers");
         $this->requestHttp($endpoint, strtolower('POST'), (array) $authorisedCardUsers->jsonSerialize(), $requestOptions);
-        
     }
 }
