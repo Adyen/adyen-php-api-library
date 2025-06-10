@@ -47,7 +47,7 @@ class DisputesApi extends Service
     * @return \Adyen\Model\Disputes\AcceptDisputeResponse
     * @throws AdyenException
     */
-    public function acceptDispute(\Adyen\Model\Disputes\AcceptDisputeRequest $acceptDisputeRequest, array $requestOptions = null): \Adyen\Model\Disputes\AcceptDisputeResponse
+    public function acceptDispute(\Adyen\Model\Disputes\AcceptDisputeRequest $acceptDisputeRequest, ?array $requestOptions = null): \Adyen\Model\Disputes\AcceptDisputeResponse
     {
         $endpoint = $this->baseURL . "/acceptDispute";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $acceptDisputeRequest->jsonSerialize(), $requestOptions);
@@ -62,7 +62,7 @@ class DisputesApi extends Service
     * @return \Adyen\Model\Disputes\DefendDisputeResponse
     * @throws AdyenException
     */
-    public function defendDispute(\Adyen\Model\Disputes\DefendDisputeRequest $defendDisputeRequest, array $requestOptions = null): \Adyen\Model\Disputes\DefendDisputeResponse
+    public function defendDispute(\Adyen\Model\Disputes\DefendDisputeRequest $defendDisputeRequest, ?array $requestOptions = null): \Adyen\Model\Disputes\DefendDisputeResponse
     {
         $endpoint = $this->baseURL . "/defendDispute";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $defendDisputeRequest->jsonSerialize(), $requestOptions);
@@ -77,7 +77,7 @@ class DisputesApi extends Service
     * @return \Adyen\Model\Disputes\DeleteDefenseDocumentResponse
     * @throws AdyenException
     */
-    public function deleteDisputeDefenseDocument(\Adyen\Model\Disputes\DeleteDefenseDocumentRequest $deleteDefenseDocumentRequest, array $requestOptions = null): \Adyen\Model\Disputes\DeleteDefenseDocumentResponse
+    public function deleteDisputeDefenseDocument(\Adyen\Model\Disputes\DeleteDefenseDocumentRequest $deleteDefenseDocumentRequest, ?array $requestOptions = null): \Adyen\Model\Disputes\DeleteDefenseDocumentResponse
     {
         $endpoint = $this->baseURL . "/deleteDisputeDefenseDocument";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $deleteDefenseDocumentRequest->jsonSerialize(), $requestOptions);
@@ -92,7 +92,7 @@ class DisputesApi extends Service
     * @return \Adyen\Model\Disputes\DefenseReasonsResponse
     * @throws AdyenException
     */
-    public function retrieveApplicableDefenseReasons(\Adyen\Model\Disputes\DefenseReasonsRequest $defenseReasonsRequest, array $requestOptions = null): \Adyen\Model\Disputes\DefenseReasonsResponse
+    public function retrieveApplicableDefenseReasons(\Adyen\Model\Disputes\DefenseReasonsRequest $defenseReasonsRequest, ?array $requestOptions = null): \Adyen\Model\Disputes\DefenseReasonsResponse
     {
         $endpoint = $this->baseURL . "/retrieveApplicableDefenseReasons";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $defenseReasonsRequest->jsonSerialize(), $requestOptions);
@@ -107,7 +107,7 @@ class DisputesApi extends Service
     * @return \Adyen\Model\Disputes\SupplyDefenseDocumentResponse
     * @throws AdyenException
     */
-    public function supplyDefenseDocument(\Adyen\Model\Disputes\SupplyDefenseDocumentRequest $supplyDefenseDocumentRequest, array $requestOptions = null): \Adyen\Model\Disputes\SupplyDefenseDocumentResponse
+    public function supplyDefenseDocument(\Adyen\Model\Disputes\SupplyDefenseDocumentRequest $supplyDefenseDocumentRequest, ?array $requestOptions = null): \Adyen\Model\Disputes\SupplyDefenseDocumentResponse
     {
         $endpoint = $this->baseURL . "/supplyDefenseDocument";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $supplyDefenseDocumentRequest->jsonSerialize(), $requestOptions);

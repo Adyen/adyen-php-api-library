@@ -44,6 +44,7 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
         'currency' => 'string',
         'fundingSource' => 'string',
         'paymentMethod' => 'string',
+        'regionality' => 'string',
         'ruleId' => 'string',
         'shopperInteraction' => 'string',
         'splitLogic' => '\Adyen\Model\Management\SplitConfigurationLogic'
@@ -60,6 +61,7 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
         'currency' => null,
         'fundingSource' => null,
         'paymentMethod' => null,
+        'regionality' => null,
         'ruleId' => null,
         'shopperInteraction' => null,
         'splitLogic' => null
@@ -74,6 +76,7 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
         'currency' => false,
         'fundingSource' => false,
         'paymentMethod' => false,
+        'regionality' => false,
         'ruleId' => false,
         'shopperInteraction' => false,
         'splitLogic' => false
@@ -168,6 +171,7 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
         'currency' => 'currency',
         'fundingSource' => 'fundingSource',
         'paymentMethod' => 'paymentMethod',
+        'regionality' => 'regionality',
         'ruleId' => 'ruleId',
         'shopperInteraction' => 'shopperInteraction',
         'splitLogic' => 'splitLogic'
@@ -182,6 +186,7 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
         'currency' => 'setCurrency',
         'fundingSource' => 'setFundingSource',
         'paymentMethod' => 'setPaymentMethod',
+        'regionality' => 'setRegionality',
         'ruleId' => 'setRuleId',
         'shopperInteraction' => 'setShopperInteraction',
         'splitLogic' => 'setSplitLogic'
@@ -196,6 +201,7 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
         'currency' => 'getCurrency',
         'fundingSource' => 'getFundingSource',
         'paymentMethod' => 'getPaymentMethod',
+        'regionality' => 'getRegionality',
         'ruleId' => 'getRuleId',
         'shopperInteraction' => 'getShopperInteraction',
         'splitLogic' => 'getSplitLogic'
@@ -248,6 +254,10 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
     public const FUNDING_SOURCE_DEFERRED_DEBIT = 'deferred_debit';
     public const FUNDING_SOURCE_PREPAID = 'prepaid';
     public const FUNDING_SOURCE_ANY = 'ANY';
+    public const REGIONALITY_INTERNATIONAL = 'international';
+    public const REGIONALITY_INTRA_REGIONAL = 'intraRegional';
+    public const REGIONALITY_INTER_REGIONAL = 'interRegional';
+    public const REGIONALITY_ANY = 'ANY';
     public const SHOPPER_INTERACTION_ECOMMERCE = 'Ecommerce';
     public const SHOPPER_INTERACTION_CONT_AUTH = 'ContAuth';
     public const SHOPPER_INTERACTION_MOTO = 'Moto';
@@ -268,6 +278,20 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
             self::FUNDING_SOURCE_DEFERRED_DEBIT,
             self::FUNDING_SOURCE_PREPAID,
             self::FUNDING_SOURCE_ANY,
+        ];
+    }
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getRegionalityAllowableValues()
+    {
+        return [
+            self::REGIONALITY_INTERNATIONAL,
+            self::REGIONALITY_INTRA_REGIONAL,
+            self::REGIONALITY_INTER_REGIONAL,
+            self::REGIONALITY_ANY,
         ];
     }
     /**
@@ -303,6 +327,7 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('currency', $data ?? [], null);
         $this->setIfExists('fundingSource', $data ?? [], null);
         $this->setIfExists('paymentMethod', $data ?? [], null);
+        $this->setIfExists('regionality', $data ?? [], null);
         $this->setIfExists('ruleId', $data ?? [], null);
         $this->setIfExists('shopperInteraction', $data ?? [], null);
         $this->setIfExists('splitLogic', $data ?? [], null);
@@ -350,6 +375,15 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
         if ($this->container['paymentMethod'] === null) {
             $invalidProperties[] = "'paymentMethod' can't be null";
         }
+        $allowedValues = $this->getRegionalityAllowableValues();
+        if (!is_null($this->container['regionality']) && !in_array($this->container['regionality'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'regionality', must be one of '%s'",
+                $this->container['regionality'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         if ($this->container['shopperInteraction'] === null) {
             $invalidProperties[] = "'shopperInteraction' can't be null";
         }
@@ -458,6 +492,40 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
     public function setPaymentMethod($paymentMethod)
     {
         $this->container['paymentMethod'] = $paymentMethod;
+
+        return $this;
+    }
+
+    /**
+     * Gets regionality
+     *
+     * @return string|null
+     */
+    public function getRegionality()
+    {
+        return $this->container['regionality'];
+    }
+
+    /**
+     * Sets regionality
+     *
+     * @param string|null $regionality
+     *
+     * @return self
+     */
+    public function setRegionality($regionality)
+    {
+        $allowedValues = $this->getRegionalityAllowableValues();
+        if (!in_array($regionality, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'regionality', must be one of '%s'",
+                    $regionality,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['regionality'] = $regionality;
 
         return $this;
     }

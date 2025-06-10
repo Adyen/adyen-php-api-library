@@ -21,10 +21,7 @@ use Adyen\Model\StoredValue\ObjectSerializer;
 /**
  * StoredValueLoadResponse Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class StoredValueLoadResponse implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -277,7 +274,7 @@ class StoredValueLoadResponse implements ModelInterface, ArrayAccess, \JsonSeria
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('authCode', $data ?? [], null);
         $this->setIfExists('currentBalance', $data ?? [], null);
