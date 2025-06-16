@@ -40,7 +40,7 @@ class AdyenException extends Exception
     public function __construct(
         $message = "",
         $code = 0,
-        \Throwable $previous = null,
+        ?\Throwable $previous = null,
         $status = null,
         $errorType = null,
         $pspReference = null,
