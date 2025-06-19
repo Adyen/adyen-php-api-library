@@ -1,0 +1,6 @@
+{
+  "status": 500,
+  "errorCode": "PA002",
+  "message": "An internal server error occurred.",
+  "errorType": "api"
+}
