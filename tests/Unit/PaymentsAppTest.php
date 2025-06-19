@@ -24,6 +24,7 @@
 namespace Adyen\Tests\Unit;
 
 use Adyen\Service\PaymentsApp\PaymentsAppApi;
+use Adyen\Model\PaymentsApp\BoardingTokenRequest;
 use Adyen\AdyenException;
 
 class PaymentsAppTest extends TestCaseMock
@@ -37,13 +38,14 @@ class PaymentsAppTest extends TestCaseMock
 
         $paymentsAppApi = new PaymentsAppApi($client);
 
-        $requestParams = [
-            'boardingRequestToken' => 'mockedRequestToken'
-        ];
+        $json = '{[
+            "boardingRequestToken": "mockedRequestToken"
+            ]}';
+        $params = new BoardingTokenRequest(json_decode($json, true));
 
         $response = $paymentsAppApi->generatePaymentsAppBoardingTokenForMerchant(
             "MerchantAccount123",
-            $requestParams
+            $params
         );
 
         $this->assertNotNull($response);
@@ -59,20 +61,21 @@ class PaymentsAppTest extends TestCaseMock
         $client = $this->createMockClient($jsonFile, $httpStatus);
         $paymentsAppApi = new PaymentsAppApi($client);
 
-        $requestParams = [
-            'boardingRequestToken' => 'mockedRequestToken'
-        ];
+        $json = '{[
+            "boardingRequestToken": "mockedRequestToken"
+            ]}';
+        $params = new BoardingTokenRequest(json_decode($json, true));
 
         try {
             $paymentsAppApi->generatePaymentsAppBoardingTokenForMerchant(
                 "MerchantAccount123",
-                $requestParams
+                $params
             );
             $this->fail(AdyenException::class . " expected");
         } catch (AdyenException $e) {
             $this->assertEquals(403, $e->getStatus()); // Assuming AdyenException has getStatus() or public status $status
             // Assumes the error message from boardingToken-error-403.json contains "PA001"
-            $this->assertStringContainsString("PA001", $e->getMessage());
+            $this->assertStringContainsString("PA001", $e->getAdyenErrorCode());
         }
     }
 
@@ -84,14 +87,15 @@ class PaymentsAppTest extends TestCaseMock
         $client = $this->createMockClient($jsonFile, $httpStatus);
         $paymentsAppApi = new PaymentsAppApi($client);
 
-        $requestParams = [
-            'boardingRequestToken' => 'mockedRequestToken'
-        ];
+        $json = '{[
+            "boardingRequestToken": "mockedRequestToken"
+            ]}';
+        $params = new BoardingTokenRequest(json_decode($json, true));
 
         $response = $paymentsAppApi->generatePaymentsAppBoardingTokenForStore(
             "MerchantAccount123",
             "StoreEU",
-            $requestParams
+            $params
         );
 
         $this->assertNotNull($response);
@@ -107,20 +111,21 @@ class PaymentsAppTest extends TestCaseMock
         $client = $this->createMockClient($jsonFile, $httpStatus);
         $paymentsAppApi = new PaymentsAppApi($client);
 
-        $requestParams = [
-            'boardingRequestToken' => 'mockedRequestToken'
-        ];
+        $json = '{[
+            "boardingRequestToken": "mockedRequestToken"
+            ]}';
+        $params = new BoardingTokenRequest(json_decode($json, true));
 
         try {
             $paymentsAppApi->generatePaymentsAppBoardingTokenForStore(
                 "MerchantAccount123",
                 "StoreEU",
-                $requestParams
+                $params
             );
             $this->fail(AdyenException::class . " expected");
         } catch (AdyenException $e) {
             $this->assertEquals(403, $e->getStatus());
-            $this->assertStringContainsString("PA001", $e->getMessage());
+            $this->assertStringContainsString("Merchant not permitted for this action.", $e->getMessage());
         }
     }
 
@@ -154,7 +159,7 @@ class PaymentsAppTest extends TestCaseMock
         } catch (AdyenException $e) {
             $this->assertEquals(500, $e->getStatus());
             // Assumes the error message from paymentsAppList-error-500.json contains "PA002"
-            $this->assertStringContainsString("PA002", $e->getMessage());
+            $this->assertStringContainsString("PA002", $e->getAdyenErrorCode());
         }
     }
 
