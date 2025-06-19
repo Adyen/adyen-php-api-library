@@ -21,10 +21,7 @@ use Adyen\Model\BinLookup\ObjectSerializer;
 /**
  * DSPublicKeyDetail Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class DSPublicKeyDetail implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -253,7 +250,7 @@ class DSPublicKeyDetail implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('brand', $data ?? [], null);
         $this->setIfExists('directoryServerId', $data ?? [], null);

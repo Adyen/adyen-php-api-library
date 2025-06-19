@@ -47,7 +47,7 @@ class BinLookupApi extends Service
     * @return \Adyen\Model\BinLookup\ThreeDSAvailabilityResponse
     * @throws AdyenException
     */
-    public function get3dsAvailability(\Adyen\Model\BinLookup\ThreeDSAvailabilityRequest $threeDSAvailabilityRequest, array $requestOptions = null): \Adyen\Model\BinLookup\ThreeDSAvailabilityResponse
+    public function get3dsAvailability(\Adyen\Model\BinLookup\ThreeDSAvailabilityRequest $threeDSAvailabilityRequest, ?array $requestOptions = null): \Adyen\Model\BinLookup\ThreeDSAvailabilityResponse
     {
         $endpoint = $this->baseURL . "/get3dsAvailability";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $threeDSAvailabilityRequest->jsonSerialize(), $requestOptions);
@@ -62,7 +62,7 @@ class BinLookupApi extends Service
     * @return \Adyen\Model\BinLookup\CostEstimateResponse
     * @throws AdyenException
     */
-    public function getCostEstimate(\Adyen\Model\BinLookup\CostEstimateRequest $costEstimateRequest, array $requestOptions = null): \Adyen\Model\BinLookup\CostEstimateResponse
+    public function getCostEstimate(\Adyen\Model\BinLookup\CostEstimateRequest $costEstimateRequest, ?array $requestOptions = null): \Adyen\Model\BinLookup\CostEstimateResponse
     {
         $endpoint = $this->baseURL . "/getCostEstimate";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $costEstimateRequest->jsonSerialize(), $requestOptions);
