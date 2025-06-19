@@ -47,7 +47,7 @@ class DataProtectionApi extends Service
     * @return \Adyen\Model\DataProtection\SubjectErasureResponse
     * @throws AdyenException
     */
-    public function requestSubjectErasure(\Adyen\Model\DataProtection\SubjectErasureByPspReferenceRequest $subjectErasureByPspReferenceRequest, array $requestOptions = null): \Adyen\Model\DataProtection\SubjectErasureResponse
+    public function requestSubjectErasure(\Adyen\Model\DataProtection\SubjectErasureByPspReferenceRequest $subjectErasureByPspReferenceRequest, ?array $requestOptions = null): \Adyen\Model\DataProtection\SubjectErasureResponse
     {
         $endpoint = $this->baseURL . "/requestSubjectErasure";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $subjectErasureByPspReferenceRequest->jsonSerialize(), $requestOptions);
