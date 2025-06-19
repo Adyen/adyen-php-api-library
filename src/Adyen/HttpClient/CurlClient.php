@@ -365,8 +365,8 @@ class CurlClient implements ClientInterface
 
         // Result in array or json
         if ($config->getOutputType() == 'array') {
-            // Transform to PHP Array
-            $result = json_decode($result, true);
+            // Transform to PHP Array if $result is a valid JSON string
+            $result = is_string($result) ? json_decode($result, true) : null;
         }
 
         return $result;

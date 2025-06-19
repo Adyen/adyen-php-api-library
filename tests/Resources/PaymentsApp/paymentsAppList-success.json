@@ -1,0 +1,6 @@
+{
+  "paymentsApps": [
+    { "installationId": "app1", "merchantAccountCode": "merchantAccountCode", "status": "BOARDED" },
+    { "installationId": "app2", "merchantAccountCode": "merchantAccountCode", "status": "BOARDING" }
+  ]
+}
