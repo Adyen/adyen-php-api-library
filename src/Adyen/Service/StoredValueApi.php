@@ -47,7 +47,7 @@ class StoredValueApi extends Service
     * @return \Adyen\Model\StoredValue\StoredValueStatusChangeResponse
     * @throws AdyenException
     */
-    public function changeStatus(\Adyen\Model\StoredValue\StoredValueStatusChangeRequest $storedValueStatusChangeRequest, array $requestOptions = null): \Adyen\Model\StoredValue\StoredValueStatusChangeResponse
+    public function changeStatus(\Adyen\Model\StoredValue\StoredValueStatusChangeRequest $storedValueStatusChangeRequest, ?array $requestOptions = null): \Adyen\Model\StoredValue\StoredValueStatusChangeResponse
     {
         $endpoint = $this->baseURL . "/changeStatus";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $storedValueStatusChangeRequest->jsonSerialize(), $requestOptions);
@@ -62,7 +62,7 @@ class StoredValueApi extends Service
     * @return \Adyen\Model\StoredValue\StoredValueBalanceCheckResponse
     * @throws AdyenException
     */
-    public function checkBalance(\Adyen\Model\StoredValue\StoredValueBalanceCheckRequest $storedValueBalanceCheckRequest, array $requestOptions = null): \Adyen\Model\StoredValue\StoredValueBalanceCheckResponse
+    public function checkBalance(\Adyen\Model\StoredValue\StoredValueBalanceCheckRequest $storedValueBalanceCheckRequest, ?array $requestOptions = null): \Adyen\Model\StoredValue\StoredValueBalanceCheckResponse
     {
         $endpoint = $this->baseURL . "/checkBalance";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $storedValueBalanceCheckRequest->jsonSerialize(), $requestOptions);
@@ -77,7 +77,7 @@ class StoredValueApi extends Service
     * @return \Adyen\Model\StoredValue\StoredValueIssueResponse
     * @throws AdyenException
     */
-    public function issue(\Adyen\Model\StoredValue\StoredValueIssueRequest $storedValueIssueRequest, array $requestOptions = null): \Adyen\Model\StoredValue\StoredValueIssueResponse
+    public function issue(\Adyen\Model\StoredValue\StoredValueIssueRequest $storedValueIssueRequest, ?array $requestOptions = null): \Adyen\Model\StoredValue\StoredValueIssueResponse
     {
         $endpoint = $this->baseURL . "/issue";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $storedValueIssueRequest->jsonSerialize(), $requestOptions);
@@ -92,7 +92,7 @@ class StoredValueApi extends Service
     * @return \Adyen\Model\StoredValue\StoredValueLoadResponse
     * @throws AdyenException
     */
-    public function load(\Adyen\Model\StoredValue\StoredValueLoadRequest $storedValueLoadRequest, array $requestOptions = null): \Adyen\Model\StoredValue\StoredValueLoadResponse
+    public function load(\Adyen\Model\StoredValue\StoredValueLoadRequest $storedValueLoadRequest, ?array $requestOptions = null): \Adyen\Model\StoredValue\StoredValueLoadResponse
     {
         $endpoint = $this->baseURL . "/load";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $storedValueLoadRequest->jsonSerialize(), $requestOptions);
@@ -107,7 +107,7 @@ class StoredValueApi extends Service
     * @return \Adyen\Model\StoredValue\StoredValueBalanceMergeResponse
     * @throws AdyenException
     */
-    public function mergeBalance(\Adyen\Model\StoredValue\StoredValueBalanceMergeRequest $storedValueBalanceMergeRequest, array $requestOptions = null): \Adyen\Model\StoredValue\StoredValueBalanceMergeResponse
+    public function mergeBalance(\Adyen\Model\StoredValue\StoredValueBalanceMergeRequest $storedValueBalanceMergeRequest, ?array $requestOptions = null): \Adyen\Model\StoredValue\StoredValueBalanceMergeResponse
     {
         $endpoint = $this->baseURL . "/mergeBalance";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $storedValueBalanceMergeRequest->jsonSerialize(), $requestOptions);
@@ -122,7 +122,7 @@ class StoredValueApi extends Service
     * @return \Adyen\Model\StoredValue\StoredValueVoidResponse
     * @throws AdyenException
     */
-    public function voidTransaction(\Adyen\Model\StoredValue\StoredValueVoidRequest $storedValueVoidRequest, array $requestOptions = null): \Adyen\Model\StoredValue\StoredValueVoidResponse
+    public function voidTransaction(\Adyen\Model\StoredValue\StoredValueVoidRequest $storedValueVoidRequest, ?array $requestOptions = null): \Adyen\Model\StoredValue\StoredValueVoidResponse
     {
         $endpoint = $this->baseURL . "/voidTransaction";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $storedValueVoidRequest->jsonSerialize(), $requestOptions);
