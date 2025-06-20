@@ -43,6 +43,7 @@ class PaymentRefundRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static $openAPITypes = [
         'amount' => '\Adyen\Model\Checkout\Amount',
         'applicationInfo' => '\Adyen\Model\Checkout\ApplicationInfo',
+        'capturePspReference' => 'string',
         'lineItems' => '\Adyen\Model\Checkout\LineItem[]',
         'merchantAccount' => 'string',
         'merchantRefundReason' => 'string',
@@ -61,6 +62,7 @@ class PaymentRefundRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static $openAPIFormats = [
         'amount' => null,
         'applicationInfo' => null,
+        'capturePspReference' => null,
         'lineItems' => null,
         'merchantAccount' => null,
         'merchantRefundReason' => null,
@@ -77,6 +79,7 @@ class PaymentRefundRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static $openAPINullables = [
         'amount' => false,
         'applicationInfo' => false,
+        'capturePspReference' => false,
         'lineItems' => false,
         'merchantAccount' => false,
         'merchantRefundReason' => true,
@@ -173,6 +176,7 @@ class PaymentRefundRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static $attributeMap = [
         'amount' => 'amount',
         'applicationInfo' => 'applicationInfo',
+        'capturePspReference' => 'capturePspReference',
         'lineItems' => 'lineItems',
         'merchantAccount' => 'merchantAccount',
         'merchantRefundReason' => 'merchantRefundReason',
@@ -189,6 +193,7 @@ class PaymentRefundRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static $setters = [
         'amount' => 'setAmount',
         'applicationInfo' => 'setApplicationInfo',
+        'capturePspReference' => 'setCapturePspReference',
         'lineItems' => 'setLineItems',
         'merchantAccount' => 'setMerchantAccount',
         'merchantRefundReason' => 'setMerchantRefundReason',
@@ -205,6 +210,7 @@ class PaymentRefundRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static $getters = [
         'amount' => 'getAmount',
         'applicationInfo' => 'getApplicationInfo',
+        'capturePspReference' => 'getCapturePspReference',
         'lineItems' => 'getLineItems',
         'merchantAccount' => 'getMerchantAccount',
         'merchantRefundReason' => 'getMerchantRefundReason',
@@ -292,6 +298,7 @@ class PaymentRefundRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         $this->setIfExists('amount', $data ?? [], null);
         $this->setIfExists('applicationInfo', $data ?? [], null);
+        $this->setIfExists('capturePspReference', $data ?? [], null);
         $this->setIfExists('lineItems', $data ?? [], null);
         $this->setIfExists('merchantAccount', $data ?? [], null);
         $this->setIfExists('merchantRefundReason', $data ?? [], null);
@@ -401,6 +408,30 @@ class PaymentRefundRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setApplicationInfo($applicationInfo)
     {
         $this->container['applicationInfo'] = $applicationInfo;
+
+        return $this;
+    }
+
+    /**
+     * Gets capturePspReference
+     *
+     * @return string|null
+     */
+    public function getCapturePspReference()
+    {
+        return $this->container['capturePspReference'];
+    }
+
+    /**
+     * Sets capturePspReference
+     *
+     * @param string|null $capturePspReference This is only available for PayPal refunds. The [`pspReference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the specific capture to refund.
+     *
+     * @return self
+     */
+    public function setCapturePspReference($capturePspReference)
+    {
+        $this->container['capturePspReference'] = $capturePspReference;
 
         return $this;
     }

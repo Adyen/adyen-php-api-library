@@ -48,7 +48,8 @@ class StoreCreationRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'phoneNumber' => 'string',
         'reference' => 'string',
         'shopperStatement' => 'string',
-        'splitConfiguration' => '\Adyen\Model\Management\StoreSplitConfiguration'
+        'splitConfiguration' => '\Adyen\Model\Management\StoreSplitConfiguration',
+        'subMerchantData' => '\Adyen\Model\Management\SubMerchantData'
     ];
 
     /**
@@ -66,7 +67,8 @@ class StoreCreationRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'phoneNumber' => null,
         'reference' => null,
         'shopperStatement' => null,
-        'splitConfiguration' => null
+        'splitConfiguration' => null,
+        'subMerchantData' => null
     ];
 
     /**
@@ -82,7 +84,8 @@ class StoreCreationRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'phoneNumber' => false,
         'reference' => false,
         'shopperStatement' => false,
-        'splitConfiguration' => false
+        'splitConfiguration' => false,
+        'subMerchantData' => false
     ];
 
     /**
@@ -178,7 +181,8 @@ class StoreCreationRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'phoneNumber' => 'phoneNumber',
         'reference' => 'reference',
         'shopperStatement' => 'shopperStatement',
-        'splitConfiguration' => 'splitConfiguration'
+        'splitConfiguration' => 'splitConfiguration',
+        'subMerchantData' => 'subMerchantData'
     ];
 
     /**
@@ -194,7 +198,8 @@ class StoreCreationRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'phoneNumber' => 'setPhoneNumber',
         'reference' => 'setReference',
         'shopperStatement' => 'setShopperStatement',
-        'splitConfiguration' => 'setSplitConfiguration'
+        'splitConfiguration' => 'setSplitConfiguration',
+        'subMerchantData' => 'setSubMerchantData'
     ];
 
     /**
@@ -210,7 +215,8 @@ class StoreCreationRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'phoneNumber' => 'getPhoneNumber',
         'reference' => 'getReference',
         'shopperStatement' => 'getShopperStatement',
-        'splitConfiguration' => 'getSplitConfiguration'
+        'splitConfiguration' => 'getSplitConfiguration',
+        'subMerchantData' => 'getSubMerchantData'
     ];
 
     /**
@@ -278,6 +284,7 @@ class StoreCreationRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('reference', $data ?? [], null);
         $this->setIfExists('shopperStatement', $data ?? [], null);
         $this->setIfExists('splitConfiguration', $data ?? [], null);
+        $this->setIfExists('subMerchantData', $data ?? [], null);
     }
 
     /**
@@ -522,6 +529,30 @@ class StoreCreationRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setSplitConfiguration($splitConfiguration)
     {
         $this->container['splitConfiguration'] = $splitConfiguration;
+
+        return $this;
+    }
+
+    /**
+     * Gets subMerchantData
+     *
+     * @return \Adyen\Model\Management\SubMerchantData|null
+     */
+    public function getSubMerchantData()
+    {
+        return $this->container['subMerchantData'];
+    }
+
+    /**
+     * Sets subMerchantData
+     *
+     * @param \Adyen\Model\Management\SubMerchantData|null $subMerchantData subMerchantData
+     *
+     * @return self
+     */
+    public function setSubMerchantData($subMerchantData)
+    {
+        $this->container['subMerchantData'] = $subMerchantData;
 
         return $this;
     }

@@ -44,6 +44,7 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
         'currency' => 'string',
         'fundingSource' => 'string',
         'paymentMethod' => 'string',
+        'regionality' => 'string',
         'shopperInteraction' => 'string'
     ];
 
@@ -58,6 +59,7 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
         'currency' => null,
         'fundingSource' => null,
         'paymentMethod' => null,
+        'regionality' => null,
         'shopperInteraction' => null
     ];
 
@@ -70,6 +72,7 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
         'currency' => false,
         'fundingSource' => false,
         'paymentMethod' => false,
+        'regionality' => false,
         'shopperInteraction' => false
     ];
 
@@ -162,6 +165,7 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
         'currency' => 'currency',
         'fundingSource' => 'fundingSource',
         'paymentMethod' => 'paymentMethod',
+        'regionality' => 'regionality',
         'shopperInteraction' => 'shopperInteraction'
     ];
 
@@ -174,6 +178,7 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
         'currency' => 'setCurrency',
         'fundingSource' => 'setFundingSource',
         'paymentMethod' => 'setPaymentMethod',
+        'regionality' => 'setRegionality',
         'shopperInteraction' => 'setShopperInteraction'
     ];
 
@@ -186,6 +191,7 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
         'currency' => 'getCurrency',
         'fundingSource' => 'getFundingSource',
         'paymentMethod' => 'getPaymentMethod',
+        'regionality' => 'getRegionality',
         'shopperInteraction' => 'getShopperInteraction'
     ];
 
@@ -249,6 +255,7 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
         $this->setIfExists('currency', $data ?? [], null);
         $this->setIfExists('fundingSource', $data ?? [], null);
         $this->setIfExists('paymentMethod', $data ?? [], null);
+        $this->setIfExists('regionality', $data ?? [], null);
         $this->setIfExists('shopperInteraction', $data ?? [], null);
     }
 
@@ -371,6 +378,30 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
     public function setPaymentMethod($paymentMethod)
     {
         $this->container['paymentMethod'] = $paymentMethod;
+
+        return $this;
+    }
+
+    /**
+     * Gets regionality
+     *
+     * @return string|null
+     */
+    public function getRegionality()
+    {
+        return $this->container['regionality'];
+    }
+
+    /**
+     * Sets regionality
+     *
+     * @param string|null $regionality 
+     *
+     * @return self
+     */
+    public function setRegionality($regionality)
+    {
+        $this->container['regionality'] = $regionality;
 
         return $this;
     }
