@@ -1384,7 +1384,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets fraudRiskLevel
      *
-     * @param string|null $fraudRiskLevel The risk level of the transaction as classified by the [machine learning](https://docs.adyen.com/risk-management/configure-your-risk-profile/machine-learning-rules/) fraud risk rule. The risk level indicates the likelihood that a transaction will result in a fraudulent dispute. The possible return values are: * veryLow * low * medium * high * veryHigh  >
+     * @param string|null $fraudRiskLevel The risk level of the transaction as classified by the [machine learning](https://docs.adyen.com/risk-management/configure-your-risk-profile/machine-learning-rules/) fraud risk rule. The risk level indicates the likelihood that a transaction will result in a fraudulent dispute. The possible return values are: * veryLow * low * medium * high * veryHigh
      *
      * @return self
      */
