@@ -540,7 +540,7 @@ class VerificationErrorRecursive implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets type
      *
-     * @param string|null $type The type of error.   Possible values: **invalidInput**, **dataMissing**.
+     * @param string|null $type The type of error.    Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus**
      *
      * @return self
      */
