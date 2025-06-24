@@ -550,7 +550,7 @@ class CardInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets threeDSecure
      *
-     * @param string|null $threeDSecure Allocates a specific product range for either a physical or a virtual card. Possible values: **fullySupported**, **secureCorporate**. >Reach out to your Adyen contact to get the values relevant for your integration.
+     * @param string|null $threeDSecure The 3DS configuration of the physical or the virtual card. Possible values: **fullySupported**, **secureCorporate**. > Reach out to your Adyen contact to get the values relevant for your integration.
      *
      * @return self
      */

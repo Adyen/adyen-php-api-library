@@ -43,7 +43,8 @@ class RelayedAuthenticationRequest implements ModelInterface, ArrayAccess, \Json
     protected static $openAPITypes = [
         'id' => 'string',
         'paymentInstrumentId' => 'string',
-        'purchase' => '\Adyen\Model\AcsWebhooks\Purchase'
+        'purchase' => '\Adyen\Model\AcsWebhooks\Purchase',
+        'threeDSRequestorAppURL' => 'string'
     ];
 
     /**
@@ -56,7 +57,8 @@ class RelayedAuthenticationRequest implements ModelInterface, ArrayAccess, \Json
     protected static $openAPIFormats = [
         'id' => null,
         'paymentInstrumentId' => null,
-        'purchase' => null
+        'purchase' => null,
+        'threeDSRequestorAppURL' => null
     ];
 
     /**
@@ -67,7 +69,8 @@ class RelayedAuthenticationRequest implements ModelInterface, ArrayAccess, \Json
     protected static $openAPINullables = [
         'id' => false,
         'paymentInstrumentId' => false,
-        'purchase' => false
+        'purchase' => false,
+        'threeDSRequestorAppURL' => false
     ];
 
     /**
@@ -158,7 +161,8 @@ class RelayedAuthenticationRequest implements ModelInterface, ArrayAccess, \Json
     protected static $attributeMap = [
         'id' => 'id',
         'paymentInstrumentId' => 'paymentInstrumentId',
-        'purchase' => 'purchase'
+        'purchase' => 'purchase',
+        'threeDSRequestorAppURL' => 'threeDSRequestorAppURL'
     ];
 
     /**
@@ -169,7 +173,8 @@ class RelayedAuthenticationRequest implements ModelInterface, ArrayAccess, \Json
     protected static $setters = [
         'id' => 'setId',
         'paymentInstrumentId' => 'setPaymentInstrumentId',
-        'purchase' => 'setPurchase'
+        'purchase' => 'setPurchase',
+        'threeDSRequestorAppURL' => 'setThreeDSRequestorAppURL'
     ];
 
     /**
@@ -180,7 +185,8 @@ class RelayedAuthenticationRequest implements ModelInterface, ArrayAccess, \Json
     protected static $getters = [
         'id' => 'getId',
         'paymentInstrumentId' => 'getPaymentInstrumentId',
-        'purchase' => 'getPurchase'
+        'purchase' => 'getPurchase',
+        'threeDSRequestorAppURL' => 'getThreeDSRequestorAppURL'
     ];
 
     /**
@@ -243,6 +249,7 @@ class RelayedAuthenticationRequest implements ModelInterface, ArrayAccess, \Json
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('paymentInstrumentId', $data ?? [], null);
         $this->setIfExists('purchase', $data ?? [], null);
+        $this->setIfExists('threeDSRequestorAppURL', $data ?? [], null);
     }
 
     /**
@@ -364,6 +371,30 @@ class RelayedAuthenticationRequest implements ModelInterface, ArrayAccess, \Json
     public function setPurchase($purchase)
     {
         $this->container['purchase'] = $purchase;
+
+        return $this;
+    }
+
+    /**
+     * Gets threeDSRequestorAppURL
+     *
+     * @return string|null
+     */
+    public function getThreeDSRequestorAppURL()
+    {
+        return $this->container['threeDSRequestorAppURL'];
+    }
+
+    /**
+     * Sets threeDSRequestorAppURL
+     *
+     * @param string|null $threeDSRequestorAppURL URL for auto-switching to the threeDS Requestor App. If not present, the threeDS Requestor App doesn't support auto-switching.
+     *
+     * @return self
+     */
+    public function setThreeDSRequestorAppURL($threeDSRequestorAppURL)
+    {
+        $this->container['threeDSRequestorAppURL'] = $threeDSRequestorAppURL;
 
         return $this;
     }
