@@ -42,6 +42,7 @@ class PixRecurring implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'billingDate' => 'string',
+        'businessDayOnly' => 'bool',
         'endsAt' => 'string',
         'frequency' => 'string',
         'minAmount' => '\Adyen\Model\Checkout\Amount',
@@ -61,6 +62,7 @@ class PixRecurring implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'billingDate' => null,
+        'businessDayOnly' => null,
         'endsAt' => null,
         'frequency' => null,
         'minAmount' => null,
@@ -78,6 +80,7 @@ class PixRecurring implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'billingDate' => false,
+        'businessDayOnly' => false,
         'endsAt' => false,
         'frequency' => false,
         'minAmount' => false,
@@ -175,6 +178,7 @@ class PixRecurring implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'billingDate' => 'billingDate',
+        'businessDayOnly' => 'businessDayOnly',
         'endsAt' => 'endsAt',
         'frequency' => 'frequency',
         'minAmount' => 'minAmount',
@@ -192,6 +196,7 @@ class PixRecurring implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'billingDate' => 'setBillingDate',
+        'businessDayOnly' => 'setBusinessDayOnly',
         'endsAt' => 'setEndsAt',
         'frequency' => 'setFrequency',
         'minAmount' => 'setMinAmount',
@@ -209,6 +214,7 @@ class PixRecurring implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'billingDate' => 'getBillingDate',
+        'businessDayOnly' => 'getBusinessDayOnly',
         'endsAt' => 'getEndsAt',
         'frequency' => 'getFrequency',
         'minAmount' => 'getMinAmount',
@@ -297,6 +303,7 @@ class PixRecurring implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(?array $data = null)
     {
         $this->setIfExists('billingDate', $data ?? [], null);
+        $this->setIfExists('businessDayOnly', $data ?? [], null);
         $this->setIfExists('endsAt', $data ?? [], null);
         $this->setIfExists('frequency', $data ?? [], null);
         $this->setIfExists('minAmount', $data ?? [], null);
@@ -378,6 +385,30 @@ class PixRecurring implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setBillingDate($billingDate)
     {
         $this->container['billingDate'] = $billingDate;
+
+        return $this;
+    }
+
+    /**
+     * Gets businessDayOnly
+     *
+     * @return bool|null
+     */
+    public function getBusinessDayOnly()
+    {
+        return $this->container['businessDayOnly'];
+    }
+
+    /**
+     * Sets businessDayOnly
+     *
+     * @param bool|null $businessDayOnly Flag used to define whether liquidation can happen only on business days
+     *
+     * @return self
+     */
+    public function setBusinessDayOnly($businessDayOnly)
+    {
+        $this->container['businessDayOnly'] = $businessDayOnly;
 
         return $this;
     }
