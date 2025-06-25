@@ -48,7 +48,7 @@ class PaymentsAppApi extends Service
     * @return \Adyen\Model\PaymentsApp\BoardingTokenResponse
     * @throws AdyenException
     */
-    public function generatePaymentsAppBoardingTokenForMerchant(string $merchantId, \Adyen\Model\PaymentsApp\BoardingTokenRequest $boardingTokenRequest, array $requestOptions = null): \Adyen\Model\PaymentsApp\BoardingTokenResponse
+    public function generatePaymentsAppBoardingTokenForMerchant(string $merchantId, \Adyen\Model\PaymentsApp\BoardingTokenRequest $boardingTokenRequest, ?array $requestOptions = null): \Adyen\Model\PaymentsApp\BoardingTokenResponse
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}'], [$merchantId], "/merchants/{merchantId}/generatePaymentsAppBoardingToken");
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $boardingTokenRequest->jsonSerialize(), $requestOptions);
@@ -65,7 +65,7 @@ class PaymentsAppApi extends Service
     * @return \Adyen\Model\PaymentsApp\BoardingTokenResponse
     * @throws AdyenException
     */
-    public function generatePaymentsAppBoardingTokenForStore(string $merchantId, string $storeId, \Adyen\Model\PaymentsApp\BoardingTokenRequest $boardingTokenRequest, array $requestOptions = null): \Adyen\Model\PaymentsApp\BoardingTokenResponse
+    public function generatePaymentsAppBoardingTokenForStore(string $merchantId, string $storeId, \Adyen\Model\PaymentsApp\BoardingTokenRequest $boardingTokenRequest, ?array $requestOptions = null): \Adyen\Model\PaymentsApp\BoardingTokenResponse
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{storeId}'], [$merchantId, $storeId], "/merchants/{merchantId}/stores/{storeId}/generatePaymentsAppBoardingToken");
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $boardingTokenRequest->jsonSerialize(), $requestOptions);
@@ -80,7 +80,7 @@ class PaymentsAppApi extends Service
     * @return \Adyen\Model\PaymentsApp\PaymentsAppResponse
     * @throws AdyenException
     */
-    public function listPaymentsAppForMerchant(string $merchantId, array $requestOptions = null): \Adyen\Model\PaymentsApp\PaymentsAppResponse
+    public function listPaymentsAppForMerchant(string $merchantId, ?array $requestOptions = null): \Adyen\Model\PaymentsApp\PaymentsAppResponse
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}'], [$merchantId], "/merchants/{merchantId}/paymentsApps");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -96,7 +96,7 @@ class PaymentsAppApi extends Service
     * @return \Adyen\Model\PaymentsApp\PaymentsAppResponse
     * @throws AdyenException
     */
-    public function listPaymentsAppForStore(string $merchantId, string $storeId, array $requestOptions = null): \Adyen\Model\PaymentsApp\PaymentsAppResponse
+    public function listPaymentsAppForStore(string $merchantId, string $storeId, ?array $requestOptions = null): \Adyen\Model\PaymentsApp\PaymentsAppResponse
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{storeId}'], [$merchantId, $storeId], "/merchants/{merchantId}/stores/{storeId}/paymentsApps");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
@@ -109,12 +109,13 @@ class PaymentsAppApi extends Service
     * @param string $merchantId
     * @param string $installationId
     * @param array|null $requestOptions
-
+    
     * @throws AdyenException
     */
-    public function revokePaymentsApp(string $merchantId, string $installationId, array $requestOptions = null)
+    public function revokePaymentsApp(string $merchantId, string $installationId, ?array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{installationId}'], [$merchantId, $installationId], "/merchants/{merchantId}/paymentsApps/{installationId}/revoke");
         $this->requestHttp($endpoint, strtolower('POST'), null, $requestOptions);
+        
     }
 }
