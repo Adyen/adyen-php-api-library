@@ -21,10 +21,7 @@ use Adyen\Model\Disputes\ObjectSerializer;
 /**
  * DefenseReasonsRequest Class Doc Comment
  *
- * @category Class
  * @package  Adyen
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class DefenseReasonsRequest implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -235,7 +232,7 @@ class DefenseReasonsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('disputePspReference', $data ?? [], null);
         $this->setIfExists('merchantAccountCode', $data ?? [], null);

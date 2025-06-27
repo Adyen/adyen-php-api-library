@@ -18,6 +18,15 @@ use Adyen\Client;
 use Adyen\Service;
 use Adyen\Model\POSTerminalManagement\ObjectSerializer;
 
+/**
+ * This class is deprecated and NO LONGER updated
+ *
+ * <p>Support for the "classic" POS Terminal Management API has stopped. To automate assigning
+ * terminals, you must use Management API: see
+ * https://docs.adyen.com/point-of-sale/automating-terminal-management/assign-terminals-api/
+ *
+ * @deprecated Use Management API instead
+ */
 class POSTerminalManagementApi extends Service
 {
     /**
@@ -48,7 +57,7 @@ class POSTerminalManagementApi extends Service
     * @return \Adyen\Model\POSTerminalManagement\AssignTerminalsResponse
     * @throws AdyenException
     */
-    public function assignTerminals(\Adyen\Model\POSTerminalManagement\AssignTerminalsRequest $assignTerminalsRequest, array $requestOptions = null): \Adyen\Model\POSTerminalManagement\AssignTerminalsResponse
+    public function assignTerminals(\Adyen\Model\POSTerminalManagement\AssignTerminalsRequest $assignTerminalsRequest, ?array $requestOptions = null): \Adyen\Model\POSTerminalManagement\AssignTerminalsResponse
     {
         $endpoint = $this->baseURL . "/assignTerminals";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $assignTerminalsRequest->jsonSerialize(), $requestOptions);
@@ -64,7 +73,7 @@ class POSTerminalManagementApi extends Service
     * @return \Adyen\Model\POSTerminalManagement\FindTerminalResponse
     * @throws AdyenException
     */
-    public function findTerminal(\Adyen\Model\POSTerminalManagement\FindTerminalRequest $findTerminalRequest, array $requestOptions = null): \Adyen\Model\POSTerminalManagement\FindTerminalResponse
+    public function findTerminal(\Adyen\Model\POSTerminalManagement\FindTerminalRequest $findTerminalRequest, ?array $requestOptions = null): \Adyen\Model\POSTerminalManagement\FindTerminalResponse
     {
         $endpoint = $this->baseURL . "/findTerminal";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $findTerminalRequest->jsonSerialize(), $requestOptions);
@@ -80,7 +89,7 @@ class POSTerminalManagementApi extends Service
     * @return \Adyen\Model\POSTerminalManagement\GetStoresUnderAccountResponse
     * @throws AdyenException
     */
-    public function getStoresUnderAccount(\Adyen\Model\POSTerminalManagement\GetStoresUnderAccountRequest $getStoresUnderAccountRequest, array $requestOptions = null): \Adyen\Model\POSTerminalManagement\GetStoresUnderAccountResponse
+    public function getStoresUnderAccount(\Adyen\Model\POSTerminalManagement\GetStoresUnderAccountRequest $getStoresUnderAccountRequest, ?array $requestOptions = null): \Adyen\Model\POSTerminalManagement\GetStoresUnderAccountResponse
     {
         $endpoint = $this->baseURL . "/getStoresUnderAccount";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $getStoresUnderAccountRequest->jsonSerialize(), $requestOptions);
@@ -96,7 +105,7 @@ class POSTerminalManagementApi extends Service
     * @return \Adyen\Model\POSTerminalManagement\GetTerminalDetailsResponse
     * @throws AdyenException
     */
-    public function getTerminalDetails(\Adyen\Model\POSTerminalManagement\GetTerminalDetailsRequest $getTerminalDetailsRequest, array $requestOptions = null): \Adyen\Model\POSTerminalManagement\GetTerminalDetailsResponse
+    public function getTerminalDetails(\Adyen\Model\POSTerminalManagement\GetTerminalDetailsRequest $getTerminalDetailsRequest, ?array $requestOptions = null): \Adyen\Model\POSTerminalManagement\GetTerminalDetailsResponse
     {
         $endpoint = $this->baseURL . "/getTerminalDetails";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $getTerminalDetailsRequest->jsonSerialize(), $requestOptions);
@@ -112,7 +121,7 @@ class POSTerminalManagementApi extends Service
     * @return \Adyen\Model\POSTerminalManagement\GetTerminalsUnderAccountResponse
     * @throws AdyenException
     */
-    public function getTerminalsUnderAccount(\Adyen\Model\POSTerminalManagement\GetTerminalsUnderAccountRequest $getTerminalsUnderAccountRequest, array $requestOptions = null): \Adyen\Model\POSTerminalManagement\GetTerminalsUnderAccountResponse
+    public function getTerminalsUnderAccount(\Adyen\Model\POSTerminalManagement\GetTerminalsUnderAccountRequest $getTerminalsUnderAccountRequest, ?array $requestOptions = null): \Adyen\Model\POSTerminalManagement\GetTerminalsUnderAccountResponse
     {
         $endpoint = $this->baseURL . "/getTerminalsUnderAccount";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $getTerminalsUnderAccountRequest->jsonSerialize(), $requestOptions);

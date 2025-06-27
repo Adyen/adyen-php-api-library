@@ -1,0 +1,6 @@
+{
+  "status": 403,
+  "errorCode": "PA001",
+  "message": "Merchant not permitted for this action.",
+  "errorType": "security"
+}
