@@ -20,6 +20,61 @@ use function PHPUnit\Framework\assertEquals;
 
 class BalancePlatformTest extends TestCaseMock
 {
+
+    public function testGetAccountHolder()
+    {
+        $client = $this->createMockClientUrl(
+            'tests/Resources/BalancePlatform/get-account-holder.json'
+        );
+
+        $service = new AccountHoldersApi($client);
+        $response = $service->getAccountHolder('AH00AH3227C223222C5GXQXF658WB00000001');
+        self::assertEquals('AH3227C223222C5GXQXF658WB', $response->getId());
+        self::assertEquals(AccountHolder::STATUS_ACTIVE, $response->getStatus());
+        self::assertEquals("pending", $response['capabilities']['receiveFromPlatformPayments']['verificationStatus']);
+    }
+
+    public function testGetAccountHolderAdditionalAttributesDoesNotThrow()
+    {
+    
+        $client = $this->createMockClientUrl(
+        'tests/Resources/BalancePlatform/get-account-holder-additional-attributes.json'
+        );
+
+        $service = new AccountHoldersApi($client);
+
+        try {
+            $response = $service->getAccountHolder('AH00AH3227C223222C5GXQXF658WB00000001');
+
+            self::assertEquals('AH3227C223222C5GXQXF658WB', $response->getId());
+            self::assertEquals(AccountHolder::STATUS_ACTIVE, $response->getStatus());
+            self::assertEquals("pending", $response['capabilities']['receiveFromPlatformPayments']['verificationStatus']);
+        } catch (\Throwable $e) {
+            $this->fail('An unexpected exception was thrown: ' . $e->getMessage());
+        }
+    }
+
+    public function testGetAccountHolderUnknownEnum()
+    {
+        $this->markTestSkipped('This test should be enable when enum parsing is fixed.');
+
+        $client = $this->createMockClientUrl(
+            'tests/Resources/BalancePlatform/get-account-holder-unknown-enum.json'
+        );
+
+        $service = new AccountHoldersApi($client);
+
+        try {
+            $response = $service->getAccountHolder('AH00AH3227C223222C5GXQXF658WB00000001');
+
+            self::assertEquals('AH3227C223222C5GXQXF658WB', $response->getId());
+            self::assertEquals(AccountHolder::STATUS_ACTIVE, $response->getStatus());
+            self::assertEquals("pending", $response['capabilities']['receiveFromPlatformPayments']['verificationStatus']);
+        } catch (\Throwable $e) {
+            $this->fail('An unexpected exception was thrown: ' . $e->getMessage());
+        }
+    }
+
     /**
      * @throws AdyenException
      */
