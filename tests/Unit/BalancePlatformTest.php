@@ -38,7 +38,7 @@ class BalancePlatformTest extends TestCaseMock
     {
     
         $client = $this->createMockClientUrl(
-        'tests/Resources/BalancePlatform/get-account-holder-additional-attributes.json'
+            'tests/Resources/BalancePlatform/get-account-holder-additional-attributes.json'
         );
 
         $service = new AccountHoldersApi($client);
