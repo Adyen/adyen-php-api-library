@@ -381,7 +381,7 @@ class LegalEntityInfoRequiredType implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets capabilities
      *
-     * @param array<string,\Adyen\Model\LegalEntityManagement\LegalEntityCapability>|null $capabilities Contains key-value pairs that specify the actions that the legal entity can do in your platform.The key is a capability required for your integration. For example, **issueCard** for Issuing.The value is an object containing the settings for the capability.
+     * @param array<string,\Adyen\Model\LegalEntityManagement\LegalEntityCapability>|null $capabilities Contains key-value pairs that specify the actions that the legal entity can do in your platform.The key is a capability required for your integration. For example, **issueCard** for Issuing. The value is an object containing the settings for the capability.
      *
      * @return self
      */

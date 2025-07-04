@@ -44,6 +44,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'accel' => '\Adyen\Model\Management\AccelInfo',
         'affirm' => '\Adyen\Model\Management\AffirmInfo',
         'afterpayTouch' => '\Adyen\Model\Management\AfterpayTouchInfo',
+        'alipayPlus' => '\Adyen\Model\Management\AlipayPlusInfo',
         'allowed' => 'bool',
         'amex' => '\Adyen\Model\Management\AmexInfo',
         'applePay' => '\Adyen\Model\Management\ApplePayInfo',
@@ -68,6 +69,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'jcb' => '\Adyen\Model\Management\JCBInfo',
         'klarna' => '\Adyen\Model\Management\KlarnaInfo',
         'maestro' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
+        'maestroUsa' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'mc' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'mealVoucherFR' => '\Adyen\Model\Management\MealVoucherFRInfo',
         'nyce' => '\Adyen\Model\Management\NyceInfo',
@@ -104,6 +106,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'accel' => null,
         'affirm' => null,
         'afterpayTouch' => null,
+        'alipayPlus' => null,
         'allowed' => null,
         'amex' => null,
         'applePay' => null,
@@ -128,6 +131,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'jcb' => null,
         'klarna' => null,
         'maestro' => null,
+        'maestroUsa' => null,
         'mc' => null,
         'mealVoucherFR' => null,
         'nyce' => null,
@@ -162,6 +166,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'accel' => false,
         'affirm' => false,
         'afterpayTouch' => false,
+        'alipayPlus' => false,
         'allowed' => false,
         'amex' => false,
         'applePay' => false,
@@ -186,6 +191,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'jcb' => false,
         'klarna' => false,
         'maestro' => false,
+        'maestroUsa' => false,
         'mc' => false,
         'mealVoucherFR' => false,
         'nyce' => false,
@@ -300,6 +306,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'accel' => 'accel',
         'affirm' => 'affirm',
         'afterpayTouch' => 'afterpayTouch',
+        'alipayPlus' => 'alipayPlus',
         'allowed' => 'allowed',
         'amex' => 'amex',
         'applePay' => 'applePay',
@@ -324,6 +331,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'jcb' => 'jcb',
         'klarna' => 'klarna',
         'maestro' => 'maestro',
+        'maestroUsa' => 'maestro_usa',
         'mc' => 'mc',
         'mealVoucherFR' => 'mealVoucher_FR',
         'nyce' => 'nyce',
@@ -358,6 +366,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'accel' => 'setAccel',
         'affirm' => 'setAffirm',
         'afterpayTouch' => 'setAfterpayTouch',
+        'alipayPlus' => 'setAlipayPlus',
         'allowed' => 'setAllowed',
         'amex' => 'setAmex',
         'applePay' => 'setApplePay',
@@ -382,6 +391,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'jcb' => 'setJcb',
         'klarna' => 'setKlarna',
         'maestro' => 'setMaestro',
+        'maestroUsa' => 'setMaestroUsa',
         'mc' => 'setMc',
         'mealVoucherFR' => 'setMealVoucherFR',
         'nyce' => 'setNyce',
@@ -416,6 +426,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'accel' => 'getAccel',
         'affirm' => 'getAffirm',
         'afterpayTouch' => 'getAfterpayTouch',
+        'alipayPlus' => 'getAlipayPlus',
         'allowed' => 'getAllowed',
         'amex' => 'getAmex',
         'applePay' => 'getApplePay',
@@ -440,6 +451,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'jcb' => 'getJcb',
         'klarna' => 'getKlarna',
         'maestro' => 'getMaestro',
+        'maestroUsa' => 'getMaestroUsa',
         'mc' => 'getMc',
         'mealVoucherFR' => 'getMealVoucherFR',
         'nyce' => 'getNyce',
@@ -543,6 +555,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('accel', $data ?? [], null);
         $this->setIfExists('affirm', $data ?? [], null);
         $this->setIfExists('afterpayTouch', $data ?? [], null);
+        $this->setIfExists('alipayPlus', $data ?? [], null);
         $this->setIfExists('allowed', $data ?? [], null);
         $this->setIfExists('amex', $data ?? [], null);
         $this->setIfExists('applePay', $data ?? [], null);
@@ -567,6 +580,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('jcb', $data ?? [], null);
         $this->setIfExists('klarna', $data ?? [], null);
         $this->setIfExists('maestro', $data ?? [], null);
+        $this->setIfExists('maestroUsa', $data ?? [], null);
         $this->setIfExists('mc', $data ?? [], null);
         $this->setIfExists('mealVoucherFR', $data ?? [], null);
         $this->setIfExists('nyce', $data ?? [], null);
@@ -714,6 +728,30 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setAfterpayTouch($afterpayTouch)
     {
         $this->container['afterpayTouch'] = $afterpayTouch;
+
+        return $this;
+    }
+
+    /**
+     * Gets alipayPlus
+     *
+     * @return \Adyen\Model\Management\AlipayPlusInfo|null
+     */
+    public function getAlipayPlus()
+    {
+        return $this->container['alipayPlus'];
+    }
+
+    /**
+     * Sets alipayPlus
+     *
+     * @param \Adyen\Model\Management\AlipayPlusInfo|null $alipayPlus alipayPlus
+     *
+     * @return self
+     */
+    public function setAlipayPlus($alipayPlus)
+    {
+        $this->container['alipayPlus'] = $alipayPlus;
 
         return $this;
     }
@@ -1290,6 +1328,30 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setMaestro($maestro)
     {
         $this->container['maestro'] = $maestro;
+
+        return $this;
+    }
+
+    /**
+     * Gets maestroUsa
+     *
+     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     */
+    public function getMaestroUsa()
+    {
+        return $this->container['maestroUsa'];
+    }
+
+    /**
+     * Sets maestroUsa
+     *
+     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $maestroUsa maestroUsa
+     *
+     * @return self
+     */
+    public function setMaestroUsa($maestroUsa)
+    {
+        $this->container['maestroUsa'] = $maestroUsa;
 
         return $this;
     }
