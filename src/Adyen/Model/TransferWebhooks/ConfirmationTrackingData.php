@@ -341,7 +341,7 @@ class ConfirmationTrackingData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets status
      *
-     * @param string $status The status of the transfer.  Possible values:    - **credited**: the funds are credited to your user's transfer instrument or bank account.
+     * @param string $status The status of the transfer.  Possible values:   - **credited**: the funds are credited to your user's transfer instrument or bank account.
      *
      * @return self
      */

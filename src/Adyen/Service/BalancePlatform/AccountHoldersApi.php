@@ -103,7 +103,7 @@ class AccountHoldersApi extends Service
     * Get a tax form
     *
     * @param string $id
-    * @param array|null $requestOptions ['queryParams' => ['formType'=> string, 'year'=> int]]
+    * @param array|null $requestOptions ['queryParams' => ['formType'=> string, 'year'=> int, 'legalEntityId'=> string]]
     * @return \Adyen\Model\BalancePlatform\GetTaxFormResponse
     * @throws AdyenException
     */

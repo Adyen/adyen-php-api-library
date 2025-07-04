@@ -58,6 +58,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'interacCard' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'jcb' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'maestro' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
+        'maestroUsa' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'mc' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'nyce' => '\Adyen\Model\Management\NyceInfo',
         'paybybankPlaid' => '\Adyen\Model\Management\PayByBankPlaidInfo',
@@ -93,6 +94,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'interacCard' => null,
         'jcb' => null,
         'maestro' => null,
+        'maestroUsa' => null,
         'mc' => null,
         'nyce' => null,
         'paybybankPlaid' => null,
@@ -126,6 +128,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'interacCard' => false,
         'jcb' => false,
         'maestro' => false,
+        'maestroUsa' => false,
         'mc' => false,
         'nyce' => false,
         'paybybankPlaid' => false,
@@ -239,6 +242,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'interacCard' => 'interac_card',
         'jcb' => 'jcb',
         'maestro' => 'maestro',
+        'maestroUsa' => 'maestro_usa',
         'mc' => 'mc',
         'nyce' => 'nyce',
         'paybybankPlaid' => 'paybybank_plaid',
@@ -272,6 +276,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'interacCard' => 'setInteracCard',
         'jcb' => 'setJcb',
         'maestro' => 'setMaestro',
+        'maestroUsa' => 'setMaestroUsa',
         'mc' => 'setMc',
         'nyce' => 'setNyce',
         'paybybankPlaid' => 'setPaybybankPlaid',
@@ -305,6 +310,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'interacCard' => 'getInteracCard',
         'jcb' => 'getJcb',
         'maestro' => 'getMaestro',
+        'maestroUsa' => 'getMaestroUsa',
         'mc' => 'getMc',
         'nyce' => 'getNyce',
         'paybybankPlaid' => 'getPaybybankPlaid',
@@ -389,6 +395,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('interacCard', $data ?? [], null);
         $this->setIfExists('jcb', $data ?? [], null);
         $this->setIfExists('maestro', $data ?? [], null);
+        $this->setIfExists('maestroUsa', $data ?? [], null);
         $this->setIfExists('mc', $data ?? [], null);
         $this->setIfExists('nyce', $data ?? [], null);
         $this->setIfExists('paybybankPlaid', $data ?? [], null);
@@ -845,6 +852,30 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     public function setMaestro($maestro)
     {
         $this->container['maestro'] = $maestro;
+
+        return $this;
+    }
+
+    /**
+     * Gets maestroUsa
+     *
+     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     */
+    public function getMaestroUsa()
+    {
+        return $this->container['maestroUsa'];
+    }
+
+    /**
+     * Sets maestroUsa
+     *
+     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $maestroUsa maestroUsa
+     *
+     * @return self
+     */
+    public function setMaestroUsa($maestroUsa)
+    {
+        $this->container['maestroUsa'] = $maestroUsa;
 
         return $this;
     }
