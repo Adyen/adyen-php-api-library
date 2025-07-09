@@ -218,6 +218,8 @@ class AdditionalBankIdentification implements ModelInterface, ArrayAccess, \Json
         return self::$openAPIModelName;
     }
 
+    public const TYPE_AU_BSB_CODE = 'auBsbCode';
+    public const TYPE_CA_ROUTING_NUMBER = 'caRoutingNumber';
     public const TYPE_GB_SORT_CODE = 'gbSortCode';
     public const TYPE_US_ROUTING_NUMBER = 'usRoutingNumber';
 
@@ -229,6 +231,8 @@ class AdditionalBankIdentification implements ModelInterface, ArrayAccess, \Json
     public function getTypeAllowableValues()
     {
         return [
+            self::TYPE_AU_BSB_CODE,
+            self::TYPE_CA_ROUTING_NUMBER,
             self::TYPE_GB_SORT_CODE,
             self::TYPE_US_ROUTING_NUMBER,
         ];
@@ -340,7 +344,7 @@ class AdditionalBankIdentification implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets type
      *
-     * @param string|null $type The type of additional bank identification, depending on the country.  Possible values:   * **gbSortCode**: The 6-digit [UK sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or spaces  * **usRoutingNumber**: The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or spaces.
+     * @param string|null $type The type of additional bank identification, depending on the country.  Possible values:   * **auBsbCode**: The 6-digit [Australian Bank State Branch (BSB) code](https://en.wikipedia.org/wiki/Bank_state_branch), without separators or spaces.  * **caRoutingNumber**: The 9-digit [Canadian routing number](https://en.wikipedia.org/wiki/Routing_number_(Canada)), in EFT format, without separators or spaces.  * **gbSortCode**: The 6-digit [UK sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or spaces  * **usRoutingNumber**: The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or spaces.
      *
      * @return self
      */

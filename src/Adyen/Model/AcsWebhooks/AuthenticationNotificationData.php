@@ -409,7 +409,7 @@ class AuthenticationNotificationData implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets id
      *
-     * @param string $id Unique identifier of the authentication.
+     * @param string $id The unique identifier of the authentication.
      *
      * @return self
      */
@@ -433,7 +433,7 @@ class AuthenticationNotificationData implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets paymentInstrumentId
      *
-     * @param string $paymentInstrumentId Unique identifier of the payment instrument that was used for the authentication.
+     * @param string $paymentInstrumentId The unique identifier of the payment instrument that was used for the authentication.
      *
      * @return self
      */
