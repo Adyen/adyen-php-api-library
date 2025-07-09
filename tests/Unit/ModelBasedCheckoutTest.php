@@ -19,6 +19,7 @@ use Adyen\Service\Checkout\DonationsApi;
 use Adyen\Service\Checkout\PaymentLinksApi;
 use Adyen\Service\Checkout\PaymentsApi;
 use Adyen\Service\Checkout\RecurringApi;
+use Adyen\Model\Checkout\LineItem;
 
 class ModelBasedCheckoutTest extends TestCaseMock
 {
@@ -379,5 +380,57 @@ class ModelBasedCheckoutTest extends TestCaseMock
         $jsonString = json_encode($request->jsonSerialize());
         // Assert nulled value is not in serialised string
         $this->assertFalse(strpos($jsonString, 'billingAddress') !== false);
+    }
+
+    // test request JSON payload serialization
+    public function testJsonSerializationMatchesExpected()
+    {
+        $amount = new Amount();
+        $amount->setCurrency('EUR')->setValue(10000);
+
+        $lineItem1 = new LineItem();
+        $lineItem1->setQuantity(1)->setAmountIncludingTax(5000)->setDescription('Sunglasses');
+        $lineItem2 = new LineItem();
+        $lineItem2->setQuantity(1)->setAmountIncludingTax(5000)->setDescription('Headphones');
+
+        $request = new CreateCheckoutSessionRequest();
+        $request
+            ->setChannel('Web')
+            ->setAmount($amount)
+            ->setCountryCode('NL')
+            ->setMerchantAccount('YOUR_MERCHANT_ACCOUNT')
+            ->setReference('YOUR_PAYMENT_REFERENCE')
+            ->setReturnUrl('https://mycompany.example.org/redirect?orderRef=YOUR_PAYMENT_REFERENCE')
+            ->setLineItems([$lineItem1, $lineItem2]);
+
+        $expectedJson = <<<JSON
+        {
+            "channel": "Web",
+            "amount": {
+                "currency": "EUR",
+                "value": 10000
+            },
+            "countryCode": "NL",
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "reference": "YOUR_PAYMENT_REFERENCE",
+            "returnUrl": "https://mycompany.example.org/redirect?orderRef=YOUR_PAYMENT_REFERENCE",
+            "lineItems": [
+                {
+                    "quantity": 1,
+                    "amountIncludingTax": 5000,
+                    "description": "Sunglasses"
+                },
+                {
+                    "quantity": 1,
+                    "amountIncludingTax": 5000,
+                    "description": "Headphones"
+                }
+            ]
+        }
+        JSON;
+
+        $actualJson = json_encode($request, JSON_PRETTY_PRINT);
+
+        $this->assertJsonStringEqualsJsonString($expectedJson, $actualJson);
     }
 }
