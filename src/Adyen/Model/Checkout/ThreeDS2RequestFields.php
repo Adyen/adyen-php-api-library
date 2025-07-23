@@ -801,7 +801,7 @@ class ThreeDS2RequestFields implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets addrMatch
      *
-     * @param string|null $addrMatch Indicates whether the Cardholder Shipping Address and Cardholder Billing Address are the same. Allowed values: * **Y** — Shipping Address matches Billing Address. * **N** — Shipping Address does not match Billing Address.
+     * @param string|null $addrMatch Indicates whether the cardholder shipping Address and cardholder billing address are the same. Allowed values: * **Y** — Shipping Address matches Billing Address. * **N** — Shipping Address does not match Billing Address.
      *
      * @return self
      */

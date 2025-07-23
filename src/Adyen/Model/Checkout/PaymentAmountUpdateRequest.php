@@ -43,6 +43,7 @@ class PaymentAmountUpdateRequest implements ModelInterface, ArrayAccess, \JsonSe
     protected static $openAPITypes = [
         'amount' => '\Adyen\Model\Checkout\Amount',
         'applicationInfo' => '\Adyen\Model\Checkout\ApplicationInfo',
+        'enhancedSchemeData' => '\Adyen\Model\Checkout\EnhancedSchemeData',
         'industryUsage' => 'string',
         'lineItems' => '\Adyen\Model\Checkout\LineItem[]',
         'merchantAccount' => 'string',
@@ -60,6 +61,7 @@ class PaymentAmountUpdateRequest implements ModelInterface, ArrayAccess, \JsonSe
     protected static $openAPIFormats = [
         'amount' => null,
         'applicationInfo' => null,
+        'enhancedSchemeData' => null,
         'industryUsage' => null,
         'lineItems' => null,
         'merchantAccount' => null,
@@ -75,6 +77,7 @@ class PaymentAmountUpdateRequest implements ModelInterface, ArrayAccess, \JsonSe
     protected static $openAPINullables = [
         'amount' => false,
         'applicationInfo' => false,
+        'enhancedSchemeData' => false,
         'industryUsage' => false,
         'lineItems' => false,
         'merchantAccount' => false,
@@ -170,6 +173,7 @@ class PaymentAmountUpdateRequest implements ModelInterface, ArrayAccess, \JsonSe
     protected static $attributeMap = [
         'amount' => 'amount',
         'applicationInfo' => 'applicationInfo',
+        'enhancedSchemeData' => 'enhancedSchemeData',
         'industryUsage' => 'industryUsage',
         'lineItems' => 'lineItems',
         'merchantAccount' => 'merchantAccount',
@@ -185,6 +189,7 @@ class PaymentAmountUpdateRequest implements ModelInterface, ArrayAccess, \JsonSe
     protected static $setters = [
         'amount' => 'setAmount',
         'applicationInfo' => 'setApplicationInfo',
+        'enhancedSchemeData' => 'setEnhancedSchemeData',
         'industryUsage' => 'setIndustryUsage',
         'lineItems' => 'setLineItems',
         'merchantAccount' => 'setMerchantAccount',
@@ -200,6 +205,7 @@ class PaymentAmountUpdateRequest implements ModelInterface, ArrayAccess, \JsonSe
     protected static $getters = [
         'amount' => 'getAmount',
         'applicationInfo' => 'getApplicationInfo',
+        'enhancedSchemeData' => 'getEnhancedSchemeData',
         'industryUsage' => 'getIndustryUsage',
         'lineItems' => 'getLineItems',
         'merchantAccount' => 'getMerchantAccount',
@@ -282,6 +288,7 @@ class PaymentAmountUpdateRequest implements ModelInterface, ArrayAccess, \JsonSe
     {
         $this->setIfExists('amount', $data ?? [], null);
         $this->setIfExists('applicationInfo', $data ?? [], null);
+        $this->setIfExists('enhancedSchemeData', $data ?? [], null);
         $this->setIfExists('industryUsage', $data ?? [], null);
         $this->setIfExists('lineItems', $data ?? [], null);
         $this->setIfExists('merchantAccount', $data ?? [], null);
@@ -390,6 +397,30 @@ class PaymentAmountUpdateRequest implements ModelInterface, ArrayAccess, \JsonSe
     public function setApplicationInfo($applicationInfo)
     {
         $this->container['applicationInfo'] = $applicationInfo;
+
+        return $this;
+    }
+
+    /**
+     * Gets enhancedSchemeData
+     *
+     * @return \Adyen\Model\Checkout\EnhancedSchemeData|null
+     */
+    public function getEnhancedSchemeData()
+    {
+        return $this->container['enhancedSchemeData'];
+    }
+
+    /**
+     * Sets enhancedSchemeData
+     *
+     * @param \Adyen\Model\Checkout\EnhancedSchemeData|null $enhancedSchemeData enhancedSchemeData
+     *
+     * @return self
+     */
+    public function setEnhancedSchemeData($enhancedSchemeData)
+    {
+        $this->container['enhancedSchemeData'] = $enhancedSchemeData;
 
         return $this;
     }
