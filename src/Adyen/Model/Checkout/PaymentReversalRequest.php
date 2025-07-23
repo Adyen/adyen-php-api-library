@@ -42,6 +42,7 @@ class PaymentReversalRequest implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPITypes = [
         'applicationInfo' => '\Adyen\Model\Checkout\ApplicationInfo',
+        'enhancedSchemeData' => '\Adyen\Model\Checkout\EnhancedSchemeData',
         'merchantAccount' => 'string',
         'reference' => 'string'
     ];
@@ -55,6 +56,7 @@ class PaymentReversalRequest implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPIFormats = [
         'applicationInfo' => null,
+        'enhancedSchemeData' => null,
         'merchantAccount' => null,
         'reference' => null
     ];
@@ -66,6 +68,7 @@ class PaymentReversalRequest implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPINullables = [
         'applicationInfo' => false,
+        'enhancedSchemeData' => false,
         'merchantAccount' => false,
         'reference' => false
     ];
@@ -157,6 +160,7 @@ class PaymentReversalRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static $attributeMap = [
         'applicationInfo' => 'applicationInfo',
+        'enhancedSchemeData' => 'enhancedSchemeData',
         'merchantAccount' => 'merchantAccount',
         'reference' => 'reference'
     ];
@@ -168,6 +172,7 @@ class PaymentReversalRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static $setters = [
         'applicationInfo' => 'setApplicationInfo',
+        'enhancedSchemeData' => 'setEnhancedSchemeData',
         'merchantAccount' => 'setMerchantAccount',
         'reference' => 'setReference'
     ];
@@ -179,6 +184,7 @@ class PaymentReversalRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static $getters = [
         'applicationInfo' => 'getApplicationInfo',
+        'enhancedSchemeData' => 'getEnhancedSchemeData',
         'merchantAccount' => 'getMerchantAccount',
         'reference' => 'getReference'
     ];
@@ -241,6 +247,7 @@ class PaymentReversalRequest implements ModelInterface, ArrayAccess, \JsonSerial
     public function __construct(?array $data = null)
     {
         $this->setIfExists('applicationInfo', $data ?? [], null);
+        $this->setIfExists('enhancedSchemeData', $data ?? [], null);
         $this->setIfExists('merchantAccount', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
     }
@@ -310,6 +317,30 @@ class PaymentReversalRequest implements ModelInterface, ArrayAccess, \JsonSerial
     public function setApplicationInfo($applicationInfo)
     {
         $this->container['applicationInfo'] = $applicationInfo;
+
+        return $this;
+    }
+
+    /**
+     * Gets enhancedSchemeData
+     *
+     * @return \Adyen\Model\Checkout\EnhancedSchemeData|null
+     */
+    public function getEnhancedSchemeData()
+    {
+        return $this->container['enhancedSchemeData'];
+    }
+
+    /**
+     * Sets enhancedSchemeData
+     *
+     * @param \Adyen\Model\Checkout\EnhancedSchemeData|null $enhancedSchemeData enhancedSchemeData
+     *
+     * @return self
+     */
+    public function setEnhancedSchemeData($enhancedSchemeData)
+    {
+        $this->container['enhancedSchemeData'] = $enhancedSchemeData;
 
         return $this;
     }

@@ -259,6 +259,8 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_SCALAPAY_3X = 'scalapay_3x';
     public const TYPE_SCALAPAY_4X = 'scalapay_4x';
     public const TYPE_MOLPAY_FPX = 'molpay_fpx';
+    public const TYPE_PAYME = 'payme';
+    public const TYPE_PAYME_POS = 'payme_pos';
     public const TYPE_KONBINI = 'konbini';
     public const TYPE_DIRECT_EBANKING = 'directEbanking';
     public const TYPE_BOLETOBANCARIO = 'boletobancario';
@@ -355,6 +357,8 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_SCALAPAY_3X,
             self::TYPE_SCALAPAY_4X,
             self::TYPE_MOLPAY_FPX,
+            self::TYPE_PAYME,
+            self::TYPE_PAYME_POS,
             self::TYPE_KONBINI,
             self::TYPE_DIRECT_EBANKING,
             self::TYPE_BOLETOBANCARIO,

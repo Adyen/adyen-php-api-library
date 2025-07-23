@@ -49,6 +49,7 @@ class RivertyDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'personalDetails' => 'string',
         'recurringDetailReference' => 'string',
         'storedPaymentMethodId' => 'string',
+        'subtype' => 'string',
         'type' => 'string'
     ];
 
@@ -68,6 +69,7 @@ class RivertyDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'personalDetails' => null,
         'recurringDetailReference' => null,
         'storedPaymentMethodId' => null,
+        'subtype' => null,
         'type' => null
     ];
 
@@ -85,6 +87,7 @@ class RivertyDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'personalDetails' => false,
         'recurringDetailReference' => false,
         'storedPaymentMethodId' => false,
+        'subtype' => false,
         'type' => false
     ];
 
@@ -182,6 +185,7 @@ class RivertyDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'personalDetails' => 'personalDetails',
         'recurringDetailReference' => 'recurringDetailReference',
         'storedPaymentMethodId' => 'storedPaymentMethodId',
+        'subtype' => 'subtype',
         'type' => 'type'
     ];
 
@@ -199,6 +203,7 @@ class RivertyDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'personalDetails' => 'setPersonalDetails',
         'recurringDetailReference' => 'setRecurringDetailReference',
         'storedPaymentMethodId' => 'setStoredPaymentMethodId',
+        'subtype' => 'setSubtype',
         'type' => 'setType'
     ];
 
@@ -216,6 +221,7 @@ class RivertyDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'personalDetails' => 'getPersonalDetails',
         'recurringDetailReference' => 'getRecurringDetailReference',
         'storedPaymentMethodId' => 'getStoredPaymentMethodId',
+        'subtype' => 'getSubtype',
         'type' => 'getType'
     ];
 
@@ -300,6 +306,7 @@ class RivertyDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('personalDetails', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
+        $this->setIfExists('subtype', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -547,6 +554,30 @@ class RivertyDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setStoredPaymentMethodId($storedPaymentMethodId)
     {
         $this->container['storedPaymentMethodId'] = $storedPaymentMethodId;
+
+        return $this;
+    }
+
+    /**
+     * Gets subtype
+     *
+     * @return string|null
+     */
+    public function getSubtype()
+    {
+        return $this->container['subtype'];
+    }
+
+    /**
+     * Sets subtype
+     *
+     * @param string|null $subtype The payment method subtype.
+     *
+     * @return self
+     */
+    public function setSubtype($subtype)
+    {
+        $this->container['subtype'] = $subtype;
 
         return $this;
     }

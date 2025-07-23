@@ -439,7 +439,7 @@ class ThreeDSRequestData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets dataOnly
      *
-     * @param string|null $dataOnly Flag for data only flow.
+     * @param string|null $dataOnly Required to trigger the [data-only flow](https://docs.adyen.com/online-payments/3d-secure/data-only/). When set to **true**, forces the 3D Secure 2 data-only flow for all transactions where it is possible.
      *
      * @return self
      */
@@ -473,7 +473,7 @@ class ThreeDSRequestData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets nativeThreeDS
      *
-     * @param string|null $nativeThreeDS Indicates if [native 3D Secure authentication](https://docs.adyen.com/online-payments/3d-secure/native-3ds2) should be used when available.  Possible values: * **preferred**: Use native 3D Secure authentication when available. * **disabled**: Only use the redirect 3D Secure authentication flow.
+     * @param string|null $nativeThreeDS Indicates if [native 3D Secure authentication](https://docs.adyen.com/online-payments/3d-secure/native-3ds2) should be triggered when available. Adyen can still select to fallback to the redirect flow to optimize authorization rates and improve the shopper's experience.  Possible values: * **preferred**: Use native 3D Secure authentication when available. * **disabled**: Use the redirect 3D Secure authentication flow.
      *
      * @return self
      */

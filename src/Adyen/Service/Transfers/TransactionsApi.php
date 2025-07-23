@@ -42,7 +42,7 @@ class TransactionsApi extends Service
     /**
     * Get all transactions
     *
-    * @param array|null $requestOptions ['queryParams' => ['balancePlatform'=> string, 'paymentInstrumentId'=> string, 'accountHolderId'=> string, 'balanceAccountId'=> string, 'cursor'=> string, 'createdSince'=> \DateTime, 'createdUntil'=> \DateTime, 'limit'=> int]]
+    * @param array|null $requestOptions ['queryParams' => ['balancePlatform'=> string, 'paymentInstrumentId'=> string, 'accountHolderId'=> string, 'balanceAccountId'=> string, 'cursor'=> string, 'createdSince'=> \DateTime, 'createdUntil'=> \DateTime, 'sortOrder'=> string, 'limit'=> int]]
     * @return \Adyen\Model\Transfers\TransactionSearchResponse
     * @throws AdyenException
     */

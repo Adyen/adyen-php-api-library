@@ -42,6 +42,7 @@ class StandalonePaymentCancelRequest implements ModelInterface, ArrayAccess, \Js
       */
     protected static $openAPITypes = [
         'applicationInfo' => '\Adyen\Model\Checkout\ApplicationInfo',
+        'enhancedSchemeData' => '\Adyen\Model\Checkout\EnhancedSchemeData',
         'merchantAccount' => 'string',
         'paymentReference' => 'string',
         'reference' => 'string'
@@ -56,6 +57,7 @@ class StandalonePaymentCancelRequest implements ModelInterface, ArrayAccess, \Js
       */
     protected static $openAPIFormats = [
         'applicationInfo' => null,
+        'enhancedSchemeData' => null,
         'merchantAccount' => null,
         'paymentReference' => null,
         'reference' => null
@@ -68,6 +70,7 @@ class StandalonePaymentCancelRequest implements ModelInterface, ArrayAccess, \Js
       */
     protected static $openAPINullables = [
         'applicationInfo' => false,
+        'enhancedSchemeData' => false,
         'merchantAccount' => false,
         'paymentReference' => false,
         'reference' => false
@@ -160,6 +163,7 @@ class StandalonePaymentCancelRequest implements ModelInterface, ArrayAccess, \Js
      */
     protected static $attributeMap = [
         'applicationInfo' => 'applicationInfo',
+        'enhancedSchemeData' => 'enhancedSchemeData',
         'merchantAccount' => 'merchantAccount',
         'paymentReference' => 'paymentReference',
         'reference' => 'reference'
@@ -172,6 +176,7 @@ class StandalonePaymentCancelRequest implements ModelInterface, ArrayAccess, \Js
      */
     protected static $setters = [
         'applicationInfo' => 'setApplicationInfo',
+        'enhancedSchemeData' => 'setEnhancedSchemeData',
         'merchantAccount' => 'setMerchantAccount',
         'paymentReference' => 'setPaymentReference',
         'reference' => 'setReference'
@@ -184,6 +189,7 @@ class StandalonePaymentCancelRequest implements ModelInterface, ArrayAccess, \Js
      */
     protected static $getters = [
         'applicationInfo' => 'getApplicationInfo',
+        'enhancedSchemeData' => 'getEnhancedSchemeData',
         'merchantAccount' => 'getMerchantAccount',
         'paymentReference' => 'getPaymentReference',
         'reference' => 'getReference'
@@ -247,6 +253,7 @@ class StandalonePaymentCancelRequest implements ModelInterface, ArrayAccess, \Js
     public function __construct(?array $data = null)
     {
         $this->setIfExists('applicationInfo', $data ?? [], null);
+        $this->setIfExists('enhancedSchemeData', $data ?? [], null);
         $this->setIfExists('merchantAccount', $data ?? [], null);
         $this->setIfExists('paymentReference', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
@@ -320,6 +327,30 @@ class StandalonePaymentCancelRequest implements ModelInterface, ArrayAccess, \Js
     public function setApplicationInfo($applicationInfo)
     {
         $this->container['applicationInfo'] = $applicationInfo;
+
+        return $this;
+    }
+
+    /**
+     * Gets enhancedSchemeData
+     *
+     * @return \Adyen\Model\Checkout\EnhancedSchemeData|null
+     */
+    public function getEnhancedSchemeData()
+    {
+        return $this->container['enhancedSchemeData'];
+    }
+
+    /**
+     * Sets enhancedSchemeData
+     *
+     * @param \Adyen\Model\Checkout\EnhancedSchemeData|null $enhancedSchemeData enhancedSchemeData
+     *
+     * @return self
+     */
+    public function setEnhancedSchemeData($enhancedSchemeData)
+    {
+        $this->container['enhancedSchemeData'] = $enhancedSchemeData;
 
         return $this;
     }

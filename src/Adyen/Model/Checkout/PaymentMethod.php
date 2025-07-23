@@ -50,6 +50,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'inputDetails' => '\Adyen\Model\Checkout\InputDetail[]',
         'issuers' => '\Adyen\Model\Checkout\PaymentMethodIssuer[]',
         'name' => 'string',
+        'promoted' => 'bool',
         'type' => 'string'
     ];
 
@@ -70,6 +71,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'inputDetails' => null,
         'issuers' => null,
         'name' => null,
+        'promoted' => null,
         'type' => null
     ];
 
@@ -88,6 +90,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'inputDetails' => false,
         'issuers' => false,
         'name' => false,
+        'promoted' => false,
         'type' => false
     ];
 
@@ -186,6 +189,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'inputDetails' => 'inputDetails',
         'issuers' => 'issuers',
         'name' => 'name',
+        'promoted' => 'promoted',
         'type' => 'type'
     ];
 
@@ -204,6 +208,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'inputDetails' => 'setInputDetails',
         'issuers' => 'setIssuers',
         'name' => 'setName',
+        'promoted' => 'setPromoted',
         'type' => 'setType'
     ];
 
@@ -222,6 +227,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'inputDetails' => 'getInputDetails',
         'issuers' => 'getIssuers',
         'name' => 'getName',
+        'promoted' => 'getPromoted',
         'type' => 'getType'
     ];
 
@@ -305,6 +311,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('inputDetails', $data ?? [], null);
         $this->setIfExists('issuers', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('promoted', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -583,6 +590,30 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setName($name)
     {
         $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets promoted
+     *
+     * @return bool|null
+     */
+    public function getPromoted()
+    {
+        return $this->container['promoted'];
+    }
+
+    /**
+     * Sets promoted
+     *
+     * @param bool|null $promoted Indicates whether this payment method should be promoted or not.
+     *
+     * @return self
+     */
+    public function setPromoted($promoted)
+    {
+        $this->container['promoted'] = $promoted;
 
         return $this;
     }

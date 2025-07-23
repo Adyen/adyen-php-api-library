@@ -825,7 +825,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets addrMatch
      *
-     * @param string|null $addrMatch Indicates whether the Cardholder Shipping Address and Cardholder Billing Address are the same. Allowed values: * **Y** — Shipping Address matches Billing Address. * **N** — Shipping Address does not match Billing Address.
+     * @param string|null $addrMatch Indicates whether the cardholder shipping address and cardholder billing address are the same. Allowed values: * **Y** — Shipping address matches billing address. * **N** — Shipping address does not match billing address.
      *
      * @return self
      */

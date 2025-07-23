@@ -1741,7 +1741,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets telephoneNumber
      *
-     * @param string|null $telephoneNumber The shopper's telephone number.
+     * @param string|null $telephoneNumber The shopper's telephone number. > Required for Visa and JCB transactions that require 3D Secure 2 authentication, if you did not include the `shopperEmail`. The phone number must include a plus sign (+) and a country code (1-3 digits), followed by the number (4-15 digits). If the value you provide does not follow the guidelines, we drop the value and do not submit it for authentication.
      *
      * @return self
      */
