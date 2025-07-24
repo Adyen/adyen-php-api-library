@@ -44,6 +44,7 @@ class PaymentRefundRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'amount' => '\Adyen\Model\Checkout\Amount',
         'applicationInfo' => '\Adyen\Model\Checkout\ApplicationInfo',
         'capturePspReference' => 'string',
+        'enhancedSchemeData' => '\Adyen\Model\Checkout\EnhancedSchemeData',
         'lineItems' => '\Adyen\Model\Checkout\LineItem[]',
         'merchantAccount' => 'string',
         'merchantRefundReason' => 'string',
@@ -63,6 +64,7 @@ class PaymentRefundRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'amount' => null,
         'applicationInfo' => null,
         'capturePspReference' => null,
+        'enhancedSchemeData' => null,
         'lineItems' => null,
         'merchantAccount' => null,
         'merchantRefundReason' => null,
@@ -80,6 +82,7 @@ class PaymentRefundRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'amount' => false,
         'applicationInfo' => false,
         'capturePspReference' => false,
+        'enhancedSchemeData' => false,
         'lineItems' => false,
         'merchantAccount' => false,
         'merchantRefundReason' => true,
@@ -177,6 +180,7 @@ class PaymentRefundRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'amount' => 'amount',
         'applicationInfo' => 'applicationInfo',
         'capturePspReference' => 'capturePspReference',
+        'enhancedSchemeData' => 'enhancedSchemeData',
         'lineItems' => 'lineItems',
         'merchantAccount' => 'merchantAccount',
         'merchantRefundReason' => 'merchantRefundReason',
@@ -194,6 +198,7 @@ class PaymentRefundRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'amount' => 'setAmount',
         'applicationInfo' => 'setApplicationInfo',
         'capturePspReference' => 'setCapturePspReference',
+        'enhancedSchemeData' => 'setEnhancedSchemeData',
         'lineItems' => 'setLineItems',
         'merchantAccount' => 'setMerchantAccount',
         'merchantRefundReason' => 'setMerchantRefundReason',
@@ -211,6 +216,7 @@ class PaymentRefundRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'amount' => 'getAmount',
         'applicationInfo' => 'getApplicationInfo',
         'capturePspReference' => 'getCapturePspReference',
+        'enhancedSchemeData' => 'getEnhancedSchemeData',
         'lineItems' => 'getLineItems',
         'merchantAccount' => 'getMerchantAccount',
         'merchantRefundReason' => 'getMerchantRefundReason',
@@ -299,6 +305,7 @@ class PaymentRefundRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('amount', $data ?? [], null);
         $this->setIfExists('applicationInfo', $data ?? [], null);
         $this->setIfExists('capturePspReference', $data ?? [], null);
+        $this->setIfExists('enhancedSchemeData', $data ?? [], null);
         $this->setIfExists('lineItems', $data ?? [], null);
         $this->setIfExists('merchantAccount', $data ?? [], null);
         $this->setIfExists('merchantRefundReason', $data ?? [], null);
@@ -432,6 +439,30 @@ class PaymentRefundRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setCapturePspReference($capturePspReference)
     {
         $this->container['capturePspReference'] = $capturePspReference;
+
+        return $this;
+    }
+
+    /**
+     * Gets enhancedSchemeData
+     *
+     * @return \Adyen\Model\Checkout\EnhancedSchemeData|null
+     */
+    public function getEnhancedSchemeData()
+    {
+        return $this->container['enhancedSchemeData'];
+    }
+
+    /**
+     * Sets enhancedSchemeData
+     *
+     * @param \Adyen\Model\Checkout\EnhancedSchemeData|null $enhancedSchemeData enhancedSchemeData
+     *
+     * @return self
+     */
+    public function setEnhancedSchemeData($enhancedSchemeData)
+    {
+        $this->container['enhancedSchemeData'] = $enhancedSchemeData;
 
         return $this;
     }
