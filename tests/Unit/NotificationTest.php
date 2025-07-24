@@ -510,5 +510,4 @@ class NotificationTest extends TestCaseMock
         self::assertEquals("recurring.token.alreadyExisting", $result->getType());
         self::assertEquals("test", $result->getEnvironment());
     }
-
 }
