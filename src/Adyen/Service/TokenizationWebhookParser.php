@@ -2,7 +2,7 @@
 
 namespace Adyen\Service;
 
-use Adyen\Model\ConfigurationWebhooks\ObjectSerializer;
+use Adyen\Model\TokenizationWebhooks\ObjectSerializer;
 use Adyen\Model\TokenizationWebhooks\TokenizationAlreadyExistingDetailsNotificationRequest;
 use Adyen\Model\TokenizationWebhooks\TokenizationCreatedDetailsNotificationRequest;
 use Adyen\Model\TokenizationWebhooks\TokenizationDisabledDetailsNotificationRequest;
@@ -31,19 +31,19 @@ class TokenizationWebhookParser
         }
 
         if (in_array($type, ($clazz = new TokenizationAlreadyExistingDetailsNotificationRequest())->getTypeAllowableValues())) {
-            return (object)$this->deserializewebhook($clazz);
+            return (object)$this->deserializeWebhook($clazz);
         }
 
         if (in_array($type, ($clazz = new TokenizationCreatedDetailsNotificationRequest())->getTypeAllowableValues())) {
-            return (object)$this->deserializewebhook($clazz);
+            return (object)$this->deserializeWebhook($clazz);
         }
 
         if (in_array($type, ($clazz = new TokenizationDisabledDetailsNotificationRequest)->getTypeAllowableValues())) {
-            return (object)self::deserializewebhook($clazz);
+            return (object)$this->deserializeWebhook($clazz);
         }
 
         if (in_array($type, ($clazz = new TokenizationUpdatedDetailsNotificationRequest())->getTypeAllowableValues())) {
-            return (object)self::deserializeWebhook($clazz);
+            return (object)$this->deserializeWebhook($clazz);
         }
 
         // throw error in case the webhook can not be parsed
