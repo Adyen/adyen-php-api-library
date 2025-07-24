@@ -27,10 +27,15 @@ use Adyen\Model\ConfigurationWebhooks\SweepConfigurationNotificationRequest;
 use Adyen\Model\ManagementWebhooks\PaymentMethodCreatedNotificationRequest;
 use Adyen\Model\AcsWebhooks\AuthenticationNotificationRequest;
 use Adyen\Model\AcsWebhooks\RelayedAuthenticationRequest;
+use Adyen\Model\TokenizationWebhooks\TokenizationAlreadyExistingDetailsNotificationRequest;
+use Adyen\Model\TokenizationWebhooks\TokenizationCreatedDetailsNotificationRequest;
+use Adyen\Model\TokenizationWebhooks\TokenizationDisabledDetailsNotificationRequest;
+use Adyen\Model\TokenizationWebhooks\TokenizationUpdatedDetailsNotificationRequest;
 use Adyen\Model\TransactionWebhooks\TransactionNotificationRequestV4;
 use Adyen\Model\BalanceWebhooks\BalanceAccountBalanceNotificationRequest;
 use Adyen\Service\BankingWebhookParser;
 use Adyen\Service\ManagementWebhookParser;
+use Adyen\Service\TokenizationWebhookParser;
 use Adyen\Service\Notification;
 
 class NotificationTest extends TestCaseMock
@@ -413,5 +418,96 @@ class NotificationTest extends TestCaseMock
         self::assertEquals(RelayedAuthenticationRequest::class, get_class($result));
         self::assertEquals("1ea64f8e-d1e1-4b9d-a3a2-3953e385b2c8", $result->getId());
         self::assertEquals("widgetsInc", $result->getPurchase()->getMerchantName());
+    }
+
+    public function testTokenizationWebhookRecurringTokenCreated()
+    {
+        $jsonString = '{
+                          "createdAt": "2025-06-30T16:40:23+02:00",
+                          "eventId": "QBQQ9DLNRHHKGK38",
+                          "environment": "test",
+                          "data": {
+                            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+                            "storedPaymentMethodId": "M5N7TQ4TG5PFWR50",
+                            "type": "visastandarddebit",
+                            "operation": "created",
+                            "shopperReference": "YOUR_SHOPPER_REFERENCE"
+                          },
+                          "type": "recurring.token.created"
+                        }';
+
+        $webhookParser = new TokenizationWebhookParser($jsonString);
+        $result = $webhookParser->getGenericWebhook();
+        self::assertEquals(TokenizationCreatedDetailsNotificationRequest::class, get_class($result));
+        self::assertEquals("recurring.token.created", $result->getType());
+        self::assertEquals("test", $result->getEnvironment());
+    }
+
+    public function testTokenizationWebhookRecurringTokenDisabled()
+    {
+        $jsonString = '{
+                          "createdAt": "2025-06-30T16:40:23+02:00",
+                          "eventId": "QBQQ9DLNRHHKGK38",
+                          "environment": "test",
+                          "data": {
+                            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+                            "storedPaymentMethodId": "M5N7TQ4TG5PFWR50",
+                            "type": "visastandarddebit",
+                            "shopperReference": "YOUR_SHOPPER_REFERENCE"
+                          },
+                          "type": "recurring.token.disabled"
+                        }';
+
+        $webhookParser = new TokenizationWebhookParser($jsonString);
+        $result = $webhookParser->getGenericWebhook();
+        self::assertEquals(TokenizationDisabledDetailsNotificationRequest::class, get_class($result));
+        self::assertEquals("recurring.token.disabled", $result->getType());
+        self::assertEquals("test", $result->getEnvironment());
+    }
+
+    public function testTokenizationWebhookRecurringTokenUpdated()
+    {
+        $jsonString = '{
+                          "createdAt": "2025-06-30T16:40:23+02:00",
+                          "eventId": "QBQQ9DLNRHHKGK38",
+                          "environment": "test",
+                          "data": {
+                            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+                            "storedPaymentMethodId": "M5N7TQ4TG5PFWR50",
+                            "type": "visastandarddebit",
+                            "operation": "updated",
+                            "shopperReference": "YOUR_SHOPPER_REFERENCE"
+                          },
+                          "type": "recurring.token.updated"
+                        }';
+
+        $webhookParser = new TokenizationWebhookParser($jsonString);
+        $result = $webhookParser->getGenericWebhook();
+        self::assertEquals(TokenizationUpdatedDetailsNotificationRequest::class, get_class($result));
+        self::assertEquals("recurring.token.updated", $result->getType());
+        self::assertEquals("test", $result->getEnvironment());
+    }
+
+    public function testTokenizationWebhookRecurringTokenAlreadyExisting()
+    {
+        $jsonString = '{
+                          "createdAt": "2025-06-30T16:40:23+02:00",
+                          "eventId": "QBQQ9DLNRHHKGK38",
+                          "environment": "test",
+                          "data": {
+                            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+                            "storedPaymentMethodId": "M5N7TQ4TG5PFWR50",
+                            "type": "visastandarddebit",
+                            "operation": "alreadyExisting",
+                            "shopperReference": "YOUR_SHOPPER_REFERENCE"
+                          },
+                          "type": "recurring.token.alreadyExisting"
+                        }';
+
+        $webhookParser = new TokenizationWebhookParser($jsonString);
+        $result = $webhookParser->getGenericWebhook();
+        self::assertEquals(TokenizationAlreadyExistingDetailsNotificationRequest::class, get_class($result));
+        self::assertEquals("recurring.token.alreadyExisting", $result->getType());
+        self::assertEquals("test", $result->getEnvironment());
     }
 }
