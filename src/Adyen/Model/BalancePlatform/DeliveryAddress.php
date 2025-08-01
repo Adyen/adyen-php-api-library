@@ -475,7 +475,7 @@ class DeliveryAddress implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets stateOrProvince
      *
-     * @param string|null $stateOrProvince The two-letter ISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada. > Required for the US and Canada.
+     * @param string|null $stateOrProvince The state or province code, maximum 3 characters. For example, **CA** for California in the US or **ON** for Ontario in Canada. > Required for the US and Canada.
      *
      * @return self
      */

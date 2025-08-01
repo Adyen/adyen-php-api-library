@@ -47,7 +47,8 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'externalReferenceId' => 'string',
         'phoneNumber' => 'string',
         'splitConfiguration' => '\Adyen\Model\Management\StoreSplitConfiguration',
-        'status' => 'string'
+        'status' => 'string',
+        'subMerchantData' => '\Adyen\Model\Management\SubMerchantData'
     ];
 
     /**
@@ -64,7 +65,8 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'externalReferenceId' => null,
         'phoneNumber' => null,
         'splitConfiguration' => null,
-        'status' => null
+        'status' => null,
+        'subMerchantData' => null
     ];
 
     /**
@@ -79,7 +81,8 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'externalReferenceId' => false,
         'phoneNumber' => false,
         'splitConfiguration' => false,
-        'status' => false
+        'status' => false,
+        'subMerchantData' => false
     ];
 
     /**
@@ -174,7 +177,8 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'externalReferenceId' => 'externalReferenceId',
         'phoneNumber' => 'phoneNumber',
         'splitConfiguration' => 'splitConfiguration',
-        'status' => 'status'
+        'status' => 'status',
+        'subMerchantData' => 'subMerchantData'
     ];
 
     /**
@@ -189,7 +193,8 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'externalReferenceId' => 'setExternalReferenceId',
         'phoneNumber' => 'setPhoneNumber',
         'splitConfiguration' => 'setSplitConfiguration',
-        'status' => 'setStatus'
+        'status' => 'setStatus',
+        'subMerchantData' => 'setSubMerchantData'
     ];
 
     /**
@@ -204,7 +209,8 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'externalReferenceId' => 'getExternalReferenceId',
         'phoneNumber' => 'getPhoneNumber',
         'splitConfiguration' => 'getSplitConfiguration',
-        'status' => 'getStatus'
+        'status' => 'getStatus',
+        'subMerchantData' => 'getSubMerchantData'
     ];
 
     /**
@@ -287,6 +293,7 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('phoneNumber', $data ?? [], null);
         $this->setIfExists('splitConfiguration', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('subMerchantData', $data ?? [], null);
     }
 
     /**
@@ -514,6 +521,30 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
             );
         }
         $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets subMerchantData
+     *
+     * @return \Adyen\Model\Management\SubMerchantData|null
+     */
+    public function getSubMerchantData()
+    {
+        return $this->container['subMerchantData'];
+    }
+
+    /**
+     * Sets subMerchantData
+     *
+     * @param \Adyen\Model\Management\SubMerchantData|null $subMerchantData subMerchantData
+     *
+     * @return self
+     */
+    public function setSubMerchantData($subMerchantData)
+    {
+        $this->container['subMerchantData'] = $subMerchantData;
 
         return $this;
     }
