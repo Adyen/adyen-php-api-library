@@ -41,9 +41,10 @@ class TransferRouteRequirementsInner implements ModelInterface, ArrayAccess, \Js
       * @var string[]
       */
     protected static $openAPITypes = [
+        'additionalBankIdentificationType' => 'string',
         'description' => 'string',
-        'requiredAddressFields' => 'string[]',
         'type' => 'string',
+        'requiredAddressFields' => 'string[]',
         'max' => 'int',
         'min' => 'int',
         'bankAccountIdentificationTypes' => 'string[]',
@@ -62,9 +63,10 @@ class TransferRouteRequirementsInner implements ModelInterface, ArrayAccess, \Js
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'additionalBankIdentificationType' => null,
         'description' => null,
-        'requiredAddressFields' => null,
         'type' => null,
+        'requiredAddressFields' => null,
         'max' => 'int64',
         'min' => 'int64',
         'bankAccountIdentificationTypes' => null,
@@ -81,9 +83,10 @@ class TransferRouteRequirementsInner implements ModelInterface, ArrayAccess, \Js
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'additionalBankIdentificationType' => false,
         'description' => false,
-        'requiredAddressFields' => false,
         'type' => false,
+        'requiredAddressFields' => false,
         'max' => false,
         'min' => false,
         'bankAccountIdentificationTypes' => false,
@@ -180,9 +183,10 @@ class TransferRouteRequirementsInner implements ModelInterface, ArrayAccess, \Js
      * @var string[]
      */
     protected static $attributeMap = [
+        'additionalBankIdentificationType' => 'additionalBankIdentificationType',
         'description' => 'description',
-        'requiredAddressFields' => 'requiredAddressFields',
         'type' => 'type',
+        'requiredAddressFields' => 'requiredAddressFields',
         'max' => 'max',
         'min' => 'min',
         'bankAccountIdentificationTypes' => 'bankAccountIdentificationTypes',
@@ -199,9 +203,10 @@ class TransferRouteRequirementsInner implements ModelInterface, ArrayAccess, \Js
      * @var string[]
      */
     protected static $setters = [
+        'additionalBankIdentificationType' => 'setAdditionalBankIdentificationType',
         'description' => 'setDescription',
-        'requiredAddressFields' => 'setRequiredAddressFields',
         'type' => 'setType',
+        'requiredAddressFields' => 'setRequiredAddressFields',
         'max' => 'setMax',
         'min' => 'setMin',
         'bankAccountIdentificationTypes' => 'setBankAccountIdentificationTypes',
@@ -218,9 +223,10 @@ class TransferRouteRequirementsInner implements ModelInterface, ArrayAccess, \Js
      * @var string[]
      */
     protected static $getters = [
+        'additionalBankIdentificationType' => 'getAdditionalBankIdentificationType',
         'description' => 'getDescription',
-        'requiredAddressFields' => 'getRequiredAddressFields',
         'type' => 'getType',
+        'requiredAddressFields' => 'getRequiredAddressFields',
         'max' => 'getMax',
         'min' => 'getMin',
         'bankAccountIdentificationTypes' => 'getBankAccountIdentificationTypes',
@@ -287,9 +293,10 @@ class TransferRouteRequirementsInner implements ModelInterface, ArrayAccess, \Js
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('additionalBankIdentificationType', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('requiredAddressFields', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('requiredAddressFields', $data ?? [], null);
         $this->setIfExists('max', $data ?? [], null);
         $this->setIfExists('min', $data ?? [], null);
         $this->setIfExists('bankAccountIdentificationTypes', $data ?? [], null);
@@ -327,6 +334,7 @@ class TransferRouteRequirementsInner implements ModelInterface, ArrayAccess, \Js
     {
         $invalidProperties = [];
 
+
         if ($this->container['type'] === null) {
             $invalidProperties[] = "'type' can't be null";
         }
@@ -348,6 +356,30 @@ class TransferRouteRequirementsInner implements ModelInterface, ArrayAccess, \Js
 
 
     /**
+     * Gets additionalBankIdentificationType
+     *
+     * @return string|null
+     */
+    public function getAdditionalBankIdentificationType()
+    {
+        return $this->container['additionalBankIdentificationType'];
+    }
+
+    /**
+     * Sets additionalBankIdentificationType
+     *
+     * @param string|null $additionalBankIdentificationType The type of additional bank identification, depending on the country.  Possible values:   * **auBsbCode**: The 6-digit [Australian Bank State Branch (BSB) code](https://en.wikipedia.org/wiki/Bank_state_branch), without separators or spaces.  * **caRoutingNumber**: The 9-digit [Canadian routing number](https://en.wikipedia.org/wiki/Routing_number_(Canada)), in EFT format, without separators or spaces.  * **gbSortCode**: The 6-digit [UK sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or spaces  * **usRoutingNumber**: The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or spaces.
+     *
+     * @return self
+     */
+    public function setAdditionalBankIdentificationType($additionalBankIdentificationType)
+    {
+        $this->container['additionalBankIdentificationType'] = $additionalBankIdentificationType;
+
+        return $this;
+    }
+
+    /**
      * Gets description
      *
      * @return string|null
@@ -360,13 +392,37 @@ class TransferRouteRequirementsInner implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets description
      *
-     * @param string|null $description Specifies that you must provide a complete street address for International ACH (IAT) transactions.
+     * @param string|null $description Specifies that transactions deemed to be International ACH (IAT) per OFAC/NACHA rules cannot have fast priority.
      *
      * @return self
      */
     public function setDescription($description)
     {
         $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string $type **usInternationalAchPriorityRequirement**
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        $this->container['type'] = $type;
 
         return $this;
     }
@@ -391,30 +447,6 @@ class TransferRouteRequirementsInner implements ModelInterface, ArrayAccess, \Js
     public function setRequiredAddressFields($requiredAddressFields)
     {
         $this->container['requiredAddressFields'] = $requiredAddressFields;
-
-        return $this;
-    }
-
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type **usInternationalAchAddressRequirement**
-     *
-     * @return self
-     */
-    public function setType($type)
-    {
-        $this->container['type'] = $type;
 
         return $this;
     }

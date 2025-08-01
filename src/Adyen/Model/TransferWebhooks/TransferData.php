@@ -49,12 +49,14 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => 'string',
         'categoryData' => '\Adyen\Model\TransferWebhooks\TransferDataCategoryData',
         'counterparty' => '\Adyen\Model\TransferWebhooks\TransferNotificationCounterParty',
+        'createdAt' => '\DateTime',
         'creationDate' => '\DateTime',
         'description' => 'string',
         'directDebitInformation' => '\Adyen\Model\TransferWebhooks\DirectDebitInformation',
         'direction' => 'string',
         'eventId' => 'string',
         'events' => '\Adyen\Model\TransferWebhooks\TransferEvent[]',
+        'executionDate' => '\Adyen\Model\TransferWebhooks\ExecutionDate',
         'externalReason' => '\Adyen\Model\TransferWebhooks\ExternalReason',
         'id' => 'string',
         'paymentInstrument' => '\Adyen\Model\TransferWebhooks\PaymentInstrument',
@@ -66,7 +68,8 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'status' => 'string',
         'tracking' => '\Adyen\Model\TransferWebhooks\TransferDataTracking',
         'transactionRulesResult' => '\Adyen\Model\TransferWebhooks\TransactionRulesResult',
-        'type' => 'string'
+        'type' => 'string',
+        'updatedAt' => '\DateTime'
     ];
 
     /**
@@ -85,12 +88,14 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => null,
         'categoryData' => null,
         'counterparty' => null,
+        'createdAt' => 'date-time',
         'creationDate' => 'date-time',
         'description' => null,
         'directDebitInformation' => null,
         'direction' => null,
         'eventId' => null,
         'events' => null,
+        'executionDate' => null,
         'externalReason' => null,
         'id' => null,
         'paymentInstrument' => null,
@@ -102,7 +107,8 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'status' => null,
         'tracking' => null,
         'transactionRulesResult' => null,
-        'type' => null
+        'type' => null,
+        'updatedAt' => 'date-time'
     ];
 
     /**
@@ -119,12 +125,14 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => false,
         'categoryData' => false,
         'counterparty' => false,
+        'createdAt' => false,
         'creationDate' => false,
         'description' => false,
         'directDebitInformation' => false,
         'direction' => false,
         'eventId' => false,
         'events' => false,
+        'executionDate' => false,
         'externalReason' => false,
         'id' => false,
         'paymentInstrument' => false,
@@ -136,7 +144,8 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'status' => false,
         'tracking' => false,
         'transactionRulesResult' => false,
-        'type' => false
+        'type' => false,
+        'updatedAt' => false
     ];
 
     /**
@@ -233,12 +242,14 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => 'category',
         'categoryData' => 'categoryData',
         'counterparty' => 'counterparty',
+        'createdAt' => 'createdAt',
         'creationDate' => 'creationDate',
         'description' => 'description',
         'directDebitInformation' => 'directDebitInformation',
         'direction' => 'direction',
         'eventId' => 'eventId',
         'events' => 'events',
+        'executionDate' => 'executionDate',
         'externalReason' => 'externalReason',
         'id' => 'id',
         'paymentInstrument' => 'paymentInstrument',
@@ -250,7 +261,8 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'status' => 'status',
         'tracking' => 'tracking',
         'transactionRulesResult' => 'transactionRulesResult',
-        'type' => 'type'
+        'type' => 'type',
+        'updatedAt' => 'updatedAt'
     ];
 
     /**
@@ -267,12 +279,14 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => 'setCategory',
         'categoryData' => 'setCategoryData',
         'counterparty' => 'setCounterparty',
+        'createdAt' => 'setCreatedAt',
         'creationDate' => 'setCreationDate',
         'description' => 'setDescription',
         'directDebitInformation' => 'setDirectDebitInformation',
         'direction' => 'setDirection',
         'eventId' => 'setEventId',
         'events' => 'setEvents',
+        'executionDate' => 'setExecutionDate',
         'externalReason' => 'setExternalReason',
         'id' => 'setId',
         'paymentInstrument' => 'setPaymentInstrument',
@@ -284,7 +298,8 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'status' => 'setStatus',
         'tracking' => 'setTracking',
         'transactionRulesResult' => 'setTransactionRulesResult',
-        'type' => 'setType'
+        'type' => 'setType',
+        'updatedAt' => 'setUpdatedAt'
     ];
 
     /**
@@ -301,12 +316,14 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => 'getCategory',
         'categoryData' => 'getCategoryData',
         'counterparty' => 'getCounterparty',
+        'createdAt' => 'getCreatedAt',
         'creationDate' => 'getCreationDate',
         'description' => 'getDescription',
         'directDebitInformation' => 'getDirectDebitInformation',
         'direction' => 'getDirection',
         'eventId' => 'getEventId',
         'events' => 'getEvents',
+        'executionDate' => 'getExecutionDate',
         'externalReason' => 'getExternalReason',
         'id' => 'getId',
         'paymentInstrument' => 'getPaymentInstrument',
@@ -318,7 +335,8 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'status' => 'getStatus',
         'tracking' => 'getTracking',
         'transactionRulesResult' => 'getTransactionRulesResult',
-        'type' => 'getType'
+        'type' => 'getType',
+        'updatedAt' => 'getUpdatedAt'
     ];
 
     /**
@@ -372,6 +390,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DIRECTION_OUTGOING = 'outgoing';
     public const REASON_ACCOUNT_HIERARCHY_NOT_ACTIVE = 'accountHierarchyNotActive';
     public const REASON_AMOUNT_LIMIT_EXCEEDED = 'amountLimitExceeded';
+    public const REASON_APPROVAL_EXPIRED = 'approvalExpired';
     public const REASON_APPROVED = 'approved';
     public const REASON_BALANCE_ACCOUNT_TEMPORARILY_BLOCKED_BY_TRANSACTION_RULE = 'balanceAccountTemporarilyBlockedByTransactionRule';
     public const REASON_COUNTERPARTY_ACCOUNT_BLOCKED = 'counterpartyAccountBlocked';
@@ -538,6 +557,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         return [
             self::REASON_ACCOUNT_HIERARCHY_NOT_ACTIVE,
             self::REASON_AMOUNT_LIMIT_EXCEEDED,
+            self::REASON_APPROVAL_EXPIRED,
             self::REASON_APPROVED,
             self::REASON_BALANCE_ACCOUNT_TEMPORARILY_BLOCKED_BY_TRANSACTION_RULE,
             self::REASON_COUNTERPARTY_ACCOUNT_BLOCKED,
@@ -710,12 +730,14 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('category', $data ?? [], null);
         $this->setIfExists('categoryData', $data ?? [], null);
         $this->setIfExists('counterparty', $data ?? [], null);
+        $this->setIfExists('createdAt', $data ?? [], null);
         $this->setIfExists('creationDate', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('directDebitInformation', $data ?? [], null);
         $this->setIfExists('direction', $data ?? [], null);
         $this->setIfExists('eventId', $data ?? [], null);
         $this->setIfExists('events', $data ?? [], null);
+        $this->setIfExists('executionDate', $data ?? [], null);
         $this->setIfExists('externalReason', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('paymentInstrument', $data ?? [], null);
@@ -728,6 +750,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('tracking', $data ?? [], null);
         $this->setIfExists('transactionRulesResult', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('updatedAt', $data ?? [], null);
     }
 
     /**
@@ -1029,9 +1052,34 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets createdAt
+     *
+     * @return \DateTime|null
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['createdAt'];
+    }
+
+    /**
+     * Sets createdAt
+     *
+     * @param \DateTime|null $createdAt The date and time when the transfer was created, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
+     *
+     * @return self
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->container['createdAt'] = $createdAt;
+
+        return $this;
+    }
+
+    /**
      * Gets creationDate
      *
      * @return \DateTime|null
+     * @deprecated since Transfer webhooks v3. "Use createdAt or updatedAt"
      */
     public function getCreationDate()
     {
@@ -1044,6 +1092,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param \DateTime|null $creationDate The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
      *
      * @return self
+     * @deprecated since Transfer webhooks v3. "Use createdAt or updatedAt"
      */
     public function setCreationDate($creationDate)
     {
@@ -1178,6 +1227,30 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setEvents($events)
     {
         $this->container['events'] = $events;
+
+        return $this;
+    }
+
+    /**
+     * Gets executionDate
+     *
+     * @return \Adyen\Model\TransferWebhooks\ExecutionDate|null
+     */
+    public function getExecutionDate()
+    {
+        return $this->container['executionDate'];
+    }
+
+    /**
+     * Sets executionDate
+     *
+     * @param \Adyen\Model\TransferWebhooks\ExecutionDate|null $executionDate executionDate
+     *
+     * @return self
+     */
+    public function setExecutionDate($executionDate)
+    {
+        $this->container['executionDate'] = $executionDate;
 
         return $this;
     }
@@ -1397,7 +1470,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      *
-     * @param string $status The result of the transfer.   For example, **authorised**, **refused**, or **error**.
+     * @param string $status The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user's balance account.  - **failed**: the transfer is rejected by the counterparty's bank. - **returned**: the transfer is returned by the counterparty's bank.
      *
      * @return self
      */
@@ -1496,6 +1569,30 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets updatedAt
+     *
+     * @return \DateTime|null
+     */
+    public function getUpdatedAt()
+    {
+        return $this->container['updatedAt'];
+    }
+
+    /**
+     * Sets updatedAt
+     *
+     * @param \DateTime|null $updatedAt The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
+     *
+     * @return self
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->container['updatedAt'] = $updatedAt;
 
         return $this;
     }

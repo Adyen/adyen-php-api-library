@@ -407,7 +407,7 @@ class NegativeBalanceCompensationWarningNotificationData implements ModelInterfa
     /**
      * Sets creationDate
      *
-     * @param \DateTime|null $creationDate The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
+     * @param \DateTime|null $creationDate The date and time when the event was triggered, in ISO 8601 extended format. For example, **2025-03-19T10:15:30+01:00**.
      *
      * @return self
      */
