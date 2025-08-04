@@ -3,7 +3,7 @@ name: PHP Format
 on:
   push:
     branches:
-      - 'sdk-automation/models'
+      - 'sdk-automation/*'
 
 jobs:
   format:
