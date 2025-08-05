@@ -48,6 +48,7 @@ class NetworkToken implements ModelInterface, ArrayAccess, \JsonSerializable
         'paymentInstrumentId' => 'string',
         'status' => 'string',
         'tokenLastFour' => 'string',
+        'tokenRequestor' => '\Adyen\Model\BalancePlatform\NetworkTokenRequestor',
         'type' => 'string'
     ];
 
@@ -66,6 +67,7 @@ class NetworkToken implements ModelInterface, ArrayAccess, \JsonSerializable
         'paymentInstrumentId' => null,
         'status' => null,
         'tokenLastFour' => null,
+        'tokenRequestor' => null,
         'type' => null
     ];
 
@@ -82,6 +84,7 @@ class NetworkToken implements ModelInterface, ArrayAccess, \JsonSerializable
         'paymentInstrumentId' => false,
         'status' => false,
         'tokenLastFour' => false,
+        'tokenRequestor' => false,
         'type' => false
     ];
 
@@ -178,6 +181,7 @@ class NetworkToken implements ModelInterface, ArrayAccess, \JsonSerializable
         'paymentInstrumentId' => 'paymentInstrumentId',
         'status' => 'status',
         'tokenLastFour' => 'tokenLastFour',
+        'tokenRequestor' => 'tokenRequestor',
         'type' => 'type'
     ];
 
@@ -194,6 +198,7 @@ class NetworkToken implements ModelInterface, ArrayAccess, \JsonSerializable
         'paymentInstrumentId' => 'setPaymentInstrumentId',
         'status' => 'setStatus',
         'tokenLastFour' => 'setTokenLastFour',
+        'tokenRequestor' => 'setTokenRequestor',
         'type' => 'setType'
     ];
 
@@ -210,6 +215,7 @@ class NetworkToken implements ModelInterface, ArrayAccess, \JsonSerializable
         'paymentInstrumentId' => 'getPaymentInstrumentId',
         'status' => 'getStatus',
         'tokenLastFour' => 'getTokenLastFour',
+        'tokenRequestor' => 'getTokenRequestor',
         'type' => 'getType'
     ];
 
@@ -295,6 +301,7 @@ class NetworkToken implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('paymentInstrumentId', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('tokenLastFour', $data ?? [], null);
+        $this->setIfExists('tokenRequestor', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -386,7 +393,7 @@ class NetworkToken implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets creationDate
      *
-     * @param \DateTime|null $creationDate Date and time when the network token was created, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) extended format. For example, **2020-12-18T10:15:30+01:00**..
+     * @param \DateTime|null $creationDate Date and time when the network token was created, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) extended format. For example, **2025-03-19T10:15:30+01:00**..
      *
      * @return self
      */
@@ -523,6 +530,30 @@ class NetworkToken implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setTokenLastFour($tokenLastFour)
     {
         $this->container['tokenLastFour'] = $tokenLastFour;
+
+        return $this;
+    }
+
+    /**
+     * Gets tokenRequestor
+     *
+     * @return \Adyen\Model\BalancePlatform\NetworkTokenRequestor|null
+     */
+    public function getTokenRequestor()
+    {
+        return $this->container['tokenRequestor'];
+    }
+
+    /**
+     * Sets tokenRequestor
+     *
+     * @param \Adyen\Model\BalancePlatform\NetworkTokenRequestor|null $tokenRequestor tokenRequestor
+     *
+     * @return self
+     */
+    public function setTokenRequestor($tokenRequestor)
+    {
+        $this->container['tokenRequestor'] = $tokenRequestor;
 
         return $this;
     }

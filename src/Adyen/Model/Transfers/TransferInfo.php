@@ -46,6 +46,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => 'string',
         'counterparty' => '\Adyen\Model\Transfers\CounterpartyInfoV3',
         'description' => 'string',
+        'executionDate' => '\Adyen\Model\Transfers\ExecutionDate',
         'paymentInstrumentId' => 'string',
         'priorities' => 'string[]',
         'priority' => 'string',
@@ -69,6 +70,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => null,
         'counterparty' => null,
         'description' => null,
+        'executionDate' => null,
         'paymentInstrumentId' => null,
         'priorities' => null,
         'priority' => null,
@@ -90,6 +92,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => false,
         'counterparty' => false,
         'description' => false,
+        'executionDate' => false,
         'paymentInstrumentId' => false,
         'priorities' => false,
         'priority' => false,
@@ -191,6 +194,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => 'category',
         'counterparty' => 'counterparty',
         'description' => 'description',
+        'executionDate' => 'executionDate',
         'paymentInstrumentId' => 'paymentInstrumentId',
         'priorities' => 'priorities',
         'priority' => 'priority',
@@ -212,6 +216,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => 'setCategory',
         'counterparty' => 'setCounterparty',
         'description' => 'setDescription',
+        'executionDate' => 'setExecutionDate',
         'paymentInstrumentId' => 'setPaymentInstrumentId',
         'priorities' => 'setPriorities',
         'priority' => 'setPriority',
@@ -233,6 +238,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => 'getCategory',
         'counterparty' => 'getCounterparty',
         'description' => 'getDescription',
+        'executionDate' => 'getExecutionDate',
         'paymentInstrumentId' => 'getPaymentInstrumentId',
         'priorities' => 'getPriorities',
         'priority' => 'getPriority',
@@ -387,6 +393,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('category', $data ?? [], null);
         $this->setIfExists('counterparty', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('executionDate', $data ?? [], null);
         $this->setIfExists('paymentInstrumentId', $data ?? [], null);
         $this->setIfExists('priorities', $data ?? [], null);
         $this->setIfExists('priority', $data ?? [], null);
@@ -606,6 +613,30 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets executionDate
+     *
+     * @return \Adyen\Model\Transfers\ExecutionDate|null
+     */
+    public function getExecutionDate()
+    {
+        return $this->container['executionDate'];
+    }
+
+    /**
+     * Sets executionDate
+     *
+     * @param \Adyen\Model\Transfers\ExecutionDate|null $executionDate executionDate
+     *
+     * @return self
+     */
+    public function setExecutionDate($executionDate)
+    {
+        $this->container['executionDate'] = $executionDate;
+
+        return $this;
+    }
+
+    /**
      * Gets paymentInstrumentId
      *
      * @return string|null
@@ -642,7 +673,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets priorities
      *
-     * @param string[]|null $priorities The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities. Adyen will try to pay out using the priority you list first. If that's not possible, it moves on to the next option in the order of your provided priorities.   Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).  Required for transfers with `category` **bank**. For more details, see [fallback priorities](https://docs.adyen.com/payouts/payout-service/payout-to-users/#fallback-priorities).
+     * @param string[]|null $priorities The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities. Adyen will try to pay out using the priority you list first. If that's not possible, it moves on to the next option in the order of your provided priorities.   Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers within the United States and in [SEPA locations](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).  Required for transfers with `category` **bank**. For more details, see [fallback priorities](https://docs.adyen.com/payouts/payout-service/payout-to-users/#fallback-priorities).
      *
      * @return self
      */
@@ -675,7 +706,7 @@ class TransferInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets priority
      *
-     * @param string|null $priority The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with `category` **bank**.  Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).
+     * @param string|null $priority The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with `category` **bank**.  Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers within the United States and in [SEPA locations](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).
      *
      * @return self
      */

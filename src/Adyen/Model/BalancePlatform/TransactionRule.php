@@ -547,7 +547,7 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets endDate
      *
-     * @param string|null $endDate The date when the rule will stop being evaluated, in ISO 8601 extended offset date-time format. For example, **2020-12-18T10:15:30+01:00**.  If not provided, the rule will be evaluated until the rule status is set to **inactive**.
+     * @param string|null $endDate The date when the rule will stop being evaluated, in ISO 8601 extended offset date-time format. For example, **2025-03-19T10:15:30+01:00**.  If not provided, the rule will be evaluated until the rule status is set to **inactive**.
      *
      * @return self
      */
@@ -783,7 +783,7 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets startDate
      *
-     * @param string|null $startDate The date when the rule will start to be evaluated, in ISO 8601 extended offset date-time format. For example, **2020-12-18T10:15:30+01:00**.  If not provided when creating a transaction rule, the `startDate` is set to the date when the rule status is set to **active**.
+     * @param string|null $startDate The date when the rule will start to be evaluated, in ISO 8601 extended offset date-time format. For example, **2025-03-19T10:15:30+01:00**.  If not provided when creating a transaction rule, the `startDate` is set to the date when the rule status is set to **active**.
      *
      * @return self
      */

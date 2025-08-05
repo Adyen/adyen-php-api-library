@@ -355,7 +355,7 @@ class BalanceAccountUpdateRequest implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets accountHolderId
      *
-     * @param string|null $accountHolderId The unique identifier of the [account holder](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/accountHolders__resParam_id) associated with the balance account.
+     * @param string|null $accountHolderId The unique identifier of the [account holder](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/accountHolders#responses-200-id) associated with the balance account.
      *
      * @return self
      */
