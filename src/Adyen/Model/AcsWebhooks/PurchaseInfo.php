@@ -309,7 +309,7 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets date
      *
-     * @param string $date Date of the purchase.
+     * @param string $date The date of the purchase.
      *
      * @return self
      */
@@ -333,7 +333,7 @@ class PurchaseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets merchantName
      *
-     * @param string $merchantName Name of the merchant.
+     * @param string $merchantName The name of the business that the cardholder purchased from.
      *
      * @return self
      */

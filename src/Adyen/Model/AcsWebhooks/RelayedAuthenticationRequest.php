@@ -41,9 +41,13 @@ class RelayedAuthenticationRequest implements ModelInterface, ArrayAccess, \Json
       * @var string[]
       */
     protected static $openAPITypes = [
+        'environment' => 'string',
         'id' => 'string',
         'paymentInstrumentId' => 'string',
-        'purchase' => '\Adyen\Model\AcsWebhooks\Purchase'
+        'purchase' => '\Adyen\Model\AcsWebhooks\Purchase',
+        'threeDSRequestorAppURL' => 'string',
+        'timestamp' => '\DateTime',
+        'type' => 'string'
     ];
 
     /**
@@ -54,9 +58,13 @@ class RelayedAuthenticationRequest implements ModelInterface, ArrayAccess, \Json
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'environment' => null,
         'id' => null,
         'paymentInstrumentId' => null,
-        'purchase' => null
+        'purchase' => null,
+        'threeDSRequestorAppURL' => null,
+        'timestamp' => 'date-time',
+        'type' => null
     ];
 
     /**
@@ -65,9 +73,13 @@ class RelayedAuthenticationRequest implements ModelInterface, ArrayAccess, \Json
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'environment' => false,
         'id' => false,
         'paymentInstrumentId' => false,
-        'purchase' => false
+        'purchase' => false,
+        'threeDSRequestorAppURL' => false,
+        'timestamp' => false,
+        'type' => false
     ];
 
     /**
@@ -156,9 +168,13 @@ class RelayedAuthenticationRequest implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $attributeMap = [
+        'environment' => 'environment',
         'id' => 'id',
         'paymentInstrumentId' => 'paymentInstrumentId',
-        'purchase' => 'purchase'
+        'purchase' => 'purchase',
+        'threeDSRequestorAppURL' => 'threeDSRequestorAppURL',
+        'timestamp' => 'timestamp',
+        'type' => 'type'
     ];
 
     /**
@@ -167,9 +183,13 @@ class RelayedAuthenticationRequest implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $setters = [
+        'environment' => 'setEnvironment',
         'id' => 'setId',
         'paymentInstrumentId' => 'setPaymentInstrumentId',
-        'purchase' => 'setPurchase'
+        'purchase' => 'setPurchase',
+        'threeDSRequestorAppURL' => 'setThreeDSRequestorAppURL',
+        'timestamp' => 'setTimestamp',
+        'type' => 'setType'
     ];
 
     /**
@@ -178,9 +198,13 @@ class RelayedAuthenticationRequest implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $getters = [
+        'environment' => 'getEnvironment',
         'id' => 'getId',
         'paymentInstrumentId' => 'getPaymentInstrumentId',
-        'purchase' => 'getPurchase'
+        'purchase' => 'getPurchase',
+        'threeDSRequestorAppURL' => 'getThreeDSRequestorAppURL',
+        'timestamp' => 'getTimestamp',
+        'type' => 'getType'
     ];
 
     /**
@@ -224,7 +248,19 @@ class RelayedAuthenticationRequest implements ModelInterface, ArrayAccess, \Json
         return self::$openAPIModelName;
     }
 
+    public const TYPE_BALANCE_PLATFORM_AUTHENTICATION_RELAYED = 'balancePlatform.authentication.relayed';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_BALANCE_PLATFORM_AUTHENTICATION_RELAYED,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -240,9 +276,13 @@ class RelayedAuthenticationRequest implements ModelInterface, ArrayAccess, \Json
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('environment', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('paymentInstrumentId', $data ?? [], null);
         $this->setIfExists('purchase', $data ?? [], null);
+        $this->setIfExists('threeDSRequestorAppURL', $data ?? [], null);
+        $this->setIfExists('timestamp', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -272,6 +312,9 @@ class RelayedAuthenticationRequest implements ModelInterface, ArrayAccess, \Json
     {
         $invalidProperties = [];
 
+        if ($this->container['environment'] === null) {
+            $invalidProperties[] = "'environment' can't be null";
+        }
         if ($this->container['id'] === null) {
             $invalidProperties[] = "'id' can't be null";
         }
@@ -281,6 +324,18 @@ class RelayedAuthenticationRequest implements ModelInterface, ArrayAccess, \Json
         if ($this->container['purchase'] === null) {
             $invalidProperties[] = "'purchase' can't be null";
         }
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -295,6 +350,30 @@ class RelayedAuthenticationRequest implements ModelInterface, ArrayAccess, \Json
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets environment
+     *
+     * @return string
+     */
+    public function getEnvironment()
+    {
+        return $this->container['environment'];
+    }
+
+    /**
+     * Sets environment
+     *
+     * @param string $environment The environment from which the webhook originated. Possible values: **test**, **live**.
+     *
+     * @return self
+     */
+    public function setEnvironment($environment)
+    {
+        $this->container['environment'] = $environment;
+
+        return $this;
+    }
 
     /**
      * Gets id
@@ -364,6 +443,88 @@ class RelayedAuthenticationRequest implements ModelInterface, ArrayAccess, \Json
     public function setPurchase($purchase)
     {
         $this->container['purchase'] = $purchase;
+
+        return $this;
+    }
+
+    /**
+     * Gets threeDSRequestorAppURL
+     *
+     * @return string|null
+     */
+    public function getThreeDSRequestorAppURL()
+    {
+        return $this->container['threeDSRequestorAppURL'];
+    }
+
+    /**
+     * Sets threeDSRequestorAppURL
+     *
+     * @param string|null $threeDSRequestorAppURL URL for auto-switching to the threeDS Requestor App. If not present, the threeDS Requestor App doesn't support auto-switching.
+     *
+     * @return self
+     */
+    public function setThreeDSRequestorAppURL($threeDSRequestorAppURL)
+    {
+        $this->container['threeDSRequestorAppURL'] = $threeDSRequestorAppURL;
+
+        return $this;
+    }
+
+    /**
+     * Gets timestamp
+     *
+     * @return \DateTime|null
+     */
+    public function getTimestamp()
+    {
+        return $this->container['timestamp'];
+    }
+
+    /**
+     * Sets timestamp
+     *
+     * @param \DateTime|null $timestamp When the event was queued.
+     *
+     * @return self
+     */
+    public function setTimestamp($timestamp)
+    {
+        $this->container['timestamp'] = $timestamp;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string $type Type of notification.
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
 
         return $this;
     }

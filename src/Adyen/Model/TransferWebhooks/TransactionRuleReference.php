@@ -410,7 +410,7 @@ class TransactionRuleReference implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets score
      *
-     * @param int|null $score The score of the rule in case it's a scoreBased rule.
+     * @param int|null $score The transaction score determined by the rule. Returned only when `outcomeType` is **scoreBased**.
      *
      * @return self
      */
