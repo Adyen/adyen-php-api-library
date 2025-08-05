@@ -12,18 +12,22 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: actions/checkout@v4
         with:
           token: ${{ secrets.ADYEN_AUTOMATION_BOT_ACCESS_TOKEN }}
+
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: 8.2
-          tools: composer:v1
+          tools: composer:v2
+
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
+
       - name: Run PHP Code Sniffer
         run: composer run fmt || true
+
       - run: |
           git config user.name AdyenAutomationBot
           git config user.email "${{ secrets.ADYEN_AUTOMATION_BOT_EMAIL }}"
