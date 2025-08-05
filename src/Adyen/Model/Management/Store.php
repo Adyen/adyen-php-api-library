@@ -52,7 +52,8 @@ class Store implements ModelInterface, ArrayAccess, \JsonSerializable
         'reference' => 'string',
         'shopperStatement' => 'string',
         'splitConfiguration' => '\Adyen\Model\Management\StoreSplitConfiguration',
-        'status' => 'string'
+        'status' => 'string',
+        'subMerchantData' => '\Adyen\Model\Management\SubMerchantData'
     ];
 
     /**
@@ -74,7 +75,8 @@ class Store implements ModelInterface, ArrayAccess, \JsonSerializable
         'reference' => null,
         'shopperStatement' => null,
         'splitConfiguration' => null,
-        'status' => null
+        'status' => null,
+        'subMerchantData' => null
     ];
 
     /**
@@ -94,7 +96,8 @@ class Store implements ModelInterface, ArrayAccess, \JsonSerializable
         'reference' => false,
         'shopperStatement' => false,
         'splitConfiguration' => false,
-        'status' => false
+        'status' => false,
+        'subMerchantData' => false
     ];
 
     /**
@@ -194,7 +197,8 @@ class Store implements ModelInterface, ArrayAccess, \JsonSerializable
         'reference' => 'reference',
         'shopperStatement' => 'shopperStatement',
         'splitConfiguration' => 'splitConfiguration',
-        'status' => 'status'
+        'status' => 'status',
+        'subMerchantData' => 'subMerchantData'
     ];
 
     /**
@@ -214,7 +218,8 @@ class Store implements ModelInterface, ArrayAccess, \JsonSerializable
         'reference' => 'setReference',
         'shopperStatement' => 'setShopperStatement',
         'splitConfiguration' => 'setSplitConfiguration',
-        'status' => 'setStatus'
+        'status' => 'setStatus',
+        'subMerchantData' => 'setSubMerchantData'
     ];
 
     /**
@@ -234,7 +239,8 @@ class Store implements ModelInterface, ArrayAccess, \JsonSerializable
         'reference' => 'getReference',
         'shopperStatement' => 'getShopperStatement',
         'splitConfiguration' => 'getSplitConfiguration',
-        'status' => 'getStatus'
+        'status' => 'getStatus',
+        'subMerchantData' => 'getSubMerchantData'
     ];
 
     /**
@@ -322,6 +328,7 @@ class Store implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('shopperStatement', $data ?? [], null);
         $this->setIfExists('splitConfiguration', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('subMerchantData', $data ?? [], null);
     }
 
     /**
@@ -669,6 +676,30 @@ class Store implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets subMerchantData
+     *
+     * @return \Adyen\Model\Management\SubMerchantData|null
+     */
+    public function getSubMerchantData()
+    {
+        return $this->container['subMerchantData'];
+    }
+
+    /**
+     * Sets subMerchantData
+     *
+     * @param \Adyen\Model\Management\SubMerchantData|null $subMerchantData subMerchantData
+     *
+     * @return self
+     */
+    public function setSubMerchantData($subMerchantData)
+    {
+        $this->container['subMerchantData'] = $subMerchantData;
 
         return $this;
     }

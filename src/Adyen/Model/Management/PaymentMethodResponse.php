@@ -243,9 +243,13 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public const TYPES_WITH_ERRORS_ALELO = 'alelo';
     public const TYPES_WITH_ERRORS_ALIPAY = 'alipay';
     public const TYPES_WITH_ERRORS_ALIPAY_HK = 'alipay_hk';
+    public const TYPES_WITH_ERRORS_ALIPAY_PLUS = 'alipay_plus';
     public const TYPES_WITH_ERRORS_ALIPAY_WAP = 'alipay_wap';
     public const TYPES_WITH_ERRORS_AMEX = 'amex';
     public const TYPES_WITH_ERRORS_APPLEPAY = 'applepay';
+    public const TYPES_WITH_ERRORS_AVANCARD = 'avancard';
+    public const TYPES_WITH_ERRORS_AVANCARD_CREDIT = 'avancard_credit';
+    public const TYPES_WITH_ERRORS_AVANCARD_DEBIT = 'avancard_debit';
     public const TYPES_WITH_ERRORS_BANESE_CARD = 'banese_card';
     public const TYPES_WITH_ERRORS_BANESE_CARD_CREDIT = 'banese_card_credit';
     public const TYPES_WITH_ERRORS_BANESE_CARD_DEBIT = 'banese_card_debit';
@@ -255,6 +259,14 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public const TYPES_WITH_ERRORS_CARTEBANCAIRE = 'cartebancaire';
     public const TYPES_WITH_ERRORS_CLEARPAY = 'clearpay';
     public const TYPES_WITH_ERRORS_CLICKTOPAY = 'clicktopay';
+    public const TYPES_WITH_ERRORS_COOPER = 'cooper';
+    public const TYPES_WITH_ERRORS_COOPER_CREDIT = 'cooper_credit';
+    public const TYPES_WITH_ERRORS_COOPER_DEBIT = 'cooper_debit';
+    public const TYPES_WITH_ERRORS_COOPER_FOOD_DEBIT = 'cooper_food_debit';
+    public const TYPES_WITH_ERRORS_COOPER_MEAL_DEBIT = 'cooper_meal_debit';
+    public const TYPES_WITH_ERRORS_COOPER_PREPAID = 'cooper_prepaid';
+    public const TYPES_WITH_ERRORS_COOPER_PRIVATE_CREDIT = 'cooper_private_credit';
+    public const TYPES_WITH_ERRORS_COOPER_RETAIL_CREDIT = 'cooper_retail_credit';
     public const TYPES_WITH_ERRORS_CREDTODOS = 'credtodos';
     public const TYPES_WITH_ERRORS_CREDTODOS_PRIVATE_CREDIT = 'credtodos_private_credit';
     public const TYPES_WITH_ERRORS_CREDTODOS_PRIVATE_DEBIT = 'credtodos_private_debit';
@@ -270,6 +282,12 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public const TYPES_WITH_ERRORS_ELODEBIT = 'elodebit';
     public const TYPES_WITH_ERRORS_GIROCARD = 'girocard';
     public const TYPES_WITH_ERRORS_GOOGLEPAY = 'googlepay';
+    public const TYPES_WITH_ERRORS_GREEN_CARD = 'green_card';
+    public const TYPES_WITH_ERRORS_GREEN_CARD_CREDIT = 'green_card_credit';
+    public const TYPES_WITH_ERRORS_GREEN_CARD_DEBIT = 'green_card_debit';
+    public const TYPES_WITH_ERRORS_GREEN_CARD_FOOD_PREPAID = 'green_card_food_prepaid';
+    public const TYPES_WITH_ERRORS_GREEN_CARD_MEAL_PREPAID = 'green_card_meal_prepaid';
+    public const TYPES_WITH_ERRORS_GREEN_CARD_PREPAID = 'green_card_prepaid';
     public const TYPES_WITH_ERRORS_HIPER = 'hiper';
     public const TYPES_WITH_ERRORS_HIPERCARD = 'hipercard';
     public const TYPES_WITH_ERRORS_IDEAL = 'ideal';
@@ -278,13 +296,24 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public const TYPES_WITH_ERRORS_KLARNA = 'klarna';
     public const TYPES_WITH_ERRORS_KLARNA_ACCOUNT = 'klarna_account';
     public const TYPES_WITH_ERRORS_KLARNA_PAYNOW = 'klarna_paynow';
+    public const TYPES_WITH_ERRORS_LE_CARD = 'le_card';
+    public const TYPES_WITH_ERRORS_LE_CARD_CREDIT = 'le_card_credit';
+    public const TYPES_WITH_ERRORS_LE_CARD_DEBIT = 'le_card_debit';
     public const TYPES_WITH_ERRORS_MAESTRO = 'maestro';
+    public const TYPES_WITH_ERRORS_MAESTRO_USA = 'maestro_usa';
+    public const TYPES_WITH_ERRORS_MAXIFROTA = 'maxifrota';
+    public const TYPES_WITH_ERRORS_MAXIFROTA_PREPAID = 'maxifrota_prepaid';
     public const TYPES_WITH_ERRORS_MBWAY = 'mbway';
     public const TYPES_WITH_ERRORS_MC = 'mc';
     public const TYPES_WITH_ERRORS_MCDEBIT = 'mcdebit';
     public const TYPES_WITH_ERRORS_MEAL_VOUCHER_FR = 'mealVoucher_FR';
+    public const TYPES_WITH_ERRORS_MEGALEVE = 'megaleve';
+    public const TYPES_WITH_ERRORS_MEGALEVE_CREDIT = 'megaleve_credit';
+    public const TYPES_WITH_ERRORS_MEGALEVE_DEBIT = 'megaleve_debit';
     public const TYPES_WITH_ERRORS_MOBILEPAY = 'mobilepay';
     public const TYPES_WITH_ERRORS_MULTIBANCO = 'multibanco';
+    public const TYPES_WITH_ERRORS_NUTRICASH = 'nutricash';
+    public const TYPES_WITH_ERRORS_NUTRICASH_PREPAID = 'nutricash_prepaid';
     public const TYPES_WITH_ERRORS_NYCE = 'nyce';
     public const TYPES_WITH_ERRORS_ONLINE_BANKING_PL = 'onlineBanking_PL';
     public const TYPES_WITH_ERRORS_PAYBYBANK = 'paybybank';
@@ -295,7 +324,12 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public const TYPES_WITH_ERRORS_PAYNOW_POS = 'paynow_pos';
     public const TYPES_WITH_ERRORS_PAYPAL = 'paypal';
     public const TYPES_WITH_ERRORS_PAYTO = 'payto';
+    public const TYPES_WITH_ERRORS_PERSONAL_CARD = 'personal_card';
+    public const TYPES_WITH_ERRORS_PERSONAL_CARD_CREDIT = 'personal_card_credit';
+    public const TYPES_WITH_ERRORS_PERSONAL_CARD_DEBIT = 'personal_card_debit';
     public const TYPES_WITH_ERRORS_PULSE = 'pulse';
+    public const TYPES_WITH_ERRORS_SENFF = 'senff';
+    public const TYPES_WITH_ERRORS_SENFF_CREDIT = 'senff_credit';
     public const TYPES_WITH_ERRORS_SODEXO = 'sodexo';
     public const TYPES_WITH_ERRORS_STAR = 'star';
     public const TYPES_WITH_ERRORS_SWISH = 'swish';
@@ -304,9 +338,19 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public const TYPES_WITH_ERRORS_TRUSTLY = 'trustly';
     public const TYPES_WITH_ERRORS_TWINT = 'twint';
     public const TYPES_WITH_ERRORS_TWINT_POS = 'twint_pos';
+    public const TYPES_WITH_ERRORS_UP_BRAZIL = 'up_brazil';
     public const TYPES_WITH_ERRORS_UP_BRAZIL_CREDIT = 'up_brazil_credit';
+    public const TYPES_WITH_ERRORS_UP_BRAZIL_DEBIT = 'up_brazil_debit';
+    public const TYPES_WITH_ERRORS_UP_BRAZIL_PREPAID = 'up_brazil_prepaid';
     public const TYPES_WITH_ERRORS_VALE_REFEICAO = 'vale_refeicao';
     public const TYPES_WITH_ERRORS_VALE_REFEICAO_PREPAID = 'vale_refeicao_prepaid';
+    public const TYPES_WITH_ERRORS_VEGAS_CARD = 'vegas_card';
+    public const TYPES_WITH_ERRORS_VEGAS_CARD_CREDIT = 'vegas_card_credit';
+    public const TYPES_WITH_ERRORS_VEGAS_CARD_DEBIT = 'vegas_card_debit';
+    public const TYPES_WITH_ERRORS_VERO_CARD = 'vero_card';
+    public const TYPES_WITH_ERRORS_VERO_CARD_CREDIT = 'vero_card_credit';
+    public const TYPES_WITH_ERRORS_VERO_CARD_DEBIT = 'vero_card_debit';
+    public const TYPES_WITH_ERRORS_VERO_CARD_PREPAID = 'vero_card_prepaid';
     public const TYPES_WITH_ERRORS_VIPPS = 'vipps';
     public const TYPES_WITH_ERRORS_VISA = 'visa';
     public const TYPES_WITH_ERRORS_VISADEBIT = 'visadebit';
@@ -329,9 +373,13 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             self::TYPES_WITH_ERRORS_ALELO,
             self::TYPES_WITH_ERRORS_ALIPAY,
             self::TYPES_WITH_ERRORS_ALIPAY_HK,
+            self::TYPES_WITH_ERRORS_ALIPAY_PLUS,
             self::TYPES_WITH_ERRORS_ALIPAY_WAP,
             self::TYPES_WITH_ERRORS_AMEX,
             self::TYPES_WITH_ERRORS_APPLEPAY,
+            self::TYPES_WITH_ERRORS_AVANCARD,
+            self::TYPES_WITH_ERRORS_AVANCARD_CREDIT,
+            self::TYPES_WITH_ERRORS_AVANCARD_DEBIT,
             self::TYPES_WITH_ERRORS_BANESE_CARD,
             self::TYPES_WITH_ERRORS_BANESE_CARD_CREDIT,
             self::TYPES_WITH_ERRORS_BANESE_CARD_DEBIT,
@@ -341,6 +389,14 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             self::TYPES_WITH_ERRORS_CARTEBANCAIRE,
             self::TYPES_WITH_ERRORS_CLEARPAY,
             self::TYPES_WITH_ERRORS_CLICKTOPAY,
+            self::TYPES_WITH_ERRORS_COOPER,
+            self::TYPES_WITH_ERRORS_COOPER_CREDIT,
+            self::TYPES_WITH_ERRORS_COOPER_DEBIT,
+            self::TYPES_WITH_ERRORS_COOPER_FOOD_DEBIT,
+            self::TYPES_WITH_ERRORS_COOPER_MEAL_DEBIT,
+            self::TYPES_WITH_ERRORS_COOPER_PREPAID,
+            self::TYPES_WITH_ERRORS_COOPER_PRIVATE_CREDIT,
+            self::TYPES_WITH_ERRORS_COOPER_RETAIL_CREDIT,
             self::TYPES_WITH_ERRORS_CREDTODOS,
             self::TYPES_WITH_ERRORS_CREDTODOS_PRIVATE_CREDIT,
             self::TYPES_WITH_ERRORS_CREDTODOS_PRIVATE_DEBIT,
@@ -356,6 +412,12 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             self::TYPES_WITH_ERRORS_ELODEBIT,
             self::TYPES_WITH_ERRORS_GIROCARD,
             self::TYPES_WITH_ERRORS_GOOGLEPAY,
+            self::TYPES_WITH_ERRORS_GREEN_CARD,
+            self::TYPES_WITH_ERRORS_GREEN_CARD_CREDIT,
+            self::TYPES_WITH_ERRORS_GREEN_CARD_DEBIT,
+            self::TYPES_WITH_ERRORS_GREEN_CARD_FOOD_PREPAID,
+            self::TYPES_WITH_ERRORS_GREEN_CARD_MEAL_PREPAID,
+            self::TYPES_WITH_ERRORS_GREEN_CARD_PREPAID,
             self::TYPES_WITH_ERRORS_HIPER,
             self::TYPES_WITH_ERRORS_HIPERCARD,
             self::TYPES_WITH_ERRORS_IDEAL,
@@ -364,13 +426,24 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             self::TYPES_WITH_ERRORS_KLARNA,
             self::TYPES_WITH_ERRORS_KLARNA_ACCOUNT,
             self::TYPES_WITH_ERRORS_KLARNA_PAYNOW,
+            self::TYPES_WITH_ERRORS_LE_CARD,
+            self::TYPES_WITH_ERRORS_LE_CARD_CREDIT,
+            self::TYPES_WITH_ERRORS_LE_CARD_DEBIT,
             self::TYPES_WITH_ERRORS_MAESTRO,
+            self::TYPES_WITH_ERRORS_MAESTRO_USA,
+            self::TYPES_WITH_ERRORS_MAXIFROTA,
+            self::TYPES_WITH_ERRORS_MAXIFROTA_PREPAID,
             self::TYPES_WITH_ERRORS_MBWAY,
             self::TYPES_WITH_ERRORS_MC,
             self::TYPES_WITH_ERRORS_MCDEBIT,
             self::TYPES_WITH_ERRORS_MEAL_VOUCHER_FR,
+            self::TYPES_WITH_ERRORS_MEGALEVE,
+            self::TYPES_WITH_ERRORS_MEGALEVE_CREDIT,
+            self::TYPES_WITH_ERRORS_MEGALEVE_DEBIT,
             self::TYPES_WITH_ERRORS_MOBILEPAY,
             self::TYPES_WITH_ERRORS_MULTIBANCO,
+            self::TYPES_WITH_ERRORS_NUTRICASH,
+            self::TYPES_WITH_ERRORS_NUTRICASH_PREPAID,
             self::TYPES_WITH_ERRORS_NYCE,
             self::TYPES_WITH_ERRORS_ONLINE_BANKING_PL,
             self::TYPES_WITH_ERRORS_PAYBYBANK,
@@ -381,7 +454,12 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             self::TYPES_WITH_ERRORS_PAYNOW_POS,
             self::TYPES_WITH_ERRORS_PAYPAL,
             self::TYPES_WITH_ERRORS_PAYTO,
+            self::TYPES_WITH_ERRORS_PERSONAL_CARD,
+            self::TYPES_WITH_ERRORS_PERSONAL_CARD_CREDIT,
+            self::TYPES_WITH_ERRORS_PERSONAL_CARD_DEBIT,
             self::TYPES_WITH_ERRORS_PULSE,
+            self::TYPES_WITH_ERRORS_SENFF,
+            self::TYPES_WITH_ERRORS_SENFF_CREDIT,
             self::TYPES_WITH_ERRORS_SODEXO,
             self::TYPES_WITH_ERRORS_STAR,
             self::TYPES_WITH_ERRORS_SWISH,
@@ -390,9 +468,19 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             self::TYPES_WITH_ERRORS_TRUSTLY,
             self::TYPES_WITH_ERRORS_TWINT,
             self::TYPES_WITH_ERRORS_TWINT_POS,
+            self::TYPES_WITH_ERRORS_UP_BRAZIL,
             self::TYPES_WITH_ERRORS_UP_BRAZIL_CREDIT,
+            self::TYPES_WITH_ERRORS_UP_BRAZIL_DEBIT,
+            self::TYPES_WITH_ERRORS_UP_BRAZIL_PREPAID,
             self::TYPES_WITH_ERRORS_VALE_REFEICAO,
             self::TYPES_WITH_ERRORS_VALE_REFEICAO_PREPAID,
+            self::TYPES_WITH_ERRORS_VEGAS_CARD,
+            self::TYPES_WITH_ERRORS_VEGAS_CARD_CREDIT,
+            self::TYPES_WITH_ERRORS_VEGAS_CARD_DEBIT,
+            self::TYPES_WITH_ERRORS_VERO_CARD,
+            self::TYPES_WITH_ERRORS_VERO_CARD_CREDIT,
+            self::TYPES_WITH_ERRORS_VERO_CARD_DEBIT,
+            self::TYPES_WITH_ERRORS_VERO_CARD_PREPAID,
             self::TYPES_WITH_ERRORS_VIPPS,
             self::TYPES_WITH_ERRORS_VISA,
             self::TYPES_WITH_ERRORS_VISADEBIT,

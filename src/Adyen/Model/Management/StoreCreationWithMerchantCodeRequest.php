@@ -49,7 +49,8 @@ class StoreCreationWithMerchantCodeRequest implements ModelInterface, ArrayAcces
         'phoneNumber' => 'string',
         'reference' => 'string',
         'shopperStatement' => 'string',
-        'splitConfiguration' => '\Adyen\Model\Management\StoreSplitConfiguration'
+        'splitConfiguration' => '\Adyen\Model\Management\StoreSplitConfiguration',
+        'subMerchantData' => '\Adyen\Model\Management\SubMerchantData'
     ];
 
     /**
@@ -68,7 +69,8 @@ class StoreCreationWithMerchantCodeRequest implements ModelInterface, ArrayAcces
         'phoneNumber' => null,
         'reference' => null,
         'shopperStatement' => null,
-        'splitConfiguration' => null
+        'splitConfiguration' => null,
+        'subMerchantData' => null
     ];
 
     /**
@@ -85,7 +87,8 @@ class StoreCreationWithMerchantCodeRequest implements ModelInterface, ArrayAcces
         'phoneNumber' => false,
         'reference' => false,
         'shopperStatement' => false,
-        'splitConfiguration' => false
+        'splitConfiguration' => false,
+        'subMerchantData' => false
     ];
 
     /**
@@ -182,7 +185,8 @@ class StoreCreationWithMerchantCodeRequest implements ModelInterface, ArrayAcces
         'phoneNumber' => 'phoneNumber',
         'reference' => 'reference',
         'shopperStatement' => 'shopperStatement',
-        'splitConfiguration' => 'splitConfiguration'
+        'splitConfiguration' => 'splitConfiguration',
+        'subMerchantData' => 'subMerchantData'
     ];
 
     /**
@@ -199,7 +203,8 @@ class StoreCreationWithMerchantCodeRequest implements ModelInterface, ArrayAcces
         'phoneNumber' => 'setPhoneNumber',
         'reference' => 'setReference',
         'shopperStatement' => 'setShopperStatement',
-        'splitConfiguration' => 'setSplitConfiguration'
+        'splitConfiguration' => 'setSplitConfiguration',
+        'subMerchantData' => 'setSubMerchantData'
     ];
 
     /**
@@ -216,7 +221,8 @@ class StoreCreationWithMerchantCodeRequest implements ModelInterface, ArrayAcces
         'phoneNumber' => 'getPhoneNumber',
         'reference' => 'getReference',
         'shopperStatement' => 'getShopperStatement',
-        'splitConfiguration' => 'getSplitConfiguration'
+        'splitConfiguration' => 'getSplitConfiguration',
+        'subMerchantData' => 'getSubMerchantData'
     ];
 
     /**
@@ -285,6 +291,7 @@ class StoreCreationWithMerchantCodeRequest implements ModelInterface, ArrayAcces
         $this->setIfExists('reference', $data ?? [], null);
         $this->setIfExists('shopperStatement', $data ?? [], null);
         $this->setIfExists('splitConfiguration', $data ?? [], null);
+        $this->setIfExists('subMerchantData', $data ?? [], null);
     }
 
     /**
@@ -556,6 +563,30 @@ class StoreCreationWithMerchantCodeRequest implements ModelInterface, ArrayAcces
     public function setSplitConfiguration($splitConfiguration)
     {
         $this->container['splitConfiguration'] = $splitConfiguration;
+
+        return $this;
+    }
+
+    /**
+     * Gets subMerchantData
+     *
+     * @return \Adyen\Model\Management\SubMerchantData|null
+     */
+    public function getSubMerchantData()
+    {
+        return $this->container['subMerchantData'];
+    }
+
+    /**
+     * Sets subMerchantData
+     *
+     * @param \Adyen\Model\Management\SubMerchantData|null $subMerchantData subMerchantData
+     *
+     * @return self
+     */
+    public function setSubMerchantData($subMerchantData)
+    {
+        $this->container['subMerchantData'] = $subMerchantData;
 
         return $this;
     }

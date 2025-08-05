@@ -19,12 +19,12 @@ use \ArrayAccess;
 use Adyen\Model\Management\ObjectSerializer;
 
 /**
- * UpdateStoreRequest Class Doc Comment
+ * SubMerchantData Class Doc Comment
  *
  * @package  Adyen
  * @implements \ArrayAccess<string, mixed>
  */
-class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class SubMerchantData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
       *
       * @var string
       */
-    protected static $openAPIModelName = 'UpdateStoreRequest';
+    protected static $openAPIModelName = 'SubMerchantData';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,14 +41,10 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var string[]
       */
     protected static $openAPITypes = [
-        'address' => '\Adyen\Model\Management\UpdatableAddress',
-        'businessLineIds' => 'string[]',
-        'description' => 'string',
-        'externalReferenceId' => 'string',
-        'phoneNumber' => 'string',
-        'splitConfiguration' => '\Adyen\Model\Management\StoreSplitConfiguration',
-        'status' => 'string',
-        'subMerchantData' => '\Adyen\Model\Management\SubMerchantData'
+        'email' => 'string',
+        'id' => 'string',
+        'mcc' => 'string',
+        'name' => 'string'
     ];
 
     /**
@@ -59,14 +55,10 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'address' => null,
-        'businessLineIds' => null,
-        'description' => null,
-        'externalReferenceId' => null,
-        'phoneNumber' => null,
-        'splitConfiguration' => null,
-        'status' => null,
-        'subMerchantData' => null
+        'email' => null,
+        'id' => null,
+        'mcc' => null,
+        'name' => null
     ];
 
     /**
@@ -75,14 +67,10 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'address' => false,
-        'businessLineIds' => false,
-        'description' => false,
-        'externalReferenceId' => false,
-        'phoneNumber' => false,
-        'splitConfiguration' => false,
-        'status' => false,
-        'subMerchantData' => false
+        'email' => false,
+        'id' => false,
+        'mcc' => false,
+        'name' => false
     ];
 
     /**
@@ -171,14 +159,10 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $attributeMap = [
-        'address' => 'address',
-        'businessLineIds' => 'businessLineIds',
-        'description' => 'description',
-        'externalReferenceId' => 'externalReferenceId',
-        'phoneNumber' => 'phoneNumber',
-        'splitConfiguration' => 'splitConfiguration',
-        'status' => 'status',
-        'subMerchantData' => 'subMerchantData'
+        'email' => 'email',
+        'id' => 'id',
+        'mcc' => 'mcc',
+        'name' => 'name'
     ];
 
     /**
@@ -187,14 +171,10 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $setters = [
-        'address' => 'setAddress',
-        'businessLineIds' => 'setBusinessLineIds',
-        'description' => 'setDescription',
-        'externalReferenceId' => 'setExternalReferenceId',
-        'phoneNumber' => 'setPhoneNumber',
-        'splitConfiguration' => 'setSplitConfiguration',
-        'status' => 'setStatus',
-        'subMerchantData' => 'setSubMerchantData'
+        'email' => 'setEmail',
+        'id' => 'setId',
+        'mcc' => 'setMcc',
+        'name' => 'setName'
     ];
 
     /**
@@ -203,14 +183,10 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $getters = [
-        'address' => 'getAddress',
-        'businessLineIds' => 'getBusinessLineIds',
-        'description' => 'getDescription',
-        'externalReferenceId' => 'getExternalReferenceId',
-        'phoneNumber' => 'getPhoneNumber',
-        'splitConfiguration' => 'getSplitConfiguration',
-        'status' => 'getStatus',
-        'subMerchantData' => 'getSubMerchantData'
+        'email' => 'getEmail',
+        'id' => 'getId',
+        'mcc' => 'getMcc',
+        'name' => 'getName'
     ];
 
     /**
@@ -254,23 +230,7 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         return self::$openAPIModelName;
     }
 
-    public const STATUS_ACTIVE = 'active';
-    public const STATUS_CLOSED = 'closed';
-    public const STATUS_INACTIVE = 'inactive';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS_ACTIVE,
-            self::STATUS_CLOSED,
-            self::STATUS_INACTIVE,
-        ];
-    }
     /**
      * Associative array for storing property values
      *
@@ -286,14 +246,10 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('address', $data ?? [], null);
-        $this->setIfExists('businessLineIds', $data ?? [], null);
-        $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('externalReferenceId', $data ?? [], null);
-        $this->setIfExists('phoneNumber', $data ?? [], null);
-        $this->setIfExists('splitConfiguration', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
-        $this->setIfExists('subMerchantData', $data ?? [], null);
+        $this->setIfExists('email', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('mcc', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
     }
 
     /**
@@ -323,15 +279,18 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
-                implode("', '", $allowedValues)
-            );
+        if ($this->container['email'] === null) {
+            $invalidProperties[] = "'email' can't be null";
         }
-
+        if ($this->container['id'] === null) {
+            $invalidProperties[] = "'id' can't be null";
+        }
+        if ($this->container['mcc'] === null) {
+            $invalidProperties[] = "'mcc' can't be null";
+        }
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -348,203 +307,97 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
 
 
     /**
-     * Gets address
+     * Gets email
      *
-     * @return \Adyen\Model\Management\UpdatableAddress|null
+     * @return string
      */
-    public function getAddress()
+    public function getEmail()
     {
-        return $this->container['address'];
+        return $this->container['email'];
     }
 
     /**
-     * Sets address
+     * Sets email
      *
-     * @param \Adyen\Model\Management\UpdatableAddress|null $address address
+     * @param string $email The email associated with the sub-merchant's account.
      *
      * @return self
      */
-    public function setAddress($address)
+    public function setEmail($email)
     {
-        $this->container['address'] = $address;
+        $this->container['email'] = $email;
 
         return $this;
     }
 
     /**
-     * Gets businessLineIds
+     * Gets id
      *
-     * @return string[]|null
+     * @return string
      */
-    public function getBusinessLineIds()
+    public function getId()
     {
-        return $this->container['businessLineIds'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets businessLineIds
+     * Sets id
      *
-     * @param string[]|null $businessLineIds The unique identifiers of the [business lines](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/businessLines__resParam_id) that the store is associated with.
+     * @param string $id A unique identifier that you create for the sub-merchant, used by schemes to identify the sub-merchant. * Format: Alphanumeric * Maximum length: 15 characters
      *
      * @return self
      */
-    public function setBusinessLineIds($businessLineIds)
+    public function setId($id)
     {
-        $this->container['businessLineIds'] = $businessLineIds;
+        $this->container['id'] = $id;
 
         return $this;
     }
 
     /**
-     * Gets description
+     * Gets mcc
      *
-     * @return string|null
+     * @return string
      */
-    public function getDescription()
+    public function getMcc()
     {
-        return $this->container['description'];
+        return $this->container['mcc'];
     }
 
     /**
-     * Sets description
+     * Sets mcc
      *
-     * @param string|null $description The description of the store.
+     * @param string $mcc The sub-merchant's 4-digit Merchant Category Code (MCC). * Format: Numeric * Fixed length: 4 digits
      *
      * @return self
      */
-    public function setDescription($description)
+    public function setMcc($mcc)
     {
-        $this->container['description'] = $description;
+        $this->container['mcc'] = $mcc;
 
         return $this;
     }
 
     /**
-     * Gets externalReferenceId
+     * Gets name
      *
-     * @return string|null
+     * @return string
      */
-    public function getExternalReferenceId()
+    public function getName()
     {
-        return $this->container['externalReferenceId'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets externalReferenceId
+     * Sets name
      *
-     * @param string|null $externalReferenceId The unique identifier of the store, used by certain payment methods and tax authorities.  Required for CNPJ in Brazil, in the format 00.000.000/0000-00 separated by dots, slashes, hyphens, or without separators.  Optional for SIRET in France, up to 14 digits.  Optional for Zip in Australia, up to 50 digits.
+     * @param string $name The name of the sub-merchant. Based on scheme specifications, this value will overwrite the shopper statement that will appear in the card statement. * Format: Alphanumeric * Maximum length: 22 characters
      *
      * @return self
      */
-    public function setExternalReferenceId($externalReferenceId)
+    public function setName($name)
     {
-        $this->container['externalReferenceId'] = $externalReferenceId;
-
-        return $this;
-    }
-
-    /**
-     * Gets phoneNumber
-     *
-     * @return string|null
-     */
-    public function getPhoneNumber()
-    {
-        return $this->container['phoneNumber'];
-    }
-
-    /**
-     * Sets phoneNumber
-     *
-     * @param string|null $phoneNumber The phone number of the store, including '+' and country code in the [E.164](https://en.wikipedia.org/wiki/E.164) format. If passed in a different format, we convert and validate the phone number against E.164.
-     *
-     * @return self
-     */
-    public function setPhoneNumber($phoneNumber)
-    {
-        $this->container['phoneNumber'] = $phoneNumber;
-
-        return $this;
-    }
-
-    /**
-     * Gets splitConfiguration
-     *
-     * @return \Adyen\Model\Management\StoreSplitConfiguration|null
-     */
-    public function getSplitConfiguration()
-    {
-        return $this->container['splitConfiguration'];
-    }
-
-    /**
-     * Sets splitConfiguration
-     *
-     * @param \Adyen\Model\Management\StoreSplitConfiguration|null $splitConfiguration splitConfiguration
-     *
-     * @return self
-     */
-    public function setSplitConfiguration($splitConfiguration)
-    {
-        $this->container['splitConfiguration'] = $splitConfiguration;
-
-        return $this;
-    }
-
-    /**
-     * Gets status
-     *
-     * @return string|null
-     */
-    public function getStatus()
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string|null $status The status of the store. Possible values are:  - **active**: This value is assigned automatically when a store is created.  - **inactive**: The maximum [transaction limits and number of Store-and-Forward transactions](https://docs.adyen.com/point-of-sale/determine-account-structure/configure-features#payment-features) for the store are set to 0. This blocks new transactions, but captures are still possible. - **closed**: The terminals of the store are reassigned to the merchant inventory, so they can't process payments.  You can change the status from **active** to **inactive**, and from **inactive** to **active** or **closed**.  Once **closed**, a store can't be reopened.
-     *
-     * @return self
-     */
-    public function setStatus($status)
-    {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Gets subMerchantData
-     *
-     * @return \Adyen\Model\Management\SubMerchantData|null
-     */
-    public function getSubMerchantData()
-    {
-        return $this->container['subMerchantData'];
-    }
-
-    /**
-     * Sets subMerchantData
-     *
-     * @param \Adyen\Model\Management\SubMerchantData|null $subMerchantData subMerchantData
-     *
-     * @return self
-     */
-    public function setSubMerchantData($subMerchantData)
-    {
-        $this->container['subMerchantData'] = $subMerchantData;
+        $this->container['name'] = $name;
 
         return $this;
     }
