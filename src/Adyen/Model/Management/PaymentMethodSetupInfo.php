@@ -44,6 +44,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'accel' => '\Adyen\Model\Management\AccelInfo',
         'affirm' => '\Adyen\Model\Management\AffirmInfo',
         'afterpayTouch' => '\Adyen\Model\Management\AfterpayTouchInfo',
+        'alipayPlus' => '\Adyen\Model\Management\AlipayPlusInfo',
         'amex' => '\Adyen\Model\Management\AmexInfo',
         'applePay' => '\Adyen\Model\Management\ApplePayInfo',
         'bcmc' => '\Adyen\Model\Management\BcmcInfo',
@@ -65,6 +66,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'jcb' => '\Adyen\Model\Management\JCBInfo',
         'klarna' => '\Adyen\Model\Management\KlarnaInfo',
         'maestro' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
+        'maestroUsa' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'mc' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'mealVoucherFR' => '\Adyen\Model\Management\MealVoucherFRInfo',
         'nyce' => '\Adyen\Model\Management\NyceInfo',
@@ -100,6 +102,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'accel' => null,
         'affirm' => null,
         'afterpayTouch' => null,
+        'alipayPlus' => null,
         'amex' => null,
         'applePay' => null,
         'bcmc' => null,
@@ -121,6 +124,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'jcb' => null,
         'klarna' => null,
         'maestro' => null,
+        'maestroUsa' => null,
         'mc' => null,
         'mealVoucherFR' => null,
         'nyce' => null,
@@ -154,6 +158,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'accel' => false,
         'affirm' => false,
         'afterpayTouch' => false,
+        'alipayPlus' => false,
         'amex' => false,
         'applePay' => false,
         'bcmc' => false,
@@ -175,6 +180,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'jcb' => false,
         'klarna' => false,
         'maestro' => false,
+        'maestroUsa' => false,
         'mc' => false,
         'mealVoucherFR' => false,
         'nyce' => false,
@@ -288,6 +294,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'accel' => 'accel',
         'affirm' => 'affirm',
         'afterpayTouch' => 'afterpayTouch',
+        'alipayPlus' => 'alipayPlus',
         'amex' => 'amex',
         'applePay' => 'applePay',
         'bcmc' => 'bcmc',
@@ -309,6 +316,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'jcb' => 'jcb',
         'klarna' => 'klarna',
         'maestro' => 'maestro',
+        'maestroUsa' => 'maestro_usa',
         'mc' => 'mc',
         'mealVoucherFR' => 'mealVoucher_FR',
         'nyce' => 'nyce',
@@ -342,6 +350,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'accel' => 'setAccel',
         'affirm' => 'setAffirm',
         'afterpayTouch' => 'setAfterpayTouch',
+        'alipayPlus' => 'setAlipayPlus',
         'amex' => 'setAmex',
         'applePay' => 'setApplePay',
         'bcmc' => 'setBcmc',
@@ -363,6 +372,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'jcb' => 'setJcb',
         'klarna' => 'setKlarna',
         'maestro' => 'setMaestro',
+        'maestroUsa' => 'setMaestroUsa',
         'mc' => 'setMc',
         'mealVoucherFR' => 'setMealVoucherFR',
         'nyce' => 'setNyce',
@@ -396,6 +406,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'accel' => 'getAccel',
         'affirm' => 'getAffirm',
         'afterpayTouch' => 'getAfterpayTouch',
+        'alipayPlus' => 'getAlipayPlus',
         'amex' => 'getAmex',
         'applePay' => 'getApplePay',
         'bcmc' => 'getBcmc',
@@ -417,6 +428,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'jcb' => 'getJcb',
         'klarna' => 'getKlarna',
         'maestro' => 'getMaestro',
+        'maestroUsa' => 'getMaestroUsa',
         'mc' => 'getMc',
         'mealVoucherFR' => 'getMealVoucherFR',
         'nyce' => 'getNyce',
@@ -493,9 +505,13 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     public const TYPE_ALELO = 'alelo';
     public const TYPE_ALIPAY = 'alipay';
     public const TYPE_ALIPAY_HK = 'alipay_hk';
+    public const TYPE_ALIPAY_PLUS = 'alipay_plus';
     public const TYPE_ALIPAY_WAP = 'alipay_wap';
     public const TYPE_AMEX = 'amex';
     public const TYPE_APPLEPAY = 'applepay';
+    public const TYPE_AVANCARD = 'avancard';
+    public const TYPE_AVANCARD_CREDIT = 'avancard_credit';
+    public const TYPE_AVANCARD_DEBIT = 'avancard_debit';
     public const TYPE_BANESE_CARD = 'banese_card';
     public const TYPE_BANESE_CARD_CREDIT = 'banese_card_credit';
     public const TYPE_BANESE_CARD_DEBIT = 'banese_card_debit';
@@ -505,6 +521,14 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     public const TYPE_CARTEBANCAIRE = 'cartebancaire';
     public const TYPE_CLEARPAY = 'clearpay';
     public const TYPE_CLICKTOPAY = 'clicktopay';
+    public const TYPE_COOPER = 'cooper';
+    public const TYPE_COOPER_CREDIT = 'cooper_credit';
+    public const TYPE_COOPER_DEBIT = 'cooper_debit';
+    public const TYPE_COOPER_FOOD_DEBIT = 'cooper_food_debit';
+    public const TYPE_COOPER_MEAL_DEBIT = 'cooper_meal_debit';
+    public const TYPE_COOPER_PREPAID = 'cooper_prepaid';
+    public const TYPE_COOPER_PRIVATE_CREDIT = 'cooper_private_credit';
+    public const TYPE_COOPER_RETAIL_CREDIT = 'cooper_retail_credit';
     public const TYPE_CREDTODOS = 'credtodos';
     public const TYPE_CREDTODOS_PRIVATE_CREDIT = 'credtodos_private_credit';
     public const TYPE_CREDTODOS_PRIVATE_DEBIT = 'credtodos_private_debit';
@@ -520,6 +544,12 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     public const TYPE_ELODEBIT = 'elodebit';
     public const TYPE_GIROCARD = 'girocard';
     public const TYPE_GOOGLEPAY = 'googlepay';
+    public const TYPE_GREEN_CARD = 'green_card';
+    public const TYPE_GREEN_CARD_CREDIT = 'green_card_credit';
+    public const TYPE_GREEN_CARD_DEBIT = 'green_card_debit';
+    public const TYPE_GREEN_CARD_FOOD_PREPAID = 'green_card_food_prepaid';
+    public const TYPE_GREEN_CARD_MEAL_PREPAID = 'green_card_meal_prepaid';
+    public const TYPE_GREEN_CARD_PREPAID = 'green_card_prepaid';
     public const TYPE_HIPER = 'hiper';
     public const TYPE_HIPERCARD = 'hipercard';
     public const TYPE_IDEAL = 'ideal';
@@ -528,13 +558,24 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     public const TYPE_KLARNA = 'klarna';
     public const TYPE_KLARNA_ACCOUNT = 'klarna_account';
     public const TYPE_KLARNA_PAYNOW = 'klarna_paynow';
+    public const TYPE_LE_CARD = 'le_card';
+    public const TYPE_LE_CARD_CREDIT = 'le_card_credit';
+    public const TYPE_LE_CARD_DEBIT = 'le_card_debit';
     public const TYPE_MAESTRO = 'maestro';
+    public const TYPE_MAESTRO_USA = 'maestro_usa';
+    public const TYPE_MAXIFROTA = 'maxifrota';
+    public const TYPE_MAXIFROTA_PREPAID = 'maxifrota_prepaid';
     public const TYPE_MBWAY = 'mbway';
     public const TYPE_MC = 'mc';
     public const TYPE_MCDEBIT = 'mcdebit';
     public const TYPE_MEAL_VOUCHER_FR = 'mealVoucher_FR';
+    public const TYPE_MEGALEVE = 'megaleve';
+    public const TYPE_MEGALEVE_CREDIT = 'megaleve_credit';
+    public const TYPE_MEGALEVE_DEBIT = 'megaleve_debit';
     public const TYPE_MOBILEPAY = 'mobilepay';
     public const TYPE_MULTIBANCO = 'multibanco';
+    public const TYPE_NUTRICASH = 'nutricash';
+    public const TYPE_NUTRICASH_PREPAID = 'nutricash_prepaid';
     public const TYPE_NYCE = 'nyce';
     public const TYPE_ONLINE_BANKING_PL = 'onlineBanking_PL';
     public const TYPE_PAYBYBANK = 'paybybank';
@@ -545,7 +586,12 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     public const TYPE_PAYNOW_POS = 'paynow_pos';
     public const TYPE_PAYPAL = 'paypal';
     public const TYPE_PAYTO = 'payto';
+    public const TYPE_PERSONAL_CARD = 'personal_card';
+    public const TYPE_PERSONAL_CARD_CREDIT = 'personal_card_credit';
+    public const TYPE_PERSONAL_CARD_DEBIT = 'personal_card_debit';
     public const TYPE_PULSE = 'pulse';
+    public const TYPE_SENFF = 'senff';
+    public const TYPE_SENFF_CREDIT = 'senff_credit';
     public const TYPE_SODEXO = 'sodexo';
     public const TYPE_STAR = 'star';
     public const TYPE_SWISH = 'swish';
@@ -554,9 +600,19 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     public const TYPE_TRUSTLY = 'trustly';
     public const TYPE_TWINT = 'twint';
     public const TYPE_TWINT_POS = 'twint_pos';
+    public const TYPE_UP_BRAZIL = 'up_brazil';
     public const TYPE_UP_BRAZIL_CREDIT = 'up_brazil_credit';
+    public const TYPE_UP_BRAZIL_DEBIT = 'up_brazil_debit';
+    public const TYPE_UP_BRAZIL_PREPAID = 'up_brazil_prepaid';
     public const TYPE_VALE_REFEICAO = 'vale_refeicao';
     public const TYPE_VALE_REFEICAO_PREPAID = 'vale_refeicao_prepaid';
+    public const TYPE_VEGAS_CARD = 'vegas_card';
+    public const TYPE_VEGAS_CARD_CREDIT = 'vegas_card_credit';
+    public const TYPE_VEGAS_CARD_DEBIT = 'vegas_card_debit';
+    public const TYPE_VERO_CARD = 'vero_card';
+    public const TYPE_VERO_CARD_CREDIT = 'vero_card_credit';
+    public const TYPE_VERO_CARD_DEBIT = 'vero_card_debit';
+    public const TYPE_VERO_CARD_PREPAID = 'vero_card_prepaid';
     public const TYPE_VIPPS = 'vipps';
     public const TYPE_VISA = 'visa';
     public const TYPE_VISADEBIT = 'visadebit';
@@ -593,9 +649,13 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
             self::TYPE_ALELO,
             self::TYPE_ALIPAY,
             self::TYPE_ALIPAY_HK,
+            self::TYPE_ALIPAY_PLUS,
             self::TYPE_ALIPAY_WAP,
             self::TYPE_AMEX,
             self::TYPE_APPLEPAY,
+            self::TYPE_AVANCARD,
+            self::TYPE_AVANCARD_CREDIT,
+            self::TYPE_AVANCARD_DEBIT,
             self::TYPE_BANESE_CARD,
             self::TYPE_BANESE_CARD_CREDIT,
             self::TYPE_BANESE_CARD_DEBIT,
@@ -605,6 +665,14 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
             self::TYPE_CARTEBANCAIRE,
             self::TYPE_CLEARPAY,
             self::TYPE_CLICKTOPAY,
+            self::TYPE_COOPER,
+            self::TYPE_COOPER_CREDIT,
+            self::TYPE_COOPER_DEBIT,
+            self::TYPE_COOPER_FOOD_DEBIT,
+            self::TYPE_COOPER_MEAL_DEBIT,
+            self::TYPE_COOPER_PREPAID,
+            self::TYPE_COOPER_PRIVATE_CREDIT,
+            self::TYPE_COOPER_RETAIL_CREDIT,
             self::TYPE_CREDTODOS,
             self::TYPE_CREDTODOS_PRIVATE_CREDIT,
             self::TYPE_CREDTODOS_PRIVATE_DEBIT,
@@ -620,6 +688,12 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
             self::TYPE_ELODEBIT,
             self::TYPE_GIROCARD,
             self::TYPE_GOOGLEPAY,
+            self::TYPE_GREEN_CARD,
+            self::TYPE_GREEN_CARD_CREDIT,
+            self::TYPE_GREEN_CARD_DEBIT,
+            self::TYPE_GREEN_CARD_FOOD_PREPAID,
+            self::TYPE_GREEN_CARD_MEAL_PREPAID,
+            self::TYPE_GREEN_CARD_PREPAID,
             self::TYPE_HIPER,
             self::TYPE_HIPERCARD,
             self::TYPE_IDEAL,
@@ -628,13 +702,24 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
             self::TYPE_KLARNA,
             self::TYPE_KLARNA_ACCOUNT,
             self::TYPE_KLARNA_PAYNOW,
+            self::TYPE_LE_CARD,
+            self::TYPE_LE_CARD_CREDIT,
+            self::TYPE_LE_CARD_DEBIT,
             self::TYPE_MAESTRO,
+            self::TYPE_MAESTRO_USA,
+            self::TYPE_MAXIFROTA,
+            self::TYPE_MAXIFROTA_PREPAID,
             self::TYPE_MBWAY,
             self::TYPE_MC,
             self::TYPE_MCDEBIT,
             self::TYPE_MEAL_VOUCHER_FR,
+            self::TYPE_MEGALEVE,
+            self::TYPE_MEGALEVE_CREDIT,
+            self::TYPE_MEGALEVE_DEBIT,
             self::TYPE_MOBILEPAY,
             self::TYPE_MULTIBANCO,
+            self::TYPE_NUTRICASH,
+            self::TYPE_NUTRICASH_PREPAID,
             self::TYPE_NYCE,
             self::TYPE_ONLINE_BANKING_PL,
             self::TYPE_PAYBYBANK,
@@ -645,7 +730,12 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
             self::TYPE_PAYNOW_POS,
             self::TYPE_PAYPAL,
             self::TYPE_PAYTO,
+            self::TYPE_PERSONAL_CARD,
+            self::TYPE_PERSONAL_CARD_CREDIT,
+            self::TYPE_PERSONAL_CARD_DEBIT,
             self::TYPE_PULSE,
+            self::TYPE_SENFF,
+            self::TYPE_SENFF_CREDIT,
             self::TYPE_SODEXO,
             self::TYPE_STAR,
             self::TYPE_SWISH,
@@ -654,9 +744,19 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
             self::TYPE_TRUSTLY,
             self::TYPE_TWINT,
             self::TYPE_TWINT_POS,
+            self::TYPE_UP_BRAZIL,
             self::TYPE_UP_BRAZIL_CREDIT,
+            self::TYPE_UP_BRAZIL_DEBIT,
+            self::TYPE_UP_BRAZIL_PREPAID,
             self::TYPE_VALE_REFEICAO,
             self::TYPE_VALE_REFEICAO_PREPAID,
+            self::TYPE_VEGAS_CARD,
+            self::TYPE_VEGAS_CARD_CREDIT,
+            self::TYPE_VEGAS_CARD_DEBIT,
+            self::TYPE_VERO_CARD,
+            self::TYPE_VERO_CARD_CREDIT,
+            self::TYPE_VERO_CARD_DEBIT,
+            self::TYPE_VERO_CARD_PREPAID,
             self::TYPE_VIPPS,
             self::TYPE_VISA,
             self::TYPE_VISADEBIT,
@@ -683,6 +783,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('accel', $data ?? [], null);
         $this->setIfExists('affirm', $data ?? [], null);
         $this->setIfExists('afterpayTouch', $data ?? [], null);
+        $this->setIfExists('alipayPlus', $data ?? [], null);
         $this->setIfExists('amex', $data ?? [], null);
         $this->setIfExists('applePay', $data ?? [], null);
         $this->setIfExists('bcmc', $data ?? [], null);
@@ -704,6 +805,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('jcb', $data ?? [], null);
         $this->setIfExists('klarna', $data ?? [], null);
         $this->setIfExists('maestro', $data ?? [], null);
+        $this->setIfExists('maestroUsa', $data ?? [], null);
         $this->setIfExists('mc', $data ?? [], null);
         $this->setIfExists('mealVoucherFR', $data ?? [], null);
         $this->setIfExists('nyce', $data ?? [], null);
@@ -859,6 +961,30 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     public function setAfterpayTouch($afterpayTouch)
     {
         $this->container['afterpayTouch'] = $afterpayTouch;
+
+        return $this;
+    }
+
+    /**
+     * Gets alipayPlus
+     *
+     * @return \Adyen\Model\Management\AlipayPlusInfo|null
+     */
+    public function getAlipayPlus()
+    {
+        return $this->container['alipayPlus'];
+    }
+
+    /**
+     * Sets alipayPlus
+     *
+     * @param \Adyen\Model\Management\AlipayPlusInfo|null $alipayPlus alipayPlus
+     *
+     * @return self
+     */
+    public function setAlipayPlus($alipayPlus)
+    {
+        $this->container['alipayPlus'] = $alipayPlus;
 
         return $this;
     }
@@ -1363,6 +1489,30 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     public function setMaestro($maestro)
     {
         $this->container['maestro'] = $maestro;
+
+        return $this;
+    }
+
+    /**
+     * Gets maestroUsa
+     *
+     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     */
+    public function getMaestroUsa()
+    {
+        return $this->container['maestroUsa'];
+    }
+
+    /**
+     * Sets maestroUsa
+     *
+     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $maestroUsa maestroUsa
+     *
+     * @return self
+     */
+    public function setMaestroUsa($maestroUsa)
+    {
+        $this->container['maestroUsa'] = $maestroUsa;
 
         return $this;
     }
