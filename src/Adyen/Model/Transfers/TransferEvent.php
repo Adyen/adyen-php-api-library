@@ -316,6 +316,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
 
     public const REASON_ACCOUNT_HIERARCHY_NOT_ACTIVE = 'accountHierarchyNotActive';
     public const REASON_AMOUNT_LIMIT_EXCEEDED = 'amountLimitExceeded';
+    public const REASON_APPROVAL_EXPIRED = 'approvalExpired';
     public const REASON_APPROVED = 'approved';
     public const REASON_BALANCE_ACCOUNT_TEMPORARILY_BLOCKED_BY_TRANSACTION_RULE = 'balanceAccountTemporarilyBlockedByTransactionRule';
     public const REASON_COUNTERPARTY_ACCOUNT_BLOCKED = 'counterpartyAccountBlocked';
@@ -418,6 +419,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         return [
             self::REASON_ACCOUNT_HIERARCHY_NOT_ACTIVE,
             self::REASON_AMOUNT_LIMIT_EXCEEDED,
+            self::REASON_APPROVAL_EXPIRED,
             self::REASON_APPROVED,
             self::REASON_BALANCE_ACCOUNT_TEMPORARILY_BLOCKED_BY_TRANSACTION_RULE,
             self::REASON_COUNTERPARTY_ACCOUNT_BLOCKED,

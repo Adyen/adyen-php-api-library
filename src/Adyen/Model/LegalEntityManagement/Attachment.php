@@ -332,7 +332,7 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets contentType
      *
      * @return string|null
-     * @deprecated since Legal Entity Management API v1.
+     * @deprecated since Legal Entity Management API v1. 
      */
     public function getContentType()
     {
@@ -345,7 +345,7 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param string|null $contentType The file format.   Possible values: **application/pdf**, **image/jpg**, **image/jpeg**, **image/png**.
      *
      * @return self
-     * @deprecated since Legal Entity Management API v1.
+     * @deprecated since Legal Entity Management API v1. 
      */
     public function setContentType($contentType)
     {
@@ -358,7 +358,7 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets filename
      *
      * @return string|null
-     * @deprecated since Legal Entity Management API v1.
+     * @deprecated since Legal Entity Management API v1. 
      */
     public function getFilename()
     {
@@ -371,7 +371,7 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param string|null $filename The name of the file including the file extension.
      *
      * @return self
-     * @deprecated since Legal Entity Management API v1.
+     * @deprecated since Legal Entity Management API v1. 
      */
     public function setFilename($filename)
     {
@@ -417,7 +417,7 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets pageType
      *
-     * @param string|null $pageType Specifies which side of the ID card is uploaded.  * When `type` is **driversLicense** or **identityCard**, set this to **front** or **back**.  * When omitted, we infer the page number based on the order of attachments.
+     * @param string|null $pageType Specifies which side of the ID card is uploaded.  * If the `type` is **driversLicense** or **identityCard**, you must set this to **front** or **back**.  * For any other types, when this is omitted, we infer the page number based on the order of attachments.
      *
      * @return self
      */

@@ -53,6 +53,7 @@ class TransferCategoryData implements ModelInterface, ArrayAccess, \JsonSerializ
         'relayedAuthorisationData' => '\Adyen\Model\Transfers\RelayedAuthorisationData',
         'schemeTraceId' => 'string',
         'schemeUniqueTransactionId' => 'string',
+        'threeDSecure' => '\Adyen\Model\Transfers\ThreeDSecure',
         'validationFacts' => '\Adyen\Model\Transfers\TransferNotificationValidationFact[]',
         'paymentMerchantReference' => 'string',
         'platformPaymentType' => 'string',
@@ -77,6 +78,7 @@ class TransferCategoryData implements ModelInterface, ArrayAccess, \JsonSerializ
         'relayedAuthorisationData' => null,
         'schemeTraceId' => null,
         'schemeUniqueTransactionId' => null,
+        'threeDSecure' => null,
         'validationFacts' => null,
         'paymentMerchantReference' => null,
         'platformPaymentType' => null,
@@ -99,6 +101,7 @@ class TransferCategoryData implements ModelInterface, ArrayAccess, \JsonSerializ
         'relayedAuthorisationData' => false,
         'schemeTraceId' => false,
         'schemeUniqueTransactionId' => false,
+        'threeDSecure' => false,
         'validationFacts' => false,
         'paymentMerchantReference' => false,
         'platformPaymentType' => false,
@@ -201,6 +204,7 @@ class TransferCategoryData implements ModelInterface, ArrayAccess, \JsonSerializ
         'relayedAuthorisationData' => 'relayedAuthorisationData',
         'schemeTraceId' => 'schemeTraceId',
         'schemeUniqueTransactionId' => 'schemeUniqueTransactionId',
+        'threeDSecure' => 'threeDSecure',
         'validationFacts' => 'validationFacts',
         'paymentMerchantReference' => 'paymentMerchantReference',
         'platformPaymentType' => 'platformPaymentType',
@@ -223,6 +227,7 @@ class TransferCategoryData implements ModelInterface, ArrayAccess, \JsonSerializ
         'relayedAuthorisationData' => 'setRelayedAuthorisationData',
         'schemeTraceId' => 'setSchemeTraceId',
         'schemeUniqueTransactionId' => 'setSchemeUniqueTransactionId',
+        'threeDSecure' => 'setThreeDSecure',
         'validationFacts' => 'setValidationFacts',
         'paymentMerchantReference' => 'setPaymentMerchantReference',
         'platformPaymentType' => 'setPlatformPaymentType',
@@ -245,6 +250,7 @@ class TransferCategoryData implements ModelInterface, ArrayAccess, \JsonSerializ
         'relayedAuthorisationData' => 'getRelayedAuthorisationData',
         'schemeTraceId' => 'getSchemeTraceId',
         'schemeUniqueTransactionId' => 'getSchemeUniqueTransactionId',
+        'threeDSecure' => 'getThreeDSecure',
         'validationFacts' => 'getValidationFacts',
         'paymentMerchantReference' => 'getPaymentMerchantReference',
         'platformPaymentType' => 'getPlatformPaymentType',
@@ -317,6 +323,7 @@ class TransferCategoryData implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('relayedAuthorisationData', $data ?? [], null);
         $this->setIfExists('schemeTraceId', $data ?? [], null);
         $this->setIfExists('schemeUniqueTransactionId', $data ?? [], null);
+        $this->setIfExists('threeDSecure', $data ?? [], null);
         $this->setIfExists('validationFacts', $data ?? [], null);
         $this->setIfExists('paymentMerchantReference', $data ?? [], null);
         $this->setIfExists('platformPaymentType', $data ?? [], null);
@@ -383,7 +390,7 @@ class TransferCategoryData implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets priority
      *
-     * @param string|null $priority The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with `category` **bank**.  Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).
+     * @param string|null $priority The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with `category` **bank**.  Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers within the United States and in [SEPA locations](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).
      *
      * @return self
      */
@@ -606,6 +613,30 @@ class TransferCategoryData implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setSchemeUniqueTransactionId($schemeUniqueTransactionId)
     {
         $this->container['schemeUniqueTransactionId'] = $schemeUniqueTransactionId;
+
+        return $this;
+    }
+
+    /**
+     * Gets threeDSecure
+     *
+     * @return \Adyen\Model\Transfers\ThreeDSecure|null
+     */
+    public function getThreeDSecure()
+    {
+        return $this->container['threeDSecure'];
+    }
+
+    /**
+     * Sets threeDSecure
+     *
+     * @param \Adyen\Model\Transfers\ThreeDSecure|null $threeDSecure threeDSecure
+     *
+     * @return self
+     */
+    public function setThreeDSecure($threeDSecure)
+    {
+        $this->container['threeDSecure'] = $threeDSecure;
 
         return $this;
     }

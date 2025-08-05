@@ -595,7 +595,7 @@ class VerificationError implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets type
      *
-     * @param string|null $type The type of error.   Possible values: **invalidInput**, **dataMissing**.
+     * @param string|null $type The type of error.    Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus**
      *
      * @return self
      */
