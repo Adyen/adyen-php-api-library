@@ -293,7 +293,7 @@ class Phone implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets cc
      *
-     * @param string|null $cc Country code. Length: 1–3 characters.
+     * @param string|null $cc Country code. Length: 1–3 digits.
      *
      * @return self
      */
@@ -317,7 +317,7 @@ class Phone implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets subscriber
      *
-     * @param string|null $subscriber Subscriber number. Maximum length: 15 characters.
+     * @param string|null $subscriber Subscriber number. Length: 4-15  digits.
      *
      * @return self
      */

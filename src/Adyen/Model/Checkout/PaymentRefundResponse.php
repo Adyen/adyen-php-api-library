@@ -445,7 +445,7 @@ class PaymentRefundResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets capturePspReference
      *
-     * @param string|null $capturePspReference This is only available for PayPal refunds. The [`pspReference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the specific capture to refund.
+     * @param string|null $capturePspReference This is only available for PayPal refunds. The [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the specific capture to refund.
      *
      * @return self
      */
@@ -561,7 +561,7 @@ class PaymentRefundResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets paymentPspReference
      *
-     * @param string $paymentPspReference The [`pspReference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment to refund.
+     * @param string $paymentPspReference The [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to refund.
      *
      * @return self
      */
