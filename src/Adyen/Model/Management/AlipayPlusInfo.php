@@ -19,12 +19,12 @@ use \ArrayAccess;
 use Adyen\Model\Management\ObjectSerializer;
 
 /**
- * UpdateStoreRequest Class Doc Comment
+ * AlipayPlusInfo Class Doc Comment
  *
  * @package  Adyen
  * @implements \ArrayAccess<string, mixed>
  */
-class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class AlipayPlusInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
       *
       * @var string
       */
-    protected static $openAPIModelName = 'UpdateStoreRequest';
+    protected static $openAPIModelName = 'AlipayPlusInfo';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,14 +41,7 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var string[]
       */
     protected static $openAPITypes = [
-        'address' => '\Adyen\Model\Management\UpdatableAddress',
-        'businessLineIds' => 'string[]',
-        'description' => 'string',
-        'externalReferenceId' => 'string',
-        'phoneNumber' => 'string',
-        'splitConfiguration' => '\Adyen\Model\Management\StoreSplitConfiguration',
-        'status' => 'string',
-        'subMerchantData' => '\Adyen\Model\Management\SubMerchantData'
+        'settlementCurrencyCode' => 'string'
     ];
 
     /**
@@ -59,14 +52,7 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'address' => null,
-        'businessLineIds' => null,
-        'description' => null,
-        'externalReferenceId' => null,
-        'phoneNumber' => null,
-        'splitConfiguration' => null,
-        'status' => null,
-        'subMerchantData' => null
+        'settlementCurrencyCode' => null
     ];
 
     /**
@@ -75,14 +61,7 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'address' => false,
-        'businessLineIds' => false,
-        'description' => false,
-        'externalReferenceId' => false,
-        'phoneNumber' => false,
-        'splitConfiguration' => false,
-        'status' => false,
-        'subMerchantData' => false
+        'settlementCurrencyCode' => false
     ];
 
     /**
@@ -171,14 +150,7 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $attributeMap = [
-        'address' => 'address',
-        'businessLineIds' => 'businessLineIds',
-        'description' => 'description',
-        'externalReferenceId' => 'externalReferenceId',
-        'phoneNumber' => 'phoneNumber',
-        'splitConfiguration' => 'splitConfiguration',
-        'status' => 'status',
-        'subMerchantData' => 'subMerchantData'
+        'settlementCurrencyCode' => 'settlementCurrencyCode'
     ];
 
     /**
@@ -187,14 +159,7 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $setters = [
-        'address' => 'setAddress',
-        'businessLineIds' => 'setBusinessLineIds',
-        'description' => 'setDescription',
-        'externalReferenceId' => 'setExternalReferenceId',
-        'phoneNumber' => 'setPhoneNumber',
-        'splitConfiguration' => 'setSplitConfiguration',
-        'status' => 'setStatus',
-        'subMerchantData' => 'setSubMerchantData'
+        'settlementCurrencyCode' => 'setSettlementCurrencyCode'
     ];
 
     /**
@@ -203,14 +168,7 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $getters = [
-        'address' => 'getAddress',
-        'businessLineIds' => 'getBusinessLineIds',
-        'description' => 'getDescription',
-        'externalReferenceId' => 'getExternalReferenceId',
-        'phoneNumber' => 'getPhoneNumber',
-        'splitConfiguration' => 'getSplitConfiguration',
-        'status' => 'getStatus',
-        'subMerchantData' => 'getSubMerchantData'
+        'settlementCurrencyCode' => 'getSettlementCurrencyCode'
     ];
 
     /**
@@ -254,23 +212,7 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         return self::$openAPIModelName;
     }
 
-    public const STATUS_ACTIVE = 'active';
-    public const STATUS_CLOSED = 'closed';
-    public const STATUS_INACTIVE = 'inactive';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS_ACTIVE,
-            self::STATUS_CLOSED,
-            self::STATUS_INACTIVE,
-        ];
-    }
     /**
      * Associative array for storing property values
      *
@@ -286,14 +228,7 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('address', $data ?? [], null);
-        $this->setIfExists('businessLineIds', $data ?? [], null);
-        $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('externalReferenceId', $data ?? [], null);
-        $this->setIfExists('phoneNumber', $data ?? [], null);
-        $this->setIfExists('splitConfiguration', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
-        $this->setIfExists('subMerchantData', $data ?? [], null);
+        $this->setIfExists('settlementCurrencyCode', $data ?? [], null);
     }
 
     /**
@@ -323,15 +258,6 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -348,203 +274,25 @@ class UpdateStoreRequest implements ModelInterface, ArrayAccess, \JsonSerializab
 
 
     /**
-     * Gets address
-     *
-     * @return \Adyen\Model\Management\UpdatableAddress|null
-     */
-    public function getAddress()
-    {
-        return $this->container['address'];
-    }
-
-    /**
-     * Sets address
-     *
-     * @param \Adyen\Model\Management\UpdatableAddress|null $address address
-     *
-     * @return self
-     */
-    public function setAddress($address)
-    {
-        $this->container['address'] = $address;
-
-        return $this;
-    }
-
-    /**
-     * Gets businessLineIds
-     *
-     * @return string[]|null
-     */
-    public function getBusinessLineIds()
-    {
-        return $this->container['businessLineIds'];
-    }
-
-    /**
-     * Sets businessLineIds
-     *
-     * @param string[]|null $businessLineIds The unique identifiers of the [business lines](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/businessLines__resParam_id) that the store is associated with.
-     *
-     * @return self
-     */
-    public function setBusinessLineIds($businessLineIds)
-    {
-        $this->container['businessLineIds'] = $businessLineIds;
-
-        return $this;
-    }
-
-    /**
-     * Gets description
+     * Gets settlementCurrencyCode
      *
      * @return string|null
      */
-    public function getDescription()
+    public function getSettlementCurrencyCode()
     {
-        return $this->container['description'];
+        return $this->container['settlementCurrencyCode'];
     }
 
     /**
-     * Sets description
+     * Sets settlementCurrencyCode
      *
-     * @param string|null $description The description of the store.
+     * @param string|null $settlementCurrencyCode currency used for settlement. Defaults to USD
      *
      * @return self
      */
-    public function setDescription($description)
+    public function setSettlementCurrencyCode($settlementCurrencyCode)
     {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-
-    /**
-     * Gets externalReferenceId
-     *
-     * @return string|null
-     */
-    public function getExternalReferenceId()
-    {
-        return $this->container['externalReferenceId'];
-    }
-
-    /**
-     * Sets externalReferenceId
-     *
-     * @param string|null $externalReferenceId The unique identifier of the store, used by certain payment methods and tax authorities.  Required for CNPJ in Brazil, in the format 00.000.000/0000-00 separated by dots, slashes, hyphens, or without separators.  Optional for SIRET in France, up to 14 digits.  Optional for Zip in Australia, up to 50 digits.
-     *
-     * @return self
-     */
-    public function setExternalReferenceId($externalReferenceId)
-    {
-        $this->container['externalReferenceId'] = $externalReferenceId;
-
-        return $this;
-    }
-
-    /**
-     * Gets phoneNumber
-     *
-     * @return string|null
-     */
-    public function getPhoneNumber()
-    {
-        return $this->container['phoneNumber'];
-    }
-
-    /**
-     * Sets phoneNumber
-     *
-     * @param string|null $phoneNumber The phone number of the store, including '+' and country code in the [E.164](https://en.wikipedia.org/wiki/E.164) format. If passed in a different format, we convert and validate the phone number against E.164.
-     *
-     * @return self
-     */
-    public function setPhoneNumber($phoneNumber)
-    {
-        $this->container['phoneNumber'] = $phoneNumber;
-
-        return $this;
-    }
-
-    /**
-     * Gets splitConfiguration
-     *
-     * @return \Adyen\Model\Management\StoreSplitConfiguration|null
-     */
-    public function getSplitConfiguration()
-    {
-        return $this->container['splitConfiguration'];
-    }
-
-    /**
-     * Sets splitConfiguration
-     *
-     * @param \Adyen\Model\Management\StoreSplitConfiguration|null $splitConfiguration splitConfiguration
-     *
-     * @return self
-     */
-    public function setSplitConfiguration($splitConfiguration)
-    {
-        $this->container['splitConfiguration'] = $splitConfiguration;
-
-        return $this;
-    }
-
-    /**
-     * Gets status
-     *
-     * @return string|null
-     */
-    public function getStatus()
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string|null $status The status of the store. Possible values are:  - **active**: This value is assigned automatically when a store is created.  - **inactive**: The maximum [transaction limits and number of Store-and-Forward transactions](https://docs.adyen.com/point-of-sale/determine-account-structure/configure-features#payment-features) for the store are set to 0. This blocks new transactions, but captures are still possible. - **closed**: The terminals of the store are reassigned to the merchant inventory, so they can't process payments.  You can change the status from **active** to **inactive**, and from **inactive** to **active** or **closed**.  Once **closed**, a store can't be reopened.
-     *
-     * @return self
-     */
-    public function setStatus($status)
-    {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Gets subMerchantData
-     *
-     * @return \Adyen\Model\Management\SubMerchantData|null
-     */
-    public function getSubMerchantData()
-    {
-        return $this->container['subMerchantData'];
-    }
-
-    /**
-     * Sets subMerchantData
-     *
-     * @param \Adyen\Model\Management\SubMerchantData|null $subMerchantData subMerchantData
-     *
-     * @return self
-     */
-    public function setSubMerchantData($subMerchantData)
-    {
-        $this->container['subMerchantData'] = $subMerchantData;
+        $this->container['settlementCurrencyCode'] = $settlementCurrencyCode;
 
         return $this;
     }

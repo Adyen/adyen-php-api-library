@@ -7,7 +7,7 @@ on:
 
 jobs:
   format:
-    if: ${{ ! startsWith(github.event.head_commit.message, 'style(fmt)') }}
+    if: ${{ github.event.commits != null && !startsWith(github.event.head_commit.message, 'style(fmt)') }}      
     permissions:
       contents: write
     runs-on: ubuntu-latest
@@ -32,5 +32,5 @@ jobs:
           git config user.name AdyenAutomationBot
           git config user.email "${{ secrets.ADYEN_AUTOMATION_BOT_EMAIL }}"
           git add .
-          git commit -m "style(fmt): code formatted"
+          git commit -m "style(fmt): code formatted" || echo "No changes to commit"
           git push
