@@ -19,12 +19,12 @@ use \ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
- * PaymentCancelResponse Class Doc Comment
+ * InvalidField Class Doc Comment
  *
  * @package  Adyen
  * @implements \ArrayAccess<string, mixed>
  */
-class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PaymentCancelResponse';
+    protected static $openAPIModelName = 'InvalidField';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,11 +41,9 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var string[]
       */
     protected static $openAPITypes = [
-        'merchantAccount' => 'string',
-        'paymentPspReference' => 'string',
-        'pspReference' => 'string',
-        'reference' => 'string',
-        'status' => 'string'
+        'name' => 'string',
+        'value' => 'string',
+        'message' => 'string'
     ];
 
     /**
@@ -56,11 +54,9 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'merchantAccount' => null,
-        'paymentPspReference' => null,
-        'pspReference' => null,
-        'reference' => null,
-        'status' => null
+        'name' => null,
+        'value' => null,
+        'message' => null
     ];
 
     /**
@@ -69,11 +65,9 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'merchantAccount' => false,
-        'paymentPspReference' => false,
-        'pspReference' => false,
-        'reference' => false,
-        'status' => false
+        'name' => false,
+        'value' => false,
+        'message' => false
     ];
 
     /**
@@ -162,11 +156,9 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $attributeMap = [
-        'merchantAccount' => 'merchantAccount',
-        'paymentPspReference' => 'paymentPspReference',
-        'pspReference' => 'pspReference',
-        'reference' => 'reference',
-        'status' => 'status'
+        'name' => 'name',
+        'value' => 'value',
+        'message' => 'message'
     ];
 
     /**
@@ -175,11 +167,9 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $setters = [
-        'merchantAccount' => 'setMerchantAccount',
-        'paymentPspReference' => 'setPaymentPspReference',
-        'pspReference' => 'setPspReference',
-        'reference' => 'setReference',
-        'status' => 'setStatus'
+        'name' => 'setName',
+        'value' => 'setValue',
+        'message' => 'setMessage'
     ];
 
     /**
@@ -188,11 +178,9 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $getters = [
-        'merchantAccount' => 'getMerchantAccount',
-        'paymentPspReference' => 'getPaymentPspReference',
-        'pspReference' => 'getPspReference',
-        'reference' => 'getReference',
-        'status' => 'getStatus'
+        'name' => 'getName',
+        'value' => 'getValue',
+        'message' => 'getMessage'
     ];
 
     /**
@@ -236,19 +224,7 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
         return self::$openAPIModelName;
     }
 
-    public const STATUS_RECEIVED = 'received';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS_RECEIVED,
-        ];
-    }
     /**
      * Associative array for storing property values
      *
@@ -264,11 +240,9 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('merchantAccount', $data ?? [], null);
-        $this->setIfExists('paymentPspReference', $data ?? [], null);
-        $this->setIfExists('pspReference', $data ?? [], null);
-        $this->setIfExists('reference', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('message', $data ?? [], null);
     }
 
     /**
@@ -298,27 +272,15 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         $invalidProperties = [];
 
-        if ($this->container['merchantAccount'] === null) {
-            $invalidProperties[] = "'merchantAccount' can't be null";
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
         }
-        if ($this->container['paymentPspReference'] === null) {
-            $invalidProperties[] = "'paymentPspReference' can't be null";
+        if ($this->container['value'] === null) {
+            $invalidProperties[] = "'value' can't be null";
         }
-        if ($this->container['pspReference'] === null) {
-            $invalidProperties[] = "'pspReference' can't be null";
+        if ($this->container['message'] === null) {
+            $invalidProperties[] = "'message' can't be null";
         }
-        if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
-        }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -335,131 +297,73 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
 
 
     /**
-     * Gets merchantAccount
+     * Gets name
      *
      * @return string
      */
-    public function getMerchantAccount()
+    public function getName()
     {
-        return $this->container['merchantAccount'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets merchantAccount
+     * Sets name
      *
-     * @param string $merchantAccount The merchant account that is used to process the payment.
+     * @param string $name The field that has an invalid value.
      *
      * @return self
      */
-    public function setMerchantAccount($merchantAccount)
+    public function setName($name)
     {
-        $this->container['merchantAccount'] = $merchantAccount;
+        $this->container['name'] = $name;
 
         return $this;
     }
 
     /**
-     * Gets paymentPspReference
+     * Gets value
      *
      * @return string
      */
-    public function getPaymentPspReference()
+    public function getValue()
     {
-        return $this->container['paymentPspReference'];
+        return $this->container['value'];
     }
 
     /**
-     * Sets paymentPspReference
+     * Sets value
      *
-     * @param string $paymentPspReference The [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to cancel.
+     * @param string $value The invalid value.
      *
      * @return self
      */
-    public function setPaymentPspReference($paymentPspReference)
+    public function setValue($value)
     {
-        $this->container['paymentPspReference'] = $paymentPspReference;
+        $this->container['value'] = $value;
 
         return $this;
     }
 
     /**
-     * Gets pspReference
+     * Gets message
      *
      * @return string
      */
-    public function getPspReference()
+    public function getMessage()
     {
-        return $this->container['pspReference'];
+        return $this->container['message'];
     }
 
     /**
-     * Sets pspReference
+     * Sets message
      *
-     * @param string $pspReference Adyen's 16-character reference associated with the cancel request.
+     * @param string $message Description of the validation error.
      *
      * @return self
      */
-    public function setPspReference($pspReference)
+    public function setMessage($message)
     {
-        $this->container['pspReference'] = $pspReference;
-
-        return $this;
-    }
-
-    /**
-     * Gets reference
-     *
-     * @return string|null
-     */
-    public function getReference()
-    {
-        return $this->container['reference'];
-    }
-
-    /**
-     * Sets reference
-     *
-     * @param string|null $reference Your reference for the cancel request.
-     *
-     * @return self
-     */
-    public function setReference($reference)
-    {
-        $this->container['reference'] = $reference;
-
-        return $this;
-    }
-
-    /**
-     * Gets status
-     *
-     * @return string
-     */
-    public function getStatus()
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string $status The status of your request. This will always have the value **received**.
-     *
-     * @return self
-     */
-    public function setStatus($status)
-    {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
+        $this->container['message'] = $message;
 
         return $this;
     }

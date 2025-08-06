@@ -268,6 +268,7 @@ class RivertyDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 
     public const TYPE_RIVERTY = 'riverty';
     public const TYPE_RIVERTY_ACCOUNT = 'riverty_account';
+    public const TYPE_RIVERTY_INSTALLMENTS = 'riverty_installments';
     public const TYPE_SEPADIRECTDEBIT_RIVERTY = 'sepadirectdebit_riverty';
 
     /**
@@ -280,6 +281,7 @@ class RivertyDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         return [
             self::TYPE_RIVERTY,
             self::TYPE_RIVERTY_ACCOUNT,
+            self::TYPE_RIVERTY_INSTALLMENTS,
             self::TYPE_SEPADIRECTDEBIT_RIVERTY,
         ];
     }

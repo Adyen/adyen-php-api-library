@@ -371,7 +371,7 @@ class PaymentReversalResponse implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets paymentPspReference
      *
-     * @param string $paymentPspReference The [`pspReference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment to reverse.
+     * @param string $paymentPspReference The [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to reverse.
      *
      * @return self
      */
