@@ -19,12 +19,14 @@ use \ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
- * MbwayDetails Class Doc Comment
+ * DefaultErrorResponseEntity Class Doc Comment
+ *
+ * Standardized error response following RFC-7807 format
  *
  * @package  Adyen
  * @implements \ArrayAccess<string, mixed>
  */
-class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
+class DefaultErrorResponseEntity implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +35,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'MbwayDetails';
+    protected static $openAPIModelName = 'DefaultErrorResponseEntity';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +43,13 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'checkoutAttemptId' => 'string',
-        'shopperEmail' => 'string',
-        'telephoneNumber' => 'string',
+        'detail' => 'string',
+        'errorCode' => 'string',
+        'instance' => 'string',
+        'invalidFields' => '\Adyen\Model\Checkout\InvalidField[]',
+        'requestId' => 'string',
+        'status' => 'int',
+        'title' => 'string',
         'type' => 'string'
     ];
 
@@ -55,9 +61,13 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'checkoutAttemptId' => null,
-        'shopperEmail' => null,
-        'telephoneNumber' => null,
+        'detail' => null,
+        'errorCode' => null,
+        'instance' => null,
+        'invalidFields' => null,
+        'requestId' => null,
+        'status' => 'int32',
+        'title' => null,
         'type' => null
     ];
 
@@ -67,9 +77,13 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'checkoutAttemptId' => false,
-        'shopperEmail' => false,
-        'telephoneNumber' => false,
+        'detail' => false,
+        'errorCode' => false,
+        'instance' => false,
+        'invalidFields' => false,
+        'requestId' => false,
+        'status' => true,
+        'title' => false,
         'type' => false
     ];
 
@@ -159,9 +173,13 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'checkoutAttemptId' => 'checkoutAttemptId',
-        'shopperEmail' => 'shopperEmail',
-        'telephoneNumber' => 'telephoneNumber',
+        'detail' => 'detail',
+        'errorCode' => 'errorCode',
+        'instance' => 'instance',
+        'invalidFields' => 'invalidFields',
+        'requestId' => 'requestId',
+        'status' => 'status',
+        'title' => 'title',
         'type' => 'type'
     ];
 
@@ -171,9 +189,13 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'checkoutAttemptId' => 'setCheckoutAttemptId',
-        'shopperEmail' => 'setShopperEmail',
-        'telephoneNumber' => 'setTelephoneNumber',
+        'detail' => 'setDetail',
+        'errorCode' => 'setErrorCode',
+        'instance' => 'setInstance',
+        'invalidFields' => 'setInvalidFields',
+        'requestId' => 'setRequestId',
+        'status' => 'setStatus',
+        'title' => 'setTitle',
         'type' => 'setType'
     ];
 
@@ -183,9 +205,13 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'checkoutAttemptId' => 'getCheckoutAttemptId',
-        'shopperEmail' => 'getShopperEmail',
-        'telephoneNumber' => 'getTelephoneNumber',
+        'detail' => 'getDetail',
+        'errorCode' => 'getErrorCode',
+        'instance' => 'getInstance',
+        'invalidFields' => 'getInvalidFields',
+        'requestId' => 'getRequestId',
+        'status' => 'getStatus',
+        'title' => 'getTitle',
         'type' => 'getType'
     ];
 
@@ -230,19 +256,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const TYPE_MBWAY = 'mbway';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_MBWAY,
-        ];
-    }
     /**
      * Associative array for storing property values
      *
@@ -258,9 +272,13 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('checkoutAttemptId', $data ?? [], null);
-        $this->setIfExists('shopperEmail', $data ?? [], null);
-        $this->setIfExists('telephoneNumber', $data ?? [], null);
+        $this->setIfExists('detail', $data ?? [], null);
+        $this->setIfExists('errorCode', $data ?? [], null);
+        $this->setIfExists('instance', $data ?? [], null);
+        $this->setIfExists('invalidFields', $data ?? [], null);
+        $this->setIfExists('requestId', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('title', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -291,21 +309,6 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['shopperEmail'] === null) {
-            $invalidProperties[] = "'shopperEmail' can't be null";
-        }
-        if ($this->container['telephoneNumber'] === null) {
-            $invalidProperties[] = "'telephoneNumber' can't be null";
-        }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -322,73 +325,169 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets checkoutAttemptId
+     * Gets detail
      *
      * @return string|null
      */
-    public function getCheckoutAttemptId()
+    public function getDetail()
     {
-        return $this->container['checkoutAttemptId'];
+        return $this->container['detail'];
     }
 
     /**
-     * Sets checkoutAttemptId
+     * Sets detail
      *
-     * @param string|null $checkoutAttemptId The checkout attempt identifier.
+     * @param string|null $detail A human-readable explanation specific to this occurrence of the problem.
      *
      * @return self
      */
-    public function setCheckoutAttemptId($checkoutAttemptId)
+    public function setDetail($detail)
     {
-        $this->container['checkoutAttemptId'] = $checkoutAttemptId;
+        $this->container['detail'] = $detail;
 
         return $this;
     }
 
     /**
-     * Gets shopperEmail
+     * Gets errorCode
      *
-     * @return string
+     * @return string|null
      */
-    public function getShopperEmail()
+    public function getErrorCode()
     {
-        return $this->container['shopperEmail'];
+        return $this->container['errorCode'];
     }
 
     /**
-     * Sets shopperEmail
+     * Sets errorCode
      *
-     * @param string $shopperEmail 
+     * @param string|null $errorCode Unique business error code.
      *
      * @return self
      */
-    public function setShopperEmail($shopperEmail)
+    public function setErrorCode($errorCode)
     {
-        $this->container['shopperEmail'] = $shopperEmail;
+        $this->container['errorCode'] = $errorCode;
 
         return $this;
     }
 
     /**
-     * Gets telephoneNumber
+     * Gets instance
      *
-     * @return string
+     * @return string|null
      */
-    public function getTelephoneNumber()
+    public function getInstance()
     {
-        return $this->container['telephoneNumber'];
+        return $this->container['instance'];
     }
 
     /**
-     * Sets telephoneNumber
+     * Sets instance
      *
-     * @param string $telephoneNumber 
+     * @param string|null $instance A URI that identifies the specific occurrence of the problem if applicable.
      *
      * @return self
      */
-    public function setTelephoneNumber($telephoneNumber)
+    public function setInstance($instance)
     {
-        $this->container['telephoneNumber'] = $telephoneNumber;
+        $this->container['instance'] = $instance;
+
+        return $this;
+    }
+
+    /**
+     * Gets invalidFields
+     *
+     * @return \Adyen\Model\Checkout\InvalidField[]|null
+     */
+    public function getInvalidFields()
+    {
+        return $this->container['invalidFields'];
+    }
+
+    /**
+     * Sets invalidFields
+     *
+     * @param \Adyen\Model\Checkout\InvalidField[]|null $invalidFields Array of fields with validation errors when applicable.
+     *
+     * @return self
+     */
+    public function setInvalidFields($invalidFields)
+    {
+        $this->container['invalidFields'] = $invalidFields;
+
+        return $this;
+    }
+
+    /**
+     * Gets requestId
+     *
+     * @return string|null
+     */
+    public function getRequestId()
+    {
+        return $this->container['requestId'];
+    }
+
+    /**
+     * Sets requestId
+     *
+     * @param string|null $requestId The unique reference for the request.
+     *
+     * @return self
+     */
+    public function setRequestId($requestId)
+    {
+        $this->container['requestId'] = $requestId;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return int|null
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     *
+     * @param int|null $status The HTTP status code.
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets title
+     *
+     * @return string|null
+     */
+    public function getTitle()
+    {
+        return $this->container['title'];
+    }
+
+    /**
+     * Sets title
+     *
+     * @param string|null $title A short, human-readable summary of the problem type.
+     *
+     * @return self
+     */
+    public function setTitle($title)
+    {
+        $this->container['title'] = $title;
 
         return $this;
     }
@@ -406,22 +505,12 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      *
-     * @param string|null $type **mbway**
+     * @param string|null $type A URI that identifies the validation error type. It points to human-readable documentation for the problem type.
      *
      * @return self
      */
     public function setType($type)
     {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
         $this->container['type'] = $type;
 
         return $this;

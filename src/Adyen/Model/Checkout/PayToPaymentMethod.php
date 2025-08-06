@@ -14,17 +14,15 @@
 
 
 namespace Adyen\Model\Checkout;
-
-use \ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
- * MbwayDetails Class Doc Comment
+ * PayToPaymentMethod Class Doc Comment
  *
  * @package  Adyen
  * @implements \ArrayAccess<string, mixed>
  */
-class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
+class PayToPaymentMethod extends ShopperIdPaymentMethod
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +31,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'MbwayDetails';
+    protected static $openAPIModelName = 'PayToPaymentMethod';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,10 +39,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'checkoutAttemptId' => 'string',
-        'shopperEmail' => 'string',
-        'telephoneNumber' => 'string',
-        'type' => 'string'
+        'shopperReference' => 'string'
     ];
 
     /**
@@ -55,10 +50,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'checkoutAttemptId' => null,
-        'shopperEmail' => null,
-        'telephoneNumber' => null,
-        'type' => null
+        'shopperReference' => null
     ];
 
     /**
@@ -67,10 +59,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'checkoutAttemptId' => false,
-        'shopperEmail' => false,
-        'telephoneNumber' => false,
-        'type' => false
+        'shopperReference' => false
     ];
 
     /**
@@ -87,7 +76,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -97,7 +86,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -107,7 +96,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static function openAPINullables(): array
     {
-        return self::$openAPINullables;
+        return self::$openAPINullables + parent::openAPINullables();
     }
 
     /**
@@ -159,10 +148,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'checkoutAttemptId' => 'checkoutAttemptId',
-        'shopperEmail' => 'shopperEmail',
-        'telephoneNumber' => 'telephoneNumber',
-        'type' => 'type'
+        'shopperReference' => 'shopperReference'
     ];
 
     /**
@@ -171,10 +157,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'checkoutAttemptId' => 'setCheckoutAttemptId',
-        'shopperEmail' => 'setShopperEmail',
-        'telephoneNumber' => 'setTelephoneNumber',
-        'type' => 'setType'
+        'shopperReference' => 'setShopperReference'
     ];
 
     /**
@@ -183,10 +166,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'checkoutAttemptId' => 'getCheckoutAttemptId',
-        'shopperEmail' => 'getShopperEmail',
-        'telephoneNumber' => 'getTelephoneNumber',
-        'type' => 'getType'
+        'shopperReference' => 'getShopperReference'
     ];
 
     /**
@@ -197,7 +177,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -207,7 +187,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -217,7 +197,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -230,25 +210,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const TYPE_MBWAY = 'mbway';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_MBWAY,
-        ];
-    }
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
 
     /**
      * Constructor
@@ -258,10 +220,9 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('checkoutAttemptId', $data ?? [], null);
-        $this->setIfExists('shopperEmail', $data ?? [], null);
-        $this->setIfExists('telephoneNumber', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
+        parent::__construct($data);
+
+        $this->setIfExists('shopperReference', $data ?? [], null);
     }
 
     /**
@@ -289,22 +250,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = [];
-
-        if ($this->container['shopperEmail'] === null) {
-            $invalidProperties[] = "'shopperEmail' can't be null";
-        }
-        if ($this->container['telephoneNumber'] === null) {
-            $invalidProperties[] = "'telephoneNumber' can't be null";
-        }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
-                implode("', '", $allowedValues)
-            );
-        }
+        $invalidProperties = parent::listInvalidProperties();
 
         return $invalidProperties;
     }
@@ -322,107 +268,25 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets checkoutAttemptId
+     * Gets shopperReference
      *
      * @return string|null
      */
-    public function getCheckoutAttemptId()
+    public function getShopperReference()
     {
-        return $this->container['checkoutAttemptId'];
+        return $this->container['shopperReference'];
     }
 
     /**
-     * Sets checkoutAttemptId
+     * Sets shopperReference
      *
-     * @param string|null $checkoutAttemptId The checkout attempt identifier.
+     * @param string|null $shopperReference shopperReference
      *
      * @return self
      */
-    public function setCheckoutAttemptId($checkoutAttemptId)
+    public function setShopperReference($shopperReference)
     {
-        $this->container['checkoutAttemptId'] = $checkoutAttemptId;
-
-        return $this;
-    }
-
-    /**
-     * Gets shopperEmail
-     *
-     * @return string
-     */
-    public function getShopperEmail()
-    {
-        return $this->container['shopperEmail'];
-    }
-
-    /**
-     * Sets shopperEmail
-     *
-     * @param string $shopperEmail 
-     *
-     * @return self
-     */
-    public function setShopperEmail($shopperEmail)
-    {
-        $this->container['shopperEmail'] = $shopperEmail;
-
-        return $this;
-    }
-
-    /**
-     * Gets telephoneNumber
-     *
-     * @return string
-     */
-    public function getTelephoneNumber()
-    {
-        return $this->container['telephoneNumber'];
-    }
-
-    /**
-     * Sets telephoneNumber
-     *
-     * @param string $telephoneNumber 
-     *
-     * @return self
-     */
-    public function setTelephoneNumber($telephoneNumber)
-    {
-        $this->container['telephoneNumber'] = $telephoneNumber;
-
-        return $this;
-    }
-
-    /**
-     * Gets type
-     *
-     * @return string|null
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string|null $type **mbway**
-     *
-     * @return self
-     */
-    public function setType($type)
-    {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
+        $this->container['shopperReference'] = $shopperReference;
 
         return $this;
     }

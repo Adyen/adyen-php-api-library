@@ -19,12 +19,12 @@ use \ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
- * MbwayDetails Class Doc Comment
+ * ValidateShopperIdRequest Class Doc Comment
  *
  * @package  Adyen
  * @implements \ArrayAccess<string, mixed>
  */
-class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
+class ValidateShopperIdRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'MbwayDetails';
+    protected static $openAPIModelName = 'ValidateShopperIdRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,10 +41,11 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'checkoutAttemptId' => 'string',
+        'merchantAccount' => 'string',
+        'paymentMethod' => '\Adyen\Model\Checkout\ShopperIdPaymentMethod',
         'shopperEmail' => 'string',
-        'telephoneNumber' => 'string',
-        'type' => 'string'
+        'shopperIP' => 'string',
+        'shopperReference' => 'string'
     ];
 
     /**
@@ -55,10 +56,11 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'checkoutAttemptId' => null,
+        'merchantAccount' => null,
+        'paymentMethod' => null,
         'shopperEmail' => null,
-        'telephoneNumber' => null,
-        'type' => null
+        'shopperIP' => null,
+        'shopperReference' => null
     ];
 
     /**
@@ -67,10 +69,11 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'checkoutAttemptId' => false,
+        'merchantAccount' => false,
+        'paymentMethod' => false,
         'shopperEmail' => false,
-        'telephoneNumber' => false,
-        'type' => false
+        'shopperIP' => false,
+        'shopperReference' => false
     ];
 
     /**
@@ -159,10 +162,11 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'checkoutAttemptId' => 'checkoutAttemptId',
+        'merchantAccount' => 'merchantAccount',
+        'paymentMethod' => 'paymentMethod',
         'shopperEmail' => 'shopperEmail',
-        'telephoneNumber' => 'telephoneNumber',
-        'type' => 'type'
+        'shopperIP' => 'shopperIP',
+        'shopperReference' => 'shopperReference'
     ];
 
     /**
@@ -171,10 +175,11 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'checkoutAttemptId' => 'setCheckoutAttemptId',
+        'merchantAccount' => 'setMerchantAccount',
+        'paymentMethod' => 'setPaymentMethod',
         'shopperEmail' => 'setShopperEmail',
-        'telephoneNumber' => 'setTelephoneNumber',
-        'type' => 'setType'
+        'shopperIP' => 'setShopperIP',
+        'shopperReference' => 'setShopperReference'
     ];
 
     /**
@@ -183,10 +188,11 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'checkoutAttemptId' => 'getCheckoutAttemptId',
+        'merchantAccount' => 'getMerchantAccount',
+        'paymentMethod' => 'getPaymentMethod',
         'shopperEmail' => 'getShopperEmail',
-        'telephoneNumber' => 'getTelephoneNumber',
-        'type' => 'getType'
+        'shopperIP' => 'getShopperIP',
+        'shopperReference' => 'getShopperReference'
     ];
 
     /**
@@ -230,19 +236,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const TYPE_MBWAY = 'mbway';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_MBWAY,
-        ];
-    }
     /**
      * Associative array for storing property values
      *
@@ -258,10 +252,11 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('checkoutAttemptId', $data ?? [], null);
+        $this->setIfExists('merchantAccount', $data ?? [], null);
+        $this->setIfExists('paymentMethod', $data ?? [], null);
         $this->setIfExists('shopperEmail', $data ?? [], null);
-        $this->setIfExists('telephoneNumber', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('shopperIP', $data ?? [], null);
+        $this->setIfExists('shopperReference', $data ?? [], null);
     }
 
     /**
@@ -291,21 +286,12 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['shopperEmail'] === null) {
-            $invalidProperties[] = "'shopperEmail' can't be null";
+        if ($this->container['merchantAccount'] === null) {
+            $invalidProperties[] = "'merchantAccount' can't be null";
         }
-        if ($this->container['telephoneNumber'] === null) {
-            $invalidProperties[] = "'telephoneNumber' can't be null";
+        if ($this->container['paymentMethod'] === null) {
+            $invalidProperties[] = "'paymentMethod' can't be null";
         }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -322,25 +308,49 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets checkoutAttemptId
+     * Gets merchantAccount
      *
-     * @return string|null
+     * @return string
      */
-    public function getCheckoutAttemptId()
+    public function getMerchantAccount()
     {
-        return $this->container['checkoutAttemptId'];
+        return $this->container['merchantAccount'];
     }
 
     /**
-     * Sets checkoutAttemptId
+     * Sets merchantAccount
      *
-     * @param string|null $checkoutAttemptId The checkout attempt identifier.
+     * @param string $merchantAccount The merchant account identifier, with which you want to process the transaction.
      *
      * @return self
      */
-    public function setCheckoutAttemptId($checkoutAttemptId)
+    public function setMerchantAccount($merchantAccount)
     {
-        $this->container['checkoutAttemptId'] = $checkoutAttemptId;
+        $this->container['merchantAccount'] = $merchantAccount;
+
+        return $this;
+    }
+
+    /**
+     * Gets paymentMethod
+     *
+     * @return \Adyen\Model\Checkout\ShopperIdPaymentMethod
+     */
+    public function getPaymentMethod()
+    {
+        return $this->container['paymentMethod'];
+    }
+
+    /**
+     * Sets paymentMethod
+     *
+     * @param \Adyen\Model\Checkout\ShopperIdPaymentMethod $paymentMethod paymentMethod
+     *
+     * @return self
+     */
+    public function setPaymentMethod($paymentMethod)
+    {
+        $this->container['paymentMethod'] = $paymentMethod;
 
         return $this;
     }
@@ -348,7 +358,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets shopperEmail
      *
-     * @return string
+     * @return string|null
      */
     public function getShopperEmail()
     {
@@ -358,7 +368,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets shopperEmail
      *
-     * @param string $shopperEmail 
+     * @param string|null $shopperEmail shopperEmail
      *
      * @return self
      */
@@ -370,59 +380,49 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets telephoneNumber
+     * Gets shopperIP
      *
-     * @return string
+     * @return string|null
      */
-    public function getTelephoneNumber()
+    public function getShopperIP()
     {
-        return $this->container['telephoneNumber'];
+        return $this->container['shopperIP'];
     }
 
     /**
-     * Sets telephoneNumber
+     * Sets shopperIP
      *
-     * @param string $telephoneNumber 
+     * @param string|null $shopperIP shopperIP
      *
      * @return self
      */
-    public function setTelephoneNumber($telephoneNumber)
+    public function setShopperIP($shopperIP)
     {
-        $this->container['telephoneNumber'] = $telephoneNumber;
+        $this->container['shopperIP'] = $shopperIP;
 
         return $this;
     }
 
     /**
-     * Gets type
+     * Gets shopperReference
      *
      * @return string|null
      */
-    public function getType()
+    public function getShopperReference()
     {
-        return $this->container['type'];
+        return $this->container['shopperReference'];
     }
 
     /**
-     * Sets type
+     * Sets shopperReference
      *
-     * @param string|null $type **mbway**
+     * @param string|null $shopperReference shopperReference
      *
      * @return self
      */
-    public function setType($type)
+    public function setShopperReference($shopperReference)
     {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
+        $this->container['shopperReference'] = $shopperReference;
 
         return $this;
     }

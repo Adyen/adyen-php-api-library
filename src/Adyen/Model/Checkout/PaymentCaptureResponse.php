@@ -457,7 +457,7 @@ class PaymentCaptureResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets paymentPspReference
      *
-     * @param string $paymentPspReference The [`pspReference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment to capture.
+     * @param string $paymentPspReference The [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to capture.
      *
      * @return self
      */

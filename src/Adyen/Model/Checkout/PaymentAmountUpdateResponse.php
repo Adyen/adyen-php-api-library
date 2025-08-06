@@ -512,7 +512,7 @@ class PaymentAmountUpdateResponse implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets paymentPspReference
      *
-     * @param string $paymentPspReference The [`pspReference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment to update.
+     * @param string $paymentPspReference The [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to update.
      *
      * @return self
      */

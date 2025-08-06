@@ -57,7 +57,7 @@ class UtilityApi extends Service
     /**
     * Create originKey values for domains
     *
-    * @deprecated since Adyen Checkout API v67.
+    * @deprecated since Adyen Checkout API v67. 
     * @param \Adyen\Model\Checkout\UtilityRequest $utilityRequest
     * @param array|null $requestOptions
     * @return \Adyen\Model\Checkout\UtilityResponse
@@ -83,5 +83,20 @@ class UtilityApi extends Service
         $endpoint = $this->baseURL . "/paypal/updateOrder";
         $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $paypalUpdateOrderRequest->jsonSerialize(), $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\PaypalUpdateOrderResponse::class);
+    }
+
+    /**
+    * Validates shopper Id
+    *
+    * @param \Adyen\Model\Checkout\ValidateShopperIdRequest $validateShopperIdRequest
+    * @param array|null $requestOptions
+    * @return \Adyen\Model\Checkout\ValidateShopperIdResponse
+    * @throws AdyenException
+    */
+    public function validateShopperId(\Adyen\Model\Checkout\ValidateShopperIdRequest $validateShopperIdRequest, ?array $requestOptions = null): \Adyen\Model\Checkout\ValidateShopperIdResponse
+    {
+        $endpoint = $this->baseURL . "/validateShopperId";
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $validateShopperIdRequest->jsonSerialize(), $requestOptions);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\ValidateShopperIdResponse::class);
     }
 }

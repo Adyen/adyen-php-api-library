@@ -19,12 +19,12 @@ use \ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
- * MbwayDetails Class Doc Comment
+ * InvalidField Class Doc Comment
  *
  * @package  Adyen
  * @implements \ArrayAccess<string, mixed>
  */
-class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
+class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'MbwayDetails';
+    protected static $openAPIModelName = 'InvalidField';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,10 +41,9 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'checkoutAttemptId' => 'string',
-        'shopperEmail' => 'string',
-        'telephoneNumber' => 'string',
-        'type' => 'string'
+        'name' => 'string',
+        'value' => 'string',
+        'message' => 'string'
     ];
 
     /**
@@ -55,10 +54,9 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'checkoutAttemptId' => null,
-        'shopperEmail' => null,
-        'telephoneNumber' => null,
-        'type' => null
+        'name' => null,
+        'value' => null,
+        'message' => null
     ];
 
     /**
@@ -67,10 +65,9 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'checkoutAttemptId' => false,
-        'shopperEmail' => false,
-        'telephoneNumber' => false,
-        'type' => false
+        'name' => false,
+        'value' => false,
+        'message' => false
     ];
 
     /**
@@ -159,10 +156,9 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'checkoutAttemptId' => 'checkoutAttemptId',
-        'shopperEmail' => 'shopperEmail',
-        'telephoneNumber' => 'telephoneNumber',
-        'type' => 'type'
+        'name' => 'name',
+        'value' => 'value',
+        'message' => 'message'
     ];
 
     /**
@@ -171,10 +167,9 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'checkoutAttemptId' => 'setCheckoutAttemptId',
-        'shopperEmail' => 'setShopperEmail',
-        'telephoneNumber' => 'setTelephoneNumber',
-        'type' => 'setType'
+        'name' => 'setName',
+        'value' => 'setValue',
+        'message' => 'setMessage'
     ];
 
     /**
@@ -183,10 +178,9 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'checkoutAttemptId' => 'getCheckoutAttemptId',
-        'shopperEmail' => 'getShopperEmail',
-        'telephoneNumber' => 'getTelephoneNumber',
-        'type' => 'getType'
+        'name' => 'getName',
+        'value' => 'getValue',
+        'message' => 'getMessage'
     ];
 
     /**
@@ -230,19 +224,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const TYPE_MBWAY = 'mbway';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_MBWAY,
-        ];
-    }
     /**
      * Associative array for storing property values
      *
@@ -258,10 +240,9 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('checkoutAttemptId', $data ?? [], null);
-        $this->setIfExists('shopperEmail', $data ?? [], null);
-        $this->setIfExists('telephoneNumber', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('message', $data ?? [], null);
     }
 
     /**
@@ -291,21 +272,15 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['shopperEmail'] === null) {
-            $invalidProperties[] = "'shopperEmail' can't be null";
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
         }
-        if ($this->container['telephoneNumber'] === null) {
-            $invalidProperties[] = "'telephoneNumber' can't be null";
+        if ($this->container['value'] === null) {
+            $invalidProperties[] = "'value' can't be null";
         }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
-                implode("', '", $allowedValues)
-            );
+        if ($this->container['message'] === null) {
+            $invalidProperties[] = "'message' can't be null";
         }
-
         return $invalidProperties;
     }
 
@@ -322,107 +297,73 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets checkoutAttemptId
-     *
-     * @return string|null
-     */
-    public function getCheckoutAttemptId()
-    {
-        return $this->container['checkoutAttemptId'];
-    }
-
-    /**
-     * Sets checkoutAttemptId
-     *
-     * @param string|null $checkoutAttemptId The checkout attempt identifier.
-     *
-     * @return self
-     */
-    public function setCheckoutAttemptId($checkoutAttemptId)
-    {
-        $this->container['checkoutAttemptId'] = $checkoutAttemptId;
-
-        return $this;
-    }
-
-    /**
-     * Gets shopperEmail
+     * Gets name
      *
      * @return string
      */
-    public function getShopperEmail()
+    public function getName()
     {
-        return $this->container['shopperEmail'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets shopperEmail
+     * Sets name
      *
-     * @param string $shopperEmail 
+     * @param string $name The field that has an invalid value.
      *
      * @return self
      */
-    public function setShopperEmail($shopperEmail)
+    public function setName($name)
     {
-        $this->container['shopperEmail'] = $shopperEmail;
+        $this->container['name'] = $name;
 
         return $this;
     }
 
     /**
-     * Gets telephoneNumber
+     * Gets value
      *
      * @return string
      */
-    public function getTelephoneNumber()
+    public function getValue()
     {
-        return $this->container['telephoneNumber'];
+        return $this->container['value'];
     }
 
     /**
-     * Sets telephoneNumber
+     * Sets value
      *
-     * @param string $telephoneNumber 
+     * @param string $value The invalid value.
      *
      * @return self
      */
-    public function setTelephoneNumber($telephoneNumber)
+    public function setValue($value)
     {
-        $this->container['telephoneNumber'] = $telephoneNumber;
+        $this->container['value'] = $value;
 
         return $this;
     }
 
     /**
-     * Gets type
+     * Gets message
      *
-     * @return string|null
+     * @return string
      */
-    public function getType()
+    public function getMessage()
     {
-        return $this->container['type'];
+        return $this->container['message'];
     }
 
     /**
-     * Sets type
+     * Sets message
      *
-     * @param string|null $type **mbway**
+     * @param string $message Description of the validation error.
      *
      * @return self
      */
-    public function setType($type)
+    public function setMessage($message)
     {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
+        $this->container['message'] = $message;
 
         return $this;
     }
