@@ -19,12 +19,14 @@ use \ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
- * PaymentCancelResponse Class Doc Comment
+ * DefaultErrorResponseEntity Class Doc Comment
+ *
+ * Standardized error response following RFC-7807 format
  *
  * @package  Adyen
  * @implements \ArrayAccess<string, mixed>
  */
-class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class DefaultErrorResponseEntity implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +35,7 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PaymentCancelResponse';
+    protected static $openAPIModelName = 'DefaultErrorResponseEntity';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,11 +43,14 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var string[]
       */
     protected static $openAPITypes = [
-        'merchantAccount' => 'string',
-        'paymentPspReference' => 'string',
-        'pspReference' => 'string',
-        'reference' => 'string',
-        'status' => 'string'
+        'detail' => 'string',
+        'errorCode' => 'string',
+        'instance' => 'string',
+        'invalidFields' => '\Adyen\Model\Checkout\InvalidField[]',
+        'requestId' => 'string',
+        'status' => 'int',
+        'title' => 'string',
+        'type' => 'string'
     ];
 
     /**
@@ -56,11 +61,14 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'merchantAccount' => null,
-        'paymentPspReference' => null,
-        'pspReference' => null,
-        'reference' => null,
-        'status' => null
+        'detail' => null,
+        'errorCode' => null,
+        'instance' => null,
+        'invalidFields' => null,
+        'requestId' => null,
+        'status' => 'int32',
+        'title' => null,
+        'type' => null
     ];
 
     /**
@@ -69,11 +77,14 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'merchantAccount' => false,
-        'paymentPspReference' => false,
-        'pspReference' => false,
-        'reference' => false,
-        'status' => false
+        'detail' => false,
+        'errorCode' => false,
+        'instance' => false,
+        'invalidFields' => false,
+        'requestId' => false,
+        'status' => true,
+        'title' => false,
+        'type' => false
     ];
 
     /**
@@ -162,11 +173,14 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $attributeMap = [
-        'merchantAccount' => 'merchantAccount',
-        'paymentPspReference' => 'paymentPspReference',
-        'pspReference' => 'pspReference',
-        'reference' => 'reference',
-        'status' => 'status'
+        'detail' => 'detail',
+        'errorCode' => 'errorCode',
+        'instance' => 'instance',
+        'invalidFields' => 'invalidFields',
+        'requestId' => 'requestId',
+        'status' => 'status',
+        'title' => 'title',
+        'type' => 'type'
     ];
 
     /**
@@ -175,11 +189,14 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $setters = [
-        'merchantAccount' => 'setMerchantAccount',
-        'paymentPspReference' => 'setPaymentPspReference',
-        'pspReference' => 'setPspReference',
-        'reference' => 'setReference',
-        'status' => 'setStatus'
+        'detail' => 'setDetail',
+        'errorCode' => 'setErrorCode',
+        'instance' => 'setInstance',
+        'invalidFields' => 'setInvalidFields',
+        'requestId' => 'setRequestId',
+        'status' => 'setStatus',
+        'title' => 'setTitle',
+        'type' => 'setType'
     ];
 
     /**
@@ -188,11 +205,14 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $getters = [
-        'merchantAccount' => 'getMerchantAccount',
-        'paymentPspReference' => 'getPaymentPspReference',
-        'pspReference' => 'getPspReference',
-        'reference' => 'getReference',
-        'status' => 'getStatus'
+        'detail' => 'getDetail',
+        'errorCode' => 'getErrorCode',
+        'instance' => 'getInstance',
+        'invalidFields' => 'getInvalidFields',
+        'requestId' => 'getRequestId',
+        'status' => 'getStatus',
+        'title' => 'getTitle',
+        'type' => 'getType'
     ];
 
     /**
@@ -236,19 +256,7 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
         return self::$openAPIModelName;
     }
 
-    public const STATUS_RECEIVED = 'received';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS_RECEIVED,
-        ];
-    }
     /**
      * Associative array for storing property values
      *
@@ -264,11 +272,14 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('merchantAccount', $data ?? [], null);
-        $this->setIfExists('paymentPspReference', $data ?? [], null);
-        $this->setIfExists('pspReference', $data ?? [], null);
-        $this->setIfExists('reference', $data ?? [], null);
+        $this->setIfExists('detail', $data ?? [], null);
+        $this->setIfExists('errorCode', $data ?? [], null);
+        $this->setIfExists('instance', $data ?? [], null);
+        $this->setIfExists('invalidFields', $data ?? [], null);
+        $this->setIfExists('requestId', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('title', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -298,27 +309,6 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         $invalidProperties = [];
 
-        if ($this->container['merchantAccount'] === null) {
-            $invalidProperties[] = "'merchantAccount' can't be null";
-        }
-        if ($this->container['paymentPspReference'] === null) {
-            $invalidProperties[] = "'paymentPspReference' can't be null";
-        }
-        if ($this->container['pspReference'] === null) {
-            $invalidProperties[] = "'pspReference' can't be null";
-        }
-        if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
-        }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -335,97 +325,121 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
 
 
     /**
-     * Gets merchantAccount
-     *
-     * @return string
-     */
-    public function getMerchantAccount()
-    {
-        return $this->container['merchantAccount'];
-    }
-
-    /**
-     * Sets merchantAccount
-     *
-     * @param string $merchantAccount The merchant account that is used to process the payment.
-     *
-     * @return self
-     */
-    public function setMerchantAccount($merchantAccount)
-    {
-        $this->container['merchantAccount'] = $merchantAccount;
-
-        return $this;
-    }
-
-    /**
-     * Gets paymentPspReference
-     *
-     * @return string
-     */
-    public function getPaymentPspReference()
-    {
-        return $this->container['paymentPspReference'];
-    }
-
-    /**
-     * Sets paymentPspReference
-     *
-     * @param string $paymentPspReference The [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to cancel.
-     *
-     * @return self
-     */
-    public function setPaymentPspReference($paymentPspReference)
-    {
-        $this->container['paymentPspReference'] = $paymentPspReference;
-
-        return $this;
-    }
-
-    /**
-     * Gets pspReference
-     *
-     * @return string
-     */
-    public function getPspReference()
-    {
-        return $this->container['pspReference'];
-    }
-
-    /**
-     * Sets pspReference
-     *
-     * @param string $pspReference Adyen's 16-character reference associated with the cancel request.
-     *
-     * @return self
-     */
-    public function setPspReference($pspReference)
-    {
-        $this->container['pspReference'] = $pspReference;
-
-        return $this;
-    }
-
-    /**
-     * Gets reference
+     * Gets detail
      *
      * @return string|null
      */
-    public function getReference()
+    public function getDetail()
     {
-        return $this->container['reference'];
+        return $this->container['detail'];
     }
 
     /**
-     * Sets reference
+     * Sets detail
      *
-     * @param string|null $reference Your reference for the cancel request.
+     * @param string|null $detail A human-readable explanation specific to this occurrence of the problem.
      *
      * @return self
      */
-    public function setReference($reference)
+    public function setDetail($detail)
     {
-        $this->container['reference'] = $reference;
+        $this->container['detail'] = $detail;
+
+        return $this;
+    }
+
+    /**
+     * Gets errorCode
+     *
+     * @return string|null
+     */
+    public function getErrorCode()
+    {
+        return $this->container['errorCode'];
+    }
+
+    /**
+     * Sets errorCode
+     *
+     * @param string|null $errorCode Unique business error code.
+     *
+     * @return self
+     */
+    public function setErrorCode($errorCode)
+    {
+        $this->container['errorCode'] = $errorCode;
+
+        return $this;
+    }
+
+    /**
+     * Gets instance
+     *
+     * @return string|null
+     */
+    public function getInstance()
+    {
+        return $this->container['instance'];
+    }
+
+    /**
+     * Sets instance
+     *
+     * @param string|null $instance A URI that identifies the specific occurrence of the problem if applicable.
+     *
+     * @return self
+     */
+    public function setInstance($instance)
+    {
+        $this->container['instance'] = $instance;
+
+        return $this;
+    }
+
+    /**
+     * Gets invalidFields
+     *
+     * @return \Adyen\Model\Checkout\InvalidField[]|null
+     */
+    public function getInvalidFields()
+    {
+        return $this->container['invalidFields'];
+    }
+
+    /**
+     * Sets invalidFields
+     *
+     * @param \Adyen\Model\Checkout\InvalidField[]|null $invalidFields Array of fields with validation errors when applicable.
+     *
+     * @return self
+     */
+    public function setInvalidFields($invalidFields)
+    {
+        $this->container['invalidFields'] = $invalidFields;
+
+        return $this;
+    }
+
+    /**
+     * Gets requestId
+     *
+     * @return string|null
+     */
+    public function getRequestId()
+    {
+        return $this->container['requestId'];
+    }
+
+    /**
+     * Sets requestId
+     *
+     * @param string|null $requestId The unique reference for the request.
+     *
+     * @return self
+     */
+    public function setRequestId($requestId)
+    {
+        $this->container['requestId'] = $requestId;
 
         return $this;
     }
@@ -433,7 +447,7 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets status
      *
-     * @return string
+     * @return int|null
      */
     public function getStatus()
     {
@@ -443,23 +457,61 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets status
      *
-     * @param string $status The status of your request. This will always have the value **received**.
+     * @param int|null $status The HTTP status code.
      *
      * @return self
      */
     public function setStatus($status)
     {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
         $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets title
+     *
+     * @return string|null
+     */
+    public function getTitle()
+    {
+        return $this->container['title'];
+    }
+
+    /**
+     * Sets title
+     *
+     * @param string|null $title A short, human-readable summary of the problem type.
+     *
+     * @return self
+     */
+    public function setTitle($title)
+    {
+        $this->container['title'] = $title;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string|null
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string|null $type A URI that identifies the validation error type. It points to human-readable documentation for the problem type.
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        $this->container['type'] = $type;
 
         return $this;
     }

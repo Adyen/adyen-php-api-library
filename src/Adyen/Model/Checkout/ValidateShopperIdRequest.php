@@ -19,12 +19,12 @@ use \ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
- * PaymentCancelResponse Class Doc Comment
+ * ValidateShopperIdRequest Class Doc Comment
  *
  * @package  Adyen
  * @implements \ArrayAccess<string, mixed>
  */
-class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class ValidateShopperIdRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PaymentCancelResponse';
+    protected static $openAPIModelName = 'ValidateShopperIdRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -42,10 +42,10 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPITypes = [
         'merchantAccount' => 'string',
-        'paymentPspReference' => 'string',
-        'pspReference' => 'string',
-        'reference' => 'string',
-        'status' => 'string'
+        'paymentMethod' => '\Adyen\Model\Checkout\ShopperIdPaymentMethod',
+        'shopperEmail' => 'string',
+        'shopperIP' => 'string',
+        'shopperReference' => 'string'
     ];
 
     /**
@@ -57,10 +57,10 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPIFormats = [
         'merchantAccount' => null,
-        'paymentPspReference' => null,
-        'pspReference' => null,
-        'reference' => null,
-        'status' => null
+        'paymentMethod' => null,
+        'shopperEmail' => null,
+        'shopperIP' => null,
+        'shopperReference' => null
     ];
 
     /**
@@ -70,10 +70,10 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPINullables = [
         'merchantAccount' => false,
-        'paymentPspReference' => false,
-        'pspReference' => false,
-        'reference' => false,
-        'status' => false
+        'paymentMethod' => false,
+        'shopperEmail' => false,
+        'shopperIP' => false,
+        'shopperReference' => false
     ];
 
     /**
@@ -163,10 +163,10 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     protected static $attributeMap = [
         'merchantAccount' => 'merchantAccount',
-        'paymentPspReference' => 'paymentPspReference',
-        'pspReference' => 'pspReference',
-        'reference' => 'reference',
-        'status' => 'status'
+        'paymentMethod' => 'paymentMethod',
+        'shopperEmail' => 'shopperEmail',
+        'shopperIP' => 'shopperIP',
+        'shopperReference' => 'shopperReference'
     ];
 
     /**
@@ -176,10 +176,10 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     protected static $setters = [
         'merchantAccount' => 'setMerchantAccount',
-        'paymentPspReference' => 'setPaymentPspReference',
-        'pspReference' => 'setPspReference',
-        'reference' => 'setReference',
-        'status' => 'setStatus'
+        'paymentMethod' => 'setPaymentMethod',
+        'shopperEmail' => 'setShopperEmail',
+        'shopperIP' => 'setShopperIP',
+        'shopperReference' => 'setShopperReference'
     ];
 
     /**
@@ -189,10 +189,10 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     protected static $getters = [
         'merchantAccount' => 'getMerchantAccount',
-        'paymentPspReference' => 'getPaymentPspReference',
-        'pspReference' => 'getPspReference',
-        'reference' => 'getReference',
-        'status' => 'getStatus'
+        'paymentMethod' => 'getPaymentMethod',
+        'shopperEmail' => 'getShopperEmail',
+        'shopperIP' => 'getShopperIP',
+        'shopperReference' => 'getShopperReference'
     ];
 
     /**
@@ -236,19 +236,7 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
         return self::$openAPIModelName;
     }
 
-    public const STATUS_RECEIVED = 'received';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS_RECEIVED,
-        ];
-    }
     /**
      * Associative array for storing property values
      *
@@ -265,10 +253,10 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public function __construct(?array $data = null)
     {
         $this->setIfExists('merchantAccount', $data ?? [], null);
-        $this->setIfExists('paymentPspReference', $data ?? [], null);
-        $this->setIfExists('pspReference', $data ?? [], null);
-        $this->setIfExists('reference', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('paymentMethod', $data ?? [], null);
+        $this->setIfExists('shopperEmail', $data ?? [], null);
+        $this->setIfExists('shopperIP', $data ?? [], null);
+        $this->setIfExists('shopperReference', $data ?? [], null);
     }
 
     /**
@@ -301,24 +289,9 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
         if ($this->container['merchantAccount'] === null) {
             $invalidProperties[] = "'merchantAccount' can't be null";
         }
-        if ($this->container['paymentPspReference'] === null) {
-            $invalidProperties[] = "'paymentPspReference' can't be null";
+        if ($this->container['paymentMethod'] === null) {
+            $invalidProperties[] = "'paymentMethod' can't be null";
         }
-        if ($this->container['pspReference'] === null) {
-            $invalidProperties[] = "'pspReference' can't be null";
-        }
-        if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
-        }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -347,7 +320,7 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets merchantAccount
      *
-     * @param string $merchantAccount The merchant account that is used to process the payment.
+     * @param string $merchantAccount The merchant account identifier, with which you want to process the transaction.
      *
      * @return self
      */
@@ -359,107 +332,97 @@ class PaymentCancelResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Gets paymentPspReference
+     * Gets paymentMethod
      *
-     * @return string
+     * @return \Adyen\Model\Checkout\ShopperIdPaymentMethod
      */
-    public function getPaymentPspReference()
+    public function getPaymentMethod()
     {
-        return $this->container['paymentPspReference'];
+        return $this->container['paymentMethod'];
     }
 
     /**
-     * Sets paymentPspReference
+     * Sets paymentMethod
      *
-     * @param string $paymentPspReference The [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to cancel.
+     * @param \Adyen\Model\Checkout\ShopperIdPaymentMethod $paymentMethod paymentMethod
      *
      * @return self
      */
-    public function setPaymentPspReference($paymentPspReference)
+    public function setPaymentMethod($paymentMethod)
     {
-        $this->container['paymentPspReference'] = $paymentPspReference;
+        $this->container['paymentMethod'] = $paymentMethod;
 
         return $this;
     }
 
     /**
-     * Gets pspReference
-     *
-     * @return string
-     */
-    public function getPspReference()
-    {
-        return $this->container['pspReference'];
-    }
-
-    /**
-     * Sets pspReference
-     *
-     * @param string $pspReference Adyen's 16-character reference associated with the cancel request.
-     *
-     * @return self
-     */
-    public function setPspReference($pspReference)
-    {
-        $this->container['pspReference'] = $pspReference;
-
-        return $this;
-    }
-
-    /**
-     * Gets reference
+     * Gets shopperEmail
      *
      * @return string|null
      */
-    public function getReference()
+    public function getShopperEmail()
     {
-        return $this->container['reference'];
+        return $this->container['shopperEmail'];
     }
 
     /**
-     * Sets reference
+     * Sets shopperEmail
      *
-     * @param string|null $reference Your reference for the cancel request.
+     * @param string|null $shopperEmail shopperEmail
      *
      * @return self
      */
-    public function setReference($reference)
+    public function setShopperEmail($shopperEmail)
     {
-        $this->container['reference'] = $reference;
+        $this->container['shopperEmail'] = $shopperEmail;
 
         return $this;
     }
 
     /**
-     * Gets status
+     * Gets shopperIP
      *
-     * @return string
+     * @return string|null
      */
-    public function getStatus()
+    public function getShopperIP()
     {
-        return $this->container['status'];
+        return $this->container['shopperIP'];
     }
 
     /**
-     * Sets status
+     * Sets shopperIP
      *
-     * @param string $status The status of your request. This will always have the value **received**.
+     * @param string|null $shopperIP shopperIP
      *
      * @return self
      */
-    public function setStatus($status)
+    public function setShopperIP($shopperIP)
     {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
+        $this->container['shopperIP'] = $shopperIP;
+
+        return $this;
+    }
+
+    /**
+     * Gets shopperReference
+     *
+     * @return string|null
+     */
+    public function getShopperReference()
+    {
+        return $this->container['shopperReference'];
+    }
+
+    /**
+     * Sets shopperReference
+     *
+     * @param string|null $shopperReference shopperReference
+     *
+     * @return self
+     */
+    public function setShopperReference($shopperReference)
+    {
+        $this->container['shopperReference'] = $shopperReference;
 
         return $this;
     }
