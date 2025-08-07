@@ -566,7 +566,7 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets enhancedSchemeDataItemDetailLineItemNrDescription
      *
-     * @param string|null $enhancedSchemeDataItemDetailLineItemNrDescription A description of the item. * Encoding: ASCII * Max length: 26 characters * Must not be a single character. * Must not be blank. * Must not start with a space or be all spaces. * Must not be all zeros.
+     * @param string|null $enhancedSchemeDataItemDetailLineItemNrDescription A description of the item, that provides details about the purchase.   For Visa transactions with level 3 ESD, the description must not be the same or very similar to your merchant name, or, consist only of common words like \"product\", or \"service\". * Encoding: ASCII * Max length: 26 characters * Must not be a single character. * Must not be blank. * Must not be all special characters. * Must not be blank. * Must not start with a space or be all spaces. * Must not be all zeros.
      *
      * @return self
      */

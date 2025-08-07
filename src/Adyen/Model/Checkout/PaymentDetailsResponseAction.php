@@ -19,12 +19,14 @@ use \ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
- * Leg Class Doc Comment
+ * PaymentDetailsResponseAction Class Doc Comment
+ *
+ * Action to be taken for completing the payment. When returned, only the 3D Secure action is needed in most cases.
  *
  * @package  Adyen
  * @implements \ArrayAccess<string, mixed>
  */
-class Leg implements ModelInterface, ArrayAccess, \JsonSerializable
+class PaymentDetailsResponseAction implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +35,7 @@ class Leg implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Leg';
+    protected static $openAPIModelName = 'PaymentDetailsResponse_action';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,15 +43,13 @@ class Leg implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'carrierCode' => 'string',
-        'classOfTravel' => 'string',
-        'dateOfTravel' => '\DateTime',
-        'departureAirportCode' => 'string',
-        'departureTax' => 'int',
-        'destinationAirportCode' => 'string',
-        'fareBasisCode' => 'string',
-        'flightNumber' => 'string',
-        'stopOverCode' => 'string'
+        'authorisationToken' => 'string',
+        'paymentData' => 'string',
+        'paymentMethodType' => 'string',
+        'subtype' => 'string',
+        'token' => 'string',
+        'type' => 'string',
+        'url' => 'string'
     ];
 
     /**
@@ -60,15 +60,13 @@ class Leg implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'carrierCode' => null,
-        'classOfTravel' => null,
-        'dateOfTravel' => 'date-time',
-        'departureAirportCode' => null,
-        'departureTax' => 'int64',
-        'destinationAirportCode' => null,
-        'fareBasisCode' => null,
-        'flightNumber' => null,
-        'stopOverCode' => null
+        'authorisationToken' => null,
+        'paymentData' => null,
+        'paymentMethodType' => null,
+        'subtype' => null,
+        'token' => null,
+        'type' => null,
+        'url' => null
     ];
 
     /**
@@ -77,15 +75,13 @@ class Leg implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'carrierCode' => false,
-        'classOfTravel' => false,
-        'dateOfTravel' => false,
-        'departureAirportCode' => false,
-        'departureTax' => false,
-        'destinationAirportCode' => false,
-        'fareBasisCode' => false,
-        'flightNumber' => false,
-        'stopOverCode' => false
+        'authorisationToken' => false,
+        'paymentData' => false,
+        'paymentMethodType' => false,
+        'subtype' => false,
+        'token' => false,
+        'type' => false,
+        'url' => false
     ];
 
     /**
@@ -174,15 +170,13 @@ class Leg implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'carrierCode' => 'carrierCode',
-        'classOfTravel' => 'classOfTravel',
-        'dateOfTravel' => 'dateOfTravel',
-        'departureAirportCode' => 'departureAirportCode',
-        'departureTax' => 'departureTax',
-        'destinationAirportCode' => 'destinationAirportCode',
-        'fareBasisCode' => 'fareBasisCode',
-        'flightNumber' => 'flightNumber',
-        'stopOverCode' => 'stopOverCode'
+        'authorisationToken' => 'authorisationToken',
+        'paymentData' => 'paymentData',
+        'paymentMethodType' => 'paymentMethodType',
+        'subtype' => 'subtype',
+        'token' => 'token',
+        'type' => 'type',
+        'url' => 'url'
     ];
 
     /**
@@ -191,15 +185,13 @@ class Leg implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'carrierCode' => 'setCarrierCode',
-        'classOfTravel' => 'setClassOfTravel',
-        'dateOfTravel' => 'setDateOfTravel',
-        'departureAirportCode' => 'setDepartureAirportCode',
-        'departureTax' => 'setDepartureTax',
-        'destinationAirportCode' => 'setDestinationAirportCode',
-        'fareBasisCode' => 'setFareBasisCode',
-        'flightNumber' => 'setFlightNumber',
-        'stopOverCode' => 'setStopOverCode'
+        'authorisationToken' => 'setAuthorisationToken',
+        'paymentData' => 'setPaymentData',
+        'paymentMethodType' => 'setPaymentMethodType',
+        'subtype' => 'setSubtype',
+        'token' => 'setToken',
+        'type' => 'setType',
+        'url' => 'setUrl'
     ];
 
     /**
@@ -208,15 +200,13 @@ class Leg implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'carrierCode' => 'getCarrierCode',
-        'classOfTravel' => 'getClassOfTravel',
-        'dateOfTravel' => 'getDateOfTravel',
-        'departureAirportCode' => 'getDepartureAirportCode',
-        'departureTax' => 'getDepartureTax',
-        'destinationAirportCode' => 'getDestinationAirportCode',
-        'fareBasisCode' => 'getFareBasisCode',
-        'flightNumber' => 'getFlightNumber',
-        'stopOverCode' => 'getStopOverCode'
+        'authorisationToken' => 'getAuthorisationToken',
+        'paymentData' => 'getPaymentData',
+        'paymentMethodType' => 'getPaymentMethodType',
+        'subtype' => 'getSubtype',
+        'token' => 'getToken',
+        'type' => 'getType',
+        'url' => 'getUrl'
     ];
 
     /**
@@ -260,7 +250,6 @@ class Leg implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -276,15 +265,13 @@ class Leg implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('carrierCode', $data ?? [], null);
-        $this->setIfExists('classOfTravel', $data ?? [], null);
-        $this->setIfExists('dateOfTravel', $data ?? [], null);
-        $this->setIfExists('departureAirportCode', $data ?? [], null);
-        $this->setIfExists('departureTax', $data ?? [], null);
-        $this->setIfExists('destinationAirportCode', $data ?? [], null);
-        $this->setIfExists('fareBasisCode', $data ?? [], null);
-        $this->setIfExists('flightNumber', $data ?? [], null);
-        $this->setIfExists('stopOverCode', $data ?? [], null);
+        $this->setIfExists('authorisationToken', $data ?? [], null);
+        $this->setIfExists('paymentData', $data ?? [], null);
+        $this->setIfExists('paymentMethodType', $data ?? [], null);
+        $this->setIfExists('subtype', $data ?? [], null);
+        $this->setIfExists('token', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('url', $data ?? [], null);
     }
 
     /**
@@ -314,6 +301,10 @@ class Leg implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
+
         return $invalidProperties;
     }
 
@@ -330,217 +321,169 @@ class Leg implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets carrierCode
+     * Gets authorisationToken
      *
      * @return string|null
      */
-    public function getCarrierCode()
+    public function getAuthorisationToken()
     {
-        return $this->container['carrierCode'];
+        return $this->container['authorisationToken'];
     }
 
     /**
-     * Sets carrierCode
+     * Sets authorisationToken
      *
-     * @param string|null $carrierCode The [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter accounting code (PAX) that identifies the carrier. This field is required if the airline data includes leg details. * Example: KLM = KL * minLength: 2 characters * maxLength: 2 characters * Must not start with a space or be all spaces. * Must not be all zeros.
+     * @param string|null $authorisationToken A token needed to authorise a payment.
      *
      * @return self
      */
-    public function setCarrierCode($carrierCode)
+    public function setAuthorisationToken($authorisationToken)
     {
-        $this->container['carrierCode'] = $carrierCode;
+        $this->container['authorisationToken'] = $authorisationToken;
 
         return $this;
     }
 
     /**
-     * Gets classOfTravel
+     * Gets paymentData
      *
      * @return string|null
      */
-    public function getClassOfTravel()
+    public function getPaymentData()
     {
-        return $this->container['classOfTravel'];
+        return $this->container['paymentData'];
     }
 
     /**
-     * Sets classOfTravel
+     * Sets paymentData
      *
-     * @param string|null $classOfTravel A one-letter travel class identifier.  The following are common:  * F: first class * J: business class * Y: economy class * W: premium economy  * Encoding: ASCII * minLength: 1 character * maxLength: 1 character * Must not start with a space or be all spaces. * Must not be all zeros.
+     * @param string|null $paymentData Encoded payment data.
      *
      * @return self
      */
-    public function setClassOfTravel($classOfTravel)
+    public function setPaymentData($paymentData)
     {
-        $this->container['classOfTravel'] = $classOfTravel;
+        $this->container['paymentData'] = $paymentData;
 
         return $this;
     }
 
     /**
-     * Gets dateOfTravel
-     *
-     * @return \DateTime|null
-     */
-    public function getDateOfTravel()
-    {
-        return $this->container['dateOfTravel'];
-    }
-
-    /**
-     * Sets dateOfTravel
-     *
-     * @param \DateTime|null $dateOfTravel Date and time of travel in format `yyyy-MM-ddTHH:mm`. * Use local time of departure airport. * minLength: 16 characters * maxLength: 16 characters
-     *
-     * @return self
-     */
-    public function setDateOfTravel($dateOfTravel)
-    {
-        $this->container['dateOfTravel'] = $dateOfTravel;
-
-        return $this;
-    }
-
-    /**
-     * Gets departureAirportCode
+     * Gets paymentMethodType
      *
      * @return string|null
      */
-    public function getDepartureAirportCode()
+    public function getPaymentMethodType()
     {
-        return $this->container['departureAirportCode'];
+        return $this->container['paymentMethodType'];
     }
 
     /**
-     * Sets departureAirportCode
+     * Sets paymentMethodType
      *
-     * @param string|null $departureAirportCode The [IATA](https://www.iata.org/services/pages/codes.aspx) three-letter airport code of the departure airport. This field is required if the airline data includes leg details.  * Encoding: ASCII * Example: Amsterdam = AMS * minLength: 3 characters * maxLength: 3 characters * Must not start with a space or be all spaces. * Must not be all zeros.
+     * @param string|null $paymentMethodType Specifies the payment method.
      *
      * @return self
      */
-    public function setDepartureAirportCode($departureAirportCode)
+    public function setPaymentMethodType($paymentMethodType)
     {
-        $this->container['departureAirportCode'] = $departureAirportCode;
+        $this->container['paymentMethodType'] = $paymentMethodType;
 
         return $this;
     }
 
     /**
-     * Gets departureTax
-     *
-     * @return int|null
-     */
-    public function getDepartureTax()
-    {
-        return $this->container['departureTax'];
-    }
-
-    /**
-     * Sets departureTax
-     *
-     * @param int|null $departureTax The amount of [departure tax](https://en.wikipedia.org/wiki/Departure_tax) charged, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Encoding: Numeric * minLength: 1 * maxLength: 11 * Must not be all zeros.
-     *
-     * @return self
-     */
-    public function setDepartureTax($departureTax)
-    {
-        $this->container['departureTax'] = $departureTax;
-
-        return $this;
-    }
-
-    /**
-     * Gets destinationAirportCode
+     * Gets subtype
      *
      * @return string|null
      */
-    public function getDestinationAirportCode()
+    public function getSubtype()
     {
-        return $this->container['destinationAirportCode'];
+        return $this->container['subtype'];
     }
 
     /**
-     * Sets destinationAirportCode
+     * Sets subtype
      *
-     * @param string|null $destinationAirportCode The [IATA](https://www.iata.org/services/pages/codes.aspx) 3-letter airport code of the destination airport. This field is required if the airline data includes leg details. * Example: Amsterdam = AMS * Encoding: ASCII * minLength: 3 characters * maxLength: 3 characters * Must not start with a space or be all spaces. * Must not be all zeros.
+     * @param string|null $subtype A subtype of the token.
      *
      * @return self
      */
-    public function setDestinationAirportCode($destinationAirportCode)
+    public function setSubtype($subtype)
     {
-        $this->container['destinationAirportCode'] = $destinationAirportCode;
+        $this->container['subtype'] = $subtype;
 
         return $this;
     }
 
     /**
-     * Gets fareBasisCode
+     * Gets token
      *
      * @return string|null
      */
-    public function getFareBasisCode()
+    public function getToken()
     {
-        return $this->container['fareBasisCode'];
+        return $this->container['token'];
     }
 
     /**
-     * Sets fareBasisCode
+     * Sets token
      *
-     * @param string|null $fareBasisCode The [fare basis code](https://en.wikipedia.org/wiki/Fare_basis_code), alphanumeric. * minLength: 1 character * maxLength: 15 characters * Must not start with a space or be all spaces. * Must not be all zeros.
+     * @param string|null $token A token to pass to the 3DS2 Component to get the fingerprint.
      *
      * @return self
      */
-    public function setFareBasisCode($fareBasisCode)
+    public function setToken($token)
     {
-        $this->container['fareBasisCode'] = $fareBasisCode;
+        $this->container['token'] = $token;
 
         return $this;
     }
 
     /**
-     * Gets flightNumber
+     * Gets type
      *
-     * @return string|null
+     * @return string
      */
-    public function getFlightNumber()
+    public function getType()
     {
-        return $this->container['flightNumber'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets flightNumber
+     * Sets type
      *
-     * @param string|null $flightNumber The flight identifier. * minLength: 1 character * maxLength: 5 characters * Must not start with a space or be all spaces. * Must not be all zeros.
+     * @param string $type **threeDS2**
      *
      * @return self
      */
-    public function setFlightNumber($flightNumber)
+    public function setType($type)
     {
-        $this->container['flightNumber'] = $flightNumber;
+        $this->container['type'] = $type;
 
         return $this;
     }
 
     /**
-     * Gets stopOverCode
+     * Gets url
      *
      * @return string|null
      */
-    public function getStopOverCode()
+    public function getUrl()
     {
-        return $this->container['stopOverCode'];
+        return $this->container['url'];
     }
 
     /**
-     * Sets stopOverCode
+     * Sets url
      *
-     * @param string|null $stopOverCode A one-letter code that indicates whether the passenger is entitled to make a stopover. Can be a space, O if the passenger is entitled to make a stopover, or X if they are not. * Encoding: ASCII * minLength: 1 character * maxLength: 1 character
+     * @param string|null $url Specifies the URL to redirect to.
      *
      * @return self
      */
-    public function setStopOverCode($stopOverCode)
+    public function setUrl($url)
     {
-        $this->container['stopOverCode'] = $stopOverCode;
+        $this->container['url'] = $url;
 
         return $this;
     }

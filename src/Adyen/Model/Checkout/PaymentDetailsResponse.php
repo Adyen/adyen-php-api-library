@@ -41,6 +41,7 @@ class PaymentDetailsResponse implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
+        'action' => '\Adyen\Model\Checkout\PaymentDetailsResponseAction',
         'additionalData' => 'array<string,string>',
         'amount' => '\Adyen\Model\Checkout\Amount',
         'donationToken' => 'string',
@@ -66,6 +67,7 @@ class PaymentDetailsResponse implements ModelInterface, ArrayAccess, \JsonSerial
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'action' => null,
         'additionalData' => null,
         'amount' => null,
         'donationToken' => null,
@@ -89,6 +91,7 @@ class PaymentDetailsResponse implements ModelInterface, ArrayAccess, \JsonSerial
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'action' => false,
         'additionalData' => false,
         'amount' => false,
         'donationToken' => false,
@@ -192,6 +195,7 @@ class PaymentDetailsResponse implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
+        'action' => 'action',
         'additionalData' => 'additionalData',
         'amount' => 'amount',
         'donationToken' => 'donationToken',
@@ -215,6 +219,7 @@ class PaymentDetailsResponse implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
+        'action' => 'setAction',
         'additionalData' => 'setAdditionalData',
         'amount' => 'setAmount',
         'donationToken' => 'setDonationToken',
@@ -238,6 +243,7 @@ class PaymentDetailsResponse implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
+        'action' => 'getAction',
         'additionalData' => 'getAdditionalData',
         'amount' => 'getAmount',
         'donationToken' => 'getDonationToken',
@@ -350,6 +356,7 @@ class PaymentDetailsResponse implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('action', $data ?? [], null);
         $this->setIfExists('additionalData', $data ?? [], null);
         $this->setIfExists('amount', $data ?? [], null);
         $this->setIfExists('donationToken', $data ?? [], null);
@@ -417,6 +424,30 @@ class PaymentDetailsResponse implements ModelInterface, ArrayAccess, \JsonSerial
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets action
+     *
+     * @return \Adyen\Model\Checkout\PaymentDetailsResponseAction|null
+     */
+    public function getAction()
+    {
+        return $this->container['action'];
+    }
+
+    /**
+     * Sets action
+     *
+     * @param \Adyen\Model\Checkout\PaymentDetailsResponseAction|null $action action
+     *
+     * @return self
+     */
+    public function setAction($action)
+    {
+        $this->container['action'] = $action;
+
+        return $this;
+    }
 
     /**
      * Gets additionalData
