@@ -19,12 +19,14 @@ use \ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
- * MbwayDetails Class Doc Comment
+ * PaymentDetailsResponseAction Class Doc Comment
+ *
+ * Action to be taken for completing the payment. When returned, only the 3D Secure action is needed in most cases.
  *
  * @package  Adyen
  * @implements \ArrayAccess<string, mixed>
  */
-class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
+class PaymentDetailsResponseAction implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +35,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'MbwayDetails';
+    protected static $openAPIModelName = 'PaymentDetailsResponse_action';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,10 +43,13 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'checkoutAttemptId' => 'string',
-        'shopperEmail' => 'string',
-        'telephoneNumber' => 'string',
-        'type' => 'string'
+        'authorisationToken' => 'string',
+        'paymentData' => 'string',
+        'paymentMethodType' => 'string',
+        'subtype' => 'string',
+        'token' => 'string',
+        'type' => 'string',
+        'url' => 'string'
     ];
 
     /**
@@ -55,10 +60,13 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'checkoutAttemptId' => null,
-        'shopperEmail' => null,
-        'telephoneNumber' => null,
-        'type' => null
+        'authorisationToken' => null,
+        'paymentData' => null,
+        'paymentMethodType' => null,
+        'subtype' => null,
+        'token' => null,
+        'type' => null,
+        'url' => null
     ];
 
     /**
@@ -67,10 +75,13 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'checkoutAttemptId' => false,
-        'shopperEmail' => false,
-        'telephoneNumber' => false,
-        'type' => false
+        'authorisationToken' => false,
+        'paymentData' => false,
+        'paymentMethodType' => false,
+        'subtype' => false,
+        'token' => false,
+        'type' => false,
+        'url' => false
     ];
 
     /**
@@ -159,10 +170,13 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'checkoutAttemptId' => 'checkoutAttemptId',
-        'shopperEmail' => 'shopperEmail',
-        'telephoneNumber' => 'telephoneNumber',
-        'type' => 'type'
+        'authorisationToken' => 'authorisationToken',
+        'paymentData' => 'paymentData',
+        'paymentMethodType' => 'paymentMethodType',
+        'subtype' => 'subtype',
+        'token' => 'token',
+        'type' => 'type',
+        'url' => 'url'
     ];
 
     /**
@@ -171,10 +185,13 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'checkoutAttemptId' => 'setCheckoutAttemptId',
-        'shopperEmail' => 'setShopperEmail',
-        'telephoneNumber' => 'setTelephoneNumber',
-        'type' => 'setType'
+        'authorisationToken' => 'setAuthorisationToken',
+        'paymentData' => 'setPaymentData',
+        'paymentMethodType' => 'setPaymentMethodType',
+        'subtype' => 'setSubtype',
+        'token' => 'setToken',
+        'type' => 'setType',
+        'url' => 'setUrl'
     ];
 
     /**
@@ -183,10 +200,13 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'checkoutAttemptId' => 'getCheckoutAttemptId',
-        'shopperEmail' => 'getShopperEmail',
-        'telephoneNumber' => 'getTelephoneNumber',
-        'type' => 'getType'
+        'authorisationToken' => 'getAuthorisationToken',
+        'paymentData' => 'getPaymentData',
+        'paymentMethodType' => 'getPaymentMethodType',
+        'subtype' => 'getSubtype',
+        'token' => 'getToken',
+        'type' => 'getType',
+        'url' => 'getUrl'
     ];
 
     /**
@@ -230,19 +250,6 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const TYPE_MBWAY = 'mbway';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_MBWAY,
-        ];
-    }
     /**
      * Associative array for storing property values
      *
@@ -258,10 +265,13 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('checkoutAttemptId', $data ?? [], null);
-        $this->setIfExists('shopperEmail', $data ?? [], null);
-        $this->setIfExists('telephoneNumber', $data ?? [], null);
+        $this->setIfExists('authorisationToken', $data ?? [], null);
+        $this->setIfExists('paymentData', $data ?? [], null);
+        $this->setIfExists('paymentMethodType', $data ?? [], null);
+        $this->setIfExists('subtype', $data ?? [], null);
+        $this->setIfExists('token', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('url', $data ?? [], null);
     }
 
     /**
@@ -291,19 +301,8 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['shopperEmail'] === null) {
-            $invalidProperties[] = "'shopperEmail' can't be null";
-        }
-        if ($this->container['telephoneNumber'] === null) {
-            $invalidProperties[] = "'telephoneNumber' can't be null";
-        }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
-                implode("', '", $allowedValues)
-            );
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
         }
 
         return $invalidProperties;
@@ -322,73 +321,121 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets checkoutAttemptId
+     * Gets authorisationToken
      *
      * @return string|null
      */
-    public function getCheckoutAttemptId()
+    public function getAuthorisationToken()
     {
-        return $this->container['checkoutAttemptId'];
+        return $this->container['authorisationToken'];
     }
 
     /**
-     * Sets checkoutAttemptId
+     * Sets authorisationToken
      *
-     * @param string|null $checkoutAttemptId The checkout attempt identifier.
+     * @param string|null $authorisationToken A token needed to authorise a payment.
      *
      * @return self
      */
-    public function setCheckoutAttemptId($checkoutAttemptId)
+    public function setAuthorisationToken($authorisationToken)
     {
-        $this->container['checkoutAttemptId'] = $checkoutAttemptId;
+        $this->container['authorisationToken'] = $authorisationToken;
 
         return $this;
     }
 
     /**
-     * Gets shopperEmail
+     * Gets paymentData
      *
-     * @return string
+     * @return string|null
      */
-    public function getShopperEmail()
+    public function getPaymentData()
     {
-        return $this->container['shopperEmail'];
+        return $this->container['paymentData'];
     }
 
     /**
-     * Sets shopperEmail
+     * Sets paymentData
      *
-     * @param string $shopperEmail 
+     * @param string|null $paymentData Encoded payment data.
      *
      * @return self
      */
-    public function setShopperEmail($shopperEmail)
+    public function setPaymentData($paymentData)
     {
-        $this->container['shopperEmail'] = $shopperEmail;
+        $this->container['paymentData'] = $paymentData;
 
         return $this;
     }
 
     /**
-     * Gets telephoneNumber
+     * Gets paymentMethodType
      *
-     * @return string
+     * @return string|null
      */
-    public function getTelephoneNumber()
+    public function getPaymentMethodType()
     {
-        return $this->container['telephoneNumber'];
+        return $this->container['paymentMethodType'];
     }
 
     /**
-     * Sets telephoneNumber
+     * Sets paymentMethodType
      *
-     * @param string $telephoneNumber 
+     * @param string|null $paymentMethodType Specifies the payment method.
      *
      * @return self
      */
-    public function setTelephoneNumber($telephoneNumber)
+    public function setPaymentMethodType($paymentMethodType)
     {
-        $this->container['telephoneNumber'] = $telephoneNumber;
+        $this->container['paymentMethodType'] = $paymentMethodType;
+
+        return $this;
+    }
+
+    /**
+     * Gets subtype
+     *
+     * @return string|null
+     */
+    public function getSubtype()
+    {
+        return $this->container['subtype'];
+    }
+
+    /**
+     * Sets subtype
+     *
+     * @param string|null $subtype A subtype of the token.
+     *
+     * @return self
+     */
+    public function setSubtype($subtype)
+    {
+        $this->container['subtype'] = $subtype;
+
+        return $this;
+    }
+
+    /**
+     * Gets token
+     *
+     * @return string|null
+     */
+    public function getToken()
+    {
+        return $this->container['token'];
+    }
+
+    /**
+     * Sets token
+     *
+     * @param string|null $token A token to pass to the 3DS2 Component to get the fingerprint.
+     *
+     * @return self
+     */
+    public function setToken($token)
+    {
+        $this->container['token'] = $token;
 
         return $this;
     }
@@ -396,7 +443,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets type
      *
-     * @return string|null
+     * @return string
      */
     public function getType()
     {
@@ -406,23 +453,37 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      *
-     * @param string|null $type **mbway**
+     * @param string $type **threeDS2**
      *
      * @return self
      */
     public function setType($type)
     {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
         $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets url
+     *
+     * @return string|null
+     */
+    public function getUrl()
+    {
+        return $this->container['url'];
+    }
+
+    /**
+     * Sets url
+     *
+     * @param string|null $url Specifies the URL to redirect to.
+     *
+     * @return self
+     */
+    public function setUrl($url)
+    {
+        $this->container['url'] = $url;
 
         return $this;
     }

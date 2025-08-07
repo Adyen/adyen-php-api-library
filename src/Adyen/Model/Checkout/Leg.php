@@ -486,7 +486,7 @@ class Leg implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets fareBasisCode
      *
-     * @param string|null $fareBasisCode The [fare basis code](https://en.wikipedia.org/wiki/Fare_basis_code), alphanumeric. * minLength: 1 character * maxLength: 6 characters * Must not start with a space or be all spaces. * Must not be all zeros.
+     * @param string|null $fareBasisCode The [fare basis code](https://en.wikipedia.org/wiki/Fare_basis_code), alphanumeric. * minLength: 1 character * maxLength: 15 characters * Must not start with a space or be all spaces. * Must not be all zeros.
      *
      * @return self
      */
