@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\LegalEntityManagement;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\LegalEntityManagement\ObjectSerializer;
 
 /**
  * SetTaxElectronicDeliveryConsentRequest Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class SetTaxElectronicDeliveryConsentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {

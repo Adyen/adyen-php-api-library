@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\Transfers;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\Transfers\ObjectSerializer;
 
 /**
  * CALocalAccountIdentification Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
 {

@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\Transfers;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\Transfers\ObjectSerializer;
 
 /**
  * TransferNotificationValidationFact Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class TransferNotificationValidationFact implements ModelInterface, ArrayAccess, \JsonSerializable
 {

@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\LegalEntityManagement;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\LegalEntityManagement\ObjectSerializer;
 
 /**
  * BankAccountInfo Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class BankAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -329,7 +329,7 @@ class BankAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets accountType
      *
      * @return string|null
-     * @deprecated since Legal Entity Management API v2.
+     * @deprecated since Legal Entity Management API v2. 
      */
     public function getAccountType()
     {
@@ -342,7 +342,7 @@ class BankAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param string|null $accountType The type of bank account.
      *
      * @return self
-     * @deprecated since Legal Entity Management API v2.
+     * @deprecated since Legal Entity Management API v2. 
      */
     public function setAccountType($accountType)
     {

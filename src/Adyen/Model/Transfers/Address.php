@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\Transfers;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\Transfers\ObjectSerializer;
 
 /**
  * Address Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class Address implements ModelInterface, ArrayAccess, \JsonSerializable
 {

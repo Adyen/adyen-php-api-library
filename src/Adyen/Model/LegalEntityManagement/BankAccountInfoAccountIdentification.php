@@ -15,7 +15,7 @@
 
 namespace Adyen\Model\LegalEntityManagement;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\LegalEntityManagement\ObjectSerializer;
 
 /**
@@ -24,7 +24,7 @@ use Adyen\Model\LegalEntityManagement\ObjectSerializer;
  * Identification of the bank account.
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class BankAccountInfoAccountIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
 {

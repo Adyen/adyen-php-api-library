@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\Transfers;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\Transfers\ObjectSerializer;
 
 /**
  * ConfirmationTrackingData Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class ConfirmationTrackingData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -341,7 +341,7 @@ class ConfirmationTrackingData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets status
      *
-     * @param string $status The status of the transfer.  Possible values:    - **credited**: the funds are credited to your user's transfer instrument or bank account.
+     * @param string $status The status of the transfer.  Possible values:   - **credited**: the funds are credited to your user's transfer instrument or bank account.
      *
      * @return self
      */

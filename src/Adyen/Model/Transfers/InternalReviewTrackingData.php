@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\Transfers;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\Transfers\ObjectSerializer;
 
 /**
  * InternalReviewTrackingData Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class InternalReviewTrackingData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -405,7 +405,7 @@ class InternalReviewTrackingData implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets status
      *
-     * @param string $status The status of the transfer.  Possible values:   - **pending**: the transfer is under internal review.  - **failed**: the transfer failed Adyen's internal review. For details, see `reason`.
+     * @param string $status The status of the transfer.  Possible values:   - **pending**: the transfer is under internal review by Adyen.  - **failed**: the transfer failed Adyen's internal review. For details, see `reason`.
      *
      * @return self
      */

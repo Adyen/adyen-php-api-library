@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\Transfers;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\Transfers\ObjectSerializer;
 
 /**
  * IssuedCard Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class IssuedCard implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -47,6 +47,7 @@ class IssuedCard implements ModelInterface, ArrayAccess, \JsonSerializable
         'relayedAuthorisationData' => '\Adyen\Model\Transfers\RelayedAuthorisationData',
         'schemeTraceId' => 'string',
         'schemeUniqueTransactionId' => 'string',
+        'threeDSecure' => '\Adyen\Model\Transfers\ThreeDSecure',
         'type' => 'string',
         'validationFacts' => '\Adyen\Model\Transfers\TransferNotificationValidationFact[]'
     ];
@@ -65,6 +66,7 @@ class IssuedCard implements ModelInterface, ArrayAccess, \JsonSerializable
         'relayedAuthorisationData' => null,
         'schemeTraceId' => null,
         'schemeUniqueTransactionId' => null,
+        'threeDSecure' => null,
         'type' => null,
         'validationFacts' => null
     ];
@@ -81,6 +83,7 @@ class IssuedCard implements ModelInterface, ArrayAccess, \JsonSerializable
         'relayedAuthorisationData' => false,
         'schemeTraceId' => false,
         'schemeUniqueTransactionId' => false,
+        'threeDSecure' => false,
         'type' => false,
         'validationFacts' => false
     ];
@@ -177,6 +180,7 @@ class IssuedCard implements ModelInterface, ArrayAccess, \JsonSerializable
         'relayedAuthorisationData' => 'relayedAuthorisationData',
         'schemeTraceId' => 'schemeTraceId',
         'schemeUniqueTransactionId' => 'schemeUniqueTransactionId',
+        'threeDSecure' => 'threeDSecure',
         'type' => 'type',
         'validationFacts' => 'validationFacts'
     ];
@@ -193,6 +197,7 @@ class IssuedCard implements ModelInterface, ArrayAccess, \JsonSerializable
         'relayedAuthorisationData' => 'setRelayedAuthorisationData',
         'schemeTraceId' => 'setSchemeTraceId',
         'schemeUniqueTransactionId' => 'setSchemeUniqueTransactionId',
+        'threeDSecure' => 'setThreeDSecure',
         'type' => 'setType',
         'validationFacts' => 'setValidationFacts'
     ];
@@ -209,6 +214,7 @@ class IssuedCard implements ModelInterface, ArrayAccess, \JsonSerializable
         'relayedAuthorisationData' => 'getRelayedAuthorisationData',
         'schemeTraceId' => 'getSchemeTraceId',
         'schemeUniqueTransactionId' => 'getSchemeUniqueTransactionId',
+        'threeDSecure' => 'getThreeDSecure',
         'type' => 'getType',
         'validationFacts' => 'getValidationFacts'
     ];
@@ -338,6 +344,7 @@ class IssuedCard implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('relayedAuthorisationData', $data ?? [], null);
         $this->setIfExists('schemeTraceId', $data ?? [], null);
         $this->setIfExists('schemeUniqueTransactionId', $data ?? [], null);
+        $this->setIfExists('threeDSecure', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('validationFacts', $data ?? [], null);
     }
@@ -571,6 +578,30 @@ class IssuedCard implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setSchemeUniqueTransactionId($schemeUniqueTransactionId)
     {
         $this->container['schemeUniqueTransactionId'] = $schemeUniqueTransactionId;
+
+        return $this;
+    }
+
+    /**
+     * Gets threeDSecure
+     *
+     * @return \Adyen\Model\Transfers\ThreeDSecure|null
+     */
+    public function getThreeDSecure()
+    {
+        return $this->container['threeDSecure'];
+    }
+
+    /**
+     * Sets threeDSecure
+     *
+     * @param \Adyen\Model\Transfers\ThreeDSecure|null $threeDSecure threeDSecure
+     *
+     * @return self
+     */
+    public function setThreeDSecure($threeDSecure)
+    {
+        $this->container['threeDSecure'] = $threeDSecure;
 
         return $this;
     }

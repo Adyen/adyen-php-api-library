@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\BalancePlatform;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
  * VerificationErrorRecursive Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class VerificationErrorRecursive implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -540,7 +540,7 @@ class VerificationErrorRecursive implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets type
      *
-     * @param string|null $type The type of error.   Possible values: **invalidInput**, **dataMissing**.
+     * @param string|null $type The type of error.    Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus**
      *
      * @return self
      */
