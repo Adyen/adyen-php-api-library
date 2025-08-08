@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\Checkout;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
  * MbwayDetails Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -358,7 +358,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets shopperEmail
      *
-     * @param string $shopperEmail
+     * @param string $shopperEmail 
      *
      * @return self
      */
@@ -382,7 +382,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets telephoneNumber
      *
-     * @param string $telephoneNumber
+     * @param string $telephoneNumber 
      *
      * @return self
      */

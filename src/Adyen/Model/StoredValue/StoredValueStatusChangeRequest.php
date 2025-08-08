@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\StoredValue;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\StoredValue\ObjectSerializer;
 
 /**
  * StoredValueStatusChangeRequest Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class StoredValueStatusChangeRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {

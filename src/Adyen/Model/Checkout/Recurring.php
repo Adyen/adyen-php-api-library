@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\Checkout;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
  * Recurring Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class Recurring implements ModelInterface, ArrayAccess, \JsonSerializable
 {

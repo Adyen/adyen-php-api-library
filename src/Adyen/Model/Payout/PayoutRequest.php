@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\Payout;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\Payout\ObjectSerializer;
 
 /**
  * PayoutRequest Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class PayoutRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {

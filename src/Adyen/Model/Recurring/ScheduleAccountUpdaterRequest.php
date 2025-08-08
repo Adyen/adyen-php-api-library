@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\Recurring;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\Recurring\ObjectSerializer;
 
 /**
  * ScheduleAccountUpdaterRequest Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class ScheduleAccountUpdaterRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {

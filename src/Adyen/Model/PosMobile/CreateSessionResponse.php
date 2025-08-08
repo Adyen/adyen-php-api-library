@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\PosMobile;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\PosMobile\ObjectSerializer;
 
 /**
  * CreateSessionResponse Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class CreateSessionResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {

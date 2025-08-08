@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\Payments;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\Payments\ObjectSerializer;
 
 /**
  * ThreeDS2ResultResponse Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class ThreeDS2ResultResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {

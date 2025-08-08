@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\BinLookup;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\BinLookup\ObjectSerializer;
 
 /**
  * CostEstimateResponse Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class CostEstimateResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {

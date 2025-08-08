@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\Payments;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\Payments\ObjectSerializer;
 
 /**
  * VoidPendingRefundRequest Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class VoidPendingRefundRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {

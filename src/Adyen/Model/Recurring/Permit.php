@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\Recurring;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\Recurring\ObjectSerializer;
 
 /**
  * Permit Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class Permit implements ModelInterface, ArrayAccess, \JsonSerializable
 {

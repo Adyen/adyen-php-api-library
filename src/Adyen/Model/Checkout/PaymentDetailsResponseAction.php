@@ -15,7 +15,7 @@
 
 namespace Adyen\Model\Checkout;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
@@ -24,7 +24,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
  * Action to be taken for completing the payment. When returned, only the 3D Secure action is needed in most cases.
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class PaymentDetailsResponseAction implements ModelInterface, ArrayAccess, \JsonSerializable
 {

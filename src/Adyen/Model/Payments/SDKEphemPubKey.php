@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\Payments;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\Payments\ObjectSerializer;
 
 /**
  * SDKEphemPubKey Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class SDKEphemPubKey implements ModelInterface, ArrayAccess, \JsonSerializable
 {

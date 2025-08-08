@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\Payments;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\Payments\ObjectSerializer;
 
 /**
  * DonationRequest Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class DonationRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {

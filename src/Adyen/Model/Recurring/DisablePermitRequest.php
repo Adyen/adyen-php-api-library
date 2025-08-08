@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\Recurring;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\Recurring\ObjectSerializer;
 
 /**
  * DisablePermitRequest Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class DisablePermitRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {

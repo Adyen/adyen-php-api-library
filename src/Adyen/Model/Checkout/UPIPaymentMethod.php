@@ -14,14 +14,13 @@
 
 
 namespace Adyen\Model\Checkout;
-
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
  * UPIPaymentMethod Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class UPIPaymentMethod extends ShopperIdPaymentMethod
 {

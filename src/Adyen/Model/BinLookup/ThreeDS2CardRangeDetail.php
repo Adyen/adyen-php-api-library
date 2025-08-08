@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\BinLookup;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\BinLookup\ObjectSerializer;
 
 /**
  * ThreeDS2CardRangeDetail Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class ThreeDS2CardRangeDetail implements ModelInterface, ArrayAccess, \JsonSerializable
 {

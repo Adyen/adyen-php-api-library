@@ -15,7 +15,7 @@
 
 namespace Adyen\Model\PaymentsApp;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\PaymentsApp\ObjectSerializer;
 
 /**
@@ -24,7 +24,7 @@ use Adyen\Model\PaymentsApp\ObjectSerializer;
  * Standardized error response following RFC-7807 format
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class DefaultErrorResponseEntity implements ModelInterface, ArrayAccess, \JsonSerializable
 {
