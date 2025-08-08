@@ -42,7 +42,7 @@ class BalanceControlApi extends Service
     /**
     * Start a balance transfer
     *
-    * @deprecated since Adyen Balance Control API v1.
+    * @deprecated since Adyen Balance Control API v1. 
     * @param \Adyen\Model\BalanceControl\BalanceTransferRequest $balanceTransferRequest
     * @param array|null $requestOptions
     * @return \Adyen\Model\BalanceControl\BalanceTransferResponse
