@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\Management;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\Management\ObjectSerializer;
 
 /**
  * IdName Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class IdName implements ModelInterface, ArrayAccess, \JsonSerializable
 {

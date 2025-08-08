@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\Management;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\Management\ObjectSerializer;
 
 /**
  * ScheduleTerminalActionsResponse Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class ScheduleTerminalActionsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {

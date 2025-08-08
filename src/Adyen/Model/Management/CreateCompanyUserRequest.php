@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\Management;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\Management\ObjectSerializer;
 
 /**
  * CreateCompanyUserRequest Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class CreateCompanyUserRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {

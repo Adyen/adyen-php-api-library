@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\Management;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\Management\ObjectSerializer;
 
 /**
  * DinersInfo Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class DinersInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 {

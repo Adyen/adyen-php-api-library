@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\BalanceControl;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\BalanceControl\ObjectSerializer;
 
 /**
  * BalanceTransferRequest Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class BalanceTransferRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {

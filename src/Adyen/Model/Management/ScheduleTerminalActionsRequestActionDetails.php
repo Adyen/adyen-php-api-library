@@ -15,7 +15,7 @@
 
 namespace Adyen\Model\Management;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\Management\ObjectSerializer;
 
 /**
@@ -24,7 +24,7 @@ use Adyen\Model\Management\ObjectSerializer;
  * Information about the action to take.
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class ScheduleTerminalActionsRequestActionDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 {
