@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\BalanceWebhooks;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\BalanceWebhooks\ObjectSerializer;
 
 /**
  * BalanceAccountBalanceNotificationRequest Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class BalanceAccountBalanceNotificationRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {

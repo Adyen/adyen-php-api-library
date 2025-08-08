@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\TokenizationWebhooks;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\TokenizationWebhooks\ObjectSerializer;
 
 /**
  * RecurringToken Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class RecurringToken implements ModelInterface, ArrayAccess, \JsonSerializable
 {

@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\TransactionWebhooks;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\TransactionWebhooks\ObjectSerializer;
 
 /**
  * ResourceReference Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class ResourceReference implements ModelInterface, ArrayAccess, \JsonSerializable
 {
