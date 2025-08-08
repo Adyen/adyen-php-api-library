@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\Recurring;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\Recurring\ObjectSerializer;
 
 /**
  * Address Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class Address implements ModelInterface, ArrayAccess, \JsonSerializable
 {

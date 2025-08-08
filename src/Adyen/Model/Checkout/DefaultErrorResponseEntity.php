@@ -15,7 +15,7 @@
 
 namespace Adyen\Model\Checkout;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
@@ -24,7 +24,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
  * Standardized error response following RFC-7807 format
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class DefaultErrorResponseEntity implements ModelInterface, ArrayAccess, \JsonSerializable
 {

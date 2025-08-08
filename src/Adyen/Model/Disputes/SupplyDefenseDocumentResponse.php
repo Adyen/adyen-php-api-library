@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\Disputes;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\Disputes\ObjectSerializer;
 
 /**
  * SupplyDefenseDocumentResponse Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class SupplyDefenseDocumentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {

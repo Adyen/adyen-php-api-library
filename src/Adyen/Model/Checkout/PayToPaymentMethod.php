@@ -21,7 +21,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
  * PayToPaymentMethod Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class PayToPaymentMethod extends ShopperIdPaymentMethod
 {

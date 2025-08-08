@@ -15,7 +15,7 @@
 
 namespace Adyen\Model\Checkout;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
@@ -24,7 +24,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
  * The type and required details of a payment method to use.
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
 {
