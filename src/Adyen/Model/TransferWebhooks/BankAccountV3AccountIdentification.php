@@ -15,7 +15,7 @@
 
 namespace Adyen\Model\TransferWebhooks;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\TransferWebhooks\ObjectSerializer;
 
 /**
@@ -24,7 +24,7 @@ use Adyen\Model\TransferWebhooks\ObjectSerializer;
  * Contains the bank account details. The fields required in this object depend on the country of the bank account and the currency of the transfer.
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
 {

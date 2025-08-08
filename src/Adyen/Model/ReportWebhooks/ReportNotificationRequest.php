@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\ReportWebhooks;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\ReportWebhooks\ObjectSerializer;
 
 /**
  * ReportNotificationRequest Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class ReportNotificationRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {

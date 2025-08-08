@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\ConfigurationWebhooks;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\ConfigurationWebhooks\ObjectSerializer;
 
 /**
  * BalanceAccount Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class BalanceAccount implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -389,7 +389,7 @@ class BalanceAccount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets accountHolderId
      *
-     * @param string $accountHolderId The unique identifier of the [account holder](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/accountHolders__resParam_id) associated with the balance account.
+     * @param string $accountHolderId The unique identifier of the [account holder](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/accountHolders#responses-200-id) associated with the balance account.
      *
      * @return self
      */
