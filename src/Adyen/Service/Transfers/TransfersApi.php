@@ -70,7 +70,7 @@ class TransfersApi extends Service
     /**
     * Get all transfers
     *
-    * @param array|null $requestOptions ['queryParams' => ['balancePlatform'=> string, 'accountHolderId'=> string, 'balanceAccountId'=> string, 'paymentInstrumentId'=> string, 'reference'=> string, 'category'=> string, 'createdSince'=> \DateTime, 'createdUntil'=> \DateTime, 'cursor'=> string, 'limit'=> int]]
+    * @param array|null $requestOptions ['queryParams' => ['balancePlatform'=> string, 'accountHolderId'=> string, 'balanceAccountId'=> string, 'paymentInstrumentId'=> string, 'reference'=> string, 'category'=> string, 'createdSince'=> \DateTime, 'createdUntil'=> \DateTime, 'sortOrder'=> string, 'cursor'=> string, 'limit'=> int]]
     * @return \Adyen\Model\Transfers\FindTransfersResponse
     * @throws AdyenException
     */

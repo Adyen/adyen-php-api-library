@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\BalancePlatform;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
  * BalanceAccountInfo Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -338,7 +338,7 @@ class BalanceAccountInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets accountHolderId
      *
-     * @param string $accountHolderId The unique identifier of the [account holder](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/accountHolders__resParam_id) associated with the balance account.
+     * @param string $accountHolderId The unique identifier of the [account holder](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/accountHolders#responses-200-id) associated with the balance account.
      *
      * @return self
      */
