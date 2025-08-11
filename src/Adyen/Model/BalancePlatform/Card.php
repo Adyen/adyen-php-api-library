@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\BalancePlatform;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
  * Card Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class Card implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -53,7 +53,8 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
         'formFactor' => 'string',
         'lastFour' => 'string',
         'number' => 'string',
-        'threeDSecure' => 'string'
+        'threeDSecure' => 'string',
+        'usage' => 'string'
     ];
 
     /**
@@ -76,7 +77,8 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
         'formFactor' => null,
         'lastFour' => null,
         'number' => null,
-        'threeDSecure' => null
+        'threeDSecure' => null,
+        'usage' => null
     ];
 
     /**
@@ -97,7 +99,8 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
         'formFactor' => false,
         'lastFour' => false,
         'number' => false,
-        'threeDSecure' => false
+        'threeDSecure' => false,
+        'usage' => false
     ];
 
     /**
@@ -198,7 +201,8 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
         'formFactor' => 'formFactor',
         'lastFour' => 'lastFour',
         'number' => 'number',
-        'threeDSecure' => 'threeDSecure'
+        'threeDSecure' => 'threeDSecure',
+        'usage' => 'usage'
     ];
 
     /**
@@ -219,7 +223,8 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
         'formFactor' => 'setFormFactor',
         'lastFour' => 'setLastFour',
         'number' => 'setNumber',
-        'threeDSecure' => 'setThreeDSecure'
+        'threeDSecure' => 'setThreeDSecure',
+        'usage' => 'setUsage'
     ];
 
     /**
@@ -240,7 +245,8 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
         'formFactor' => 'getFormFactor',
         'lastFour' => 'getLastFour',
         'number' => 'getNumber',
-        'threeDSecure' => 'getThreeDSecure'
+        'threeDSecure' => 'getThreeDSecure',
+        'usage' => 'getUsage'
     ];
 
     /**
@@ -329,6 +335,7 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('lastFour', $data ?? [], null);
         $this->setIfExists('number', $data ?? [], null);
         $this->setIfExists('threeDSecure', $data ?? [], null);
+        $this->setIfExists('usage', $data ?? [], null);
     }
 
     /**
@@ -708,13 +715,37 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets threeDSecure
      *
-     * @param string|null $threeDSecure Allocates a specific product range for either a physical or a virtual card. Possible values: **fullySupported**, **secureCorporate**. >Reach out to your Adyen contact to get the values relevant for your integration.
+     * @param string|null $threeDSecure The 3DS configuration of the physical or the virtual card. Possible values: **fullySupported**, **secureCorporate**. > Reach out to your Adyen contact to get the values relevant for your integration.
      *
      * @return self
      */
     public function setThreeDSecure($threeDSecure)
     {
         $this->container['threeDSecure'] = $threeDSecure;
+
+        return $this;
+    }
+
+    /**
+     * Gets usage
+     *
+     * @return string|null
+     */
+    public function getUsage()
+    {
+        return $this->container['usage'];
+    }
+
+    /**
+     * Sets usage
+     *
+     * @param string|null $usage Specifies how many times the card can be used. Possible values: **singleUse**, **multiUse**.  > Reach out to your Adyen contact to determine the value relevant for your integration.
+     *
+     * @return self
+     */
+    public function setUsage($usage)
+    {
+        $this->container['usage'] = $usage;
 
         return $this;
     }

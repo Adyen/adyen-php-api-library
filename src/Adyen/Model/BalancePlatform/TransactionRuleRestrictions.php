@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\BalancePlatform;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
  * TransactionRuleRestrictions Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -64,7 +64,8 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'tokenRequestors' => '\Adyen\Model\BalancePlatform\TokenRequestorsRestriction',
         'totalAmount' => '\Adyen\Model\BalancePlatform\TotalAmountRestriction',
         'walletProviderAccountScore' => '\Adyen\Model\BalancePlatform\WalletProviderAccountScoreRestriction',
-        'walletProviderDeviceScore' => '\Adyen\Model\BalancePlatform\WalletProviderDeviceScore'
+        'walletProviderDeviceScore' => '\Adyen\Model\BalancePlatform\WalletProviderDeviceScore',
+        'walletProviderDeviceType' => '\Adyen\Model\BalancePlatform\WalletProviderDeviceType'
     ];
 
     /**
@@ -98,7 +99,8 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'tokenRequestors' => null,
         'totalAmount' => null,
         'walletProviderAccountScore' => null,
-        'walletProviderDeviceScore' => null
+        'walletProviderDeviceScore' => null,
+        'walletProviderDeviceType' => null
     ];
 
     /**
@@ -130,7 +132,8 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'tokenRequestors' => false,
         'totalAmount' => false,
         'walletProviderAccountScore' => false,
-        'walletProviderDeviceScore' => false
+        'walletProviderDeviceScore' => false,
+        'walletProviderDeviceType' => false
     ];
 
     /**
@@ -242,7 +245,8 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'tokenRequestors' => 'tokenRequestors',
         'totalAmount' => 'totalAmount',
         'walletProviderAccountScore' => 'walletProviderAccountScore',
-        'walletProviderDeviceScore' => 'walletProviderDeviceScore'
+        'walletProviderDeviceScore' => 'walletProviderDeviceScore',
+        'walletProviderDeviceType' => 'walletProviderDeviceType'
     ];
 
     /**
@@ -274,7 +278,8 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'tokenRequestors' => 'setTokenRequestors',
         'totalAmount' => 'setTotalAmount',
         'walletProviderAccountScore' => 'setWalletProviderAccountScore',
-        'walletProviderDeviceScore' => 'setWalletProviderDeviceScore'
+        'walletProviderDeviceScore' => 'setWalletProviderDeviceScore',
+        'walletProviderDeviceType' => 'setWalletProviderDeviceType'
     ];
 
     /**
@@ -306,7 +311,8 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         'tokenRequestors' => 'getTokenRequestors',
         'totalAmount' => 'getTotalAmount',
         'walletProviderAccountScore' => 'getWalletProviderAccountScore',
-        'walletProviderDeviceScore' => 'getWalletProviderDeviceScore'
+        'walletProviderDeviceScore' => 'getWalletProviderDeviceScore',
+        'walletProviderDeviceType' => 'getWalletProviderDeviceType'
     ];
 
     /**
@@ -390,6 +396,7 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('totalAmount', $data ?? [], null);
         $this->setIfExists('walletProviderAccountScore', $data ?? [], null);
         $this->setIfExists('walletProviderDeviceScore', $data ?? [], null);
+        $this->setIfExists('walletProviderDeviceType', $data ?? [], null);
     }
 
     /**
@@ -1006,6 +1013,30 @@ class TransactionRuleRestrictions implements ModelInterface, ArrayAccess, \JsonS
     public function setWalletProviderDeviceScore($walletProviderDeviceScore)
     {
         $this->container['walletProviderDeviceScore'] = $walletProviderDeviceScore;
+
+        return $this;
+    }
+
+    /**
+     * Gets walletProviderDeviceType
+     *
+     * @return \Adyen\Model\BalancePlatform\WalletProviderDeviceType|null
+     */
+    public function getWalletProviderDeviceType()
+    {
+        return $this->container['walletProviderDeviceType'];
+    }
+
+    /**
+     * Sets walletProviderDeviceType
+     *
+     * @param \Adyen\Model\BalancePlatform\WalletProviderDeviceType|null $walletProviderDeviceType walletProviderDeviceType
+     *
+     * @return self
+     */
+    public function setWalletProviderDeviceType($walletProviderDeviceType)
+    {
+        $this->container['walletProviderDeviceType'] = $walletProviderDeviceType;
 
         return $this;
     }
