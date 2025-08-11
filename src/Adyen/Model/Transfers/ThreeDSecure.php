@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\Transfers\ObjectSerializer;
 
 /**
- * USLocalAccountIdentification Class Doc Comment
+ * ThreeDSecure Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class USLocalAccountIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
+class ThreeDSecure implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class USLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       *
       * @var string
       */
-    protected static $openAPIModelName = 'USLocalAccountIdentification';
+    protected static $openAPIModelName = 'ThreeDSecure';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,10 +41,7 @@ class USLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       * @var string[]
       */
     protected static $openAPITypes = [
-        'accountNumber' => 'string',
-        'accountType' => 'string',
-        'routingNumber' => 'string',
-        'type' => 'string'
+        'acsTransactionId' => 'string'
     ];
 
     /**
@@ -55,10 +52,7 @@ class USLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'accountNumber' => null,
-        'accountType' => null,
-        'routingNumber' => null,
-        'type' => null
+        'acsTransactionId' => null
     ];
 
     /**
@@ -67,10 +61,7 @@ class USLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'accountNumber' => false,
-        'accountType' => false,
-        'routingNumber' => false,
-        'type' => false
+        'acsTransactionId' => false
     ];
 
     /**
@@ -159,10 +150,7 @@ class USLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $attributeMap = [
-        'accountNumber' => 'accountNumber',
-        'accountType' => 'accountType',
-        'routingNumber' => 'routingNumber',
-        'type' => 'type'
+        'acsTransactionId' => 'acsTransactionId'
     ];
 
     /**
@@ -171,10 +159,7 @@ class USLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $setters = [
-        'accountNumber' => 'setAccountNumber',
-        'accountType' => 'setAccountType',
-        'routingNumber' => 'setRoutingNumber',
-        'type' => 'setType'
+        'acsTransactionId' => 'setAcsTransactionId'
     ];
 
     /**
@@ -183,10 +168,7 @@ class USLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $getters = [
-        'accountNumber' => 'getAccountNumber',
-        'accountType' => 'getAccountType',
-        'routingNumber' => 'getRoutingNumber',
-        'type' => 'getType'
+        'acsTransactionId' => 'getAcsTransactionId'
     ];
 
     /**
@@ -230,33 +212,7 @@ class USLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
         return self::$openAPIModelName;
     }
 
-    public const ACCOUNT_TYPE_CHECKING = 'checking';
-    public const ACCOUNT_TYPE_SAVINGS = 'savings';
-    public const TYPE_US_LOCAL = 'usLocal';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getAccountTypeAllowableValues()
-    {
-        return [
-            self::ACCOUNT_TYPE_CHECKING,
-            self::ACCOUNT_TYPE_SAVINGS,
-        ];
-    }
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_US_LOCAL,
-        ];
-    }
     /**
      * Associative array for storing property values
      *
@@ -272,10 +228,7 @@ class USLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('accountNumber', $data ?? [], null);
-        $this->setIfExists('accountType', $data ?? [], null);
-        $this->setIfExists('routingNumber', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('acsTransactionId', $data ?? [], null);
     }
 
     /**
@@ -305,33 +258,6 @@ class USLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     {
         $invalidProperties = [];
 
-        if ($this->container['accountNumber'] === null) {
-            $invalidProperties[] = "'accountNumber' can't be null";
-        }
-        $allowedValues = $this->getAccountTypeAllowableValues();
-        if (!is_null($this->container['accountType']) && !in_array($this->container['accountType'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'accountType', must be one of '%s'",
-                $this->container['accountType'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if ($this->container['routingNumber'] === null) {
-            $invalidProperties[] = "'routingNumber' can't be null";
-        }
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
-        }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -348,117 +274,25 @@ class USLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
 
 
     /**
-     * Gets accountNumber
-     *
-     * @return string
-     */
-    public function getAccountNumber()
-    {
-        return $this->container['accountNumber'];
-    }
-
-    /**
-     * Sets accountNumber
-     *
-     * @param string $accountNumber The bank account number, without separators or whitespace.
-     *
-     * @return self
-     */
-    public function setAccountNumber($accountNumber)
-    {
-        $this->container['accountNumber'] = $accountNumber;
-
-        return $this;
-    }
-
-    /**
-     * Gets accountType
+     * Gets acsTransactionId
      *
      * @return string|null
      */
-    public function getAccountType()
+    public function getAcsTransactionId()
     {
-        return $this->container['accountType'];
+        return $this->container['acsTransactionId'];
     }
 
     /**
-     * Sets accountType
+     * Sets acsTransactionId
      *
-     * @param string|null $accountType The bank account type.  Possible values: **checking** or **savings**. Defaults to **checking**.
+     * @param string|null $acsTransactionId The transaction identifier for the Access Control Server
      *
      * @return self
      */
-    public function setAccountType($accountType)
+    public function setAcsTransactionId($acsTransactionId)
     {
-        $allowedValues = $this->getAccountTypeAllowableValues();
-        if (!in_array($accountType, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'accountType', must be one of '%s'",
-                    $accountType,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['accountType'] = $accountType;
-
-        return $this;
-    }
-
-    /**
-     * Gets routingNumber
-     *
-     * @return string
-     */
-    public function getRoutingNumber()
-    {
-        return $this->container['routingNumber'];
-    }
-
-    /**
-     * Sets routingNumber
-     *
-     * @param string $routingNumber The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or whitespace.
-     *
-     * @return self
-     */
-    public function setRoutingNumber($routingNumber)
-    {
-        $this->container['routingNumber'] = $routingNumber;
-
-        return $this;
-    }
-
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type **usLocal**
-     *
-     * @return self
-     */
-    public function setType($type)
-    {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
+        $this->container['acsTransactionId'] = $acsTransactionId;
 
         return $this;
     }
