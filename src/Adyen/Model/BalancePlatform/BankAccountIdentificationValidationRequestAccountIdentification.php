@@ -15,7 +15,7 @@
 
 namespace Adyen\Model\BalancePlatform;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
@@ -24,7 +24,7 @@ use Adyen\Model\BalancePlatform\ObjectSerializer;
  * Bank account identification.
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class BankAccountIdentificationValidationRequestAccountIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
 {

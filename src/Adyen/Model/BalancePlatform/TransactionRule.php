@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\BalancePlatform;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
  * TransactionRule Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -547,7 +547,7 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets endDate
      *
-     * @param string|null $endDate The date when the rule will stop being evaluated, in ISO 8601 extended offset date-time format. For example, **2020-12-18T10:15:30+01:00**.  If not provided, the rule will be evaluated until the rule status is set to **inactive**.
+     * @param string|null $endDate The date when the rule will stop being evaluated, in ISO 8601 extended offset date-time format. For example, **2025-03-19T10:15:30+01:00**.  If not provided, the rule will be evaluated until the rule status is set to **inactive**.
      *
      * @return self
      */
@@ -651,11 +651,11 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getOutcomeTypeAllowableValues();
         if (!in_array($outcomeType, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'outcomeType', must be one of '%s'",
+                    "outcomeType: unexpected enum value '%s' - Supported values are [%s]",
                     $outcomeType,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -709,11 +709,11 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getRequestTypeAllowableValues();
         if (!in_array($requestType, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'requestType', must be one of '%s'",
+                    "requestType: unexpected enum value '%s' - Supported values are [%s]",
                     $requestType,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -783,7 +783,7 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets startDate
      *
-     * @param string|null $startDate The date when the rule will start to be evaluated, in ISO 8601 extended offset date-time format. For example, **2020-12-18T10:15:30+01:00**.  If not provided when creating a transaction rule, the `startDate` is set to the date when the rule status is set to **active**.
+     * @param string|null $startDate The date when the rule will start to be evaluated, in ISO 8601 extended offset date-time format. For example, **2025-03-19T10:15:30+01:00**.  If not provided when creating a transaction rule, the `startDate` is set to the date when the rule status is set to **active**.
      *
      * @return self
      */
@@ -815,11 +815,11 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    "status: unexpected enum value '%s' - Supported values are [%s]",
                     $status,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -849,11 +849,11 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
                     $type,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

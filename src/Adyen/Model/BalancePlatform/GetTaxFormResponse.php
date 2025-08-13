@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\BalancePlatform;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
  * GetTaxFormResponse Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class GetTaxFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -349,11 +349,11 @@ class GetTaxFormResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $allowedValues = $this->getContentTypeAllowableValues();
         if (!in_array($contentType, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'contentType', must be one of '%s'",
+                    "contentType: unexpected enum value '%s' - Supported values are [%s]",
                     $contentType,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

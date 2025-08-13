@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\BalancePlatform;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
  * BankAccountModel Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class BankAccountModel implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -329,11 +329,11 @@ class BankAccountModel implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         $allowedValues = $this->getFormFactorAllowableValues();
         if (!is_null($formFactor) && !in_array($formFactor, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'formFactor', must be one of '%s'",
+                    "formFactor: unexpected enum value '%s' - Supported values are [%s]",
                     $formFactor,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

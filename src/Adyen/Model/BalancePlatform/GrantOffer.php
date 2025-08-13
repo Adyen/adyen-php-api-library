@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\BalancePlatform;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
  * GrantOffer Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class GrantOffer implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -417,11 +417,11 @@ class GrantOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getContractTypeAllowableValues();
         if (!in_array($contractType, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'contractType', must be one of '%s'",
+                    "contractType: unexpected enum value '%s' - Supported values are [%s]",
                     $contractType,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

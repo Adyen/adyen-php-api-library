@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\BalancePlatform;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
  * StringMatch Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class StringMatch implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -328,11 +328,11 @@ class StringMatch implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getOperationAllowableValues();
         if (!in_array($operation, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'operation', must be one of '%s'",
+                    "operation: unexpected enum value '%s' - Supported values are [%s]",
                     $operation,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

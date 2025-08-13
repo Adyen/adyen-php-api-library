@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\BalancePlatform;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
  * PhoneNumber Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class PhoneNumber implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -383,11 +383,11 @@ class PhoneNumber implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getPhoneTypeAllowableValues();
         if (!in_array($phoneType, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'phoneType', must be one of '%s'",
+                    "phoneType: unexpected enum value '%s' - Supported values are [%s]",
                     $phoneType,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

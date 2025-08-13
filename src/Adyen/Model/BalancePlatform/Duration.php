@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\BalancePlatform;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
  * Duration Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class Duration implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -330,11 +330,11 @@ class Duration implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getUnitAllowableValues();
         if (!in_array($unit, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'unit', must be one of '%s'",
+                    "unit: unexpected enum value '%s' - Supported values are [%s]",
                     $unit,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

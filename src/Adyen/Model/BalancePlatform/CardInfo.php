@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\BalancePlatform;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
  * CardInfo Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class CardInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -48,7 +48,8 @@ class CardInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'configuration' => '\Adyen\Model\BalancePlatform\CardConfiguration',
         'deliveryContact' => '\Adyen\Model\BalancePlatform\DeliveryContact',
         'formFactor' => 'string',
-        'threeDSecure' => 'string'
+        'threeDSecure' => 'string',
+        'usage' => 'string'
     ];
 
     /**
@@ -66,7 +67,8 @@ class CardInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'configuration' => null,
         'deliveryContact' => null,
         'formFactor' => null,
-        'threeDSecure' => null
+        'threeDSecure' => null,
+        'usage' => null
     ];
 
     /**
@@ -82,7 +84,8 @@ class CardInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'configuration' => false,
         'deliveryContact' => false,
         'formFactor' => false,
-        'threeDSecure' => false
+        'threeDSecure' => false,
+        'usage' => false
     ];
 
     /**
@@ -178,7 +181,8 @@ class CardInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'configuration' => 'configuration',
         'deliveryContact' => 'deliveryContact',
         'formFactor' => 'formFactor',
-        'threeDSecure' => 'threeDSecure'
+        'threeDSecure' => 'threeDSecure',
+        'usage' => 'usage'
     ];
 
     /**
@@ -194,7 +198,8 @@ class CardInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'configuration' => 'setConfiguration',
         'deliveryContact' => 'setDeliveryContact',
         'formFactor' => 'setFormFactor',
-        'threeDSecure' => 'setThreeDSecure'
+        'threeDSecure' => 'setThreeDSecure',
+        'usage' => 'setUsage'
     ];
 
     /**
@@ -210,7 +215,8 @@ class CardInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'configuration' => 'getConfiguration',
         'deliveryContact' => 'getDeliveryContact',
         'formFactor' => 'getFormFactor',
-        'threeDSecure' => 'getThreeDSecure'
+        'threeDSecure' => 'getThreeDSecure',
+        'usage' => 'getUsage'
     ];
 
     /**
@@ -294,6 +300,7 @@ class CardInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('deliveryContact', $data ?? [], null);
         $this->setIfExists('formFactor', $data ?? [], null);
         $this->setIfExists('threeDSecure', $data ?? [], null);
+        $this->setIfExists('usage', $data ?? [], null);
     }
 
     /**
@@ -524,11 +531,11 @@ class CardInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getFormFactorAllowableValues();
         if (!in_array($formFactor, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'formFactor', must be one of '%s'",
+                    "formFactor: unexpected enum value '%s' - Supported values are [%s]",
                     $formFactor,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -550,13 +557,37 @@ class CardInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets threeDSecure
      *
-     * @param string|null $threeDSecure Allocates a specific product range for either a physical or a virtual card. Possible values: **fullySupported**, **secureCorporate**. >Reach out to your Adyen contact to get the values relevant for your integration.
+     * @param string|null $threeDSecure The 3DS configuration of the physical or the virtual card. Possible values: **fullySupported**, **secureCorporate**. > Reach out to your Adyen contact to get the values relevant for your integration.
      *
      * @return self
      */
     public function setThreeDSecure($threeDSecure)
     {
         $this->container['threeDSecure'] = $threeDSecure;
+
+        return $this;
+    }
+
+    /**
+     * Gets usage
+     *
+     * @return string|null
+     */
+    public function getUsage()
+    {
+        return $this->container['usage'];
+    }
+
+    /**
+     * Sets usage
+     *
+     * @param string|null $usage Specifies how many times the card can be used. Possible values: **singleUse**, **multiUse**.  > Reach out to your Adyen contact to determine the value relevant for your integration.
+     *
+     * @return self
+     */
+    public function setUsage($usage)
+    {
+        $this->container['usage'] = $usage;
 
         return $this;
     }

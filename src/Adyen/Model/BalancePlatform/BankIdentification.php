@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\BalancePlatform;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
  * BankIdentification Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class BankIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -383,11 +383,11 @@ class BankIdentification implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $allowedValues = $this->getIdentificationTypeAllowableValues();
         if (!in_array($identificationType, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'identificationType', must be one of '%s'",
+                    "identificationType: unexpected enum value '%s' - Supported values are [%s]",
                     $identificationType,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
