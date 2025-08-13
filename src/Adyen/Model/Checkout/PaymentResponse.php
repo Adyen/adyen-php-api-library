@@ -703,11 +703,11 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getResultCodeAllowableValues();
         if (!in_array($resultCode, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'resultCode', must be one of '%s'",
+                    "resultCode: unexpected enum value '%s' - Supported values are [%s]",
                     $resultCode,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

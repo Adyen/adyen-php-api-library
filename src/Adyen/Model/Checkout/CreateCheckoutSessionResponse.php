@@ -1143,11 +1143,11 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
     {
         $allowedValues = $this->getChannelAllowableValues();
         if (!in_array($channel, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'channel', must be one of '%s'",
+                    "channel: unexpected enum value '%s' - Supported values are [%s]",
                     $channel,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1633,11 +1633,11 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
     {
         $allowedValues = $this->getModeAllowableValues();
         if (!in_array($mode, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'mode', must be one of '%s'",
+                    "mode: unexpected enum value '%s' - Supported values are [%s]",
                     $mode,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1763,11 +1763,11 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
     {
         $allowedValues = $this->getRecurringProcessingModelAllowableValues();
         if (!in_array($recurringProcessingModel, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'recurringProcessingModel', must be one of '%s'",
+                    "recurringProcessingModel: unexpected enum value '%s' - Supported values are [%s]",
                     $recurringProcessingModel,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1989,11 +1989,11 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
     {
         $allowedValues = $this->getShopperInteractionAllowableValues();
         if (!in_array($shopperInteraction, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'shopperInteraction', must be one of '%s'",
+                    "shopperInteraction: unexpected enum value '%s' - Supported values are [%s]",
                     $shopperInteraction,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -2263,11 +2263,11 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
     {
         $allowedValues = $this->getStoreFiltrationModeAllowableValues();
         if (!in_array($storeFiltrationMode, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'storeFiltrationMode', must be one of '%s'",
+                    "storeFiltrationMode: unexpected enum value '%s' - Supported values are [%s]",
                     $storeFiltrationMode,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -2321,11 +2321,11 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
     {
         $allowedValues = $this->getStorePaymentMethodModeAllowableValues();
         if (!in_array($storePaymentMethodMode, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'storePaymentMethodMode', must be one of '%s'",
+                    "storePaymentMethodMode: unexpected enum value '%s' - Supported values are [%s]",
                     $storePaymentMethodMode,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

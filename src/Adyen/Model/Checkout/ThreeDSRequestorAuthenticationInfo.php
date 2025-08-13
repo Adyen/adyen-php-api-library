@@ -363,11 +363,11 @@ class ThreeDSRequestorAuthenticationInfo implements ModelInterface, ArrayAccess,
     {
         $allowedValues = $this->getThreeDSReqAuthMethodAllowableValues();
         if (!in_array($threeDSReqAuthMethod, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'threeDSReqAuthMethod', must be one of '%s'",
+                    "threeDSReqAuthMethod: unexpected enum value '%s' - Supported values are [%s]",
                     $threeDSReqAuthMethod,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

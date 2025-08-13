@@ -1278,11 +1278,11 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $allowedValues = $this->getRecurringProcessingModelAllowableValues();
         if (!in_array($recurringProcessingModel, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'recurringProcessingModel', must be one of '%s'",
+                    "recurringProcessingModel: unexpected enum value '%s' - Supported values are [%s]",
                     $recurringProcessingModel,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1657,11 +1657,11 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    "status: unexpected enum value '%s' - Supported values are [%s]",
                     $status,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1715,11 +1715,11 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $allowedValues = $this->getStorePaymentMethodModeAllowableValues();
         if (!in_array($storePaymentMethodMode, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'storePaymentMethodMode', must be one of '%s'",
+                    "storePaymentMethodMode: unexpected enum value '%s' - Supported values are [%s]",
                     $storePaymentMethodMode,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

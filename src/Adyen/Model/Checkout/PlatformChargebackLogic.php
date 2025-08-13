@@ -333,11 +333,11 @@ class PlatformChargebackLogic implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $allowedValues = $this->getBehaviorAllowableValues();
         if (!in_array($behavior, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'behavior', must be one of '%s'",
+                    "behavior: unexpected enum value '%s' - Supported values are [%s]",
                     $behavior,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

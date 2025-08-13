@@ -586,11 +586,11 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         $allowedValues = $this->getChannelAllowableValues();
         if (!in_array($channel, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'channel', must be one of '%s'",
+                    "channel: unexpected enum value '%s' - Supported values are [%s]",
                     $channel,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -860,11 +860,11 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         $allowedValues = $this->getStoreFiltrationModeAllowableValues();
         if (!in_array($storeFiltrationMode, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'storeFiltrationMode', must be one of '%s'",
+                    "storeFiltrationMode: unexpected enum value '%s' - Supported values are [%s]",
                     $storeFiltrationMode,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

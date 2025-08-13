@@ -450,11 +450,11 @@ class AchDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getAccountHolderTypeAllowableValues();
         if (!in_array($accountHolderType, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'accountHolderType', must be one of '%s'",
+                    "accountHolderType: unexpected enum value '%s' - Supported values are [%s]",
                     $accountHolderType,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -508,11 +508,11 @@ class AchDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getBankAccountTypeAllowableValues();
         if (!in_array($bankAccountType, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'bankAccountType', must be one of '%s'",
+                    "bankAccountType: unexpected enum value '%s' - Supported values are [%s]",
                     $bankAccountType,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -736,11 +736,11 @@ class AchDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
                     $type,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

@@ -469,11 +469,11 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         $allowedValues = $this->getDeliveryAddressIndicatorAllowableValues();
         if (!in_array($deliveryAddressIndicator, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'deliveryAddressIndicator', must be one of '%s'",
+                    "deliveryAddressIndicator: unexpected enum value '%s' - Supported values are [%s]",
                     $deliveryAddressIndicator,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -553,11 +553,11 @@ class MerchantRiskIndicator implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         $allowedValues = $this->getDeliveryTimeframeAllowableValues();
         if (!in_array($deliveryTimeframe, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'deliveryTimeframe', must be one of '%s'",
+                    "deliveryTimeframe: unexpected enum value '%s' - Supported values are [%s]",
                     $deliveryTimeframe,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

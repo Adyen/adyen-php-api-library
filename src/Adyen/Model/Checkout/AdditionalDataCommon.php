@@ -601,11 +601,11 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         $allowedValues = $this->getIndustryUsageAllowableValues();
         if (!in_array($industryUsage, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'industryUsage', must be one of '%s'",
+                    "industryUsage: unexpected enum value '%s' - Supported values are [%s]",
                     $industryUsage,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

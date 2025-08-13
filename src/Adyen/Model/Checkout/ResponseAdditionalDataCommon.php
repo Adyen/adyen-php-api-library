@@ -1358,11 +1358,11 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
     {
         $allowedValues = $this->getFraudResultTypeAllowableValues();
         if (!in_array($fraudResultType, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'fraudResultType', must be one of '%s'",
+                    "fraudResultType: unexpected enum value '%s' - Supported values are [%s]",
                     $fraudResultType,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1392,11 +1392,11 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
     {
         $allowedValues = $this->getFraudRiskLevelAllowableValues();
         if (!in_array($fraudRiskLevel, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'fraudRiskLevel', must be one of '%s'",
+                    "fraudRiskLevel: unexpected enum value '%s' - Supported values are [%s]",
                     $fraudRiskLevel,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1934,11 +1934,11 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
     {
         $allowedValues = $this->getRecurringProcessingModelAllowableValues();
         if (!in_array($recurringProcessingModel, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'recurringProcessingModel', must be one of '%s'",
+                    "recurringProcessingModel: unexpected enum value '%s' - Supported values are [%s]",
                     $recurringProcessingModel,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -2280,11 +2280,11 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
     {
         $allowedValues = $this->getTokenizationStoreOperationTypeAllowableValues();
         if (!in_array($tokenizationStoreOperationType, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'tokenizationStoreOperationType', must be one of '%s'",
+                    "tokenizationStoreOperationType: unexpected enum value '%s' - Supported values are [%s]",
                     $tokenizationStoreOperationType,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

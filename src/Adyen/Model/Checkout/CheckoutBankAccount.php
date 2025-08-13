@@ -390,11 +390,11 @@ class CheckoutBankAccount implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $allowedValues = $this->getAccountTypeAllowableValues();
         if (!in_array($accountType, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'accountType', must be one of '%s'",
+                    "accountType: unexpected enum value '%s' - Supported values are [%s]",
                     $accountType,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

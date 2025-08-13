@@ -466,11 +466,11 @@ class ThreeDSecureData implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getAuthenticationResponseAllowableValues();
         if (!in_array($authenticationResponse, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'authenticationResponse', must be one of '%s'",
+                    "authenticationResponse: unexpected enum value '%s' - Supported values are [%s]",
                     $authenticationResponse,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -548,11 +548,11 @@ class ThreeDSecureData implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getChallengeCancelAllowableValues();
         if (!in_array($challengeCancel, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'challengeCancel', must be one of '%s'",
+                    "challengeCancel: unexpected enum value '%s' - Supported values are [%s]",
                     $challengeCancel,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -582,11 +582,11 @@ class ThreeDSecureData implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getDirectoryResponseAllowableValues();
         if (!in_array($directoryResponse, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'directoryResponse', must be one of '%s'",
+                    "directoryResponse: unexpected enum value '%s' - Supported values are [%s]",
                     $directoryResponse,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

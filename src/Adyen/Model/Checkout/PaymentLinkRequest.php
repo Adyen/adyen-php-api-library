@@ -1188,11 +1188,11 @@ class PaymentLinkRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $allowedValues = $this->getRecurringProcessingModelAllowableValues();
         if (!in_array($recurringProcessingModel, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'recurringProcessingModel', must be one of '%s'",
+                    "recurringProcessingModel: unexpected enum value '%s' - Supported values are [%s]",
                     $recurringProcessingModel,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1591,11 +1591,11 @@ class PaymentLinkRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $allowedValues = $this->getStorePaymentMethodModeAllowableValues();
         if (!in_array($storePaymentMethodMode, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'storePaymentMethodMode', must be one of '%s'",
+                    "storePaymentMethodMode: unexpected enum value '%s' - Supported values are [%s]",
                     $storePaymentMethodMode,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
