@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\LegalEntityManagement;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\LegalEntityManagement\ObjectSerializer;
 
 /**
  * GetAcceptedTermsOfServiceDocumentResponse Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class GetAcceptedTermsOfServiceDocumentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -412,11 +412,11 @@ class GetAcceptedTermsOfServiceDocumentResponse implements ModelInterface, Array
     {
         $allowedValues = $this->getTermsOfServiceDocumentFormatAllowableValues();
         if (!in_array($termsOfServiceDocumentFormat, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'termsOfServiceDocumentFormat', must be one of '%s'",
+                    "termsOfServiceDocumentFormat: unexpected enum value '%s' - Supported values are [%s]",
                     $termsOfServiceDocumentFormat,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

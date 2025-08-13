@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\LegalEntityManagement;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\LegalEntityManagement\ObjectSerializer;
 
 /**
  * SoleProprietorship Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -653,11 +653,11 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $allowedValues = $this->getVatAbsenceReasonAllowableValues();
         if (!in_array($vatAbsenceReason, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'vatAbsenceReason', must be one of '%s'",
+                    "vatAbsenceReason: unexpected enum value '%s' - Supported values are [%s]",
                     $vatAbsenceReason,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

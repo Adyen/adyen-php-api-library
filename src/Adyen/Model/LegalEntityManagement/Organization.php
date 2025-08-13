@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\LegalEntityManagement;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\LegalEntityManagement\ObjectSerializer;
 
 /**
  * Organization Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -809,11 +809,11 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
                     $type,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -843,11 +843,11 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getVatAbsenceReasonAllowableValues();
         if (!in_array($vatAbsenceReason, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'vatAbsenceReason', must be one of '%s'",
+                    "vatAbsenceReason: unexpected enum value '%s' - Supported values are [%s]",
                     $vatAbsenceReason,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

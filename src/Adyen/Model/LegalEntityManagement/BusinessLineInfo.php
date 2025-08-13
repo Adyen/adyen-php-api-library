@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\LegalEntityManagement;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\LegalEntityManagement\ObjectSerializer;
 
 /**
  * BusinessLineInfo Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -402,11 +402,11 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getCapabilityAllowableValues();
         if (!in_array($capability, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'capability', must be one of '%s'",
+                    "capability: unexpected enum value '%s' - Supported values are [%s]",
                     $capability,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -508,11 +508,11 @@ class BusinessLineInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getServiceAllowableValues();
         if (!in_array($service, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'service', must be one of '%s'",
+                    "service: unexpected enum value '%s' - Supported values are [%s]",
                     $service,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\LegalEntityManagement;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\LegalEntityManagement\ObjectSerializer;
 
 /**
  * Address Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class Address implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -372,7 +372,7 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets postalCode
      *
-     * @param string|null $postalCode Postal code. Required if `stateOrProvince` and/or `city` is provided.
+     * @param string|null $postalCode The postal code. Required if `stateOrProvince` and/or `city` is provided.  When using alphanumeric postal codes, all letters must be uppercase. For example, 1234 AB or SW1A 1AA.
      *
      * @return self
      */
@@ -396,7 +396,7 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets stateOrProvince
      *
-     * @param string|null $stateOrProvince The two-letter ISO 3166-2 state or province code. For example, **CA** in the US.  If you specify the state or province, you must also send `city`, `postalCode`, and `street`.
+     * @param string|null $stateOrProvince The two-letter ISO 3166-2 state or province code. For example, **CA** in the US. Required for Australia and New Zealand.  If you specify the state or province, you must also send `city`, `postalCode`, and `street`.
      *
      * @return self
      */
