@@ -367,11 +367,11 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
         $allowedValues = $this->{{getter}}AllowableValues();
         {{^isContainer}}
         if ({{#isNullable}}!is_null(${{name}}) && {{/isNullable}}!in_array(${{{name}}}, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for '{{name}}', must be one of '%s'",
+                    "{{name}}: unexpected enum value '%s' - Supported values are [%s]",
                     ${{{name}}},
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
