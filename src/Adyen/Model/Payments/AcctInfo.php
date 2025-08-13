@@ -586,11 +586,11 @@ class AcctInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getChAccAgeIndAllowableValues();
         if (!in_array($chAccAgeInd, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'chAccAgeInd', must be one of '%s'",
+                    "chAccAgeInd: unexpected enum value '%s' - Supported values are [%s]",
                     $chAccAgeInd,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -644,11 +644,11 @@ class AcctInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getChAccChangeIndAllowableValues();
         if (!in_array($chAccChangeInd, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'chAccChangeInd', must be one of '%s'",
+                    "chAccChangeInd: unexpected enum value '%s' - Supported values are [%s]",
                     $chAccChangeInd,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -702,11 +702,11 @@ class AcctInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getChAccPwChangeIndAllowableValues();
         if (!in_array($chAccPwChangeInd, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'chAccPwChangeInd', must be one of '%s'",
+                    "chAccPwChangeInd: unexpected enum value '%s' - Supported values are [%s]",
                     $chAccPwChangeInd,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -808,11 +808,11 @@ class AcctInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getPaymentAccIndAllowableValues();
         if (!in_array($paymentAccInd, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'paymentAccInd', must be one of '%s'",
+                    "paymentAccInd: unexpected enum value '%s' - Supported values are [%s]",
                     $paymentAccInd,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -890,11 +890,11 @@ class AcctInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getShipAddressUsageIndAllowableValues();
         if (!in_array($shipAddressUsageInd, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'shipAddressUsageInd', must be one of '%s'",
+                    "shipAddressUsageInd: unexpected enum value '%s' - Supported values are [%s]",
                     $shipAddressUsageInd,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -924,11 +924,11 @@ class AcctInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getShipNameIndicatorAllowableValues();
         if (!in_array($shipNameIndicator, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'shipNameIndicator', must be one of '%s'",
+                    "shipNameIndicator: unexpected enum value '%s' - Supported values are [%s]",
                     $shipNameIndicator,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -958,11 +958,11 @@ class AcctInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getSuspiciousAccActivityAllowableValues();
         if (!in_array($suspiciousAccActivity, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'suspiciousAccActivity', must be one of '%s'",
+                    "suspiciousAccActivity: unexpected enum value '%s' - Supported values are [%s]",
                     $suspiciousAccActivity,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

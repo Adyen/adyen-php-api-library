@@ -586,11 +586,11 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getAccountAgeIndicatorAllowableValues();
         if (!in_array($accountAgeIndicator, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'accountAgeIndicator', must be one of '%s'",
+                    "accountAgeIndicator: unexpected enum value '%s' - Supported values are [%s]",
                     $accountAgeIndicator,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -644,11 +644,11 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getAccountChangeIndicatorAllowableValues();
         if (!in_array($accountChangeIndicator, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'accountChangeIndicator', must be one of '%s'",
+                    "accountChangeIndicator: unexpected enum value '%s' - Supported values are [%s]",
                     $accountChangeIndicator,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -702,11 +702,11 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getAccountTypeAllowableValues();
         if (!in_array($accountType, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'accountType', must be one of '%s'",
+                    "accountType: unexpected enum value '%s' - Supported values are [%s]",
                     $accountType,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -784,11 +784,11 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getDeliveryAddressUsageIndicatorAllowableValues();
         if (!in_array($deliveryAddressUsageIndicator, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'deliveryAddressUsageIndicator', must be one of '%s'",
+                    "deliveryAddressUsageIndicator: unexpected enum value '%s' - Supported values are [%s]",
                     $deliveryAddressUsageIndicator,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -894,11 +894,11 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getPasswordChangeIndicatorAllowableValues();
         if (!in_array($passwordChangeIndicator, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'passwordChangeIndicator', must be one of '%s'",
+                    "passwordChangeIndicator: unexpected enum value '%s' - Supported values are [%s]",
                     $passwordChangeIndicator,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1000,11 +1000,11 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getPaymentAccountIndicatorAllowableValues();
         if (!in_array($paymentAccountIndicator, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'paymentAccountIndicator', must be one of '%s'",
+                    "paymentAccountIndicator: unexpected enum value '%s' - Supported values are [%s]",
                     $paymentAccountIndicator,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
