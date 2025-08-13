@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\Transfers;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\Transfers\ObjectSerializer;
 
 /**
  * Transfer Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -47,10 +47,12 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => 'string',
         'categoryData' => '\Adyen\Model\Transfers\TransferCategoryData',
         'counterparty' => '\Adyen\Model\Transfers\CounterpartyV3',
+        'createdAt' => '\DateTime',
         'creationDate' => '\DateTime',
         'description' => 'string',
         'directDebitInformation' => '\Adyen\Model\Transfers\DirectDebitInformation',
         'direction' => 'string',
+        'executionDate' => '\Adyen\Model\Transfers\ExecutionDate',
         'id' => 'string',
         'paymentInstrument' => '\Adyen\Model\Transfers\PaymentInstrument',
         'reason' => 'string',
@@ -75,10 +77,12 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => null,
         'categoryData' => null,
         'counterparty' => null,
+        'createdAt' => 'date-time',
         'creationDate' => 'date-time',
         'description' => null,
         'directDebitInformation' => null,
         'direction' => null,
+        'executionDate' => null,
         'id' => null,
         'paymentInstrument' => null,
         'reason' => null,
@@ -101,10 +105,12 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => false,
         'categoryData' => false,
         'counterparty' => false,
+        'createdAt' => false,
         'creationDate' => false,
         'description' => false,
         'directDebitInformation' => false,
         'direction' => false,
+        'executionDate' => false,
         'id' => false,
         'paymentInstrument' => false,
         'reason' => false,
@@ -207,10 +213,12 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => 'category',
         'categoryData' => 'categoryData',
         'counterparty' => 'counterparty',
+        'createdAt' => 'createdAt',
         'creationDate' => 'creationDate',
         'description' => 'description',
         'directDebitInformation' => 'directDebitInformation',
         'direction' => 'direction',
+        'executionDate' => 'executionDate',
         'id' => 'id',
         'paymentInstrument' => 'paymentInstrument',
         'reason' => 'reason',
@@ -233,10 +241,12 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => 'setCategory',
         'categoryData' => 'setCategoryData',
         'counterparty' => 'setCounterparty',
+        'createdAt' => 'setCreatedAt',
         'creationDate' => 'setCreationDate',
         'description' => 'setDescription',
         'directDebitInformation' => 'setDirectDebitInformation',
         'direction' => 'setDirection',
+        'executionDate' => 'setExecutionDate',
         'id' => 'setId',
         'paymentInstrument' => 'setPaymentInstrument',
         'reason' => 'setReason',
@@ -259,10 +269,12 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
         'category' => 'getCategory',
         'categoryData' => 'getCategoryData',
         'counterparty' => 'getCounterparty',
+        'createdAt' => 'getCreatedAt',
         'creationDate' => 'getCreationDate',
         'description' => 'getDescription',
         'directDebitInformation' => 'getDirectDebitInformation',
         'direction' => 'getDirection',
+        'executionDate' => 'getExecutionDate',
         'id' => 'getId',
         'paymentInstrument' => 'getPaymentInstrument',
         'reason' => 'getReason',
@@ -324,6 +336,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DIRECTION_OUTGOING = 'outgoing';
     public const REASON_ACCOUNT_HIERARCHY_NOT_ACTIVE = 'accountHierarchyNotActive';
     public const REASON_AMOUNT_LIMIT_EXCEEDED = 'amountLimitExceeded';
+    public const REASON_APPROVAL_EXPIRED = 'approvalExpired';
     public const REASON_APPROVED = 'approved';
     public const REASON_BALANCE_ACCOUNT_TEMPORARILY_BLOCKED_BY_TRANSACTION_RULE = 'balanceAccountTemporarilyBlockedByTransactionRule';
     public const REASON_COUNTERPARTY_ACCOUNT_BLOCKED = 'counterpartyAccountBlocked';
@@ -490,6 +503,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
         return [
             self::REASON_ACCOUNT_HIERARCHY_NOT_ACTIVE,
             self::REASON_AMOUNT_LIMIT_EXCEEDED,
+            self::REASON_APPROVAL_EXPIRED,
             self::REASON_APPROVED,
             self::REASON_BALANCE_ACCOUNT_TEMPORARILY_BLOCKED_BY_TRANSACTION_RULE,
             self::REASON_COUNTERPARTY_ACCOUNT_BLOCKED,
@@ -660,10 +674,12 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('category', $data ?? [], null);
         $this->setIfExists('categoryData', $data ?? [], null);
         $this->setIfExists('counterparty', $data ?? [], null);
+        $this->setIfExists('createdAt', $data ?? [], null);
         $this->setIfExists('creationDate', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('directDebitInformation', $data ?? [], null);
         $this->setIfExists('direction', $data ?? [], null);
+        $this->setIfExists('executionDate', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('paymentInstrument', $data ?? [], null);
         $this->setIfExists('reason', $data ?? [], null);
@@ -866,11 +882,11 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getCategoryAllowableValues();
         if (!in_array($category, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'category', must be one of '%s'",
+                    "category: unexpected enum value '%s' - Supported values are [%s]",
                     $category,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -928,9 +944,34 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets createdAt
+     *
+     * @return \DateTime|null
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['createdAt'];
+    }
+
+    /**
+     * Sets createdAt
+     *
+     * @param \DateTime|null $createdAt The date and time when the transfer was created, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
+     *
+     * @return self
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->container['createdAt'] = $createdAt;
+
+        return $this;
+    }
+
+    /**
      * Gets creationDate
      *
      * @return \DateTime|null
+     * @deprecated since Transfers API v3. "Use createdAt or updatedAt"
      */
     public function getCreationDate()
     {
@@ -943,6 +984,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param \DateTime|null $creationDate The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
      *
      * @return self
+     * @deprecated since Transfers API v3. "Use createdAt or updatedAt"
      */
     public function setCreationDate($creationDate)
     {
@@ -1020,15 +1062,39 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getDirectionAllowableValues();
         if (!in_array($direction, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'direction', must be one of '%s'",
+                    "direction: unexpected enum value '%s' - Supported values are [%s]",
                     $direction,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
         $this->container['direction'] = $direction;
+
+        return $this;
+    }
+
+    /**
+     * Gets executionDate
+     *
+     * @return \Adyen\Model\Transfers\ExecutionDate|null
+     */
+    public function getExecutionDate()
+    {
+        return $this->container['executionDate'];
+    }
+
+    /**
+     * Sets executionDate
+     *
+     * @param \Adyen\Model\Transfers\ExecutionDate|null $executionDate executionDate
+     *
+     * @return self
+     */
+    public function setExecutionDate($executionDate)
+    {
+        $this->container['executionDate'] = $executionDate;
 
         return $this;
     }
@@ -1102,11 +1168,11 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getReasonAllowableValues();
         if (!in_array($reason, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'reason', must be one of '%s'",
+                    "reason: unexpected enum value '%s' - Supported values are [%s]",
                     $reason,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1200,7 +1266,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      *
-     * @param string $status The result of the transfer.   For example, **authorised**, **refused**, or **error**.
+     * @param string $status The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user's balance account.  - **failed**: the transfer is rejected by the counterparty's bank. - **returned**: the transfer is returned by the counterparty's bank.
      *
      * @return self
      */
@@ -1208,11 +1274,11 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    "status: unexpected enum value '%s' - Supported values are [%s]",
                     $status,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1242,11 +1308,11 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
                     $type,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

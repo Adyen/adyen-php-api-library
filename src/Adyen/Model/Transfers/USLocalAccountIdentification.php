@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\Transfers;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\Transfers\ObjectSerializer;
 
 /**
  * USLocalAccountIdentification Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class USLocalAccountIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -392,11 +392,11 @@ class USLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     {
         $allowedValues = $this->getAccountTypeAllowableValues();
         if (!in_array($accountType, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'accountType', must be one of '%s'",
+                    "accountType: unexpected enum value '%s' - Supported values are [%s]",
                     $accountType,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -450,11 +450,11 @@ class USLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     {
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
                     $type,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

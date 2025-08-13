@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\Transfers\ObjectSerializer;
 
 /**
- * CALocalAccountIdentification Class Doc Comment
+ * ExecutionDate Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
+class ExecutionDate implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       *
       * @var string
       */
-    protected static $openAPIModelName = 'CALocalAccountIdentification';
+    protected static $openAPIModelName = 'ExecutionDate';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,11 +41,8 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       * @var string[]
       */
     protected static $openAPITypes = [
-        'accountNumber' => 'string',
-        'accountType' => 'string',
-        'institutionNumber' => 'string',
-        'transitNumber' => 'string',
-        'type' => 'string'
+        'date' => '\DateTime',
+        'timezone' => 'string'
     ];
 
     /**
@@ -56,11 +53,8 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'accountNumber' => null,
-        'accountType' => null,
-        'institutionNumber' => null,
-        'transitNumber' => null,
-        'type' => null
+        'date' => 'date',
+        'timezone' => null
     ];
 
     /**
@@ -69,11 +63,8 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'accountNumber' => false,
-        'accountType' => false,
-        'institutionNumber' => false,
-        'transitNumber' => false,
-        'type' => false
+        'date' => false,
+        'timezone' => false
     ];
 
     /**
@@ -162,11 +153,8 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $attributeMap = [
-        'accountNumber' => 'accountNumber',
-        'accountType' => 'accountType',
-        'institutionNumber' => 'institutionNumber',
-        'transitNumber' => 'transitNumber',
-        'type' => 'type'
+        'date' => 'date',
+        'timezone' => 'timezone'
     ];
 
     /**
@@ -175,11 +163,8 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $setters = [
-        'accountNumber' => 'setAccountNumber',
-        'accountType' => 'setAccountType',
-        'institutionNumber' => 'setInstitutionNumber',
-        'transitNumber' => 'setTransitNumber',
-        'type' => 'setType'
+        'date' => 'setDate',
+        'timezone' => 'setTimezone'
     ];
 
     /**
@@ -188,11 +173,8 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $getters = [
-        'accountNumber' => 'getAccountNumber',
-        'accountType' => 'getAccountType',
-        'institutionNumber' => 'getInstitutionNumber',
-        'transitNumber' => 'getTransitNumber',
-        'type' => 'getType'
+        'date' => 'getDate',
+        'timezone' => 'getTimezone'
     ];
 
     /**
@@ -236,33 +218,7 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
         return self::$openAPIModelName;
     }
 
-    public const ACCOUNT_TYPE_CHECKING = 'checking';
-    public const ACCOUNT_TYPE_SAVINGS = 'savings';
-    public const TYPE_CA_LOCAL = 'caLocal';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getAccountTypeAllowableValues()
-    {
-        return [
-            self::ACCOUNT_TYPE_CHECKING,
-            self::ACCOUNT_TYPE_SAVINGS,
-        ];
-    }
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_CA_LOCAL,
-        ];
-    }
     /**
      * Associative array for storing property values
      *
@@ -278,11 +234,8 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('accountNumber', $data ?? [], null);
-        $this->setIfExists('accountType', $data ?? [], null);
-        $this->setIfExists('institutionNumber', $data ?? [], null);
-        $this->setIfExists('transitNumber', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('date', $data ?? [], null);
+        $this->setIfExists('timezone', $data ?? [], null);
     }
 
     /**
@@ -312,36 +265,6 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     {
         $invalidProperties = [];
 
-        if ($this->container['accountNumber'] === null) {
-            $invalidProperties[] = "'accountNumber' can't be null";
-        }
-        $allowedValues = $this->getAccountTypeAllowableValues();
-        if (!is_null($this->container['accountType']) && !in_array($this->container['accountType'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'accountType', must be one of '%s'",
-                $this->container['accountType'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if ($this->container['institutionNumber'] === null) {
-            $invalidProperties[] = "'institutionNumber' can't be null";
-        }
-        if ($this->container['transitNumber'] === null) {
-            $invalidProperties[] = "'transitNumber' can't be null";
-        }
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
-        }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -358,141 +281,49 @@ class CALocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
 
 
     /**
-     * Gets accountNumber
+     * Gets date
      *
-     * @return string
+     * @return \DateTime|null
      */
-    public function getAccountNumber()
+    public function getDate()
     {
-        return $this->container['accountNumber'];
+        return $this->container['date'];
     }
 
     /**
-     * Sets accountNumber
+     * Sets date
      *
-     * @param string $accountNumber The 5- to 12-digit bank account number, without separators or whitespace.
+     * @param \DateTime|null $date The date when the transfer will be processed. This date must be: * Within 30 days of the current date. * In the [ISO 8601 format](https://www.iso.org/iso-8601-date-and-time-format.html) **YYYY-MM-DD**. For example: 2025-01-31
      *
      * @return self
      */
-    public function setAccountNumber($accountNumber)
+    public function setDate($date)
     {
-        $this->container['accountNumber'] = $accountNumber;
+        $this->container['date'] = $date;
 
         return $this;
     }
 
     /**
-     * Gets accountType
+     * Gets timezone
      *
      * @return string|null
      */
-    public function getAccountType()
+    public function getTimezone()
     {
-        return $this->container['accountType'];
+        return $this->container['timezone'];
     }
 
     /**
-     * Sets accountType
+     * Sets timezone
      *
-     * @param string|null $accountType The bank account type.  Possible values: **checking** or **savings**. Defaults to **checking**.
+     * @param string|null $timezone The timezone that applies to the execution date. Use a timezone identifier from the [tz database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).  Example: **America/Los_Angeles**.  Default value: **Europe/Amsterdam**.
      *
      * @return self
      */
-    public function setAccountType($accountType)
+    public function setTimezone($timezone)
     {
-        $allowedValues = $this->getAccountTypeAllowableValues();
-        if (!in_array($accountType, $allowedValues, true)) {
-            error_log(
-                sprintf(
-                    "accountType: unexpected enum value '%s' - Supported values are [%s]",
-                    $accountType,
-                    implode(', ', $allowedValues)
-                )
-            );
-        }
-        $this->container['accountType'] = $accountType;
-
-        return $this;
-    }
-
-    /**
-     * Gets institutionNumber
-     *
-     * @return string
-     */
-    public function getInstitutionNumber()
-    {
-        return $this->container['institutionNumber'];
-    }
-
-    /**
-     * Sets institutionNumber
-     *
-     * @param string $institutionNumber The 3-digit institution number, without separators or whitespace.
-     *
-     * @return self
-     */
-    public function setInstitutionNumber($institutionNumber)
-    {
-        $this->container['institutionNumber'] = $institutionNumber;
-
-        return $this;
-    }
-
-    /**
-     * Gets transitNumber
-     *
-     * @return string
-     */
-    public function getTransitNumber()
-    {
-        return $this->container['transitNumber'];
-    }
-
-    /**
-     * Sets transitNumber
-     *
-     * @param string $transitNumber The 5-digit transit number, without separators or whitespace.
-     *
-     * @return self
-     */
-    public function setTransitNumber($transitNumber)
-    {
-        $this->container['transitNumber'] = $transitNumber;
-
-        return $this;
-    }
-
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type **caLocal**
-     *
-     * @return self
-     */
-    public function setType($type)
-    {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            error_log(
-                sprintf(
-                    "type: unexpected enum value '%s' - Supported values are [%s]",
-                    $type,
-                    implode(', ', $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
+        $this->container['timezone'] = $timezone;
 
         return $this;
     }
