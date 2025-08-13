@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\BalancePlatform;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
  * AccountHolderUpdateRequest Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class AccountHolderUpdateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {

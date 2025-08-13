@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\BalancePlatform;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
  * Href Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class Href implements ModelInterface, ArrayAccess, \JsonSerializable
 {

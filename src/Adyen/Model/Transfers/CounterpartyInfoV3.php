@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\Transfers;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\Transfers\ObjectSerializer;
 
 /**
  * CounterpartyInfoV3 Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class CounterpartyInfoV3 implements ModelInterface, ArrayAccess, \JsonSerializable
 {

@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\LegalEntityManagement;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\LegalEntityManagement\ObjectSerializer;
 
 /**
  * LegalEntity Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -423,7 +423,7 @@ class LegalEntity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets capabilities
      *
-     * @param array<string,\Adyen\Model\LegalEntityManagement\LegalEntityCapability>|null $capabilities Contains key-value pairs that specify the actions that the legal entity can do in your platform.The key is a capability required for your integration. For example, **issueCard** for Issuing.The value is an object containing the settings for the capability.
+     * @param array<string,\Adyen\Model\LegalEntityManagement\LegalEntityCapability>|null $capabilities Contains key-value pairs that specify the actions that the legal entity can do in your platform.The key is a capability required for your integration. For example, **issueCard** for Issuing. The value is an object containing the settings for the capability.
      *
      * @return self
      */

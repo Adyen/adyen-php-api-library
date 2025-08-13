@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\LegalEntityManagement;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\LegalEntityManagement\ObjectSerializer;
 
 /**
  * RemediatingAction Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class RemediatingAction implements ModelInterface, ArrayAccess, \JsonSerializable
 {

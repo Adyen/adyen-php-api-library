@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\LegalEntityManagement;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\LegalEntityManagement\ObjectSerializer;
 
 /**
  * WebDataExemption Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class WebDataExemption implements ModelInterface, ArrayAccess, \JsonSerializable
 {

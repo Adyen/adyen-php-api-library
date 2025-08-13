@@ -40,6 +40,22 @@ class PaymentInstrumentsApi extends Service
     }
 
     /**
+    * Create network token provisioning data
+    *
+    * @param string $id
+    * @param \Adyen\Model\BalancePlatform\NetworkTokenActivationDataRequest $networkTokenActivationDataRequest
+    * @param array|null $requestOptions
+    * @return \Adyen\Model\BalancePlatform\NetworkTokenActivationDataResponse
+    * @throws AdyenException
+    */
+    public function createNetworkTokenProvisioningData(string $id, \Adyen\Model\BalancePlatform\NetworkTokenActivationDataRequest $networkTokenActivationDataRequest, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\NetworkTokenActivationDataResponse
+    {
+        $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/paymentInstruments/{id}/networkTokenActivationData");
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $networkTokenActivationDataRequest->jsonSerialize(), $requestOptions);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\BalancePlatform\NetworkTokenActivationDataResponse::class);
+    }
+
+    /**
     * Create a payment instrument
     *
     * @param \Adyen\Model\BalancePlatform\PaymentInstrumentInfo $paymentInstrumentInfo
@@ -67,6 +83,21 @@ class PaymentInstrumentsApi extends Service
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/paymentInstruments/{id}/transactionRules");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
         return ObjectSerializer::deserialize($response, \Adyen\Model\BalancePlatform\TransactionRulesResponse::class);
+    }
+
+    /**
+    * Get network token activation data
+    *
+    * @param string $id
+    * @param array|null $requestOptions
+    * @return \Adyen\Model\BalancePlatform\NetworkTokenActivationDataResponse
+    * @throws AdyenException
+    */
+    public function getNetworkTokenActivationData(string $id, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\NetworkTokenActivationDataResponse
+    {
+        $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/paymentInstruments/{id}/networkTokenActivationData");
+        $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\BalancePlatform\NetworkTokenActivationDataResponse::class);
     }
 
     /**

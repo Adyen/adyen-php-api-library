@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\BalancePlatform;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
  * TransferRoute Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class TransferRoute implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -239,6 +239,7 @@ class TransferRoute implements ModelInterface, ArrayAccess, \JsonSerializable
     public const CATEGORY_BANK = 'bank';
     public const CATEGORY_CARD = 'card';
     public const CATEGORY_GRANTS = 'grants';
+    public const CATEGORY_INTEREST = 'interest';
     public const CATEGORY_INTERNAL = 'internal';
     public const CATEGORY_ISSUED_CARD = 'issuedCard';
     public const CATEGORY_MIGRATION = 'migration';
@@ -263,6 +264,7 @@ class TransferRoute implements ModelInterface, ArrayAccess, \JsonSerializable
             self::CATEGORY_BANK,
             self::CATEGORY_CARD,
             self::CATEGORY_GRANTS,
+            self::CATEGORY_INTEREST,
             self::CATEGORY_INTERNAL,
             self::CATEGORY_ISSUED_CARD,
             self::CATEGORY_MIGRATION,
@@ -464,7 +466,7 @@ class TransferRoute implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets priority
      *
-     * @param string|null $priority The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).
+     * @param string|null $priority The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers within the United States and in [SEPA locations](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).
      *
      * @return self
      */

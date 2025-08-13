@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\BalancePlatform;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
  * SGLocalAccountIdentification Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class SGLocalAccountIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
 {

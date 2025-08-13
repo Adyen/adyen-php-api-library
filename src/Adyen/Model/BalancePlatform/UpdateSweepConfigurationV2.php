@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\BalancePlatform;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
  * UpdateSweepConfigurationV2 Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class UpdateSweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -313,6 +313,7 @@ class UpdateSweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSe
     public const PRIORITIES_WIRE = 'wire';
     public const REASON_ACCOUNT_HIERARCHY_NOT_ACTIVE = 'accountHierarchyNotActive';
     public const REASON_AMOUNT_LIMIT_EXCEEDED = 'amountLimitExceeded';
+    public const REASON_APPROVAL_EXPIRED = 'approvalExpired';
     public const REASON_APPROVED = 'approved';
     public const REASON_BALANCE_ACCOUNT_TEMPORARILY_BLOCKED_BY_TRANSACTION_RULE = 'balanceAccountTemporarilyBlockedByTransactionRule';
     public const REASON_COUNTERPARTY_ACCOUNT_BLOCKED = 'counterpartyAccountBlocked';
@@ -379,6 +380,7 @@ class UpdateSweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSe
         return [
             self::REASON_ACCOUNT_HIERARCHY_NOT_ACTIVE,
             self::REASON_AMOUNT_LIMIT_EXCEEDED,
+            self::REASON_APPROVAL_EXPIRED,
             self::REASON_APPROVED,
             self::REASON_BALANCE_ACCOUNT_TEMPORARILY_BLOCKED_BY_TRANSACTION_RULE,
             self::REASON_COUNTERPARTY_ACCOUNT_BLOCKED,
@@ -681,7 +683,7 @@ class UpdateSweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets priorities
      *
-     * @param string[]|null $priorities The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities, ordered by your preference. Adyen will try to pay out using the priorities in the given order. If the first priority is not currently supported or enabled for your platform, the system will try the next one, and so on.  The request will be accepted as long as **at least one** of the provided priorities is valid (i.e., supported by Adyen and activated for your platform). For example, if you provide `[\"wire\",\"regular\"]`, and `wire` is not supported but `regular` is, the request will still be accepted and processed.  Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).  Set `category` to **bank**. For more details, see optional priorities setup for [marketplaces](https://docs.adyen.com/marketplaces/payout-to-users/scheduled-payouts#optional-priorities-setup) or [platforms](https://docs.adyen.com/platforms/payout-to-users/scheduled-payouts#optional-priorities-setup).
+     * @param string[]|null $priorities The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities, ordered by your preference. Adyen will try to pay out using the priorities in the given order. If the first priority is not currently supported or enabled for your platform, the system will try the next one, and so on.  The request will be accepted as long as **at least one** of the provided priorities is valid (i.e., supported by Adyen and activated for your platform). For example, if you provide `[\"wire\",\"regular\"]`, and `wire` is not supported but `regular` is, the request will still be accepted and processed.  Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers within the United States and in [SEPA locations](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).  Set `category` to **bank**. For more details, see optional priorities setup for [marketplaces](https://docs.adyen.com/marketplaces/payout-to-users/scheduled-payouts#optional-priorities-setup) or [platforms](https://docs.adyen.com/platforms/payout-to-users/scheduled-payouts#optional-priorities-setup).
      *
      * @return self
      */
