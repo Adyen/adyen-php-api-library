@@ -466,11 +466,11 @@ class Mandate implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getAmountRuleAllowableValues();
         if (!in_array($amountRule, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'amountRule', must be one of '%s'",
+                    "amountRule: unexpected enum value '%s' - Supported values are [%s]",
                     $amountRule,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -500,11 +500,11 @@ class Mandate implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getBillingAttemptsRuleAllowableValues();
         if (!in_array($billingAttemptsRule, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'billingAttemptsRule', must be one of '%s'",
+                    "billingAttemptsRule: unexpected enum value '%s' - Supported values are [%s]",
                     $billingAttemptsRule,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -606,11 +606,11 @@ class Mandate implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getFrequencyAllowableValues();
         if (!in_array($frequency, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'frequency', must be one of '%s'",
+                    "frequency: unexpected enum value '%s' - Supported values are [%s]",
                     $frequency,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

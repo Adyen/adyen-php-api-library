@@ -374,11 +374,11 @@ class Installments implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getPlanAllowableValues();
         if (!in_array($plan, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'plan', must be one of '%s'",
+                    "plan: unexpected enum value '%s' - Supported values are [%s]",
                     $plan,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

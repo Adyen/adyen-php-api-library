@@ -448,11 +448,11 @@ class SecureRemoteCommerceCheckoutData implements ModelInterface, ArrayAccess, \
     {
         $allowedValues = $this->getSchemeAllowableValues();
         if (!in_array($scheme, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'scheme', must be one of '%s'",
+                    "scheme: unexpected enum value '%s' - Supported values are [%s]",
                     $scheme,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
