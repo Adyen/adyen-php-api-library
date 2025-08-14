@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\TransferWebhooks;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\TransferWebhooks\ObjectSerializer;
 
 /**
  * InternalReviewTrackingData Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class InternalReviewTrackingData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -379,11 +379,11 @@ class InternalReviewTrackingData implements ModelInterface, ArrayAccess, \JsonSe
     {
         $allowedValues = $this->getReasonAllowableValues();
         if (!in_array($reason, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'reason', must be one of '%s'",
+                    "reason: unexpected enum value '%s' - Supported values are [%s]",
                     $reason,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -405,7 +405,7 @@ class InternalReviewTrackingData implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets status
      *
-     * @param string $status The status of the transfer.  Possible values:   - **pending**: the transfer is under internal review.  - **failed**: the transfer failed Adyen's internal review. For details, see `reason`.
+     * @param string $status The status of the transfer.  Possible values:   - **pending**: the transfer is under internal review by Adyen.  - **failed**: the transfer failed Adyen's internal review. For details, see `reason`.
      *
      * @return self
      */
@@ -413,11 +413,11 @@ class InternalReviewTrackingData implements ModelInterface, ArrayAccess, \JsonSe
     {
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    "status: unexpected enum value '%s' - Supported values are [%s]",
                     $status,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -447,11 +447,11 @@ class InternalReviewTrackingData implements ModelInterface, ArrayAccess, \JsonSe
     {
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
                     $type,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

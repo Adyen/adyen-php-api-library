@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\TransferWebhooks;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\TransferWebhooks\ObjectSerializer;
 
 /**
  * ConfirmationTrackingData Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class ConfirmationTrackingData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -341,7 +341,7 @@ class ConfirmationTrackingData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets status
      *
-     * @param string $status The status of the transfer.  Possible values:    - **credited**: the funds are credited to your user's transfer instrument or bank account.
+     * @param string $status The status of the transfer.  Possible values:   - **credited**: the funds are credited to your user's transfer instrument or bank account.
      *
      * @return self
      */
@@ -349,11 +349,11 @@ class ConfirmationTrackingData implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    "status: unexpected enum value '%s' - Supported values are [%s]",
                     $status,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -383,11 +383,11 @@ class ConfirmationTrackingData implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
                     $type,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

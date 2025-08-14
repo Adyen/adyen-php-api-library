@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\TransferWebhooks;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\TransferWebhooks\ObjectSerializer;
 
 /**
  * CounterpartyV3 Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class CounterpartyV3 implements ModelInterface, ArrayAccess, \JsonSerializable
 {

@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\TransferWebhooks;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\TransferWebhooks\ObjectSerializer;
 
 /**
  * TransactionRuleReference Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class TransactionRuleReference implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -410,7 +410,7 @@ class TransactionRuleReference implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets score
      *
-     * @param int|null $score The score of the rule in case it's a scoreBased rule.
+     * @param int|null $score The transaction score determined by the rule. Returned only when `outcomeType` is **scoreBased**.
      *
      * @return self
      */

@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\AcsWebhooks;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\AcsWebhooks\ObjectSerializer;
 
 /**
  * AuthenticationInfo Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -734,11 +734,11 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $allowedValues = $this->getChallengeIndicatorAllowableValues();
         if (!in_array($challengeIndicator, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'challengeIndicator', must be one of '%s'",
+                    "challengeIndicator: unexpected enum value '%s' - Supported values are [%s]",
                     $challengeIndicator,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -792,11 +792,11 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $allowedValues = $this->getDeviceChannelAllowableValues();
         if (!in_array($deviceChannel, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'deviceChannel', must be one of '%s'",
+                    "deviceChannel: unexpected enum value '%s' - Supported values are [%s]",
                     $deviceChannel,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -850,11 +850,11 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $allowedValues = $this->getExemptionIndicatorAllowableValues();
         if (!in_array($exemptionIndicator, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'exemptionIndicator', must be one of '%s'",
+                    "exemptionIndicator: unexpected enum value '%s' - Supported values are [%s]",
                     $exemptionIndicator,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -908,11 +908,11 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $allowedValues = $this->getMessageCategoryAllowableValues();
         if (!in_array($messageCategory, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'messageCategory', must be one of '%s'",
+                    "messageCategory: unexpected enum value '%s' - Supported values are [%s]",
                     $messageCategory,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1014,11 +1014,11 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $allowedValues = $this->getTransStatusAllowableValues();
         if (!in_array($transStatus, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'transStatus', must be one of '%s'",
+                    "transStatus: unexpected enum value '%s' - Supported values are [%s]",
                     $transStatus,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1048,11 +1048,11 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $allowedValues = $this->getTransStatusReasonAllowableValues();
         if (!in_array($transStatusReason, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'transStatusReason', must be one of '%s'",
+                    "transStatusReason: unexpected enum value '%s' - Supported values are [%s]",
                     $transStatusReason,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1082,11 +1082,11 @@ class AuthenticationInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
                     $type,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\AcsWebhooks;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\AcsWebhooks\ObjectSerializer;
 
 /**
  * Purchase Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class Purchase implements ModelInterface, ArrayAccess, \JsonSerializable
 {
