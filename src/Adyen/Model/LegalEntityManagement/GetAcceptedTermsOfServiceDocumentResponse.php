@@ -412,11 +412,11 @@ class GetAcceptedTermsOfServiceDocumentResponse implements ModelInterface, Array
     {
         $allowedValues = $this->getTermsOfServiceDocumentFormatAllowableValues();
         if (!in_array($termsOfServiceDocumentFormat, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'termsOfServiceDocumentFormat', must be one of '%s'",
+                    "termsOfServiceDocumentFormat: unexpected enum value '%s' - Supported values are [%s]",
                     $termsOfServiceDocumentFormat,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

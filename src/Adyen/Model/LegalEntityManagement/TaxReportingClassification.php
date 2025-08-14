@@ -402,11 +402,11 @@ class TaxReportingClassification implements ModelInterface, ArrayAccess, \JsonSe
     {
         $allowedValues = $this->getBusinessTypeAllowableValues();
         if (!in_array($businessType, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'businessType', must be one of '%s'",
+                    "businessType: unexpected enum value '%s' - Supported values are [%s]",
                     $businessType,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -460,11 +460,11 @@ class TaxReportingClassification implements ModelInterface, ArrayAccess, \JsonSe
     {
         $allowedValues = $this->getMainSourceOfIncomeAllowableValues();
         if (!in_array($mainSourceOfIncome, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'mainSourceOfIncome', must be one of '%s'",
+                    "mainSourceOfIncome: unexpected enum value '%s' - Supported values are [%s]",
                     $mainSourceOfIncome,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -494,11 +494,11 @@ class TaxReportingClassification implements ModelInterface, ArrayAccess, \JsonSe
     {
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
                     $type,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
