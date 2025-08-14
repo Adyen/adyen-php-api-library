@@ -329,11 +329,11 @@ class BankAccountModel implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         $allowedValues = $this->getFormFactorAllowableValues();
         if (!is_null($formFactor) && !in_array($formFactor, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'formFactor', must be one of '%s'",
+                    "formFactor: unexpected enum value '%s' - Supported values are [%s]",
                     $formFactor,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

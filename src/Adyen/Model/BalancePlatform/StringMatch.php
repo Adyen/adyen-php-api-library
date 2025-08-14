@@ -328,11 +328,11 @@ class StringMatch implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getOperationAllowableValues();
         if (!in_array($operation, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'operation', must be one of '%s'",
+                    "operation: unexpected enum value '%s' - Supported values are [%s]",
                     $operation,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

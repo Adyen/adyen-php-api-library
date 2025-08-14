@@ -573,11 +573,11 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         $allowedValues = $this->getCategoryAllowableValues();
         if (!in_array($category, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'category', must be one of '%s'",
+                    "category: unexpected enum value '%s' - Supported values are [%s]",
                     $category,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -736,11 +736,11 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         $allowedValues = $this->getReasonAllowableValues();
         if (!in_array($reason, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'reason', must be one of '%s'",
+                    "reason: unexpected enum value '%s' - Supported values are [%s]",
                     $reason,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -866,11 +866,11 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    "status: unexpected enum value '%s' - Supported values are [%s]",
                     $status,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -972,11 +972,11 @@ class SweepConfigurationV2 implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
                     $type,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

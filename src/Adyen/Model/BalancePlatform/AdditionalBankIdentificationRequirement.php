@@ -359,11 +359,11 @@ class AdditionalBankIdentificationRequirement implements ModelInterface, ArrayAc
     {
         $allowedValues = $this->getAdditionalBankIdentificationTypeAllowableValues();
         if (!in_array($additionalBankIdentificationType, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'additionalBankIdentificationType', must be one of '%s'",
+                    "additionalBankIdentificationType: unexpected enum value '%s' - Supported values are [%s]",
                     $additionalBankIdentificationType,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -417,11 +417,11 @@ class AdditionalBankIdentificationRequirement implements ModelInterface, ArrayAc
     {
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
                     $type,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

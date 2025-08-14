@@ -531,11 +531,11 @@ class CardInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getFormFactorAllowableValues();
         if (!in_array($formFactor, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'formFactor', must be one of '%s'",
+                    "formFactor: unexpected enum value '%s' - Supported values are [%s]",
                     $formFactor,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

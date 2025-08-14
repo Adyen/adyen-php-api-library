@@ -462,11 +462,11 @@ class AccountHolderCapability implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $allowedValues = $this->getAllowedLevelAllowableValues();
         if (!in_array($allowedLevel, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'allowedLevel', must be one of '%s'",
+                    "allowedLevel: unexpected enum value '%s' - Supported values are [%s]",
                     $allowedLevel,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -592,11 +592,11 @@ class AccountHolderCapability implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $allowedValues = $this->getRequestedLevelAllowableValues();
         if (!in_array($requestedLevel, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'requestedLevel', must be one of '%s'",
+                    "requestedLevel: unexpected enum value '%s' - Supported values are [%s]",
                     $requestedLevel,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -674,11 +674,11 @@ class AccountHolderCapability implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $allowedValues = $this->getVerificationStatusAllowableValues();
         if (!in_array($verificationStatus, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'verificationStatus', must be one of '%s'",
+                    "verificationStatus: unexpected enum value '%s' - Supported values are [%s]",
                     $verificationStatus,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
