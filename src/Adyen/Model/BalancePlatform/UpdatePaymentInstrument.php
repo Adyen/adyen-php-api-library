@@ -757,11 +757,11 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    "status: unexpected enum value '%s' - Supported values are [%s]",
                     $status,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -815,11 +815,11 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $allowedValues = $this->getStatusReasonAllowableValues();
         if (!in_array($statusReason, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'statusReason', must be one of '%s'",
+                    "statusReason: unexpected enum value '%s' - Supported values are [%s]",
                     $statusReason,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -849,11 +849,11 @@ class UpdatePaymentInstrument implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
                     $type,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

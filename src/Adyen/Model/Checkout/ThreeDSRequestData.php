@@ -413,11 +413,11 @@ class ThreeDSRequestData implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $allowedValues = $this->getChallengeWindowSizeAllowableValues();
         if (!in_array($challengeWindowSize, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'challengeWindowSize', must be one of '%s'",
+                    "challengeWindowSize: unexpected enum value '%s' - Supported values are [%s]",
                     $challengeWindowSize,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -447,11 +447,11 @@ class ThreeDSRequestData implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $allowedValues = $this->getDataOnlyAllowableValues();
         if (!in_array($dataOnly, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'dataOnly', must be one of '%s'",
+                    "dataOnly: unexpected enum value '%s' - Supported values are [%s]",
                     $dataOnly,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -481,11 +481,11 @@ class ThreeDSRequestData implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $allowedValues = $this->getNativeThreeDSAllowableValues();
         if (!in_array($nativeThreeDS, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'nativeThreeDS', must be one of '%s'",
+                    "nativeThreeDS: unexpected enum value '%s' - Supported values are [%s]",
                     $nativeThreeDS,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -515,11 +515,11 @@ class ThreeDSRequestData implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $allowedValues = $this->getThreeDSVersionAllowableValues();
         if (!in_array($threeDSVersion, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'threeDSVersion', must be one of '%s'",
+                    "threeDSVersion: unexpected enum value '%s' - Supported values are [%s]",
                     $threeDSVersion,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

@@ -444,11 +444,11 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $allowedValues = $this->getIntervalAllowableValues();
         if (!in_array($interval, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'interval', must be one of '%s'",
+                    "interval: unexpected enum value '%s' - Supported values are [%s]",
                     $interval,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

@@ -366,11 +366,11 @@ class ThreeDSRequestorPriorAuthenticationInfo implements ModelInterface, ArrayAc
     {
         $allowedValues = $this->getThreeDSReqPriorAuthMethodAllowableValues();
         if (!in_array($threeDSReqPriorAuthMethod, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'threeDSReqPriorAuthMethod', must be one of '%s'",
+                    "threeDSReqPriorAuthMethod: unexpected enum value '%s' - Supported values are [%s]",
                     $threeDSReqPriorAuthMethod,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

@@ -651,11 +651,11 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getOutcomeTypeAllowableValues();
         if (!in_array($outcomeType, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'outcomeType', must be one of '%s'",
+                    "outcomeType: unexpected enum value '%s' - Supported values are [%s]",
                     $outcomeType,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -709,11 +709,11 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getRequestTypeAllowableValues();
         if (!in_array($requestType, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'requestType', must be one of '%s'",
+                    "requestType: unexpected enum value '%s' - Supported values are [%s]",
                     $requestType,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -815,11 +815,11 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    "status: unexpected enum value '%s' - Supported values are [%s]",
                     $status,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -849,11 +849,11 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
                     $type,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

@@ -653,11 +653,11 @@ class SoleProprietorship implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $allowedValues = $this->getVatAbsenceReasonAllowableValues();
         if (!in_array($vatAbsenceReason, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'vatAbsenceReason', must be one of '%s'",
+                    "vatAbsenceReason: unexpected enum value '%s' - Supported values are [%s]",
                     $vatAbsenceReason,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

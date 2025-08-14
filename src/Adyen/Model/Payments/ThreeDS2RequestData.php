@@ -751,11 +751,11 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $allowedValues = $this->getAcctTypeAllowableValues();
         if (!in_array($acctType, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'acctType', must be one of '%s'",
+                    "acctType: unexpected enum value '%s' - Supported values are [%s]",
                     $acctType,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -833,11 +833,11 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $allowedValues = $this->getAddrMatchAllowableValues();
         if (!in_array($addrMatch, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'addrMatch', must be one of '%s'",
+                    "addrMatch: unexpected enum value '%s' - Supported values are [%s]",
                     $addrMatch,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -895,11 +895,11 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $allowedValues = $this->getChallengeIndicatorAllowableValues();
         if (!in_array($challengeIndicator, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'challengeIndicator', must be one of '%s'",
+                    "challengeIndicator: unexpected enum value '%s' - Supported values are [%s]",
                     $challengeIndicator,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1481,11 +1481,11 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $allowedValues = $this->getThreeDSRequestorChallengeIndAllowableValues();
         if (!in_array($threeDSRequestorChallengeInd, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'threeDSRequestorChallengeInd', must be one of '%s'",
+                    "threeDSRequestorChallengeInd: unexpected enum value '%s' - Supported values are [%s]",
                     $threeDSRequestorChallengeInd,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1611,11 +1611,11 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $allowedValues = $this->getTransTypeAllowableValues();
         if (!in_array($transType, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'transType', must be one of '%s'",
+                    "transType: unexpected enum value '%s' - Supported values are [%s]",
                     $transType,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1645,11 +1645,11 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $allowedValues = $this->getTransactionTypeAllowableValues();
         if (!in_array($transactionType, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'transactionType', must be one of '%s'",
+                    "transactionType: unexpected enum value '%s' - Supported values are [%s]",
                     $transactionType,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

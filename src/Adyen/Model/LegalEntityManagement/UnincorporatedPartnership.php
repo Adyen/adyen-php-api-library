@@ -694,11 +694,11 @@ class UnincorporatedPartnership implements ModelInterface, ArrayAccess, \JsonSer
     {
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
                     $type,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -728,11 +728,11 @@ class UnincorporatedPartnership implements ModelInterface, ArrayAccess, \JsonSer
     {
         $allowedValues = $this->getVatAbsenceReasonAllowableValues();
         if (!in_array($vatAbsenceReason, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'vatAbsenceReason', must be one of '%s'",
+                    "vatAbsenceReason: unexpected enum value '%s' - Supported values are [%s]",
                     $vatAbsenceReason,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

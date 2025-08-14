@@ -524,11 +524,11 @@ class ThreeDS2Result implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getChallengeCancelAllowableValues();
         if (!in_array($challengeCancel, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'challengeCancel', must be one of '%s'",
+                    "challengeCancel: unexpected enum value '%s' - Supported values are [%s]",
                     $challengeCancel,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -606,11 +606,11 @@ class ThreeDS2Result implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getExemptionIndicatorAllowableValues();
         if (!in_array($exemptionIndicator, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'exemptionIndicator', must be one of '%s'",
+                    "exemptionIndicator: unexpected enum value '%s' - Supported values are [%s]",
                     $exemptionIndicator,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -688,11 +688,11 @@ class ThreeDS2Result implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getThreeDSRequestorChallengeIndAllowableValues();
         if (!in_array($threeDSRequestorChallengeInd, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'threeDSRequestorChallengeInd', must be one of '%s'",
+                    "threeDSRequestorChallengeInd: unexpected enum value '%s' - Supported values are [%s]",
                     $threeDSRequestorChallengeInd,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

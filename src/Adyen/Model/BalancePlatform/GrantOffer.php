@@ -417,11 +417,11 @@ class GrantOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getContractTypeAllowableValues();
         if (!in_array($contractType, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'contractType', must be one of '%s'",
+                    "contractType: unexpected enum value '%s' - Supported values are [%s]",
                     $contractType,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

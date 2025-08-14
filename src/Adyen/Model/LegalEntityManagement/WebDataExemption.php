@@ -317,11 +317,11 @@ class WebDataExemption implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getReasonAllowableValues();
         if (!in_array($reason, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'reason', must be one of '%s'",
+                    "reason: unexpected enum value '%s' - Supported values are [%s]",
                     $reason,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

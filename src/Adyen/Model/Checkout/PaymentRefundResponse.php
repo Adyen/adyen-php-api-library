@@ -535,11 +535,11 @@ class PaymentRefundResponse implements ModelInterface, ArrayAccess, \JsonSeriali
         }
         $allowedValues = $this->getMerchantRefundReasonAllowableValues();
         if (!is_null($merchantRefundReason) && !in_array($merchantRefundReason, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'merchantRefundReason', must be one of '%s'",
+                    "merchantRefundReason: unexpected enum value '%s' - Supported values are [%s]",
                     $merchantRefundReason,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -665,11 +665,11 @@ class PaymentRefundResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    "status: unexpected enum value '%s' - Supported values are [%s]",
                     $status,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

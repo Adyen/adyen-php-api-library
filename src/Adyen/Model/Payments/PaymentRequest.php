@@ -1132,11 +1132,11 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getEntityTypeAllowableValues();
         if (!in_array($entityType, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'entityType', must be one of '%s'",
+                    "entityType: unexpected enum value '%s' - Supported values are [%s]",
                     $entityType,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1238,11 +1238,11 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getFundingSourceAllowableValues();
         if (!in_array($fundingSource, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'fundingSource', must be one of '%s'",
+                    "fundingSource: unexpected enum value '%s' - Supported values are [%s]",
                     $fundingSource,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1584,11 +1584,11 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getRecurringProcessingModelAllowableValues();
         if (!in_array($recurringProcessingModel, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'recurringProcessingModel', must be one of '%s'",
+                    "recurringProcessingModel: unexpected enum value '%s' - Supported values are [%s]",
                     $recurringProcessingModel,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1786,11 +1786,11 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getShopperInteractionAllowableValues();
         if (!in_array($shopperInteraction, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'shopperInteraction', must be one of '%s'",
+                    "shopperInteraction: unexpected enum value '%s' - Supported values are [%s]",
                     $shopperInteraction,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

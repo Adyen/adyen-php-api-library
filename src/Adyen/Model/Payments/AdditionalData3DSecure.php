@@ -382,11 +382,11 @@ class AdditionalData3DSecure implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $allowedValues = $this->getChallengeWindowSizeAllowableValues();
         if (!in_array($challengeWindowSize, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'challengeWindowSize', must be one of '%s'",
+                    "challengeWindowSize: unexpected enum value '%s' - Supported values are [%s]",
                     $challengeWindowSize,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

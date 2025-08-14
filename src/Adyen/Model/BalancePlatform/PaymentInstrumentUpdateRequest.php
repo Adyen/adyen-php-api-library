@@ -434,11 +434,11 @@ class PaymentInstrumentUpdateRequest implements ModelInterface, ArrayAccess, \Js
     {
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    "status: unexpected enum value '%s' - Supported values are [%s]",
                     $status,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -492,11 +492,11 @@ class PaymentInstrumentUpdateRequest implements ModelInterface, ArrayAccess, \Js
     {
         $allowedValues = $this->getStatusReasonAllowableValues();
         if (!in_array($statusReason, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'statusReason', must be one of '%s'",
+                    "statusReason: unexpected enum value '%s' - Supported values are [%s]",
                     $statusReason,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

@@ -414,11 +414,11 @@ class StoredPaymentMethodRequest implements ModelInterface, ArrayAccess, \JsonSe
     {
         $allowedValues = $this->getRecurringProcessingModelAllowableValues();
         if (!in_array($recurringProcessingModel, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'recurringProcessingModel', must be one of '%s'",
+                    "recurringProcessingModel: unexpected enum value '%s' - Supported values are [%s]",
                     $recurringProcessingModel,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

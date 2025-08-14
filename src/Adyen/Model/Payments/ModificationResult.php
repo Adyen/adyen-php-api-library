@@ -399,11 +399,11 @@ class ModificationResult implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $allowedValues = $this->getResponseAllowableValues();
         if (!in_array($response, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'response', must be one of '%s'",
+                    "response: unexpected enum value '%s' - Supported values are [%s]",
                     $response,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

@@ -383,11 +383,11 @@ class PhoneNumber implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getPhoneTypeAllowableValues();
         if (!in_array($phoneType, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'phoneType', must be one of '%s'",
+                    "phoneType: unexpected enum value '%s' - Supported values are [%s]",
                     $phoneType,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

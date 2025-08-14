@@ -414,11 +414,11 @@ class GooglePayDonations implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $allowedValues = $this->getFundingSourceAllowableValues();
         if (!in_array($fundingSource, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'fundingSource', must be one of '%s'",
+                    "fundingSource: unexpected enum value '%s' - Supported values are [%s]",
                     $fundingSource,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -570,11 +570,11 @@ class GooglePayDonations implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
                     $type,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

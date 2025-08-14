@@ -331,11 +331,11 @@ class AuthenticationData implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $allowedValues = $this->getAttemptAuthenticationAllowableValues();
         if (!in_array($attemptAuthentication, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'attemptAuthentication', must be one of '%s'",
+                    "attemptAuthentication: unexpected enum value '%s' - Supported values are [%s]",
                     $attemptAuthentication,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

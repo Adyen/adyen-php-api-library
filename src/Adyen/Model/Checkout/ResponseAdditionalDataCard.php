@@ -535,11 +535,11 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
     {
         $allowedValues = $this->getCardProductIdAllowableValues();
         if (!in_array($cardProductId, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'cardProductId', must be one of '%s'",
+                    "cardProductId: unexpected enum value '%s' - Supported values are [%s]",
                     $cardProductId,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

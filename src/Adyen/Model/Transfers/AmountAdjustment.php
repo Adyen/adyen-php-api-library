@@ -359,11 +359,11 @@ class AmountAdjustment implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getAmountAdjustmentTypeAllowableValues();
         if (!in_array($amountAdjustmentType, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'amountAdjustmentType', must be one of '%s'",
+                    "amountAdjustmentType: unexpected enum value '%s' - Supported values are [%s]",
                     $amountAdjustmentType,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
