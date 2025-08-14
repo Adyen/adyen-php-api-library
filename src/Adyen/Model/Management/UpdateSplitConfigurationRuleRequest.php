@@ -29,17 +29,17 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
     public const DISCRIMINATOR = null;
 
     /**
-      * The original name of the model.
-      *
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $openAPIModelName = 'UpdateSplitConfigurationRuleRequest';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      *
-      * @var string[]
-      */
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @var string[]
+     */
     protected static $openAPITypes = [
         'currency' => 'string',
         'fundingSource' => 'string',
@@ -48,12 +48,12 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of property to format mappings. Used for (de)serialization
-      *
-      * @var string[]
-      * @phpstan-var array<string, string|null>
-      * @psalm-var array<string, string|null>
-      */
+     * Array of property to format mappings. Used for (de)serialization
+     *
+     * @var string[]
+     * @phpstan-var array<string, string|null>
+     * @psalm-var array<string, string|null>
+     */
     protected static $openAPIFormats = [
         'currency' => null,
         'fundingSource' => null,
@@ -62,10 +62,10 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of nullable properties. Used for (de)serialization
-      *
-      * @var boolean[]
-      */
+     * Array of nullable properties. Used for (de)serialization
+     *
+     * @var boolean[]
+     */
     protected static $openAPINullables = [
         'currency' => false,
         'fundingSource' => false,
@@ -74,10 +74,10 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * If a nullable field gets set to null, insert it here
-      *
-      * @var boolean[]
-      */
+     * If a nullable field gets set to null, insert it here
+     *
+     * @var boolean[]
+     */
     protected $openAPINullablesSetToNull = [];
 
     /**
@@ -253,14 +253,14 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
     }
 
     /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    *
-    * @param string $variableName
-    * @param array  $fields
-    * @param mixed  $defaultValue
-    */
+     * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+     * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+     * $this->openAPINullablesSetToNull array
+     *
+     * @param string $variableName
+     * @param array  $fields
+     * @param mixed  $defaultValue
+     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
@@ -281,9 +281,6 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
 
         if ($this->container['currency'] === null) {
             $invalidProperties[] = "'currency' can't be null";
-        }
-        if ($this->container['fundingSource'] === null) {
-            $invalidProperties[] = "'fundingSource' can't be null";
         }
         if ($this->container['paymentMethod'] === null) {
             $invalidProperties[] = "'paymentMethod' can't be null";
@@ -333,7 +330,7 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
     /**
      * Gets fundingSource
      *
-     * @return string
+     * @return string|null
      */
     public function getFundingSource()
     {
@@ -343,7 +340,7 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
     /**
      * Sets fundingSource
      *
-     * @param string $fundingSource The funding source of the payment method.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**
+     * @param string|null $fundingSource The funding source of the payment method. This only applies to card transactions.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**
      *
      * @return self
      */
@@ -477,10 +474,10 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();
-                // Check if it's type datetime
+                    // Check if it's type datetime
                 } elseif ($propertyValue instanceof \DateTime) {
                     $array[$propertyName] = $propertyValue->format(DATE_ATOM);
-                // If it's an array type we should check whether it contains objects and if so call toArray method
+                    // If it's an array type we should check whether it contains objects and if so call toArray method
                 } elseif (is_array($propertyValue)) {
                     $array[$propertyName] = array_map(function ($item) {
                         return $item instanceof ModelInterface ? $item->toArray() : $item;
