@@ -374,11 +374,11 @@ class Recurring implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getContractAllowableValues();
         if (!in_array($contract, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'contract', must be one of '%s'",
+                    "contract: unexpected enum value '%s' - Supported values are [%s]",
                     $contract,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -480,11 +480,11 @@ class Recurring implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getTokenServiceAllowableValues();
         if (!in_array($tokenService, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'tokenService', must be one of '%s'",
+                    "tokenService: unexpected enum value '%s' - Supported values are [%s]",
                     $tokenService,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

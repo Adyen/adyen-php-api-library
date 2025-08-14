@@ -614,11 +614,11 @@ class StoreDetailAndSubmitRequest implements ModelInterface, ArrayAccess, \JsonS
     {
         $allowedValues = $this->getEntityTypeAllowableValues();
         if (!in_array($entityType, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'entityType', must be one of '%s'",
+                    "entityType: unexpected enum value '%s' - Supported values are [%s]",
                     $entityType,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

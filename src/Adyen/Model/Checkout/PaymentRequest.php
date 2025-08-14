@@ -1701,7 +1701,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets lineItems
      *
-     * @param \Adyen\Model\Checkout\LineItem[]|null $lineItems Price and product information about the purchased items, to be included on the invoice sent to the shopper. > This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, Riverty, and Zip.
+     * @param \Adyen\Model\Checkout\LineItem[]|null $lineItems Price and product information about the purchased items, to be included on the invoice sent to the shopper. > This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, and Riverty.
      *
      * @return self
      */
