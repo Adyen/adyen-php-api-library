@@ -282,6 +282,9 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
         if ($this->container['currency'] === null) {
             $invalidProperties[] = "'currency' can't be null";
         }
+        if ($this->container['fundingSource'] === null) {
+            $invalidProperties[] = "'fundingSource' can't be null";
+        }
         if ($this->container['paymentMethod'] === null) {
             $invalidProperties[] = "'paymentMethod' can't be null";
         }
@@ -330,7 +333,7 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
     /**
      * Gets fundingSource
      *
-     * @return string|null
+     * @return string
      */
     public function getFundingSource()
     {
@@ -340,7 +343,7 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
     /**
      * Sets fundingSource
      *
-     * @param string|null $fundingSource The funding source of the payment method. This only applies to card transactions.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**
+     * @param string $fundingSource The funding source of the payment method.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**
      *
      * @return self
      */

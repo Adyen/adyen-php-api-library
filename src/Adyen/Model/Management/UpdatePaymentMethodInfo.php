@@ -63,6 +63,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'nyce' => '\Adyen\Model\Management\NyceInfo',
         'paybybankPlaid' => '\Adyen\Model\Management\PayByBankPlaidInfo',
         'pulse' => '\Adyen\Model\Management\PulseInfo',
+        'sepadirectdebit' => '\Adyen\Model\Management\SepaDirectDebitInfo',
         'star' => '\Adyen\Model\Management\StarInfo',
         'storeId' => 'string',
         'storeIds' => 'string[]',
@@ -99,6 +100,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'nyce' => null,
         'paybybankPlaid' => null,
         'pulse' => null,
+        'sepadirectdebit' => null,
         'star' => null,
         'storeId' => null,
         'storeIds' => null,
@@ -133,6 +135,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'nyce' => false,
         'paybybankPlaid' => false,
         'pulse' => false,
+        'sepadirectdebit' => false,
         'star' => false,
         'storeId' => false,
         'storeIds' => false,
@@ -247,6 +250,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'nyce' => 'nyce',
         'paybybankPlaid' => 'paybybank_plaid',
         'pulse' => 'pulse',
+        'sepadirectdebit' => 'sepadirectdebit',
         'star' => 'star',
         'storeId' => 'storeId',
         'storeIds' => 'storeIds',
@@ -281,6 +285,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'nyce' => 'setNyce',
         'paybybankPlaid' => 'setPaybybankPlaid',
         'pulse' => 'setPulse',
+        'sepadirectdebit' => 'setSepadirectdebit',
         'star' => 'setStar',
         'storeId' => 'setStoreId',
         'storeIds' => 'setStoreIds',
@@ -315,6 +320,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'nyce' => 'getNyce',
         'paybybankPlaid' => 'getPaybybankPlaid',
         'pulse' => 'getPulse',
+        'sepadirectdebit' => 'getSepadirectdebit',
         'star' => 'getStar',
         'storeId' => 'getStoreId',
         'storeIds' => 'getStoreIds',
@@ -400,6 +406,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('nyce', $data ?? [], null);
         $this->setIfExists('paybybankPlaid', $data ?? [], null);
         $this->setIfExists('pulse', $data ?? [], null);
+        $this->setIfExists('sepadirectdebit', $data ?? [], null);
         $this->setIfExists('star', $data ?? [], null);
         $this->setIfExists('storeId', $data ?? [], null);
         $this->setIfExists('storeIds', $data ?? [], null);
@@ -972,6 +979,30 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     public function setPulse($pulse)
     {
         $this->container['pulse'] = $pulse;
+
+        return $this;
+    }
+
+    /**
+     * Gets sepadirectdebit
+     *
+     * @return \Adyen\Model\Management\SepaDirectDebitInfo|null
+     */
+    public function getSepadirectdebit()
+    {
+        return $this->container['sepadirectdebit'];
+    }
+
+    /**
+     * Sets sepadirectdebit
+     *
+     * @param \Adyen\Model\Management\SepaDirectDebitInfo|null $sepadirectdebit sepadirectdebit
+     *
+     * @return self
+     */
+    public function setSepadirectdebit($sepadirectdebit)
+    {
+        $this->container['sepadirectdebit'] = $sepadirectdebit;
 
         return $this;
     }

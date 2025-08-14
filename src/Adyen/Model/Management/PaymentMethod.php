@@ -79,6 +79,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'payto' => '\Adyen\Model\Management\PayToInfo',
         'pulse' => '\Adyen\Model\Management\PulseInfo',
         'reference' => 'string',
+        'sepadirectdebit' => '\Adyen\Model\Management\SepaDirectDebitInfo',
         'shopperInteraction' => 'string',
         'sodexo' => '\Adyen\Model\Management\SodexoInfo',
         'sofort' => '\Adyen\Model\Management\SofortInfo',
@@ -141,6 +142,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'payto' => null,
         'pulse' => null,
         'reference' => null,
+        'sepadirectdebit' => null,
         'shopperInteraction' => null,
         'sodexo' => null,
         'sofort' => null,
@@ -201,6 +203,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'payto' => false,
         'pulse' => false,
         'reference' => false,
+        'sepadirectdebit' => false,
         'shopperInteraction' => false,
         'sodexo' => false,
         'sofort' => false,
@@ -341,6 +344,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'payto' => 'payto',
         'pulse' => 'pulse',
         'reference' => 'reference',
+        'sepadirectdebit' => 'sepadirectdebit',
         'shopperInteraction' => 'shopperInteraction',
         'sodexo' => 'sodexo',
         'sofort' => 'sofort',
@@ -401,6 +405,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'payto' => 'setPayto',
         'pulse' => 'setPulse',
         'reference' => 'setReference',
+        'sepadirectdebit' => 'setSepadirectdebit',
         'shopperInteraction' => 'setShopperInteraction',
         'sodexo' => 'setSodexo',
         'sofort' => 'setSofort',
@@ -461,6 +466,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'payto' => 'getPayto',
         'pulse' => 'getPulse',
         'reference' => 'getReference',
+        'sepadirectdebit' => 'getSepadirectdebit',
         'shopperInteraction' => 'getShopperInteraction',
         'sodexo' => 'getSodexo',
         'sofort' => 'getSofort',
@@ -590,6 +596,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('payto', $data ?? [], null);
         $this->setIfExists('pulse', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
+        $this->setIfExists('sepadirectdebit', $data ?? [], null);
         $this->setIfExists('shopperInteraction', $data ?? [], null);
         $this->setIfExists('sodexo', $data ?? [], null);
         $this->setIfExists('sofort', $data ?? [], null);
@@ -1568,6 +1575,30 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setReference($reference)
     {
         $this->container['reference'] = $reference;
+
+        return $this;
+    }
+
+    /**
+     * Gets sepadirectdebit
+     *
+     * @return \Adyen\Model\Management\SepaDirectDebitInfo|null
+     */
+    public function getSepadirectdebit()
+    {
+        return $this->container['sepadirectdebit'];
+    }
+
+    /**
+     * Sets sepadirectdebit
+     *
+     * @param \Adyen\Model\Management\SepaDirectDebitInfo|null $sepadirectdebit sepadirectdebit
+     *
+     * @return self
+     */
+    public function setSepadirectdebit($sepadirectdebit)
+    {
+        $this->container['sepadirectdebit'] = $sepadirectdebit;
 
         return $this;
     }

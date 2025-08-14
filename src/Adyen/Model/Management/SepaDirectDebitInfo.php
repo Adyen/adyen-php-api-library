@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\Management\ObjectSerializer;
 
 /**
- * AlipayPlusInfo Class Doc Comment
+ * SepaDirectDebitInfo Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class AlipayPlusInfo implements ModelInterface, ArrayAccess, \JsonSerializable
+class SepaDirectDebitInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class AlipayPlusInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'AlipayPlusInfo';
+    protected static $openAPIModelName = 'SepaDirectDebitInfo';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,7 +41,8 @@ class AlipayPlusInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'settlementCurrencyCode' => 'string'
+        'creditorId' => 'string',
+        'transactionDescription' => '\Adyen\Model\Management\TransactionDescriptionInfo'
     ];
 
     /**
@@ -52,7 +53,8 @@ class AlipayPlusInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'settlementCurrencyCode' => null
+        'creditorId' => null,
+        'transactionDescription' => null
     ];
 
     /**
@@ -61,7 +63,8 @@ class AlipayPlusInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'settlementCurrencyCode' => false
+        'creditorId' => false,
+        'transactionDescription' => false
     ];
 
     /**
@@ -150,7 +153,8 @@ class AlipayPlusInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'settlementCurrencyCode' => 'settlementCurrencyCode'
+        'creditorId' => 'creditorId',
+        'transactionDescription' => 'transactionDescription'
     ];
 
     /**
@@ -159,7 +163,8 @@ class AlipayPlusInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'settlementCurrencyCode' => 'setSettlementCurrencyCode'
+        'creditorId' => 'setCreditorId',
+        'transactionDescription' => 'setTransactionDescription'
     ];
 
     /**
@@ -168,7 +173,8 @@ class AlipayPlusInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'settlementCurrencyCode' => 'getSettlementCurrencyCode'
+        'creditorId' => 'getCreditorId',
+        'transactionDescription' => 'getTransactionDescription'
     ];
 
     /**
@@ -228,7 +234,8 @@ class AlipayPlusInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('settlementCurrencyCode', $data ?? [], null);
+        $this->setIfExists('creditorId', $data ?? [], null);
+        $this->setIfExists('transactionDescription', $data ?? [], null);
     }
 
     /**
@@ -274,25 +281,49 @@ class AlipayPlusInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets settlementCurrencyCode
+     * Gets creditorId
      *
      * @return string|null
      */
-    public function getSettlementCurrencyCode()
+    public function getCreditorId()
     {
-        return $this->container['settlementCurrencyCode'];
+        return $this->container['creditorId'];
     }
 
     /**
-     * Sets settlementCurrencyCode
+     * Sets creditorId
      *
-     * @param string|null $settlementCurrencyCode The currency used for settlement. Defaults to USD.
+     * @param string|null $creditorId Creditor id
      *
      * @return self
      */
-    public function setSettlementCurrencyCode($settlementCurrencyCode)
+    public function setCreditorId($creditorId)
     {
-        $this->container['settlementCurrencyCode'] = $settlementCurrencyCode;
+        $this->container['creditorId'] = $creditorId;
+
+        return $this;
+    }
+
+    /**
+     * Gets transactionDescription
+     *
+     * @return \Adyen\Model\Management\TransactionDescriptionInfo|null
+     */
+    public function getTransactionDescription()
+    {
+        return $this->container['transactionDescription'];
+    }
+
+    /**
+     * Sets transactionDescription
+     *
+     * @param \Adyen\Model\Management\TransactionDescriptionInfo|null $transactionDescription transactionDescription
+     *
+     * @return self
+     */
+    public function setTransactionDescription($transactionDescription)
+    {
+        $this->container['transactionDescription'] = $transactionDescription;
 
         return $this;
     }

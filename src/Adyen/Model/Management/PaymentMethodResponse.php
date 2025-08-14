@@ -236,6 +236,10 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
         return self::$openAPIModelName;
     }
 
+    public const TYPES_WITH_ERRORS_ABRAPETITE = 'abrapetite';
+    public const TYPES_WITH_ERRORS_ABRAPETITE_CREDIT = 'abrapetite_credit';
+    public const TYPES_WITH_ERRORS_ABRAPETITE_DEBIT = 'abrapetite_debit';
+    public const TYPES_WITH_ERRORS_ABRAPETITE_PREPAID = 'abrapetite_prepaid';
     public const TYPES_WITH_ERRORS_ACCEL = 'accel';
     public const TYPES_WITH_ERRORS_ACH = 'ach';
     public const TYPES_WITH_ERRORS_AFFIRM = 'affirm';
@@ -328,8 +332,12 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public const TYPES_WITH_ERRORS_PERSONAL_CARD_CREDIT = 'personal_card_credit';
     public const TYPES_WITH_ERRORS_PERSONAL_CARD_DEBIT = 'personal_card_debit';
     public const TYPES_WITH_ERRORS_PULSE = 'pulse';
+    public const TYPES_WITH_ERRORS_ROMCARD = 'romcard';
+    public const TYPES_WITH_ERRORS_ROMCARD_CREDIT = 'romcard_credit';
+    public const TYPES_WITH_ERRORS_ROMCARD_DEBIT = 'romcard_debit';
     public const TYPES_WITH_ERRORS_SENFF = 'senff';
     public const TYPES_WITH_ERRORS_SENFF_CREDIT = 'senff_credit';
+    public const TYPES_WITH_ERRORS_SEPADIRECTDEBIT = 'sepadirectdebit';
     public const TYPES_WITH_ERRORS_SODEXO = 'sodexo';
     public const TYPES_WITH_ERRORS_STAR = 'star';
     public const TYPES_WITH_ERRORS_SWISH = 'swish';
@@ -366,6 +374,10 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public function getTypesWithErrorsAllowableValues()
     {
         return [
+            self::TYPES_WITH_ERRORS_ABRAPETITE,
+            self::TYPES_WITH_ERRORS_ABRAPETITE_CREDIT,
+            self::TYPES_WITH_ERRORS_ABRAPETITE_DEBIT,
+            self::TYPES_WITH_ERRORS_ABRAPETITE_PREPAID,
             self::TYPES_WITH_ERRORS_ACCEL,
             self::TYPES_WITH_ERRORS_ACH,
             self::TYPES_WITH_ERRORS_AFFIRM,
@@ -458,8 +470,12 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             self::TYPES_WITH_ERRORS_PERSONAL_CARD_CREDIT,
             self::TYPES_WITH_ERRORS_PERSONAL_CARD_DEBIT,
             self::TYPES_WITH_ERRORS_PULSE,
+            self::TYPES_WITH_ERRORS_ROMCARD,
+            self::TYPES_WITH_ERRORS_ROMCARD_CREDIT,
+            self::TYPES_WITH_ERRORS_ROMCARD_DEBIT,
             self::TYPES_WITH_ERRORS_SENFF,
             self::TYPES_WITH_ERRORS_SENFF_CREDIT,
+            self::TYPES_WITH_ERRORS_SEPADIRECTDEBIT,
             self::TYPES_WITH_ERRORS_SODEXO,
             self::TYPES_WITH_ERRORS_STAR,
             self::TYPES_WITH_ERRORS_SWISH,
@@ -668,7 +684,7 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets typesWithErrors
      *
-     * @param string[]|null $typesWithErrors Payment method types with errors.
+     * @param string[]|null $typesWithErrors The payment method types that were not successfully requested and their corresponding errors.
      *
      * @return self
      */

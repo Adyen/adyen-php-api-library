@@ -41,15 +41,8 @@ class PayByBankPlaidInfo implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var string[]
       */
     protected static $openAPITypes = [
-        'countryCode' => 'string',
         'logo' => 'string',
-        'merchantCity' => 'string',
-        'merchantLegalName' => 'string',
-        'merchantShopUrl' => 'string',
-        'merchantStateProvince' => 'string',
-        'merchantStreetAddress' => 'string',
-        'transactionDescription' => '\Adyen\Model\Management\TransactionDescriptionInfo',
-        'zipCode' => 'string'
+        'transactionDescription' => '\Adyen\Model\Management\TransactionDescriptionInfo'
     ];
 
     /**
@@ -60,15 +53,8 @@ class PayByBankPlaidInfo implements ModelInterface, ArrayAccess, \JsonSerializab
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'countryCode' => null,
         'logo' => null,
-        'merchantCity' => null,
-        'merchantLegalName' => null,
-        'merchantShopUrl' => null,
-        'merchantStateProvince' => null,
-        'merchantStreetAddress' => null,
-        'transactionDescription' => null,
-        'zipCode' => null
+        'transactionDescription' => null
     ];
 
     /**
@@ -77,15 +63,8 @@ class PayByBankPlaidInfo implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'countryCode' => false,
         'logo' => false,
-        'merchantCity' => false,
-        'merchantLegalName' => false,
-        'merchantShopUrl' => false,
-        'merchantStateProvince' => false,
-        'merchantStreetAddress' => false,
-        'transactionDescription' => false,
-        'zipCode' => false
+        'transactionDescription' => false
     ];
 
     /**
@@ -174,15 +153,8 @@ class PayByBankPlaidInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $attributeMap = [
-        'countryCode' => 'countryCode',
         'logo' => 'logo',
-        'merchantCity' => 'merchantCity',
-        'merchantLegalName' => 'merchantLegalName',
-        'merchantShopUrl' => 'merchantShopUrl',
-        'merchantStateProvince' => 'merchantStateProvince',
-        'merchantStreetAddress' => 'merchantStreetAddress',
-        'transactionDescription' => 'transactionDescription',
-        'zipCode' => 'zipCode'
+        'transactionDescription' => 'transactionDescription'
     ];
 
     /**
@@ -191,15 +163,8 @@ class PayByBankPlaidInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $setters = [
-        'countryCode' => 'setCountryCode',
         'logo' => 'setLogo',
-        'merchantCity' => 'setMerchantCity',
-        'merchantLegalName' => 'setMerchantLegalName',
-        'merchantShopUrl' => 'setMerchantShopUrl',
-        'merchantStateProvince' => 'setMerchantStateProvince',
-        'merchantStreetAddress' => 'setMerchantStreetAddress',
-        'transactionDescription' => 'setTransactionDescription',
-        'zipCode' => 'setZipCode'
+        'transactionDescription' => 'setTransactionDescription'
     ];
 
     /**
@@ -208,15 +173,8 @@ class PayByBankPlaidInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $getters = [
-        'countryCode' => 'getCountryCode',
         'logo' => 'getLogo',
-        'merchantCity' => 'getMerchantCity',
-        'merchantLegalName' => 'getMerchantLegalName',
-        'merchantShopUrl' => 'getMerchantShopUrl',
-        'merchantStateProvince' => 'getMerchantStateProvince',
-        'merchantStreetAddress' => 'getMerchantStreetAddress',
-        'transactionDescription' => 'getTransactionDescription',
-        'zipCode' => 'getZipCode'
+        'transactionDescription' => 'getTransactionDescription'
     ];
 
     /**
@@ -276,15 +234,8 @@ class PayByBankPlaidInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('countryCode', $data ?? [], null);
         $this->setIfExists('logo', $data ?? [], null);
-        $this->setIfExists('merchantCity', $data ?? [], null);
-        $this->setIfExists('merchantLegalName', $data ?? [], null);
-        $this->setIfExists('merchantShopUrl', $data ?? [], null);
-        $this->setIfExists('merchantStateProvince', $data ?? [], null);
-        $this->setIfExists('merchantStreetAddress', $data ?? [], null);
         $this->setIfExists('transactionDescription', $data ?? [], null);
-        $this->setIfExists('zipCode', $data ?? [], null);
     }
 
     /**
@@ -330,30 +281,6 @@ class PayByBankPlaidInfo implements ModelInterface, ArrayAccess, \JsonSerializab
 
 
     /**
-     * Gets countryCode
-     *
-     * @return string|null
-     */
-    public function getCountryCode()
-    {
-        return $this->container['countryCode'];
-    }
-
-    /**
-     * Sets countryCode
-     *
-     * @param string|null $countryCode Country Code.
-     *
-     * @return self
-     */
-    public function setCountryCode($countryCode)
-    {
-        $this->container['countryCode'] = $countryCode;
-
-        return $this;
-    }
-
-    /**
      * Gets logo
      *
      * @return string|null
@@ -378,126 +305,6 @@ class PayByBankPlaidInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
-     * Gets merchantCity
-     *
-     * @return string|null
-     */
-    public function getMerchantCity()
-    {
-        return $this->container['merchantCity'];
-    }
-
-    /**
-     * Sets merchantCity
-     *
-     * @param string|null $merchantCity The city the merchant is doing business in.
-     *
-     * @return self
-     */
-    public function setMerchantCity($merchantCity)
-    {
-        $this->container['merchantCity'] = $merchantCity;
-
-        return $this;
-    }
-
-    /**
-     * Gets merchantLegalName
-     *
-     * @return string|null
-     */
-    public function getMerchantLegalName()
-    {
-        return $this->container['merchantLegalName'];
-    }
-
-    /**
-     * Sets merchantLegalName
-     *
-     * @param string|null $merchantLegalName Legal Business Name of the Merchant.
-     *
-     * @return self
-     */
-    public function setMerchantLegalName($merchantLegalName)
-    {
-        $this->container['merchantLegalName'] = $merchantLegalName;
-
-        return $this;
-    }
-
-    /**
-     * Gets merchantShopUrl
-     *
-     * @return string|null
-     */
-    public function getMerchantShopUrl()
-    {
-        return $this->container['merchantShopUrl'];
-    }
-
-    /**
-     * Sets merchantShopUrl
-     *
-     * @param string|null $merchantShopUrl Merchant shop url.
-     *
-     * @return self
-     */
-    public function setMerchantShopUrl($merchantShopUrl)
-    {
-        $this->container['merchantShopUrl'] = $merchantShopUrl;
-
-        return $this;
-    }
-
-    /**
-     * Gets merchantStateProvince
-     *
-     * @return string|null
-     */
-    public function getMerchantStateProvince()
-    {
-        return $this->container['merchantStateProvince'];
-    }
-
-    /**
-     * Sets merchantStateProvince
-     *
-     * @param string|null $merchantStateProvince The state/province of the merchant.
-     *
-     * @return self
-     */
-    public function setMerchantStateProvince($merchantStateProvince)
-    {
-        $this->container['merchantStateProvince'] = $merchantStateProvince;
-
-        return $this;
-    }
-
-    /**
-     * Gets merchantStreetAddress
-     *
-     * @return string|null
-     */
-    public function getMerchantStreetAddress()
-    {
-        return $this->container['merchantStreetAddress'];
-    }
-
-    /**
-     * Sets merchantStreetAddress
-     *
-     * @param string|null $merchantStreetAddress The street address of the merchant.
-     *
-     * @return self
-     */
-    public function setMerchantStreetAddress($merchantStreetAddress)
-    {
-        $this->container['merchantStreetAddress'] = $merchantStreetAddress;
-
-        return $this;
-    }
-
-    /**
      * Gets transactionDescription
      *
      * @return \Adyen\Model\Management\TransactionDescriptionInfo|null
@@ -517,30 +324,6 @@ class PayByBankPlaidInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     public function setTransactionDescription($transactionDescription)
     {
         $this->container['transactionDescription'] = $transactionDescription;
-
-        return $this;
-    }
-
-    /**
-     * Gets zipCode
-     *
-     * @return string|null
-     */
-    public function getZipCode()
-    {
-        return $this->container['zipCode'];
-    }
-
-    /**
-     * Sets zipCode
-     *
-     * @param string|null $zipCode The zip code of the account.
-     *
-     * @return self
-     */
-    public function setZipCode($zipCode)
-    {
-        $this->container['zipCode'] = $zipCode;
 
         return $this;
     }
