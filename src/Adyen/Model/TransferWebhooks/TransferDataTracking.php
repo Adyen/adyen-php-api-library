@@ -15,7 +15,7 @@
 
 namespace Adyen\Model\TransferWebhooks;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\TransferWebhooks\ObjectSerializer;
 
 /**
@@ -24,7 +24,7 @@ use Adyen\Model\TransferWebhooks\ObjectSerializer;
  * The latest tracking information of the transfer.
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class TransferDataTracking implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -320,7 +320,7 @@ class TransferDataTracking implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets status
      *
-     * @param string $status The status of the transfer.  Possible values:   - **pending**: the transfer is under internal review.  - **failed**: the transfer failed Adyen's internal review. For details, see `reason`.
+     * @param string $status The status of the transfer.  Possible values:   - **pending**: the transfer is under internal review by Adyen.  - **failed**: the transfer failed Adyen's internal review. For details, see `reason`.
      *
      * @return self
      */

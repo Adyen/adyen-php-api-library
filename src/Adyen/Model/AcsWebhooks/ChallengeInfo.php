@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\AcsWebhooks;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\AcsWebhooks\ObjectSerializer;
 
 /**
  * ChallengeInfo Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class ChallengeInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -397,11 +397,11 @@ class ChallengeInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getChallengeCancelAllowableValues();
         if (!in_array($challengeCancel, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'challengeCancel', must be one of '%s'",
+                    "challengeCancel: unexpected enum value '%s' - Supported values are [%s]",
                     $challengeCancel,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -431,11 +431,11 @@ class ChallengeInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getFlowAllowableValues();
         if (!in_array($flow, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'flow', must be one of '%s'",
+                    "flow: unexpected enum value '%s' - Supported values are [%s]",
                     $flow,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

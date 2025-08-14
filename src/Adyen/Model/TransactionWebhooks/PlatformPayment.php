@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\TransactionWebhooks;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\TransactionWebhooks\ObjectSerializer;
 
 /**
  * PlatformPayment Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class PlatformPayment implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -475,11 +475,11 @@ class PlatformPayment implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getPlatformPaymentTypeAllowableValues();
         if (!in_array($platformPaymentType, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'platformPaymentType', must be one of '%s'",
+                    "platformPaymentType: unexpected enum value '%s' - Supported values are [%s]",
                     $platformPaymentType,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -533,11 +533,11 @@ class PlatformPayment implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
                     $type,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

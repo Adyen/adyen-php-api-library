@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\AcsWebhooks;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\AcsWebhooks\ObjectSerializer;
 
 /**
  * AuthenticationNotificationData Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class AuthenticationNotificationData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -409,7 +409,7 @@ class AuthenticationNotificationData implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets id
      *
-     * @param string $id Unique identifier of the authentication.
+     * @param string $id The unique identifier of the authentication.
      *
      * @return self
      */
@@ -433,7 +433,7 @@ class AuthenticationNotificationData implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets paymentInstrumentId
      *
-     * @param string $paymentInstrumentId Unique identifier of the payment instrument that was used for the authentication.
+     * @param string $paymentInstrumentId The unique identifier of the payment instrument that was used for the authentication.
      *
      * @return self
      */
@@ -489,11 +489,11 @@ class AuthenticationNotificationData implements ModelInterface, ArrayAccess, \Js
     {
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    "status: unexpected enum value '%s' - Supported values are [%s]",
                     $status,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
