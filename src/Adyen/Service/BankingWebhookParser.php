@@ -13,139 +13,126 @@ use Adyen\Model\ConfigurationWebhooks\SweepConfigurationNotificationRequest;
 use Adyen\Model\ReportWebhooks\ReportNotificationRequest;
 use Adyen\Model\TransactionWebhooks\TransactionNotificationRequestV4;
 use Adyen\Model\TransferWebhooks\TransferNotificationRequest;
-use Exception;
-use PhpParser\Error;
+use JsonException;
 
 class BankingWebhookParser
 {
     private $payload;
+
+    private const WEBHOOK_CLASSES = [
+        AuthenticationNotificationRequest::class,
+        RelayedAuthenticationRequest::class,
+        BalanceAccountBalanceNotificationRequest::class,
+        AccountHolderNotificationRequest::class,
+        BalanceAccountNotificationRequest::class,
+        PaymentNotificationRequest::class,
+        SweepConfigurationNotificationRequest::class,
+        ReportNotificationRequest::class,
+        TransferNotificationRequest::class,
+        TransactionNotificationRequestV4::class
+    ];
 
     public function __construct(string $payload)
     {
         $this->payload = $payload;
     }
 
-    public function getGenericWebhook()
+    /**
+     * Parse payload into the appropriate webhook model based on the `type` field.
+     *
+     * @return object The deserialized webhook model.
+     * @throws WebhookParseException
+     */
+    public function getGenericWebhook(): object
     {
-        $jsonPayload = (array)json_decode($this->payload, true);
-
-        // custom check for RelayedAuthenticationRequest as it doesn't include the attribute 'type'
-        if (is_array($jsonPayload) &&
-            array_key_exists('id', $jsonPayload) &&
-            array_key_exists('paymentInstrumentId', $jsonPayload)) {
-                $clazz = new RelayedAuthenticationRequest();
-                return (object)$this->deserializewebhook($clazz);
-        }
-
-        // handle other webhook events using `type attribute
         try {
-            $type = $jsonPayload['type'];
-        } catch (Exception $ex) {
-            throw new Error("'type' attribute not found in payload: " . $this->payload);
+            $jsonPayload = json_decode($this->payload, true, 512, JSON_THROW_ON_ERROR);
+        } catch (JsonException $e) {
+            throw new WebhookParseException("Invalid JSON payload: " . $e->getMessage(), 0, $e);
         }
 
-        if (in_array($type, ($clazz = new AuthenticationNotificationRequest())->getTypeAllowableValues())) {
-            return (object)$this->deserializewebhook($clazz);
+        if (!isset($jsonPayload['type'])) {
+            throw new WebhookParseException("'type' attribute not found in payload: " . $this->payload);
         }
 
-        if (in_array($type, ($clazz = new BalanceAccountBalanceNotificationRequest())->getTypeAllowableValues())) {
-            return (object)$this->deserializewebhook($clazz);
+        $type = $jsonPayload['type'];
+
+        foreach (self::WEBHOOK_CLASSES as $class) {
+            $instance = new $class();
+            if (in_array($type, $instance->getTypeAllowableValues(), true)) {
+                return $this->deserializeWebhook($instance);
+            }
         }
 
-        if (in_array($type, ($clazz = new AccountHolderNotificationRequest)->getTypeAllowableValues())) {
-            return (object)self::deserializewebhook($clazz);
-        }
-
-        if (in_array($type, ($clazz = new BalanceAccountNotificationRequest())->getTypeAllowableValues())) {
-            return (object)self::deserializeWebhook($clazz);
-        }
-
-        if (in_array($type, ($clazz = new PaymentNotificationRequest())->getTypeAllowableValues())) {
-            return (object)self::deserializeWebhook($clazz);
-        }
-
-        if (in_array($type, ($clazz =  new SweepConfigurationNotificationRequest())->getTypeAllowableValues())) {
-            return (object)self::deserializeWebhook($clazz);
-        }
-
-        if (in_array($type, ($clazz =  new ReportNotificationRequest())->getTypeAllowableValues())) {
-            return (object)self::deserializeWebhook($clazz);
-        }
-
-        if (in_array($type, ($clazz = new TransferNotificationRequest())->getTypeAllowableValues())) {
-            return(object)self::deserializeWebhook($clazz);
-        }
-
-        if (in_array($type, ($clazz = new TransactionNotificationRequestV4())->getTypeAllowableValues())) {
-            return(object)self::deserializeWebhook($clazz);
-        }
-
-        // throw error in case the webhook can not be parsed
-        throw new \Error("Could not parse the payload: " . $this->payload);
+        throw new WebhookParseException("Could not parse the payload: " . $this->payload);
     }
 
-    /** @noinspection PhpIncompatibleReturnTypeInspection */
+    /**
+     * Type-safe getters for specific webhook classes.
+     */
     public function getAuthenticationNotificationRequest(): AuthenticationNotificationRequest
     {
-        return $this->getGenericWebhook();
+        return $this->getWebhookByClass(AuthenticationNotificationRequest::class);
     }
 
-    /** @noinspection PhpIncompatibleReturnTypeInspection */
     public function getRelayedAuthenticationRequest(): RelayedAuthenticationRequest
     {
-        return $this->getGenericWebhook();
+        return $this->getWebhookByClass(RelayedAuthenticationRequest::class);
     }
 
-    /** @noinspection PhpIncompatibleReturnTypeInspection */
     public function getBalanceAccountBalanceNotificationRequest(): BalanceAccountBalanceNotificationRequest
     {
-        return $this->getGenericWebhook();
+        return $this->getWebhookByClass(BalanceAccountBalanceNotificationRequest::class);
     }
 
-    /** @noinspection PhpIncompatibleReturnTypeInspection */
     public function getAccountHolderNotificationRequest(): AccountHolderNotificationRequest
     {
-        return $this->getGenericWebhook();
+        return $this->getWebhookByClass(AccountHolderNotificationRequest::class);
     }
 
-    /** @noinspection PhpIncompatibleReturnTypeInspection */
     public function getBalanceAccountNotificationRequest(): BalanceAccountNotificationRequest
     {
-        return $this->getGenericWebhook();
+        return $this->getWebhookByClass(BalanceAccountNotificationRequest::class);
     }
 
-    /** @noinspection PhpIncompatibleReturnTypeInspection */
     public function getPaymentNotificationRequest(): PaymentNotificationRequest
     {
-        return $this->getGenericWebhook();
+        return $this->getWebhookByClass(PaymentNotificationRequest::class);
     }
 
-    /** @noinspection PhpIncompatibleReturnTypeInspection */
     public function getSweepConfigurationNotificationRequest(): SweepConfigurationNotificationRequest
     {
-        return $this->getGenericWebhook();
+        return $this->getWebhookByClass(SweepConfigurationNotificationRequest::class);
     }
 
-    /** @noinspection PhpIncompatibleReturnTypeInspection */
     public function getReportNotificationRequest(): ReportNotificationRequest
     {
-        return $this->getGenericWebhook();
+        return $this->getWebhookByClass(ReportNotificationRequest::class);
     }
 
-    /** @noinspection PhpIncompatibleReturnTypeInspection */
     public function getTransferNotificationRequest(): TransferNotificationRequest
     {
-        return $this->getGenericWebhook();
+        return $this->getWebhookByClass(TransferNotificationRequest::class);
     }
 
-    /** @noinspection PhpIncompatibleReturnTypeInspection */
     public function getTransactionNotificationRequestV4(): TransactionNotificationRequestV4
     {
-        return $this->getGenericWebhook();
+        return $this->getWebhookByClass(TransactionNotificationRequestV4::class);
     }
 
-    private function deserializeWebhook($clazz)
+    private function getWebhookByClass(string $expectedClass): object
     {
-        return ObjectSerializer::deserialize($this->payload, get_class($clazz));
+        $webhook = $this->getGenericWebhook();
+
+        if (!$webhook instanceof $expectedClass) {
+            throw new WebhookParseException("Expected $expectedClass but got " . get_class($webhook));
+        }
+
+        return $webhook;
+    }
+
+    private function deserializeWebhook(object $instance): object
+    {
+        return ObjectSerializer::deserialize($this->payload, get_class($instance));
     }
 }

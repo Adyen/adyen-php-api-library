@@ -401,17 +401,20 @@ class NotificationTest extends TestCaseMock
     public function testRelayedAuthenticationRequest()
     {
         $jsonString = '{
-                        "id": "1ea64f8e-d1e1-4b9d-a3a2-3953e385b2c8",
-                        "paymentInstrumentId": "PI123ABCDEFGHIJKLMN45678",
-                        "purchase": {
-                          "date": "2025-03-06T15:17:55Z",
-                          "merchantName": "widgetsInc",
-                          "originalAmount": {
-                            "currency": "EUR",
-                            "value": 14548
-                          }
-                        }
-                      }';
+                          "id": "1ea64f8e-d1e1-4b9d-a3a2-3953e385b2c8",
+                          "paymentInstrumentId": "PI123ABCDEFGHIJKLMN45678",
+                          "purchase": {
+                            "date": "2025-03-06T15:17:55Z",
+                            "merchantName": "widgetsInc",
+                            "originalAmount": {
+                              "currency": "EUR",
+                              "value": 14548
+                            }
+                          },
+                          "environment": "test",
+                          "timestamp": "2025-07-08T02:01:05+02:00",
+                          "type": "balancePlatform.authentication.relayed"
+                        }';
 
         $webhookParser = new BankingWebhookParser($jsonString);
         $result = $webhookParser->getGenericWebhook();
