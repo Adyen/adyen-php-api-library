@@ -63,14 +63,13 @@ class BalancesApi extends Service
     * @param string $webhookId
     * @param string $settingId
     * @param array|null $requestOptions
-    
+
     * @throws AdyenException
     */
     public function deleteWebhookSetting(string $balancePlatformId, string $webhookId, string $settingId, ?array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{balancePlatformId}', '{webhookId}', '{settingId}'], [$balancePlatformId, $webhookId, $settingId], "/balancePlatforms/{balancePlatformId}/webhooks/{webhookId}/settings/{settingId}");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
-        
     }
 
     /**
