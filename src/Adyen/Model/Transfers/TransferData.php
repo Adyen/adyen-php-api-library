@@ -990,11 +990,11 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getCategoryAllowableValues();
         if (!in_array($category, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'category', must be one of '%s'",
+                    "category: unexpected enum value '%s' - Supported values are [%s]",
                     $category,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1170,11 +1170,11 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getDirectionAllowableValues();
         if (!in_array($direction, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'direction', must be one of '%s'",
+                    "direction: unexpected enum value '%s' - Supported values are [%s]",
                     $direction,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1348,11 +1348,11 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getReasonAllowableValues();
         if (!in_array($reason, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'reason', must be one of '%s'",
+                    "reason: unexpected enum value '%s' - Supported values are [%s]",
                     $reason,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1478,11 +1478,11 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    "status: unexpected enum value '%s' - Supported values are [%s]",
                     $status,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1560,11 +1560,11 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
                     $type,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

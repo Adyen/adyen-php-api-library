@@ -463,11 +463,11 @@ class IssuedCard implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getPanEntryModeAllowableValues();
         if (!in_array($panEntryMode, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'panEntryMode', must be one of '%s'",
+                    "panEntryMode: unexpected enum value '%s' - Supported values are [%s]",
                     $panEntryMode,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -497,11 +497,11 @@ class IssuedCard implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getProcessingTypeAllowableValues();
         if (!in_array($processingType, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'processingType', must be one of '%s'",
+                    "processingType: unexpected enum value '%s' - Supported values are [%s]",
                     $processingType,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -627,11 +627,11 @@ class IssuedCard implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
                     $type,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

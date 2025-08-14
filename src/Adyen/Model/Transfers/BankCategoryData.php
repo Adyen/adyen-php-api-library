@@ -353,11 +353,11 @@ class BankCategoryData implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getPriorityAllowableValues();
         if (!in_array($priority, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'priority', must be one of '%s'",
+                    "priority: unexpected enum value '%s' - Supported values are [%s]",
                     $priority,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -387,11 +387,11 @@ class BankCategoryData implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
                     $type,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

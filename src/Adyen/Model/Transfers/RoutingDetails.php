@@ -394,11 +394,11 @@ class RoutingDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getPriorityAllowableValues();
         if (!in_array($priority, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'priority', must be one of '%s'",
+                    "priority: unexpected enum value '%s' - Supported values are [%s]",
                     $priority,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

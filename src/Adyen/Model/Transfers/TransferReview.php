@@ -350,11 +350,11 @@ class TransferReview implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getScaOnApprovalAllowableValues();
         if (!in_array($scaOnApproval, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'scaOnApproval', must be one of '%s'",
+                    "scaOnApproval: unexpected enum value '%s' - Supported values are [%s]",
                     $scaOnApproval,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
