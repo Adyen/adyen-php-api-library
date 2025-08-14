@@ -346,11 +346,11 @@ class DeviceRenderOptions implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $allowedValues = $this->getSdkInterfaceAllowableValues();
         if (!in_array($sdkInterface, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'sdkInterface', must be one of '%s'",
+                    "sdkInterface: unexpected enum value '%s' - Supported values are [%s]",
                     $sdkInterface,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

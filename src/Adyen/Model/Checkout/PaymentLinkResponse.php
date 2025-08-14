@@ -1102,7 +1102,7 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets lineItems
      *
-     * @param \Adyen\Model\Checkout\LineItem[]|null $lineItems Price and product information about the purchased items, to be included on the invoice sent to the shopper. > This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, and Riverty.
+     * @param \Adyen\Model\Checkout\LineItem[]|null $lineItems Price and product information about the purchased items, to be included on the invoice sent to the shopper. This parameter is required for open invoice (_buy now, pay later_) payment methods such Afterpay, Clearpay, Klarna, RatePay, Riverty, and Zip.
      *
      * @return self
      */
@@ -1278,11 +1278,11 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $allowedValues = $this->getRecurringProcessingModelAllowableValues();
         if (!in_array($recurringProcessingModel, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'recurringProcessingModel', must be one of '%s'",
+                    "recurringProcessingModel: unexpected enum value '%s' - Supported values are [%s]",
                     $recurringProcessingModel,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1657,11 +1657,11 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    "status: unexpected enum value '%s' - Supported values are [%s]",
                     $status,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1715,11 +1715,11 @@ class PaymentLinkResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $allowedValues = $this->getStorePaymentMethodModeAllowableValues();
         if (!in_array($storePaymentMethodMode, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'storePaymentMethodMode', must be one of '%s'",
+                    "storePaymentMethodMode: unexpected enum value '%s' - Supported values are [%s]",
                     $storePaymentMethodMode,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

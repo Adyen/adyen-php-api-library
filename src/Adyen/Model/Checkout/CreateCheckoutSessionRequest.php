@@ -1116,11 +1116,11 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
     {
         $allowedValues = $this->getChannelAllowableValues();
         if (!in_array($channel, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'channel', must be one of '%s'",
+                    "channel: unexpected enum value '%s' - Supported values are [%s]",
                     $channel,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1430,7 +1430,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets lineItems
      *
-     * @param \Adyen\Model\Checkout\LineItem[]|null $lineItems Price and product information about the purchased items, to be included on the invoice sent to the shopper. > This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, and Riverty.
+     * @param \Adyen\Model\Checkout\LineItem[]|null $lineItems Price and product information about the purchased items, to be included on the invoice sent to the shopper. > This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, Riverty, and Zip.
      *
      * @return self
      */
@@ -1582,11 +1582,11 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
     {
         $allowedValues = $this->getModeAllowableValues();
         if (!in_array($mode, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'mode', must be one of '%s'",
+                    "mode: unexpected enum value '%s' - Supported values are [%s]",
                     $mode,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1712,11 +1712,11 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
     {
         $allowedValues = $this->getRecurringProcessingModelAllowableValues();
         if (!in_array($recurringProcessingModel, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'recurringProcessingModel', must be one of '%s'",
+                    "recurringProcessingModel: unexpected enum value '%s' - Supported values are [%s]",
                     $recurringProcessingModel,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1914,11 +1914,11 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
     {
         $allowedValues = $this->getShopperInteractionAllowableValues();
         if (!in_array($shopperInteraction, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'shopperInteraction', must be one of '%s'",
+                    "shopperInteraction: unexpected enum value '%s' - Supported values are [%s]",
                     $shopperInteraction,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -2188,11 +2188,11 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
     {
         $allowedValues = $this->getStoreFiltrationModeAllowableValues();
         if (!in_array($storeFiltrationMode, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'storeFiltrationMode', must be one of '%s'",
+                    "storeFiltrationMode: unexpected enum value '%s' - Supported values are [%s]",
                     $storeFiltrationMode,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -2246,11 +2246,11 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
     {
         $allowedValues = $this->getStorePaymentMethodModeAllowableValues();
         if (!in_array($storePaymentMethodMode, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'storePaymentMethodMode', must be one of '%s'",
+                    "storePaymentMethodMode: unexpected enum value '%s' - Supported values are [%s]",
                     $storePaymentMethodMode,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

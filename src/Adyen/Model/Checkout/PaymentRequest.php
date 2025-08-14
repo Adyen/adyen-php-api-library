@@ -1171,11 +1171,11 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getChannelAllowableValues();
         if (!in_array($channel, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'channel', must be one of '%s'",
+                    "channel: unexpected enum value '%s' - Supported values are [%s]",
                     $channel,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1545,11 +1545,11 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getEntityTypeAllowableValues();
         if (!in_array($entityType, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'entityType', must be one of '%s'",
+                    "entityType: unexpected enum value '%s' - Supported values are [%s]",
                     $entityType,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1651,11 +1651,11 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getIndustryUsageAllowableValues();
         if (!in_array($industryUsage, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'industryUsage', must be one of '%s'",
+                    "industryUsage: unexpected enum value '%s' - Supported values are [%s]",
                     $industryUsage,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1701,7 +1701,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets lineItems
      *
-     * @param \Adyen\Model\Checkout\LineItem[]|null $lineItems Price and product information about the purchased items, to be included on the invoice sent to the shopper. > This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, and Riverty.
+     * @param \Adyen\Model\Checkout\LineItem[]|null $lineItems Price and product information about the purchased items, to be included on the invoice sent to the shopper. > This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, Riverty, and Zip.
      *
      * @return self
      */
@@ -2093,11 +2093,11 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getRecurringProcessingModelAllowableValues();
         if (!in_array($recurringProcessingModel, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'recurringProcessingModel', must be one of '%s'",
+                    "recurringProcessingModel: unexpected enum value '%s' - Supported values are [%s]",
                     $recurringProcessingModel,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -2343,11 +2343,11 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getShopperInteractionAllowableValues();
         if (!in_array($shopperInteraction, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'shopperInteraction', must be one of '%s'",
+                    "shopperInteraction: unexpected enum value '%s' - Supported values are [%s]",
                     $shopperInteraction,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

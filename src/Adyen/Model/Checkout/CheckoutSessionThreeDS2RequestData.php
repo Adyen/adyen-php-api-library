@@ -394,11 +394,11 @@ class CheckoutSessionThreeDS2RequestData implements ModelInterface, ArrayAccess,
     {
         $allowedValues = $this->getThreeDSRequestorChallengeIndAllowableValues();
         if (!in_array($threeDSRequestorChallengeInd, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'threeDSRequestorChallengeInd', must be one of '%s'",
+                    "threeDSRequestorChallengeInd: unexpected enum value '%s' - Supported values are [%s]",
                     $threeDSRequestorChallengeInd,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

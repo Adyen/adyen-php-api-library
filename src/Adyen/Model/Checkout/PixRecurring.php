@@ -458,11 +458,11 @@ class PixRecurring implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getFrequencyAllowableValues();
         if (!in_array($frequency, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'frequency', must be one of '%s'",
+                    "frequency: unexpected enum value '%s' - Supported values are [%s]",
                     $frequency,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

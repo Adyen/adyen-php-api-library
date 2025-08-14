@@ -664,11 +664,11 @@ class FundRecipient implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getWalletPurposeAllowableValues();
         if (!in_array($walletPurpose, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'walletPurpose', must be one of '%s'",
+                    "walletPurpose: unexpected enum value '%s' - Supported values are [%s]",
                     $walletPurpose,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

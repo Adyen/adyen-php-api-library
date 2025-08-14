@@ -569,11 +569,11 @@ class PayPalDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getSubtypeAllowableValues();
         if (!in_array($subtype, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'subtype', must be one of '%s'",
+                    "subtype: unexpected enum value '%s' - Supported values are [%s]",
                     $subtype,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -603,11 +603,11 @@ class PayPalDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
                     $type,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
