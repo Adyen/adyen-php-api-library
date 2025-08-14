@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\BalanceWebhooks;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\BalanceWebhooks\ObjectSerializer;
 
 /**
  * BalanceNotificationData Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class BalanceNotificationData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -412,7 +412,7 @@ class BalanceNotificationData implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets creationDate
      *
-     * @param \DateTime|null $creationDate The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
+     * @param \DateTime|null $creationDate The date and time when the event was triggered, in ISO 8601 extended format. For example, **2025-03-19T10:15:30+01:00**.
      *
      * @return self
      */
@@ -436,7 +436,7 @@ class BalanceNotificationData implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets currency
      *
-     * @param string $currency TThe three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
+     * @param string $currency The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
      *
      * @return self
      */

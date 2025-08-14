@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\DisputeWebhooks;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\DisputeWebhooks\ObjectSerializer;
 
 /**
  * DisputeNotificationRequest Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class DisputeNotificationRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -354,11 +354,11 @@ class DisputeNotificationRequest implements ModelInterface, ArrayAccess, \JsonSe
     {
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
                     $type,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

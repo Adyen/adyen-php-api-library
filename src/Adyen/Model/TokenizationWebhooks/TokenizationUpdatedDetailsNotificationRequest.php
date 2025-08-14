@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\TokenizationWebhooks;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\TokenizationWebhooks\ObjectSerializer;
 
 /**
  * TokenizationUpdatedDetailsNotificationRequest Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class TokenizationUpdatedDetailsNotificationRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -436,11 +436,11 @@ class TokenizationUpdatedDetailsNotificationRequest implements ModelInterface, A
     {
         $allowedValues = $this->getEnvironmentAllowableValues();
         if (!in_array($environment, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'environment', must be one of '%s'",
+                    "environment: unexpected enum value '%s' - Supported values are [%s]",
                     $environment,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -494,11 +494,11 @@ class TokenizationUpdatedDetailsNotificationRequest implements ModelInterface, A
     {
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
                     $type,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

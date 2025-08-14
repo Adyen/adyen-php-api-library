@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\ConfigurationWebhooks;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\ConfigurationWebhooks\ObjectSerializer;
 
 /**
  * AccountSupportingEntityCapability Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class AccountSupportingEntityCapability implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -441,11 +441,11 @@ class AccountSupportingEntityCapability implements ModelInterface, ArrayAccess, 
     {
         $allowedValues = $this->getAllowedLevelAllowableValues();
         if (!in_array($allowedLevel, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'allowedLevel', must be one of '%s'",
+                    "allowedLevel: unexpected enum value '%s' - Supported values are [%s]",
                     $allowedLevel,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -547,11 +547,11 @@ class AccountSupportingEntityCapability implements ModelInterface, ArrayAccess, 
     {
         $allowedValues = $this->getRequestedLevelAllowableValues();
         if (!in_array($requestedLevel, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'requestedLevel', must be one of '%s'",
+                    "requestedLevel: unexpected enum value '%s' - Supported values are [%s]",
                     $requestedLevel,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -581,11 +581,11 @@ class AccountSupportingEntityCapability implements ModelInterface, ArrayAccess, 
     {
         $allowedValues = $this->getVerificationStatusAllowableValues();
         if (!in_array($verificationStatus, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'verificationStatus', must be one of '%s'",
+                    "verificationStatus: unexpected enum value '%s' - Supported values are [%s]",
                     $verificationStatus,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\ConfigurationWebhooks;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\ConfigurationWebhooks\ObjectSerializer;
 
 /**
  * CardConfiguration Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializable
 {

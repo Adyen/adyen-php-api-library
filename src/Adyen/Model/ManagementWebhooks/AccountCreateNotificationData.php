@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\ManagementWebhooks;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\ManagementWebhooks\ObjectSerializer;
 
 /**
  * AccountCreateNotificationData Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class AccountCreateNotificationData implements ModelInterface, ArrayAccess, \JsonSerializable
 {

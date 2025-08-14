@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\ConfigurationWebhooks;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\ConfigurationWebhooks\ObjectSerializer;
 
 /**
  * CapabilitySettings Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -355,7 +355,7 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets amountPerIndustry
      *
-     * @param array<string,\Adyen\Model\ConfigurationWebhooks\Amount>|null $amountPerIndustry
+     * @param array<string,\Adyen\Model\ConfigurationWebhooks\Amount>|null $amountPerIndustry 
      *
      * @return self
      */
@@ -379,7 +379,7 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets authorizedCardUsers
      *
-     * @param bool|null $authorizedCardUsers
+     * @param bool|null $authorizedCardUsers 
      *
      * @return self
      */
@@ -403,7 +403,7 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets fundingSource
      *
-     * @param string[]|null $fundingSource
+     * @param string[]|null $fundingSource 
      *
      * @return self
      */
@@ -436,7 +436,7 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets interval
      *
-     * @param string|null $interval
+     * @param string|null $interval 
      *
      * @return self
      */
@@ -444,11 +444,11 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $allowedValues = $this->getIntervalAllowableValues();
         if (!in_array($interval, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'interval', must be one of '%s'",
+                    "interval: unexpected enum value '%s' - Supported values are [%s]",
                     $interval,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
