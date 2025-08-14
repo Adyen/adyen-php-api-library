@@ -15,10 +15,6 @@ use Adyen\Model\TransactionWebhooks\TransactionNotificationRequestV4;
 use Adyen\Model\TransferWebhooks\TransferNotificationRequest;
 use JsonException;
 
-class WebhookParseException extends \RuntimeException
-{
-}
-
 class BankingWebhookParser
 {
     private $payload;
