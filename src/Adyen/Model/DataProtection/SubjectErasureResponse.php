@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\DataProtection;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\DataProtection\ObjectSerializer;
 
 /**
  * SubjectErasureResponse Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class SubjectErasureResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
