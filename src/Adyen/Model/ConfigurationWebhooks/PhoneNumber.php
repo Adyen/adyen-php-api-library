@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\ConfigurationWebhooks;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\ConfigurationWebhooks\ObjectSerializer;
 
 /**
  * PhoneNumber Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class PhoneNumber implements ModelInterface, ArrayAccess, \JsonSerializable
 {

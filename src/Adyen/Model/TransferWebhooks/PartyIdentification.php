@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\TransferWebhooks;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\TransferWebhooks\ObjectSerializer;
 
 /**
  * PartyIdentification Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class PartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -43,11 +43,13 @@ class PartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $openAPITypes = [
         'address' => '\Adyen\Model\TransferWebhooks\Address',
         'dateOfBirth' => '\DateTime',
+        'email' => 'string',
         'firstName' => 'string',
         'fullName' => 'string',
         'lastName' => 'string',
         'reference' => 'string',
-        'type' => 'string'
+        'type' => 'string',
+        'url' => 'string'
     ];
 
     /**
@@ -60,11 +62,13 @@ class PartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $openAPIFormats = [
         'address' => null,
         'dateOfBirth' => 'date',
+        'email' => null,
         'firstName' => null,
         'fullName' => null,
         'lastName' => null,
         'reference' => null,
-        'type' => null
+        'type' => null,
+        'url' => null
     ];
 
     /**
@@ -75,11 +79,13 @@ class PartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $openAPINullables = [
         'address' => false,
         'dateOfBirth' => false,
+        'email' => false,
         'firstName' => false,
         'fullName' => false,
         'lastName' => false,
         'reference' => false,
-        'type' => false
+        'type' => false,
+        'url' => false
     ];
 
     /**
@@ -170,11 +176,13 @@ class PartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $attributeMap = [
         'address' => 'address',
         'dateOfBirth' => 'dateOfBirth',
+        'email' => 'email',
         'firstName' => 'firstName',
         'fullName' => 'fullName',
         'lastName' => 'lastName',
         'reference' => 'reference',
-        'type' => 'type'
+        'type' => 'type',
+        'url' => 'url'
     ];
 
     /**
@@ -185,11 +193,13 @@ class PartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $setters = [
         'address' => 'setAddress',
         'dateOfBirth' => 'setDateOfBirth',
+        'email' => 'setEmail',
         'firstName' => 'setFirstName',
         'fullName' => 'setFullName',
         'lastName' => 'setLastName',
         'reference' => 'setReference',
-        'type' => 'setType'
+        'type' => 'setType',
+        'url' => 'setUrl'
     ];
 
     /**
@@ -200,11 +210,13 @@ class PartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $getters = [
         'address' => 'getAddress',
         'dateOfBirth' => 'getDateOfBirth',
+        'email' => 'getEmail',
         'firstName' => 'getFirstName',
         'fullName' => 'getFullName',
         'lastName' => 'getLastName',
         'reference' => 'getReference',
-        'type' => 'getType'
+        'type' => 'getType',
+        'url' => 'getUrl'
     ];
 
     /**
@@ -282,11 +294,13 @@ class PartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $this->setIfExists('address', $data ?? [], null);
         $this->setIfExists('dateOfBirth', $data ?? [], null);
+        $this->setIfExists('email', $data ?? [], null);
         $this->setIfExists('firstName', $data ?? [], null);
         $this->setIfExists('fullName', $data ?? [], null);
         $this->setIfExists('lastName', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('url', $data ?? [], null);
     }
 
     /**
@@ -384,6 +398,30 @@ class PartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializa
     public function setDateOfBirth($dateOfBirth)
     {
         $this->container['dateOfBirth'] = $dateOfBirth;
+
+        return $this;
+    }
+
+    /**
+     * Gets email
+     *
+     * @return string|null
+     */
+    public function getEmail()
+    {
+        return $this->container['email'];
+    }
+
+    /**
+     * Sets email
+     *
+     * @param string|null $email The email address of the organization or individual. Maximum length: 254 characters.
+     *
+     * @return self
+     */
+    public function setEmail($email)
+    {
+        $this->container['email'] = $email;
 
         return $this;
     }
@@ -514,6 +552,30 @@ class PartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializa
             );
         }
         $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets url
+     *
+     * @return string|null
+     */
+    public function getUrl()
+    {
+        return $this->container['url'];
+    }
+
+    /**
+     * Sets url
+     *
+     * @param string|null $url The URL of the organization or individual. Maximum length: 255 characters.
+     *
+     * @return self
+     */
+    public function setUrl($url)
+    {
+        $this->container['url'] = $url;
 
         return $this;
     }

@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\ManagementWebhooks;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\ManagementWebhooks\ObjectSerializer;
 
 /**
  * TerminalAssignmentNotificationResponse Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class TerminalAssignmentNotificationResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -286,7 +286,7 @@ class TerminalAssignmentNotificationResponse implements ModelInterface, ArrayAcc
     /**
      * Sets notificationResponse
      *
-     * @param string|null $notificationResponse Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks#accept-notifications).
+     * @param string|null $notificationResponse Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks/#accept-webhooks).
      *
      * @return self
      */

@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\ReportWebhooks;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\ReportWebhooks\ObjectSerializer;
 
 /**
  * Resource Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class Resource implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -324,7 +324,7 @@ class Resource implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets creationDate
      *
-     * @param \DateTime|null $creationDate The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
+     * @param \DateTime|null $creationDate The date and time when the event was triggered, in ISO 8601 extended format. For example, **2025-03-19T10:15:30+01:00**.
      *
      * @return self
      */

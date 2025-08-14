@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\TokenizationWebhooks;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\TokenizationWebhooks\ObjectSerializer;
 
 /**
  * TokenizationUpdatedDetailsNotificationRequest Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class TokenizationUpdatedDetailsNotificationRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {

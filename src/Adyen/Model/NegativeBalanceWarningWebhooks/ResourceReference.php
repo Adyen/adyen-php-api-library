@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\NegativeBalanceWarningWebhooks;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\NegativeBalanceWarningWebhooks\ObjectSerializer;
 
 /**
  * ResourceReference Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class ResourceReference implements ModelInterface, ArrayAccess, \JsonSerializable
 {
