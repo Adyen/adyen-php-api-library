@@ -661,11 +661,11 @@ class PayoutRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getShopperInteractionAllowableValues();
         if (!in_array($shopperInteraction, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'shopperInteraction', must be one of '%s'",
+                    "shopperInteraction: unexpected enum value '%s' - Supported values are [%s]",
                     $shopperInteraction,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

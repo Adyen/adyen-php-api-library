@@ -436,11 +436,11 @@ class StoredValueLoadRequest implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $allowedValues = $this->getLoadTypeAllowableValues();
         if (!in_array($loadType, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'loadType', must be one of '%s'",
+                    "loadType: unexpected enum value '%s' - Supported values are [%s]",
                     $loadType,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -566,11 +566,11 @@ class StoredValueLoadRequest implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $allowedValues = $this->getShopperInteractionAllowableValues();
         if (!in_array($shopperInteraction, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'shopperInteraction', must be one of '%s'",
+                    "shopperInteraction: unexpected enum value '%s' - Supported values are [%s]",
                     $shopperInteraction,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
