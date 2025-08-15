@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\ManagementWebhooks;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\ManagementWebhooks\ObjectSerializer;
 
 /**
  * TerminalSettingsData Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class TerminalSettingsData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -454,11 +454,11 @@ class TerminalSettingsData implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         $allowedValues = $this->getUpdateSourceAllowableValues();
         if (!in_array($updateSource, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'updateSource', must be one of '%s'",
+                    "updateSource: unexpected enum value '%s' - Supported values are [%s]",
                     $updateSource,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
