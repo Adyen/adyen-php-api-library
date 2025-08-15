@@ -7,8 +7,10 @@ use Adyen\Model\AcsWebhooks\RelayedAuthenticationRequest;
 use Adyen\Model\BalanceWebhooks\BalanceAccountBalanceNotificationRequest;
 use Adyen\Model\ConfigurationWebhooks\AccountHolderNotificationRequest;
 use Adyen\Model\ConfigurationWebhooks\BalanceAccountNotificationRequest;
+use Adyen\Model\ConfigurationWebhooks\NetworkTokenNotificationRequest;
 use Adyen\Model\ConfigurationWebhooks\ObjectSerializer;
 use Adyen\Model\ConfigurationWebhooks\PaymentNotificationRequest;
+use Adyen\Model\ConfigurationWebhooks\ScoreNotificationRequest;
 use Adyen\Model\ConfigurationWebhooks\SweepConfigurationNotificationRequest;
 use Adyen\Model\ReportWebhooks\ReportNotificationRequest;
 use Adyen\Model\TransactionWebhooks\TransactionNotificationRequestV4;
@@ -29,7 +31,9 @@ class BankingWebhookParser
         SweepConfigurationNotificationRequest::class,
         ReportNotificationRequest::class,
         TransferNotificationRequest::class,
-        TransactionNotificationRequestV4::class
+        TransactionNotificationRequestV4::class,
+        ScoreNotificationRequest::class,
+        NetworkTokenNotificationRequest::class
     ];
 
     public function __construct(string $payload)
@@ -118,6 +122,16 @@ class BankingWebhookParser
     public function getTransactionNotificationRequestV4(): TransactionNotificationRequestV4
     {
         return $this->getWebhookByClass(TransactionNotificationRequestV4::class);
+    }
+
+    public function getNetworkTokenNotificationRequest(): NetworkTokenNotificationRequest
+    {
+        return $this->getWebhookByClass(NetworkTokenNotificationRequest::class);
+    }
+
+    public function getScoreNotificationRequest(): ScoreNotificationRequest
+    {
+        return $this->getWebhookByClass(ScoreNotificationRequest::class);
     }
 
     private function getWebhookByClass(string $expectedClass): object
