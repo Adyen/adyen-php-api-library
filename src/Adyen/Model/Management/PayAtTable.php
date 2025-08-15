@@ -354,11 +354,11 @@ class PayAtTable implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getAuthenticationMethodAllowableValues();
         if (!in_array($authenticationMethod, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'authenticationMethod', must be one of '%s'",
+                    "authenticationMethod: unexpected enum value '%s' - Supported values are [%s]",
                     $authenticationMethod,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -422,11 +422,11 @@ class PayAtTable implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         $allowedValues = $this->getPaymentInstrumentAllowableValues();
         if (!is_null($paymentInstrument) && !in_array($paymentInstrument, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'paymentInstrument', must be one of '%s'",
+                    "paymentInstrument: unexpected enum value '%s' - Supported values are [%s]",
                     $paymentInstrument,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
