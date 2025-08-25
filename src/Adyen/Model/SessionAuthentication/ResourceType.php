@@ -14,6 +14,7 @@
 
 
 namespace Adyen\Model\SessionAuthentication;
+
 use Adyen\Model\SessionAuthentication\ObjectSerializer;
 
 /**
@@ -51,4 +52,3 @@ class ResourceType
         ];
     }
 }
-
