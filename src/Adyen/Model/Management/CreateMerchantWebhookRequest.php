@@ -590,11 +590,11 @@ class CreateMerchantWebhookRequest implements ModelInterface, ArrayAccess, \Json
     {
         $allowedValues = $this->getCommunicationFormatAllowableValues();
         if (!in_array($communicationFormat, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'communicationFormat', must be one of '%s'",
+                    "communicationFormat: unexpected enum value '%s' - Supported values are [%s]",
                     $communicationFormat,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -648,11 +648,11 @@ class CreateMerchantWebhookRequest implements ModelInterface, ArrayAccess, \Json
     {
         $allowedValues = $this->getEncryptionProtocolAllowableValues();
         if (!in_array($encryptionProtocol, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'encryptionProtocol', must be one of '%s'",
+                    "encryptionProtocol: unexpected enum value '%s' - Supported values are [%s]",
                     $encryptionProtocol,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -682,11 +682,11 @@ class CreateMerchantWebhookRequest implements ModelInterface, ArrayAccess, \Json
     {
         $allowedValues = $this->getNetworkTypeAllowableValues();
         if (!in_array($networkType, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'networkType', must be one of '%s'",
+                    "networkType: unexpected enum value '%s' - Supported values are [%s]",
                     $networkType,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
