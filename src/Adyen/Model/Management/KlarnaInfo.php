@@ -399,11 +399,11 @@ class KlarnaInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getRegionAllowableValues();
         if (!in_array($region, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'region', must be one of '%s'",
+                    "region: unexpected enum value '%s' - Supported values are [%s]",
                     $region,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
