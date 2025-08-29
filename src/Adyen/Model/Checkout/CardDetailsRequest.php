@@ -320,7 +320,7 @@ class CardDetailsRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets cardNumber
      *
-     * @param string $cardNumber A minimum of the first eight digits of the card number. The full card number gives the best result.   You must be [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide) to collect raw card data. Alternatively, you can use the `encryptedCardNumber` field.
+     * @param string $cardNumber A minimum of the first six digits of the card number. The full card number gives the best result.   You must be [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide) to collect raw card data. Alternatively, you can use the `encryptedCardNumber` field.
      *
      * @return self
      */

@@ -49,6 +49,7 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'encryptedCardNumber' => 'string',
         'encryptedExpiryMonth' => 'string',
         'encryptedExpiryYear' => 'string',
+        'encryptedPassword' => 'string',
         'encryptedSecurityCode' => 'string',
         'expiryMonth' => 'string',
         'expiryYear' => 'string',
@@ -84,6 +85,7 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'encryptedCardNumber' => null,
         'encryptedExpiryMonth' => null,
         'encryptedExpiryYear' => null,
+        'encryptedPassword' => null,
         'encryptedSecurityCode' => null,
         'expiryMonth' => null,
         'expiryYear' => null,
@@ -117,6 +119,7 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'encryptedCardNumber' => false,
         'encryptedExpiryMonth' => false,
         'encryptedExpiryYear' => false,
+        'encryptedPassword' => false,
         'encryptedSecurityCode' => false,
         'expiryMonth' => false,
         'expiryYear' => false,
@@ -230,6 +233,7 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'encryptedCardNumber' => 'encryptedCardNumber',
         'encryptedExpiryMonth' => 'encryptedExpiryMonth',
         'encryptedExpiryYear' => 'encryptedExpiryYear',
+        'encryptedPassword' => 'encryptedPassword',
         'encryptedSecurityCode' => 'encryptedSecurityCode',
         'expiryMonth' => 'expiryMonth',
         'expiryYear' => 'expiryYear',
@@ -263,6 +267,7 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'encryptedCardNumber' => 'setEncryptedCardNumber',
         'encryptedExpiryMonth' => 'setEncryptedExpiryMonth',
         'encryptedExpiryYear' => 'setEncryptedExpiryYear',
+        'encryptedPassword' => 'setEncryptedPassword',
         'encryptedSecurityCode' => 'setEncryptedSecurityCode',
         'expiryMonth' => 'setExpiryMonth',
         'expiryYear' => 'setExpiryYear',
@@ -296,6 +301,7 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'encryptedCardNumber' => 'getEncryptedCardNumber',
         'encryptedExpiryMonth' => 'getEncryptedExpiryMonth',
         'encryptedExpiryYear' => 'getEncryptedExpiryYear',
+        'encryptedPassword' => 'getEncryptedPassword',
         'encryptedSecurityCode' => 'getEncryptedSecurityCode',
         'expiryMonth' => 'getExpiryMonth',
         'expiryYear' => 'getExpiryYear',
@@ -416,6 +422,7 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('encryptedCardNumber', $data ?? [], null);
         $this->setIfExists('encryptedExpiryMonth', $data ?? [], null);
         $this->setIfExists('encryptedExpiryYear', $data ?? [], null);
+        $this->setIfExists('encryptedPassword', $data ?? [], null);
         $this->setIfExists('encryptedSecurityCode', $data ?? [], null);
         $this->setIfExists('expiryMonth', $data ?? [], null);
         $this->setIfExists('expiryYear', $data ?? [], null);
@@ -685,6 +692,30 @@ class CardDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setEncryptedExpiryYear($encryptedExpiryYear)
     {
         $this->container['encryptedExpiryYear'] = $encryptedExpiryYear;
+
+        return $this;
+    }
+
+    /**
+     * Gets encryptedPassword
+     *
+     * @return string|null
+     */
+    public function getEncryptedPassword()
+    {
+        return $this->container['encryptedPassword'];
+    }
+
+    /**
+     * Sets encryptedPassword
+     *
+     * @param string|null $encryptedPassword This field contains an encrypted, one-time password or an authentication code provided by the cardholder.
+     *
+     * @return self
+     */
+    public function setEncryptedPassword($encryptedPassword)
+    {
+        $this->container['encryptedPassword'] = $encryptedPassword;
 
         return $this;
     }
