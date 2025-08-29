@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * CapabilitySettings Class Doc Comment
+ * BalanceWebhookSettingInfo Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializable
+class BalanceWebhookSettingInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
       *
       * @var string
       */
-    protected static $openAPIModelName = 'CapabilitySettings';
+    protected static $openAPIModelName = 'BalanceWebhookSettingInfo';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,11 +41,11 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var string[]
       */
     protected static $openAPITypes = [
-        'amountPerIndustry' => 'array<string,\Adyen\Model\BalancePlatform\Amount>',
-        'authorizedCardUsers' => 'bool',
-        'fundingSource' => 'string[]',
-        'interval' => 'string',
-        'maxAmount' => '\Adyen\Model\BalancePlatform\Amount'
+        'conditions' => '\Adyen\Model\BalancePlatform\Condition[]',
+        'currency' => 'string',
+        'status' => 'string',
+        'target' => '\Adyen\Model\BalancePlatform\Target',
+        'type' => 'string'
     ];
 
     /**
@@ -56,11 +56,11 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'amountPerIndustry' => null,
-        'authorizedCardUsers' => null,
-        'fundingSource' => null,
-        'interval' => null,
-        'maxAmount' => null
+        'conditions' => null,
+        'currency' => null,
+        'status' => null,
+        'target' => null,
+        'type' => null
     ];
 
     /**
@@ -69,11 +69,11 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'amountPerIndustry' => false,
-        'authorizedCardUsers' => false,
-        'fundingSource' => false,
-        'interval' => false,
-        'maxAmount' => false
+        'conditions' => false,
+        'currency' => false,
+        'status' => false,
+        'target' => false,
+        'type' => false
     ];
 
     /**
@@ -162,11 +162,11 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $attributeMap = [
-        'amountPerIndustry' => 'amountPerIndustry',
-        'authorizedCardUsers' => 'authorizedCardUsers',
-        'fundingSource' => 'fundingSource',
-        'interval' => 'interval',
-        'maxAmount' => 'maxAmount'
+        'conditions' => 'conditions',
+        'currency' => 'currency',
+        'status' => 'status',
+        'target' => 'target',
+        'type' => 'type'
     ];
 
     /**
@@ -175,11 +175,11 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $setters = [
-        'amountPerIndustry' => 'setAmountPerIndustry',
-        'authorizedCardUsers' => 'setAuthorizedCardUsers',
-        'fundingSource' => 'setFundingSource',
-        'interval' => 'setInterval',
-        'maxAmount' => 'setMaxAmount'
+        'conditions' => 'setConditions',
+        'currency' => 'setCurrency',
+        'status' => 'setStatus',
+        'target' => 'setTarget',
+        'type' => 'setType'
     ];
 
     /**
@@ -188,11 +188,11 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $getters = [
-        'amountPerIndustry' => 'getAmountPerIndustry',
-        'authorizedCardUsers' => 'getAuthorizedCardUsers',
-        'fundingSource' => 'getFundingSource',
-        'interval' => 'getInterval',
-        'maxAmount' => 'getMaxAmount'
+        'conditions' => 'getConditions',
+        'currency' => 'getCurrency',
+        'status' => 'getStatus',
+        'target' => 'getTarget',
+        'type' => 'getType'
     ];
 
     /**
@@ -236,24 +236,20 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
         return self::$openAPIModelName;
     }
 
-    public const FUNDING_SOURCE_CREDIT = 'credit';
-    public const FUNDING_SOURCE_DEBIT = 'debit';
-    public const FUNDING_SOURCE_PREPAID = 'prepaid';
-    public const INTERVAL_DAILY = 'daily';
-    public const INTERVAL_MONTHLY = 'monthly';
-    public const INTERVAL_WEEKLY = 'weekly';
+    public const STATUS_ACTIVE = 'active';
+    public const STATUS_INACTIVE = 'inactive';
+    public const TYPE_BALANCE = 'balance';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getFundingSourceAllowableValues()
+    public function getStatusAllowableValues()
     {
         return [
-            self::FUNDING_SOURCE_CREDIT,
-            self::FUNDING_SOURCE_DEBIT,
-            self::FUNDING_SOURCE_PREPAID,
+            self::STATUS_ACTIVE,
+            self::STATUS_INACTIVE,
         ];
     }
     /**
@@ -261,12 +257,10 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @return string[]
      */
-    public function getIntervalAllowableValues()
+    public function getTypeAllowableValues()
     {
         return [
-            self::INTERVAL_DAILY,
-            self::INTERVAL_MONTHLY,
-            self::INTERVAL_WEEKLY,
+            self::TYPE_BALANCE,
         ];
     }
     /**
@@ -284,11 +278,11 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('amountPerIndustry', $data ?? [], null);
-        $this->setIfExists('authorizedCardUsers', $data ?? [], null);
-        $this->setIfExists('fundingSource', $data ?? [], null);
-        $this->setIfExists('interval', $data ?? [], null);
-        $this->setIfExists('maxAmount', $data ?? [], null);
+        $this->setIfExists('conditions', $data ?? [], null);
+        $this->setIfExists('currency', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('target', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -318,11 +312,32 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getIntervalAllowableValues();
-        if (!is_null($this->container['interval']) && !in_array($this->container['interval'], $allowedValues, true)) {
+        if ($this->container['currency'] === null) {
+            $invalidProperties[] = "'currency' can't be null";
+        }
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
+        }
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'interval', must be one of '%s'",
-                $this->container['interval'],
+                "invalid value '%s' for 'status', must be one of '%s'",
+                $this->container['status'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['target'] === null) {
+            $invalidProperties[] = "'target' can't be null";
+        }
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
                 implode("', '", $allowedValues)
             );
         }
@@ -343,140 +358,141 @@ class CapabilitySettings implements ModelInterface, ArrayAccess, \JsonSerializab
 
 
     /**
-     * Gets amountPerIndustry
+     * Gets conditions
      *
-     * @return array<string,\Adyen\Model\BalancePlatform\Amount>|null
+     * @return \Adyen\Model\BalancePlatform\Condition[]|null
      */
-    public function getAmountPerIndustry()
+    public function getConditions()
     {
-        return $this->container['amountPerIndustry'];
+        return $this->container['conditions'];
     }
 
     /**
-     * Sets amountPerIndustry
+     * Sets conditions
      *
-     * @param array<string,\Adyen\Model\BalancePlatform\Amount>|null $amountPerIndustry 
+     * @param \Adyen\Model\BalancePlatform\Condition[]|null $conditions The array of conditions a balance change must meet for Adyen to send the webhook.
      *
      * @return self
      */
-    public function setAmountPerIndustry($amountPerIndustry)
+    public function setConditions($conditions)
     {
-        $this->container['amountPerIndustry'] = $amountPerIndustry;
+        $this->container['conditions'] = $conditions;
 
         return $this;
     }
 
     /**
-     * Gets authorizedCardUsers
+     * Gets currency
      *
-     * @return bool|null
+     * @return string
      */
-    public function getAuthorizedCardUsers()
+    public function getCurrency()
     {
-        return $this->container['authorizedCardUsers'];
+        return $this->container['currency'];
     }
 
     /**
-     * Sets authorizedCardUsers
+     * Sets currency
      *
-     * @param bool|null $authorizedCardUsers 
+     * @param string $currency The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) of the balance.
      *
      * @return self
      */
-    public function setAuthorizedCardUsers($authorizedCardUsers)
+    public function setCurrency($currency)
     {
-        $this->container['authorizedCardUsers'] = $authorizedCardUsers;
+        $this->container['currency'] = $currency;
 
         return $this;
     }
 
     /**
-     * Gets fundingSource
+     * Gets status
      *
-     * @return string[]|null
+     * @return string
      */
-    public function getFundingSource()
+    public function getStatus()
     {
-        return $this->container['fundingSource'];
+        return $this->container['status'];
     }
 
     /**
-     * Sets fundingSource
+     * Sets status
      *
-     * @param string[]|null $fundingSource 
+     * @param string $status The status of the webhook setting. Possible values:  * **active**: You receive a balance webhook if any of the conditions in this setting are met. * **inactive**: You do not receive a balance webhook even if the conditions in this settings are met.
      *
      * @return self
      */
-    public function setFundingSource($fundingSource)
+    public function setStatus($status)
     {
-        $allowedValues = $this->getFundingSourceAllowableValues();
-        if (array_diff($fundingSource, $allowedValues)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value for 'fundingSource', must be one of '%s'",
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['fundingSource'] = $fundingSource;
-
-        return $this;
-    }
-
-    /**
-     * Gets interval
-     *
-     * @return string|null
-     */
-    public function getInterval()
-    {
-        return $this->container['interval'];
-    }
-
-    /**
-     * Sets interval
-     *
-     * @param string|null $interval 
-     *
-     * @return self
-     */
-    public function setInterval($interval)
-    {
-        $allowedValues = $this->getIntervalAllowableValues();
-        if (!in_array($interval, $allowedValues, true)) {
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!in_array($status, $allowedValues, true)) {
             error_log(
                 sprintf(
-                    "interval: unexpected enum value '%s' - Supported values are [%s]",
-                    $interval,
+                    "status: unexpected enum value '%s' - Supported values are [%s]",
+                    $status,
                     implode(', ', $allowedValues)
                 )
             );
         }
-        $this->container['interval'] = $interval;
+        $this->container['status'] = $status;
 
         return $this;
     }
 
     /**
-     * Gets maxAmount
+     * Gets target
      *
-     * @return \Adyen\Model\BalancePlatform\Amount|null
+     * @return \Adyen\Model\BalancePlatform\Target
      */
-    public function getMaxAmount()
+    public function getTarget()
     {
-        return $this->container['maxAmount'];
+        return $this->container['target'];
     }
 
     /**
-     * Sets maxAmount
+     * Sets target
      *
-     * @param \Adyen\Model\BalancePlatform\Amount|null $maxAmount maxAmount
+     * @param \Adyen\Model\BalancePlatform\Target $target target
      *
      * @return self
      */
-    public function setMaxAmount($maxAmount)
+    public function setTarget($target)
     {
-        $this->container['maxAmount'] = $maxAmount;
+        $this->container['target'] = $target;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string $type The type of the webhook you are configuring. Set to **balance**.
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            error_log(
+                sprintf(
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
+                    $type,
+                    implode(', ', $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
 
         return $this;
     }
