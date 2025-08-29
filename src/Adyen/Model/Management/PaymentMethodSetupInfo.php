@@ -1801,11 +1801,11 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $allowedValues = $this->getShopperInteractionAllowableValues();
         if (!in_array($shopperInteraction, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'shopperInteraction', must be one of '%s'",
+                    "shopperInteraction: unexpected enum value '%s' - Supported values are [%s]",
                     $shopperInteraction,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -2003,11 +2003,11 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
                     $type,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
