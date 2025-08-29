@@ -1840,11 +1840,11 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getVerificationStatusAllowableValues();
         if (!in_array($verificationStatus, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'verificationStatus', must be one of '%s'",
+                    "verificationStatus: unexpected enum value '%s' - Supported values are [%s]",
                     $verificationStatus,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
