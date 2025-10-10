@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\Management\ObjectSerializer;
 
 /**
- * TerminalAssignment Class Doc Comment
+ * Unreferenced Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class TerminalAssignment implements ModelInterface, ArrayAccess, \JsonSerializable
+class Unreferenced implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class TerminalAssignment implements ModelInterface, ArrayAccess, \JsonSerializab
       *
       * @var string
       */
-    protected static $openAPIModelName = 'TerminalAssignment';
+    protected static $openAPIModelName = 'Unreferenced';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,11 +41,7 @@ class TerminalAssignment implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var string[]
       */
     protected static $openAPITypes = [
-        'companyId' => 'string',
-        'merchantId' => 'string',
-        'reassignmentTarget' => '\Adyen\Model\Management\TerminalReassignmentTarget',
-        'status' => 'string',
-        'storeId' => 'string'
+        'enableUnreferencedRefunds' => 'bool'
     ];
 
     /**
@@ -56,11 +52,7 @@ class TerminalAssignment implements ModelInterface, ArrayAccess, \JsonSerializab
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'companyId' => null,
-        'merchantId' => null,
-        'reassignmentTarget' => null,
-        'status' => null,
-        'storeId' => null
+        'enableUnreferencedRefunds' => null
     ];
 
     /**
@@ -69,11 +61,7 @@ class TerminalAssignment implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'companyId' => false,
-        'merchantId' => false,
-        'reassignmentTarget' => false,
-        'status' => false,
-        'storeId' => false
+        'enableUnreferencedRefunds' => false
     ];
 
     /**
@@ -162,11 +150,7 @@ class TerminalAssignment implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $attributeMap = [
-        'companyId' => 'companyId',
-        'merchantId' => 'merchantId',
-        'reassignmentTarget' => 'reassignmentTarget',
-        'status' => 'status',
-        'storeId' => 'storeId'
+        'enableUnreferencedRefunds' => 'enableUnreferencedRefunds'
     ];
 
     /**
@@ -175,11 +159,7 @@ class TerminalAssignment implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $setters = [
-        'companyId' => 'setCompanyId',
-        'merchantId' => 'setMerchantId',
-        'reassignmentTarget' => 'setReassignmentTarget',
-        'status' => 'setStatus',
-        'storeId' => 'setStoreId'
+        'enableUnreferencedRefunds' => 'setEnableUnreferencedRefunds'
     ];
 
     /**
@@ -188,11 +168,7 @@ class TerminalAssignment implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $getters = [
-        'companyId' => 'getCompanyId',
-        'merchantId' => 'getMerchantId',
-        'reassignmentTarget' => 'getReassignmentTarget',
-        'status' => 'getStatus',
-        'storeId' => 'getStoreId'
+        'enableUnreferencedRefunds' => 'getEnableUnreferencedRefunds'
     ];
 
     /**
@@ -236,25 +212,7 @@ class TerminalAssignment implements ModelInterface, ArrayAccess, \JsonSerializab
         return self::$openAPIModelName;
     }
 
-    public const STATUS_BOARDED = 'boarded';
-    public const STATUS_DEPLOYED = 'deployed';
-    public const STATUS_INVENTORY = 'inventory';
-    public const STATUS_REASSIGNMENT_IN_PROGRESS = 'reassignmentInProgress';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS_BOARDED,
-            self::STATUS_DEPLOYED,
-            self::STATUS_INVENTORY,
-            self::STATUS_REASSIGNMENT_IN_PROGRESS,
-        ];
-    }
     /**
      * Associative array for storing property values
      *
@@ -270,11 +228,7 @@ class TerminalAssignment implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('companyId', $data ?? [], null);
-        $this->setIfExists('merchantId', $data ?? [], null);
-        $this->setIfExists('reassignmentTarget', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
-        $this->setIfExists('storeId', $data ?? [], null);
+        $this->setIfExists('enableUnreferencedRefunds', $data ?? [], null);
     }
 
     /**
@@ -304,21 +258,6 @@ class TerminalAssignment implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $invalidProperties = [];
 
-        if ($this->container['companyId'] === null) {
-            $invalidProperties[] = "'companyId' can't be null";
-        }
-        if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
-        }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -335,131 +274,25 @@ class TerminalAssignment implements ModelInterface, ArrayAccess, \JsonSerializab
 
 
     /**
-     * Gets companyId
+     * Gets enableUnreferencedRefunds
      *
-     * @return string
+     * @return bool|null
      */
-    public function getCompanyId()
+    public function getEnableUnreferencedRefunds()
     {
-        return $this->container['companyId'];
+        return $this->container['enableUnreferencedRefunds'];
     }
 
     /**
-     * Sets companyId
+     * Sets enableUnreferencedRefunds
      *
-     * @param string $companyId The unique identifier of the company account to which terminal is assigned.
+     * @param bool|null $enableUnreferencedRefunds Indicates whether unreferenced refunds are enabled on the terminal.
      *
      * @return self
      */
-    public function setCompanyId($companyId)
+    public function setEnableUnreferencedRefunds($enableUnreferencedRefunds)
     {
-        $this->container['companyId'] = $companyId;
-
-        return $this;
-    }
-
-    /**
-     * Gets merchantId
-     *
-     * @return string|null
-     */
-    public function getMerchantId()
-    {
-        return $this->container['merchantId'];
-    }
-
-    /**
-     * Sets merchantId
-     *
-     * @param string|null $merchantId The unique identifier of the merchant account to which terminal is assigned.
-     *
-     * @return self
-     */
-    public function setMerchantId($merchantId)
-    {
-        $this->container['merchantId'] = $merchantId;
-
-        return $this;
-    }
-
-    /**
-     * Gets reassignmentTarget
-     *
-     * @return \Adyen\Model\Management\TerminalReassignmentTarget|null
-     */
-    public function getReassignmentTarget()
-    {
-        return $this->container['reassignmentTarget'];
-    }
-
-    /**
-     * Sets reassignmentTarget
-     *
-     * @param \Adyen\Model\Management\TerminalReassignmentTarget|null $reassignmentTarget reassignmentTarget
-     *
-     * @return self
-     */
-    public function setReassignmentTarget($reassignmentTarget)
-    {
-        $this->container['reassignmentTarget'] = $reassignmentTarget;
-
-        return $this;
-    }
-
-    /**
-     * Gets status
-     *
-     * @return string
-     */
-    public function getStatus()
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string $status The status of the reassignment. Possible values:   * `reassignmentInProgress`: the terminal was boarded and is now scheduled to remove the configuration. Wait for the terminal to synchronize with the Adyen platform.  * `deployed`: the terminal is deployed and reassigned.   * `inventory`: the terminal is in inventory and cannot process transactions.   * `boarded`: the terminal is boarded to a store, or a merchant account representing a store, and can process transactions.
-     *
-     * @return self
-     */
-    public function setStatus($status)
-    {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
-            error_log(
-                sprintf(
-                    "status: unexpected enum value '%s' - Supported values are [%s]",
-                    $status,
-                    implode(', ', $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Gets storeId
-     *
-     * @return string|null
-     */
-    public function getStoreId()
-    {
-        return $this->container['storeId'];
-    }
-
-    /**
-     * Sets storeId
-     *
-     * @param string|null $storeId The unique identifier of the store to which terminal is assigned.
-     *
-     * @return self
-     */
-    public function setStoreId($storeId)
-    {
-        $this->container['storeId'] = $storeId;
+        $this->container['enableUnreferencedRefunds'] = $enableUnreferencedRefunds;
 
         return $this;
     }
