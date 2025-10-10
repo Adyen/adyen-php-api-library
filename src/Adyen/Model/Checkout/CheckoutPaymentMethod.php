@@ -73,6 +73,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedCardNumber' => 'string',
         'encryptedExpiryMonth' => 'string',
         'encryptedExpiryYear' => 'string',
+        'encryptedPassword' => 'string',
         'encryptedSecurityCode' => 'string',
         'expiryMonth' => 'string',
         'expiryYear' => 'string',
@@ -158,6 +159,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedCardNumber' => null,
         'encryptedExpiryMonth' => null,
         'encryptedExpiryYear' => null,
+        'encryptedPassword' => null,
         'encryptedSecurityCode' => null,
         'expiryMonth' => null,
         'expiryYear' => null,
@@ -241,6 +243,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedCardNumber' => false,
         'encryptedExpiryMonth' => false,
         'encryptedExpiryYear' => false,
+        'encryptedPassword' => false,
         'encryptedSecurityCode' => false,
         'expiryMonth' => false,
         'expiryYear' => false,
@@ -404,6 +407,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedCardNumber' => 'encryptedCardNumber',
         'encryptedExpiryMonth' => 'encryptedExpiryMonth',
         'encryptedExpiryYear' => 'encryptedExpiryYear',
+        'encryptedPassword' => 'encryptedPassword',
         'encryptedSecurityCode' => 'encryptedSecurityCode',
         'expiryMonth' => 'expiryMonth',
         'expiryYear' => 'expiryYear',
@@ -487,6 +491,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedCardNumber' => 'setEncryptedCardNumber',
         'encryptedExpiryMonth' => 'setEncryptedExpiryMonth',
         'encryptedExpiryYear' => 'setEncryptedExpiryYear',
+        'encryptedPassword' => 'setEncryptedPassword',
         'encryptedSecurityCode' => 'setEncryptedSecurityCode',
         'expiryMonth' => 'setExpiryMonth',
         'expiryYear' => 'setExpiryYear',
@@ -570,6 +575,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedCardNumber' => 'getEncryptedCardNumber',
         'encryptedExpiryMonth' => 'getEncryptedExpiryMonth',
         'encryptedExpiryYear' => 'getEncryptedExpiryYear',
+        'encryptedPassword' => 'getEncryptedPassword',
         'encryptedSecurityCode' => 'getEncryptedSecurityCode',
         'expiryMonth' => 'getExpiryMonth',
         'expiryYear' => 'getExpiryYear',
@@ -703,6 +709,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('encryptedCardNumber', $data ?? [], null);
         $this->setIfExists('encryptedExpiryMonth', $data ?? [], null);
         $this->setIfExists('encryptedExpiryYear', $data ?? [], null);
+        $this->setIfExists('encryptedPassword', $data ?? [], null);
         $this->setIfExists('encryptedSecurityCode', $data ?? [], null);
         $this->setIfExists('expiryMonth', $data ?? [], null);
         $this->setIfExists('expiryYear', $data ?? [], null);
@@ -831,9 +838,6 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         }
         if ($this->container['samsungPayToken'] === null) {
             $invalidProperties[] = "'samsungPayToken' can't be null";
-        }
-        if ($this->container['billingSequenceNumber'] === null) {
-            $invalidProperties[] = "'billingSequenceNumber' can't be null";
         }
         if ($this->container['visaCheckoutCallId'] === null) {
             $invalidProperties[] = "'visaCheckoutCallId' can't be null";
@@ -1578,6 +1582,30 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
+     * Gets encryptedPassword
+     *
+     * @return string|null
+     */
+    public function getEncryptedPassword()
+    {
+        return $this->container['encryptedPassword'];
+    }
+
+    /**
+     * Sets encryptedPassword
+     *
+     * @param string|null $encryptedPassword This field contains an encrypted, one-time password or an authentication code provided by the cardholder.
+     *
+     * @return self
+     */
+    public function setEncryptedPassword($encryptedPassword)
+    {
+        $this->container['encryptedPassword'] = $encryptedPassword;
+
+        return $this;
+    }
+
+    /**
      * Gets encryptedSecurityCode
      *
      * @return string|null
@@ -2070,7 +2098,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets shopperEmail
      *
-     * @param string $shopperEmail
+     * @param string $shopperEmail 
      *
      * @return self
      */
@@ -2094,7 +2122,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets telephoneNumber
      *
-     * @param string $telephoneNumber
+     * @param string $telephoneNumber 
      *
      * @return self
      */
@@ -2540,7 +2568,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets billingSequenceNumber
      *
-     * @return string
+     * @return string|null
      */
     public function getBillingSequenceNumber()
     {
@@ -2550,7 +2578,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets billingSequenceNumber
      *
-     * @param string $billingSequenceNumber The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper.
+     * @param string|null $billingSequenceNumber The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper.
      *
      * @return self
      */
