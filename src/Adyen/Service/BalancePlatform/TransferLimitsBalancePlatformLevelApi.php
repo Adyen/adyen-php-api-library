@@ -61,14 +61,13 @@ class TransferLimitsBalancePlatformLevelApi extends Service
     * @param string $transferLimitId
     * @param string $id
     * @param array|null $requestOptions
-    
+
     * @throws AdyenException
     */
     public function deletePendingTransferLimit(string $transferLimitId, string $id, ?array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{transferLimitId}', '{id}'], [$transferLimitId, $id], "/balancePlatforms/{id}/transferLimits/{transferLimitId}");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
-        
     }
 
     /**
