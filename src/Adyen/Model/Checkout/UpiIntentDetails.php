@@ -42,6 +42,7 @@ class UpiIntentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'appId' => 'string',
+        'billingSequenceNumber' => 'string',
         'checkoutAttemptId' => 'string',
         'recurringDetailReference' => 'string',
         'shopperNotificationReference' => 'string',
@@ -58,6 +59,7 @@ class UpiIntentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'appId' => null,
+        'billingSequenceNumber' => null,
         'checkoutAttemptId' => null,
         'recurringDetailReference' => null,
         'shopperNotificationReference' => null,
@@ -72,6 +74,7 @@ class UpiIntentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'appId' => false,
+        'billingSequenceNumber' => false,
         'checkoutAttemptId' => false,
         'recurringDetailReference' => false,
         'shopperNotificationReference' => false,
@@ -166,6 +169,7 @@ class UpiIntentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'appId' => 'appId',
+        'billingSequenceNumber' => 'billingSequenceNumber',
         'checkoutAttemptId' => 'checkoutAttemptId',
         'recurringDetailReference' => 'recurringDetailReference',
         'shopperNotificationReference' => 'shopperNotificationReference',
@@ -180,6 +184,7 @@ class UpiIntentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'appId' => 'setAppId',
+        'billingSequenceNumber' => 'setBillingSequenceNumber',
         'checkoutAttemptId' => 'setCheckoutAttemptId',
         'recurringDetailReference' => 'setRecurringDetailReference',
         'shopperNotificationReference' => 'setShopperNotificationReference',
@@ -194,6 +199,7 @@ class UpiIntentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'appId' => 'getAppId',
+        'billingSequenceNumber' => 'getBillingSequenceNumber',
         'checkoutAttemptId' => 'getCheckoutAttemptId',
         'recurringDetailReference' => 'getRecurringDetailReference',
         'shopperNotificationReference' => 'getShopperNotificationReference',
@@ -271,6 +277,7 @@ class UpiIntentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(?array $data = null)
     {
         $this->setIfExists('appId', $data ?? [], null);
+        $this->setIfExists('billingSequenceNumber', $data ?? [], null);
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
         $this->setIfExists('shopperNotificationReference', $data ?? [], null);
@@ -352,6 +359,30 @@ class UpiIntentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setAppId($appId)
     {
         $this->container['appId'] = $appId;
+
+        return $this;
+    }
+
+    /**
+     * Gets billingSequenceNumber
+     *
+     * @return string|null
+     */
+    public function getBillingSequenceNumber()
+    {
+        return $this->container['billingSequenceNumber'];
+    }
+
+    /**
+     * Sets billingSequenceNumber
+     *
+     * @param string|null $billingSequenceNumber The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper.
+     *
+     * @return self
+     */
+    public function setBillingSequenceNumber($billingSequenceNumber)
+    {
+        $this->container['billingSequenceNumber'] = $billingSequenceNumber;
 
         return $this;
     }

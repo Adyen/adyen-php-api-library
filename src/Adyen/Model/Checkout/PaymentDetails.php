@@ -220,10 +220,12 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 
     public const TYPE_ALIPAY = 'alipay';
     public const TYPE_MULTIBANCO = 'multibanco';
+    public const TYPE_BANK_TRANSFER = 'bankTransfer';
     public const TYPE_BANK_TRANSFER_IBAN = 'bankTransfer_IBAN';
     public const TYPE_PAYBRIGHT = 'paybright';
     public const TYPE_PAYNOW = 'paynow';
     public const TYPE_AFFIRM_POS = 'affirm_pos';
+    public const TYPE_IRIS = 'iris';
     public const TYPE_TRUSTLY = 'trustly';
     public const TYPE_TRUSTLYVECTOR = 'trustlyvector';
     public const TYPE_ONEY = 'oney';
@@ -244,7 +246,6 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_WALLET_IN = 'wallet_IN';
     public const TYPE_PAYU_IN_CASHCARD = 'payu_IN_cashcard';
     public const TYPE_PAYU_IN_NB = 'payu_IN_nb';
-    public const TYPE_UPI_QR = 'upi_qr';
     public const TYPE_PAYTM = 'paytm';
     public const TYPE_MOLPAY_EBANKING_VN = 'molpay_ebanking_VN';
     public const TYPE_MOLPAY_EBANKING_MY = 'molpay_ebanking_MY';
@@ -318,10 +319,12 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         return [
             self::TYPE_ALIPAY,
             self::TYPE_MULTIBANCO,
+            self::TYPE_BANK_TRANSFER,
             self::TYPE_BANK_TRANSFER_IBAN,
             self::TYPE_PAYBRIGHT,
             self::TYPE_PAYNOW,
             self::TYPE_AFFIRM_POS,
+            self::TYPE_IRIS,
             self::TYPE_TRUSTLY,
             self::TYPE_TRUSTLYVECTOR,
             self::TYPE_ONEY,
@@ -342,7 +345,6 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_WALLET_IN,
             self::TYPE_PAYU_IN_CASHCARD,
             self::TYPE_PAYU_IN_NB,
-            self::TYPE_UPI_QR,
             self::TYPE_PAYTM,
             self::TYPE_MOLPAY_EBANKING_VN,
             self::TYPE_MOLPAY_EBANKING_MY,

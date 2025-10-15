@@ -312,9 +312,6 @@ class UpiCollectDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
-        if ($this->container['billingSequenceNumber'] === null) {
-            $invalidProperties[] = "'billingSequenceNumber' can't be null";
-        }
         if ($this->container['type'] === null) {
             $invalidProperties[] = "'type' can't be null";
         }
@@ -345,7 +342,7 @@ class UpiCollectDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets billingSequenceNumber
      *
-     * @return string
+     * @return string|null
      */
     public function getBillingSequenceNumber()
     {
@@ -355,7 +352,7 @@ class UpiCollectDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets billingSequenceNumber
      *
-     * @param string $billingSequenceNumber The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper.
+     * @param string|null $billingSequenceNumber The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper.
      *
      * @return self
      */

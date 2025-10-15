@@ -77,7 +77,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'shopperIP' => 'string',
         'shopperInteraction' => 'string',
         'shopperLocale' => 'string',
-        'shopperName' => '\Adyen\Model\Checkout\Name',
+        'shopperName' => '\Adyen\Model\Checkout\ShopperName',
         'shopperReference' => 'string',
         'socialSecurityNumber' => 'string',
         'telephoneNumber' => 'string',
@@ -1551,7 +1551,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets shopperName
      *
-     * @return \Adyen\Model\Checkout\Name|null
+     * @return \Adyen\Model\Checkout\ShopperName|null
      */
     public function getShopperName()
     {
@@ -1561,7 +1561,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets shopperName
      *
-     * @param \Adyen\Model\Checkout\Name|null $shopperName shopperName
+     * @param \Adyen\Model\Checkout\ShopperName|null $shopperName shopperName
      *
      * @return self
      */

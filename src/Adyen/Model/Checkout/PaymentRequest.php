@@ -94,13 +94,14 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'reference' => 'string',
         'returnUrl' => 'string',
         'riskData' => '\Adyen\Model\Checkout\RiskData',
+        'sdkData' => 'string',
         'sessionValidity' => 'string',
         'shopperConversionId' => 'string',
         'shopperEmail' => 'string',
         'shopperIP' => 'string',
         'shopperInteraction' => 'string',
         'shopperLocale' => 'string',
-        'shopperName' => '\Adyen\Model\Checkout\Name',
+        'shopperName' => '\Adyen\Model\Checkout\ShopperName',
         'shopperReference' => 'string',
         'shopperStatement' => 'string',
         'socialSecurityNumber' => 'string',
@@ -176,6 +177,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'reference' => null,
         'returnUrl' => null,
         'riskData' => null,
+        'sdkData' => null,
         'sessionValidity' => null,
         'shopperConversionId' => null,
         'shopperEmail' => null,
@@ -256,6 +258,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'reference' => false,
         'returnUrl' => false,
         'riskData' => false,
+        'sdkData' => false,
         'sessionValidity' => false,
         'shopperConversionId' => false,
         'shopperEmail' => false,
@@ -416,6 +419,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'reference' => 'reference',
         'returnUrl' => 'returnUrl',
         'riskData' => 'riskData',
+        'sdkData' => 'sdkData',
         'sessionValidity' => 'sessionValidity',
         'shopperConversionId' => 'shopperConversionId',
         'shopperEmail' => 'shopperEmail',
@@ -496,6 +500,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'reference' => 'setReference',
         'returnUrl' => 'setReturnUrl',
         'riskData' => 'setRiskData',
+        'sdkData' => 'setSdkData',
         'sessionValidity' => 'setSessionValidity',
         'shopperConversionId' => 'setShopperConversionId',
         'shopperEmail' => 'setShopperEmail',
@@ -576,6 +581,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'reference' => 'getReference',
         'returnUrl' => 'getReturnUrl',
         'riskData' => 'getRiskData',
+        'sdkData' => 'getSdkData',
         'sessionValidity' => 'getSessionValidity',
         'shopperConversionId' => 'getShopperConversionId',
         'shopperEmail' => 'getShopperEmail',
@@ -787,6 +793,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('reference', $data ?? [], null);
         $this->setIfExists('returnUrl', $data ?? [], null);
         $this->setIfExists('riskData', $data ?? [], null);
+        $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('sessionValidity', $data ?? [], null);
         $this->setIfExists('shopperConversionId', $data ?? [], null);
         $this->setIfExists('shopperEmail', $data ?? [], null);
@@ -2227,6 +2234,30 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets sdkData
+     *
+     * @return string|null
+     */
+    public function getSdkData()
+    {
+        return $this->container['sdkData'];
+    }
+
+    /**
+     * Sets sdkData
+     *
+     * @param string|null $sdkData Base64-encoded JSON object containing SDK related parameters required by the SDK     to function optimally. Clients must not     add unrelated or sensitive personal information.
+     *
+     * @return self
+     */
+    public function setSdkData($sdkData)
+    {
+        $this->container['sdkData'] = $sdkData;
+
+        return $this;
+    }
+
+    /**
      * Gets sessionValidity
      *
      * @return string|null
@@ -2383,7 +2414,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets shopperName
      *
-     * @return \Adyen\Model\Checkout\Name|null
+     * @return \Adyen\Model\Checkout\ShopperName|null
      */
     public function getShopperName()
     {
@@ -2393,7 +2424,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets shopperName
      *
-     * @param \Adyen\Model\Checkout\Name|null $shopperName shopperName
+     * @param \Adyen\Model\Checkout\ShopperName|null $shopperName shopperName
      *
      * @return self
      */

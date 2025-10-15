@@ -14,7 +14,6 @@
 
 
 namespace Adyen\Model\Checkout;
-
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
