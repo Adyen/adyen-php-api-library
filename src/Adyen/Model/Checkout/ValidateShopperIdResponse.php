@@ -293,7 +293,7 @@ class ValidateShopperIdResponse implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets reason
      *
-     * @param string|null $reason reason
+     * @param string|null $reason Reason for the result.
      *
      * @return self
      */
