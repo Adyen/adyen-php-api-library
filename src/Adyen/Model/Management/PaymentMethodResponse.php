@@ -260,6 +260,7 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public const TYPES_WITH_ERRORS_BANESE_CARD_PREPAID = 'banese_card_prepaid';
     public const TYPES_WITH_ERRORS_BCMC = 'bcmc';
     public const TYPES_WITH_ERRORS_BLIK = 'blik';
+    public const TYPES_WITH_ERRORS_BR_SCHEMES = 'br_schemes';
     public const TYPES_WITH_ERRORS_CARTEBANCAIRE = 'cartebancaire';
     public const TYPES_WITH_ERRORS_CLEARPAY = 'clearpay';
     public const TYPES_WITH_ERRORS_CLICKTOPAY = 'clicktopay';
@@ -398,6 +399,7 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             self::TYPES_WITH_ERRORS_BANESE_CARD_PREPAID,
             self::TYPES_WITH_ERRORS_BCMC,
             self::TYPES_WITH_ERRORS_BLIK,
+            self::TYPES_WITH_ERRORS_BR_SCHEMES,
             self::TYPES_WITH_ERRORS_CARTEBANCAIRE,
             self::TYPES_WITH_ERRORS_CLEARPAY,
             self::TYPES_WITH_ERRORS_CLICKTOPAY,

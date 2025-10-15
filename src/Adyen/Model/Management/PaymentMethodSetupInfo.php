@@ -528,6 +528,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     public const TYPE_BANESE_CARD_PREPAID = 'banese_card_prepaid';
     public const TYPE_BCMC = 'bcmc';
     public const TYPE_BLIK = 'blik';
+    public const TYPE_BR_SCHEMES = 'br_schemes';
     public const TYPE_CARTEBANCAIRE = 'cartebancaire';
     public const TYPE_CLEARPAY = 'clearpay';
     public const TYPE_CLICKTOPAY = 'clicktopay';
@@ -680,6 +681,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
             self::TYPE_BANESE_CARD_PREPAID,
             self::TYPE_BCMC,
             self::TYPE_BLIK,
+            self::TYPE_BR_SCHEMES,
             self::TYPE_CARTEBANCAIRE,
             self::TYPE_CLEARPAY,
             self::TYPE_CLICKTOPAY,
@@ -1801,11 +1803,11 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $allowedValues = $this->getShopperInteractionAllowableValues();
         if (!in_array($shopperInteraction, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'shopperInteraction', must be one of '%s'",
+                    "shopperInteraction: unexpected enum value '%s' - Supported values are [%s]",
                     $shopperInteraction,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -2003,11 +2005,11 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
                     $type,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
