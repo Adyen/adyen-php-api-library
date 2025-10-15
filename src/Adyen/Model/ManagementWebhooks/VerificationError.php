@@ -237,6 +237,7 @@ class VerificationError implements ModelInterface, ArrayAccess, \JsonSerializabl
     }
 
     public const TYPE_DATA_MISSING = 'dataMissing';
+    public const TYPE_DATA_REVIEW = 'dataReview';
     public const TYPE_INVALID_INPUT = 'invalidInput';
     public const TYPE_PENDING_STATUS = 'pendingStatus';
 
@@ -249,6 +250,7 @@ class VerificationError implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         return [
             self::TYPE_DATA_MISSING,
+            self::TYPE_DATA_REVIEW,
             self::TYPE_INVALID_INPUT,
             self::TYPE_PENDING_STATUS,
         ];

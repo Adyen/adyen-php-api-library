@@ -413,7 +413,7 @@ class AccountCapabilityData implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets problems
      *
-     * @param \Adyen\Model\ManagementWebhooks\CapabilityProblem[]|null $problems List of entities that has problems with verification. The information includes the details of the errors and the actions that you can take to resolve them.
+     * @param \Adyen\Model\ManagementWebhooks\CapabilityProblem[]|null $problems List of entities that have problems with verification. The information includes the details of the errors and the actions that you can take to resolve them.
      *
      * @return self
      */
