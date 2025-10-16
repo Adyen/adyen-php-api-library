@@ -14,6 +14,7 @@ use Adyen\Service\BalancePlatform\BalanceAccountsApi;
 use Adyen\Service\BalancePlatform\BankAccountValidationApi;
 use Adyen\Service\BalancePlatform\PaymentInstrumentGroupsApi;
 use Adyen\Service\BalancePlatform\PlatformApi;
+use Adyen\Service\BalancePlatform\TransferLimitsBalanceAccountLevelApi;
 use http\Env;
 use PharIo\Manifest\Url;
 use function PHPUnit\Framework\assertEquals;
@@ -200,6 +201,22 @@ class BalancePlatformTest extends TestCaseMock
         $service->getSweep('balanceAccountId', 'sweepId');
         self::assertEquals(
             'https://balanceplatform-api-live.adyen.com/bcl/v2/balanceAccounts/balanceAccountId/sweeps/sweepId',
+            $this->requestUrl
+        );
+    }
+
+    public function testGetCurrentTransferLimits()
+    {
+        $client = $this->createMockClientUrl(
+            'tests/Resources/BalancePlatform/get-current-transfer-limits.json',
+            Environment::LIVE
+        );
+        $service = new TransferLimitsBalanceAccountLevelApi($client);
+        $response = $service->getCurrentTransferLimits('balanceAccountId');
+
+        self::assertCount(1, $response->getTransferLimits());
+        self::assertEquals(
+            'https://balanceplatform-api-live.adyen.com/bcl/v2/balanceAccounts/balanceAccountId/transferLimits/current',
             $this->requestUrl
         );
     }
