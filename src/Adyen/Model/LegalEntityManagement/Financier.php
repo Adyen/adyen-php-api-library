@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\LegalEntityManagement\ObjectSerializer;
 
 /**
- * UKLocalAccountIdentification Class Doc Comment
+ * Financier Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
+class Financier implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       *
       * @var string
       */
-    protected static $openAPIModelName = 'UKLocalAccountIdentification';
+    protected static $openAPIModelName = 'Financier';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,10 @@ class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       * @var string[]
       */
     protected static $openAPITypes = [
-        'accountNumber' => 'string',
-        'sortCode' => 'string',
-        'type' => 'string'
+        'amount' => '\Adyen\Model\LegalEntityManagement\Amount',
+        'firstName' => 'string',
+        'lastName' => 'string',
+        'location' => 'string'
     ];
 
     /**
@@ -54,9 +55,10 @@ class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'accountNumber' => null,
-        'sortCode' => null,
-        'type' => null
+        'amount' => null,
+        'firstName' => null,
+        'lastName' => null,
+        'location' => null
     ];
 
     /**
@@ -65,9 +67,10 @@ class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'accountNumber' => false,
-        'sortCode' => false,
-        'type' => false
+        'amount' => false,
+        'firstName' => false,
+        'lastName' => false,
+        'location' => false
     ];
 
     /**
@@ -156,9 +159,10 @@ class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $attributeMap = [
-        'accountNumber' => 'accountNumber',
-        'sortCode' => 'sortCode',
-        'type' => 'type'
+        'amount' => 'amount',
+        'firstName' => 'firstName',
+        'lastName' => 'lastName',
+        'location' => 'location'
     ];
 
     /**
@@ -167,9 +171,10 @@ class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $setters = [
-        'accountNumber' => 'setAccountNumber',
-        'sortCode' => 'setSortCode',
-        'type' => 'setType'
+        'amount' => 'setAmount',
+        'firstName' => 'setFirstName',
+        'lastName' => 'setLastName',
+        'location' => 'setLocation'
     ];
 
     /**
@@ -178,9 +183,10 @@ class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $getters = [
-        'accountNumber' => 'getAccountNumber',
-        'sortCode' => 'getSortCode',
-        'type' => 'getType'
+        'amount' => 'getAmount',
+        'firstName' => 'getFirstName',
+        'lastName' => 'getLastName',
+        'location' => 'getLocation'
     ];
 
     /**
@@ -224,19 +230,7 @@ class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
         return self::$openAPIModelName;
     }
 
-    public const TYPE_UK_LOCAL = 'ukLocal';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_UK_LOCAL,
-        ];
-    }
     /**
      * Associative array for storing property values
      *
@@ -252,9 +246,10 @@ class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('accountNumber', $data ?? [], null);
-        $this->setIfExists('sortCode', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('amount', $data ?? [], null);
+        $this->setIfExists('firstName', $data ?? [], null);
+        $this->setIfExists('lastName', $data ?? [], null);
+        $this->setIfExists('location', $data ?? [], null);
     }
 
     /**
@@ -284,24 +279,18 @@ class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     {
         $invalidProperties = [];
 
-        if ($this->container['accountNumber'] === null) {
-            $invalidProperties[] = "'accountNumber' can't be null";
+        if ($this->container['amount'] === null) {
+            $invalidProperties[] = "'amount' can't be null";
         }
-        if ($this->container['sortCode'] === null) {
-            $invalidProperties[] = "'sortCode' can't be null";
+        if ($this->container['firstName'] === null) {
+            $invalidProperties[] = "'firstName' can't be null";
         }
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
+        if ($this->container['lastName'] === null) {
+            $invalidProperties[] = "'lastName' can't be null";
         }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
-                implode("', '", $allowedValues)
-            );
+        if ($this->container['location'] === null) {
+            $invalidProperties[] = "'location' can't be null";
         }
-
         return $invalidProperties;
     }
 
@@ -318,83 +307,97 @@ class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
 
 
     /**
-     * Gets accountNumber
+     * Gets amount
      *
-     * @return string
+     * @return \Adyen\Model\LegalEntityManagement\Amount
      */
-    public function getAccountNumber()
+    public function getAmount()
     {
-        return $this->container['accountNumber'];
+        return $this->container['amount'];
     }
 
     /**
-     * Sets accountNumber
+     * Sets amount
      *
-     * @param string $accountNumber The 8-digit bank account number, without separators or whitespace.
+     * @param \Adyen\Model\LegalEntityManagement\Amount $amount amount
      *
      * @return self
      */
-    public function setAccountNumber($accountNumber)
+    public function setAmount($amount)
     {
-        $this->container['accountNumber'] = $accountNumber;
+        $this->container['amount'] = $amount;
 
         return $this;
     }
 
     /**
-     * Gets sortCode
+     * Gets firstName
      *
      * @return string
      */
-    public function getSortCode()
+    public function getFirstName()
     {
-        return $this->container['sortCode'];
+        return $this->container['firstName'];
     }
 
     /**
-     * Sets sortCode
+     * Sets firstName
      *
-     * @param string $sortCode The 6-digit [sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or whitespace.
+     * @param string $firstName The financier's first name.
      *
      * @return self
      */
-    public function setSortCode($sortCode)
+    public function setFirstName($firstName)
     {
-        $this->container['sortCode'] = $sortCode;
+        $this->container['firstName'] = $firstName;
 
         return $this;
     }
 
     /**
-     * Gets type
+     * Gets lastName
      *
      * @return string
      */
-    public function getType()
+    public function getLastName()
     {
-        return $this->container['type'];
+        return $this->container['lastName'];
     }
 
     /**
-     * Sets type
+     * Sets lastName
      *
-     * @param string $type **ukLocal**
+     * @param string $lastName The financier's last name.
      *
      * @return self
      */
-    public function setType($type)
+    public function setLastName($lastName)
     {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            error_log(
-                sprintf(
-                    "type: unexpected enum value '%s' - Supported values are [%s]",
-                    $type,
-                    implode(', ', $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
+        $this->container['lastName'] = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Gets location
+     *
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->container['location'];
+    }
+
+    /**
+     * Sets location
+     *
+     * @param string $location The city and country/region where the financier is currently located. For example: Chicago, USA
+     *
+     * @return self
+     */
+    public function setLocation($location)
+    {
+        $this->container['location'] = $location;
 
         return $this;
     }
