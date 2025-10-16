@@ -22,7 +22,7 @@ class LegalEntityManagementTest extends TestCaseMock
         $service = new LegalEntitiesApi($client);
         $response = $service->getAllBusinessLinesUnderLegalEntity('Id');
         self::assertEquals(
-            'https://kyc-test.adyen.com/lem/v3/legalEntities/Id/businessLines',
+            'https://kyc-test.adyen.com/lem/v4/legalEntities/Id/businessLines',
             $this->requestUrl
         );
         self::assertEquals('SE322JV223222F5GVGMLNB83F', $response->getBusinessLines()[0]->getId());
@@ -40,7 +40,7 @@ class LegalEntityManagementTest extends TestCaseMock
         $service = new DocumentsApi($client);
         $service->deleteDocument('Id');
         self::assertEquals(
-            'https://kyc-test.adyen.com/lem/v3/documents/Id',
+            'https://kyc-test.adyen.com/lem/v4/documents/Id',
             $this->requestUrl
         );
     }
@@ -55,7 +55,7 @@ class LegalEntityManagementTest extends TestCaseMock
         self::assertEquals('JVBERi0xLjQKJcOkw7zDtsOfCjIgMCBv+f/ub0j6JPRX+E3EmC==', $response->getDocument());
         self::assertEquals(GetTermsOfServiceDocumentResponse::TYPE_ADYEN_ISSUING, $response->getType());
         self::assertEquals(
-            'https://kyc-test.adyen.com/lem/v3/legalEntities/id/termsOfService',
+            'https://kyc-test.adyen.com/lem/v4/legalEntities/id/termsOfService',
             $this->requestUrl
         );
     }
