@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\LegalEntityManagement\ObjectSerializer;
 
 /**
- * UKLocalAccountIdentification Class Doc Comment
+ * Support Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
+class Support implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       *
       * @var string
       */
-    protected static $openAPIModelName = 'UKLocalAccountIdentification';
+    protected static $openAPIModelName = 'Support';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,8 @@ class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       * @var string[]
       */
     protected static $openAPITypes = [
-        'accountNumber' => 'string',
-        'sortCode' => 'string',
-        'type' => 'string'
+        'email' => 'string',
+        'phone' => '\Adyen\Model\LegalEntityManagement\PhoneNumber'
     ];
 
     /**
@@ -54,9 +53,8 @@ class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'accountNumber' => null,
-        'sortCode' => null,
-        'type' => null
+        'email' => null,
+        'phone' => null
     ];
 
     /**
@@ -65,9 +63,8 @@ class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'accountNumber' => false,
-        'sortCode' => false,
-        'type' => false
+        'email' => false,
+        'phone' => false
     ];
 
     /**
@@ -156,9 +153,8 @@ class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $attributeMap = [
-        'accountNumber' => 'accountNumber',
-        'sortCode' => 'sortCode',
-        'type' => 'type'
+        'email' => 'email',
+        'phone' => 'phone'
     ];
 
     /**
@@ -167,9 +163,8 @@ class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $setters = [
-        'accountNumber' => 'setAccountNumber',
-        'sortCode' => 'setSortCode',
-        'type' => 'setType'
+        'email' => 'setEmail',
+        'phone' => 'setPhone'
     ];
 
     /**
@@ -178,9 +173,8 @@ class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $getters = [
-        'accountNumber' => 'getAccountNumber',
-        'sortCode' => 'getSortCode',
-        'type' => 'getType'
+        'email' => 'getEmail',
+        'phone' => 'getPhone'
     ];
 
     /**
@@ -224,19 +218,7 @@ class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
         return self::$openAPIModelName;
     }
 
-    public const TYPE_UK_LOCAL = 'ukLocal';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_UK_LOCAL,
-        ];
-    }
     /**
      * Associative array for storing property values
      *
@@ -252,9 +234,8 @@ class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('accountNumber', $data ?? [], null);
-        $this->setIfExists('sortCode', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('email', $data ?? [], null);
+        $this->setIfExists('phone', $data ?? [], null);
     }
 
     /**
@@ -284,24 +265,6 @@ class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
     {
         $invalidProperties = [];
 
-        if ($this->container['accountNumber'] === null) {
-            $invalidProperties[] = "'accountNumber' can't be null";
-        }
-        if ($this->container['sortCode'] === null) {
-            $invalidProperties[] = "'sortCode' can't be null";
-        }
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
-        }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -318,83 +281,49 @@ class UKLocalAccountIdentification implements ModelInterface, ArrayAccess, \Json
 
 
     /**
-     * Gets accountNumber
+     * Gets email
      *
-     * @return string
+     * @return string|null
      */
-    public function getAccountNumber()
+    public function getEmail()
     {
-        return $this->container['accountNumber'];
+        return $this->container['email'];
     }
 
     /**
-     * Sets accountNumber
+     * Sets email
      *
-     * @param string $accountNumber The 8-digit bank account number, without separators or whitespace.
+     * @param string|null $email The support email address of the legal entity.
      *
      * @return self
      */
-    public function setAccountNumber($accountNumber)
+    public function setEmail($email)
     {
-        $this->container['accountNumber'] = $accountNumber;
+        $this->container['email'] = $email;
 
         return $this;
     }
 
     /**
-     * Gets sortCode
+     * Gets phone
      *
-     * @return string
+     * @return \Adyen\Model\LegalEntityManagement\PhoneNumber|null
      */
-    public function getSortCode()
+    public function getPhone()
     {
-        return $this->container['sortCode'];
+        return $this->container['phone'];
     }
 
     /**
-     * Sets sortCode
+     * Sets phone
      *
-     * @param string $sortCode The 6-digit [sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or whitespace.
+     * @param \Adyen\Model\LegalEntityManagement\PhoneNumber|null $phone phone
      *
      * @return self
      */
-    public function setSortCode($sortCode)
+    public function setPhone($phone)
     {
-        $this->container['sortCode'] = $sortCode;
-
-        return $this;
-    }
-
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type **ukLocal**
-     *
-     * @return self
-     */
-    public function setType($type)
-    {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            error_log(
-                sprintf(
-                    "type: unexpected enum value '%s' - Supported values are [%s]",
-                    $type,
-                    implode(', ', $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
+        $this->container['phone'] = $phone;
 
         return $this;
     }
