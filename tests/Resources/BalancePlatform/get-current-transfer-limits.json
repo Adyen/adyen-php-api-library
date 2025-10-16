@@ -1,0 +1,21 @@
+{
+  "transferLimits": [
+    {
+      "amount": {
+        "value": 10000,
+        "currency": "EUR"
+      },
+      "id": "TRLI00000000000000000000000001",
+      "endsAt": "2026-08-13T23:00:00+01:00",
+      "scope": "perDay",
+      "reference": "Your reference for the transfer limit",
+      "scaInformation": {
+        "exemption": "initialLimit",
+        "status": "notPerformed"
+      },
+      "startsAt": "2025-08-13T23:00:00+01:00",
+      "limitStatus": "active",
+      "transferType": "instant"
+    }
+  ]
+}
