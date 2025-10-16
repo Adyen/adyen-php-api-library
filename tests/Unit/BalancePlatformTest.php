@@ -57,8 +57,6 @@ class BalancePlatformTest extends TestCaseMock
 
     public function testGetAccountHolderUnknownEnum()
     {
-        $this->markTestSkipped('This test should be enable when enum parsing is fixed.');
-
         $client = $this->createMockClientUrl(
             'tests/Resources/BalancePlatform/get-account-holder-unknown-enum.json'
         );
@@ -70,8 +68,9 @@ class BalancePlatformTest extends TestCaseMock
 
             self::assertEquals('AH3227C223222C5GXQXF658WB', $response->getId());
             self::assertEquals(AccountHolder::STATUS_ACTIVE, $response->getStatus());
-            self::assertEquals("pending", $response['capabilities']['receiveFromPlatformPayments']['verificationStatus']);
+            self::assertEquals("this is unknown", $response['capabilities']['receiveFromPlatformPayments']['verificationStatus']);
         } catch (\Throwable $e) {
+            // should not throw an exception
             $this->fail('An unexpected exception was thrown: ' . $e->getMessage());
         }
     }
