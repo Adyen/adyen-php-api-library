@@ -194,7 +194,7 @@ if ($isValid) {
 For a closer look at how our PHP library works, clone our [Laravel example integration](https://github.com/adyen-examples/adyen-php-online-payments). This includes commented code, highlighting key features and concepts, and examples of API calls that can be made using the library.
 
 ### Running the tests
-For the test cases you need the PCI permission enabled on you account. There are no test cases for CSE because credit card data is encrypted through our javascript library.
+For the test cases you need the PCI permission enabled on your account. There are no test cases for CSE because credit card data is encrypted through our javascript library.
 By default the test will then be skipped. If you have these permissions fill in your account details in the config/test.ini file to let the test work.
 To make the automatic testing cases work for your account change the credentials in the config/test.ini file.
 
