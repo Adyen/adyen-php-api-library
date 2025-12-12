@@ -27,9 +27,9 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
       - name: Prepare the next main release
-        uses: Adyen/release-automation-action@v1.4.0
+        uses: Adyen/release-automation-action@3e5694d5b365f344a62436e84049511ef318ecf5
         with:
           token: ${{ secrets.ADYEN_AUTOMATION_BOT_ACCESS_TOKEN }}
           develop-branch: main
