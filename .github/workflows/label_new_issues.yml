@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Add 'needs response' label to new issues
-        uses: actions-ecosystem/action-add-labels@v1
+        uses: actions-ecosystem/action-add-labels@18f1af5e3544586314bbe15c0273249c770b2daf
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           labels: 'needs response'
