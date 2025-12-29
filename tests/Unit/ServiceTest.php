@@ -6,6 +6,7 @@ use Adyen\AdyenException;
 use Adyen\Client;
 use Adyen\Environment;
 use Adyen\Service;
+use Adyen\Service\AbstractResource;
 use function PHPUnit\Framework\assertEquals;
 
 class ServiceTest extends TestCaseMock
@@ -96,5 +97,110 @@ class ServiceTest extends TestCaseMock
             "https://checkout-test.adyen.com/checkout/possdk/v68",
             $url
         );
+    }
+
+    public function testRequestHttpWithApplicationName()
+    {
+        $client = new Client();
+        $client->setEnvironment(Environment::TEST);
+        $client->setXApiKey('test-api-key');
+        $client->setApplicationName("MyTestApp");
+
+        $testHttpClient = new class extends \Adyen\HttpClient\CurlClient {
+            public $userAgent;
+
+            public function requestHttp(
+                \Adyen\Service $service,
+                $url,
+                $params = null,
+                $httpMethod = 'get',
+                $requestOptions = []
+            ): array {
+                // This is a partial re-implementation of the header logic from CurlClient::requestHttp
+                // to allow testing the User-Agent header construction.
+                $client = $service->getClient();
+                $config = $client->getConfig();
+                $appName = $config->get('applicationName');
+                $suffix = \Adyen\Client::USER_AGENT_SUFFIX . $client->getLibraryVersion();
+                $this->userAgent = $appName ? ($appName . " " . $suffix) : $suffix;
+
+                return [
+                    'body' => '{}',
+                    'statusCode' => 200,
+                    'headers' => []
+                ];
+            }
+        };
+
+        $client->setHttpClient($testHttpClient);
+
+        $service = new Service($client);
+        $resource = new class($service) extends AbstractResource {
+            public function __construct(Service $service)
+            {
+                // Endpoint is not used for requestHttp, but required by constructor
+                parent::__construct($service, "endpoint", false);
+            }
+        };
+
+        $resource->requestHttp("https://checkout-test.adyen.com/v71/paymentLinks/123", "get");
+
+        $this->assertNotEmpty($testHttpClient->userAgent);
+        // userAgent must include applicationName
+        $this->assertEquals("MyTestApp adyen-php-api-library/" . Client::LIB_VERSION, $testHttpClient->userAgent);
+        $this->assertStringContainsString("adyen-php-api-library", $testHttpClient->userAgent);
+        $this->assertStringContainsString(\Adyen\Client::LIB_VERSION, $testHttpClient->userAgent);
+    }
+
+    public function testRequestHttpWithoutApplicationName()
+    {
+        $client = new Client();
+        $client->setEnvironment(Environment::TEST);
+        $client->setXApiKey('test-api-key');
+
+        $testHttpClient = new class extends \Adyen\HttpClient\CurlClient {
+            public $userAgent;
+
+            public function requestHttp(
+                \Adyen\Service $service,
+                               $url,
+                               $params = null,
+                               $httpMethod = 'get',
+                               $requestOptions = []
+            ): array {
+                // This is a partial re-implementation of the header logic from CurlClient::requestHttp
+                // to allow testing the User-Agent header construction.
+                $client = $service->getClient();
+                $config = $client->getConfig();
+                $appName = $config->get('applicationName');
+                $suffix = \Adyen\Client::USER_AGENT_SUFFIX . $client->getLibraryVersion();
+                $this->userAgent = $appName ? ($appName . " " . $suffix) : $suffix;
+
+                return [
+                    'body' => '{}',
+                    'statusCode' => 200,
+                    'headers' => []
+                ];
+            }
+        };
+
+        $client->setHttpClient($testHttpClient);
+
+        $service = new Service($client);
+        $resource = new class($service) extends AbstractResource {
+            public function __construct(Service $service)
+            {
+                // Endpoint is not used for requestHttp, but required by constructor
+                parent::__construct($service, "endpoint", false);
+            }
+        };
+
+        $resource->requestHttp("https://checkout-test.adyen.com/v71/paymentLinks/123", "get");
+
+        $this->assertNotEmpty($testHttpClient->userAgent);
+        // userAgent does not include applicationName
+        $this->assertEquals("adyen-php-api-library/" . Client::LIB_VERSION, $testHttpClient->userAgent);
+        $this->assertStringContainsString("adyen-php-api-library", $testHttpClient->userAgent);
+        $this->assertStringContainsString(\Adyen\Client::LIB_VERSION, $testHttpClient->userAgent);
     }
 }
