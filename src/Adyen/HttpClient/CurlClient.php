@@ -57,10 +57,10 @@ class CurlClient implements ClientInterface
         if (isset($urlParts["port"])) {
             $proxy .= ":" . $urlParts["port"];
         }
-        curl_setopt($ch, CURLOPT_PROXY, $proxy);
+        $this->curlSetopt($ch, CURLOPT_PROXY, $proxy);
 
         if (isset($urlParts["user"])) {
-            curl_setopt($ch, CURLOPT_PROXYUSERPWD, $urlParts["user"] . ":" . $urlParts["pass"]);
+            $this->curlSetopt($ch, CURLOPT_PROXYUSERPWD, $urlParts["user"] . ":" . $urlParts["pass"]);
         }
     }
 
@@ -81,9 +81,9 @@ class CurlClient implements ClientInterface
             throw new AdyenException("SSL CA bundle not found: $certFilePath");
         }
 
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
-        curl_setopt($ch, CURLOPT_CAINFO, $certFilePath);
+        $this->curlSetopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+        $this->curlSetopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+        $this->curlSetopt($ch, CURLOPT_CAINFO, $certFilePath);
     }
 
     /**
@@ -109,16 +109,16 @@ class CurlClient implements ClientInterface
         $ch = curl_init($requestUrl);
 
         // Tell cURL that we want to send a POST request.
-        curl_setopt($ch, CURLOPT_POST, 1);
+        $this->curlSetopt($ch, CURLOPT_POST, 1);
 
         $this->curlSetHttpProxy($ch, $httpProxy);
         $this->curlSetSslVerify($ch, $sslVerify);
 
         // set authorisation
-        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-        curl_setopt($ch, CURLOPT_USERPWD, $username . ":" . $password);
-        curl_setopt($ch, CURLOPT_POST, count($params));
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
+        $this->curlSetopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+        $this->curlSetopt($ch, CURLOPT_USERPWD, $username . ":" . $password);
+        $this->curlSetopt($ch, CURLOPT_POST, count($params));
+        $this->curlSetopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
 
         // set a custom User-Agent
         $userAgent = $config->get('applicationName') . " " .
@@ -136,10 +136,10 @@ class CurlClient implements ClientInterface
             $libraryVersion
         );
 
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        $this->curlSetopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         // Return the result
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $this->curlSetopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
         // Execute the request
         [$result, $httpStatus] = $this->curlRequest($ch);
@@ -272,19 +272,19 @@ class CurlClient implements ClientInterface
         $ch = curl_init($requestUrl);
 
         if ($method === self::HTTP_METHOD_GET) {
-            curl_setopt($ch, CURLOPT_HTTPGET, 1);
+            $this->curlSetopt($ch, CURLOPT_HTTPGET, 1);
         } elseif ($method === self::HTTP_METHOD_POST) {
             // Tell cURL that we want to send a POST request.
-            curl_setopt($ch, CURLOPT_POST, 1);
+            $this->curlSetopt($ch, CURLOPT_POST, 1);
             // Attach our encoded JSON string to the POST fields.
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonRequest);
+            $this->curlSetopt($ch, CURLOPT_POSTFIELDS, $jsonRequest);
         } elseif ($method === self::HTTP_METHOD_PATCH) {
             // Tell cURL that we want to send a PATCH request.
-            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PATCH');
+            $this->curlSetopt($ch, CURLOPT_CUSTOMREQUEST, 'PATCH');
             // Attach our encoded JSON string to the PATCH fields.
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonRequest);
+            $this->curlSetopt($ch, CURLOPT_POSTFIELDS, $jsonRequest);
         } elseif ($method === self::HTTP_METHOD_DELETE) {
-            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+            $this->curlSetopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
         }
 
         $this->curlSetHttpProxy($ch, $httpProxy);
@@ -328,25 +328,25 @@ class CurlClient implements ClientInterface
             throw new AdyenException($msg);
         } else {
             //Set the basic auth credentials
-            curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-            curl_setopt($ch, CURLOPT_USERPWD, $username . ":" . $password);
+            $this->curlSetopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+            $this->curlSetopt($ch, CURLOPT_USERPWD, $username . ":" . $password);
         }
 
         // Set the timeout
         if ($config->getTimeout() != null) {
-            curl_setopt($ch, CURLOPT_TIMEOUT, $config->getTimeout());
+            $this->curlSetopt($ch, CURLOPT_TIMEOUT, $config->getTimeout());
         }
 
         // Set the connection timeout
         if ($config->getConnectionTimeout() != null) {
-            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $config->getConnectionTimeout());
+            $this->curlSetopt($ch, CURLOPT_CONNECTTIMEOUT, $config->getConnectionTimeout());
         }
 
         // Set the headers
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        $this->curlSetopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         // Return the result
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $this->curlSetopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
         // Execute the request
         [$result, $httpStatus] = $this->curlRequest($ch);
@@ -371,5 +371,10 @@ class CurlClient implements ClientInterface
         }
 
         return $result;
+    }
+
+    protected function curlSetopt($ch, $option, $value): bool
+    {
+        return curl_setopt($ch, $option, $value);
     }
 }
