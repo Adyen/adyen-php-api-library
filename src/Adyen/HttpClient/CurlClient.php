@@ -290,9 +290,10 @@ class CurlClient implements ClientInterface
         $this->curlSetHttpProxy($ch, $httpProxy);
         $this->curlSetSslVerify($ch, $sslVerify);
 
-        // Create a custom User-Agent
-        $userAgent = $config->get('applicationName') . " " .
-            Client::USER_AGENT_SUFFIX . $client->getLibraryVersion();
+        // Define User-Agent
+        $appName = $config->get('applicationName');
+        $suffix = Client::USER_AGENT_SUFFIX . $client->getLibraryVersion();
+        $userAgent = $appName ? ($appName . " " . $suffix) : $suffix;
 
         // Add application info in headers
         $libraryName = self::LIBRARY_NAME . $client->getLibraryName();
