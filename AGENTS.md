@@ -64,7 +64,7 @@ composer install
 
 You can run the unit tests using the following command:
 ```bash
-vendor/bin/phpunit
+vendor/bin/phpunit --testsuite unit
 ```
 This command executes the test suite defined in `phpunit.xml`. For some tests to pass, you may need to configure your test credentials in `tests/config/test.ini`, as described in the main `README.md`.
 
