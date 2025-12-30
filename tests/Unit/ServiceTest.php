@@ -6,6 +6,7 @@ use Adyen\AdyenException;
 use Adyen\Client;
 use Adyen\Environment;
 use Adyen\Service;
+use Adyen\Service\AbstractResource;
 use function PHPUnit\Framework\assertEquals;
 
 class ServiceTest extends TestCaseMock
@@ -96,5 +97,126 @@ class ServiceTest extends TestCaseMock
             "https://checkout-test.adyen.com/checkout/possdk/v68",
             $url
         );
+    }
+
+    public function testRequestHttp()
+    {
+        $client = new Client();
+        $client->setEnvironment(Environment::TEST);
+        $client->setXApiKey('test-api-key');
+        $client->setApplicationName("MyTestApplication");
+
+        $testHttpClient = new class extends \Adyen\HttpClient\CurlClient {
+            public $headers;
+
+            protected function curlSetopt($ch, $option, $value): bool
+            {
+                if ($option === CURLOPT_HTTPHEADER) {
+                    $this->headers = $value;
+                }
+                return parent::curlSetopt($ch, $option, $value);
+            }
+
+            protected function curlRequest($ch): array
+            {
+                return ["{}", 200];
+            }
+        };
+
+        $client->setHttpClient($testHttpClient);
+        $service = new Service($client);
+        $resource = new class($service) extends AbstractResource {
+            public function __construct(Service $service)
+            {
+                parent::__construct($service, "endpoint", false);
+            }
+        };
+
+        $resource->requestHttp("https://checkout-test.adyen.com/v71/paymentLinks/123", "get");
+
+        $expectedUserAgent = "MyTestApplication" . " " . \Adyen\Client::USER_AGENT_SUFFIX . $client->getLibraryVersion();
+        $expectedLibraryNameHeader = \Adyen\HttpClient\CurlClient::LIBRARY_NAME . $client->getLibraryName();
+        $expectedLibraryVersionHeader = \Adyen\HttpClient\CurlClient::LIBRARY_VERSION . $client->getLibraryVersion();
+
+        $userAgentFound = false;
+        $libraryNameHeaderFound = false;
+        $libraryVersionHeaderFound = false;
+
+        foreach ($testHttpClient->headers as $header) {
+            if (stripos($header, \Adyen\HttpClient\CurlClient::USER_AGENT) === 0) {
+                $this->assertEquals(\Adyen\HttpClient\CurlClient::USER_AGENT . $expectedUserAgent, $header);
+                $userAgentFound = true;
+            } elseif (stripos($header, \Adyen\HttpClient\CurlClient::LIBRARY_NAME) === 0) {
+                $this->assertEquals($expectedLibraryNameHeader, $header);
+                $libraryNameHeaderFound = true;
+            } elseif (stripos($header, \Adyen\HttpClient\CurlClient::LIBRARY_VERSION) === 0) {
+                $this->assertEquals($expectedLibraryVersionHeader, $header);
+                $libraryVersionHeaderFound = true;
+            }
+        }
+
+        $this->assertTrue($userAgentFound, "User-Agent header not found.");
+        $this->assertTrue($libraryNameHeaderFound, "Adyen-Library-Name header not found.");
+        $this->assertTrue($libraryVersionHeaderFound, "Adyen-Library-Version header not found.");
+    }
+
+    public function testRequestHttpWithoutApplicationName()
+    {
+        $client = new Client();
+        $client->setEnvironment(Environment::TEST);
+        $client->setXApiKey('test-api-key');
+
+        $testHttpClient = new class extends \Adyen\HttpClient\CurlClient {
+            public $headers;
+
+            protected function curlSetopt($ch, $option, $value): bool
+            {
+                if ($option === CURLOPT_HTTPHEADER) {
+                    $this->headers = $value;
+                }
+                return parent::curlSetopt($ch, $option, $value);
+            }
+
+            protected function curlRequest($ch): array
+            {
+                return ["{}", 200];
+            }
+        };
+
+        $client->setHttpClient($testHttpClient);
+        $service = new Service($client);
+        $resource = new class($service) extends AbstractResource {
+            public function __construct(Service $service)
+            {
+                parent::__construct($service, "endpoint", false);
+            }
+        };
+
+        $resource->requestHttp("https://checkout-test.adyen.com/v71/paymentLinks/123", "get");
+
+        $expectedUserAgent = \Adyen\Client::USER_AGENT_SUFFIX . $client->getLibraryVersion();
+        $expectedLibraryNameHeader = \Adyen\HttpClient\CurlClient::LIBRARY_NAME . $client->getLibraryName();
+        $expectedLibraryVersionHeader = \Adyen\HttpClient\CurlClient::LIBRARY_VERSION . $client->getLibraryVersion();
+
+        $userAgentFound = false;
+        $libraryNameHeaderFound = false;
+        $libraryVersionHeaderFound = false;
+
+        foreach ($testHttpClient->headers as $header) {
+            if (stripos($header, \Adyen\HttpClient\CurlClient::USER_AGENT) === 0) {
+                $this->assertEquals(\Adyen\HttpClient\CurlClient::USER_AGENT . $expectedUserAgent, $header);
+                $userAgentFound = true;
+            } elseif (stripos($header, \Adyen\HttpClient\CurlClient::LIBRARY_NAME) === 0) {
+                $this->assertEquals($expectedLibraryNameHeader, $header);
+                $libraryNameHeaderFound = true;
+            } elseif (stripos($header, \Adyen\HttpClient\CurlClient::LIBRARY_VERSION) === 0) {
+                $this->assertEquals($expectedLibraryVersionHeader, $header);
+                $libraryVersionHeaderFound = true;
+            }
+        }
+
+        $this->assertTrue($userAgentFound, "User-Agent header not found.");
+        $this->assertTrue($libraryNameHeaderFound, "Adyen-Library-Name header not found.");
+        $this->assertTrue($libraryVersionHeaderFound, "Adyen-Library-Version header not found.");
     }
 }
