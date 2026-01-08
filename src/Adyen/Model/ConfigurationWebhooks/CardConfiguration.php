@@ -380,7 +380,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets activation
      *
-     * @param string|null $activation Overrides the activation label design ID defined in the `configurationProfileId`. The activation label is attached to the card and contains the activation instructions.
+     * @param string|null $activation The activation label attached to the card that contains the activation instructions.  This field overrides the activation label design ID defined in the card configuration profile.
      *
      * @return self
      */
@@ -452,7 +452,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets cardImageId
      *
-     * @param string|null $cardImageId The ID of the card image. This is the image that will be printed on the full front of the card.
+     * @param string|null $cardImageId The unique identifier of the card image. This image is printed on the full front of the card.
      *
      * @return self
      */
@@ -476,7 +476,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets carrier
      *
-     * @param string|null $carrier Overrides the carrier design ID defined in the `configurationProfileId`. The carrier is the letter or packaging to which the card is attached.
+     * @param string|null $carrier The letter or packaging to which the card is attached.  This field overrides the carrier design ID defined in the card configuration profile.
      *
      * @return self
      */
@@ -500,7 +500,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets carrierImageId
      *
-     * @param string|null $carrierImageId The ID of the carrier image. This is the image that will printed on the letter to which the card is attached.
+     * @param string|null $carrierImageId The unique identifier of the carrier image. This image is printed on the letter to which the card is attached.
      *
      * @return self
      */
@@ -524,7 +524,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets configurationProfileId
      *
-     * @param string $configurationProfileId The ID of the card configuration profile that contains the settings of the card. For example, the envelope and PIN mailer designs or the logistics company handling the shipment. All the settings in the profile are applied to the card, unless you provide other fields to override them.  For example, send the `shipmentMethod` to override the logistics company defined in the card configuration profile.
+     * @param string $configurationProfileId The unique identifier of the card configuration profile that contains the settings that are applied to the card. For example, the envelope and PIN mailer designs or the logistics company handling the shipment.  You can override some of the existing settings in the configuration profile by providing the corresponding fields in the `configuration` object. For example, send the `shipmentMethod` to override the logistics company defined in the card configuration profile.
      *
      * @return self
      */
@@ -548,7 +548,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets currency
      *
-     * @param string|null $currency The three-letter [ISO-4217](https://en.wikipedia.org/wiki/ISO_4217) currency code of the card. For example, **EUR**.
+     * @param string|null $currency The three-letter [ISO-4217](https://en.wikipedia.org/wiki/ISO_4217) currency code of the card. For example, **EUR**.  This field overrides the existing currency setting on the card configuration profile.
      *
      * @return self
      */
@@ -572,7 +572,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets envelope
      *
-     * @param string|null $envelope Overrides the envelope design ID defined in the `configurationProfileId`.
+     * @param string|null $envelope Overrides the envelope design ID defined in the card configuration profile.
      *
      * @return self
      */
@@ -596,7 +596,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets insert
      *
-     * @param string|null $insert Overrides the insert design ID defined in the `configurationProfileId`. An insert is any additional material, such as marketing materials, that are shipped together with the card.
+     * @param string|null $insert Any additional material, such as marketing material, that is shipped together with the card.  This field overrides the insert design ID defined in the card configuration profile.
      *
      * @return self
      */
@@ -644,7 +644,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets logoImageId
      *
-     * @param string|null $logoImageId The ID of the logo image. This is the image that will be printed on the partial front of the card, such as a logo on the upper right corner.
+     * @param string|null $logoImageId The unique identifier of the logo image. This image is printed on the partial front of the card, for example, a logo on the upper right corner.
      *
      * @return self
      */
@@ -668,7 +668,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets pinMailer
      *
-     * @param string|null $pinMailer Overrides the PIN mailer design ID defined in the `configurationProfileId`. The PIN mailer is the letter on which the PIN is printed.
+     * @param string|null $pinMailer The letter on which the PIN of the card is printed.  This field overrides the PIN mailer design ID defined in the card configuration profile.
      *
      * @return self
      */
@@ -692,7 +692,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets shipmentMethod
      *
-     * @param string|null $shipmentMethod Overrides the logistics company defined in the `configurationProfileId`.
+     * @param string|null $shipmentMethod The logistics company that ships the card.  This field overrides the logistics company defined in the card configuration profile.
      *
      * @return self
      */
