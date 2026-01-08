@@ -293,7 +293,7 @@ class Support implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets email
      *
-     * @param string|null $email The support email address of the legal entity.
+     * @param string|null $email The support email address of the legal entity. Required if you have a platform setup.
      *
      * @return self
      */

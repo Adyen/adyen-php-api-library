@@ -41,17 +41,8 @@ class DeviceInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'cardCaptureTechnology' => 'string',
-        'deviceName' => 'string',
         'formFactor' => 'string',
-        'imei' => 'string',
-        'isoDeviceType' => 'string',
-        'msisdn' => 'string',
-        'osName' => 'string',
-        'osVersion' => 'string',
-        'paymentTypes' => 'string[]',
-        'serialNumber' => 'string',
-        'storageTechnology' => 'string'
+        'osName' => 'string'
     ];
 
     /**
@@ -62,17 +53,8 @@ class DeviceInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'cardCaptureTechnology' => null,
-        'deviceName' => null,
         'formFactor' => null,
-        'imei' => null,
-        'isoDeviceType' => null,
-        'msisdn' => null,
-        'osName' => null,
-        'osVersion' => null,
-        'paymentTypes' => null,
-        'serialNumber' => null,
-        'storageTechnology' => null
+        'osName' => null
     ];
 
     /**
@@ -81,17 +63,8 @@ class DeviceInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'cardCaptureTechnology' => false,
-        'deviceName' => false,
         'formFactor' => false,
-        'imei' => false,
-        'isoDeviceType' => false,
-        'msisdn' => false,
-        'osName' => false,
-        'osVersion' => false,
-        'paymentTypes' => false,
-        'serialNumber' => false,
-        'storageTechnology' => false
+        'osName' => false
     ];
 
     /**
@@ -180,17 +153,8 @@ class DeviceInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'cardCaptureTechnology' => 'cardCaptureTechnology',
-        'deviceName' => 'deviceName',
         'formFactor' => 'formFactor',
-        'imei' => 'imei',
-        'isoDeviceType' => 'isoDeviceType',
-        'msisdn' => 'msisdn',
-        'osName' => 'osName',
-        'osVersion' => 'osVersion',
-        'paymentTypes' => 'paymentTypes',
-        'serialNumber' => 'serialNumber',
-        'storageTechnology' => 'storageTechnology'
+        'osName' => 'osName'
     ];
 
     /**
@@ -199,17 +163,8 @@ class DeviceInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'cardCaptureTechnology' => 'setCardCaptureTechnology',
-        'deviceName' => 'setDeviceName',
         'formFactor' => 'setFormFactor',
-        'imei' => 'setImei',
-        'isoDeviceType' => 'setIsoDeviceType',
-        'msisdn' => 'setMsisdn',
-        'osName' => 'setOsName',
-        'osVersion' => 'setOsVersion',
-        'paymentTypes' => 'setPaymentTypes',
-        'serialNumber' => 'setSerialNumber',
-        'storageTechnology' => 'setStorageTechnology'
+        'osName' => 'setOsName'
     ];
 
     /**
@@ -218,17 +173,8 @@ class DeviceInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'cardCaptureTechnology' => 'getCardCaptureTechnology',
-        'deviceName' => 'getDeviceName',
         'formFactor' => 'getFormFactor',
-        'imei' => 'getImei',
-        'isoDeviceType' => 'getIsoDeviceType',
-        'msisdn' => 'getMsisdn',
-        'osName' => 'getOsName',
-        'osVersion' => 'getOsVersion',
-        'paymentTypes' => 'getPaymentTypes',
-        'serialNumber' => 'getSerialNumber',
-        'storageTechnology' => 'getStorageTechnology'
+        'osName' => 'getOsName'
     ];
 
     /**
@@ -288,17 +234,8 @@ class DeviceInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('cardCaptureTechnology', $data ?? [], null);
-        $this->setIfExists('deviceName', $data ?? [], null);
         $this->setIfExists('formFactor', $data ?? [], null);
-        $this->setIfExists('imei', $data ?? [], null);
-        $this->setIfExists('isoDeviceType', $data ?? [], null);
-        $this->setIfExists('msisdn', $data ?? [], null);
         $this->setIfExists('osName', $data ?? [], null);
-        $this->setIfExists('osVersion', $data ?? [], null);
-        $this->setIfExists('paymentTypes', $data ?? [], null);
-        $this->setIfExists('serialNumber', $data ?? [], null);
-        $this->setIfExists('storageTechnology', $data ?? [], null);
     }
 
     /**
@@ -344,54 +281,6 @@ class DeviceInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets cardCaptureTechnology
-     *
-     * @return string|null
-     */
-    public function getCardCaptureTechnology()
-    {
-        return $this->container['cardCaptureTechnology'];
-    }
-
-    /**
-     * Sets cardCaptureTechnology
-     *
-     * @param string|null $cardCaptureTechnology The technology used to capture the card details.
-     *
-     * @return self
-     */
-    public function setCardCaptureTechnology($cardCaptureTechnology)
-    {
-        $this->container['cardCaptureTechnology'] = $cardCaptureTechnology;
-
-        return $this;
-    }
-
-    /**
-     * Gets deviceName
-     *
-     * @return string|null
-     */
-    public function getDeviceName()
-    {
-        return $this->container['deviceName'];
-    }
-
-    /**
-     * Sets deviceName
-     *
-     * @param string|null $deviceName The name of the device.
-     *
-     * @return self
-     */
-    public function setDeviceName($deviceName)
-    {
-        $this->container['deviceName'] = $deviceName;
-
-        return $this;
-    }
-
-    /**
      * Gets formFactor
      *
      * @return string|null
@@ -404,85 +293,13 @@ class DeviceInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets formFactor
      *
-     * @param string|null $formFactor The form factor of the device to be provisioned.
+     * @param string|null $formFactor The type of device used to provision the network token.
      *
      * @return self
      */
     public function setFormFactor($formFactor)
     {
         $this->container['formFactor'] = $formFactor;
-
-        return $this;
-    }
-
-    /**
-     * Gets imei
-     *
-     * @return string|null
-     */
-    public function getImei()
-    {
-        return $this->container['imei'];
-    }
-
-    /**
-     * Sets imei
-     *
-     * @param string|null $imei The IMEI number of the device being provisioned.
-     *
-     * @return self
-     */
-    public function setImei($imei)
-    {
-        $this->container['imei'] = $imei;
-
-        return $this;
-    }
-
-    /**
-     * Gets isoDeviceType
-     *
-     * @return string|null
-     */
-    public function getIsoDeviceType()
-    {
-        return $this->container['isoDeviceType'];
-    }
-
-    /**
-     * Sets isoDeviceType
-     *
-     * @param string|null $isoDeviceType The 2-digit device type provided on the ISO messages that the token is being provisioned to.
-     *
-     * @return self
-     */
-    public function setIsoDeviceType($isoDeviceType)
-    {
-        $this->container['isoDeviceType'] = $isoDeviceType;
-
-        return $this;
-    }
-
-    /**
-     * Gets msisdn
-     *
-     * @return string|null
-     */
-    public function getMsisdn()
-    {
-        return $this->container['msisdn'];
-    }
-
-    /**
-     * Sets msisdn
-     *
-     * @param string|null $msisdn The MSISDN of the device being provisioned.
-     *
-     * @return self
-     */
-    public function setMsisdn($msisdn)
-    {
-        $this->container['msisdn'] = $msisdn;
 
         return $this;
     }
@@ -500,109 +317,13 @@ class DeviceInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets osName
      *
-     * @param string|null $osName The name of the device operating system.
+     * @param string|null $osName The operating system of the device used to provision the network token.
      *
      * @return self
      */
     public function setOsName($osName)
     {
         $this->container['osName'] = $osName;
-
-        return $this;
-    }
-
-    /**
-     * Gets osVersion
-     *
-     * @return string|null
-     */
-    public function getOsVersion()
-    {
-        return $this->container['osVersion'];
-    }
-
-    /**
-     * Sets osVersion
-     *
-     * @param string|null $osVersion The version of the device operating system.
-     *
-     * @return self
-     */
-    public function setOsVersion($osVersion)
-    {
-        $this->container['osVersion'] = $osVersion;
-
-        return $this;
-    }
-
-    /**
-     * Gets paymentTypes
-     *
-     * @return string[]|null
-     */
-    public function getPaymentTypes()
-    {
-        return $this->container['paymentTypes'];
-    }
-
-    /**
-     * Sets paymentTypes
-     *
-     * @param string[]|null $paymentTypes Different types of payments supported for the network token.
-     *
-     * @return self
-     */
-    public function setPaymentTypes($paymentTypes)
-    {
-        $this->container['paymentTypes'] = $paymentTypes;
-
-        return $this;
-    }
-
-    /**
-     * Gets serialNumber
-     *
-     * @return string|null
-     */
-    public function getSerialNumber()
-    {
-        return $this->container['serialNumber'];
-    }
-
-    /**
-     * Sets serialNumber
-     *
-     * @param string|null $serialNumber The serial number of the device.
-     *
-     * @return self
-     */
-    public function setSerialNumber($serialNumber)
-    {
-        $this->container['serialNumber'] = $serialNumber;
-
-        return $this;
-    }
-
-    /**
-     * Gets storageTechnology
-     *
-     * @return string|null
-     */
-    public function getStorageTechnology()
-    {
-        return $this->container['storageTechnology'];
-    }
-
-    /**
-     * Sets storageTechnology
-     *
-     * @param string|null $storageTechnology The architecture or technology used for network token storage.
-     *
-     * @return self
-     */
-    public function setStorageTechnology($storageTechnology)
-    {
-        $this->container['storageTechnology'] = $storageTechnology;
 
         return $this;
     }
