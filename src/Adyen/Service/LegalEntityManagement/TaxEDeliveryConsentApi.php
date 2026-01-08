@@ -60,12 +60,13 @@ class TaxEDeliveryConsentApi extends Service
     * @param string $id
     * @param \Adyen\Model\LegalEntityManagement\SetTaxElectronicDeliveryConsentRequest $setTaxElectronicDeliveryConsentRequest
     * @param array|null $requestOptions
-
+    
     * @throws AdyenException
     */
     public function setConsentStatusForElectronicDeliveryOfTaxForms(string $id, \Adyen\Model\LegalEntityManagement\SetTaxElectronicDeliveryConsentRequest $setTaxElectronicDeliveryConsentRequest, ?array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/legalEntities/{id}/setTaxElectronicDeliveryConsent");
         $this->requestHttp($endpoint, strtolower('POST'), (array) $setTaxElectronicDeliveryConsentRequest->jsonSerialize(), $requestOptions);
+        
     }
 }
