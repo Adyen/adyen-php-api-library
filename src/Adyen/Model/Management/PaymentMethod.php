@@ -62,6 +62,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'eftposAustralia' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'enabled' => 'bool',
         'girocard' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
+        'givex' => '\Adyen\Model\Management\GivexInfo',
         'googlePay' => '\Adyen\Model\Management\GooglePayInfo',
         'id' => 'string',
         'ideal' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
@@ -85,10 +86,12 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'sofort' => '\Adyen\Model\Management\SofortInfo',
         'star' => '\Adyen\Model\Management\StarInfo',
         'storeIds' => 'string[]',
+        'svs' => '\Adyen\Model\Management\SvsInfo',
         'swish' => '\Adyen\Model\Management\SwishInfo',
         'ticket' => '\Adyen\Model\Management\TicketInfo',
         'twint' => '\Adyen\Model\Management\TwintInfo',
         'type' => 'string',
+        'valuelink' => '\Adyen\Model\Management\ValuelinkInfo',
         'verificationStatus' => 'string',
         'vipps' => '\Adyen\Model\Management\VippsInfo',
         'visa' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
@@ -125,6 +128,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'eftposAustralia' => null,
         'enabled' => null,
         'girocard' => null,
+        'givex' => null,
         'googlePay' => null,
         'id' => null,
         'ideal' => null,
@@ -148,10 +152,12 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'sofort' => null,
         'star' => null,
         'storeIds' => null,
+        'svs' => null,
         'swish' => null,
         'ticket' => null,
         'twint' => null,
         'type' => null,
+        'valuelink' => null,
         'verificationStatus' => null,
         'vipps' => null,
         'visa' => null,
@@ -186,6 +192,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'eftposAustralia' => false,
         'enabled' => false,
         'girocard' => false,
+        'givex' => false,
         'googlePay' => false,
         'id' => false,
         'ideal' => false,
@@ -209,10 +216,12 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'sofort' => false,
         'star' => false,
         'storeIds' => false,
+        'svs' => false,
         'swish' => false,
         'ticket' => false,
         'twint' => false,
         'type' => false,
+        'valuelink' => false,
         'verificationStatus' => false,
         'vipps' => false,
         'visa' => false,
@@ -327,6 +336,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'eftposAustralia' => 'eftpos_australia',
         'enabled' => 'enabled',
         'girocard' => 'girocard',
+        'givex' => 'givex',
         'googlePay' => 'googlePay',
         'id' => 'id',
         'ideal' => 'ideal',
@@ -350,10 +360,12 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'sofort' => 'sofort',
         'star' => 'star',
         'storeIds' => 'storeIds',
+        'svs' => 'svs',
         'swish' => 'swish',
         'ticket' => 'ticket',
         'twint' => 'twint',
         'type' => 'type',
+        'valuelink' => 'valuelink',
         'verificationStatus' => 'verificationStatus',
         'vipps' => 'vipps',
         'visa' => 'visa',
@@ -388,6 +400,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'eftposAustralia' => 'setEftposAustralia',
         'enabled' => 'setEnabled',
         'girocard' => 'setGirocard',
+        'givex' => 'setGivex',
         'googlePay' => 'setGooglePay',
         'id' => 'setId',
         'ideal' => 'setIdeal',
@@ -411,10 +424,12 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'sofort' => 'setSofort',
         'star' => 'setStar',
         'storeIds' => 'setStoreIds',
+        'svs' => 'setSvs',
         'swish' => 'setSwish',
         'ticket' => 'setTicket',
         'twint' => 'setTwint',
         'type' => 'setType',
+        'valuelink' => 'setValuelink',
         'verificationStatus' => 'setVerificationStatus',
         'vipps' => 'setVipps',
         'visa' => 'setVisa',
@@ -449,6 +464,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'eftposAustralia' => 'getEftposAustralia',
         'enabled' => 'getEnabled',
         'girocard' => 'getGirocard',
+        'givex' => 'getGivex',
         'googlePay' => 'getGooglePay',
         'id' => 'getId',
         'ideal' => 'getIdeal',
@@ -472,10 +488,12 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'sofort' => 'getSofort',
         'star' => 'getStar',
         'storeIds' => 'getStoreIds',
+        'svs' => 'getSvs',
         'swish' => 'getSwish',
         'ticket' => 'getTicket',
         'twint' => 'getTwint',
         'type' => 'getType',
+        'valuelink' => 'getValuelink',
         'verificationStatus' => 'getVerificationStatus',
         'vipps' => 'getVipps',
         'visa' => 'getVisa',
@@ -579,6 +597,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('eftposAustralia', $data ?? [], null);
         $this->setIfExists('enabled', $data ?? [], null);
         $this->setIfExists('girocard', $data ?? [], null);
+        $this->setIfExists('givex', $data ?? [], null);
         $this->setIfExists('googlePay', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('ideal', $data ?? [], null);
@@ -602,10 +621,12 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('sofort', $data ?? [], null);
         $this->setIfExists('star', $data ?? [], null);
         $this->setIfExists('storeIds', $data ?? [], null);
+        $this->setIfExists('svs', $data ?? [], null);
         $this->setIfExists('swish', $data ?? [], null);
         $this->setIfExists('ticket', $data ?? [], null);
         $this->setIfExists('twint', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('valuelink', $data ?? [], null);
         $this->setIfExists('verificationStatus', $data ?? [], null);
         $this->setIfExists('vipps', $data ?? [], null);
         $this->setIfExists('visa', $data ?? [], null);
@@ -1172,6 +1193,30 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets givex
+     *
+     * @return \Adyen\Model\Management\GivexInfo|null
+     */
+    public function getGivex()
+    {
+        return $this->container['givex'];
+    }
+
+    /**
+     * Sets givex
+     *
+     * @param \Adyen\Model\Management\GivexInfo|null $givex givex
+     *
+     * @return self
+     */
+    public function setGivex($givex)
+    {
+        $this->container['givex'] = $givex;
+
+        return $this;
+    }
+
+    /**
      * Gets googlePay
      *
      * @return \Adyen\Model\Management\GooglePayInfo|null
@@ -1724,6 +1769,30 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets svs
+     *
+     * @return \Adyen\Model\Management\SvsInfo|null
+     */
+    public function getSvs()
+    {
+        return $this->container['svs'];
+    }
+
+    /**
+     * Sets svs
+     *
+     * @param \Adyen\Model\Management\SvsInfo|null $svs svs
+     *
+     * @return self
+     */
+    public function setSvs($svs)
+    {
+        $this->container['svs'] = $svs;
+
+        return $this;
+    }
+
+    /**
      * Gets swish
      *
      * @return \Adyen\Model\Management\SwishInfo|null
@@ -1820,6 +1889,30 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets valuelink
+     *
+     * @return \Adyen\Model\Management\ValuelinkInfo|null
+     */
+    public function getValuelink()
+    {
+        return $this->container['valuelink'];
+    }
+
+    /**
+     * Sets valuelink
+     *
+     * @param \Adyen\Model\Management\ValuelinkInfo|null $valuelink valuelink
+     *
+     * @return self
+     */
+    public function setValuelink($valuelink)
+    {
+        $this->container['valuelink'] = $valuelink;
+
+        return $this;
+    }
+
+    /**
      * Gets verificationStatus
      *
      * @return string|null
@@ -1840,11 +1933,11 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getVerificationStatusAllowableValues();
         if (!in_array($verificationStatus, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'verificationStatus', must be one of '%s'",
+                    "verificationStatus: unexpected enum value '%s' - Supported values are [%s]",
                     $verificationStatus,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
