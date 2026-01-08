@@ -42,6 +42,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
       */
     protected static $openAPITypes = [
         'brand' => 'string',
+        'cardBin' => 'string',
         'expiryMonth' => 'string',
         'expiryYear' => 'string',
         'externalResponseCode' => 'string',
@@ -51,6 +52,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
         'id' => 'string',
         'issuerName' => 'string',
         'lastFour' => 'string',
+        'mandate' => '\Adyen\Model\Checkout\TokenMandate',
         'name' => 'string',
         'networkTxReference' => 'string',
         'ownerName' => 'string',
@@ -69,6 +71,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
       */
     protected static $openAPIFormats = [
         'brand' => null,
+        'cardBin' => null,
         'expiryMonth' => null,
         'expiryYear' => null,
         'externalResponseCode' => null,
@@ -78,6 +81,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
         'id' => null,
         'issuerName' => null,
         'lastFour' => null,
+        'mandate' => null,
         'name' => null,
         'networkTxReference' => null,
         'ownerName' => null,
@@ -94,6 +98,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
       */
     protected static $openAPINullables = [
         'brand' => false,
+        'cardBin' => false,
         'expiryMonth' => false,
         'expiryYear' => false,
         'externalResponseCode' => false,
@@ -103,6 +108,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
         'id' => false,
         'issuerName' => false,
         'lastFour' => false,
+        'mandate' => false,
         'name' => false,
         'networkTxReference' => false,
         'ownerName' => false,
@@ -199,6 +205,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
      */
     protected static $attributeMap = [
         'brand' => 'brand',
+        'cardBin' => 'cardBin',
         'expiryMonth' => 'expiryMonth',
         'expiryYear' => 'expiryYear',
         'externalResponseCode' => 'externalResponseCode',
@@ -208,6 +215,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
         'id' => 'id',
         'issuerName' => 'issuerName',
         'lastFour' => 'lastFour',
+        'mandate' => 'mandate',
         'name' => 'name',
         'networkTxReference' => 'networkTxReference',
         'ownerName' => 'ownerName',
@@ -224,6 +232,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
      */
     protected static $setters = [
         'brand' => 'setBrand',
+        'cardBin' => 'setCardBin',
         'expiryMonth' => 'setExpiryMonth',
         'expiryYear' => 'setExpiryYear',
         'externalResponseCode' => 'setExternalResponseCode',
@@ -233,6 +242,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
         'id' => 'setId',
         'issuerName' => 'setIssuerName',
         'lastFour' => 'setLastFour',
+        'mandate' => 'setMandate',
         'name' => 'setName',
         'networkTxReference' => 'setNetworkTxReference',
         'ownerName' => 'setOwnerName',
@@ -249,6 +259,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
      */
     protected static $getters = [
         'brand' => 'getBrand',
+        'cardBin' => 'getCardBin',
         'expiryMonth' => 'getExpiryMonth',
         'expiryYear' => 'getExpiryYear',
         'externalResponseCode' => 'getExternalResponseCode',
@@ -258,6 +269,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
         'id' => 'getId',
         'issuerName' => 'getIssuerName',
         'lastFour' => 'getLastFour',
+        'mandate' => 'getMandate',
         'name' => 'getName',
         'networkTxReference' => 'getNetworkTxReference',
         'ownerName' => 'getOwnerName',
@@ -325,6 +337,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
     public function __construct(?array $data = null)
     {
         $this->setIfExists('brand', $data ?? [], null);
+        $this->setIfExists('cardBin', $data ?? [], null);
         $this->setIfExists('expiryMonth', $data ?? [], null);
         $this->setIfExists('expiryYear', $data ?? [], null);
         $this->setIfExists('externalResponseCode', $data ?? [], null);
@@ -334,6 +347,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('issuerName', $data ?? [], null);
         $this->setIfExists('lastFour', $data ?? [], null);
+        $this->setIfExists('mandate', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('networkTxReference', $data ?? [], null);
         $this->setIfExists('ownerName', $data ?? [], null);
@@ -405,6 +419,30 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
     public function setBrand($brand)
     {
         $this->container['brand'] = $brand;
+
+        return $this;
+    }
+
+    /**
+     * Gets cardBin
+     *
+     * @return string|null
+     */
+    public function getCardBin()
+    {
+        return $this->container['cardBin'];
+    }
+
+    /**
+     * Sets cardBin
+     *
+     * @param string|null $cardBin The bank identification number (BIN) of the card.
+     *
+     * @return self
+     */
+    public function setCardBin($cardBin)
+    {
+        $this->container['cardBin'] = $cardBin;
 
         return $this;
     }
@@ -621,6 +659,30 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
     public function setLastFour($lastFour)
     {
         $this->container['lastFour'] = $lastFour;
+
+        return $this;
+    }
+
+    /**
+     * Gets mandate
+     *
+     * @return \Adyen\Model\Checkout\TokenMandate|null
+     */
+    public function getMandate()
+    {
+        return $this->container['mandate'];
+    }
+
+    /**
+     * Sets mandate
+     *
+     * @param \Adyen\Model\Checkout\TokenMandate|null $mandate mandate
+     *
+     * @return self
+     */
+    public function setMandate($mandate)
+    {
+        $this->container['mandate'] = $mandate;
 
         return $this;
     }

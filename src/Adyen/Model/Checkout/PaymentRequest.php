@@ -85,6 +85,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'orderReference' => 'string',
         'origin' => 'string',
         'paymentMethod' => '\Adyen\Model\Checkout\CheckoutPaymentMethod',
+        'paymentValidations' => '\Adyen\Model\Checkout\PaymentValidations',
         'platformChargebackLogic' => '\Adyen\Model\Checkout\PlatformChargebackLogic',
         'recurringExpiry' => 'string',
         'recurringFrequency' => 'string',
@@ -100,7 +101,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'shopperIP' => 'string',
         'shopperInteraction' => 'string',
         'shopperLocale' => 'string',
-        'shopperName' => '\Adyen\Model\Checkout\Name',
+        'shopperName' => '\Adyen\Model\Checkout\ShopperName',
         'shopperReference' => 'string',
         'shopperStatement' => 'string',
         'socialSecurityNumber' => 'string',
@@ -167,6 +168,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'orderReference' => null,
         'origin' => null,
         'paymentMethod' => null,
+        'paymentValidations' => null,
         'platformChargebackLogic' => null,
         'recurringExpiry' => null,
         'recurringFrequency' => null,
@@ -247,6 +249,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'orderReference' => false,
         'origin' => false,
         'paymentMethod' => false,
+        'paymentValidations' => false,
         'platformChargebackLogic' => false,
         'recurringExpiry' => false,
         'recurringFrequency' => false,
@@ -407,6 +410,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'orderReference' => 'orderReference',
         'origin' => 'origin',
         'paymentMethod' => 'paymentMethod',
+        'paymentValidations' => 'paymentValidations',
         'platformChargebackLogic' => 'platformChargebackLogic',
         'recurringExpiry' => 'recurringExpiry',
         'recurringFrequency' => 'recurringFrequency',
@@ -487,6 +491,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'orderReference' => 'setOrderReference',
         'origin' => 'setOrigin',
         'paymentMethod' => 'setPaymentMethod',
+        'paymentValidations' => 'setPaymentValidations',
         'platformChargebackLogic' => 'setPlatformChargebackLogic',
         'recurringExpiry' => 'setRecurringExpiry',
         'recurringFrequency' => 'setRecurringFrequency',
@@ -567,6 +572,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'orderReference' => 'getOrderReference',
         'origin' => 'getOrigin',
         'paymentMethod' => 'getPaymentMethod',
+        'paymentValidations' => 'getPaymentValidations',
         'platformChargebackLogic' => 'getPlatformChargebackLogic',
         'recurringExpiry' => 'getRecurringExpiry',
         'recurringFrequency' => 'getRecurringFrequency',
@@ -778,6 +784,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('orderReference', $data ?? [], null);
         $this->setIfExists('origin', $data ?? [], null);
         $this->setIfExists('paymentMethod', $data ?? [], null);
+        $this->setIfExists('paymentValidations', $data ?? [], null);
         $this->setIfExists('platformChargebackLogic', $data ?? [], null);
         $this->setIfExists('recurringExpiry', $data ?? [], null);
         $this->setIfExists('recurringFrequency', $data ?? [], null);
@@ -1725,7 +1732,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets localizedShopperStatement
      *
-     * @param array<string,string>|null $localizedShopperStatement The `localizedShopperStatement` field lets you use dynamic values for your shopper statement in a local character set. If not supplied, left empty, or for cross-border transactions, **shopperStatement** is used.  Adyen currently supports the ja-Kana character set for Visa and Mastercard payments in Japan using Japanese cards. This character set supports:  * UTF-8 based Katakana, capital letters, numbers and special characters.  * Half-width or full-width characters.
+     * @param array<string,string>|null $localizedShopperStatement The `localizedShopperStatement` field lets you use dynamic values for your shopper statement in a local character set. If this parameter is left empty, not provided, or not applicable (in case of cross-border transactions), then **shopperStatement** is used.  Currently, `localizedShopperStatement` is only supported for payments with Visa, Mastercard, JCB, Diners, and Discover.  **Supported characters**: Hiragana, Katakana, Kanji, and alphanumeric.
      *
      * @return self
      */
@@ -1996,6 +2003,30 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setPaymentMethod($paymentMethod)
     {
         $this->container['paymentMethod'] = $paymentMethod;
+
+        return $this;
+    }
+
+    /**
+     * Gets paymentValidations
+     *
+     * @return \Adyen\Model\Checkout\PaymentValidations|null
+     */
+    public function getPaymentValidations()
+    {
+        return $this->container['paymentValidations'];
+    }
+
+    /**
+     * Sets paymentValidations
+     *
+     * @param \Adyen\Model\Checkout\PaymentValidations|null $paymentValidations paymentValidations
+     *
+     * @return self
+     */
+    public function setPaymentValidations($paymentValidations)
+    {
+        $this->container['paymentValidations'] = $paymentValidations;
 
         return $this;
     }
@@ -2383,7 +2414,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets shopperName
      *
-     * @return \Adyen\Model\Checkout\Name|null
+     * @return \Adyen\Model\Checkout\ShopperName|null
      */
     public function getShopperName()
     {
@@ -2393,7 +2424,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets shopperName
      *
-     * @param \Adyen\Model\Checkout\Name|null $shopperName shopperName
+     * @param \Adyen\Model\Checkout\ShopperName|null $shopperName shopperName
      *
      * @return self
      */

@@ -45,6 +45,7 @@ class SamsungPayDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
         'fundingSource' => 'string',
         'recurringDetailReference' => 'string',
         'samsungPayToken' => 'string',
+        'sdkData' => 'string',
         'storedPaymentMethodId' => 'string',
         'type' => 'string'
     ];
@@ -61,6 +62,7 @@ class SamsungPayDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
         'fundingSource' => null,
         'recurringDetailReference' => null,
         'samsungPayToken' => null,
+        'sdkData' => null,
         'storedPaymentMethodId' => null,
         'type' => null
     ];
@@ -75,6 +77,7 @@ class SamsungPayDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
         'fundingSource' => false,
         'recurringDetailReference' => false,
         'samsungPayToken' => false,
+        'sdkData' => false,
         'storedPaymentMethodId' => false,
         'type' => false
     ];
@@ -169,6 +172,7 @@ class SamsungPayDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
         'fundingSource' => 'fundingSource',
         'recurringDetailReference' => 'recurringDetailReference',
         'samsungPayToken' => 'samsungPayToken',
+        'sdkData' => 'sdkData',
         'storedPaymentMethodId' => 'storedPaymentMethodId',
         'type' => 'type'
     ];
@@ -183,6 +187,7 @@ class SamsungPayDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
         'fundingSource' => 'setFundingSource',
         'recurringDetailReference' => 'setRecurringDetailReference',
         'samsungPayToken' => 'setSamsungPayToken',
+        'sdkData' => 'setSdkData',
         'storedPaymentMethodId' => 'setStoredPaymentMethodId',
         'type' => 'setType'
     ];
@@ -197,6 +202,7 @@ class SamsungPayDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
         'fundingSource' => 'getFundingSource',
         'recurringDetailReference' => 'getRecurringDetailReference',
         'samsungPayToken' => 'getSamsungPayToken',
+        'sdkData' => 'getSdkData',
         'storedPaymentMethodId' => 'getStoredPaymentMethodId',
         'type' => 'getType'
     ];
@@ -244,6 +250,7 @@ class SamsungPayDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
 
     public const FUNDING_SOURCE_CREDIT = 'credit';
     public const FUNDING_SOURCE_DEBIT = 'debit';
+    public const FUNDING_SOURCE_PREPAID = 'prepaid';
     public const TYPE_SAMSUNGPAY = 'samsungpay';
 
     /**
@@ -256,6 +263,7 @@ class SamsungPayDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
         return [
             self::FUNDING_SOURCE_CREDIT,
             self::FUNDING_SOURCE_DEBIT,
+            self::FUNDING_SOURCE_PREPAID,
         ];
     }
     /**
@@ -288,6 +296,7 @@ class SamsungPayDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('fundingSource', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
         $this->setIfExists('samsungPayToken', $data ?? [], null);
+        $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
@@ -459,6 +468,30 @@ class SamsungPayDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function setSamsungPayToken($samsungPayToken)
     {
         $this->container['samsungPayToken'] = $samsungPayToken;
+
+        return $this;
+    }
+
+    /**
+     * Gets sdkData
+     *
+     * @return string|null
+     */
+    public function getSdkData()
+    {
+        return $this->container['sdkData'];
+    }
+
+    /**
+     * Sets sdkData
+     *
+     * @param string|null $sdkData Base64-encoded JSON object containing SDK related parameters required by the SDK
+     *
+     * @return self
+     */
+    public function setSdkData($sdkData)
+    {
+        $this->container['sdkData'] = $sdkData;
 
         return $this;
     }

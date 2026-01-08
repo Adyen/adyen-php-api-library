@@ -49,6 +49,7 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'merchantReference' => 'string',
         'order' => '\Adyen\Model\Checkout\CheckoutOrderResponse',
         'paymentMethod' => '\Adyen\Model\Checkout\ResponsePaymentMethod',
+        'paymentValidations' => '\Adyen\Model\Checkout\PaymentValidationsResponse',
         'pspReference' => 'string',
         'refusalReason' => 'string',
         'refusalReasonCode' => 'string',
@@ -74,6 +75,7 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'merchantReference' => null,
         'order' => null,
         'paymentMethod' => null,
+        'paymentValidations' => null,
         'pspReference' => null,
         'refusalReason' => null,
         'refusalReasonCode' => null,
@@ -97,6 +99,7 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'merchantReference' => false,
         'order' => false,
         'paymentMethod' => false,
+        'paymentValidations' => false,
         'pspReference' => false,
         'refusalReason' => false,
         'refusalReasonCode' => false,
@@ -200,6 +203,7 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'merchantReference' => 'merchantReference',
         'order' => 'order',
         'paymentMethod' => 'paymentMethod',
+        'paymentValidations' => 'paymentValidations',
         'pspReference' => 'pspReference',
         'refusalReason' => 'refusalReason',
         'refusalReasonCode' => 'refusalReasonCode',
@@ -223,6 +227,7 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'merchantReference' => 'setMerchantReference',
         'order' => 'setOrder',
         'paymentMethod' => 'setPaymentMethod',
+        'paymentValidations' => 'setPaymentValidations',
         'pspReference' => 'setPspReference',
         'refusalReason' => 'setRefusalReason',
         'refusalReasonCode' => 'setRefusalReasonCode',
@@ -246,6 +251,7 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'merchantReference' => 'getMerchantReference',
         'order' => 'getOrder',
         'paymentMethod' => 'getPaymentMethod',
+        'paymentValidations' => 'getPaymentValidations',
         'pspReference' => 'getPspReference',
         'refusalReason' => 'getRefusalReason',
         'refusalReasonCode' => 'getRefusalReasonCode',
@@ -358,6 +364,7 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('merchantReference', $data ?? [], null);
         $this->setIfExists('order', $data ?? [], null);
         $this->setIfExists('paymentMethod', $data ?? [], null);
+        $this->setIfExists('paymentValidations', $data ?? [], null);
         $this->setIfExists('pspReference', $data ?? [], null);
         $this->setIfExists('refusalReason', $data ?? [], null);
         $this->setIfExists('refusalReasonCode', $data ?? [], null);
@@ -606,6 +613,30 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setPaymentMethod($paymentMethod)
     {
         $this->container['paymentMethod'] = $paymentMethod;
+
+        return $this;
+    }
+
+    /**
+     * Gets paymentValidations
+     *
+     * @return \Adyen\Model\Checkout\PaymentValidationsResponse|null
+     */
+    public function getPaymentValidations()
+    {
+        return $this->container['paymentValidations'];
+    }
+
+    /**
+     * Sets paymentValidations
+     *
+     * @param \Adyen\Model\Checkout\PaymentValidationsResponse|null $paymentValidations paymentValidations
+     *
+     * @return self
+     */
+    public function setPaymentValidations($paymentValidations)
+    {
+        $this->container['paymentValidations'] = $paymentValidations;
 
         return $this;
     }

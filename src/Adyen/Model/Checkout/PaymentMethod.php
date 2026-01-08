@@ -274,6 +274,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
 
     public const FUNDING_SOURCE_CREDIT = 'credit';
     public const FUNDING_SOURCE_DEBIT = 'debit';
+    public const FUNDING_SOURCE_PREPAID = 'prepaid';
 
     /**
      * Gets allowable values of the enum
@@ -285,6 +286,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         return [
             self::FUNDING_SOURCE_CREDIT,
             self::FUNDING_SOURCE_DEBIT,
+            self::FUNDING_SOURCE_PREPAID,
         ];
     }
     /**

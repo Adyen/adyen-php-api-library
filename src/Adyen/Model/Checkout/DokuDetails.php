@@ -44,6 +44,7 @@ class DokuDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'checkoutAttemptId' => 'string',
         'firstName' => 'string',
         'lastName' => 'string',
+        'sdkData' => 'string',
         'shopperEmail' => 'string',
         'type' => 'string'
     ];
@@ -59,6 +60,7 @@ class DokuDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'checkoutAttemptId' => null,
         'firstName' => null,
         'lastName' => null,
+        'sdkData' => null,
         'shopperEmail' => null,
         'type' => null
     ];
@@ -72,6 +74,7 @@ class DokuDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'checkoutAttemptId' => false,
         'firstName' => false,
         'lastName' => false,
+        'sdkData' => false,
         'shopperEmail' => false,
         'type' => false
     ];
@@ -165,6 +168,7 @@ class DokuDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'checkoutAttemptId' => 'checkoutAttemptId',
         'firstName' => 'firstName',
         'lastName' => 'lastName',
+        'sdkData' => 'sdkData',
         'shopperEmail' => 'shopperEmail',
         'type' => 'type'
     ];
@@ -178,6 +182,7 @@ class DokuDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'checkoutAttemptId' => 'setCheckoutAttemptId',
         'firstName' => 'setFirstName',
         'lastName' => 'setLastName',
+        'sdkData' => 'setSdkData',
         'shopperEmail' => 'setShopperEmail',
         'type' => 'setType'
     ];
@@ -191,6 +196,7 @@ class DokuDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'checkoutAttemptId' => 'getCheckoutAttemptId',
         'firstName' => 'getFirstName',
         'lastName' => 'getLastName',
+        'sdkData' => 'getSdkData',
         'shopperEmail' => 'getShopperEmail',
         'type' => 'getType'
     ];
@@ -287,6 +293,7 @@ class DokuDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('firstName', $data ?? [], null);
         $this->setIfExists('lastName', $data ?? [], null);
+        $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('shopperEmail', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
@@ -422,6 +429,30 @@ class DokuDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setLastName($lastName)
     {
         $this->container['lastName'] = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Gets sdkData
+     *
+     * @return string|null
+     */
+    public function getSdkData()
+    {
+        return $this->container['sdkData'];
+    }
+
+    /**
+     * Sets sdkData
+     *
+     * @param string|null $sdkData Base64-encoded JSON object containing SDK related parameters required by the SDK
+     *
+     * @return self
+     */
+    public function setSdkData($sdkData)
+    {
+        $this->container['sdkData'] = $sdkData;
 
         return $this;
     }
