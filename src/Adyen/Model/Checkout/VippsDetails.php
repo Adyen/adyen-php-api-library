@@ -43,6 +43,7 @@ class VippsDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'checkoutAttemptId' => 'string',
         'recurringDetailReference' => 'string',
+        'sdkData' => 'string',
         'storedPaymentMethodId' => 'string',
         'telephoneNumber' => 'string',
         'type' => 'string'
@@ -58,6 +59,7 @@ class VippsDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'checkoutAttemptId' => null,
         'recurringDetailReference' => null,
+        'sdkData' => null,
         'storedPaymentMethodId' => null,
         'telephoneNumber' => null,
         'type' => null
@@ -71,6 +73,7 @@ class VippsDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPINullables = [
         'checkoutAttemptId' => false,
         'recurringDetailReference' => false,
+        'sdkData' => false,
         'storedPaymentMethodId' => false,
         'telephoneNumber' => false,
         'type' => false
@@ -164,6 +167,7 @@ class VippsDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'checkoutAttemptId' => 'checkoutAttemptId',
         'recurringDetailReference' => 'recurringDetailReference',
+        'sdkData' => 'sdkData',
         'storedPaymentMethodId' => 'storedPaymentMethodId',
         'telephoneNumber' => 'telephoneNumber',
         'type' => 'type'
@@ -177,6 +181,7 @@ class VippsDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'checkoutAttemptId' => 'setCheckoutAttemptId',
         'recurringDetailReference' => 'setRecurringDetailReference',
+        'sdkData' => 'setSdkData',
         'storedPaymentMethodId' => 'setStoredPaymentMethodId',
         'telephoneNumber' => 'setTelephoneNumber',
         'type' => 'setType'
@@ -190,6 +195,7 @@ class VippsDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'checkoutAttemptId' => 'getCheckoutAttemptId',
         'recurringDetailReference' => 'getRecurringDetailReference',
+        'sdkData' => 'getSdkData',
         'storedPaymentMethodId' => 'getStoredPaymentMethodId',
         'telephoneNumber' => 'getTelephoneNumber',
         'type' => 'getType'
@@ -266,6 +272,7 @@ class VippsDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
+        $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
         $this->setIfExists('telephoneNumber', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
@@ -376,6 +383,30 @@ class VippsDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets sdkData
+     *
+     * @return string|null
+     */
+    public function getSdkData()
+    {
+        return $this->container['sdkData'];
+    }
+
+    /**
+     * Sets sdkData
+     *
+     * @param string|null $sdkData Base64-encoded JSON object containing SDK related parameters required by the SDK
+     *
+     * @return self
+     */
+    public function setSdkData($sdkData)
+    {
+        $this->container['sdkData'] = $sdkData;
+
+        return $this;
+    }
+
+    /**
      * Gets storedPaymentMethodId
      *
      * @return string|null
@@ -412,7 +443,7 @@ class VippsDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets telephoneNumber
      *
-     * @param string $telephoneNumber
+     * @param string $telephoneNumber 
      *
      * @return self
      */

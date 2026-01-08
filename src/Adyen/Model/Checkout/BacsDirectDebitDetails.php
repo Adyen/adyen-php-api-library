@@ -46,6 +46,7 @@ class BacsDirectDebitDetails implements ModelInterface, ArrayAccess, \JsonSerial
         'checkoutAttemptId' => 'string',
         'holderName' => 'string',
         'recurringDetailReference' => 'string',
+        'sdkData' => 'string',
         'storedPaymentMethodId' => 'string',
         'transferInstrumentId' => 'string',
         'type' => 'string'
@@ -64,6 +65,7 @@ class BacsDirectDebitDetails implements ModelInterface, ArrayAccess, \JsonSerial
         'checkoutAttemptId' => null,
         'holderName' => null,
         'recurringDetailReference' => null,
+        'sdkData' => null,
         'storedPaymentMethodId' => null,
         'transferInstrumentId' => null,
         'type' => null
@@ -80,6 +82,7 @@ class BacsDirectDebitDetails implements ModelInterface, ArrayAccess, \JsonSerial
         'checkoutAttemptId' => false,
         'holderName' => false,
         'recurringDetailReference' => false,
+        'sdkData' => false,
         'storedPaymentMethodId' => false,
         'transferInstrumentId' => false,
         'type' => false
@@ -176,6 +179,7 @@ class BacsDirectDebitDetails implements ModelInterface, ArrayAccess, \JsonSerial
         'checkoutAttemptId' => 'checkoutAttemptId',
         'holderName' => 'holderName',
         'recurringDetailReference' => 'recurringDetailReference',
+        'sdkData' => 'sdkData',
         'storedPaymentMethodId' => 'storedPaymentMethodId',
         'transferInstrumentId' => 'transferInstrumentId',
         'type' => 'type'
@@ -192,6 +196,7 @@ class BacsDirectDebitDetails implements ModelInterface, ArrayAccess, \JsonSerial
         'checkoutAttemptId' => 'setCheckoutAttemptId',
         'holderName' => 'setHolderName',
         'recurringDetailReference' => 'setRecurringDetailReference',
+        'sdkData' => 'setSdkData',
         'storedPaymentMethodId' => 'setStoredPaymentMethodId',
         'transferInstrumentId' => 'setTransferInstrumentId',
         'type' => 'setType'
@@ -208,6 +213,7 @@ class BacsDirectDebitDetails implements ModelInterface, ArrayAccess, \JsonSerial
         'checkoutAttemptId' => 'getCheckoutAttemptId',
         'holderName' => 'getHolderName',
         'recurringDetailReference' => 'getRecurringDetailReference',
+        'sdkData' => 'getSdkData',
         'storedPaymentMethodId' => 'getStoredPaymentMethodId',
         'transferInstrumentId' => 'getTransferInstrumentId',
         'type' => 'getType'
@@ -287,6 +293,7 @@ class BacsDirectDebitDetails implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('holderName', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
+        $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
         $this->setIfExists('transferInstrumentId', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
@@ -461,6 +468,30 @@ class BacsDirectDebitDetails implements ModelInterface, ArrayAccess, \JsonSerial
     public function setRecurringDetailReference($recurringDetailReference)
     {
         $this->container['recurringDetailReference'] = $recurringDetailReference;
+
+        return $this;
+    }
+
+    /**
+     * Gets sdkData
+     *
+     * @return string|null
+     */
+    public function getSdkData()
+    {
+        return $this->container['sdkData'];
+    }
+
+    /**
+     * Sets sdkData
+     *
+     * @param string|null $sdkData Base64-encoded JSON object containing SDK related parameters required by the SDK
+     *
+     * @return self
+     */
+    public function setSdkData($sdkData)
+    {
+        $this->container['sdkData'] = $sdkData;
 
         return $this;
     }

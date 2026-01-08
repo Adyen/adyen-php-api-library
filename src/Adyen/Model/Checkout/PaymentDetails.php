@@ -42,6 +42,7 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'checkoutAttemptId' => 'string',
+        'sdkData' => 'string',
         'type' => 'string'
     ];
 
@@ -54,6 +55,7 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'checkoutAttemptId' => null,
+        'sdkData' => null,
         'type' => null
     ];
 
@@ -64,6 +66,7 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'checkoutAttemptId' => false,
+        'sdkData' => false,
         'type' => false
     ];
 
@@ -154,6 +157,7 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'checkoutAttemptId' => 'checkoutAttemptId',
+        'sdkData' => 'sdkData',
         'type' => 'type'
     ];
 
@@ -164,6 +168,7 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'checkoutAttemptId' => 'setCheckoutAttemptId',
+        'sdkData' => 'setSdkData',
         'type' => 'setType'
     ];
 
@@ -174,6 +179,7 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'checkoutAttemptId' => 'getCheckoutAttemptId',
+        'sdkData' => 'getSdkData',
         'type' => 'getType'
     ];
 
@@ -220,10 +226,12 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 
     public const TYPE_ALIPAY = 'alipay';
     public const TYPE_MULTIBANCO = 'multibanco';
+    public const TYPE_BANK_TRANSFER = 'bankTransfer';
     public const TYPE_BANK_TRANSFER_IBAN = 'bankTransfer_IBAN';
     public const TYPE_PAYBRIGHT = 'paybright';
     public const TYPE_PAYNOW = 'paynow';
     public const TYPE_AFFIRM_POS = 'affirm_pos';
+    public const TYPE_IRIS = 'iris';
     public const TYPE_TRUSTLY = 'trustly';
     public const TYPE_TRUSTLYVECTOR = 'trustlyvector';
     public const TYPE_ONEY = 'oney';
@@ -244,7 +252,6 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_WALLET_IN = 'wallet_IN';
     public const TYPE_PAYU_IN_CASHCARD = 'payu_IN_cashcard';
     public const TYPE_PAYU_IN_NB = 'payu_IN_nb';
-    public const TYPE_UPI_QR = 'upi_qr';
     public const TYPE_PAYTM = 'paytm';
     public const TYPE_MOLPAY_EBANKING_VN = 'molpay_ebanking_VN';
     public const TYPE_MOLPAY_EBANKING_MY = 'molpay_ebanking_MY';
@@ -264,7 +271,6 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_KONBINI = 'konbini';
     public const TYPE_DIRECT_EBANKING = 'directEbanking';
     public const TYPE_BOLETOBANCARIO = 'boletobancario';
-    public const TYPE_NETELLER = 'neteller';
     public const TYPE_CASHTICKET = 'cashticket';
     public const TYPE_IKANO = 'ikano';
     public const TYPE_KARENMILLEN = 'karenmillen';
@@ -277,10 +283,8 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_OMANNET = 'omannet';
     public const TYPE_GOPAY_WALLET = 'gopay_wallet';
     public const TYPE_KCP_NAVERPAY = 'kcp_naverpay';
-    public const TYPE_ONLINEBANKING_IN = 'onlinebanking_IN';
     public const TYPE_FAWRY = 'fawry';
     public const TYPE_ATOME = 'atome';
-    public const TYPE_MONEYBOOKERS = 'moneybookers';
     public const TYPE_NAPS = 'naps';
     public const TYPE_NORDEA = 'nordea';
     public const TYPE_BOLETOBANCARIO_BRADESCO = 'boletobancario_bradesco';
@@ -318,10 +322,12 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         return [
             self::TYPE_ALIPAY,
             self::TYPE_MULTIBANCO,
+            self::TYPE_BANK_TRANSFER,
             self::TYPE_BANK_TRANSFER_IBAN,
             self::TYPE_PAYBRIGHT,
             self::TYPE_PAYNOW,
             self::TYPE_AFFIRM_POS,
+            self::TYPE_IRIS,
             self::TYPE_TRUSTLY,
             self::TYPE_TRUSTLYVECTOR,
             self::TYPE_ONEY,
@@ -342,7 +348,6 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_WALLET_IN,
             self::TYPE_PAYU_IN_CASHCARD,
             self::TYPE_PAYU_IN_NB,
-            self::TYPE_UPI_QR,
             self::TYPE_PAYTM,
             self::TYPE_MOLPAY_EBANKING_VN,
             self::TYPE_MOLPAY_EBANKING_MY,
@@ -362,7 +367,6 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_KONBINI,
             self::TYPE_DIRECT_EBANKING,
             self::TYPE_BOLETOBANCARIO,
-            self::TYPE_NETELLER,
             self::TYPE_CASHTICKET,
             self::TYPE_IKANO,
             self::TYPE_KARENMILLEN,
@@ -375,10 +379,8 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_OMANNET,
             self::TYPE_GOPAY_WALLET,
             self::TYPE_KCP_NAVERPAY,
-            self::TYPE_ONLINEBANKING_IN,
             self::TYPE_FAWRY,
             self::TYPE_ATOME,
-            self::TYPE_MONEYBOOKERS,
             self::TYPE_NAPS,
             self::TYPE_NORDEA,
             self::TYPE_BOLETOBANCARIO_BRADESCO,
@@ -423,6 +425,7 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(?array $data = null)
     {
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
+        $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -497,6 +500,30 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setCheckoutAttemptId($checkoutAttemptId)
     {
         $this->container['checkoutAttemptId'] = $checkoutAttemptId;
+
+        return $this;
+    }
+
+    /**
+     * Gets sdkData
+     *
+     * @return string|null
+     */
+    public function getSdkData()
+    {
+        return $this->container['sdkData'];
+    }
+
+    /**
+     * Sets sdkData
+     *
+     * @param string|null $sdkData Base64-encoded JSON object containing SDK related parameters required by the SDK
+     *
+     * @return self
+     */
+    public function setSdkData($sdkData)
+    {
+        $this->container['sdkData'] = $sdkData;
 
         return $this;
     }

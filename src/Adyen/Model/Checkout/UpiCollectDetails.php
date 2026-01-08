@@ -44,6 +44,7 @@ class UpiCollectDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
         'billingSequenceNumber' => 'string',
         'checkoutAttemptId' => 'string',
         'recurringDetailReference' => 'string',
+        'sdkData' => 'string',
         'shopperNotificationReference' => 'string',
         'storedPaymentMethodId' => 'string',
         'type' => 'string',
@@ -61,6 +62,7 @@ class UpiCollectDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
         'billingSequenceNumber' => null,
         'checkoutAttemptId' => null,
         'recurringDetailReference' => null,
+        'sdkData' => null,
         'shopperNotificationReference' => null,
         'storedPaymentMethodId' => null,
         'type' => null,
@@ -76,6 +78,7 @@ class UpiCollectDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
         'billingSequenceNumber' => false,
         'checkoutAttemptId' => false,
         'recurringDetailReference' => false,
+        'sdkData' => false,
         'shopperNotificationReference' => false,
         'storedPaymentMethodId' => false,
         'type' => false,
@@ -171,6 +174,7 @@ class UpiCollectDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
         'billingSequenceNumber' => 'billingSequenceNumber',
         'checkoutAttemptId' => 'checkoutAttemptId',
         'recurringDetailReference' => 'recurringDetailReference',
+        'sdkData' => 'sdkData',
         'shopperNotificationReference' => 'shopperNotificationReference',
         'storedPaymentMethodId' => 'storedPaymentMethodId',
         'type' => 'type',
@@ -186,6 +190,7 @@ class UpiCollectDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
         'billingSequenceNumber' => 'setBillingSequenceNumber',
         'checkoutAttemptId' => 'setCheckoutAttemptId',
         'recurringDetailReference' => 'setRecurringDetailReference',
+        'sdkData' => 'setSdkData',
         'shopperNotificationReference' => 'setShopperNotificationReference',
         'storedPaymentMethodId' => 'setStoredPaymentMethodId',
         'type' => 'setType',
@@ -201,6 +206,7 @@ class UpiCollectDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
         'billingSequenceNumber' => 'getBillingSequenceNumber',
         'checkoutAttemptId' => 'getCheckoutAttemptId',
         'recurringDetailReference' => 'getRecurringDetailReference',
+        'sdkData' => 'getSdkData',
         'shopperNotificationReference' => 'getShopperNotificationReference',
         'storedPaymentMethodId' => 'getStoredPaymentMethodId',
         'type' => 'getType',
@@ -279,6 +285,7 @@ class UpiCollectDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('billingSequenceNumber', $data ?? [], null);
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
+        $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('shopperNotificationReference', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
@@ -312,9 +319,6 @@ class UpiCollectDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
-        if ($this->container['billingSequenceNumber'] === null) {
-            $invalidProperties[] = "'billingSequenceNumber' can't be null";
-        }
         if ($this->container['type'] === null) {
             $invalidProperties[] = "'type' can't be null";
         }
@@ -345,7 +349,7 @@ class UpiCollectDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets billingSequenceNumber
      *
-     * @return string
+     * @return string|null
      */
     public function getBillingSequenceNumber()
     {
@@ -355,7 +359,7 @@ class UpiCollectDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets billingSequenceNumber
      *
-     * @param string $billingSequenceNumber The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper.
+     * @param string|null $billingSequenceNumber The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper.
      *
      * @return self
      */
@@ -412,6 +416,30 @@ class UpiCollectDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function setRecurringDetailReference($recurringDetailReference)
     {
         $this->container['recurringDetailReference'] = $recurringDetailReference;
+
+        return $this;
+    }
+
+    /**
+     * Gets sdkData
+     *
+     * @return string|null
+     */
+    public function getSdkData()
+    {
+        return $this->container['sdkData'];
+    }
+
+    /**
+     * Sets sdkData
+     *
+     * @param string|null $sdkData Base64-encoded JSON object containing SDK related parameters required by the SDK
+     *
+     * @return self
+     */
+    public function setSdkData($sdkData)
+    {
+        $this->container['sdkData'] = $sdkData;
 
         return $this;
     }

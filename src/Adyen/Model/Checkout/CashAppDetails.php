@@ -48,6 +48,7 @@ class CashAppDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'onFileGrantId' => 'string',
         'recurringDetailReference' => 'string',
         'requestId' => 'string',
+        'sdkData' => 'string',
         'storedPaymentMethodId' => 'string',
         'subtype' => 'string',
         'type' => 'string'
@@ -68,6 +69,7 @@ class CashAppDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'onFileGrantId' => null,
         'recurringDetailReference' => null,
         'requestId' => null,
+        'sdkData' => null,
         'storedPaymentMethodId' => null,
         'subtype' => null,
         'type' => null
@@ -86,6 +88,7 @@ class CashAppDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'onFileGrantId' => false,
         'recurringDetailReference' => false,
         'requestId' => false,
+        'sdkData' => false,
         'storedPaymentMethodId' => false,
         'subtype' => false,
         'type' => false
@@ -184,6 +187,7 @@ class CashAppDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'onFileGrantId' => 'onFileGrantId',
         'recurringDetailReference' => 'recurringDetailReference',
         'requestId' => 'requestId',
+        'sdkData' => 'sdkData',
         'storedPaymentMethodId' => 'storedPaymentMethodId',
         'subtype' => 'subtype',
         'type' => 'type'
@@ -202,6 +206,7 @@ class CashAppDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'onFileGrantId' => 'setOnFileGrantId',
         'recurringDetailReference' => 'setRecurringDetailReference',
         'requestId' => 'setRequestId',
+        'sdkData' => 'setSdkData',
         'storedPaymentMethodId' => 'setStoredPaymentMethodId',
         'subtype' => 'setSubtype',
         'type' => 'setType'
@@ -220,6 +225,7 @@ class CashAppDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'onFileGrantId' => 'getOnFileGrantId',
         'recurringDetailReference' => 'getRecurringDetailReference',
         'requestId' => 'getRequestId',
+        'sdkData' => 'getSdkData',
         'storedPaymentMethodId' => 'getStoredPaymentMethodId',
         'subtype' => 'getSubtype',
         'type' => 'getType'
@@ -301,6 +307,7 @@ class CashAppDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('onFileGrantId', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
         $this->setIfExists('requestId', $data ?? [], null);
+        $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
         $this->setIfExists('subtype', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
@@ -523,6 +530,30 @@ class CashAppDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setRequestId($requestId)
     {
         $this->container['requestId'] = $requestId;
+
+        return $this;
+    }
+
+    /**
+     * Gets sdkData
+     *
+     * @return string|null
+     */
+    public function getSdkData()
+    {
+        return $this->container['sdkData'];
+    }
+
+    /**
+     * Sets sdkData
+     *
+     * @param string|null $sdkData Base64-encoded JSON object containing SDK related parameters required by the SDK
+     *
+     * @return self
+     */
+    public function setSdkData($sdkData)
+    {
+        $this->container['sdkData'] = $sdkData;
 
         return $this;
     }

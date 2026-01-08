@@ -237,8 +237,10 @@ class Recurring implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     public const CONTRACT_ONECLICK = 'ONECLICK';
+    public const CONTRACT_ONECLICKRECURRING = 'ONECLICK,RECURRING';
     public const CONTRACT_RECURRING = 'RECURRING';
     public const CONTRACT_PAYOUT = 'PAYOUT';
+    public const CONTRACT_EXTERNAL = 'EXTERNAL';
     public const TOKEN_SERVICE_VISATOKENSERVICE = 'VISATOKENSERVICE';
     public const TOKEN_SERVICE_MCTOKENSERVICE = 'MCTOKENSERVICE';
     public const TOKEN_SERVICE_AMEXTOKENSERVICE = 'AMEXTOKENSERVICE';
@@ -253,8 +255,10 @@ class Recurring implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return [
             self::CONTRACT_ONECLICK,
+            self::CONTRACT_ONECLICKRECURRING,
             self::CONTRACT_RECURRING,
             self::CONTRACT_PAYOUT,
+            self::CONTRACT_EXTERNAL,
         ];
     }
     /**
@@ -366,7 +370,7 @@ class Recurring implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets contract
      *
-     * @param string|null $contract The type of recurring contract to be used. Possible values: * `ONECLICK` – Payment details can be used to initiate a one-click payment, where the shopper enters the [card security code (CVC/CVV)](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-security-code-cvc-cvv-cid). * `RECURRING` – Payment details can be used without the card security code to initiate [card-not-present transactions](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-not-present-cnp). * `ONECLICK,RECURRING` – Payment details can be used regardless of whether the shopper is on your site or not. * `PAYOUT` – Payment details can be used to [make a payout](https://docs.adyen.com/online-payments/online-payouts).
+     * @param string|null $contract The type of recurring contract to be used. Possible values: * `ONECLICK` – Payment details can be used to initiate a one-click payment, where the shopper enters the [card security code (CVC/CVV)](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-security-code-cvc-cvv-cid). * `RECURRING` – Payment details can be used without the card security code to initiate [card-not-present transactions](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-not-present-cnp). * `ONECLICK,RECURRING` – Payment details can be used regardless of whether the shopper is on your site or not. * `PAYOUT` – Payment details can be used to [make a payout](https://docs.adyen.com/online-payments/online-payouts). * `EXTERNAL` - Use this when you store payment details and send the raw card number or network token directly in your API request.
      *
      * @return self
      */

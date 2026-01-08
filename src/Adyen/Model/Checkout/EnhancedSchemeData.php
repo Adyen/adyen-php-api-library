@@ -41,7 +41,8 @@ class EnhancedSchemeData implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var string[]
       */
     protected static $openAPITypes = [
-        'airline' => '\Adyen\Model\Checkout\Airline'
+        'airline' => '\Adyen\Model\Checkout\Airline',
+        'levelTwoThree' => '\Adyen\Model\Checkout\LevelTwoThree'
     ];
 
     /**
@@ -52,7 +53,8 @@ class EnhancedSchemeData implements ModelInterface, ArrayAccess, \JsonSerializab
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'airline' => null
+        'airline' => null,
+        'levelTwoThree' => null
     ];
 
     /**
@@ -61,7 +63,8 @@ class EnhancedSchemeData implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'airline' => false
+        'airline' => false,
+        'levelTwoThree' => false
     ];
 
     /**
@@ -150,7 +153,8 @@ class EnhancedSchemeData implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $attributeMap = [
-        'airline' => 'airline'
+        'airline' => 'airline',
+        'levelTwoThree' => 'levelTwoThree'
     ];
 
     /**
@@ -159,7 +163,8 @@ class EnhancedSchemeData implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $setters = [
-        'airline' => 'setAirline'
+        'airline' => 'setAirline',
+        'levelTwoThree' => 'setLevelTwoThree'
     ];
 
     /**
@@ -168,7 +173,8 @@ class EnhancedSchemeData implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $getters = [
-        'airline' => 'getAirline'
+        'airline' => 'getAirline',
+        'levelTwoThree' => 'getLevelTwoThree'
     ];
 
     /**
@@ -229,6 +235,7 @@ class EnhancedSchemeData implements ModelInterface, ArrayAccess, \JsonSerializab
     public function __construct(?array $data = null)
     {
         $this->setIfExists('airline', $data ?? [], null);
+        $this->setIfExists('levelTwoThree', $data ?? [], null);
     }
 
     /**
@@ -293,6 +300,30 @@ class EnhancedSchemeData implements ModelInterface, ArrayAccess, \JsonSerializab
     public function setAirline($airline)
     {
         $this->container['airline'] = $airline;
+
+        return $this;
+    }
+
+    /**
+     * Gets levelTwoThree
+     *
+     * @return \Adyen\Model\Checkout\LevelTwoThree|null
+     */
+    public function getLevelTwoThree()
+    {
+        return $this->container['levelTwoThree'];
+    }
+
+    /**
+     * Sets levelTwoThree
+     *
+     * @param \Adyen\Model\Checkout\LevelTwoThree|null $levelTwoThree levelTwoThree
+     *
+     * @return self
+     */
+    public function setLevelTwoThree($levelTwoThree)
+    {
+        $this->container['levelTwoThree'] = $levelTwoThree;
 
         return $this;
     }
