@@ -73,13 +73,12 @@ class SCAAssociationManagementApi extends Service
     *
     * @param \Adyen\Model\BalancePlatform\RemoveAssociationRequest $removeAssociationRequest
     * @param array|null $requestOptions
-    
+
     * @throws AdyenException
     */
     public function removeAssociation(\Adyen\Model\BalancePlatform\RemoveAssociationRequest $removeAssociationRequest, ?array $requestOptions = null)
     {
         $endpoint = $this->baseURL . "/scaAssociations";
         $this->requestHttp($endpoint, strtolower('DELETE'), (array) $removeAssociationRequest->jsonSerialize(), $requestOptions);
-        
     }
 }

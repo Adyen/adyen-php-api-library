@@ -45,14 +45,13 @@ class AuthorizedCardUsersApi extends Service
     * @param string $paymentInstrumentId
     * @param \Adyen\Model\BalancePlatform\AuthorisedCardUsers $authorisedCardUsers
     * @param array|null $requestOptions
-    
+
     * @throws AdyenException
     */
     public function createAuthorisedCardUsers(string $paymentInstrumentId, \Adyen\Model\BalancePlatform\AuthorisedCardUsers $authorisedCardUsers, ?array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{paymentInstrumentId}'], [$paymentInstrumentId], "/paymentInstruments/{paymentInstrumentId}/authorisedCardUsers");
         $this->requestHttp($endpoint, strtolower('POST'), (array) $authorisedCardUsers->jsonSerialize(), $requestOptions);
-        
     }
 
     /**
@@ -60,14 +59,13 @@ class AuthorizedCardUsersApi extends Service
     *
     * @param string $paymentInstrumentId
     * @param array|null $requestOptions
-    
+
     * @throws AdyenException
     */
     public function deleteAuthorisedCardUsers(string $paymentInstrumentId, ?array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{paymentInstrumentId}'], [$paymentInstrumentId], "/paymentInstruments/{paymentInstrumentId}/authorisedCardUsers");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
-        
     }
 
     /**
@@ -91,13 +89,12 @@ class AuthorizedCardUsersApi extends Service
     * @param string $paymentInstrumentId
     * @param \Adyen\Model\BalancePlatform\AuthorisedCardUsers $authorisedCardUsers
     * @param array|null $requestOptions
-    
+
     * @throws AdyenException
     */
     public function updateAuthorisedCardUsers(string $paymentInstrumentId, \Adyen\Model\BalancePlatform\AuthorisedCardUsers $authorisedCardUsers, ?array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{paymentInstrumentId}'], [$paymentInstrumentId], "/paymentInstruments/{paymentInstrumentId}/authorisedCardUsers");
         $this->requestHttp($endpoint, strtolower('PATCH'), (array) $authorisedCardUsers->jsonSerialize(), $requestOptions);
-        
     }
 }
