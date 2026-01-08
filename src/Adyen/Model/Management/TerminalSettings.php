@@ -46,6 +46,7 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         'gratuities' => '\Adyen\Model\Management\Gratuity[]',
         'hardware' => '\Adyen\Model\Management\Hardware',
         'localization' => '\Adyen\Model\Management\Localization',
+        'moto' => '\Adyen\Model\Management\Moto',
         'nexo' => '\Adyen\Model\Management\Nexo',
         'offlineProcessing' => '\Adyen\Model\Management\OfflineProcessing',
         'opi' => '\Adyen\Model\Management\Opi',
@@ -78,6 +79,7 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         'gratuities' => null,
         'hardware' => null,
         'localization' => null,
+        'moto' => null,
         'nexo' => null,
         'offlineProcessing' => null,
         'opi' => null,
@@ -108,6 +110,7 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         'gratuities' => true,
         'hardware' => false,
         'localization' => false,
+        'moto' => false,
         'nexo' => false,
         'offlineProcessing' => false,
         'opi' => false,
@@ -218,6 +221,7 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         'gratuities' => 'gratuities',
         'hardware' => 'hardware',
         'localization' => 'localization',
+        'moto' => 'moto',
         'nexo' => 'nexo',
         'offlineProcessing' => 'offlineProcessing',
         'opi' => 'opi',
@@ -248,6 +252,7 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         'gratuities' => 'setGratuities',
         'hardware' => 'setHardware',
         'localization' => 'setLocalization',
+        'moto' => 'setMoto',
         'nexo' => 'setNexo',
         'offlineProcessing' => 'setOfflineProcessing',
         'opi' => 'setOpi',
@@ -278,6 +283,7 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         'gratuities' => 'getGratuities',
         'hardware' => 'getHardware',
         'localization' => 'getLocalization',
+        'moto' => 'getMoto',
         'nexo' => 'getNexo',
         'offlineProcessing' => 'getOfflineProcessing',
         'opi' => 'getOpi',
@@ -359,6 +365,7 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('gratuities', $data ?? [], null);
         $this->setIfExists('hardware', $data ?? [], null);
         $this->setIfExists('localization', $data ?? [], null);
+        $this->setIfExists('moto', $data ?? [], null);
         $this->setIfExists('nexo', $data ?? [], null);
         $this->setIfExists('offlineProcessing', $data ?? [], null);
         $this->setIfExists('opi', $data ?? [], null);
@@ -546,6 +553,30 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setLocalization($localization)
     {
         $this->container['localization'] = $localization;
+
+        return $this;
+    }
+
+    /**
+     * Gets moto
+     *
+     * @return \Adyen\Model\Management\Moto|null
+     */
+    public function getMoto()
+    {
+        return $this->container['moto'];
+    }
+
+    /**
+     * Sets moto
+     *
+     * @param \Adyen\Model\Management\Moto|null $moto moto
+     *
+     * @return self
+     */
+    public function setMoto($moto)
+    {
+        $this->container['moto'] = $moto;
 
         return $this;
     }

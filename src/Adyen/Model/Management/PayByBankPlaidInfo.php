@@ -29,70 +29,49 @@ class PayByBankPlaidInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     public const DISCRIMINATOR = null;
 
     /**
-     * The original name of the model.
-     *
-     * @var string
-     */
+      * The original name of the model.
+      *
+      * @var string
+      */
     protected static $openAPIModelName = 'PayByBankPlaidInfo';
 
     /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @var string[]
-     */
+      * Array of property to type mappings. Used for (de)serialization
+      *
+      * @var string[]
+      */
     protected static $openAPITypes = [
-        'countryCode' => 'string',
         'logo' => 'string',
-        'merchantCity' => 'string',
-        'merchantLegalName' => 'string',
-        'merchantShopUrl' => 'string',
-        'merchantStateProvince' => 'string',
-        'merchantStreetAddress' => 'string',
-        'transactionDescription' => '\Adyen\Model\Management\TransactionDescriptionInfo',
-        'zipCode' => 'string'
+        'transactionDescription' => '\Adyen\Model\Management\TransactionDescriptionInfo'
     ];
 
     /**
-     * Array of property to format mappings. Used for (de)serialization
-     *
-     * @var string[]
-     * @phpstan-var array<string, string|null>
-     * @psalm-var array<string, string|null>
-     */
+      * Array of property to format mappings. Used for (de)serialization
+      *
+      * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
+      */
     protected static $openAPIFormats = [
-        'countryCode' => null,
         'logo' => null,
-        'merchantCity' => null,
-        'merchantLegalName' => null,
-        'merchantShopUrl' => null,
-        'merchantStateProvince' => null,
-        'merchantStreetAddress' => null,
-        'transactionDescription' => null,
-        'zipCode' => null
+        'transactionDescription' => null
     ];
 
     /**
-     * Array of nullable properties. Used for (de)serialization
-     *
-     * @var boolean[]
-     */
+      * Array of nullable properties. Used for (de)serialization
+      *
+      * @var boolean[]
+      */
     protected static $openAPINullables = [
-        'countryCode' => false,
         'logo' => false,
-        'merchantCity' => false,
-        'merchantLegalName' => false,
-        'merchantShopUrl' => false,
-        'merchantStateProvince' => false,
-        'merchantStreetAddress' => false,
-        'transactionDescription' => false,
-        'zipCode' => false
+        'transactionDescription' => false
     ];
 
     /**
-     * If a nullable field gets set to null, insert it here
-     *
-     * @var boolean[]
-     */
+      * If a nullable field gets set to null, insert it here
+      *
+      * @var boolean[]
+      */
     protected $openAPINullablesSetToNull = [];
 
     /**
@@ -174,15 +153,8 @@ class PayByBankPlaidInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $attributeMap = [
-        'countryCode' => 'countryCode',
         'logo' => 'logo',
-        'merchantCity' => 'merchantCity',
-        'merchantLegalName' => 'merchantLegalName',
-        'merchantShopUrl' => 'merchantShopUrl',
-        'merchantStateProvince' => 'merchantStateProvince',
-        'merchantStreetAddress' => 'merchantStreetAddress',
-        'transactionDescription' => 'transactionDescription',
-        'zipCode' => 'zipCode'
+        'transactionDescription' => 'transactionDescription'
     ];
 
     /**
@@ -191,15 +163,8 @@ class PayByBankPlaidInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $setters = [
-        'countryCode' => 'setCountryCode',
         'logo' => 'setLogo',
-        'merchantCity' => 'setMerchantCity',
-        'merchantLegalName' => 'setMerchantLegalName',
-        'merchantShopUrl' => 'setMerchantShopUrl',
-        'merchantStateProvince' => 'setMerchantStateProvince',
-        'merchantStreetAddress' => 'setMerchantStreetAddress',
-        'transactionDescription' => 'setTransactionDescription',
-        'zipCode' => 'setZipCode'
+        'transactionDescription' => 'setTransactionDescription'
     ];
 
     /**
@@ -208,15 +173,8 @@ class PayByBankPlaidInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $getters = [
-        'countryCode' => 'getCountryCode',
         'logo' => 'getLogo',
-        'merchantCity' => 'getMerchantCity',
-        'merchantLegalName' => 'getMerchantLegalName',
-        'merchantShopUrl' => 'getMerchantShopUrl',
-        'merchantStateProvince' => 'getMerchantStateProvince',
-        'merchantStreetAddress' => 'getMerchantStreetAddress',
-        'transactionDescription' => 'getTransactionDescription',
-        'zipCode' => 'getZipCode'
+        'transactionDescription' => 'getTransactionDescription'
     ];
 
     /**
@@ -276,26 +234,19 @@ class PayByBankPlaidInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('countryCode', $data ?? [], null);
         $this->setIfExists('logo', $data ?? [], null);
-        $this->setIfExists('merchantCity', $data ?? [], null);
-        $this->setIfExists('merchantLegalName', $data ?? [], null);
-        $this->setIfExists('merchantShopUrl', $data ?? [], null);
-        $this->setIfExists('merchantStateProvince', $data ?? [], null);
-        $this->setIfExists('merchantStreetAddress', $data ?? [], null);
         $this->setIfExists('transactionDescription', $data ?? [], null);
-        $this->setIfExists('zipCode', $data ?? [], null);
     }
 
     /**
-     * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-     * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-     * $this->openAPINullablesSetToNull array
-     *
-     * @param string $variableName
-     * @param array  $fields
-     * @param mixed  $defaultValue
-     */
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    *
+    * @param string $variableName
+    * @param array  $fields
+    * @param mixed  $defaultValue
+    */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
@@ -330,30 +281,6 @@ class PayByBankPlaidInfo implements ModelInterface, ArrayAccess, \JsonSerializab
 
 
     /**
-     * Gets countryCode
-     *
-     * @return string|null
-     */
-    public function getCountryCode()
-    {
-        return $this->container['countryCode'];
-    }
-
-    /**
-     * Sets countryCode
-     *
-     * @param string|null $countryCode Country Code.
-     *
-     * @return self
-     */
-    public function setCountryCode($countryCode)
-    {
-        $this->container['countryCode'] = $countryCode;
-
-        return $this;
-    }
-
-    /**
      * Gets logo
      *
      * @return string|null
@@ -378,126 +305,6 @@ class PayByBankPlaidInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
-     * Gets merchantCity
-     *
-     * @return string|null
-     */
-    public function getMerchantCity()
-    {
-        return $this->container['merchantCity'];
-    }
-
-    /**
-     * Sets merchantCity
-     *
-     * @param string|null $merchantCity The city the merchant is doing business in.
-     *
-     * @return self
-     */
-    public function setMerchantCity($merchantCity)
-    {
-        $this->container['merchantCity'] = $merchantCity;
-
-        return $this;
-    }
-
-    /**
-     * Gets merchantLegalName
-     *
-     * @return string|null
-     */
-    public function getMerchantLegalName()
-    {
-        return $this->container['merchantLegalName'];
-    }
-
-    /**
-     * Sets merchantLegalName
-     *
-     * @param string|null $merchantLegalName Legal Business Name of the Merchant.
-     *
-     * @return self
-     */
-    public function setMerchantLegalName($merchantLegalName)
-    {
-        $this->container['merchantLegalName'] = $merchantLegalName;
-
-        return $this;
-    }
-
-    /**
-     * Gets merchantShopUrl
-     *
-     * @return string|null
-     */
-    public function getMerchantShopUrl()
-    {
-        return $this->container['merchantShopUrl'];
-    }
-
-    /**
-     * Sets merchantShopUrl
-     *
-     * @param string|null $merchantShopUrl Merchant shop url.
-     *
-     * @return self
-     */
-    public function setMerchantShopUrl($merchantShopUrl)
-    {
-        $this->container['merchantShopUrl'] = $merchantShopUrl;
-
-        return $this;
-    }
-
-    /**
-     * Gets merchantStateProvince
-     *
-     * @return string|null
-     */
-    public function getMerchantStateProvince()
-    {
-        return $this->container['merchantStateProvince'];
-    }
-
-    /**
-     * Sets merchantStateProvince
-     *
-     * @param string|null $merchantStateProvince The state/province of the merchant.
-     *
-     * @return self
-     */
-    public function setMerchantStateProvince($merchantStateProvince)
-    {
-        $this->container['merchantStateProvince'] = $merchantStateProvince;
-
-        return $this;
-    }
-
-    /**
-     * Gets merchantStreetAddress
-     *
-     * @return string|null
-     */
-    public function getMerchantStreetAddress()
-    {
-        return $this->container['merchantStreetAddress'];
-    }
-
-    /**
-     * Sets merchantStreetAddress
-     *
-     * @param string|null $merchantStreetAddress The street address of the merchant.
-     *
-     * @return self
-     */
-    public function setMerchantStreetAddress($merchantStreetAddress)
-    {
-        $this->container['merchantStreetAddress'] = $merchantStreetAddress;
-
-        return $this;
-    }
-
-    /**
      * Gets transactionDescription
      *
      * @return \Adyen\Model\Management\TransactionDescriptionInfo|null
@@ -517,30 +324,6 @@ class PayByBankPlaidInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     public function setTransactionDescription($transactionDescription)
     {
         $this->container['transactionDescription'] = $transactionDescription;
-
-        return $this;
-    }
-
-    /**
-     * Gets zipCode
-     *
-     * @return string|null
-     */
-    public function getZipCode()
-    {
-        return $this->container['zipCode'];
-    }
-
-    /**
-     * Sets zipCode
-     *
-     * @param string|null $zipCode The zip code of the account.
-     *
-     * @return self
-     */
-    public function setZipCode($zipCode)
-    {
-        $this->container['zipCode'] = $zipCode;
 
         return $this;
     }
@@ -620,10 +403,10 @@ class PayByBankPlaidInfo implements ModelInterface, ArrayAccess, \JsonSerializab
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();
-                    // Check if it's type datetime
+                // Check if it's type datetime
                 } elseif ($propertyValue instanceof \DateTime) {
                     $array[$propertyName] = $propertyValue->format(DATE_ATOM);
-                    // If it's an array type we should check whether it contains objects and if so call toArray method
+                // If it's an array type we should check whether it contains objects and if so call toArray method
                 } elseif (is_array($propertyValue)) {
                     $array[$propertyName] = array_map(function ($item) {
                         return $item instanceof ModelInterface ? $item->toArray() : $item;

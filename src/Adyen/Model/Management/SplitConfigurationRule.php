@@ -29,18 +29,19 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
     public const DISCRIMINATOR = null;
 
     /**
-     * The original name of the model.
-     *
-     * @var string
-     */
+      * The original name of the model.
+      *
+      * @var string
+      */
     protected static $openAPIModelName = 'SplitConfigurationRule';
 
     /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @var string[]
-     */
+      * Array of property to type mappings. Used for (de)serialization
+      *
+      * @var string[]
+      */
     protected static $openAPITypes = [
+        'cardRegion' => 'string',
         'currency' => 'string',
         'fundingSource' => 'string',
         'paymentMethod' => 'string',
@@ -50,13 +51,14 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
     ];
 
     /**
-     * Array of property to format mappings. Used for (de)serialization
-     *
-     * @var string[]
-     * @phpstan-var array<string, string|null>
-     * @psalm-var array<string, string|null>
-     */
+      * Array of property to format mappings. Used for (de)serialization
+      *
+      * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
+      */
     protected static $openAPIFormats = [
+        'cardRegion' => null,
         'currency' => null,
         'fundingSource' => null,
         'paymentMethod' => null,
@@ -66,11 +68,12 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
     ];
 
     /**
-     * Array of nullable properties. Used for (de)serialization
-     *
-     * @var boolean[]
-     */
+      * Array of nullable properties. Used for (de)serialization
+      *
+      * @var boolean[]
+      */
     protected static $openAPINullables = [
+        'cardRegion' => false,
         'currency' => false,
         'fundingSource' => false,
         'paymentMethod' => false,
@@ -80,10 +83,10 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
     ];
 
     /**
-     * If a nullable field gets set to null, insert it here
-     *
-     * @var boolean[]
-     */
+      * If a nullable field gets set to null, insert it here
+      *
+      * @var boolean[]
+      */
     protected $openAPINullablesSetToNull = [];
 
     /**
@@ -165,6 +168,7 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
+        'cardRegion' => 'cardRegion',
         'currency' => 'currency',
         'fundingSource' => 'fundingSource',
         'paymentMethod' => 'paymentMethod',
@@ -179,6 +183,7 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
+        'cardRegion' => 'setCardRegion',
         'currency' => 'setCurrency',
         'fundingSource' => 'setFundingSource',
         'paymentMethod' => 'setPaymentMethod',
@@ -193,6 +198,7 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
+        'cardRegion' => 'getCardRegion',
         'currency' => 'getCurrency',
         'fundingSource' => 'getFundingSource',
         'paymentMethod' => 'getPaymentMethod',
@@ -242,6 +248,11 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
         return self::$openAPIModelName;
     }
 
+    public const CARD_REGION_INTERNATIONAL = 'international';
+    public const CARD_REGION_INTRA_REGIONAL = 'intraRegional';
+    public const CARD_REGION_INTER_REGIONAL = 'interRegional';
+    public const CARD_REGION_DOMESTIC = 'domestic';
+    public const CARD_REGION_ANY = 'ANY';
     public const FUNDING_SOURCE_CHARGED = 'charged';
     public const FUNDING_SOURCE_CREDIT = 'credit';
     public const FUNDING_SOURCE_DEBIT = 'debit';
@@ -254,6 +265,21 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
     public const SHOPPER_INTERACTION_POS = 'POS';
     public const SHOPPER_INTERACTION_ANY = 'ANY';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getCardRegionAllowableValues()
+    {
+        return [
+            self::CARD_REGION_INTERNATIONAL,
+            self::CARD_REGION_INTRA_REGIONAL,
+            self::CARD_REGION_INTER_REGIONAL,
+            self::CARD_REGION_DOMESTIC,
+            self::CARD_REGION_ANY,
+        ];
+    }
     /**
      * Gets allowable values of the enum
      *
@@ -300,6 +326,7 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('cardRegion', $data ?? [], null);
         $this->setIfExists('currency', $data ?? [], null);
         $this->setIfExists('fundingSource', $data ?? [], null);
         $this->setIfExists('paymentMethod', $data ?? [], null);
@@ -309,14 +336,14 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
     }
 
     /**
-     * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-     * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-     * $this->openAPINullablesSetToNull array
-     *
-     * @param string $variableName
-     * @param array  $fields
-     * @param mixed  $defaultValue
-     */
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    *
+    * @param string $variableName
+    * @param array  $fields
+    * @param mixed  $defaultValue
+    */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
@@ -335,8 +362,20 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $invalidProperties = [];
 
+        $allowedValues = $this->getCardRegionAllowableValues();
+        if (!is_null($this->container['cardRegion']) && !in_array($this->container['cardRegion'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'cardRegion', must be one of '%s'",
+                $this->container['cardRegion'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         if ($this->container['currency'] === null) {
             $invalidProperties[] = "'currency' can't be null";
+        }
+        if ($this->container['fundingSource'] === null) {
+            $invalidProperties[] = "'fundingSource' can't be null";
         }
         $allowedValues = $this->getFundingSourceAllowableValues();
         if (!is_null($this->container['fundingSource']) && !in_array($this->container['fundingSource'], $allowedValues, true)) {
@@ -381,6 +420,40 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
 
 
     /**
+     * Gets cardRegion
+     *
+     * @return string|null
+     */
+    public function getCardRegion()
+    {
+        return $this->container['cardRegion'];
+    }
+
+    /**
+     * Sets cardRegion
+     *
+     * @param string|null $cardRegion The card region condition that determines whether the [split logic](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic) applies to the transaction.  > This condition is in pilot phase, and not yet available for all platforms.  Possible values: * **domestic**: The card issuer and the store where the transaction is processed are registered in the same country. * **international**: The card issuer and the store where the transaction is processed are registered in different countries or regions. Includes all **interRegional** and **intraRegional** transactions. * **interRegional**: The card issuer and the store where the transaction is processed are registered in different regions. * **intraRegional**: The card issuer and the store where the transaction is processed are registered in different countries, but in the same region. * **ANY**: Applies to all transactions, regardless of the processing and issuing country/region.
+     *
+     * @return self
+     */
+    public function setCardRegion($cardRegion)
+    {
+        $allowedValues = $this->getCardRegionAllowableValues();
+        if (!in_array($cardRegion, $allowedValues, true)) {
+            error_log(
+                sprintf(
+                    "cardRegion: unexpected enum value '%s' - Supported values are [%s]",
+                    $cardRegion,
+                    implode(', ', $allowedValues)
+                )
+            );
+        }
+        $this->container['cardRegion'] = $cardRegion;
+
+        return $this;
+    }
+
+    /**
      * Gets currency
      *
      * @return string
@@ -407,7 +480,7 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets fundingSource
      *
-     * @return string|null
+     * @return string
      */
     public function getFundingSource()
     {
@@ -417,7 +490,7 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets fundingSource
      *
-     * @param string|null $fundingSource The funding source of the payment method. This only applies to card transactions.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**
+     * @param string $fundingSource The funding source of the payment method.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**
      *
      * @return self
      */
@@ -425,11 +498,11 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $allowedValues = $this->getFundingSourceAllowableValues();
         if (!in_array($fundingSource, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'fundingSource', must be one of '%s'",
+                    "fundingSource: unexpected enum value '%s' - Supported values are [%s]",
                     $fundingSource,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -507,11 +580,11 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $allowedValues = $this->getShopperInteractionAllowableValues();
         if (!in_array($shopperInteraction, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'shopperInteraction', must be one of '%s'",
+                    "shopperInteraction: unexpected enum value '%s' - Supported values are [%s]",
                     $shopperInteraction,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -619,10 +692,10 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();
-                    // Check if it's type datetime
+                // Check if it's type datetime
                 } elseif ($propertyValue instanceof \DateTime) {
                     $array[$propertyName] = $propertyValue->format(DATE_ATOM);
-                    // If it's an array type we should check whether it contains objects and if so call toArray method
+                // If it's an array type we should check whether it contains objects and if so call toArray method
                 } elseif (is_array($propertyValue)) {
                     $array[$propertyName] = array_map(function ($item) {
                         return $item instanceof ModelInterface ? $item->toArray() : $item;

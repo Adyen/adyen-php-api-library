@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\Management\ObjectSerializer;
 
 /**
- * Amount Class Doc Comment
+ * ValuelinkInfo Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
+class ValuelinkInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Amount';
+    protected static $openAPIModelName = 'ValuelinkInfo';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,8 +41,10 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'currency' => 'string',
-        'value' => 'int'
+        'authorisationMid' => 'string',
+        'pinSupport' => 'string',
+        'submitterId' => 'string',
+        'terminalId' => 'string'
     ];
 
     /**
@@ -53,8 +55,10 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'currency' => null,
-        'value' => 'int64'
+        'authorisationMid' => null,
+        'pinSupport' => null,
+        'submitterId' => null,
+        'terminalId' => null
     ];
 
     /**
@@ -63,8 +67,10 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'currency' => false,
-        'value' => false
+        'authorisationMid' => false,
+        'pinSupport' => false,
+        'submitterId' => false,
+        'terminalId' => false
     ];
 
     /**
@@ -153,8 +159,10 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'currency' => 'currency',
-        'value' => 'value'
+        'authorisationMid' => 'authorisationMid',
+        'pinSupport' => 'pinSupport',
+        'submitterId' => 'submitterId',
+        'terminalId' => 'terminalId'
     ];
 
     /**
@@ -163,8 +171,10 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'currency' => 'setCurrency',
-        'value' => 'setValue'
+        'authorisationMid' => 'setAuthorisationMid',
+        'pinSupport' => 'setPinSupport',
+        'submitterId' => 'setSubmitterId',
+        'terminalId' => 'setTerminalId'
     ];
 
     /**
@@ -173,8 +183,10 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'currency' => 'getCurrency',
-        'value' => 'getValue'
+        'authorisationMid' => 'getAuthorisationMid',
+        'pinSupport' => 'getPinSupport',
+        'submitterId' => 'getSubmitterId',
+        'terminalId' => 'getTerminalId'
     ];
 
     /**
@@ -218,7 +230,21 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const PIN_SUPPORT_PIN = 'PIN';
+    public const PIN_SUPPORT_NO_PIN = 'NO PIN';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getPinSupportAllowableValues()
+    {
+        return [
+            self::PIN_SUPPORT_PIN,
+            self::PIN_SUPPORT_NO_PIN,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -234,8 +260,10 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('currency', $data ?? [], null);
-        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('authorisationMid', $data ?? [], null);
+        $this->setIfExists('pinSupport', $data ?? [], null);
+        $this->setIfExists('submitterId', $data ?? [], null);
+        $this->setIfExists('terminalId', $data ?? [], null);
     }
 
     /**
@@ -265,12 +293,21 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['currency'] === null) {
-            $invalidProperties[] = "'currency' can't be null";
+        if ($this->container['authorisationMid'] === null) {
+            $invalidProperties[] = "'authorisationMid' can't be null";
         }
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
+        if ($this->container['pinSupport'] === null) {
+            $invalidProperties[] = "'pinSupport' can't be null";
         }
+        $allowedValues = $this->getPinSupportAllowableValues();
+        if (!is_null($this->container['pinSupport']) && !in_array($this->container['pinSupport'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'pinSupport', must be one of '%s'",
+                $this->container['pinSupport'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -287,49 +324,107 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets currency
+     * Gets authorisationMid
      *
      * @return string
      */
-    public function getCurrency()
+    public function getAuthorisationMid()
     {
-        return $this->container['currency'];
+        return $this->container['authorisationMid'];
     }
 
     /**
-     * Sets currency
+     * Sets authorisationMid
      *
-     * @param string $currency The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount.
+     * @param string $authorisationMid Authorisation Mid
      *
      * @return self
      */
-    public function setCurrency($currency)
+    public function setAuthorisationMid($authorisationMid)
     {
-        $this->container['currency'] = $currency;
+        $this->container['authorisationMid'] = $authorisationMid;
 
         return $this;
     }
 
     /**
-     * Gets value
+     * Gets pinSupport
      *
-     * @return int
+     * @return string
      */
-    public function getValue()
+    public function getPinSupport()
     {
-        return $this->container['value'];
+        return $this->container['pinSupport'];
     }
 
     /**
-     * Sets value
+     * Sets pinSupport
      *
-     * @param int $value The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).
+     * @param string $pinSupport PIN Support. For ecommerce, PIN is required.
      *
      * @return self
      */
-    public function setValue($value)
+    public function setPinSupport($pinSupport)
     {
-        $this->container['value'] = $value;
+        $allowedValues = $this->getPinSupportAllowableValues();
+        if (!in_array($pinSupport, $allowedValues, true)) {
+            error_log(
+                sprintf(
+                    "pinSupport: unexpected enum value '%s' - Supported values are [%s]",
+                    $pinSupport,
+                    implode(', ', $allowedValues)
+                )
+            );
+        }
+        $this->container['pinSupport'] = $pinSupport;
+
+        return $this;
+    }
+
+    /**
+     * Gets submitterId
+     *
+     * @return string|null
+     */
+    public function getSubmitterId()
+    {
+        return $this->container['submitterId'];
+    }
+
+    /**
+     * Sets submitterId
+     *
+     * @param string|null $submitterId Submitter ID
+     *
+     * @return self
+     */
+    public function setSubmitterId($submitterId)
+    {
+        $this->container['submitterId'] = $submitterId;
+
+        return $this;
+    }
+
+    /**
+     * Gets terminalId
+     *
+     * @return string|null
+     */
+    public function getTerminalId()
+    {
+        return $this->container['terminalId'];
+    }
+
+    /**
+     * Sets terminalId
+     *
+     * @param string|null $terminalId Terminal ID
+     *
+     * @return self
+     */
+    public function setTerminalId($terminalId)
+    {
+        $this->container['terminalId'] = $terminalId;
 
         return $this;
     }

@@ -41,6 +41,7 @@ class AffirmInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'pricePlan' => 'string',
         'supportEmail' => 'string'
     ];
 
@@ -52,6 +53,7 @@ class AffirmInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'pricePlan' => null,
         'supportEmail' => null
     ];
 
@@ -61,6 +63,7 @@ class AffirmInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'pricePlan' => false,
         'supportEmail' => false
     ];
 
@@ -150,6 +153,7 @@ class AffirmInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'pricePlan' => 'pricePlan',
         'supportEmail' => 'supportEmail'
     ];
 
@@ -159,6 +163,7 @@ class AffirmInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'pricePlan' => 'setPricePlan',
         'supportEmail' => 'setSupportEmail'
     ];
 
@@ -168,6 +173,7 @@ class AffirmInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'pricePlan' => 'getPricePlan',
         'supportEmail' => 'getSupportEmail'
     ];
 
@@ -212,7 +218,23 @@ class AffirmInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const PRICE_PLAN_BRONZE = 'BRONZE';
+    public const PRICE_PLAN_SILVER = 'SILVER';
+    public const PRICE_PLAN_GOLD = 'GOLD';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getPricePlanAllowableValues()
+    {
+        return [
+            self::PRICE_PLAN_BRONZE,
+            self::PRICE_PLAN_SILVER,
+            self::PRICE_PLAN_GOLD,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -228,6 +250,7 @@ class AffirmInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('pricePlan', $data ?? [], null);
         $this->setIfExists('supportEmail', $data ?? [], null);
     }
 
@@ -258,6 +281,15 @@ class AffirmInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        $allowedValues = $this->getPricePlanAllowableValues();
+        if (!is_null($this->container['pricePlan']) && !in_array($this->container['pricePlan'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'pricePlan', must be one of '%s'",
+                $this->container['pricePlan'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         if ($this->container['supportEmail'] === null) {
             $invalidProperties[] = "'supportEmail' can't be null";
         }
@@ -275,6 +307,40 @@ class AffirmInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets pricePlan
+     *
+     * @return string|null
+     */
+    public function getPricePlan()
+    {
+        return $this->container['pricePlan'];
+    }
+
+    /**
+     * Sets pricePlan
+     *
+     * @param string|null $pricePlan Merchant price plan
+     *
+     * @return self
+     */
+    public function setPricePlan($pricePlan)
+    {
+        $allowedValues = $this->getPricePlanAllowableValues();
+        if (!in_array($pricePlan, $allowedValues, true)) {
+            error_log(
+                sprintf(
+                    "pricePlan: unexpected enum value '%s' - Supported values are [%s]",
+                    $pricePlan,
+                    implode(', ', $allowedValues)
+                )
+            );
+        }
+        $this->container['pricePlan'] = $pricePlan;
+
+        return $this;
+    }
 
     /**
      * Gets supportEmail
