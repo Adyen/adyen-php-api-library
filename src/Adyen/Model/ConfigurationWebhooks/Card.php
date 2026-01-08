@@ -386,9 +386,6 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
-        if ($this->container['number'] === null) {
-            $invalidProperties[] = "'number' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -681,7 +678,7 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets number
      *
-     * @return string
+     * @return string|null
      */
     public function getNumber()
     {
@@ -691,7 +688,7 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets number
      *
-     * @param string $number The primary account number (PAN) of the card. > The PAN is masked by default and returned only for single-use virtual cards.
+     * @param string|null $number The primary account number (PAN) of the card. > The PAN is masked by default and returned only for single-use virtual cards.
      *
      * @return self
      */

@@ -47,6 +47,7 @@ class NetworkTokenNotificationDataV2 implements ModelInterface, ArrayAccess, \Js
         'decision' => 'string',
         'id' => 'string',
         'paymentInstrumentId' => 'string',
+        'schemeRiskScore' => 'string',
         'status' => 'string',
         'tokenLastFour' => 'string',
         'tokenRequestor' => '\Adyen\Model\ConfigurationWebhooks\NetworkTokenRequestor',
@@ -70,6 +71,7 @@ class NetworkTokenNotificationDataV2 implements ModelInterface, ArrayAccess, \Js
         'decision' => null,
         'id' => null,
         'paymentInstrumentId' => null,
+        'schemeRiskScore' => null,
         'status' => null,
         'tokenLastFour' => null,
         'tokenRequestor' => null,
@@ -91,6 +93,7 @@ class NetworkTokenNotificationDataV2 implements ModelInterface, ArrayAccess, \Js
         'decision' => false,
         'id' => false,
         'paymentInstrumentId' => false,
+        'schemeRiskScore' => false,
         'status' => false,
         'tokenLastFour' => false,
         'tokenRequestor' => false,
@@ -192,6 +195,7 @@ class NetworkTokenNotificationDataV2 implements ModelInterface, ArrayAccess, \Js
         'decision' => 'decision',
         'id' => 'id',
         'paymentInstrumentId' => 'paymentInstrumentId',
+        'schemeRiskScore' => 'schemeRiskScore',
         'status' => 'status',
         'tokenLastFour' => 'tokenLastFour',
         'tokenRequestor' => 'tokenRequestor',
@@ -213,6 +217,7 @@ class NetworkTokenNotificationDataV2 implements ModelInterface, ArrayAccess, \Js
         'decision' => 'setDecision',
         'id' => 'setId',
         'paymentInstrumentId' => 'setPaymentInstrumentId',
+        'schemeRiskScore' => 'setSchemeRiskScore',
         'status' => 'setStatus',
         'tokenLastFour' => 'setTokenLastFour',
         'tokenRequestor' => 'setTokenRequestor',
@@ -234,6 +239,7 @@ class NetworkTokenNotificationDataV2 implements ModelInterface, ArrayAccess, \Js
         'decision' => 'getDecision',
         'id' => 'getId',
         'paymentInstrumentId' => 'getPaymentInstrumentId',
+        'schemeRiskScore' => 'getSchemeRiskScore',
         'status' => 'getStatus',
         'tokenLastFour' => 'getTokenLastFour',
         'tokenRequestor' => 'getTokenRequestor',
@@ -306,6 +312,7 @@ class NetworkTokenNotificationDataV2 implements ModelInterface, ArrayAccess, \Js
         $this->setIfExists('decision', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('paymentInstrumentId', $data ?? [], null);
+        $this->setIfExists('schemeRiskScore', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('tokenLastFour', $data ?? [], null);
         $this->setIfExists('tokenRequestor', $data ?? [], null);
@@ -497,6 +504,30 @@ class NetworkTokenNotificationDataV2 implements ModelInterface, ArrayAccess, \Js
     public function setPaymentInstrumentId($paymentInstrumentId)
     {
         $this->container['paymentInstrumentId'] = $paymentInstrumentId;
+
+        return $this;
+    }
+
+    /**
+     * Gets schemeRiskScore
+     *
+     * @return string|null
+     */
+    public function getSchemeRiskScore()
+    {
+        return $this->container['schemeRiskScore'];
+    }
+
+    /**
+     * Sets schemeRiskScore
+     *
+     * @param string|null $schemeRiskScore The confidence score of scheme, indicating the degree of risk associated with a token.  A high score indicates a high level of risk. A low score indicates a low level of risk.  Possible values for visa : **00** to **99**, a value of 00 signifies no score was provided by visa
+     *
+     * @return self
+     */
+    public function setSchemeRiskScore($schemeRiskScore)
+    {
+        $this->container['schemeRiskScore'] = $schemeRiskScore;
 
         return $this;
     }

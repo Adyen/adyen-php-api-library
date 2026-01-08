@@ -41,6 +41,7 @@ class Device implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'deviceId' => 'string',
         'formFactor' => 'string',
         'osName' => 'string'
     ];
@@ -53,6 +54,7 @@ class Device implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'deviceId' => null,
         'formFactor' => null,
         'osName' => null
     ];
@@ -63,6 +65,7 @@ class Device implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'deviceId' => false,
         'formFactor' => false,
         'osName' => false
     ];
@@ -153,6 +156,7 @@ class Device implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'deviceId' => 'deviceId',
         'formFactor' => 'formFactor',
         'osName' => 'osName'
     ];
@@ -163,6 +167,7 @@ class Device implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'deviceId' => 'setDeviceId',
         'formFactor' => 'setFormFactor',
         'osName' => 'setOsName'
     ];
@@ -173,6 +178,7 @@ class Device implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'deviceId' => 'getDeviceId',
         'formFactor' => 'getFormFactor',
         'osName' => 'getOsName'
     ];
@@ -234,6 +240,7 @@ class Device implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('deviceId', $data ?? [], null);
         $this->setIfExists('formFactor', $data ?? [], null);
         $this->setIfExists('osName', $data ?? [], null);
     }
@@ -279,6 +286,30 @@ class Device implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets deviceId
+     *
+     * @return string|null
+     */
+    public function getDeviceId()
+    {
+        return $this->container['deviceId'];
+    }
+
+    /**
+     * Sets deviceId
+     *
+     * @param string|null $deviceId The unique identifier of the device used for provisioning the network token.
+     *
+     * @return self
+     */
+    public function setDeviceId($deviceId)
+    {
+        $this->container['deviceId'] = $deviceId;
+
+        return $this;
+    }
 
     /**
      * Gets formFactor
