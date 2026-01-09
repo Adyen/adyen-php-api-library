@@ -142,6 +142,7 @@ $client->setTimeout(30);
 ~~~~
 
 ### Instantiating the request objects through the arrayAccess implementation (for easy migration)
+Although the preferred approach is to instantiate strongly types objects, it is still possible to instantiate request objects using associative arrays to ease migration.
 ~~~~ php
 ...
 
