@@ -18,6 +18,7 @@ use Adyen\Service\Checkout\PaymentLinksApi;
 use Adyen\Service\Checkout\PaymentsApi;
 use Adyen\Service\Checkout\RecurringApi;
 use Adyen\Model\Checkout\LineItem;
+use Adyen\Model\Checkout\DeliveryAddress;
 
 class ModelBasedCheckoutTest extends TestCaseMock
 {
@@ -434,37 +435,38 @@ class ModelBasedCheckoutTest extends TestCaseMock
     }
 
     # verify usage with strictly typed objects
+
+    /**
+     * Test setting and getting DeliveryAddress as an object.
+     *
+     * @covers \Adyen\Model\Checkout\PaymentRequest::setDeliveryAddress
+     * @covers \Adyen\Model\Checkout\PaymentRequest::getDeliveryAddress
+     */
     public function testPaymentRequestWithDeliveryAddressObject()
     {
         $paymentRequest = new PaymentRequest();
-
-        # Create the child object
-        $address = new \Adyen\Model\Checkout\DeliveryAddress();
+        $address = new DeliveryAddress();
         $address->setCity("Amsterdam");
-
-        # Inject the child object
         $paymentRequest->setDeliveryAddress($address);
-
-        $this->assertTrue(method_exists($paymentRequest, 'getDeliveryAddress'));
         $deliveryAddress = $paymentRequest->getDeliveryAddress();
-        # Assert strongly typed object is returned
-        $this->assertInstanceOf(\Adyen\Model\Checkout\DeliveryAddress::class, $deliveryAddress);
+        $this->assertInstanceOf(DeliveryAddress::class, $deliveryAddress);
         $this->assertEquals('Amsterdam', $deliveryAddress->getCity());
     }
 
-    # verify usage with arrays
+
+    /**
+     * Test setting and getting DeliveryAddress as an array.
+     *
+     * @covers \Adyen\Model\Checkout\PaymentRequest::getDeliveryAddress
+     */
     public function testPaymentRequestWithDeliveryAddressAsArray()
     {
-        # Initialize with a raw nested array
         $paymentRequest = new PaymentRequest([
             "deliveryAddress" => [
                 "city" => "Amsterdam"
             ]
         ]);
-
-        $this->assertTrue(method_exists($paymentRequest, 'getDeliveryAddress'));
         $deliveryAddress = $paymentRequest->getDeliveryAddress();
-        # Verify it is a raw array
         $this->assertIsArray($deliveryAddress);
         $this->assertEquals('Amsterdam', $deliveryAddress['city']);
     }
