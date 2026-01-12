@@ -286,7 +286,7 @@ class BalancePlatformNotificationResponse implements ModelInterface, ArrayAccess
     /**
      * Sets notificationResponse
      *
-     * @param string|null $notificationResponse Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks#accept-notifications).
+     * @param string|null $notificationResponse Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks/#accept-webhooks).
      *
      * @return self
      */
