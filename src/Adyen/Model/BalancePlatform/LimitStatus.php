@@ -14,6 +14,7 @@
 
 
 namespace Adyen\Model\BalancePlatform;
+
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
@@ -50,4 +51,3 @@ class LimitStatus
         ];
     }
 }
-
