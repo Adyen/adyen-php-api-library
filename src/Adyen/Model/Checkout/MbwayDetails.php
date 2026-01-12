@@ -42,6 +42,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'checkoutAttemptId' => 'string',
+        'sdkData' => 'string',
         'shopperEmail' => 'string',
         'telephoneNumber' => 'string',
         'type' => 'string'
@@ -56,6 +57,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'checkoutAttemptId' => null,
+        'sdkData' => null,
         'shopperEmail' => null,
         'telephoneNumber' => null,
         'type' => null
@@ -68,6 +70,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'checkoutAttemptId' => false,
+        'sdkData' => false,
         'shopperEmail' => false,
         'telephoneNumber' => false,
         'type' => false
@@ -160,6 +163,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'checkoutAttemptId' => 'checkoutAttemptId',
+        'sdkData' => 'sdkData',
         'shopperEmail' => 'shopperEmail',
         'telephoneNumber' => 'telephoneNumber',
         'type' => 'type'
@@ -172,6 +176,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'checkoutAttemptId' => 'setCheckoutAttemptId',
+        'sdkData' => 'setSdkData',
         'shopperEmail' => 'setShopperEmail',
         'telephoneNumber' => 'setTelephoneNumber',
         'type' => 'setType'
@@ -184,6 +189,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'checkoutAttemptId' => 'getCheckoutAttemptId',
+        'sdkData' => 'getSdkData',
         'shopperEmail' => 'getShopperEmail',
         'telephoneNumber' => 'getTelephoneNumber',
         'type' => 'getType'
@@ -259,6 +265,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(?array $data = null)
     {
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
+        $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('shopperEmail', $data ?? [], null);
         $this->setIfExists('telephoneNumber', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
@@ -346,6 +353,30 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets sdkData
+     *
+     * @return string|null
+     */
+    public function getSdkData()
+    {
+        return $this->container['sdkData'];
+    }
+
+    /**
+     * Sets sdkData
+     *
+     * @param string|null $sdkData Base64-encoded JSON object containing SDK related parameters required by the SDK
+     *
+     * @return self
+     */
+    public function setSdkData($sdkData)
+    {
+        $this->container['sdkData'] = $sdkData;
+
+        return $this;
+    }
+
+    /**
      * Gets shopperEmail
      *
      * @return string
@@ -358,7 +389,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets shopperEmail
      *
-     * @param string $shopperEmail
+     * @param string $shopperEmail 
      *
      * @return self
      */
@@ -382,7 +413,7 @@ class MbwayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets telephoneNumber
      *
-     * @param string $telephoneNumber
+     * @param string $telephoneNumber 
      *
      * @return self
      */

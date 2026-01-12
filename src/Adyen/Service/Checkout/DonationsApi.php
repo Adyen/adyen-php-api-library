@@ -55,7 +55,7 @@ class DonationsApi extends Service
     }
 
     /**
-    * Start a transaction for donations
+    * Make a donation
     *
     * @param \Adyen\Model\Checkout\DonationPaymentRequest $donationPaymentRequest
     * @param array|null $requestOptions

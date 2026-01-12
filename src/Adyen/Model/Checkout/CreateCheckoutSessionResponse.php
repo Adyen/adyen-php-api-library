@@ -87,7 +87,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'shopperIP' => 'string',
         'shopperInteraction' => 'string',
         'shopperLocale' => 'string',
-        'shopperName' => '\Adyen\Model\Checkout\Name',
+        'shopperName' => '\Adyen\Model\Checkout\ShopperName',
         'shopperReference' => 'string',
         'shopperStatement' => 'string',
         'showInstallmentAmount' => 'bool',
@@ -2029,7 +2029,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
     /**
      * Gets shopperName
      *
-     * @return \Adyen\Model\Checkout\Name|null
+     * @return \Adyen\Model\Checkout\ShopperName|null
      */
     public function getShopperName()
     {
@@ -2039,7 +2039,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets shopperName
      *
-     * @param \Adyen\Model\Checkout\Name|null $shopperName shopperName
+     * @param \Adyen\Model\Checkout\ShopperName|null $shopperName shopperName
      *
      * @return self
      */
