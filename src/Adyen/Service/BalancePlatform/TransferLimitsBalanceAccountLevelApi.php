@@ -45,13 +45,14 @@ class TransferLimitsBalanceAccountLevelApi extends Service
     * @param string $id
     * @param \Adyen\Model\BalancePlatform\ApproveTransferLimitRequest $approveTransferLimitRequest
     * @param array|null $requestOptions
-
+    
     * @throws AdyenException
     */
     public function approvePendingTransferLimits(string $id, \Adyen\Model\BalancePlatform\ApproveTransferLimitRequest $approveTransferLimitRequest, ?array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/balanceAccounts/{id}/transferLimits/approve");
         $this->requestHttp($endpoint, strtolower('POST'), (array) $approveTransferLimitRequest->jsonSerialize(), $requestOptions);
+        
     }
 
     /**
@@ -76,13 +77,14 @@ class TransferLimitsBalanceAccountLevelApi extends Service
     * @param string $id
     * @param string $transferLimitId
     * @param array|null $requestOptions
-
+    
     * @throws AdyenException
     */
     public function deletePendingTransferLimit(string $id, string $transferLimitId, ?array $requestOptions = null)
     {
         $endpoint = $this->baseURL . str_replace(['{id}', '{transferLimitId}'], [$id, $transferLimitId], "/balanceAccounts/{id}/transferLimits/{transferLimitId}");
         $this->requestHttp($endpoint, strtolower('DELETE'), null, $requestOptions);
+        
     }
 
     /**

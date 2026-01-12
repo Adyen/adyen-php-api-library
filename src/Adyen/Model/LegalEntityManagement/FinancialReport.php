@@ -293,9 +293,6 @@ class FinancialReport implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['dateOfFinancialData'] === null) {
-            $invalidProperties[] = "'dateOfFinancialData' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -386,7 +383,7 @@ class FinancialReport implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets dateOfFinancialData
      *
-     * @return string
+     * @return string|null
      */
     public function getDateOfFinancialData()
     {
@@ -396,7 +393,7 @@ class FinancialReport implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets dateOfFinancialData
      *
-     * @param string $dateOfFinancialData The date the financial data were provided, in YYYY-MM-DD format.
+     * @param string|null $dateOfFinancialData The date the financial data were provided, in YYYY-MM-DD format.
      *
      * @return self
      */

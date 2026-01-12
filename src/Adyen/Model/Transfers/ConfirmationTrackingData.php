@@ -219,6 +219,7 @@ class ConfirmationTrackingData implements ModelInterface, ArrayAccess, \JsonSeri
     }
 
     public const STATUS_CREDITED = 'credited';
+    public const STATUS_ACCEPTED = 'accepted';
     public const TYPE_CONFIRMATION = 'confirmation';
 
     /**
@@ -230,6 +231,7 @@ class ConfirmationTrackingData implements ModelInterface, ArrayAccess, \JsonSeri
     {
         return [
             self::STATUS_CREDITED,
+            self::STATUS_ACCEPTED,
         ];
     }
     /**
@@ -341,7 +343,7 @@ class ConfirmationTrackingData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets status
      *
-     * @param string $status The status of the transfer.  Possible values:   - **credited**: the funds are credited to your user's transfer instrument or bank account.
+     * @param string $status The status of the transfer.  Possible values:   - **credited**: the funds are credited to your user's transfer instrument or bank account.- **accepted**: the request is accepted by the integration.
      *
      * @return self
      */
