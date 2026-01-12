@@ -42,7 +42,7 @@ class RecurringApi extends Service
     /**
     * Create new permits linked to a recurring contract.
     *
-    * @deprecated since Adyen Recurring API v68. 
+    * @deprecated since Adyen Recurring API v68.
     * @param \Adyen\Model\Recurring\CreatePermitRequest $createPermitRequest
     * @param array|null $requestOptions
     * @return \Adyen\Model\Recurring\CreatePermitResult
@@ -73,7 +73,7 @@ class RecurringApi extends Service
     /**
     * Disable an existing permit.
     *
-    * @deprecated since Adyen Recurring API v68. 
+    * @deprecated since Adyen Recurring API v68.
     * @param \Adyen\Model\Recurring\DisablePermitRequest $disablePermitRequest
     * @param array|null $requestOptions
     * @return \Adyen\Model\Recurring\DisablePermitResult
