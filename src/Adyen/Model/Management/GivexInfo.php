@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\Management\ObjectSerializer;
 
 /**
- * Amount Class Doc Comment
+ * GivexInfo Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
+class GivexInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Amount';
+    protected static $openAPIModelName = 'GivexInfo';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,8 +41,10 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'currency' => 'string',
-        'value' => 'int'
+        'currencyCode' => 'string',
+        'password' => 'string',
+        'paymentFlow' => 'string',
+        'username' => 'string'
     ];
 
     /**
@@ -53,8 +55,10 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'currency' => null,
-        'value' => 'int64'
+        'currencyCode' => null,
+        'password' => null,
+        'paymentFlow' => null,
+        'username' => null
     ];
 
     /**
@@ -63,8 +67,10 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'currency' => false,
-        'value' => false
+        'currencyCode' => false,
+        'password' => false,
+        'paymentFlow' => false,
+        'username' => false
     ];
 
     /**
@@ -153,8 +159,10 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'currency' => 'currency',
-        'value' => 'value'
+        'currencyCode' => 'currencyCode',
+        'password' => 'password',
+        'paymentFlow' => 'paymentFlow',
+        'username' => 'username'
     ];
 
     /**
@@ -163,8 +171,10 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'currency' => 'setCurrency',
-        'value' => 'setValue'
+        'currencyCode' => 'setCurrencyCode',
+        'password' => 'setPassword',
+        'paymentFlow' => 'setPaymentFlow',
+        'username' => 'setUsername'
     ];
 
     /**
@@ -173,8 +183,10 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'currency' => 'getCurrency',
-        'value' => 'getValue'
+        'currencyCode' => 'getCurrencyCode',
+        'password' => 'getPassword',
+        'paymentFlow' => 'getPaymentFlow',
+        'username' => 'getUsername'
     ];
 
     /**
@@ -218,7 +230,21 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const PAYMENT_FLOW_ECOMMERCE = 'Ecommerce';
+    public const PAYMENT_FLOW_POS = 'POS';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getPaymentFlowAllowableValues()
+    {
+        return [
+            self::PAYMENT_FLOW_ECOMMERCE,
+            self::PAYMENT_FLOW_POS,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -234,8 +260,10 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('currency', $data ?? [], null);
-        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('currencyCode', $data ?? [], null);
+        $this->setIfExists('password', $data ?? [], null);
+        $this->setIfExists('paymentFlow', $data ?? [], null);
+        $this->setIfExists('username', $data ?? [], null);
     }
 
     /**
@@ -265,11 +293,26 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['currency'] === null) {
-            $invalidProperties[] = "'currency' can't be null";
+        if ($this->container['currencyCode'] === null) {
+            $invalidProperties[] = "'currencyCode' can't be null";
         }
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
+        if ($this->container['password'] === null) {
+            $invalidProperties[] = "'password' can't be null";
+        }
+        if ($this->container['paymentFlow'] === null) {
+            $invalidProperties[] = "'paymentFlow' can't be null";
+        }
+        $allowedValues = $this->getPaymentFlowAllowableValues();
+        if (!is_null($this->container['paymentFlow']) && !in_array($this->container['paymentFlow'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'paymentFlow', must be one of '%s'",
+                $this->container['paymentFlow'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['username'] === null) {
+            $invalidProperties[] = "'username' can't be null";
         }
         return $invalidProperties;
     }
@@ -287,49 +330,107 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets currency
+     * Gets currencyCode
      *
      * @return string
      */
-    public function getCurrency()
+    public function getCurrencyCode()
     {
-        return $this->container['currency'];
+        return $this->container['currencyCode'];
     }
 
     /**
-     * Sets currency
+     * Sets currencyCode
      *
-     * @param string $currency The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount.
+     * @param string $currencyCode The three-character ISO currency code, such as **EUR**.
      *
      * @return self
      */
-    public function setCurrency($currency)
+    public function setCurrencyCode($currencyCode)
     {
-        $this->container['currency'] = $currency;
+        $this->container['currencyCode'] = $currencyCode;
 
         return $this;
     }
 
     /**
-     * Gets value
+     * Gets password
      *
-     * @return int
+     * @return string
      */
-    public function getValue()
+    public function getPassword()
     {
-        return $this->container['value'];
+        return $this->container['password'];
     }
 
     /**
-     * Sets value
+     * Sets password
      *
-     * @param int $value The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).
+     * @param string $password The password provided by the acquirer.
      *
      * @return self
      */
-    public function setValue($value)
+    public function setPassword($password)
     {
-        $this->container['value'] = $value;
+        $this->container['password'] = $password;
+
+        return $this;
+    }
+
+    /**
+     * Gets paymentFlow
+     *
+     * @return string
+     */
+    public function getPaymentFlow()
+    {
+        return $this->container['paymentFlow'];
+    }
+
+    /**
+     * Sets paymentFlow
+     *
+     * @param string $paymentFlow The sales channel used for the payment.
+     *
+     * @return self
+     */
+    public function setPaymentFlow($paymentFlow)
+    {
+        $allowedValues = $this->getPaymentFlowAllowableValues();
+        if (!in_array($paymentFlow, $allowedValues, true)) {
+            error_log(
+                sprintf(
+                    "paymentFlow: unexpected enum value '%s' - Supported values are [%s]",
+                    $paymentFlow,
+                    implode(', ', $allowedValues)
+                )
+            );
+        }
+        $this->container['paymentFlow'] = $paymentFlow;
+
+        return $this;
+    }
+
+    /**
+     * Gets username
+     *
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->container['username'];
+    }
+
+    /**
+     * Sets username
+     *
+     * @param string $username The username provided by the acquirer.
+     *
+     * @return self
+     */
+    public function setUsername($username)
+    {
+        $this->container['username'] = $username;
 
         return $this;
     }

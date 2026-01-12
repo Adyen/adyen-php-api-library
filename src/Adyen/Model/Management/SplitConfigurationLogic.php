@@ -735,11 +735,11 @@ class SplitConfigurationLogic implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $allowedValues = $this->getAcquiringFeesAllowableValues();
         if (!in_array($acquiringFees, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'acquiringFees', must be one of '%s'",
+                    "acquiringFees: unexpected enum value '%s' - Supported values are [%s]",
                     $acquiringFees,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -793,11 +793,11 @@ class SplitConfigurationLogic implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $allowedValues = $this->getAdyenCommissionAllowableValues();
         if (!in_array($adyenCommission, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'adyenCommission', must be one of '%s'",
+                    "adyenCommission: unexpected enum value '%s' - Supported values are [%s]",
                     $adyenCommission,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -827,11 +827,11 @@ class SplitConfigurationLogic implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $allowedValues = $this->getAdyenFeesAllowableValues();
         if (!in_array($adyenFees, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'adyenFees', must be one of '%s'",
+                    "adyenFees: unexpected enum value '%s' - Supported values are [%s]",
                     $adyenFees,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -861,11 +861,11 @@ class SplitConfigurationLogic implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $allowedValues = $this->getAdyenMarkupAllowableValues();
         if (!in_array($adyenMarkup, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'adyenMarkup', must be one of '%s'",
+                    "adyenMarkup: unexpected enum value '%s' - Supported values are [%s]",
                     $adyenMarkup,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -895,11 +895,11 @@ class SplitConfigurationLogic implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $allowedValues = $this->getChargebackAllowableValues();
         if (!in_array($chargeback, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'chargeback', must be one of '%s'",
+                    "chargeback: unexpected enum value '%s' - Supported values are [%s]",
                     $chargeback,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -929,11 +929,11 @@ class SplitConfigurationLogic implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $allowedValues = $this->getChargebackCostAllocationAllowableValues();
         if (!in_array($chargebackCostAllocation, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'chargebackCostAllocation', must be one of '%s'",
+                    "chargebackCostAllocation: unexpected enum value '%s' - Supported values are [%s]",
                     $chargebackCostAllocation,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -987,11 +987,11 @@ class SplitConfigurationLogic implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $allowedValues = $this->getInterchangeAllowableValues();
         if (!in_array($interchange, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'interchange', must be one of '%s'",
+                    "interchange: unexpected enum value '%s' - Supported values are [%s]",
                     $interchange,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1021,11 +1021,11 @@ class SplitConfigurationLogic implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $allowedValues = $this->getPaymentFeeAllowableValues();
         if (!in_array($paymentFee, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'paymentFee', must be one of '%s'",
+                    "paymentFee: unexpected enum value '%s' - Supported values are [%s]",
                     $paymentFee,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1055,11 +1055,11 @@ class SplitConfigurationLogic implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $allowedValues = $this->getRefundAllowableValues();
         if (!in_array($refund, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'refund', must be one of '%s'",
+                    "refund: unexpected enum value '%s' - Supported values are [%s]",
                     $refund,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1089,11 +1089,11 @@ class SplitConfigurationLogic implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $allowedValues = $this->getRefundCostAllocationAllowableValues();
         if (!in_array($refundCostAllocation, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'refundCostAllocation', must be one of '%s'",
+                    "refundCostAllocation: unexpected enum value '%s' - Supported values are [%s]",
                     $refundCostAllocation,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1123,11 +1123,11 @@ class SplitConfigurationLogic implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $allowedValues = $this->getRemainderAllowableValues();
         if (!in_array($remainder, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'remainder', must be one of '%s'",
+                    "remainder: unexpected enum value '%s' - Supported values are [%s]",
                     $remainder,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1157,11 +1157,11 @@ class SplitConfigurationLogic implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $allowedValues = $this->getSchemeFeeAllowableValues();
         if (!in_array($schemeFee, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'schemeFee', must be one of '%s'",
+                    "schemeFee: unexpected enum value '%s' - Supported values are [%s]",
                     $schemeFee,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1215,11 +1215,11 @@ class SplitConfigurationLogic implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $allowedValues = $this->getSurchargeAllowableValues();
         if (!in_array($surcharge, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'surcharge', must be one of '%s'",
+                    "surcharge: unexpected enum value '%s' - Supported values are [%s]",
                     $surcharge,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1249,11 +1249,11 @@ class SplitConfigurationLogic implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $allowedValues = $this->getTipAllowableValues();
         if (!in_array($tip, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'tip', must be one of '%s'",
+                    "tip: unexpected enum value '%s' - Supported values are [%s]",
                     $tip,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
