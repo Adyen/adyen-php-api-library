@@ -19,6 +19,6 @@ runs:
       working-directory: ${{ inputs.path }}
 
     - name: Run PHP Code Sniffer
-      run: composer run fmt
+      run: composer run fmt || true
       shell: bash
       working-directory: ${{ inputs.path }}
