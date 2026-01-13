@@ -299,7 +299,7 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets currency
      *
-     * @param string $currency The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
+     * @param string $currency The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount.
      *
      * @return self
      */
@@ -323,7 +323,7 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets value
      *
-     * @param int $value The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+     * @param int $value The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).
      *
      * @return self
      */
