@@ -1,0 +1,24 @@
+name: 'Format PHP Code'
+description: 'Runs composer run fmt'
+inputs:
+  path:
+    description: 'Path to the php repository'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup PHP
+      uses: shivammathur/setup-php@44454db4f0199b8b9685a5d763dc37cbf79108e1
+      with:
+        php-version: 8.2
+        tools: composer:v2
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress
+      shell: bash
+      working-directory: ${{ inputs.path }}
+
+    - name: Run PHP Code Sniffer
+      run: composer run fmt
+      shell: bash
+      working-directory: ${{ inputs.path }}
