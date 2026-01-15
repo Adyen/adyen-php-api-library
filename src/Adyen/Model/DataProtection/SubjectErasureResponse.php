@@ -15,14 +15,14 @@
 
 namespace Adyen\Model\DataProtection;
 
-use \ArrayAccess;
+use ArrayAccess;
 use Adyen\Model\DataProtection\ObjectSerializer;
 
 /**
  * SubjectErasureResponse Class Doc Comment
  *
  * @package  Adyen
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
 class SubjectErasureResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -321,11 +321,11 @@ class SubjectErasureResponse implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $allowedValues = $this->getResultAllowableValues();
         if (!in_array($result, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'result', must be one of '%s'",
+                    "result: unexpected enum value '%s' - Supported values are [%s]",
                     $result,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
