@@ -286,7 +286,7 @@ class CardholderReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets headerForAuthorizedReceipt
      *
-     * @param string|null $headerForAuthorizedReceipt A custom header to show on the shopper receipt for an authorised transaction. Allows one or two comma-separated header lines, and blank lines. For example, `header,header,filler`
+     * @param string|null $headerForAuthorizedReceipt The structure of the header to show on the shopper receipt. You can define the order of one or two header lines and blank lines. For example, **header1,header2,filler**. The text of the header lines is defined in the Customer Area under **In-person payments** > **Terminal settings** > **Receipts** in the **Receipt lines** block.
      *
      * @return self
      */

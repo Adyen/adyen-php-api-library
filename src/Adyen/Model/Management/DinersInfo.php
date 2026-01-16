@@ -389,11 +389,11 @@ class DinersInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getServiceLevelAllowableValues();
         if (!in_array($serviceLevel, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'serviceLevel', must be one of '%s'",
+                    "serviceLevel: unexpected enum value '%s' - Supported values are [%s]",
                     $serviceLevel,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

@@ -43,8 +43,8 @@ class ScheduleTerminalActionsRequestActionDetails implements ModelInterface, Arr
       * @var string[]
       */
     protected static $openAPITypes = [
-        'appId' => 'string',
         'type' => 'string',
+        'appId' => 'string',
         'certificateId' => 'string',
         'updateAtFirstMaintenanceCall' => 'bool'
     ];
@@ -57,8 +57,8 @@ class ScheduleTerminalActionsRequestActionDetails implements ModelInterface, Arr
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'appId' => null,
         'type' => null,
+        'appId' => null,
         'certificateId' => null,
         'updateAtFirstMaintenanceCall' => null
     ];
@@ -69,8 +69,8 @@ class ScheduleTerminalActionsRequestActionDetails implements ModelInterface, Arr
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'appId' => false,
         'type' => false,
+        'appId' => false,
         'certificateId' => false,
         'updateAtFirstMaintenanceCall' => false
     ];
@@ -161,8 +161,8 @@ class ScheduleTerminalActionsRequestActionDetails implements ModelInterface, Arr
      * @var string[]
      */
     protected static $attributeMap = [
-        'appId' => 'appId',
         'type' => 'type',
+        'appId' => 'appId',
         'certificateId' => 'certificateId',
         'updateAtFirstMaintenanceCall' => 'updateAtFirstMaintenanceCall'
     ];
@@ -173,8 +173,8 @@ class ScheduleTerminalActionsRequestActionDetails implements ModelInterface, Arr
      * @var string[]
      */
     protected static $setters = [
-        'appId' => 'setAppId',
         'type' => 'setType',
+        'appId' => 'setAppId',
         'certificateId' => 'setCertificateId',
         'updateAtFirstMaintenanceCall' => 'setUpdateAtFirstMaintenanceCall'
     ];
@@ -185,8 +185,8 @@ class ScheduleTerminalActionsRequestActionDetails implements ModelInterface, Arr
      * @var string[]
      */
     protected static $getters = [
-        'appId' => 'getAppId',
         'type' => 'getType',
+        'appId' => 'getAppId',
         'certificateId' => 'getCertificateId',
         'updateAtFirstMaintenanceCall' => 'getUpdateAtFirstMaintenanceCall'
     ];
@@ -247,8 +247,8 @@ class ScheduleTerminalActionsRequestActionDetails implements ModelInterface, Arr
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('appId', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('appId', $data ?? [], null);
         $this->setIfExists('certificateId', $data ?? [], null);
         $this->setIfExists('updateAtFirstMaintenanceCall', $data ?? [], null);
     }
@@ -297,30 +297,6 @@ class ScheduleTerminalActionsRequestActionDetails implements ModelInterface, Arr
 
 
     /**
-     * Gets appId
-     *
-     * @return string|null
-     */
-    public function getAppId()
-    {
-        return $this->container['appId'];
-    }
-
-    /**
-     * Sets appId
-     *
-     * @param string|null $appId The unique identifier of the app to be uninstalled.
-     *
-     * @return self
-     */
-    public function setAppId($appId)
-    {
-        $this->container['appId'] = $appId;
-
-        return $this;
-    }
-
-    /**
      * Gets type
      *
      * @return string|null
@@ -340,6 +316,30 @@ class ScheduleTerminalActionsRequestActionDetails implements ModelInterface, Arr
     public function setType($type)
     {
         $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets appId
+     *
+     * @return string|null
+     */
+    public function getAppId()
+    {
+        return $this->container['appId'];
+    }
+
+    /**
+     * Sets appId
+     *
+     * @param string|null $appId The unique identifier of the app to be uninstalled.
+     *
+     * @return self
+     */
+    public function setAppId($appId)
+    {
+        $this->container['appId'] = $appId;
 
         return $this;
     }
