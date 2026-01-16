@@ -405,7 +405,7 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets amountExcludingTax
      *
-     * @param int|null $amountExcludingTax Item amount excluding the tax, in minor units.
+     * @param int|null $amountExcludingTax Item amount excluding the tax, in [minor units](https://docs.adyen.com/development-resources/currency-codes/#minor-units).
      *
      * @return self
      */
@@ -429,7 +429,7 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets amountIncludingTax
      *
-     * @param int|null $amountIncludingTax Item amount including the tax, in minor units.
+     * @param int|null $amountIncludingTax Item amount including the tax, in [minor units](https://docs.adyen.com/development-resources/currency-codes/#minor-units).
      *
      * @return self
      */
@@ -765,7 +765,7 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets taxAmount
      *
-     * @param int|null $taxAmount Tax amount, in minor units.
+     * @param int|null $taxAmount Tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes/#minor-units).
      *
      * @return self
      */
@@ -789,7 +789,7 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets taxPercentage
      *
-     * @param int|null $taxPercentage Tax percentage, in minor units.
+     * @param int|null $taxPercentage Tax percentage, represented as a [basis point](https://en.wikipedia.org/wiki/Basis_point) integer. For example:  - **530** for 5.3% (five point three percent)   - **2100** for 21% (twenty-one percent)
      *
      * @return self
      */

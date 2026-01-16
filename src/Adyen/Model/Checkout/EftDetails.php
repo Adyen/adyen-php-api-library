@@ -47,6 +47,7 @@ class EftDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'checkoutAttemptId' => 'string',
         'ownerName' => 'string',
         'recurringDetailReference' => 'string',
+        'sdkData' => 'string',
         'storedPaymentMethodId' => 'string',
         'type' => 'string'
     ];
@@ -65,6 +66,7 @@ class EftDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'checkoutAttemptId' => null,
         'ownerName' => null,
         'recurringDetailReference' => null,
+        'sdkData' => null,
         'storedPaymentMethodId' => null,
         'type' => null
     ];
@@ -81,6 +83,7 @@ class EftDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'checkoutAttemptId' => false,
         'ownerName' => false,
         'recurringDetailReference' => false,
+        'sdkData' => false,
         'storedPaymentMethodId' => false,
         'type' => false
     ];
@@ -177,6 +180,7 @@ class EftDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'checkoutAttemptId' => 'checkoutAttemptId',
         'ownerName' => 'ownerName',
         'recurringDetailReference' => 'recurringDetailReference',
+        'sdkData' => 'sdkData',
         'storedPaymentMethodId' => 'storedPaymentMethodId',
         'type' => 'type'
     ];
@@ -193,6 +197,7 @@ class EftDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'checkoutAttemptId' => 'setCheckoutAttemptId',
         'ownerName' => 'setOwnerName',
         'recurringDetailReference' => 'setRecurringDetailReference',
+        'sdkData' => 'setSdkData',
         'storedPaymentMethodId' => 'setStoredPaymentMethodId',
         'type' => 'setType'
     ];
@@ -209,6 +214,7 @@ class EftDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'checkoutAttemptId' => 'getCheckoutAttemptId',
         'ownerName' => 'getOwnerName',
         'recurringDetailReference' => 'getRecurringDetailReference',
+        'sdkData' => 'getSdkData',
         'storedPaymentMethodId' => 'getStoredPaymentMethodId',
         'type' => 'getType'
     ];
@@ -288,6 +294,7 @@ class EftDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('ownerName', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
+        $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
@@ -485,6 +492,30 @@ class EftDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setRecurringDetailReference($recurringDetailReference)
     {
         $this->container['recurringDetailReference'] = $recurringDetailReference;
+
+        return $this;
+    }
+
+    /**
+     * Gets sdkData
+     *
+     * @return string|null
+     */
+    public function getSdkData()
+    {
+        return $this->container['sdkData'];
+    }
+
+    /**
+     * Sets sdkData
+     *
+     * @param string|null $sdkData Base64-encoded JSON object containing SDK related parameters required by the SDK
+     *
+     * @return self
+     */
+    public function setSdkData($sdkData)
+    {
+        $this->container['sdkData'] = $sdkData;
 
         return $this;
     }

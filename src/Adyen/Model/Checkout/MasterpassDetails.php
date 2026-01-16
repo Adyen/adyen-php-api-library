@@ -44,6 +44,7 @@ class MasterpassDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
         'checkoutAttemptId' => 'string',
         'fundingSource' => 'string',
         'masterpassTransactionId' => 'string',
+        'sdkData' => 'string',
         'type' => 'string'
     ];
 
@@ -58,6 +59,7 @@ class MasterpassDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
         'checkoutAttemptId' => null,
         'fundingSource' => null,
         'masterpassTransactionId' => null,
+        'sdkData' => null,
         'type' => null
     ];
 
@@ -70,6 +72,7 @@ class MasterpassDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
         'checkoutAttemptId' => false,
         'fundingSource' => false,
         'masterpassTransactionId' => false,
+        'sdkData' => false,
         'type' => false
     ];
 
@@ -162,6 +165,7 @@ class MasterpassDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
         'checkoutAttemptId' => 'checkoutAttemptId',
         'fundingSource' => 'fundingSource',
         'masterpassTransactionId' => 'masterpassTransactionId',
+        'sdkData' => 'sdkData',
         'type' => 'type'
     ];
 
@@ -174,6 +178,7 @@ class MasterpassDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
         'checkoutAttemptId' => 'setCheckoutAttemptId',
         'fundingSource' => 'setFundingSource',
         'masterpassTransactionId' => 'setMasterpassTransactionId',
+        'sdkData' => 'setSdkData',
         'type' => 'setType'
     ];
 
@@ -186,6 +191,7 @@ class MasterpassDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
         'checkoutAttemptId' => 'getCheckoutAttemptId',
         'fundingSource' => 'getFundingSource',
         'masterpassTransactionId' => 'getMasterpassTransactionId',
+        'sdkData' => 'getSdkData',
         'type' => 'getType'
     ];
 
@@ -232,6 +238,7 @@ class MasterpassDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
 
     public const FUNDING_SOURCE_CREDIT = 'credit';
     public const FUNDING_SOURCE_DEBIT = 'debit';
+    public const FUNDING_SOURCE_PREPAID = 'prepaid';
     public const TYPE_MASTERPASS = 'masterpass';
 
     /**
@@ -244,6 +251,7 @@ class MasterpassDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
         return [
             self::FUNDING_SOURCE_CREDIT,
             self::FUNDING_SOURCE_DEBIT,
+            self::FUNDING_SOURCE_PREPAID,
         ];
     }
     /**
@@ -275,6 +283,7 @@ class MasterpassDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('fundingSource', $data ?? [], null);
         $this->setIfExists('masterpassTransactionId', $data ?? [], null);
+        $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -419,6 +428,30 @@ class MasterpassDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function setMasterpassTransactionId($masterpassTransactionId)
     {
         $this->container['masterpassTransactionId'] = $masterpassTransactionId;
+
+        return $this;
+    }
+
+    /**
+     * Gets sdkData
+     *
+     * @return string|null
+     */
+    public function getSdkData()
+    {
+        return $this->container['sdkData'];
+    }
+
+    /**
+     * Sets sdkData
+     *
+     * @param string|null $sdkData Base64-encoded JSON object containing SDK related parameters required by the SDK
+     *
+     * @return self
+     */
+    public function setSdkData($sdkData)
+    {
+        $this->container['sdkData'] = $sdkData;
 
         return $this;
     }
