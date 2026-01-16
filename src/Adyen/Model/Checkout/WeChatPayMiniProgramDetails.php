@@ -44,6 +44,9 @@ class WeChatPayMiniProgramDetails implements ModelInterface, ArrayAccess, \JsonS
         'appId' => 'string',
         'checkoutAttemptId' => 'string',
         'openid' => 'string',
+        'recurringDetailReference' => 'string',
+        'sdkData' => 'string',
+        'storedPaymentMethodId' => 'string',
         'type' => 'string'
     ];
 
@@ -58,6 +61,9 @@ class WeChatPayMiniProgramDetails implements ModelInterface, ArrayAccess, \JsonS
         'appId' => null,
         'checkoutAttemptId' => null,
         'openid' => null,
+        'recurringDetailReference' => null,
+        'sdkData' => null,
+        'storedPaymentMethodId' => null,
         'type' => null
     ];
 
@@ -70,6 +76,9 @@ class WeChatPayMiniProgramDetails implements ModelInterface, ArrayAccess, \JsonS
         'appId' => false,
         'checkoutAttemptId' => false,
         'openid' => false,
+        'recurringDetailReference' => false,
+        'sdkData' => false,
+        'storedPaymentMethodId' => false,
         'type' => false
     ];
 
@@ -162,6 +171,9 @@ class WeChatPayMiniProgramDetails implements ModelInterface, ArrayAccess, \JsonS
         'appId' => 'appId',
         'checkoutAttemptId' => 'checkoutAttemptId',
         'openid' => 'openid',
+        'recurringDetailReference' => 'recurringDetailReference',
+        'sdkData' => 'sdkData',
+        'storedPaymentMethodId' => 'storedPaymentMethodId',
         'type' => 'type'
     ];
 
@@ -174,6 +186,9 @@ class WeChatPayMiniProgramDetails implements ModelInterface, ArrayAccess, \JsonS
         'appId' => 'setAppId',
         'checkoutAttemptId' => 'setCheckoutAttemptId',
         'openid' => 'setOpenid',
+        'recurringDetailReference' => 'setRecurringDetailReference',
+        'sdkData' => 'setSdkData',
+        'storedPaymentMethodId' => 'setStoredPaymentMethodId',
         'type' => 'setType'
     ];
 
@@ -186,6 +201,9 @@ class WeChatPayMiniProgramDetails implements ModelInterface, ArrayAccess, \JsonS
         'appId' => 'getAppId',
         'checkoutAttemptId' => 'getCheckoutAttemptId',
         'openid' => 'getOpenid',
+        'recurringDetailReference' => 'getRecurringDetailReference',
+        'sdkData' => 'getSdkData',
+        'storedPaymentMethodId' => 'getStoredPaymentMethodId',
         'type' => 'getType'
     ];
 
@@ -261,6 +279,9 @@ class WeChatPayMiniProgramDetails implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('appId', $data ?? [], null);
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('openid', $data ?? [], null);
+        $this->setIfExists('recurringDetailReference', $data ?? [], null);
+        $this->setIfExists('sdkData', $data ?? [], null);
+        $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -383,6 +404,80 @@ class WeChatPayMiniProgramDetails implements ModelInterface, ArrayAccess, \JsonS
     public function setOpenid($openid)
     {
         $this->container['openid'] = $openid;
+
+        return $this;
+    }
+
+    /**
+     * Gets recurringDetailReference
+     *
+     * @return string|null
+     * @deprecated since Adyen Checkout API v49. "Use `storedPaymentMethodId` instead."
+     */
+    public function getRecurringDetailReference()
+    {
+        return $this->container['recurringDetailReference'];
+    }
+
+    /**
+     * Sets recurringDetailReference
+     *
+     * @param string|null $recurringDetailReference This is the `recurringDetailReference` returned in the response when you created the token.
+     *
+     * @return self
+     * @deprecated since Adyen Checkout API v49. "Use `storedPaymentMethodId` instead."
+     */
+    public function setRecurringDetailReference($recurringDetailReference)
+    {
+        $this->container['recurringDetailReference'] = $recurringDetailReference;
+
+        return $this;
+    }
+
+    /**
+     * Gets sdkData
+     *
+     * @return string|null
+     */
+    public function getSdkData()
+    {
+        return $this->container['sdkData'];
+    }
+
+    /**
+     * Sets sdkData
+     *
+     * @param string|null $sdkData Base64-encoded JSON object containing SDK related parameters required by the SDK
+     *
+     * @return self
+     */
+    public function setSdkData($sdkData)
+    {
+        $this->container['sdkData'] = $sdkData;
+
+        return $this;
+    }
+
+    /**
+     * Gets storedPaymentMethodId
+     *
+     * @return string|null
+     */
+    public function getStoredPaymentMethodId()
+    {
+        return $this->container['storedPaymentMethodId'];
+    }
+
+    /**
+     * Sets storedPaymentMethodId
+     *
+     * @param string|null $storedPaymentMethodId This is the `recurringDetailReference` returned in the response when you created the token.
+     *
+     * @return self
+     */
+    public function setStoredPaymentMethodId($storedPaymentMethodId)
+    {
+        $this->container['storedPaymentMethodId'] = $storedPaymentMethodId;
 
         return $this;
     }

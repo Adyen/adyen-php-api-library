@@ -48,8 +48,10 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'type' => 'string',
         'url' => 'string',
         'accountNumber' => 'string',
+        'bankCode' => 'string',
         'beneficiary' => 'string',
         'bic' => 'string',
+        'branchCode' => 'string',
         'downloadUrl' => 'string',
         'iban' => 'string',
         'reference' => 'string',
@@ -93,8 +95,10 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'type' => null,
         'url' => null,
         'accountNumber' => null,
+        'bankCode' => null,
         'beneficiary' => null,
         'bic' => null,
+        'branchCode' => null,
         'downloadUrl' => null,
         'iban' => null,
         'reference' => null,
@@ -136,8 +140,10 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'type' => false,
         'url' => false,
         'accountNumber' => false,
+        'bankCode' => false,
         'beneficiary' => false,
         'bic' => false,
+        'branchCode' => false,
         'downloadUrl' => false,
         'iban' => false,
         'reference' => false,
@@ -259,8 +265,10 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'type' => 'type',
         'url' => 'url',
         'accountNumber' => 'accountNumber',
+        'bankCode' => 'bankCode',
         'beneficiary' => 'beneficiary',
         'bic' => 'bic',
+        'branchCode' => 'branchCode',
         'downloadUrl' => 'downloadUrl',
         'iban' => 'iban',
         'reference' => 'reference',
@@ -302,8 +310,10 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'type' => 'setType',
         'url' => 'setUrl',
         'accountNumber' => 'setAccountNumber',
+        'bankCode' => 'setBankCode',
         'beneficiary' => 'setBeneficiary',
         'bic' => 'setBic',
+        'branchCode' => 'setBranchCode',
         'downloadUrl' => 'setDownloadUrl',
         'iban' => 'setIban',
         'reference' => 'setReference',
@@ -345,8 +355,10 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         'type' => 'getType',
         'url' => 'getUrl',
         'accountNumber' => 'getAccountNumber',
+        'bankCode' => 'getBankCode',
         'beneficiary' => 'getBeneficiary',
         'bic' => 'getBic',
+        'branchCode' => 'getBranchCode',
         'downloadUrl' => 'getDownloadUrl',
         'iban' => 'getIban',
         'reference' => 'getReference',
@@ -438,8 +450,10 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('url', $data ?? [], null);
         $this->setIfExists('accountNumber', $data ?? [], null);
+        $this->setIfExists('bankCode', $data ?? [], null);
         $this->setIfExists('beneficiary', $data ?? [], null);
         $this->setIfExists('bic', $data ?? [], null);
+        $this->setIfExists('branchCode', $data ?? [], null);
         $this->setIfExists('downloadUrl', $data ?? [], null);
         $this->setIfExists('iban', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
@@ -637,6 +651,30 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
+     * Gets bankCode
+     *
+     * @return string|null
+     */
+    public function getBankCode()
+    {
+        return $this->container['bankCode'];
+    }
+
+    /**
+     * Sets bankCode
+     *
+     * @param string|null $bankCode The bank code of the bank transfer.
+     *
+     * @return self
+     */
+    public function setBankCode($bankCode)
+    {
+        $this->container['bankCode'] = $bankCode;
+
+        return $this;
+    }
+
+    /**
      * Gets beneficiary
      *
      * @return string|null
@@ -680,6 +718,30 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setBic($bic)
     {
         $this->container['bic'] = $bic;
+
+        return $this;
+    }
+
+    /**
+     * Gets branchCode
+     *
+     * @return string|null
+     */
+    public function getBranchCode()
+    {
+        return $this->container['branchCode'];
+    }
+
+    /**
+     * Sets branchCode
+     *
+     * @param string|null $branchCode The branch code of the bank transfer.
+     *
+     * @return self
+     */
+    public function setBranchCode($branchCode)
+    {
+        $this->container['branchCode'] = $branchCode;
 
         return $this;
     }
