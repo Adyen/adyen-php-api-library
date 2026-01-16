@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * TransferRouteRequest Class Doc Comment
+ * Condition Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class TransferRouteRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class Condition implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class TransferRouteRequest implements ModelInterface, ArrayAccess, \JsonSerializ
       *
       * @var string
       */
-    protected static $openAPIModelName = 'TransferRouteRequest';
+    protected static $openAPIModelName = 'Condition';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,13 +41,9 @@ class TransferRouteRequest implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var string[]
       */
     protected static $openAPITypes = [
-        'balanceAccountId' => 'string',
-        'balancePlatform' => 'string',
-        'category' => 'string',
-        'counterparty' => '\Adyen\Model\BalancePlatform\Counterparty',
-        'country' => 'string',
-        'currency' => 'string',
-        'priorities' => 'string[]'
+        'balanceType' => 'string',
+        'conditionType' => 'string',
+        'value' => 'int'
     ];
 
     /**
@@ -58,13 +54,9 @@ class TransferRouteRequest implements ModelInterface, ArrayAccess, \JsonSerializ
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'balanceAccountId' => null,
-        'balancePlatform' => null,
-        'category' => null,
-        'counterparty' => null,
-        'country' => null,
-        'currency' => null,
-        'priorities' => null
+        'balanceType' => null,
+        'conditionType' => null,
+        'value' => 'int64'
     ];
 
     /**
@@ -73,13 +65,9 @@ class TransferRouteRequest implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'balanceAccountId' => false,
-        'balancePlatform' => false,
-        'category' => false,
-        'counterparty' => false,
-        'country' => false,
-        'currency' => false,
-        'priorities' => false
+        'balanceType' => false,
+        'conditionType' => false,
+        'value' => false
     ];
 
     /**
@@ -168,13 +156,9 @@ class TransferRouteRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $attributeMap = [
-        'balanceAccountId' => 'balanceAccountId',
-        'balancePlatform' => 'balancePlatform',
-        'category' => 'category',
-        'counterparty' => 'counterparty',
-        'country' => 'country',
-        'currency' => 'currency',
-        'priorities' => 'priorities'
+        'balanceType' => 'balanceType',
+        'conditionType' => 'conditionType',
+        'value' => 'value'
     ];
 
     /**
@@ -183,13 +167,9 @@ class TransferRouteRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $setters = [
-        'balanceAccountId' => 'setBalanceAccountId',
-        'balancePlatform' => 'setBalancePlatform',
-        'category' => 'setCategory',
-        'counterparty' => 'setCounterparty',
-        'country' => 'setCountry',
-        'currency' => 'setCurrency',
-        'priorities' => 'setPriorities'
+        'balanceType' => 'setBalanceType',
+        'conditionType' => 'setConditionType',
+        'value' => 'setValue'
     ];
 
     /**
@@ -198,13 +178,9 @@ class TransferRouteRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $getters = [
-        'balanceAccountId' => 'getBalanceAccountId',
-        'balancePlatform' => 'getBalancePlatform',
-        'category' => 'getCategory',
-        'counterparty' => 'getCounterparty',
-        'country' => 'getCountry',
-        'currency' => 'getCurrency',
-        'priorities' => 'getPriorities'
+        'balanceType' => 'getBalanceType',
+        'conditionType' => 'getConditionType',
+        'value' => 'getValue'
     ];
 
     /**
@@ -248,23 +224,27 @@ class TransferRouteRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         return self::$openAPIModelName;
     }
 
-    public const CATEGORY_BANK = 'bank';
-    public const PRIORITIES_CROSS_BORDER = 'crossBorder';
-    public const PRIORITIES_FAST = 'fast';
-    public const PRIORITIES_INSTANT = 'instant';
-    public const PRIORITIES_INTERNAL = 'internal';
-    public const PRIORITIES_REGULAR = 'regular';
-    public const PRIORITIES_WIRE = 'wire';
+    public const BALANCE_TYPE_BALANCE = 'balance';
+    public const BALANCE_TYPE_AVAILABLE = 'available';
+    public const BALANCE_TYPE_PENDING = 'pending';
+    public const BALANCE_TYPE_RESERVED = 'reserved';
+    public const CONDITION_TYPE_GREATER_THAN = 'greaterThan';
+    public const CONDITION_TYPE_GREATER_THAN_OR_EQUAL = 'greaterThanOrEqual';
+    public const CONDITION_TYPE_LESS_THAN = 'lessThan';
+    public const CONDITION_TYPE_LESS_THAN_OR_EQUAL = 'lessThanOrEqual';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getCategoryAllowableValues()
+    public function getBalanceTypeAllowableValues()
     {
         return [
-            self::CATEGORY_BANK,
+            self::BALANCE_TYPE_BALANCE,
+            self::BALANCE_TYPE_AVAILABLE,
+            self::BALANCE_TYPE_PENDING,
+            self::BALANCE_TYPE_RESERVED,
         ];
     }
     /**
@@ -272,15 +252,13 @@ class TransferRouteRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @return string[]
      */
-    public function getPrioritiesAllowableValues()
+    public function getConditionTypeAllowableValues()
     {
         return [
-            self::PRIORITIES_CROSS_BORDER,
-            self::PRIORITIES_FAST,
-            self::PRIORITIES_INSTANT,
-            self::PRIORITIES_INTERNAL,
-            self::PRIORITIES_REGULAR,
-            self::PRIORITIES_WIRE,
+            self::CONDITION_TYPE_GREATER_THAN,
+            self::CONDITION_TYPE_GREATER_THAN_OR_EQUAL,
+            self::CONDITION_TYPE_LESS_THAN,
+            self::CONDITION_TYPE_LESS_THAN_OR_EQUAL,
         ];
     }
     /**
@@ -298,13 +276,9 @@ class TransferRouteRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('balanceAccountId', $data ?? [], null);
-        $this->setIfExists('balancePlatform', $data ?? [], null);
-        $this->setIfExists('category', $data ?? [], null);
-        $this->setIfExists('counterparty', $data ?? [], null);
-        $this->setIfExists('country', $data ?? [], null);
-        $this->setIfExists('currency', $data ?? [], null);
-        $this->setIfExists('priorities', $data ?? [], null);
+        $this->setIfExists('balanceType', $data ?? [], null);
+        $this->setIfExists('conditionType', $data ?? [], null);
+        $this->setIfExists('value', $data ?? [], null);
     }
 
     /**
@@ -334,23 +308,32 @@ class TransferRouteRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         $invalidProperties = [];
 
-        if ($this->container['balancePlatform'] === null) {
-            $invalidProperties[] = "'balancePlatform' can't be null";
+        if ($this->container['balanceType'] === null) {
+            $invalidProperties[] = "'balanceType' can't be null";
         }
-        if ($this->container['category'] === null) {
-            $invalidProperties[] = "'category' can't be null";
-        }
-        $allowedValues = $this->getCategoryAllowableValues();
-        if (!is_null($this->container['category']) && !in_array($this->container['category'], $allowedValues, true)) {
+        $allowedValues = $this->getBalanceTypeAllowableValues();
+        if (!is_null($this->container['balanceType']) && !in_array($this->container['balanceType'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'category', must be one of '%s'",
-                $this->container['category'],
+                "invalid value '%s' for 'balanceType', must be one of '%s'",
+                $this->container['balanceType'],
                 implode("', '", $allowedValues)
             );
         }
 
-        if ($this->container['currency'] === null) {
-            $invalidProperties[] = "'currency' can't be null";
+        if ($this->container['conditionType'] === null) {
+            $invalidProperties[] = "'conditionType' can't be null";
+        }
+        $allowedValues = $this->getConditionTypeAllowableValues();
+        if (!is_null($this->container['conditionType']) && !in_array($this->container['conditionType'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'conditionType', must be one of '%s'",
+                $this->container['conditionType'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['value'] === null) {
+            $invalidProperties[] = "'value' can't be null";
         }
         return $invalidProperties;
     }
@@ -368,188 +351,93 @@ class TransferRouteRequest implements ModelInterface, ArrayAccess, \JsonSerializ
 
 
     /**
-     * Gets balanceAccountId
-     *
-     * @return string|null
-     */
-    public function getBalanceAccountId()
-    {
-        return $this->container['balanceAccountId'];
-    }
-
-    /**
-     * Sets balanceAccountId
-     *
-     * @param string|null $balanceAccountId The unique identifier of the source [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id). Required if `counterparty` is **transferInstrumentId**.
-     *
-     * @return self
-     */
-    public function setBalanceAccountId($balanceAccountId)
-    {
-        $this->container['balanceAccountId'] = $balanceAccountId;
-
-        return $this;
-    }
-
-    /**
-     * Gets balancePlatform
+     * Gets balanceType
      *
      * @return string
      */
-    public function getBalancePlatform()
+    public function getBalanceType()
     {
-        return $this->container['balancePlatform'];
+        return $this->container['balanceType'];
     }
 
     /**
-     * Sets balancePlatform
+     * Sets balanceType
      *
-     * @param string $balancePlatform The unique identifier assigned to the balance platform associated with the account holder.
+     * @param string $balanceType Define the type of balance about which you want to get notified. Possible values:  * **available**: the balance available for use.  * **balance**: the sum of transactions that have already been settled.  * **pending**: the sum of transactions that will be settled in the future.  * **reserved**: the balance currently held in reserve.
      *
      * @return self
      */
-    public function setBalancePlatform($balancePlatform)
+    public function setBalanceType($balanceType)
     {
-        $this->container['balancePlatform'] = $balancePlatform;
-
-        return $this;
-    }
-
-    /**
-     * Gets category
-     *
-     * @return string
-     */
-    public function getCategory()
-    {
-        return $this->container['category'];
-    }
-
-    /**
-     * Sets category
-     *
-     * @param string $category The type of transfer. Possible values:    - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.
-     *
-     * @return self
-     */
-    public function setCategory($category)
-    {
-        $allowedValues = $this->getCategoryAllowableValues();
-        if (!in_array($category, $allowedValues, true)) {
+        $allowedValues = $this->getBalanceTypeAllowableValues();
+        if (!in_array($balanceType, $allowedValues, true)) {
             error_log(
                 sprintf(
-                    "category: unexpected enum value '%s' - Supported values are [%s]",
-                    $category,
+                    "balanceType: unexpected enum value '%s' - Supported values are [%s]",
+                    $balanceType,
                     implode(', ', $allowedValues)
                 )
             );
         }
-        $this->container['category'] = $category;
+        $this->container['balanceType'] = $balanceType;
 
         return $this;
     }
 
     /**
-     * Gets counterparty
-     *
-     * @return \Adyen\Model\BalancePlatform\Counterparty|null
-     */
-    public function getCounterparty()
-    {
-        return $this->container['counterparty'];
-    }
-
-    /**
-     * Sets counterparty
-     *
-     * @param \Adyen\Model\BalancePlatform\Counterparty|null $counterparty counterparty
-     *
-     * @return self
-     */
-    public function setCounterparty($counterparty)
-    {
-        $this->container['counterparty'] = $counterparty;
-
-        return $this;
-    }
-
-    /**
-     * Gets country
-     *
-     * @return string|null
-     */
-    public function getCountry()
-    {
-        return $this->container['country'];
-    }
-
-    /**
-     * Sets country
-     *
-     * @param string|null $country The two-character ISO-3166-1 alpha-2 country code of the counterparty. For example, **US** or **NL**.  > Either `counterparty` or `country` field must be provided in a transfer route request.
-     *
-     * @return self
-     */
-    public function setCountry($country)
-    {
-        $this->container['country'] = $country;
-
-        return $this;
-    }
-
-    /**
-     * Gets currency
+     * Gets conditionType
      *
      * @return string
      */
-    public function getCurrency()
+    public function getConditionType()
     {
-        return $this->container['currency'];
+        return $this->container['conditionType'];
     }
 
     /**
-     * Sets currency
+     * Sets conditionType
      *
-     * @param string $currency The three-character ISO currency code of transfer. For example, **USD** or **EUR**.
+     * @param string $conditionType Define when you want to get notified about a balance change. Possible values:  * **greaterThan**: the balance in the account(s) exceeds the specified `value`.  * **greaterThanOrEqual**: the balance in the account(s) reaches or exceeds the specified `value`.  * **lessThan**: the balance in the account(s) drops below the specified `value`.  * **lessThanOrEqual**: the balance in the account(s) reaches to drops below the specified `value`.
      *
      * @return self
      */
-    public function setCurrency($currency)
+    public function setConditionType($conditionType)
     {
-        $this->container['currency'] = $currency;
+        $allowedValues = $this->getConditionTypeAllowableValues();
+        if (!in_array($conditionType, $allowedValues, true)) {
+            error_log(
+                sprintf(
+                    "conditionType: unexpected enum value '%s' - Supported values are [%s]",
+                    $conditionType,
+                    implode(', ', $allowedValues)
+                )
+            );
+        }
+        $this->container['conditionType'] = $conditionType;
 
         return $this;
     }
 
     /**
-     * Gets priorities
+     * Gets value
      *
-     * @return string[]|null
+     * @return int
      */
-    public function getPriorities()
+    public function getValue()
     {
-        return $this->container['priorities'];
+        return $this->container['value'];
     }
 
     /**
-     * Sets priorities
+     * Sets value
      *
-     * @param string[]|null $priorities The list of priorities for the bank transfer. Priorities set the speed at which the transfer is sent and the fees that you have to pay. Multiple values can be provided. Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: A faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: The fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: For instant funds transfers within the United States and in [SEPA locations](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: For high-value transfers to a recipient in a different country.  * **internal**: For transfers to an Adyen-issued business bank account (by bank account number/IBAN).
+     * @param int $value The value limit in the specified balance type and currency, in minor units.
      *
      * @return self
      */
-    public function setPriorities($priorities)
+    public function setValue($value)
     {
-        $allowedValues = $this->getPrioritiesAllowableValues();
-        if (array_diff($priorities, $allowedValues)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value for 'priorities', must be one of '%s'",
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['priorities'] = $priorities;
+        $this->container['value'] = $value;
 
         return $this;
     }
