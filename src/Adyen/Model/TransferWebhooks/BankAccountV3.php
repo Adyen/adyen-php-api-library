@@ -42,7 +42,8 @@ class BankAccountV3 implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'accountHolder' => '\Adyen\Model\TransferWebhooks\PartyIdentification',
-        'accountIdentification' => '\Adyen\Model\TransferWebhooks\BankAccountV3AccountIdentification'
+        'accountIdentification' => '\Adyen\Model\TransferWebhooks\BankAccountV3AccountIdentification',
+        'storedPaymentMethodId' => 'string'
     ];
 
     /**
@@ -54,7 +55,8 @@ class BankAccountV3 implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'accountHolder' => null,
-        'accountIdentification' => null
+        'accountIdentification' => null,
+        'storedPaymentMethodId' => null
     ];
 
     /**
@@ -64,7 +66,8 @@ class BankAccountV3 implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'accountHolder' => false,
-        'accountIdentification' => false
+        'accountIdentification' => false,
+        'storedPaymentMethodId' => false
     ];
 
     /**
@@ -154,7 +157,8 @@ class BankAccountV3 implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'accountHolder' => 'accountHolder',
-        'accountIdentification' => 'accountIdentification'
+        'accountIdentification' => 'accountIdentification',
+        'storedPaymentMethodId' => 'storedPaymentMethodId'
     ];
 
     /**
@@ -164,7 +168,8 @@ class BankAccountV3 implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'accountHolder' => 'setAccountHolder',
-        'accountIdentification' => 'setAccountIdentification'
+        'accountIdentification' => 'setAccountIdentification',
+        'storedPaymentMethodId' => 'setStoredPaymentMethodId'
     ];
 
     /**
@@ -174,7 +179,8 @@ class BankAccountV3 implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'accountHolder' => 'getAccountHolder',
-        'accountIdentification' => 'getAccountIdentification'
+        'accountIdentification' => 'getAccountIdentification',
+        'storedPaymentMethodId' => 'getStoredPaymentMethodId'
     ];
 
     /**
@@ -236,6 +242,7 @@ class BankAccountV3 implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('accountHolder', $data ?? [], null);
         $this->setIfExists('accountIdentification', $data ?? [], null);
+        $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
     }
 
     /**
@@ -330,6 +337,30 @@ class BankAccountV3 implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setAccountIdentification($accountIdentification)
     {
         $this->container['accountIdentification'] = $accountIdentification;
+
+        return $this;
+    }
+
+    /**
+     * Gets storedPaymentMethodId
+     *
+     * @return string|null
+     */
+    public function getStoredPaymentMethodId()
+    {
+        return $this->container['storedPaymentMethodId'];
+    }
+
+    /**
+     * Sets storedPaymentMethodId
+     *
+     * @param string|null $storedPaymentMethodId The unique token that identifies the stored bank account details of the counterparty for a payout.
+     *
+     * @return self
+     */
+    public function setStoredPaymentMethodId($storedPaymentMethodId)
+    {
+        $this->container['storedPaymentMethodId'] = $storedPaymentMethodId;
 
         return $this;
     }

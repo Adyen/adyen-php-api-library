@@ -392,27 +392,87 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     public const REASON_AMOUNT_LIMIT_EXCEEDED = 'amountLimitExceeded';
     public const REASON_APPROVAL_EXPIRED = 'approvalExpired';
     public const REASON_APPROVED = 'approved';
+    public const REASON_AVS_DECLINED = 'avsDeclined';
     public const REASON_BALANCE_ACCOUNT_TEMPORARILY_BLOCKED_BY_TRANSACTION_RULE = 'balanceAccountTemporarilyBlockedByTransactionRule';
+    public const REASON_BLOCK_CARD = 'blockCard';
+    public const REASON_CALL_REFERRAL = 'callReferral';
+    public const REASON_CANCELLED = 'cancelled';
+    public const REASON_CAPTURE_CARD = 'captureCard';
+    public const REASON_CARD_EXPIRED = 'cardExpired';
+    public const REASON_CARDHOLDER_AUTHENTICATION_REQUIRED = 'cardholderAuthenticationRequired';
+    public const REASON_CASHBACK_AMOUNT_EXCEEDS_LIMIT = 'cashbackAmountExceedsLimit';
+    public const REASON_CAVV_DECLINED = 'cavvDeclined';
+    public const REASON_CONTACTLESS_FALLBACK = 'contactlessFallback';
+    public const REASON_CONTACTLESS_LIMIT_REACHED = 'contactlessLimitReached';
     public const REASON_COUNTERPARTY_ACCOUNT_BLOCKED = 'counterpartyAccountBlocked';
     public const REASON_COUNTERPARTY_ACCOUNT_CLOSED = 'counterpartyAccountClosed';
     public const REASON_COUNTERPARTY_ACCOUNT_NOT_FOUND = 'counterpartyAccountNotFound';
     public const REASON_COUNTERPARTY_ADDRESS_REQUIRED = 'counterpartyAddressRequired';
     public const REASON_COUNTERPARTY_BANK_TIMED_OUT = 'counterpartyBankTimedOut';
     public const REASON_COUNTERPARTY_BANK_UNAVAILABLE = 'counterpartyBankUnavailable';
+    public const REASON_CRYPTOGRAPHIC_FAILURE = 'cryptographicFailure';
+    public const REASON_CVC_DECLINED = 'cvcDeclined';
     public const REASON_DECLINED = 'declined';
+    public const REASON_DECLINED_BY_BAP_VALIDATION = 'declinedByBapValidation';
     public const REASON_DECLINED_BY_TRANSACTION_RULE = 'declinedByTransactionRule';
+    public const REASON_DECLINED_NON_GENERIC = 'declinedNonGeneric';
     public const REASON_DIRECT_DEBIT_NOT_SUPPORTED = 'directDebitNotSupported';
+    public const REASON_DO_NOT_HONOR = 'doNotHonor';
+    public const REASON_DOMESTIC_DEBIT_TRANSACTION_NOT_ALLOWED = 'domesticDebitTransactionNotAllowed';
+    public const REASON_DUPLICATE_TRANSMISSION_DETECTED = 'duplicateTransmissionDetected';
     public const REASON_ERROR = 'error';
+    public const REASON_FORMAT_ERROR = 'formatError';
+    public const REASON_FRAUD = 'fraud';
+    public const REASON_FRAUD_CANCELLED = 'fraudCancelled';
+    public const REASON_HONOR_WITH_ID = 'honorWithId';
+    public const REASON_INTERNAL_TIMEOUT = 'internalTimeout';
+    public const REASON_INVALID_ACCOUNT = 'invalidAccount';
+    public const REASON_INVALID_AMOUNT = 'invalidAmount';
+    public const REASON_INVALID_AUTHORIZATION_LIFE_CYCLE = 'invalidAuthorizationLifeCycle';
+    public const REASON_INVALID_CARD = 'invalidCard';
+    public const REASON_INVALID_EXPIRY_DATE = 'invalidExpiryDate';
+    public const REASON_INVALID_FROM_ACCOUNT = 'invalidFromAccount';
+    public const REASON_INVALID_ISSUER = 'invalidIssuer';
+    public const REASON_INVALID_MERCHANT = 'invalidMerchant';
+    public const REASON_INVALID_PIN = 'invalidPin';
+    public const REASON_INVALID_TO_ACCOUNT = 'invalidToAccount';
+    public const REASON_INVALID_TRANSACTION = 'invalidTransaction';
+    public const REASON_ISSUER_SUSPECTED_FRAUD = 'issuerSuspectedFraud';
+    public const REASON_LOST_CARD = 'lostCard';
+    public const REASON_MOBILE_PIN_REQUIRED = 'mobilePinRequired';
+    public const REASON_NO_CHECKING_ACCOUNT = 'noCheckingAccount';
+    public const REASON_NO_SAVINGS_ACCOUNT = 'noSavingsAccount';
+    public const REASON_NOT3D_AUTHENTICATED = 'not3dAuthenticated';
     public const REASON_NOT_ENOUGH_BALANCE = 'notEnoughBalance';
+    public const REASON_NOT_SUBMITTED = 'notSubmitted';
+    public const REASON_NOT_SUPPORTED = 'notSupported';
+    public const REASON_PARTIALLY_APPROVED = 'partiallyApproved';
     public const REASON_PENDING = 'pending';
     public const REASON_PENDING_APPROVAL = 'pendingApproval';
     public const REASON_PENDING_EXECUTION = 'pendingExecution';
+    public const REASON_PIN_NOT_CHANGED = 'pinNotChanged';
+    public const REASON_PIN_REQUIRED = 'pinRequired';
+    public const REASON_PIN_TRIES_EXCEEDED = 'pinTriesExceeded';
+    public const REASON_PIN_VALIDATION_NOT_POSSIBLE = 'pinValidationNotPossible';
+    public const REASON_PURCHASE_AMOUNT_ONLY_NO_CASH_BACK = 'purchaseAmountOnlyNoCashBack';
     public const REASON_REFUSED_BY_COUNTERPARTY_BANK = 'refusedByCounterpartyBank';
     public const REASON_REFUSED_BY_CUSTOMER = 'refusedByCustomer';
+    public const REASON_RESTRICTED_CARD = 'restrictedCard';
+    public const REASON_REVOCATION_OF_AUTH = 'revocationOfAuth';
     public const REASON_ROUTE_NOT_FOUND = 'routeNotFound';
+    public const REASON_SCA_AUTHENTICATION_REQUIRED = 'scaAuthenticationRequired';
     public const REASON_SCA_FAILED = 'scaFailed';
+    public const REASON_SCHEME_ADVICE = 'schemeAdvice';
+    public const REASON_SECURITY_VIOLATION = 'securityViolation';
+    public const REASON_SHOPPER_CANCELLED = 'shopperCancelled';
+    public const REASON_STOLEN_CARD = 'stolenCard';
+    public const REASON_THREEDS_DYNAMIC_LINKING_MISMATCH = 'threedsDynamicLinkingMismatch';
+    public const REASON_TRANSACTION_NOT_PERMITTED = 'transactionNotPermitted';
     public const REASON_TRANSFER_INSTRUMENT_DOES_NOT_EXIST = 'transferInstrumentDoesNotExist';
+    public const REASON_UNABLE_TO_ROUTE_TRANSACTION = 'unableToRouteTransaction';
     public const REASON_UNKNOWN = 'unknown';
+    public const REASON_WITHDRAWAL_AMOUNT_EXCEEDED = 'withdrawalAmountExceeded';
+    public const REASON_WITHDRAWAL_COUNT_EXCEEDED = 'withdrawalCountExceeded';
     public const STATUS_APPROVAL_PENDING = 'approvalPending';
     public const STATUS_ATM_WITHDRAWAL = 'atmWithdrawal';
     public const STATUS_ATM_WITHDRAWAL_REVERSAL_PENDING = 'atmWithdrawalReversalPending';
@@ -559,27 +619,87 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
             self::REASON_AMOUNT_LIMIT_EXCEEDED,
             self::REASON_APPROVAL_EXPIRED,
             self::REASON_APPROVED,
+            self::REASON_AVS_DECLINED,
             self::REASON_BALANCE_ACCOUNT_TEMPORARILY_BLOCKED_BY_TRANSACTION_RULE,
+            self::REASON_BLOCK_CARD,
+            self::REASON_CALL_REFERRAL,
+            self::REASON_CANCELLED,
+            self::REASON_CAPTURE_CARD,
+            self::REASON_CARD_EXPIRED,
+            self::REASON_CARDHOLDER_AUTHENTICATION_REQUIRED,
+            self::REASON_CASHBACK_AMOUNT_EXCEEDS_LIMIT,
+            self::REASON_CAVV_DECLINED,
+            self::REASON_CONTACTLESS_FALLBACK,
+            self::REASON_CONTACTLESS_LIMIT_REACHED,
             self::REASON_COUNTERPARTY_ACCOUNT_BLOCKED,
             self::REASON_COUNTERPARTY_ACCOUNT_CLOSED,
             self::REASON_COUNTERPARTY_ACCOUNT_NOT_FOUND,
             self::REASON_COUNTERPARTY_ADDRESS_REQUIRED,
             self::REASON_COUNTERPARTY_BANK_TIMED_OUT,
             self::REASON_COUNTERPARTY_BANK_UNAVAILABLE,
+            self::REASON_CRYPTOGRAPHIC_FAILURE,
+            self::REASON_CVC_DECLINED,
             self::REASON_DECLINED,
+            self::REASON_DECLINED_BY_BAP_VALIDATION,
             self::REASON_DECLINED_BY_TRANSACTION_RULE,
+            self::REASON_DECLINED_NON_GENERIC,
             self::REASON_DIRECT_DEBIT_NOT_SUPPORTED,
+            self::REASON_DO_NOT_HONOR,
+            self::REASON_DOMESTIC_DEBIT_TRANSACTION_NOT_ALLOWED,
+            self::REASON_DUPLICATE_TRANSMISSION_DETECTED,
             self::REASON_ERROR,
+            self::REASON_FORMAT_ERROR,
+            self::REASON_FRAUD,
+            self::REASON_FRAUD_CANCELLED,
+            self::REASON_HONOR_WITH_ID,
+            self::REASON_INTERNAL_TIMEOUT,
+            self::REASON_INVALID_ACCOUNT,
+            self::REASON_INVALID_AMOUNT,
+            self::REASON_INVALID_AUTHORIZATION_LIFE_CYCLE,
+            self::REASON_INVALID_CARD,
+            self::REASON_INVALID_EXPIRY_DATE,
+            self::REASON_INVALID_FROM_ACCOUNT,
+            self::REASON_INVALID_ISSUER,
+            self::REASON_INVALID_MERCHANT,
+            self::REASON_INVALID_PIN,
+            self::REASON_INVALID_TO_ACCOUNT,
+            self::REASON_INVALID_TRANSACTION,
+            self::REASON_ISSUER_SUSPECTED_FRAUD,
+            self::REASON_LOST_CARD,
+            self::REASON_MOBILE_PIN_REQUIRED,
+            self::REASON_NO_CHECKING_ACCOUNT,
+            self::REASON_NO_SAVINGS_ACCOUNT,
+            self::REASON_NOT3D_AUTHENTICATED,
             self::REASON_NOT_ENOUGH_BALANCE,
+            self::REASON_NOT_SUBMITTED,
+            self::REASON_NOT_SUPPORTED,
+            self::REASON_PARTIALLY_APPROVED,
             self::REASON_PENDING,
             self::REASON_PENDING_APPROVAL,
             self::REASON_PENDING_EXECUTION,
+            self::REASON_PIN_NOT_CHANGED,
+            self::REASON_PIN_REQUIRED,
+            self::REASON_PIN_TRIES_EXCEEDED,
+            self::REASON_PIN_VALIDATION_NOT_POSSIBLE,
+            self::REASON_PURCHASE_AMOUNT_ONLY_NO_CASH_BACK,
             self::REASON_REFUSED_BY_COUNTERPARTY_BANK,
             self::REASON_REFUSED_BY_CUSTOMER,
+            self::REASON_RESTRICTED_CARD,
+            self::REASON_REVOCATION_OF_AUTH,
             self::REASON_ROUTE_NOT_FOUND,
+            self::REASON_SCA_AUTHENTICATION_REQUIRED,
             self::REASON_SCA_FAILED,
+            self::REASON_SCHEME_ADVICE,
+            self::REASON_SECURITY_VIOLATION,
+            self::REASON_SHOPPER_CANCELLED,
+            self::REASON_STOLEN_CARD,
+            self::REASON_THREEDS_DYNAMIC_LINKING_MISMATCH,
+            self::REASON_TRANSACTION_NOT_PERMITTED,
             self::REASON_TRANSFER_INSTRUMENT_DOES_NOT_EXIST,
+            self::REASON_UNABLE_TO_ROUTE_TRANSACTION,
             self::REASON_UNKNOWN,
+            self::REASON_WITHDRAWAL_AMOUNT_EXCEEDED,
+            self::REASON_WITHDRAWAL_COUNT_EXCEEDED,
         ];
     }
     /**
@@ -982,7 +1102,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets category
      *
-     * @param string $category The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **card**: a transfer involving a third-party card.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by a Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.  - **topUp**: an incoming transfer initiated by your user to top up their balance account.
+     * @param string $category The category of the transfer.  Possible values:   - **bank**: A transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id) or a bank account.  - **card**: A transfer involving a third-party card.  - **internal**: A transfer between [balance accounts](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id) within your platform.  - **issuedCard**: A transfer initiated by an Adyen-issued card.  - **platformPayment**: Funds movements related to payments that are acquired for your users.  - **topUp**: An incoming transfer initiated by your user to top up their balance account.
      *
      * @return self
      */
@@ -1470,7 +1590,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      *
-     * @param string $status The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user's balance account.  - **failed**: the transfer is rejected by the counterparty's bank. - **returned**: the transfer is returned by the counterparty's bank.
+     * @param string $status The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **refused**: the transfer request is rejected by Adyen for one of the following reasons:   - Lack of funds in the balance account.   - Transfer limit exceeded.   - Transaction rule requirements violated. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user's balance account.  - **failed**: the transfer is rejected by the counterparty's bank. - **returned**: the transfer is returned by the counterparty's bank.
      *
      * @return self
      */
