@@ -269,6 +269,7 @@ class DisputeEventNotification implements ModelInterface, ArrayAccess, \JsonSeri
     public const TYPE_FRAUD = 'fraud';
     public const TYPE_NOT_DELIVERED = 'notDelivered';
     public const TYPE_DUPLICATE = 'duplicate';
+    public const TYPE_OTHER = 'other';
 
     /**
      * Gets allowable values of the enum
@@ -281,6 +282,7 @@ class DisputeEventNotification implements ModelInterface, ArrayAccess, \JsonSeri
             self::TYPE_FRAUD,
             self::TYPE_NOT_DELIVERED,
             self::TYPE_DUPLICATE,
+            self::TYPE_OTHER,
         ];
     }
     /**
@@ -422,7 +424,7 @@ class DisputeEventNotification implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets creationDate
      *
-     * @param \DateTime|null $creationDate The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
+     * @param \DateTime|null $creationDate The date and time when the event was triggered, in ISO 8601 extended format. For example, **2025-03-19T10:15:30+01:00**.
      *
      * @return self
      */
