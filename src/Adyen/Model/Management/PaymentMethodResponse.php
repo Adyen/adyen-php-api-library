@@ -260,6 +260,8 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public const TYPES_WITH_ERRORS_BANESE_CARD_PREPAID = 'banese_card_prepaid';
     public const TYPES_WITH_ERRORS_BCMC = 'bcmc';
     public const TYPES_WITH_ERRORS_BLIK = 'blik';
+    public const TYPES_WITH_ERRORS_BLIK_POS = 'blik_pos';
+    public const TYPES_WITH_ERRORS_BR_SCHEMES = 'br_schemes';
     public const TYPES_WITH_ERRORS_CARTEBANCAIRE = 'cartebancaire';
     public const TYPES_WITH_ERRORS_CLEARPAY = 'clearpay';
     public const TYPES_WITH_ERRORS_CLICKTOPAY = 'clicktopay';
@@ -285,6 +287,7 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public const TYPES_WITH_ERRORS_ELOCREDIT = 'elocredit';
     public const TYPES_WITH_ERRORS_ELODEBIT = 'elodebit';
     public const TYPES_WITH_ERRORS_GIROCARD = 'girocard';
+    public const TYPES_WITH_ERRORS_GIVEX = 'givex';
     public const TYPES_WITH_ERRORS_GOOGLEPAY = 'googlepay';
     public const TYPES_WITH_ERRORS_GREEN_CARD = 'green_card';
     public const TYPES_WITH_ERRORS_GREEN_CARD_CREDIT = 'green_card_credit';
@@ -299,6 +302,7 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public const TYPES_WITH_ERRORS_JCB = 'jcb';
     public const TYPES_WITH_ERRORS_KLARNA = 'klarna';
     public const TYPES_WITH_ERRORS_KLARNA_ACCOUNT = 'klarna_account';
+    public const TYPES_WITH_ERRORS_KLARNA_B2B = 'klarna_b2b';
     public const TYPES_WITH_ERRORS_KLARNA_PAYNOW = 'klarna_paynow';
     public const TYPES_WITH_ERRORS_LE_CARD = 'le_card';
     public const TYPES_WITH_ERRORS_LE_CARD_CREDIT = 'le_card_credit';
@@ -340,6 +344,7 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public const TYPES_WITH_ERRORS_SEPADIRECTDEBIT = 'sepadirectdebit';
     public const TYPES_WITH_ERRORS_SODEXO = 'sodexo';
     public const TYPES_WITH_ERRORS_STAR = 'star';
+    public const TYPES_WITH_ERRORS_SVS = 'svs';
     public const TYPES_WITH_ERRORS_SWISH = 'swish';
     public const TYPES_WITH_ERRORS_TICKET = 'ticket';
     public const TYPES_WITH_ERRORS_TODO_GIFTCARD = 'todo_giftcard';
@@ -352,6 +357,7 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public const TYPES_WITH_ERRORS_UP_BRAZIL_PREPAID = 'up_brazil_prepaid';
     public const TYPES_WITH_ERRORS_VALE_REFEICAO = 'vale_refeicao';
     public const TYPES_WITH_ERRORS_VALE_REFEICAO_PREPAID = 'vale_refeicao_prepaid';
+    public const TYPES_WITH_ERRORS_VALUELINK = 'valuelink';
     public const TYPES_WITH_ERRORS_VEGAS_CARD = 'vegas_card';
     public const TYPES_WITH_ERRORS_VEGAS_CARD_CREDIT = 'vegas_card_credit';
     public const TYPES_WITH_ERRORS_VEGAS_CARD_DEBIT = 'vegas_card_debit';
@@ -398,6 +404,8 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             self::TYPES_WITH_ERRORS_BANESE_CARD_PREPAID,
             self::TYPES_WITH_ERRORS_BCMC,
             self::TYPES_WITH_ERRORS_BLIK,
+            self::TYPES_WITH_ERRORS_BLIK_POS,
+            self::TYPES_WITH_ERRORS_BR_SCHEMES,
             self::TYPES_WITH_ERRORS_CARTEBANCAIRE,
             self::TYPES_WITH_ERRORS_CLEARPAY,
             self::TYPES_WITH_ERRORS_CLICKTOPAY,
@@ -423,6 +431,7 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             self::TYPES_WITH_ERRORS_ELOCREDIT,
             self::TYPES_WITH_ERRORS_ELODEBIT,
             self::TYPES_WITH_ERRORS_GIROCARD,
+            self::TYPES_WITH_ERRORS_GIVEX,
             self::TYPES_WITH_ERRORS_GOOGLEPAY,
             self::TYPES_WITH_ERRORS_GREEN_CARD,
             self::TYPES_WITH_ERRORS_GREEN_CARD_CREDIT,
@@ -437,6 +446,7 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             self::TYPES_WITH_ERRORS_JCB,
             self::TYPES_WITH_ERRORS_KLARNA,
             self::TYPES_WITH_ERRORS_KLARNA_ACCOUNT,
+            self::TYPES_WITH_ERRORS_KLARNA_B2B,
             self::TYPES_WITH_ERRORS_KLARNA_PAYNOW,
             self::TYPES_WITH_ERRORS_LE_CARD,
             self::TYPES_WITH_ERRORS_LE_CARD_CREDIT,
@@ -478,6 +488,7 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             self::TYPES_WITH_ERRORS_SEPADIRECTDEBIT,
             self::TYPES_WITH_ERRORS_SODEXO,
             self::TYPES_WITH_ERRORS_STAR,
+            self::TYPES_WITH_ERRORS_SVS,
             self::TYPES_WITH_ERRORS_SWISH,
             self::TYPES_WITH_ERRORS_TICKET,
             self::TYPES_WITH_ERRORS_TODO_GIFTCARD,
@@ -490,6 +501,7 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             self::TYPES_WITH_ERRORS_UP_BRAZIL_PREPAID,
             self::TYPES_WITH_ERRORS_VALE_REFEICAO,
             self::TYPES_WITH_ERRORS_VALE_REFEICAO_PREPAID,
+            self::TYPES_WITH_ERRORS_VALUELINK,
             self::TYPES_WITH_ERRORS_VEGAS_CARD,
             self::TYPES_WITH_ERRORS_VEGAS_CARD_CREDIT,
             self::TYPES_WITH_ERRORS_VEGAS_CARD_DEBIT,

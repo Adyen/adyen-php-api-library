@@ -57,7 +57,7 @@ class SplitConfigurationMerchantLevelApi extends Service
     }
 
     /**
-    * Create a split configuration
+    * Create a split configuration profile
     *
     * @param string $merchantId
     * @param \Adyen\Model\Management\SplitConfiguration $splitConfiguration
@@ -73,7 +73,7 @@ class SplitConfigurationMerchantLevelApi extends Service
     }
 
     /**
-    * Delete a split configuration
+    * Delete a split configuration profile
     *
     * @param string $merchantId
     * @param string $splitConfigurationId
@@ -89,7 +89,7 @@ class SplitConfigurationMerchantLevelApi extends Service
     }
 
     /**
-    * Delete a split configuration rule
+    * Delete a rule
     *
     * @param string $merchantId
     * @param string $splitConfigurationId
@@ -106,7 +106,7 @@ class SplitConfigurationMerchantLevelApi extends Service
     }
 
     /**
-    * Get a split configuration
+    * Get a split configuration profile
     *
     * @param string $merchantId
     * @param string $splitConfigurationId
@@ -122,7 +122,7 @@ class SplitConfigurationMerchantLevelApi extends Service
     }
 
     /**
-    * Get a list of split configurations
+    * Get a list of split configuration profiles
     *
     * @param string $merchantId
     * @param array|null $requestOptions
@@ -137,7 +137,7 @@ class SplitConfigurationMerchantLevelApi extends Service
     }
 
     /**
-    * Update split conditions
+    * Update the split conditions
     *
     * @param string $merchantId
     * @param string $splitConfigurationId
@@ -155,7 +155,7 @@ class SplitConfigurationMerchantLevelApi extends Service
     }
 
     /**
-    * Update split configuration description
+    * Update the description of the split configuration profile
     *
     * @param string $merchantId
     * @param string $splitConfigurationId

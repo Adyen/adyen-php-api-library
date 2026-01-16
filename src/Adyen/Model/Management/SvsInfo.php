@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\Management\ObjectSerializer;
 
 /**
- * Amount Class Doc Comment
+ * SvsInfo Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
+class SvsInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Amount';
+    protected static $openAPIModelName = 'SvsInfo';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,8 +41,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'currency' => 'string',
-        'value' => 'int'
+        'authorisationMid' => 'string',
+        'currencyCode' => 'string'
     ];
 
     /**
@@ -53,8 +53,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'currency' => null,
-        'value' => 'int64'
+        'authorisationMid' => null,
+        'currencyCode' => null
     ];
 
     /**
@@ -63,8 +63,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'currency' => false,
-        'value' => false
+        'authorisationMid' => false,
+        'currencyCode' => false
     ];
 
     /**
@@ -153,8 +153,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'currency' => 'currency',
-        'value' => 'value'
+        'authorisationMid' => 'authorisationMid',
+        'currencyCode' => 'currencyCode'
     ];
 
     /**
@@ -163,8 +163,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'currency' => 'setCurrency',
-        'value' => 'setValue'
+        'authorisationMid' => 'setAuthorisationMid',
+        'currencyCode' => 'setCurrencyCode'
     ];
 
     /**
@@ -173,8 +173,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'currency' => 'getCurrency',
-        'value' => 'getValue'
+        'authorisationMid' => 'getAuthorisationMid',
+        'currencyCode' => 'getCurrencyCode'
     ];
 
     /**
@@ -234,8 +234,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('currency', $data ?? [], null);
-        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('authorisationMid', $data ?? [], null);
+        $this->setIfExists('currencyCode', $data ?? [], null);
     }
 
     /**
@@ -265,11 +265,11 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['currency'] === null) {
-            $invalidProperties[] = "'currency' can't be null";
+        if ($this->container['authorisationMid'] === null) {
+            $invalidProperties[] = "'authorisationMid' can't be null";
         }
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
+        if ($this->container['currencyCode'] === null) {
+            $invalidProperties[] = "'currencyCode' can't be null";
         }
         return $invalidProperties;
     }
@@ -287,49 +287,49 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets currency
+     * Gets authorisationMid
      *
      * @return string
      */
-    public function getCurrency()
+    public function getAuthorisationMid()
     {
-        return $this->container['currency'];
+        return $this->container['authorisationMid'];
     }
 
     /**
-     * Sets currency
+     * Sets authorisationMid
      *
-     * @param string $currency The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount.
+     * @param string $authorisationMid The merchant ID (MID) that the acquirer recognizes you by.
      *
      * @return self
      */
-    public function setCurrency($currency)
+    public function setAuthorisationMid($authorisationMid)
     {
-        $this->container['currency'] = $currency;
+        $this->container['authorisationMid'] = $authorisationMid;
 
         return $this;
     }
 
     /**
-     * Gets value
+     * Gets currencyCode
      *
-     * @return int
+     * @return string
      */
-    public function getValue()
+    public function getCurrencyCode()
     {
-        return $this->container['value'];
+        return $this->container['currencyCode'];
     }
 
     /**
-     * Sets value
+     * Sets currencyCode
      *
-     * @param int $value The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).
+     * @param string $currencyCode The three-character ISO currency code, example **USD**
      *
      * @return self
      */
-    public function setValue($value)
+    public function setCurrencyCode($currencyCode)
     {
-        $this->container['value'] = $value;
+        $this->container['currencyCode'] = $currencyCode;
 
         return $this;
     }

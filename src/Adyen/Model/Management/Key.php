@@ -324,7 +324,7 @@ class Key implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets passphrase
      *
-     * @param string|null $passphrase The secure passphrase to protect the shared key. Must consist of:   * At least 12 characters.  * At least 1 uppercase letter: `[A-Z]`.   * At least 1 lowercase letter: `[a-z]`.   * At least 1 digit: `[0-9]`.    * At least 1 special character. Limited to the following: `~`, `@`, `$`, `%`, `^`, `&`, `*`, `(`, `)`, `_`, `+`, `=`, `}`, `{`, `]`, `[`, `;`, `:`, `?`, `.`, `,`, `>`, `<`.
+     * @param string|null $passphrase The secure passphrase to protect the shared key. Must consist of:   * At least 12 characters.  * At least 1 uppercase letter: `[A-Z]`.   * At least 1 lowercase letter: `[a-z]`.   * At least 1 digit: `[0-9]`.    * At least 1 special character. Limited to the following: `~`, `!`, `@`, `#`, `$`, `%`, `^`, `&`, `*`, `(`, `)`, `_`, `+`, `=`, `}`, `{`, `]`, `[`, `;`, `:`, `?`, `.`, `,`, `>`, `<`.
      *
      * @return self
      */
