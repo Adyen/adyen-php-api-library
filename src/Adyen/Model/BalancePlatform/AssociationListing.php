@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * TransferRouteRequest Class Doc Comment
+ * AssociationListing Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class TransferRouteRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class AssociationListing implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class TransferRouteRequest implements ModelInterface, ArrayAccess, \JsonSerializ
       *
       * @var string
       */
-    protected static $openAPIModelName = 'TransferRouteRequest';
+    protected static $openAPIModelName = 'AssociationListing';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,13 +41,13 @@ class TransferRouteRequest implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var string[]
       */
     protected static $openAPITypes = [
-        'balanceAccountId' => 'string',
-        'balancePlatform' => 'string',
-        'category' => 'string',
-        'counterparty' => '\Adyen\Model\BalancePlatform\Counterparty',
-        'country' => 'string',
-        'currency' => 'string',
-        'priorities' => 'string[]'
+        'createdAt' => '\DateTime',
+        'entityId' => 'string',
+        'entityType' => '\Adyen\Model\BalancePlatform\ScaEntityType',
+        'scaDeviceId' => 'string',
+        'scaDeviceName' => 'string',
+        'scaDeviceType' => '\Adyen\Model\BalancePlatform\ScaDeviceType',
+        'status' => '\Adyen\Model\BalancePlatform\AssociationStatus'
     ];
 
     /**
@@ -58,13 +58,13 @@ class TransferRouteRequest implements ModelInterface, ArrayAccess, \JsonSerializ
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'balanceAccountId' => null,
-        'balancePlatform' => null,
-        'category' => null,
-        'counterparty' => null,
-        'country' => null,
-        'currency' => null,
-        'priorities' => null
+        'createdAt' => 'date-time',
+        'entityId' => null,
+        'entityType' => null,
+        'scaDeviceId' => null,
+        'scaDeviceName' => null,
+        'scaDeviceType' => null,
+        'status' => null
     ];
 
     /**
@@ -73,13 +73,13 @@ class TransferRouteRequest implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'balanceAccountId' => false,
-        'balancePlatform' => false,
-        'category' => false,
-        'counterparty' => false,
-        'country' => false,
-        'currency' => false,
-        'priorities' => false
+        'createdAt' => false,
+        'entityId' => false,
+        'entityType' => false,
+        'scaDeviceId' => false,
+        'scaDeviceName' => false,
+        'scaDeviceType' => false,
+        'status' => false
     ];
 
     /**
@@ -168,13 +168,13 @@ class TransferRouteRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $attributeMap = [
-        'balanceAccountId' => 'balanceAccountId',
-        'balancePlatform' => 'balancePlatform',
-        'category' => 'category',
-        'counterparty' => 'counterparty',
-        'country' => 'country',
-        'currency' => 'currency',
-        'priorities' => 'priorities'
+        'createdAt' => 'createdAt',
+        'entityId' => 'entityId',
+        'entityType' => 'entityType',
+        'scaDeviceId' => 'scaDeviceId',
+        'scaDeviceName' => 'scaDeviceName',
+        'scaDeviceType' => 'scaDeviceType',
+        'status' => 'status'
     ];
 
     /**
@@ -183,13 +183,13 @@ class TransferRouteRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $setters = [
-        'balanceAccountId' => 'setBalanceAccountId',
-        'balancePlatform' => 'setBalancePlatform',
-        'category' => 'setCategory',
-        'counterparty' => 'setCounterparty',
-        'country' => 'setCountry',
-        'currency' => 'setCurrency',
-        'priorities' => 'setPriorities'
+        'createdAt' => 'setCreatedAt',
+        'entityId' => 'setEntityId',
+        'entityType' => 'setEntityType',
+        'scaDeviceId' => 'setScaDeviceId',
+        'scaDeviceName' => 'setScaDeviceName',
+        'scaDeviceType' => 'setScaDeviceType',
+        'status' => 'setStatus'
     ];
 
     /**
@@ -198,13 +198,13 @@ class TransferRouteRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $getters = [
-        'balanceAccountId' => 'getBalanceAccountId',
-        'balancePlatform' => 'getBalancePlatform',
-        'category' => 'getCategory',
-        'counterparty' => 'getCounterparty',
-        'country' => 'getCountry',
-        'currency' => 'getCurrency',
-        'priorities' => 'getPriorities'
+        'createdAt' => 'getCreatedAt',
+        'entityId' => 'getEntityId',
+        'entityType' => 'getEntityType',
+        'scaDeviceId' => 'getScaDeviceId',
+        'scaDeviceName' => 'getScaDeviceName',
+        'scaDeviceType' => 'getScaDeviceType',
+        'status' => 'getStatus'
     ];
 
     /**
@@ -248,41 +248,7 @@ class TransferRouteRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         return self::$openAPIModelName;
     }
 
-    public const CATEGORY_BANK = 'bank';
-    public const PRIORITIES_CROSS_BORDER = 'crossBorder';
-    public const PRIORITIES_FAST = 'fast';
-    public const PRIORITIES_INSTANT = 'instant';
-    public const PRIORITIES_INTERNAL = 'internal';
-    public const PRIORITIES_REGULAR = 'regular';
-    public const PRIORITIES_WIRE = 'wire';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getCategoryAllowableValues()
-    {
-        return [
-            self::CATEGORY_BANK,
-        ];
-    }
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getPrioritiesAllowableValues()
-    {
-        return [
-            self::PRIORITIES_CROSS_BORDER,
-            self::PRIORITIES_FAST,
-            self::PRIORITIES_INSTANT,
-            self::PRIORITIES_INTERNAL,
-            self::PRIORITIES_REGULAR,
-            self::PRIORITIES_WIRE,
-        ];
-    }
     /**
      * Associative array for storing property values
      *
@@ -298,13 +264,13 @@ class TransferRouteRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('balanceAccountId', $data ?? [], null);
-        $this->setIfExists('balancePlatform', $data ?? [], null);
-        $this->setIfExists('category', $data ?? [], null);
-        $this->setIfExists('counterparty', $data ?? [], null);
-        $this->setIfExists('country', $data ?? [], null);
-        $this->setIfExists('currency', $data ?? [], null);
-        $this->setIfExists('priorities', $data ?? [], null);
+        $this->setIfExists('createdAt', $data ?? [], null);
+        $this->setIfExists('entityId', $data ?? [], null);
+        $this->setIfExists('entityType', $data ?? [], null);
+        $this->setIfExists('scaDeviceId', $data ?? [], null);
+        $this->setIfExists('scaDeviceName', $data ?? [], null);
+        $this->setIfExists('scaDeviceType', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
     }
 
     /**
@@ -334,23 +300,23 @@ class TransferRouteRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         $invalidProperties = [];
 
-        if ($this->container['balancePlatform'] === null) {
-            $invalidProperties[] = "'balancePlatform' can't be null";
+        if ($this->container['createdAt'] === null) {
+            $invalidProperties[] = "'createdAt' can't be null";
         }
-        if ($this->container['category'] === null) {
-            $invalidProperties[] = "'category' can't be null";
+        if ($this->container['entityId'] === null) {
+            $invalidProperties[] = "'entityId' can't be null";
         }
-        $allowedValues = $this->getCategoryAllowableValues();
-        if (!is_null($this->container['category']) && !in_array($this->container['category'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'category', must be one of '%s'",
-                $this->container['category'],
-                implode("', '", $allowedValues)
-            );
+        if ($this->container['entityType'] === null) {
+            $invalidProperties[] = "'entityType' can't be null";
         }
-
-        if ($this->container['currency'] === null) {
-            $invalidProperties[] = "'currency' can't be null";
+        if ($this->container['scaDeviceId'] === null) {
+            $invalidProperties[] = "'scaDeviceId' can't be null";
+        }
+        if ($this->container['scaDeviceType'] === null) {
+            $invalidProperties[] = "'scaDeviceType' can't be null";
+        }
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
         }
         return $invalidProperties;
     }
@@ -368,188 +334,169 @@ class TransferRouteRequest implements ModelInterface, ArrayAccess, \JsonSerializ
 
 
     /**
-     * Gets balanceAccountId
+     * Gets createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['createdAt'];
+    }
+
+    /**
+     * Sets createdAt
+     *
+     * @param \DateTime $createdAt The date and time when the association was created.
+     *
+     * @return self
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->container['createdAt'] = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Gets entityId
+     *
+     * @return string
+     */
+    public function getEntityId()
+    {
+        return $this->container['entityId'];
+    }
+
+    /**
+     * Sets entityId
+     *
+     * @param string $entityId The unique identifier of the entity.
+     *
+     * @return self
+     */
+    public function setEntityId($entityId)
+    {
+        $this->container['entityId'] = $entityId;
+
+        return $this;
+    }
+
+    /**
+     * Gets entityType
+     *
+     * @return \Adyen\Model\BalancePlatform\ScaEntityType
+     */
+    public function getEntityType()
+    {
+        return $this->container['entityType'];
+    }
+
+    /**
+     * Sets entityType
+     *
+     * @param \Adyen\Model\BalancePlatform\ScaEntityType $entityType entityType
+     *
+     * @return self
+     */
+    public function setEntityType($entityType)
+    {
+        $this->container['entityType'] = $entityType;
+
+        return $this;
+    }
+
+    /**
+     * Gets scaDeviceId
+     *
+     * @return string
+     */
+    public function getScaDeviceId()
+    {
+        return $this->container['scaDeviceId'];
+    }
+
+    /**
+     * Sets scaDeviceId
+     *
+     * @param string $scaDeviceId The unique identifier of the SCA device.
+     *
+     * @return self
+     */
+    public function setScaDeviceId($scaDeviceId)
+    {
+        $this->container['scaDeviceId'] = $scaDeviceId;
+
+        return $this;
+    }
+
+    /**
+     * Gets scaDeviceName
      *
      * @return string|null
      */
-    public function getBalanceAccountId()
+    public function getScaDeviceName()
     {
-        return $this->container['balanceAccountId'];
+        return $this->container['scaDeviceName'];
     }
 
     /**
-     * Sets balanceAccountId
+     * Sets scaDeviceName
      *
-     * @param string|null $balanceAccountId The unique identifier of the source [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id). Required if `counterparty` is **transferInstrumentId**.
+     * @param string|null $scaDeviceName The human-readable name for the SCA device that was registered.
      *
      * @return self
      */
-    public function setBalanceAccountId($balanceAccountId)
+    public function setScaDeviceName($scaDeviceName)
     {
-        $this->container['balanceAccountId'] = $balanceAccountId;
+        $this->container['scaDeviceName'] = $scaDeviceName;
 
         return $this;
     }
 
     /**
-     * Gets balancePlatform
+     * Gets scaDeviceType
      *
-     * @return string
+     * @return \Adyen\Model\BalancePlatform\ScaDeviceType
      */
-    public function getBalancePlatform()
+    public function getScaDeviceType()
     {
-        return $this->container['balancePlatform'];
+        return $this->container['scaDeviceType'];
     }
 
     /**
-     * Sets balancePlatform
+     * Sets scaDeviceType
      *
-     * @param string $balancePlatform The unique identifier assigned to the balance platform associated with the account holder.
+     * @param \Adyen\Model\BalancePlatform\ScaDeviceType $scaDeviceType scaDeviceType
      *
      * @return self
      */
-    public function setBalancePlatform($balancePlatform)
+    public function setScaDeviceType($scaDeviceType)
     {
-        $this->container['balancePlatform'] = $balancePlatform;
+        $this->container['scaDeviceType'] = $scaDeviceType;
 
         return $this;
     }
 
     /**
-     * Gets category
+     * Gets status
      *
-     * @return string
+     * @return \Adyen\Model\BalancePlatform\AssociationStatus
      */
-    public function getCategory()
+    public function getStatus()
     {
-        return $this->container['category'];
+        return $this->container['status'];
     }
 
     /**
-     * Sets category
+     * Sets status
      *
-     * @param string $category The type of transfer. Possible values:    - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.
+     * @param \Adyen\Model\BalancePlatform\AssociationStatus $status status
      *
      * @return self
      */
-    public function setCategory($category)
+    public function setStatus($status)
     {
-        $allowedValues = $this->getCategoryAllowableValues();
-        if (!in_array($category, $allowedValues, true)) {
-            error_log(
-                sprintf(
-                    "category: unexpected enum value '%s' - Supported values are [%s]",
-                    $category,
-                    implode(', ', $allowedValues)
-                )
-            );
-        }
-        $this->container['category'] = $category;
-
-        return $this;
-    }
-
-    /**
-     * Gets counterparty
-     *
-     * @return \Adyen\Model\BalancePlatform\Counterparty|null
-     */
-    public function getCounterparty()
-    {
-        return $this->container['counterparty'];
-    }
-
-    /**
-     * Sets counterparty
-     *
-     * @param \Adyen\Model\BalancePlatform\Counterparty|null $counterparty counterparty
-     *
-     * @return self
-     */
-    public function setCounterparty($counterparty)
-    {
-        $this->container['counterparty'] = $counterparty;
-
-        return $this;
-    }
-
-    /**
-     * Gets country
-     *
-     * @return string|null
-     */
-    public function getCountry()
-    {
-        return $this->container['country'];
-    }
-
-    /**
-     * Sets country
-     *
-     * @param string|null $country The two-character ISO-3166-1 alpha-2 country code of the counterparty. For example, **US** or **NL**.  > Either `counterparty` or `country` field must be provided in a transfer route request.
-     *
-     * @return self
-     */
-    public function setCountry($country)
-    {
-        $this->container['country'] = $country;
-
-        return $this;
-    }
-
-    /**
-     * Gets currency
-     *
-     * @return string
-     */
-    public function getCurrency()
-    {
-        return $this->container['currency'];
-    }
-
-    /**
-     * Sets currency
-     *
-     * @param string $currency The three-character ISO currency code of transfer. For example, **USD** or **EUR**.
-     *
-     * @return self
-     */
-    public function setCurrency($currency)
-    {
-        $this->container['currency'] = $currency;
-
-        return $this;
-    }
-
-    /**
-     * Gets priorities
-     *
-     * @return string[]|null
-     */
-    public function getPriorities()
-    {
-        return $this->container['priorities'];
-    }
-
-    /**
-     * Sets priorities
-     *
-     * @param string[]|null $priorities The list of priorities for the bank transfer. Priorities set the speed at which the transfer is sent and the fees that you have to pay. Multiple values can be provided. Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: A faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: The fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: For instant funds transfers within the United States and in [SEPA locations](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: For high-value transfers to a recipient in a different country.  * **internal**: For transfers to an Adyen-issued business bank account (by bank account number/IBAN).
-     *
-     * @return self
-     */
-    public function setPriorities($priorities)
-    {
-        $allowedValues = $this->getPrioritiesAllowableValues();
-        if (array_diff($priorities, $allowedValues)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value for 'priorities', must be one of '%s'",
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['priorities'] = $priorities;
+        $this->container['status'] = $status;
 
         return $this;
     }
