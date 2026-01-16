@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\Transfers\ObjectSerializer;
 
 /**
- * ConfirmationTrackingData Class Doc Comment
+ * FundingInstrument Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class ConfirmationTrackingData implements ModelInterface, ArrayAccess, \JsonSerializable
+class FundingInstrument implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class ConfirmationTrackingData implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ConfirmationTrackingData';
+    protected static $openAPIModelName = 'FundingInstrument';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,8 +41,10 @@ class ConfirmationTrackingData implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'status' => 'string',
-        'type' => 'string'
+        'cardIdentification' => '\Adyen\Model\Transfers\CardIdentification',
+        'networkPaymentReference' => 'string',
+        'reference' => 'string',
+        'sourceOfFunds' => 'string'
     ];
 
     /**
@@ -53,8 +55,10 @@ class ConfirmationTrackingData implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'status' => null,
-        'type' => null
+        'cardIdentification' => null,
+        'networkPaymentReference' => null,
+        'reference' => null,
+        'sourceOfFunds' => null
     ];
 
     /**
@@ -63,8 +67,10 @@ class ConfirmationTrackingData implements ModelInterface, ArrayAccess, \JsonSeri
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'status' => false,
-        'type' => false
+        'cardIdentification' => false,
+        'networkPaymentReference' => false,
+        'reference' => false,
+        'sourceOfFunds' => false
     ];
 
     /**
@@ -153,8 +159,10 @@ class ConfirmationTrackingData implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
-        'status' => 'status',
-        'type' => 'type'
+        'cardIdentification' => 'cardIdentification',
+        'networkPaymentReference' => 'networkPaymentReference',
+        'reference' => 'reference',
+        'sourceOfFunds' => 'sourceOfFunds'
     ];
 
     /**
@@ -163,8 +171,10 @@ class ConfirmationTrackingData implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
-        'status' => 'setStatus',
-        'type' => 'setType'
+        'cardIdentification' => 'setCardIdentification',
+        'networkPaymentReference' => 'setNetworkPaymentReference',
+        'reference' => 'setReference',
+        'sourceOfFunds' => 'setSourceOfFunds'
     ];
 
     /**
@@ -173,8 +183,10 @@ class ConfirmationTrackingData implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
-        'status' => 'getStatus',
-        'type' => 'getType'
+        'cardIdentification' => 'getCardIdentification',
+        'networkPaymentReference' => 'getNetworkPaymentReference',
+        'reference' => 'getReference',
+        'sourceOfFunds' => 'getSourceOfFunds'
     ];
 
     /**
@@ -218,31 +230,19 @@ class ConfirmationTrackingData implements ModelInterface, ArrayAccess, \JsonSeri
         return self::$openAPIModelName;
     }
 
-    public const STATUS_CREDITED = 'credited';
-    public const STATUS_ACCEPTED = 'accepted';
-    public const TYPE_CONFIRMATION = 'confirmation';
+    public const SOURCE_OF_FUNDS_DEBIT = 'DEBIT';
+    public const SOURCE_OF_FUNDS_DEPOSIT_ACCOUNT = 'DEPOSIT_ACCOUNT';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getStatusAllowableValues()
+    public function getSourceOfFundsAllowableValues()
     {
         return [
-            self::STATUS_CREDITED,
-            self::STATUS_ACCEPTED,
-        ];
-    }
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_CONFIRMATION,
+            self::SOURCE_OF_FUNDS_DEBIT,
+            self::SOURCE_OF_FUNDS_DEPOSIT_ACCOUNT,
         ];
     }
     /**
@@ -260,8 +260,10 @@ class ConfirmationTrackingData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('status', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('cardIdentification', $data ?? [], null);
+        $this->setIfExists('networkPaymentReference', $data ?? [], null);
+        $this->setIfExists('reference', $data ?? [], null);
+        $this->setIfExists('sourceOfFunds', $data ?? [], null);
     }
 
     /**
@@ -291,26 +293,11 @@ class ConfirmationTrackingData implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
-        if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
-        }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
+        $allowedValues = $this->getSourceOfFundsAllowableValues();
+        if (!is_null($this->container['sourceOfFunds']) && !in_array($this->container['sourceOfFunds'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
-        }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
+                "invalid value '%s' for 'sourceOfFunds', must be one of '%s'",
+                $this->container['sourceOfFunds'],
                 implode("', '", $allowedValues)
             );
         }
@@ -331,69 +318,107 @@ class ConfirmationTrackingData implements ModelInterface, ArrayAccess, \JsonSeri
 
 
     /**
-     * Gets status
+     * Gets cardIdentification
      *
-     * @return string
+     * @return \Adyen\Model\Transfers\CardIdentification|null
      */
-    public function getStatus()
+    public function getCardIdentification()
     {
-        return $this->container['status'];
+        return $this->container['cardIdentification'];
     }
 
     /**
-     * Sets status
+     * Sets cardIdentification
      *
-     * @param string $status The status of the transfer.  Possible values:   - **credited**: the funds are credited to your user's transfer instrument or bank account.- **accepted**: the request is accepted by the integration.
+     * @param \Adyen\Model\Transfers\CardIdentification|null $cardIdentification cardIdentification
      *
      * @return self
      */
-    public function setStatus($status)
+    public function setCardIdentification($cardIdentification)
     {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
-            error_log(
-                sprintf(
-                    "status: unexpected enum value '%s' - Supported values are [%s]",
-                    $status,
-                    implode(', ', $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
+        $this->container['cardIdentification'] = $cardIdentification;
 
         return $this;
     }
 
     /**
-     * Gets type
+     * Gets networkPaymentReference
      *
-     * @return string
+     * @return string|null
      */
-    public function getType()
+    public function getNetworkPaymentReference()
     {
-        return $this->container['type'];
+        return $this->container['networkPaymentReference'];
     }
 
     /**
-     * Sets type
+     * Sets networkPaymentReference
      *
-     * @param string $type The type of the tracking event.  Possible values:   - **confirmation**: the transfer passed Adyen's internal review.
+     * @param string|null $networkPaymentReference The unique reference assigned by the card network for the pay-in transaction.
      *
      * @return self
      */
-    public function setType($type)
+    public function setNetworkPaymentReference($networkPaymentReference)
     {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
+        $this->container['networkPaymentReference'] = $networkPaymentReference;
+
+        return $this;
+    }
+
+    /**
+     * Gets reference
+     *
+     * @return string|null
+     */
+    public function getReference()
+    {
+        return $this->container['reference'];
+    }
+
+    /**
+     * Sets reference
+     *
+     * @param string|null $reference Your internal reference that identifies this funding instrument. Required if `sourceOfFunds` is **DEPOSIT_ACCOUNT**.
+     *
+     * @return self
+     */
+    public function setReference($reference)
+    {
+        $this->container['reference'] = $reference;
+
+        return $this;
+    }
+
+    /**
+     * Gets sourceOfFunds
+     *
+     * @return string|null
+     */
+    public function getSourceOfFunds()
+    {
+        return $this->container['sourceOfFunds'];
+    }
+
+    /**
+     * Sets sourceOfFunds
+     *
+     * @param string|null $sourceOfFunds Indicates where the funds used for the transfer originated. Possible values are: - **DEBIT** for card-to-card transfers. - **DEPOSIT_ACCOUNT** for wallet-to-card transfers.
+     *
+     * @return self
+     */
+    public function setSourceOfFunds($sourceOfFunds)
+    {
+        $allowedValues = $this->getSourceOfFundsAllowableValues();
+        if (!in_array($sourceOfFunds, $allowedValues, true)) {
             error_log(
                 sprintf(
-                    "type: unexpected enum value '%s' - Supported values are [%s]",
-                    $type,
+                    "sourceOfFunds: unexpected enum value '%s' - Supported values are [%s]",
+                    $sourceOfFunds,
                     implode(', ', $allowedValues)
                 )
             );
         }
-        $this->container['type'] = $type;
+        $this->container['sourceOfFunds'] = $sourceOfFunds;
 
         return $this;
     }
