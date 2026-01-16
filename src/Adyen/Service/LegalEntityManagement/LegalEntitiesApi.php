@@ -115,6 +115,20 @@ class LegalEntitiesApi extends Service
     }
 
     /**
+    * Request periodic data review.
+    *
+    * @param string $id
+    * @param array|null $requestOptions
+
+    * @throws AdyenException
+    */
+    public function requestPeriodicReview(string $id, ?array $requestOptions = null)
+    {
+        $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/legalEntities/{id}/requestPeriodicReview");
+        $this->requestHttp($endpoint, strtolower('POST'), null, $requestOptions);
+    }
+
+    /**
     * Update a legal entity
     *
     * @param string $id
