@@ -9,6 +9,7 @@ use Adyen\Model\Checkout\CardDetailsRequest;
 use Adyen\Model\Checkout\CheckoutPaymentMethod;
 use Adyen\Model\Checkout\CreateCheckoutSessionRequest;
 use Adyen\Model\Checkout\DonationPaymentRequest;
+use Adyen\Model\Checkout\ObjectSerializer;
 use Adyen\Model\Checkout\PaymentDetailsRequest;
 use Adyen\Model\Checkout\PaymentLinkRequest;
 use Adyen\Model\Checkout\PaymentMethodsRequest;
@@ -62,7 +63,8 @@ class ModelBasedCheckoutTest extends TestCaseMock
 
         // first function calling to Array
         $func1 = function () use ($result) {
-            return $result->toArray();
+            #return $result->toArray();
+            return ObjectSerializer::sanitizeForSerialization($result);
         };
         // second function calling to json encode + decode
         $func2 = function () use ($result) {
@@ -71,7 +73,8 @@ class ModelBasedCheckoutTest extends TestCaseMock
         // Assert our to array function is faster
         $this->assertTrue($this->calculateRunTime($func1) < $this->calculateRunTime($func2));
         // And assert that the result is equal to a deep json encode/decode
-        $this->assertEquals($result->toArray(), json_decode(json_encode($result->jsonSerialize()), true));
+        #$this->assertEquals($result->toArray(), json_decode(json_encode($result->jsonSerialize()), true));
+        $this->assertEquals(ObjectSerializer::sanitizeForSerialization($result), json_decode(json_encode($result->jsonSerialize()), true));
     }
 
     /**
