@@ -74,4 +74,17 @@ class LegalEntityManagementTest extends TestCaseMock
         );
         assertEquals('auLocal', $response->getBankAccount()->getAccountIdentification()->getType());
     }
+
+    public function testRequestPeriodicReview()
+    {
+        $client = $this->createMockClientUrl(
+            'tests/Resources/LegalEntityManagement/request-periodic-review.json'
+        );
+        $service = new LegalEntitiesApi($client);
+        $service->requestPeriodicReview('LE322JV223222F5GVGMLNB83F');
+        self::assertEquals(
+            'https://kyc-test.adyen.com/lem/v4/legalEntities/LE322JV223222F5GVGMLNB83F/requestPeriodicReview',
+            $this->requestUrl
+        );
+    }
 }
