@@ -43,6 +43,7 @@ class TerminalAssignmentNotificationRequest implements ModelInterface, ArrayAcce
     protected static $openAPITypes = [
         'assignedToAccount' => 'string',
         'assignedToStore' => 'string',
+        'assignedToStoreId' => 'string',
         'eventDate' => 'string',
         'pspReference' => 'string',
         'uniqueTerminalId' => 'string'
@@ -58,6 +59,7 @@ class TerminalAssignmentNotificationRequest implements ModelInterface, ArrayAcce
     protected static $openAPIFormats = [
         'assignedToAccount' => null,
         'assignedToStore' => null,
+        'assignedToStoreId' => null,
         'eventDate' => null,
         'pspReference' => null,
         'uniqueTerminalId' => null
@@ -71,6 +73,7 @@ class TerminalAssignmentNotificationRequest implements ModelInterface, ArrayAcce
     protected static $openAPINullables = [
         'assignedToAccount' => false,
         'assignedToStore' => false,
+        'assignedToStoreId' => false,
         'eventDate' => false,
         'pspReference' => false,
         'uniqueTerminalId' => false
@@ -164,6 +167,7 @@ class TerminalAssignmentNotificationRequest implements ModelInterface, ArrayAcce
     protected static $attributeMap = [
         'assignedToAccount' => 'assignedToAccount',
         'assignedToStore' => 'assignedToStore',
+        'assignedToStoreId' => 'assignedToStoreId',
         'eventDate' => 'eventDate',
         'pspReference' => 'pspReference',
         'uniqueTerminalId' => 'uniqueTerminalId'
@@ -177,6 +181,7 @@ class TerminalAssignmentNotificationRequest implements ModelInterface, ArrayAcce
     protected static $setters = [
         'assignedToAccount' => 'setAssignedToAccount',
         'assignedToStore' => 'setAssignedToStore',
+        'assignedToStoreId' => 'setAssignedToStoreId',
         'eventDate' => 'setEventDate',
         'pspReference' => 'setPspReference',
         'uniqueTerminalId' => 'setUniqueTerminalId'
@@ -190,6 +195,7 @@ class TerminalAssignmentNotificationRequest implements ModelInterface, ArrayAcce
     protected static $getters = [
         'assignedToAccount' => 'getAssignedToAccount',
         'assignedToStore' => 'getAssignedToStore',
+        'assignedToStoreId' => 'getAssignedToStoreId',
         'eventDate' => 'getEventDate',
         'pspReference' => 'getPspReference',
         'uniqueTerminalId' => 'getUniqueTerminalId'
@@ -254,6 +260,7 @@ class TerminalAssignmentNotificationRequest implements ModelInterface, ArrayAcce
     {
         $this->setIfExists('assignedToAccount', $data ?? [], null);
         $this->setIfExists('assignedToStore', $data ?? [], null);
+        $this->setIfExists('assignedToStoreId', $data ?? [], null);
         $this->setIfExists('eventDate', $data ?? [], null);
         $this->setIfExists('pspReference', $data ?? [], null);
         $this->setIfExists('uniqueTerminalId', $data ?? [], null);
@@ -350,13 +357,37 @@ class TerminalAssignmentNotificationRequest implements ModelInterface, ArrayAcce
     /**
      * Sets assignedToStore
      *
-     * @param string|null $assignedToStore The unique identifier of the store to which the terminal is assigned.
+     * @param string|null $assignedToStore The store that the terminal is assigned to, identified by the store reference (also known as store code).
      *
      * @return self
      */
     public function setAssignedToStore($assignedToStore)
     {
         $this->container['assignedToStore'] = $assignedToStore;
+
+        return $this;
+    }
+
+    /**
+     * Gets assignedToStoreId
+     *
+     * @return string|null
+     */
+    public function getAssignedToStoreId()
+    {
+        return $this->container['assignedToStoreId'];
+    }
+
+    /**
+     * Sets assignedToStoreId
+     *
+     * @param string|null $assignedToStoreId The unique identifier of the store to which the terminal is assigned.
+     *
+     * @return self
+     */
+    public function setAssignedToStoreId($assignedToStoreId)
+    {
+        $this->container['assignedToStoreId'] = $assignedToStoreId;
 
         return $this;
     }
