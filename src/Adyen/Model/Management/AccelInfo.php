@@ -329,11 +329,11 @@ class AccelInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getProcessingTypeAllowableValues();
         if (!in_array($processingType, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'processingType', must be one of '%s'",
+                    "processingType: unexpected enum value '%s' - Supported values are [%s]",
                     $processingType,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

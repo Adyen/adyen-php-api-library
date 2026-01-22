@@ -347,11 +347,11 @@ class Notification implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getCategoryAllowableValues();
         if (!in_array($category, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'category', must be one of '%s'",
+                    "category: unexpected enum value '%s' - Supported values are [%s]",
                     $category,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }

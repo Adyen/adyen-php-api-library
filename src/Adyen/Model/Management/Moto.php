@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\Management\ObjectSerializer;
 
 /**
- * Amount Class Doc Comment
+ * Moto Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
+class Moto implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Amount';
+    protected static $openAPIModelName = 'Moto';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,8 +41,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'currency' => 'string',
-        'value' => 'int'
+        'enableMoto' => 'bool',
+        'maxAmount' => 'int'
     ];
 
     /**
@@ -53,8 +53,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'currency' => null,
-        'value' => 'int64'
+        'enableMoto' => null,
+        'maxAmount' => 'int32'
     ];
 
     /**
@@ -63,8 +63,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'currency' => false,
-        'value' => false
+        'enableMoto' => false,
+        'maxAmount' => true
     ];
 
     /**
@@ -153,8 +153,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'currency' => 'currency',
-        'value' => 'value'
+        'enableMoto' => 'enableMoto',
+        'maxAmount' => 'maxAmount'
     ];
 
     /**
@@ -163,8 +163,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'currency' => 'setCurrency',
-        'value' => 'setValue'
+        'enableMoto' => 'setEnableMoto',
+        'maxAmount' => 'setMaxAmount'
     ];
 
     /**
@@ -173,8 +173,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'currency' => 'getCurrency',
-        'value' => 'getValue'
+        'enableMoto' => 'getEnableMoto',
+        'maxAmount' => 'getMaxAmount'
     ];
 
     /**
@@ -234,8 +234,8 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('currency', $data ?? [], null);
-        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('enableMoto', $data ?? [], null);
+        $this->setIfExists('maxAmount', $data ?? [], null);
     }
 
     /**
@@ -265,12 +265,6 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['currency'] === null) {
-            $invalidProperties[] = "'currency' can't be null";
-        }
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -287,49 +281,49 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets currency
+     * Gets enableMoto
      *
-     * @return string
+     * @return bool|null
      */
-    public function getCurrency()
+    public function getEnableMoto()
     {
-        return $this->container['currency'];
+        return $this->container['enableMoto'];
     }
 
     /**
-     * Sets currency
+     * Sets enableMoto
      *
-     * @param string $currency The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount.
+     * @param bool|null $enableMoto Enable MOTO transactions.
      *
      * @return self
      */
-    public function setCurrency($currency)
+    public function setEnableMoto($enableMoto)
     {
-        $this->container['currency'] = $currency;
+        $this->container['enableMoto'] = $enableMoto;
 
         return $this;
     }
 
     /**
-     * Gets value
+     * Gets maxAmount
      *
-     * @return int
+     * @return int|null
      */
-    public function getValue()
+    public function getMaxAmount()
     {
-        return $this->container['value'];
+        return $this->container['maxAmount'];
     }
 
     /**
-     * Sets value
+     * Sets maxAmount
      *
-     * @param int $value The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).
+     * @param int|null $maxAmount The maximum amount for MOTO transactions. You need to set the currency for this amount using the [`standalone.currencyCode`](https://docs.adyen.com/api-explorer/Management/1/patch/companies/(companyId)/terminalSettings#request-standalone-currencyCode) parameter. Do not enable standalone, unless you are using a standalone solution.
      *
      * @return self
      */
-    public function setValue($value)
+    public function setMaxAmount($maxAmount)
     {
-        $this->container['value'] = $value;
+        $this->container['maxAmount'] = $maxAmount;
 
         return $this;
     }

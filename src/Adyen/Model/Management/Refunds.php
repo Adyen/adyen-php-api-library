@@ -41,7 +41,8 @@ class Refunds implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'referenced' => '\Adyen\Model\Management\Referenced'
+        'referenced' => '\Adyen\Model\Management\Referenced',
+        'unreferenced' => '\Adyen\Model\Management\Unreferenced'
     ];
 
     /**
@@ -52,7 +53,8 @@ class Refunds implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'referenced' => null
+        'referenced' => null,
+        'unreferenced' => null
     ];
 
     /**
@@ -61,7 +63,8 @@ class Refunds implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'referenced' => false
+        'referenced' => false,
+        'unreferenced' => false
     ];
 
     /**
@@ -150,7 +153,8 @@ class Refunds implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'referenced' => 'referenced'
+        'referenced' => 'referenced',
+        'unreferenced' => 'unreferenced'
     ];
 
     /**
@@ -159,7 +163,8 @@ class Refunds implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'referenced' => 'setReferenced'
+        'referenced' => 'setReferenced',
+        'unreferenced' => 'setUnreferenced'
     ];
 
     /**
@@ -168,7 +173,8 @@ class Refunds implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'referenced' => 'getReferenced'
+        'referenced' => 'getReferenced',
+        'unreferenced' => 'getUnreferenced'
     ];
 
     /**
@@ -229,6 +235,7 @@ class Refunds implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(?array $data = null)
     {
         $this->setIfExists('referenced', $data ?? [], null);
+        $this->setIfExists('unreferenced', $data ?? [], null);
     }
 
     /**
@@ -293,6 +300,30 @@ class Refunds implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setReferenced($referenced)
     {
         $this->container['referenced'] = $referenced;
+
+        return $this;
+    }
+
+    /**
+     * Gets unreferenced
+     *
+     * @return \Adyen\Model\Management\Unreferenced|null
+     */
+    public function getUnreferenced()
+    {
+        return $this->container['unreferenced'];
+    }
+
+    /**
+     * Sets unreferenced
+     *
+     * @param \Adyen\Model\Management\Unreferenced|null $unreferenced unreferenced
+     *
+     * @return self
+     */
+    public function setUnreferenced($unreferenced)
+    {
+        $this->container['unreferenced'] = $unreferenced;
 
         return $this;
     }
