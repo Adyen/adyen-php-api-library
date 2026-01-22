@@ -531,7 +531,7 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets subMerchantSubSellerSubSellerNrPhoneNumber
      *
-     * @param string|null $subMerchantSubSellerSubSellerNrPhoneNumber Required for transactions performed by registered payment facilitators. The phone number of the sub-merchant.* Format: Alphanumeric * Maximum length: 20 characters
+     * @param string|null $subMerchantSubSellerSubSellerNrPhoneNumber Required for transactions performed by registered payment facilitators. The phone number of the sub-merchant. * Format: Alphanumeric and special characters * Maximum length: 20 characters
      *
      * @return self
      */
