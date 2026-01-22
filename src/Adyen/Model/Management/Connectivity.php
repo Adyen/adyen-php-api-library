@@ -324,11 +324,11 @@ class Connectivity implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $allowedValues = $this->getSimcardStatusAllowableValues();
         if (!in_array($simcardStatus, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'simcardStatus', must be one of '%s'",
+                    "simcardStatus: unexpected enum value '%s' - Supported values are [%s]",
                     $simcardStatus,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
