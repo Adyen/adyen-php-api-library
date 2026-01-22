@@ -46,7 +46,11 @@ class BulkAddress implements ModelInterface, ArrayAccess, \JsonSerializable
         'country' => 'string',
         'email' => 'string',
         'houseNumberOrName' => 'string',
+        'line1' => 'string',
+        'line2' => 'string',
+        'line3' => 'string',
         'mobile' => 'string',
+        'name' => 'string',
         'postalCode' => 'string',
         'stateOrProvince' => 'string',
         'street' => 'string'
@@ -65,7 +69,11 @@ class BulkAddress implements ModelInterface, ArrayAccess, \JsonSerializable
         'country' => null,
         'email' => null,
         'houseNumberOrName' => null,
+        'line1' => null,
+        'line2' => null,
+        'line3' => null,
         'mobile' => null,
+        'name' => null,
         'postalCode' => null,
         'stateOrProvince' => null,
         'street' => null
@@ -82,7 +90,11 @@ class BulkAddress implements ModelInterface, ArrayAccess, \JsonSerializable
         'country' => false,
         'email' => false,
         'houseNumberOrName' => false,
+        'line1' => false,
+        'line2' => false,
+        'line3' => false,
         'mobile' => false,
+        'name' => false,
         'postalCode' => false,
         'stateOrProvince' => false,
         'street' => false
@@ -179,7 +191,11 @@ class BulkAddress implements ModelInterface, ArrayAccess, \JsonSerializable
         'country' => 'country',
         'email' => 'email',
         'houseNumberOrName' => 'houseNumberOrName',
+        'line1' => 'line1',
+        'line2' => 'line2',
+        'line3' => 'line3',
         'mobile' => 'mobile',
+        'name' => 'name',
         'postalCode' => 'postalCode',
         'stateOrProvince' => 'stateOrProvince',
         'street' => 'street'
@@ -196,7 +212,11 @@ class BulkAddress implements ModelInterface, ArrayAccess, \JsonSerializable
         'country' => 'setCountry',
         'email' => 'setEmail',
         'houseNumberOrName' => 'setHouseNumberOrName',
+        'line1' => 'setLine1',
+        'line2' => 'setLine2',
+        'line3' => 'setLine3',
         'mobile' => 'setMobile',
+        'name' => 'setName',
         'postalCode' => 'setPostalCode',
         'stateOrProvince' => 'setStateOrProvince',
         'street' => 'setStreet'
@@ -213,7 +233,11 @@ class BulkAddress implements ModelInterface, ArrayAccess, \JsonSerializable
         'country' => 'getCountry',
         'email' => 'getEmail',
         'houseNumberOrName' => 'getHouseNumberOrName',
+        'line1' => 'getLine1',
+        'line2' => 'getLine2',
+        'line3' => 'getLine3',
         'mobile' => 'getMobile',
+        'name' => 'getName',
         'postalCode' => 'getPostalCode',
         'stateOrProvince' => 'getStateOrProvince',
         'street' => 'getStreet'
@@ -281,7 +305,11 @@ class BulkAddress implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('country', $data ?? [], null);
         $this->setIfExists('email', $data ?? [], null);
         $this->setIfExists('houseNumberOrName', $data ?? [], null);
+        $this->setIfExists('line1', $data ?? [], null);
+        $this->setIfExists('line2', $data ?? [], null);
+        $this->setIfExists('line3', $data ?? [], null);
         $this->setIfExists('mobile', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('postalCode', $data ?? [], null);
         $this->setIfExists('stateOrProvince', $data ?? [], null);
         $this->setIfExists('street', $data ?? [], null);
@@ -453,6 +481,78 @@ class BulkAddress implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets line1
+     *
+     * @return string|null
+     */
+    public function getLine1()
+    {
+        return $this->container['line1'];
+    }
+
+    /**
+     * Sets line1
+     *
+     * @param string|null $line1 The name of the street and the number of the building.  For example: **Simon Carmiggeltstraat 6-50**.
+     *
+     * @return self
+     */
+    public function setLine1($line1)
+    {
+        $this->container['line1'] = $line1;
+
+        return $this;
+    }
+
+    /**
+     * Gets line2
+     *
+     * @return string|null
+     */
+    public function getLine2()
+    {
+        return $this->container['line2'];
+    }
+
+    /**
+     * Sets line2
+     *
+     * @param string|null $line2 Additional information about the delivery address. For example, an apartment number.
+     *
+     * @return self
+     */
+    public function setLine2($line2)
+    {
+        $this->container['line2'] = $line2;
+
+        return $this;
+    }
+
+    /**
+     * Gets line3
+     *
+     * @return string|null
+     */
+    public function getLine3()
+    {
+        return $this->container['line3'];
+    }
+
+    /**
+     * Sets line3
+     *
+     * @param string|null $line3 Additional information about the delivery address.
+     *
+     * @return self
+     */
+    public function setLine3($line3)
+    {
+        $this->container['line3'] = $line3;
+
+        return $this;
+    }
+
+    /**
      * Gets mobile
      *
      * @return string|null
@@ -472,6 +572,30 @@ class BulkAddress implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setMobile($mobile)
     {
         $this->container['mobile'] = $mobile;
+
+        return $this;
+    }
+
+    /**
+     * Gets name
+     *
+     * @return string|null
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     *
+     * @param string|null $name The recipient’s name (person or contact), for example ‘John Doe’.
+     *
+     * @return self
+     */
+    public function setName($name)
+    {
+        $this->container['name'] = $name;
 
         return $this;
     }
