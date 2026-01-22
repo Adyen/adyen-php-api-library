@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\Payments\ObjectSerializer;
 
 /**
- * ResponseAdditionalDataSepa Class Doc Comment
+ * ResponseAdditionalDataSwish Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSerializable
+class ResponseAdditionalDataSwish implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ResponseAdditionalDataSepa';
+    protected static $openAPIModelName = 'ResponseAdditionalDataSwish';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,10 +41,7 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
       * @var string[]
       */
     protected static $openAPITypes = [
-        'sepadirectdebitDateOfSignature' => 'string',
-        'sepadirectdebitMandateId' => 'string',
-        'sepadirectdebitSepadirectdebitDueDate' => 'string',
-        'sepadirectdebitSequenceType' => 'string'
+        'swishPayerAlias' => 'string'
     ];
 
     /**
@@ -55,10 +52,7 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'sepadirectdebitDateOfSignature' => null,
-        'sepadirectdebitMandateId' => null,
-        'sepadirectdebitSepadirectdebitDueDate' => null,
-        'sepadirectdebitSequenceType' => null
+        'swishPayerAlias' => null
     ];
 
     /**
@@ -67,10 +61,7 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'sepadirectdebitDateOfSignature' => false,
-        'sepadirectdebitMandateId' => false,
-        'sepadirectdebitSepadirectdebitDueDate' => false,
-        'sepadirectdebitSequenceType' => false
+        'swishPayerAlias' => false
     ];
 
     /**
@@ -159,10 +150,7 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
      * @var string[]
      */
     protected static $attributeMap = [
-        'sepadirectdebitDateOfSignature' => 'sepadirectdebit.dateOfSignature',
-        'sepadirectdebitMandateId' => 'sepadirectdebit.mandateId',
-        'sepadirectdebitSepadirectdebitDueDate' => 'sepadirectdebit.sepadirectdebit.dueDate',
-        'sepadirectdebitSequenceType' => 'sepadirectdebit.sequenceType'
+        'swishPayerAlias' => 'swish.payerAlias'
     ];
 
     /**
@@ -171,10 +159,7 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
      * @var string[]
      */
     protected static $setters = [
-        'sepadirectdebitDateOfSignature' => 'setSepadirectdebitDateOfSignature',
-        'sepadirectdebitMandateId' => 'setSepadirectdebitMandateId',
-        'sepadirectdebitSepadirectdebitDueDate' => 'setSepadirectdebitSepadirectdebitDueDate',
-        'sepadirectdebitSequenceType' => 'setSepadirectdebitSequenceType'
+        'swishPayerAlias' => 'setSwishPayerAlias'
     ];
 
     /**
@@ -183,10 +168,7 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
      * @var string[]
      */
     protected static $getters = [
-        'sepadirectdebitDateOfSignature' => 'getSepadirectdebitDateOfSignature',
-        'sepadirectdebitMandateId' => 'getSepadirectdebitMandateId',
-        'sepadirectdebitSepadirectdebitDueDate' => 'getSepadirectdebitSepadirectdebitDueDate',
-        'sepadirectdebitSequenceType' => 'getSepadirectdebitSequenceType'
+        'swishPayerAlias' => 'getSwishPayerAlias'
     ];
 
     /**
@@ -246,10 +228,7 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('sepadirectdebitDateOfSignature', $data ?? [], null);
-        $this->setIfExists('sepadirectdebitMandateId', $data ?? [], null);
-        $this->setIfExists('sepadirectdebitSepadirectdebitDueDate', $data ?? [], null);
-        $this->setIfExists('sepadirectdebitSequenceType', $data ?? [], null);
+        $this->setIfExists('swishPayerAlias', $data ?? [], null);
     }
 
     /**
@@ -295,97 +274,25 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
 
 
     /**
-     * Gets sepadirectdebitDateOfSignature
+     * Gets swishPayerAlias
      *
      * @return string|null
      */
-    public function getSepadirectdebitDateOfSignature()
+    public function getSwishPayerAlias()
     {
-        return $this->container['sepadirectdebitDateOfSignature'];
+        return $this->container['swishPayerAlias'];
     }
 
     /**
-     * Sets sepadirectdebitDateOfSignature
+     * Sets swishPayerAlias
      *
-     * @param string|null $sepadirectdebitDateOfSignature The transaction signature date.  Format: yyyy-MM-dd
+     * @param string|null $swishPayerAlias A Swish shopper's telephone number.
      *
      * @return self
      */
-    public function setSepadirectdebitDateOfSignature($sepadirectdebitDateOfSignature)
+    public function setSwishPayerAlias($swishPayerAlias)
     {
-        $this->container['sepadirectdebitDateOfSignature'] = $sepadirectdebitDateOfSignature;
-
-        return $this;
-    }
-
-    /**
-     * Gets sepadirectdebitMandateId
-     *
-     * @return string|null
-     */
-    public function getSepadirectdebitMandateId()
-    {
-        return $this->container['sepadirectdebitMandateId'];
-    }
-
-    /**
-     * Sets sepadirectdebitMandateId
-     *
-     * @param string|null $sepadirectdebitMandateId Its value corresponds to the pspReference value of the transaction.
-     *
-     * @return self
-     */
-    public function setSepadirectdebitMandateId($sepadirectdebitMandateId)
-    {
-        $this->container['sepadirectdebitMandateId'] = $sepadirectdebitMandateId;
-
-        return $this;
-    }
-
-    /**
-     * Gets sepadirectdebitSepadirectdebitDueDate
-     *
-     * @return string|null
-     */
-    public function getSepadirectdebitSepadirectdebitDueDate()
-    {
-        return $this->container['sepadirectdebitSepadirectdebitDueDate'];
-    }
-
-    /**
-     * Sets sepadirectdebitSepadirectdebitDueDate
-     *
-     * @param string|null $sepadirectdebitSepadirectdebitDueDate The date that the the shopper's bank account is charged.
-     *
-     * @return self
-     */
-    public function setSepadirectdebitSepadirectdebitDueDate($sepadirectdebitSepadirectdebitDueDate)
-    {
-        $this->container['sepadirectdebitSepadirectdebitDueDate'] = $sepadirectdebitSepadirectdebitDueDate;
-
-        return $this;
-    }
-
-    /**
-     * Gets sepadirectdebitSequenceType
-     *
-     * @return string|null
-     */
-    public function getSepadirectdebitSequenceType()
-    {
-        return $this->container['sepadirectdebitSequenceType'];
-    }
-
-    /**
-     * Sets sepadirectdebitSequenceType
-     *
-     * @param string|null $sepadirectdebitSequenceType This field can take one of the following values: * OneOff: (OOFF) Direct debit instruction to initiate exactly one direct debit transaction.  * First: (FRST) Initial/first collection in a series of direct debit instructions. * Recurring: (RCUR) Direct debit instruction to carry out regular direct debit transactions initiated by the creditor. * Final: (FNAL) Last/final collection in a series of direct debit instructions.  Example: OOFF
-     *
-     * @return self
-     */
-    public function setSepadirectdebitSequenceType($sepadirectdebitSequenceType)
-    {
-        $this->container['sepadirectdebitSequenceType'] = $sepadirectdebitSequenceType;
+        $this->container['swishPayerAlias'] = $swishPayerAlias;
 
         return $this;
     }

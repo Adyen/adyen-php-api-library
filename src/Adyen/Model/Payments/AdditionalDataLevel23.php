@@ -542,7 +542,7 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets enhancedSchemeDataItemDetailLineItemNrCommodityCode
      *
-     * @param string|null $enhancedSchemeDataItemDetailLineItemNrCommodityCode The code that identifies the item in a standardized commodity coding scheme. There are different commodity coding schemes: * [UNSPSC commodity codes](https://www.unspsc.org/) * [HS commodity codes](https://www.wcoomd.org/en/topics/nomenclature/overview.aspx) * [NAICS commodity codes](https://www.census.gov/naics/) * [NAPCS commodity codes](https://www.census.gov/naics/napcs/)   * Encoding: ASCII * Max length: 12 characters * Must not start with a space or be all spaces. * Must not be all zeros.
+     * @param string|null $enhancedSchemeDataItemDetailLineItemNrCommodityCode The code that identifies the item in a standardized commodity coding scheme. There are different commodity coding schemes: * [UNSPSC commodity codes](https://www.ungm.org/public/unspsc) * [HS commodity codes](https://www.wcoomd.org/en/topics/nomenclature/overview.aspx) * [NAICS commodity codes](https://www.census.gov/naics/) * [NAPCS commodity codes](https://www.census.gov/naics/napcs/)   * Encoding: ASCII * Max length: 12 characters * Must not start with a space or be all spaces. * Must not be all zeros.
      *
      * @return self
      */
@@ -782,7 +782,7 @@ class AdditionalDataLevel23 implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets enhancedSchemeDataTotalTaxAmount
      *
-     * @param string|null $enhancedSchemeDataTotalTaxAmount The amount of state or provincial [tax included in the total transaction amount](https://docs.adyen.com/payment-methods/cards/enhanced-scheme-data/l2-l3#requirements-to-send-level-2-3-esd), in [minor units](https://docs.adyen.com/development-resources/currency-codes).  * For example, 2000 means USD 20.00. * Encoding: Numeric  * Max length: 12 characters * Must not be all zeros.
+     * @param string|null $enhancedSchemeDataTotalTaxAmount The amount of state or provincial [tax included in the total transaction amount](https://docs.adyen.com/payment-methods/cards/enhanced-scheme-data/l2-l3#requirements-to-send-level-2-3-esd), in [minor units](https://docs.adyen.com/development-resources/currency-codes).  * For example, 2000 means USD 20.00. * Encoding: Numeric  * Max length: 12 characters  * For L2 data: must not be all zeroes.  * For L3 data: can be zero.
      *
      * @return self
      */
