@@ -46,6 +46,7 @@ class UltimatePartyIdentification implements ModelInterface, ArrayAccess, \JsonS
         'email' => 'string',
         'firstName' => 'string',
         'fullName' => 'string',
+        'fundingInstrument' => '\Adyen\Model\Transfers\FundingInstrument',
         'lastName' => 'string',
         'reference' => 'string',
         'type' => 'string',
@@ -65,6 +66,7 @@ class UltimatePartyIdentification implements ModelInterface, ArrayAccess, \JsonS
         'email' => null,
         'firstName' => null,
         'fullName' => null,
+        'fundingInstrument' => null,
         'lastName' => null,
         'reference' => null,
         'type' => null,
@@ -82,6 +84,7 @@ class UltimatePartyIdentification implements ModelInterface, ArrayAccess, \JsonS
         'email' => false,
         'firstName' => false,
         'fullName' => false,
+        'fundingInstrument' => false,
         'lastName' => false,
         'reference' => false,
         'type' => false,
@@ -179,6 +182,7 @@ class UltimatePartyIdentification implements ModelInterface, ArrayAccess, \JsonS
         'email' => 'email',
         'firstName' => 'firstName',
         'fullName' => 'fullName',
+        'fundingInstrument' => 'fundingInstrument',
         'lastName' => 'lastName',
         'reference' => 'reference',
         'type' => 'type',
@@ -196,6 +200,7 @@ class UltimatePartyIdentification implements ModelInterface, ArrayAccess, \JsonS
         'email' => 'setEmail',
         'firstName' => 'setFirstName',
         'fullName' => 'setFullName',
+        'fundingInstrument' => 'setFundingInstrument',
         'lastName' => 'setLastName',
         'reference' => 'setReference',
         'type' => 'setType',
@@ -213,6 +218,7 @@ class UltimatePartyIdentification implements ModelInterface, ArrayAccess, \JsonS
         'email' => 'getEmail',
         'firstName' => 'getFirstName',
         'fullName' => 'getFullName',
+        'fundingInstrument' => 'getFundingInstrument',
         'lastName' => 'getLastName',
         'reference' => 'getReference',
         'type' => 'getType',
@@ -297,6 +303,7 @@ class UltimatePartyIdentification implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('email', $data ?? [], null);
         $this->setIfExists('firstName', $data ?? [], null);
         $this->setIfExists('fullName', $data ?? [], null);
+        $this->setIfExists('fundingInstrument', $data ?? [], null);
         $this->setIfExists('lastName', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
@@ -470,6 +477,30 @@ class UltimatePartyIdentification implements ModelInterface, ArrayAccess, \JsonS
     public function setFullName($fullName)
     {
         $this->container['fullName'] = $fullName;
+
+        return $this;
+    }
+
+    /**
+     * Gets fundingInstrument
+     *
+     * @return \Adyen\Model\Transfers\FundingInstrument|null
+     */
+    public function getFundingInstrument()
+    {
+        return $this->container['fundingInstrument'];
+    }
+
+    /**
+     * Sets fundingInstrument
+     *
+     * @param \Adyen\Model\Transfers\FundingInstrument|null $fundingInstrument fundingInstrument
+     *
+     * @return self
+     */
+    public function setFundingInstrument($fundingInstrument)
+    {
+        $this->container['fundingInstrument'] = $fundingInstrument;
 
         return $this;
     }
