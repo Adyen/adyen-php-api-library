@@ -33,6 +33,7 @@ use Adyen\Model\TokenizationWebhooks\TokenizationDisabledDetailsNotificationRequ
 use Adyen\Model\TokenizationWebhooks\TokenizationUpdatedDetailsNotificationRequest;
 use Adyen\Model\TransactionWebhooks\TransactionNotificationRequestV4;
 use Adyen\Model\BalanceWebhooks\BalanceAccountBalanceNotificationRequest;
+use Adyen\Model\BalanceWebhooks\ReleasedBlockedBalanceNotificationRequest;
 use Adyen\Service\BankingWebhookParser;
 use Adyen\Service\ManagementWebhookParser;
 use Adyen\Service\TokenizationWebhookParser;
@@ -512,5 +513,50 @@ class NotificationTest extends TestCaseMock
         self::assertEquals(TokenizationAlreadyExistingDetailsNotificationRequest::class, get_class($result));
         self::assertEquals("recurring.token.alreadyExisting", $result->getType());
         self::assertEquals("test", $result->getEnvironment());
+    }
+
+    public function testBankingWebhookParserReleasedBlockedBalanceNotificationRequest()
+    {
+        $jsonString = '{
+  "data": {
+    "accountHolder": {
+      "description": "Account holder for retail operations",
+      "id": "AH00000000000000000001",
+      "reference": "Store_001"
+    },
+    "amount": {
+      "currency": "EUR",
+      "value": 25000
+    },
+    "balanceAccount": {
+      "description": "Main operating account",
+      "id": "BA00000000000000000001",
+      "reference": "OP_ACCT_MAIN"
+    },
+    "balancePlatform": "YOUR_BALANCE_PLATFORM",
+    "batchReference": "BATCH_REF_20250925",
+    "blockedBalanceAfter": {
+      "currency": "EUR",
+      "value": -75000
+    },
+    "blockedBalanceBefore": {
+      "currency": "EUR",
+      "value": -100000
+    },
+    "creationDate": "2025-09-25T14:30:00Z",
+    "valueDate": "2025-09-25T14:35:00Z"
+  },
+  "environment": "test",
+  "timestamp": "2025-09-25T14:35:00Z",
+  "type": "balancePlatform.balanceAccount.balance.block.released"
+}';
+
+        $webhookParser = new BankingWebhookParser($jsonString);
+        $result = $webhookParser->getReleasedBlockedBalanceNotificationRequest();
+        self::assertEquals(ReleasedBlockedBalanceNotificationRequest::class, get_class($result));
+        self::assertEquals("balancePlatform.balanceAccount.balance.block.released", $result->getType());
+        self::assertEquals("test", $result->getEnvironment());
+        self::assertEquals("AH00000000000000000001", $result->getData()->getAccountHolder()->getId());
+        self::assertEquals(25000, $result->getData()->getAmount()->getValue());
     }
 }
