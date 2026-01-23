@@ -11,6 +11,7 @@ use Adyen\Service\LegalEntityManagement\LegalEntitiesApi;
 use Adyen\Service\LegalEntityManagement\TermsOfServiceApi;
 use Adyen\Service\LegalEntityManagement\TransferInstrumentsApi;
 use function PHPUnit\Framework\assertEquals;
+use Adyen\Environment;
 
 class LegalEntityManagementTest extends TestCaseMock
 {
@@ -73,5 +74,16 @@ class LegalEntityManagementTest extends TestCaseMock
             $response->getDocumentDetails()[0]->getModificationDate()
         );
         assertEquals('auLocal', $response->getBankAccount()->getAccountIdentification()->getType());
+    }
+
+    public function testRequestPeriodicReview()
+    {
+        $client = $this->createMockClientUrl(null, Environment::TEST);
+        $service = new LegalEntitiesApi($client);
+        $service->requestPeriodicReview('LE322JV223222F5GVGMLNB83F');
+        self::assertEquals(
+            'https://kyc-test.adyen.com/lem/v4/legalEntities/LE322JV223222F5GVGMLNB83F/requestPeriodicReview',
+            $this->requestUrl
+        );
     }
 }
