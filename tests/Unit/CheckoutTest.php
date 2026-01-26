@@ -594,4 +594,64 @@ class CheckoutTest extends TestCaseMock
         $resource->captures(array('paymentPspReference' => 'pspRef2'));
         assertEquals($this->requestUrl, 'https://checkout-test.adyen.com/v71/payments/pspRef2/captures');
     }
+
+    /**
+     * @param string $jsonFile
+     * @param int $httpStatus
+     *
+     * @dataProvider successForwardCardDetailsResponseProvider
+     */
+    public function testRecurringForward($jsonFile, $httpStatus)
+    {
+        $client = $this->createMockClient($jsonFile, $httpStatus);
+        $service = new Checkout\RecurringApi($client);
+
+        $paymentMethod = new \Adyen\Model\Checkout\CheckoutForwardRequestCard();
+        $paymentMethod->setType("scheme");
+        $paymentMethod->setNumber("4111111111111111");
+        $paymentMethod->setExpiryMonth("08");
+        $paymentMethod->setExpiryYear("2018");
+        $paymentMethod->setHolderName(self::HOLDER_NAME);
+        $paymentMethod->setCvc("737");
+
+        $headers = [
+            "Authorization" => "Basic {{credentials}}"
+        ];
+
+        $body = <<<JSON
+        {
+            "amount": {
+                "value": 100,
+                "currency": "USD"
+            }
+        }
+        JSON;
+
+        $outgoingForwardRequest = new \Adyen\Model\Checkout\CheckoutOutgoingForwardRequest();
+        $outgoingForwardRequest->setBody($body);
+        $outgoingForwardRequest->setHttpMethod("post");
+        $outgoingForwardRequest->setUrlSuffix("/payments");
+        $outgoingForwardRequest->setCredentials("YOUR_CREDENTIALS_FOR_THE_THIRD_PARTY");
+        $outgoingForwardRequest->setHeaders($headers);
+
+        $params = new \Adyen\Model\Checkout\CheckoutForwardRequest();
+        $params->setPaymentMethod($paymentMethod);
+        $params->setMerchantAccount("YOUR_MERCHANT_ACCOUNT");
+        $params->setShopperReference("411111");
+        $params->setBaseUrl("http://thirdparty.example.com");
+        $params->setRequest($outgoingForwardRequest);
+
+        $result = $service->forward($params);
+
+        $this->assertEquals("1234567890", $result['pspReference']);
+        $this->assertEquals("200", $result['response']['status']);
+    }
+
+    public static function successForwardCardDetailsResponseProvider()
+    {
+        return array(
+            array('tests/Resources/Checkout/Recurring/forwardCardDetailsResponse-success.json', 200),
+        );
+    }
+
 }
