@@ -44,6 +44,7 @@ class GenericIssuerPaymentMethodDetails implements ModelInterface, ArrayAccess, 
         'checkoutAttemptId' => 'string',
         'issuer' => 'string',
         'recurringDetailReference' => 'string',
+        'sdkData' => 'string',
         'storedPaymentMethodId' => 'string',
         'type' => 'string'
     ];
@@ -59,6 +60,7 @@ class GenericIssuerPaymentMethodDetails implements ModelInterface, ArrayAccess, 
         'checkoutAttemptId' => null,
         'issuer' => null,
         'recurringDetailReference' => null,
+        'sdkData' => null,
         'storedPaymentMethodId' => null,
         'type' => null
     ];
@@ -72,6 +74,7 @@ class GenericIssuerPaymentMethodDetails implements ModelInterface, ArrayAccess, 
         'checkoutAttemptId' => false,
         'issuer' => false,
         'recurringDetailReference' => false,
+        'sdkData' => false,
         'storedPaymentMethodId' => false,
         'type' => false
     ];
@@ -165,6 +168,7 @@ class GenericIssuerPaymentMethodDetails implements ModelInterface, ArrayAccess, 
         'checkoutAttemptId' => 'checkoutAttemptId',
         'issuer' => 'issuer',
         'recurringDetailReference' => 'recurringDetailReference',
+        'sdkData' => 'sdkData',
         'storedPaymentMethodId' => 'storedPaymentMethodId',
         'type' => 'type'
     ];
@@ -178,6 +182,7 @@ class GenericIssuerPaymentMethodDetails implements ModelInterface, ArrayAccess, 
         'checkoutAttemptId' => 'setCheckoutAttemptId',
         'issuer' => 'setIssuer',
         'recurringDetailReference' => 'setRecurringDetailReference',
+        'sdkData' => 'setSdkData',
         'storedPaymentMethodId' => 'setStoredPaymentMethodId',
         'type' => 'setType'
     ];
@@ -191,6 +196,7 @@ class GenericIssuerPaymentMethodDetails implements ModelInterface, ArrayAccess, 
         'checkoutAttemptId' => 'getCheckoutAttemptId',
         'issuer' => 'getIssuer',
         'recurringDetailReference' => 'getRecurringDetailReference',
+        'sdkData' => 'getSdkData',
         'storedPaymentMethodId' => 'getStoredPaymentMethodId',
         'type' => 'getType'
     ];
@@ -240,6 +246,7 @@ class GenericIssuerPaymentMethodDetails implements ModelInterface, ArrayAccess, 
     public const TYPE_EPS = 'eps';
     public const TYPE_ONLINE_BANKING_SK = 'onlineBanking_SK';
     public const TYPE_ONLINE_BANKING_CZ = 'onlineBanking_CZ';
+    public const TYPE_ONLINEBANKING_IN = 'onlinebanking_IN';
 
     /**
      * Gets allowable values of the enum
@@ -253,6 +260,7 @@ class GenericIssuerPaymentMethodDetails implements ModelInterface, ArrayAccess, 
             self::TYPE_EPS,
             self::TYPE_ONLINE_BANKING_SK,
             self::TYPE_ONLINE_BANKING_CZ,
+            self::TYPE_ONLINEBANKING_IN,
         ];
     }
     /**
@@ -273,6 +281,7 @@ class GenericIssuerPaymentMethodDetails implements ModelInterface, ArrayAccess, 
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('issuer', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
+        $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
@@ -404,6 +413,30 @@ class GenericIssuerPaymentMethodDetails implements ModelInterface, ArrayAccess, 
     public function setRecurringDetailReference($recurringDetailReference)
     {
         $this->container['recurringDetailReference'] = $recurringDetailReference;
+
+        return $this;
+    }
+
+    /**
+     * Gets sdkData
+     *
+     * @return string|null
+     */
+    public function getSdkData()
+    {
+        return $this->container['sdkData'];
+    }
+
+    /**
+     * Sets sdkData
+     *
+     * @param string|null $sdkData Base64-encoded JSON object containing SDK related parameters required by the SDK
+     *
+     * @return self
+     */
+    public function setSdkData($sdkData)
+    {
+        $this->container['sdkData'] = $sdkData;
 
         return $this;
     }

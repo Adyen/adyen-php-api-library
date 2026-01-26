@@ -41,6 +41,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'billingSequenceNumber' => 'string',
         'brand' => 'string',
         'checkoutAttemptId' => 'string',
         'cupsecureplusSmscode' => 'string',
@@ -49,6 +50,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         'encryptedCardNumber' => 'string',
         'encryptedExpiryMonth' => 'string',
         'encryptedExpiryYear' => 'string',
+        'encryptedPassword' => 'string',
         'encryptedSecurityCode' => 'string',
         'expiryMonth' => 'string',
         'expiryYear' => 'string',
@@ -58,6 +60,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         'networkPaymentReference' => 'string',
         'number' => 'string',
         'recurringDetailReference' => 'string',
+        'sdkData' => 'string',
         'shopperNotificationReference' => 'string',
         'srcCorrelationId' => 'string',
         'srcDigitalCardId' => 'string',
@@ -76,6 +79,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'billingSequenceNumber' => null,
         'brand' => null,
         'checkoutAttemptId' => null,
         'cupsecureplusSmscode' => null,
@@ -84,6 +88,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         'encryptedCardNumber' => null,
         'encryptedExpiryMonth' => null,
         'encryptedExpiryYear' => null,
+        'encryptedPassword' => null,
         'encryptedSecurityCode' => null,
         'expiryMonth' => null,
         'expiryYear' => null,
@@ -93,6 +98,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         'networkPaymentReference' => null,
         'number' => null,
         'recurringDetailReference' => null,
+        'sdkData' => null,
         'shopperNotificationReference' => null,
         'srcCorrelationId' => null,
         'srcDigitalCardId' => null,
@@ -109,6 +115,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'billingSequenceNumber' => false,
         'brand' => false,
         'checkoutAttemptId' => false,
         'cupsecureplusSmscode' => false,
@@ -117,6 +124,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         'encryptedCardNumber' => false,
         'encryptedExpiryMonth' => false,
         'encryptedExpiryYear' => false,
+        'encryptedPassword' => false,
         'encryptedSecurityCode' => false,
         'expiryMonth' => false,
         'expiryYear' => false,
@@ -126,6 +134,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         'networkPaymentReference' => false,
         'number' => false,
         'recurringDetailReference' => false,
+        'sdkData' => false,
         'shopperNotificationReference' => false,
         'srcCorrelationId' => false,
         'srcDigitalCardId' => false,
@@ -222,6 +231,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'billingSequenceNumber' => 'billingSequenceNumber',
         'brand' => 'brand',
         'checkoutAttemptId' => 'checkoutAttemptId',
         'cupsecureplusSmscode' => 'cupsecureplus.smscode',
@@ -230,6 +240,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         'encryptedCardNumber' => 'encryptedCardNumber',
         'encryptedExpiryMonth' => 'encryptedExpiryMonth',
         'encryptedExpiryYear' => 'encryptedExpiryYear',
+        'encryptedPassword' => 'encryptedPassword',
         'encryptedSecurityCode' => 'encryptedSecurityCode',
         'expiryMonth' => 'expiryMonth',
         'expiryYear' => 'expiryYear',
@@ -239,6 +250,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         'networkPaymentReference' => 'networkPaymentReference',
         'number' => 'number',
         'recurringDetailReference' => 'recurringDetailReference',
+        'sdkData' => 'sdkData',
         'shopperNotificationReference' => 'shopperNotificationReference',
         'srcCorrelationId' => 'srcCorrelationId',
         'srcDigitalCardId' => 'srcDigitalCardId',
@@ -255,6 +267,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'billingSequenceNumber' => 'setBillingSequenceNumber',
         'brand' => 'setBrand',
         'checkoutAttemptId' => 'setCheckoutAttemptId',
         'cupsecureplusSmscode' => 'setCupsecureplusSmscode',
@@ -263,6 +276,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         'encryptedCardNumber' => 'setEncryptedCardNumber',
         'encryptedExpiryMonth' => 'setEncryptedExpiryMonth',
         'encryptedExpiryYear' => 'setEncryptedExpiryYear',
+        'encryptedPassword' => 'setEncryptedPassword',
         'encryptedSecurityCode' => 'setEncryptedSecurityCode',
         'expiryMonth' => 'setExpiryMonth',
         'expiryYear' => 'setExpiryYear',
@@ -272,6 +286,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         'networkPaymentReference' => 'setNetworkPaymentReference',
         'number' => 'setNumber',
         'recurringDetailReference' => 'setRecurringDetailReference',
+        'sdkData' => 'setSdkData',
         'shopperNotificationReference' => 'setShopperNotificationReference',
         'srcCorrelationId' => 'setSrcCorrelationId',
         'srcDigitalCardId' => 'setSrcDigitalCardId',
@@ -288,6 +303,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'billingSequenceNumber' => 'getBillingSequenceNumber',
         'brand' => 'getBrand',
         'checkoutAttemptId' => 'getCheckoutAttemptId',
         'cupsecureplusSmscode' => 'getCupsecureplusSmscode',
@@ -296,6 +312,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         'encryptedCardNumber' => 'getEncryptedCardNumber',
         'encryptedExpiryMonth' => 'getEncryptedExpiryMonth',
         'encryptedExpiryYear' => 'getEncryptedExpiryYear',
+        'encryptedPassword' => 'getEncryptedPassword',
         'encryptedSecurityCode' => 'getEncryptedSecurityCode',
         'expiryMonth' => 'getExpiryMonth',
         'expiryYear' => 'getExpiryYear',
@@ -305,6 +322,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         'networkPaymentReference' => 'getNetworkPaymentReference',
         'number' => 'getNumber',
         'recurringDetailReference' => 'getRecurringDetailReference',
+        'sdkData' => 'getSdkData',
         'shopperNotificationReference' => 'getShopperNotificationReference',
         'srcCorrelationId' => 'getSrcCorrelationId',
         'srcDigitalCardId' => 'getSrcDigitalCardId',
@@ -358,6 +376,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
 
     public const FUNDING_SOURCE_CREDIT = 'credit';
     public const FUNDING_SOURCE_DEBIT = 'debit';
+    public const FUNDING_SOURCE_PREPAID = 'prepaid';
     public const TYPE_BCMC = 'bcmc';
     public const TYPE_SCHEME = 'scheme';
     public const TYPE_NETWORK_TOKEN = 'networkToken';
@@ -375,6 +394,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         return [
             self::FUNDING_SOURCE_CREDIT,
             self::FUNDING_SOURCE_DEBIT,
+            self::FUNDING_SOURCE_PREPAID,
         ];
     }
     /**
@@ -408,6 +428,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('billingSequenceNumber', $data ?? [], null);
         $this->setIfExists('brand', $data ?? [], null);
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('cupsecureplusSmscode', $data ?? [], null);
@@ -416,6 +437,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('encryptedCardNumber', $data ?? [], null);
         $this->setIfExists('encryptedExpiryMonth', $data ?? [], null);
         $this->setIfExists('encryptedExpiryYear', $data ?? [], null);
+        $this->setIfExists('encryptedPassword', $data ?? [], null);
         $this->setIfExists('encryptedSecurityCode', $data ?? [], null);
         $this->setIfExists('expiryMonth', $data ?? [], null);
         $this->setIfExists('expiryYear', $data ?? [], null);
@@ -425,6 +447,7 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('networkPaymentReference', $data ?? [], null);
         $this->setIfExists('number', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
+        $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('shopperNotificationReference', $data ?? [], null);
         $this->setIfExists('srcCorrelationId', $data ?? [], null);
         $this->setIfExists('srcDigitalCardId', $data ?? [], null);
@@ -494,6 +517,30 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets billingSequenceNumber
+     *
+     * @return string|null
+     */
+    public function getBillingSequenceNumber()
+    {
+        return $this->container['billingSequenceNumber'];
+    }
+
+    /**
+     * Sets billingSequenceNumber
+     *
+     * @param string|null $billingSequenceNumber The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper.
+     *
+     * @return self
+     */
+    public function setBillingSequenceNumber($billingSequenceNumber)
+    {
+        $this->container['billingSequenceNumber'] = $billingSequenceNumber;
+
+        return $this;
+    }
 
     /**
      * Gets brand
@@ -685,6 +732,30 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setEncryptedExpiryYear($encryptedExpiryYear)
     {
         $this->container['encryptedExpiryYear'] = $encryptedExpiryYear;
+
+        return $this;
+    }
+
+    /**
+     * Gets encryptedPassword
+     *
+     * @return string|null
+     */
+    public function getEncryptedPassword()
+    {
+        return $this->container['encryptedPassword'];
+    }
+
+    /**
+     * Sets encryptedPassword
+     *
+     * @param string|null $encryptedPassword This field contains an encrypted, one-time password or an authentication code provided by the cardholder.
+     *
+     * @return self
+     */
+    public function setEncryptedPassword($encryptedPassword)
+    {
+        $this->container['encryptedPassword'] = $encryptedPassword;
 
         return $this;
     }
@@ -913,6 +984,30 @@ class CardDonations implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setRecurringDetailReference($recurringDetailReference)
     {
         $this->container['recurringDetailReference'] = $recurringDetailReference;
+
+        return $this;
+    }
+
+    /**
+     * Gets sdkData
+     *
+     * @return string|null
+     */
+    public function getSdkData()
+    {
+        return $this->container['sdkData'];
+    }
+
+    /**
+     * Sets sdkData
+     *
+     * @param string|null $sdkData Base64-encoded JSON object containing SDK related parameters required by the SDK
+     *
+     * @return self
+     */
+    public function setSdkData($sdkData)
+    {
+        $this->container['sdkData'] = $sdkData;
 
         return $this;
     }

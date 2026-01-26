@@ -44,6 +44,7 @@ class ZipDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'checkoutAttemptId' => 'string',
         'clickAndCollect' => 'string',
         'recurringDetailReference' => 'string',
+        'sdkData' => 'string',
         'storedPaymentMethodId' => 'string',
         'type' => 'string'
     ];
@@ -59,6 +60,7 @@ class ZipDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'checkoutAttemptId' => null,
         'clickAndCollect' => null,
         'recurringDetailReference' => null,
+        'sdkData' => null,
         'storedPaymentMethodId' => null,
         'type' => null
     ];
@@ -72,6 +74,7 @@ class ZipDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'checkoutAttemptId' => false,
         'clickAndCollect' => false,
         'recurringDetailReference' => false,
+        'sdkData' => false,
         'storedPaymentMethodId' => false,
         'type' => false
     ];
@@ -165,6 +168,7 @@ class ZipDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'checkoutAttemptId' => 'checkoutAttemptId',
         'clickAndCollect' => 'clickAndCollect',
         'recurringDetailReference' => 'recurringDetailReference',
+        'sdkData' => 'sdkData',
         'storedPaymentMethodId' => 'storedPaymentMethodId',
         'type' => 'type'
     ];
@@ -178,6 +182,7 @@ class ZipDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'checkoutAttemptId' => 'setCheckoutAttemptId',
         'clickAndCollect' => 'setClickAndCollect',
         'recurringDetailReference' => 'setRecurringDetailReference',
+        'sdkData' => 'setSdkData',
         'storedPaymentMethodId' => 'setStoredPaymentMethodId',
         'type' => 'setType'
     ];
@@ -191,6 +196,7 @@ class ZipDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'checkoutAttemptId' => 'getCheckoutAttemptId',
         'clickAndCollect' => 'getClickAndCollect',
         'recurringDetailReference' => 'getRecurringDetailReference',
+        'sdkData' => 'getSdkData',
         'storedPaymentMethodId' => 'getStoredPaymentMethodId',
         'type' => 'getType'
     ];
@@ -269,6 +275,7 @@ class ZipDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('clickAndCollect', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
+        $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
@@ -394,6 +401,30 @@ class ZipDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setRecurringDetailReference($recurringDetailReference)
     {
         $this->container['recurringDetailReference'] = $recurringDetailReference;
+
+        return $this;
+    }
+
+    /**
+     * Gets sdkData
+     *
+     * @return string|null
+     */
+    public function getSdkData()
+    {
+        return $this->container['sdkData'];
+    }
+
+    /**
+     * Sets sdkData
+     *
+     * @param string|null $sdkData Base64-encoded JSON object containing SDK related parameters required by the SDK
+     *
+     * @return self
+     */
+    public function setSdkData($sdkData)
+    {
+        $this->container['sdkData'] = $sdkData;
 
         return $this;
     }

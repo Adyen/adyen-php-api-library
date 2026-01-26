@@ -77,7 +77,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'shopperIP' => 'string',
         'shopperInteraction' => 'string',
         'shopperLocale' => 'string',
-        'shopperName' => '\Adyen\Model\Checkout\Name',
+        'shopperName' => '\Adyen\Model\Checkout\ShopperName',
         'shopperReference' => 'string',
         'socialSecurityNumber' => 'string',
         'telephoneNumber' => 'string',
@@ -609,9 +609,6 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
 
         if ($this->container['merchantAccount'] === null) {
             $invalidProperties[] = "'merchantAccount' can't be null";
-        }
-        if ($this->container['paymentMethod'] === null) {
-            $invalidProperties[] = "'paymentMethod' can't be null";
         }
         $allowedValues = $this->getRecurringProcessingModelAllowableValues();
         if (!is_null($this->container['recurringProcessingModel']) && !in_array($this->container['recurringProcessingModel'], $allowedValues, true)) {
@@ -1267,7 +1264,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets paymentMethod
      *
-     * @return \Adyen\Model\Checkout\DonationPaymentMethod
+     * @return \Adyen\Model\Checkout\DonationPaymentMethod|null
      */
     public function getPaymentMethod()
     {
@@ -1277,7 +1274,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets paymentMethod
      *
-     * @param \Adyen\Model\Checkout\DonationPaymentMethod $paymentMethod paymentMethod
+     * @param \Adyen\Model\Checkout\DonationPaymentMethod|null $paymentMethod paymentMethod
      *
      * @return self
      */
@@ -1551,7 +1548,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets shopperName
      *
-     * @return \Adyen\Model\Checkout\Name|null
+     * @return \Adyen\Model\Checkout\ShopperName|null
      */
     public function getShopperName()
     {
@@ -1561,7 +1558,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets shopperName
      *
-     * @param \Adyen\Model\Checkout\Name|null $shopperName shopperName
+     * @param \Adyen\Model\Checkout\ShopperName|null $shopperName shopperName
      *
      * @return self
      */

@@ -42,8 +42,10 @@ class CheckoutBankTransferAction implements ModelInterface, ArrayAccess, \JsonSe
       */
     protected static $openAPITypes = [
         'accountNumber' => 'string',
+        'bankCode' => 'string',
         'beneficiary' => 'string',
         'bic' => 'string',
+        'branchCode' => 'string',
         'downloadUrl' => 'string',
         'iban' => 'string',
         'paymentMethodType' => 'string',
@@ -65,8 +67,10 @@ class CheckoutBankTransferAction implements ModelInterface, ArrayAccess, \JsonSe
       */
     protected static $openAPIFormats = [
         'accountNumber' => null,
+        'bankCode' => null,
         'beneficiary' => null,
         'bic' => null,
+        'branchCode' => null,
         'downloadUrl' => null,
         'iban' => null,
         'paymentMethodType' => null,
@@ -86,8 +90,10 @@ class CheckoutBankTransferAction implements ModelInterface, ArrayAccess, \JsonSe
       */
     protected static $openAPINullables = [
         'accountNumber' => false,
+        'bankCode' => false,
         'beneficiary' => false,
         'bic' => false,
+        'branchCode' => false,
         'downloadUrl' => false,
         'iban' => false,
         'paymentMethodType' => false,
@@ -187,8 +193,10 @@ class CheckoutBankTransferAction implements ModelInterface, ArrayAccess, \JsonSe
      */
     protected static $attributeMap = [
         'accountNumber' => 'accountNumber',
+        'bankCode' => 'bankCode',
         'beneficiary' => 'beneficiary',
         'bic' => 'bic',
+        'branchCode' => 'branchCode',
         'downloadUrl' => 'downloadUrl',
         'iban' => 'iban',
         'paymentMethodType' => 'paymentMethodType',
@@ -208,8 +216,10 @@ class CheckoutBankTransferAction implements ModelInterface, ArrayAccess, \JsonSe
      */
     protected static $setters = [
         'accountNumber' => 'setAccountNumber',
+        'bankCode' => 'setBankCode',
         'beneficiary' => 'setBeneficiary',
         'bic' => 'setBic',
+        'branchCode' => 'setBranchCode',
         'downloadUrl' => 'setDownloadUrl',
         'iban' => 'setIban',
         'paymentMethodType' => 'setPaymentMethodType',
@@ -229,8 +239,10 @@ class CheckoutBankTransferAction implements ModelInterface, ArrayAccess, \JsonSe
      */
     protected static $getters = [
         'accountNumber' => 'getAccountNumber',
+        'bankCode' => 'getBankCode',
         'beneficiary' => 'getBeneficiary',
         'bic' => 'getBic',
+        'branchCode' => 'getBranchCode',
         'downloadUrl' => 'getDownloadUrl',
         'iban' => 'getIban',
         'paymentMethodType' => 'getPaymentMethodType',
@@ -313,8 +325,10 @@ class CheckoutBankTransferAction implements ModelInterface, ArrayAccess, \JsonSe
     public function __construct(?array $data = null)
     {
         $this->setIfExists('accountNumber', $data ?? [], null);
+        $this->setIfExists('bankCode', $data ?? [], null);
         $this->setIfExists('beneficiary', $data ?? [], null);
         $this->setIfExists('bic', $data ?? [], null);
+        $this->setIfExists('branchCode', $data ?? [], null);
         $this->setIfExists('downloadUrl', $data ?? [], null);
         $this->setIfExists('iban', $data ?? [], null);
         $this->setIfExists('paymentMethodType', $data ?? [], null);
@@ -406,6 +420,30 @@ class CheckoutBankTransferAction implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
+     * Gets bankCode
+     *
+     * @return string|null
+     */
+    public function getBankCode()
+    {
+        return $this->container['bankCode'];
+    }
+
+    /**
+     * Sets bankCode
+     *
+     * @param string|null $bankCode The bank code of the bank transfer.
+     *
+     * @return self
+     */
+    public function setBankCode($bankCode)
+    {
+        $this->container['bankCode'] = $bankCode;
+
+        return $this;
+    }
+
+    /**
      * Gets beneficiary
      *
      * @return string|null
@@ -449,6 +487,30 @@ class CheckoutBankTransferAction implements ModelInterface, ArrayAccess, \JsonSe
     public function setBic($bic)
     {
         $this->container['bic'] = $bic;
+
+        return $this;
+    }
+
+    /**
+     * Gets branchCode
+     *
+     * @return string|null
+     */
+    public function getBranchCode()
+    {
+        return $this->container['branchCode'];
+    }
+
+    /**
+     * Sets branchCode
+     *
+     * @param string|null $branchCode The branch code of the bank transfer.
+     *
+     * @return self
+     */
+    public function setBranchCode($branchCode)
+    {
+        $this->container['branchCode'] = $branchCode;
 
         return $this;
     }

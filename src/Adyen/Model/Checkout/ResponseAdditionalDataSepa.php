@@ -43,6 +43,7 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
     protected static $openAPITypes = [
         'sepadirectdebitDateOfSignature' => 'string',
         'sepadirectdebitMandateId' => 'string',
+        'sepadirectdebitSepadirectdebitDueDate' => 'string',
         'sepadirectdebitSequenceType' => 'string'
     ];
 
@@ -56,6 +57,7 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
     protected static $openAPIFormats = [
         'sepadirectdebitDateOfSignature' => null,
         'sepadirectdebitMandateId' => null,
+        'sepadirectdebitSepadirectdebitDueDate' => null,
         'sepadirectdebitSequenceType' => null
     ];
 
@@ -67,6 +69,7 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
     protected static $openAPINullables = [
         'sepadirectdebitDateOfSignature' => false,
         'sepadirectdebitMandateId' => false,
+        'sepadirectdebitSepadirectdebitDueDate' => false,
         'sepadirectdebitSequenceType' => false
     ];
 
@@ -158,6 +161,7 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
     protected static $attributeMap = [
         'sepadirectdebitDateOfSignature' => 'sepadirectdebit.dateOfSignature',
         'sepadirectdebitMandateId' => 'sepadirectdebit.mandateId',
+        'sepadirectdebitSepadirectdebitDueDate' => 'sepadirectdebit.sepadirectdebit.dueDate',
         'sepadirectdebitSequenceType' => 'sepadirectdebit.sequenceType'
     ];
 
@@ -169,6 +173,7 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
     protected static $setters = [
         'sepadirectdebitDateOfSignature' => 'setSepadirectdebitDateOfSignature',
         'sepadirectdebitMandateId' => 'setSepadirectdebitMandateId',
+        'sepadirectdebitSepadirectdebitDueDate' => 'setSepadirectdebitSepadirectdebitDueDate',
         'sepadirectdebitSequenceType' => 'setSepadirectdebitSequenceType'
     ];
 
@@ -180,6 +185,7 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
     protected static $getters = [
         'sepadirectdebitDateOfSignature' => 'getSepadirectdebitDateOfSignature',
         'sepadirectdebitMandateId' => 'getSepadirectdebitMandateId',
+        'sepadirectdebitSepadirectdebitDueDate' => 'getSepadirectdebitSepadirectdebitDueDate',
         'sepadirectdebitSequenceType' => 'getSepadirectdebitSequenceType'
     ];
 
@@ -242,6 +248,7 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
     {
         $this->setIfExists('sepadirectdebitDateOfSignature', $data ?? [], null);
         $this->setIfExists('sepadirectdebitMandateId', $data ?? [], null);
+        $this->setIfExists('sepadirectdebitSepadirectdebitDueDate', $data ?? [], null);
         $this->setIfExists('sepadirectdebitSequenceType', $data ?? [], null);
     }
 
@@ -331,6 +338,30 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
     public function setSepadirectdebitMandateId($sepadirectdebitMandateId)
     {
         $this->container['sepadirectdebitMandateId'] = $sepadirectdebitMandateId;
+
+        return $this;
+    }
+
+    /**
+     * Gets sepadirectdebitSepadirectdebitDueDate
+     *
+     * @return string|null
+     */
+    public function getSepadirectdebitSepadirectdebitDueDate()
+    {
+        return $this->container['sepadirectdebitSepadirectdebitDueDate'];
+    }
+
+    /**
+     * Sets sepadirectdebitSepadirectdebitDueDate
+     *
+     * @param string|null $sepadirectdebitSepadirectdebitDueDate The date that the the shopper's bank account is charged.
+     *
+     * @return self
+     */
+    public function setSepadirectdebitSepadirectdebitDueDate($sepadirectdebitSepadirectdebitDueDate)
+    {
+        $this->container['sepadirectdebitSepadirectdebitDueDate'] = $sepadirectdebitSepadirectdebitDueDate;
 
         return $this;
     }

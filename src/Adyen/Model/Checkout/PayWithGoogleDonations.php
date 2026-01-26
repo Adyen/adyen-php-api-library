@@ -45,6 +45,7 @@ class PayWithGoogleDonations implements ModelInterface, ArrayAccess, \JsonSerial
         'fundingSource' => 'string',
         'googlePayToken' => 'string',
         'recurringDetailReference' => 'string',
+        'sdkData' => 'string',
         'storedPaymentMethodId' => 'string',
         'threeDS2SdkVersion' => 'string',
         'type' => 'string'
@@ -62,6 +63,7 @@ class PayWithGoogleDonations implements ModelInterface, ArrayAccess, \JsonSerial
         'fundingSource' => null,
         'googlePayToken' => null,
         'recurringDetailReference' => null,
+        'sdkData' => null,
         'storedPaymentMethodId' => null,
         'threeDS2SdkVersion' => null,
         'type' => null
@@ -77,6 +79,7 @@ class PayWithGoogleDonations implements ModelInterface, ArrayAccess, \JsonSerial
         'fundingSource' => false,
         'googlePayToken' => false,
         'recurringDetailReference' => false,
+        'sdkData' => false,
         'storedPaymentMethodId' => false,
         'threeDS2SdkVersion' => false,
         'type' => false
@@ -172,6 +175,7 @@ class PayWithGoogleDonations implements ModelInterface, ArrayAccess, \JsonSerial
         'fundingSource' => 'fundingSource',
         'googlePayToken' => 'googlePayToken',
         'recurringDetailReference' => 'recurringDetailReference',
+        'sdkData' => 'sdkData',
         'storedPaymentMethodId' => 'storedPaymentMethodId',
         'threeDS2SdkVersion' => 'threeDS2SdkVersion',
         'type' => 'type'
@@ -187,6 +191,7 @@ class PayWithGoogleDonations implements ModelInterface, ArrayAccess, \JsonSerial
         'fundingSource' => 'setFundingSource',
         'googlePayToken' => 'setGooglePayToken',
         'recurringDetailReference' => 'setRecurringDetailReference',
+        'sdkData' => 'setSdkData',
         'storedPaymentMethodId' => 'setStoredPaymentMethodId',
         'threeDS2SdkVersion' => 'setThreeDS2SdkVersion',
         'type' => 'setType'
@@ -202,6 +207,7 @@ class PayWithGoogleDonations implements ModelInterface, ArrayAccess, \JsonSerial
         'fundingSource' => 'getFundingSource',
         'googlePayToken' => 'getGooglePayToken',
         'recurringDetailReference' => 'getRecurringDetailReference',
+        'sdkData' => 'getSdkData',
         'storedPaymentMethodId' => 'getStoredPaymentMethodId',
         'threeDS2SdkVersion' => 'getThreeDS2SdkVersion',
         'type' => 'getType'
@@ -250,6 +256,7 @@ class PayWithGoogleDonations implements ModelInterface, ArrayAccess, \JsonSerial
 
     public const FUNDING_SOURCE_CREDIT = 'credit';
     public const FUNDING_SOURCE_DEBIT = 'debit';
+    public const FUNDING_SOURCE_PREPAID = 'prepaid';
     public const TYPE_PAYWITHGOOGLE = 'paywithgoogle';
 
     /**
@@ -262,6 +269,7 @@ class PayWithGoogleDonations implements ModelInterface, ArrayAccess, \JsonSerial
         return [
             self::FUNDING_SOURCE_CREDIT,
             self::FUNDING_SOURCE_DEBIT,
+            self::FUNDING_SOURCE_PREPAID,
         ];
     }
     /**
@@ -294,6 +302,7 @@ class PayWithGoogleDonations implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('fundingSource', $data ?? [], null);
         $this->setIfExists('googlePayToken', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
+        $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
         $this->setIfExists('threeDS2SdkVersion', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
@@ -466,6 +475,30 @@ class PayWithGoogleDonations implements ModelInterface, ArrayAccess, \JsonSerial
     public function setRecurringDetailReference($recurringDetailReference)
     {
         $this->container['recurringDetailReference'] = $recurringDetailReference;
+
+        return $this;
+    }
+
+    /**
+     * Gets sdkData
+     *
+     * @return string|null
+     */
+    public function getSdkData()
+    {
+        return $this->container['sdkData'];
+    }
+
+    /**
+     * Sets sdkData
+     *
+     * @param string|null $sdkData Base64-encoded JSON object containing SDK related parameters required by the SDK
+     *
+     * @return self
+     */
+    public function setSdkData($sdkData)
+    {
+        $this->container['sdkData'] = $sdkData;
 
         return $this;
     }
