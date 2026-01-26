@@ -4,6 +4,7 @@ namespace Adyen\Service;
 
 use Adyen\Model\AcsWebhooks\AuthenticationNotificationRequest;
 use Adyen\Model\AcsWebhooks\RelayedAuthenticationRequest;
+use Adyen\Model\RelayedAuthorizationWebhooks\RelayedAuthorisationRequest;
 use Adyen\Model\BalanceWebhooks\BalanceAccountBalanceNotificationRequest;
 use Adyen\Model\BalanceWebhooks\ReleasedBlockedBalanceNotificationRequest;
 use Adyen\Model\ConfigurationWebhooks\AccountHolderNotificationRequest;
@@ -26,6 +27,7 @@ class BankingWebhookParser
     private const WEBHOOK_CLASSES = [
         AuthenticationNotificationRequest::class,
         RelayedAuthenticationRequest::class,
+        RelayedAuthorisationRequest::class,
         BalanceAccountBalanceNotificationRequest::class,
         ReleasedBlockedBalanceNotificationRequest::class,
         AccountHolderNotificationRequest::class,
@@ -87,6 +89,11 @@ class BankingWebhookParser
         return $this->getWebhookByClass(RelayedAuthenticationRequest::class);
     }
 
+    public function getRelayedAuthorisationRequest(): RelayedAuthorisationRequest
+    {
+        return $this->getWebhookByClass(RelayedAuthorisationRequest::class);
+    }
+        
     public function getBalanceAccountBalanceNotificationRequest(): BalanceAccountBalanceNotificationRequest
     {
         return $this->getWebhookByClass(BalanceAccountBalanceNotificationRequest::class);

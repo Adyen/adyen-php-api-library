@@ -27,6 +27,7 @@ use Adyen\Model\ConfigurationWebhooks\SweepConfigurationNotificationRequest;
 use Adyen\Model\ManagementWebhooks\PaymentMethodCreatedNotificationRequest;
 use Adyen\Model\AcsWebhooks\AuthenticationNotificationRequest;
 use Adyen\Model\AcsWebhooks\RelayedAuthenticationRequest;
+use Adyen\Model\RelayedAuthorizationWebhooks\RelayedAuthorisationRequest;
 use Adyen\Model\TokenizationWebhooks\TokenizationAlreadyExistingDetailsNotificationRequest;
 use Adyen\Model\TokenizationWebhooks\TokenizationCreatedDetailsNotificationRequest;
 use Adyen\Model\TokenizationWebhooks\TokenizationDisabledDetailsNotificationRequest;
@@ -558,5 +559,173 @@ class NotificationTest extends TestCaseMock
         self::assertEquals("test", $result->getEnvironment());
         self::assertEquals("AH00000000000000000001", $result->getData()->getAccountHolder()->getId());
         self::assertEquals(25000, $result->getData()->getAmount()->getValue());
+    }
+
+    public function testBankingWebhookParserRelayedAuthorisationRequest()
+    {
+        $jsonString = '{
+  "accountHolder": {
+    "description": "Account holder description",
+    "id": "AH123ABCDEFGHIJKLMN456789"
+  },
+  "amount": {
+    "currency": "EUR",
+    "value": -2700
+  },
+  "authCode": "123456",
+  "authorisationDecision": {
+    "reasonCode": "APPROVED",
+    "status": "Authorised",
+    "statusCode": "APPROVED"
+  },
+  "authorisationType": "finalAuthorisation",
+  "balanceAccount": {
+    "description": "Balance Account Description",
+    "id": "BA123ABCDEFGHIJKLMN456789"
+  },
+  "balanceMutations": [
+    {
+      "balanceAfter": {
+        "currency": "EUR",
+        "value": 221163
+      },
+      "balanceBefore": {
+        "currency": "EUR",
+        "value": 221190
+      },
+      "currency": "EUR",
+      "mutationAmount": {
+        "currency": "EUR",
+        "value": -2700
+      },
+      "type": "AuthorisedOutgoing"
+    }
+  ],
+  "balancePlatform": "TestBalancePlatform",
+  "entryMode": "contactless",
+  "id": "2ABCBA13456ABCDE",
+  "merchantData": {
+    "acquirerId": "012345",
+    "mcc": "5813",
+    "merchantId": "000123450000123",
+    "nameLocation": {
+      "city": "Amsterdam",
+      "country": "NLD",
+      "name": "Tea Shop NLD",
+      "rawData": "TeaShop_NLD"
+    },
+    "postalCode": "3333AB"
+  },
+  "originalAmount": {
+    "currency": "EUR",
+    "value": -2700
+  },
+  "paymentInstrument": {
+    "balanceAccountId": "BA123ABCDEFGHIJKLMN456789",
+    "description": "PaymentInstrument Description",
+    "issuingCountryCode": "NL",
+    "paymentInstrumentGroupId": "PG3123ABCDEFGHIJKLMN456789",
+    "reference": "123456789",
+    "status": "active",
+    "type": "card",
+    "card": {
+      "authentication": {
+        "email": "john.doe @provider.com"
+      },
+      "brand": "mc",
+      "brandVariant": "mc_debit_bpd",
+      "cardholderName": "John Doe",
+      "formFactor": "virtual",
+      "bin": "555555",
+      "expiration": {
+        "month": "09",
+        "year": "2027"
+      },
+      "lastFour": "0000",
+      "number": "12345ABCDE"
+    },
+    "id": "PI123ABCDEFGHIJKLMN456789"
+  },
+  "processingType": "token",
+  "reference": "ABCDEFGHIJ",
+  "schemeUniqueTransactionId": "ABCDEFU2B1305",
+  "transactionRulesResult": {
+    "allHardBlockRulesPassed": true,
+    "score": 80
+  },
+  "validationResult": [
+    {
+      "result": "valid",
+      "type": "TransactionValidation"
+    },
+    {
+      "result": "valid",
+      "type": "PaymentInstrumentExpirationCheck"
+    },
+    {
+      "result": "valid",
+      "type": "BalanceCheck"
+    },
+    {
+      "result": "valid",
+      "type": "Screening"
+    },
+    {
+      "result": "valid",
+      "type": "RealBalanceAvailable"
+    },
+    {
+      "result": "notValidated",
+      "type": "MITAllowedMerchant"
+    },
+    {
+      "result": "valid",
+      "type": "PaymentInstrumentFound"
+    },
+    {
+      "result": "valid",
+      "type": "TransactionRules"
+    },
+    {
+      "result": "valid",
+      "type": "AccountLookup"
+    },
+    {
+      "result": "valid",
+      "type": "PaymentInstrumentActive"
+    },
+    {
+      "result": "valid",
+      "type": "CardholderAuthentication"
+    },
+    {
+      "result": "valid",
+      "type": "PaymentInstrument"
+    },
+    {
+      "result": "valid",
+      "type": "CardAuthentication"
+    },
+    {
+      "result": "valid",
+      "type": "PartyScreening"
+    },
+    {
+      "result": "valid",
+      "type": "InputExpiryDateCheck"
+    }
+  ],
+  "environment": "test",
+  "type": "balancePlatform.authorisation.relayed"
+}';
+
+        $webhookParser = new BankingWebhookParser($jsonString);
+        $result = $webhookParser->getRelayedAuthorisationRequest();
+        self::assertEquals(RelayedAuthorisationRequest::class, get_class($result));
+        self::assertEquals("2ABCBA13456ABCDE", $result->getId());
+        self::assertEquals("ABCDEFGHIJ", $result->getReference());
+        self::assertEquals("Authorised", $result->getAuthorisationDecision()->getStatus());
+        self::assertEquals("balancePlatform.authorisation.relayed", $result->getType());
+        self::assertEquals("test", $result->getEnvironment());
     }
 }
