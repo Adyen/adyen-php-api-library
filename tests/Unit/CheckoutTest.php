@@ -653,5 +653,4 @@ class CheckoutTest extends TestCaseMock
             array('tests/Resources/Checkout/Recurring/forwardCardDetailsResponse-success.json', 200),
         );
     }
-
 }
