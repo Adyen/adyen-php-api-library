@@ -46,6 +46,7 @@ class PseDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'clientType' => 'string',
         'identification' => 'string',
         'identificationType' => 'string',
+        'sdkData' => 'string',
         'type' => 'string'
     ];
 
@@ -62,6 +63,7 @@ class PseDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'clientType' => null,
         'identification' => null,
         'identificationType' => null,
+        'sdkData' => null,
         'type' => null
     ];
 
@@ -76,6 +78,7 @@ class PseDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'clientType' => false,
         'identification' => false,
         'identificationType' => false,
+        'sdkData' => false,
         'type' => false
     ];
 
@@ -170,6 +173,7 @@ class PseDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'clientType' => 'clientType',
         'identification' => 'identification',
         'identificationType' => 'identificationType',
+        'sdkData' => 'sdkData',
         'type' => 'type'
     ];
 
@@ -184,6 +188,7 @@ class PseDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'clientType' => 'setClientType',
         'identification' => 'setIdentification',
         'identificationType' => 'setIdentificationType',
+        'sdkData' => 'setSdkData',
         'type' => 'setType'
     ];
 
@@ -198,6 +203,7 @@ class PseDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'clientType' => 'getClientType',
         'identification' => 'getIdentification',
         'identificationType' => 'getIdentificationType',
+        'sdkData' => 'getSdkData',
         'type' => 'getType'
     ];
 
@@ -275,6 +281,7 @@ class PseDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('clientType', $data ?? [], null);
         $this->setIfExists('identification', $data ?? [], null);
         $this->setIfExists('identificationType', $data ?? [], null);
+        $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -457,6 +464,30 @@ class PseDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setIdentificationType($identificationType)
     {
         $this->container['identificationType'] = $identificationType;
+
+        return $this;
+    }
+
+    /**
+     * Gets sdkData
+     *
+     * @return string|null
+     */
+    public function getSdkData()
+    {
+        return $this->container['sdkData'];
+    }
+
+    /**
+     * Sets sdkData
+     *
+     * @param string|null $sdkData Base64-encoded JSON object containing SDK related parameters required by the SDK
+     *
+     * @return self
+     */
+    public function setSdkData($sdkData)
+    {
+        $this->container['sdkData'] = $sdkData;
 
         return $this;
     }

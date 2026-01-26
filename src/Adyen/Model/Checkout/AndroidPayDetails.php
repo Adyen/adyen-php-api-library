@@ -42,6 +42,7 @@ class AndroidPayDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPITypes = [
         'checkoutAttemptId' => 'string',
+        'sdkData' => 'string',
         'type' => 'string'
     ];
 
@@ -54,6 +55,7 @@ class AndroidPayDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPIFormats = [
         'checkoutAttemptId' => null,
+        'sdkData' => null,
         'type' => null
     ];
 
@@ -64,6 +66,7 @@ class AndroidPayDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPINullables = [
         'checkoutAttemptId' => false,
+        'sdkData' => false,
         'type' => false
     ];
 
@@ -154,6 +157,7 @@ class AndroidPayDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     protected static $attributeMap = [
         'checkoutAttemptId' => 'checkoutAttemptId',
+        'sdkData' => 'sdkData',
         'type' => 'type'
     ];
 
@@ -164,6 +168,7 @@ class AndroidPayDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     protected static $setters = [
         'checkoutAttemptId' => 'setCheckoutAttemptId',
+        'sdkData' => 'setSdkData',
         'type' => 'setType'
     ];
 
@@ -174,6 +179,7 @@ class AndroidPayDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     protected static $getters = [
         'checkoutAttemptId' => 'getCheckoutAttemptId',
+        'sdkData' => 'getSdkData',
         'type' => 'getType'
     ];
 
@@ -247,6 +253,7 @@ class AndroidPayDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function __construct(?array $data = null)
     {
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
+        $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -321,6 +328,30 @@ class AndroidPayDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function setCheckoutAttemptId($checkoutAttemptId)
     {
         $this->container['checkoutAttemptId'] = $checkoutAttemptId;
+
+        return $this;
+    }
+
+    /**
+     * Gets sdkData
+     *
+     * @return string|null
+     */
+    public function getSdkData()
+    {
+        return $this->container['sdkData'];
+    }
+
+    /**
+     * Sets sdkData
+     *
+     * @param string|null $sdkData Base64-encoded JSON object containing SDK related parameters required by the SDK
+     *
+     * @return self
+     */
+    public function setSdkData($sdkData)
+    {
+        $this->container['sdkData'] = $sdkData;
 
         return $this;
     }

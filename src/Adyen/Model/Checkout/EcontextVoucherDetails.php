@@ -44,6 +44,7 @@ class EcontextVoucherDetails implements ModelInterface, ArrayAccess, \JsonSerial
         'checkoutAttemptId' => 'string',
         'firstName' => 'string',
         'lastName' => 'string',
+        'sdkData' => 'string',
         'shopperEmail' => 'string',
         'telephoneNumber' => 'string',
         'type' => 'string'
@@ -60,6 +61,7 @@ class EcontextVoucherDetails implements ModelInterface, ArrayAccess, \JsonSerial
         'checkoutAttemptId' => null,
         'firstName' => null,
         'lastName' => null,
+        'sdkData' => null,
         'shopperEmail' => null,
         'telephoneNumber' => null,
         'type' => null
@@ -74,6 +76,7 @@ class EcontextVoucherDetails implements ModelInterface, ArrayAccess, \JsonSerial
         'checkoutAttemptId' => false,
         'firstName' => false,
         'lastName' => false,
+        'sdkData' => false,
         'shopperEmail' => false,
         'telephoneNumber' => false,
         'type' => false
@@ -168,6 +171,7 @@ class EcontextVoucherDetails implements ModelInterface, ArrayAccess, \JsonSerial
         'checkoutAttemptId' => 'checkoutAttemptId',
         'firstName' => 'firstName',
         'lastName' => 'lastName',
+        'sdkData' => 'sdkData',
         'shopperEmail' => 'shopperEmail',
         'telephoneNumber' => 'telephoneNumber',
         'type' => 'type'
@@ -182,6 +186,7 @@ class EcontextVoucherDetails implements ModelInterface, ArrayAccess, \JsonSerial
         'checkoutAttemptId' => 'setCheckoutAttemptId',
         'firstName' => 'setFirstName',
         'lastName' => 'setLastName',
+        'sdkData' => 'setSdkData',
         'shopperEmail' => 'setShopperEmail',
         'telephoneNumber' => 'setTelephoneNumber',
         'type' => 'setType'
@@ -196,6 +201,7 @@ class EcontextVoucherDetails implements ModelInterface, ArrayAccess, \JsonSerial
         'checkoutAttemptId' => 'getCheckoutAttemptId',
         'firstName' => 'getFirstName',
         'lastName' => 'getLastName',
+        'sdkData' => 'getSdkData',
         'shopperEmail' => 'getShopperEmail',
         'telephoneNumber' => 'getTelephoneNumber',
         'type' => 'getType'
@@ -281,6 +287,7 @@ class EcontextVoucherDetails implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('firstName', $data ?? [], null);
         $this->setIfExists('lastName', $data ?? [], null);
+        $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('shopperEmail', $data ?? [], null);
         $this->setIfExists('telephoneNumber', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
@@ -420,6 +427,30 @@ class EcontextVoucherDetails implements ModelInterface, ArrayAccess, \JsonSerial
     public function setLastName($lastName)
     {
         $this->container['lastName'] = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Gets sdkData
+     *
+     * @return string|null
+     */
+    public function getSdkData()
+    {
+        return $this->container['sdkData'];
+    }
+
+    /**
+     * Sets sdkData
+     *
+     * @param string|null $sdkData Base64-encoded JSON object containing SDK related parameters required by the SDK
+     *
+     * @return self
+     */
+    public function setSdkData($sdkData)
+    {
+        $this->container['sdkData'] = $sdkData;
 
         return $this;
     }

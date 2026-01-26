@@ -46,6 +46,7 @@ class OpenInvoiceDetails implements ModelInterface, ArrayAccess, \JsonSerializab
         'deliveryAddress' => 'string',
         'personalDetails' => 'string',
         'recurringDetailReference' => 'string',
+        'sdkData' => 'string',
         'storedPaymentMethodId' => 'string',
         'type' => 'string'
     ];
@@ -63,6 +64,7 @@ class OpenInvoiceDetails implements ModelInterface, ArrayAccess, \JsonSerializab
         'deliveryAddress' => null,
         'personalDetails' => null,
         'recurringDetailReference' => null,
+        'sdkData' => null,
         'storedPaymentMethodId' => null,
         'type' => null
     ];
@@ -78,6 +80,7 @@ class OpenInvoiceDetails implements ModelInterface, ArrayAccess, \JsonSerializab
         'deliveryAddress' => false,
         'personalDetails' => false,
         'recurringDetailReference' => false,
+        'sdkData' => false,
         'storedPaymentMethodId' => false,
         'type' => false
     ];
@@ -173,6 +176,7 @@ class OpenInvoiceDetails implements ModelInterface, ArrayAccess, \JsonSerializab
         'deliveryAddress' => 'deliveryAddress',
         'personalDetails' => 'personalDetails',
         'recurringDetailReference' => 'recurringDetailReference',
+        'sdkData' => 'sdkData',
         'storedPaymentMethodId' => 'storedPaymentMethodId',
         'type' => 'type'
     ];
@@ -188,6 +192,7 @@ class OpenInvoiceDetails implements ModelInterface, ArrayAccess, \JsonSerializab
         'deliveryAddress' => 'setDeliveryAddress',
         'personalDetails' => 'setPersonalDetails',
         'recurringDetailReference' => 'setRecurringDetailReference',
+        'sdkData' => 'setSdkData',
         'storedPaymentMethodId' => 'setStoredPaymentMethodId',
         'type' => 'setType'
     ];
@@ -203,6 +208,7 @@ class OpenInvoiceDetails implements ModelInterface, ArrayAccess, \JsonSerializab
         'deliveryAddress' => 'getDeliveryAddress',
         'personalDetails' => 'getPersonalDetails',
         'recurringDetailReference' => 'getRecurringDetailReference',
+        'sdkData' => 'getSdkData',
         'storedPaymentMethodId' => 'getStoredPaymentMethodId',
         'type' => 'getType'
     ];
@@ -285,6 +291,7 @@ class OpenInvoiceDetails implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('deliveryAddress', $data ?? [], null);
         $this->setIfExists('personalDetails', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
+        $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
@@ -458,6 +465,30 @@ class OpenInvoiceDetails implements ModelInterface, ArrayAccess, \JsonSerializab
     public function setRecurringDetailReference($recurringDetailReference)
     {
         $this->container['recurringDetailReference'] = $recurringDetailReference;
+
+        return $this;
+    }
+
+    /**
+     * Gets sdkData
+     *
+     * @return string|null
+     */
+    public function getSdkData()
+    {
+        return $this->container['sdkData'];
+    }
+
+    /**
+     * Sets sdkData
+     *
+     * @param string|null $sdkData Base64-encoded JSON object containing SDK related parameters required by the SDK
+     *
+     * @return self
+     */
+    public function setSdkData($sdkData)
+    {
+        $this->container['sdkData'] = $sdkData;
 
         return $this;
     }

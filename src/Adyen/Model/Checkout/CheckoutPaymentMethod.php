@@ -52,6 +52,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedBankLocationId' => 'string',
         'ownerName' => 'string',
         'recurringDetailReference' => 'string',
+        'sdkData' => 'string',
         'storedPaymentMethodId' => 'string',
         'transferInstrumentId' => 'string',
         'type' => 'string',
@@ -66,6 +67,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'holderName' => 'string',
         'issuer' => 'string',
         'blikCode' => 'string',
+        'billingSequenceNumber' => 'string',
         'brand' => 'string',
         'cupsecureplusSmscode' => 'string',
         'cvc' => 'string',
@@ -73,6 +75,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedCardNumber' => 'string',
         'encryptedExpiryMonth' => 'string',
         'encryptedExpiryYear' => 'string',
+        'encryptedPassword' => 'string',
         'encryptedSecurityCode' => 'string',
         'expiryMonth' => 'string',
         'expiryYear' => 'string',
@@ -113,7 +116,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'deviceFingerprint' => 'string',
         'iban' => 'string',
         'samsungPayToken' => 'string',
-        'billingSequenceNumber' => 'string',
+        'dueDate' => 'string',
         'appId' => 'string',
         'visaCheckoutCallId' => 'string',
         'openid' => 'string',
@@ -137,6 +140,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedBankLocationId' => null,
         'ownerName' => null,
         'recurringDetailReference' => null,
+        'sdkData' => null,
         'storedPaymentMethodId' => null,
         'transferInstrumentId' => null,
         'type' => null,
@@ -151,6 +155,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'holderName' => null,
         'issuer' => null,
         'blikCode' => null,
+        'billingSequenceNumber' => null,
         'brand' => null,
         'cupsecureplusSmscode' => null,
         'cvc' => null,
@@ -158,6 +163,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedCardNumber' => null,
         'encryptedExpiryMonth' => null,
         'encryptedExpiryYear' => null,
+        'encryptedPassword' => null,
         'encryptedSecurityCode' => null,
         'expiryMonth' => null,
         'expiryYear' => null,
@@ -198,7 +204,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'deviceFingerprint' => null,
         'iban' => null,
         'samsungPayToken' => null,
-        'billingSequenceNumber' => null,
+        'dueDate' => null,
         'appId' => null,
         'visaCheckoutCallId' => null,
         'openid' => null,
@@ -220,6 +226,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedBankLocationId' => false,
         'ownerName' => false,
         'recurringDetailReference' => false,
+        'sdkData' => false,
         'storedPaymentMethodId' => false,
         'transferInstrumentId' => false,
         'type' => false,
@@ -234,6 +241,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'holderName' => false,
         'issuer' => false,
         'blikCode' => false,
+        'billingSequenceNumber' => false,
         'brand' => false,
         'cupsecureplusSmscode' => false,
         'cvc' => false,
@@ -241,6 +249,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedCardNumber' => false,
         'encryptedExpiryMonth' => false,
         'encryptedExpiryYear' => false,
+        'encryptedPassword' => false,
         'encryptedSecurityCode' => false,
         'expiryMonth' => false,
         'expiryYear' => false,
@@ -281,7 +290,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'deviceFingerprint' => false,
         'iban' => false,
         'samsungPayToken' => false,
-        'billingSequenceNumber' => false,
+        'dueDate' => false,
         'appId' => false,
         'visaCheckoutCallId' => false,
         'openid' => false,
@@ -383,6 +392,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedBankLocationId' => 'encryptedBankLocationId',
         'ownerName' => 'ownerName',
         'recurringDetailReference' => 'recurringDetailReference',
+        'sdkData' => 'sdkData',
         'storedPaymentMethodId' => 'storedPaymentMethodId',
         'transferInstrumentId' => 'transferInstrumentId',
         'type' => 'type',
@@ -397,6 +407,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'holderName' => 'holderName',
         'issuer' => 'issuer',
         'blikCode' => 'blikCode',
+        'billingSequenceNumber' => 'billingSequenceNumber',
         'brand' => 'brand',
         'cupsecureplusSmscode' => 'cupsecureplus.smscode',
         'cvc' => 'cvc',
@@ -404,6 +415,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedCardNumber' => 'encryptedCardNumber',
         'encryptedExpiryMonth' => 'encryptedExpiryMonth',
         'encryptedExpiryYear' => 'encryptedExpiryYear',
+        'encryptedPassword' => 'encryptedPassword',
         'encryptedSecurityCode' => 'encryptedSecurityCode',
         'expiryMonth' => 'expiryMonth',
         'expiryYear' => 'expiryYear',
@@ -444,7 +456,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'deviceFingerprint' => 'deviceFingerprint',
         'iban' => 'iban',
         'samsungPayToken' => 'samsungPayToken',
-        'billingSequenceNumber' => 'billingSequenceNumber',
+        'dueDate' => 'dueDate',
         'appId' => 'appId',
         'visaCheckoutCallId' => 'visaCheckoutCallId',
         'openid' => 'openid',
@@ -466,6 +478,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedBankLocationId' => 'setEncryptedBankLocationId',
         'ownerName' => 'setOwnerName',
         'recurringDetailReference' => 'setRecurringDetailReference',
+        'sdkData' => 'setSdkData',
         'storedPaymentMethodId' => 'setStoredPaymentMethodId',
         'transferInstrumentId' => 'setTransferInstrumentId',
         'type' => 'setType',
@@ -480,6 +493,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'holderName' => 'setHolderName',
         'issuer' => 'setIssuer',
         'blikCode' => 'setBlikCode',
+        'billingSequenceNumber' => 'setBillingSequenceNumber',
         'brand' => 'setBrand',
         'cupsecureplusSmscode' => 'setCupsecureplusSmscode',
         'cvc' => 'setCvc',
@@ -487,6 +501,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedCardNumber' => 'setEncryptedCardNumber',
         'encryptedExpiryMonth' => 'setEncryptedExpiryMonth',
         'encryptedExpiryYear' => 'setEncryptedExpiryYear',
+        'encryptedPassword' => 'setEncryptedPassword',
         'encryptedSecurityCode' => 'setEncryptedSecurityCode',
         'expiryMonth' => 'setExpiryMonth',
         'expiryYear' => 'setExpiryYear',
@@ -527,7 +542,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'deviceFingerprint' => 'setDeviceFingerprint',
         'iban' => 'setIban',
         'samsungPayToken' => 'setSamsungPayToken',
-        'billingSequenceNumber' => 'setBillingSequenceNumber',
+        'dueDate' => 'setDueDate',
         'appId' => 'setAppId',
         'visaCheckoutCallId' => 'setVisaCheckoutCallId',
         'openid' => 'setOpenid',
@@ -549,6 +564,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedBankLocationId' => 'getEncryptedBankLocationId',
         'ownerName' => 'getOwnerName',
         'recurringDetailReference' => 'getRecurringDetailReference',
+        'sdkData' => 'getSdkData',
         'storedPaymentMethodId' => 'getStoredPaymentMethodId',
         'transferInstrumentId' => 'getTransferInstrumentId',
         'type' => 'getType',
@@ -563,6 +579,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'holderName' => 'getHolderName',
         'issuer' => 'getIssuer',
         'blikCode' => 'getBlikCode',
+        'billingSequenceNumber' => 'getBillingSequenceNumber',
         'brand' => 'getBrand',
         'cupsecureplusSmscode' => 'getCupsecureplusSmscode',
         'cvc' => 'getCvc',
@@ -570,6 +587,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedCardNumber' => 'getEncryptedCardNumber',
         'encryptedExpiryMonth' => 'getEncryptedExpiryMonth',
         'encryptedExpiryYear' => 'getEncryptedExpiryYear',
+        'encryptedPassword' => 'getEncryptedPassword',
         'encryptedSecurityCode' => 'getEncryptedSecurityCode',
         'expiryMonth' => 'getExpiryMonth',
         'expiryYear' => 'getExpiryYear',
@@ -610,7 +628,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'deviceFingerprint' => 'getDeviceFingerprint',
         'iban' => 'getIban',
         'samsungPayToken' => 'getSamsungPayToken',
-        'billingSequenceNumber' => 'getBillingSequenceNumber',
+        'dueDate' => 'getDueDate',
         'appId' => 'getAppId',
         'visaCheckoutCallId' => 'getVisaCheckoutCallId',
         'openid' => 'getOpenid',
@@ -682,6 +700,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('encryptedBankLocationId', $data ?? [], null);
         $this->setIfExists('ownerName', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
+        $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
         $this->setIfExists('transferInstrumentId', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
@@ -696,6 +715,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('holderName', $data ?? [], null);
         $this->setIfExists('issuer', $data ?? [], null);
         $this->setIfExists('blikCode', $data ?? [], null);
+        $this->setIfExists('billingSequenceNumber', $data ?? [], null);
         $this->setIfExists('brand', $data ?? [], null);
         $this->setIfExists('cupsecureplusSmscode', $data ?? [], null);
         $this->setIfExists('cvc', $data ?? [], null);
@@ -703,6 +723,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('encryptedCardNumber', $data ?? [], null);
         $this->setIfExists('encryptedExpiryMonth', $data ?? [], null);
         $this->setIfExists('encryptedExpiryYear', $data ?? [], null);
+        $this->setIfExists('encryptedPassword', $data ?? [], null);
         $this->setIfExists('encryptedSecurityCode', $data ?? [], null);
         $this->setIfExists('expiryMonth', $data ?? [], null);
         $this->setIfExists('expiryYear', $data ?? [], null);
@@ -743,7 +764,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('deviceFingerprint', $data ?? [], null);
         $this->setIfExists('iban', $data ?? [], null);
         $this->setIfExists('samsungPayToken', $data ?? [], null);
-        $this->setIfExists('billingSequenceNumber', $data ?? [], null);
+        $this->setIfExists('dueDate', $data ?? [], null);
         $this->setIfExists('appId', $data ?? [], null);
         $this->setIfExists('visaCheckoutCallId', $data ?? [], null);
         $this->setIfExists('openid', $data ?? [], null);
@@ -782,6 +803,9 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         if ($this->container['ownerName'] === null) {
             $invalidProperties[] = "'ownerName' can't be null";
         }
+        if ($this->container['storedPaymentMethodId'] === null) {
+            $invalidProperties[] = "'storedPaymentMethodId' can't be null";
+        }
         if ($this->container['type'] === null) {
             $invalidProperties[] = "'type' can't be null";
         }
@@ -795,6 +819,9 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         }
         if ($this->container['fastlaneData'] === null) {
             $invalidProperties[] = "'fastlaneData' can't be null";
+        }
+        if ($this->container['subtype'] === null) {
+            $invalidProperties[] = "'subtype' can't be null";
         }
         if ($this->container['firstName'] === null) {
             $invalidProperties[] = "'firstName' can't be null";
@@ -831,9 +858,6 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         }
         if ($this->container['samsungPayToken'] === null) {
             $invalidProperties[] = "'samsungPayToken' can't be null";
-        }
-        if ($this->container['billingSequenceNumber'] === null) {
-            $invalidProperties[] = "'billingSequenceNumber' can't be null";
         }
         if ($this->container['visaCheckoutCallId'] === null) {
             $invalidProperties[] = "'visaCheckoutCallId' can't be null";
@@ -1072,9 +1096,33 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Gets storedPaymentMethodId
+     * Gets sdkData
      *
      * @return string|null
+     */
+    public function getSdkData()
+    {
+        return $this->container['sdkData'];
+    }
+
+    /**
+     * Sets sdkData
+     *
+     * @param string|null $sdkData Base64-encoded JSON object containing SDK related parameters required by the SDK
+     *
+     * @return self
+     */
+    public function setSdkData($sdkData)
+    {
+        $this->container['sdkData'] = $sdkData;
+
+        return $this;
+    }
+
+    /**
+     * Gets storedPaymentMethodId
+     *
+     * @return string
      */
     public function getStoredPaymentMethodId()
     {
@@ -1084,7 +1132,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets storedPaymentMethodId
      *
-     * @param string|null $storedPaymentMethodId This is the `recurringDetailReference` returned in the response when you created the token.
+     * @param string $storedPaymentMethodId This is the `recurringDetailReference` returned in the response when you created the token.
      *
      * @return self
      */
@@ -1408,6 +1456,30 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
+     * Gets billingSequenceNumber
+     *
+     * @return string|null
+     */
+    public function getBillingSequenceNumber()
+    {
+        return $this->container['billingSequenceNumber'];
+    }
+
+    /**
+     * Sets billingSequenceNumber
+     *
+     * @param string|null $billingSequenceNumber The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper.
+     *
+     * @return self
+     */
+    public function setBillingSequenceNumber($billingSequenceNumber)
+    {
+        $this->container['billingSequenceNumber'] = $billingSequenceNumber;
+
+        return $this;
+    }
+
+    /**
      * Gets brand
      *
      * @return string|null
@@ -1573,6 +1645,30 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setEncryptedExpiryYear($encryptedExpiryYear)
     {
         $this->container['encryptedExpiryYear'] = $encryptedExpiryYear;
+
+        return $this;
+    }
+
+    /**
+     * Gets encryptedPassword
+     *
+     * @return string|null
+     */
+    public function getEncryptedPassword()
+    {
+        return $this->container['encryptedPassword'];
+    }
+
+    /**
+     * Sets encryptedPassword
+     *
+     * @param string|null $encryptedPassword This field contains an encrypted, one-time password or an authentication code provided by the cardholder.
+     *
+     * @return self
+     */
+    public function setEncryptedPassword($encryptedPassword)
+    {
+        $this->container['encryptedPassword'] = $encryptedPassword;
 
         return $this;
     }
@@ -1988,7 +2084,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets subtype
      *
-     * @return string|null
+     * @return string
      */
     public function getSubtype()
     {
@@ -1998,7 +2094,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets subtype
      *
-     * @param string|null $subtype The type of flow to initiate.
+     * @param string $subtype The type of flow to initiate.
      *
      * @return self
      */
@@ -2538,25 +2634,25 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Gets billingSequenceNumber
+     * Gets dueDate
      *
-     * @return string
+     * @return string|null
      */
-    public function getBillingSequenceNumber()
+    public function getDueDate()
     {
-        return $this->container['billingSequenceNumber'];
+        return $this->container['dueDate'];
     }
 
     /**
-     * Sets billingSequenceNumber
+     * Sets dueDate
      *
-     * @param string $billingSequenceNumber The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper.
+     * @param string|null $dueDate The date that the the shopper's bank account is charged.
      *
      * @return self
      */
-    public function setBillingSequenceNumber($billingSequenceNumber)
+    public function setDueDate($dueDate)
     {
-        $this->container['billingSequenceNumber'] = $billingSequenceNumber;
+        $this->container['dueDate'] = $dueDate;
 
         return $this;
     }

@@ -42,9 +42,11 @@ class SepaDirectDebitDetails implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPITypes = [
         'checkoutAttemptId' => 'string',
+        'dueDate' => 'string',
         'iban' => 'string',
         'ownerName' => 'string',
         'recurringDetailReference' => 'string',
+        'sdkData' => 'string',
         'storedPaymentMethodId' => 'string',
         'transferInstrumentId' => 'string',
         'type' => 'string'
@@ -59,9 +61,11 @@ class SepaDirectDebitDetails implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPIFormats = [
         'checkoutAttemptId' => null,
+        'dueDate' => null,
         'iban' => null,
         'ownerName' => null,
         'recurringDetailReference' => null,
+        'sdkData' => null,
         'storedPaymentMethodId' => null,
         'transferInstrumentId' => null,
         'type' => null
@@ -74,9 +78,11 @@ class SepaDirectDebitDetails implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPINullables = [
         'checkoutAttemptId' => false,
+        'dueDate' => false,
         'iban' => false,
         'ownerName' => false,
         'recurringDetailReference' => false,
+        'sdkData' => false,
         'storedPaymentMethodId' => false,
         'transferInstrumentId' => false,
         'type' => false
@@ -169,9 +175,11 @@ class SepaDirectDebitDetails implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static $attributeMap = [
         'checkoutAttemptId' => 'checkoutAttemptId',
+        'dueDate' => 'dueDate',
         'iban' => 'iban',
         'ownerName' => 'ownerName',
         'recurringDetailReference' => 'recurringDetailReference',
+        'sdkData' => 'sdkData',
         'storedPaymentMethodId' => 'storedPaymentMethodId',
         'transferInstrumentId' => 'transferInstrumentId',
         'type' => 'type'
@@ -184,9 +192,11 @@ class SepaDirectDebitDetails implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static $setters = [
         'checkoutAttemptId' => 'setCheckoutAttemptId',
+        'dueDate' => 'setDueDate',
         'iban' => 'setIban',
         'ownerName' => 'setOwnerName',
         'recurringDetailReference' => 'setRecurringDetailReference',
+        'sdkData' => 'setSdkData',
         'storedPaymentMethodId' => 'setStoredPaymentMethodId',
         'transferInstrumentId' => 'setTransferInstrumentId',
         'type' => 'setType'
@@ -199,9 +209,11 @@ class SepaDirectDebitDetails implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static $getters = [
         'checkoutAttemptId' => 'getCheckoutAttemptId',
+        'dueDate' => 'getDueDate',
         'iban' => 'getIban',
         'ownerName' => 'getOwnerName',
         'recurringDetailReference' => 'getRecurringDetailReference',
+        'sdkData' => 'getSdkData',
         'storedPaymentMethodId' => 'getStoredPaymentMethodId',
         'transferInstrumentId' => 'getTransferInstrumentId',
         'type' => 'getType'
@@ -279,9 +291,11 @@ class SepaDirectDebitDetails implements ModelInterface, ArrayAccess, \JsonSerial
     public function __construct(?array $data = null)
     {
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
+        $this->setIfExists('dueDate', $data ?? [], null);
         $this->setIfExists('iban', $data ?? [], null);
         $this->setIfExists('ownerName', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
+        $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
         $this->setIfExists('transferInstrumentId', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
@@ -369,6 +383,30 @@ class SepaDirectDebitDetails implements ModelInterface, ArrayAccess, \JsonSerial
     }
 
     /**
+     * Gets dueDate
+     *
+     * @return string|null
+     */
+    public function getDueDate()
+    {
+        return $this->container['dueDate'];
+    }
+
+    /**
+     * Sets dueDate
+     *
+     * @param string|null $dueDate The date that the the shopper's bank account is charged.
+     *
+     * @return self
+     */
+    public function setDueDate($dueDate)
+    {
+        $this->container['dueDate'] = $dueDate;
+
+        return $this;
+    }
+
+    /**
      * Gets iban
      *
      * @return string
@@ -438,6 +476,30 @@ class SepaDirectDebitDetails implements ModelInterface, ArrayAccess, \JsonSerial
     public function setRecurringDetailReference($recurringDetailReference)
     {
         $this->container['recurringDetailReference'] = $recurringDetailReference;
+
+        return $this;
+    }
+
+    /**
+     * Gets sdkData
+     *
+     * @return string|null
+     */
+    public function getSdkData()
+    {
+        return $this->container['sdkData'];
+    }
+
+    /**
+     * Sets sdkData
+     *
+     * @param string|null $sdkData Base64-encoded JSON object containing SDK related parameters required by the SDK
+     *
+     * @return self
+     */
+    public function setSdkData($sdkData)
+    {
+        $this->container['sdkData'] = $sdkData;
 
         return $this;
     }

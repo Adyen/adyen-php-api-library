@@ -43,6 +43,7 @@ class DragonpayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'checkoutAttemptId' => 'string',
         'issuer' => 'string',
+        'sdkData' => 'string',
         'shopperEmail' => 'string',
         'type' => 'string'
     ];
@@ -57,6 +58,7 @@ class DragonpayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'checkoutAttemptId' => null,
         'issuer' => null,
+        'sdkData' => null,
         'shopperEmail' => null,
         'type' => null
     ];
@@ -69,6 +71,7 @@ class DragonpayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPINullables = [
         'checkoutAttemptId' => false,
         'issuer' => false,
+        'sdkData' => false,
         'shopperEmail' => false,
         'type' => false
     ];
@@ -161,6 +164,7 @@ class DragonpayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'checkoutAttemptId' => 'checkoutAttemptId',
         'issuer' => 'issuer',
+        'sdkData' => 'sdkData',
         'shopperEmail' => 'shopperEmail',
         'type' => 'type'
     ];
@@ -173,6 +177,7 @@ class DragonpayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'checkoutAttemptId' => 'setCheckoutAttemptId',
         'issuer' => 'setIssuer',
+        'sdkData' => 'setSdkData',
         'shopperEmail' => 'setShopperEmail',
         'type' => 'setType'
     ];
@@ -185,6 +190,7 @@ class DragonpayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'checkoutAttemptId' => 'getCheckoutAttemptId',
         'issuer' => 'getIssuer',
+        'sdkData' => 'getSdkData',
         'shopperEmail' => 'getShopperEmail',
         'type' => 'getType'
     ];
@@ -266,6 +272,7 @@ class DragonpayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('issuer', $data ?? [], null);
+        $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('shopperEmail', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
@@ -371,6 +378,30 @@ class DragonpayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setIssuer($issuer)
     {
         $this->container['issuer'] = $issuer;
+
+        return $this;
+    }
+
+    /**
+     * Gets sdkData
+     *
+     * @return string|null
+     */
+    public function getSdkData()
+    {
+        return $this->container['sdkData'];
+    }
+
+    /**
+     * Sets sdkData
+     *
+     * @param string|null $sdkData Base64-encoded JSON object containing SDK related parameters required by the SDK
+     *
+     * @return self
+     */
+    public function setSdkData($sdkData)
+    {
+        $this->container['sdkData'] = $sdkData;
 
         return $this;
     }

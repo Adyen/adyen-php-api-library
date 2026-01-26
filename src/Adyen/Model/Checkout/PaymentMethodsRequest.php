@@ -852,7 +852,7 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets storeFiltrationMode
      *
-     * @param string|null $storeFiltrationMode Specifies how payment methods should be filtered based on the 'store' parameter:   - 'exclusive': Only payment methods belonging to the specified 'store' are returned.   - 'inclusive': Payment methods from the 'store' and those not associated with any other store are returned.
+     * @param string|null $storeFiltrationMode Specifies how payment methods should be filtered based on the `store` parameter:   - **exclusive**: Only payment methods belonging to the specified `store` are returned.   - **inclusive**: Payment methods from the `store` and those not associated with any other store are returned.
      *
      * @return self
      */

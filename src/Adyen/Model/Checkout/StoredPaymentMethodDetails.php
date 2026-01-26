@@ -43,6 +43,7 @@ class StoredPaymentMethodDetails implements ModelInterface, ArrayAccess, \JsonSe
     protected static $openAPITypes = [
         'checkoutAttemptId' => 'string',
         'recurringDetailReference' => 'string',
+        'sdkData' => 'string',
         'storedPaymentMethodId' => 'string',
         'type' => 'string'
     ];
@@ -57,6 +58,7 @@ class StoredPaymentMethodDetails implements ModelInterface, ArrayAccess, \JsonSe
     protected static $openAPIFormats = [
         'checkoutAttemptId' => null,
         'recurringDetailReference' => null,
+        'sdkData' => null,
         'storedPaymentMethodId' => null,
         'type' => null
     ];
@@ -69,6 +71,7 @@ class StoredPaymentMethodDetails implements ModelInterface, ArrayAccess, \JsonSe
     protected static $openAPINullables = [
         'checkoutAttemptId' => false,
         'recurringDetailReference' => false,
+        'sdkData' => false,
         'storedPaymentMethodId' => false,
         'type' => false
     ];
@@ -161,6 +164,7 @@ class StoredPaymentMethodDetails implements ModelInterface, ArrayAccess, \JsonSe
     protected static $attributeMap = [
         'checkoutAttemptId' => 'checkoutAttemptId',
         'recurringDetailReference' => 'recurringDetailReference',
+        'sdkData' => 'sdkData',
         'storedPaymentMethodId' => 'storedPaymentMethodId',
         'type' => 'type'
     ];
@@ -173,6 +177,7 @@ class StoredPaymentMethodDetails implements ModelInterface, ArrayAccess, \JsonSe
     protected static $setters = [
         'checkoutAttemptId' => 'setCheckoutAttemptId',
         'recurringDetailReference' => 'setRecurringDetailReference',
+        'sdkData' => 'setSdkData',
         'storedPaymentMethodId' => 'setStoredPaymentMethodId',
         'type' => 'setType'
     ];
@@ -185,6 +190,7 @@ class StoredPaymentMethodDetails implements ModelInterface, ArrayAccess, \JsonSe
     protected static $getters = [
         'checkoutAttemptId' => 'getCheckoutAttemptId',
         'recurringDetailReference' => 'getRecurringDetailReference',
+        'sdkData' => 'getSdkData',
         'storedPaymentMethodId' => 'getStoredPaymentMethodId',
         'type' => 'getType'
     ];
@@ -230,6 +236,18 @@ class StoredPaymentMethodDetails implements ModelInterface, ArrayAccess, \JsonSe
         return self::$openAPIModelName;
     }
 
+    public const TYPE_ALIPAY_PLUS = 'alipay_plus';
+    public const TYPE_ALIPAY_PLUS_ALIPAY_CN = 'alipay_plus_alipay_cn';
+    public const TYPE_ALIPAY_PLUS_ALIPAY_HK = 'alipay_plus_alipay_hk';
+    public const TYPE_ALIPAY_PLUS_DANA = 'alipay_plus_dana';
+    public const TYPE_ALIPAY_PLUS_GCASH = 'alipay_plus_gcash';
+    public const TYPE_ALIPAY_PLUS_KAKAOPAY = 'alipay_plus_kakaopay';
+    public const TYPE_ALIPAY_PLUS_KPLUS = 'alipay_plus_kplus';
+    public const TYPE_ALIPAY_PLUS_NAVERPAY = 'alipay_plus_naverpay';
+    public const TYPE_ALIPAY_PLUS_RABBITLINEPAY = 'alipay_plus_rabbitlinepay';
+    public const TYPE_ALIPAY_PLUS_TOSSPAY = 'alipay_plus_tosspay';
+    public const TYPE_ALIPAY_PLUS_TOUCHNGO = 'alipay_plus_touchngo';
+    public const TYPE_ALIPAY_PLUS_TRUEMONEY = 'alipay_plus_truemoney';
     public const TYPE_BCMC_MOBILE = 'bcmc_mobile';
     public const TYPE_BCMC_MOBILE_QR = 'bcmc_mobile_QR';
     public const TYPE_BCMC_MOBILE_APP = 'bcmc_mobile_app';
@@ -257,6 +275,18 @@ class StoredPaymentMethodDetails implements ModelInterface, ArrayAccess, \JsonSe
     public function getTypeAllowableValues()
     {
         return [
+            self::TYPE_ALIPAY_PLUS,
+            self::TYPE_ALIPAY_PLUS_ALIPAY_CN,
+            self::TYPE_ALIPAY_PLUS_ALIPAY_HK,
+            self::TYPE_ALIPAY_PLUS_DANA,
+            self::TYPE_ALIPAY_PLUS_GCASH,
+            self::TYPE_ALIPAY_PLUS_KAKAOPAY,
+            self::TYPE_ALIPAY_PLUS_KPLUS,
+            self::TYPE_ALIPAY_PLUS_NAVERPAY,
+            self::TYPE_ALIPAY_PLUS_RABBITLINEPAY,
+            self::TYPE_ALIPAY_PLUS_TOSSPAY,
+            self::TYPE_ALIPAY_PLUS_TOUCHNGO,
+            self::TYPE_ALIPAY_PLUS_TRUEMONEY,
             self::TYPE_BCMC_MOBILE,
             self::TYPE_BCMC_MOBILE_QR,
             self::TYPE_BCMC_MOBILE_APP,
@@ -294,6 +324,7 @@ class StoredPaymentMethodDetails implements ModelInterface, ArrayAccess, \JsonSe
     {
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
+        $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
@@ -395,6 +426,30 @@ class StoredPaymentMethodDetails implements ModelInterface, ArrayAccess, \JsonSe
     public function setRecurringDetailReference($recurringDetailReference)
     {
         $this->container['recurringDetailReference'] = $recurringDetailReference;
+
+        return $this;
+    }
+
+    /**
+     * Gets sdkData
+     *
+     * @return string|null
+     */
+    public function getSdkData()
+    {
+        return $this->container['sdkData'];
+    }
+
+    /**
+     * Sets sdkData
+     *
+     * @param string|null $sdkData Base64-encoded JSON object containing SDK related parameters required by the SDK
+     *
+     * @return self
+     */
+    public function setSdkData($sdkData)
+    {
+        $this->container['sdkData'] = $sdkData;
 
         return $this;
     }

@@ -43,6 +43,7 @@ class MolPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'checkoutAttemptId' => 'string',
         'issuer' => 'string',
+        'sdkData' => 'string',
         'type' => 'string'
     ];
 
@@ -56,6 +57,7 @@ class MolPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'checkoutAttemptId' => null,
         'issuer' => null,
+        'sdkData' => null,
         'type' => null
     ];
 
@@ -67,6 +69,7 @@ class MolPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPINullables = [
         'checkoutAttemptId' => false,
         'issuer' => false,
+        'sdkData' => false,
         'type' => false
     ];
 
@@ -158,6 +161,7 @@ class MolPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'checkoutAttemptId' => 'checkoutAttemptId',
         'issuer' => 'issuer',
+        'sdkData' => 'sdkData',
         'type' => 'type'
     ];
 
@@ -169,6 +173,7 @@ class MolPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'checkoutAttemptId' => 'setCheckoutAttemptId',
         'issuer' => 'setIssuer',
+        'sdkData' => 'setSdkData',
         'type' => 'setType'
     ];
 
@@ -180,6 +185,7 @@ class MolPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'checkoutAttemptId' => 'getCheckoutAttemptId',
         'issuer' => 'getIssuer',
+        'sdkData' => 'getSdkData',
         'type' => 'getType'
     ];
 
@@ -256,6 +262,7 @@ class MolPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('issuer', $data ?? [], null);
+        $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -360,6 +367,30 @@ class MolPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setIssuer($issuer)
     {
         $this->container['issuer'] = $issuer;
+
+        return $this;
+    }
+
+    /**
+     * Gets sdkData
+     *
+     * @return string|null
+     */
+    public function getSdkData()
+    {
+        return $this->container['sdkData'];
+    }
+
+    /**
+     * Sets sdkData
+     *
+     * @param string|null $sdkData Base64-encoded JSON object containing SDK related parameters required by the SDK
+     *
+     * @return self
+     */
+    public function setSdkData($sdkData)
+    {
+        $this->container['sdkData'] = $sdkData;
 
         return $this;
     }

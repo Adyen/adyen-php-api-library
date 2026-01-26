@@ -44,6 +44,7 @@ class AmazonPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'amazonPayToken' => 'string',
         'checkoutAttemptId' => 'string',
         'checkoutSessionId' => 'string',
+        'sdkData' => 'string',
         'type' => 'string'
     ];
 
@@ -58,6 +59,7 @@ class AmazonPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'amazonPayToken' => null,
         'checkoutAttemptId' => null,
         'checkoutSessionId' => null,
+        'sdkData' => null,
         'type' => null
     ];
 
@@ -70,6 +72,7 @@ class AmazonPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'amazonPayToken' => false,
         'checkoutAttemptId' => false,
         'checkoutSessionId' => false,
+        'sdkData' => false,
         'type' => false
     ];
 
@@ -162,6 +165,7 @@ class AmazonPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'amazonPayToken' => 'amazonPayToken',
         'checkoutAttemptId' => 'checkoutAttemptId',
         'checkoutSessionId' => 'checkoutSessionId',
+        'sdkData' => 'sdkData',
         'type' => 'type'
     ];
 
@@ -174,6 +178,7 @@ class AmazonPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'amazonPayToken' => 'setAmazonPayToken',
         'checkoutAttemptId' => 'setCheckoutAttemptId',
         'checkoutSessionId' => 'setCheckoutSessionId',
+        'sdkData' => 'setSdkData',
         'type' => 'setType'
     ];
 
@@ -186,6 +191,7 @@ class AmazonPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'amazonPayToken' => 'getAmazonPayToken',
         'checkoutAttemptId' => 'getCheckoutAttemptId',
         'checkoutSessionId' => 'getCheckoutSessionId',
+        'sdkData' => 'getSdkData',
         'type' => 'getType'
     ];
 
@@ -261,6 +267,7 @@ class AmazonPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('amazonPayToken', $data ?? [], null);
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('checkoutSessionId', $data ?? [], null);
+        $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -383,6 +390,30 @@ class AmazonPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setCheckoutSessionId($checkoutSessionId)
     {
         $this->container['checkoutSessionId'] = $checkoutSessionId;
+
+        return $this;
+    }
+
+    /**
+     * Gets sdkData
+     *
+     * @return string|null
+     */
+    public function getSdkData()
+    {
+        return $this->container['sdkData'];
+    }
+
+    /**
+     * Sets sdkData
+     *
+     * @param string|null $sdkData Base64-encoded JSON object containing SDK related parameters required by the SDK
+     *
+     * @return self
+     */
+    public function setSdkData($sdkData)
+    {
+        $this->container['sdkData'] = $sdkData;
 
         return $this;
     }
