@@ -18,7 +18,7 @@
   "require-dev": {
     "dms/phpunit-arraysubset-asserts": "0.5.0",
     "friendsofphp/php-cs-fixer": "*",
-    "phpunit/phpunit": "9.6.33",
+    "phpunit/phpunit": "12.5.4",
     "php-coveralls/php-coveralls": "2.7.0",
     "squizlabs/php_codesniffer": "3.10.2"
   },
