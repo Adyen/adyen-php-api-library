@@ -29,7 +29,7 @@ jobs:
     steps:
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
       - name: Prepare the next main release
-        uses: Adyen/release-automation-action@3e5694d5b365f344a62436e84049511ef318ecf5
+        uses: Adyen/release-automation-action@887512d88d0208b206357b36efce616e542a8528
         with:
           token: ${{ secrets.ADYEN_AUTOMATION_BOT_ACCESS_TOKEN }}
           develop-branch: main
