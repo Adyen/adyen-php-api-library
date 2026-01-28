@@ -27,7 +27,7 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
+      - uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98
       - name: Prepare the next main release
         uses: Adyen/release-automation-action@3e5694d5b365f344a62436e84049511ef318ecf5
         with:
