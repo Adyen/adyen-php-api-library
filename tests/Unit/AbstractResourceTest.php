@@ -5,7 +5,7 @@ namespace Adyen\Tests\Unit;
 use Adyen\Service;
 use Adyen\Service\AbstractResource;
 use Adyen\Tests\TestCase;
-use Adyen\TransactionType;
+use Adyen\Tests\TransactionType;
 use DMS\PHPUnitExtensions\ArraySubset\Assert;
 
 class AbstractResourceTest extends TestCase

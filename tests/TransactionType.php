@@ -1,6 +1,6 @@
 <?php
 
-namespace Adyen;
+namespace Adyen\Tests;
 
 class TransactionType
 {

@@ -25,7 +25,7 @@ namespace Adyen\Tests\Integration;
 
 use Adyen\Service\PosPayment;
 use Adyen\Tests\TestCase;
-use Adyen\TransactionType;
+use Adyen\Tests\TransactionType;
 
 class PosPaymentTest extends TestCase
 {
