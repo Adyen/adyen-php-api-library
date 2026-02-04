@@ -50,7 +50,7 @@ class ServiceTest extends TestCaseMock
         }
     }
 
-    public function lemTestUrl()
+    public function testLemTestUrl()
     {
         $client = new Client();
         $client->setEnvironment(Environment::TEST);
@@ -59,7 +59,7 @@ class ServiceTest extends TestCaseMock
         self::assertEquals("https://kyc-test.adyen.com/lem/v3/legalEntities", $url);
     }
 
-    public function lemLiveUrl()
+    public function testLemLiveUrl()
     {
         $client = new Client();
         $client->setEnvironment(Environment::LIVE);
@@ -68,7 +68,7 @@ class ServiceTest extends TestCaseMock
         self::assertEquals("https://kyc-live.adyen.com/lem/v3/legalEntities", $url);
     }
 
-    public function balancePlatformTestUrl()
+    public function testBalancePlatformTestUrl()
     {
         $client = new Client();
         $client->setEnvironment(Environment::TEST);
@@ -77,7 +77,7 @@ class ServiceTest extends TestCaseMock
         self::assertEquals("https://balanceplatform-api-test.adyen.com/bcl/v2", $url);
     }
 
-    public function balancePlatformLiveUrl()
+    public function testBalancePlatformLiveUrl()
     {
         $client = new Client();
         $client->setEnvironment(Environment::LIVE);
@@ -86,7 +86,7 @@ class ServiceTest extends TestCaseMock
         self::assertEquals("https://balanceplatform-api-live.adyen.com/bcl/v2", $url);
     }
 
-    public function managementTestUrl()
+    public function testManagementTestUrl()
     {
         $client = new Client();
         $client->setEnvironment(Environment::TEST);
@@ -95,7 +95,7 @@ class ServiceTest extends TestCaseMock
         self::assertEquals("https://management-test.adyen.com/v3", $url);
     }
 
-    public function managementLiveUrl()
+    public function testManagementLiveUrl()
     {
         $client = new Client();
         $client->setEnvironment(Environment::LIVE);
@@ -104,7 +104,7 @@ class ServiceTest extends TestCaseMock
         self::assertEquals("https://management-live.adyen.com/v3", $url);
     }
 
-    public function transfersTestUrl()
+    public function testTransfersTestUrl()
     {
         $client = new Client();
         $client->setEnvironment(Environment::TEST);
@@ -113,16 +113,16 @@ class ServiceTest extends TestCaseMock
         self::assertEquals("https://balanceplatform-api-test.adyen.com/btl/v4", $url);
     }
 
-    public function transfersLiveUrl()
+    public function testTransfersLiveUrl()
     {
         $client = new Client();
         $client->setEnvironment(Environment::LIVE);
         $service = new Service($client);
         $url = $service->createBaseUrl("https://balanceplatform-api-test.adyen.com/btl/v4");
-        self::assertEquals("https://balanceplatform-api-test.adyen.com/btl/v4", $url);
+        self::assertEquals("https://balanceplatform-api-live.adyen.com/btl/v4", $url);
     }
 
-    public function binlookupTestUrl()
+    public function testBinlookupTestUrl()
     {
         $client = new Client();
         $client->setEnvironment(Environment::TEST);
@@ -131,16 +131,16 @@ class ServiceTest extends TestCaseMock
         self::assertEquals("https://pal-test.adyen.com/pal/servlet/BinLookup/v54", $url);
     }
 
-    public function binlookupLiveUrl()
+    public function testBinlookupLiveUrl()
     {
         $client = new Client();
-        $client->setEnvironment(Environment::LIVE,"[mycompany]");
+        $client->setEnvironment(Environment::LIVE,"myCompany");
         $service = new Service($client);
         $url = $service->createBaseUrl("https://pal-test.adyen.com/pal/servlet/BinLookup/v54");
-        self::assertEquals("https://mycompany-pal-live.adyen.com/pal/servlet/BinLookup/v54", $url);
+        self::assertEquals("https://myCompany-pal-live.adyenpayments.com/pal/servlet/BinLookup/v54", $url);
     }
 
-    public function payoutTestUrl()
+    public function testPayoutTestUrl()
     {
         $client = new Client();
         $client->setEnvironment(Environment::TEST);
@@ -149,16 +149,16 @@ class ServiceTest extends TestCaseMock
         self::assertEquals("https://pal-test.adyen.com/pal/servlet/Payout/v68", $url);
     }
 
-    public function payoutLiveUrl()
+    public function testPayoutLiveUrl()
     {
         $client = new Client();
-        $client->setEnvironment(Environment::LIVE,"[mycompany]");
+        $client->setEnvironment(Environment::LIVE,"myCompany");
         $service = new Service($client);
-        $url = $service->createBaseUrl("https://pal-live.adyen.com/pal/servlet/Payout/v68");
-        self::assertEquals("https://mycompany-pal-live-test.adyen.com/pal/servlet/Payout/v68", $url);
+        $url = $service->createBaseUrl("https://pal-test.adyen.com/pal/servlet/Payout/v68");
+        self::assertEquals("https://myCompany-pal-live.adyenpayments.com/pal/servlet/Payout/v68", $url);
     }
 
-    public function recurringTestUrl()
+    public function testRecurringTestUrl()
     {
         $client = new Client();
         $client->setEnvironment(Environment::TEST);
@@ -167,13 +167,13 @@ class ServiceTest extends TestCaseMock
         self::assertEquals("https://pal-test.adyen.com/pal/servlet/Recurring/v68", $url);
     }
 
-    public function recurringLiveUrl()
+    public function testRecurringLiveUrl()
     {
         $client = new Client();
-        $client->setEnvironment(Environment::LIVE,"[mycompany]");
+        $client->setEnvironment(Environment::LIVE,"myCompany");
         $service = new Service($client);
-        $url = $service->createBaseUrl("https://pal-live.adyen.com/pal/servlet/Recurring/v68");
-        self::assertEquals("https://mycompany-pal-test.adyen.com/pal/servlet/Recurring/v68", $url);
+        $url = $service->createBaseUrl("https://pal-test.adyen.com/pal/servlet/Recurring/v68");
+        self::assertEquals("https://myCompany-pal-live.adyenpayments.com/pal/servlet/Recurring/v68", $url);
     }
 
     // test PosMobileApi LIVE url with prefix
