@@ -40,12 +40,20 @@ class TestCaseMock extends TestCase
             $json = file_get_contents($jsonFile, true);
         }
         $curlClient = $this->getMockBuilder(CurlClient::class)
-            ->onlyMethods(array('curlRequest', 'curlError', 'requestJson'))
+            ->onlyMethods(array('curlRequest', 'curlError', 'requestJson', 'handleCurlError'))
             ->getMock();
         $curlClient->method('curlRequest')
             ->willReturn(array($json, $httpStatus));
         $curlClient->method('curlError')
             ->willReturn(array($errno, null));
+        $curlClient->method('handleCurlError')
+            ->willReturnCallback(function ($url, $errno) use ($client) {
+                if (!$client->getConfig()->getXApiKey()) {
+                    throw new AdyenException('Please provide a valid Checkout API Key');
+                } else {
+                    throw new ConnectionException("", "");
+                }
+            });
         $curlClient->method('requestJson')
             ->willReturnCallback(function (Service $service, $requestUrl, $params) use ($json, $client, $errno) {
                 if (!is_null($json)) {
