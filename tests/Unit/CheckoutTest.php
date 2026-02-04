@@ -25,7 +25,6 @@ namespace Adyen\Tests\Unit;
 
 use Adyen\AdyenException;
 use Adyen\Service\Checkout;
-use function PHPUnit\Framework\assertContains;
 use function PHPUnit\Framework\assertEquals;
 
 class CheckoutTest extends TestCaseMock
@@ -33,10 +32,31 @@ class CheckoutTest extends TestCaseMock
     const NO_CHECKOUT_KEY = "Please provide a valid Checkout API Key";
     const HOLDER_NAME = "John Smith";
     const RETURN_URL = "https://your-company.com/...";
+
+    /**
+     * @dataProvider successPaymentMethodsProvider
+     * @throws AdyenException
+     */
+    public function testPaymentMethodsSuccess($jsonFile, $httpStatus)
+    {
+        // create Checkout client
+        $client = $this->createMockClient($jsonFile, $httpStatus);
+
+        // initialize service
+        $service = new Checkout\PaymentsApi($client);
+
+        $paymentMethodsRequest = new \Adyen\Model\Checkout\PaymentMethodsRequest();
+        $paymentMethodsRequest->setMerchantAccount("YourMerchantAccount");
+
+        $result = $service->paymentMethods($paymentMethodsRequest);
+
+        $this->assertArrayHasKey('paymentMethods', $result);
+    }
+
     /**
      * @dataProvider successPaymentMethodsProvider
      */
-    public function testPaymentMethodsSuccess($jsonFile, $httpStatus)
+    public function testPaymentMethodsSuccessWithArray($jsonFile, $httpStatus)
     {
         // create Checkout client
         $client = $this->createMockClient($jsonFile, $httpStatus);
@@ -59,8 +79,32 @@ class CheckoutTest extends TestCaseMock
 
     /**
      * @dataProvider failurePaymentMethodsMissingIdentifierOnLiveProvider
+     * @throws AdyenException
      */
     public function testPaymentMethodsFailureMissingIdentifierOnLive($jsonFile, $httpStatus, $expectedExceptionMessage)
+    {
+        $client = $this->createMockClient($jsonFile, $httpStatus);
+        $client->setEnvironment(\Adyen\Environment::LIVE);
+
+        $paymentMethodsRequest = new \Adyen\Model\Checkout\PaymentMethodsRequest();
+        $paymentMethodsRequest->setMerchantAccount("YourMerchantAccount");
+
+
+        try {
+            // initialize service
+            $service = new Checkout\PaymentsApi($client);
+            $service->paymentMethods($paymentMethodsRequest);
+            $this->fail(AdyenException::class . " expected");
+        } catch (AdyenException $e) {
+            $this->assertEquals("Please add your checkout live URL prefix from CA under Developers > API URLs > Prefix",
+                $e->getMessage());
+        }
+    }
+
+    /**
+     * @dataProvider failurePaymentMethodsMissingIdentifierOnLiveProvider
+     */
+    public function testPaymentMethodsFailureMissingIdentifierOnLivewithArray($jsonFile, $httpStatus, $expectedExceptionMessage)
     {
         $this->expectException(AdyenException::class);
         $this->expectExceptionMessage($expectedExceptionMessage);
@@ -97,6 +141,33 @@ class CheckoutTest extends TestCaseMock
         // create Checkout client
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
+
+        if ($expectedExceptionMessage == self::NO_CHECKOUT_KEY) {
+            $client->setXApiKey("");
+        }
+
+        // initialize service
+        $service = new Checkout\PaymentsApi($client);
+
+        $paymentMethodsRequest = new \Adyen\Model\Checkout\PaymentMethodsRequest();
+        $paymentMethodsRequest->setMerchantAccount("YourMerchantAccount");
+
+        $this->expectException(AdyenException::class);
+        $this->expectExceptionMessage($expectedExceptionMessage);
+        $service->paymentMethods($paymentMethodsRequest);
+    }
+
+    /**
+     * @dataProvider failurePaymentMethodsProvider
+     */
+    public function testPaymentMethodsFailureWithArray(
+        $jsonFile,
+        $httpStatus,
+        $expectedExceptionMessage
+    ) {
+        // create Checkout client
+        $client = $this->createMockClient($jsonFile, $httpStatus);
+
         if ($expectedExceptionMessage == self::NO_CHECKOUT_KEY) {
             $client->setXApiKey("");
         }
@@ -123,6 +194,44 @@ class CheckoutTest extends TestCaseMock
      * @dataProvider successPaymentsProvider
      */
     public function testPaymentsSuccess($jsonFile, $httpStatus)
+    {
+        // create Checkout client
+        $client = $this->createMockClient(__DIR__ . '/../../' . $jsonFile, $httpStatus);
+
+        // initialize service
+        $service = new Checkout\PaymentsApi($client);
+
+        $paymentMethod = new \Adyen\Model\Checkout\CheckoutPaymentMethod();
+        $paymentMethod->setType("scheme");
+        $paymentMethod->setNumber("4111111111111111");
+        $paymentMethod->setExpiryMonth("08");
+        $paymentMethod->setExpiryYear("2025");
+        $paymentMethod->setHolderName(self::HOLDER_NAME);
+        $paymentMethod->setCvc("737");
+
+        $amount = new \Adyen\Model\Checkout\Amount();
+        $amount->setCurrency("EUR");
+        $amount->setValue("1000");
+
+        $paymentRequest = new \Adyen\Model\Checkout\PaymentRequest();
+        $paymentRequest->setMerchantAccount("YourMerchantAccount");
+        $paymentRequest->setPaymentMethod($paymentMethod);
+        $paymentRequest->setAmount($amount);
+        $paymentRequest->setReference("Your order number");
+        $paymentRequest->setReturnUrl(self::RETURN_URL);
+        $paymentRequest->setAdditionalData( array(
+            'executeThreeD' => true
+        ));
+
+        $result = $service->payments($paymentRequest);
+
+        $this->assertContains($result['resultCode'], array('Authorised', 'RedirectShopper'));
+    }
+
+    /**
+     * @dataProvider successPaymentsProvider
+     */
+    public function testPaymentsSuccessWithArray($jsonFile, $httpStatus)
     {
         // create Checkout client
         $client = $this->createMockClient(__DIR__ . '/../../' . $jsonFile, $httpStatus);
@@ -163,11 +272,17 @@ class CheckoutTest extends TestCaseMock
     /**
      * @dataProvider failurePaymentsProvider
      */
-    public function testPaymentsFailure($jsonFile, $httpStatus, $expectedExceptionMessage)
-    {
+    public function testPaymentsFailureWithArray(
+        $jsonFile,
+        $httpStatus,
+        $expectedExceptionMessage
+    ) {
         // create Checkout client
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
+        if ($expectedExceptionMessage == self::NO_CHECKOUT_KEY) {
+            $client->setXApiKey("");
+        }
         // initialize service
         $service = new Checkout($client);
 
@@ -192,6 +307,62 @@ class CheckoutTest extends TestCaseMock
         $service->payments($params);
     }
 
+    /**
+     * @dataProvider failurePaymentsProvider
+     * @throws AdyenException
+     */
+    public function testPaymentLinksFailure(
+        $jsonFile,
+        $httpStatus,
+        $expectedExceptionMessage
+    ) {
+        // create Checkout client
+        $client = $this->createMockClient($jsonFile, $httpStatus);
+
+        if ($expectedExceptionMessage == self::NO_CHECKOUT_KEY) {
+            $client->setXApiKey("");
+        }
+
+        // initialize service
+        $service = new Checkout\PaymentLinksApi($client);
+
+        $amount = new \Adyen\Model\Checkout\Amount();
+        $amount->setCurrency("BRL");
+        $amount->setValue(1250);
+
+        $billingAddress = new \Adyen\Model\Checkout\Address();
+        $billingAddress->setStreet("Roque Petroni Jr");
+        $billingAddress->setPostalCode("59000060");
+        $billingAddress->setCity("São Paulo");
+        $billingAddress->setHouseNumberOrName("999");
+        $billingAddress->setCountry("BR");
+        $billingAddress->setStateOrProvince("SP");
+
+        $deliveryAddress = new \Adyen\Model\Checkout\Address();
+        $deliveryAddress->setStreet("Roque Petroni Jr");
+        $deliveryAddress->setPostalCode("59000060");
+        $deliveryAddress->setCity("São Paulo");
+        $deliveryAddress->setHouseNumberOrName("999");
+        $deliveryAddress->setCountry("BR");
+        $deliveryAddress->setStateOrProvince("SP");
+
+        $paymentLinkRequest = new \Adyen\Model\Checkout\PaymentLinkRequest();
+        $paymentLinkRequest->setMerchantAccount("YourMerchantAccount");
+        $paymentLinkRequest->setReference('12345');
+        $paymentLinkRequest->setAmount($amount);
+        $paymentLinkRequest->setCountryCode("BR");
+        $paymentLinkRequest->setShopperReference("YourUniqueShopperId");
+        $paymentLinkRequest->setShopperEmail("test@email.com");
+        $paymentLinkRequest->setShopperLocale("pt_BR");
+        $paymentLinkRequest->setBillingAddress($billingAddress);
+        $paymentLinkRequest->setDeliveryAddress($deliveryAddress);
+
+
+        $this->expectException(AdyenException::class);
+        $this->expectExceptionMessage($expectedExceptionMessage);
+        $service->paymentLinks($paymentLinkRequest);
+    }
+
 
     public static function failurePaymentsProvider()
     {
@@ -204,7 +375,7 @@ class CheckoutTest extends TestCaseMock
     /**
      * @dataProvider successPaymentsDetailsProvider
      */
-    public function testPaymentsDetailsSuccess($jsonFile, $httpStatus)
+    public function testPaymentsDetailsSuccessWithArray($jsonFile, $httpStatus)
     {
         // create Checkout client
         $client = $this->createMockClient($jsonFile, $httpStatus);
@@ -222,6 +393,31 @@ class CheckoutTest extends TestCaseMock
         );
 
         $result = $service->paymentsDetails($params);
+
+        $this->assertContains($result['resultCode'], array('Authorised'));
+    }
+
+    /**
+     * @dataProvider successPaymentsDetailsProvider
+     * @throws AdyenException
+     */
+    public function testPaymentsDetailsSuccess($jsonFile, $httpStatus)
+    {
+        // create Checkout client
+        $client = $this->createMockClient($jsonFile, $httpStatus);
+
+        // initialize service
+        $service = new Checkout\PaymentsApi($client);
+
+        $paymentCompletionDetails = new \Adyen\Model\Checkout\PaymentCompletionDetails();
+        $paymentCompletionDetails->setMD('sdfsdfsdf...');
+        $paymentCompletionDetails->setPaRes('sdkfhskdjfsdf...');
+
+        $paymentDetailsRequest = new \Adyen\Model\Checkout\PaymentDetailsRequest();
+        $paymentDetailsRequest->setPaymentData('Ab02b4c0!BQABAgCJN1wRZuGJmq8dMncmypvknj9s7l5Tj...');
+        $paymentDetailsRequest->setDetails($paymentCompletionDetails);
+
+        $result = $service->paymentsDetails($paymentDetailsRequest);
 
         $this->assertContains($result['resultCode'], array('Authorised'));
     }
@@ -298,7 +494,7 @@ class CheckoutTest extends TestCaseMock
      *
      * @dataProvider successPaymentsLinkProvider
      */
-    public function testPaymentLinksSuccess($jsonFile, $httpStatus)
+    public function testPaymentLinksSuccessWithArray($jsonFile, $httpStatus)
     {
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
@@ -321,6 +517,57 @@ class CheckoutTest extends TestCaseMock
         $this->assertStringContainsString('payByLink.shtml', $result['url']);
     }
 
+    /**
+     * @param string $jsonFile
+     * @param int $httpStatus
+     *
+     * @dataProvider successPaymentsLinkProvider
+     * @throws AdyenException
+     */
+    public function testPaymentLinksSuccess($jsonFile, $httpStatus)
+    {
+        // create Checkout client
+        $client = $this->createMockClient($jsonFile, $httpStatus);
+
+        // initialize service
+        $service = new Checkout\PaymentLinksApi($client);
+
+        $amount = new \Adyen\Model\Checkout\Amount();
+        $amount->setCurrency("BRL");
+        $amount->setValue(1250);
+
+        $billingAddress = new \Adyen\Model\Checkout\Address();
+        $billingAddress->setStreet("Roque Petroni Jr");
+        $billingAddress->setPostalCode("59000060");
+        $billingAddress->setCity("São Paulo");
+        $billingAddress->setHouseNumberOrName("999");
+        $billingAddress->setCountry("BR");
+        $billingAddress->setStateOrProvince("SP");
+
+        $deliveryAddress = new \Adyen\Model\Checkout\Address();
+        $deliveryAddress->setStreet("Roque Petroni Jr");
+        $deliveryAddress->setPostalCode("59000060");
+        $deliveryAddress->setCity("São Paulo");
+        $deliveryAddress->setHouseNumberOrName("999");
+        $deliveryAddress->setCountry("BR");
+        $deliveryAddress->setStateOrProvince("SP");
+
+        $paymentLinkRequest = new \Adyen\Model\Checkout\PaymentLinkRequest();
+        $paymentLinkRequest->setMerchantAccount("YourMerchantAccount");
+        $paymentLinkRequest->setReference('12345');
+        $paymentLinkRequest->setAmount($amount);
+        $paymentLinkRequest->setCountryCode("BR");
+        $paymentLinkRequest->setShopperReference("YourUniqueShopperId");
+        $paymentLinkRequest->setShopperEmail("test@email.com");
+        $paymentLinkRequest->setShopperLocale("pt_BR");
+        $paymentLinkRequest->setBillingAddress($billingAddress);
+        $paymentLinkRequest->setDeliveryAddress($deliveryAddress);
+
+        $result = $service->paymentLinks($paymentLinkRequest);
+
+        $this->assertStringContainsString('payByLink.shtml', $result['url']);
+    }
+
     public static function successPaymentsLinkProvider()
     {
         return array(
@@ -328,7 +575,7 @@ class CheckoutTest extends TestCaseMock
         );
     }
 
-    public function testPaymentLinksExpired()
+    public function testPaymentLinksExpiredWithArray()
     {
         $client = $this->createMockClient('tests/Resources/Checkout/payment-links-expired.json', 200);
 
@@ -343,7 +590,21 @@ class CheckoutTest extends TestCaseMock
         $this->assertEquals('expired', $result['status']);
     }
 
-    public function testPaymentLinksRetrieveSuccess()
+    public function testPaymentLinksExpired()
+    {
+        $client = $this->createMockClient('tests/Resources/Checkout/payment-links-expired.json', 200);
+
+        $service = new Checkout\PaymentLinksApi($client);
+
+        $updatePaymentLinkRequest = new \Adyen\Model\Checkout\UpdatePaymentLinkRequest();
+        $updatePaymentLinkRequest->setStatus("expired");
+
+        $result = $service->updatePaymentLink('linkid', $updatePaymentLinkRequest);
+
+        $this->assertEquals('expired', $result['status']);
+    }
+
+    public function testPaymentLinksRetrieveSuccessWithArray()
     {
         $client = $this->createMockClient('tests/Resources/Checkout/payment-links-success.json', 200);
 
@@ -354,7 +615,18 @@ class CheckoutTest extends TestCaseMock
         $this->assertStringContainsString('payByLink.shtml', $result['url']);
     }
 
-    public function testPaymentLinksInvalid()
+    public function testPaymentLinksRetrieveSuccess()
+    {
+        $client = $this->createMockClient('tests/Resources/Checkout/payment-links-success.json', 200);
+
+        $service = new Checkout\PaymentLinksApi($client);
+
+        $result = $service->getPaymentLink('linkId');
+
+        $this->assertStringContainsString('payByLink.shtml', $result['url']);
+    }
+
+    public function testPaymentLinksInvalidWithArray()
     {
         $client = $this->createMockClient('tests/Resources/Checkout/payment-links-invalid.json', 422);
 
@@ -377,13 +649,56 @@ class CheckoutTest extends TestCaseMock
         $service->paymentLinks($params);
     }
 
+    public function testPaymentLinksInvalid()
+    {
+        $client = $this->createMockClient('tests/Resources/Checkout/payment-links-invalid.json', 422);
+
+        $service = new Checkout\PaymentLinksApi($client);
+
+        $amount = new \Adyen\Model\Checkout\Amount();
+        $amount->setCurrency("BRL");
+        $amount->setValue(1250);
+
+        $billingAddress = new \Adyen\Model\Checkout\Address();
+        $billingAddress->setStreet("Roque Petroni Jr");
+        $billingAddress->setPostalCode("59000060");
+        $billingAddress->setCity("São Paulo");
+        $billingAddress->setHouseNumberOrName("999");
+        $billingAddress->setCountry("BR");
+        $billingAddress->setStateOrProvince("SP");
+
+        $deliveryAddress = new \Adyen\Model\Checkout\Address();
+        $deliveryAddress->setStreet("Roque Petroni Jr");
+        $deliveryAddress->setPostalCode("59000060");
+        $deliveryAddress->setCity("São Paulo");
+        $deliveryAddress->setHouseNumberOrName("999");
+        $deliveryAddress->setCountry("BR");
+        $deliveryAddress->setStateOrProvince("SP");
+
+        $paymentLinkRequest = new \Adyen\Model\Checkout\PaymentLinkRequest();
+        $paymentLinkRequest->setMerchantAccount("YourMerchantAccount");
+        // $paymentLinkRequest->setReference('12345'); // This is intentionally missing to trigger the 'Reference Missing' error
+        $paymentLinkRequest->setAmount($amount);
+        $paymentLinkRequest->setCountryCode("BR");
+        $paymentLinkRequest->setShopperReference("YourUniqueShopperId");
+        $paymentLinkRequest->setShopperEmail("test@email.com");
+        $paymentLinkRequest->setShopperLocale("pt_BR");
+        $paymentLinkRequest->setBillingAddress($billingAddress);
+        $paymentLinkRequest->setDeliveryAddress($deliveryAddress);
+
+        $this->expectException(AdyenException::class);
+        $this->expectExceptionMessage('Reference Missing');
+
+        $service->paymentLinks($paymentLinkRequest);
+    }
+
     /**
      * @param string $jsonFile
      * @param int $httpStatus
      *
      * @dataProvider successDonationsProvider
      */
-    public function testDonationsSuccess($jsonFile, $httpStatus)
+    public function testDonationsSuccessWithArray($jsonFile, $httpStatus)
     {
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
@@ -405,14 +720,55 @@ class CheckoutTest extends TestCaseMock
             'donationOriginalPspReference' => "991559660454807J",
             'donationAccount' => "CHARITY_ACCOUNT",
             'returnUrl' => self::RETURN_URL,
-            'merchantAccount' => "YOUR_MERCHANT_ACCOUNT",
             'shopperInteraction' => "Ecommerce"
         );
 
         $result = $service->donations($params);
-        $this->assertStringContainsString($result['additionalData']['merchantReference'], 'YOUR_DONATION_REFERENCE');
-        $this->assertStringContainsString($result['pspReference'], '853589530367661E');
-        $this->assertStringContainsString($result['response'], '[donation-received]');
+        $this->assertStringContainsString($result['reference'], 'YOUR_DONATION_REFERENCE');
+        $this->assertStringContainsString($result['status'], 'completed');
+        $this->assertStringContainsString($result['payment']['pspReference'], '1234567890');
+    }
+
+    /**
+     * @param string $jsonFile
+     * @param int $httpStatus
+     *
+     * @dataProvider successDonationsProvider
+     * @throws AdyenException
+     */
+    public function testDonationsSuccess($jsonFile, $httpStatus)
+    {
+        $client = $this->createMockClient($jsonFile, $httpStatus);
+
+        $service = new Checkout\DonationsApi($client);
+
+        $amount = new \Adyen\Model\Checkout\Amount();
+        $amount->setCurrency("BRL");
+        $amount->setValue(1250);
+
+        $paymentMethod = new \Adyen\Model\Checkout\DonationPaymentMethod();
+        $paymentMethod->setType("scheme");
+        $paymentMethod->setEncryptedCardNumber('test_4111111111111111');
+        $paymentMethod->setEncryptedExpiryMonth('test_03');
+        $paymentMethod->setEncryptedExpiryYear('test_2030');
+        $paymentMethod->setEncryptedSecurityCode('test_737');
+        $paymentMethod->setHolderName(self::HOLDER_NAME);
+
+        $donationPaymentRequest = new \Adyen\Model\Checkout\DonationPaymentRequest();
+        $donationPaymentRequest->setAmount($amount);
+        $donationPaymentRequest->setReference('12345');
+        $donationPaymentRequest->setMerchantAccount("YOUR_MERCHANT_ACCOUNT");
+        $donationPaymentRequest->setPaymentMethod($paymentMethod);
+        $donationPaymentRequest->setDonationToken("YOUR_DONATION_TOKEN");
+        $donationPaymentRequest->setDonationOriginalPspReference("991559660454807J");
+        $donationPaymentRequest->setDonationAccount("CHARITY_ACCOUNT");
+        $donationPaymentRequest->setReturnUrl(self::RETURN_URL);
+        $donationPaymentRequest->setShopperInteraction("Ecommerce");
+
+        $result = $service->donations($donationPaymentRequest);
+        $this->assertStringContainsString($result->getReference(), 'YOUR_DONATION_REFERENCE');
+        $this->assertStringContainsString($result->getStatus(), 'completed');
+        $this->assertStringContainsString($result->getPayment()->getPspReference(), '1234567890');
     }
 
     public static function successDonationsProvider()
@@ -440,7 +796,7 @@ class CheckoutTest extends TestCaseMock
      *
      * @dataProvider successSessionsProvider
      */
-    public function testSessionsSuccess($jsonFile, $httpStatus)
+    public function testSessionsSuccessWithArray($jsonFile, $httpStatus)
     {
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
@@ -463,6 +819,35 @@ class CheckoutTest extends TestCaseMock
         $this->assertNotNull($result['sessionData']);
     }
 
+    /**
+     * @param string $jsonFile
+     * @param int $httpStatus
+     *
+     * @dataProvider successSessionsProvider
+     * @throws AdyenException
+     */
+    public function testSessionsSuccess($jsonFile, $httpStatus)
+    {
+        $client = $this->createMockClient($jsonFile, $httpStatus);
+
+        $service = new Checkout\PaymentsApi($client);
+
+        $amount = new \Adyen\Model\Checkout\Amount();
+        $amount->setCurrency("EUR");
+        $amount->setValue(100);
+
+        $createCheckoutSessionRequest = new \Adyen\Model\Checkout\CreateCheckoutSessionRequest();
+        $createCheckoutSessionRequest->setMerchantAccount("YOUR_MERCHANT_ACCOUNT");
+        $createCheckoutSessionRequest->setAmount($amount);
+        $createCheckoutSessionRequest->setReturnUrl('https://your-company.com/checkout?shopperOrder=12xy..');
+        $createCheckoutSessionRequest->setReference('YOUR_PAYMENT_REFERENCE');
+        $createCheckoutSessionRequest->setCountryCode('NL');
+
+        $result = $service->sessions($createCheckoutSessionRequest);
+
+        $this->assertNotNull($result['sessionData']);
+    }
+
     public static function successSessionsProvider()
     {
         return array(
@@ -476,7 +861,7 @@ class CheckoutTest extends TestCaseMock
      *
      * @dataProvider invalidSessionsProvider
      */
-    public function testSessionsInvalid($jsonFile, $httpStatus, $expectedExceptionMessage)
+    public function testSessionsInvalidWithArray($jsonFile, $httpStatus, $expectedExceptionMessage)
     {
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
@@ -495,6 +880,32 @@ class CheckoutTest extends TestCaseMock
         $service->sessions($params);
     }
 
+    /**
+     * @param string $jsonFile
+     * @param int $httpStatus
+     *
+     * @dataProvider invalidSessionsProvider
+     * @throws AdyenException
+     */
+    public function testSessionsInvalid($jsonFile, $httpStatus, $expectedExceptionMessage)
+    {
+        $client = $this->createMockClient($jsonFile, $httpStatus);
+
+        $service = new Checkout\PaymentsApi($client);
+
+        $createCheckoutSessionRequest = new \Adyen\Model\Checkout\CreateCheckoutSessionRequest();
+        $createCheckoutSessionRequest->setMerchantAccount("YOUR_MERCHANT_ACCOUNT");
+        $createCheckoutSessionRequest->setReturnUrl('https://your-company.com/checkout?shopperOrder=12xy..');
+        $createCheckoutSessionRequest->setReference('YOUR_PAYMENT_REFERENCE');
+        $createCheckoutSessionRequest->setCountryCode('NL');
+        // Missing amount to trigger the exception
+
+        $this->expectException(AdyenException::class);
+        $this->expectExceptionMessage($expectedExceptionMessage);
+
+        $service->sessions($createCheckoutSessionRequest);
+    }
+
     public static function invalidSessionsProvider()
     {
         return array(
@@ -508,7 +919,7 @@ class CheckoutTest extends TestCaseMock
      *
      * @dataProvider successCardDetailsProvider
      */
-    public function testCardDetailsSuccess($jsonFile, $httpStatus)
+    public function testCardDetailsSuccessWithArray($jsonFile, $httpStatus)
     {
         $client = $this->createMockClient($jsonFile, $httpStatus);
 
@@ -519,6 +930,28 @@ class CheckoutTest extends TestCaseMock
         );
 
         $result = $service->cardDetails($params);
+
+        $this->assertNotNull($result['brands']);
+    }
+
+    /**
+     * @param string $jsonFile
+     * @param int $httpStatus
+     *
+     * @dataProvider successCardDetailsProvider
+     * @throws AdyenException
+     */
+    public function testCardDetailsSuccess($jsonFile, $httpStatus)
+    {
+        $client = $this->createMockClient($jsonFile, $httpStatus);
+
+        $service = new Checkout\PaymentsApi($client);
+
+        $cardDetailsRequest = new \Adyen\Model\Checkout\CardDetailsRequest();
+        $cardDetailsRequest->setMerchantAccount("YOUR_MERCHANT_ACCOUNT");
+        $cardDetailsRequest->setCardNumber("411111");
+
+        $result = $service->cardDetails($cardDetailsRequest);
 
         $this->assertNotNull($result['brands']);
     }
