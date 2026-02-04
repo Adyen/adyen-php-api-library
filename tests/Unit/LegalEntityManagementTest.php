@@ -12,6 +12,14 @@ use Adyen\Service\LegalEntityManagement\TermsOfServiceApi;
 use Adyen\Service\LegalEntityManagement\TransferInstrumentsApi;
 use function PHPUnit\Framework\assertEquals;
 use Adyen\Environment;
+use Adyen\Model\LegalEntityManagement\LegalEntityInfoRequiredType;
+use Adyen\Model\LegalEntityManagement\Individual;
+use Adyen\Model\LegalEntityManagement\Name;
+use Adyen\Model\LegalEntityManagement\Address;
+use Adyen\Model\LegalEntityManagement\IdentificationData;
+use Adyen\Model\LegalEntityManagement\BirthData;
+use Adyen\Model\LegalEntityManagement\LegalEntityInfo;
+use Adyen\Model\LegalEntityManagement\LegalEntityAssociation;
 
 class LegalEntityManagementTest extends TestCaseMock
 {
@@ -85,5 +93,87 @@ class LegalEntityManagementTest extends TestCaseMock
             'https://kyc-test.adyen.com/lem/v4/legalEntities/LE322JV223222F5GVGMLNB83F/requestPeriodicReview',
             $this->requestUrl
         );
+    }
+
+    public function testCreateLegalEntity()
+    {
+        $client = $this->createMockClient('tests/Resources/LegalEntityManagement/create-legal-entity-response.json', 200);
+
+        $service = new LegalEntitiesApi($client);
+
+        // Individual Name
+        $name = new Name();
+        $name->setFirstName('Shelly');
+        $name->setLastName('Eller');
+
+        // Individual Residential Address
+        $residentialAddress = new Address();
+        $residentialAddress->setCity('Sydney');
+        $residentialAddress->setCountry('AU');
+        $residentialAddress->setPostalCode('1122');
+        $residentialAddress->setStateOrProvince('NSW');
+        $residentialAddress->setStreet('Winfield Avenue');
+        $residentialAddress->setStreet2('12');
+
+        // Individual Identification Data
+        $identificationData = new IdentificationData();
+        $identificationData->setIssuerState('NSW');
+        $identificationData->setNumber('1234567891');
+        $identificationData->setType(IdentificationData::TYPE_DRIVERS_LICENSE);
+        $identificationData->setCardNumber('112327');
+
+        // Individual Birth Data
+        $birthData = new BirthData();
+        $birthData->setDateOfBirth('1991-01-01');
+
+        // Individual
+        $individual = new Individual();
+        $individual->setName($name);
+        $individual->setResidentialAddress($residentialAddress);
+        $individual->setIdentificationData($identificationData);
+        $individual->setBirthData($birthData);
+        $individual->setEmail('s.hopper @example.com');
+
+        // LegalEntityInfoRequiredType
+        $legalEntityInfoRequiredType = new LegalEntityInfoRequiredType();
+        $legalEntityInfoRequiredType->setType(LegalEntityInfoRequiredType::TYPE_INDIVIDUAL);
+        $legalEntityInfoRequiredType->setIndividual($individual);
+
+        $response = $service->createLegalEntity($legalEntityInfoRequiredType);
+
+        self::assertEquals('LE00000000000000000000001', $response->getId());
+        self::assertEquals('individual', $response->getType());
+        self::assertEquals('s.hopper @example.com', $response->getIndividual()->getEmail());
+        self::assertEquals('Sydney', $response->getIndividual()->getResidentialAddress()->getCity());
+        self::assertEquals('Shelly', $response->getIndividual()->getName()->getFirstName());
+    }
+
+    public function testUpdateLegalEntity()
+    {
+        $client = $this->createMockClient('tests/Resources/LegalEntityManagement/update-legal-entity-response.json', 200);
+
+        $service = new LegalEntitiesApi($client);
+
+        // LegalEntityAssociation
+        $legalEntityAssociation = new LegalEntityAssociation();
+        $legalEntityAssociation->setLegalEntityId('LE00000000000000000000002');
+        $legalEntityAssociation->setType(LegalEntityAssociation::TYPE_SETTLOR);
+        $legalEntityAssociation->setEntityType('individual');
+        $legalEntityAssociation->setSettlorExemptionReason([
+            'deceased',
+            'professionalServiceProvider'
+        ]);
+
+        // LegalEntityInfo
+        $legalEntityInfo = new LegalEntityInfo();
+        $legalEntityInfo->setEntityAssociations([$legalEntityAssociation]);
+
+        $response = $service->updateLegalEntity('LE00000000000000000000001', $legalEntityInfo);
+
+        self::assertEquals('LE00000000000000000000001', $response->getId());
+        self::assertEquals('trust', $response->getType());
+        self::assertCount(1, $response->getEntityAssociations());
+        self::assertEquals('LE00000000000000000000002', $response->getEntityAssociations()[0]->getLegalEntityId());
+        self::assertEquals('settlor', $response->getEntityAssociations()[0]->getType());
     }
 }

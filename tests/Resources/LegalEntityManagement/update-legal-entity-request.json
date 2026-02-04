@@ -1,0 +1,13 @@
+{
+  "entityAssociations": [
+    {
+      "legalEntityId": "LE00000000000000000000002",
+      "type": "settlor",
+      "entityType": "individual",
+      "settlorExemptionReason": [
+        "deceased",
+        "professionalServiceProvider"
+      ]
+    }
+  ]
+}

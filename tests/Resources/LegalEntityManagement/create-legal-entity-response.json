@@ -1,0 +1,28 @@
+{
+  "individual": {
+    "email": "s.hopper @example.com",
+    "birthData": {
+      "dateOfBirth": "1991-01-01"
+    },
+    "identificationData": {
+      "cardNumber": "112327",
+      "issuerState": "NSW",
+      "number": "1234567891",
+      "type": "driversLicense"
+    },
+    "name": {
+      "firstName": "Shelly",
+      "lastName": "Eller"
+    },
+    "residentialAddress": {
+      "city": "Sydney",
+      "country": "AU",
+      "postalCode": "1122",
+      "stateOrProvince": "NSW",
+      "street": "Winfield Avenue",
+      "street2": "12"
+    }
+  },
+  "type": "individual",
+  "id": "LE00000000000000000000001"
+}
