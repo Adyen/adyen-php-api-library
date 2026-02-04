@@ -225,7 +225,7 @@ class CheckoutTest extends TestCaseMock
 
         $result = $service->payments($paymentRequest);
 
-        $this->assertContains($result['resultCode'], array('Authorised', 'RedirectShopper'));
+        $this->assertContainsEquals($result['resultCode'], array('Authorised', 'RedirectShopper'));
     }
 
     /**
@@ -258,7 +258,7 @@ class CheckoutTest extends TestCaseMock
         );
         $result = $service->payments($params);
 
-        $this->assertContains($result['resultCode'], array('Authorised', 'RedirectShopper'));
+        $this->assertContainsEquals($result['resultCode'], array('Authorised', 'RedirectShopper'));
     }
 
     public static function successPaymentsProvider()
@@ -394,7 +394,7 @@ class CheckoutTest extends TestCaseMock
 
         $result = $service->paymentsDetails($params);
 
-        $this->assertContains($result['resultCode'], array('Authorised'));
+        $this->assertContainsEquals($result['resultCode'], array('Authorised'));
     }
 
     /**
@@ -419,7 +419,7 @@ class CheckoutTest extends TestCaseMock
 
         $result = $service->paymentsDetails($paymentDetailsRequest);
 
-        $this->assertContains($result['resultCode'], array('Authorised'));
+        $this->assertContainsEquals($result['resultCode'], array('Authorised'));
     }
 
     public static function successPaymentsDetailsProvider()
@@ -478,7 +478,7 @@ class CheckoutTest extends TestCaseMock
 
         $result = $service->paymentsResult($params);
 
-        $this->assertContains($result['resultCode'], array('Authorised'));
+        $this->assertContainsEquals($result['resultCode'], array('Authorised'));
     }
 
     public static function successPaymentsResultProvider()
