@@ -134,7 +134,7 @@ class ServiceTest extends TestCaseMock
     public function testBinlookupLiveUrl()
     {
         $client = new Client();
-        $client->setEnvironment(Environment::LIVE,"myCompany");
+        $client->setEnvironment(Environment::LIVE, "myCompany");
         $service = new Service($client);
         $url = $service->createBaseUrl("https://pal-test.adyen.com/pal/servlet/BinLookup/v54");
         self::assertEquals("https://myCompany-pal-live.adyenpayments.com/pal/servlet/BinLookup/v54", $url);
@@ -152,7 +152,7 @@ class ServiceTest extends TestCaseMock
     public function testPayoutLiveUrl()
     {
         $client = new Client();
-        $client->setEnvironment(Environment::LIVE,"myCompany");
+        $client->setEnvironment(Environment::LIVE, "myCompany");
         $service = new Service($client);
         $url = $service->createBaseUrl("https://pal-test.adyen.com/pal/servlet/Payout/v68");
         self::assertEquals("https://myCompany-pal-live.adyenpayments.com/pal/servlet/Payout/v68", $url);
@@ -170,7 +170,7 @@ class ServiceTest extends TestCaseMock
     public function testRecurringLiveUrl()
     {
         $client = new Client();
-        $client->setEnvironment(Environment::LIVE,"myCompany");
+        $client->setEnvironment(Environment::LIVE, "myCompany");
         $service = new Service($client);
         $url = $service->createBaseUrl("https://pal-test.adyen.com/pal/servlet/Recurring/v68");
         self::assertEquals("https://myCompany-pal-live.adyenpayments.com/pal/servlet/Recurring/v68", $url);

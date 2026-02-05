@@ -96,8 +96,10 @@ class CheckoutTest extends TestCaseMock
             $service->paymentMethods($paymentMethodsRequest);
             $this->fail(AdyenException::class . " expected");
         } catch (AdyenException $e) {
-            $this->assertEquals("Please add your checkout live URL prefix from CA under Developers > API URLs > Prefix",
-                $e->getMessage());
+            $this->assertEquals(
+                "Please add your checkout live URL prefix from CA under Developers > API URLs > Prefix",
+                $e->getMessage()
+            );
         }
     }
 
@@ -219,7 +221,7 @@ class CheckoutTest extends TestCaseMock
         $paymentRequest->setAmount($amount);
         $paymentRequest->setReference("Your order number");
         $paymentRequest->setReturnUrl(self::RETURN_URL);
-        $paymentRequest->setAdditionalData( array(
+        $paymentRequest->setAdditionalData(array(
             'executeThreeD' => true
         ));
 
