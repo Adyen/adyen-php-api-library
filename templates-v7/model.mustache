@@ -3,7 +3,6 @@
 {{#models}}
 {{#model}}
 {{>partial_header}}
-
 namespace {{modelPackage}};
 {{^isEnum}}
 {{^parentSchema}}
@@ -16,7 +15,6 @@ use \{{modelPackage}}\ObjectSerializer;
 /**
  * {{classname}} Class Doc Comment
  *
- * @category Class
 {{#description}}
  * @description {{.}}
 {{/description}}
