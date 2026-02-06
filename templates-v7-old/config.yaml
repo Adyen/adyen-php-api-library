@@ -1,4 +1,4 @@
-templateDir: ./templates-old-v7
+templateDir: ./templates-v7-old
 files:
   api-single.mustache:
     folder: api
