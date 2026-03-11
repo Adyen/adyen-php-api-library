@@ -28,6 +28,10 @@ class BaseService
             throw new AdyenException($msg);
         }
 
+        if ($configuration->getEnvironment() == Environment::LIVE && !$configuration->getLiveEndpointUrlPrefix()) {
+            $msg = 'The live URL prefix is not defined';
+            throw new AdyenException($msg);
+        }
         $this->configuration = $configuration;
     }
 
@@ -44,7 +48,7 @@ class BaseService
 
         if (strpos($url, "pal-") !== false) {
             // Add live prefix for PAL endpoints
-            if ($this->configuration->get('prefix') == null) {
+            if ($this->configuration->getLiveEndpointUrlPrefix() == null) {
                 throw new AdyenException(
                     "Please add your live URL prefix from CA under Developers > API URLs > Prefix"
                 );
@@ -53,13 +57,13 @@ class BaseService
             // We inject the prefix formatted like "https://{PREFIX}-"
             $url = str_replace(
                 "https://pal-test.adyen.com/pal/servlet/",
-                "https://" . $this->configuration->get('prefix') . '-pal-live.adyenpayments.com/pal/servlet/',
+                "https://" . $this->configuration->getLiveEndpointUrlPrefix() . '-pal-live.adyenpayments.com/pal/servlet/',
                 $url
             );
         }
         if (strpos($url, "checkout-") !== false) {
             // Add live prefix for Checkout endpoints
-            if ($this->configuration->get('prefix') == null) {
+            if ($this->configuration->getLiveEndpointUrlPrefix() == null) {
                 throw new AdyenException(
                     "Please add your checkout live URL prefix from CA under Developers > API URLs > Prefix"
                 );
@@ -69,14 +73,14 @@ class BaseService
                 // PosSdk (PosMobileApi): inject the live prefix like "https://{PREFIX}-" without duplicating `/checkout` in path
                 $url = str_replace(
                     "https://checkout-test.adyen.com/",
-                    "https://" . $this->configuration->get('prefix') . '-checkout-live.adyenpayments.com/',
+                    "https://" . $this->configuration->getLiveEndpointUrlPrefix() . '-checkout-live.adyenpayments.com/',
                     $url
                 );
             } else {
                 // Other services: inject the live prefix like "https://{PREFIX}-"
                 $url = str_replace(
                     "https://checkout-test.adyen.com/",
-                    "https://" . $this->configuration->get('prefix') . '-checkout-live.adyenpayments.com/checkout/',
+                    "https://" . $this->configuration->getLiveEndpointUrlPrefix() . '-checkout-live.adyenpayments.com/checkout/',
                     $url
                 );
             }
