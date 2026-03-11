@@ -122,11 +122,26 @@ class Configuration
     protected $applicationName;
 
     /**
-     * Constructor
+     * Live endpoint prefix: prefix for LIVE endpoints (required by some APIs)
+     * @var
      */
-    public function __construct()
+    protected $liveEndpointUrlPrefix;
+
+    /**
+     * Constructor
+     *
+     * @param array|null $params
+     */
+    public function __construct(?array $params = null)
     {
         $this->tempFolderPath = sys_get_temp_dir();
+
+        foreach ($params ?? [] as $key => $value) {
+            $setter = 'set' . ucfirst($key);
+            if (method_exists($this, $setter)) {
+                $this->{$setter}($value);
+            }
+        }
     }
 
     /**
@@ -493,6 +508,24 @@ class Configuration
     {
         return $this->applicationName;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getLiveEndpointUrlPrefix()
+    {
+        return $this->liveEndpointUrlPrefix;
+    }
+
+    /**
+     * @param mixed $liveEndpointUrlPrefix
+     */
+    public function setLiveEndpointUrlPrefix($liveEndpointUrlPrefix)
+    {
+        $this->liveEndpointUrlPrefix = $liveEndpointUrlPrefix;
+        return $this;
+    }
+
 
     /**
      * Gets the default configuration instance

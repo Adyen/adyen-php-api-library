@@ -10,13 +10,20 @@ namespace Adyen;
 class HeaderSelector
 {
     /**
+     * Select the Accept and Content-Type headers for the request.
+     *
      * @param string[] $accept
      * @param string   $contentType
      * @param bool     $isMultipart
+     * @param RequestOptions|null $requestOptions
      * @return string[]
      */
-    public function selectHeaders(array $accept, string $contentType, bool $isMultipart): array
-    {
+    public function selectHeaders(
+        array $accept,
+        string $contentType,
+        bool $isMultipart,
+        ?RequestOptions $requestOptions = null
+    ): array {
         $headers = [];
 
         $accept = $this->selectAcceptHeader($accept);
@@ -25,11 +32,25 @@ class HeaderSelector
         }
 
         if (!$isMultipart) {
-            if($contentType === '') {
+            if ($contentType === '') {
                 $contentType = 'application/json';
             }
 
             $headers['Content-Type'] = $contentType;
+        }
+
+        if ($requestOptions !== null) {
+            if ($requestOptions->getIdempotencyKey() !== null) {
+                $headers['Idempotency-Key'] = $requestOptions->getIdempotencyKey();
+            }
+
+            if ($requestOptions->getRequestedVerificationCodeHeader() !== null) {
+                $headers['Adyen-Requested-Verification-Code'] = $requestOptions->getRequestedVerificationCodeHeader();
+            }
+
+            foreach ($requestOptions->getAdditionalHeaders() as $key => $value) {
+                $headers[$key] = $value;
+            }
         }
 
         return $headers;
