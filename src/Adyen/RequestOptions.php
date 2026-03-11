@@ -82,7 +82,7 @@ class RequestOptions
 
     public function setAdditionalHeaders(array $additionalHeaders): void
     {
-        $this->$additionalHeaders = $additionalHeaders;
+        $this->additionalHeaders = $additionalHeaders;
     }
 
     /**
