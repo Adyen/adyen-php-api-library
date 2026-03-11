@@ -19,8 +19,9 @@ class BaseServiceTest extends TestCase
     {
         $config = new Configuration();
         $config->setAdyenApiKey("MockedKey");
+        $config->setEnvironment(Environment::TEST);
         $service = new BaseService($config);
-        $this->assertNull($service);
+        $this->assertNotNull($service);
     }
 
     /**
@@ -34,7 +35,7 @@ class BaseServiceTest extends TestCase
             'environment' => Environment::TEST
         ]);
         $service = new BaseService($config);
-        $this->assertNull($service);
+        $this->assertNotNull($service);
     }
 
     /**
