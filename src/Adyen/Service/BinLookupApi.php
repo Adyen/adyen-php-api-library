@@ -18,6 +18,10 @@ use Adyen\Client;
 use Adyen\Service;
 use Adyen\Model\BinLookup\ObjectSerializer;
 
+/**
+ * @deprecated The service has been moved to a different package
+ * @see \Adyen\Service\BinLookup\BinLookupApi
+ */
 class BinLookupApi extends Service
 {
     /**
