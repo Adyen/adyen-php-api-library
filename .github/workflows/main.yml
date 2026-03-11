@@ -12,7 +12,7 @@ on:
   workflow_dispatch: {}
 
 permissions:
-  contents: read  
+  contents: read
 
 jobs:
   php-test:
@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-version: [ '7.3', '8.2', '8.4' ]
+        php-version: [ '8.2', '8.4' ]
         include:
           - php-version: '8.2'
             validate: true
@@ -80,7 +80,7 @@ jobs:
     name: Integration Tests
     needs: [php-test, php-lint]
     runs-on: ubuntu-latest
-    
+
     # Only run integration tests on pull requests with release label and from the main repository
     if: |
       github.event_name == 'pull_request' &&
