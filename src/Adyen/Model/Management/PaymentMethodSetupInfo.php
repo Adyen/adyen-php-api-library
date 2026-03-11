@@ -60,6 +60,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'eftDirectdebitCA' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'eftposAustralia' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'girocard' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
+        'givex' => '\Adyen\Model\Management\GivexInfo',
         'googlePay' => '\Adyen\Model\Management\GooglePayInfo',
         'ideal' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'interacCard' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
@@ -82,10 +83,12 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'sofort' => '\Adyen\Model\Management\SofortInfo',
         'star' => '\Adyen\Model\Management\StarInfo',
         'storeIds' => 'string[]',
+        'svs' => '\Adyen\Model\Management\SvsInfo',
         'swish' => '\Adyen\Model\Management\SwishInfo',
         'ticket' => '\Adyen\Model\Management\TicketInfo',
         'twint' => '\Adyen\Model\Management\TwintInfo',
         'type' => 'string',
+        'valuelink' => '\Adyen\Model\Management\ValuelinkInfo',
         'vipps' => '\Adyen\Model\Management\VippsInfo',
         'visa' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'wechatpay' => '\Adyen\Model\Management\WeChatPayInfo',
@@ -119,6 +122,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'eftDirectdebitCA' => null,
         'eftposAustralia' => null,
         'girocard' => null,
+        'givex' => null,
         'googlePay' => null,
         'ideal' => null,
         'interacCard' => null,
@@ -141,10 +145,12 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'sofort' => null,
         'star' => null,
         'storeIds' => null,
+        'svs' => null,
         'swish' => null,
         'ticket' => null,
         'twint' => null,
         'type' => null,
+        'valuelink' => null,
         'vipps' => null,
         'visa' => null,
         'wechatpay' => null,
@@ -176,6 +182,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'eftDirectdebitCA' => false,
         'eftposAustralia' => false,
         'girocard' => false,
+        'givex' => false,
         'googlePay' => false,
         'ideal' => false,
         'interacCard' => false,
@@ -198,10 +205,12 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'sofort' => false,
         'star' => false,
         'storeIds' => false,
+        'svs' => false,
         'swish' => false,
         'ticket' => false,
         'twint' => false,
         'type' => false,
+        'valuelink' => false,
         'vipps' => false,
         'visa' => false,
         'wechatpay' => false,
@@ -313,6 +322,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'eftDirectdebitCA' => 'eft_directdebit_CA',
         'eftposAustralia' => 'eftpos_australia',
         'girocard' => 'girocard',
+        'givex' => 'givex',
         'googlePay' => 'googlePay',
         'ideal' => 'ideal',
         'interacCard' => 'interac_card',
@@ -335,10 +345,12 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'sofort' => 'sofort',
         'star' => 'star',
         'storeIds' => 'storeIds',
+        'svs' => 'svs',
         'swish' => 'swish',
         'ticket' => 'ticket',
         'twint' => 'twint',
         'type' => 'type',
+        'valuelink' => 'valuelink',
         'vipps' => 'vipps',
         'visa' => 'visa',
         'wechatpay' => 'wechatpay',
@@ -370,6 +382,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'eftDirectdebitCA' => 'setEftDirectdebitCA',
         'eftposAustralia' => 'setEftposAustralia',
         'girocard' => 'setGirocard',
+        'givex' => 'setGivex',
         'googlePay' => 'setGooglePay',
         'ideal' => 'setIdeal',
         'interacCard' => 'setInteracCard',
@@ -392,10 +405,12 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'sofort' => 'setSofort',
         'star' => 'setStar',
         'storeIds' => 'setStoreIds',
+        'svs' => 'setSvs',
         'swish' => 'setSwish',
         'ticket' => 'setTicket',
         'twint' => 'setTwint',
         'type' => 'setType',
+        'valuelink' => 'setValuelink',
         'vipps' => 'setVipps',
         'visa' => 'setVisa',
         'wechatpay' => 'setWechatpay',
@@ -427,6 +442,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'eftDirectdebitCA' => 'getEftDirectdebitCA',
         'eftposAustralia' => 'getEftposAustralia',
         'girocard' => 'getGirocard',
+        'givex' => 'getGivex',
         'googlePay' => 'getGooglePay',
         'ideal' => 'getIdeal',
         'interacCard' => 'getInteracCard',
@@ -449,10 +465,12 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'sofort' => 'getSofort',
         'star' => 'getStar',
         'storeIds' => 'getStoreIds',
+        'svs' => 'getSvs',
         'swish' => 'getSwish',
         'ticket' => 'getTicket',
         'twint' => 'getTwint',
         'type' => 'getType',
+        'valuelink' => 'getValuelink',
         'vipps' => 'getVipps',
         'visa' => 'getVisa',
         'wechatpay' => 'getWechatpay',
@@ -528,6 +546,8 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     public const TYPE_BANESE_CARD_PREPAID = 'banese_card_prepaid';
     public const TYPE_BCMC = 'bcmc';
     public const TYPE_BLIK = 'blik';
+    public const TYPE_BLIK_POS = 'blik_pos';
+    public const TYPE_BR_SCHEMES = 'br_schemes';
     public const TYPE_CARTEBANCAIRE = 'cartebancaire';
     public const TYPE_CLEARPAY = 'clearpay';
     public const TYPE_CLICKTOPAY = 'clicktopay';
@@ -553,6 +573,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     public const TYPE_ELOCREDIT = 'elocredit';
     public const TYPE_ELODEBIT = 'elodebit';
     public const TYPE_GIROCARD = 'girocard';
+    public const TYPE_GIVEX = 'givex';
     public const TYPE_GOOGLEPAY = 'googlepay';
     public const TYPE_GREEN_CARD = 'green_card';
     public const TYPE_GREEN_CARD_CREDIT = 'green_card_credit';
@@ -567,6 +588,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     public const TYPE_JCB = 'jcb';
     public const TYPE_KLARNA = 'klarna';
     public const TYPE_KLARNA_ACCOUNT = 'klarna_account';
+    public const TYPE_KLARNA_B2B = 'klarna_b2b';
     public const TYPE_KLARNA_PAYNOW = 'klarna_paynow';
     public const TYPE_LE_CARD = 'le_card';
     public const TYPE_LE_CARD_CREDIT = 'le_card_credit';
@@ -608,6 +630,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     public const TYPE_SEPADIRECTDEBIT = 'sepadirectdebit';
     public const TYPE_SODEXO = 'sodexo';
     public const TYPE_STAR = 'star';
+    public const TYPE_SVS = 'svs';
     public const TYPE_SWISH = 'swish';
     public const TYPE_TICKET = 'ticket';
     public const TYPE_TODO_GIFTCARD = 'todo_giftcard';
@@ -620,6 +643,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     public const TYPE_UP_BRAZIL_PREPAID = 'up_brazil_prepaid';
     public const TYPE_VALE_REFEICAO = 'vale_refeicao';
     public const TYPE_VALE_REFEICAO_PREPAID = 'vale_refeicao_prepaid';
+    public const TYPE_VALUELINK = 'valuelink';
     public const TYPE_VEGAS_CARD = 'vegas_card';
     public const TYPE_VEGAS_CARD_CREDIT = 'vegas_card_credit';
     public const TYPE_VEGAS_CARD_DEBIT = 'vegas_card_debit';
@@ -680,6 +704,8 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
             self::TYPE_BANESE_CARD_PREPAID,
             self::TYPE_BCMC,
             self::TYPE_BLIK,
+            self::TYPE_BLIK_POS,
+            self::TYPE_BR_SCHEMES,
             self::TYPE_CARTEBANCAIRE,
             self::TYPE_CLEARPAY,
             self::TYPE_CLICKTOPAY,
@@ -705,6 +731,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
             self::TYPE_ELOCREDIT,
             self::TYPE_ELODEBIT,
             self::TYPE_GIROCARD,
+            self::TYPE_GIVEX,
             self::TYPE_GOOGLEPAY,
             self::TYPE_GREEN_CARD,
             self::TYPE_GREEN_CARD_CREDIT,
@@ -719,6 +746,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
             self::TYPE_JCB,
             self::TYPE_KLARNA,
             self::TYPE_KLARNA_ACCOUNT,
+            self::TYPE_KLARNA_B2B,
             self::TYPE_KLARNA_PAYNOW,
             self::TYPE_LE_CARD,
             self::TYPE_LE_CARD_CREDIT,
@@ -760,6 +788,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
             self::TYPE_SEPADIRECTDEBIT,
             self::TYPE_SODEXO,
             self::TYPE_STAR,
+            self::TYPE_SVS,
             self::TYPE_SWISH,
             self::TYPE_TICKET,
             self::TYPE_TODO_GIFTCARD,
@@ -772,6 +801,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
             self::TYPE_UP_BRAZIL_PREPAID,
             self::TYPE_VALE_REFEICAO,
             self::TYPE_VALE_REFEICAO_PREPAID,
+            self::TYPE_VALUELINK,
             self::TYPE_VEGAS_CARD,
             self::TYPE_VEGAS_CARD_CREDIT,
             self::TYPE_VEGAS_CARD_DEBIT,
@@ -821,6 +851,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('eftDirectdebitCA', $data ?? [], null);
         $this->setIfExists('eftposAustralia', $data ?? [], null);
         $this->setIfExists('girocard', $data ?? [], null);
+        $this->setIfExists('givex', $data ?? [], null);
         $this->setIfExists('googlePay', $data ?? [], null);
         $this->setIfExists('ideal', $data ?? [], null);
         $this->setIfExists('interacCard', $data ?? [], null);
@@ -843,10 +874,12 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('sofort', $data ?? [], null);
         $this->setIfExists('star', $data ?? [], null);
         $this->setIfExists('storeIds', $data ?? [], null);
+        $this->setIfExists('svs', $data ?? [], null);
         $this->setIfExists('swish', $data ?? [], null);
         $this->setIfExists('ticket', $data ?? [], null);
         $this->setIfExists('twint', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('valuelink', $data ?? [], null);
         $this->setIfExists('vipps', $data ?? [], null);
         $this->setIfExists('visa', $data ?? [], null);
         $this->setIfExists('wechatpay', $data ?? [], null);
@@ -1373,6 +1406,30 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     }
 
     /**
+     * Gets givex
+     *
+     * @return \Adyen\Model\Management\GivexInfo|null
+     */
+    public function getGivex()
+    {
+        return $this->container['givex'];
+    }
+
+    /**
+     * Sets givex
+     *
+     * @param \Adyen\Model\Management\GivexInfo|null $givex givex
+     *
+     * @return self
+     */
+    public function setGivex($givex)
+    {
+        $this->container['givex'] = $givex;
+
+        return $this;
+    }
+
+    /**
      * Gets googlePay
      *
      * @return \Adyen\Model\Management\GooglePayInfo|null
@@ -1801,11 +1858,11 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $allowedValues = $this->getShopperInteractionAllowableValues();
         if (!in_array($shopperInteraction, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'shopperInteraction', must be one of '%s'",
+                    "shopperInteraction: unexpected enum value '%s' - Supported values are [%s]",
                     $shopperInteraction,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
@@ -1911,6 +1968,30 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     }
 
     /**
+     * Gets svs
+     *
+     * @return \Adyen\Model\Management\SvsInfo|null
+     */
+    public function getSvs()
+    {
+        return $this->container['svs'];
+    }
+
+    /**
+     * Sets svs
+     *
+     * @param \Adyen\Model\Management\SvsInfo|null $svs svs
+     *
+     * @return self
+     */
+    public function setSvs($svs)
+    {
+        $this->container['svs'] = $svs;
+
+        return $this;
+    }
+
+    /**
      * Gets swish
      *
      * @return \Adyen\Model\Management\SwishInfo|null
@@ -2003,15 +2084,39 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            error_log(
                 sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
                     $type,
-                    implode("', '", $allowedValues)
+                    implode(', ', $allowedValues)
                 )
             );
         }
         $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets valuelink
+     *
+     * @return \Adyen\Model\Management\ValuelinkInfo|null
+     */
+    public function getValuelink()
+    {
+        return $this->container['valuelink'];
+    }
+
+    /**
+     * Sets valuelink
+     *
+     * @param \Adyen\Model\Management\ValuelinkInfo|null $valuelink valuelink
+     *
+     * @return self
+     */
+    public function setValuelink($valuelink)
+    {
+        $this->container['valuelink'] = $valuelink;
 
         return $this;
     }

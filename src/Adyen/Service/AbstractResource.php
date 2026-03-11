@@ -225,23 +225,6 @@ abstract class AbstractResource
         );
     }
 
-    /**
-     * @param $params
-     * @return mixed
-     * @throws AdyenException
-     * @throws ConnectionException
-     */
-    public function requestPost($params)
-    {
-        // check if paramenters has a value
-        if (!$params) {
-            $msg = 'The parameters in the request are empty';
-            throw new AdyenException($msg);
-        }
-
-        $curlClient = $this->service->getClient()->getHttpClient();
-        return $curlClient->requestPost($this->service, $this->endpoint, $params);
-    }
 
     /**
      * @param $url

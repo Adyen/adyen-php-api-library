@@ -48,6 +48,7 @@ class RivertyDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'iban' => 'string',
         'personalDetails' => 'string',
         'recurringDetailReference' => 'string',
+        'sdkData' => 'string',
         'storedPaymentMethodId' => 'string',
         'subtype' => 'string',
         'type' => 'string'
@@ -68,6 +69,7 @@ class RivertyDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'iban' => null,
         'personalDetails' => null,
         'recurringDetailReference' => null,
+        'sdkData' => null,
         'storedPaymentMethodId' => null,
         'subtype' => null,
         'type' => null
@@ -86,6 +88,7 @@ class RivertyDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'iban' => false,
         'personalDetails' => false,
         'recurringDetailReference' => false,
+        'sdkData' => false,
         'storedPaymentMethodId' => false,
         'subtype' => false,
         'type' => false
@@ -184,6 +187,7 @@ class RivertyDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'iban' => 'iban',
         'personalDetails' => 'personalDetails',
         'recurringDetailReference' => 'recurringDetailReference',
+        'sdkData' => 'sdkData',
         'storedPaymentMethodId' => 'storedPaymentMethodId',
         'subtype' => 'subtype',
         'type' => 'type'
@@ -202,6 +206,7 @@ class RivertyDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'iban' => 'setIban',
         'personalDetails' => 'setPersonalDetails',
         'recurringDetailReference' => 'setRecurringDetailReference',
+        'sdkData' => 'setSdkData',
         'storedPaymentMethodId' => 'setStoredPaymentMethodId',
         'subtype' => 'setSubtype',
         'type' => 'setType'
@@ -220,6 +225,7 @@ class RivertyDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'iban' => 'getIban',
         'personalDetails' => 'getPersonalDetails',
         'recurringDetailReference' => 'getRecurringDetailReference',
+        'sdkData' => 'getSdkData',
         'storedPaymentMethodId' => 'getStoredPaymentMethodId',
         'subtype' => 'getSubtype',
         'type' => 'getType'
@@ -307,6 +313,7 @@ class RivertyDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('iban', $data ?? [], null);
         $this->setIfExists('personalDetails', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
+        $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
         $this->setIfExists('subtype', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
@@ -532,6 +539,30 @@ class RivertyDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setRecurringDetailReference($recurringDetailReference)
     {
         $this->container['recurringDetailReference'] = $recurringDetailReference;
+
+        return $this;
+    }
+
+    /**
+     * Gets sdkData
+     *
+     * @return string|null
+     */
+    public function getSdkData()
+    {
+        return $this->container['sdkData'];
+    }
+
+    /**
+     * Sets sdkData
+     *
+     * @param string|null $sdkData Base64-encoded JSON object containing SDK related parameters required by the SDK
+     *
+     * @return self
+     */
+    public function setSdkData($sdkData)
+    {
+        $this->container['sdkData'] = $sdkData;
 
         return $this;
     }

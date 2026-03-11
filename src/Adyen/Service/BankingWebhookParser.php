@@ -4,7 +4,9 @@ namespace Adyen\Service;
 
 use Adyen\Model\AcsWebhooks\AuthenticationNotificationRequest;
 use Adyen\Model\AcsWebhooks\RelayedAuthenticationRequest;
+use Adyen\Model\RelayedAuthorizationWebhooks\RelayedAuthorisationRequest;
 use Adyen\Model\BalanceWebhooks\BalanceAccountBalanceNotificationRequest;
+use Adyen\Model\BalanceWebhooks\ReleasedBlockedBalanceNotificationRequest;
 use Adyen\Model\ConfigurationWebhooks\AccountHolderNotificationRequest;
 use Adyen\Model\ConfigurationWebhooks\BalanceAccountNotificationRequest;
 use Adyen\Model\ConfigurationWebhooks\NetworkTokenNotificationRequest;
@@ -15,6 +17,7 @@ use Adyen\Model\ConfigurationWebhooks\SweepConfigurationNotificationRequest;
 use Adyen\Model\ReportWebhooks\ReportNotificationRequest;
 use Adyen\Model\TransactionWebhooks\TransactionNotificationRequestV4;
 use Adyen\Model\TransferWebhooks\TransferNotificationRequest;
+use Adyen\Service\WebhookParseException;
 use JsonException;
 
 class BankingWebhookParser
@@ -24,7 +27,9 @@ class BankingWebhookParser
     private const WEBHOOK_CLASSES = [
         AuthenticationNotificationRequest::class,
         RelayedAuthenticationRequest::class,
+        RelayedAuthorisationRequest::class,
         BalanceAccountBalanceNotificationRequest::class,
+        ReleasedBlockedBalanceNotificationRequest::class,
         AccountHolderNotificationRequest::class,
         BalanceAccountNotificationRequest::class,
         PaymentNotificationRequest::class,
@@ -84,9 +89,19 @@ class BankingWebhookParser
         return $this->getWebhookByClass(RelayedAuthenticationRequest::class);
     }
 
+    public function getRelayedAuthorisationRequest(): RelayedAuthorisationRequest
+    {
+        return $this->getWebhookByClass(RelayedAuthorisationRequest::class);
+    }
+        
     public function getBalanceAccountBalanceNotificationRequest(): BalanceAccountBalanceNotificationRequest
     {
         return $this->getWebhookByClass(BalanceAccountBalanceNotificationRequest::class);
+    }
+
+    public function getReleasedBlockedBalanceNotificationRequest(): ReleasedBlockedBalanceNotificationRequest
+    {
+        return $this->getWebhookByClass(ReleasedBlockedBalanceNotificationRequest::class);
     }
 
     public function getAccountHolderNotificationRequest(): AccountHolderNotificationRequest

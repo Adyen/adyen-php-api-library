@@ -54,6 +54,21 @@ class RecurringApi extends Service
     }
 
     /**
+    * Forward stored payment details
+    *
+    * @param \Adyen\Model\Checkout\CheckoutForwardRequest $checkoutForwardRequest
+    * @param array|null $requestOptions
+    * @return \Adyen\Model\Checkout\CheckoutForwardResponse
+    * @throws AdyenException
+    */
+    public function forward(\Adyen\Model\Checkout\CheckoutForwardRequest $checkoutForwardRequest, ?array $requestOptions = null): \Adyen\Model\Checkout\CheckoutForwardResponse
+    {
+        $endpoint = $this->baseURL . "/forward";
+        $response = $this->requestHttp($endpoint, strtolower('POST'), (array) $checkoutForwardRequest->jsonSerialize(), $requestOptions);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\Checkout\CheckoutForwardResponse::class);
+    }
+
+    /**
     * Get tokens for stored payment details
     *
     * @param array|null $requestOptions ['queryParams' => ['shopperReference'=> string, 'merchantAccount'=> string]]

@@ -3,7 +3,6 @@
 namespace Adyen\Tests\Unit;
 
 use Adyen\AdyenException;
-use Adyen\Client;
 use Adyen\Environment;
 use Adyen\Model\BalancePlatform\AccountHolder;
 use Adyen\Model\BalancePlatform\AccountHolderUpdateRequest;
@@ -15,9 +14,7 @@ use Adyen\Service\BalancePlatform\BankAccountValidationApi;
 use Adyen\Service\BalancePlatform\PaymentInstrumentGroupsApi;
 use Adyen\Service\BalancePlatform\PlatformApi;
 use Adyen\Service\BalancePlatform\TransferLimitsBalanceAccountLevelApi;
-use http\Env;
-use PharIo\Manifest\Url;
-use function PHPUnit\Framework\assertEquals;
+use Adyen\Model\BalancePlatform\AccountHolderInfo;
 
 class BalancePlatformTest extends TestCaseMock
 {
@@ -37,7 +34,7 @@ class BalancePlatformTest extends TestCaseMock
 
     public function testGetAccountHolderAdditionalAttributesDoesNotThrow()
     {
-    
+
         $client = $this->createMockClientUrl(
             'tests/Resources/BalancePlatform/get-account-holder-additional-attributes.json'
         );
@@ -218,5 +215,28 @@ class BalancePlatformTest extends TestCaseMock
             'https://balanceplatform-api-live.adyen.com/bcl/v2/balanceAccounts/balanceAccountId/transferLimits/current',
             $this->requestUrl
         );
+    }
+
+    public function testCreateAccountHolder()
+    {
+        $client = $this->createMockClient(
+            'tests/Resources/BalancePlatform/create-account-holder-response.json',
+            200
+        );
+
+        $service = new AccountHoldersApi($client);
+
+        $accountHolderInfo = new AccountHolderInfo();
+        $accountHolderInfo->setDescription('Account holder used for international payments and payouts');
+        $accountHolderInfo->setReference('S.Eller-001');
+        $accountHolderInfo->setLegalEntityId('LE322JV223222D5GG42KN6869');
+
+        $response = $service->createAccountHolder($accountHolderInfo);
+
+        self::assertEquals('AH3227C223222H5J4DCLW9VBV', $response->getId());
+        self::assertEquals('YOUR_BALANCE_PLATFORM', $response->getBalancePlatform());
+        self::assertEquals('LE322JV223222D5GG42KN6869', $response->getLegalEntityId());
+        self::assertEquals('S.Eller-001', $response->getReference());
+        self::assertEquals('active', $response->getStatus());
     }
 }

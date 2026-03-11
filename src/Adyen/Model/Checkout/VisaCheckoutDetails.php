@@ -43,6 +43,7 @@ class VisaCheckoutDetails implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $openAPITypes = [
         'checkoutAttemptId' => 'string',
         'fundingSource' => 'string',
+        'sdkData' => 'string',
         'type' => 'string',
         'visaCheckoutCallId' => 'string'
     ];
@@ -57,6 +58,7 @@ class VisaCheckoutDetails implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $openAPIFormats = [
         'checkoutAttemptId' => null,
         'fundingSource' => null,
+        'sdkData' => null,
         'type' => null,
         'visaCheckoutCallId' => null
     ];
@@ -69,6 +71,7 @@ class VisaCheckoutDetails implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $openAPINullables = [
         'checkoutAttemptId' => false,
         'fundingSource' => false,
+        'sdkData' => false,
         'type' => false,
         'visaCheckoutCallId' => false
     ];
@@ -161,6 +164,7 @@ class VisaCheckoutDetails implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $attributeMap = [
         'checkoutAttemptId' => 'checkoutAttemptId',
         'fundingSource' => 'fundingSource',
+        'sdkData' => 'sdkData',
         'type' => 'type',
         'visaCheckoutCallId' => 'visaCheckoutCallId'
     ];
@@ -173,6 +177,7 @@ class VisaCheckoutDetails implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $setters = [
         'checkoutAttemptId' => 'setCheckoutAttemptId',
         'fundingSource' => 'setFundingSource',
+        'sdkData' => 'setSdkData',
         'type' => 'setType',
         'visaCheckoutCallId' => 'setVisaCheckoutCallId'
     ];
@@ -185,6 +190,7 @@ class VisaCheckoutDetails implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $getters = [
         'checkoutAttemptId' => 'getCheckoutAttemptId',
         'fundingSource' => 'getFundingSource',
+        'sdkData' => 'getSdkData',
         'type' => 'getType',
         'visaCheckoutCallId' => 'getVisaCheckoutCallId'
     ];
@@ -232,6 +238,7 @@ class VisaCheckoutDetails implements ModelInterface, ArrayAccess, \JsonSerializa
 
     public const FUNDING_SOURCE_CREDIT = 'credit';
     public const FUNDING_SOURCE_DEBIT = 'debit';
+    public const FUNDING_SOURCE_PREPAID = 'prepaid';
     public const TYPE_VISACHECKOUT = 'visacheckout';
 
     /**
@@ -244,6 +251,7 @@ class VisaCheckoutDetails implements ModelInterface, ArrayAccess, \JsonSerializa
         return [
             self::FUNDING_SOURCE_CREDIT,
             self::FUNDING_SOURCE_DEBIT,
+            self::FUNDING_SOURCE_PREPAID,
         ];
     }
     /**
@@ -274,6 +282,7 @@ class VisaCheckoutDetails implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('fundingSource', $data ?? [], null);
+        $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('visaCheckoutCallId', $data ?? [], null);
     }
@@ -395,6 +404,30 @@ class VisaCheckoutDetails implements ModelInterface, ArrayAccess, \JsonSerializa
             );
         }
         $this->container['fundingSource'] = $fundingSource;
+
+        return $this;
+    }
+
+    /**
+     * Gets sdkData
+     *
+     * @return string|null
+     */
+    public function getSdkData()
+    {
+        return $this->container['sdkData'];
+    }
+
+    /**
+     * Sets sdkData
+     *
+     * @param string|null $sdkData Base64-encoded JSON object containing SDK related parameters required by the SDK
+     *
+     * @return self
+     */
+    public function setSdkData($sdkData)
+    {
+        $this->container['sdkData'] = $sdkData;
 
         return $this;
     }

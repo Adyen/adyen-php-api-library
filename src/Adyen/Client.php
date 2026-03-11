@@ -7,14 +7,12 @@ use Adyen\HttpClient\CurlClient;
 
 class Client
 {
-    const LIB_VERSION = "28.3.0";
+    const LIB_VERSION = "29.0.0";
     const LIB_NAME = "adyen-php-api-library";
     const USER_AGENT_SUFFIX = "adyen-php-api-library/";
     const ENDPOINT_TEST = "https://pal-test.adyen.com";
     const ENDPOINT_LIVE = "https://pal-live.adyen.com";
     const ENDPOINT_LIVE_SUFFIX = "-pal-live.adyenpayments.com";
-    const ENDPOINT_TEST_DIRECTORY_LOOKUP = "https://test.adyen.com/hpp/directory/v2.shtml";
-    const ENDPOINT_LIVE_DIRECTORY_LOOKUP = "https://live.adyen.com/hpp/directory/v2.shtml";
     const API_PAYMENT_VERSION = "v51";
     const API_BIN_LOOKUP_VERSION = "v50";
     const API_PAYOUT_VERSION = "v51";

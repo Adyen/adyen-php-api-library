@@ -1,0 +1,41 @@
+{
+  "entityAssociations": [
+    {
+      "associatorId": "LE00000000000000000000001",
+      "legalEntityId": "LE00000000000000000000002",
+      "type": "settlor",
+      "entityType": "individual",
+      "settlorExemptionReason": [
+        "deceased",
+        "professionalServiceProvider"
+      ]
+    }
+  ],
+  "trust": {
+    "name": "Example Trust",
+    "type": "fixedUnitTrust",
+    "doingBusinessAs": "West's Store",
+    "countryOfGoverningLaw": "AU",
+    "taxInformation": [
+      {
+        "country": "AU",
+        "type": "ABN",
+        "number": "12345678901"
+      }
+    ],
+    "registeredAddress": {
+      "street": "Winfield Avenue",
+      "city": "Sydney",
+      "postalCode": "1197",
+      "stateOrProvince": "NSW",
+      "country": "AU"
+    },
+    "undefinedBeneficiaryInfo": [
+      {
+        "description": "My future children"
+      }
+    ]
+  },
+  "type": "trust",
+  "id": "LE00000000000000000000001"
+}

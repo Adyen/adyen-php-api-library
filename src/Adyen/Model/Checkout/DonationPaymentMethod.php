@@ -21,7 +21,7 @@ use Adyen\Model\Checkout\ObjectSerializer;
 /**
  * DonationPaymentMethod Class Doc Comment
  *
- * The type and required details of a payment method to use.
+ * The type and required details of a payment method to use.  When &#x60;donationToken&#x60; is provided, the payment method is derived from the token and this field becomes optional.  If you are [PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide), and make donations using raw card details, you must explicitly provide the payment method details.
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
@@ -47,8 +47,10 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'checkoutAttemptId' => 'string',
         'fundingSource' => 'string',
         'recurringDetailReference' => 'string',
+        'sdkData' => 'string',
         'storedPaymentMethodId' => 'string',
         'type' => 'string',
+        'billingSequenceNumber' => 'string',
         'brand' => 'string',
         'cupsecureplusSmscode' => 'string',
         'cvc' => 'string',
@@ -56,6 +58,7 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedCardNumber' => 'string',
         'encryptedExpiryMonth' => 'string',
         'encryptedExpiryYear' => 'string',
+        'encryptedPassword' => 'string',
         'encryptedSecurityCode' => 'string',
         'expiryMonth' => 'string',
         'expiryYear' => 'string',
@@ -86,8 +89,10 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'checkoutAttemptId' => null,
         'fundingSource' => null,
         'recurringDetailReference' => null,
+        'sdkData' => null,
         'storedPaymentMethodId' => null,
         'type' => null,
+        'billingSequenceNumber' => null,
         'brand' => null,
         'cupsecureplusSmscode' => null,
         'cvc' => null,
@@ -95,6 +100,7 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedCardNumber' => null,
         'encryptedExpiryMonth' => null,
         'encryptedExpiryYear' => null,
+        'encryptedPassword' => null,
         'encryptedSecurityCode' => null,
         'expiryMonth' => null,
         'expiryYear' => null,
@@ -123,8 +129,10 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'checkoutAttemptId' => false,
         'fundingSource' => false,
         'recurringDetailReference' => false,
+        'sdkData' => false,
         'storedPaymentMethodId' => false,
         'type' => false,
+        'billingSequenceNumber' => false,
         'brand' => false,
         'cupsecureplusSmscode' => false,
         'cvc' => false,
@@ -132,6 +140,7 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedCardNumber' => false,
         'encryptedExpiryMonth' => false,
         'encryptedExpiryYear' => false,
+        'encryptedPassword' => false,
         'encryptedSecurityCode' => false,
         'expiryMonth' => false,
         'expiryYear' => false,
@@ -240,8 +249,10 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'checkoutAttemptId' => 'checkoutAttemptId',
         'fundingSource' => 'fundingSource',
         'recurringDetailReference' => 'recurringDetailReference',
+        'sdkData' => 'sdkData',
         'storedPaymentMethodId' => 'storedPaymentMethodId',
         'type' => 'type',
+        'billingSequenceNumber' => 'billingSequenceNumber',
         'brand' => 'brand',
         'cupsecureplusSmscode' => 'cupsecureplus.smscode',
         'cvc' => 'cvc',
@@ -249,6 +260,7 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedCardNumber' => 'encryptedCardNumber',
         'encryptedExpiryMonth' => 'encryptedExpiryMonth',
         'encryptedExpiryYear' => 'encryptedExpiryYear',
+        'encryptedPassword' => 'encryptedPassword',
         'encryptedSecurityCode' => 'encryptedSecurityCode',
         'expiryMonth' => 'expiryMonth',
         'expiryYear' => 'expiryYear',
@@ -277,8 +289,10 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'checkoutAttemptId' => 'setCheckoutAttemptId',
         'fundingSource' => 'setFundingSource',
         'recurringDetailReference' => 'setRecurringDetailReference',
+        'sdkData' => 'setSdkData',
         'storedPaymentMethodId' => 'setStoredPaymentMethodId',
         'type' => 'setType',
+        'billingSequenceNumber' => 'setBillingSequenceNumber',
         'brand' => 'setBrand',
         'cupsecureplusSmscode' => 'setCupsecureplusSmscode',
         'cvc' => 'setCvc',
@@ -286,6 +300,7 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedCardNumber' => 'setEncryptedCardNumber',
         'encryptedExpiryMonth' => 'setEncryptedExpiryMonth',
         'encryptedExpiryYear' => 'setEncryptedExpiryYear',
+        'encryptedPassword' => 'setEncryptedPassword',
         'encryptedSecurityCode' => 'setEncryptedSecurityCode',
         'expiryMonth' => 'setExpiryMonth',
         'expiryYear' => 'setExpiryYear',
@@ -314,8 +329,10 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'checkoutAttemptId' => 'getCheckoutAttemptId',
         'fundingSource' => 'getFundingSource',
         'recurringDetailReference' => 'getRecurringDetailReference',
+        'sdkData' => 'getSdkData',
         'storedPaymentMethodId' => 'getStoredPaymentMethodId',
         'type' => 'getType',
+        'billingSequenceNumber' => 'getBillingSequenceNumber',
         'brand' => 'getBrand',
         'cupsecureplusSmscode' => 'getCupsecureplusSmscode',
         'cvc' => 'getCvc',
@@ -323,6 +340,7 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'encryptedCardNumber' => 'getEncryptedCardNumber',
         'encryptedExpiryMonth' => 'getEncryptedExpiryMonth',
         'encryptedExpiryYear' => 'getEncryptedExpiryYear',
+        'encryptedPassword' => 'getEncryptedPassword',
         'encryptedSecurityCode' => 'getEncryptedSecurityCode',
         'expiryMonth' => 'getExpiryMonth',
         'expiryYear' => 'getExpiryYear',
@@ -401,8 +419,10 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('fundingSource', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
+        $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('billingSequenceNumber', $data ?? [], null);
         $this->setIfExists('brand', $data ?? [], null);
         $this->setIfExists('cupsecureplusSmscode', $data ?? [], null);
         $this->setIfExists('cvc', $data ?? [], null);
@@ -410,6 +430,7 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('encryptedCardNumber', $data ?? [], null);
         $this->setIfExists('encryptedExpiryMonth', $data ?? [], null);
         $this->setIfExists('encryptedExpiryYear', $data ?? [], null);
+        $this->setIfExists('encryptedPassword', $data ?? [], null);
         $this->setIfExists('encryptedSecurityCode', $data ?? [], null);
         $this->setIfExists('expiryMonth', $data ?? [], null);
         $this->setIfExists('expiryYear', $data ?? [], null);
@@ -577,6 +598,30 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
+     * Gets sdkData
+     *
+     * @return string|null
+     */
+    public function getSdkData()
+    {
+        return $this->container['sdkData'];
+    }
+
+    /**
+     * Sets sdkData
+     *
+     * @param string|null $sdkData Base64-encoded JSON object containing SDK related parameters required by the SDK
+     *
+     * @return self
+     */
+    public function setSdkData($sdkData)
+    {
+        $this->container['sdkData'] = $sdkData;
+
+        return $this;
+    }
+
+    /**
      * Gets storedPaymentMethodId
      *
      * @return string|null
@@ -620,6 +665,30 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setType($type)
     {
         $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets billingSequenceNumber
+     *
+     * @return string|null
+     */
+    public function getBillingSequenceNumber()
+    {
+        return $this->container['billingSequenceNumber'];
+    }
+
+    /**
+     * Sets billingSequenceNumber
+     *
+     * @param string|null $billingSequenceNumber The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper.
+     *
+     * @return self
+     */
+    public function setBillingSequenceNumber($billingSequenceNumber)
+    {
+        $this->container['billingSequenceNumber'] = $billingSequenceNumber;
 
         return $this;
     }
@@ -790,6 +859,30 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setEncryptedExpiryYear($encryptedExpiryYear)
     {
         $this->container['encryptedExpiryYear'] = $encryptedExpiryYear;
+
+        return $this;
+    }
+
+    /**
+     * Gets encryptedPassword
+     *
+     * @return string|null
+     */
+    public function getEncryptedPassword()
+    {
+        return $this->container['encryptedPassword'];
+    }
+
+    /**
+     * Sets encryptedPassword
+     *
+     * @param string|null $encryptedPassword This field contains an encrypted, one-time password or an authentication code provided by the cardholder.
+     *
+     * @return self
+     */
+    public function setEncryptedPassword($encryptedPassword)
+    {
+        $this->container['encryptedPassword'] = $encryptedPassword;
 
         return $this;
     }

@@ -584,8 +584,9 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         return self::$openAPIModelName;
     }
 
+    public const FRAUD_RESULT_TYPE_AMBER = 'AMBER';
     public const FRAUD_RESULT_TYPE_GREEN = 'GREEN';
-    public const FRAUD_RESULT_TYPE_FRAUD = 'FRAUD';
+    public const FRAUD_RESULT_TYPE_RED = 'RED';
     public const FRAUD_RISK_LEVEL_VERY_LOW = 'veryLow';
     public const FRAUD_RISK_LEVEL_LOW = 'low';
     public const FRAUD_RISK_LEVEL_MEDIUM = 'medium';
@@ -606,8 +607,9 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
     public function getFraudResultTypeAllowableValues()
     {
         return [
+            self::FRAUD_RESULT_TYPE_AMBER,
             self::FRAUD_RESULT_TYPE_GREEN,
-            self::FRAUD_RESULT_TYPE_FRAUD,
+            self::FRAUD_RESULT_TYPE_RED,
         ];
     }
     /**
@@ -1350,7 +1352,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets fraudResultType
      *
-     * @param string|null $fraudResultType The fraud result properties of the payment.
+     * @param string|null $fraudResultType The fraud result properties of the payment. Possible values: * AMBER * GREEN * RED
      *
      * @return self
      */
@@ -1384,7 +1386,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets fraudRiskLevel
      *
-     * @param string|null $fraudRiskLevel The risk level of the transaction as classified by the [machine learning](https://docs.adyen.com/risk-management/configure-your-risk-profile/machine-learning-rules/) fraud risk rule. The risk level indicates the likelihood that a transaction will result in a fraudulent dispute. The possible return values are: * veryLow * low * medium * high * veryHigh
+     * @param string|null $fraudRiskLevel The risk level of the transaction as classified by the [machine learning](https://docs.adyen.com/risk-management/configure-your-risk-profile/machine-learning-rules/) fraud risk rule. The risk level indicates the likelihood that a transaction will result in a fraudulent dispute. Possible values: * veryLow * low * medium * high * veryHigh
      *
      * @return self
      */
