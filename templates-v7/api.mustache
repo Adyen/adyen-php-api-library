@@ -26,7 +26,6 @@ use {{modelPackage}}\ObjectSerializer;
 {{#operations}}class {{classname}} extends BaseService
 {
 
-    public const API_VERSION = '{{version}}';
     private const BASE_URL = '{{basePath}}';
 
     /**
@@ -49,6 +48,11 @@ use {{modelPackage}}\ObjectSerializer;
      */
     protected $hostIndex;
 
+    /**
+     * @var string Base url
+     */
+    protected $baseURL;
+
     /** @var string[] $contentTypes **/
     public const contentTypes = [{{#operation}}
         '{{{operationId}}}' => [{{#consumes}}
@@ -59,6 +63,8 @@ use {{modelPackage}}\ObjectSerializer;
     ];
 
     /**
+     * {{classname}} constructor
+     *
      * @param Configuration|null $config
      * @param ClientInterface|null $client
      * @param HeaderSelector|null $selector
@@ -76,6 +82,9 @@ use {{modelPackage}}\ObjectSerializer;
         $this->config = $config ?: Configuration::getDefaultConfiguration();
         $this->headerSelector = $selector ?: new HeaderSelector();
         $this->hostIndex = $hostIndex;
+
+        // Create the baseUrl based on live/test and optional live-url-prefix
+        $this->baseURL = $this->createBaseUrl(self::BASE_URL);
     }
 
     /**
@@ -151,16 +160,16 @@ use {{modelPackage}}\ObjectSerializer;
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
 {{/-first}}
 {{/servers}}
-     * @param  \{{invokerPackage}}\RequestOptions $requestOptions Additional request options
+     * @param  \{{invokerPackage}}\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \{{invokerPackage}}\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return {{#returnType}}{{#responses}}{{#dataType}}{{^-first}}|{{/-first}}{{/dataType}}{{{dataType}}}{{/responses}}{{/returnType}}{{^returnType}}void{{/returnType}}
+     * @return {{#returnType}}{{.}}{{/returnType}}{{^returnType}}void{{/returnType}}
     {{#isDeprecated}}
      * @deprecated
     {{/isDeprecated}}
      */
-    public function {{operationId}}({{^exts.x-group-parameters}}{{#allParams}}${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}$requestOptions = null{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}})
+    public function {{operationId}}({{^exts.x-group-parameters}}{{#allParams}}{{dataType}}${{paramName}}{{^isBodyParam}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{/isBodyParam}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}\{{invokerPackage}}\RequestOptions $requestOptions = null{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}}): {{#returnType}}{{.}}{{/returnType}}{{^returnType}}void{{/returnType}}
     {
         {{#returnType}}list($response) = {{/returnType}}$this->{{operationId}}WithHttpInfo({{^exts.x-group-parameters}}{{#allParams}}${{paramName}}, {{/allParams}}{{#servers}}{{#-first}}$hostIndex, $variables, {{/-first}}{{/servers}}$requestOptions{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}});{{#returnType}}
         return $response;{{/returnType}}
@@ -210,20 +219,20 @@ use {{modelPackage}}\ObjectSerializer;
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
 {{/-first}}
 {{/servers}}
-     * @param  \{{invokerPackage}}\RequestOptions $requestOptions Additional request options
+     * @param  \{{invokerPackage}}\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \{{invokerPackage}}\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of {{#returnType}}{{#responses}}{{#dataType}}{{^-first}}|{{/-first}}{{/dataType}}{{{dataType}}}{{/responses}}{{/returnType}}{{^returnType}}null{{/returnType}}, HTTP status code, HTTP response headers (array of strings)
+     * @return array of {{#returnType}}{{.}}{{/returnType}}{{^returnType}}null{{/returnType}}, HTTP status code, HTTP response headers (array of strings)
     {{#isDeprecated}}
      * @deprecated
     {{/isDeprecated}}
      */
-    public function {{operationId}}WithHttpInfo({{^exts.x-group-parameters}}{{#allParams}}${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}$requestOptions = null{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}})
+    public function {{operationId}}WithHttpInfo({{^exts.x-group-parameters}}{{#allParams}}{{dataType}} ${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}\{{invokerPackage}}\RequestOptions $requestOptions = null{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}}): array
     {
         $contentType = self::contentTypes['{{{operationId}}}'][0];
 
-        $request = $this->{{operationId}}Request({{^exts.x-group-parameters}}{{#allParams}}${{paramName}}, {{/allParams}}{{#servers}}{{#-first}}$hostIndex, $variables, {{/-first}}{{/servers}}$contentType{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}});
+        $request = $this->{{operationId}}Request({{^exts.x-group-parameters}}{{#allParams}}${{paramName}}, {{/allParams}}{{#servers}}{{#-first}}$hostIndex, $variables, {{/-first}}{{/servers}}$contentType{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}}, $requestOptions);
 
         try {
             $options = $this->createHttpClientOption();
@@ -363,7 +372,7 @@ use {{modelPackage}}\ObjectSerializer;
 {{/-last}}
 {{/servers}}
 {{#allParams}}
-     * @param  {{{dataType}}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}} ${{paramName}}{{#description}} {{.}}{{/description}} {{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
+     * @param  {{{dataType}}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}} ${{paramName}}{{#description}} {{.}}{{/description}} {{^isBodyParam}}{{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{/isBodyParam}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
 {{/allParams}}
 {{#servers}}
 {{#-first}}
@@ -371,7 +380,7 @@ use {{modelPackage}}\ObjectSerializer;
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
 {{/-first}}
 {{/servers}}
-     * @param  \{{invokerPackage}}\RequestOptions $requestOptions Additional request options
+     * @param  \{{invokerPackage}}\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -379,7 +388,7 @@ use {{modelPackage}}\ObjectSerializer;
      * @deprecated
     {{/isDeprecated}}
      */
-    public function {{operationId}}Async({{^exts.x-group-parameters}}{{#allParams}}${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}$requestOptions = null{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}})
+    public function {{operationId}}Async({{^exts.x-group-parameters}}{{#allParams}}{{dataType}} ${{paramName}}{{^isBodyParam}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{/isBodyParam}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}\{{invokerPackage}}\RequestOptions $requestOptions = null{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}}): \GuzzleHttp\Promise\PromiseInterface
     {
         return $this->{{operationId}}AsyncWithHttpInfo({{^exts.x-group-parameters}}{{#allParams}}${{paramName}}, {{/allParams}}{{#servers}}{{#-first}}$hostIndex, $variables, {{/-first}}{{/servers}}$requestOptions{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}})
             ->then(
@@ -425,7 +434,7 @@ use {{modelPackage}}\ObjectSerializer;
 {{/-last}}
 {{/servers}}
 {{#allParams}}
-     * @param  {{{dataType}}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}} ${{paramName}}{{#description}} {{.}}{{/description}} {{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
+     * @param  {{{dataType}}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}} ${{paramName}}{{#description}} {{.}}{{/description}} {{^isBodyParam}}{{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{/isBodyParam}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
 {{/allParams}}
 {{#servers}}
 {{#-first}}
@@ -433,7 +442,7 @@ use {{modelPackage}}\ObjectSerializer;
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
 {{/-first}}
 {{/servers}}
-     * @param  \{{invokerPackage}}\RequestOptions $requestOptions Additional request options
+     * @param  \{{invokerPackage}}\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -441,15 +450,17 @@ use {{modelPackage}}\ObjectSerializer;
      * @deprecated
     {{/isDeprecated}}
      */
-    public function {{operationId}}AsyncWithHttpInfo({{^exts.x-group-parameters}}{{#allParams}}${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}$requestOptions = null{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}})
+    public function {{operationId}}AsyncWithHttpInfo({{^exts.x-group-parameters}}{{#allParams}}{{dataType}} ${{paramName}}{{^isBodyParam}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{/isBodyParam}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}\{{invokerPackage}}\RequestOptions $requestOptions = null{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}}): \GuzzleHttp\Promise\PromiseInterface
     {
-        $returnType = '{{{returnType}}}';
-        $request = $this->{{operationId}}Request({{^exts.x-group-parameters}}{{#allParams}}${{paramName}}, {{/allParams}}{{#servers}}{{#-first}}$hostIndex, $variables, {{/-first}}{{/servers}}$requestOptions{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}});
+        $contentType = self::contentTypes['get3dsAvailability'][0];
+
+        $request = $this->{{operationId}}Request({{^exts.x-group-parameters}}{{#allParams}}${{paramName}}, {{/allParams}}{{#servers}}{{#-first}}$hostIndex, $variables, {{/-first}}{{/servers}}$contentType, $requestOptions{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}});
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
+                function ($response) {
+                    $returnType = '{{{returnType}}}';
                     {{#returnType}}
                     if ($returnType === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -515,7 +526,7 @@ use {{modelPackage}}\ObjectSerializer;
 {{/-last}}
 {{/servers}}
 {{#allParams}}
-     * @param  {{{dataType}}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}} ${{paramName}}{{#description}} {{.}}{{/description}} {{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
+     * @param  {{{dataType}}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}} ${{paramName}}{{#description}} {{.}}{{/description}} {{^isBodyParam}}{{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{/isBodyParam}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
 {{/allParams}}
 {{#servers}}
 {{#-first}}
@@ -524,6 +535,7 @@ use {{modelPackage}}\ObjectSerializer;
 {{/-first}}
 {{/servers}}
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['{{{operationId}}}'] to see the possible values for this operation
+     * @param \Adyen\RequestOptions|null $requestOptions
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -531,7 +543,7 @@ use {{modelPackage}}\ObjectSerializer;
      * @deprecated
     {{/isDeprecated}}
      */
-    public function {{operationId}}Request({{^exts.x-group-parameters}}{{#allParams}}${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}string $contentType = self::contentTypes['{{{operationId}}}'][0]{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}})
+    public function {{operationId}}Request({{^exts.x-group-parameters}}{{#allParams}}{{{dataType}}} ${{paramName}}{{^isBodyParam}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{/isBodyParam}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}string $contentType = self::contentTypes['{{{operationId}}}'][0]{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}}, \Adyen\RequestOptions $requestOptions = null): Request
     { {{#exts.x-group-parameters}}
         // unbox the parameters from the associative array
 {{#allParams}}
@@ -652,7 +664,8 @@ use {{modelPackage}}\ObjectSerializer;
         $headers = $this->headerSelector->selectHeaders(
             [{{#produces}}'{{{mediaType}}}', {{/produces}}],
             $contentType,
-            $multipart
+            $multipart,
+            $requestOptions
         );
 
         // for model (json/xml)
@@ -809,7 +822,9 @@ use {{modelPackage}}\ObjectSerializer;
      */
     protected function createHttpClientOption()
     {
-        $options = [];
+        $options = [
+            RequestOptions::HTTP_ERRORS => false // prevent Guzzle default behaviour throwing exceptions on 4xx/5xx responses
+        ];
         if ($this->config->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
@@ -839,8 +854,9 @@ use {{modelPackage}}\ObjectSerializer;
             $content = (string) $response->getBody();
             if ($dataType !== 'string') {
                 try {
-                    $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    $content = json_decode($content, true, 512, JSON_THROW_ON_ERROR);
                 } catch (\JsonException $exception) {
+                    // unexpected parsing error
                     throw new AdyenException(
                         sprintf(
                             'Error JSON decoding server response (%s)',
@@ -851,6 +867,14 @@ use {{modelPackage}}\ObjectSerializer;
                         $content
                     );
                 }
+                if ($this->responseWithinRangeCode('4', $response->getStatusCode()) ||
+                    $this->responseWithinRangeCode('5', $response->getStatusCode())) {
+                    $adyenException = $this->decodeAdyenException($content);
+                    if ($adyenException) {
+                        throw $adyenException;
+                    }
+                }
+                $content = json_decode(json_encode($content), false);
             }
         }
 
@@ -859,6 +883,22 @@ use {{modelPackage}}\ObjectSerializer;
             $response->getStatusCode(),
             $response->getHeaders()
         ];
+    }
+
+    private function decodeAdyenException($decodedPayload): ?\Adyen\AdyenException
+    {
+        if (isset($decodedPayload['message']) && isset($decodedPayload['errorCode'])) {
+            return new \Adyen\AdyenException(
+                $decodedPayload['message'],
+                $decodedPayload['status'] ?? 0,
+                null,
+                $decodedPayload['status'] ?? null,
+                $decodedPayload['errorType'] ?? null,
+                $decodedPayload['pspReference'] ?? null,
+                $decodedPayload['errorCode']
+            );
+        }
+        return null;
     }
 
     private function responseWithinRangeCode(
