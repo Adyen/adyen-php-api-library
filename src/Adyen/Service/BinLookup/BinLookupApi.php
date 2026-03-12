@@ -184,7 +184,7 @@ class BinLookupApi extends BaseService
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\Adyen\Model\BinLookup\ThreeDSAvailabilityResponse',
@@ -305,7 +305,7 @@ class BinLookupApi extends BaseService
      *
      * Check if 3D Secure is available
      *
-     * @param  \Adyen\Model\BinLookup\ThreeDSAvailabilityRequest|null $threeDSAvailabilityRequest 
+     * @param  \Adyen\Model\BinLookup\ThreeDSAvailabilityRequest|null $threeDSAvailabilityRequest
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
@@ -326,7 +326,7 @@ class BinLookupApi extends BaseService
      *
      * Check if 3D Secure is available
      *
-     * @param  \Adyen\Model\BinLookup\ThreeDSAvailabilityRequest|null $threeDSAvailabilityRequest 
+     * @param  \Adyen\Model\BinLookup\ThreeDSAvailabilityRequest|null $threeDSAvailabilityRequest
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
@@ -378,7 +378,7 @@ class BinLookupApi extends BaseService
     /**
      * Create request for operation 'get3dsAvailability'
      *
-     * @param  \Adyen\Model\BinLookup\ThreeDSAvailabilityRequest|null $threeDSAvailabilityRequest 
+     * @param  \Adyen\Model\BinLookup\ThreeDSAvailabilityRequest|null $threeDSAvailabilityRequest
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['get3dsAvailability'] to see the possible values for this operation
      * @param \Adyen\RequestOptions|null $requestOptions
      *
@@ -386,7 +386,7 @@ class BinLookupApi extends BaseService
      * @return \GuzzleHttp\Psr7\Request
      */
     public function get3dsAvailabilityRequest(\Adyen\Model\BinLookup\ThreeDSAvailabilityRequest $threeDSAvailabilityRequest, string $contentType = self::contentTypes['get3dsAvailability'][0], \Adyen\RequestOptions $requestOptions = null): Request
-    { 
+    {
         $resourcePath = '/get3dsAvailability';
         $formParams = [];
         $queryParams = [];
@@ -423,7 +423,6 @@ class BinLookupApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
@@ -523,7 +522,7 @@ class BinLookupApi extends BaseService
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\Adyen\Model\BinLookup\CostEstimateResponse',
@@ -644,7 +643,7 @@ class BinLookupApi extends BaseService
      *
      * Get a fees cost estimate
      *
-     * @param  \Adyen\Model\BinLookup\CostEstimateRequest|null $costEstimateRequest 
+     * @param  \Adyen\Model\BinLookup\CostEstimateRequest|null $costEstimateRequest
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
@@ -665,7 +664,7 @@ class BinLookupApi extends BaseService
      *
      * Get a fees cost estimate
      *
-     * @param  \Adyen\Model\BinLookup\CostEstimateRequest|null $costEstimateRequest 
+     * @param  \Adyen\Model\BinLookup\CostEstimateRequest|null $costEstimateRequest
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
@@ -717,7 +716,7 @@ class BinLookupApi extends BaseService
     /**
      * Create request for operation 'getCostEstimate'
      *
-     * @param  \Adyen\Model\BinLookup\CostEstimateRequest|null $costEstimateRequest 
+     * @param  \Adyen\Model\BinLookup\CostEstimateRequest|null $costEstimateRequest
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCostEstimate'] to see the possible values for this operation
      * @param \Adyen\RequestOptions|null $requestOptions
      *
@@ -725,7 +724,7 @@ class BinLookupApi extends BaseService
      * @return \GuzzleHttp\Psr7\Request
      */
     public function getCostEstimateRequest(\Adyen\Model\BinLookup\CostEstimateRequest $costEstimateRequest, string $contentType = self::contentTypes['getCostEstimate'][0], \Adyen\RequestOptions $requestOptions = null): Request
-    { 
+    {
         $resourcePath = '/getCostEstimate';
         $formParams = [];
         $queryParams = [];
@@ -762,7 +761,6 @@ class BinLookupApi extends BaseService
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
