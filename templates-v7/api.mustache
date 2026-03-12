@@ -53,8 +53,8 @@ use {{modelPackage}}\ObjectSerializer;
      */
     protected $baseURL;
 
-    /** @var string[] $contentTypes **/
-    public const contentTypes = [{{#operation}}
+    /** @var array<string, string[]> */
+    public const CONTENT_TYPES = [{{#operation}}
         '{{{operationId}}}' => [{{#consumes}}
             '{{{mediaType}}}',{{/consumes}}
         {{^consumes}}
@@ -230,7 +230,7 @@ use {{modelPackage}}\ObjectSerializer;
      */
     public function {{operationId}}WithHttpInfo({{^exts.x-group-parameters}}{{#allParams}}{{dataType}} ${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}\{{invokerPackage}}\RequestOptions $requestOptions = null{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}}): array
     {
-        $contentType = self::contentTypes['{{{operationId}}}'][0];
+        $contentType = self::CONTENT_TYPES['{{{operationId}}}'][0];
 
         $request = $this->{{operationId}}Request({{^exts.x-group-parameters}}{{#allParams}}${{paramName}}, {{/allParams}}{{#servers}}{{#-first}}$hostIndex, $variables, {{/-first}}{{/servers}}$contentType{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}}, $requestOptions);
 
@@ -260,7 +260,7 @@ use {{modelPackage}}\ObjectSerializer;
             {{#responses}}
             {{#-first}}
 
-            switch($statusCode) {
+            switch ($statusCode) {
             {{/-first}}
             {{#dataType}}
                 {{^isRange}}{{^isWildcard}}case {{code}}:{{/isWildcard}}{{#isWildcard}}default:{{/isWildcard}}
@@ -372,7 +372,7 @@ use {{modelPackage}}\ObjectSerializer;
 {{/-last}}
 {{/servers}}
 {{#allParams}}
-     * @param  {{{dataType}}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}} ${{paramName}}{{#description}} {{.}}{{/description}} {{^isBodyParam}}{{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{/isBodyParam}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
+     * @param  {{{dataType}}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}} ${{paramName}}{{#description}}{{.}}{{/description}}{{^isBodyParam}}{{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{/isBodyParam}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
 {{/allParams}}
 {{#servers}}
 {{#-first}}
@@ -434,7 +434,7 @@ use {{modelPackage}}\ObjectSerializer;
 {{/-last}}
 {{/servers}}
 {{#allParams}}
-     * @param  {{{dataType}}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}} ${{paramName}}{{#description}} {{.}}{{/description}} {{^isBodyParam}}{{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{/isBodyParam}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
+     * @param  {{{dataType}}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}} ${{paramName}}{{#description}} {{.}}{{/description}}{{^isBodyParam}}{{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{/isBodyParam}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
 {{/allParams}}
 {{#servers}}
 {{#-first}}
@@ -452,7 +452,7 @@ use {{modelPackage}}\ObjectSerializer;
      */
     public function {{operationId}}AsyncWithHttpInfo({{^exts.x-group-parameters}}{{#allParams}}{{dataType}} ${{paramName}}{{^isBodyParam}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{/isBodyParam}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}\{{invokerPackage}}\RequestOptions $requestOptions = null{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}}): \GuzzleHttp\Promise\PromiseInterface
     {
-        $contentType = self::contentTypes['{{{operationId}}}'][0];
+        $contentType = self::CONTENT_TYPES['{{{operationId}}}'][0];
 
         $request = $this->{{operationId}}Request({{^exts.x-group-parameters}}{{#allParams}}${{paramName}}, {{/allParams}}{{#servers}}{{#-first}}$hostIndex, $variables, {{/-first}}{{/servers}}$contentType, $requestOptions{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}});
 
@@ -526,7 +526,7 @@ use {{modelPackage}}\ObjectSerializer;
 {{/-last}}
 {{/servers}}
 {{#allParams}}
-     * @param  {{{dataType}}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}} ${{paramName}}{{#description}} {{.}}{{/description}} {{^isBodyParam}}{{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{/isBodyParam}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
+     * @param  {{{dataType}}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}} ${{paramName}}{{#description}} {{.}}{{/description}}{{^isBodyParam}}{{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{/isBodyParam}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
 {{/allParams}}
 {{#servers}}
 {{#-first}}
@@ -534,7 +534,7 @@ use {{modelPackage}}\ObjectSerializer;
      * @param  array $variables Associative array of variables to pass to the host. Defaults to empty array.
 {{/-first}}
 {{/servers}}
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['{{{operationId}}}'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::CONTENT_TYPES['{{{operationId}}}'] to see the possible values for this operation
      * @param \Adyen\RequestOptions|null $requestOptions
      *
      * @throws \InvalidArgumentException
@@ -543,8 +543,9 @@ use {{modelPackage}}\ObjectSerializer;
      * @deprecated
     {{/isDeprecated}}
      */
-    public function {{operationId}}Request({{^exts.x-group-parameters}}{{#allParams}}{{{dataType}}} ${{paramName}}{{^isBodyParam}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{/isBodyParam}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}string $contentType = self::contentTypes['{{{operationId}}}'][0]{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}}, \Adyen\RequestOptions $requestOptions = null): Request
-    { {{#exts.x-group-parameters}}
+    public function {{operationId}}Request({{^exts.x-group-parameters}}{{#allParams}}{{{dataType}}} ${{paramName}}{{^isBodyParam}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{/isBodyParam}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}string $contentType = self::CONTENT_TYPES['{{{operationId}}}'][0]{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}}, \Adyen\RequestOptions $requestOptions = null): Request
+    {
+    {{#exts.x-group-parameters}}
         // unbox the parameters from the associative array
 {{#allParams}}
         ${{paramName}} = array_key_exists('{{paramName}}', $associative_array) ? $associative_array['{{paramName}}'] : {{{defaultValue}}}{{^defaultValue}}null{{/defaultValue}};
@@ -552,7 +553,7 @@ use {{modelPackage}}\ObjectSerializer;
         $hostIndex = $associative_array['hostIndex'];
         $variables = array_key_exists('variables', $associative_array) ? $associative_array['variables'] : [];
 {{/servers.0}}
-        $contentType = $associative_array['contentType'] ?? self::contentTypes['{{{operationId}}}'][0];
+        $contentType = $associative_array['contentType'] ?? self::CONTENT_TYPES['{{{operationId}}}'][0];
         {{/exts.x-group-parameters}}{{#allParams}}{{#required}}
         // verify the required parameter '{{paramName}}' is set
         if (${{paramName}} === null || (is_array(${{paramName}}) && count(${{paramName}}) === 0)) {
@@ -695,7 +696,6 @@ use {{modelPackage}}\ObjectSerializer;
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
-
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
