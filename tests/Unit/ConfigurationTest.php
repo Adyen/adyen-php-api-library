@@ -234,5 +234,4 @@ class ConfigurationTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
         Configuration::getHostString($hostSettings, 0, ['var' => 'invalid']);
     }
-
 }
