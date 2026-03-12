@@ -62,8 +62,8 @@ class BinLookupApi extends BaseService
      */
     protected $baseURL;
 
-    /** @var string[] $contentTypes **/
-    public const contentTypes = [
+    /** @var array<string, string[]> */
+    public const CONTENT_TYPES = [
         'get3dsAvailability' => [
             'application/json',
         ],
@@ -157,7 +157,7 @@ class BinLookupApi extends BaseService
      */
     public function get3dsAvailabilityWithHttpInfo(\Adyen\Model\BinLookup\ThreeDSAvailabilityRequest $threeDSAvailabilityRequest = null, \Adyen\RequestOptions $requestOptions = null): array
     {
-        $contentType = self::contentTypes['get3dsAvailability'][0];
+        $contentType = self::CONTENT_TYPES['get3dsAvailability'][0];
 
         $request = $this->get3dsAvailabilityRequest($threeDSAvailabilityRequest, $contentType, $requestOptions);
 
@@ -334,7 +334,7 @@ class BinLookupApi extends BaseService
      */
     public function get3dsAvailabilityAsyncWithHttpInfo(\Adyen\Model\BinLookup\ThreeDSAvailabilityRequest $threeDSAvailabilityRequest, \Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
-        $contentType = self::contentTypes['get3dsAvailability'][0];
+        $contentType = self::CONTENT_TYPES['get3dsAvailability'][0];
 
         $request = $this->get3dsAvailabilityRequest($threeDSAvailabilityRequest, $contentType, $requestOptions);
 
@@ -379,14 +379,15 @@ class BinLookupApi extends BaseService
      * Create request for operation 'get3dsAvailability'
      *
      * @param  \Adyen\Model\BinLookup\ThreeDSAvailabilityRequest|null $threeDSAvailabilityRequest
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['get3dsAvailability'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::CONTENT_TYPES['get3dsAvailability'] to see the possible values for this operation
      * @param \Adyen\RequestOptions|null $requestOptions
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function get3dsAvailabilityRequest(\Adyen\Model\BinLookup\ThreeDSAvailabilityRequest $threeDSAvailabilityRequest, string $contentType = self::contentTypes['get3dsAvailability'][0], \Adyen\RequestOptions $requestOptions = null): Request
+    public function get3dsAvailabilityRequest(\Adyen\Model\BinLookup\ThreeDSAvailabilityRequest $threeDSAvailabilityRequest, string $contentType = self::CONTENT_TYPES['get3dsAvailability'][0], \Adyen\RequestOptions $requestOptions = null): Request
     {
+
         $resourcePath = '/get3dsAvailability';
         $formParams = [];
         $queryParams = [];
@@ -495,7 +496,7 @@ class BinLookupApi extends BaseService
      */
     public function getCostEstimateWithHttpInfo(\Adyen\Model\BinLookup\CostEstimateRequest $costEstimateRequest = null, \Adyen\RequestOptions $requestOptions = null): array
     {
-        $contentType = self::contentTypes['getCostEstimate'][0];
+        $contentType = self::CONTENT_TYPES['getCostEstimate'][0];
 
         $request = $this->getCostEstimateRequest($costEstimateRequest, $contentType, $requestOptions);
 
@@ -672,7 +673,7 @@ class BinLookupApi extends BaseService
      */
     public function getCostEstimateAsyncWithHttpInfo(\Adyen\Model\BinLookup\CostEstimateRequest $costEstimateRequest, \Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
-        $contentType = self::contentTypes['getCostEstimate'][0];
+        $contentType = self::CONTENT_TYPES['getCostEstimate'][0];
 
         $request = $this->getCostEstimateRequest($costEstimateRequest, $contentType, $requestOptions);
 
@@ -717,14 +718,15 @@ class BinLookupApi extends BaseService
      * Create request for operation 'getCostEstimate'
      *
      * @param  \Adyen\Model\BinLookup\CostEstimateRequest|null $costEstimateRequest
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCostEstimate'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::CONTENT_TYPES['getCostEstimate'] to see the possible values for this operation
      * @param \Adyen\RequestOptions|null $requestOptions
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getCostEstimateRequest(\Adyen\Model\BinLookup\CostEstimateRequest $costEstimateRequest, string $contentType = self::contentTypes['getCostEstimate'][0], \Adyen\RequestOptions $requestOptions = null): Request
+    public function getCostEstimateRequest(\Adyen\Model\BinLookup\CostEstimateRequest $costEstimateRequest, string $contentType = self::CONTENT_TYPES['getCostEstimate'][0], \Adyen\RequestOptions $requestOptions = null): Request
     {
+
         $resourcePath = '/getCostEstimate';
         $formParams = [];
         $queryParams = [];
