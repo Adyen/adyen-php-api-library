@@ -48,13 +48,6 @@ class BaseService
 
         if (strpos($url, "pal-") !== false) {
             // Add live prefix for PAL endpoints
-            if ($this->configuration->getLiveEndpointUrlPrefix() == null) {
-                throw new AdyenException(
-                    "Please add your live URL prefix from CA under Developers > API URLs > Prefix"
-                );
-            }
-
-            // We inject the prefix formatted like "https://{PREFIX}-"
             $url = str_replace(
                 "https://pal-test.adyen.com/pal/servlet/",
                 "https://" . $this->configuration->getLiveEndpointUrlPrefix() . '-pal-live.adyenpayments.com/pal/servlet/',
@@ -63,12 +56,6 @@ class BaseService
         }
         if (strpos($url, "checkout-") !== false) {
             // Add live prefix for Checkout endpoints
-            if ($this->configuration->getLiveEndpointUrlPrefix() == null) {
-                throw new AdyenException(
-                    "Please add your checkout live URL prefix from CA under Developers > API URLs > Prefix"
-                );
-            }
-
             if (strpos($url, "possdk") !== false) {
                 // PosSdk (PosMobileApi): inject the live prefix like "https://{PREFIX}-" without duplicating `/checkout` in path
                 $url = str_replace(
