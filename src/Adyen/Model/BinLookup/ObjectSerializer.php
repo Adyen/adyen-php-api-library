@@ -320,7 +320,8 @@ class ObjectSerializer
      */
     public static function toString($value)
     {
-        if ($value instanceof \DateTime) { // datetime in ISO8601 format
+        if ($value instanceof \DateTime) {
+            // datetime in ISO8601 format
             return $value->format(self::$dateTimeFormat);
         } elseif (is_bool($value)) {
             return $value ? 'true' : 'false';
@@ -396,7 +397,8 @@ class ObjectSerializer
             return $values;
         }
 
-        if (preg_match('/^(array<|map\[)/', $class)) { // for associative array e.g. array<string,int>
+        if (preg_match('/^(array<|map\[)/', $class)) {
+            // for associative array e.g. array<string,int>
             $data = is_string($data) ? json_decode($data) : $data;
             settype($data, 'array');
             $inner = substr($class, 4, -1);
@@ -552,9 +554,9 @@ class ObjectSerializer
             throw new \InvalidArgumentException('Invalid type');
         }
 
-        $castBool = Configuration::BOOLEAN_FORMAT_INT == Configuration::getDefaultConfiguration()->getBooleanFormatForQueryString()
+        $castBool = (Configuration::BOOLEAN_FORMAT_INT == Configuration::getDefaultConfiguration()->getBooleanFormatForQueryString())
             ? function ($v) {
-                return (int) $v;
+                return (int)$v;
             }
             : function ($v) {
                 return $v ? 'true' : 'false';
@@ -562,12 +564,12 @@ class ObjectSerializer
 
         $qs = '';
         foreach ($params as $k => $v) {
-            $k = $encoder((string) $k);
+            $k = $encoder((string)$k);
             if (!is_array($v)) {
                 $qs .= $k;
                 $v = is_bool($v) ? $castBool($v) : $v;
                 if ($v !== null) {
-                    $qs .= '='.$encoder((string) $v);
+                    $qs .= '=' . $encoder((string)$v);
                 }
                 $qs .= '&';
             } else {
@@ -575,10 +577,10 @@ class ObjectSerializer
                     $qs .= $k;
                     $vv = is_bool($vv) ? $castBool($vv) : $vv;
                     if ($vv !== null) {
-                        $qs .= '='.$encoder((string) $vv);
+                        $qs .= '=' . $encoder((string)$vv);
                     }
-                    $qs .= '&';
                 }
+                $qs .= '&';
             }
         }
 

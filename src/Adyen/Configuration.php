@@ -424,11 +424,11 @@ class Configuration
      *
      * @return $this
      */
-     public function setCertFile(?string $certFile): self
-     {
+    public function setCertFile(?string $certFile): self
+    {
         $this->certFile = $certFile;
         return $this;
-     }
+    }
 
     /**
      * Gets the certificate file path, for mTLS
@@ -445,11 +445,11 @@ class Configuration
      *
      * @return $this
      */
-     public function setKeyFile($keyFile): self
-     {
+    public function setKeyFile($keyFile): self
+    {
         $this->keyFile = $keyFile;
         return $this;
-     }
+    }
 
     /**
      * Gets the certificate key path, for mTLS
@@ -609,7 +609,7 @@ class Configuration
     public static function getHostString(array $hostSettings, int $hostIndex, ?array $variables = null): ?string
     {
 
-        if(count($hostSettings) == 0) {
+        if (count($hostSettings) == 0) {
             return null;
         }
         if (null === $variables) {
