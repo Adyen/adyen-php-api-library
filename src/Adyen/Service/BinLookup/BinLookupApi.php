@@ -673,7 +673,7 @@ class BinLookupApi extends BaseService
      */
     public function getCostEstimateAsyncWithHttpInfo(\Adyen\Model\BinLookup\CostEstimateRequest $costEstimateRequest, \Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
-        $contentType = self::contentTypes['get3dsAvailability'][0];
+        $contentType = self::contentTypes['getCostEstimate'][0];
 
         $request = $this->getCostEstimateRequest($costEstimateRequest, $contentType, $requestOptions);
 
