@@ -452,7 +452,7 @@ use {{modelPackage}}\ObjectSerializer;
      */
     public function {{operationId}}AsyncWithHttpInfo({{^exts.x-group-parameters}}{{#allParams}}{{dataType}} ${{paramName}}{{^isBodyParam}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{/isBodyParam}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}\{{invokerPackage}}\RequestOptions $requestOptions = null{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}}): \GuzzleHttp\Promise\PromiseInterface
     {
-        $contentType = self::contentTypes['get3dsAvailability'][0];
+        $contentType = self::contentTypes['{{{operationId}}}'][0];
 
         $request = $this->{{operationId}}Request({{^exts.x-group-parameters}}{{#allParams}}${{paramName}}, {{/allParams}}{{#servers}}{{#-first}}$hostIndex, $variables, {{/-first}}{{/servers}}$contentType, $requestOptions{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}});
 

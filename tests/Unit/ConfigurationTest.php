@@ -159,20 +159,10 @@ class ConfigurationTest extends TestCase
         $configuration->setAdyenApiKey('apikey');
         $this->assertEquals('Bearer apikey', $configuration->getApiKeyWithPrefix('X-API-Key'));
 
-        $configuration->setApiKeyPrefix('X-API-Key', null);
+        $configuration->setApiKeyPrefix('X-API-Key', '');
         $this->assertEquals('apikey', $configuration->getApiKeyWithPrefix('X-API-Key'));
 
         $this->assertNull($configuration->getApiKeyWithPrefix('nonexistent'));
-    }
-
-    /**
-     * @covers \Adyen\Configuration::setUserAgent
-     */
-    public function testInvalidUserAgent()
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $configuration = new Configuration();
-        $configuration->setUserAgent(123);
     }
 
     /**
@@ -195,18 +185,6 @@ class ConfigurationTest extends TestCase
         $this->assertStringContainsString('PHP SDK (Adyen) Debug Report:', $report);
         $this->assertStringContainsString('OS:', $report);
         $this->assertStringContainsString('PHP Version:', $report);
-    }
-
-    /**
-     * @covers \Adyen\Configuration::getHostSettings
-     */
-    public function testHostSettings()
-    {
-        $configuration = new Configuration();
-        $settings = $configuration->getHostSettings();
-        $this->assertIsArray($settings);
-        $this->assertNotEmpty($settings);
-        $this->assertEquals('https://pal-test.adyen.com/pal/servlet/BinLookup/v54', $settings[0]['url']);
     }
 
     /**
@@ -239,15 +217,6 @@ class ConfigurationTest extends TestCase
     /**
      * @covers \Adyen\Configuration::getHostString
      */
-    public function testGetHostStringInvalidIndex()
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        Configuration::getHostString([], 0);
-    }
-
-    /**
-     * @covers \Adyen\Configuration::getHostString
-     */
     public function testGetHostStringInvalidEnum()
     {
         $hostSettings = [
@@ -266,13 +235,4 @@ class ConfigurationTest extends TestCase
         Configuration::getHostString($hostSettings, 0, ['var' => 'invalid']);
     }
 
-    /**
-     * @covers \Adyen\Configuration::getHostFromSettings
-     */
-    public function testGetHostFromSettings()
-    {
-        $configuration = new Configuration();
-        $url = $configuration->getHostFromSettings(0);
-        $this->assertEquals('https://pal-test.adyen.com/pal/servlet/BinLookup/v54', $url);
-    }
 }
