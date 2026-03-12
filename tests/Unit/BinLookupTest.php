@@ -331,5 +331,4 @@ class BinLookupTest extends BaseTest
         $this->assertTrue($result->getThreeDs1Supported());
         $this->assertEmpty($headers);
     }
-
 }
