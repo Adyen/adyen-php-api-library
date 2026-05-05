@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\TransferWebhooks\ObjectSerializer;
 
 /**
- * Modification Class Doc Comment
+ * FundingInstrument Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
+class FundingInstrument implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Modification';
+    protected static $openAPIModelName = 'FundingInstrument';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,11 +41,10 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'direction' => 'string',
-        'id' => 'string',
+        'cardIdentification' => '\Adyen\Model\TransferWebhooks\CardIdentification',
+        'networkPaymentReference' => 'string',
         'reference' => 'string',
-        'status' => 'string',
-        'type' => 'string'
+        'sourceOfFunds' => 'string'
     ];
 
     /**
@@ -56,11 +55,10 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'direction' => null,
-        'id' => null,
+        'cardIdentification' => null,
+        'networkPaymentReference' => null,
         'reference' => null,
-        'status' => null,
-        'type' => null
+        'sourceOfFunds' => null
     ];
 
     /**
@@ -69,11 +67,10 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'direction' => false,
-        'id' => false,
+        'cardIdentification' => false,
+        'networkPaymentReference' => false,
         'reference' => false,
-        'status' => false,
-        'type' => false
+        'sourceOfFunds' => false
     ];
 
     /**
@@ -162,11 +159,10 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'direction' => 'direction',
-        'id' => 'id',
+        'cardIdentification' => 'cardIdentification',
+        'networkPaymentReference' => 'networkPaymentReference',
         'reference' => 'reference',
-        'status' => 'status',
-        'type' => 'type'
+        'sourceOfFunds' => 'sourceOfFunds'
     ];
 
     /**
@@ -175,11 +171,10 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'direction' => 'setDirection',
-        'id' => 'setId',
+        'cardIdentification' => 'setCardIdentification',
+        'networkPaymentReference' => 'setNetworkPaymentReference',
         'reference' => 'setReference',
-        'status' => 'setStatus',
-        'type' => 'setType'
+        'sourceOfFunds' => 'setSourceOfFunds'
     ];
 
     /**
@@ -188,11 +183,10 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'direction' => 'getDirection',
-        'id' => 'getId',
+        'cardIdentification' => 'getCardIdentification',
+        'networkPaymentReference' => 'getNetworkPaymentReference',
         'reference' => 'getReference',
-        'status' => 'getStatus',
-        'type' => 'getType'
+        'sourceOfFunds' => 'getSourceOfFunds'
     ];
 
     /**
@@ -236,155 +230,19 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const STATUS_APPROVAL_PENDING = 'approvalPending';
-    public const STATUS_ATM_WITHDRAWAL = 'atmWithdrawal';
-    public const STATUS_ATM_WITHDRAWAL_REVERSAL_PENDING = 'atmWithdrawalReversalPending';
-    public const STATUS_ATM_WITHDRAWAL_REVERSED = 'atmWithdrawalReversed';
-    public const STATUS_AUTH_ADJUSTMENT_AUTHORISED = 'authAdjustmentAuthorised';
-    public const STATUS_AUTH_ADJUSTMENT_ERROR = 'authAdjustmentError';
-    public const STATUS_AUTH_ADJUSTMENT_REFUSED = 'authAdjustmentRefused';
-    public const STATUS_AUTHORISED = 'authorised';
-    public const STATUS_BANK_TRANSFER = 'bankTransfer';
-    public const STATUS_BANK_TRANSFER_PENDING = 'bankTransferPending';
-    public const STATUS_BOOKED = 'booked';
-    public const STATUS_BOOKING_PENDING = 'bookingPending';
-    public const STATUS_CANCELLED = 'cancelled';
-    public const STATUS_CAPTURE_PENDING = 'capturePending';
-    public const STATUS_CAPTURE_REVERSAL_PENDING = 'captureReversalPending';
-    public const STATUS_CAPTURE_REVERSED = 'captureReversed';
-    public const STATUS_CAPTURED = 'captured';
-    public const STATUS_CAPTURED_EXTERNALLY = 'capturedExternally';
-    public const STATUS_CHARGEBACK = 'chargeback';
-    public const STATUS_CHARGEBACK_EXTERNALLY = 'chargebackExternally';
-    public const STATUS_CHARGEBACK_PENDING = 'chargebackPending';
-    public const STATUS_CHARGEBACK_REVERSAL_PENDING = 'chargebackReversalPending';
-    public const STATUS_CHARGEBACK_REVERSED = 'chargebackReversed';
-    public const STATUS_CREDITED = 'credited';
-    public const STATUS_DEPOSIT_CORRECTION = 'depositCorrection';
-    public const STATUS_DEPOSIT_CORRECTION_PENDING = 'depositCorrectionPending';
-    public const STATUS_DISPUTE = 'dispute';
-    public const STATUS_DISPUTE_CLOSED = 'disputeClosed';
-    public const STATUS_DISPUTE_EXPIRED = 'disputeExpired';
-    public const STATUS_DISPUTE_NEEDS_REVIEW = 'disputeNeedsReview';
-    public const STATUS_ERROR = 'error';
-    public const STATUS_EXPIRED = 'expired';
-    public const STATUS_FAILED = 'failed';
-    public const STATUS_FEE = 'fee';
-    public const STATUS_FEE_PENDING = 'feePending';
-    public const STATUS_INTERCHANGE_ADJUSTED = 'interchangeAdjusted';
-    public const STATUS_INTERNAL_TRANSFER = 'internalTransfer';
-    public const STATUS_INTERNAL_TRANSFER_PENDING = 'internalTransferPending';
-    public const STATUS_INVOICE_DEDUCTION = 'invoiceDeduction';
-    public const STATUS_INVOICE_DEDUCTION_PENDING = 'invoiceDeductionPending';
-    public const STATUS_MANUAL_CORRECTION_PENDING = 'manualCorrectionPending';
-    public const STATUS_MANUALLY_CORRECTED = 'manuallyCorrected';
-    public const STATUS_MATCHED_STATEMENT = 'matchedStatement';
-    public const STATUS_MATCHED_STATEMENT_PENDING = 'matchedStatementPending';
-    public const STATUS_MERCHANT_PAYIN = 'merchantPayin';
-    public const STATUS_MERCHANT_PAYIN_PENDING = 'merchantPayinPending';
-    public const STATUS_MERCHANT_PAYIN_REVERSED = 'merchantPayinReversed';
-    public const STATUS_MERCHANT_PAYIN_REVERSED_PENDING = 'merchantPayinReversedPending';
-    public const STATUS_MISC_COST = 'miscCost';
-    public const STATUS_MISC_COST_PENDING = 'miscCostPending';
-    public const STATUS_PAYMENT_COST = 'paymentCost';
-    public const STATUS_PAYMENT_COST_PENDING = 'paymentCostPending';
-    public const STATUS_PENDING = 'pending';
-    public const STATUS_PENDING_APPROVAL = 'pendingApproval';
-    public const STATUS_PENDING_EXECUTION = 'pendingExecution';
-    public const STATUS_RECEIVED = 'received';
-    public const STATUS_REFUND_PENDING = 'refundPending';
-    public const STATUS_REFUND_REVERSAL_PENDING = 'refundReversalPending';
-    public const STATUS_REFUND_REVERSED = 'refundReversed';
-    public const STATUS_REFUNDED = 'refunded';
-    public const STATUS_REFUNDED_EXTERNALLY = 'refundedExternally';
-    public const STATUS_REFUSED = 'refused';
-    public const STATUS_REJECTED = 'rejected';
-    public const STATUS_RESERVE_ADJUSTMENT = 'reserveAdjustment';
-    public const STATUS_RESERVE_ADJUSTMENT_PENDING = 'reserveAdjustmentPending';
-    public const STATUS_RETURNED = 'returned';
-    public const STATUS_REVERSED = 'reversed';
-    public const STATUS_SECOND_CHARGEBACK = 'secondChargeback';
-    public const STATUS_SECOND_CHARGEBACK_PENDING = 'secondChargebackPending';
-    public const STATUS_UNDEFINED = 'undefined';
+    public const SOURCE_OF_FUNDS_DEBIT = 'DEBIT';
+    public const SOURCE_OF_FUNDS_DEPOSIT_ACCOUNT = 'DEPOSIT_ACCOUNT';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getStatusAllowableValues()
+    public function getSourceOfFundsAllowableValues()
     {
         return [
-            self::STATUS_APPROVAL_PENDING,
-            self::STATUS_ATM_WITHDRAWAL,
-            self::STATUS_ATM_WITHDRAWAL_REVERSAL_PENDING,
-            self::STATUS_ATM_WITHDRAWAL_REVERSED,
-            self::STATUS_AUTH_ADJUSTMENT_AUTHORISED,
-            self::STATUS_AUTH_ADJUSTMENT_ERROR,
-            self::STATUS_AUTH_ADJUSTMENT_REFUSED,
-            self::STATUS_AUTHORISED,
-            self::STATUS_BANK_TRANSFER,
-            self::STATUS_BANK_TRANSFER_PENDING,
-            self::STATUS_BOOKED,
-            self::STATUS_BOOKING_PENDING,
-            self::STATUS_CANCELLED,
-            self::STATUS_CAPTURE_PENDING,
-            self::STATUS_CAPTURE_REVERSAL_PENDING,
-            self::STATUS_CAPTURE_REVERSED,
-            self::STATUS_CAPTURED,
-            self::STATUS_CAPTURED_EXTERNALLY,
-            self::STATUS_CHARGEBACK,
-            self::STATUS_CHARGEBACK_EXTERNALLY,
-            self::STATUS_CHARGEBACK_PENDING,
-            self::STATUS_CHARGEBACK_REVERSAL_PENDING,
-            self::STATUS_CHARGEBACK_REVERSED,
-            self::STATUS_CREDITED,
-            self::STATUS_DEPOSIT_CORRECTION,
-            self::STATUS_DEPOSIT_CORRECTION_PENDING,
-            self::STATUS_DISPUTE,
-            self::STATUS_DISPUTE_CLOSED,
-            self::STATUS_DISPUTE_EXPIRED,
-            self::STATUS_DISPUTE_NEEDS_REVIEW,
-            self::STATUS_ERROR,
-            self::STATUS_EXPIRED,
-            self::STATUS_FAILED,
-            self::STATUS_FEE,
-            self::STATUS_FEE_PENDING,
-            self::STATUS_INTERCHANGE_ADJUSTED,
-            self::STATUS_INTERNAL_TRANSFER,
-            self::STATUS_INTERNAL_TRANSFER_PENDING,
-            self::STATUS_INVOICE_DEDUCTION,
-            self::STATUS_INVOICE_DEDUCTION_PENDING,
-            self::STATUS_MANUAL_CORRECTION_PENDING,
-            self::STATUS_MANUALLY_CORRECTED,
-            self::STATUS_MATCHED_STATEMENT,
-            self::STATUS_MATCHED_STATEMENT_PENDING,
-            self::STATUS_MERCHANT_PAYIN,
-            self::STATUS_MERCHANT_PAYIN_PENDING,
-            self::STATUS_MERCHANT_PAYIN_REVERSED,
-            self::STATUS_MERCHANT_PAYIN_REVERSED_PENDING,
-            self::STATUS_MISC_COST,
-            self::STATUS_MISC_COST_PENDING,
-            self::STATUS_PAYMENT_COST,
-            self::STATUS_PAYMENT_COST_PENDING,
-            self::STATUS_PENDING,
-            self::STATUS_PENDING_APPROVAL,
-            self::STATUS_PENDING_EXECUTION,
-            self::STATUS_RECEIVED,
-            self::STATUS_REFUND_PENDING,
-            self::STATUS_REFUND_REVERSAL_PENDING,
-            self::STATUS_REFUND_REVERSED,
-            self::STATUS_REFUNDED,
-            self::STATUS_REFUNDED_EXTERNALLY,
-            self::STATUS_REFUSED,
-            self::STATUS_REJECTED,
-            self::STATUS_RESERVE_ADJUSTMENT,
-            self::STATUS_RESERVE_ADJUSTMENT_PENDING,
-            self::STATUS_RETURNED,
-            self::STATUS_REVERSED,
-            self::STATUS_SECOND_CHARGEBACK,
-            self::STATUS_SECOND_CHARGEBACK_PENDING,
-            self::STATUS_UNDEFINED,
+            self::SOURCE_OF_FUNDS_DEBIT,
+            self::SOURCE_OF_FUNDS_DEPOSIT_ACCOUNT,
         ];
     }
     /**
@@ -402,11 +260,10 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('direction', $data ?? [], null);
-        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('cardIdentification', $data ?? [], null);
+        $this->setIfExists('networkPaymentReference', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('sourceOfFunds', $data ?? [], null);
     }
 
     /**
@@ -436,11 +293,11 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
+        $allowedValues = $this->getSourceOfFundsAllowableValues();
+        if (!is_null($this->container['sourceOfFunds']) && !in_array($this->container['sourceOfFunds'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
+                "invalid value '%s' for 'sourceOfFunds', must be one of '%s'",
+                $this->container['sourceOfFunds'],
                 implode("', '", $allowedValues)
             );
         }
@@ -461,49 +318,49 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets direction
+     * Gets cardIdentification
      *
-     * @return string|null
+     * @return \Adyen\Model\TransferWebhooks\CardIdentification|null
      */
-    public function getDirection()
+    public function getCardIdentification()
     {
-        return $this->container['direction'];
+        return $this->container['cardIdentification'];
     }
 
     /**
-     * Sets direction
+     * Sets cardIdentification
      *
-     * @param string|null $direction The direction of the money movement.
+     * @param \Adyen\Model\TransferWebhooks\CardIdentification|null $cardIdentification cardIdentification
      *
      * @return self
      */
-    public function setDirection($direction)
+    public function setCardIdentification($cardIdentification)
     {
-        $this->container['direction'] = $direction;
+        $this->container['cardIdentification'] = $cardIdentification;
 
         return $this;
     }
 
     /**
-     * Gets id
+     * Gets networkPaymentReference
      *
      * @return string|null
      */
-    public function getId()
+    public function getNetworkPaymentReference()
     {
-        return $this->container['id'];
+        return $this->container['networkPaymentReference'];
     }
 
     /**
-     * Sets id
+     * Sets networkPaymentReference
      *
-     * @param string|null $id Our reference for the modification.
+     * @param string|null $networkPaymentReference The unique reference assigned by the card network for the pay-in transaction.
      *
      * @return self
      */
-    public function setId($id)
+    public function setNetworkPaymentReference($networkPaymentReference)
     {
-        $this->container['id'] = $id;
+        $this->container['networkPaymentReference'] = $networkPaymentReference;
 
         return $this;
     }
@@ -521,7 +378,7 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets reference
      *
-     * @param string|null $reference Your reference for the modification, used internally within your platform.
+     * @param string|null $reference Your internal reference that identifies this funding instrument. Required if `sourceOfFunds` is **DEPOSIT_ACCOUNT**.
      *
      * @return self
      */
@@ -533,59 +390,35 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets status
+     * Gets sourceOfFunds
      *
      * @return string|null
      */
-    public function getStatus()
+    public function getSourceOfFunds()
     {
-        return $this->container['status'];
+        return $this->container['sourceOfFunds'];
     }
 
     /**
-     * Sets status
+     * Sets sourceOfFunds
      *
-     * @param string|null $status The status of the transfer event.
+     * @param string|null $sourceOfFunds Indicates where the funds used for the transfer originated. Possible values are: - **DEBIT** for card-to-card transfers. - **DEPOSIT_ACCOUNT** for wallet-to-card transfers.
      *
      * @return self
      */
-    public function setStatus($status)
+    public function setSourceOfFunds($sourceOfFunds)
     {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
+        $allowedValues = $this->getSourceOfFundsAllowableValues();
+        if (!in_array($sourceOfFunds, $allowedValues, true)) {
             error_log(
                 sprintf(
-                    "status: unexpected enum value '%s' - Supported values are [%s]",
-                    $status,
+                    "sourceOfFunds: unexpected enum value '%s' - Supported values are [%s]",
+                    $sourceOfFunds,
                     implode(', ', $allowedValues)
                 )
             );
         }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Gets type
-     *
-     * @return string|null
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string|null $type The type of transfer modification.
-     *
-     * @return self
-     */
-    public function setType($type)
-    {
-        $this->container['type'] = $type;
+        $this->container['sourceOfFunds'] = $sourceOfFunds;
 
         return $this;
     }
