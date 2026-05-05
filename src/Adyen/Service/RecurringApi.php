@@ -36,7 +36,7 @@ class RecurringApi extends Service
         parent::__construct($client);
 
         // Create the baseUrl based on live/test and optional live-url-prefix
-        $this->baseURL = $this->createBaseUrl("https://paltokenization-test.adyen.com/pal/servlet/Recurring/v68");
+        $this->baseURL = $this->createBaseUrl("https://pal-test.adyen.com/pal/servlet/Recurring/v68");
     }
 
     /**
