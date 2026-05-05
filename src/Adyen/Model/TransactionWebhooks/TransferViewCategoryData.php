@@ -534,7 +534,7 @@ class TransferViewCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets processingType
      *
-     * @param string|null $processingType Contains information about how the payment was processed. For example, **ecommerce** for online or **pos** for in-person payments.
+     * @param string|null $processingType Contains information about how the payment was processed.  Possible values: **atmWithdraw**, **balanceInquiry**, **ecommerce**, **moto**, **pos**, **purchaseWithCashback**, **recurring**, **token**.
      *
      * @return self
      */
