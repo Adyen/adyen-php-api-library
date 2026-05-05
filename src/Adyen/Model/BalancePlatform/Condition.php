@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * PaymentInstrumentAdditionalBankAccountIdentificationsInner Class Doc Comment
+ * Condition Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements ModelInterface, ArrayAccess, \JsonSerializable
+class Condition implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PaymentInstrument_additionalBankAccountIdentifications_inner';
+    protected static $openAPIModelName = 'Condition';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,9 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @var string[]
       */
     protected static $openAPITypes = [
-        'bic' => 'string',
-        'iban' => 'string',
-        'type' => 'string'
+        'balanceType' => 'string',
+        'conditionType' => 'string',
+        'value' => 'int'
     ];
 
     /**
@@ -54,9 +54,9 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'bic' => null,
-        'iban' => null,
-        'type' => null
+        'balanceType' => null,
+        'conditionType' => null,
+        'value' => 'int64'
     ];
 
     /**
@@ -65,9 +65,9 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'bic' => false,
-        'iban' => false,
-        'type' => false
+        'balanceType' => false,
+        'conditionType' => false,
+        'value' => false
     ];
 
     /**
@@ -156,9 +156,9 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $attributeMap = [
-        'bic' => 'bic',
-        'iban' => 'iban',
-        'type' => 'type'
+        'balanceType' => 'balanceType',
+        'conditionType' => 'conditionType',
+        'value' => 'value'
     ];
 
     /**
@@ -167,9 +167,9 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $setters = [
-        'bic' => 'setBic',
-        'iban' => 'setIban',
-        'type' => 'setType'
+        'balanceType' => 'setBalanceType',
+        'conditionType' => 'setConditionType',
+        'value' => 'setValue'
     ];
 
     /**
@@ -178,9 +178,9 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $getters = [
-        'bic' => 'getBic',
-        'iban' => 'getIban',
-        'type' => 'getType'
+        'balanceType' => 'getBalanceType',
+        'conditionType' => 'getConditionType',
+        'value' => 'getValue'
     ];
 
     /**
@@ -224,6 +224,43 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
         return self::$openAPIModelName;
     }
 
+    public const BALANCE_TYPE_BALANCE = 'balance';
+    public const BALANCE_TYPE_AVAILABLE = 'available';
+    public const BALANCE_TYPE_PENDING = 'pending';
+    public const BALANCE_TYPE_RESERVED = 'reserved';
+    public const CONDITION_TYPE_GREATER_THAN = 'greaterThan';
+    public const CONDITION_TYPE_GREATER_THAN_OR_EQUAL = 'greaterThanOrEqual';
+    public const CONDITION_TYPE_LESS_THAN = 'lessThan';
+    public const CONDITION_TYPE_LESS_THAN_OR_EQUAL = 'lessThanOrEqual';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getBalanceTypeAllowableValues()
+    {
+        return [
+            self::BALANCE_TYPE_BALANCE,
+            self::BALANCE_TYPE_AVAILABLE,
+            self::BALANCE_TYPE_PENDING,
+            self::BALANCE_TYPE_RESERVED,
+        ];
+    }
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getConditionTypeAllowableValues()
+    {
+        return [
+            self::CONDITION_TYPE_GREATER_THAN,
+            self::CONDITION_TYPE_GREATER_THAN_OR_EQUAL,
+            self::CONDITION_TYPE_LESS_THAN,
+            self::CONDITION_TYPE_LESS_THAN_OR_EQUAL,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -239,9 +276,9 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('bic', $data ?? [], null);
-        $this->setIfExists('iban', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('balanceType', $data ?? [], null);
+        $this->setIfExists('conditionType', $data ?? [], null);
+        $this->setIfExists('value', $data ?? [], null);
     }
 
     /**
@@ -271,13 +308,33 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
     {
         $invalidProperties = [];
 
-        if ($this->container['iban'] === null) {
-            $invalidProperties[] = "'iban' can't be null";
+        if ($this->container['balanceType'] === null) {
+            $invalidProperties[] = "'balanceType' can't be null";
         }
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
+        $allowedValues = $this->getBalanceTypeAllowableValues();
+        if (!is_null($this->container['balanceType']) && !in_array($this->container['balanceType'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'balanceType', must be one of '%s'",
+                $this->container['balanceType'],
+                implode("', '", $allowedValues)
+            );
         }
 
+        if ($this->container['conditionType'] === null) {
+            $invalidProperties[] = "'conditionType' can't be null";
+        }
+        $allowedValues = $this->getConditionTypeAllowableValues();
+        if (!is_null($this->container['conditionType']) && !in_array($this->container['conditionType'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'conditionType', must be one of '%s'",
+                $this->container['conditionType'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['value'] === null) {
+            $invalidProperties[] = "'value' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -294,73 +351,93 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
 
 
     /**
-     * Gets bic
+     * Gets balanceType
      *
-     * @return string|null
+     * @return string
      */
-    public function getBic()
+    public function getBalanceType()
     {
-        return $this->container['bic'];
+        return $this->container['balanceType'];
     }
 
     /**
-     * Sets bic
+     * Sets balanceType
      *
-     * @param string|null $bic The bank's 8- or 11-character BIC or SWIFT code.
+     * @param string $balanceType Define the type of balance about which you want to get notified. Possible values:  * **available**: the balance available for use.  * **balance**: the sum of transactions that have already been settled.  * **pending**: the sum of transactions that will be settled in the future.  * **reserved**: the balance currently held in reserve.
      *
      * @return self
      */
-    public function setBic($bic)
+    public function setBalanceType($balanceType)
     {
-        $this->container['bic'] = $bic;
+        $allowedValues = $this->getBalanceTypeAllowableValues();
+        if (!in_array($balanceType, $allowedValues, true)) {
+            error_log(
+                sprintf(
+                    "balanceType: unexpected enum value '%s' - Supported values are [%s]",
+                    $balanceType,
+                    implode(', ', $allowedValues)
+                )
+            );
+        }
+        $this->container['balanceType'] = $balanceType;
 
         return $this;
     }
 
     /**
-     * Gets iban
+     * Gets conditionType
      *
      * @return string
      */
-    public function getIban()
+    public function getConditionType()
     {
-        return $this->container['iban'];
+        return $this->container['conditionType'];
     }
 
     /**
-     * Sets iban
+     * Sets conditionType
      *
-     * @param string $iban The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.
+     * @param string $conditionType Define when you want to get notified about a balance change. Possible values:  * **greaterThan**: the balance in the account(s) exceeds the specified `value`.  * **greaterThanOrEqual**: the balance in the account(s) reaches or exceeds the specified `value`.  * **lessThan**: the balance in the account(s) drops below the specified `value`.  * **lessThanOrEqual**: the balance in the account(s) reaches to drops below the specified `value`.
      *
      * @return self
      */
-    public function setIban($iban)
+    public function setConditionType($conditionType)
     {
-        $this->container['iban'] = $iban;
+        $allowedValues = $this->getConditionTypeAllowableValues();
+        if (!in_array($conditionType, $allowedValues, true)) {
+            error_log(
+                sprintf(
+                    "conditionType: unexpected enum value '%s' - Supported values are [%s]",
+                    $conditionType,
+                    implode(', ', $allowedValues)
+                )
+            );
+        }
+        $this->container['conditionType'] = $conditionType;
 
         return $this;
     }
 
     /**
-     * Gets type
+     * Gets value
      *
-     * @return string
+     * @return int
      */
-    public function getType()
+    public function getValue()
     {
-        return $this->container['type'];
+        return $this->container['value'];
     }
 
     /**
-     * Sets type
+     * Sets value
      *
-     * @param string $type **iban**
+     * @param int $value The value limit in the specified balance type and currency, in minor units.
      *
      * @return self
      */
-    public function setType($type)
+    public function setValue($value)
     {
-        $this->container['type'] = $type;
+        $this->container['value'] = $value;
 
         return $this;
     }

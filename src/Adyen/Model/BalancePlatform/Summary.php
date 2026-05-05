@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * PaymentInstrumentAdditionalBankAccountIdentificationsInner Class Doc Comment
+ * Summary Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements ModelInterface, ArrayAccess, \JsonSerializable
+class Summary implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PaymentInstrument_additionalBankAccountIdentifications_inner';
+    protected static $openAPIModelName = 'Summary';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,8 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @var string[]
       */
     protected static $openAPITypes = [
-        'bic' => 'string',
-        'iban' => 'string',
-        'type' => 'string'
+        'legalEntityId' => 'string',
+        'taxYears' => 'int[]'
     ];
 
     /**
@@ -54,9 +53,8 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'bic' => null,
-        'iban' => null,
-        'type' => null
+        'legalEntityId' => null,
+        'taxYears' => 'int32'
     ];
 
     /**
@@ -65,9 +63,8 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'bic' => false,
-        'iban' => false,
-        'type' => false
+        'legalEntityId' => false,
+        'taxYears' => false
     ];
 
     /**
@@ -156,9 +153,8 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $attributeMap = [
-        'bic' => 'bic',
-        'iban' => 'iban',
-        'type' => 'type'
+        'legalEntityId' => 'legalEntityId',
+        'taxYears' => 'taxYears'
     ];
 
     /**
@@ -167,9 +163,8 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $setters = [
-        'bic' => 'setBic',
-        'iban' => 'setIban',
-        'type' => 'setType'
+        'legalEntityId' => 'setLegalEntityId',
+        'taxYears' => 'setTaxYears'
     ];
 
     /**
@@ -178,9 +173,8 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $getters = [
-        'bic' => 'getBic',
-        'iban' => 'getIban',
-        'type' => 'getType'
+        'legalEntityId' => 'getLegalEntityId',
+        'taxYears' => 'getTaxYears'
     ];
 
     /**
@@ -224,6 +218,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
         return self::$openAPIModelName;
     }
 
+
     /**
      * Associative array for storing property values
      *
@@ -239,9 +234,8 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('bic', $data ?? [], null);
-        $this->setIfExists('iban', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('legalEntityId', $data ?? [], null);
+        $this->setIfExists('taxYears', $data ?? [], null);
     }
 
     /**
@@ -271,13 +265,12 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
     {
         $invalidProperties = [];
 
-        if ($this->container['iban'] === null) {
-            $invalidProperties[] = "'iban' can't be null";
+        if ($this->container['legalEntityId'] === null) {
+            $invalidProperties[] = "'legalEntityId' can't be null";
         }
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
+        if ($this->container['taxYears'] === null) {
+            $invalidProperties[] = "'taxYears' can't be null";
         }
-
         return $invalidProperties;
     }
 
@@ -294,73 +287,49 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
 
 
     /**
-     * Gets bic
+     * Gets legalEntityId
      *
-     * @return string|null
+     * @return string
      */
-    public function getBic()
+    public function getLegalEntityId()
     {
-        return $this->container['bic'];
+        return $this->container['legalEntityId'];
     }
 
     /**
-     * Sets bic
+     * Sets legalEntityId
      *
-     * @param string|null $bic The bank's 8- or 11-character BIC or SWIFT code.
+     * @param string $legalEntityId The unique identifier of the legal entity.
      *
      * @return self
      */
-    public function setBic($bic)
+    public function setLegalEntityId($legalEntityId)
     {
-        $this->container['bic'] = $bic;
+        $this->container['legalEntityId'] = $legalEntityId;
 
         return $this;
     }
 
     /**
-     * Gets iban
+     * Gets taxYears
      *
-     * @return string
+     * @return int[]
      */
-    public function getIban()
+    public function getTaxYears()
     {
-        return $this->container['iban'];
+        return $this->container['taxYears'];
     }
 
     /**
-     * Sets iban
+     * Sets taxYears
      *
-     * @param string $iban The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.
+     * @param int[] $taxYears The tax years for which the legal entity has a tax form.
      *
      * @return self
      */
-    public function setIban($iban)
+    public function setTaxYears($taxYears)
     {
-        $this->container['iban'] = $iban;
-
-        return $this;
-    }
-
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type **iban**
-     *
-     * @return self
-     */
-    public function setType($type)
-    {
-        $this->container['type'] = $type;
+        $this->container['taxYears'] = $taxYears;
 
         return $this;
     }

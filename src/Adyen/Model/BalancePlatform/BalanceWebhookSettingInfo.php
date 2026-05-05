@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * PaymentInstrumentAdditionalBankAccountIdentificationsInner Class Doc Comment
+ * BalanceWebhookSettingInfo Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements ModelInterface, ArrayAccess, \JsonSerializable
+class BalanceWebhookSettingInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PaymentInstrument_additionalBankAccountIdentifications_inner';
+    protected static $openAPIModelName = 'BalanceWebhookSettingInfo';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,8 +41,10 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @var string[]
       */
     protected static $openAPITypes = [
-        'bic' => 'string',
-        'iban' => 'string',
+        'conditions' => '\Adyen\Model\BalancePlatform\Condition[]',
+        'currency' => 'string',
+        'status' => 'string',
+        'target' => '\Adyen\Model\BalancePlatform\Target',
         'type' => 'string'
     ];
 
@@ -54,8 +56,10 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'bic' => null,
-        'iban' => null,
+        'conditions' => null,
+        'currency' => null,
+        'status' => null,
+        'target' => null,
         'type' => null
     ];
 
@@ -65,8 +69,10 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'bic' => false,
-        'iban' => false,
+        'conditions' => false,
+        'currency' => false,
+        'status' => false,
+        'target' => false,
         'type' => false
     ];
 
@@ -156,8 +162,10 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $attributeMap = [
-        'bic' => 'bic',
-        'iban' => 'iban',
+        'conditions' => 'conditions',
+        'currency' => 'currency',
+        'status' => 'status',
+        'target' => 'target',
         'type' => 'type'
     ];
 
@@ -167,8 +175,10 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $setters = [
-        'bic' => 'setBic',
-        'iban' => 'setIban',
+        'conditions' => 'setConditions',
+        'currency' => 'setCurrency',
+        'status' => 'setStatus',
+        'target' => 'setTarget',
         'type' => 'setType'
     ];
 
@@ -178,8 +188,10 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $getters = [
-        'bic' => 'getBic',
-        'iban' => 'getIban',
+        'conditions' => 'getConditions',
+        'currency' => 'getCurrency',
+        'status' => 'getStatus',
+        'target' => 'getTarget',
         'type' => 'getType'
     ];
 
@@ -224,6 +236,33 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
         return self::$openAPIModelName;
     }
 
+    public const STATUS_ACTIVE = 'active';
+    public const STATUS_INACTIVE = 'inactive';
+    public const TYPE_BALANCE = 'balance';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getStatusAllowableValues()
+    {
+        return [
+            self::STATUS_ACTIVE,
+            self::STATUS_INACTIVE,
+        ];
+    }
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_BALANCE,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -239,8 +278,10 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('bic', $data ?? [], null);
-        $this->setIfExists('iban', $data ?? [], null);
+        $this->setIfExists('conditions', $data ?? [], null);
+        $this->setIfExists('currency', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('target', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -271,11 +312,34 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
     {
         $invalidProperties = [];
 
-        if ($this->container['iban'] === null) {
-            $invalidProperties[] = "'iban' can't be null";
+        if ($this->container['currency'] === null) {
+            $invalidProperties[] = "'currency' can't be null";
+        }
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
+        }
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'status', must be one of '%s'",
+                $this->container['status'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['target'] === null) {
+            $invalidProperties[] = "'target' can't be null";
         }
         if ($this->container['type'] === null) {
             $invalidProperties[] = "'type' can't be null";
+        }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
         }
 
         return $invalidProperties;
@@ -294,49 +358,107 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
 
 
     /**
-     * Gets bic
+     * Gets conditions
      *
-     * @return string|null
+     * @return \Adyen\Model\BalancePlatform\Condition[]|null
      */
-    public function getBic()
+    public function getConditions()
     {
-        return $this->container['bic'];
+        return $this->container['conditions'];
     }
 
     /**
-     * Sets bic
+     * Sets conditions
      *
-     * @param string|null $bic The bank's 8- or 11-character BIC or SWIFT code.
+     * @param \Adyen\Model\BalancePlatform\Condition[]|null $conditions The array of conditions a balance change must meet for Adyen to send the webhook.
      *
      * @return self
      */
-    public function setBic($bic)
+    public function setConditions($conditions)
     {
-        $this->container['bic'] = $bic;
+        $this->container['conditions'] = $conditions;
 
         return $this;
     }
 
     /**
-     * Gets iban
+     * Gets currency
      *
      * @return string
      */
-    public function getIban()
+    public function getCurrency()
     {
-        return $this->container['iban'];
+        return $this->container['currency'];
     }
 
     /**
-     * Sets iban
+     * Sets currency
      *
-     * @param string $iban The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.
+     * @param string $currency The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) of the balance.
      *
      * @return self
      */
-    public function setIban($iban)
+    public function setCurrency($currency)
     {
-        $this->container['iban'] = $iban;
+        $this->container['currency'] = $currency;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     *
+     * @param string $status The status of the webhook setting. Possible values:  * **active**: You receive a balance webhook if any of the conditions in this setting are met. * **inactive**: You do not receive a balance webhook even if the conditions in this settings are met.
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!in_array($status, $allowedValues, true)) {
+            error_log(
+                sprintf(
+                    "status: unexpected enum value '%s' - Supported values are [%s]",
+                    $status,
+                    implode(', ', $allowedValues)
+                )
+            );
+        }
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets target
+     *
+     * @return \Adyen\Model\BalancePlatform\Target
+     */
+    public function getTarget()
+    {
+        return $this->container['target'];
+    }
+
+    /**
+     * Sets target
+     *
+     * @param \Adyen\Model\BalancePlatform\Target $target target
+     *
+     * @return self
+     */
+    public function setTarget($target)
+    {
+        $this->container['target'] = $target;
 
         return $this;
     }
@@ -354,12 +476,22 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
     /**
      * Sets type
      *
-     * @param string $type **iban**
+     * @param string $type The type of the webhook you are configuring. Set to **balance**.
      *
      * @return self
      */
     public function setType($type)
     {
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            error_log(
+                sprintf(
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
+                    $type,
+                    implode(', ', $allowedValues)
+                )
+            );
+        }
         $this->container['type'] = $type;
 
         return $this;

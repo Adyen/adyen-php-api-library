@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * PaymentInstrumentAdditionalBankAccountIdentificationsInner Class Doc Comment
+ * ListMandatesResponse Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements ModelInterface, ArrayAccess, \JsonSerializable
+class ListMandatesResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PaymentInstrument_additionalBankAccountIdentifications_inner';
+    protected static $openAPIModelName = 'ListMandatesResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,8 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @var string[]
       */
     protected static $openAPITypes = [
-        'bic' => 'string',
-        'iban' => 'string',
-        'type' => 'string'
+        'link' => '\Adyen\Model\BalancePlatform\Link',
+        'mandates' => '\Adyen\Model\BalancePlatform\Mandate[]'
     ];
 
     /**
@@ -54,9 +53,8 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'bic' => null,
-        'iban' => null,
-        'type' => null
+        'link' => null,
+        'mandates' => null
     ];
 
     /**
@@ -65,9 +63,8 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'bic' => false,
-        'iban' => false,
-        'type' => false
+        'link' => false,
+        'mandates' => false
     ];
 
     /**
@@ -156,9 +153,8 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $attributeMap = [
-        'bic' => 'bic',
-        'iban' => 'iban',
-        'type' => 'type'
+        'link' => 'link',
+        'mandates' => 'mandates'
     ];
 
     /**
@@ -167,9 +163,8 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $setters = [
-        'bic' => 'setBic',
-        'iban' => 'setIban',
-        'type' => 'setType'
+        'link' => 'setLink',
+        'mandates' => 'setMandates'
     ];
 
     /**
@@ -178,9 +173,8 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $getters = [
-        'bic' => 'getBic',
-        'iban' => 'getIban',
-        'type' => 'getType'
+        'link' => 'getLink',
+        'mandates' => 'getMandates'
     ];
 
     /**
@@ -224,6 +218,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
         return self::$openAPIModelName;
     }
 
+
     /**
      * Associative array for storing property values
      *
@@ -239,9 +234,8 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('bic', $data ?? [], null);
-        $this->setIfExists('iban', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('link', $data ?? [], null);
+        $this->setIfExists('mandates', $data ?? [], null);
     }
 
     /**
@@ -271,13 +265,12 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
     {
         $invalidProperties = [];
 
-        if ($this->container['iban'] === null) {
-            $invalidProperties[] = "'iban' can't be null";
+        if ($this->container['link'] === null) {
+            $invalidProperties[] = "'link' can't be null";
         }
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
+        if ($this->container['mandates'] === null) {
+            $invalidProperties[] = "'mandates' can't be null";
         }
-
         return $invalidProperties;
     }
 
@@ -294,73 +287,49 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
 
 
     /**
-     * Gets bic
+     * Gets link
      *
-     * @return string|null
+     * @return \Adyen\Model\BalancePlatform\Link
      */
-    public function getBic()
+    public function getLink()
     {
-        return $this->container['bic'];
+        return $this->container['link'];
     }
 
     /**
-     * Sets bic
+     * Sets link
      *
-     * @param string|null $bic The bank's 8- or 11-character BIC or SWIFT code.
+     * @param \Adyen\Model\BalancePlatform\Link $link link
      *
      * @return self
      */
-    public function setBic($bic)
+    public function setLink($link)
     {
-        $this->container['bic'] = $bic;
+        $this->container['link'] = $link;
 
         return $this;
     }
 
     /**
-     * Gets iban
+     * Gets mandates
      *
-     * @return string
+     * @return \Adyen\Model\BalancePlatform\Mandate[]
      */
-    public function getIban()
+    public function getMandates()
     {
-        return $this->container['iban'];
+        return $this->container['mandates'];
     }
 
     /**
-     * Sets iban
+     * Sets mandates
      *
-     * @param string $iban The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.
+     * @param \Adyen\Model\BalancePlatform\Mandate[] $mandates Contains a list of the mandates.
      *
      * @return self
      */
-    public function setIban($iban)
+    public function setMandates($mandates)
     {
-        $this->container['iban'] = $iban;
-
-        return $this;
-    }
-
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type **iban**
-     *
-     * @return self
-     */
-    public function setType($type)
-    {
-        $this->container['type'] = $type;
+        $this->container['mandates'] = $mandates;
 
         return $this;
     }

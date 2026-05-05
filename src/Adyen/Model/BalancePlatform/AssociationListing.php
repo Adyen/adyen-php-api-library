@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * PaymentInstrumentAdditionalBankAccountIdentificationsInner Class Doc Comment
+ * AssociationListing Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements ModelInterface, ArrayAccess, \JsonSerializable
+class AssociationListing implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PaymentInstrument_additionalBankAccountIdentifications_inner';
+    protected static $openAPIModelName = 'AssociationListing';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,13 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @var string[]
       */
     protected static $openAPITypes = [
-        'bic' => 'string',
-        'iban' => 'string',
-        'type' => 'string'
+        'createdAt' => '\DateTime',
+        'entityId' => 'string',
+        'entityType' => '\Adyen\Model\BalancePlatform\ScaEntityType',
+        'scaDeviceId' => 'string',
+        'scaDeviceName' => 'string',
+        'scaDeviceType' => '\Adyen\Model\BalancePlatform\ScaDeviceType',
+        'status' => '\Adyen\Model\BalancePlatform\AssociationStatus'
     ];
 
     /**
@@ -54,9 +58,13 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'bic' => null,
-        'iban' => null,
-        'type' => null
+        'createdAt' => 'date-time',
+        'entityId' => null,
+        'entityType' => null,
+        'scaDeviceId' => null,
+        'scaDeviceName' => null,
+        'scaDeviceType' => null,
+        'status' => null
     ];
 
     /**
@@ -65,9 +73,13 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'bic' => false,
-        'iban' => false,
-        'type' => false
+        'createdAt' => false,
+        'entityId' => false,
+        'entityType' => false,
+        'scaDeviceId' => false,
+        'scaDeviceName' => false,
+        'scaDeviceType' => false,
+        'status' => false
     ];
 
     /**
@@ -156,9 +168,13 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $attributeMap = [
-        'bic' => 'bic',
-        'iban' => 'iban',
-        'type' => 'type'
+        'createdAt' => 'createdAt',
+        'entityId' => 'entityId',
+        'entityType' => 'entityType',
+        'scaDeviceId' => 'scaDeviceId',
+        'scaDeviceName' => 'scaDeviceName',
+        'scaDeviceType' => 'scaDeviceType',
+        'status' => 'status'
     ];
 
     /**
@@ -167,9 +183,13 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $setters = [
-        'bic' => 'setBic',
-        'iban' => 'setIban',
-        'type' => 'setType'
+        'createdAt' => 'setCreatedAt',
+        'entityId' => 'setEntityId',
+        'entityType' => 'setEntityType',
+        'scaDeviceId' => 'setScaDeviceId',
+        'scaDeviceName' => 'setScaDeviceName',
+        'scaDeviceType' => 'setScaDeviceType',
+        'status' => 'setStatus'
     ];
 
     /**
@@ -178,9 +198,13 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $getters = [
-        'bic' => 'getBic',
-        'iban' => 'getIban',
-        'type' => 'getType'
+        'createdAt' => 'getCreatedAt',
+        'entityId' => 'getEntityId',
+        'entityType' => 'getEntityType',
+        'scaDeviceId' => 'getScaDeviceId',
+        'scaDeviceName' => 'getScaDeviceName',
+        'scaDeviceType' => 'getScaDeviceType',
+        'status' => 'getStatus'
     ];
 
     /**
@@ -224,6 +248,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
         return self::$openAPIModelName;
     }
 
+
     /**
      * Associative array for storing property values
      *
@@ -239,9 +264,13 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('bic', $data ?? [], null);
-        $this->setIfExists('iban', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('createdAt', $data ?? [], null);
+        $this->setIfExists('entityId', $data ?? [], null);
+        $this->setIfExists('entityType', $data ?? [], null);
+        $this->setIfExists('scaDeviceId', $data ?? [], null);
+        $this->setIfExists('scaDeviceName', $data ?? [], null);
+        $this->setIfExists('scaDeviceType', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
     }
 
     /**
@@ -271,13 +300,24 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
     {
         $invalidProperties = [];
 
-        if ($this->container['iban'] === null) {
-            $invalidProperties[] = "'iban' can't be null";
+        if ($this->container['createdAt'] === null) {
+            $invalidProperties[] = "'createdAt' can't be null";
         }
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
+        if ($this->container['entityId'] === null) {
+            $invalidProperties[] = "'entityId' can't be null";
         }
-
+        if ($this->container['entityType'] === null) {
+            $invalidProperties[] = "'entityType' can't be null";
+        }
+        if ($this->container['scaDeviceId'] === null) {
+            $invalidProperties[] = "'scaDeviceId' can't be null";
+        }
+        if ($this->container['scaDeviceType'] === null) {
+            $invalidProperties[] = "'scaDeviceType' can't be null";
+        }
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -294,73 +334,169 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
 
 
     /**
-     * Gets bic
+     * Gets createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['createdAt'];
+    }
+
+    /**
+     * Sets createdAt
+     *
+     * @param \DateTime $createdAt The date and time when the association was created.
+     *
+     * @return self
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->container['createdAt'] = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Gets entityId
+     *
+     * @return string
+     */
+    public function getEntityId()
+    {
+        return $this->container['entityId'];
+    }
+
+    /**
+     * Sets entityId
+     *
+     * @param string $entityId The unique identifier of the entity.
+     *
+     * @return self
+     */
+    public function setEntityId($entityId)
+    {
+        $this->container['entityId'] = $entityId;
+
+        return $this;
+    }
+
+    /**
+     * Gets entityType
+     *
+     * @return \Adyen\Model\BalancePlatform\ScaEntityType
+     */
+    public function getEntityType()
+    {
+        return $this->container['entityType'];
+    }
+
+    /**
+     * Sets entityType
+     *
+     * @param \Adyen\Model\BalancePlatform\ScaEntityType $entityType entityType
+     *
+     * @return self
+     */
+    public function setEntityType($entityType)
+    {
+        $this->container['entityType'] = $entityType;
+
+        return $this;
+    }
+
+    /**
+     * Gets scaDeviceId
+     *
+     * @return string
+     */
+    public function getScaDeviceId()
+    {
+        return $this->container['scaDeviceId'];
+    }
+
+    /**
+     * Sets scaDeviceId
+     *
+     * @param string $scaDeviceId The unique identifier of the SCA device.
+     *
+     * @return self
+     */
+    public function setScaDeviceId($scaDeviceId)
+    {
+        $this->container['scaDeviceId'] = $scaDeviceId;
+
+        return $this;
+    }
+
+    /**
+     * Gets scaDeviceName
      *
      * @return string|null
      */
-    public function getBic()
+    public function getScaDeviceName()
     {
-        return $this->container['bic'];
+        return $this->container['scaDeviceName'];
     }
 
     /**
-     * Sets bic
+     * Sets scaDeviceName
      *
-     * @param string|null $bic The bank's 8- or 11-character BIC or SWIFT code.
+     * @param string|null $scaDeviceName The human-readable name for the SCA device that was registered.
      *
      * @return self
      */
-    public function setBic($bic)
+    public function setScaDeviceName($scaDeviceName)
     {
-        $this->container['bic'] = $bic;
+        $this->container['scaDeviceName'] = $scaDeviceName;
 
         return $this;
     }
 
     /**
-     * Gets iban
+     * Gets scaDeviceType
      *
-     * @return string
+     * @return \Adyen\Model\BalancePlatform\ScaDeviceType
      */
-    public function getIban()
+    public function getScaDeviceType()
     {
-        return $this->container['iban'];
+        return $this->container['scaDeviceType'];
     }
 
     /**
-     * Sets iban
+     * Sets scaDeviceType
      *
-     * @param string $iban The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.
+     * @param \Adyen\Model\BalancePlatform\ScaDeviceType $scaDeviceType scaDeviceType
      *
      * @return self
      */
-    public function setIban($iban)
+    public function setScaDeviceType($scaDeviceType)
     {
-        $this->container['iban'] = $iban;
+        $this->container['scaDeviceType'] = $scaDeviceType;
 
         return $this;
     }
 
     /**
-     * Gets type
+     * Gets status
      *
-     * @return string
+     * @return \Adyen\Model\BalancePlatform\AssociationStatus
      */
-    public function getType()
+    public function getStatus()
     {
-        return $this->container['type'];
+        return $this->container['status'];
     }
 
     /**
-     * Sets type
+     * Sets status
      *
-     * @param string $type **iban**
+     * @param \Adyen\Model\BalancePlatform\AssociationStatus $status status
      *
      * @return self
      */
-    public function setType($type)
+    public function setStatus($status)
     {
-        $this->container['type'] = $type;
+        $this->container['status'] = $status;
 
         return $this;
     }
