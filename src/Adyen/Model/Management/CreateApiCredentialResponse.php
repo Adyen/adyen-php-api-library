@@ -51,6 +51,7 @@ class CreateApiCredentialResponse implements ModelInterface, ArrayAccess, \JsonS
         'id' => 'string',
         'password' => 'string',
         'roles' => 'string[]',
+        'subjectDN' => 'string',
         'username' => 'string'
     ];
 
@@ -72,6 +73,7 @@ class CreateApiCredentialResponse implements ModelInterface, ArrayAccess, \JsonS
         'id' => null,
         'password' => null,
         'roles' => null,
+        'subjectDN' => null,
         'username' => null
     ];
 
@@ -91,6 +93,7 @@ class CreateApiCredentialResponse implements ModelInterface, ArrayAccess, \JsonS
         'id' => false,
         'password' => false,
         'roles' => false,
+        'subjectDN' => false,
         'username' => false
     ];
 
@@ -190,6 +193,7 @@ class CreateApiCredentialResponse implements ModelInterface, ArrayAccess, \JsonS
         'id' => 'id',
         'password' => 'password',
         'roles' => 'roles',
+        'subjectDN' => 'subjectDN',
         'username' => 'username'
     ];
 
@@ -209,6 +213,7 @@ class CreateApiCredentialResponse implements ModelInterface, ArrayAccess, \JsonS
         'id' => 'setId',
         'password' => 'setPassword',
         'roles' => 'setRoles',
+        'subjectDN' => 'setSubjectDN',
         'username' => 'setUsername'
     ];
 
@@ -228,6 +233,7 @@ class CreateApiCredentialResponse implements ModelInterface, ArrayAccess, \JsonS
         'id' => 'getId',
         'password' => 'getPassword',
         'roles' => 'getRoles',
+        'subjectDN' => 'getSubjectDN',
         'username' => 'getUsername'
     ];
 
@@ -298,6 +304,7 @@ class CreateApiCredentialResponse implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('password', $data ?? [], null);
         $this->setIfExists('roles', $data ?? [], null);
+        $this->setIfExists('subjectDN', $data ?? [], null);
         $this->setIfExists('username', $data ?? [], null);
     }
 
@@ -603,6 +610,30 @@ class CreateApiCredentialResponse implements ModelInterface, ArrayAccess, \JsonS
     public function setRoles($roles)
     {
         $this->container['roles'] = $roles;
+
+        return $this;
+    }
+
+    /**
+     * Gets subjectDN
+     *
+     * @return string|null
+     */
+    public function getSubjectDN()
+    {
+        return $this->container['subjectDN'];
+    }
+
+    /**
+     * Sets subjectDN
+     *
+     * @param string|null $subjectDN The subject DN of the certificate issued by Adyen.
+     *
+     * @return self
+     */
+    public function setSubjectDN($subjectDN)
+    {
+        $this->container['subjectDN'] = $subjectDN;
 
         return $this;
     }

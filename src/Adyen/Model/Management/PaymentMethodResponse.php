@@ -248,6 +248,17 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public const TYPES_WITH_ERRORS_ALIPAY = 'alipay';
     public const TYPES_WITH_ERRORS_ALIPAY_HK = 'alipay_hk';
     public const TYPES_WITH_ERRORS_ALIPAY_PLUS = 'alipay_plus';
+    public const TYPES_WITH_ERRORS_ALIPAY_PLUS_ALIPAY_CN = 'alipay_plus_alipay_cn';
+    public const TYPES_WITH_ERRORS_ALIPAY_PLUS_ALIPAY_HK = 'alipay_plus_alipay_hk';
+    public const TYPES_WITH_ERRORS_ALIPAY_PLUS_DANA = 'alipay_plus_dana';
+    public const TYPES_WITH_ERRORS_ALIPAY_PLUS_GCASH = 'alipay_plus_gcash';
+    public const TYPES_WITH_ERRORS_ALIPAY_PLUS_KAKAOPAY = 'alipay_plus_kakaopay';
+    public const TYPES_WITH_ERRORS_ALIPAY_PLUS_KPLUS = 'alipay_plus_kplus';
+    public const TYPES_WITH_ERRORS_ALIPAY_PLUS_NAVERPAY = 'alipay_plus_naverpay';
+    public const TYPES_WITH_ERRORS_ALIPAY_PLUS_RABBITLINEPAY = 'alipay_plus_rabbitlinepay';
+    public const TYPES_WITH_ERRORS_ALIPAY_PLUS_TOSSPAY = 'alipay_plus_tosspay';
+    public const TYPES_WITH_ERRORS_ALIPAY_PLUS_TOUCHNGO = 'alipay_plus_touchngo';
+    public const TYPES_WITH_ERRORS_ALIPAY_PLUS_TRUEMONEY = 'alipay_plus_truemoney';
     public const TYPES_WITH_ERRORS_ALIPAY_WAP = 'alipay_wap';
     public const TYPES_WITH_ERRORS_AMEX = 'amex';
     public const TYPES_WITH_ERRORS_APPLEPAY = 'applepay';
@@ -262,6 +273,7 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public const TYPES_WITH_ERRORS_BLIK = 'blik';
     public const TYPES_WITH_ERRORS_BLIK_POS = 'blik_pos';
     public const TYPES_WITH_ERRORS_BR_SCHEMES = 'br_schemes';
+    public const TYPES_WITH_ERRORS_CARNET = 'carnet';
     public const TYPES_WITH_ERRORS_CARTEBANCAIRE = 'cartebancaire';
     public const TYPES_WITH_ERRORS_CLEARPAY = 'clearpay';
     public const TYPES_WITH_ERRORS_CLICKTOPAY = 'clicktopay';
@@ -392,6 +404,17 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             self::TYPES_WITH_ERRORS_ALIPAY,
             self::TYPES_WITH_ERRORS_ALIPAY_HK,
             self::TYPES_WITH_ERRORS_ALIPAY_PLUS,
+            self::TYPES_WITH_ERRORS_ALIPAY_PLUS_ALIPAY_CN,
+            self::TYPES_WITH_ERRORS_ALIPAY_PLUS_ALIPAY_HK,
+            self::TYPES_WITH_ERRORS_ALIPAY_PLUS_DANA,
+            self::TYPES_WITH_ERRORS_ALIPAY_PLUS_GCASH,
+            self::TYPES_WITH_ERRORS_ALIPAY_PLUS_KAKAOPAY,
+            self::TYPES_WITH_ERRORS_ALIPAY_PLUS_KPLUS,
+            self::TYPES_WITH_ERRORS_ALIPAY_PLUS_NAVERPAY,
+            self::TYPES_WITH_ERRORS_ALIPAY_PLUS_RABBITLINEPAY,
+            self::TYPES_WITH_ERRORS_ALIPAY_PLUS_TOSSPAY,
+            self::TYPES_WITH_ERRORS_ALIPAY_PLUS_TOUCHNGO,
+            self::TYPES_WITH_ERRORS_ALIPAY_PLUS_TRUEMONEY,
             self::TYPES_WITH_ERRORS_ALIPAY_WAP,
             self::TYPES_WITH_ERRORS_AMEX,
             self::TYPES_WITH_ERRORS_APPLEPAY,
@@ -406,6 +429,7 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             self::TYPES_WITH_ERRORS_BLIK,
             self::TYPES_WITH_ERRORS_BLIK_POS,
             self::TYPES_WITH_ERRORS_BR_SCHEMES,
+            self::TYPES_WITH_ERRORS_CARNET,
             self::TYPES_WITH_ERRORS_CARTEBANCAIRE,
             self::TYPES_WITH_ERRORS_CLEARPAY,
             self::TYPES_WITH_ERRORS_CLICKTOPAY,

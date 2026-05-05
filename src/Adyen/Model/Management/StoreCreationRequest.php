@@ -45,6 +45,7 @@ class StoreCreationRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'businessLineIds' => 'string[]',
         'description' => 'string',
         'externalReferenceId' => 'string',
+        'localizedInformation' => '\Adyen\Model\Management\LocalizedInformation',
         'phoneNumber' => 'string',
         'reference' => 'string',
         'shopperStatement' => 'string',
@@ -64,6 +65,7 @@ class StoreCreationRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'businessLineIds' => null,
         'description' => null,
         'externalReferenceId' => null,
+        'localizedInformation' => null,
         'phoneNumber' => null,
         'reference' => null,
         'shopperStatement' => null,
@@ -81,6 +83,7 @@ class StoreCreationRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'businessLineIds' => false,
         'description' => false,
         'externalReferenceId' => false,
+        'localizedInformation' => false,
         'phoneNumber' => false,
         'reference' => false,
         'shopperStatement' => false,
@@ -178,6 +181,7 @@ class StoreCreationRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'businessLineIds' => 'businessLineIds',
         'description' => 'description',
         'externalReferenceId' => 'externalReferenceId',
+        'localizedInformation' => 'localizedInformation',
         'phoneNumber' => 'phoneNumber',
         'reference' => 'reference',
         'shopperStatement' => 'shopperStatement',
@@ -195,6 +199,7 @@ class StoreCreationRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'businessLineIds' => 'setBusinessLineIds',
         'description' => 'setDescription',
         'externalReferenceId' => 'setExternalReferenceId',
+        'localizedInformation' => 'setLocalizedInformation',
         'phoneNumber' => 'setPhoneNumber',
         'reference' => 'setReference',
         'shopperStatement' => 'setShopperStatement',
@@ -212,6 +217,7 @@ class StoreCreationRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'businessLineIds' => 'getBusinessLineIds',
         'description' => 'getDescription',
         'externalReferenceId' => 'getExternalReferenceId',
+        'localizedInformation' => 'getLocalizedInformation',
         'phoneNumber' => 'getPhoneNumber',
         'reference' => 'getReference',
         'shopperStatement' => 'getShopperStatement',
@@ -280,6 +286,7 @@ class StoreCreationRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('businessLineIds', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('externalReferenceId', $data ?? [], null);
+        $this->setIfExists('localizedInformation', $data ?? [], null);
         $this->setIfExists('phoneNumber', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
         $this->setIfExists('shopperStatement', $data ?? [], null);
@@ -433,6 +440,30 @@ class StoreCreationRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setExternalReferenceId($externalReferenceId)
     {
         $this->container['externalReferenceId'] = $externalReferenceId;
+
+        return $this;
+    }
+
+    /**
+     * Gets localizedInformation
+     *
+     * @return \Adyen\Model\Management\LocalizedInformation|null
+     */
+    public function getLocalizedInformation()
+    {
+        return $this->container['localizedInformation'];
+    }
+
+    /**
+     * Sets localizedInformation
+     *
+     * @param \Adyen\Model\Management\LocalizedInformation|null $localizedInformation localizedInformation
+     *
+     * @return self
+     */
+    public function setLocalizedInformation($localizedInformation)
+    {
+        $this->container['localizedInformation'] = $localizedInformation;
 
         return $this;
     }

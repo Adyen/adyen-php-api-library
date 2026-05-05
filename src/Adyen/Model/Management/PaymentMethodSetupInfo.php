@@ -49,6 +49,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'applePay' => '\Adyen\Model\Management\ApplePayInfo',
         'bcmc' => '\Adyen\Model\Management\BcmcInfo',
         'businessLineId' => 'string',
+        'carnet' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
         'cartesBancaires' => '\Adyen\Model\Management\CartesBancairesInfo',
         'clearpay' => '\Adyen\Model\Management\ClearpayInfo',
         'countries' => 'string[]',
@@ -111,6 +112,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'applePay' => null,
         'bcmc' => null,
         'businessLineId' => null,
+        'carnet' => null,
         'cartesBancaires' => null,
         'clearpay' => null,
         'countries' => null,
@@ -171,6 +173,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'applePay' => false,
         'bcmc' => false,
         'businessLineId' => false,
+        'carnet' => false,
         'cartesBancaires' => false,
         'clearpay' => false,
         'countries' => false,
@@ -311,6 +314,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'applePay' => 'applePay',
         'bcmc' => 'bcmc',
         'businessLineId' => 'businessLineId',
+        'carnet' => 'carnet',
         'cartesBancaires' => 'cartesBancaires',
         'clearpay' => 'clearpay',
         'countries' => 'countries',
@@ -371,6 +375,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'applePay' => 'setApplePay',
         'bcmc' => 'setBcmc',
         'businessLineId' => 'setBusinessLineId',
+        'carnet' => 'setCarnet',
         'cartesBancaires' => 'setCartesBancaires',
         'clearpay' => 'setClearpay',
         'countries' => 'setCountries',
@@ -431,6 +436,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'applePay' => 'getApplePay',
         'bcmc' => 'getBcmc',
         'businessLineId' => 'getBusinessLineId',
+        'carnet' => 'getCarnet',
         'cartesBancaires' => 'getCartesBancaires',
         'clearpay' => 'getClearpay',
         'countries' => 'getCountries',
@@ -534,6 +540,17 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     public const TYPE_ALIPAY = 'alipay';
     public const TYPE_ALIPAY_HK = 'alipay_hk';
     public const TYPE_ALIPAY_PLUS = 'alipay_plus';
+    public const TYPE_ALIPAY_PLUS_ALIPAY_CN = 'alipay_plus_alipay_cn';
+    public const TYPE_ALIPAY_PLUS_ALIPAY_HK = 'alipay_plus_alipay_hk';
+    public const TYPE_ALIPAY_PLUS_DANA = 'alipay_plus_dana';
+    public const TYPE_ALIPAY_PLUS_GCASH = 'alipay_plus_gcash';
+    public const TYPE_ALIPAY_PLUS_KAKAOPAY = 'alipay_plus_kakaopay';
+    public const TYPE_ALIPAY_PLUS_KPLUS = 'alipay_plus_kplus';
+    public const TYPE_ALIPAY_PLUS_NAVERPAY = 'alipay_plus_naverpay';
+    public const TYPE_ALIPAY_PLUS_RABBITLINEPAY = 'alipay_plus_rabbitlinepay';
+    public const TYPE_ALIPAY_PLUS_TOSSPAY = 'alipay_plus_tosspay';
+    public const TYPE_ALIPAY_PLUS_TOUCHNGO = 'alipay_plus_touchngo';
+    public const TYPE_ALIPAY_PLUS_TRUEMONEY = 'alipay_plus_truemoney';
     public const TYPE_ALIPAY_WAP = 'alipay_wap';
     public const TYPE_AMEX = 'amex';
     public const TYPE_APPLEPAY = 'applepay';
@@ -548,6 +565,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     public const TYPE_BLIK = 'blik';
     public const TYPE_BLIK_POS = 'blik_pos';
     public const TYPE_BR_SCHEMES = 'br_schemes';
+    public const TYPE_CARNET = 'carnet';
     public const TYPE_CARTEBANCAIRE = 'cartebancaire';
     public const TYPE_CLEARPAY = 'clearpay';
     public const TYPE_CLICKTOPAY = 'clicktopay';
@@ -692,6 +710,17 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
             self::TYPE_ALIPAY,
             self::TYPE_ALIPAY_HK,
             self::TYPE_ALIPAY_PLUS,
+            self::TYPE_ALIPAY_PLUS_ALIPAY_CN,
+            self::TYPE_ALIPAY_PLUS_ALIPAY_HK,
+            self::TYPE_ALIPAY_PLUS_DANA,
+            self::TYPE_ALIPAY_PLUS_GCASH,
+            self::TYPE_ALIPAY_PLUS_KAKAOPAY,
+            self::TYPE_ALIPAY_PLUS_KPLUS,
+            self::TYPE_ALIPAY_PLUS_NAVERPAY,
+            self::TYPE_ALIPAY_PLUS_RABBITLINEPAY,
+            self::TYPE_ALIPAY_PLUS_TOSSPAY,
+            self::TYPE_ALIPAY_PLUS_TOUCHNGO,
+            self::TYPE_ALIPAY_PLUS_TRUEMONEY,
             self::TYPE_ALIPAY_WAP,
             self::TYPE_AMEX,
             self::TYPE_APPLEPAY,
@@ -706,6 +735,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
             self::TYPE_BLIK,
             self::TYPE_BLIK_POS,
             self::TYPE_BR_SCHEMES,
+            self::TYPE_CARNET,
             self::TYPE_CARTEBANCAIRE,
             self::TYPE_CLEARPAY,
             self::TYPE_CLICKTOPAY,
@@ -840,6 +870,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('applePay', $data ?? [], null);
         $this->setIfExists('bcmc', $data ?? [], null);
         $this->setIfExists('businessLineId', $data ?? [], null);
+        $this->setIfExists('carnet', $data ?? [], null);
         $this->setIfExists('cartesBancaires', $data ?? [], null);
         $this->setIfExists('clearpay', $data ?? [], null);
         $this->setIfExists('countries', $data ?? [], null);
@@ -1137,6 +1168,30 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     public function setBusinessLineId($businessLineId)
     {
         $this->container['businessLineId'] = $businessLineId;
+
+        return $this;
+    }
+
+    /**
+     * Gets carnet
+     *
+     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     */
+    public function getCarnet()
+    {
+        return $this->container['carnet'];
+    }
+
+    /**
+     * Sets carnet
+     *
+     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $carnet carnet
+     *
+     * @return self
+     */
+    public function setCarnet($carnet)
+    {
+        $this->container['carnet'] = $carnet;
 
         return $this;
     }
@@ -1850,7 +1905,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets shopperInteraction
      *
-     * @param string|null $shopperInteraction The sales channel. Required if the merchant account does not have a sales channel. When you provide this field, it overrides the default sales channel set on the merchant account.  Possible values: **eCommerce**, **pos**, **contAuth**, and **moto**.
+     * @param string|null $shopperInteraction The sales channel. Required if: - The merchant account does not have a sales channel. - `type` is **alipay**.  When you provide this field, it overrides the default sales channel set on the merchant account.  Possible values: **eCommerce**, **pos**, **contAuth**, and **moto**.
      *
      * @return self
      */
