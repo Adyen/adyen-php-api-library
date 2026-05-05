@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\ConfigurationWebhooks\ObjectSerializer;
 
 /**
- * PaymentInstrumentAdditionalBankAccountIdentificationsInner Class Doc Comment
+ * Mandate Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements ModelInterface, ArrayAccess, \JsonSerializable
+class Mandate implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PaymentInstrument_additionalBankAccountIdentifications_inner';
+    protected static $openAPIModelName = 'Mandate';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,14 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @var string[]
       */
     protected static $openAPITypes = [
-        'bic' => 'string',
-        'iban' => 'string',
-        'type' => 'string'
+        'balanceAccountId' => 'string',
+        'counterparty' => '\Adyen\Model\ConfigurationWebhooks\MandateBankAccount',
+        'createdAt' => 'object',
+        'id' => 'string',
+        'paymentInstrumentId' => 'string',
+        'status' => 'string',
+        'type' => 'string',
+        'updatedAt' => 'object'
     ];
 
     /**
@@ -54,9 +59,14 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'bic' => null,
-        'iban' => null,
-        'type' => null
+        'balanceAccountId' => null,
+        'counterparty' => null,
+        'createdAt' => null,
+        'id' => null,
+        'paymentInstrumentId' => null,
+        'status' => null,
+        'type' => null,
+        'updatedAt' => null
     ];
 
     /**
@@ -65,9 +75,14 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'bic' => false,
-        'iban' => false,
-        'type' => false
+        'balanceAccountId' => false,
+        'counterparty' => false,
+        'createdAt' => false,
+        'id' => false,
+        'paymentInstrumentId' => false,
+        'status' => false,
+        'type' => false,
+        'updatedAt' => false
     ];
 
     /**
@@ -156,9 +171,14 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $attributeMap = [
-        'bic' => 'bic',
-        'iban' => 'iban',
-        'type' => 'type'
+        'balanceAccountId' => 'balanceAccountId',
+        'counterparty' => 'counterparty',
+        'createdAt' => 'createdAt',
+        'id' => 'id',
+        'paymentInstrumentId' => 'paymentInstrumentId',
+        'status' => 'status',
+        'type' => 'type',
+        'updatedAt' => 'updatedAt'
     ];
 
     /**
@@ -167,9 +187,14 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $setters = [
-        'bic' => 'setBic',
-        'iban' => 'setIban',
-        'type' => 'setType'
+        'balanceAccountId' => 'setBalanceAccountId',
+        'counterparty' => 'setCounterparty',
+        'createdAt' => 'setCreatedAt',
+        'id' => 'setId',
+        'paymentInstrumentId' => 'setPaymentInstrumentId',
+        'status' => 'setStatus',
+        'type' => 'setType',
+        'updatedAt' => 'setUpdatedAt'
     ];
 
     /**
@@ -178,9 +203,14 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $getters = [
-        'bic' => 'getBic',
-        'iban' => 'getIban',
-        'type' => 'getType'
+        'balanceAccountId' => 'getBalanceAccountId',
+        'counterparty' => 'getCounterparty',
+        'createdAt' => 'getCreatedAt',
+        'id' => 'getId',
+        'paymentInstrumentId' => 'getPaymentInstrumentId',
+        'status' => 'getStatus',
+        'type' => 'getType',
+        'updatedAt' => 'getUpdatedAt'
     ];
 
     /**
@@ -224,6 +254,35 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
         return self::$openAPIModelName;
     }
 
+    public const STATUS_APPROVED = 'approved';
+    public const STATUS_CANCELLED = 'cancelled';
+    public const STATUS_PENDING = 'pending';
+    public const TYPE_BACS = 'bacs';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getStatusAllowableValues()
+    {
+        return [
+            self::STATUS_APPROVED,
+            self::STATUS_CANCELLED,
+            self::STATUS_PENDING,
+        ];
+    }
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_BACS,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -239,9 +298,14 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('bic', $data ?? [], null);
-        $this->setIfExists('iban', $data ?? [], null);
+        $this->setIfExists('balanceAccountId', $data ?? [], null);
+        $this->setIfExists('counterparty', $data ?? [], null);
+        $this->setIfExists('createdAt', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('paymentInstrumentId', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('updatedAt', $data ?? [], null);
     }
 
     /**
@@ -271,11 +335,22 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
     {
         $invalidProperties = [];
 
-        if ($this->container['iban'] === null) {
-            $invalidProperties[] = "'iban' can't be null";
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'status', must be one of '%s'",
+                $this->container['status'],
+                implode("', '", $allowedValues)
+            );
         }
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
+
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
         }
 
         return $invalidProperties;
@@ -294,49 +369,155 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
 
 
     /**
-     * Gets bic
+     * Gets balanceAccountId
      *
      * @return string|null
      */
-    public function getBic()
+    public function getBalanceAccountId()
     {
-        return $this->container['bic'];
+        return $this->container['balanceAccountId'];
     }
 
     /**
-     * Sets bic
+     * Sets balanceAccountId
      *
-     * @param string|null $bic The bank's 8- or 11-character BIC or SWIFT code.
+     * @param string|null $balanceAccountId The unique identifier of the balance account linked to the payment instrument.
      *
      * @return self
      */
-    public function setBic($bic)
+    public function setBalanceAccountId($balanceAccountId)
     {
-        $this->container['bic'] = $bic;
+        $this->container['balanceAccountId'] = $balanceAccountId;
 
         return $this;
     }
 
     /**
-     * Gets iban
+     * Gets counterparty
      *
-     * @return string
+     * @return \Adyen\Model\ConfigurationWebhooks\MandateBankAccount|null
      */
-    public function getIban()
+    public function getCounterparty()
     {
-        return $this->container['iban'];
+        return $this->container['counterparty'];
     }
 
     /**
-     * Sets iban
+     * Sets counterparty
      *
-     * @param string $iban The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.
+     * @param \Adyen\Model\ConfigurationWebhooks\MandateBankAccount|null $counterparty counterparty
      *
      * @return self
      */
-    public function setIban($iban)
+    public function setCounterparty($counterparty)
     {
-        $this->container['iban'] = $iban;
+        $this->container['counterparty'] = $counterparty;
+
+        return $this;
+    }
+
+    /**
+     * Gets createdAt
+     *
+     * @return object|null
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['createdAt'];
+    }
+
+    /**
+     * Sets createdAt
+     *
+     * @param object|null $createdAt createdAt
+     *
+     * @return self
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->container['createdAt'] = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Gets id
+     *
+     * @return string|null
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param string|null $id The unique identifier of the mandate.
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets paymentInstrumentId
+     *
+     * @return string|null
+     */
+    public function getPaymentInstrumentId()
+    {
+        return $this->container['paymentInstrumentId'];
+    }
+
+    /**
+     * Sets paymentInstrumentId
+     *
+     * @param string|null $paymentInstrumentId The unique identifier of the payment instrument linked to the mandate.
+     *
+     * @return self
+     */
+    public function setPaymentInstrumentId($paymentInstrumentId)
+    {
+        $this->container['paymentInstrumentId'] = $paymentInstrumentId;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return string|null
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     *
+     * @param string|null $status The status of the mandate.  Possible values: **pending**, **approved**, **cancelled**.
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!in_array($status, $allowedValues, true)) {
+            error_log(
+                sprintf(
+                    "status: unexpected enum value '%s' - Supported values are [%s]",
+                    $status,
+                    implode(', ', $allowedValues)
+                )
+            );
+        }
+        $this->container['status'] = $status;
 
         return $this;
     }
@@ -344,7 +525,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
     /**
      * Gets type
      *
-     * @return string
+     * @return string|null
      */
     public function getType()
     {
@@ -354,13 +535,47 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
     /**
      * Sets type
      *
-     * @param string $type **iban**
+     * @param string|null $type The type of mandate. Possible value: **bacs**.
      *
      * @return self
      */
     public function setType($type)
     {
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            error_log(
+                sprintf(
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
+                    $type,
+                    implode(', ', $allowedValues)
+                )
+            );
+        }
         $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets updatedAt
+     *
+     * @return object|null
+     */
+    public function getUpdatedAt()
+    {
+        return $this->container['updatedAt'];
+    }
+
+    /**
+     * Sets updatedAt
+     *
+     * @param object|null $updatedAt updatedAt
+     *
+     * @return self
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->container['updatedAt'] = $updatedAt;
 
         return $this;
     }

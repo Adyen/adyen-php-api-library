@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\ConfigurationWebhooks\ObjectSerializer;
 
 /**
- * PaymentInstrumentAdditionalBankAccountIdentificationsInner Class Doc Comment
+ * MandateNotificationRequest Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements ModelInterface, ArrayAccess, \JsonSerializable
+class MandateNotificationRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PaymentInstrument_additionalBankAccountIdentifications_inner';
+    protected static $openAPIModelName = 'MandateNotificationRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,8 +41,9 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @var string[]
       */
     protected static $openAPITypes = [
-        'bic' => 'string',
-        'iban' => 'string',
+        'data' => '\Adyen\Model\ConfigurationWebhooks\MandateNotificationData',
+        'environment' => 'string',
+        'timestamp' => '\DateTime',
         'type' => 'string'
     ];
 
@@ -54,8 +55,9 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'bic' => null,
-        'iban' => null,
+        'data' => null,
+        'environment' => null,
+        'timestamp' => 'date-time',
         'type' => null
     ];
 
@@ -65,8 +67,9 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'bic' => false,
-        'iban' => false,
+        'data' => false,
+        'environment' => false,
+        'timestamp' => false,
         'type' => false
     ];
 
@@ -156,8 +159,9 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $attributeMap = [
-        'bic' => 'bic',
-        'iban' => 'iban',
+        'data' => 'data',
+        'environment' => 'environment',
+        'timestamp' => 'timestamp',
         'type' => 'type'
     ];
 
@@ -167,8 +171,9 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $setters = [
-        'bic' => 'setBic',
-        'iban' => 'setIban',
+        'data' => 'setData',
+        'environment' => 'setEnvironment',
+        'timestamp' => 'setTimestamp',
         'type' => 'setType'
     ];
 
@@ -178,8 +183,9 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $getters = [
-        'bic' => 'getBic',
-        'iban' => 'getIban',
+        'data' => 'getData',
+        'environment' => 'getEnvironment',
+        'timestamp' => 'getTimestamp',
         'type' => 'getType'
     ];
 
@@ -224,6 +230,21 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
         return self::$openAPIModelName;
     }
 
+    public const TYPE_CREATED = 'balancePlatform.mandate.created';
+    public const TYPE_UPDATED = 'balancePlatform.mandate.updated';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_CREATED,
+            self::TYPE_UPDATED,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -239,8 +260,9 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('bic', $data ?? [], null);
-        $this->setIfExists('iban', $data ?? [], null);
+        $this->setIfExists('data', $data ?? [], null);
+        $this->setIfExists('environment', $data ?? [], null);
+        $this->setIfExists('timestamp', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -271,11 +293,22 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
     {
         $invalidProperties = [];
 
-        if ($this->container['iban'] === null) {
-            $invalidProperties[] = "'iban' can't be null";
+        if ($this->container['data'] === null) {
+            $invalidProperties[] = "'data' can't be null";
+        }
+        if ($this->container['environment'] === null) {
+            $invalidProperties[] = "'environment' can't be null";
         }
         if ($this->container['type'] === null) {
             $invalidProperties[] = "'type' can't be null";
+        }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
         }
 
         return $invalidProperties;
@@ -294,49 +327,73 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
 
 
     /**
-     * Gets bic
+     * Gets data
      *
-     * @return string|null
+     * @return \Adyen\Model\ConfigurationWebhooks\MandateNotificationData
      */
-    public function getBic()
+    public function getData()
     {
-        return $this->container['bic'];
+        return $this->container['data'];
     }
 
     /**
-     * Sets bic
+     * Sets data
      *
-     * @param string|null $bic The bank's 8- or 11-character BIC or SWIFT code.
+     * @param \Adyen\Model\ConfigurationWebhooks\MandateNotificationData $data data
      *
      * @return self
      */
-    public function setBic($bic)
+    public function setData($data)
     {
-        $this->container['bic'] = $bic;
+        $this->container['data'] = $data;
 
         return $this;
     }
 
     /**
-     * Gets iban
+     * Gets environment
      *
      * @return string
      */
-    public function getIban()
+    public function getEnvironment()
     {
-        return $this->container['iban'];
+        return $this->container['environment'];
     }
 
     /**
-     * Sets iban
+     * Sets environment
      *
-     * @param string $iban The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.
+     * @param string $environment The environment from which the webhook originated.  Possible values: **test**, **live**.
      *
      * @return self
      */
-    public function setIban($iban)
+    public function setEnvironment($environment)
     {
-        $this->container['iban'] = $iban;
+        $this->container['environment'] = $environment;
+
+        return $this;
+    }
+
+    /**
+     * Gets timestamp
+     *
+     * @return \DateTime|null
+     */
+    public function getTimestamp()
+    {
+        return $this->container['timestamp'];
+    }
+
+    /**
+     * Sets timestamp
+     *
+     * @param \DateTime|null $timestamp When the event was queued.
+     *
+     * @return self
+     */
+    public function setTimestamp($timestamp)
+    {
+        $this->container['timestamp'] = $timestamp;
 
         return $this;
     }
@@ -354,12 +411,22 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
     /**
      * Sets type
      *
-     * @param string $type **iban**
+     * @param string $type Type of webhook.
      *
      * @return self
      */
     public function setType($type)
     {
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            error_log(
+                sprintf(
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
+                    $type,
+                    implode(', ', $allowedValues)
+                )
+            );
+        }
         $this->container['type'] = $type;
 
         return $this;

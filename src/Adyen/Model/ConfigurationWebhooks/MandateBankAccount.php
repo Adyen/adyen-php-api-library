@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\ConfigurationWebhooks\ObjectSerializer;
 
 /**
- * PaymentInstrumentAdditionalBankAccountIdentificationsInner Class Doc Comment
+ * MandateBankAccount Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements ModelInterface, ArrayAccess, \JsonSerializable
+class MandateBankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PaymentInstrument_additionalBankAccountIdentifications_inner';
+    protected static $openAPIModelName = 'MandateBankAccount';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,8 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @var string[]
       */
     protected static $openAPITypes = [
-        'bic' => 'string',
-        'iban' => 'string',
-        'type' => 'string'
+        'accountHolder' => '\Adyen\Model\ConfigurationWebhooks\MandatePartyIdentification',
+        'accountIdentification' => '\Adyen\Model\ConfigurationWebhooks\MandateBankAccountAccountIdentification'
     ];
 
     /**
@@ -54,9 +53,8 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'bic' => null,
-        'iban' => null,
-        'type' => null
+        'accountHolder' => null,
+        'accountIdentification' => null
     ];
 
     /**
@@ -65,9 +63,8 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'bic' => false,
-        'iban' => false,
-        'type' => false
+        'accountHolder' => false,
+        'accountIdentification' => false
     ];
 
     /**
@@ -156,9 +153,8 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $attributeMap = [
-        'bic' => 'bic',
-        'iban' => 'iban',
-        'type' => 'type'
+        'accountHolder' => 'accountHolder',
+        'accountIdentification' => 'accountIdentification'
     ];
 
     /**
@@ -167,9 +163,8 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $setters = [
-        'bic' => 'setBic',
-        'iban' => 'setIban',
-        'type' => 'setType'
+        'accountHolder' => 'setAccountHolder',
+        'accountIdentification' => 'setAccountIdentification'
     ];
 
     /**
@@ -178,9 +173,8 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $getters = [
-        'bic' => 'getBic',
-        'iban' => 'getIban',
-        'type' => 'getType'
+        'accountHolder' => 'getAccountHolder',
+        'accountIdentification' => 'getAccountIdentification'
     ];
 
     /**
@@ -224,6 +218,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
         return self::$openAPIModelName;
     }
 
+
     /**
      * Associative array for storing property values
      *
@@ -239,9 +234,8 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('bic', $data ?? [], null);
-        $this->setIfExists('iban', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('accountHolder', $data ?? [], null);
+        $this->setIfExists('accountIdentification', $data ?? [], null);
     }
 
     /**
@@ -271,13 +265,12 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
     {
         $invalidProperties = [];
 
-        if ($this->container['iban'] === null) {
-            $invalidProperties[] = "'iban' can't be null";
+        if ($this->container['accountHolder'] === null) {
+            $invalidProperties[] = "'accountHolder' can't be null";
         }
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
+        if ($this->container['accountIdentification'] === null) {
+            $invalidProperties[] = "'accountIdentification' can't be null";
         }
-
         return $invalidProperties;
     }
 
@@ -294,73 +287,49 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
 
 
     /**
-     * Gets bic
+     * Gets accountHolder
      *
-     * @return string|null
+     * @return \Adyen\Model\ConfigurationWebhooks\MandatePartyIdentification
      */
-    public function getBic()
+    public function getAccountHolder()
     {
-        return $this->container['bic'];
+        return $this->container['accountHolder'];
     }
 
     /**
-     * Sets bic
+     * Sets accountHolder
      *
-     * @param string|null $bic The bank's 8- or 11-character BIC or SWIFT code.
+     * @param \Adyen\Model\ConfigurationWebhooks\MandatePartyIdentification $accountHolder accountHolder
      *
      * @return self
      */
-    public function setBic($bic)
+    public function setAccountHolder($accountHolder)
     {
-        $this->container['bic'] = $bic;
+        $this->container['accountHolder'] = $accountHolder;
 
         return $this;
     }
 
     /**
-     * Gets iban
+     * Gets accountIdentification
      *
-     * @return string
+     * @return \Adyen\Model\ConfigurationWebhooks\MandateBankAccountAccountIdentification
      */
-    public function getIban()
+    public function getAccountIdentification()
     {
-        return $this->container['iban'];
+        return $this->container['accountIdentification'];
     }
 
     /**
-     * Sets iban
+     * Sets accountIdentification
      *
-     * @param string $iban The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.
+     * @param \Adyen\Model\ConfigurationWebhooks\MandateBankAccountAccountIdentification $accountIdentification accountIdentification
      *
      * @return self
      */
-    public function setIban($iban)
+    public function setAccountIdentification($accountIdentification)
     {
-        $this->container['iban'] = $iban;
-
-        return $this;
-    }
-
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type **iban**
-     *
-     * @return self
-     */
-    public function setType($type)
-    {
-        $this->container['type'] = $type;
+        $this->container['accountIdentification'] = $accountIdentification;
 
         return $this;
     }

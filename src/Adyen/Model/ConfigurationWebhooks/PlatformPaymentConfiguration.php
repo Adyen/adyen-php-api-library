@@ -317,7 +317,7 @@ class PlatformPaymentConfiguration implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets settlementDelayDays
      *
-     * @param int|null $settlementDelayDays Specifies after how many business days the funds in a settlement batch are made available in this balance account.  Possible values: **1** to **20**, or **null**.  Default value: **null**.
+     * @param int|null $settlementDelayDays Specifies after how many business days the funds in a settlement batch are made available in this balance account. Requires Custom Sales Day Payout to be enabled for your balance account. Contact your account manager or implementation manager to enable this.  Possible values: **1** to **20**, or **null**.  Default value: **null**.
      *
      * @return self
      */
