@@ -43,6 +43,7 @@ class BusinessLine implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'id' => 'string',
         'industryCode' => 'string',
+        'industryCodeDescription' => 'string',
         'legalEntityId' => 'string',
         'problems' => '\Adyen\Model\LegalEntityManagement\CapabilityProblem[]',
         'salesChannels' => 'string[]',
@@ -62,6 +63,7 @@ class BusinessLine implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'id' => null,
         'industryCode' => null,
+        'industryCodeDescription' => null,
         'legalEntityId' => null,
         'problems' => null,
         'salesChannels' => null,
@@ -79,6 +81,7 @@ class BusinessLine implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPINullables = [
         'id' => false,
         'industryCode' => false,
+        'industryCodeDescription' => false,
         'legalEntityId' => false,
         'problems' => false,
         'salesChannels' => false,
@@ -176,6 +179,7 @@ class BusinessLine implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'id' => 'id',
         'industryCode' => 'industryCode',
+        'industryCodeDescription' => 'industryCodeDescription',
         'legalEntityId' => 'legalEntityId',
         'problems' => 'problems',
         'salesChannels' => 'salesChannels',
@@ -193,6 +197,7 @@ class BusinessLine implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'id' => 'setId',
         'industryCode' => 'setIndustryCode',
+        'industryCodeDescription' => 'setIndustryCodeDescription',
         'legalEntityId' => 'setLegalEntityId',
         'problems' => 'setProblems',
         'salesChannels' => 'setSalesChannels',
@@ -210,6 +215,7 @@ class BusinessLine implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'id' => 'getId',
         'industryCode' => 'getIndustryCode',
+        'industryCodeDescription' => 'getIndustryCodeDescription',
         'legalEntityId' => 'getLegalEntityId',
         'problems' => 'getProblems',
         'salesChannels' => 'getSalesChannels',
@@ -294,6 +300,7 @@ class BusinessLine implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('industryCode', $data ?? [], null);
+        $this->setIfExists('industryCodeDescription', $data ?? [], null);
         $this->setIfExists('legalEntityId', $data ?? [], null);
         $this->setIfExists('problems', $data ?? [], null);
         $this->setIfExists('salesChannels', $data ?? [], null);
@@ -410,6 +417,30 @@ class BusinessLine implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setIndustryCode($industryCode)
     {
         $this->container['industryCode'] = $industryCode;
+
+        return $this;
+    }
+
+    /**
+     * Gets industryCodeDescription
+     *
+     * @return string|null
+     */
+    public function getIndustryCodeDescription()
+    {
+        return $this->container['industryCodeDescription'];
+    }
+
+    /**
+     * Sets industryCodeDescription
+     *
+     * @param string|null $industryCodeDescription The description of the industry code.
+     *
+     * @return self
+     */
+    public function setIndustryCodeDescription($industryCodeDescription)
+    {
+        $this->container['industryCodeDescription'] = $industryCodeDescription;
 
         return $this;
     }

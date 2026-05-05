@@ -42,6 +42,7 @@ class BusinessLineInfoUpdate implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPITypes = [
         'industryCode' => 'string',
+        'industryCodeDescription' => 'string',
         'salesChannels' => 'string[]',
         'sourceOfFunds' => '\Adyen\Model\LegalEntityManagement\SourceOfFunds',
         'webData' => '\Adyen\Model\LegalEntityManagement\WebData[]',
@@ -57,6 +58,7 @@ class BusinessLineInfoUpdate implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPIFormats = [
         'industryCode' => null,
+        'industryCodeDescription' => null,
         'salesChannels' => null,
         'sourceOfFunds' => null,
         'webData' => null,
@@ -70,6 +72,7 @@ class BusinessLineInfoUpdate implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPINullables = [
         'industryCode' => false,
+        'industryCodeDescription' => false,
         'salesChannels' => false,
         'sourceOfFunds' => false,
         'webData' => false,
@@ -163,6 +166,7 @@ class BusinessLineInfoUpdate implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static $attributeMap = [
         'industryCode' => 'industryCode',
+        'industryCodeDescription' => 'industryCodeDescription',
         'salesChannels' => 'salesChannels',
         'sourceOfFunds' => 'sourceOfFunds',
         'webData' => 'webData',
@@ -176,6 +180,7 @@ class BusinessLineInfoUpdate implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static $setters = [
         'industryCode' => 'setIndustryCode',
+        'industryCodeDescription' => 'setIndustryCodeDescription',
         'salesChannels' => 'setSalesChannels',
         'sourceOfFunds' => 'setSourceOfFunds',
         'webData' => 'setWebData',
@@ -189,6 +194,7 @@ class BusinessLineInfoUpdate implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static $getters = [
         'industryCode' => 'getIndustryCode',
+        'industryCodeDescription' => 'getIndustryCodeDescription',
         'salesChannels' => 'getSalesChannels',
         'sourceOfFunds' => 'getSourceOfFunds',
         'webData' => 'getWebData',
@@ -253,6 +259,7 @@ class BusinessLineInfoUpdate implements ModelInterface, ArrayAccess, \JsonSerial
     public function __construct(?array $data = null)
     {
         $this->setIfExists('industryCode', $data ?? [], null);
+        $this->setIfExists('industryCodeDescription', $data ?? [], null);
         $this->setIfExists('salesChannels', $data ?? [], null);
         $this->setIfExists('sourceOfFunds', $data ?? [], null);
         $this->setIfExists('webData', $data ?? [], null);
@@ -321,6 +328,30 @@ class BusinessLineInfoUpdate implements ModelInterface, ArrayAccess, \JsonSerial
     public function setIndustryCode($industryCode)
     {
         $this->container['industryCode'] = $industryCode;
+
+        return $this;
+    }
+
+    /**
+     * Gets industryCodeDescription
+     *
+     * @return string|null
+     */
+    public function getIndustryCodeDescription()
+    {
+        return $this->container['industryCodeDescription'];
+    }
+
+    /**
+     * Sets industryCodeDescription
+     *
+     * @param string|null $industryCodeDescription The description of the industry code.
+     *
+     * @return self
+     */
+    public function setIndustryCodeDescription($industryCodeDescription)
+    {
+        $this->container['industryCodeDescription'] = $industryCodeDescription;
 
         return $this;
     }
