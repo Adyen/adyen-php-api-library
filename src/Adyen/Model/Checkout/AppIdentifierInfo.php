@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
- * ShopperTaxInfo Class Doc Comment
+ * AppIdentifierInfo Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
+class AppIdentifierInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ShopperTaxInfo';
+    protected static $openAPIModelName = 'AppIdentifierInfo';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,8 +41,8 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'taxCountryCode' => 'string',
-        'taxIdentificationNumber' => 'string'
+        'androidPackageId' => 'string',
+        'iosScheme' => 'string'
     ];
 
     /**
@@ -53,8 +53,8 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'taxCountryCode' => null,
-        'taxIdentificationNumber' => null
+        'androidPackageId' => null,
+        'iosScheme' => null
     ];
 
     /**
@@ -63,8 +63,8 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'taxCountryCode' => false,
-        'taxIdentificationNumber' => false
+        'androidPackageId' => false,
+        'iosScheme' => false
     ];
 
     /**
@@ -153,8 +153,8 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'taxCountryCode' => 'taxCountryCode',
-        'taxIdentificationNumber' => 'taxIdentificationNumber'
+        'androidPackageId' => 'androidPackageId',
+        'iosScheme' => 'iosScheme'
     ];
 
     /**
@@ -163,8 +163,8 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'taxCountryCode' => 'setTaxCountryCode',
-        'taxIdentificationNumber' => 'setTaxIdentificationNumber'
+        'androidPackageId' => 'setAndroidPackageId',
+        'iosScheme' => 'setIosScheme'
     ];
 
     /**
@@ -173,8 +173,8 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'taxCountryCode' => 'getTaxCountryCode',
-        'taxIdentificationNumber' => 'getTaxIdentificationNumber'
+        'androidPackageId' => 'getAndroidPackageId',
+        'iosScheme' => 'getIosScheme'
     ];
 
     /**
@@ -234,8 +234,8 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('taxCountryCode', $data ?? [], null);
-        $this->setIfExists('taxIdentificationNumber', $data ?? [], null);
+        $this->setIfExists('androidPackageId', $data ?? [], null);
+        $this->setIfExists('iosScheme', $data ?? [], null);
     }
 
     /**
@@ -265,12 +265,6 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['taxCountryCode'] === null) {
-            $invalidProperties[] = "'taxCountryCode' can't be null";
-        }
-        if ($this->container['taxIdentificationNumber'] === null) {
-            $invalidProperties[] = "'taxIdentificationNumber' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -287,49 +281,49 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets taxCountryCode
+     * Gets androidPackageId
      *
-     * @return string
+     * @return string|null
      */
-    public function getTaxCountryCode()
+    public function getAndroidPackageId()
     {
-        return $this->container['taxCountryCode'];
+        return $this->container['androidPackageId'];
     }
 
     /**
-     * Sets taxCountryCode
+     * Sets androidPackageId
      *
-     * @param string $taxCountryCode The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code associated with the provided tax identification number. Currently used only for Indian PA-CB tax verification, when applicable.
+     * @param string|null $androidPackageId The Android package identifier for this app.
      *
      * @return self
      */
-    public function setTaxCountryCode($taxCountryCode)
+    public function setAndroidPackageId($androidPackageId)
     {
-        $this->container['taxCountryCode'] = $taxCountryCode;
+        $this->container['androidPackageId'] = $androidPackageId;
 
         return $this;
     }
 
     /**
-     * Gets taxIdentificationNumber
+     * Gets iosScheme
      *
-     * @return string
+     * @return string|null
      */
-    public function getTaxIdentificationNumber()
+    public function getIosScheme()
     {
-        return $this->container['taxIdentificationNumber'];
+        return $this->container['iosScheme'];
     }
 
     /**
-     * Sets taxIdentificationNumber
+     * Sets iosScheme
      *
-     * @param string $taxIdentificationNumber The shopper’s tax identification number.
+     * @param string|null $iosScheme The iOS URL scheme for this app.
      *
      * @return self
      */
-    public function setTaxIdentificationNumber($taxIdentificationNumber)
+    public function setIosScheme($iosScheme)
     {
-        $this->container['taxIdentificationNumber'] = $taxIdentificationNumber;
+        $this->container['iosScheme'] = $iosScheme;
 
         return $this;
     }

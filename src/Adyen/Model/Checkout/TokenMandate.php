@@ -52,8 +52,12 @@ class TokenMandate implements ModelInterface, ArrayAccess, \JsonSerializable
         'frequency' => 'string',
         'mandateId' => 'string',
         'maskedAccountId' => 'string',
+        'minAmount' => 'string',
         'providerId' => 'string',
+        'recurringAmount' => 'string',
+        'recurringStatement' => 'string',
         'remarks' => 'string',
+        'retryPolicy' => 'string',
         'startsAt' => 'string',
         'status' => 'string',
         'txVariant' => 'string'
@@ -78,8 +82,12 @@ class TokenMandate implements ModelInterface, ArrayAccess, \JsonSerializable
         'frequency' => null,
         'mandateId' => null,
         'maskedAccountId' => null,
+        'minAmount' => null,
         'providerId' => null,
+        'recurringAmount' => null,
+        'recurringStatement' => null,
         'remarks' => null,
+        'retryPolicy' => null,
         'startsAt' => null,
         'status' => null,
         'txVariant' => null
@@ -102,8 +110,12 @@ class TokenMandate implements ModelInterface, ArrayAccess, \JsonSerializable
         'frequency' => false,
         'mandateId' => false,
         'maskedAccountId' => false,
+        'minAmount' => false,
         'providerId' => false,
+        'recurringAmount' => false,
+        'recurringStatement' => false,
         'remarks' => false,
+        'retryPolicy' => false,
         'startsAt' => false,
         'status' => false,
         'txVariant' => false
@@ -206,8 +218,12 @@ class TokenMandate implements ModelInterface, ArrayAccess, \JsonSerializable
         'frequency' => 'frequency',
         'mandateId' => 'mandateId',
         'maskedAccountId' => 'maskedAccountId',
+        'minAmount' => 'minAmount',
         'providerId' => 'providerId',
+        'recurringAmount' => 'recurringAmount',
+        'recurringStatement' => 'recurringStatement',
         'remarks' => 'remarks',
+        'retryPolicy' => 'retryPolicy',
         'startsAt' => 'startsAt',
         'status' => 'status',
         'txVariant' => 'txVariant'
@@ -230,8 +246,12 @@ class TokenMandate implements ModelInterface, ArrayAccess, \JsonSerializable
         'frequency' => 'setFrequency',
         'mandateId' => 'setMandateId',
         'maskedAccountId' => 'setMaskedAccountId',
+        'minAmount' => 'setMinAmount',
         'providerId' => 'setProviderId',
+        'recurringAmount' => 'setRecurringAmount',
+        'recurringStatement' => 'setRecurringStatement',
         'remarks' => 'setRemarks',
+        'retryPolicy' => 'setRetryPolicy',
         'startsAt' => 'setStartsAt',
         'status' => 'setStatus',
         'txVariant' => 'setTxVariant'
@@ -254,8 +274,12 @@ class TokenMandate implements ModelInterface, ArrayAccess, \JsonSerializable
         'frequency' => 'getFrequency',
         'mandateId' => 'getMandateId',
         'maskedAccountId' => 'getMaskedAccountId',
+        'minAmount' => 'getMinAmount',
         'providerId' => 'getProviderId',
+        'recurringAmount' => 'getRecurringAmount',
+        'recurringStatement' => 'getRecurringStatement',
         'remarks' => 'getRemarks',
+        'retryPolicy' => 'getRetryPolicy',
         'startsAt' => 'getStartsAt',
         'status' => 'getStatus',
         'txVariant' => 'getTxVariant'
@@ -315,6 +339,8 @@ class TokenMandate implements ModelInterface, ArrayAccess, \JsonSerializable
     public const FREQUENCY_QUARTERLY = 'quarterly';
     public const FREQUENCY_HALF_YEARLY = 'halfYearly';
     public const FREQUENCY_YEARLY = 'yearly';
+    public const RETRY_POLICY_TRUE = 'true';
+    public const RETRY_POLICY_FALSE = 'false';
 
     /**
      * Gets allowable values of the enum
@@ -360,6 +386,18 @@ class TokenMandate implements ModelInterface, ArrayAccess, \JsonSerializable
         ];
     }
     /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getRetryPolicyAllowableValues()
+    {
+        return [
+            self::RETRY_POLICY_TRUE,
+            self::RETRY_POLICY_FALSE,
+        ];
+    }
+    /**
      * Associative array for storing property values
      *
      * @var mixed[]
@@ -385,8 +423,12 @@ class TokenMandate implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('frequency', $data ?? [], null);
         $this->setIfExists('mandateId', $data ?? [], null);
         $this->setIfExists('maskedAccountId', $data ?? [], null);
+        $this->setIfExists('minAmount', $data ?? [], null);
         $this->setIfExists('providerId', $data ?? [], null);
+        $this->setIfExists('recurringAmount', $data ?? [], null);
+        $this->setIfExists('recurringStatement', $data ?? [], null);
         $this->setIfExists('remarks', $data ?? [], null);
+        $this->setIfExists('retryPolicy', $data ?? [], null);
         $this->setIfExists('startsAt', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('txVariant', $data ?? [], null);
@@ -464,6 +506,15 @@ class TokenMandate implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['providerId'] === null) {
             $invalidProperties[] = "'providerId' can't be null";
         }
+        $allowedValues = $this->getRetryPolicyAllowableValues();
+        if (!is_null($this->container['retryPolicy']) && !in_array($this->container['retryPolicy'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'retryPolicy', must be one of '%s'",
+                $this->container['retryPolicy'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         if ($this->container['status'] === null) {
             $invalidProperties[] = "'status' can't be null";
         }
@@ -780,6 +831,30 @@ class TokenMandate implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets minAmount
+     *
+     * @return string|null
+     */
+    public function getMinAmount()
+    {
+        return $this->container['minAmount'];
+    }
+
+    /**
+     * Sets minAmount
+     *
+     * @param string|null $minAmount For a billing plan where the payment amounts are variable, the minimum amount to charge the shopper for each recurring payment. When a shopper approves the billing plan, they can also specify a maximum amount in their banking app.
+     *
+     * @return self
+     */
+    public function setMinAmount($minAmount)
+    {
+        $this->container['minAmount'] = $minAmount;
+
+        return $this;
+    }
+
+    /**
      * Gets providerId
      *
      * @return string
@@ -804,6 +879,54 @@ class TokenMandate implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets recurringAmount
+     *
+     * @return string|null
+     */
+    public function getRecurringAmount()
+    {
+        return $this->container['recurringAmount'];
+    }
+
+    /**
+     * Sets recurringAmount
+     *
+     * @param string|null $recurringAmount For a billing plan where the payment amount is fixed, the amount the shopper will be charged for each recurring payment.
+     *
+     * @return self
+     */
+    public function setRecurringAmount($recurringAmount)
+    {
+        $this->container['recurringAmount'] = $recurringAmount;
+
+        return $this;
+    }
+
+    /**
+     * Gets recurringStatement
+     *
+     * @return string|null
+     */
+    public function getRecurringStatement()
+    {
+        return $this->container['recurringStatement'];
+    }
+
+    /**
+     * Sets recurringStatement
+     *
+     * @param string|null $recurringStatement The text that will be shown on the shopper's bank statement for the recurring payments. We recommend to add a descriptive text about the subscription to let your shoppers recognize your recurring payments. Maximum length: 35 characters.
+     *
+     * @return self
+     */
+    public function setRecurringStatement($recurringStatement)
+    {
+        $this->container['recurringStatement'] = $recurringStatement;
+
+        return $this;
+    }
+
+    /**
      * Gets remarks
      *
      * @return string|null
@@ -823,6 +946,40 @@ class TokenMandate implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setRemarks($remarks)
     {
         $this->container['remarks'] = $remarks;
+
+        return $this;
+    }
+
+    /**
+     * Gets retryPolicy
+     *
+     * @return string|null
+     */
+    public function getRetryPolicy()
+    {
+        return $this->container['retryPolicy'];
+    }
+
+    /**
+     * Sets retryPolicy
+     *
+     * @param string|null $retryPolicy When set to true, you can retry for failed recurring payments. The default value is true.
+     *
+     * @return self
+     */
+    public function setRetryPolicy($retryPolicy)
+    {
+        $allowedValues = $this->getRetryPolicyAllowableValues();
+        if (!in_array($retryPolicy, $allowedValues, true)) {
+            error_log(
+                sprintf(
+                    "retryPolicy: unexpected enum value '%s' - Supported values are [%s]",
+                    $retryPolicy,
+                    implode(', ', $allowedValues)
+                )
+            );
+        }
+        $this->container['retryPolicy'] = $retryPolicy;
 
         return $this;
     }

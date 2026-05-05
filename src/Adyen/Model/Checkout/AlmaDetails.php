@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
- * ShopperTaxInfo Class Doc Comment
+ * AlmaDetails Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
+class AlmaDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ShopperTaxInfo';
+    protected static $openAPIModelName = 'AlmaDetails';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,8 +41,10 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'taxCountryCode' => 'string',
-        'taxIdentificationNumber' => 'string'
+        'checkoutAttemptId' => 'string',
+        'feeType' => 'string',
+        'sdkData' => 'string',
+        'type' => 'string'
     ];
 
     /**
@@ -53,8 +55,10 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'taxCountryCode' => null,
-        'taxIdentificationNumber' => null
+        'checkoutAttemptId' => null,
+        'feeType' => null,
+        'sdkData' => null,
+        'type' => null
     ];
 
     /**
@@ -63,8 +67,10 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'taxCountryCode' => false,
-        'taxIdentificationNumber' => false
+        'checkoutAttemptId' => false,
+        'feeType' => false,
+        'sdkData' => false,
+        'type' => false
     ];
 
     /**
@@ -153,8 +159,10 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'taxCountryCode' => 'taxCountryCode',
-        'taxIdentificationNumber' => 'taxIdentificationNumber'
+        'checkoutAttemptId' => 'checkoutAttemptId',
+        'feeType' => 'feeType',
+        'sdkData' => 'sdkData',
+        'type' => 'type'
     ];
 
     /**
@@ -163,8 +171,10 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'taxCountryCode' => 'setTaxCountryCode',
-        'taxIdentificationNumber' => 'setTaxIdentificationNumber'
+        'checkoutAttemptId' => 'setCheckoutAttemptId',
+        'feeType' => 'setFeeType',
+        'sdkData' => 'setSdkData',
+        'type' => 'setType'
     ];
 
     /**
@@ -173,8 +183,10 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'taxCountryCode' => 'getTaxCountryCode',
-        'taxIdentificationNumber' => 'getTaxIdentificationNumber'
+        'checkoutAttemptId' => 'getCheckoutAttemptId',
+        'feeType' => 'getFeeType',
+        'sdkData' => 'getSdkData',
+        'type' => 'getType'
     ];
 
     /**
@@ -218,7 +230,33 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const FEE_TYPE_MERCHANT_PAYS = 'merchantPays';
+    public const FEE_TYPE_SHOPPER_PAYS = 'shopperPays';
+    public const TYPE_ALMA = 'alma';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getFeeTypeAllowableValues()
+    {
+        return [
+            self::FEE_TYPE_MERCHANT_PAYS,
+            self::FEE_TYPE_SHOPPER_PAYS,
+        ];
+    }
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_ALMA,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -234,8 +272,10 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('taxCountryCode', $data ?? [], null);
-        $this->setIfExists('taxIdentificationNumber', $data ?? [], null);
+        $this->setIfExists('checkoutAttemptId', $data ?? [], null);
+        $this->setIfExists('feeType', $data ?? [], null);
+        $this->setIfExists('sdkData', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -265,12 +305,24 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['taxCountryCode'] === null) {
-            $invalidProperties[] = "'taxCountryCode' can't be null";
+        $allowedValues = $this->getFeeTypeAllowableValues();
+        if (!is_null($this->container['feeType']) && !in_array($this->container['feeType'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'feeType', must be one of '%s'",
+                $this->container['feeType'],
+                implode("', '", $allowedValues)
+            );
         }
-        if ($this->container['taxIdentificationNumber'] === null) {
-            $invalidProperties[] = "'taxIdentificationNumber' can't be null";
+
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
         }
+
         return $invalidProperties;
     }
 
@@ -287,49 +339,117 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets taxCountryCode
+     * Gets checkoutAttemptId
      *
-     * @return string
+     * @return string|null
      */
-    public function getTaxCountryCode()
+    public function getCheckoutAttemptId()
     {
-        return $this->container['taxCountryCode'];
+        return $this->container['checkoutAttemptId'];
     }
 
     /**
-     * Sets taxCountryCode
+     * Sets checkoutAttemptId
      *
-     * @param string $taxCountryCode The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code associated with the provided tax identification number. Currently used only for Indian PA-CB tax verification, when applicable.
+     * @param string|null $checkoutAttemptId The checkout attempt identifier.
      *
      * @return self
      */
-    public function setTaxCountryCode($taxCountryCode)
+    public function setCheckoutAttemptId($checkoutAttemptId)
     {
-        $this->container['taxCountryCode'] = $taxCountryCode;
+        $this->container['checkoutAttemptId'] = $checkoutAttemptId;
 
         return $this;
     }
 
     /**
-     * Gets taxIdentificationNumber
+     * Gets feeType
      *
-     * @return string
+     * @return string|null
      */
-    public function getTaxIdentificationNumber()
+    public function getFeeType()
     {
-        return $this->container['taxIdentificationNumber'];
+        return $this->container['feeType'];
     }
 
     /**
-     * Sets taxIdentificationNumber
+     * Sets feeType
      *
-     * @param string $taxIdentificationNumber The shopper’s tax identification number.
+     * @param string|null $feeType **Alma payment request fee type**
      *
      * @return self
      */
-    public function setTaxIdentificationNumber($taxIdentificationNumber)
+    public function setFeeType($feeType)
     {
-        $this->container['taxIdentificationNumber'] = $taxIdentificationNumber;
+        $allowedValues = $this->getFeeTypeAllowableValues();
+        if (!in_array($feeType, $allowedValues, true)) {
+            error_log(
+                sprintf(
+                    "feeType: unexpected enum value '%s' - Supported values are [%s]",
+                    $feeType,
+                    implode(', ', $allowedValues)
+                )
+            );
+        }
+        $this->container['feeType'] = $feeType;
+
+        return $this;
+    }
+
+    /**
+     * Gets sdkData
+     *
+     * @return string|null
+     */
+    public function getSdkData()
+    {
+        return $this->container['sdkData'];
+    }
+
+    /**
+     * Sets sdkData
+     *
+     * @param string|null $sdkData Base64-encoded JSON object containing SDK related parameters required by the SDK
+     *
+     * @return self
+     */
+    public function setSdkData($sdkData)
+    {
+        $this->container['sdkData'] = $sdkData;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string|null
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string|null $type The payment method type.
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            error_log(
+                sprintf(
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
+                    $type,
+                    implode(', ', $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
 
         return $this;
     }

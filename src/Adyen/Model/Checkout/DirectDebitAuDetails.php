@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
- * ShopperTaxInfo Class Doc Comment
+ * DirectDebitAuDetails Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
+class DirectDebitAuDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ShopperTaxInfo';
+    protected static $openAPIModelName = 'DirectDebitAuDetails';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,8 +41,13 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'taxCountryCode' => 'string',
-        'taxIdentificationNumber' => 'string'
+        'bankAccountNumber' => 'string',
+        'bankBranchCode' => 'string',
+        'checkoutAttemptId' => 'string',
+        'recurringDetailReference' => 'string',
+        'sdkData' => 'string',
+        'storedPaymentMethodId' => 'string',
+        'type' => 'string'
     ];
 
     /**
@@ -53,8 +58,13 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'taxCountryCode' => null,
-        'taxIdentificationNumber' => null
+        'bankAccountNumber' => null,
+        'bankBranchCode' => null,
+        'checkoutAttemptId' => null,
+        'recurringDetailReference' => null,
+        'sdkData' => null,
+        'storedPaymentMethodId' => null,
+        'type' => null
     ];
 
     /**
@@ -63,8 +73,13 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'taxCountryCode' => false,
-        'taxIdentificationNumber' => false
+        'bankAccountNumber' => false,
+        'bankBranchCode' => false,
+        'checkoutAttemptId' => false,
+        'recurringDetailReference' => false,
+        'sdkData' => false,
+        'storedPaymentMethodId' => false,
+        'type' => false
     ];
 
     /**
@@ -153,8 +168,13 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'taxCountryCode' => 'taxCountryCode',
-        'taxIdentificationNumber' => 'taxIdentificationNumber'
+        'bankAccountNumber' => 'bankAccountNumber',
+        'bankBranchCode' => 'bankBranchCode',
+        'checkoutAttemptId' => 'checkoutAttemptId',
+        'recurringDetailReference' => 'recurringDetailReference',
+        'sdkData' => 'sdkData',
+        'storedPaymentMethodId' => 'storedPaymentMethodId',
+        'type' => 'type'
     ];
 
     /**
@@ -163,8 +183,13 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'taxCountryCode' => 'setTaxCountryCode',
-        'taxIdentificationNumber' => 'setTaxIdentificationNumber'
+        'bankAccountNumber' => 'setBankAccountNumber',
+        'bankBranchCode' => 'setBankBranchCode',
+        'checkoutAttemptId' => 'setCheckoutAttemptId',
+        'recurringDetailReference' => 'setRecurringDetailReference',
+        'sdkData' => 'setSdkData',
+        'storedPaymentMethodId' => 'setStoredPaymentMethodId',
+        'type' => 'setType'
     ];
 
     /**
@@ -173,8 +198,13 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'taxCountryCode' => 'getTaxCountryCode',
-        'taxIdentificationNumber' => 'getTaxIdentificationNumber'
+        'bankAccountNumber' => 'getBankAccountNumber',
+        'bankBranchCode' => 'getBankBranchCode',
+        'checkoutAttemptId' => 'getCheckoutAttemptId',
+        'recurringDetailReference' => 'getRecurringDetailReference',
+        'sdkData' => 'getSdkData',
+        'storedPaymentMethodId' => 'getStoredPaymentMethodId',
+        'type' => 'getType'
     ];
 
     /**
@@ -218,7 +248,19 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const TYPE_DIRECTDEBIT_AU = 'directdebit_AU';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_DIRECTDEBIT_AU,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -234,8 +276,13 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('taxCountryCode', $data ?? [], null);
-        $this->setIfExists('taxIdentificationNumber', $data ?? [], null);
+        $this->setIfExists('bankAccountNumber', $data ?? [], null);
+        $this->setIfExists('bankBranchCode', $data ?? [], null);
+        $this->setIfExists('checkoutAttemptId', $data ?? [], null);
+        $this->setIfExists('recurringDetailReference', $data ?? [], null);
+        $this->setIfExists('sdkData', $data ?? [], null);
+        $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -265,12 +312,15 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['taxCountryCode'] === null) {
-            $invalidProperties[] = "'taxCountryCode' can't be null";
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
         }
-        if ($this->container['taxIdentificationNumber'] === null) {
-            $invalidProperties[] = "'taxIdentificationNumber' can't be null";
-        }
+
         return $invalidProperties;
     }
 
@@ -287,49 +337,181 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets taxCountryCode
+     * Gets bankAccountNumber
      *
-     * @return string
+     * @return string|null
      */
-    public function getTaxCountryCode()
+    public function getBankAccountNumber()
     {
-        return $this->container['taxCountryCode'];
+        return $this->container['bankAccountNumber'];
     }
 
     /**
-     * Sets taxCountryCode
+     * Sets bankAccountNumber
      *
-     * @param string $taxCountryCode The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code associated with the provided tax identification number. Currently used only for Indian PA-CB tax verification, when applicable.
+     * @param string|null $bankAccountNumber The shopper's banking account number used to complete payment.
      *
      * @return self
      */
-    public function setTaxCountryCode($taxCountryCode)
+    public function setBankAccountNumber($bankAccountNumber)
     {
-        $this->container['taxCountryCode'] = $taxCountryCode;
+        $this->container['bankAccountNumber'] = $bankAccountNumber;
 
         return $this;
     }
 
     /**
-     * Gets taxIdentificationNumber
+     * Gets bankBranchCode
      *
-     * @return string
+     * @return string|null
      */
-    public function getTaxIdentificationNumber()
+    public function getBankBranchCode()
     {
-        return $this->container['taxIdentificationNumber'];
+        return $this->container['bankBranchCode'];
     }
 
     /**
-     * Sets taxIdentificationNumber
+     * Sets bankBranchCode
      *
-     * @param string $taxIdentificationNumber The shopper’s tax identification number.
+     * @param string|null $bankBranchCode The shopper's BSB (their bank's branch code) number used to complete payment.
      *
      * @return self
      */
-    public function setTaxIdentificationNumber($taxIdentificationNumber)
+    public function setBankBranchCode($bankBranchCode)
     {
-        $this->container['taxIdentificationNumber'] = $taxIdentificationNumber;
+        $this->container['bankBranchCode'] = $bankBranchCode;
+
+        return $this;
+    }
+
+    /**
+     * Gets checkoutAttemptId
+     *
+     * @return string|null
+     */
+    public function getCheckoutAttemptId()
+    {
+        return $this->container['checkoutAttemptId'];
+    }
+
+    /**
+     * Sets checkoutAttemptId
+     *
+     * @param string|null $checkoutAttemptId The checkout attempt identifier.
+     *
+     * @return self
+     */
+    public function setCheckoutAttemptId($checkoutAttemptId)
+    {
+        $this->container['checkoutAttemptId'] = $checkoutAttemptId;
+
+        return $this;
+    }
+
+    /**
+     * Gets recurringDetailReference
+     *
+     * @return string|null
+     * @deprecated since Adyen Checkout API v49. "Use `storedPaymentMethodId` instead."
+     */
+    public function getRecurringDetailReference()
+    {
+        return $this->container['recurringDetailReference'];
+    }
+
+    /**
+     * Sets recurringDetailReference
+     *
+     * @param string|null $recurringDetailReference This is the `recurringDetailReference` returned in the response when you created the token.
+     *
+     * @return self
+     * @deprecated since Adyen Checkout API v49. "Use `storedPaymentMethodId` instead."
+     */
+    public function setRecurringDetailReference($recurringDetailReference)
+    {
+        $this->container['recurringDetailReference'] = $recurringDetailReference;
+
+        return $this;
+    }
+
+    /**
+     * Gets sdkData
+     *
+     * @return string|null
+     */
+    public function getSdkData()
+    {
+        return $this->container['sdkData'];
+    }
+
+    /**
+     * Sets sdkData
+     *
+     * @param string|null $sdkData Base64-encoded JSON object containing SDK related parameters required by the SDK
+     *
+     * @return self
+     */
+    public function setSdkData($sdkData)
+    {
+        $this->container['sdkData'] = $sdkData;
+
+        return $this;
+    }
+
+    /**
+     * Gets storedPaymentMethodId
+     *
+     * @return string|null
+     */
+    public function getStoredPaymentMethodId()
+    {
+        return $this->container['storedPaymentMethodId'];
+    }
+
+    /**
+     * Sets storedPaymentMethodId
+     *
+     * @param string|null $storedPaymentMethodId This is the `recurringDetailReference` returned in the response when you created the token.
+     *
+     * @return self
+     */
+    public function setStoredPaymentMethodId($storedPaymentMethodId)
+    {
+        $this->container['storedPaymentMethodId'] = $storedPaymentMethodId;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string|null
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string|null $type **directdebit_AU**
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            error_log(
+                sprintf(
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
+                    $type,
+                    implode(', ', $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
 
         return $this;
     }

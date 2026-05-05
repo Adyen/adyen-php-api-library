@@ -41,6 +41,7 @@ class PaymentMethodUPIApps implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var string[]
       */
     protected static $openAPITypes = [
+        'appIdentifierInfo' => '\Adyen\Model\Checkout\AppIdentifierInfo',
         'id' => 'string',
         'name' => 'string'
     ];
@@ -53,6 +54,7 @@ class PaymentMethodUPIApps implements ModelInterface, ArrayAccess, \JsonSerializ
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'appIdentifierInfo' => null,
         'id' => null,
         'name' => null
     ];
@@ -63,6 +65,7 @@ class PaymentMethodUPIApps implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'appIdentifierInfo' => false,
         'id' => false,
         'name' => false
     ];
@@ -153,6 +156,7 @@ class PaymentMethodUPIApps implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $attributeMap = [
+        'appIdentifierInfo' => 'appIdentifierInfo',
         'id' => 'id',
         'name' => 'name'
     ];
@@ -163,6 +167,7 @@ class PaymentMethodUPIApps implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $setters = [
+        'appIdentifierInfo' => 'setAppIdentifierInfo',
         'id' => 'setId',
         'name' => 'setName'
     ];
@@ -173,6 +178,7 @@ class PaymentMethodUPIApps implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $getters = [
+        'appIdentifierInfo' => 'getAppIdentifierInfo',
         'id' => 'getId',
         'name' => 'getName'
     ];
@@ -234,6 +240,7 @@ class PaymentMethodUPIApps implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('appIdentifierInfo', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
     }
@@ -285,6 +292,30 @@ class PaymentMethodUPIApps implements ModelInterface, ArrayAccess, \JsonSerializ
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets appIdentifierInfo
+     *
+     * @return \Adyen\Model\Checkout\AppIdentifierInfo|null
+     */
+    public function getAppIdentifierInfo()
+    {
+        return $this->container['appIdentifierInfo'];
+    }
+
+    /**
+     * Sets appIdentifierInfo
+     *
+     * @param \Adyen\Model\Checkout\AppIdentifierInfo|null $appIdentifierInfo appIdentifierInfo
+     *
+     * @return self
+     */
+    public function setAppIdentifierInfo($appIdentifierInfo)
+    {
+        $this->container['appIdentifierInfo'] = $appIdentifierInfo;
+
+        return $this;
+    }
 
     /**
      * Gets id

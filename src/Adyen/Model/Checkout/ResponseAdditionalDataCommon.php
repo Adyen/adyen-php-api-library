@@ -74,6 +74,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'mcBankNetReferenceNumber' => 'string',
         'merchantAdviceCode' => 'string',
         'merchantReference' => 'string',
+        'networkProcessingMode' => 'string',
         'networkTxReference' => 'string',
         'ownerName' => 'string',
         'paymentAccountReference' => 'string',
@@ -147,6 +148,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'mcBankNetReferenceNumber' => null,
         'merchantAdviceCode' => null,
         'merchantReference' => null,
+        'networkProcessingMode' => null,
         'networkTxReference' => null,
         'ownerName' => null,
         'paymentAccountReference' => null,
@@ -218,6 +220,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'mcBankNetReferenceNumber' => false,
         'merchantAdviceCode' => false,
         'merchantReference' => false,
+        'networkProcessingMode' => false,
         'networkTxReference' => false,
         'ownerName' => false,
         'paymentAccountReference' => false,
@@ -369,6 +372,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'mcBankNetReferenceNumber' => 'mcBankNetReferenceNumber',
         'merchantAdviceCode' => 'merchantAdviceCode',
         'merchantReference' => 'merchantReference',
+        'networkProcessingMode' => 'networkProcessingMode',
         'networkTxReference' => 'networkTxReference',
         'ownerName' => 'ownerName',
         'paymentAccountReference' => 'paymentAccountReference',
@@ -440,6 +444,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'mcBankNetReferenceNumber' => 'setMcBankNetReferenceNumber',
         'merchantAdviceCode' => 'setMerchantAdviceCode',
         'merchantReference' => 'setMerchantReference',
+        'networkProcessingMode' => 'setNetworkProcessingMode',
         'networkTxReference' => 'setNetworkTxReference',
         'ownerName' => 'setOwnerName',
         'paymentAccountReference' => 'setPaymentAccountReference',
@@ -511,6 +516,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'mcBankNetReferenceNumber' => 'getMcBankNetReferenceNumber',
         'merchantAdviceCode' => 'getMerchantAdviceCode',
         'merchantReference' => 'getMerchantReference',
+        'networkProcessingMode' => 'getNetworkProcessingMode',
         'networkTxReference' => 'getNetworkTxReference',
         'ownerName' => 'getOwnerName',
         'paymentAccountReference' => 'getPaymentAccountReference',
@@ -701,6 +707,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         $this->setIfExists('mcBankNetReferenceNumber', $data ?? [], null);
         $this->setIfExists('merchantAdviceCode', $data ?? [], null);
         $this->setIfExists('merchantReference', $data ?? [], null);
+        $this->setIfExists('networkProcessingMode', $data ?? [], null);
         $this->setIfExists('networkTxReference', $data ?? [], null);
         $this->setIfExists('ownerName', $data ?? [], null);
         $this->setIfExists('paymentAccountReference', $data ?? [], null);
@@ -1619,6 +1626,30 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
     public function setMerchantReference($merchantReference)
     {
         $this->container['merchantReference'] = $merchantReference;
+
+        return $this;
+    }
+
+    /**
+     * Gets networkProcessingMode
+     *
+     * @return string|null
+     */
+    public function getNetworkProcessingMode()
+    {
+        return $this->container['networkProcessingMode'];
+    }
+
+    /**
+     * Sets networkProcessingMode
+     *
+     * @param string|null $networkProcessingMode Indicates the processing flow.  Possible values: * **sale**: You do not need to separately capture the funds, because capture happens automatically as part of the transaction.  * **auth**: If you have not [configured automatic capture for the transaction](https://docs.adyen.com/online-payments/capture#types-of-capture), you must manually capture the funds.
+     *
+     * @return self
+     */
+    public function setNetworkProcessingMode($networkProcessingMode)
+    {
+        $this->container['networkProcessingMode'] = $networkProcessingMode;
 
         return $this;
     }

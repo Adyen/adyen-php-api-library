@@ -41,6 +41,7 @@ class CheckoutForwardRequest implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
+        'amount' => '\Adyen\Model\Checkout\Amount',
         'baseUrl' => 'string',
         'merchantAccount' => 'string',
         'merchantReference' => 'string',
@@ -59,6 +60,7 @@ class CheckoutForwardRequest implements ModelInterface, ArrayAccess, \JsonSerial
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'amount' => null,
         'baseUrl' => null,
         'merchantAccount' => null,
         'merchantReference' => null,
@@ -75,6 +77,7 @@ class CheckoutForwardRequest implements ModelInterface, ArrayAccess, \JsonSerial
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'amount' => false,
         'baseUrl' => false,
         'merchantAccount' => false,
         'merchantReference' => false,
@@ -171,6 +174,7 @@ class CheckoutForwardRequest implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
+        'amount' => 'amount',
         'baseUrl' => 'baseUrl',
         'merchantAccount' => 'merchantAccount',
         'merchantReference' => 'merchantReference',
@@ -187,6 +191,7 @@ class CheckoutForwardRequest implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
+        'amount' => 'setAmount',
         'baseUrl' => 'setBaseUrl',
         'merchantAccount' => 'setMerchantAccount',
         'merchantReference' => 'setMerchantReference',
@@ -203,6 +208,7 @@ class CheckoutForwardRequest implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
+        'amount' => 'getAmount',
         'baseUrl' => 'getBaseUrl',
         'merchantAccount' => 'getMerchantAccount',
         'merchantReference' => 'getMerchantReference',
@@ -270,6 +276,7 @@ class CheckoutForwardRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('amount', $data ?? [], null);
         $this->setIfExists('baseUrl', $data ?? [], null);
         $this->setIfExists('merchantAccount', $data ?? [], null);
         $this->setIfExists('merchantReference', $data ?? [], null);
@@ -333,6 +340,30 @@ class CheckoutForwardRequest implements ModelInterface, ArrayAccess, \JsonSerial
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets amount
+     *
+     * @return \Adyen\Model\Checkout\Amount|null
+     */
+    public function getAmount()
+    {
+        return $this->container['amount'];
+    }
+
+    /**
+     * Sets amount
+     *
+     * @param \Adyen\Model\Checkout\Amount|null $amount amount
+     *
+     * @return self
+     */
+    public function setAmount($amount)
+    {
+        $this->container['amount'] = $amount;
+
+        return $this;
+    }
 
     /**
      * Gets baseUrl

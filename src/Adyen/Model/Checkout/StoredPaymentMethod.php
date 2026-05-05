@@ -518,7 +518,7 @@ class StoredPaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets holderName
      *
-     * @param string|null $holderName The unique payment method code.
+     * @param string|null $holderName The name of the payment method holder.
      *
      * @return self
      */

@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
- * ShopperTaxInfo Class Doc Comment
+ * PixPayByBankRiskSignals Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
+class PixPayByBankRiskSignals implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ShopperTaxInfo';
+    protected static $openAPIModelName = 'PixPayByBankRiskSignals';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,8 +41,14 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'taxCountryCode' => 'string',
-        'taxIdentificationNumber' => 'string'
+        'confidenceScore' => '\Adyen\Model\Checkout\ConfidenceScore',
+        'elapsedTimeSinceBoot' => 'int',
+        'isRootedDevice' => 'bool',
+        'language' => 'string',
+        'osVersion' => 'string',
+        'screenBrightness' => 'int',
+        'screenDimensions' => '\Adyen\Model\Checkout\ScreenDimensions',
+        'userTimeZoneOffset' => 'int'
     ];
 
     /**
@@ -53,8 +59,14 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'taxCountryCode' => null,
-        'taxIdentificationNumber' => null
+        'confidenceScore' => null,
+        'elapsedTimeSinceBoot' => 'int64',
+        'isRootedDevice' => null,
+        'language' => null,
+        'osVersion' => null,
+        'screenBrightness' => 'int32',
+        'screenDimensions' => null,
+        'userTimeZoneOffset' => 'int32'
     ];
 
     /**
@@ -63,8 +75,14 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'taxCountryCode' => false,
-        'taxIdentificationNumber' => false
+        'confidenceScore' => false,
+        'elapsedTimeSinceBoot' => false,
+        'isRootedDevice' => false,
+        'language' => false,
+        'osVersion' => false,
+        'screenBrightness' => true,
+        'screenDimensions' => false,
+        'userTimeZoneOffset' => true
     ];
 
     /**
@@ -153,8 +171,14 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'taxCountryCode' => 'taxCountryCode',
-        'taxIdentificationNumber' => 'taxIdentificationNumber'
+        'confidenceScore' => 'confidenceScore',
+        'elapsedTimeSinceBoot' => 'elapsedTimeSinceBoot',
+        'isRootedDevice' => 'isRootedDevice',
+        'language' => 'language',
+        'osVersion' => 'osVersion',
+        'screenBrightness' => 'screenBrightness',
+        'screenDimensions' => 'screenDimensions',
+        'userTimeZoneOffset' => 'userTimeZoneOffset'
     ];
 
     /**
@@ -163,8 +187,14 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'taxCountryCode' => 'setTaxCountryCode',
-        'taxIdentificationNumber' => 'setTaxIdentificationNumber'
+        'confidenceScore' => 'setConfidenceScore',
+        'elapsedTimeSinceBoot' => 'setElapsedTimeSinceBoot',
+        'isRootedDevice' => 'setIsRootedDevice',
+        'language' => 'setLanguage',
+        'osVersion' => 'setOsVersion',
+        'screenBrightness' => 'setScreenBrightness',
+        'screenDimensions' => 'setScreenDimensions',
+        'userTimeZoneOffset' => 'setUserTimeZoneOffset'
     ];
 
     /**
@@ -173,8 +203,14 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'taxCountryCode' => 'getTaxCountryCode',
-        'taxIdentificationNumber' => 'getTaxIdentificationNumber'
+        'confidenceScore' => 'getConfidenceScore',
+        'elapsedTimeSinceBoot' => 'getElapsedTimeSinceBoot',
+        'isRootedDevice' => 'getIsRootedDevice',
+        'language' => 'getLanguage',
+        'osVersion' => 'getOsVersion',
+        'screenBrightness' => 'getScreenBrightness',
+        'screenDimensions' => 'getScreenDimensions',
+        'userTimeZoneOffset' => 'getUserTimeZoneOffset'
     ];
 
     /**
@@ -234,8 +270,14 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('taxCountryCode', $data ?? [], null);
-        $this->setIfExists('taxIdentificationNumber', $data ?? [], null);
+        $this->setIfExists('confidenceScore', $data ?? [], null);
+        $this->setIfExists('elapsedTimeSinceBoot', $data ?? [], null);
+        $this->setIfExists('isRootedDevice', $data ?? [], null);
+        $this->setIfExists('language', $data ?? [], null);
+        $this->setIfExists('osVersion', $data ?? [], null);
+        $this->setIfExists('screenBrightness', $data ?? [], null);
+        $this->setIfExists('screenDimensions', $data ?? [], null);
+        $this->setIfExists('userTimeZoneOffset', $data ?? [], null);
     }
 
     /**
@@ -265,12 +307,6 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['taxCountryCode'] === null) {
-            $invalidProperties[] = "'taxCountryCode' can't be null";
-        }
-        if ($this->container['taxIdentificationNumber'] === null) {
-            $invalidProperties[] = "'taxIdentificationNumber' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -287,49 +323,193 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets taxCountryCode
+     * Gets confidenceScore
      *
-     * @return string
+     * @return \Adyen\Model\Checkout\ConfidenceScore|null
      */
-    public function getTaxCountryCode()
+    public function getConfidenceScore()
     {
-        return $this->container['taxCountryCode'];
+        return $this->container['confidenceScore'];
     }
 
     /**
-     * Sets taxCountryCode
+     * Sets confidenceScore
      *
-     * @param string $taxCountryCode The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code associated with the provided tax identification number. Currently used only for Indian PA-CB tax verification, when applicable.
+     * @param \Adyen\Model\Checkout\ConfidenceScore|null $confidenceScore confidenceScore
      *
      * @return self
      */
-    public function setTaxCountryCode($taxCountryCode)
+    public function setConfidenceScore($confidenceScore)
     {
-        $this->container['taxCountryCode'] = $taxCountryCode;
+        $this->container['confidenceScore'] = $confidenceScore;
 
         return $this;
     }
 
     /**
-     * Gets taxIdentificationNumber
+     * Gets elapsedTimeSinceBoot
      *
-     * @return string
+     * @return int|null
      */
-    public function getTaxIdentificationNumber()
+    public function getElapsedTimeSinceBoot()
     {
-        return $this->container['taxIdentificationNumber'];
+        return $this->container['elapsedTimeSinceBoot'];
     }
 
     /**
-     * Sets taxIdentificationNumber
+     * Sets elapsedTimeSinceBoot
      *
-     * @param string $taxIdentificationNumber The shopper’s tax identification number.
+     * @param int|null $elapsedTimeSinceBoot elapsedTimeSinceBoot
      *
      * @return self
      */
-    public function setTaxIdentificationNumber($taxIdentificationNumber)
+    public function setElapsedTimeSinceBoot($elapsedTimeSinceBoot)
     {
-        $this->container['taxIdentificationNumber'] = $taxIdentificationNumber;
+        $this->container['elapsedTimeSinceBoot'] = $elapsedTimeSinceBoot;
+
+        return $this;
+    }
+
+    /**
+     * Gets isRootedDevice
+     *
+     * @return bool|null
+     */
+    public function getIsRootedDevice()
+    {
+        return $this->container['isRootedDevice'];
+    }
+
+    /**
+     * Sets isRootedDevice
+     *
+     * @param bool|null $isRootedDevice isRootedDevice
+     *
+     * @return self
+     */
+    public function setIsRootedDevice($isRootedDevice)
+    {
+        $this->container['isRootedDevice'] = $isRootedDevice;
+
+        return $this;
+    }
+
+    /**
+     * Gets language
+     *
+     * @return string|null
+     */
+    public function getLanguage()
+    {
+        return $this->container['language'];
+    }
+
+    /**
+     * Sets language
+     *
+     * @param string|null $language language
+     *
+     * @return self
+     */
+    public function setLanguage($language)
+    {
+        $this->container['language'] = $language;
+
+        return $this;
+    }
+
+    /**
+     * Gets osVersion
+     *
+     * @return string|null
+     */
+    public function getOsVersion()
+    {
+        return $this->container['osVersion'];
+    }
+
+    /**
+     * Sets osVersion
+     *
+     * @param string|null $osVersion osVersion
+     *
+     * @return self
+     */
+    public function setOsVersion($osVersion)
+    {
+        $this->container['osVersion'] = $osVersion;
+
+        return $this;
+    }
+
+    /**
+     * Gets screenBrightness
+     *
+     * @return int|null
+     */
+    public function getScreenBrightness()
+    {
+        return $this->container['screenBrightness'];
+    }
+
+    /**
+     * Sets screenBrightness
+     *
+     * @param int|null $screenBrightness screenBrightness
+     *
+     * @return self
+     */
+    public function setScreenBrightness($screenBrightness)
+    {
+        $this->container['screenBrightness'] = $screenBrightness;
+
+        return $this;
+    }
+
+    /**
+     * Gets screenDimensions
+     *
+     * @return \Adyen\Model\Checkout\ScreenDimensions|null
+     */
+    public function getScreenDimensions()
+    {
+        return $this->container['screenDimensions'];
+    }
+
+    /**
+     * Sets screenDimensions
+     *
+     * @param \Adyen\Model\Checkout\ScreenDimensions|null $screenDimensions screenDimensions
+     *
+     * @return self
+     */
+    public function setScreenDimensions($screenDimensions)
+    {
+        $this->container['screenDimensions'] = $screenDimensions;
+
+        return $this;
+    }
+
+    /**
+     * Gets userTimeZoneOffset
+     *
+     * @return int|null
+     */
+    public function getUserTimeZoneOffset()
+    {
+        return $this->container['userTimeZoneOffset'];
+    }
+
+    /**
+     * Sets userTimeZoneOffset
+     *
+     * @param int|null $userTimeZoneOffset userTimeZoneOffset
+     *
+     * @return self
+     */
+    public function setUserTimeZoneOffset($userTimeZoneOffset)
+    {
+        $this->container['userTimeZoneOffset'] = $userTimeZoneOffset;
 
         return $this;
     }

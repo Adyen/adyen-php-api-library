@@ -341,7 +341,7 @@ class CardDetailsRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets countryCode
      *
-     * @param string|null $countryCode The shopper country.  Format: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) Example: NL or DE
+     * @param string|null $countryCode The shopper country code.  Format: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) Example: NL or DE
      *
      * @return self
      */

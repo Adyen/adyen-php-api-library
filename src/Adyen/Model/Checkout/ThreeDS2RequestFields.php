@@ -826,7 +826,8 @@ class ThreeDS2RequestFields implements ModelInterface, ArrayAccess, \JsonSeriali
      * Gets authenticationOnly
      *
      * @return bool|null
-     * @deprecated since Adyen Checkout API v50. "Use `threeDSAuthenticationOnly` instead."
+     * @deprecated since Adyen Checkout API v50. "- If your version is between 50 and 69, use `threeDSAuthenticationOnly` instead.
+- If your version is 70 or later, use `authenticationData.authenticationOnly` instead."
      */
     public function getAuthenticationOnly()
     {
@@ -839,7 +840,8 @@ class ThreeDS2RequestFields implements ModelInterface, ArrayAccess, \JsonSeriali
      * @param bool|null $authenticationOnly If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.
      *
      * @return self
-     * @deprecated since Adyen Checkout API v50. "Use `threeDSAuthenticationOnly` instead."
+     * @deprecated since Adyen Checkout API v50. "- If your version is between 50 and 69, use `threeDSAuthenticationOnly` instead.
+- If your version is 70 or later, use `authenticationData.authenticationOnly` instead."
      */
     public function setAuthenticationOnly($authenticationOnly)
     {
