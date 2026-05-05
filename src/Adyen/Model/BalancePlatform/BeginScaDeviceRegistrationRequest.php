@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * PaymentInstrumentAdditionalBankAccountIdentificationsInner Class Doc Comment
+ * BeginScaDeviceRegistrationRequest Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements ModelInterface, ArrayAccess, \JsonSerializable
+class BeginScaDeviceRegistrationRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PaymentInstrument_additionalBankAccountIdentifications_inner';
+    protected static $openAPIModelName = 'BeginScaDeviceRegistrationRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,8 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @var string[]
       */
     protected static $openAPITypes = [
-        'bic' => 'string',
-        'iban' => 'string',
-        'type' => 'string'
+        'name' => 'string',
+        'sdkOutput' => 'string'
     ];
 
     /**
@@ -54,9 +53,8 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'bic' => null,
-        'iban' => null,
-        'type' => null
+        'name' => null,
+        'sdkOutput' => null
     ];
 
     /**
@@ -65,9 +63,8 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'bic' => false,
-        'iban' => false,
-        'type' => false
+        'name' => false,
+        'sdkOutput' => false
     ];
 
     /**
@@ -156,9 +153,8 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $attributeMap = [
-        'bic' => 'bic',
-        'iban' => 'iban',
-        'type' => 'type'
+        'name' => 'name',
+        'sdkOutput' => 'sdkOutput'
     ];
 
     /**
@@ -167,9 +163,8 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $setters = [
-        'bic' => 'setBic',
-        'iban' => 'setIban',
-        'type' => 'setType'
+        'name' => 'setName',
+        'sdkOutput' => 'setSdkOutput'
     ];
 
     /**
@@ -178,9 +173,8 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $getters = [
-        'bic' => 'getBic',
-        'iban' => 'getIban',
-        'type' => 'getType'
+        'name' => 'getName',
+        'sdkOutput' => 'getSdkOutput'
     ];
 
     /**
@@ -224,6 +218,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
         return self::$openAPIModelName;
     }
 
+
     /**
      * Associative array for storing property values
      *
@@ -239,9 +234,8 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('bic', $data ?? [], null);
-        $this->setIfExists('iban', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('sdkOutput', $data ?? [], null);
     }
 
     /**
@@ -271,13 +265,12 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
     {
         $invalidProperties = [];
 
-        if ($this->container['iban'] === null) {
-            $invalidProperties[] = "'iban' can't be null";
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
         }
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
+        if ($this->container['sdkOutput'] === null) {
+            $invalidProperties[] = "'sdkOutput' can't be null";
         }
-
         return $invalidProperties;
     }
 
@@ -294,73 +287,49 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
 
 
     /**
-     * Gets bic
+     * Gets name
      *
-     * @return string|null
+     * @return string
      */
-    public function getBic()
+    public function getName()
     {
-        return $this->container['bic'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets bic
+     * Sets name
      *
-     * @param string|null $bic The bank's 8- or 11-character BIC or SWIFT code.
+     * @param string $name The name of the SCA device that you are registering. You can use it to help your users identify the device.
      *
      * @return self
      */
-    public function setBic($bic)
+    public function setName($name)
     {
-        $this->container['bic'] = $bic;
+        $this->container['name'] = $name;
 
         return $this;
     }
 
     /**
-     * Gets iban
+     * Gets sdkOutput
      *
      * @return string
      */
-    public function getIban()
+    public function getSdkOutput()
     {
-        return $this->container['iban'];
+        return $this->container['sdkOutput'];
     }
 
     /**
-     * Sets iban
+     * Sets sdkOutput
      *
-     * @param string $iban The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.
+     * @param string $sdkOutput A base64-encoded block with the data required to register the SCA device. You obtain this information by using Adyen's authentication SDK.
      *
      * @return self
      */
-    public function setIban($iban)
+    public function setSdkOutput($sdkOutput)
     {
-        $this->container['iban'] = $iban;
-
-        return $this;
-    }
-
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type **iban**
-     *
-     * @return self
-     */
-    public function setType($type)
-    {
-        $this->container['type'] = $type;
+        $this->container['sdkOutput'] = $sdkOutput;
 
         return $this;
     }

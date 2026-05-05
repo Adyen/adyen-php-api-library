@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * PaymentInstrumentAdditionalBankAccountIdentificationsInner Class Doc Comment
+ * TargetUpdate Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements ModelInterface, ArrayAccess, \JsonSerializable
+class TargetUpdate implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PaymentInstrument_additionalBankAccountIdentifications_inner';
+    protected static $openAPIModelName = 'TargetUpdate';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,8 +41,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @var string[]
       */
     protected static $openAPITypes = [
-        'bic' => 'string',
-        'iban' => 'string',
+        'id' => 'string',
         'type' => 'string'
     ];
 
@@ -54,8 +53,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'bic' => null,
-        'iban' => null,
+        'id' => null,
         'type' => null
     ];
 
@@ -65,8 +63,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'bic' => false,
-        'iban' => false,
+        'id' => false,
         'type' => false
     ];
 
@@ -156,8 +153,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $attributeMap = [
-        'bic' => 'bic',
-        'iban' => 'iban',
+        'id' => 'id',
         'type' => 'type'
     ];
 
@@ -167,8 +163,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $setters = [
-        'bic' => 'setBic',
-        'iban' => 'setIban',
+        'id' => 'setId',
         'type' => 'setType'
     ];
 
@@ -178,8 +173,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $getters = [
-        'bic' => 'getBic',
-        'iban' => 'getIban',
+        'id' => 'getId',
         'type' => 'getType'
     ];
 
@@ -224,6 +218,23 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
         return self::$openAPIModelName;
     }
 
+    public const TYPE_BALANCE_ACCOUNT = 'balanceAccount';
+    public const TYPE_ACCOUNT_HOLDER = 'accountHolder';
+    public const TYPE_BALANCE_PLATFORM = 'balancePlatform';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_BALANCE_ACCOUNT,
+            self::TYPE_ACCOUNT_HOLDER,
+            self::TYPE_BALANCE_PLATFORM,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -239,8 +250,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('bic', $data ?? [], null);
-        $this->setIfExists('iban', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -271,11 +281,13 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
     {
         $invalidProperties = [];
 
-        if ($this->container['iban'] === null) {
-            $invalidProperties[] = "'iban' can't be null";
-        }
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
         }
 
         return $invalidProperties;
@@ -294,49 +306,25 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
 
 
     /**
-     * Gets bic
+     * Gets id
      *
      * @return string|null
      */
-    public function getBic()
+    public function getId()
     {
-        return $this->container['bic'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets bic
+     * Sets id
      *
-     * @param string|null $bic The bank's 8- or 11-character BIC or SWIFT code.
+     * @param string|null $id The unique identifier of the `target.type`. This can be the ID of your:  * balance platform * account holder * account holder's balance account
      *
      * @return self
      */
-    public function setBic($bic)
+    public function setId($id)
     {
-        $this->container['bic'] = $bic;
-
-        return $this;
-    }
-
-    /**
-     * Gets iban
-     *
-     * @return string
-     */
-    public function getIban()
-    {
-        return $this->container['iban'];
-    }
-
-    /**
-     * Sets iban
-     *
-     * @param string $iban The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.
-     *
-     * @return self
-     */
-    public function setIban($iban)
-    {
-        $this->container['iban'] = $iban;
+        $this->container['id'] = $id;
 
         return $this;
     }
@@ -344,7 +332,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
     /**
      * Gets type
      *
-     * @return string
+     * @return string|null
      */
     public function getType()
     {
@@ -354,12 +342,22 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
     /**
      * Sets type
      *
-     * @param string $type **iban**
+     * @param string|null $type The resource for which you want to receive notifications. Possible values:  * **balancePlatform**: receive notifications about balance changes in your entire balance platform.  * **accountHolder**: receive notifications about balance changes of a specific user.  * **balanceAccount**: receive notifications about balance changes in a specific balance account.
      *
      * @return self
      */
     public function setType($type)
     {
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            error_log(
+                sprintf(
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
+                    $type,
+                    implode(', ', $allowedValues)
+                )
+            );
+        }
         $this->container['type'] = $type;
 
         return $this;

@@ -48,6 +48,7 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'string',
         'interval' => '\Adyen\Model\BalancePlatform\TransactionRuleInterval',
         'outcomeType' => 'string',
+        'purpose' => 'string',
         'reference' => 'string',
         'requestType' => 'string',
         'ruleRestrictions' => '\Adyen\Model\BalancePlatform\TransactionRuleRestrictions',
@@ -72,6 +73,7 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => null,
         'interval' => null,
         'outcomeType' => null,
+        'purpose' => null,
         'reference' => null,
         'requestType' => null,
         'ruleRestrictions' => null,
@@ -94,6 +96,7 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => false,
         'interval' => false,
         'outcomeType' => false,
+        'purpose' => false,
         'reference' => false,
         'requestType' => false,
         'ruleRestrictions' => false,
@@ -196,6 +199,7 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'id',
         'interval' => 'interval',
         'outcomeType' => 'outcomeType',
+        'purpose' => 'purpose',
         'reference' => 'reference',
         'requestType' => 'requestType',
         'ruleRestrictions' => 'ruleRestrictions',
@@ -218,6 +222,7 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'setId',
         'interval' => 'setInterval',
         'outcomeType' => 'setOutcomeType',
+        'purpose' => 'setPurpose',
         'reference' => 'setReference',
         'requestType' => 'setRequestType',
         'ruleRestrictions' => 'setRuleRestrictions',
@@ -240,6 +245,7 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'getId',
         'interval' => 'getInterval',
         'outcomeType' => 'getOutcomeType',
+        'purpose' => 'getPurpose',
         'reference' => 'getReference',
         'requestType' => 'getRequestType',
         'ruleRestrictions' => 'getRuleRestrictions',
@@ -294,6 +300,11 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
     public const OUTCOME_TYPE_HARD_BLOCK = 'hardBlock';
     public const OUTCOME_TYPE_SCORE_BASED = 'scoreBased';
     public const OUTCOME_TYPE_TIMED_BLOCK = 'timedBlock';
+    public const PURPOSE_COMPLIANCE = 'compliance';
+    public const PURPOSE_FRAUD = 'fraud';
+    public const PURPOSE_INTERNAL_POLICY = 'internalPolicy';
+    public const PURPOSE_POLICY = 'policy';
+    public const PURPOSE_SYSTEM = 'system';
     public const REQUEST_TYPE_AUTHENTICATION = 'authentication';
     public const REQUEST_TYPE_AUTHORIZATION = 'authorization';
     public const REQUEST_TYPE_BANK_TRANSFER = 'bankTransfer';
@@ -317,6 +328,21 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
             self::OUTCOME_TYPE_HARD_BLOCK,
             self::OUTCOME_TYPE_SCORE_BASED,
             self::OUTCOME_TYPE_TIMED_BLOCK,
+        ];
+    }
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getPurposeAllowableValues()
+    {
+        return [
+            self::PURPOSE_COMPLIANCE,
+            self::PURPOSE_FRAUD,
+            self::PURPOSE_INTERNAL_POLICY,
+            self::PURPOSE_POLICY,
+            self::PURPOSE_SYSTEM,
         ];
     }
     /**
@@ -381,6 +407,7 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('interval', $data ?? [], null);
         $this->setIfExists('outcomeType', $data ?? [], null);
+        $this->setIfExists('purpose', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
         $this->setIfExists('requestType', $data ?? [], null);
         $this->setIfExists('ruleRestrictions', $data ?? [], null);
@@ -431,6 +458,15 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'outcomeType', must be one of '%s'",
                 $this->container['outcomeType'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getPurposeAllowableValues();
+        if (!is_null($this->container['purpose']) && !in_array($this->container['purpose'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'purpose', must be one of '%s'",
+                $this->container['purpose'],
                 implode("', '", $allowedValues)
             );
         }
@@ -660,6 +696,40 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['outcomeType'] = $outcomeType;
+
+        return $this;
+    }
+
+    /**
+     * Gets purpose
+     *
+     * @return string|null
+     */
+    public function getPurpose()
+    {
+        return $this->container['purpose'];
+    }
+
+    /**
+     * Sets purpose
+     *
+     * @param string|null $purpose Specifies the reason for creating the rule.  Possible values: * **fraud**: the rule is created to regulate fraudulent activity. * **policy**: the rule is created to ensure that the transaction adheres to your business' policies. For example, if your business has policies about the Merchant Category Codes (MCCs) allowed on a transaction, you can create a rule to block transactions that have specific MCCs.
+     *
+     * @return self
+     */
+    public function setPurpose($purpose)
+    {
+        $allowedValues = $this->getPurposeAllowableValues();
+        if (!in_array($purpose, $allowedValues, true)) {
+            error_log(
+                sprintf(
+                    "purpose: unexpected enum value '%s' - Supported values are [%s]",
+                    $purpose,
+                    implode(', ', $allowedValues)
+                )
+            );
+        }
+        $this->container['purpose'] = $purpose;
 
         return $this;
     }

@@ -15,16 +15,15 @@
 
 namespace Adyen\Model\BalancePlatform;
 
-use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * PaymentInstrumentAdditionalBankAccountIdentificationsInner Class Doc Comment
+ * UKLocalMandateAccountIdentification Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements ModelInterface, ArrayAccess, \JsonSerializable
+class UKLocalMandateAccountIdentification extends MandateAccountIdentification
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +32,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PaymentInstrument_additionalBankAccountIdentifications_inner';
+    protected static $openAPIModelName = 'UKLocalMandateAccountIdentification';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,8 +40,8 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @var string[]
       */
     protected static $openAPITypes = [
-        'bic' => 'string',
-        'iban' => 'string',
+        'accountNumber' => 'string',
+        'sortCode' => 'string',
         'type' => 'string'
     ];
 
@@ -54,8 +53,8 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'bic' => null,
-        'iban' => null,
+        'accountNumber' => null,
+        'sortCode' => null,
         'type' => null
     ];
 
@@ -65,8 +64,8 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'bic' => false,
-        'iban' => false,
+        'accountNumber' => false,
+        'sortCode' => false,
         'type' => false
     ];
 
@@ -84,7 +83,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -94,7 +93,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -104,7 +103,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      */
     protected static function openAPINullables(): array
     {
-        return self::$openAPINullables;
+        return self::$openAPINullables + parent::openAPINullables();
     }
 
     /**
@@ -156,8 +155,8 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $attributeMap = [
-        'bic' => 'bic',
-        'iban' => 'iban',
+        'accountNumber' => 'accountNumber',
+        'sortCode' => 'sortCode',
         'type' => 'type'
     ];
 
@@ -167,8 +166,8 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $setters = [
-        'bic' => 'setBic',
-        'iban' => 'setIban',
+        'accountNumber' => 'setAccountNumber',
+        'sortCode' => 'setSortCode',
         'type' => 'setType'
     ];
 
@@ -178,8 +177,8 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $getters = [
-        'bic' => 'getBic',
-        'iban' => 'getIban',
+        'accountNumber' => 'getAccountNumber',
+        'sortCode' => 'getSortCode',
         'type' => 'getType'
     ];
 
@@ -191,7 +190,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -201,7 +200,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -211,7 +210,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -224,12 +223,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
         return self::$openAPIModelName;
     }
 
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
+
 
     /**
      * Constructor
@@ -239,8 +233,10 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('bic', $data ?? [], null);
-        $this->setIfExists('iban', $data ?? [], null);
+        parent::__construct($data);
+
+        $this->setIfExists('accountNumber', $data ?? [], null);
+        $this->setIfExists('sortCode', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -269,15 +265,17 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = [];
+        $invalidProperties = parent::listInvalidProperties();
 
-        if ($this->container['iban'] === null) {
-            $invalidProperties[] = "'iban' can't be null";
+        if ($this->container['accountNumber'] === null) {
+            $invalidProperties[] = "'accountNumber' can't be null";
+        }
+        if ($this->container['sortCode'] === null) {
+            $invalidProperties[] = "'sortCode' can't be null";
         }
         if ($this->container['type'] === null) {
             $invalidProperties[] = "'type' can't be null";
         }
-
         return $invalidProperties;
     }
 
@@ -294,49 +292,49 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
 
 
     /**
-     * Gets bic
+     * Gets accountNumber
      *
-     * @return string|null
+     * @return string
      */
-    public function getBic()
+    public function getAccountNumber()
     {
-        return $this->container['bic'];
+        return $this->container['accountNumber'];
     }
 
     /**
-     * Sets bic
+     * Sets accountNumber
      *
-     * @param string|null $bic The bank's 8- or 11-character BIC or SWIFT code.
+     * @param string $accountNumber The 8-digit bank account number, without separators or whitespace.
      *
      * @return self
      */
-    public function setBic($bic)
+    public function setAccountNumber($accountNumber)
     {
-        $this->container['bic'] = $bic;
+        $this->container['accountNumber'] = $accountNumber;
 
         return $this;
     }
 
     /**
-     * Gets iban
+     * Gets sortCode
      *
      * @return string
      */
-    public function getIban()
+    public function getSortCode()
     {
-        return $this->container['iban'];
+        return $this->container['sortCode'];
     }
 
     /**
-     * Sets iban
+     * Sets sortCode
      *
-     * @param string $iban The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.
+     * @param string $sortCode The 6-digit [sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or whitespace.
      *
      * @return self
      */
-    public function setIban($iban)
+    public function setSortCode($sortCode)
     {
-        $this->container['iban'] = $iban;
+        $this->container['sortCode'] = $sortCode;
 
         return $this;
     }
@@ -354,7 +352,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
     /**
      * Sets type
      *
-     * @param string $type **iban**
+     * @param string $type **ukLocal**
      *
      * @return self
      */

@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * PaymentInstrumentAdditionalBankAccountIdentificationsInner Class Doc Comment
+ * ListAssociationsResponse Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements ModelInterface, ArrayAccess, \JsonSerializable
+class ListAssociationsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PaymentInstrument_additionalBankAccountIdentifications_inner';
+    protected static $openAPIModelName = 'ListAssociationsResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,10 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @var string[]
       */
     protected static $openAPITypes = [
-        'bic' => 'string',
-        'iban' => 'string',
-        'type' => 'string'
+        'links' => '\Adyen\Model\BalancePlatform\Link',
+        'data' => '\Adyen\Model\BalancePlatform\AssociationListing[]',
+        'itemsTotal' => 'int',
+        'pagesTotal' => 'int'
     ];
 
     /**
@@ -54,9 +55,10 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'bic' => null,
-        'iban' => null,
-        'type' => null
+        'links' => null,
+        'data' => null,
+        'itemsTotal' => 'int32',
+        'pagesTotal' => 'int32'
     ];
 
     /**
@@ -65,9 +67,10 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'bic' => false,
-        'iban' => false,
-        'type' => false
+        'links' => false,
+        'data' => false,
+        'itemsTotal' => true,
+        'pagesTotal' => true
     ];
 
     /**
@@ -156,9 +159,10 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $attributeMap = [
-        'bic' => 'bic',
-        'iban' => 'iban',
-        'type' => 'type'
+        'links' => '_links',
+        'data' => 'data',
+        'itemsTotal' => 'itemsTotal',
+        'pagesTotal' => 'pagesTotal'
     ];
 
     /**
@@ -167,9 +171,10 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $setters = [
-        'bic' => 'setBic',
-        'iban' => 'setIban',
-        'type' => 'setType'
+        'links' => 'setLinks',
+        'data' => 'setData',
+        'itemsTotal' => 'setItemsTotal',
+        'pagesTotal' => 'setPagesTotal'
     ];
 
     /**
@@ -178,9 +183,10 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $getters = [
-        'bic' => 'getBic',
-        'iban' => 'getIban',
-        'type' => 'getType'
+        'links' => 'getLinks',
+        'data' => 'getData',
+        'itemsTotal' => 'getItemsTotal',
+        'pagesTotal' => 'getPagesTotal'
     ];
 
     /**
@@ -224,6 +230,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
         return self::$openAPIModelName;
     }
 
+
     /**
      * Associative array for storing property values
      *
@@ -239,9 +246,10 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('bic', $data ?? [], null);
-        $this->setIfExists('iban', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('links', $data ?? [], null);
+        $this->setIfExists('data', $data ?? [], null);
+        $this->setIfExists('itemsTotal', $data ?? [], null);
+        $this->setIfExists('pagesTotal', $data ?? [], null);
     }
 
     /**
@@ -271,13 +279,18 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
     {
         $invalidProperties = [];
 
-        if ($this->container['iban'] === null) {
-            $invalidProperties[] = "'iban' can't be null";
+        if ($this->container['links'] === null) {
+            $invalidProperties[] = "'links' can't be null";
         }
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
+        if ($this->container['data'] === null) {
+            $invalidProperties[] = "'data' can't be null";
         }
-
+        if ($this->container['itemsTotal'] === null) {
+            $invalidProperties[] = "'itemsTotal' can't be null";
+        }
+        if ($this->container['pagesTotal'] === null) {
+            $invalidProperties[] = "'pagesTotal' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -294,73 +307,97 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
 
 
     /**
-     * Gets bic
+     * Gets links
      *
-     * @return string|null
+     * @return \Adyen\Model\BalancePlatform\Link
      */
-    public function getBic()
+    public function getLinks()
     {
-        return $this->container['bic'];
+        return $this->container['links'];
     }
 
     /**
-     * Sets bic
+     * Sets links
      *
-     * @param string|null $bic The bank's 8- or 11-character BIC or SWIFT code.
+     * @param \Adyen\Model\BalancePlatform\Link $links links
      *
      * @return self
      */
-    public function setBic($bic)
+    public function setLinks($links)
     {
-        $this->container['bic'] = $bic;
+        $this->container['links'] = $links;
 
         return $this;
     }
 
     /**
-     * Gets iban
+     * Gets data
      *
-     * @return string
+     * @return \Adyen\Model\BalancePlatform\AssociationListing[]
      */
-    public function getIban()
+    public function getData()
     {
-        return $this->container['iban'];
+        return $this->container['data'];
     }
 
     /**
-     * Sets iban
+     * Sets data
      *
-     * @param string $iban The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.
+     * @param \Adyen\Model\BalancePlatform\AssociationListing[] $data Contains a list of associations and their corresponding details.
      *
      * @return self
      */
-    public function setIban($iban)
+    public function setData($data)
     {
-        $this->container['iban'] = $iban;
+        $this->container['data'] = $data;
 
         return $this;
     }
 
     /**
-     * Gets type
+     * Gets itemsTotal
      *
-     * @return string
+     * @return int
      */
-    public function getType()
+    public function getItemsTotal()
     {
-        return $this->container['type'];
+        return $this->container['itemsTotal'];
     }
 
     /**
-     * Sets type
+     * Sets itemsTotal
      *
-     * @param string $type **iban**
+     * @param int $itemsTotal The total number of items available.
      *
      * @return self
      */
-    public function setType($type)
+    public function setItemsTotal($itemsTotal)
     {
-        $this->container['type'] = $type;
+        $this->container['itemsTotal'] = $itemsTotal;
+
+        return $this;
+    }
+
+    /**
+     * Gets pagesTotal
+     *
+     * @return int
+     */
+    public function getPagesTotal()
+    {
+        return $this->container['pagesTotal'];
+    }
+
+    /**
+     * Sets pagesTotal
+     *
+     * @param int $pagesTotal The total number of pages available.
+     *
+     * @return self
+     */
+    public function setPagesTotal($pagesTotal)
+    {
+        $this->container['pagesTotal'] = $pagesTotal;
 
         return $this;
     }
