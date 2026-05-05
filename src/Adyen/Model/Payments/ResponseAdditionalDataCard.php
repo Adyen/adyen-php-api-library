@@ -41,6 +41,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
       * @var string[]
       */
     protected static $openAPITypes = [
+        'cardAltID' => 'string',
         'cardBin' => 'string',
         'cardHolderName' => 'string',
         'cardIssuingBank' => 'string',
@@ -60,6 +61,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'cardAltID' => null,
         'cardBin' => null,
         'cardHolderName' => null,
         'cardIssuingBank' => null,
@@ -77,6 +79,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'cardAltID' => false,
         'cardBin' => false,
         'cardHolderName' => false,
         'cardIssuingBank' => false,
@@ -174,6 +177,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
      * @var string[]
      */
     protected static $attributeMap = [
+        'cardAltID' => 'cardAltID',
         'cardBin' => 'cardBin',
         'cardHolderName' => 'cardHolderName',
         'cardIssuingBank' => 'cardIssuingBank',
@@ -191,6 +195,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
      * @var string[]
      */
     protected static $setters = [
+        'cardAltID' => 'setCardAltID',
         'cardBin' => 'setCardBin',
         'cardHolderName' => 'setCardHolderName',
         'cardIssuingBank' => 'setCardIssuingBank',
@@ -208,6 +213,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
      * @var string[]
      */
     protected static $getters = [
+        'cardAltID' => 'getCardAltID',
         'cardBin' => 'getCardBin',
         'cardHolderName' => 'getCardHolderName',
         'cardIssuingBank' => 'getCardIssuingBank',
@@ -308,6 +314,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('cardAltID', $data ?? [], null);
         $this->setIfExists('cardBin', $data ?? [], null);
         $this->setIfExists('cardHolderName', $data ?? [], null);
         $this->setIfExists('cardIssuingBank', $data ?? [], null);
@@ -369,6 +376,30 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets cardAltID
+     *
+     * @return string|null
+     */
+    public function getCardAltID()
+    {
+        return $this->container['cardAltID'];
+    }
+
+    /**
+     * Sets cardAltID
+     *
+     * @param string|null $cardAltID This is an ALT ID (alternate ID) mapped to the Card PAN.  > Returned only in case of Ecommerce Card Payment in India
+     *
+     * @return self
+     */
+    public function setCardAltID($cardAltID)
+    {
+        $this->container['cardAltID'] = $cardAltID;
+
+        return $this;
+    }
 
     /**
      * Gets cardBin
