@@ -233,6 +233,8 @@ class ModificationResult implements ModelInterface, ArrayAccess, \JsonSerializab
     public const RESPONSE_TECHNICAL_CANCEL_RECEIVED = '[technical-cancel-received]';
     public const RESPONSE_VOID_PENDING_REFUND_RECEIVED = '[voidPendingRefund-received]';
     public const RESPONSE_AUTHORISED = 'Authorised';
+    public const RESPONSE_REFUSED = 'Refused';
+    public const RESPONSE_ERROR = 'Error';
 
     /**
      * Gets allowable values of the enum
@@ -251,6 +253,8 @@ class ModificationResult implements ModelInterface, ArrayAccess, \JsonSerializab
             self::RESPONSE_TECHNICAL_CANCEL_RECEIVED,
             self::RESPONSE_VOID_PENDING_REFUND_RECEIVED,
             self::RESPONSE_AUTHORISED,
+            self::RESPONSE_REFUSED,
+            self::RESPONSE_ERROR,
         ];
     }
     /**
