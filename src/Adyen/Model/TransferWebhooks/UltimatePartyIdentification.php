@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\TransferWebhooks\ObjectSerializer;
 
 /**
- * Modification Class Doc Comment
+ * UltimatePartyIdentification Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
+class UltimatePartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Modification';
+    protected static $openAPIModelName = 'UltimatePartyIdentification';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,11 +41,16 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'direction' => 'string',
-        'id' => 'string',
+        'address' => '\Adyen\Model\TransferWebhooks\Address',
+        'dateOfBirth' => '\DateTime',
+        'email' => 'string',
+        'firstName' => 'string',
+        'fullName' => 'string',
+        'fundingInstrument' => '\Adyen\Model\TransferWebhooks\FundingInstrument',
+        'lastName' => 'string',
         'reference' => 'string',
-        'status' => 'string',
-        'type' => 'string'
+        'type' => 'string',
+        'url' => 'string'
     ];
 
     /**
@@ -56,11 +61,16 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'direction' => null,
-        'id' => null,
+        'address' => null,
+        'dateOfBirth' => 'date',
+        'email' => null,
+        'firstName' => null,
+        'fullName' => null,
+        'fundingInstrument' => null,
+        'lastName' => null,
         'reference' => null,
-        'status' => null,
-        'type' => null
+        'type' => null,
+        'url' => null
     ];
 
     /**
@@ -69,11 +79,16 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'direction' => false,
-        'id' => false,
+        'address' => false,
+        'dateOfBirth' => false,
+        'email' => false,
+        'firstName' => false,
+        'fullName' => false,
+        'fundingInstrument' => false,
+        'lastName' => false,
         'reference' => false,
-        'status' => false,
-        'type' => false
+        'type' => false,
+        'url' => false
     ];
 
     /**
@@ -162,11 +177,16 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'direction' => 'direction',
-        'id' => 'id',
+        'address' => 'address',
+        'dateOfBirth' => 'dateOfBirth',
+        'email' => 'email',
+        'firstName' => 'firstName',
+        'fullName' => 'fullName',
+        'fundingInstrument' => 'fundingInstrument',
+        'lastName' => 'lastName',
         'reference' => 'reference',
-        'status' => 'status',
-        'type' => 'type'
+        'type' => 'type',
+        'url' => 'url'
     ];
 
     /**
@@ -175,11 +195,16 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'direction' => 'setDirection',
-        'id' => 'setId',
+        'address' => 'setAddress',
+        'dateOfBirth' => 'setDateOfBirth',
+        'email' => 'setEmail',
+        'firstName' => 'setFirstName',
+        'fullName' => 'setFullName',
+        'fundingInstrument' => 'setFundingInstrument',
+        'lastName' => 'setLastName',
         'reference' => 'setReference',
-        'status' => 'setStatus',
-        'type' => 'setType'
+        'type' => 'setType',
+        'url' => 'setUrl'
     ];
 
     /**
@@ -188,11 +213,16 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'direction' => 'getDirection',
-        'id' => 'getId',
+        'address' => 'getAddress',
+        'dateOfBirth' => 'getDateOfBirth',
+        'email' => 'getEmail',
+        'firstName' => 'getFirstName',
+        'fullName' => 'getFullName',
+        'fundingInstrument' => 'getFundingInstrument',
+        'lastName' => 'getLastName',
         'reference' => 'getReference',
-        'status' => 'getStatus',
-        'type' => 'getType'
+        'type' => 'getType',
+        'url' => 'getUrl'
     ];
 
     /**
@@ -236,155 +266,21 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const STATUS_APPROVAL_PENDING = 'approvalPending';
-    public const STATUS_ATM_WITHDRAWAL = 'atmWithdrawal';
-    public const STATUS_ATM_WITHDRAWAL_REVERSAL_PENDING = 'atmWithdrawalReversalPending';
-    public const STATUS_ATM_WITHDRAWAL_REVERSED = 'atmWithdrawalReversed';
-    public const STATUS_AUTH_ADJUSTMENT_AUTHORISED = 'authAdjustmentAuthorised';
-    public const STATUS_AUTH_ADJUSTMENT_ERROR = 'authAdjustmentError';
-    public const STATUS_AUTH_ADJUSTMENT_REFUSED = 'authAdjustmentRefused';
-    public const STATUS_AUTHORISED = 'authorised';
-    public const STATUS_BANK_TRANSFER = 'bankTransfer';
-    public const STATUS_BANK_TRANSFER_PENDING = 'bankTransferPending';
-    public const STATUS_BOOKED = 'booked';
-    public const STATUS_BOOKING_PENDING = 'bookingPending';
-    public const STATUS_CANCELLED = 'cancelled';
-    public const STATUS_CAPTURE_PENDING = 'capturePending';
-    public const STATUS_CAPTURE_REVERSAL_PENDING = 'captureReversalPending';
-    public const STATUS_CAPTURE_REVERSED = 'captureReversed';
-    public const STATUS_CAPTURED = 'captured';
-    public const STATUS_CAPTURED_EXTERNALLY = 'capturedExternally';
-    public const STATUS_CHARGEBACK = 'chargeback';
-    public const STATUS_CHARGEBACK_EXTERNALLY = 'chargebackExternally';
-    public const STATUS_CHARGEBACK_PENDING = 'chargebackPending';
-    public const STATUS_CHARGEBACK_REVERSAL_PENDING = 'chargebackReversalPending';
-    public const STATUS_CHARGEBACK_REVERSED = 'chargebackReversed';
-    public const STATUS_CREDITED = 'credited';
-    public const STATUS_DEPOSIT_CORRECTION = 'depositCorrection';
-    public const STATUS_DEPOSIT_CORRECTION_PENDING = 'depositCorrectionPending';
-    public const STATUS_DISPUTE = 'dispute';
-    public const STATUS_DISPUTE_CLOSED = 'disputeClosed';
-    public const STATUS_DISPUTE_EXPIRED = 'disputeExpired';
-    public const STATUS_DISPUTE_NEEDS_REVIEW = 'disputeNeedsReview';
-    public const STATUS_ERROR = 'error';
-    public const STATUS_EXPIRED = 'expired';
-    public const STATUS_FAILED = 'failed';
-    public const STATUS_FEE = 'fee';
-    public const STATUS_FEE_PENDING = 'feePending';
-    public const STATUS_INTERCHANGE_ADJUSTED = 'interchangeAdjusted';
-    public const STATUS_INTERNAL_TRANSFER = 'internalTransfer';
-    public const STATUS_INTERNAL_TRANSFER_PENDING = 'internalTransferPending';
-    public const STATUS_INVOICE_DEDUCTION = 'invoiceDeduction';
-    public const STATUS_INVOICE_DEDUCTION_PENDING = 'invoiceDeductionPending';
-    public const STATUS_MANUAL_CORRECTION_PENDING = 'manualCorrectionPending';
-    public const STATUS_MANUALLY_CORRECTED = 'manuallyCorrected';
-    public const STATUS_MATCHED_STATEMENT = 'matchedStatement';
-    public const STATUS_MATCHED_STATEMENT_PENDING = 'matchedStatementPending';
-    public const STATUS_MERCHANT_PAYIN = 'merchantPayin';
-    public const STATUS_MERCHANT_PAYIN_PENDING = 'merchantPayinPending';
-    public const STATUS_MERCHANT_PAYIN_REVERSED = 'merchantPayinReversed';
-    public const STATUS_MERCHANT_PAYIN_REVERSED_PENDING = 'merchantPayinReversedPending';
-    public const STATUS_MISC_COST = 'miscCost';
-    public const STATUS_MISC_COST_PENDING = 'miscCostPending';
-    public const STATUS_PAYMENT_COST = 'paymentCost';
-    public const STATUS_PAYMENT_COST_PENDING = 'paymentCostPending';
-    public const STATUS_PENDING = 'pending';
-    public const STATUS_PENDING_APPROVAL = 'pendingApproval';
-    public const STATUS_PENDING_EXECUTION = 'pendingExecution';
-    public const STATUS_RECEIVED = 'received';
-    public const STATUS_REFUND_PENDING = 'refundPending';
-    public const STATUS_REFUND_REVERSAL_PENDING = 'refundReversalPending';
-    public const STATUS_REFUND_REVERSED = 'refundReversed';
-    public const STATUS_REFUNDED = 'refunded';
-    public const STATUS_REFUNDED_EXTERNALLY = 'refundedExternally';
-    public const STATUS_REFUSED = 'refused';
-    public const STATUS_REJECTED = 'rejected';
-    public const STATUS_RESERVE_ADJUSTMENT = 'reserveAdjustment';
-    public const STATUS_RESERVE_ADJUSTMENT_PENDING = 'reserveAdjustmentPending';
-    public const STATUS_RETURNED = 'returned';
-    public const STATUS_REVERSED = 'reversed';
-    public const STATUS_SECOND_CHARGEBACK = 'secondChargeback';
-    public const STATUS_SECOND_CHARGEBACK_PENDING = 'secondChargebackPending';
-    public const STATUS_UNDEFINED = 'undefined';
+    public const TYPE_INDIVIDUAL = 'individual';
+    public const TYPE_ORGANIZATION = 'organization';
+    public const TYPE_UNKNOWN = 'unknown';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getStatusAllowableValues()
+    public function getTypeAllowableValues()
     {
         return [
-            self::STATUS_APPROVAL_PENDING,
-            self::STATUS_ATM_WITHDRAWAL,
-            self::STATUS_ATM_WITHDRAWAL_REVERSAL_PENDING,
-            self::STATUS_ATM_WITHDRAWAL_REVERSED,
-            self::STATUS_AUTH_ADJUSTMENT_AUTHORISED,
-            self::STATUS_AUTH_ADJUSTMENT_ERROR,
-            self::STATUS_AUTH_ADJUSTMENT_REFUSED,
-            self::STATUS_AUTHORISED,
-            self::STATUS_BANK_TRANSFER,
-            self::STATUS_BANK_TRANSFER_PENDING,
-            self::STATUS_BOOKED,
-            self::STATUS_BOOKING_PENDING,
-            self::STATUS_CANCELLED,
-            self::STATUS_CAPTURE_PENDING,
-            self::STATUS_CAPTURE_REVERSAL_PENDING,
-            self::STATUS_CAPTURE_REVERSED,
-            self::STATUS_CAPTURED,
-            self::STATUS_CAPTURED_EXTERNALLY,
-            self::STATUS_CHARGEBACK,
-            self::STATUS_CHARGEBACK_EXTERNALLY,
-            self::STATUS_CHARGEBACK_PENDING,
-            self::STATUS_CHARGEBACK_REVERSAL_PENDING,
-            self::STATUS_CHARGEBACK_REVERSED,
-            self::STATUS_CREDITED,
-            self::STATUS_DEPOSIT_CORRECTION,
-            self::STATUS_DEPOSIT_CORRECTION_PENDING,
-            self::STATUS_DISPUTE,
-            self::STATUS_DISPUTE_CLOSED,
-            self::STATUS_DISPUTE_EXPIRED,
-            self::STATUS_DISPUTE_NEEDS_REVIEW,
-            self::STATUS_ERROR,
-            self::STATUS_EXPIRED,
-            self::STATUS_FAILED,
-            self::STATUS_FEE,
-            self::STATUS_FEE_PENDING,
-            self::STATUS_INTERCHANGE_ADJUSTED,
-            self::STATUS_INTERNAL_TRANSFER,
-            self::STATUS_INTERNAL_TRANSFER_PENDING,
-            self::STATUS_INVOICE_DEDUCTION,
-            self::STATUS_INVOICE_DEDUCTION_PENDING,
-            self::STATUS_MANUAL_CORRECTION_PENDING,
-            self::STATUS_MANUALLY_CORRECTED,
-            self::STATUS_MATCHED_STATEMENT,
-            self::STATUS_MATCHED_STATEMENT_PENDING,
-            self::STATUS_MERCHANT_PAYIN,
-            self::STATUS_MERCHANT_PAYIN_PENDING,
-            self::STATUS_MERCHANT_PAYIN_REVERSED,
-            self::STATUS_MERCHANT_PAYIN_REVERSED_PENDING,
-            self::STATUS_MISC_COST,
-            self::STATUS_MISC_COST_PENDING,
-            self::STATUS_PAYMENT_COST,
-            self::STATUS_PAYMENT_COST_PENDING,
-            self::STATUS_PENDING,
-            self::STATUS_PENDING_APPROVAL,
-            self::STATUS_PENDING_EXECUTION,
-            self::STATUS_RECEIVED,
-            self::STATUS_REFUND_PENDING,
-            self::STATUS_REFUND_REVERSAL_PENDING,
-            self::STATUS_REFUND_REVERSED,
-            self::STATUS_REFUNDED,
-            self::STATUS_REFUNDED_EXTERNALLY,
-            self::STATUS_REFUSED,
-            self::STATUS_REJECTED,
-            self::STATUS_RESERVE_ADJUSTMENT,
-            self::STATUS_RESERVE_ADJUSTMENT_PENDING,
-            self::STATUS_RETURNED,
-            self::STATUS_REVERSED,
-            self::STATUS_SECOND_CHARGEBACK,
-            self::STATUS_SECOND_CHARGEBACK_PENDING,
-            self::STATUS_UNDEFINED,
+            self::TYPE_INDIVIDUAL,
+            self::TYPE_ORGANIZATION,
+            self::TYPE_UNKNOWN,
         ];
     }
     /**
@@ -402,11 +298,16 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('direction', $data ?? [], null);
-        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('address', $data ?? [], null);
+        $this->setIfExists('dateOfBirth', $data ?? [], null);
+        $this->setIfExists('email', $data ?? [], null);
+        $this->setIfExists('firstName', $data ?? [], null);
+        $this->setIfExists('fullName', $data ?? [], null);
+        $this->setIfExists('fundingInstrument', $data ?? [], null);
+        $this->setIfExists('lastName', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('url', $data ?? [], null);
     }
 
     /**
@@ -436,11 +337,11 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
                 implode("', '", $allowedValues)
             );
         }
@@ -461,49 +362,169 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets direction
+     * Gets address
      *
-     * @return string|null
+     * @return \Adyen\Model\TransferWebhooks\Address|null
      */
-    public function getDirection()
+    public function getAddress()
     {
-        return $this->container['direction'];
+        return $this->container['address'];
     }
 
     /**
-     * Sets direction
+     * Sets address
      *
-     * @param string|null $direction The direction of the money movement.
+     * @param \Adyen\Model\TransferWebhooks\Address|null $address address
      *
      * @return self
      */
-    public function setDirection($direction)
+    public function setAddress($address)
     {
-        $this->container['direction'] = $direction;
+        $this->container['address'] = $address;
 
         return $this;
     }
 
     /**
-     * Gets id
+     * Gets dateOfBirth
      *
-     * @return string|null
+     * @return \DateTime|null
      */
-    public function getId()
+    public function getDateOfBirth()
     {
-        return $this->container['id'];
+        return $this->container['dateOfBirth'];
     }
 
     /**
-     * Sets id
+     * Sets dateOfBirth
      *
-     * @param string|null $id Our reference for the modification.
+     * @param \DateTime|null $dateOfBirth The date of birth of the individual in [ISO-8601](https://www.w3.org/TR/NOTE-datetime) format. For example, **YYYY-MM-DD**.  Allowed only when `type` is **individual**.
      *
      * @return self
      */
-    public function setId($id)
+    public function setDateOfBirth($dateOfBirth)
     {
-        $this->container['id'] = $id;
+        $this->container['dateOfBirth'] = $dateOfBirth;
+
+        return $this;
+    }
+
+    /**
+     * Gets email
+     *
+     * @return string|null
+     */
+    public function getEmail()
+    {
+        return $this->container['email'];
+    }
+
+    /**
+     * Sets email
+     *
+     * @param string|null $email The email address of the organization or individual. Maximum length: 254 characters.
+     *
+     * @return self
+     */
+    public function setEmail($email)
+    {
+        $this->container['email'] = $email;
+
+        return $this;
+    }
+
+    /**
+     * Gets firstName
+     *
+     * @return string|null
+     */
+    public function getFirstName()
+    {
+        return $this->container['firstName'];
+    }
+
+    /**
+     * Sets firstName
+     *
+     * @param string|null $firstName The first name of the individual.  Supported characters: [a-z] [A-Z] - . / — and space.  This parameter is: - Allowed only when `type` is **individual**. - Required when `category` is **card**.
+     *
+     * @return self
+     */
+    public function setFirstName($firstName)
+    {
+        $this->container['firstName'] = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * Gets fullName
+     *
+     * @return string|null
+     */
+    public function getFullName()
+    {
+        return $this->container['fullName'];
+    }
+
+    /**
+     * Sets fullName
+     *
+     * @param string|null $fullName The full name of the entity that owns the bank account or card.  Supported characters: [a-z] [A-Z] [0-9] , . ; : - — / \\ + & ! ? @ ( ) \" ' and space.  Required when `category` is **bank**.
+     *
+     * @return self
+     */
+    public function setFullName($fullName)
+    {
+        $this->container['fullName'] = $fullName;
+
+        return $this;
+    }
+
+    /**
+     * Gets fundingInstrument
+     *
+     * @return \Adyen\Model\TransferWebhooks\FundingInstrument|null
+     */
+    public function getFundingInstrument()
+    {
+        return $this->container['fundingInstrument'];
+    }
+
+    /**
+     * Sets fundingInstrument
+     *
+     * @param \Adyen\Model\TransferWebhooks\FundingInstrument|null $fundingInstrument fundingInstrument
+     *
+     * @return self
+     */
+    public function setFundingInstrument($fundingInstrument)
+    {
+        $this->container['fundingInstrument'] = $fundingInstrument;
+
+        return $this;
+    }
+
+    /**
+     * Gets lastName
+     *
+     * @return string|null
+     */
+    public function getLastName()
+    {
+        return $this->container['lastName'];
+    }
+
+    /**
+     * Sets lastName
+     *
+     * @param string|null $lastName The last name of the individual.  Supported characters: [a-z] [A-Z] - . / — and space.  This parameter is: - Allowed only when `type` is **individual**. - Required when `category` is **card**.
+     *
+     * @return self
+     */
+    public function setLastName($lastName)
+    {
+        $this->container['lastName'] = $lastName;
 
         return $this;
     }
@@ -521,47 +542,13 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets reference
      *
-     * @param string|null $reference Your reference for the modification, used internally within your platform.
+     * @param string|null $reference A unique reference to identify the party or counterparty involved in the transfer. For example, your client's unique wallet or payee ID.  Required when you include `cardIdentification.storedPaymentMethodId`.
      *
      * @return self
      */
     public function setReference($reference)
     {
         $this->container['reference'] = $reference;
-
-        return $this;
-    }
-
-    /**
-     * Gets status
-     *
-     * @return string|null
-     */
-    public function getStatus()
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string|null $status The status of the transfer event.
-     *
-     * @return self
-     */
-    public function setStatus($status)
-    {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
-            error_log(
-                sprintf(
-                    "status: unexpected enum value '%s' - Supported values are [%s]",
-                    $status,
-                    implode(', ', $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
 
         return $this;
     }
@@ -579,13 +566,47 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      *
-     * @param string|null $type The type of transfer modification.
+     * @param string|null $type The type of entity that owns the bank account or card.  Possible values: **individual**, **organization**, or **unknown**.  Required when `category` is **card**. In this case, the value must be **individual**.
      *
      * @return self
      */
     public function setType($type)
     {
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            error_log(
+                sprintf(
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
+                    $type,
+                    implode(', ', $allowedValues)
+                )
+            );
+        }
         $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets url
+     *
+     * @return string|null
+     */
+    public function getUrl()
+    {
+        return $this->container['url'];
+    }
+
+    /**
+     * Sets url
+     *
+     * @param string|null $url The URL of the organization or individual. Maximum length: 255 characters.
+     *
+     * @return self
+     */
+    public function setUrl($url)
+    {
+        $this->container['url'] = $url;
 
         return $this;
     }
