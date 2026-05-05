@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\Transfers\ObjectSerializer;
 
 /**
- * Counterparty Class Doc Comment
+ * InterchangeData Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
+class InterchangeData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Counterparty';
+    protected static $openAPIModelName = 'InterchangeData';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,9 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'accountHolderId' => 'string',
-        'balanceAccountId' => 'string',
-        'transferInstrumentId' => 'string'
+        'interchangeAmount' => '\Adyen\Model\Transfers\Amount',
+        'interchangeRateIndicator' => 'string',
+        'type' => 'string'
     ];
 
     /**
@@ -54,9 +54,9 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'accountHolderId' => null,
-        'balanceAccountId' => null,
-        'transferInstrumentId' => null
+        'interchangeAmount' => null,
+        'interchangeRateIndicator' => null,
+        'type' => null
     ];
 
     /**
@@ -65,9 +65,9 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'accountHolderId' => false,
-        'balanceAccountId' => false,
-        'transferInstrumentId' => false
+        'interchangeAmount' => false,
+        'interchangeRateIndicator' => false,
+        'type' => false
     ];
 
     /**
@@ -156,9 +156,9 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'accountHolderId' => 'accountHolderId',
-        'balanceAccountId' => 'balanceAccountId',
-        'transferInstrumentId' => 'transferInstrumentId'
+        'interchangeAmount' => 'interchangeAmount',
+        'interchangeRateIndicator' => 'interchangeRateIndicator',
+        'type' => 'type'
     ];
 
     /**
@@ -167,9 +167,9 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'accountHolderId' => 'setAccountHolderId',
-        'balanceAccountId' => 'setBalanceAccountId',
-        'transferInstrumentId' => 'setTransferInstrumentId'
+        'interchangeAmount' => 'setInterchangeAmount',
+        'interchangeRateIndicator' => 'setInterchangeRateIndicator',
+        'type' => 'setType'
     ];
 
     /**
@@ -178,9 +178,9 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'accountHolderId' => 'getAccountHolderId',
-        'balanceAccountId' => 'getBalanceAccountId',
-        'transferInstrumentId' => 'getTransferInstrumentId'
+        'interchangeAmount' => 'getInterchangeAmount',
+        'interchangeRateIndicator' => 'getInterchangeRateIndicator',
+        'type' => 'getType'
     ];
 
     /**
@@ -224,7 +224,19 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const TYPE_INTERCHANGE_DATA = 'interchangeData';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_INTERCHANGE_DATA,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -240,9 +252,9 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('accountHolderId', $data ?? [], null);
-        $this->setIfExists('balanceAccountId', $data ?? [], null);
-        $this->setIfExists('transferInstrumentId', $data ?? [], null);
+        $this->setIfExists('interchangeAmount', $data ?? [], null);
+        $this->setIfExists('interchangeRateIndicator', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -272,6 +284,18 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -288,73 +312,83 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets accountHolderId
+     * Gets interchangeAmount
      *
-     * @return string|null
+     * @return \Adyen\Model\Transfers\Amount|null
      */
-    public function getAccountHolderId()
+    public function getInterchangeAmount()
     {
-        return $this->container['accountHolderId'];
+        return $this->container['interchangeAmount'];
     }
 
     /**
-     * Sets accountHolderId
+     * Sets interchangeAmount
      *
-     * @param string|null $accountHolderId The identifier of the receiving account holder. The payout will default to the primary balance account of this account holder if no `balanceAccountId` is provided.
+     * @param \Adyen\Model\Transfers\Amount|null $interchangeAmount interchangeAmount
      *
      * @return self
      */
-    public function setAccountHolderId($accountHolderId)
+    public function setInterchangeAmount($interchangeAmount)
     {
-        $this->container['accountHolderId'] = $accountHolderId;
+        $this->container['interchangeAmount'] = $interchangeAmount;
 
         return $this;
     }
 
     /**
-     * Gets balanceAccountId
+     * Gets interchangeRateIndicator
      *
      * @return string|null
      */
-    public function getBalanceAccountId()
+    public function getInterchangeRateIndicator()
     {
-        return $this->container['balanceAccountId'];
+        return $this->container['interchangeRateIndicator'];
     }
 
     /**
-     * Sets balanceAccountId
+     * Sets interchangeRateIndicator
      *
-     * @param string|null $balanceAccountId The identifier of the balance account that belongs to the receiving account holder.
+     * @param string|null $interchangeRateIndicator A 3-character alphanumeric code assigned by Visa that identifies the specific interchange reimbursement program a transaction qualified for. The code is assigned based on the card type, entry mode, and security data provided.
      *
      * @return self
      */
-    public function setBalanceAccountId($balanceAccountId)
+    public function setInterchangeRateIndicator($interchangeRateIndicator)
     {
-        $this->container['balanceAccountId'] = $balanceAccountId;
+        $this->container['interchangeRateIndicator'] = $interchangeRateIndicator;
 
         return $this;
     }
 
     /**
-     * Gets transferInstrumentId
+     * Gets type
      *
-     * @return string|null
+     * @return string
      */
-    public function getTransferInstrumentId()
+    public function getType()
     {
-        return $this->container['transferInstrumentId'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets transferInstrumentId
+     * Sets type
      *
-     * @param string|null $transferInstrumentId The identifier of the transfer instrument that belongs to the legal entity of the account holder.
+     * @param string $type The type of events data.   Possible values:    - **interchangeData**: information about the interchange fee applied to a transaction.
      *
      * @return self
      */
-    public function setTransferInstrumentId($transferInstrumentId)
+    public function setType($type)
     {
-        $this->container['transferInstrumentId'] = $transferInstrumentId;
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            error_log(
+                sprintf(
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
+                    $type,
+                    implode(', ', $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
 
         return $this;
     }
