@@ -41,6 +41,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @var string[]
       */
     protected static $openAPITypes = [
+        'bic' => 'string',
         'iban' => 'string',
         'type' => 'string'
     ];
@@ -53,6 +54,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'bic' => null,
         'iban' => null,
         'type' => null
     ];
@@ -63,6 +65,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'bic' => false,
         'iban' => false,
         'type' => false
     ];
@@ -153,6 +156,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $attributeMap = [
+        'bic' => 'bic',
         'iban' => 'iban',
         'type' => 'type'
     ];
@@ -163,6 +167,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $setters = [
+        'bic' => 'setBic',
         'iban' => 'setIban',
         'type' => 'setType'
     ];
@@ -173,6 +178,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      * @var string[]
      */
     protected static $getters = [
+        'bic' => 'getBic',
         'iban' => 'getIban',
         'type' => 'getType'
     ];
@@ -233,6 +239,7 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('bic', $data ?? [], null);
         $this->setIfExists('iban', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
@@ -285,6 +292,30 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets bic
+     *
+     * @return string|null
+     */
+    public function getBic()
+    {
+        return $this->container['bic'];
+    }
+
+    /**
+     * Sets bic
+     *
+     * @param string|null $bic The bank's 8- or 11-character BIC or SWIFT code.
+     *
+     * @return self
+     */
+    public function setBic($bic)
+    {
+        $this->container['bic'] = $bic;
+
+        return $this;
+    }
 
     /**
      * Gets iban
