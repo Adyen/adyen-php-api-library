@@ -41,33 +41,35 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
       * @var string[]
       */
     protected static $openAPITypes = [
-        'accel' => '\Adyen\Model\Management\AccelInfo',
-        'bcmc' => '\Adyen\Model\Management\BcmcInfo',
-        'cartesBancaires' => '\Adyen\Model\Management\CartesBancairesInfo',
+        'accel' => '\Adyen\Model\Management\AccelUpdateInfo',
+        'affirm' => '\Adyen\Model\Management\AffirmUpdateInfo',
+        'bcmc' => '\Adyen\Model\Management\BcmcUpdateInfo',
+        'carnet' => '\Adyen\Model\Management\GenericPmWithTdiUpdateInfo',
+        'cartesBancaires' => '\Adyen\Model\Management\CartesBancairesUpdateInfo',
         'countries' => 'string[]',
-        'cup' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
+        'cup' => '\Adyen\Model\Management\GenericPmWithTdiUpdateInfo',
         'currencies' => 'string[]',
         'customRoutingFlags' => 'string[]',
-        'diners' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
-        'discover' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
-        'eftDirectdebitCA' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
-        'eftposAustralia' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
+        'diners' => '\Adyen\Model\Management\GenericPmWithTdiUpdateInfo',
+        'discover' => '\Adyen\Model\Management\GenericPmWithTdiUpdateInfo',
+        'eftDirectdebitCA' => '\Adyen\Model\Management\GenericPmWithTdiUpdateInfo',
+        'eftposAustralia' => '\Adyen\Model\Management\GenericPmWithTdiUpdateInfo',
         'enabled' => 'bool',
-        'girocard' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
-        'ideal' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
-        'interacCard' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
-        'jcb' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
-        'maestro' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
-        'maestroUsa' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
-        'mc' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
-        'nyce' => '\Adyen\Model\Management\NyceInfo',
-        'paybybankPlaid' => '\Adyen\Model\Management\PayByBankPlaidInfo',
-        'pulse' => '\Adyen\Model\Management\PulseInfo',
-        'sepadirectdebit' => '\Adyen\Model\Management\SepaDirectDebitInfo',
-        'star' => '\Adyen\Model\Management\StarInfo',
+        'girocard' => '\Adyen\Model\Management\GenericPmWithTdiUpdateInfo',
+        'ideal' => '\Adyen\Model\Management\GenericPmWithTdiUpdateInfo',
+        'interacCard' => '\Adyen\Model\Management\GenericPmWithTdiUpdateInfo',
+        'jcb' => '\Adyen\Model\Management\GenericPmWithTdiUpdateInfo',
+        'maestro' => '\Adyen\Model\Management\GenericPmWithTdiUpdateInfo',
+        'maestroUsa' => '\Adyen\Model\Management\GenericPmWithTdiUpdateInfo',
+        'mc' => '\Adyen\Model\Management\GenericPmWithTdiUpdateInfo',
+        'nyce' => '\Adyen\Model\Management\NyceUpdateInfo',
+        'paybybankPlaid' => '\Adyen\Model\Management\PayByBankPlaidUpdateInfo',
+        'pulse' => '\Adyen\Model\Management\PulseUpdateInfo',
+        'sepadirectdebit' => '\Adyen\Model\Management\SepaDirectDebitUpdateInfo',
+        'star' => '\Adyen\Model\Management\StarUpdateInfo',
         'storeId' => 'string',
         'storeIds' => 'string[]',
-        'visa' => '\Adyen\Model\Management\GenericPmWithTdiInfo'
+        'visa' => '\Adyen\Model\Management\GenericPmWithTdiUpdateInfo'
     ];
 
     /**
@@ -79,7 +81,9 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static $openAPIFormats = [
         'accel' => null,
+        'affirm' => null,
         'bcmc' => null,
+        'carnet' => null,
         'cartesBancaires' => null,
         'countries' => null,
         'cup' => null,
@@ -114,7 +118,9 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static $openAPINullables = [
         'accel' => false,
+        'affirm' => false,
         'bcmc' => false,
+        'carnet' => false,
         'cartesBancaires' => false,
         'countries' => false,
         'cup' => false,
@@ -229,7 +235,9 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
      */
     protected static $attributeMap = [
         'accel' => 'accel',
+        'affirm' => 'affirm',
         'bcmc' => 'bcmc',
+        'carnet' => 'carnet',
         'cartesBancaires' => 'cartesBancaires',
         'countries' => 'countries',
         'cup' => 'cup',
@@ -264,7 +272,9 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
      */
     protected static $setters = [
         'accel' => 'setAccel',
+        'affirm' => 'setAffirm',
         'bcmc' => 'setBcmc',
+        'carnet' => 'setCarnet',
         'cartesBancaires' => 'setCartesBancaires',
         'countries' => 'setCountries',
         'cup' => 'setCup',
@@ -299,7 +309,9 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
      */
     protected static $getters = [
         'accel' => 'getAccel',
+        'affirm' => 'getAffirm',
         'bcmc' => 'getBcmc',
+        'carnet' => 'getCarnet',
         'cartesBancaires' => 'getCartesBancaires',
         'countries' => 'getCountries',
         'cup' => 'getCup',
@@ -385,7 +397,9 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     public function __construct(?array $data = null)
     {
         $this->setIfExists('accel', $data ?? [], null);
+        $this->setIfExists('affirm', $data ?? [], null);
         $this->setIfExists('bcmc', $data ?? [], null);
+        $this->setIfExists('carnet', $data ?? [], null);
         $this->setIfExists('cartesBancaires', $data ?? [], null);
         $this->setIfExists('countries', $data ?? [], null);
         $this->setIfExists('cup', $data ?? [], null);
@@ -458,7 +472,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets accel
      *
-     * @return \Adyen\Model\Management\AccelInfo|null
+     * @return \Adyen\Model\Management\AccelUpdateInfo|null
      */
     public function getAccel()
     {
@@ -468,7 +482,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets accel
      *
-     * @param \Adyen\Model\Management\AccelInfo|null $accel accel
+     * @param \Adyen\Model\Management\AccelUpdateInfo|null $accel accel
      *
      * @return self
      */
@@ -480,9 +494,33 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
+     * Gets affirm
+     *
+     * @return \Adyen\Model\Management\AffirmUpdateInfo|null
+     */
+    public function getAffirm()
+    {
+        return $this->container['affirm'];
+    }
+
+    /**
+     * Sets affirm
+     *
+     * @param \Adyen\Model\Management\AffirmUpdateInfo|null $affirm affirm
+     *
+     * @return self
+     */
+    public function setAffirm($affirm)
+    {
+        $this->container['affirm'] = $affirm;
+
+        return $this;
+    }
+
+    /**
      * Gets bcmc
      *
-     * @return \Adyen\Model\Management\BcmcInfo|null
+     * @return \Adyen\Model\Management\BcmcUpdateInfo|null
      */
     public function getBcmc()
     {
@@ -492,7 +530,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets bcmc
      *
-     * @param \Adyen\Model\Management\BcmcInfo|null $bcmc bcmc
+     * @param \Adyen\Model\Management\BcmcUpdateInfo|null $bcmc bcmc
      *
      * @return self
      */
@@ -504,9 +542,33 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
+     * Gets carnet
+     *
+     * @return \Adyen\Model\Management\GenericPmWithTdiUpdateInfo|null
+     */
+    public function getCarnet()
+    {
+        return $this->container['carnet'];
+    }
+
+    /**
+     * Sets carnet
+     *
+     * @param \Adyen\Model\Management\GenericPmWithTdiUpdateInfo|null $carnet carnet
+     *
+     * @return self
+     */
+    public function setCarnet($carnet)
+    {
+        $this->container['carnet'] = $carnet;
+
+        return $this;
+    }
+
+    /**
      * Gets cartesBancaires
      *
-     * @return \Adyen\Model\Management\CartesBancairesInfo|null
+     * @return \Adyen\Model\Management\CartesBancairesUpdateInfo|null
      */
     public function getCartesBancaires()
     {
@@ -516,7 +578,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets cartesBancaires
      *
-     * @param \Adyen\Model\Management\CartesBancairesInfo|null $cartesBancaires cartesBancaires
+     * @param \Adyen\Model\Management\CartesBancairesUpdateInfo|null $cartesBancaires cartesBancaires
      *
      * @return self
      */
@@ -554,7 +616,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets cup
      *
-     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     * @return \Adyen\Model\Management\GenericPmWithTdiUpdateInfo|null
      */
     public function getCup()
     {
@@ -564,7 +626,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets cup
      *
-     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $cup cup
+     * @param \Adyen\Model\Management\GenericPmWithTdiUpdateInfo|null $cup cup
      *
      * @return self
      */
@@ -626,7 +688,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets diners
      *
-     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     * @return \Adyen\Model\Management\GenericPmWithTdiUpdateInfo|null
      */
     public function getDiners()
     {
@@ -636,7 +698,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets diners
      *
-     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $diners diners
+     * @param \Adyen\Model\Management\GenericPmWithTdiUpdateInfo|null $diners diners
      *
      * @return self
      */
@@ -650,7 +712,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets discover
      *
-     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     * @return \Adyen\Model\Management\GenericPmWithTdiUpdateInfo|null
      */
     public function getDiscover()
     {
@@ -660,7 +722,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets discover
      *
-     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $discover discover
+     * @param \Adyen\Model\Management\GenericPmWithTdiUpdateInfo|null $discover discover
      *
      * @return self
      */
@@ -674,7 +736,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets eftDirectdebitCA
      *
-     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     * @return \Adyen\Model\Management\GenericPmWithTdiUpdateInfo|null
      */
     public function getEftDirectdebitCA()
     {
@@ -684,7 +746,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets eftDirectdebitCA
      *
-     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $eftDirectdebitCA eftDirectdebitCA
+     * @param \Adyen\Model\Management\GenericPmWithTdiUpdateInfo|null $eftDirectdebitCA eftDirectdebitCA
      *
      * @return self
      */
@@ -698,7 +760,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets eftposAustralia
      *
-     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     * @return \Adyen\Model\Management\GenericPmWithTdiUpdateInfo|null
      */
     public function getEftposAustralia()
     {
@@ -708,7 +770,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets eftposAustralia
      *
-     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $eftposAustralia eftposAustralia
+     * @param \Adyen\Model\Management\GenericPmWithTdiUpdateInfo|null $eftposAustralia eftposAustralia
      *
      * @return self
      */
@@ -746,7 +808,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets girocard
      *
-     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     * @return \Adyen\Model\Management\GenericPmWithTdiUpdateInfo|null
      */
     public function getGirocard()
     {
@@ -756,7 +818,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets girocard
      *
-     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $girocard girocard
+     * @param \Adyen\Model\Management\GenericPmWithTdiUpdateInfo|null $girocard girocard
      *
      * @return self
      */
@@ -770,7 +832,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets ideal
      *
-     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     * @return \Adyen\Model\Management\GenericPmWithTdiUpdateInfo|null
      */
     public function getIdeal()
     {
@@ -780,7 +842,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets ideal
      *
-     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $ideal ideal
+     * @param \Adyen\Model\Management\GenericPmWithTdiUpdateInfo|null $ideal ideal
      *
      * @return self
      */
@@ -794,7 +856,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets interacCard
      *
-     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     * @return \Adyen\Model\Management\GenericPmWithTdiUpdateInfo|null
      */
     public function getInteracCard()
     {
@@ -804,7 +866,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets interacCard
      *
-     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $interacCard interacCard
+     * @param \Adyen\Model\Management\GenericPmWithTdiUpdateInfo|null $interacCard interacCard
      *
      * @return self
      */
@@ -818,7 +880,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets jcb
      *
-     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     * @return \Adyen\Model\Management\GenericPmWithTdiUpdateInfo|null
      */
     public function getJcb()
     {
@@ -828,7 +890,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets jcb
      *
-     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $jcb jcb
+     * @param \Adyen\Model\Management\GenericPmWithTdiUpdateInfo|null $jcb jcb
      *
      * @return self
      */
@@ -842,7 +904,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets maestro
      *
-     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     * @return \Adyen\Model\Management\GenericPmWithTdiUpdateInfo|null
      */
     public function getMaestro()
     {
@@ -852,7 +914,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets maestro
      *
-     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $maestro maestro
+     * @param \Adyen\Model\Management\GenericPmWithTdiUpdateInfo|null $maestro maestro
      *
      * @return self
      */
@@ -866,7 +928,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets maestroUsa
      *
-     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     * @return \Adyen\Model\Management\GenericPmWithTdiUpdateInfo|null
      */
     public function getMaestroUsa()
     {
@@ -876,7 +938,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets maestroUsa
      *
-     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $maestroUsa maestroUsa
+     * @param \Adyen\Model\Management\GenericPmWithTdiUpdateInfo|null $maestroUsa maestroUsa
      *
      * @return self
      */
@@ -890,7 +952,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets mc
      *
-     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     * @return \Adyen\Model\Management\GenericPmWithTdiUpdateInfo|null
      */
     public function getMc()
     {
@@ -900,7 +962,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets mc
      *
-     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $mc mc
+     * @param \Adyen\Model\Management\GenericPmWithTdiUpdateInfo|null $mc mc
      *
      * @return self
      */
@@ -914,7 +976,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets nyce
      *
-     * @return \Adyen\Model\Management\NyceInfo|null
+     * @return \Adyen\Model\Management\NyceUpdateInfo|null
      */
     public function getNyce()
     {
@@ -924,7 +986,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets nyce
      *
-     * @param \Adyen\Model\Management\NyceInfo|null $nyce nyce
+     * @param \Adyen\Model\Management\NyceUpdateInfo|null $nyce nyce
      *
      * @return self
      */
@@ -938,7 +1000,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets paybybankPlaid
      *
-     * @return \Adyen\Model\Management\PayByBankPlaidInfo|null
+     * @return \Adyen\Model\Management\PayByBankPlaidUpdateInfo|null
      */
     public function getPaybybankPlaid()
     {
@@ -948,7 +1010,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets paybybankPlaid
      *
-     * @param \Adyen\Model\Management\PayByBankPlaidInfo|null $paybybankPlaid paybybankPlaid
+     * @param \Adyen\Model\Management\PayByBankPlaidUpdateInfo|null $paybybankPlaid paybybankPlaid
      *
      * @return self
      */
@@ -962,7 +1024,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets pulse
      *
-     * @return \Adyen\Model\Management\PulseInfo|null
+     * @return \Adyen\Model\Management\PulseUpdateInfo|null
      */
     public function getPulse()
     {
@@ -972,7 +1034,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets pulse
      *
-     * @param \Adyen\Model\Management\PulseInfo|null $pulse pulse
+     * @param \Adyen\Model\Management\PulseUpdateInfo|null $pulse pulse
      *
      * @return self
      */
@@ -986,7 +1048,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets sepadirectdebit
      *
-     * @return \Adyen\Model\Management\SepaDirectDebitInfo|null
+     * @return \Adyen\Model\Management\SepaDirectDebitUpdateInfo|null
      */
     public function getSepadirectdebit()
     {
@@ -996,7 +1058,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets sepadirectdebit
      *
-     * @param \Adyen\Model\Management\SepaDirectDebitInfo|null $sepadirectdebit sepadirectdebit
+     * @param \Adyen\Model\Management\SepaDirectDebitUpdateInfo|null $sepadirectdebit sepadirectdebit
      *
      * @return self
      */
@@ -1010,7 +1072,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets star
      *
-     * @return \Adyen\Model\Management\StarInfo|null
+     * @return \Adyen\Model\Management\StarUpdateInfo|null
      */
     public function getStar()
     {
@@ -1020,7 +1082,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets star
      *
-     * @param \Adyen\Model\Management\StarInfo|null $star star
+     * @param \Adyen\Model\Management\StarUpdateInfo|null $star star
      *
      * @return self
      */
@@ -1084,7 +1146,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets visa
      *
-     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     * @return \Adyen\Model\Management\GenericPmWithTdiUpdateInfo|null
      */
     public function getVisa()
     {
@@ -1094,7 +1156,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets visa
      *
-     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $visa visa
+     * @param \Adyen\Model\Management\GenericPmWithTdiUpdateInfo|null $visa visa
      *
      * @return self
      */

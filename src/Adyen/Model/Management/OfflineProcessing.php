@@ -317,7 +317,7 @@ class OfflineProcessing implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets offlineSwipeLimits
      *
-     * @param \Adyen\Model\Management\MinorUnitsMonetaryValue[]|null $offlineSwipeLimits The maximum offline transaction amount for swiped cards, in the specified currency.
+     * @param \Adyen\Model\Management\MinorUnitsMonetaryValue[]|null $offlineSwipeLimits The maximum offline transaction amount for swiped cards, in the specified currency. Updating this field is forbidden.
      *
      * @return self
      */

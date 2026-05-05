@@ -284,6 +284,7 @@ class PayByBankPlaidInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      * Gets logo
      *
      * @return string|null
+     * @deprecated
      */
     public function getLogo()
     {
@@ -296,6 +297,7 @@ class PayByBankPlaidInfo implements ModelInterface, ArrayAccess, \JsonSerializab
      * @param string|null $logo Merchant logo (max. size 150kB). Format: Base64-encoded string.
      *
      * @return self
+     * @deprecated
      */
     public function setLogo($logo)
     {

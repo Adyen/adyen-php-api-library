@@ -76,14 +76,14 @@ class PaymentMethodsMerchantLevelApi extends Service
     * @param string $merchantId
     * @param string $paymentMethodId
     * @param array|null $requestOptions
-    * @return \Adyen\Model\Management\ApplePayInfo
+    * @return \Adyen\Model\Management\ApplePayResponseInfo
     * @throws AdyenException
     */
-    public function getApplePayDomains(string $merchantId, string $paymentMethodId, ?array $requestOptions = null): \Adyen\Model\Management\ApplePayInfo
+    public function getApplePayDomains(string $merchantId, string $paymentMethodId, ?array $requestOptions = null): \Adyen\Model\Management\ApplePayResponseInfo
     {
         $endpoint = $this->baseURL . str_replace(['{merchantId}', '{paymentMethodId}'], [$merchantId, $paymentMethodId], "/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}/getApplePayDomains");
         $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
-        return ObjectSerializer::deserialize($response, \Adyen\Model\Management\ApplePayInfo::class);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\Management\ApplePayResponseInfo::class);
     }
 
     /**

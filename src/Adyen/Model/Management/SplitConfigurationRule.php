@@ -249,6 +249,7 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
     }
 
     public const CARD_REGION_INTERNATIONAL = 'international';
+    public const CARD_REGION_INTRA_EEA = 'intraEEA';
     public const CARD_REGION_INTRA_REGIONAL = 'intraRegional';
     public const CARD_REGION_INTER_REGIONAL = 'interRegional';
     public const CARD_REGION_DOMESTIC = 'domestic';
@@ -274,6 +275,7 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
     {
         return [
             self::CARD_REGION_INTERNATIONAL,
+            self::CARD_REGION_INTRA_EEA,
             self::CARD_REGION_INTRA_REGIONAL,
             self::CARD_REGION_INTER_REGIONAL,
             self::CARD_REGION_DOMESTIC,
@@ -432,7 +434,7 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets cardRegion
      *
-     * @param string|null $cardRegion The card region condition that determines whether the [split logic](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic) applies to the transaction.  > This condition is in pilot phase, and not yet available for all platforms.  Possible values: * **domestic**: The card issuer and the store where the transaction is processed are registered in the same country. * **international**: The card issuer and the store where the transaction is processed are registered in different countries or regions. Includes all **interRegional** and **intraRegional** transactions. * **interRegional**: The card issuer and the store where the transaction is processed are registered in different regions. * **intraRegional**: The card issuer and the store where the transaction is processed are registered in different countries, but in the same region. * **ANY**: Applies to all transactions, regardless of the processing and issuing country/region.
+     * @param string|null $cardRegion The card region condition that determines whether the [split logic](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic) applies to the transaction.  > This condition is in pilot phase, and not yet available for all platforms.  Possible values: * **domestic**: The card issuer and the store where the transaction is processed are registered in the same country. * **international**: The card issuer and the store where the transaction is processed are registered in different countries or regions. Includes all **interRegional** and **intraRegional** transactions. * **interRegional**: The card issuer and the store where the transaction is processed are registered in different regions. * **intraRegional**: The card issuer and the store where the transaction is processed are registered in different countries, but in the same region. * **intraEEA**: The card issuer and the store where the transaction is processed are registered in different countries, but in the European Economic Area (EEA). * **ANY**: Applies to all transactions, regardless of the processing and issuing country/region.
      *
      * @return self
      */

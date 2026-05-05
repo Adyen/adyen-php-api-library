@@ -42,9 +42,12 @@ class Terminal implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'assignment' => '\Adyen\Model\Management\TerminalAssignment',
+        'cloudDeviceApiEndpoint' => 'string',
         'connectivity' => '\Adyen\Model\Management\TerminalConnectivity',
+        'countryCode' => 'string',
         'firmwareVersion' => 'string',
         'id' => 'string',
+        'installedAPKs' => '\Adyen\Model\Management\InstalledAPKs[]',
         'lastActivityAt' => '\DateTime',
         'lastTransactionAt' => '\DateTime',
         'model' => 'string',
@@ -61,9 +64,12 @@ class Terminal implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'assignment' => null,
+        'cloudDeviceApiEndpoint' => null,
         'connectivity' => null,
+        'countryCode' => null,
         'firmwareVersion' => null,
         'id' => null,
+        'installedAPKs' => null,
         'lastActivityAt' => 'date-time',
         'lastTransactionAt' => 'date-time',
         'model' => null,
@@ -78,9 +84,12 @@ class Terminal implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPINullables = [
         'assignment' => false,
+        'cloudDeviceApiEndpoint' => false,
         'connectivity' => false,
+        'countryCode' => false,
         'firmwareVersion' => false,
         'id' => false,
+        'installedAPKs' => false,
         'lastActivityAt' => false,
         'lastTransactionAt' => false,
         'model' => false,
@@ -175,9 +184,12 @@ class Terminal implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'assignment' => 'assignment',
+        'cloudDeviceApiEndpoint' => 'cloudDeviceApiEndpoint',
         'connectivity' => 'connectivity',
+        'countryCode' => 'countryCode',
         'firmwareVersion' => 'firmwareVersion',
         'id' => 'id',
+        'installedAPKs' => 'installedAPKs',
         'lastActivityAt' => 'lastActivityAt',
         'lastTransactionAt' => 'lastTransactionAt',
         'model' => 'model',
@@ -192,9 +204,12 @@ class Terminal implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'assignment' => 'setAssignment',
+        'cloudDeviceApiEndpoint' => 'setCloudDeviceApiEndpoint',
         'connectivity' => 'setConnectivity',
+        'countryCode' => 'setCountryCode',
         'firmwareVersion' => 'setFirmwareVersion',
         'id' => 'setId',
+        'installedAPKs' => 'setInstalledAPKs',
         'lastActivityAt' => 'setLastActivityAt',
         'lastTransactionAt' => 'setLastTransactionAt',
         'model' => 'setModel',
@@ -209,9 +224,12 @@ class Terminal implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'assignment' => 'getAssignment',
+        'cloudDeviceApiEndpoint' => 'getCloudDeviceApiEndpoint',
         'connectivity' => 'getConnectivity',
+        'countryCode' => 'getCountryCode',
         'firmwareVersion' => 'getFirmwareVersion',
         'id' => 'getId',
+        'installedAPKs' => 'getInstalledAPKs',
         'lastActivityAt' => 'getLastActivityAt',
         'lastTransactionAt' => 'getLastTransactionAt',
         'model' => 'getModel',
@@ -277,9 +295,12 @@ class Terminal implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(?array $data = null)
     {
         $this->setIfExists('assignment', $data ?? [], null);
+        $this->setIfExists('cloudDeviceApiEndpoint', $data ?? [], null);
         $this->setIfExists('connectivity', $data ?? [], null);
+        $this->setIfExists('countryCode', $data ?? [], null);
         $this->setIfExists('firmwareVersion', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('installedAPKs', $data ?? [], null);
         $this->setIfExists('lastActivityAt', $data ?? [], null);
         $this->setIfExists('lastTransactionAt', $data ?? [], null);
         $this->setIfExists('model', $data ?? [], null);
@@ -354,6 +375,30 @@ class Terminal implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets cloudDeviceApiEndpoint
+     *
+     * @return string|null
+     */
+    public function getCloudDeviceApiEndpoint()
+    {
+        return $this->container['cloudDeviceApiEndpoint'];
+    }
+
+    /**
+     * Sets cloudDeviceApiEndpoint
+     *
+     * @param string|null $cloudDeviceApiEndpoint The [regional base URL](https://docs.adyen.com/api-explorer/terminal-api/1/overview#endpoints-for-cloud-communications) to use for sending Terminal API requests when using cloud communications.
+     *
+     * @return self
+     */
+    public function setCloudDeviceApiEndpoint($cloudDeviceApiEndpoint)
+    {
+        $this->container['cloudDeviceApiEndpoint'] = $cloudDeviceApiEndpoint;
+
+        return $this;
+    }
+
+    /**
      * Gets connectivity
      *
      * @return \Adyen\Model\Management\TerminalConnectivity|null
@@ -373,6 +418,30 @@ class Terminal implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setConnectivity($connectivity)
     {
         $this->container['connectivity'] = $connectivity;
+
+        return $this;
+    }
+
+    /**
+     * Gets countryCode
+     *
+     * @return string|null
+     */
+    public function getCountryCode()
+    {
+        return $this->container['countryCode'];
+    }
+
+    /**
+     * Sets countryCode
+     *
+     * @param string|null $countryCode The country code of the country where the terminal is located.
+     *
+     * @return self
+     */
+    public function setCountryCode($countryCode)
+    {
+        $this->container['countryCode'] = $countryCode;
 
         return $this;
     }
@@ -421,6 +490,30 @@ class Terminal implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setId($id)
     {
         $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets installedAPKs
+     *
+     * @return \Adyen\Model\Management\InstalledAPKs[]|null
+     */
+    public function getInstalledAPKs()
+    {
+        return $this->container['installedAPKs'];
+    }
+
+    /**
+     * Sets installedAPKs
+     *
+     * @param \Adyen\Model\Management\InstalledAPKs[]|null $installedAPKs A list of Android apps installed on the terminal.
+     *
+     * @return self
+     */
+    public function setInstalledAPKs($installedAPKs)
+    {
+        $this->container['installedAPKs'] = $installedAPKs;
 
         return $this;
     }

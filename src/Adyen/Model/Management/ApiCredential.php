@@ -49,6 +49,7 @@ class ApiCredential implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'string',
         'id' => 'string',
         'roles' => 'string[]',
+        'subjectDN' => 'string',
         'username' => 'string'
     ];
 
@@ -68,6 +69,7 @@ class ApiCredential implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => null,
         'id' => null,
         'roles' => null,
+        'subjectDN' => null,
         'username' => null
     ];
 
@@ -85,6 +87,7 @@ class ApiCredential implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => false,
         'id' => false,
         'roles' => false,
+        'subjectDN' => false,
         'username' => false
     ];
 
@@ -182,6 +185,7 @@ class ApiCredential implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'description',
         'id' => 'id',
         'roles' => 'roles',
+        'subjectDN' => 'subjectDN',
         'username' => 'username'
     ];
 
@@ -199,6 +203,7 @@ class ApiCredential implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'setDescription',
         'id' => 'setId',
         'roles' => 'setRoles',
+        'subjectDN' => 'setSubjectDN',
         'username' => 'setUsername'
     ];
 
@@ -216,6 +221,7 @@ class ApiCredential implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'getDescription',
         'id' => 'getId',
         'roles' => 'getRoles',
+        'subjectDN' => 'getSubjectDN',
         'username' => 'getUsername'
     ];
 
@@ -284,6 +290,7 @@ class ApiCredential implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('roles', $data ?? [], null);
+        $this->setIfExists('subjectDN', $data ?? [], null);
         $this->setIfExists('username', $data ?? [], null);
     }
 
@@ -535,6 +542,30 @@ class ApiCredential implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setRoles($roles)
     {
         $this->container['roles'] = $roles;
+
+        return $this;
+    }
+
+    /**
+     * Gets subjectDN
+     *
+     * @return string|null
+     */
+    public function getSubjectDN()
+    {
+        return $this->container['subjectDN'];
+    }
+
+    /**
+     * Sets subjectDN
+     *
+     * @param string|null $subjectDN The subject DN of the certificate issued by Adyen.
+     *
+     * @return self
+     */
+    public function setSubjectDN($subjectDN)
+    {
+        $this->container['subjectDN'] = $subjectDN;
 
         return $this;
     }

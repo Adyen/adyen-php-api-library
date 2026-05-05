@@ -307,7 +307,7 @@ class ForceRebootDetails implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets type
      *
-     * @param string|null $type Type of terminal action: Force Reboot.
+     * @param string|null $type The type of terminal action. The value **ForceReboot** triggers an immediate reboot of the specified terminal(s).
      *
      * @return self
      */

@@ -52,6 +52,7 @@ class CreateCompanyApiCredentialResponse implements ModelInterface, ArrayAccess,
         'id' => 'string',
         'password' => 'string',
         'roles' => 'string[]',
+        'subjectDN' => 'string',
         'username' => 'string'
     ];
 
@@ -74,6 +75,7 @@ class CreateCompanyApiCredentialResponse implements ModelInterface, ArrayAccess,
         'id' => null,
         'password' => null,
         'roles' => null,
+        'subjectDN' => null,
         'username' => null
     ];
 
@@ -94,6 +96,7 @@ class CreateCompanyApiCredentialResponse implements ModelInterface, ArrayAccess,
         'id' => false,
         'password' => false,
         'roles' => false,
+        'subjectDN' => false,
         'username' => false
     ];
 
@@ -194,6 +197,7 @@ class CreateCompanyApiCredentialResponse implements ModelInterface, ArrayAccess,
         'id' => 'id',
         'password' => 'password',
         'roles' => 'roles',
+        'subjectDN' => 'subjectDN',
         'username' => 'username'
     ];
 
@@ -214,6 +218,7 @@ class CreateCompanyApiCredentialResponse implements ModelInterface, ArrayAccess,
         'id' => 'setId',
         'password' => 'setPassword',
         'roles' => 'setRoles',
+        'subjectDN' => 'setSubjectDN',
         'username' => 'setUsername'
     ];
 
@@ -234,6 +239,7 @@ class CreateCompanyApiCredentialResponse implements ModelInterface, ArrayAccess,
         'id' => 'getId',
         'password' => 'getPassword',
         'roles' => 'getRoles',
+        'subjectDN' => 'getSubjectDN',
         'username' => 'getUsername'
     ];
 
@@ -305,6 +311,7 @@ class CreateCompanyApiCredentialResponse implements ModelInterface, ArrayAccess,
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('password', $data ?? [], null);
         $this->setIfExists('roles', $data ?? [], null);
+        $this->setIfExists('subjectDN', $data ?? [], null);
         $this->setIfExists('username', $data ?? [], null);
     }
 
@@ -637,6 +644,30 @@ class CreateCompanyApiCredentialResponse implements ModelInterface, ArrayAccess,
     public function setRoles($roles)
     {
         $this->container['roles'] = $roles;
+
+        return $this;
+    }
+
+    /**
+     * Gets subjectDN
+     *
+     * @return string|null
+     */
+    public function getSubjectDN()
+    {
+        return $this->container['subjectDN'];
+    }
+
+    /**
+     * Sets subjectDN
+     *
+     * @param string|null $subjectDN The subject DN of the certificate issued by Adyen.
+     *
+     * @return self
+     */
+    public function setSubjectDN($subjectDN)
+    {
+        $this->container['subjectDN'] = $subjectDN;
 
         return $this;
     }

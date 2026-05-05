@@ -45,6 +45,7 @@ class StoreCreationWithMerchantCodeRequest implements ModelInterface, ArrayAcces
         'businessLineIds' => 'string[]',
         'description' => 'string',
         'externalReferenceId' => 'string',
+        'localizedInformation' => '\Adyen\Model\Management\LocalizedInformation',
         'merchantId' => 'string',
         'phoneNumber' => 'string',
         'reference' => 'string',
@@ -65,6 +66,7 @@ class StoreCreationWithMerchantCodeRequest implements ModelInterface, ArrayAcces
         'businessLineIds' => null,
         'description' => null,
         'externalReferenceId' => null,
+        'localizedInformation' => null,
         'merchantId' => null,
         'phoneNumber' => null,
         'reference' => null,
@@ -83,6 +85,7 @@ class StoreCreationWithMerchantCodeRequest implements ModelInterface, ArrayAcces
         'businessLineIds' => false,
         'description' => false,
         'externalReferenceId' => false,
+        'localizedInformation' => false,
         'merchantId' => false,
         'phoneNumber' => false,
         'reference' => false,
@@ -181,6 +184,7 @@ class StoreCreationWithMerchantCodeRequest implements ModelInterface, ArrayAcces
         'businessLineIds' => 'businessLineIds',
         'description' => 'description',
         'externalReferenceId' => 'externalReferenceId',
+        'localizedInformation' => 'localizedInformation',
         'merchantId' => 'merchantId',
         'phoneNumber' => 'phoneNumber',
         'reference' => 'reference',
@@ -199,6 +203,7 @@ class StoreCreationWithMerchantCodeRequest implements ModelInterface, ArrayAcces
         'businessLineIds' => 'setBusinessLineIds',
         'description' => 'setDescription',
         'externalReferenceId' => 'setExternalReferenceId',
+        'localizedInformation' => 'setLocalizedInformation',
         'merchantId' => 'setMerchantId',
         'phoneNumber' => 'setPhoneNumber',
         'reference' => 'setReference',
@@ -217,6 +222,7 @@ class StoreCreationWithMerchantCodeRequest implements ModelInterface, ArrayAcces
         'businessLineIds' => 'getBusinessLineIds',
         'description' => 'getDescription',
         'externalReferenceId' => 'getExternalReferenceId',
+        'localizedInformation' => 'getLocalizedInformation',
         'merchantId' => 'getMerchantId',
         'phoneNumber' => 'getPhoneNumber',
         'reference' => 'getReference',
@@ -286,6 +292,7 @@ class StoreCreationWithMerchantCodeRequest implements ModelInterface, ArrayAcces
         $this->setIfExists('businessLineIds', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('externalReferenceId', $data ?? [], null);
+        $this->setIfExists('localizedInformation', $data ?? [], null);
         $this->setIfExists('merchantId', $data ?? [], null);
         $this->setIfExists('phoneNumber', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
@@ -443,6 +450,30 @@ class StoreCreationWithMerchantCodeRequest implements ModelInterface, ArrayAcces
     public function setExternalReferenceId($externalReferenceId)
     {
         $this->container['externalReferenceId'] = $externalReferenceId;
+
+        return $this;
+    }
+
+    /**
+     * Gets localizedInformation
+     *
+     * @return \Adyen\Model\Management\LocalizedInformation|null
+     */
+    public function getLocalizedInformation()
+    {
+        return $this->container['localizedInformation'];
+    }
+
+    /**
+     * Sets localizedInformation
+     *
+     * @param \Adyen\Model\Management\LocalizedInformation|null $localizedInformation localizedInformation
+     *
+     * @return self
+     */
+    public function setLocalizedInformation($localizedInformation)
+    {
+        $this->container['localizedInformation'] = $localizedInformation;
 
         return $this;
     }
