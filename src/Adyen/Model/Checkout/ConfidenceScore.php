@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
- * ShopperTaxInfo Class Doc Comment
+ * ConfidenceScore Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
+class ConfidenceScore implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ShopperTaxInfo';
+    protected static $openAPIModelName = 'ConfidenceScore';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,8 +41,8 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'taxCountryCode' => 'string',
-        'taxIdentificationNumber' => 'string'
+        'errors' => 'string[]',
+        'score' => 'double'
     ];
 
     /**
@@ -53,8 +53,8 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'taxCountryCode' => null,
-        'taxIdentificationNumber' => null
+        'errors' => null,
+        'score' => 'double'
     ];
 
     /**
@@ -63,8 +63,8 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'taxCountryCode' => false,
-        'taxIdentificationNumber' => false
+        'errors' => false,
+        'score' => false
     ];
 
     /**
@@ -153,8 +153,8 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'taxCountryCode' => 'taxCountryCode',
-        'taxIdentificationNumber' => 'taxIdentificationNumber'
+        'errors' => 'errors',
+        'score' => 'score'
     ];
 
     /**
@@ -163,8 +163,8 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'taxCountryCode' => 'setTaxCountryCode',
-        'taxIdentificationNumber' => 'setTaxIdentificationNumber'
+        'errors' => 'setErrors',
+        'score' => 'setScore'
     ];
 
     /**
@@ -173,8 +173,8 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'taxCountryCode' => 'getTaxCountryCode',
-        'taxIdentificationNumber' => 'getTaxIdentificationNumber'
+        'errors' => 'getErrors',
+        'score' => 'getScore'
     ];
 
     /**
@@ -234,8 +234,8 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('taxCountryCode', $data ?? [], null);
-        $this->setIfExists('taxIdentificationNumber', $data ?? [], null);
+        $this->setIfExists('errors', $data ?? [], null);
+        $this->setIfExists('score', $data ?? [], null);
     }
 
     /**
@@ -265,12 +265,6 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['taxCountryCode'] === null) {
-            $invalidProperties[] = "'taxCountryCode' can't be null";
-        }
-        if ($this->container['taxIdentificationNumber'] === null) {
-            $invalidProperties[] = "'taxIdentificationNumber' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -287,49 +281,49 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets taxCountryCode
+     * Gets errors
      *
-     * @return string
+     * @return string[]|null
      */
-    public function getTaxCountryCode()
+    public function getErrors()
     {
-        return $this->container['taxCountryCode'];
+        return $this->container['errors'];
     }
 
     /**
-     * Sets taxCountryCode
+     * Sets errors
      *
-     * @param string $taxCountryCode The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code associated with the provided tax identification number. Currently used only for Indian PA-CB tax verification, when applicable.
+     * @param string[]|null $errors errors
      *
      * @return self
      */
-    public function setTaxCountryCode($taxCountryCode)
+    public function setErrors($errors)
     {
-        $this->container['taxCountryCode'] = $taxCountryCode;
+        $this->container['errors'] = $errors;
 
         return $this;
     }
 
     /**
-     * Gets taxIdentificationNumber
+     * Gets score
      *
-     * @return string
+     * @return double|null
      */
-    public function getTaxIdentificationNumber()
+    public function getScore()
     {
-        return $this->container['taxIdentificationNumber'];
+        return $this->container['score'];
     }
 
     /**
-     * Sets taxIdentificationNumber
+     * Sets score
      *
-     * @param string $taxIdentificationNumber The shopper’s tax identification number.
+     * @param double|null $score score
      *
      * @return self
      */
-    public function setTaxIdentificationNumber($taxIdentificationNumber)
+    public function setScore($score)
     {
-        $this->container['taxIdentificationNumber'] = $taxIdentificationNumber;
+        $this->container['score'] = $score;
 
         return $this;
     }

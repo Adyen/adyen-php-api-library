@@ -59,6 +59,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'billingAddress' => 'string',
         'deliveryAddress' => 'string',
         'personalDetails' => 'string',
+        'feeType' => 'string',
         'amazonPayToken' => 'string',
         'checkoutSessionId' => 'string',
         'beneficiaryId' => 'string',
@@ -94,6 +95,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'onFileGrantId' => 'string',
         'requestId' => 'string',
         'subtype' => 'string',
+        'bankBranchCode' => 'string',
         'firstName' => 'string',
         'lastName' => 'string',
         'shopperEmail' => 'string',
@@ -101,6 +103,8 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'bankCode' => 'string',
         'googlePayCardNetwork' => 'string',
         'googlePayToken' => 'string',
+        'klarnaNetworkData' => 'string',
+        'klarnaNetworkSessionToken' => 'string',
         'masterpassTransactionId' => 'string',
         'orderID' => 'string',
         'payeePreferred' => 'string',
@@ -109,6 +113,8 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'shopperAccountIdentifier' => 'string',
         'virtualPaymentAddress' => 'string',
         'pixRecurring' => '\Adyen\Model\Checkout\PixRecurring',
+        'deviceId' => 'string',
+        'riskSignals' => '\Adyen\Model\Checkout\PixPayByBankRiskSignals',
         'bank' => 'string',
         'clientType' => 'string',
         'identification' => 'string',
@@ -147,6 +153,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'billingAddress' => null,
         'deliveryAddress' => null,
         'personalDetails' => null,
+        'feeType' => null,
         'amazonPayToken' => null,
         'checkoutSessionId' => null,
         'beneficiaryId' => null,
@@ -182,6 +189,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'onFileGrantId' => null,
         'requestId' => null,
         'subtype' => null,
+        'bankBranchCode' => null,
         'firstName' => null,
         'lastName' => null,
         'shopperEmail' => null,
@@ -189,6 +197,8 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'bankCode' => null,
         'googlePayCardNetwork' => null,
         'googlePayToken' => null,
+        'klarnaNetworkData' => null,
+        'klarnaNetworkSessionToken' => null,
         'masterpassTransactionId' => null,
         'orderID' => null,
         'payeePreferred' => null,
@@ -197,6 +207,8 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'shopperAccountIdentifier' => null,
         'virtualPaymentAddress' => null,
         'pixRecurring' => null,
+        'deviceId' => null,
+        'riskSignals' => null,
         'bank' => null,
         'clientType' => null,
         'identification' => null,
@@ -233,6 +245,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'billingAddress' => false,
         'deliveryAddress' => false,
         'personalDetails' => false,
+        'feeType' => false,
         'amazonPayToken' => false,
         'checkoutSessionId' => false,
         'beneficiaryId' => false,
@@ -268,6 +281,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'onFileGrantId' => false,
         'requestId' => false,
         'subtype' => false,
+        'bankBranchCode' => false,
         'firstName' => false,
         'lastName' => false,
         'shopperEmail' => false,
@@ -275,6 +289,8 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'bankCode' => false,
         'googlePayCardNetwork' => false,
         'googlePayToken' => false,
+        'klarnaNetworkData' => false,
+        'klarnaNetworkSessionToken' => false,
         'masterpassTransactionId' => false,
         'orderID' => false,
         'payeePreferred' => false,
@@ -283,6 +299,8 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'shopperAccountIdentifier' => false,
         'virtualPaymentAddress' => false,
         'pixRecurring' => false,
+        'deviceId' => false,
+        'riskSignals' => false,
         'bank' => false,
         'clientType' => false,
         'identification' => false,
@@ -399,6 +417,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'billingAddress' => 'billingAddress',
         'deliveryAddress' => 'deliveryAddress',
         'personalDetails' => 'personalDetails',
+        'feeType' => 'feeType',
         'amazonPayToken' => 'amazonPayToken',
         'checkoutSessionId' => 'checkoutSessionId',
         'beneficiaryId' => 'beneficiaryId',
@@ -434,6 +453,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'onFileGrantId' => 'onFileGrantId',
         'requestId' => 'requestId',
         'subtype' => 'subtype',
+        'bankBranchCode' => 'bankBranchCode',
         'firstName' => 'firstName',
         'lastName' => 'lastName',
         'shopperEmail' => 'shopperEmail',
@@ -441,6 +461,8 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'bankCode' => 'bankCode',
         'googlePayCardNetwork' => 'googlePayCardNetwork',
         'googlePayToken' => 'googlePayToken',
+        'klarnaNetworkData' => 'klarnaNetworkData',
+        'klarnaNetworkSessionToken' => 'klarnaNetworkSessionToken',
         'masterpassTransactionId' => 'masterpassTransactionId',
         'orderID' => 'orderID',
         'payeePreferred' => 'payeePreferred',
@@ -449,6 +471,8 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'shopperAccountIdentifier' => 'shopperAccountIdentifier',
         'virtualPaymentAddress' => 'virtualPaymentAddress',
         'pixRecurring' => 'pixRecurring',
+        'deviceId' => 'deviceId',
+        'riskSignals' => 'riskSignals',
         'bank' => 'bank',
         'clientType' => 'clientType',
         'identification' => 'identification',
@@ -485,6 +509,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'billingAddress' => 'setBillingAddress',
         'deliveryAddress' => 'setDeliveryAddress',
         'personalDetails' => 'setPersonalDetails',
+        'feeType' => 'setFeeType',
         'amazonPayToken' => 'setAmazonPayToken',
         'checkoutSessionId' => 'setCheckoutSessionId',
         'beneficiaryId' => 'setBeneficiaryId',
@@ -520,6 +545,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'onFileGrantId' => 'setOnFileGrantId',
         'requestId' => 'setRequestId',
         'subtype' => 'setSubtype',
+        'bankBranchCode' => 'setBankBranchCode',
         'firstName' => 'setFirstName',
         'lastName' => 'setLastName',
         'shopperEmail' => 'setShopperEmail',
@@ -527,6 +553,8 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'bankCode' => 'setBankCode',
         'googlePayCardNetwork' => 'setGooglePayCardNetwork',
         'googlePayToken' => 'setGooglePayToken',
+        'klarnaNetworkData' => 'setKlarnaNetworkData',
+        'klarnaNetworkSessionToken' => 'setKlarnaNetworkSessionToken',
         'masterpassTransactionId' => 'setMasterpassTransactionId',
         'orderID' => 'setOrderID',
         'payeePreferred' => 'setPayeePreferred',
@@ -535,6 +563,8 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'shopperAccountIdentifier' => 'setShopperAccountIdentifier',
         'virtualPaymentAddress' => 'setVirtualPaymentAddress',
         'pixRecurring' => 'setPixRecurring',
+        'deviceId' => 'setDeviceId',
+        'riskSignals' => 'setRiskSignals',
         'bank' => 'setBank',
         'clientType' => 'setClientType',
         'identification' => 'setIdentification',
@@ -571,6 +601,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'billingAddress' => 'getBillingAddress',
         'deliveryAddress' => 'getDeliveryAddress',
         'personalDetails' => 'getPersonalDetails',
+        'feeType' => 'getFeeType',
         'amazonPayToken' => 'getAmazonPayToken',
         'checkoutSessionId' => 'getCheckoutSessionId',
         'beneficiaryId' => 'getBeneficiaryId',
@@ -606,6 +637,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'onFileGrantId' => 'getOnFileGrantId',
         'requestId' => 'getRequestId',
         'subtype' => 'getSubtype',
+        'bankBranchCode' => 'getBankBranchCode',
         'firstName' => 'getFirstName',
         'lastName' => 'getLastName',
         'shopperEmail' => 'getShopperEmail',
@@ -613,6 +645,8 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'bankCode' => 'getBankCode',
         'googlePayCardNetwork' => 'getGooglePayCardNetwork',
         'googlePayToken' => 'getGooglePayToken',
+        'klarnaNetworkData' => 'getKlarnaNetworkData',
+        'klarnaNetworkSessionToken' => 'getKlarnaNetworkSessionToken',
         'masterpassTransactionId' => 'getMasterpassTransactionId',
         'orderID' => 'getOrderID',
         'payeePreferred' => 'getPayeePreferred',
@@ -621,6 +655,8 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'shopperAccountIdentifier' => 'getShopperAccountIdentifier',
         'virtualPaymentAddress' => 'getVirtualPaymentAddress',
         'pixRecurring' => 'getPixRecurring',
+        'deviceId' => 'getDeviceId',
+        'riskSignals' => 'getRiskSignals',
         'bank' => 'getBank',
         'clientType' => 'getClientType',
         'identification' => 'getIdentification',
@@ -707,6 +743,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('billingAddress', $data ?? [], null);
         $this->setIfExists('deliveryAddress', $data ?? [], null);
         $this->setIfExists('personalDetails', $data ?? [], null);
+        $this->setIfExists('feeType', $data ?? [], null);
         $this->setIfExists('amazonPayToken', $data ?? [], null);
         $this->setIfExists('checkoutSessionId', $data ?? [], null);
         $this->setIfExists('beneficiaryId', $data ?? [], null);
@@ -742,6 +779,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('onFileGrantId', $data ?? [], null);
         $this->setIfExists('requestId', $data ?? [], null);
         $this->setIfExists('subtype', $data ?? [], null);
+        $this->setIfExists('bankBranchCode', $data ?? [], null);
         $this->setIfExists('firstName', $data ?? [], null);
         $this->setIfExists('lastName', $data ?? [], null);
         $this->setIfExists('shopperEmail', $data ?? [], null);
@@ -749,6 +787,8 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('bankCode', $data ?? [], null);
         $this->setIfExists('googlePayCardNetwork', $data ?? [], null);
         $this->setIfExists('googlePayToken', $data ?? [], null);
+        $this->setIfExists('klarnaNetworkData', $data ?? [], null);
+        $this->setIfExists('klarnaNetworkSessionToken', $data ?? [], null);
         $this->setIfExists('masterpassTransactionId', $data ?? [], null);
         $this->setIfExists('orderID', $data ?? [], null);
         $this->setIfExists('payeePreferred', $data ?? [], null);
@@ -757,6 +797,8 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('shopperAccountIdentifier', $data ?? [], null);
         $this->setIfExists('virtualPaymentAddress', $data ?? [], null);
         $this->setIfExists('pixRecurring', $data ?? [], null);
+        $this->setIfExists('deviceId', $data ?? [], null);
+        $this->setIfExists('riskSignals', $data ?? [], null);
         $this->setIfExists('bank', $data ?? [], null);
         $this->setIfExists('clientType', $data ?? [], null);
         $this->setIfExists('identification', $data ?? [], null);
@@ -809,6 +851,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         if ($this->container['type'] === null) {
             $invalidProperties[] = "'type' can't be null";
         }
+
 
         if ($this->container['applePayToken'] === null) {
             $invalidProperties[] = "'applePayToken' can't be null";
@@ -1264,6 +1307,30 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
+     * Gets feeType
+     *
+     * @return string|null
+     */
+    public function getFeeType()
+    {
+        return $this->container['feeType'];
+    }
+
+    /**
+     * Sets feeType
+     *
+     * @param string|null $feeType **Alma payment request fee type**
+     *
+     * @return self
+     */
+    public function setFeeType($feeType)
+    {
+        $this->container['feeType'] = $feeType;
+
+        return $this;
+    }
+
+    /**
      * Gets amazonPayToken
      *
      * @return string|null
@@ -1420,7 +1487,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets issuer
      *
-     * @param string $issuer The PayByBank issuer value of the shopper's selected bank.
+     * @param string $issuer issuer
      *
      * @return self
      */
@@ -2106,6 +2173,30 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
+     * Gets bankBranchCode
+     *
+     * @return string|null
+     */
+    public function getBankBranchCode()
+    {
+        return $this->container['bankBranchCode'];
+    }
+
+    /**
+     * Sets bankBranchCode
+     *
+     * @param string|null $bankBranchCode The shopper's BSB (their bank's branch code) number used to complete payment.
+     *
+     * @return self
+     */
+    public function setBankBranchCode($bankBranchCode)
+    {
+        $this->container['bankBranchCode'] = $bankBranchCode;
+
+        return $this;
+    }
+
+    /**
      * Gets firstName
      *
      * @return string
@@ -2269,6 +2360,54 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setGooglePayToken($googlePayToken)
     {
         $this->container['googlePayToken'] = $googlePayToken;
+
+        return $this;
+    }
+
+    /**
+     * Gets klarnaNetworkData
+     *
+     * @return string|null
+     */
+    public function getKlarnaNetworkData()
+    {
+        return $this->container['klarnaNetworkData'];
+    }
+
+    /**
+     * Sets klarnaNetworkData
+     *
+     * @param string|null $klarnaNetworkData A string containing a structured JSON object. This is a passthrough field used to enable custom features or data exchange with Klarna.
+     *
+     * @return self
+     */
+    public function setKlarnaNetworkData($klarnaNetworkData)
+    {
+        $this->container['klarnaNetworkData'] = $klarnaNetworkData;
+
+        return $this;
+    }
+
+    /**
+     * Gets klarnaNetworkSessionToken
+     *
+     * @return string|null
+     */
+    public function getKlarnaNetworkSessionToken()
+    {
+        return $this->container['klarnaNetworkSessionToken'];
+    }
+
+    /**
+     * Sets klarnaNetworkSessionToken
+     *
+     * @param string|null $klarnaNetworkSessionToken The token obtained from the Klarna SDK during an Express Checkout flow.
+     *
+     * @return self
+     */
+    public function setKlarnaNetworkSessionToken($klarnaNetworkSessionToken)
+    {
+        $this->container['klarnaNetworkSessionToken'] = $klarnaNetworkSessionToken;
 
         return $this;
     }
@@ -2461,6 +2600,54 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setPixRecurring($pixRecurring)
     {
         $this->container['pixRecurring'] = $pixRecurring;
+
+        return $this;
+    }
+
+    /**
+     * Gets deviceId
+     *
+     * @return string|null
+     */
+    public function getDeviceId()
+    {
+        return $this->container['deviceId'];
+    }
+
+    /**
+     * Sets deviceId
+     *
+     * @param string|null $deviceId deviceId
+     *
+     * @return self
+     */
+    public function setDeviceId($deviceId)
+    {
+        $this->container['deviceId'] = $deviceId;
+
+        return $this;
+    }
+
+    /**
+     * Gets riskSignals
+     *
+     * @return \Adyen\Model\Checkout\PixPayByBankRiskSignals|null
+     */
+    public function getRiskSignals()
+    {
+        return $this->container['riskSignals'];
+    }
+
+    /**
+     * Sets riskSignals
+     *
+     * @param \Adyen\Model\Checkout\PixPayByBankRiskSignals|null $riskSignals riskSignals
+     *
+     * @return self
+     */
+    public function setRiskSignals($riskSignals)
+    {
+        $this->container['riskSignals'] = $riskSignals;
 
         return $this;
     }
