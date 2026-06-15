@@ -19,21 +19,21 @@ use ArrayAccess;
 use Adyen\Model\TransferWebhooks\ObjectSerializer;
 
 /**
- * TransferEventEventsDataInner Class Doc Comment
+ * UltimatePartyIdentification Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \JsonSerializable
+class UltimatePartyIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    public const DISCRIMINATOR = 'type';
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
       *
       * @var string
       */
-    protected static $openAPIModelName = 'TransferEvent_eventsData_inner';
+    protected static $openAPIModelName = 'UltimatePartyIdentification';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,12 +41,16 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
       * @var string[]
       */
     protected static $openAPITypes = [
-        'interchangeAmount' => '\Adyen\Model\TransferWebhooks\Amount',
-        'interchangeRateIndicator' => 'string',
+        'address' => '\Adyen\Model\TransferWebhooks\Address',
+        'dateOfBirth' => '\DateTime',
+        'email' => 'string',
+        'firstName' => 'string',
+        'fullName' => 'string',
+        'fundingInstrument' => '\Adyen\Model\TransferWebhooks\FundingInstrument',
+        'lastName' => 'string',
+        'reference' => 'string',
         'type' => 'string',
-        'captureCycleId' => 'string',
-        'airline' => '\Adyen\Model\TransferWebhooks\Airline',
-        'lodging' => '\Adyen\Model\TransferWebhooks\Lodging[]'
+        'url' => 'string'
     ];
 
     /**
@@ -57,12 +61,16 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'interchangeAmount' => null,
-        'interchangeRateIndicator' => null,
+        'address' => null,
+        'dateOfBirth' => 'date',
+        'email' => null,
+        'firstName' => null,
+        'fullName' => null,
+        'fundingInstrument' => null,
+        'lastName' => null,
+        'reference' => null,
         'type' => null,
-        'captureCycleId' => null,
-        'airline' => null,
-        'lodging' => null
+        'url' => null
     ];
 
     /**
@@ -71,12 +79,16 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'interchangeAmount' => false,
-        'interchangeRateIndicator' => false,
+        'address' => false,
+        'dateOfBirth' => false,
+        'email' => false,
+        'firstName' => false,
+        'fullName' => false,
+        'fundingInstrument' => false,
+        'lastName' => false,
+        'reference' => false,
         'type' => false,
-        'captureCycleId' => false,
-        'airline' => false,
-        'lodging' => false
+        'url' => false
     ];
 
     /**
@@ -165,12 +177,16 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $attributeMap = [
-        'interchangeAmount' => 'interchangeAmount',
-        'interchangeRateIndicator' => 'interchangeRateIndicator',
+        'address' => 'address',
+        'dateOfBirth' => 'dateOfBirth',
+        'email' => 'email',
+        'firstName' => 'firstName',
+        'fullName' => 'fullName',
+        'fundingInstrument' => 'fundingInstrument',
+        'lastName' => 'lastName',
+        'reference' => 'reference',
         'type' => 'type',
-        'captureCycleId' => 'captureCycleId',
-        'airline' => 'airline',
-        'lodging' => 'lodging'
+        'url' => 'url'
     ];
 
     /**
@@ -179,12 +195,16 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $setters = [
-        'interchangeAmount' => 'setInterchangeAmount',
-        'interchangeRateIndicator' => 'setInterchangeRateIndicator',
+        'address' => 'setAddress',
+        'dateOfBirth' => 'setDateOfBirth',
+        'email' => 'setEmail',
+        'firstName' => 'setFirstName',
+        'fullName' => 'setFullName',
+        'fundingInstrument' => 'setFundingInstrument',
+        'lastName' => 'setLastName',
+        'reference' => 'setReference',
         'type' => 'setType',
-        'captureCycleId' => 'setCaptureCycleId',
-        'airline' => 'setAirline',
-        'lodging' => 'setLodging'
+        'url' => 'setUrl'
     ];
 
     /**
@@ -193,12 +213,16 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $getters = [
-        'interchangeAmount' => 'getInterchangeAmount',
-        'interchangeRateIndicator' => 'getInterchangeRateIndicator',
+        'address' => 'getAddress',
+        'dateOfBirth' => 'getDateOfBirth',
+        'email' => 'getEmail',
+        'firstName' => 'getFirstName',
+        'fullName' => 'getFullName',
+        'fundingInstrument' => 'getFundingInstrument',
+        'lastName' => 'getLastName',
+        'reference' => 'getReference',
         'type' => 'getType',
-        'captureCycleId' => 'getCaptureCycleId',
-        'airline' => 'getAirline',
-        'lodging' => 'getLodging'
+        'url' => 'getUrl'
     ];
 
     /**
@@ -242,6 +266,23 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
         return self::$openAPIModelName;
     }
 
+    public const TYPE_INDIVIDUAL = 'individual';
+    public const TYPE_ORGANIZATION = 'organization';
+    public const TYPE_UNKNOWN = 'unknown';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_INDIVIDUAL,
+            self::TYPE_ORGANIZATION,
+            self::TYPE_UNKNOWN,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -257,15 +298,16 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('interchangeAmount', $data ?? [], null);
-        $this->setIfExists('interchangeRateIndicator', $data ?? [], null);
+        $this->setIfExists('address', $data ?? [], null);
+        $this->setIfExists('dateOfBirth', $data ?? [], null);
+        $this->setIfExists('email', $data ?? [], null);
+        $this->setIfExists('firstName', $data ?? [], null);
+        $this->setIfExists('fullName', $data ?? [], null);
+        $this->setIfExists('fundingInstrument', $data ?? [], null);
+        $this->setIfExists('lastName', $data ?? [], null);
+        $this->setIfExists('reference', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('captureCycleId', $data ?? [], null);
-        $this->setIfExists('airline', $data ?? [], null);
-        $this->setIfExists('lodging', $data ?? [], null);
-
-        // Initialize discriminator property with the model name.
-        $this->container['type'] = static::$openAPIModelName;
+        $this->setIfExists('url', $data ?? [], null);
     }
 
     /**
@@ -295,8 +337,13 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
     {
         $invalidProperties = [];
 
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
         }
 
         return $invalidProperties;
@@ -315,49 +362,193 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
 
 
     /**
-     * Gets interchangeAmount
+     * Gets address
      *
-     * @return \Adyen\Model\TransferWebhooks\Amount|null
+     * @return \Adyen\Model\TransferWebhooks\Address|null
      */
-    public function getInterchangeAmount()
+    public function getAddress()
     {
-        return $this->container['interchangeAmount'];
+        return $this->container['address'];
     }
 
     /**
-     * Sets interchangeAmount
+     * Sets address
      *
-     * @param \Adyen\Model\TransferWebhooks\Amount|null $interchangeAmount interchangeAmount
+     * @param \Adyen\Model\TransferWebhooks\Address|null $address address
      *
      * @return self
      */
-    public function setInterchangeAmount($interchangeAmount)
+    public function setAddress($address)
     {
-        $this->container['interchangeAmount'] = $interchangeAmount;
+        $this->container['address'] = $address;
 
         return $this;
     }
 
     /**
-     * Gets interchangeRateIndicator
+     * Gets dateOfBirth
      *
-     * @return string|null
+     * @return \DateTime|null
      */
-    public function getInterchangeRateIndicator()
+    public function getDateOfBirth()
     {
-        return $this->container['interchangeRateIndicator'];
+        return $this->container['dateOfBirth'];
     }
 
     /**
-     * Sets interchangeRateIndicator
+     * Sets dateOfBirth
      *
-     * @param string|null $interchangeRateIndicator A 3-character alphanumeric code assigned by Visa that identifies the specific interchange reimbursement program a transaction qualified for. The code is assigned based on the card type, entry mode, and security data provided.
+     * @param \DateTime|null $dateOfBirth The date of birth of the individual in [ISO-8601](https://www.w3.org/TR/NOTE-datetime) format. For example, **YYYY-MM-DD**.  Allowed only when `type` is **individual**.
      *
      * @return self
      */
-    public function setInterchangeRateIndicator($interchangeRateIndicator)
+    public function setDateOfBirth($dateOfBirth)
     {
-        $this->container['interchangeRateIndicator'] = $interchangeRateIndicator;
+        $this->container['dateOfBirth'] = $dateOfBirth;
+
+        return $this;
+    }
+
+    /**
+     * Gets email
+     *
+     * @return string|null
+     */
+    public function getEmail()
+    {
+        return $this->container['email'];
+    }
+
+    /**
+     * Sets email
+     *
+     * @param string|null $email The email address of the organization or individual. Maximum length: 254 characters.
+     *
+     * @return self
+     */
+    public function setEmail($email)
+    {
+        $this->container['email'] = $email;
+
+        return $this;
+    }
+
+    /**
+     * Gets firstName
+     *
+     * @return string|null
+     */
+    public function getFirstName()
+    {
+        return $this->container['firstName'];
+    }
+
+    /**
+     * Sets firstName
+     *
+     * @param string|null $firstName The first name of the individual.  Supported characters: [a-z] [A-Z] - . / — and space.  This parameter is: - Allowed only when `type` is **individual**. - Required when `category` is **card**.
+     *
+     * @return self
+     */
+    public function setFirstName($firstName)
+    {
+        $this->container['firstName'] = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * Gets fullName
+     *
+     * @return string|null
+     */
+    public function getFullName()
+    {
+        return $this->container['fullName'];
+    }
+
+    /**
+     * Sets fullName
+     *
+     * @param string|null $fullName The full name of the entity that owns the bank account or card.  Supported characters: [a-z] [A-Z] [0-9] , . ; : - — / \\ + & ! ? @ ( ) \" ' and space.  Required when `category` is **bank**.
+     *
+     * @return self
+     */
+    public function setFullName($fullName)
+    {
+        $this->container['fullName'] = $fullName;
+
+        return $this;
+    }
+
+    /**
+     * Gets fundingInstrument
+     *
+     * @return \Adyen\Model\TransferWebhooks\FundingInstrument|null
+     */
+    public function getFundingInstrument()
+    {
+        return $this->container['fundingInstrument'];
+    }
+
+    /**
+     * Sets fundingInstrument
+     *
+     * @param \Adyen\Model\TransferWebhooks\FundingInstrument|null $fundingInstrument fundingInstrument
+     *
+     * @return self
+     */
+    public function setFundingInstrument($fundingInstrument)
+    {
+        $this->container['fundingInstrument'] = $fundingInstrument;
+
+        return $this;
+    }
+
+    /**
+     * Gets lastName
+     *
+     * @return string|null
+     */
+    public function getLastName()
+    {
+        return $this->container['lastName'];
+    }
+
+    /**
+     * Sets lastName
+     *
+     * @param string|null $lastName The last name of the individual.  Supported characters: [a-z] [A-Z] - . / — and space.  This parameter is: - Allowed only when `type` is **individual**. - Required when `category` is **card**.
+     *
+     * @return self
+     */
+    public function setLastName($lastName)
+    {
+        $this->container['lastName'] = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Gets reference
+     *
+     * @return string|null
+     */
+    public function getReference()
+    {
+        return $this->container['reference'];
+    }
+
+    /**
+     * Sets reference
+     *
+     * @param string|null $reference A unique reference to identify the party or counterparty involved in the transfer. For example, your client's unique wallet or payee ID.  Required when you include `cardIdentification.storedPaymentMethodId`.
+     *
+     * @return self
+     */
+    public function setReference($reference)
+    {
+        $this->container['reference'] = $reference;
 
         return $this;
     }
@@ -365,7 +556,7 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets type
      *
-     * @return string
+     * @return string|null
      */
     public function getType()
     {
@@ -375,85 +566,47 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets type
      *
-     * @param string $type The type of events data.   Possible values:    - **merchantPurchaseData**: merchant purchase data
+     * @param string|null $type The type of entity that owns the bank account or card.  Possible values: **individual**, **organization**, or **unknown**.  Required when `category` is **card**. In this case, the value must be **individual**.
      *
      * @return self
      */
     public function setType($type)
     {
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            error_log(
+                sprintf(
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
+                    $type,
+                    implode(', ', $allowedValues)
+                )
+            );
+        }
         $this->container['type'] = $type;
 
         return $this;
     }
 
     /**
-     * Gets captureCycleId
+     * Gets url
      *
      * @return string|null
      */
-    public function getCaptureCycleId()
+    public function getUrl()
     {
-        return $this->container['captureCycleId'];
+        return $this->container['url'];
     }
 
     /**
-     * Sets captureCycleId
+     * Sets url
      *
-     * @param string|null $captureCycleId captureCycleId associated with transfer event.
+     * @param string|null $url The URL of the organization or individual. Maximum length: 255 characters.
      *
      * @return self
      */
-    public function setCaptureCycleId($captureCycleId)
+    public function setUrl($url)
     {
-        $this->container['captureCycleId'] = $captureCycleId;
-
-        return $this;
-    }
-
-    /**
-     * Gets airline
-     *
-     * @return \Adyen\Model\TransferWebhooks\Airline|null
-     */
-    public function getAirline()
-    {
-        return $this->container['airline'];
-    }
-
-    /**
-     * Sets airline
-     *
-     * @param \Adyen\Model\TransferWebhooks\Airline|null $airline airline
-     *
-     * @return self
-     */
-    public function setAirline($airline)
-    {
-        $this->container['airline'] = $airline;
-
-        return $this;
-    }
-
-    /**
-     * Gets lodging
-     *
-     * @return \Adyen\Model\TransferWebhooks\Lodging[]|null
-     */
-    public function getLodging()
-    {
-        return $this->container['lodging'];
-    }
-
-    /**
-     * Sets lodging
-     *
-     * @param \Adyen\Model\TransferWebhooks\Lodging[]|null $lodging Lodging information.
-     *
-     * @return self
-     */
-    public function setLodging($lodging)
-    {
-        $this->container['lodging'] = $lodging;
+        $this->container['url'] = $url;
 
         return $this;
     }

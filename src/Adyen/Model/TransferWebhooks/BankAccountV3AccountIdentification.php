@@ -28,7 +28,7 @@ use Adyen\Model\TransferWebhooks\ObjectSerializer;
  */
 class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    public const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = 'type';
 
     /**
       * The original name of the model.
@@ -53,9 +53,9 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
         'institutionNumber' => 'string',
         'transitNumber' => 'string',
         'clearingCode' => 'string',
+        'bic' => 'string',
         'iban' => 'string',
         'additionalBankIdentification' => '\Adyen\Model\TransferWebhooks\AdditionalBankIdentification',
-        'bic' => 'string',
         'clearingNumber' => 'string',
         'sortCode' => 'string',
         'routingNumber' => 'string'
@@ -79,9 +79,9 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
         'institutionNumber' => null,
         'transitNumber' => null,
         'clearingCode' => null,
+        'bic' => null,
         'iban' => null,
         'additionalBankIdentification' => null,
-        'bic' => null,
         'clearingNumber' => null,
         'sortCode' => null,
         'routingNumber' => null
@@ -103,9 +103,9 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
         'institutionNumber' => false,
         'transitNumber' => false,
         'clearingCode' => false,
+        'bic' => false,
         'iban' => false,
         'additionalBankIdentification' => false,
-        'bic' => false,
         'clearingNumber' => false,
         'sortCode' => false,
         'routingNumber' => false
@@ -207,9 +207,9 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
         'institutionNumber' => 'institutionNumber',
         'transitNumber' => 'transitNumber',
         'clearingCode' => 'clearingCode',
+        'bic' => 'bic',
         'iban' => 'iban',
         'additionalBankIdentification' => 'additionalBankIdentification',
-        'bic' => 'bic',
         'clearingNumber' => 'clearingNumber',
         'sortCode' => 'sortCode',
         'routingNumber' => 'routingNumber'
@@ -231,9 +231,9 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
         'institutionNumber' => 'setInstitutionNumber',
         'transitNumber' => 'setTransitNumber',
         'clearingCode' => 'setClearingCode',
+        'bic' => 'setBic',
         'iban' => 'setIban',
         'additionalBankIdentification' => 'setAdditionalBankIdentification',
-        'bic' => 'setBic',
         'clearingNumber' => 'setClearingNumber',
         'sortCode' => 'setSortCode',
         'routingNumber' => 'setRoutingNumber'
@@ -255,9 +255,9 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
         'institutionNumber' => 'getInstitutionNumber',
         'transitNumber' => 'getTransitNumber',
         'clearingCode' => 'getClearingCode',
+        'bic' => 'getBic',
         'iban' => 'getIban',
         'additionalBankIdentification' => 'getAdditionalBankIdentification',
-        'bic' => 'getBic',
         'clearingNumber' => 'getClearingNumber',
         'sortCode' => 'getSortCode',
         'routingNumber' => 'getRoutingNumber'
@@ -329,12 +329,15 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
         $this->setIfExists('institutionNumber', $data ?? [], null);
         $this->setIfExists('transitNumber', $data ?? [], null);
         $this->setIfExists('clearingCode', $data ?? [], null);
+        $this->setIfExists('bic', $data ?? [], null);
         $this->setIfExists('iban', $data ?? [], null);
         $this->setIfExists('additionalBankIdentification', $data ?? [], null);
-        $this->setIfExists('bic', $data ?? [], null);
         $this->setIfExists('clearingNumber', $data ?? [], null);
         $this->setIfExists('sortCode', $data ?? [], null);
         $this->setIfExists('routingNumber', $data ?? [], null);
+
+        // Initialize discriminator property with the model name.
+        $this->container['type'] = static::$openAPIModelName;
     }
 
     /**
@@ -390,11 +393,11 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
         if ($this->container['clearingCode'] === null) {
             $invalidProperties[] = "'clearingCode' can't be null";
         }
-        if ($this->container['iban'] === null) {
-            $invalidProperties[] = "'iban' can't be null";
-        }
         if ($this->container['bic'] === null) {
             $invalidProperties[] = "'bic' can't be null";
+        }
+        if ($this->container['iban'] === null) {
+            $invalidProperties[] = "'iban' can't be null";
         }
         if ($this->container['clearingNumber'] === null) {
             $invalidProperties[] = "'clearingNumber' can't be null";
@@ -661,6 +664,30 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
     }
 
     /**
+     * Gets bic
+     *
+     * @return string
+     */
+    public function getBic()
+    {
+        return $this->container['bic'];
+    }
+
+    /**
+     * Sets bic
+     *
+     * @param string $bic The bank's 8- or 11-character BIC or SWIFT code.
+     *
+     * @return self
+     */
+    public function setBic($bic)
+    {
+        $this->container['bic'] = $bic;
+
+        return $this;
+    }
+
+    /**
      * Gets iban
      *
      * @return string
@@ -704,30 +731,6 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
     public function setAdditionalBankIdentification($additionalBankIdentification)
     {
         $this->container['additionalBankIdentification'] = $additionalBankIdentification;
-
-        return $this;
-    }
-
-    /**
-     * Gets bic
-     *
-     * @return string
-     */
-    public function getBic()
-    {
-        return $this->container['bic'];
-    }
-
-    /**
-     * Sets bic
-     *
-     * @param string $bic The bank's 8- or 11-character BIC or SWIFT code.
-     *
-     * @return self
-     */
-    public function setBic($bic)
-    {
-        $this->container['bic'] = $bic;
 
         return $this;
     }

@@ -28,7 +28,7 @@ use Adyen\Model\TransferWebhooks\ObjectSerializer;
  */
 class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    public const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = 'type';
 
     /**
       * The original name of the model.
@@ -328,6 +328,9 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
         $this->setIfExists('paymentMerchantReference', $data ?? [], null);
         $this->setIfExists('platformPaymentType', $data ?? [], null);
         $this->setIfExists('pspPaymentReference', $data ?? [], null);
+
+        // Initialize discriminator property with the model name.
+        $this->container['type'] = static::$openAPIModelName;
     }
 
     /**
@@ -534,7 +537,7 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets processingType
      *
-     * @param string|null $processingType Contains information about how the payment was processed. For example, **ecommerce** for online or **pos** for in-person payments.
+     * @param string|null $processingType Contains information about how the payment was processed.  Possible values: **atmWithdraw**, **balanceInquiry**, **ecommerce**, **moto**, **pos**, **purchaseWithCashback**, **recurring**, **token**.
      *
      * @return self
      */
