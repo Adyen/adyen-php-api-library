@@ -57,6 +57,7 @@ class RecurringDetail implements ModelInterface, ArrayAccess, \JsonSerializable
         'shopperName' => '\Adyen\Model\Recurring\Name',
         'socialSecurityNumber' => 'string',
         'tokenDetails' => '\Adyen\Model\Recurring\TokenDetails',
+        'transactionLinkId' => 'string',
         'variant' => 'string'
     ];
 
@@ -84,6 +85,7 @@ class RecurringDetail implements ModelInterface, ArrayAccess, \JsonSerializable
         'shopperName' => null,
         'socialSecurityNumber' => null,
         'tokenDetails' => null,
+        'transactionLinkId' => null,
         'variant' => null
     ];
 
@@ -109,6 +111,7 @@ class RecurringDetail implements ModelInterface, ArrayAccess, \JsonSerializable
         'shopperName' => false,
         'socialSecurityNumber' => false,
         'tokenDetails' => false,
+        'transactionLinkId' => false,
         'variant' => false
     ];
 
@@ -214,6 +217,7 @@ class RecurringDetail implements ModelInterface, ArrayAccess, \JsonSerializable
         'shopperName' => 'shopperName',
         'socialSecurityNumber' => 'socialSecurityNumber',
         'tokenDetails' => 'tokenDetails',
+        'transactionLinkId' => 'transactionLinkId',
         'variant' => 'variant'
     ];
 
@@ -239,6 +243,7 @@ class RecurringDetail implements ModelInterface, ArrayAccess, \JsonSerializable
         'shopperName' => 'setShopperName',
         'socialSecurityNumber' => 'setSocialSecurityNumber',
         'tokenDetails' => 'setTokenDetails',
+        'transactionLinkId' => 'setTransactionLinkId',
         'variant' => 'setVariant'
     ];
 
@@ -264,6 +269,7 @@ class RecurringDetail implements ModelInterface, ArrayAccess, \JsonSerializable
         'shopperName' => 'getShopperName',
         'socialSecurityNumber' => 'getSocialSecurityNumber',
         'tokenDetails' => 'getTokenDetails',
+        'transactionLinkId' => 'getTransactionLinkId',
         'variant' => 'getVariant'
     ];
 
@@ -340,6 +346,7 @@ class RecurringDetail implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('shopperName', $data ?? [], null);
         $this->setIfExists('socialSecurityNumber', $data ?? [], null);
         $this->setIfExists('tokenDetails', $data ?? [], null);
+        $this->setIfExists('transactionLinkId', $data ?? [], null);
         $this->setIfExists('variant', $data ?? [], null);
     }
 
@@ -771,6 +778,30 @@ class RecurringDetail implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setTokenDetails($tokenDetails)
     {
         $this->container['tokenDetails'] = $tokenDetails;
+
+        return $this;
+    }
+
+    /**
+     * Gets transactionLinkId
+     *
+     * @return string|null
+     */
+    public function getTransactionLinkId()
+    {
+        return $this->container['transactionLinkId'];
+    }
+
+    /**
+     * Sets transactionLinkId
+     *
+     * @param string|null $transactionLinkId The unique identifier for the transaction link, used for Mastercard recurring transactions.
+     *
+     * @return self
+     */
+    public function setTransactionLinkId($transactionLinkId)
+    {
+        $this->container['transactionLinkId'] = $transactionLinkId;
 
         return $this;
     }
