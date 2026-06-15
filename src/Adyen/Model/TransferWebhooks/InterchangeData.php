@@ -19,21 +19,21 @@ use ArrayAccess;
 use Adyen\Model\TransferWebhooks\ObjectSerializer;
 
 /**
- * TransferEventEventsDataInner Class Doc Comment
+ * InterchangeData Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \JsonSerializable
+class InterchangeData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    public const DISCRIMINATOR = 'type';
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
       *
       * @var string
       */
-    protected static $openAPIModelName = 'TransferEvent_eventsData_inner';
+    protected static $openAPIModelName = 'InterchangeData';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -43,10 +43,7 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
     protected static $openAPITypes = [
         'interchangeAmount' => '\Adyen\Model\TransferWebhooks\Amount',
         'interchangeRateIndicator' => 'string',
-        'type' => 'string',
-        'captureCycleId' => 'string',
-        'airline' => '\Adyen\Model\TransferWebhooks\Airline',
-        'lodging' => '\Adyen\Model\TransferWebhooks\Lodging[]'
+        'type' => 'string'
     ];
 
     /**
@@ -59,10 +56,7 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
     protected static $openAPIFormats = [
         'interchangeAmount' => null,
         'interchangeRateIndicator' => null,
-        'type' => null,
-        'captureCycleId' => null,
-        'airline' => null,
-        'lodging' => null
+        'type' => null
     ];
 
     /**
@@ -73,10 +67,7 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
     protected static $openAPINullables = [
         'interchangeAmount' => false,
         'interchangeRateIndicator' => false,
-        'type' => false,
-        'captureCycleId' => false,
-        'airline' => false,
-        'lodging' => false
+        'type' => false
     ];
 
     /**
@@ -167,10 +158,7 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
     protected static $attributeMap = [
         'interchangeAmount' => 'interchangeAmount',
         'interchangeRateIndicator' => 'interchangeRateIndicator',
-        'type' => 'type',
-        'captureCycleId' => 'captureCycleId',
-        'airline' => 'airline',
-        'lodging' => 'lodging'
+        'type' => 'type'
     ];
 
     /**
@@ -181,10 +169,7 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
     protected static $setters = [
         'interchangeAmount' => 'setInterchangeAmount',
         'interchangeRateIndicator' => 'setInterchangeRateIndicator',
-        'type' => 'setType',
-        'captureCycleId' => 'setCaptureCycleId',
-        'airline' => 'setAirline',
-        'lodging' => 'setLodging'
+        'type' => 'setType'
     ];
 
     /**
@@ -195,10 +180,7 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
     protected static $getters = [
         'interchangeAmount' => 'getInterchangeAmount',
         'interchangeRateIndicator' => 'getInterchangeRateIndicator',
-        'type' => 'getType',
-        'captureCycleId' => 'getCaptureCycleId',
-        'airline' => 'getAirline',
-        'lodging' => 'getLodging'
+        'type' => 'getType'
     ];
 
     /**
@@ -242,6 +224,19 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
         return self::$openAPIModelName;
     }
 
+    public const TYPE_INTERCHANGE_DATA = 'interchangeData';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_INTERCHANGE_DATA,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -260,12 +255,6 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
         $this->setIfExists('interchangeAmount', $data ?? [], null);
         $this->setIfExists('interchangeRateIndicator', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('captureCycleId', $data ?? [], null);
-        $this->setIfExists('airline', $data ?? [], null);
-        $this->setIfExists('lodging', $data ?? [], null);
-
-        // Initialize discriminator property with the model name.
-        $this->container['type'] = static::$openAPIModelName;
     }
 
     /**
@@ -297,6 +286,14 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
 
         if ($this->container['type'] === null) {
             $invalidProperties[] = "'type' can't be null";
+        }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
         }
 
         return $invalidProperties;
@@ -375,85 +372,23 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets type
      *
-     * @param string $type The type of events data.   Possible values:    - **merchantPurchaseData**: merchant purchase data
+     * @param string $type The type of events data.   Possible values:    - **interchangeData**: information about the interchange fee applied to a transaction.
      *
      * @return self
      */
     public function setType($type)
     {
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            error_log(
+                sprintf(
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
+                    $type,
+                    implode(', ', $allowedValues)
+                )
+            );
+        }
         $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets captureCycleId
-     *
-     * @return string|null
-     */
-    public function getCaptureCycleId()
-    {
-        return $this->container['captureCycleId'];
-    }
-
-    /**
-     * Sets captureCycleId
-     *
-     * @param string|null $captureCycleId captureCycleId associated with transfer event.
-     *
-     * @return self
-     */
-    public function setCaptureCycleId($captureCycleId)
-    {
-        $this->container['captureCycleId'] = $captureCycleId;
-
-        return $this;
-    }
-
-    /**
-     * Gets airline
-     *
-     * @return \Adyen\Model\TransferWebhooks\Airline|null
-     */
-    public function getAirline()
-    {
-        return $this->container['airline'];
-    }
-
-    /**
-     * Sets airline
-     *
-     * @param \Adyen\Model\TransferWebhooks\Airline|null $airline airline
-     *
-     * @return self
-     */
-    public function setAirline($airline)
-    {
-        $this->container['airline'] = $airline;
-
-        return $this;
-    }
-
-    /**
-     * Gets lodging
-     *
-     * @return \Adyen\Model\TransferWebhooks\Lodging[]|null
-     */
-    public function getLodging()
-    {
-        return $this->container['lodging'];
-    }
-
-    /**
-     * Sets lodging
-     *
-     * @param \Adyen\Model\TransferWebhooks\Lodging[]|null $lodging Lodging information.
-     *
-     * @return self
-     */
-    public function setLodging($lodging)
-    {
-        $this->container['lodging'] = $lodging;
 
         return $this;
     }

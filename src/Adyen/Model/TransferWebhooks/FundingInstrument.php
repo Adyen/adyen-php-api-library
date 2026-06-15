@@ -19,21 +19,21 @@ use ArrayAccess;
 use Adyen\Model\TransferWebhooks\ObjectSerializer;
 
 /**
- * TransferEventEventsDataInner Class Doc Comment
+ * FundingInstrument Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \JsonSerializable
+class FundingInstrument implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    public const DISCRIMINATOR = 'type';
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
       *
       * @var string
       */
-    protected static $openAPIModelName = 'TransferEvent_eventsData_inner';
+    protected static $openAPIModelName = 'FundingInstrument';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,12 +41,10 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
       * @var string[]
       */
     protected static $openAPITypes = [
-        'interchangeAmount' => '\Adyen\Model\TransferWebhooks\Amount',
-        'interchangeRateIndicator' => 'string',
-        'type' => 'string',
-        'captureCycleId' => 'string',
-        'airline' => '\Adyen\Model\TransferWebhooks\Airline',
-        'lodging' => '\Adyen\Model\TransferWebhooks\Lodging[]'
+        'cardIdentification' => '\Adyen\Model\TransferWebhooks\CardIdentification',
+        'networkPaymentReference' => 'string',
+        'reference' => 'string',
+        'sourceOfFunds' => 'string'
     ];
 
     /**
@@ -57,12 +55,10 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'interchangeAmount' => null,
-        'interchangeRateIndicator' => null,
-        'type' => null,
-        'captureCycleId' => null,
-        'airline' => null,
-        'lodging' => null
+        'cardIdentification' => null,
+        'networkPaymentReference' => null,
+        'reference' => null,
+        'sourceOfFunds' => null
     ];
 
     /**
@@ -71,12 +67,10 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'interchangeAmount' => false,
-        'interchangeRateIndicator' => false,
-        'type' => false,
-        'captureCycleId' => false,
-        'airline' => false,
-        'lodging' => false
+        'cardIdentification' => false,
+        'networkPaymentReference' => false,
+        'reference' => false,
+        'sourceOfFunds' => false
     ];
 
     /**
@@ -165,12 +159,10 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $attributeMap = [
-        'interchangeAmount' => 'interchangeAmount',
-        'interchangeRateIndicator' => 'interchangeRateIndicator',
-        'type' => 'type',
-        'captureCycleId' => 'captureCycleId',
-        'airline' => 'airline',
-        'lodging' => 'lodging'
+        'cardIdentification' => 'cardIdentification',
+        'networkPaymentReference' => 'networkPaymentReference',
+        'reference' => 'reference',
+        'sourceOfFunds' => 'sourceOfFunds'
     ];
 
     /**
@@ -179,12 +171,10 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $setters = [
-        'interchangeAmount' => 'setInterchangeAmount',
-        'interchangeRateIndicator' => 'setInterchangeRateIndicator',
-        'type' => 'setType',
-        'captureCycleId' => 'setCaptureCycleId',
-        'airline' => 'setAirline',
-        'lodging' => 'setLodging'
+        'cardIdentification' => 'setCardIdentification',
+        'networkPaymentReference' => 'setNetworkPaymentReference',
+        'reference' => 'setReference',
+        'sourceOfFunds' => 'setSourceOfFunds'
     ];
 
     /**
@@ -193,12 +183,10 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $getters = [
-        'interchangeAmount' => 'getInterchangeAmount',
-        'interchangeRateIndicator' => 'getInterchangeRateIndicator',
-        'type' => 'getType',
-        'captureCycleId' => 'getCaptureCycleId',
-        'airline' => 'getAirline',
-        'lodging' => 'getLodging'
+        'cardIdentification' => 'getCardIdentification',
+        'networkPaymentReference' => 'getNetworkPaymentReference',
+        'reference' => 'getReference',
+        'sourceOfFunds' => 'getSourceOfFunds'
     ];
 
     /**
@@ -242,6 +230,21 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
         return self::$openAPIModelName;
     }
 
+    public const SOURCE_OF_FUNDS_DEBIT = 'DEBIT';
+    public const SOURCE_OF_FUNDS_DEPOSIT_ACCOUNT = 'DEPOSIT_ACCOUNT';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getSourceOfFundsAllowableValues()
+    {
+        return [
+            self::SOURCE_OF_FUNDS_DEBIT,
+            self::SOURCE_OF_FUNDS_DEPOSIT_ACCOUNT,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -257,15 +260,10 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('interchangeAmount', $data ?? [], null);
-        $this->setIfExists('interchangeRateIndicator', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('captureCycleId', $data ?? [], null);
-        $this->setIfExists('airline', $data ?? [], null);
-        $this->setIfExists('lodging', $data ?? [], null);
-
-        // Initialize discriminator property with the model name.
-        $this->container['type'] = static::$openAPIModelName;
+        $this->setIfExists('cardIdentification', $data ?? [], null);
+        $this->setIfExists('networkPaymentReference', $data ?? [], null);
+        $this->setIfExists('reference', $data ?? [], null);
+        $this->setIfExists('sourceOfFunds', $data ?? [], null);
     }
 
     /**
@@ -295,8 +293,13 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
     {
         $invalidProperties = [];
 
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
+        $allowedValues = $this->getSourceOfFundsAllowableValues();
+        if (!is_null($this->container['sourceOfFunds']) && !in_array($this->container['sourceOfFunds'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'sourceOfFunds', must be one of '%s'",
+                $this->container['sourceOfFunds'],
+                implode("', '", $allowedValues)
+            );
         }
 
         return $invalidProperties;
@@ -315,145 +318,107 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
 
 
     /**
-     * Gets interchangeAmount
+     * Gets cardIdentification
      *
-     * @return \Adyen\Model\TransferWebhooks\Amount|null
+     * @return \Adyen\Model\TransferWebhooks\CardIdentification|null
      */
-    public function getInterchangeAmount()
+    public function getCardIdentification()
     {
-        return $this->container['interchangeAmount'];
+        return $this->container['cardIdentification'];
     }
 
     /**
-     * Sets interchangeAmount
+     * Sets cardIdentification
      *
-     * @param \Adyen\Model\TransferWebhooks\Amount|null $interchangeAmount interchangeAmount
+     * @param \Adyen\Model\TransferWebhooks\CardIdentification|null $cardIdentification cardIdentification
      *
      * @return self
      */
-    public function setInterchangeAmount($interchangeAmount)
+    public function setCardIdentification($cardIdentification)
     {
-        $this->container['interchangeAmount'] = $interchangeAmount;
+        $this->container['cardIdentification'] = $cardIdentification;
 
         return $this;
     }
 
     /**
-     * Gets interchangeRateIndicator
+     * Gets networkPaymentReference
      *
      * @return string|null
      */
-    public function getInterchangeRateIndicator()
+    public function getNetworkPaymentReference()
     {
-        return $this->container['interchangeRateIndicator'];
+        return $this->container['networkPaymentReference'];
     }
 
     /**
-     * Sets interchangeRateIndicator
+     * Sets networkPaymentReference
      *
-     * @param string|null $interchangeRateIndicator A 3-character alphanumeric code assigned by Visa that identifies the specific interchange reimbursement program a transaction qualified for. The code is assigned based on the card type, entry mode, and security data provided.
+     * @param string|null $networkPaymentReference The unique reference assigned by the card network for the pay-in transaction.
      *
      * @return self
      */
-    public function setInterchangeRateIndicator($interchangeRateIndicator)
+    public function setNetworkPaymentReference($networkPaymentReference)
     {
-        $this->container['interchangeRateIndicator'] = $interchangeRateIndicator;
+        $this->container['networkPaymentReference'] = $networkPaymentReference;
 
         return $this;
     }
 
     /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type The type of events data.   Possible values:    - **merchantPurchaseData**: merchant purchase data
-     *
-     * @return self
-     */
-    public function setType($type)
-    {
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets captureCycleId
+     * Gets reference
      *
      * @return string|null
      */
-    public function getCaptureCycleId()
+    public function getReference()
     {
-        return $this->container['captureCycleId'];
+        return $this->container['reference'];
     }
 
     /**
-     * Sets captureCycleId
+     * Sets reference
      *
-     * @param string|null $captureCycleId captureCycleId associated with transfer event.
+     * @param string|null $reference Your internal reference that identifies this funding instrument. Required if `sourceOfFunds` is **DEPOSIT_ACCOUNT**.
      *
      * @return self
      */
-    public function setCaptureCycleId($captureCycleId)
+    public function setReference($reference)
     {
-        $this->container['captureCycleId'] = $captureCycleId;
+        $this->container['reference'] = $reference;
 
         return $this;
     }
 
     /**
-     * Gets airline
+     * Gets sourceOfFunds
      *
-     * @return \Adyen\Model\TransferWebhooks\Airline|null
+     * @return string|null
      */
-    public function getAirline()
+    public function getSourceOfFunds()
     {
-        return $this->container['airline'];
+        return $this->container['sourceOfFunds'];
     }
 
     /**
-     * Sets airline
+     * Sets sourceOfFunds
      *
-     * @param \Adyen\Model\TransferWebhooks\Airline|null $airline airline
+     * @param string|null $sourceOfFunds Indicates where the funds used for the transfer originated. Possible values are: - **DEBIT** for card-to-card transfers. - **DEPOSIT_ACCOUNT** for wallet-to-card transfers.
      *
      * @return self
      */
-    public function setAirline($airline)
+    public function setSourceOfFunds($sourceOfFunds)
     {
-        $this->container['airline'] = $airline;
-
-        return $this;
-    }
-
-    /**
-     * Gets lodging
-     *
-     * @return \Adyen\Model\TransferWebhooks\Lodging[]|null
-     */
-    public function getLodging()
-    {
-        return $this->container['lodging'];
-    }
-
-    /**
-     * Sets lodging
-     *
-     * @param \Adyen\Model\TransferWebhooks\Lodging[]|null $lodging Lodging information.
-     *
-     * @return self
-     */
-    public function setLodging($lodging)
-    {
-        $this->container['lodging'] = $lodging;
+        $allowedValues = $this->getSourceOfFundsAllowableValues();
+        if (!in_array($sourceOfFunds, $allowedValues, true)) {
+            error_log(
+                sprintf(
+                    "sourceOfFunds: unexpected enum value '%s' - Supported values are [%s]",
+                    $sourceOfFunds,
+                    implode(', ', $allowedValues)
+                )
+            );
+        }
+        $this->container['sourceOfFunds'] = $sourceOfFunds;
 
         return $this;
     }
