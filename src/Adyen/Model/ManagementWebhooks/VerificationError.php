@@ -413,7 +413,7 @@ class VerificationError implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets subErrors
      *
-     * @param \Adyen\Model\ManagementWebhooks\VerificationErrorRecursive[]|null $subErrors More granular information about the verification error.
+     * @param \Adyen\Model\ManagementWebhooks\VerificationErrorRecursive[]|null $subErrors subErrors
      *
      * @return self
      */
