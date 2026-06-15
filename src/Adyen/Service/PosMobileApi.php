@@ -42,6 +42,7 @@ class PosMobileApi extends Service
     /**
     * Create a communication session
     *
+    * @deprecated since POS Mobile API v68. "Use POST [/auth/certificate](https://docs.adyen.com/api-explorer/softpos-configuration-api/latest/post/auth/certificate) to establish secure communications."
     * @param \Adyen\Model\PosMobile\CreateSessionRequest $createSessionRequest
     * @param array|null $requestOptions
     * @return \Adyen\Model\PosMobile\CreateSessionResponse
