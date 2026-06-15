@@ -841,7 +841,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets globalLegalEntityIdentifier
      *
-     * @param string|null $globalLegalEntityIdentifier The global legal entity identifier for the organization.
+     * @param string|null $globalLegalEntityIdentifier The global legal entity identifier for the organization.  This field is not required if the `registrationNumber` for the organization has been provided.
      *
      * @return self
      */
