@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\ConfigurationWebhooks\ObjectSerializer;
 
 /**
- * IbanAccountIdentification Class Doc Comment
+ * UKLocalMandateAccountIdentification Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
+class UKLocalMandateAccountIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       *
       * @var string
       */
-    protected static $openAPIModelName = 'IbanAccountIdentification';
+    protected static $openAPIModelName = 'UKLocalMandateAccountIdentification';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,8 +41,8 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       * @var string[]
       */
     protected static $openAPITypes = [
-        'bic' => 'string',
-        'iban' => 'string',
+        'accountNumber' => 'string',
+        'sortCode' => 'string',
         'type' => 'string'
     ];
 
@@ -54,8 +54,8 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'bic' => null,
-        'iban' => null,
+        'accountNumber' => null,
+        'sortCode' => null,
         'type' => null
     ];
 
@@ -65,8 +65,8 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'bic' => false,
-        'iban' => false,
+        'accountNumber' => false,
+        'sortCode' => false,
         'type' => false
     ];
 
@@ -156,8 +156,8 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $attributeMap = [
-        'bic' => 'bic',
-        'iban' => 'iban',
+        'accountNumber' => 'accountNumber',
+        'sortCode' => 'sortCode',
         'type' => 'type'
     ];
 
@@ -167,8 +167,8 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $setters = [
-        'bic' => 'setBic',
-        'iban' => 'setIban',
+        'accountNumber' => 'setAccountNumber',
+        'sortCode' => 'setSortCode',
         'type' => 'setType'
     ];
 
@@ -178,8 +178,8 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $getters = [
-        'bic' => 'getBic',
-        'iban' => 'getIban',
+        'accountNumber' => 'getAccountNumber',
+        'sortCode' => 'getSortCode',
         'type' => 'getType'
     ];
 
@@ -224,7 +224,7 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
         return self::$openAPIModelName;
     }
 
-    public const TYPE_IBAN = 'iban';
+    public const TYPE_UK_LOCAL = 'ukLocal';
 
     /**
      * Gets allowable values of the enum
@@ -234,7 +234,7 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
     public function getTypeAllowableValues()
     {
         return [
-            self::TYPE_IBAN,
+            self::TYPE_UK_LOCAL,
         ];
     }
     /**
@@ -252,8 +252,8 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('bic', $data ?? [], null);
-        $this->setIfExists('iban', $data ?? [], null);
+        $this->setIfExists('accountNumber', $data ?? [], null);
+        $this->setIfExists('sortCode', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -284,8 +284,11 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
     {
         $invalidProperties = [];
 
-        if ($this->container['iban'] === null) {
-            $invalidProperties[] = "'iban' can't be null";
+        if ($this->container['accountNumber'] === null) {
+            $invalidProperties[] = "'accountNumber' can't be null";
+        }
+        if ($this->container['sortCode'] === null) {
+            $invalidProperties[] = "'sortCode' can't be null";
         }
         if ($this->container['type'] === null) {
             $invalidProperties[] = "'type' can't be null";
@@ -315,49 +318,49 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
 
 
     /**
-     * Gets bic
+     * Gets accountNumber
      *
-     * @return string|null
+     * @return string
      */
-    public function getBic()
+    public function getAccountNumber()
     {
-        return $this->container['bic'];
+        return $this->container['accountNumber'];
     }
 
     /**
-     * Sets bic
+     * Sets accountNumber
      *
-     * @param string|null $bic The bank's 8- or 11-character BIC or SWIFT code.
+     * @param string $accountNumber The 8-digit bank account number, without separators or whitespace.
      *
      * @return self
      */
-    public function setBic($bic)
+    public function setAccountNumber($accountNumber)
     {
-        $this->container['bic'] = $bic;
+        $this->container['accountNumber'] = $accountNumber;
 
         return $this;
     }
 
     /**
-     * Gets iban
+     * Gets sortCode
      *
      * @return string
      */
-    public function getIban()
+    public function getSortCode()
     {
-        return $this->container['iban'];
+        return $this->container['sortCode'];
     }
 
     /**
-     * Sets iban
+     * Sets sortCode
      *
-     * @param string $iban The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.
+     * @param string $sortCode The 6-digit [sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or whitespace.
      *
      * @return self
      */
-    public function setIban($iban)
+    public function setSortCode($sortCode)
     {
-        $this->container['iban'] = $iban;
+        $this->container['sortCode'] = $sortCode;
 
         return $this;
     }
@@ -375,7 +378,7 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets type
      *
-     * @param string $type **iban**
+     * @param string $type **ukLocal**
      *
      * @return self
      */

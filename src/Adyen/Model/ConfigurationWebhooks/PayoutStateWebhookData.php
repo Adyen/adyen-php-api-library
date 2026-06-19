@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\ConfigurationWebhooks\ObjectSerializer;
 
 /**
- * IbanAccountIdentification Class Doc Comment
+ * PayoutStateWebhookData Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
+class PayoutStateWebhookData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       *
       * @var string
       */
-    protected static $openAPIModelName = 'IbanAccountIdentification';
+    protected static $openAPIModelName = 'PayoutStateWebhookData';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,12 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       * @var string[]
       */
     protected static $openAPITypes = [
-        'bic' => 'string',
-        'iban' => 'string',
-        'type' => 'string'
+        'balanceAccountId' => 'string',
+        'balanceAccountPayoutScheduleId' => 'string',
+        'balancePlatform' => 'string',
+        'result' => 'string',
+        'resultDetails' => '\Adyen\Model\ConfigurationWebhooks\ResultDetails',
+        'triggeredAt' => '\DateTime'
     ];
 
     /**
@@ -54,9 +57,12 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'bic' => null,
-        'iban' => null,
-        'type' => null
+        'balanceAccountId' => null,
+        'balanceAccountPayoutScheduleId' => null,
+        'balancePlatform' => null,
+        'result' => null,
+        'resultDetails' => null,
+        'triggeredAt' => 'date-time'
     ];
 
     /**
@@ -65,9 +71,12 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'bic' => false,
-        'iban' => false,
-        'type' => false
+        'balanceAccountId' => false,
+        'balanceAccountPayoutScheduleId' => false,
+        'balancePlatform' => false,
+        'result' => false,
+        'resultDetails' => false,
+        'triggeredAt' => false
     ];
 
     /**
@@ -156,9 +165,12 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $attributeMap = [
-        'bic' => 'bic',
-        'iban' => 'iban',
-        'type' => 'type'
+        'balanceAccountId' => 'balanceAccountId',
+        'balanceAccountPayoutScheduleId' => 'balanceAccountPayoutScheduleId',
+        'balancePlatform' => 'balancePlatform',
+        'result' => 'result',
+        'resultDetails' => 'resultDetails',
+        'triggeredAt' => 'triggeredAt'
     ];
 
     /**
@@ -167,9 +179,12 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $setters = [
-        'bic' => 'setBic',
-        'iban' => 'setIban',
-        'type' => 'setType'
+        'balanceAccountId' => 'setBalanceAccountId',
+        'balanceAccountPayoutScheduleId' => 'setBalanceAccountPayoutScheduleId',
+        'balancePlatform' => 'setBalancePlatform',
+        'result' => 'setResult',
+        'resultDetails' => 'setResultDetails',
+        'triggeredAt' => 'setTriggeredAt'
     ];
 
     /**
@@ -178,9 +193,12 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $getters = [
-        'bic' => 'getBic',
-        'iban' => 'getIban',
-        'type' => 'getType'
+        'balanceAccountId' => 'getBalanceAccountId',
+        'balanceAccountPayoutScheduleId' => 'getBalanceAccountPayoutScheduleId',
+        'balancePlatform' => 'getBalancePlatform',
+        'result' => 'getResult',
+        'resultDetails' => 'getResultDetails',
+        'triggeredAt' => 'getTriggeredAt'
     ];
 
     /**
@@ -224,17 +242,21 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
         return self::$openAPIModelName;
     }
 
-    public const TYPE_IBAN = 'iban';
+    public const RESULT_FAILED = 'failed';
+    public const RESULT_SKIPPED = 'skipped';
+    public const RESULT_SUCCEEDED = 'succeeded';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getTypeAllowableValues()
+    public function getResultAllowableValues()
     {
         return [
-            self::TYPE_IBAN,
+            self::RESULT_FAILED,
+            self::RESULT_SKIPPED,
+            self::RESULT_SUCCEEDED,
         ];
     }
     /**
@@ -252,9 +274,12 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('bic', $data ?? [], null);
-        $this->setIfExists('iban', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('balanceAccountId', $data ?? [], null);
+        $this->setIfExists('balanceAccountPayoutScheduleId', $data ?? [], null);
+        $this->setIfExists('balancePlatform', $data ?? [], null);
+        $this->setIfExists('result', $data ?? [], null);
+        $this->setIfExists('resultDetails', $data ?? [], null);
+        $this->setIfExists('triggeredAt', $data ?? [], null);
     }
 
     /**
@@ -284,17 +309,11 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
     {
         $invalidProperties = [];
 
-        if ($this->container['iban'] === null) {
-            $invalidProperties[] = "'iban' can't be null";
-        }
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
-        }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+        $allowedValues = $this->getResultAllowableValues();
+        if (!is_null($this->container['result']) && !in_array($this->container['result'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
+                "invalid value '%s' for 'result', must be one of '%s'",
+                $this->container['result'],
                 implode("', '", $allowedValues)
             );
         }
@@ -315,83 +334,155 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
 
 
     /**
-     * Gets bic
+     * Gets balanceAccountId
      *
      * @return string|null
      */
-    public function getBic()
+    public function getBalanceAccountId()
     {
-        return $this->container['bic'];
+        return $this->container['balanceAccountId'];
     }
 
     /**
-     * Sets bic
+     * Sets balanceAccountId
      *
-     * @param string|null $bic The bank's 8- or 11-character BIC or SWIFT code.
+     * @param string|null $balanceAccountId The unique identifier of the balance account from which the payout is initiated.
      *
      * @return self
      */
-    public function setBic($bic)
+    public function setBalanceAccountId($balanceAccountId)
     {
-        $this->container['bic'] = $bic;
+        $this->container['balanceAccountId'] = $balanceAccountId;
 
         return $this;
     }
 
     /**
-     * Gets iban
+     * Gets balanceAccountPayoutScheduleId
      *
-     * @return string
+     * @return string|null
      */
-    public function getIban()
+    public function getBalanceAccountPayoutScheduleId()
     {
-        return $this->container['iban'];
+        return $this->container['balanceAccountPayoutScheduleId'];
     }
 
     /**
-     * Sets iban
+     * Sets balanceAccountPayoutScheduleId
      *
-     * @param string $iban The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.
+     * @param string|null $balanceAccountPayoutScheduleId The unique identifier of the managed payout schedule.
      *
      * @return self
      */
-    public function setIban($iban)
+    public function setBalanceAccountPayoutScheduleId($balanceAccountPayoutScheduleId)
     {
-        $this->container['iban'] = $iban;
+        $this->container['balanceAccountPayoutScheduleId'] = $balanceAccountPayoutScheduleId;
 
         return $this;
     }
 
     /**
-     * Gets type
+     * Gets balancePlatform
      *
-     * @return string
+     * @return string|null
      */
-    public function getType()
+    public function getBalancePlatform()
     {
-        return $this->container['type'];
+        return $this->container['balancePlatform'];
     }
 
     /**
-     * Sets type
+     * Sets balancePlatform
      *
-     * @param string $type **iban**
+     * @param string|null $balancePlatform The unique identifier of the balance platform.
      *
      * @return self
      */
-    public function setType($type)
+    public function setBalancePlatform($balancePlatform)
     {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
+        $this->container['balancePlatform'] = $balancePlatform;
+
+        return $this;
+    }
+
+    /**
+     * Gets result
+     *
+     * @return string|null
+     */
+    public function getResult()
+    {
+        return $this->container['result'];
+    }
+
+    /**
+     * Sets result
+     *
+     * @param string|null $result The result of the execution.
+     *
+     * @return self
+     */
+    public function setResult($result)
+    {
+        $allowedValues = $this->getResultAllowableValues();
+        if (!in_array($result, $allowedValues, true)) {
             error_log(
                 sprintf(
-                    "type: unexpected enum value '%s' - Supported values are [%s]",
-                    $type,
+                    "result: unexpected enum value '%s' - Supported values are [%s]",
+                    $result,
                     implode(', ', $allowedValues)
                 )
             );
         }
-        $this->container['type'] = $type;
+        $this->container['result'] = $result;
+
+        return $this;
+    }
+
+    /**
+     * Gets resultDetails
+     *
+     * @return \Adyen\Model\ConfigurationWebhooks\ResultDetails|null
+     */
+    public function getResultDetails()
+    {
+        return $this->container['resultDetails'];
+    }
+
+    /**
+     * Sets resultDetails
+     *
+     * @param \Adyen\Model\ConfigurationWebhooks\ResultDetails|null $resultDetails resultDetails
+     *
+     * @return self
+     */
+    public function setResultDetails($resultDetails)
+    {
+        $this->container['resultDetails'] = $resultDetails;
+
+        return $this;
+    }
+
+    /**
+     * Gets triggeredAt
+     *
+     * @return \DateTime|null
+     */
+    public function getTriggeredAt()
+    {
+        return $this->container['triggeredAt'];
+    }
+
+    /**
+     * Sets triggeredAt
+     *
+     * @param \DateTime|null $triggeredAt The timestamp of the moment when the execution was triggered.
+     *
+     * @return self
+     */
+    public function setTriggeredAt($triggeredAt)
+    {
+        $this->container['triggeredAt'] = $triggeredAt;
 
         return $this;
     }

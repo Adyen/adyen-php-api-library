@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\ConfigurationWebhooks\ObjectSerializer;
 
 /**
- * IbanAccountIdentification Class Doc Comment
+ * AccountPayoutAutoApplicationWebhookData Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
+class AccountPayoutAutoApplicationWebhookData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       *
       * @var string
       */
-    protected static $openAPIModelName = 'IbanAccountIdentification';
+    protected static $openAPIModelName = 'AccountPayoutAutoApplicationWebhookData';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,11 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       * @var string[]
       */
     protected static $openAPITypes = [
-        'bic' => 'string',
-        'iban' => 'string',
-        'type' => 'string'
+        'balanceAccountId' => 'string',
+        'balancePlatform' => 'string',
+        'balancePlatformPayoutScheduleId' => 'string',
+        'reason' => 'string',
+        'transferInstrumentId' => 'string'
     ];
 
     /**
@@ -54,9 +56,11 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'bic' => null,
-        'iban' => null,
-        'type' => null
+        'balanceAccountId' => null,
+        'balancePlatform' => null,
+        'balancePlatformPayoutScheduleId' => null,
+        'reason' => null,
+        'transferInstrumentId' => null
     ];
 
     /**
@@ -65,9 +69,11 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'bic' => false,
-        'iban' => false,
-        'type' => false
+        'balanceAccountId' => false,
+        'balancePlatform' => false,
+        'balancePlatformPayoutScheduleId' => false,
+        'reason' => false,
+        'transferInstrumentId' => false
     ];
 
     /**
@@ -156,9 +162,11 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $attributeMap = [
-        'bic' => 'bic',
-        'iban' => 'iban',
-        'type' => 'type'
+        'balanceAccountId' => 'balanceAccountId',
+        'balancePlatform' => 'balancePlatform',
+        'balancePlatformPayoutScheduleId' => 'balancePlatformPayoutScheduleId',
+        'reason' => 'reason',
+        'transferInstrumentId' => 'transferInstrumentId'
     ];
 
     /**
@@ -167,9 +175,11 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $setters = [
-        'bic' => 'setBic',
-        'iban' => 'setIban',
-        'type' => 'setType'
+        'balanceAccountId' => 'setBalanceAccountId',
+        'balancePlatform' => 'setBalancePlatform',
+        'balancePlatformPayoutScheduleId' => 'setBalancePlatformPayoutScheduleId',
+        'reason' => 'setReason',
+        'transferInstrumentId' => 'setTransferInstrumentId'
     ];
 
     /**
@@ -178,9 +188,11 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $getters = [
-        'bic' => 'getBic',
-        'iban' => 'getIban',
-        'type' => 'getType'
+        'balanceAccountId' => 'getBalanceAccountId',
+        'balancePlatform' => 'getBalancePlatform',
+        'balancePlatformPayoutScheduleId' => 'getBalancePlatformPayoutScheduleId',
+        'reason' => 'getReason',
+        'transferInstrumentId' => 'getTransferInstrumentId'
     ];
 
     /**
@@ -224,19 +236,7 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
         return self::$openAPIModelName;
     }
 
-    public const TYPE_IBAN = 'iban';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_IBAN,
-        ];
-    }
     /**
      * Associative array for storing property values
      *
@@ -252,9 +252,11 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('bic', $data ?? [], null);
-        $this->setIfExists('iban', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('balanceAccountId', $data ?? [], null);
+        $this->setIfExists('balancePlatform', $data ?? [], null);
+        $this->setIfExists('balancePlatformPayoutScheduleId', $data ?? [], null);
+        $this->setIfExists('reason', $data ?? [], null);
+        $this->setIfExists('transferInstrumentId', $data ?? [], null);
     }
 
     /**
@@ -284,21 +286,6 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
     {
         $invalidProperties = [];
 
-        if ($this->container['iban'] === null) {
-            $invalidProperties[] = "'iban' can't be null";
-        }
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
-        }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -315,83 +302,121 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
 
 
     /**
-     * Gets bic
+     * Gets balanceAccountId
      *
      * @return string|null
      */
-    public function getBic()
+    public function getBalanceAccountId()
     {
-        return $this->container['bic'];
+        return $this->container['balanceAccountId'];
     }
 
     /**
-     * Sets bic
+     * Sets balanceAccountId
      *
-     * @param string|null $bic The bank's 8- or 11-character BIC or SWIFT code.
+     * @param string|null $balanceAccountId The unique identifier of the balance account to which the payout schedule was unsuccessfully applied.
      *
      * @return self
      */
-    public function setBic($bic)
+    public function setBalanceAccountId($balanceAccountId)
     {
-        $this->container['bic'] = $bic;
+        $this->container['balanceAccountId'] = $balanceAccountId;
 
         return $this;
     }
 
     /**
-     * Gets iban
+     * Gets balancePlatform
      *
-     * @return string
+     * @return string|null
      */
-    public function getIban()
+    public function getBalancePlatform()
     {
-        return $this->container['iban'];
+        return $this->container['balancePlatform'];
     }
 
     /**
-     * Sets iban
+     * Sets balancePlatform
      *
-     * @param string $iban The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.
+     * @param string|null $balancePlatform The unique identifier of the balance platform.
      *
      * @return self
      */
-    public function setIban($iban)
+    public function setBalancePlatform($balancePlatform)
     {
-        $this->container['iban'] = $iban;
+        $this->container['balancePlatform'] = $balancePlatform;
 
         return $this;
     }
 
     /**
-     * Gets type
+     * Gets balancePlatformPayoutScheduleId
      *
-     * @return string
+     * @return string|null
      */
-    public function getType()
+    public function getBalancePlatformPayoutScheduleId()
     {
-        return $this->container['type'];
+        return $this->container['balancePlatformPayoutScheduleId'];
     }
 
     /**
-     * Sets type
+     * Sets balancePlatformPayoutScheduleId
      *
-     * @param string $type **iban**
+     * @param string|null $balancePlatformPayoutScheduleId The unique identifier of the balance platform payout schedule that was unsuccessfully applied to the balance account.
      *
      * @return self
      */
-    public function setType($type)
+    public function setBalancePlatformPayoutScheduleId($balancePlatformPayoutScheduleId)
     {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            error_log(
-                sprintf(
-                    "type: unexpected enum value '%s' - Supported values are [%s]",
-                    $type,
-                    implode(', ', $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
+        $this->container['balancePlatformPayoutScheduleId'] = $balancePlatformPayoutScheduleId;
+
+        return $this;
+    }
+
+    /**
+     * Gets reason
+     *
+     * @return string|null
+     */
+    public function getReason()
+    {
+        return $this->container['reason'];
+    }
+
+    /**
+     * Sets reason
+     *
+     * @param string|null $reason The reason why the payout schedule could not be applied.
+     *
+     * @return self
+     */
+    public function setReason($reason)
+    {
+        $this->container['reason'] = $reason;
+
+        return $this;
+    }
+
+    /**
+     * Gets transferInstrumentId
+     *
+     * @return string|null
+     */
+    public function getTransferInstrumentId()
+    {
+        return $this->container['transferInstrumentId'];
+    }
+
+    /**
+     * Sets transferInstrumentId
+     *
+     * @param string|null $transferInstrumentId The unique identifier of the transfer instrument linked to the balance account. This transfer instrument is the counterparty account for the payout schedule that was unsuccessfully applied.
+     *
+     * @return self
+     */
+    public function setTransferInstrumentId($transferInstrumentId)
+    {
+        $this->container['transferInstrumentId'] = $transferInstrumentId;
 
         return $this;
     }
