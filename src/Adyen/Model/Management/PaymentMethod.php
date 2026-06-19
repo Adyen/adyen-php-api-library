@@ -41,62 +41,63 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'accel' => '\Adyen\Model\Management\AccelInfo',
-        'affirm' => '\Adyen\Model\Management\AffirmInfo',
-        'afterpayTouch' => '\Adyen\Model\Management\AfterpayTouchInfo',
-        'alipayPlus' => '\Adyen\Model\Management\AlipayPlusInfo',
+        'accel' => '\Adyen\Model\Management\AccelResponseInfo',
+        'affirm' => '\Adyen\Model\Management\AffirmResponseInfo',
+        'afterpayTouch' => '\Adyen\Model\Management\AfterpayTouchResponseInfo',
+        'alipayPlus' => '\Adyen\Model\Management\AlipayPlusResponseInfo',
         'allowed' => 'bool',
-        'amex' => '\Adyen\Model\Management\AmexInfo',
-        'applePay' => '\Adyen\Model\Management\ApplePayInfo',
-        'bcmc' => '\Adyen\Model\Management\BcmcInfo',
+        'amex' => '\Adyen\Model\Management\AmexResponseInfo',
+        'applePay' => '\Adyen\Model\Management\ApplePayResponseInfo',
+        'bcmc' => '\Adyen\Model\Management\BcmcResponseInfo',
         'businessLineId' => 'string',
-        'cartesBancaires' => '\Adyen\Model\Management\CartesBancairesInfo',
-        'clearpay' => '\Adyen\Model\Management\ClearpayInfo',
+        'carnet' => '\Adyen\Model\Management\CarnetResponseInfo',
+        'cartesBancaires' => '\Adyen\Model\Management\CartesBancairesResponseInfo',
+        'clearpay' => '\Adyen\Model\Management\ClearpayResponseInfo',
         'countries' => 'string[]',
-        'cup' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
+        'cup' => '\Adyen\Model\Management\CupResponseInfo',
         'currencies' => 'string[]',
         'customRoutingFlags' => 'string[]',
-        'diners' => '\Adyen\Model\Management\DinersInfo',
-        'discover' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
-        'eftDirectdebitCA' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
-        'eftposAustralia' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
+        'diners' => '\Adyen\Model\Management\DinersResponseInfo',
+        'discover' => '\Adyen\Model\Management\DiscoverResponseInfo',
+        'eftDirectdebitCA' => '\Adyen\Model\Management\EFTDirectDebitCAResponseInfo',
+        'eftposAustralia' => '\Adyen\Model\Management\EftPosAustraliaResponseInfo',
         'enabled' => 'bool',
-        'girocard' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
-        'givex' => '\Adyen\Model\Management\GivexInfo',
-        'googlePay' => '\Adyen\Model\Management\GooglePayInfo',
+        'girocard' => '\Adyen\Model\Management\GirocardResponseInfo',
+        'givex' => '\Adyen\Model\Management\GivexResponseInfo',
+        'googlePay' => '\Adyen\Model\Management\GooglePayResponseInfo',
         'id' => 'string',
-        'ideal' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
-        'interacCard' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
-        'jcb' => '\Adyen\Model\Management\JCBInfo',
-        'klarna' => '\Adyen\Model\Management\KlarnaInfo',
-        'maestro' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
-        'maestroUsa' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
-        'mc' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
-        'mealVoucherFR' => '\Adyen\Model\Management\MealVoucherFRInfo',
-        'nyce' => '\Adyen\Model\Management\NyceInfo',
-        'paybybankPlaid' => '\Adyen\Model\Management\PayByBankPlaidInfo',
-        'payme' => '\Adyen\Model\Management\PayMeInfo',
-        'paypal' => '\Adyen\Model\Management\PayPalInfo',
-        'payto' => '\Adyen\Model\Management\PayToInfo',
-        'pulse' => '\Adyen\Model\Management\PulseInfo',
+        'ideal' => '\Adyen\Model\Management\IdealResponseInfo',
+        'interacCard' => '\Adyen\Model\Management\InteracCardResponseInfo',
+        'jcb' => '\Adyen\Model\Management\JCBResponseInfo',
+        'klarna' => '\Adyen\Model\Management\KlarnaResponseInfo',
+        'maestro' => '\Adyen\Model\Management\MaestroResponseInfo',
+        'maestroUsa' => '\Adyen\Model\Management\MaestroUSAResponseInfo',
+        'mc' => '\Adyen\Model\Management\MCResponseInfo',
+        'mealVoucherFR' => '\Adyen\Model\Management\MealVoucherFRResponseInfo',
+        'nyce' => '\Adyen\Model\Management\NyceResponseInfo',
+        'paybybankPlaid' => '\Adyen\Model\Management\PayByBankPlaidResponseInfo',
+        'payme' => '\Adyen\Model\Management\PayMeResponseInfo',
+        'paypal' => '\Adyen\Model\Management\PayPalResponseInfo',
+        'payto' => '\Adyen\Model\Management\PayToResponseInfo',
+        'pulse' => '\Adyen\Model\Management\PulseResponseInfo',
         'reference' => 'string',
-        'sepadirectdebit' => '\Adyen\Model\Management\SepaDirectDebitInfo',
+        'sepadirectdebit' => '\Adyen\Model\Management\SepaDirectDebitResponseInfo',
         'shopperInteraction' => 'string',
-        'sodexo' => '\Adyen\Model\Management\SodexoInfo',
-        'sofort' => '\Adyen\Model\Management\SofortInfo',
-        'star' => '\Adyen\Model\Management\StarInfo',
+        'sodexo' => '\Adyen\Model\Management\SodexoResponseInfo',
+        'sofort' => '\Adyen\Model\Management\SofortResponseInfo',
+        'star' => '\Adyen\Model\Management\StarResponseInfo',
         'storeIds' => 'string[]',
-        'svs' => '\Adyen\Model\Management\SvsInfo',
-        'swish' => '\Adyen\Model\Management\SwishInfo',
-        'ticket' => '\Adyen\Model\Management\TicketInfo',
-        'twint' => '\Adyen\Model\Management\TwintInfo',
+        'svs' => '\Adyen\Model\Management\SvsResponseInfo',
+        'swish' => '\Adyen\Model\Management\SwishResponseInfo',
+        'ticket' => '\Adyen\Model\Management\TicketResponseInfo',
+        'twint' => '\Adyen\Model\Management\TwintResponseInfo',
         'type' => 'string',
-        'valuelink' => '\Adyen\Model\Management\ValuelinkInfo',
+        'valuelink' => '\Adyen\Model\Management\ValuelinkResponseInfo',
         'verificationStatus' => 'string',
-        'vipps' => '\Adyen\Model\Management\VippsInfo',
-        'visa' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
-        'wechatpay' => '\Adyen\Model\Management\WeChatPayInfo',
-        'wechatpayPos' => '\Adyen\Model\Management\WeChatPayPosInfo'
+        'vipps' => '\Adyen\Model\Management\VippsResponseInfo',
+        'visa' => '\Adyen\Model\Management\VisaResponseInfo',
+        'wechatpay' => '\Adyen\Model\Management\WeChatPayResponseInfo',
+        'wechatpayPos' => '\Adyen\Model\Management\WeChatPayPosResponseInfo'
     ];
 
     /**
@@ -116,6 +117,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'applePay' => null,
         'bcmc' => null,
         'businessLineId' => null,
+        'carnet' => null,
         'cartesBancaires' => null,
         'clearpay' => null,
         'countries' => null,
@@ -180,6 +182,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'applePay' => false,
         'bcmc' => false,
         'businessLineId' => false,
+        'carnet' => false,
         'cartesBancaires' => false,
         'clearpay' => false,
         'countries' => false,
@@ -324,6 +327,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'applePay' => 'applePay',
         'bcmc' => 'bcmc',
         'businessLineId' => 'businessLineId',
+        'carnet' => 'carnet',
         'cartesBancaires' => 'cartesBancaires',
         'clearpay' => 'clearpay',
         'countries' => 'countries',
@@ -388,6 +392,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'applePay' => 'setApplePay',
         'bcmc' => 'setBcmc',
         'businessLineId' => 'setBusinessLineId',
+        'carnet' => 'setCarnet',
         'cartesBancaires' => 'setCartesBancaires',
         'clearpay' => 'setClearpay',
         'countries' => 'setCountries',
@@ -452,6 +457,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'applePay' => 'getApplePay',
         'bcmc' => 'getBcmc',
         'businessLineId' => 'getBusinessLineId',
+        'carnet' => 'getCarnet',
         'cartesBancaires' => 'getCartesBancaires',
         'clearpay' => 'getClearpay',
         'countries' => 'getCountries',
@@ -585,6 +591,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('applePay', $data ?? [], null);
         $this->setIfExists('bcmc', $data ?? [], null);
         $this->setIfExists('businessLineId', $data ?? [], null);
+        $this->setIfExists('carnet', $data ?? [], null);
         $this->setIfExists('cartesBancaires', $data ?? [], null);
         $this->setIfExists('clearpay', $data ?? [], null);
         $this->setIfExists('countries', $data ?? [], null);
@@ -691,7 +698,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets accel
      *
-     * @return \Adyen\Model\Management\AccelInfo|null
+     * @return \Adyen\Model\Management\AccelResponseInfo|null
      */
     public function getAccel()
     {
@@ -701,7 +708,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets accel
      *
-     * @param \Adyen\Model\Management\AccelInfo|null $accel accel
+     * @param \Adyen\Model\Management\AccelResponseInfo|null $accel accel
      *
      * @return self
      */
@@ -715,7 +722,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets affirm
      *
-     * @return \Adyen\Model\Management\AffirmInfo|null
+     * @return \Adyen\Model\Management\AffirmResponseInfo|null
      */
     public function getAffirm()
     {
@@ -725,7 +732,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets affirm
      *
-     * @param \Adyen\Model\Management\AffirmInfo|null $affirm affirm
+     * @param \Adyen\Model\Management\AffirmResponseInfo|null $affirm affirm
      *
      * @return self
      */
@@ -739,7 +746,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets afterpayTouch
      *
-     * @return \Adyen\Model\Management\AfterpayTouchInfo|null
+     * @return \Adyen\Model\Management\AfterpayTouchResponseInfo|null
      */
     public function getAfterpayTouch()
     {
@@ -749,7 +756,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets afterpayTouch
      *
-     * @param \Adyen\Model\Management\AfterpayTouchInfo|null $afterpayTouch afterpayTouch
+     * @param \Adyen\Model\Management\AfterpayTouchResponseInfo|null $afterpayTouch afterpayTouch
      *
      * @return self
      */
@@ -763,7 +770,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets alipayPlus
      *
-     * @return \Adyen\Model\Management\AlipayPlusInfo|null
+     * @return \Adyen\Model\Management\AlipayPlusResponseInfo|null
      */
     public function getAlipayPlus()
     {
@@ -773,7 +780,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets alipayPlus
      *
-     * @param \Adyen\Model\Management\AlipayPlusInfo|null $alipayPlus alipayPlus
+     * @param \Adyen\Model\Management\AlipayPlusResponseInfo|null $alipayPlus alipayPlus
      *
      * @return self
      */
@@ -811,7 +818,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets amex
      *
-     * @return \Adyen\Model\Management\AmexInfo|null
+     * @return \Adyen\Model\Management\AmexResponseInfo|null
      */
     public function getAmex()
     {
@@ -821,7 +828,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets amex
      *
-     * @param \Adyen\Model\Management\AmexInfo|null $amex amex
+     * @param \Adyen\Model\Management\AmexResponseInfo|null $amex amex
      *
      * @return self
      */
@@ -835,7 +842,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets applePay
      *
-     * @return \Adyen\Model\Management\ApplePayInfo|null
+     * @return \Adyen\Model\Management\ApplePayResponseInfo|null
      */
     public function getApplePay()
     {
@@ -845,7 +852,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets applePay
      *
-     * @param \Adyen\Model\Management\ApplePayInfo|null $applePay applePay
+     * @param \Adyen\Model\Management\ApplePayResponseInfo|null $applePay applePay
      *
      * @return self
      */
@@ -859,7 +866,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets bcmc
      *
-     * @return \Adyen\Model\Management\BcmcInfo|null
+     * @return \Adyen\Model\Management\BcmcResponseInfo|null
      */
     public function getBcmc()
     {
@@ -869,7 +876,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets bcmc
      *
-     * @param \Adyen\Model\Management\BcmcInfo|null $bcmc bcmc
+     * @param \Adyen\Model\Management\BcmcResponseInfo|null $bcmc bcmc
      *
      * @return self
      */
@@ -905,9 +912,33 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets carnet
+     *
+     * @return \Adyen\Model\Management\CarnetResponseInfo|null
+     */
+    public function getCarnet()
+    {
+        return $this->container['carnet'];
+    }
+
+    /**
+     * Sets carnet
+     *
+     * @param \Adyen\Model\Management\CarnetResponseInfo|null $carnet carnet
+     *
+     * @return self
+     */
+    public function setCarnet($carnet)
+    {
+        $this->container['carnet'] = $carnet;
+
+        return $this;
+    }
+
+    /**
      * Gets cartesBancaires
      *
-     * @return \Adyen\Model\Management\CartesBancairesInfo|null
+     * @return \Adyen\Model\Management\CartesBancairesResponseInfo|null
      */
     public function getCartesBancaires()
     {
@@ -917,7 +948,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets cartesBancaires
      *
-     * @param \Adyen\Model\Management\CartesBancairesInfo|null $cartesBancaires cartesBancaires
+     * @param \Adyen\Model\Management\CartesBancairesResponseInfo|null $cartesBancaires cartesBancaires
      *
      * @return self
      */
@@ -931,7 +962,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets clearpay
      *
-     * @return \Adyen\Model\Management\ClearpayInfo|null
+     * @return \Adyen\Model\Management\ClearpayResponseInfo|null
      */
     public function getClearpay()
     {
@@ -941,7 +972,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets clearpay
      *
-     * @param \Adyen\Model\Management\ClearpayInfo|null $clearpay clearpay
+     * @param \Adyen\Model\Management\ClearpayResponseInfo|null $clearpay clearpay
      *
      * @return self
      */
@@ -979,7 +1010,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets cup
      *
-     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     * @return \Adyen\Model\Management\CupResponseInfo|null
      */
     public function getCup()
     {
@@ -989,7 +1020,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets cup
      *
-     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $cup cup
+     * @param \Adyen\Model\Management\CupResponseInfo|null $cup cup
      *
      * @return self
      */
@@ -1051,7 +1082,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets diners
      *
-     * @return \Adyen\Model\Management\DinersInfo|null
+     * @return \Adyen\Model\Management\DinersResponseInfo|null
      */
     public function getDiners()
     {
@@ -1061,7 +1092,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets diners
      *
-     * @param \Adyen\Model\Management\DinersInfo|null $diners diners
+     * @param \Adyen\Model\Management\DinersResponseInfo|null $diners diners
      *
      * @return self
      */
@@ -1075,7 +1106,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets discover
      *
-     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     * @return \Adyen\Model\Management\DiscoverResponseInfo|null
      */
     public function getDiscover()
     {
@@ -1085,7 +1116,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets discover
      *
-     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $discover discover
+     * @param \Adyen\Model\Management\DiscoverResponseInfo|null $discover discover
      *
      * @return self
      */
@@ -1099,7 +1130,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets eftDirectdebitCA
      *
-     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     * @return \Adyen\Model\Management\EFTDirectDebitCAResponseInfo|null
      */
     public function getEftDirectdebitCA()
     {
@@ -1109,7 +1140,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets eftDirectdebitCA
      *
-     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $eftDirectdebitCA eftDirectdebitCA
+     * @param \Adyen\Model\Management\EFTDirectDebitCAResponseInfo|null $eftDirectdebitCA eftDirectdebitCA
      *
      * @return self
      */
@@ -1123,7 +1154,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets eftposAustralia
      *
-     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     * @return \Adyen\Model\Management\EftPosAustraliaResponseInfo|null
      */
     public function getEftposAustralia()
     {
@@ -1133,7 +1164,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets eftposAustralia
      *
-     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $eftposAustralia eftposAustralia
+     * @param \Adyen\Model\Management\EftPosAustraliaResponseInfo|null $eftposAustralia eftposAustralia
      *
      * @return self
      */
@@ -1171,7 +1202,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets girocard
      *
-     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     * @return \Adyen\Model\Management\GirocardResponseInfo|null
      */
     public function getGirocard()
     {
@@ -1181,7 +1212,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets girocard
      *
-     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $girocard girocard
+     * @param \Adyen\Model\Management\GirocardResponseInfo|null $girocard girocard
      *
      * @return self
      */
@@ -1195,7 +1226,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets givex
      *
-     * @return \Adyen\Model\Management\GivexInfo|null
+     * @return \Adyen\Model\Management\GivexResponseInfo|null
      */
     public function getGivex()
     {
@@ -1205,7 +1236,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets givex
      *
-     * @param \Adyen\Model\Management\GivexInfo|null $givex givex
+     * @param \Adyen\Model\Management\GivexResponseInfo|null $givex givex
      *
      * @return self
      */
@@ -1219,7 +1250,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets googlePay
      *
-     * @return \Adyen\Model\Management\GooglePayInfo|null
+     * @return \Adyen\Model\Management\GooglePayResponseInfo|null
      */
     public function getGooglePay()
     {
@@ -1229,7 +1260,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets googlePay
      *
-     * @param \Adyen\Model\Management\GooglePayInfo|null $googlePay googlePay
+     * @param \Adyen\Model\Management\GooglePayResponseInfo|null $googlePay googlePay
      *
      * @return self
      */
@@ -1267,7 +1298,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets ideal
      *
-     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     * @return \Adyen\Model\Management\IdealResponseInfo|null
      */
     public function getIdeal()
     {
@@ -1277,7 +1308,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets ideal
      *
-     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $ideal ideal
+     * @param \Adyen\Model\Management\IdealResponseInfo|null $ideal ideal
      *
      * @return self
      */
@@ -1291,7 +1322,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets interacCard
      *
-     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     * @return \Adyen\Model\Management\InteracCardResponseInfo|null
      */
     public function getInteracCard()
     {
@@ -1301,7 +1332,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets interacCard
      *
-     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $interacCard interacCard
+     * @param \Adyen\Model\Management\InteracCardResponseInfo|null $interacCard interacCard
      *
      * @return self
      */
@@ -1315,7 +1346,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets jcb
      *
-     * @return \Adyen\Model\Management\JCBInfo|null
+     * @return \Adyen\Model\Management\JCBResponseInfo|null
      */
     public function getJcb()
     {
@@ -1325,7 +1356,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets jcb
      *
-     * @param \Adyen\Model\Management\JCBInfo|null $jcb jcb
+     * @param \Adyen\Model\Management\JCBResponseInfo|null $jcb jcb
      *
      * @return self
      */
@@ -1339,7 +1370,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets klarna
      *
-     * @return \Adyen\Model\Management\KlarnaInfo|null
+     * @return \Adyen\Model\Management\KlarnaResponseInfo|null
      */
     public function getKlarna()
     {
@@ -1349,7 +1380,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets klarna
      *
-     * @param \Adyen\Model\Management\KlarnaInfo|null $klarna klarna
+     * @param \Adyen\Model\Management\KlarnaResponseInfo|null $klarna klarna
      *
      * @return self
      */
@@ -1363,7 +1394,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets maestro
      *
-     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     * @return \Adyen\Model\Management\MaestroResponseInfo|null
      */
     public function getMaestro()
     {
@@ -1373,7 +1404,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets maestro
      *
-     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $maestro maestro
+     * @param \Adyen\Model\Management\MaestroResponseInfo|null $maestro maestro
      *
      * @return self
      */
@@ -1387,7 +1418,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets maestroUsa
      *
-     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     * @return \Adyen\Model\Management\MaestroUSAResponseInfo|null
      */
     public function getMaestroUsa()
     {
@@ -1397,7 +1428,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets maestroUsa
      *
-     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $maestroUsa maestroUsa
+     * @param \Adyen\Model\Management\MaestroUSAResponseInfo|null $maestroUsa maestroUsa
      *
      * @return self
      */
@@ -1411,7 +1442,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets mc
      *
-     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     * @return \Adyen\Model\Management\MCResponseInfo|null
      */
     public function getMc()
     {
@@ -1421,7 +1452,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets mc
      *
-     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $mc mc
+     * @param \Adyen\Model\Management\MCResponseInfo|null $mc mc
      *
      * @return self
      */
@@ -1435,7 +1466,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets mealVoucherFR
      *
-     * @return \Adyen\Model\Management\MealVoucherFRInfo|null
+     * @return \Adyen\Model\Management\MealVoucherFRResponseInfo|null
      */
     public function getMealVoucherFR()
     {
@@ -1445,7 +1476,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets mealVoucherFR
      *
-     * @param \Adyen\Model\Management\MealVoucherFRInfo|null $mealVoucherFR mealVoucherFR
+     * @param \Adyen\Model\Management\MealVoucherFRResponseInfo|null $mealVoucherFR mealVoucherFR
      *
      * @return self
      */
@@ -1459,7 +1490,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets nyce
      *
-     * @return \Adyen\Model\Management\NyceInfo|null
+     * @return \Adyen\Model\Management\NyceResponseInfo|null
      */
     public function getNyce()
     {
@@ -1469,7 +1500,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets nyce
      *
-     * @param \Adyen\Model\Management\NyceInfo|null $nyce nyce
+     * @param \Adyen\Model\Management\NyceResponseInfo|null $nyce nyce
      *
      * @return self
      */
@@ -1483,7 +1514,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets paybybankPlaid
      *
-     * @return \Adyen\Model\Management\PayByBankPlaidInfo|null
+     * @return \Adyen\Model\Management\PayByBankPlaidResponseInfo|null
      */
     public function getPaybybankPlaid()
     {
@@ -1493,7 +1524,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets paybybankPlaid
      *
-     * @param \Adyen\Model\Management\PayByBankPlaidInfo|null $paybybankPlaid paybybankPlaid
+     * @param \Adyen\Model\Management\PayByBankPlaidResponseInfo|null $paybybankPlaid paybybankPlaid
      *
      * @return self
      */
@@ -1507,7 +1538,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets payme
      *
-     * @return \Adyen\Model\Management\PayMeInfo|null
+     * @return \Adyen\Model\Management\PayMeResponseInfo|null
      */
     public function getPayme()
     {
@@ -1517,7 +1548,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets payme
      *
-     * @param \Adyen\Model\Management\PayMeInfo|null $payme payme
+     * @param \Adyen\Model\Management\PayMeResponseInfo|null $payme payme
      *
      * @return self
      */
@@ -1531,7 +1562,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets paypal
      *
-     * @return \Adyen\Model\Management\PayPalInfo|null
+     * @return \Adyen\Model\Management\PayPalResponseInfo|null
      */
     public function getPaypal()
     {
@@ -1541,7 +1572,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets paypal
      *
-     * @param \Adyen\Model\Management\PayPalInfo|null $paypal paypal
+     * @param \Adyen\Model\Management\PayPalResponseInfo|null $paypal paypal
      *
      * @return self
      */
@@ -1555,7 +1586,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets payto
      *
-     * @return \Adyen\Model\Management\PayToInfo|null
+     * @return \Adyen\Model\Management\PayToResponseInfo|null
      */
     public function getPayto()
     {
@@ -1565,7 +1596,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets payto
      *
-     * @param \Adyen\Model\Management\PayToInfo|null $payto payto
+     * @param \Adyen\Model\Management\PayToResponseInfo|null $payto payto
      *
      * @return self
      */
@@ -1579,7 +1610,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets pulse
      *
-     * @return \Adyen\Model\Management\PulseInfo|null
+     * @return \Adyen\Model\Management\PulseResponseInfo|null
      */
     public function getPulse()
     {
@@ -1589,7 +1620,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets pulse
      *
-     * @param \Adyen\Model\Management\PulseInfo|null $pulse pulse
+     * @param \Adyen\Model\Management\PulseResponseInfo|null $pulse pulse
      *
      * @return self
      */
@@ -1627,7 +1658,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets sepadirectdebit
      *
-     * @return \Adyen\Model\Management\SepaDirectDebitInfo|null
+     * @return \Adyen\Model\Management\SepaDirectDebitResponseInfo|null
      */
     public function getSepadirectdebit()
     {
@@ -1637,7 +1668,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets sepadirectdebit
      *
-     * @param \Adyen\Model\Management\SepaDirectDebitInfo|null $sepadirectdebit sepadirectdebit
+     * @param \Adyen\Model\Management\SepaDirectDebitResponseInfo|null $sepadirectdebit sepadirectdebit
      *
      * @return self
      */
@@ -1675,7 +1706,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets sodexo
      *
-     * @return \Adyen\Model\Management\SodexoInfo|null
+     * @return \Adyen\Model\Management\SodexoResponseInfo|null
      */
     public function getSodexo()
     {
@@ -1685,7 +1716,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets sodexo
      *
-     * @param \Adyen\Model\Management\SodexoInfo|null $sodexo sodexo
+     * @param \Adyen\Model\Management\SodexoResponseInfo|null $sodexo sodexo
      *
      * @return self
      */
@@ -1699,7 +1730,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets sofort
      *
-     * @return \Adyen\Model\Management\SofortInfo|null
+     * @return \Adyen\Model\Management\SofortResponseInfo|null
      */
     public function getSofort()
     {
@@ -1709,7 +1740,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets sofort
      *
-     * @param \Adyen\Model\Management\SofortInfo|null $sofort sofort
+     * @param \Adyen\Model\Management\SofortResponseInfo|null $sofort sofort
      *
      * @return self
      */
@@ -1723,7 +1754,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets star
      *
-     * @return \Adyen\Model\Management\StarInfo|null
+     * @return \Adyen\Model\Management\StarResponseInfo|null
      */
     public function getStar()
     {
@@ -1733,7 +1764,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets star
      *
-     * @param \Adyen\Model\Management\StarInfo|null $star star
+     * @param \Adyen\Model\Management\StarResponseInfo|null $star star
      *
      * @return self
      */
@@ -1771,7 +1802,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets svs
      *
-     * @return \Adyen\Model\Management\SvsInfo|null
+     * @return \Adyen\Model\Management\SvsResponseInfo|null
      */
     public function getSvs()
     {
@@ -1781,7 +1812,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets svs
      *
-     * @param \Adyen\Model\Management\SvsInfo|null $svs svs
+     * @param \Adyen\Model\Management\SvsResponseInfo|null $svs svs
      *
      * @return self
      */
@@ -1795,7 +1826,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets swish
      *
-     * @return \Adyen\Model\Management\SwishInfo|null
+     * @return \Adyen\Model\Management\SwishResponseInfo|null
      */
     public function getSwish()
     {
@@ -1805,7 +1836,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets swish
      *
-     * @param \Adyen\Model\Management\SwishInfo|null $swish swish
+     * @param \Adyen\Model\Management\SwishResponseInfo|null $swish swish
      *
      * @return self
      */
@@ -1819,7 +1850,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets ticket
      *
-     * @return \Adyen\Model\Management\TicketInfo|null
+     * @return \Adyen\Model\Management\TicketResponseInfo|null
      */
     public function getTicket()
     {
@@ -1829,7 +1860,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets ticket
      *
-     * @param \Adyen\Model\Management\TicketInfo|null $ticket ticket
+     * @param \Adyen\Model\Management\TicketResponseInfo|null $ticket ticket
      *
      * @return self
      */
@@ -1843,7 +1874,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets twint
      *
-     * @return \Adyen\Model\Management\TwintInfo|null
+     * @return \Adyen\Model\Management\TwintResponseInfo|null
      */
     public function getTwint()
     {
@@ -1853,7 +1884,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets twint
      *
-     * @param \Adyen\Model\Management\TwintInfo|null $twint twint
+     * @param \Adyen\Model\Management\TwintResponseInfo|null $twint twint
      *
      * @return self
      */
@@ -1891,7 +1922,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets valuelink
      *
-     * @return \Adyen\Model\Management\ValuelinkInfo|null
+     * @return \Adyen\Model\Management\ValuelinkResponseInfo|null
      */
     public function getValuelink()
     {
@@ -1901,7 +1932,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets valuelink
      *
-     * @param \Adyen\Model\Management\ValuelinkInfo|null $valuelink valuelink
+     * @param \Adyen\Model\Management\ValuelinkResponseInfo|null $valuelink valuelink
      *
      * @return self
      */
@@ -1949,7 +1980,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets vipps
      *
-     * @return \Adyen\Model\Management\VippsInfo|null
+     * @return \Adyen\Model\Management\VippsResponseInfo|null
      */
     public function getVipps()
     {
@@ -1959,7 +1990,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets vipps
      *
-     * @param \Adyen\Model\Management\VippsInfo|null $vipps vipps
+     * @param \Adyen\Model\Management\VippsResponseInfo|null $vipps vipps
      *
      * @return self
      */
@@ -1973,7 +2004,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets visa
      *
-     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     * @return \Adyen\Model\Management\VisaResponseInfo|null
      */
     public function getVisa()
     {
@@ -1983,7 +2014,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets visa
      *
-     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $visa visa
+     * @param \Adyen\Model\Management\VisaResponseInfo|null $visa visa
      *
      * @return self
      */
@@ -1997,7 +2028,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets wechatpay
      *
-     * @return \Adyen\Model\Management\WeChatPayInfo|null
+     * @return \Adyen\Model\Management\WeChatPayResponseInfo|null
      */
     public function getWechatpay()
     {
@@ -2007,7 +2038,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets wechatpay
      *
-     * @param \Adyen\Model\Management\WeChatPayInfo|null $wechatpay wechatpay
+     * @param \Adyen\Model\Management\WeChatPayResponseInfo|null $wechatpay wechatpay
      *
      * @return self
      */
@@ -2021,7 +2052,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets wechatpayPos
      *
-     * @return \Adyen\Model\Management\WeChatPayPosInfo|null
+     * @return \Adyen\Model\Management\WeChatPayPosResponseInfo|null
      */
     public function getWechatpayPos()
     {
@@ -2031,7 +2062,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets wechatpayPos
      *
-     * @param \Adyen\Model\Management\WeChatPayPosInfo|null $wechatpayPos wechatpayPos
+     * @param \Adyen\Model\Management\WeChatPayPosResponseInfo|null $wechatpayPos wechatpayPos
      *
      * @return self
      */

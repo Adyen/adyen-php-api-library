@@ -43,8 +43,11 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'cardholderReceipt' => '\Adyen\Model\Management\CardholderReceipt',
         'connectivity' => '\Adyen\Model\Management\Connectivity',
+        'dcc' => '\Adyen\Model\Management\Dcc',
         'gratuities' => '\Adyen\Model\Management\Gratuity[]',
         'hardware' => '\Adyen\Model\Management\Hardware',
+        'homeScreen' => '\Adyen\Model\Management\HomeScreenSettings',
+        'kioskMode' => '\Adyen\Model\Management\KioskModeSettings',
         'localization' => '\Adyen\Model\Management\Localization',
         'moto' => '\Adyen\Model\Management\Moto',
         'nexo' => '\Adyen\Model\Management\Nexo',
@@ -76,8 +79,11 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'cardholderReceipt' => null,
         'connectivity' => null,
+        'dcc' => null,
         'gratuities' => null,
         'hardware' => null,
+        'homeScreen' => null,
+        'kioskMode' => null,
         'localization' => null,
         'moto' => null,
         'nexo' => null,
@@ -107,8 +113,11 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPINullables = [
         'cardholderReceipt' => false,
         'connectivity' => false,
+        'dcc' => false,
         'gratuities' => true,
         'hardware' => false,
+        'homeScreen' => false,
+        'kioskMode' => false,
         'localization' => false,
         'moto' => false,
         'nexo' => false,
@@ -218,8 +227,11 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'cardholderReceipt' => 'cardholderReceipt',
         'connectivity' => 'connectivity',
+        'dcc' => 'dcc',
         'gratuities' => 'gratuities',
         'hardware' => 'hardware',
+        'homeScreen' => 'homeScreen',
+        'kioskMode' => 'kioskMode',
         'localization' => 'localization',
         'moto' => 'moto',
         'nexo' => 'nexo',
@@ -249,8 +261,11 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'cardholderReceipt' => 'setCardholderReceipt',
         'connectivity' => 'setConnectivity',
+        'dcc' => 'setDcc',
         'gratuities' => 'setGratuities',
         'hardware' => 'setHardware',
+        'homeScreen' => 'setHomeScreen',
+        'kioskMode' => 'setKioskMode',
         'localization' => 'setLocalization',
         'moto' => 'setMoto',
         'nexo' => 'setNexo',
@@ -280,8 +295,11 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'cardholderReceipt' => 'getCardholderReceipt',
         'connectivity' => 'getConnectivity',
+        'dcc' => 'getDcc',
         'gratuities' => 'getGratuities',
         'hardware' => 'getHardware',
+        'homeScreen' => 'getHomeScreen',
+        'kioskMode' => 'getKioskMode',
         'localization' => 'getLocalization',
         'moto' => 'getMoto',
         'nexo' => 'getNexo',
@@ -362,8 +380,11 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('cardholderReceipt', $data ?? [], null);
         $this->setIfExists('connectivity', $data ?? [], null);
+        $this->setIfExists('dcc', $data ?? [], null);
         $this->setIfExists('gratuities', $data ?? [], null);
         $this->setIfExists('hardware', $data ?? [], null);
+        $this->setIfExists('homeScreen', $data ?? [], null);
+        $this->setIfExists('kioskMode', $data ?? [], null);
         $this->setIfExists('localization', $data ?? [], null);
         $this->setIfExists('moto', $data ?? [], null);
         $this->setIfExists('nexo', $data ?? [], null);
@@ -476,6 +497,30 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets dcc
+     *
+     * @return \Adyen\Model\Management\Dcc|null
+     */
+    public function getDcc()
+    {
+        return $this->container['dcc'];
+    }
+
+    /**
+     * Sets dcc
+     *
+     * @param \Adyen\Model\Management\Dcc|null $dcc dcc
+     *
+     * @return self
+     */
+    public function setDcc($dcc)
+    {
+        $this->container['dcc'] = $dcc;
+
+        return $this;
+    }
+
+    /**
      * Gets gratuities
      *
      * @return \Adyen\Model\Management\Gratuity[]|null
@@ -529,6 +574,54 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setHardware($hardware)
     {
         $this->container['hardware'] = $hardware;
+
+        return $this;
+    }
+
+    /**
+     * Gets homeScreen
+     *
+     * @return \Adyen\Model\Management\HomeScreenSettings|null
+     */
+    public function getHomeScreen()
+    {
+        return $this->container['homeScreen'];
+    }
+
+    /**
+     * Sets homeScreen
+     *
+     * @param \Adyen\Model\Management\HomeScreenSettings|null $homeScreen homeScreen
+     *
+     * @return self
+     */
+    public function setHomeScreen($homeScreen)
+    {
+        $this->container['homeScreen'] = $homeScreen;
+
+        return $this;
+    }
+
+    /**
+     * Gets kioskMode
+     *
+     * @return \Adyen\Model\Management\KioskModeSettings|null
+     */
+    public function getKioskMode()
+    {
+        return $this->container['kioskMode'];
+    }
+
+    /**
+     * Sets kioskMode
+     *
+     * @param \Adyen\Model\Management\KioskModeSettings|null $kioskMode kioskMode
+     *
+     * @return self
+     */
+    public function setKioskMode($kioskMode)
+    {
+        $this->container['kioskMode'] = $kioskMode;
 
         return $this;
     }

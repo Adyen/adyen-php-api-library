@@ -41,6 +41,8 @@ class ReceiptOptions implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'headerLine1' => 'string',
+        'headerLine2' => 'string',
         'logo' => 'string',
         'promptBeforePrinting' => 'bool',
         'qrCodeData' => 'string'
@@ -54,6 +56,8 @@ class ReceiptOptions implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'headerLine1' => null,
+        'headerLine2' => null,
         'logo' => null,
         'promptBeforePrinting' => null,
         'qrCodeData' => null
@@ -65,6 +69,8 @@ class ReceiptOptions implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'headerLine1' => false,
+        'headerLine2' => false,
         'logo' => false,
         'promptBeforePrinting' => false,
         'qrCodeData' => false
@@ -156,6 +162,8 @@ class ReceiptOptions implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'headerLine1' => 'headerLine1',
+        'headerLine2' => 'headerLine2',
         'logo' => 'logo',
         'promptBeforePrinting' => 'promptBeforePrinting',
         'qrCodeData' => 'qrCodeData'
@@ -167,6 +175,8 @@ class ReceiptOptions implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'headerLine1' => 'setHeaderLine1',
+        'headerLine2' => 'setHeaderLine2',
         'logo' => 'setLogo',
         'promptBeforePrinting' => 'setPromptBeforePrinting',
         'qrCodeData' => 'setQrCodeData'
@@ -178,6 +188,8 @@ class ReceiptOptions implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'headerLine1' => 'getHeaderLine1',
+        'headerLine2' => 'getHeaderLine2',
         'logo' => 'getLogo',
         'promptBeforePrinting' => 'getPromptBeforePrinting',
         'qrCodeData' => 'getQrCodeData'
@@ -240,6 +252,8 @@ class ReceiptOptions implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('headerLine1', $data ?? [], null);
+        $this->setIfExists('headerLine2', $data ?? [], null);
         $this->setIfExists('logo', $data ?? [], null);
         $this->setIfExists('promptBeforePrinting', $data ?? [], null);
         $this->setIfExists('qrCodeData', $data ?? [], null);
@@ -286,6 +300,54 @@ class ReceiptOptions implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets headerLine1
+     *
+     * @return string|null
+     */
+    public function getHeaderLine1()
+    {
+        return $this->container['headerLine1'];
+    }
+
+    /**
+     * Sets headerLine1
+     *
+     * @param string|null $headerLine1 The text of the first header line to be shown on the receipt.
+     *
+     * @return self
+     */
+    public function setHeaderLine1($headerLine1)
+    {
+        $this->container['headerLine1'] = $headerLine1;
+
+        return $this;
+    }
+
+    /**
+     * Gets headerLine2
+     *
+     * @return string|null
+     */
+    public function getHeaderLine2()
+    {
+        return $this->container['headerLine2'];
+    }
+
+    /**
+     * Sets headerLine2
+     *
+     * @param string|null $headerLine2 The text of the second header line to be shown on the receipt.
+     *
+     * @return self
+     */
+    public function setHeaderLine2($headerLine2)
+    {
+        $this->container['headerLine2'] = $headerLine2;
+
+        return $this;
+    }
 
     /**
      * Gets logo

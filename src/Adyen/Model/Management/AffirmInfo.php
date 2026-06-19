@@ -218,23 +218,7 @@ class AffirmInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const PRICE_PLAN_BRONZE = 'BRONZE';
-    public const PRICE_PLAN_SILVER = 'SILVER';
-    public const PRICE_PLAN_GOLD = 'GOLD';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getPricePlanAllowableValues()
-    {
-        return [
-            self::PRICE_PLAN_BRONZE,
-            self::PRICE_PLAN_SILVER,
-            self::PRICE_PLAN_GOLD,
-        ];
-    }
     /**
      * Associative array for storing property values
      *
@@ -281,15 +265,6 @@ class AffirmInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getPricePlanAllowableValues();
-        if (!is_null($this->container['pricePlan']) && !in_array($this->container['pricePlan'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'pricePlan', must be one of '%s'",
-                $this->container['pricePlan'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         if ($this->container['supportEmail'] === null) {
             $invalidProperties[] = "'supportEmail' can't be null";
         }
@@ -321,22 +296,12 @@ class AffirmInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets pricePlan
      *
-     * @param string|null $pricePlan Merchant price plan
+     * @param string|null $pricePlan Selected Affirm financing package. Choose from **core**, **standard**, or **signature**. Defaults to **core** if no selection made.
      *
      * @return self
      */
     public function setPricePlan($pricePlan)
     {
-        $allowedValues = $this->getPricePlanAllowableValues();
-        if (!in_array($pricePlan, $allowedValues, true)) {
-            error_log(
-                sprintf(
-                    "pricePlan: unexpected enum value '%s' - Supported values are [%s]",
-                    $pricePlan,
-                    implode(', ', $allowedValues)
-                )
-            );
-        }
         $this->container['pricePlan'] = $pricePlan;
 
         return $this;
@@ -355,7 +320,7 @@ class AffirmInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets supportEmail
      *
-     * @param string $supportEmail Merchant support email
+     * @param string $supportEmail Merchant support email used to manage disputes.
      *
      * @return self
      */

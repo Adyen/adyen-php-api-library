@@ -416,7 +416,7 @@ class CreateCompanyUserRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets loginMethod
      *
-     * @param string|null $loginMethod The requested login method for the user. To use SSO, you must already have SSO configured with Adyen before creating the user.  Possible values: **Username & account**, **Email**, or **SSO**
+     * @param string|null $loginMethod The requested login method for the user. To use SSO, you must already have SSO configured with Adyen before creating the user.  Possible values: **Email** or **SSO**
      *
      * @return self
      */
