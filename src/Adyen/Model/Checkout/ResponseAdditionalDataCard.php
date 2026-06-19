@@ -41,6 +41,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
       * @var string[]
       */
     protected static $openAPITypes = [
+        'cardAltID' => 'string',
         'cardBin' => 'string',
         'cardHolderName' => 'string',
         'cardIssuingBank' => 'string',
@@ -60,6 +61,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'cardAltID' => null,
         'cardBin' => null,
         'cardHolderName' => null,
         'cardIssuingBank' => null,
@@ -77,6 +79,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'cardAltID' => false,
         'cardBin' => false,
         'cardHolderName' => false,
         'cardIssuingBank' => false,
@@ -174,6 +177,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
      * @var string[]
      */
     protected static $attributeMap = [
+        'cardAltID' => 'cardAltID',
         'cardBin' => 'cardBin',
         'cardHolderName' => 'cardHolderName',
         'cardIssuingBank' => 'cardIssuingBank',
@@ -191,6 +195,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
      * @var string[]
      */
     protected static $setters = [
+        'cardAltID' => 'setCardAltID',
         'cardBin' => 'setCardBin',
         'cardHolderName' => 'setCardHolderName',
         'cardIssuingBank' => 'setCardIssuingBank',
@@ -208,6 +213,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
      * @var string[]
      */
     protected static $getters = [
+        'cardAltID' => 'getCardAltID',
         'cardBin' => 'getCardBin',
         'cardHolderName' => 'getCardHolderName',
         'cardIssuingBank' => 'getCardIssuingBank',
@@ -260,39 +266,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
         return self::$openAPIModelName;
     }
 
-    public const CARD_PRODUCT_ID_A = 'A';
-    public const CARD_PRODUCT_ID_B = 'B';
-    public const CARD_PRODUCT_ID_C = 'C';
-    public const CARD_PRODUCT_ID_D = 'D';
-    public const CARD_PRODUCT_ID_F = 'F';
-    public const CARD_PRODUCT_ID_MCC = 'MCC';
-    public const CARD_PRODUCT_ID_MCE = 'MCE';
-    public const CARD_PRODUCT_ID_MCF = 'MCF';
-    public const CARD_PRODUCT_ID_MCG = 'MCG';
-    public const CARD_PRODUCT_ID_MCH = 'MCH';
-    public const CARD_PRODUCT_ID_MCI = 'MCI';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getCardProductIdAllowableValues()
-    {
-        return [
-            self::CARD_PRODUCT_ID_A,
-            self::CARD_PRODUCT_ID_B,
-            self::CARD_PRODUCT_ID_C,
-            self::CARD_PRODUCT_ID_D,
-            self::CARD_PRODUCT_ID_F,
-            self::CARD_PRODUCT_ID_MCC,
-            self::CARD_PRODUCT_ID_MCE,
-            self::CARD_PRODUCT_ID_MCF,
-            self::CARD_PRODUCT_ID_MCG,
-            self::CARD_PRODUCT_ID_MCH,
-            self::CARD_PRODUCT_ID_MCI,
-        ];
-    }
     /**
      * Associative array for storing property values
      *
@@ -308,6 +282,7 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('cardAltID', $data ?? [], null);
         $this->setIfExists('cardBin', $data ?? [], null);
         $this->setIfExists('cardHolderName', $data ?? [], null);
         $this->setIfExists('cardIssuingBank', $data ?? [], null);
@@ -346,15 +321,6 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getCardProductIdAllowableValues();
-        if (!is_null($this->container['cardProductId']) && !in_array($this->container['cardProductId'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'cardProductId', must be one of '%s'",
-                $this->container['cardProductId'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -369,6 +335,30 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets cardAltID
+     *
+     * @return string|null
+     */
+    public function getCardAltID()
+    {
+        return $this->container['cardAltID'];
+    }
+
+    /**
+     * Sets cardAltID
+     *
+     * @param string|null $cardAltID This is an ALT ID (alternate ID) mapped to the Card PAN.  > Returned only in case of Ecommerce Card Payment in India
+     *
+     * @return self
+     */
+    public function setCardAltID($cardAltID)
+    {
+        $this->container['cardAltID'] = $cardAltID;
+
+        return $this;
+    }
 
     /**
      * Gets cardBin
@@ -527,22 +517,12 @@ class ResponseAdditionalDataCard implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets cardProductId
      *
-     * @param string|null $cardProductId The Card Product ID represents the type of card following card scheme product definitions and can be returned for Adyen Acquiring service level payments.  Possible values Visa: * **A** - Visa Traditional * **B** - Visa Traditional Rewards * **C** - Visa Signature * **D** - Visa Signature Preferred * **F** - Visa Classic  Possible values Mastercard: * **MCC** - Mastercard Card * **MCE** - Mastercard Electronic Card * **MCF** - Mastercard Corporate Fleet Card * **MCG** - Gold Mastercard Card * **MCH** - Mastercard Premium Charge * **MCI** - Mastercard Select Debit
+     * @param string|null $cardProductId The Card Product ID represents the type of card following card scheme product definitions and can be returned for Adyen Acquiring service level payments.  Example values Visa: * **A** - Visa Traditional * **B** - Visa Traditional Rewards * **C** - Visa Signature * **D** - Visa Signature Preferred * **F** - Visa Classic  Example values Mastercard: * **MCC** - Mastercard Card * **MCE** - Mastercard Electronic Card * **MCF** - Mastercard Corporate Fleet Card * **MCG** - Gold Mastercard Card * **MCH** - Mastercard Premium Charge * **MCI** - Mastercard Select Debit
      *
      * @return self
      */
     public function setCardProductId($cardProductId)
     {
-        $allowedValues = $this->getCardProductIdAllowableValues();
-        if (!in_array($cardProductId, $allowedValues, true)) {
-            error_log(
-                sprintf(
-                    "cardProductId: unexpected enum value '%s' - Supported values are [%s]",
-                    $cardProductId,
-                    implode(', ', $allowedValues)
-                )
-            );
-        }
         $this->container['cardProductId'] = $cardProductId;
 
         return $this;

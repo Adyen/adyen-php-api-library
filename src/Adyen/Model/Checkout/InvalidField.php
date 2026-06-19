@@ -41,9 +41,9 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'message' => 'string',
         'name' => 'string',
-        'value' => 'string',
-        'message' => 'string'
+        'value' => 'string'
     ];
 
     /**
@@ -54,9 +54,9 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'message' => null,
         'name' => null,
-        'value' => null,
-        'message' => null
+        'value' => null
     ];
 
     /**
@@ -65,9 +65,9 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'message' => false,
         'name' => false,
-        'value' => false,
-        'message' => false
+        'value' => false
     ];
 
     /**
@@ -156,9 +156,9 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'message' => 'message',
         'name' => 'name',
-        'value' => 'value',
-        'message' => 'message'
+        'value' => 'value'
     ];
 
     /**
@@ -167,9 +167,9 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'message' => 'setMessage',
         'name' => 'setName',
-        'value' => 'setValue',
-        'message' => 'setMessage'
+        'value' => 'setValue'
     ];
 
     /**
@@ -178,9 +178,9 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'message' => 'getMessage',
         'name' => 'getName',
-        'value' => 'getValue',
-        'message' => 'getMessage'
+        'value' => 'getValue'
     ];
 
     /**
@@ -240,9 +240,9 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('message', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('value', $data ?? [], null);
-        $this->setIfExists('message', $data ?? [], null);
     }
 
     /**
@@ -272,14 +272,14 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['message'] === null) {
+            $invalidProperties[] = "'message' can't be null";
+        }
         if ($this->container['name'] === null) {
             $invalidProperties[] = "'name' can't be null";
         }
         if ($this->container['value'] === null) {
             $invalidProperties[] = "'value' can't be null";
-        }
-        if ($this->container['message'] === null) {
-            $invalidProperties[] = "'message' can't be null";
         }
         return $invalidProperties;
     }
@@ -295,6 +295,30 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets message
+     *
+     * @return string
+     */
+    public function getMessage()
+    {
+        return $this->container['message'];
+    }
+
+    /**
+     * Sets message
+     *
+     * @param string $message Description of the validation error.
+     *
+     * @return self
+     */
+    public function setMessage($message)
+    {
+        $this->container['message'] = $message;
+
+        return $this;
+    }
 
     /**
      * Gets name
@@ -340,30 +364,6 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setValue($value)
     {
         $this->container['value'] = $value;
-
-        return $this;
-    }
-
-    /**
-     * Gets message
-     *
-     * @return string
-     */
-    public function getMessage()
-    {
-        return $this->container['message'];
-    }
-
-    /**
-     * Sets message
-     *
-     * @param string $message Description of the validation error.
-     *
-     * @return self
-     */
-    public function setMessage($message)
-    {
-        $this->container['message'] = $message;
 
         return $this;
     }

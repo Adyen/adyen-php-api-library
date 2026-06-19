@@ -224,9 +224,9 @@ class PlatformChargebackLogic implements ModelInterface, ArrayAccess, \JsonSeria
         return self::$openAPIModelName;
     }
 
+    public const BEHAVIOR_DEDUCT_FROM_ONE_BALANCE_ACCOUNT = 'deductFromOneBalanceAccount';
     public const BEHAVIOR_DEDUCT_ACCORDING_TO_SPLIT_RATIO = 'deductAccordingToSplitRatio';
     public const BEHAVIOR_DEDUCT_FROM_LIABLE_ACCOUNT = 'deductFromLiableAccount';
-    public const BEHAVIOR_DEDUCT_FROM_ONE_BALANCE_ACCOUNT = 'deductFromOneBalanceAccount';
 
     /**
      * Gets allowable values of the enum
@@ -236,9 +236,9 @@ class PlatformChargebackLogic implements ModelInterface, ArrayAccess, \JsonSeria
     public function getBehaviorAllowableValues()
     {
         return [
+            self::BEHAVIOR_DEDUCT_FROM_ONE_BALANCE_ACCOUNT,
             self::BEHAVIOR_DEDUCT_ACCORDING_TO_SPLIT_RATIO,
             self::BEHAVIOR_DEDUCT_FROM_LIABLE_ACCOUNT,
-            self::BEHAVIOR_DEDUCT_FROM_ONE_BALANCE_ACCOUNT,
         ];
     }
     /**

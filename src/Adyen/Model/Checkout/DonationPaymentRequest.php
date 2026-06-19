@@ -80,6 +80,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'shopperName' => '\Adyen\Model\Checkout\ShopperName',
         'shopperReference' => 'string',
         'socialSecurityNumber' => 'string',
+        'store' => 'string',
         'telephoneNumber' => 'string',
         'threeDS2RequestData' => '\Adyen\Model\Checkout\ThreeDS2RequestFields',
         'threeDSAuthenticationOnly' => 'bool'
@@ -132,6 +133,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'shopperName' => null,
         'shopperReference' => null,
         'socialSecurityNumber' => null,
+        'store' => null,
         'telephoneNumber' => null,
         'threeDS2RequestData' => null,
         'threeDSAuthenticationOnly' => null
@@ -182,6 +184,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'shopperName' => false,
         'shopperReference' => false,
         'socialSecurityNumber' => false,
+        'store' => false,
         'telephoneNumber' => false,
         'threeDS2RequestData' => false,
         'threeDSAuthenticationOnly' => false
@@ -312,6 +315,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'shopperName' => 'shopperName',
         'shopperReference' => 'shopperReference',
         'socialSecurityNumber' => 'socialSecurityNumber',
+        'store' => 'store',
         'telephoneNumber' => 'telephoneNumber',
         'threeDS2RequestData' => 'threeDS2RequestData',
         'threeDSAuthenticationOnly' => 'threeDSAuthenticationOnly'
@@ -362,6 +366,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'shopperName' => 'setShopperName',
         'shopperReference' => 'setShopperReference',
         'socialSecurityNumber' => 'setSocialSecurityNumber',
+        'store' => 'setStore',
         'telephoneNumber' => 'setTelephoneNumber',
         'threeDS2RequestData' => 'setThreeDS2RequestData',
         'threeDSAuthenticationOnly' => 'setThreeDSAuthenticationOnly'
@@ -412,6 +417,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'shopperName' => 'getShopperName',
         'shopperReference' => 'getShopperReference',
         'socialSecurityNumber' => 'getSocialSecurityNumber',
+        'store' => 'getStore',
         'telephoneNumber' => 'getTelephoneNumber',
         'threeDS2RequestData' => 'getThreeDS2RequestData',
         'threeDSAuthenticationOnly' => 'getThreeDSAuthenticationOnly'
@@ -563,6 +569,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('shopperName', $data ?? [], null);
         $this->setIfExists('shopperReference', $data ?? [], null);
         $this->setIfExists('socialSecurityNumber', $data ?? [], null);
+        $this->setIfExists('store', $data ?? [], null);
         $this->setIfExists('telephoneNumber', $data ?? [], null);
         $this->setIfExists('threeDS2RequestData', $data ?? [], null);
         $this->setIfExists('threeDSAuthenticationOnly', $data ?? [], null);
@@ -914,7 +921,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets countryCode
      *
-     * @param string|null $countryCode The shopper country.  Format: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) Example: NL or DE
+     * @param string|null $countryCode The shopper country code.  Format: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) Example: NL or DE
      *
      * @return self
      */
@@ -1534,7 +1541,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets shopperLocale
      *
-     * @param string|null $shopperLocale The combination of a language code and a country code to specify the language to be used in the payment.
+     * @param string|null $shopperLocale The language for the payment. The value combines the two-letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes) language code with the [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes) country code. For example, **nl-NL**.  When using Drop-in/Components, the specified language appears if your front-end global configuration does not set the `locale`.
      *
      * @return self
      */
@@ -1613,6 +1620,30 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
     public function setSocialSecurityNumber($socialSecurityNumber)
     {
         $this->container['socialSecurityNumber'] = $socialSecurityNumber;
+
+        return $this;
+    }
+
+    /**
+     * Gets store
+     *
+     * @return string|null
+     */
+    public function getStore()
+    {
+        return $this->container['store'];
+    }
+
+    /**
+     * Sets store
+     *
+     * @param string|null $store Required for Adyen for Platforms integrations if you are a platform model. This is your [reference](https://docs.adyen.com/api-explorer/Management/3/post/merchants/(merchantId)/stores#request-reference) (on [balance platform](https://docs.adyen.com/platforms)) or the [storeReference](https://docs.adyen.com/api-explorer/Account/latest/post/updateAccountHolder#request-accountHolderDetails-storeDetails-storeReference) (in the [classic integration](https://docs.adyen.com/classic-platforms/processing-payments/route-payment-to-store/#route-a-payment-to-a-store)) for the ecommerce or point-of-sale store that is processing the payment.
+     *
+     * @return self
+     */
+    public function setStore($store)
+    {
+        $this->container['store'] = $store;
 
         return $this;
     }

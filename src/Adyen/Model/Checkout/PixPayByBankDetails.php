@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\Checkout\ObjectSerializer;
 
 /**
- * ShopperTaxInfo Class Doc Comment
+ * PixPayByBankDetails Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
+class PixPayByBankDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ShopperTaxInfo';
+    protected static $openAPIModelName = 'PixPayByBankDetails';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,8 +41,14 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'taxCountryCode' => 'string',
-        'taxIdentificationNumber' => 'string'
+        'checkoutAttemptId' => 'string',
+        'deviceId' => 'string',
+        'issuer' => 'string',
+        'recurringDetailReference' => 'string',
+        'riskSignals' => '\Adyen\Model\Checkout\PixPayByBankRiskSignals',
+        'sdkData' => 'string',
+        'storedPaymentMethodId' => 'string',
+        'type' => 'string'
     ];
 
     /**
@@ -53,8 +59,14 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'taxCountryCode' => null,
-        'taxIdentificationNumber' => null
+        'checkoutAttemptId' => null,
+        'deviceId' => null,
+        'issuer' => null,
+        'recurringDetailReference' => null,
+        'riskSignals' => null,
+        'sdkData' => null,
+        'storedPaymentMethodId' => null,
+        'type' => null
     ];
 
     /**
@@ -63,8 +75,14 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'taxCountryCode' => false,
-        'taxIdentificationNumber' => false
+        'checkoutAttemptId' => false,
+        'deviceId' => false,
+        'issuer' => false,
+        'recurringDetailReference' => false,
+        'riskSignals' => false,
+        'sdkData' => false,
+        'storedPaymentMethodId' => false,
+        'type' => false
     ];
 
     /**
@@ -153,8 +171,14 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'taxCountryCode' => 'taxCountryCode',
-        'taxIdentificationNumber' => 'taxIdentificationNumber'
+        'checkoutAttemptId' => 'checkoutAttemptId',
+        'deviceId' => 'deviceId',
+        'issuer' => 'issuer',
+        'recurringDetailReference' => 'recurringDetailReference',
+        'riskSignals' => 'riskSignals',
+        'sdkData' => 'sdkData',
+        'storedPaymentMethodId' => 'storedPaymentMethodId',
+        'type' => 'type'
     ];
 
     /**
@@ -163,8 +187,14 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'taxCountryCode' => 'setTaxCountryCode',
-        'taxIdentificationNumber' => 'setTaxIdentificationNumber'
+        'checkoutAttemptId' => 'setCheckoutAttemptId',
+        'deviceId' => 'setDeviceId',
+        'issuer' => 'setIssuer',
+        'recurringDetailReference' => 'setRecurringDetailReference',
+        'riskSignals' => 'setRiskSignals',
+        'sdkData' => 'setSdkData',
+        'storedPaymentMethodId' => 'setStoredPaymentMethodId',
+        'type' => 'setType'
     ];
 
     /**
@@ -173,8 +203,14 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'taxCountryCode' => 'getTaxCountryCode',
-        'taxIdentificationNumber' => 'getTaxIdentificationNumber'
+        'checkoutAttemptId' => 'getCheckoutAttemptId',
+        'deviceId' => 'getDeviceId',
+        'issuer' => 'getIssuer',
+        'recurringDetailReference' => 'getRecurringDetailReference',
+        'riskSignals' => 'getRiskSignals',
+        'sdkData' => 'getSdkData',
+        'storedPaymentMethodId' => 'getStoredPaymentMethodId',
+        'type' => 'getType'
     ];
 
     /**
@@ -218,7 +254,19 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const TYPE_PAYBYBANK_PIX = 'paybybank_pix';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_PAYBYBANK_PIX,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -234,8 +282,14 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('taxCountryCode', $data ?? [], null);
-        $this->setIfExists('taxIdentificationNumber', $data ?? [], null);
+        $this->setIfExists('checkoutAttemptId', $data ?? [], null);
+        $this->setIfExists('deviceId', $data ?? [], null);
+        $this->setIfExists('issuer', $data ?? [], null);
+        $this->setIfExists('recurringDetailReference', $data ?? [], null);
+        $this->setIfExists('riskSignals', $data ?? [], null);
+        $this->setIfExists('sdkData', $data ?? [], null);
+        $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -265,12 +319,15 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['taxCountryCode'] === null) {
-            $invalidProperties[] = "'taxCountryCode' can't be null";
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
         }
-        if ($this->container['taxIdentificationNumber'] === null) {
-            $invalidProperties[] = "'taxIdentificationNumber' can't be null";
-        }
+
         return $invalidProperties;
     }
 
@@ -287,49 +344,205 @@ class ShopperTaxInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets taxCountryCode
+     * Gets checkoutAttemptId
      *
-     * @return string
+     * @return string|null
      */
-    public function getTaxCountryCode()
+    public function getCheckoutAttemptId()
     {
-        return $this->container['taxCountryCode'];
+        return $this->container['checkoutAttemptId'];
     }
 
     /**
-     * Sets taxCountryCode
+     * Sets checkoutAttemptId
      *
-     * @param string $taxCountryCode The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code associated with the provided tax identification number. Currently used only for Indian PA-CB tax verification, when applicable.
+     * @param string|null $checkoutAttemptId The checkout attempt identifier.
      *
      * @return self
      */
-    public function setTaxCountryCode($taxCountryCode)
+    public function setCheckoutAttemptId($checkoutAttemptId)
     {
-        $this->container['taxCountryCode'] = $taxCountryCode;
+        $this->container['checkoutAttemptId'] = $checkoutAttemptId;
 
         return $this;
     }
 
     /**
-     * Gets taxIdentificationNumber
+     * Gets deviceId
      *
-     * @return string
+     * @return string|null
      */
-    public function getTaxIdentificationNumber()
+    public function getDeviceId()
     {
-        return $this->container['taxIdentificationNumber'];
+        return $this->container['deviceId'];
     }
 
     /**
-     * Sets taxIdentificationNumber
+     * Sets deviceId
      *
-     * @param string $taxIdentificationNumber The shopper’s tax identification number.
+     * @param string|null $deviceId deviceId
      *
      * @return self
      */
-    public function setTaxIdentificationNumber($taxIdentificationNumber)
+    public function setDeviceId($deviceId)
     {
-        $this->container['taxIdentificationNumber'] = $taxIdentificationNumber;
+        $this->container['deviceId'] = $deviceId;
+
+        return $this;
+    }
+
+    /**
+     * Gets issuer
+     *
+     * @return string|null
+     */
+    public function getIssuer()
+    {
+        return $this->container['issuer'];
+    }
+
+    /**
+     * Sets issuer
+     *
+     * @param string|null $issuer issuer
+     *
+     * @return self
+     */
+    public function setIssuer($issuer)
+    {
+        $this->container['issuer'] = $issuer;
+
+        return $this;
+    }
+
+    /**
+     * Gets recurringDetailReference
+     *
+     * @return string|null
+     * @deprecated since Adyen Checkout API v49. "Use `storedPaymentMethodId` instead."
+     */
+    public function getRecurringDetailReference()
+    {
+        return $this->container['recurringDetailReference'];
+    }
+
+    /**
+     * Sets recurringDetailReference
+     *
+     * @param string|null $recurringDetailReference This is the `recurringDetailReference` returned in the response when you created the token.
+     *
+     * @return self
+     * @deprecated since Adyen Checkout API v49. "Use `storedPaymentMethodId` instead."
+     */
+    public function setRecurringDetailReference($recurringDetailReference)
+    {
+        $this->container['recurringDetailReference'] = $recurringDetailReference;
+
+        return $this;
+    }
+
+    /**
+     * Gets riskSignals
+     *
+     * @return \Adyen\Model\Checkout\PixPayByBankRiskSignals|null
+     */
+    public function getRiskSignals()
+    {
+        return $this->container['riskSignals'];
+    }
+
+    /**
+     * Sets riskSignals
+     *
+     * @param \Adyen\Model\Checkout\PixPayByBankRiskSignals|null $riskSignals riskSignals
+     *
+     * @return self
+     */
+    public function setRiskSignals($riskSignals)
+    {
+        $this->container['riskSignals'] = $riskSignals;
+
+        return $this;
+    }
+
+    /**
+     * Gets sdkData
+     *
+     * @return string|null
+     */
+    public function getSdkData()
+    {
+        return $this->container['sdkData'];
+    }
+
+    /**
+     * Sets sdkData
+     *
+     * @param string|null $sdkData Base64-encoded JSON object containing SDK related parameters required by the SDK
+     *
+     * @return self
+     */
+    public function setSdkData($sdkData)
+    {
+        $this->container['sdkData'] = $sdkData;
+
+        return $this;
+    }
+
+    /**
+     * Gets storedPaymentMethodId
+     *
+     * @return string|null
+     */
+    public function getStoredPaymentMethodId()
+    {
+        return $this->container['storedPaymentMethodId'];
+    }
+
+    /**
+     * Sets storedPaymentMethodId
+     *
+     * @param string|null $storedPaymentMethodId This is the `recurringDetailReference` returned in the response when you created the token.
+     *
+     * @return self
+     */
+    public function setStoredPaymentMethodId($storedPaymentMethodId)
+    {
+        $this->container['storedPaymentMethodId'] = $storedPaymentMethodId;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string|null
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string|null $type **paybybank_pix**
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            error_log(
+                sprintf(
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
+                    $type,
+                    implode(', ', $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
 
         return $this;
     }

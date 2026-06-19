@@ -45,7 +45,8 @@ class CheckoutForwardRequestOptions implements ModelInterface, ArrayAccess, \Jso
         'dryRun' => 'bool',
         'networkToken' => '\Adyen\Model\Checkout\CheckoutNetworkTokenOption',
         'networkTxReferencePaths' => 'string[]',
-        'tokenize' => 'bool'
+        'tokenize' => 'bool',
+        'transactionLinkIdPaths' => 'string[]'
     ];
 
     /**
@@ -60,7 +61,8 @@ class CheckoutForwardRequestOptions implements ModelInterface, ArrayAccess, \Jso
         'dryRun' => null,
         'networkToken' => null,
         'networkTxReferencePaths' => null,
-        'tokenize' => null
+        'tokenize' => null,
+        'transactionLinkIdPaths' => null
     ];
 
     /**
@@ -73,7 +75,8 @@ class CheckoutForwardRequestOptions implements ModelInterface, ArrayAccess, \Jso
         'dryRun' => false,
         'networkToken' => false,
         'networkTxReferencePaths' => false,
-        'tokenize' => false
+        'tokenize' => false,
+        'transactionLinkIdPaths' => false
     ];
 
     /**
@@ -166,7 +169,8 @@ class CheckoutForwardRequestOptions implements ModelInterface, ArrayAccess, \Jso
         'dryRun' => 'dryRun',
         'networkToken' => 'networkToken',
         'networkTxReferencePaths' => 'networkTxReferencePaths',
-        'tokenize' => 'tokenize'
+        'tokenize' => 'tokenize',
+        'transactionLinkIdPaths' => 'transactionLinkIdPaths'
     ];
 
     /**
@@ -179,7 +183,8 @@ class CheckoutForwardRequestOptions implements ModelInterface, ArrayAccess, \Jso
         'dryRun' => 'setDryRun',
         'networkToken' => 'setNetworkToken',
         'networkTxReferencePaths' => 'setNetworkTxReferencePaths',
-        'tokenize' => 'setTokenize'
+        'tokenize' => 'setTokenize',
+        'transactionLinkIdPaths' => 'setTransactionLinkIdPaths'
     ];
 
     /**
@@ -192,7 +197,8 @@ class CheckoutForwardRequestOptions implements ModelInterface, ArrayAccess, \Jso
         'dryRun' => 'getDryRun',
         'networkToken' => 'getNetworkToken',
         'networkTxReferencePaths' => 'getNetworkTxReferencePaths',
-        'tokenize' => 'getTokenize'
+        'tokenize' => 'getTokenize',
+        'transactionLinkIdPaths' => 'getTransactionLinkIdPaths'
     ];
 
     /**
@@ -257,6 +263,7 @@ class CheckoutForwardRequestOptions implements ModelInterface, ArrayAccess, \Jso
         $this->setIfExists('networkToken', $data ?? [], null);
         $this->setIfExists('networkTxReferencePaths', $data ?? [], null);
         $this->setIfExists('tokenize', $data ?? [], null);
+        $this->setIfExists('transactionLinkIdPaths', $data ?? [], null);
     }
 
     /**
@@ -417,6 +424,30 @@ class CheckoutForwardRequestOptions implements ModelInterface, ArrayAccess, \Jso
     public function setTokenize($tokenize)
     {
         $this->container['tokenize'] = $tokenize;
+
+        return $this;
+    }
+
+    /**
+     * Gets transactionLinkIdPaths
+     *
+     * @return string[]|null
+     */
+    public function getTransactionLinkIdPaths()
+    {
+        return $this->container['transactionLinkIdPaths'];
+    }
+
+    /**
+     * Sets transactionLinkIdPaths
+     *
+     * @param string[]|null $transactionLinkIdPaths Set in tokenize:true case when forwarding PAN. Addresses to the possible location(s) of transactionLinkId in the incoming 3rd party response
+     *
+     * @return self
+     */
+    public function setTransactionLinkIdPaths($transactionLinkIdPaths)
+    {
+        $this->container['transactionLinkIdPaths'] = $transactionLinkIdPaths;
 
         return $this;
     }

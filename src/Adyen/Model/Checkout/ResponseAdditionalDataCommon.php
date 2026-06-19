@@ -74,6 +74,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'mcBankNetReferenceNumber' => 'string',
         'merchantAdviceCode' => 'string',
         'merchantReference' => 'string',
+        'networkProcessingMode' => 'string',
         'networkTxReference' => 'string',
         'ownerName' => 'string',
         'paymentAccountReference' => 'string',
@@ -102,6 +103,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'tokenizationShopperReference' => 'string',
         'tokenizationStoreOperationType' => 'string',
         'tokenizationStoredPaymentMethodId' => 'string',
+        'transactionLinkId' => 'string',
         'visaTransactionId' => 'string',
         'xid' => 'string'
     ];
@@ -147,6 +149,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'mcBankNetReferenceNumber' => null,
         'merchantAdviceCode' => null,
         'merchantReference' => null,
+        'networkProcessingMode' => null,
         'networkTxReference' => null,
         'ownerName' => null,
         'paymentAccountReference' => null,
@@ -175,6 +178,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'tokenizationShopperReference' => null,
         'tokenizationStoreOperationType' => null,
         'tokenizationStoredPaymentMethodId' => null,
+        'transactionLinkId' => null,
         'visaTransactionId' => null,
         'xid' => null
     ];
@@ -218,6 +222,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'mcBankNetReferenceNumber' => false,
         'merchantAdviceCode' => false,
         'merchantReference' => false,
+        'networkProcessingMode' => false,
         'networkTxReference' => false,
         'ownerName' => false,
         'paymentAccountReference' => false,
@@ -246,6 +251,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'tokenizationShopperReference' => false,
         'tokenizationStoreOperationType' => false,
         'tokenizationStoredPaymentMethodId' => false,
+        'transactionLinkId' => false,
         'visaTransactionId' => false,
         'xid' => false
     ];
@@ -369,6 +375,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'mcBankNetReferenceNumber' => 'mcBankNetReferenceNumber',
         'merchantAdviceCode' => 'merchantAdviceCode',
         'merchantReference' => 'merchantReference',
+        'networkProcessingMode' => 'networkProcessingMode',
         'networkTxReference' => 'networkTxReference',
         'ownerName' => 'ownerName',
         'paymentAccountReference' => 'paymentAccountReference',
@@ -397,6 +404,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'tokenizationShopperReference' => 'tokenization.shopperReference',
         'tokenizationStoreOperationType' => 'tokenization.store.operationType',
         'tokenizationStoredPaymentMethodId' => 'tokenization.storedPaymentMethodId',
+        'transactionLinkId' => 'transactionLinkId',
         'visaTransactionId' => 'visaTransactionId',
         'xid' => 'xid'
     ];
@@ -440,6 +448,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'mcBankNetReferenceNumber' => 'setMcBankNetReferenceNumber',
         'merchantAdviceCode' => 'setMerchantAdviceCode',
         'merchantReference' => 'setMerchantReference',
+        'networkProcessingMode' => 'setNetworkProcessingMode',
         'networkTxReference' => 'setNetworkTxReference',
         'ownerName' => 'setOwnerName',
         'paymentAccountReference' => 'setPaymentAccountReference',
@@ -468,6 +477,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'tokenizationShopperReference' => 'setTokenizationShopperReference',
         'tokenizationStoreOperationType' => 'setTokenizationStoreOperationType',
         'tokenizationStoredPaymentMethodId' => 'setTokenizationStoredPaymentMethodId',
+        'transactionLinkId' => 'setTransactionLinkId',
         'visaTransactionId' => 'setVisaTransactionId',
         'xid' => 'setXid'
     ];
@@ -511,6 +521,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'mcBankNetReferenceNumber' => 'getMcBankNetReferenceNumber',
         'merchantAdviceCode' => 'getMerchantAdviceCode',
         'merchantReference' => 'getMerchantReference',
+        'networkProcessingMode' => 'getNetworkProcessingMode',
         'networkTxReference' => 'getNetworkTxReference',
         'ownerName' => 'getOwnerName',
         'paymentAccountReference' => 'getPaymentAccountReference',
@@ -539,6 +550,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'tokenizationShopperReference' => 'getTokenizationShopperReference',
         'tokenizationStoreOperationType' => 'getTokenizationStoreOperationType',
         'tokenizationStoredPaymentMethodId' => 'getTokenizationStoredPaymentMethodId',
+        'transactionLinkId' => 'getTransactionLinkId',
         'visaTransactionId' => 'getVisaTransactionId',
         'xid' => 'getXid'
     ];
@@ -701,6 +713,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         $this->setIfExists('mcBankNetReferenceNumber', $data ?? [], null);
         $this->setIfExists('merchantAdviceCode', $data ?? [], null);
         $this->setIfExists('merchantReference', $data ?? [], null);
+        $this->setIfExists('networkProcessingMode', $data ?? [], null);
         $this->setIfExists('networkTxReference', $data ?? [], null);
         $this->setIfExists('ownerName', $data ?? [], null);
         $this->setIfExists('paymentAccountReference', $data ?? [], null);
@@ -729,6 +742,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         $this->setIfExists('tokenizationShopperReference', $data ?? [], null);
         $this->setIfExists('tokenizationStoreOperationType', $data ?? [], null);
         $this->setIfExists('tokenizationStoredPaymentMethodId', $data ?? [], null);
+        $this->setIfExists('transactionLinkId', $data ?? [], null);
         $this->setIfExists('visaTransactionId', $data ?? [], null);
         $this->setIfExists('xid', $data ?? [], null);
     }
@@ -1624,6 +1638,30 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
     }
 
     /**
+     * Gets networkProcessingMode
+     *
+     * @return string|null
+     */
+    public function getNetworkProcessingMode()
+    {
+        return $this->container['networkProcessingMode'];
+    }
+
+    /**
+     * Sets networkProcessingMode
+     *
+     * @param string|null $networkProcessingMode Indicates the processing flow.  Possible values: * **sale**: You do not need to separately capture the funds, because capture happens automatically as part of the transaction.  * **auth**: If you have not [configured automatic capture for the transaction](https://docs.adyen.com/online-payments/capture#types-of-capture), you must manually capture the funds.
+     *
+     * @return self
+     */
+    public function setNetworkProcessingMode($networkProcessingMode)
+    {
+        $this->container['networkProcessingMode'] = $networkProcessingMode;
+
+        return $this;
+    }
+
+    /**
      * Gets networkTxReference
      *
      * @return string|null
@@ -2315,6 +2353,30 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
     public function setTokenizationStoredPaymentMethodId($tokenizationStoredPaymentMethodId)
     {
         $this->container['tokenizationStoredPaymentMethodId'] = $tokenizationStoredPaymentMethodId;
+
+        return $this;
+    }
+
+    /**
+     * Gets transactionLinkId
+     *
+     * @return string|null
+     */
+    public function getTransactionLinkId()
+    {
+        return $this->container['transactionLinkId'];
+    }
+
+    /**
+     * Sets transactionLinkId
+     *
+     * @param string|null $transactionLinkId Returned in the response for Mastercard payments.  This contains the Mastercard Transaction Link Identifier (TLID).
+     *
+     * @return self
+     */
+    public function setTransactionLinkId($transactionLinkId)
+    {
+        $this->container['transactionLinkId'] = $transactionLinkId;
 
         return $this;
     }
