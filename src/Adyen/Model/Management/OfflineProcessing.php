@@ -41,8 +41,7 @@ class OfflineProcessing implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
-        'chipFloorLimit' => 'int',
-        'offlineSwipeLimits' => '\Adyen\Model\Management\MinorUnitsMonetaryValue[]'
+        'chipFloorLimit' => 'int'
     ];
 
     /**
@@ -53,8 +52,7 @@ class OfflineProcessing implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'chipFloorLimit' => 'int32',
-        'offlineSwipeLimits' => null
+        'chipFloorLimit' => 'int32'
     ];
 
     /**
@@ -63,8 +61,7 @@ class OfflineProcessing implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'chipFloorLimit' => true,
-        'offlineSwipeLimits' => false
+        'chipFloorLimit' => true
     ];
 
     /**
@@ -153,8 +150,7 @@ class OfflineProcessing implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
-        'chipFloorLimit' => 'chipFloorLimit',
-        'offlineSwipeLimits' => 'offlineSwipeLimits'
+        'chipFloorLimit' => 'chipFloorLimit'
     ];
 
     /**
@@ -163,8 +159,7 @@ class OfflineProcessing implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
-        'chipFloorLimit' => 'setChipFloorLimit',
-        'offlineSwipeLimits' => 'setOfflineSwipeLimits'
+        'chipFloorLimit' => 'setChipFloorLimit'
     ];
 
     /**
@@ -173,8 +168,7 @@ class OfflineProcessing implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
-        'chipFloorLimit' => 'getChipFloorLimit',
-        'offlineSwipeLimits' => 'getOfflineSwipeLimits'
+        'chipFloorLimit' => 'getChipFloorLimit'
     ];
 
     /**
@@ -235,7 +229,6 @@ class OfflineProcessing implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function __construct(?array $data = null)
     {
         $this->setIfExists('chipFloorLimit', $data ?? [], null);
-        $this->setIfExists('offlineSwipeLimits', $data ?? [], null);
     }
 
     /**
@@ -300,30 +293,6 @@ class OfflineProcessing implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function setChipFloorLimit($chipFloorLimit)
     {
         $this->container['chipFloorLimit'] = $chipFloorLimit;
-
-        return $this;
-    }
-
-    /**
-     * Gets offlineSwipeLimits
-     *
-     * @return \Adyen\Model\Management\MinorUnitsMonetaryValue[]|null
-     */
-    public function getOfflineSwipeLimits()
-    {
-        return $this->container['offlineSwipeLimits'];
-    }
-
-    /**
-     * Sets offlineSwipeLimits
-     *
-     * @param \Adyen\Model\Management\MinorUnitsMonetaryValue[]|null $offlineSwipeLimits The maximum offline transaction amount for swiped cards, in the specified currency.
-     *
-     * @return self
-     */
-    public function setOfflineSwipeLimits($offlineSwipeLimits)
-    {
-        $this->container['offlineSwipeLimits'] = $offlineSwipeLimits;
 
         return $this;
     }

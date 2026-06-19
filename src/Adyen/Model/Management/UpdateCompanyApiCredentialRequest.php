@@ -45,7 +45,8 @@ class UpdateCompanyApiCredentialRequest implements ModelInterface, ArrayAccess, 
         'allowedOrigins' => 'string[]',
         'associatedMerchantAccounts' => 'string[]',
         'description' => 'string',
-        'roles' => 'string[]'
+        'roles' => 'string[]',
+        'subjectDN' => 'string'
     ];
 
     /**
@@ -60,7 +61,8 @@ class UpdateCompanyApiCredentialRequest implements ModelInterface, ArrayAccess, 
         'allowedOrigins' => null,
         'associatedMerchantAccounts' => null,
         'description' => null,
-        'roles' => null
+        'roles' => null,
+        'subjectDN' => null
     ];
 
     /**
@@ -73,7 +75,8 @@ class UpdateCompanyApiCredentialRequest implements ModelInterface, ArrayAccess, 
         'allowedOrigins' => false,
         'associatedMerchantAccounts' => false,
         'description' => false,
-        'roles' => false
+        'roles' => false,
+        'subjectDN' => false
     ];
 
     /**
@@ -166,7 +169,8 @@ class UpdateCompanyApiCredentialRequest implements ModelInterface, ArrayAccess, 
         'allowedOrigins' => 'allowedOrigins',
         'associatedMerchantAccounts' => 'associatedMerchantAccounts',
         'description' => 'description',
-        'roles' => 'roles'
+        'roles' => 'roles',
+        'subjectDN' => 'subjectDN'
     ];
 
     /**
@@ -179,7 +183,8 @@ class UpdateCompanyApiCredentialRequest implements ModelInterface, ArrayAccess, 
         'allowedOrigins' => 'setAllowedOrigins',
         'associatedMerchantAccounts' => 'setAssociatedMerchantAccounts',
         'description' => 'setDescription',
-        'roles' => 'setRoles'
+        'roles' => 'setRoles',
+        'subjectDN' => 'setSubjectDN'
     ];
 
     /**
@@ -192,7 +197,8 @@ class UpdateCompanyApiCredentialRequest implements ModelInterface, ArrayAccess, 
         'allowedOrigins' => 'getAllowedOrigins',
         'associatedMerchantAccounts' => 'getAssociatedMerchantAccounts',
         'description' => 'getDescription',
-        'roles' => 'getRoles'
+        'roles' => 'getRoles',
+        'subjectDN' => 'getSubjectDN'
     ];
 
     /**
@@ -257,6 +263,7 @@ class UpdateCompanyApiCredentialRequest implements ModelInterface, ArrayAccess, 
         $this->setIfExists('associatedMerchantAccounts', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('roles', $data ?? [], null);
+        $this->setIfExists('subjectDN', $data ?? [], null);
     }
 
     /**
@@ -417,6 +424,30 @@ class UpdateCompanyApiCredentialRequest implements ModelInterface, ArrayAccess, 
     public function setRoles($roles)
     {
         $this->container['roles'] = $roles;
+
+        return $this;
+    }
+
+    /**
+     * Gets subjectDN
+     *
+     * @return string|null
+     */
+    public function getSubjectDN()
+    {
+        return $this->container['subjectDN'];
+    }
+
+    /**
+     * Sets subjectDN
+     *
+     * @param string|null $subjectDN The subject DN of the certificate issued by Adyen.
+     *
+     * @return self
+     */
+    public function setSubjectDN($subjectDN)
+    {
+        $this->container['subjectDN'] = $subjectDN;
 
         return $this;
     }
