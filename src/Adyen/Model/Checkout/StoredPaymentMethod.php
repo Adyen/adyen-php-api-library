@@ -44,6 +44,7 @@ class StoredPaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializa
         'bankAccountNumber' => 'string',
         'bankLocationId' => 'string',
         'brand' => 'string',
+        'cashtag' => 'string',
         'expiryMonth' => 'string',
         'expiryYear' => 'string',
         'holderName' => 'string',
@@ -71,6 +72,7 @@ class StoredPaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializa
         'bankAccountNumber' => null,
         'bankLocationId' => null,
         'brand' => null,
+        'cashtag' => null,
         'expiryMonth' => null,
         'expiryYear' => null,
         'holderName' => null,
@@ -96,6 +98,7 @@ class StoredPaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializa
         'bankAccountNumber' => false,
         'bankLocationId' => false,
         'brand' => false,
+        'cashtag' => false,
         'expiryMonth' => false,
         'expiryYear' => false,
         'holderName' => false,
@@ -201,6 +204,7 @@ class StoredPaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializa
         'bankAccountNumber' => 'bankAccountNumber',
         'bankLocationId' => 'bankLocationId',
         'brand' => 'brand',
+        'cashtag' => 'cashtag',
         'expiryMonth' => 'expiryMonth',
         'expiryYear' => 'expiryYear',
         'holderName' => 'holderName',
@@ -226,6 +230,7 @@ class StoredPaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializa
         'bankAccountNumber' => 'setBankAccountNumber',
         'bankLocationId' => 'setBankLocationId',
         'brand' => 'setBrand',
+        'cashtag' => 'setCashtag',
         'expiryMonth' => 'setExpiryMonth',
         'expiryYear' => 'setExpiryYear',
         'holderName' => 'setHolderName',
@@ -251,6 +256,7 @@ class StoredPaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializa
         'bankAccountNumber' => 'getBankAccountNumber',
         'bankLocationId' => 'getBankLocationId',
         'brand' => 'getBrand',
+        'cashtag' => 'getCashtag',
         'expiryMonth' => 'getExpiryMonth',
         'expiryYear' => 'getExpiryYear',
         'holderName' => 'getHolderName',
@@ -327,6 +333,7 @@ class StoredPaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('bankAccountNumber', $data ?? [], null);
         $this->setIfExists('bankLocationId', $data ?? [], null);
         $this->setIfExists('brand', $data ?? [], null);
+        $this->setIfExists('cashtag', $data ?? [], null);
         $this->setIfExists('expiryMonth', $data ?? [], null);
         $this->setIfExists('expiryYear', $data ?? [], null);
         $this->setIfExists('holderName', $data ?? [], null);
@@ -458,6 +465,30 @@ class StoredPaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializa
     }
 
     /**
+     * Gets cashtag
+     *
+     * @return string|null
+     */
+    public function getCashtag()
+    {
+        return $this->container['cashtag'];
+    }
+
+    /**
+     * Sets cashtag
+     *
+     * @param string|null $cashtag The shopper’s Cash App Pay Cashtag.
+     *
+     * @return self
+     */
+    public function setCashtag($cashtag)
+    {
+        $this->container['cashtag'] = $cashtag;
+
+        return $this;
+    }
+
+    /**
      * Gets expiryMonth
      *
      * @return string|null
@@ -518,7 +549,7 @@ class StoredPaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets holderName
      *
-     * @param string|null $holderName The unique payment method code.
+     * @param string|null $holderName The name of the payment method holder.
      *
      * @return self
      */

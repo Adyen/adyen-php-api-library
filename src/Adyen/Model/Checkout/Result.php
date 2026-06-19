@@ -33,6 +33,8 @@ class Result
 
     public const UNKNOWN = 'UNKNOWN';
 
+    public const NOT_REQUIRED = 'NOT_REQUIRED';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -42,7 +44,8 @@ class Result
         return [
             self::VALID,
             self::INVALID,
-            self::UNKNOWN
+            self::UNKNOWN,
+            self::NOT_REQUIRED
         ];
     }
 }

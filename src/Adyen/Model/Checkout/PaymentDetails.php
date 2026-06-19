@@ -232,6 +232,7 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_PAYNOW = 'paynow';
     public const TYPE_AFFIRM_POS = 'affirm_pos';
     public const TYPE_IRIS = 'iris';
+    public const TYPE_WERO = 'wero';
     public const TYPE_TRUSTLY = 'trustly';
     public const TYPE_TRUSTLYVECTOR = 'trustlyvector';
     public const TYPE_ONEY = 'oney';
@@ -260,7 +261,6 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_BIZUM = 'bizum';
     public const TYPE_WALLEY = 'walley';
     public const TYPE_WALLEY_B2B = 'walley_b2b';
-    public const TYPE_ALMA = 'alma';
     public const TYPE_PAYPO = 'paypo';
     public const TYPE_SCALAPAY = 'scalapay';
     public const TYPE_SCALAPAY_3X = 'scalapay_3x';
@@ -328,6 +328,7 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_PAYNOW,
             self::TYPE_AFFIRM_POS,
             self::TYPE_IRIS,
+            self::TYPE_WERO,
             self::TYPE_TRUSTLY,
             self::TYPE_TRUSTLYVECTOR,
             self::TYPE_ONEY,
@@ -356,7 +357,6 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_BIZUM,
             self::TYPE_WALLEY,
             self::TYPE_WALLEY_B2B,
-            self::TYPE_ALMA,
             self::TYPE_PAYPO,
             self::TYPE_SCALAPAY,
             self::TYPE_SCALAPAY_3X,

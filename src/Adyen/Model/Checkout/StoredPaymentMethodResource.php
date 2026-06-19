@@ -41,6 +41,8 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
       * @var string[]
       */
     protected static $openAPITypes = [
+        'alias' => 'string',
+        'aliasType' => 'string',
         'brand' => 'string',
         'cardBin' => 'string',
         'expiryMonth' => 'string',
@@ -70,6 +72,8 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'alias' => null,
+        'aliasType' => null,
         'brand' => null,
         'cardBin' => null,
         'expiryMonth' => null,
@@ -97,6 +101,8 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'alias' => false,
+        'aliasType' => false,
         'brand' => false,
         'cardBin' => false,
         'expiryMonth' => false,
@@ -204,6 +210,8 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $attributeMap = [
+        'alias' => 'alias',
+        'aliasType' => 'aliasType',
         'brand' => 'brand',
         'cardBin' => 'cardBin',
         'expiryMonth' => 'expiryMonth',
@@ -231,6 +239,8 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $setters = [
+        'alias' => 'setAlias',
+        'aliasType' => 'setAliasType',
         'brand' => 'setBrand',
         'cardBin' => 'setCardBin',
         'expiryMonth' => 'setExpiryMonth',
@@ -258,6 +268,8 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $getters = [
+        'alias' => 'getAlias',
+        'aliasType' => 'getAliasType',
         'brand' => 'getBrand',
         'cardBin' => 'getCardBin',
         'expiryMonth' => 'getExpiryMonth',
@@ -336,6 +348,8 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('alias', $data ?? [], null);
+        $this->setIfExists('aliasType', $data ?? [], null);
         $this->setIfExists('brand', $data ?? [], null);
         $this->setIfExists('cardBin', $data ?? [], null);
         $this->setIfExists('expiryMonth', $data ?? [], null);
@@ -398,6 +412,54 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets alias
+     *
+     * @return string|null
+     */
+    public function getAlias()
+    {
+        return $this->container['alias'];
+    }
+
+    /**
+     * Sets alias
+     *
+     * @param string|null $alias The alias of the credit card number.  Applies only to recurring contracts storing credit card details
+     *
+     * @return self
+     */
+    public function setAlias($alias)
+    {
+        $this->container['alias'] = $alias;
+
+        return $this;
+    }
+
+    /**
+     * Gets aliasType
+     *
+     * @return string|null
+     */
+    public function getAliasType()
+    {
+        return $this->container['aliasType'];
+    }
+
+    /**
+     * Sets aliasType
+     *
+     * @param string|null $aliasType The alias type of the credit card number.  Applies only to recurring contracts storing credit card details.
+     *
+     * @return self
+     */
+    public function setAliasType($aliasType)
+    {
+        $this->container['aliasType'] = $aliasType;
+
+        return $this;
+    }
 
     /**
      * Gets brand

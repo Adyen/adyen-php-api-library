@@ -43,7 +43,8 @@ class DonationCampaignsRequest implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $openAPITypes = [
         'currency' => 'string',
         'locale' => 'string',
-        'merchantAccount' => 'string'
+        'merchantAccount' => 'string',
+        'store' => 'string'
     ];
 
     /**
@@ -56,7 +57,8 @@ class DonationCampaignsRequest implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $openAPIFormats = [
         'currency' => null,
         'locale' => null,
-        'merchantAccount' => null
+        'merchantAccount' => null,
+        'store' => null
     ];
 
     /**
@@ -67,7 +69,8 @@ class DonationCampaignsRequest implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $openAPINullables = [
         'currency' => false,
         'locale' => false,
-        'merchantAccount' => false
+        'merchantAccount' => false,
+        'store' => false
     ];
 
     /**
@@ -158,7 +161,8 @@ class DonationCampaignsRequest implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $attributeMap = [
         'currency' => 'currency',
         'locale' => 'locale',
-        'merchantAccount' => 'merchantAccount'
+        'merchantAccount' => 'merchantAccount',
+        'store' => 'store'
     ];
 
     /**
@@ -169,7 +173,8 @@ class DonationCampaignsRequest implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $setters = [
         'currency' => 'setCurrency',
         'locale' => 'setLocale',
-        'merchantAccount' => 'setMerchantAccount'
+        'merchantAccount' => 'setMerchantAccount',
+        'store' => 'setStore'
     ];
 
     /**
@@ -180,7 +185,8 @@ class DonationCampaignsRequest implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $getters = [
         'currency' => 'getCurrency',
         'locale' => 'getLocale',
-        'merchantAccount' => 'getMerchantAccount'
+        'merchantAccount' => 'getMerchantAccount',
+        'store' => 'getStore'
     ];
 
     /**
@@ -243,6 +249,7 @@ class DonationCampaignsRequest implements ModelInterface, ArrayAccess, \JsonSeri
         $this->setIfExists('currency', $data ?? [], null);
         $this->setIfExists('locale', $data ?? [], null);
         $this->setIfExists('merchantAccount', $data ?? [], null);
+        $this->setIfExists('store', $data ?? [], null);
     }
 
     /**
@@ -361,6 +368,30 @@ class DonationCampaignsRequest implements ModelInterface, ArrayAccess, \JsonSeri
     public function setMerchantAccount($merchantAccount)
     {
         $this->container['merchantAccount'] = $merchantAccount;
+
+        return $this;
+    }
+
+    /**
+     * Gets store
+     *
+     * @return string|null
+     */
+    public function getStore()
+    {
+        return $this->container['store'];
+    }
+
+    /**
+     * Sets store
+     *
+     * @param string|null $store Required for Adyen for Platforms integrations if you are a platform model. This is your [reference](https://docs.adyen.com/api-explorer/Management/3/post/merchants/(merchantId)/stores#request-reference) (on [balance platform](https://docs.adyen.com/platforms)) or the [storeReference](https://docs.adyen.com/api-explorer/Account/latest/post/updateAccountHolder#request-accountHolderDetails-storeDetails-storeReference) (in the [classic integration](https://docs.adyen.com/classic-platforms/processing-payments/route-payment-to-store/#route-a-payment-to-a-store)) for the ecommerce or point-of-sale store that is processing the payment.
+     *
+     * @return self
+     */
+    public function setStore($store)
+    {
+        $this->container['store'] = $store;
 
         return $this;
     }
