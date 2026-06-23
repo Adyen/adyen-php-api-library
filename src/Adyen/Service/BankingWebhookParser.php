@@ -17,7 +17,7 @@ use Adyen\Model\ConfigurationWebhooks\SweepConfigurationNotificationRequest;
 use Adyen\Model\ReportWebhooks\ReportNotificationRequest;
 use Adyen\Model\TransactionWebhooks\TransactionNotificationRequestV4;
 use Adyen\Model\TransferWebhooks\TransferNotificationRequest;
-use Adyen\Service\WebhookParseException;
+use Adyen\Exception\WebhookParseException;
 use JsonException;
 
 class BankingWebhookParser
