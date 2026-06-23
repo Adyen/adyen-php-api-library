@@ -9,10 +9,39 @@ use Adyen\Model\RelayedAuthorizationWebhooks\RelayedAuthorisationRequest;
 use Adyen\Model\TransactionWebhooks\TransactionNotificationRequestV4;
 use Adyen\Model\BalanceWebhooks\BalanceAccountBalanceNotificationRequest;
 use Adyen\Model\BalanceWebhooks\ReleasedBlockedBalanceNotificationRequest;
+use Adyen\Exception\WebhookParseException;
 use Adyen\Service\BankingWebhookParser;
 
 class BankingWebhookParserTest extends TestCaseMock
 {
+    public function testGetGenericWebhookThrowsExceptionOnInvalidJson()
+    {
+        $this->expectException(WebhookParseException::class);
+        $this->expectExceptionMessageMatches('/Invalid JSON payload/');
+
+        $parser = new BankingWebhookParser('not json');
+        $parser->getGenericWebhook();
+    }
+
+    public function testGetGenericWebhookThrowsExceptionWhenTypeMissing()
+    {
+        $this->expectException(WebhookParseException::class);
+        $this->expectExceptionMessageMatches("/'type' attribute not found/");
+
+        $parser = new BankingWebhookParser('{"data": {}}');
+        $parser->getGenericWebhook();
+    }
+
+    public function testGetGenericWebhookThrowsExceptionOnUnknownType()
+    {
+        $this->expectException(WebhookParseException::class);
+        $this->expectExceptionMessageMatches('/Could not parse the payload/');
+
+        $parser = new BankingWebhookParser('{"type": "unknown.webhook.type"}');
+        $parser->getGenericWebhook();
+    }
+
+
     public function testBankingWebhookParser()
     {
         $jsonString = '{ "data": {"balancePlatform":"YOUR_BALANCE_PLATFORM","accountHolder":{"contactDetails":{"address":{"country":"NL","houseNumberOrName":"274","postalCode":"1020CD","street":"Brannan Street"},"email": "s.hopper@example.com","phone": {"number": "+315551231234","type": "mobile"}},"description": "S.Hopper - Staff 123","id": "AH00000000000000000000001","status": "active"}},"environment": "test","type": "balancePlatform.accountHolder.created"}';
