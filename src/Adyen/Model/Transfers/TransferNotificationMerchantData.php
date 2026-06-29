@@ -44,7 +44,6 @@ class TransferNotificationMerchantData implements ModelInterface, ArrayAccess, \
         'acquirerId' => 'string',
         'city' => 'string',
         'country' => 'string',
-        'countryCode' => 'string',
         'mcc' => 'string',
         'merchantId' => 'string',
         'name' => 'string',
@@ -62,7 +61,6 @@ class TransferNotificationMerchantData implements ModelInterface, ArrayAccess, \
         'acquirerId' => null,
         'city' => null,
         'country' => null,
-        'countryCode' => null,
         'mcc' => null,
         'merchantId' => null,
         'name' => null,
@@ -78,7 +76,6 @@ class TransferNotificationMerchantData implements ModelInterface, ArrayAccess, \
         'acquirerId' => false,
         'city' => false,
         'country' => false,
-        'countryCode' => false,
         'mcc' => false,
         'merchantId' => false,
         'name' => false,
@@ -174,7 +171,6 @@ class TransferNotificationMerchantData implements ModelInterface, ArrayAccess, \
         'acquirerId' => 'acquirerId',
         'city' => 'city',
         'country' => 'country',
-        'countryCode' => 'countryCode',
         'mcc' => 'mcc',
         'merchantId' => 'merchantId',
         'name' => 'name',
@@ -190,7 +186,6 @@ class TransferNotificationMerchantData implements ModelInterface, ArrayAccess, \
         'acquirerId' => 'setAcquirerId',
         'city' => 'setCity',
         'country' => 'setCountry',
-        'countryCode' => 'setCountryCode',
         'mcc' => 'setMcc',
         'merchantId' => 'setMerchantId',
         'name' => 'setName',
@@ -206,7 +201,6 @@ class TransferNotificationMerchantData implements ModelInterface, ArrayAccess, \
         'acquirerId' => 'getAcquirerId',
         'city' => 'getCity',
         'country' => 'getCountry',
-        'countryCode' => 'getCountryCode',
         'mcc' => 'getMcc',
         'merchantId' => 'getMerchantId',
         'name' => 'getName',
@@ -273,7 +267,6 @@ class TransferNotificationMerchantData implements ModelInterface, ArrayAccess, \
         $this->setIfExists('acquirerId', $data ?? [], null);
         $this->setIfExists('city', $data ?? [], null);
         $this->setIfExists('country', $data ?? [], null);
-        $this->setIfExists('countryCode', $data ?? [], null);
         $this->setIfExists('mcc', $data ?? [], null);
         $this->setIfExists('merchantId', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
@@ -390,30 +383,6 @@ class TransferNotificationMerchantData implements ModelInterface, ArrayAccess, \
     public function setCountry($country)
     {
         $this->container['country'] = $country;
-
-        return $this;
-    }
-
-    /**
-     * Gets countryCode
-     *
-     * @return string|null
-     */
-    public function getCountryCode()
-    {
-        return $this->container['countryCode'];
-    }
-
-    /**
-     * Sets countryCode
-     *
-     * @param string|null $countryCode The two-character country code of the merchant's location, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
-     *
-     * @return self
-     */
-    public function setCountryCode($countryCode)
-    {
-        $this->container['countryCode'] = $countryCode;
 
         return $this;
     }
