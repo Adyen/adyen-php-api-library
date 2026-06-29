@@ -26,7 +26,7 @@ use Adyen\Model\Transfers\ObjectSerializer;
  */
 class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    public const DISCRIMINATOR = 'type';
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -41,10 +41,8 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
       * @var string[]
       */
     protected static $openAPITypes = [
-        'interchangeAmount' => '\Adyen\Model\Transfers\Amount',
-        'interchangeRateIndicator' => 'string',
-        'type' => 'string',
         'captureCycleId' => 'string',
+        'type' => 'string',
         'airline' => '\Adyen\Model\Transfers\Airline',
         'lodging' => '\Adyen\Model\Transfers\Lodging[]'
     ];
@@ -57,10 +55,8 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'interchangeAmount' => null,
-        'interchangeRateIndicator' => null,
-        'type' => null,
         'captureCycleId' => null,
+        'type' => null,
         'airline' => null,
         'lodging' => null
     ];
@@ -71,10 +67,8 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'interchangeAmount' => false,
-        'interchangeRateIndicator' => false,
-        'type' => false,
         'captureCycleId' => false,
+        'type' => false,
         'airline' => false,
         'lodging' => false
     ];
@@ -165,10 +159,8 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $attributeMap = [
-        'interchangeAmount' => 'interchangeAmount',
-        'interchangeRateIndicator' => 'interchangeRateIndicator',
-        'type' => 'type',
         'captureCycleId' => 'captureCycleId',
+        'type' => 'type',
         'airline' => 'airline',
         'lodging' => 'lodging'
     ];
@@ -179,10 +171,8 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $setters = [
-        'interchangeAmount' => 'setInterchangeAmount',
-        'interchangeRateIndicator' => 'setInterchangeRateIndicator',
-        'type' => 'setType',
         'captureCycleId' => 'setCaptureCycleId',
+        'type' => 'setType',
         'airline' => 'setAirline',
         'lodging' => 'setLodging'
     ];
@@ -193,10 +183,8 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $getters = [
-        'interchangeAmount' => 'getInterchangeAmount',
-        'interchangeRateIndicator' => 'getInterchangeRateIndicator',
-        'type' => 'getType',
         'captureCycleId' => 'getCaptureCycleId',
+        'type' => 'getType',
         'airline' => 'getAirline',
         'lodging' => 'getLodging'
     ];
@@ -257,15 +245,10 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('interchangeAmount', $data ?? [], null);
-        $this->setIfExists('interchangeRateIndicator', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('captureCycleId', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('airline', $data ?? [], null);
         $this->setIfExists('lodging', $data ?? [], null);
-
-        // Initialize discriminator property with the model name.
-        $this->container['type'] = static::$openAPIModelName;
     }
 
     /**
@@ -315,49 +298,25 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
 
 
     /**
-     * Gets interchangeAmount
-     *
-     * @return \Adyen\Model\Transfers\Amount|null
-     */
-    public function getInterchangeAmount()
-    {
-        return $this->container['interchangeAmount'];
-    }
-
-    /**
-     * Sets interchangeAmount
-     *
-     * @param \Adyen\Model\Transfers\Amount|null $interchangeAmount interchangeAmount
-     *
-     * @return self
-     */
-    public function setInterchangeAmount($interchangeAmount)
-    {
-        $this->container['interchangeAmount'] = $interchangeAmount;
-
-        return $this;
-    }
-
-    /**
-     * Gets interchangeRateIndicator
+     * Gets captureCycleId
      *
      * @return string|null
      */
-    public function getInterchangeRateIndicator()
+    public function getCaptureCycleId()
     {
-        return $this->container['interchangeRateIndicator'];
+        return $this->container['captureCycleId'];
     }
 
     /**
-     * Sets interchangeRateIndicator
+     * Sets captureCycleId
      *
-     * @param string|null $interchangeRateIndicator A 3-character alphanumeric code assigned by Visa that identifies the specific interchange reimbursement program a transaction qualified for. The code is assigned based on the card type, entry mode, and security data provided.
+     * @param string|null $captureCycleId captureCycleId associated with transfer event.
      *
      * @return self
      */
-    public function setInterchangeRateIndicator($interchangeRateIndicator)
+    public function setCaptureCycleId($captureCycleId)
     {
-        $this->container['interchangeRateIndicator'] = $interchangeRateIndicator;
+        $this->container['captureCycleId'] = $captureCycleId;
 
         return $this;
     }
@@ -382,30 +341,6 @@ class TransferEventEventsDataInner implements ModelInterface, ArrayAccess, \Json
     public function setType($type)
     {
         $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets captureCycleId
-     *
-     * @return string|null
-     */
-    public function getCaptureCycleId()
-    {
-        return $this->container['captureCycleId'];
-    }
-
-    /**
-     * Sets captureCycleId
-     *
-     * @param string|null $captureCycleId captureCycleId associated with transfer event.
-     *
-     * @return self
-     */
-    public function setCaptureCycleId($captureCycleId)
-    {
-        $this->container['captureCycleId'] = $captureCycleId;
 
         return $this;
     }
