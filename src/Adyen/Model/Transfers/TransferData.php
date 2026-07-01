@@ -69,6 +69,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'tracking' => '\Adyen\Model\Transfers\TransferDataTracking',
         'transactionRulesResult' => '\Adyen\Model\Transfers\TransactionRulesResult',
         'type' => 'string',
+        'ultimateParty' => '\Adyen\Model\Transfers\UltimatePartyIdentification',
         'updatedAt' => '\DateTime'
     ];
 
@@ -108,6 +109,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'tracking' => null,
         'transactionRulesResult' => null,
         'type' => null,
+        'ultimateParty' => null,
         'updatedAt' => 'date-time'
     ];
 
@@ -145,6 +147,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'tracking' => false,
         'transactionRulesResult' => false,
         'type' => false,
+        'ultimateParty' => false,
         'updatedAt' => false
     ];
 
@@ -262,6 +265,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'tracking' => 'tracking',
         'transactionRulesResult' => 'transactionRulesResult',
         'type' => 'type',
+        'ultimateParty' => 'ultimateParty',
         'updatedAt' => 'updatedAt'
     ];
 
@@ -299,6 +303,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'tracking' => 'setTracking',
         'transactionRulesResult' => 'setTransactionRulesResult',
         'type' => 'setType',
+        'ultimateParty' => 'setUltimateParty',
         'updatedAt' => 'setUpdatedAt'
     ];
 
@@ -336,6 +341,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'tracking' => 'getTracking',
         'transactionRulesResult' => 'getTransactionRulesResult',
         'type' => 'getType',
+        'ultimateParty' => 'getUltimateParty',
         'updatedAt' => 'getUpdatedAt'
     ];
 
@@ -473,6 +479,8 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     public const REASON_UNKNOWN = 'unknown';
     public const REASON_WITHDRAWAL_AMOUNT_EXCEEDED = 'withdrawalAmountExceeded';
     public const REASON_WITHDRAWAL_COUNT_EXCEEDED = 'withdrawalCountExceeded';
+    public const STATUS_ADVICE_AUTHORISED = 'adviceAuthorised';
+    public const STATUS_ADVICE_REFUSED = 'adviceRefused';
     public const STATUS_APPROVAL_PENDING = 'approvalPending';
     public const STATUS_ATM_WITHDRAWAL = 'atmWithdrawal';
     public const STATUS_ATM_WITHDRAWAL_REVERSAL_PENDING = 'atmWithdrawalReversalPending';
@@ -508,6 +516,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_FAILED = 'failed';
     public const STATUS_FEE = 'fee';
     public const STATUS_FEE_PENDING = 'feePending';
+    public const STATUS_INTERCHANGE_ADJUSTED = 'interchangeAdjusted';
     public const STATUS_INTERNAL_TRANSFER = 'internalTransfer';
     public const STATUS_INTERNAL_TRANSFER_PENDING = 'internalTransferPending';
     public const STATUS_INVOICE_DEDUCTION = 'invoiceDeduction';
@@ -524,6 +533,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_MISC_COST_PENDING = 'miscCostPending';
     public const STATUS_PAYMENT_COST = 'paymentCost';
     public const STATUS_PAYMENT_COST_PENDING = 'paymentCostPending';
+    public const STATUS_PENDING = 'pending';
     public const STATUS_PENDING_APPROVAL = 'pendingApproval';
     public const STATUS_PENDING_EXECUTION = 'pendingExecution';
     public const STATUS_RECEIVED = 'received';
@@ -537,6 +547,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_RESERVE_ADJUSTMENT = 'reserveAdjustment';
     public const STATUS_RESERVE_ADJUSTMENT_PENDING = 'reserveAdjustmentPending';
     public const STATUS_RETURNED = 'returned';
+    public const STATUS_REVERSED = 'reversed';
     public const STATUS_SECOND_CHARGEBACK = 'secondChargeback';
     public const STATUS_SECOND_CHARGEBACK_PENDING = 'secondChargebackPending';
     public const STATUS_UNDEFINED = 'undefined';
@@ -710,6 +721,8 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     public function getStatusAllowableValues()
     {
         return [
+            self::STATUS_ADVICE_AUTHORISED,
+            self::STATUS_ADVICE_REFUSED,
             self::STATUS_APPROVAL_PENDING,
             self::STATUS_ATM_WITHDRAWAL,
             self::STATUS_ATM_WITHDRAWAL_REVERSAL_PENDING,
@@ -745,6 +758,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_FAILED,
             self::STATUS_FEE,
             self::STATUS_FEE_PENDING,
+            self::STATUS_INTERCHANGE_ADJUSTED,
             self::STATUS_INTERNAL_TRANSFER,
             self::STATUS_INTERNAL_TRANSFER_PENDING,
             self::STATUS_INVOICE_DEDUCTION,
@@ -761,6 +775,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_MISC_COST_PENDING,
             self::STATUS_PAYMENT_COST,
             self::STATUS_PAYMENT_COST_PENDING,
+            self::STATUS_PENDING,
             self::STATUS_PENDING_APPROVAL,
             self::STATUS_PENDING_EXECUTION,
             self::STATUS_RECEIVED,
@@ -774,6 +789,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_RESERVE_ADJUSTMENT,
             self::STATUS_RESERVE_ADJUSTMENT_PENDING,
             self::STATUS_RETURNED,
+            self::STATUS_REVERSED,
             self::STATUS_SECOND_CHARGEBACK,
             self::STATUS_SECOND_CHARGEBACK_PENDING,
             self::STATUS_UNDEFINED,
@@ -870,6 +886,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('tracking', $data ?? [], null);
         $this->setIfExists('transactionRulesResult', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('ultimateParty', $data ?? [], null);
         $this->setIfExists('updatedAt', $data ?? [], null);
     }
 
@@ -1590,7 +1607,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      *
-     * @param string $status The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **refused**: the transfer request is rejected by Adyen for one of the following reasons:   - Lack of funds in the balance account.   - Transfer limit exceeded.   - Transaction rule requirements violated. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user's balance account.  - **failed**: the transfer is rejected by the counterparty's bank. - **returned**: the transfer is returned by the counterparty's bank.
+     * @param string $status The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **refused**: the transfer request is rejected by Adyen for one of the following reasons:   - Transfer limit exceeded.   - Transaction rule requirements violated. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user's balance account.  - **failed**: the transfer is rejected by the counterparty's bank. - **returned**: the transfer is returned by the counterparty's bank.
      *
      * @return self
      */
@@ -1689,6 +1706,30 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets ultimateParty
+     *
+     * @return \Adyen\Model\Transfers\UltimatePartyIdentification|null
+     */
+    public function getUltimateParty()
+    {
+        return $this->container['ultimateParty'];
+    }
+
+    /**
+     * Sets ultimateParty
+     *
+     * @param \Adyen\Model\Transfers\UltimatePartyIdentification|null $ultimateParty ultimateParty
+     *
+     * @return self
+     */
+    public function setUltimateParty($ultimateParty)
+    {
+        $this->container['ultimateParty'] = $ultimateParty;
 
         return $this;
     }

@@ -18,7 +18,7 @@ use Adyen\Client;
 use Adyen\Service;
 use Adyen\Model\Transfers\ObjectSerializer;
 
-class CapitalApi extends Service
+class CapitalDeprecatedApi extends Service
 {
     /**
      * @var array|string|string[]
@@ -26,7 +26,7 @@ class CapitalApi extends Service
     private $baseURL;
 
     /**
-     * CapitalApi constructor.
+     * CapitalDeprecatedApi constructor.
      *
      * @param \Adyen\Client $client
      * @throws AdyenException
