@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\Transfers\ObjectSerializer;
 
 /**
- * IbanAccountIdentification Class Doc Comment
+ * CashOutTransfer Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
+class CashOutTransfer implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       *
       * @var string
       */
-    protected static $openAPIModelName = 'IbanAccountIdentification';
+    protected static $openAPIModelName = 'CashOutTransfer';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,8 +41,8 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       * @var string[]
       */
     protected static $openAPITypes = [
-        'bic' => 'string',
-        'iban' => 'string',
+        'amount' => '\Adyen\Model\Transfers\Amount',
+        'id' => 'string',
         'type' => 'string'
     ];
 
@@ -54,8 +54,8 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'bic' => null,
-        'iban' => null,
+        'amount' => null,
+        'id' => null,
         'type' => null
     ];
 
@@ -65,8 +65,8 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'bic' => false,
-        'iban' => false,
+        'amount' => false,
+        'id' => false,
         'type' => false
     ];
 
@@ -156,8 +156,8 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $attributeMap = [
-        'bic' => 'bic',
-        'iban' => 'iban',
+        'amount' => 'amount',
+        'id' => 'id',
         'type' => 'type'
     ];
 
@@ -167,8 +167,8 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $setters = [
-        'bic' => 'setBic',
-        'iban' => 'setIban',
+        'amount' => 'setAmount',
+        'id' => 'setId',
         'type' => 'setType'
     ];
 
@@ -178,8 +178,8 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $getters = [
-        'bic' => 'getBic',
-        'iban' => 'getIban',
+        'amount' => 'getAmount',
+        'id' => 'getId',
         'type' => 'getType'
     ];
 
@@ -224,7 +224,8 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
         return self::$openAPIModelName;
     }
 
-    public const TYPE_IBAN = 'iban';
+    public const TYPE_CASHOUT_REPAYMENT = 'cashoutRepayment';
+    public const TYPE_CASHOUT_FEE = 'cashoutFee';
 
     /**
      * Gets allowable values of the enum
@@ -234,7 +235,8 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
     public function getTypeAllowableValues()
     {
         return [
-            self::TYPE_IBAN,
+            self::TYPE_CASHOUT_REPAYMENT,
+            self::TYPE_CASHOUT_FEE,
         ];
     }
     /**
@@ -252,8 +254,8 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('bic', $data ?? [], null);
-        $this->setIfExists('iban', $data ?? [], null);
+        $this->setIfExists('amount', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -284,8 +286,11 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
     {
         $invalidProperties = [];
 
-        if ($this->container['iban'] === null) {
-            $invalidProperties[] = "'iban' can't be null";
+        if ($this->container['amount'] === null) {
+            $invalidProperties[] = "'amount' can't be null";
+        }
+        if ($this->container['id'] === null) {
+            $invalidProperties[] = "'id' can't be null";
         }
         if ($this->container['type'] === null) {
             $invalidProperties[] = "'type' can't be null";
@@ -315,49 +320,49 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
 
 
     /**
-     * Gets bic
+     * Gets amount
      *
-     * @return string|null
+     * @return \Adyen\Model\Transfers\Amount
      */
-    public function getBic()
+    public function getAmount()
     {
-        return $this->container['bic'];
+        return $this->container['amount'];
     }
 
     /**
-     * Sets bic
+     * Sets amount
      *
-     * @param string|null $bic The bank's 8- or 11-character BIC or SWIFT code.
+     * @param \Adyen\Model\Transfers\Amount $amount amount
      *
      * @return self
      */
-    public function setBic($bic)
+    public function setAmount($amount)
     {
-        $this->container['bic'] = $bic;
+        $this->container['amount'] = $amount;
 
         return $this;
     }
 
     /**
-     * Gets iban
+     * Gets id
      *
      * @return string
      */
-    public function getIban()
+    public function getId()
     {
-        return $this->container['iban'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets iban
+     * Sets id
      *
-     * @param string $iban The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.
+     * @param string $id The reference of the cashout transfer.
      *
      * @return self
      */
-    public function setIban($iban)
+    public function setId($id)
     {
-        $this->container['iban'] = $iban;
+        $this->container['id'] = $id;
 
         return $this;
     }
@@ -375,7 +380,7 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets type
      *
-     * @param string $type **iban**
+     * @param string $type The type of the cashout transfer.  Possible values:  - **cashoutRepayment**: Corresponds to the transfer created to deduct the cashout amount after settlement. - **cashoutFee**: Corresponds to the transfer created to debit the cashout fee form the user's balance account.
      *
      * @return self
      */

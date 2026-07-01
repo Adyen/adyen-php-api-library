@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\Transfers\ObjectSerializer;
 
 /**
- * IbanAccountIdentification Class Doc Comment
+ * CashOutInfo Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
+class CashOutInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       *
       * @var string
       */
-    protected static $openAPIModelName = 'IbanAccountIdentification';
+    protected static $openAPIModelName = 'CashOutInfo';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,14 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       * @var string[]
       */
     protected static $openAPITypes = [
-        'bic' => 'string',
-        'iban' => 'string',
-        'type' => 'string'
+        'amount' => '\Adyen\Model\Transfers\Amount',
+        'counterparty' => '\Adyen\Model\Transfers\CashOutInfoCounterparty',
+        'description' => 'string',
+        'fee' => '\Adyen\Model\Transfers\Fee',
+        'id' => 'string',
+        'instructingBalanceAccountId' => 'string',
+        'referenceForBeneficiary' => 'string',
+        'transferInstrumentId' => 'string'
     ];
 
     /**
@@ -54,9 +59,14 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'bic' => null,
-        'iban' => null,
-        'type' => null
+        'amount' => null,
+        'counterparty' => null,
+        'description' => null,
+        'fee' => null,
+        'id' => null,
+        'instructingBalanceAccountId' => null,
+        'referenceForBeneficiary' => null,
+        'transferInstrumentId' => null
     ];
 
     /**
@@ -65,9 +75,14 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'bic' => false,
-        'iban' => false,
-        'type' => false
+        'amount' => false,
+        'counterparty' => false,
+        'description' => false,
+        'fee' => false,
+        'id' => false,
+        'instructingBalanceAccountId' => false,
+        'referenceForBeneficiary' => false,
+        'transferInstrumentId' => false
     ];
 
     /**
@@ -156,9 +171,14 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $attributeMap = [
-        'bic' => 'bic',
-        'iban' => 'iban',
-        'type' => 'type'
+        'amount' => 'amount',
+        'counterparty' => 'counterparty',
+        'description' => 'description',
+        'fee' => 'fee',
+        'id' => 'id',
+        'instructingBalanceAccountId' => 'instructingBalanceAccountId',
+        'referenceForBeneficiary' => 'referenceForBeneficiary',
+        'transferInstrumentId' => 'transferInstrumentId'
     ];
 
     /**
@@ -167,9 +187,14 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $setters = [
-        'bic' => 'setBic',
-        'iban' => 'setIban',
-        'type' => 'setType'
+        'amount' => 'setAmount',
+        'counterparty' => 'setCounterparty',
+        'description' => 'setDescription',
+        'fee' => 'setFee',
+        'id' => 'setId',
+        'instructingBalanceAccountId' => 'setInstructingBalanceAccountId',
+        'referenceForBeneficiary' => 'setReferenceForBeneficiary',
+        'transferInstrumentId' => 'setTransferInstrumentId'
     ];
 
     /**
@@ -178,9 +203,14 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $getters = [
-        'bic' => 'getBic',
-        'iban' => 'getIban',
-        'type' => 'getType'
+        'amount' => 'getAmount',
+        'counterparty' => 'getCounterparty',
+        'description' => 'getDescription',
+        'fee' => 'getFee',
+        'id' => 'getId',
+        'instructingBalanceAccountId' => 'getInstructingBalanceAccountId',
+        'referenceForBeneficiary' => 'getReferenceForBeneficiary',
+        'transferInstrumentId' => 'getTransferInstrumentId'
     ];
 
     /**
@@ -224,19 +254,7 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
         return self::$openAPIModelName;
     }
 
-    public const TYPE_IBAN = 'iban';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_IBAN,
-        ];
-    }
     /**
      * Associative array for storing property values
      *
@@ -252,9 +270,14 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('bic', $data ?? [], null);
-        $this->setIfExists('iban', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('amount', $data ?? [], null);
+        $this->setIfExists('counterparty', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('fee', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('instructingBalanceAccountId', $data ?? [], null);
+        $this->setIfExists('referenceForBeneficiary', $data ?? [], null);
+        $this->setIfExists('transferInstrumentId', $data ?? [], null);
     }
 
     /**
@@ -284,21 +307,12 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
     {
         $invalidProperties = [];
 
-        if ($this->container['iban'] === null) {
-            $invalidProperties[] = "'iban' can't be null";
+        if ($this->container['amount'] === null) {
+            $invalidProperties[] = "'amount' can't be null";
         }
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
+        if ($this->container['instructingBalanceAccountId'] === null) {
+            $invalidProperties[] = "'instructingBalanceAccountId' can't be null";
         }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -315,83 +329,195 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
 
 
     /**
-     * Gets bic
+     * Gets amount
+     *
+     * @return \Adyen\Model\Transfers\Amount
+     */
+    public function getAmount()
+    {
+        return $this->container['amount'];
+    }
+
+    /**
+     * Sets amount
+     *
+     * @param \Adyen\Model\Transfers\Amount $amount amount
+     *
+     * @return self
+     */
+    public function setAmount($amount)
+    {
+        $this->container['amount'] = $amount;
+
+        return $this;
+    }
+
+    /**
+     * Gets counterparty
+     *
+     * @return \Adyen\Model\Transfers\CashOutInfoCounterparty|null
+     */
+    public function getCounterparty()
+    {
+        return $this->container['counterparty'];
+    }
+
+    /**
+     * Sets counterparty
+     *
+     * @param \Adyen\Model\Transfers\CashOutInfoCounterparty|null $counterparty counterparty
+     *
+     * @return self
+     */
+    public function setCounterparty($counterparty)
+    {
+        $this->container['counterparty'] = $counterparty;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
      *
      * @return string|null
      */
-    public function getBic()
+    public function getDescription()
     {
-        return $this->container['bic'];
+        return $this->container['description'];
     }
 
     /**
-     * Sets bic
+     * Sets description
      *
-     * @param string|null $bic The bank's 8- or 11-character BIC or SWIFT code.
+     * @param string|null $description Allowed and returned only when you provide the `counterparty.transferInstrumentId` field.  Your description of the cashout transfer. This description is used by most banks as the transfer description. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.  If you do not provide a description, Adyen generates a description automatically. This generated description is not returned in the response.  Supported characters: **[a-z] [A-Z] [0-9] / - ? : ( ) . , ' + Space**.
      *
      * @return self
      */
-    public function setBic($bic)
+    public function setDescription($description)
     {
-        $this->container['bic'] = $bic;
+        $this->container['description'] = $description;
 
         return $this;
     }
 
     /**
-     * Gets iban
+     * Gets fee
      *
-     * @return string
+     * @return \Adyen\Model\Transfers\Fee|null
      */
-    public function getIban()
+    public function getFee()
     {
-        return $this->container['iban'];
+        return $this->container['fee'];
     }
 
     /**
-     * Sets iban
+     * Sets fee
      *
-     * @param string $iban The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.
+     * @param \Adyen\Model\Transfers\Fee|null $fee fee
      *
      * @return self
      */
-    public function setIban($iban)
+    public function setFee($fee)
     {
-        $this->container['iban'] = $iban;
+        $this->container['fee'] = $fee;
 
         return $this;
     }
 
     /**
-     * Gets type
+     * Gets id
      *
-     * @return string
+     * @return string|null
      */
-    public function getType()
+    public function getId()
     {
-        return $this->container['type'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets type
+     * Sets id
      *
-     * @param string $type **iban**
+     * @param string|null $id The ID of the resource.
      *
      * @return self
      */
-    public function setType($type)
+    public function setId($id)
     {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            error_log(
-                sprintf(
-                    "type: unexpected enum value '%s' - Supported values are [%s]",
-                    $type,
-                    implode(', ', $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets instructingBalanceAccountId
+     *
+     * @return string
+     */
+    public function getInstructingBalanceAccountId()
+    {
+        return $this->container['instructingBalanceAccountId'];
+    }
+
+    /**
+     * Sets instructingBalanceAccountId
+     *
+     * @param string $instructingBalanceAccountId The unique identifier of the balance account that initiates the cashout request.
+     *
+     * @return self
+     */
+    public function setInstructingBalanceAccountId($instructingBalanceAccountId)
+    {
+        $this->container['instructingBalanceAccountId'] = $instructingBalanceAccountId;
+
+        return $this;
+    }
+
+    /**
+     * Gets referenceForBeneficiary
+     *
+     * @return string|null
+     */
+    public function getReferenceForBeneficiary()
+    {
+        return $this->container['referenceForBeneficiary'];
+    }
+
+    /**
+     * Sets referenceForBeneficiary
+     *
+     * @param string|null $referenceForBeneficiary Allowed and returned only when you provide the `counterparty.transferInstrumentId` field.  The reference that is sent to the recipient of a cashout transfer. This reference is also sent in all webhooks related to the cashout transfer, so you can use it to track the status of the transfer.  If you do not provide a reference for the beneficiary, Adyen generates one automatically. This generated reference for the beneficiary is not returned in the response.  Supported characters: **a-z**, **A-Z**, **0-9**.
+     *
+     * @return self
+     */
+    public function setReferenceForBeneficiary($referenceForBeneficiary)
+    {
+        $this->container['referenceForBeneficiary'] = $referenceForBeneficiary;
+
+        return $this;
+    }
+
+    /**
+     * Gets transferInstrumentId
+     *
+     * @return string|null
+     * @deprecated
+     */
+    public function getTransferInstrumentId()
+    {
+        return $this->container['transferInstrumentId'];
+    }
+
+    /**
+     * Sets transferInstrumentId
+     *
+     * @param string|null $transferInstrumentId **Use `counterparty.transferInstrumentId` instead.**  The unique identifier of the counterparty transfer instrument.
+     *
+     * @return self
+     * @deprecated
+     */
+    public function setTransferInstrumentId($transferInstrumentId)
+    {
+        $this->container['transferInstrumentId'] = $transferInstrumentId;
 
         return $this;
     }

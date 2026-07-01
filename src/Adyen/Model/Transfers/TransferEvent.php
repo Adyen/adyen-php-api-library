@@ -399,6 +399,8 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     public const REASON_UNKNOWN = 'unknown';
     public const REASON_WITHDRAWAL_AMOUNT_EXCEEDED = 'withdrawalAmountExceeded';
     public const REASON_WITHDRAWAL_COUNT_EXCEEDED = 'withdrawalCountExceeded';
+    public const STATUS_ADVICE_AUTHORISED = 'adviceAuthorised';
+    public const STATUS_ADVICE_REFUSED = 'adviceRefused';
     public const STATUS_APPROVAL_PENDING = 'approvalPending';
     public const STATUS_ATM_WITHDRAWAL = 'atmWithdrawal';
     public const STATUS_ATM_WITHDRAWAL_REVERSAL_PENDING = 'atmWithdrawalReversalPending';
@@ -434,6 +436,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_FAILED = 'failed';
     public const STATUS_FEE = 'fee';
     public const STATUS_FEE_PENDING = 'feePending';
+    public const STATUS_INTERCHANGE_ADJUSTED = 'interchangeAdjusted';
     public const STATUS_INTERNAL_TRANSFER = 'internalTransfer';
     public const STATUS_INTERNAL_TRANSFER_PENDING = 'internalTransferPending';
     public const STATUS_INVOICE_DEDUCTION = 'invoiceDeduction';
@@ -450,6 +453,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_MISC_COST_PENDING = 'miscCostPending';
     public const STATUS_PAYMENT_COST = 'paymentCost';
     public const STATUS_PAYMENT_COST_PENDING = 'paymentCostPending';
+    public const STATUS_PENDING = 'pending';
     public const STATUS_PENDING_APPROVAL = 'pendingApproval';
     public const STATUS_PENDING_EXECUTION = 'pendingExecution';
     public const STATUS_RECEIVED = 'received';
@@ -463,10 +467,12 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_RESERVE_ADJUSTMENT = 'reserveAdjustment';
     public const STATUS_RESERVE_ADJUSTMENT_PENDING = 'reserveAdjustmentPending';
     public const STATUS_RETURNED = 'returned';
+    public const STATUS_REVERSED = 'reversed';
     public const STATUS_SECOND_CHARGEBACK = 'secondChargeback';
     public const STATUS_SECOND_CHARGEBACK_PENDING = 'secondChargebackPending';
     public const STATUS_UNDEFINED = 'undefined';
     public const TYPE_ACCOUNTING = 'accounting';
+    public const TYPE_TRACING = 'tracing';
     public const TYPE_TRACKING = 'tracking';
 
     /**
@@ -572,6 +578,8 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     public function getStatusAllowableValues()
     {
         return [
+            self::STATUS_ADVICE_AUTHORISED,
+            self::STATUS_ADVICE_REFUSED,
             self::STATUS_APPROVAL_PENDING,
             self::STATUS_ATM_WITHDRAWAL,
             self::STATUS_ATM_WITHDRAWAL_REVERSAL_PENDING,
@@ -607,6 +615,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_FAILED,
             self::STATUS_FEE,
             self::STATUS_FEE_PENDING,
+            self::STATUS_INTERCHANGE_ADJUSTED,
             self::STATUS_INTERNAL_TRANSFER,
             self::STATUS_INTERNAL_TRANSFER_PENDING,
             self::STATUS_INVOICE_DEDUCTION,
@@ -623,6 +632,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_MISC_COST_PENDING,
             self::STATUS_PAYMENT_COST,
             self::STATUS_PAYMENT_COST_PENDING,
+            self::STATUS_PENDING,
             self::STATUS_PENDING_APPROVAL,
             self::STATUS_PENDING_EXECUTION,
             self::STATUS_RECEIVED,
@@ -636,6 +646,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_RESERVE_ADJUSTMENT,
             self::STATUS_RESERVE_ADJUSTMENT_PENDING,
             self::STATUS_RETURNED,
+            self::STATUS_REVERSED,
             self::STATUS_SECOND_CHARGEBACK,
             self::STATUS_SECOND_CHARGEBACK_PENDING,
             self::STATUS_UNDEFINED,
@@ -650,6 +661,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return [
             self::TYPE_ACCOUNTING,
+            self::TYPE_TRACING,
             self::TYPE_TRACKING,
         ];
     }
