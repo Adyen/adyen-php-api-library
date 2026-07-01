@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * InvalidField Class Doc Comment
+ * LocalTime Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
+class LocalTime implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'InvalidField';
+    protected static $openAPIModelName = 'LocalTime';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,10 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'message' => 'string',
-        'name' => 'string',
-        'value' => 'string'
+        'hour' => 'int',
+        'minute' => 'int',
+        'nano' => 'int',
+        'second' => 'int'
     ];
 
     /**
@@ -54,9 +55,10 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'message' => null,
-        'name' => null,
-        'value' => null
+        'hour' => 'int32',
+        'minute' => 'int32',
+        'nano' => 'int32',
+        'second' => 'int32'
     ];
 
     /**
@@ -65,9 +67,10 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'message' => false,
-        'name' => false,
-        'value' => false
+        'hour' => true,
+        'minute' => true,
+        'nano' => true,
+        'second' => true
     ];
 
     /**
@@ -156,9 +159,10 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'message' => 'message',
-        'name' => 'name',
-        'value' => 'value'
+        'hour' => 'hour',
+        'minute' => 'minute',
+        'nano' => 'nano',
+        'second' => 'second'
     ];
 
     /**
@@ -167,9 +171,10 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'message' => 'setMessage',
-        'name' => 'setName',
-        'value' => 'setValue'
+        'hour' => 'setHour',
+        'minute' => 'setMinute',
+        'nano' => 'setNano',
+        'second' => 'setSecond'
     ];
 
     /**
@@ -178,9 +183,10 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'message' => 'getMessage',
-        'name' => 'getName',
-        'value' => 'getValue'
+        'hour' => 'getHour',
+        'minute' => 'getMinute',
+        'nano' => 'getNano',
+        'second' => 'getSecond'
     ];
 
     /**
@@ -240,9 +246,10 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('message', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('hour', $data ?? [], null);
+        $this->setIfExists('minute', $data ?? [], null);
+        $this->setIfExists('nano', $data ?? [], null);
+        $this->setIfExists('second', $data ?? [], null);
     }
 
     /**
@@ -272,15 +279,6 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['message'] === null) {
-            $invalidProperties[] = "'message' can't be null";
-        }
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -297,73 +295,97 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets message
+     * Gets hour
      *
-     * @return string
+     * @return int|null
      */
-    public function getMessage()
+    public function getHour()
     {
-        return $this->container['message'];
+        return $this->container['hour'];
     }
 
     /**
-     * Sets message
+     * Sets hour
      *
-     * @param string $message Description of the validation error.
+     * @param int|null $hour hour
      *
      * @return self
      */
-    public function setMessage($message)
+    public function setHour($hour)
     {
-        $this->container['message'] = $message;
+        $this->container['hour'] = $hour;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets minute
      *
-     * @return string
+     * @return int|null
      */
-    public function getName()
+    public function getMinute()
     {
-        return $this->container['name'];
+        return $this->container['minute'];
     }
 
     /**
-     * Sets name
+     * Sets minute
      *
-     * @param string $name The field that has an invalid value.
+     * @param int|null $minute minute
      *
      * @return self
      */
-    public function setName($name)
+    public function setMinute($minute)
     {
-        $this->container['name'] = $name;
+        $this->container['minute'] = $minute;
 
         return $this;
     }
 
     /**
-     * Gets value
+     * Gets nano
      *
-     * @return string
+     * @return int|null
      */
-    public function getValue()
+    public function getNano()
     {
-        return $this->container['value'];
+        return $this->container['nano'];
     }
 
     /**
-     * Sets value
+     * Sets nano
      *
-     * @param string $value The invalid value.
+     * @param int|null $nano nano
      *
      * @return self
      */
-    public function setValue($value)
+    public function setNano($nano)
     {
-        $this->container['value'] = $value;
+        $this->container['nano'] = $nano;
+
+        return $this;
+    }
+
+    /**
+     * Gets second
+     *
+     * @return int|null
+     */
+    public function getSecond()
+    {
+        return $this->container['second'];
+    }
+
+    /**
+     * Sets second
+     *
+     * @param int|null $second second
+     *
+     * @return self
+     */
+    public function setSecond($second)
+    {
+        $this->container['second'] = $second;
 
         return $this;
     }

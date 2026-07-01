@@ -26,7 +26,7 @@ use Adyen\Model\BalancePlatform\ObjectSerializer;
  */
 class TransferRouteRequirementsInner implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    public const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = 'type';
 
     /**
       * The original name of the model.
@@ -305,6 +305,9 @@ class TransferRouteRequirementsInner implements ModelInterface, ArrayAccess, \Js
         $this->setIfExists('issuingCountryCodes', $data ?? [], null);
         $this->setIfExists('onlyForCrossBalancePlatform', $data ?? [], null);
         $this->setIfExists('paymentInstrumentType', $data ?? [], null);
+
+        // Initialize discriminator property with the model name.
+        $this->container['type'] = static::$openAPIModelName;
     }
 
     /**

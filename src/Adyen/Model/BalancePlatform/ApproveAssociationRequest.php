@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * InvalidField Class Doc Comment
+ * ApproveAssociationRequest Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApproveAssociationRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'InvalidField';
+    protected static $openAPIModelName = 'ApproveAssociationRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,10 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'message' => 'string',
-        'name' => 'string',
-        'value' => 'string'
+        'entityId' => 'string',
+        'entityType' => '\Adyen\Model\BalancePlatform\ScaEntityType',
+        'scaDeviceIds' => 'string[]',
+        'status' => '\Adyen\Model\BalancePlatform\AssociationStatus'
     ];
 
     /**
@@ -54,9 +55,10 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'message' => null,
-        'name' => null,
-        'value' => null
+        'entityId' => null,
+        'entityType' => null,
+        'scaDeviceIds' => null,
+        'status' => null
     ];
 
     /**
@@ -65,9 +67,10 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'message' => false,
-        'name' => false,
-        'value' => false
+        'entityId' => false,
+        'entityType' => false,
+        'scaDeviceIds' => false,
+        'status' => false
     ];
 
     /**
@@ -156,9 +159,10 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'message' => 'message',
-        'name' => 'name',
-        'value' => 'value'
+        'entityId' => 'entityId',
+        'entityType' => 'entityType',
+        'scaDeviceIds' => 'scaDeviceIds',
+        'status' => 'status'
     ];
 
     /**
@@ -167,9 +171,10 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'message' => 'setMessage',
-        'name' => 'setName',
-        'value' => 'setValue'
+        'entityId' => 'setEntityId',
+        'entityType' => 'setEntityType',
+        'scaDeviceIds' => 'setScaDeviceIds',
+        'status' => 'setStatus'
     ];
 
     /**
@@ -178,9 +183,10 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'message' => 'getMessage',
-        'name' => 'getName',
-        'value' => 'getValue'
+        'entityId' => 'getEntityId',
+        'entityType' => 'getEntityType',
+        'scaDeviceIds' => 'getScaDeviceIds',
+        'status' => 'getStatus'
     ];
 
     /**
@@ -240,9 +246,10 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('message', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('entityId', $data ?? [], null);
+        $this->setIfExists('entityType', $data ?? [], null);
+        $this->setIfExists('scaDeviceIds', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
     }
 
     /**
@@ -272,14 +279,17 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['message'] === null) {
-            $invalidProperties[] = "'message' can't be null";
+        if ($this->container['entityId'] === null) {
+            $invalidProperties[] = "'entityId' can't be null";
         }
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+        if ($this->container['entityType'] === null) {
+            $invalidProperties[] = "'entityType' can't be null";
         }
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
+        if ($this->container['scaDeviceIds'] === null) {
+            $invalidProperties[] = "'scaDeviceIds' can't be null";
+        }
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
         }
         return $invalidProperties;
     }
@@ -297,73 +307,97 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets message
+     * Gets entityId
      *
      * @return string
      */
-    public function getMessage()
+    public function getEntityId()
     {
-        return $this->container['message'];
+        return $this->container['entityId'];
     }
 
     /**
-     * Sets message
+     * Sets entityId
      *
-     * @param string $message Description of the validation error.
+     * @param string $entityId The unique identifier of the entity.
      *
      * @return self
      */
-    public function setMessage($message)
+    public function setEntityId($entityId)
     {
-        $this->container['message'] = $message;
+        $this->container['entityId'] = $entityId;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets entityType
      *
-     * @return string
+     * @return \Adyen\Model\BalancePlatform\ScaEntityType
      */
-    public function getName()
+    public function getEntityType()
     {
-        return $this->container['name'];
+        return $this->container['entityType'];
     }
 
     /**
-     * Sets name
+     * Sets entityType
      *
-     * @param string $name The field that has an invalid value.
+     * @param \Adyen\Model\BalancePlatform\ScaEntityType $entityType entityType
      *
      * @return self
      */
-    public function setName($name)
+    public function setEntityType($entityType)
     {
-        $this->container['name'] = $name;
+        $this->container['entityType'] = $entityType;
 
         return $this;
     }
 
     /**
-     * Gets value
+     * Gets scaDeviceIds
      *
-     * @return string
+     * @return string[]
      */
-    public function getValue()
+    public function getScaDeviceIds()
     {
-        return $this->container['value'];
+        return $this->container['scaDeviceIds'];
     }
 
     /**
-     * Sets value
+     * Sets scaDeviceIds
      *
-     * @param string $value The invalid value.
+     * @param string[] $scaDeviceIds List of device ids associated to the entity that will be approved.
      *
      * @return self
      */
-    public function setValue($value)
+    public function setScaDeviceIds($scaDeviceIds)
     {
-        $this->container['value'] = $value;
+        $this->container['scaDeviceIds'] = $scaDeviceIds;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return \Adyen\Model\BalancePlatform\AssociationStatus
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     *
+     * @param \Adyen\Model\BalancePlatform\AssociationStatus $status status
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        $this->container['status'] = $status;
 
         return $this;
     }

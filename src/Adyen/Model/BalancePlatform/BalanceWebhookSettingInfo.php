@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * InvalidField Class Doc Comment
+ * BalanceWebhookSettingInfo Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
+class BalanceWebhookSettingInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'InvalidField';
+    protected static $openAPIModelName = 'BalanceWebhookSettingInfo';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,11 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'message' => 'string',
-        'name' => 'string',
-        'value' => 'string'
+        'conditions' => '\Adyen\Model\BalancePlatform\Condition[]',
+        'currency' => 'string',
+        'status' => 'string',
+        'target' => '\Adyen\Model\BalancePlatform\Target',
+        'type' => 'string'
     ];
 
     /**
@@ -54,9 +56,11 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'message' => null,
-        'name' => null,
-        'value' => null
+        'conditions' => null,
+        'currency' => null,
+        'status' => null,
+        'target' => null,
+        'type' => null
     ];
 
     /**
@@ -65,9 +69,11 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'message' => false,
-        'name' => false,
-        'value' => false
+        'conditions' => false,
+        'currency' => false,
+        'status' => false,
+        'target' => false,
+        'type' => false
     ];
 
     /**
@@ -156,9 +162,11 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'message' => 'message',
-        'name' => 'name',
-        'value' => 'value'
+        'conditions' => 'conditions',
+        'currency' => 'currency',
+        'status' => 'status',
+        'target' => 'target',
+        'type' => 'type'
     ];
 
     /**
@@ -167,9 +175,11 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'message' => 'setMessage',
-        'name' => 'setName',
-        'value' => 'setValue'
+        'conditions' => 'setConditions',
+        'currency' => 'setCurrency',
+        'status' => 'setStatus',
+        'target' => 'setTarget',
+        'type' => 'setType'
     ];
 
     /**
@@ -178,9 +188,11 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'message' => 'getMessage',
-        'name' => 'getName',
-        'value' => 'getValue'
+        'conditions' => 'getConditions',
+        'currency' => 'getCurrency',
+        'status' => 'getStatus',
+        'target' => 'getTarget',
+        'type' => 'getType'
     ];
 
     /**
@@ -224,7 +236,33 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const STATUS_ACTIVE = 'active';
+    public const STATUS_INACTIVE = 'inactive';
+    public const TYPE_BALANCE = 'balance';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getStatusAllowableValues()
+    {
+        return [
+            self::STATUS_ACTIVE,
+            self::STATUS_INACTIVE,
+        ];
+    }
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_BALANCE,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -240,9 +278,11 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('message', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('conditions', $data ?? [], null);
+        $this->setIfExists('currency', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('target', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -272,15 +312,36 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['message'] === null) {
-            $invalidProperties[] = "'message' can't be null";
+        if ($this->container['currency'] === null) {
+            $invalidProperties[] = "'currency' can't be null";
         }
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
         }
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'status', must be one of '%s'",
+                $this->container['status'],
+                implode("', '", $allowedValues)
+            );
         }
+
+        if ($this->container['target'] === null) {
+            $invalidProperties[] = "'target' can't be null";
+        }
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -297,73 +358,141 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets message
+     * Gets conditions
      *
-     * @return string
+     * @return \Adyen\Model\BalancePlatform\Condition[]|null
      */
-    public function getMessage()
+    public function getConditions()
     {
-        return $this->container['message'];
+        return $this->container['conditions'];
     }
 
     /**
-     * Sets message
+     * Sets conditions
      *
-     * @param string $message Description of the validation error.
+     * @param \Adyen\Model\BalancePlatform\Condition[]|null $conditions The array of conditions a balance change must meet for Adyen to send the webhook.
      *
      * @return self
      */
-    public function setMessage($message)
+    public function setConditions($conditions)
     {
-        $this->container['message'] = $message;
+        $this->container['conditions'] = $conditions;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets currency
      *
      * @return string
      */
-    public function getName()
+    public function getCurrency()
     {
-        return $this->container['name'];
+        return $this->container['currency'];
     }
 
     /**
-     * Sets name
+     * Sets currency
      *
-     * @param string $name The field that has an invalid value.
+     * @param string $currency The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) of the balance.
      *
      * @return self
      */
-    public function setName($name)
+    public function setCurrency($currency)
     {
-        $this->container['name'] = $name;
+        $this->container['currency'] = $currency;
 
         return $this;
     }
 
     /**
-     * Gets value
+     * Gets status
      *
      * @return string
      */
-    public function getValue()
+    public function getStatus()
     {
-        return $this->container['value'];
+        return $this->container['status'];
     }
 
     /**
-     * Sets value
+     * Sets status
      *
-     * @param string $value The invalid value.
+     * @param string $status The status of the webhook setting. Possible values:  * **active**: You receive a balance webhook if any of the conditions in this setting are met. * **inactive**: You do not receive a balance webhook even if the conditions in this settings are met.
      *
      * @return self
      */
-    public function setValue($value)
+    public function setStatus($status)
     {
-        $this->container['value'] = $value;
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!in_array($status, $allowedValues, true)) {
+            error_log(
+                sprintf(
+                    "status: unexpected enum value '%s' - Supported values are [%s]",
+                    $status,
+                    implode(', ', $allowedValues)
+                )
+            );
+        }
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets target
+     *
+     * @return \Adyen\Model\BalancePlatform\Target
+     */
+    public function getTarget()
+    {
+        return $this->container['target'];
+    }
+
+    /**
+     * Sets target
+     *
+     * @param \Adyen\Model\BalancePlatform\Target $target target
+     *
+     * @return self
+     */
+    public function setTarget($target)
+    {
+        $this->container['target'] = $target;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string $type The type of the webhook you are configuring. Set to **balance**.
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            error_log(
+                sprintf(
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
+                    $type,
+                    implode(', ', $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
 
         return $this;
     }

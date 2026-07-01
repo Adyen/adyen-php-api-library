@@ -1,0 +1,8 @@
+{
+  "service": "balanceplatform",
+  "project": "php",
+  "generatedAt": "2026-07-01T15:25:35Z",
+  "openapiCommitSha": "aa014f0cbdb58ff5c44a2ff9d5fe734642210aff",
+  "automationCommitSha": "5f1d5ab9643886ef722a2626e23afef8db5d52a6",
+  "libraryCommitSha": "6df5e4fb65e7fe5f352c2abb3cecc434016a4f1c"
+}

@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * InvalidField Class Doc Comment
+ * BeginScaDeviceRegistrationRequest Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
+class BeginScaDeviceRegistrationRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'InvalidField';
+    protected static $openAPIModelName = 'BeginScaDeviceRegistrationRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,8 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'message' => 'string',
         'name' => 'string',
-        'value' => 'string'
+        'sdkOutput' => 'string'
     ];
 
     /**
@@ -54,9 +53,8 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'message' => null,
         'name' => null,
-        'value' => null
+        'sdkOutput' => null
     ];
 
     /**
@@ -65,9 +63,8 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'message' => false,
         'name' => false,
-        'value' => false
+        'sdkOutput' => false
     ];
 
     /**
@@ -156,9 +153,8 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'message' => 'message',
         'name' => 'name',
-        'value' => 'value'
+        'sdkOutput' => 'sdkOutput'
     ];
 
     /**
@@ -167,9 +163,8 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'message' => 'setMessage',
         'name' => 'setName',
-        'value' => 'setValue'
+        'sdkOutput' => 'setSdkOutput'
     ];
 
     /**
@@ -178,9 +173,8 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'message' => 'getMessage',
         'name' => 'getName',
-        'value' => 'getValue'
+        'sdkOutput' => 'getSdkOutput'
     ];
 
     /**
@@ -240,9 +234,8 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('message', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('sdkOutput', $data ?? [], null);
     }
 
     /**
@@ -272,14 +265,11 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['message'] === null) {
-            $invalidProperties[] = "'message' can't be null";
-        }
         if ($this->container['name'] === null) {
             $invalidProperties[] = "'name' can't be null";
         }
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
+        if ($this->container['sdkOutput'] === null) {
+            $invalidProperties[] = "'sdkOutput' can't be null";
         }
         return $invalidProperties;
     }
@@ -297,30 +287,6 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets message
-     *
-     * @return string
-     */
-    public function getMessage()
-    {
-        return $this->container['message'];
-    }
-
-    /**
-     * Sets message
-     *
-     * @param string $message Description of the validation error.
-     *
-     * @return self
-     */
-    public function setMessage($message)
-    {
-        $this->container['message'] = $message;
-
-        return $this;
-    }
-
-    /**
      * Gets name
      *
      * @return string
@@ -333,7 +299,7 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets name
      *
-     * @param string $name The field that has an invalid value.
+     * @param string $name The name of the SCA device that you are registering. You can use it to help your users identify the device.
      *
      * @return self
      */
@@ -345,25 +311,25 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets value
+     * Gets sdkOutput
      *
      * @return string
      */
-    public function getValue()
+    public function getSdkOutput()
     {
-        return $this->container['value'];
+        return $this->container['sdkOutput'];
     }
 
     /**
-     * Sets value
+     * Sets sdkOutput
      *
-     * @param string $value The invalid value.
+     * @param string $sdkOutput A base64-encoded block with the data required to register the SCA device. You obtain this information by using Adyen's authentication SDK.
      *
      * @return self
      */
-    public function setValue($value)
+    public function setSdkOutput($sdkOutput)
     {
-        $this->container['value'] = $value;
+        $this->container['sdkOutput'] = $sdkOutput;
 
         return $this;
     }

@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * InvalidField Class Doc Comment
+ * PayoutScheduleExecutionDetails Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
+class PayoutScheduleExecutionDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'InvalidField';
+    protected static $openAPIModelName = 'PayoutScheduleExecutionDetails';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,9 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'message' => 'string',
-        'name' => 'string',
-        'value' => 'string'
+        'reason' => 'string',
+        'reasonCode' => 'string',
+        'transferId' => 'string'
     ];
 
     /**
@@ -54,9 +54,9 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'message' => null,
-        'name' => null,
-        'value' => null
+        'reason' => null,
+        'reasonCode' => null,
+        'transferId' => null
     ];
 
     /**
@@ -65,9 +65,9 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'message' => false,
-        'name' => false,
-        'value' => false
+        'reason' => false,
+        'reasonCode' => false,
+        'transferId' => false
     ];
 
     /**
@@ -156,9 +156,9 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'message' => 'message',
-        'name' => 'name',
-        'value' => 'value'
+        'reason' => 'reason',
+        'reasonCode' => 'reasonCode',
+        'transferId' => 'transferId'
     ];
 
     /**
@@ -167,9 +167,9 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'message' => 'setMessage',
-        'name' => 'setName',
-        'value' => 'setValue'
+        'reason' => 'setReason',
+        'reasonCode' => 'setReasonCode',
+        'transferId' => 'setTransferId'
     ];
 
     /**
@@ -178,9 +178,9 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'message' => 'getMessage',
-        'name' => 'getName',
-        'value' => 'getValue'
+        'reason' => 'getReason',
+        'reasonCode' => 'getReasonCode',
+        'transferId' => 'getTransferId'
     ];
 
     /**
@@ -240,9 +240,9 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('message', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('reason', $data ?? [], null);
+        $this->setIfExists('reasonCode', $data ?? [], null);
+        $this->setIfExists('transferId', $data ?? [], null);
     }
 
     /**
@@ -272,15 +272,6 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['message'] === null) {
-            $invalidProperties[] = "'message' can't be null";
-        }
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -297,73 +288,73 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets message
+     * Gets reason
      *
-     * @return string
+     * @return string|null
      */
-    public function getMessage()
+    public function getReason()
     {
-        return $this->container['message'];
+        return $this->container['reason'];
     }
 
     /**
-     * Sets message
+     * Sets reason
      *
-     * @param string $message Description of the validation error.
+     * @param string|null $reason Human readable reason for why execution was not successful if applicable.
      *
      * @return self
      */
-    public function setMessage($message)
+    public function setReason($reason)
     {
-        $this->container['message'] = $message;
+        $this->container['reason'] = $reason;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets reasonCode
      *
-     * @return string
+     * @return string|null
      */
-    public function getName()
+    public function getReasonCode()
     {
-        return $this->container['name'];
+        return $this->container['reasonCode'];
     }
 
     /**
-     * Sets name
+     * Sets reasonCode
      *
-     * @param string $name The field that has an invalid value.
+     * @param string|null $reasonCode Reason Code for why execution was not successful if applicable.
      *
      * @return self
      */
-    public function setName($name)
+    public function setReasonCode($reasonCode)
     {
-        $this->container['name'] = $name;
+        $this->container['reasonCode'] = $reasonCode;
 
         return $this;
     }
 
     /**
-     * Gets value
+     * Gets transferId
      *
-     * @return string
+     * @return string|null
      */
-    public function getValue()
+    public function getTransferId()
     {
-        return $this->container['value'];
+        return $this->container['transferId'];
     }
 
     /**
-     * Sets value
+     * Sets transferId
      *
-     * @param string $value The invalid value.
+     * @param string|null $transferId The id of the transfer from executing the payout.
      *
      * @return self
      */
-    public function setValue($value)
+    public function setTransferId($transferId)
     {
-        $this->container['value'] = $value;
+        $this->container['transferId'] = $transferId;
 
         return $this;
     }

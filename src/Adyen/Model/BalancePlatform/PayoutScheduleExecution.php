@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * InvalidField Class Doc Comment
+ * PayoutScheduleExecution Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
+class PayoutScheduleExecution implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'InvalidField';
+    protected static $openAPIModelName = 'PayoutScheduleExecution';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,10 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'message' => 'string',
-        'name' => 'string',
-        'value' => 'string'
+        'id' => 'string',
+        'result' => '\Adyen\Model\BalancePlatform\ExecutionResult',
+        'resultDetails' => '\Adyen\Model\BalancePlatform\PayoutScheduleExecutionDetails',
+        'triggeredAt' => '\DateTime'
     ];
 
     /**
@@ -54,9 +55,10 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'message' => null,
-        'name' => null,
-        'value' => null
+        'id' => null,
+        'result' => null,
+        'resultDetails' => null,
+        'triggeredAt' => 'date-time'
     ];
 
     /**
@@ -65,9 +67,10 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'message' => false,
-        'name' => false,
-        'value' => false
+        'id' => false,
+        'result' => false,
+        'resultDetails' => false,
+        'triggeredAt' => false
     ];
 
     /**
@@ -156,9 +159,10 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'message' => 'message',
-        'name' => 'name',
-        'value' => 'value'
+        'id' => 'id',
+        'result' => 'result',
+        'resultDetails' => 'resultDetails',
+        'triggeredAt' => 'triggeredAt'
     ];
 
     /**
@@ -167,9 +171,10 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'message' => 'setMessage',
-        'name' => 'setName',
-        'value' => 'setValue'
+        'id' => 'setId',
+        'result' => 'setResult',
+        'resultDetails' => 'setResultDetails',
+        'triggeredAt' => 'setTriggeredAt'
     ];
 
     /**
@@ -178,9 +183,10 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'message' => 'getMessage',
-        'name' => 'getName',
-        'value' => 'getValue'
+        'id' => 'getId',
+        'result' => 'getResult',
+        'resultDetails' => 'getResultDetails',
+        'triggeredAt' => 'getTriggeredAt'
     ];
 
     /**
@@ -240,9 +246,10 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('message', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('result', $data ?? [], null);
+        $this->setIfExists('resultDetails', $data ?? [], null);
+        $this->setIfExists('triggeredAt', $data ?? [], null);
     }
 
     /**
@@ -272,15 +279,6 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['message'] === null) {
-            $invalidProperties[] = "'message' can't be null";
-        }
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -297,73 +295,97 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets message
+     * Gets id
      *
-     * @return string
+     * @return string|null
      */
-    public function getMessage()
+    public function getId()
     {
-        return $this->container['message'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets message
+     * Sets id
      *
-     * @param string $message Description of the validation error.
+     * @param string|null $id The unique identifier of the payout execution.
      *
      * @return self
      */
-    public function setMessage($message)
+    public function setId($id)
     {
-        $this->container['message'] = $message;
+        $this->container['id'] = $id;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets result
      *
-     * @return string
+     * @return \Adyen\Model\BalancePlatform\ExecutionResult|null
      */
-    public function getName()
+    public function getResult()
     {
-        return $this->container['name'];
+        return $this->container['result'];
     }
 
     /**
-     * Sets name
+     * Sets result
      *
-     * @param string $name The field that has an invalid value.
+     * @param \Adyen\Model\BalancePlatform\ExecutionResult|null $result result
      *
      * @return self
      */
-    public function setName($name)
+    public function setResult($result)
     {
-        $this->container['name'] = $name;
+        $this->container['result'] = $result;
 
         return $this;
     }
 
     /**
-     * Gets value
+     * Gets resultDetails
      *
-     * @return string
+     * @return \Adyen\Model\BalancePlatform\PayoutScheduleExecutionDetails|null
      */
-    public function getValue()
+    public function getResultDetails()
     {
-        return $this->container['value'];
+        return $this->container['resultDetails'];
     }
 
     /**
-     * Sets value
+     * Sets resultDetails
      *
-     * @param string $value The invalid value.
+     * @param \Adyen\Model\BalancePlatform\PayoutScheduleExecutionDetails|null $resultDetails resultDetails
      *
      * @return self
      */
-    public function setValue($value)
+    public function setResultDetails($resultDetails)
     {
-        $this->container['value'] = $value;
+        $this->container['resultDetails'] = $resultDetails;
+
+        return $this;
+    }
+
+    /**
+     * Gets triggeredAt
+     *
+     * @return \DateTime|null
+     */
+    public function getTriggeredAt()
+    {
+        return $this->container['triggeredAt'];
+    }
+
+    /**
+     * Sets triggeredAt
+     *
+     * @param \DateTime|null $triggeredAt The date and time when the payout execution was initiated.
+     *
+     * @return self
+     */
+    public function setTriggeredAt($triggeredAt)
+    {
+        $this->container['triggeredAt'] = $triggeredAt;
 
         return $this;
     }
