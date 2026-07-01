@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * InvalidField Class Doc Comment
+ * ApproveAssociationResponse Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApproveAssociationResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'InvalidField';
+    protected static $openAPIModelName = 'ApproveAssociationResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,7 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'message' => 'string',
-        'name' => 'string',
-        'value' => 'string'
+        'scaAssociations' => '\Adyen\Model\BalancePlatform\Association[]'
     ];
 
     /**
@@ -54,9 +52,7 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'message' => null,
-        'name' => null,
-        'value' => null
+        'scaAssociations' => null
     ];
 
     /**
@@ -65,9 +61,7 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'message' => false,
-        'name' => false,
-        'value' => false
+        'scaAssociations' => false
     ];
 
     /**
@@ -156,9 +150,7 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'message' => 'message',
-        'name' => 'name',
-        'value' => 'value'
+        'scaAssociations' => 'scaAssociations'
     ];
 
     /**
@@ -167,9 +159,7 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'message' => 'setMessage',
-        'name' => 'setName',
-        'value' => 'setValue'
+        'scaAssociations' => 'setScaAssociations'
     ];
 
     /**
@@ -178,9 +168,7 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'message' => 'getMessage',
-        'name' => 'getName',
-        'value' => 'getValue'
+        'scaAssociations' => 'getScaAssociations'
     ];
 
     /**
@@ -240,9 +228,7 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('message', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('scaAssociations', $data ?? [], null);
     }
 
     /**
@@ -272,14 +258,8 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['message'] === null) {
-            $invalidProperties[] = "'message' can't be null";
-        }
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
+        if ($this->container['scaAssociations'] === null) {
+            $invalidProperties[] = "'scaAssociations' can't be null";
         }
         return $invalidProperties;
     }
@@ -297,73 +277,25 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets message
+     * Gets scaAssociations
      *
-     * @return string
+     * @return \Adyen\Model\BalancePlatform\Association[]
      */
-    public function getMessage()
+    public function getScaAssociations()
     {
-        return $this->container['message'];
+        return $this->container['scaAssociations'];
     }
 
     /**
-     * Sets message
+     * Sets scaAssociations
      *
-     * @param string $message Description of the validation error.
+     * @param \Adyen\Model\BalancePlatform\Association[] $scaAssociations The list of associations.
      *
      * @return self
      */
-    public function setMessage($message)
+    public function setScaAssociations($scaAssociations)
     {
-        $this->container['message'] = $message;
-
-        return $this;
-    }
-
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name The field that has an invalid value.
-     *
-     * @return self
-     */
-    public function setName($name)
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets value
-     *
-     * @return string
-     */
-    public function getValue()
-    {
-        return $this->container['value'];
-    }
-
-    /**
-     * Sets value
-     *
-     * @param string $value The invalid value.
-     *
-     * @return self
-     */
-    public function setValue($value)
-    {
-        $this->container['value'] = $value;
+        $this->container['scaAssociations'] = $scaAssociations;
 
         return $this;
     }

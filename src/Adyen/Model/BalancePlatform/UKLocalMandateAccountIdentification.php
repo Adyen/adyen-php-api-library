@@ -15,16 +15,15 @@
 
 namespace Adyen\Model\BalancePlatform;
 
-use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * InvalidField Class Doc Comment
+ * UKLocalMandateAccountIdentification Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
+class UKLocalMandateAccountIdentification extends MandateAccountIdentification
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +32,7 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'InvalidField';
+    protected static $openAPIModelName = 'UKLocalMandateAccountIdentification';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +40,9 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'message' => 'string',
-        'name' => 'string',
-        'value' => 'string'
+        'accountNumber' => 'string',
+        'sortCode' => 'string',
+        'type' => 'string'
     ];
 
     /**
@@ -54,9 +53,9 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'message' => null,
-        'name' => null,
-        'value' => null
+        'accountNumber' => null,
+        'sortCode' => null,
+        'type' => null
     ];
 
     /**
@@ -65,9 +64,9 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'message' => false,
-        'name' => false,
-        'value' => false
+        'accountNumber' => false,
+        'sortCode' => false,
+        'type' => false
     ];
 
     /**
@@ -84,7 +83,7 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -94,7 +93,7 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -104,7 +103,7 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static function openAPINullables(): array
     {
-        return self::$openAPINullables;
+        return self::$openAPINullables + parent::openAPINullables();
     }
 
     /**
@@ -156,9 +155,9 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'message' => 'message',
-        'name' => 'name',
-        'value' => 'value'
+        'accountNumber' => 'accountNumber',
+        'sortCode' => 'sortCode',
+        'type' => 'type'
     ];
 
     /**
@@ -167,9 +166,9 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'message' => 'setMessage',
-        'name' => 'setName',
-        'value' => 'setValue'
+        'accountNumber' => 'setAccountNumber',
+        'sortCode' => 'setSortCode',
+        'type' => 'setType'
     ];
 
     /**
@@ -178,9 +177,9 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'message' => 'getMessage',
-        'name' => 'getName',
-        'value' => 'getValue'
+        'accountNumber' => 'getAccountNumber',
+        'sortCode' => 'getSortCode',
+        'type' => 'getType'
     ];
 
     /**
@@ -191,7 +190,7 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -201,7 +200,7 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -211,7 +210,7 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -225,12 +224,6 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
 
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
 
     /**
      * Constructor
@@ -240,9 +233,11 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('message', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('value', $data ?? [], null);
+        parent::__construct($data);
+
+        $this->setIfExists('accountNumber', $data ?? [], null);
+        $this->setIfExists('sortCode', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -270,16 +265,16 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = [];
+        $invalidProperties = parent::listInvalidProperties();
 
-        if ($this->container['message'] === null) {
-            $invalidProperties[] = "'message' can't be null";
+        if ($this->container['accountNumber'] === null) {
+            $invalidProperties[] = "'accountNumber' can't be null";
         }
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+        if ($this->container['sortCode'] === null) {
+            $invalidProperties[] = "'sortCode' can't be null";
         }
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
         }
         return $invalidProperties;
     }
@@ -297,73 +292,73 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets message
+     * Gets accountNumber
      *
      * @return string
      */
-    public function getMessage()
+    public function getAccountNumber()
     {
-        return $this->container['message'];
+        return $this->container['accountNumber'];
     }
 
     /**
-     * Sets message
+     * Sets accountNumber
      *
-     * @param string $message Description of the validation error.
+     * @param string $accountNumber The 8-digit bank account number, without separators or whitespace.
      *
      * @return self
      */
-    public function setMessage($message)
+    public function setAccountNumber($accountNumber)
     {
-        $this->container['message'] = $message;
+        $this->container['accountNumber'] = $accountNumber;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets sortCode
      *
      * @return string
      */
-    public function getName()
+    public function getSortCode()
     {
-        return $this->container['name'];
+        return $this->container['sortCode'];
     }
 
     /**
-     * Sets name
+     * Sets sortCode
      *
-     * @param string $name The field that has an invalid value.
+     * @param string $sortCode The 6-digit [sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or whitespace.
      *
      * @return self
      */
-    public function setName($name)
+    public function setSortCode($sortCode)
     {
-        $this->container['name'] = $name;
+        $this->container['sortCode'] = $sortCode;
 
         return $this;
     }
 
     /**
-     * Gets value
+     * Gets type
      *
      * @return string
      */
-    public function getValue()
+    public function getType()
     {
-        return $this->container['value'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets value
+     * Sets type
      *
-     * @param string $value The invalid value.
+     * @param string $type **ukLocal**
      *
      * @return self
      */
-    public function setValue($value)
+    public function setType($type)
     {
-        $this->container['value'] = $value;
+        $this->container['type'] = $type;
 
         return $this;
     }

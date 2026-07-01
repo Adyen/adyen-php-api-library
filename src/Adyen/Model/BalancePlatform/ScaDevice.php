@@ -19,12 +19,14 @@ use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * InvalidField Class Doc Comment
+ * ScaDevice Class Doc Comment
+ *
+ * A resource that contains information about a device, including its unique ID, name, and type.
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
+class ScaDevice implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +35,7 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'InvalidField';
+    protected static $openAPIModelName = 'ScaDevice';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +43,9 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'message' => 'string',
+        'id' => 'string',
         'name' => 'string',
-        'value' => 'string'
+        'type' => '\Adyen\Model\BalancePlatform\ScaDeviceType'
     ];
 
     /**
@@ -54,9 +56,9 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'message' => null,
+        'id' => null,
         'name' => null,
-        'value' => null
+        'type' => null
     ];
 
     /**
@@ -65,9 +67,9 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'message' => false,
+        'id' => false,
         'name' => false,
-        'value' => false
+        'type' => false
     ];
 
     /**
@@ -156,9 +158,9 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'message' => 'message',
+        'id' => 'id',
         'name' => 'name',
-        'value' => 'value'
+        'type' => 'type'
     ];
 
     /**
@@ -167,9 +169,9 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'message' => 'setMessage',
+        'id' => 'setId',
         'name' => 'setName',
-        'value' => 'setValue'
+        'type' => 'setType'
     ];
 
     /**
@@ -178,9 +180,9 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'message' => 'getMessage',
+        'id' => 'getId',
         'name' => 'getName',
-        'value' => 'getValue'
+        'type' => 'getType'
     ];
 
     /**
@@ -240,9 +242,9 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('message', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -272,14 +274,14 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['message'] === null) {
-            $invalidProperties[] = "'message' can't be null";
+        if ($this->container['id'] === null) {
+            $invalidProperties[] = "'id' can't be null";
         }
         if ($this->container['name'] === null) {
             $invalidProperties[] = "'name' can't be null";
         }
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
         }
         return $invalidProperties;
     }
@@ -297,25 +299,25 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets message
+     * Gets id
      *
      * @return string
      */
-    public function getMessage()
+    public function getId()
     {
-        return $this->container['message'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets message
+     * Sets id
      *
-     * @param string $message Description of the validation error.
+     * @param string $id The unique identifier of the SCA device you are registering.
      *
      * @return self
      */
-    public function setMessage($message)
+    public function setId($id)
     {
-        $this->container['message'] = $message;
+        $this->container['id'] = $id;
 
         return $this;
     }
@@ -333,7 +335,7 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets name
      *
-     * @param string $name The field that has an invalid value.
+     * @param string $name The name of the SCA device that you are registering. You can use it to help your users identify the device.
      *
      * @return self
      */
@@ -345,25 +347,25 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets value
+     * Gets type
      *
-     * @return string
+     * @return \Adyen\Model\BalancePlatform\ScaDeviceType
      */
-    public function getValue()
+    public function getType()
     {
-        return $this->container['value'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets value
+     * Sets type
      *
-     * @param string $value The invalid value.
+     * @param \Adyen\Model\BalancePlatform\ScaDeviceType $type type
      *
      * @return self
      */
-    public function setValue($value)
+    public function setType($type)
     {
-        $this->container['value'] = $value;
+        $this->container['type'] = $type;
 
         return $this;
     }

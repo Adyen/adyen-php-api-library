@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * InvalidField Class Doc Comment
+ * MandateBankAccount Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
+class MandateBankAccount implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'InvalidField';
+    protected static $openAPIModelName = 'MandateBankAccount';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,8 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'message' => 'string',
-        'name' => 'string',
-        'value' => 'string'
+        'accountHolder' => '\Adyen\Model\BalancePlatform\MandatePartyIdentification',
+        'accountIdentification' => '\Adyen\Model\BalancePlatform\MandateAccountIdentification'
     ];
 
     /**
@@ -54,9 +53,8 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'message' => null,
-        'name' => null,
-        'value' => null
+        'accountHolder' => null,
+        'accountIdentification' => null
     ];
 
     /**
@@ -65,9 +63,8 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'message' => false,
-        'name' => false,
-        'value' => false
+        'accountHolder' => false,
+        'accountIdentification' => false
     ];
 
     /**
@@ -156,9 +153,8 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'message' => 'message',
-        'name' => 'name',
-        'value' => 'value'
+        'accountHolder' => 'accountHolder',
+        'accountIdentification' => 'accountIdentification'
     ];
 
     /**
@@ -167,9 +163,8 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'message' => 'setMessage',
-        'name' => 'setName',
-        'value' => 'setValue'
+        'accountHolder' => 'setAccountHolder',
+        'accountIdentification' => 'setAccountIdentification'
     ];
 
     /**
@@ -178,9 +173,8 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'message' => 'getMessage',
-        'name' => 'getName',
-        'value' => 'getValue'
+        'accountHolder' => 'getAccountHolder',
+        'accountIdentification' => 'getAccountIdentification'
     ];
 
     /**
@@ -240,9 +234,8 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('message', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('accountHolder', $data ?? [], null);
+        $this->setIfExists('accountIdentification', $data ?? [], null);
     }
 
     /**
@@ -272,14 +265,11 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['message'] === null) {
-            $invalidProperties[] = "'message' can't be null";
+        if ($this->container['accountHolder'] === null) {
+            $invalidProperties[] = "'accountHolder' can't be null";
         }
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
+        if ($this->container['accountIdentification'] === null) {
+            $invalidProperties[] = "'accountIdentification' can't be null";
         }
         return $invalidProperties;
     }
@@ -297,73 +287,49 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets message
+     * Gets accountHolder
      *
-     * @return string
+     * @return \Adyen\Model\BalancePlatform\MandatePartyIdentification
      */
-    public function getMessage()
+    public function getAccountHolder()
     {
-        return $this->container['message'];
+        return $this->container['accountHolder'];
     }
 
     /**
-     * Sets message
+     * Sets accountHolder
      *
-     * @param string $message Description of the validation error.
+     * @param \Adyen\Model\BalancePlatform\MandatePartyIdentification $accountHolder accountHolder
      *
      * @return self
      */
-    public function setMessage($message)
+    public function setAccountHolder($accountHolder)
     {
-        $this->container['message'] = $message;
+        $this->container['accountHolder'] = $accountHolder;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets accountIdentification
      *
-     * @return string
+     * @return \Adyen\Model\BalancePlatform\MandateAccountIdentification
      */
-    public function getName()
+    public function getAccountIdentification()
     {
-        return $this->container['name'];
+        return $this->container['accountIdentification'];
     }
 
     /**
-     * Sets name
+     * Sets accountIdentification
      *
-     * @param string $name The field that has an invalid value.
+     * @param \Adyen\Model\BalancePlatform\MandateAccountIdentification $accountIdentification accountIdentification
      *
      * @return self
      */
-    public function setName($name)
+    public function setAccountIdentification($accountIdentification)
     {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets value
-     *
-     * @return string
-     */
-    public function getValue()
-    {
-        return $this->container['value'];
-    }
-
-    /**
-     * Sets value
-     *
-     * @param string $value The invalid value.
-     *
-     * @return self
-     */
-    public function setValue($value)
-    {
-        $this->container['value'] = $value;
+        $this->container['accountIdentification'] = $accountIdentification;
 
         return $this;
     }

@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * InvalidField Class Doc Comment
+ * ListAssociationsResponse Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
+class ListAssociationsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'InvalidField';
+    protected static $openAPIModelName = 'ListAssociationsResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,10 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'message' => 'string',
-        'name' => 'string',
-        'value' => 'string'
+        'links' => '\Adyen\Model\BalancePlatform\Link',
+        'data' => '\Adyen\Model\BalancePlatform\AssociationListing[]',
+        'itemsTotal' => 'int',
+        'pagesTotal' => 'int'
     ];
 
     /**
@@ -54,9 +55,10 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'message' => null,
-        'name' => null,
-        'value' => null
+        'links' => null,
+        'data' => null,
+        'itemsTotal' => 'int32',
+        'pagesTotal' => 'int32'
     ];
 
     /**
@@ -65,9 +67,10 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'message' => false,
-        'name' => false,
-        'value' => false
+        'links' => false,
+        'data' => false,
+        'itemsTotal' => true,
+        'pagesTotal' => true
     ];
 
     /**
@@ -156,9 +159,10 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'message' => 'message',
-        'name' => 'name',
-        'value' => 'value'
+        'links' => '_links',
+        'data' => 'data',
+        'itemsTotal' => 'itemsTotal',
+        'pagesTotal' => 'pagesTotal'
     ];
 
     /**
@@ -167,9 +171,10 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'message' => 'setMessage',
-        'name' => 'setName',
-        'value' => 'setValue'
+        'links' => 'setLinks',
+        'data' => 'setData',
+        'itemsTotal' => 'setItemsTotal',
+        'pagesTotal' => 'setPagesTotal'
     ];
 
     /**
@@ -178,9 +183,10 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'message' => 'getMessage',
-        'name' => 'getName',
-        'value' => 'getValue'
+        'links' => 'getLinks',
+        'data' => 'getData',
+        'itemsTotal' => 'getItemsTotal',
+        'pagesTotal' => 'getPagesTotal'
     ];
 
     /**
@@ -240,9 +246,10 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('message', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('links', $data ?? [], null);
+        $this->setIfExists('data', $data ?? [], null);
+        $this->setIfExists('itemsTotal', $data ?? [], null);
+        $this->setIfExists('pagesTotal', $data ?? [], null);
     }
 
     /**
@@ -272,14 +279,17 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['message'] === null) {
-            $invalidProperties[] = "'message' can't be null";
+        if ($this->container['links'] === null) {
+            $invalidProperties[] = "'links' can't be null";
         }
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+        if ($this->container['data'] === null) {
+            $invalidProperties[] = "'data' can't be null";
         }
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
+        if ($this->container['itemsTotal'] === null) {
+            $invalidProperties[] = "'itemsTotal' can't be null";
+        }
+        if ($this->container['pagesTotal'] === null) {
+            $invalidProperties[] = "'pagesTotal' can't be null";
         }
         return $invalidProperties;
     }
@@ -297,73 +307,97 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets message
+     * Gets links
      *
-     * @return string
+     * @return \Adyen\Model\BalancePlatform\Link
      */
-    public function getMessage()
+    public function getLinks()
     {
-        return $this->container['message'];
+        return $this->container['links'];
     }
 
     /**
-     * Sets message
+     * Sets links
      *
-     * @param string $message Description of the validation error.
+     * @param \Adyen\Model\BalancePlatform\Link $links links
      *
      * @return self
      */
-    public function setMessage($message)
+    public function setLinks($links)
     {
-        $this->container['message'] = $message;
+        $this->container['links'] = $links;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets data
      *
-     * @return string
+     * @return \Adyen\Model\BalancePlatform\AssociationListing[]
      */
-    public function getName()
+    public function getData()
     {
-        return $this->container['name'];
+        return $this->container['data'];
     }
 
     /**
-     * Sets name
+     * Sets data
      *
-     * @param string $name The field that has an invalid value.
+     * @param \Adyen\Model\BalancePlatform\AssociationListing[] $data Contains a list of associations and their corresponding details.
      *
      * @return self
      */
-    public function setName($name)
+    public function setData($data)
     {
-        $this->container['name'] = $name;
+        $this->container['data'] = $data;
 
         return $this;
     }
 
     /**
-     * Gets value
+     * Gets itemsTotal
      *
-     * @return string
+     * @return int
      */
-    public function getValue()
+    public function getItemsTotal()
     {
-        return $this->container['value'];
+        return $this->container['itemsTotal'];
     }
 
     /**
-     * Sets value
+     * Sets itemsTotal
      *
-     * @param string $value The invalid value.
+     * @param int $itemsTotal The total number of items available.
      *
      * @return self
      */
-    public function setValue($value)
+    public function setItemsTotal($itemsTotal)
     {
-        $this->container['value'] = $value;
+        $this->container['itemsTotal'] = $itemsTotal;
+
+        return $this;
+    }
+
+    /**
+     * Gets pagesTotal
+     *
+     * @return int
+     */
+    public function getPagesTotal()
+    {
+        return $this->container['pagesTotal'];
+    }
+
+    /**
+     * Sets pagesTotal
+     *
+     * @param int $pagesTotal The total number of pages available.
+     *
+     * @return self
+     */
+    public function setPagesTotal($pagesTotal)
+    {
+        $this->container['pagesTotal'] = $pagesTotal;
 
         return $this;
     }

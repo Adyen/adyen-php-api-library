@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * InvalidField Class Doc Comment
+ * Summary Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
+class Summary implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'InvalidField';
+    protected static $openAPIModelName = 'Summary';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,8 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'message' => 'string',
-        'name' => 'string',
-        'value' => 'string'
+        'legalEntityId' => 'string',
+        'taxYears' => 'int[]'
     ];
 
     /**
@@ -54,9 +53,8 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'message' => null,
-        'name' => null,
-        'value' => null
+        'legalEntityId' => null,
+        'taxYears' => 'int32'
     ];
 
     /**
@@ -65,9 +63,8 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'message' => false,
-        'name' => false,
-        'value' => false
+        'legalEntityId' => false,
+        'taxYears' => false
     ];
 
     /**
@@ -156,9 +153,8 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'message' => 'message',
-        'name' => 'name',
-        'value' => 'value'
+        'legalEntityId' => 'legalEntityId',
+        'taxYears' => 'taxYears'
     ];
 
     /**
@@ -167,9 +163,8 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'message' => 'setMessage',
-        'name' => 'setName',
-        'value' => 'setValue'
+        'legalEntityId' => 'setLegalEntityId',
+        'taxYears' => 'setTaxYears'
     ];
 
     /**
@@ -178,9 +173,8 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'message' => 'getMessage',
-        'name' => 'getName',
-        'value' => 'getValue'
+        'legalEntityId' => 'getLegalEntityId',
+        'taxYears' => 'getTaxYears'
     ];
 
     /**
@@ -240,9 +234,8 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('message', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('legalEntityId', $data ?? [], null);
+        $this->setIfExists('taxYears', $data ?? [], null);
     }
 
     /**
@@ -272,14 +265,11 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['message'] === null) {
-            $invalidProperties[] = "'message' can't be null";
+        if ($this->container['legalEntityId'] === null) {
+            $invalidProperties[] = "'legalEntityId' can't be null";
         }
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
+        if ($this->container['taxYears'] === null) {
+            $invalidProperties[] = "'taxYears' can't be null";
         }
         return $invalidProperties;
     }
@@ -297,73 +287,49 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets message
+     * Gets legalEntityId
      *
      * @return string
      */
-    public function getMessage()
+    public function getLegalEntityId()
     {
-        return $this->container['message'];
+        return $this->container['legalEntityId'];
     }
 
     /**
-     * Sets message
+     * Sets legalEntityId
      *
-     * @param string $message Description of the validation error.
+     * @param string $legalEntityId The unique identifier of the legal entity.
      *
      * @return self
      */
-    public function setMessage($message)
+    public function setLegalEntityId($legalEntityId)
     {
-        $this->container['message'] = $message;
+        $this->container['legalEntityId'] = $legalEntityId;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets taxYears
      *
-     * @return string
+     * @return int[]
      */
-    public function getName()
+    public function getTaxYears()
     {
-        return $this->container['name'];
+        return $this->container['taxYears'];
     }
 
     /**
-     * Sets name
+     * Sets taxYears
      *
-     * @param string $name The field that has an invalid value.
+     * @param int[] $taxYears The tax years for which the legal entity has a tax form.
      *
      * @return self
      */
-    public function setName($name)
+    public function setTaxYears($taxYears)
     {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets value
-     *
-     * @return string
-     */
-    public function getValue()
-    {
-        return $this->container['value'];
-    }
-
-    /**
-     * Sets value
-     *
-     * @param string $value The invalid value.
-     *
-     * @return self
-     */
-    public function setValue($value)
-    {
-        $this->container['value'] = $value;
+        $this->container['taxYears'] = $taxYears;
 
         return $this;
     }

@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * InvalidField Class Doc Comment
+ * Condition Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
+class Condition implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'InvalidField';
+    protected static $openAPIModelName = 'Condition';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,9 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'message' => 'string',
-        'name' => 'string',
-        'value' => 'string'
+        'balanceType' => 'string',
+        'conditionType' => 'string',
+        'value' => 'int'
     ];
 
     /**
@@ -54,9 +54,9 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'message' => null,
-        'name' => null,
-        'value' => null
+        'balanceType' => null,
+        'conditionType' => null,
+        'value' => 'int64'
     ];
 
     /**
@@ -65,8 +65,8 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'message' => false,
-        'name' => false,
+        'balanceType' => false,
+        'conditionType' => false,
         'value' => false
     ];
 
@@ -156,8 +156,8 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'message' => 'message',
-        'name' => 'name',
+        'balanceType' => 'balanceType',
+        'conditionType' => 'conditionType',
         'value' => 'value'
     ];
 
@@ -167,8 +167,8 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'message' => 'setMessage',
-        'name' => 'setName',
+        'balanceType' => 'setBalanceType',
+        'conditionType' => 'setConditionType',
         'value' => 'setValue'
     ];
 
@@ -178,8 +178,8 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'message' => 'getMessage',
-        'name' => 'getName',
+        'balanceType' => 'getBalanceType',
+        'conditionType' => 'getConditionType',
         'value' => 'getValue'
     ];
 
@@ -224,7 +224,43 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const BALANCE_TYPE_BALANCE = 'balance';
+    public const BALANCE_TYPE_AVAILABLE = 'available';
+    public const BALANCE_TYPE_PENDING = 'pending';
+    public const BALANCE_TYPE_RESERVED = 'reserved';
+    public const CONDITION_TYPE_GREATER_THAN = 'greaterThan';
+    public const CONDITION_TYPE_GREATER_THAN_OR_EQUAL = 'greaterThanOrEqual';
+    public const CONDITION_TYPE_LESS_THAN = 'lessThan';
+    public const CONDITION_TYPE_LESS_THAN_OR_EQUAL = 'lessThanOrEqual';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getBalanceTypeAllowableValues()
+    {
+        return [
+            self::BALANCE_TYPE_BALANCE,
+            self::BALANCE_TYPE_AVAILABLE,
+            self::BALANCE_TYPE_PENDING,
+            self::BALANCE_TYPE_RESERVED,
+        ];
+    }
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getConditionTypeAllowableValues()
+    {
+        return [
+            self::CONDITION_TYPE_GREATER_THAN,
+            self::CONDITION_TYPE_GREATER_THAN_OR_EQUAL,
+            self::CONDITION_TYPE_LESS_THAN,
+            self::CONDITION_TYPE_LESS_THAN_OR_EQUAL,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -240,8 +276,8 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('message', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('balanceType', $data ?? [], null);
+        $this->setIfExists('conditionType', $data ?? [], null);
         $this->setIfExists('value', $data ?? [], null);
     }
 
@@ -272,12 +308,30 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['message'] === null) {
-            $invalidProperties[] = "'message' can't be null";
+        if ($this->container['balanceType'] === null) {
+            $invalidProperties[] = "'balanceType' can't be null";
         }
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+        $allowedValues = $this->getBalanceTypeAllowableValues();
+        if (!is_null($this->container['balanceType']) && !in_array($this->container['balanceType'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'balanceType', must be one of '%s'",
+                $this->container['balanceType'],
+                implode("', '", $allowedValues)
+            );
         }
+
+        if ($this->container['conditionType'] === null) {
+            $invalidProperties[] = "'conditionType' can't be null";
+        }
+        $allowedValues = $this->getConditionTypeAllowableValues();
+        if (!is_null($this->container['conditionType']) && !in_array($this->container['conditionType'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'conditionType', must be one of '%s'",
+                $this->container['conditionType'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         if ($this->container['value'] === null) {
             $invalidProperties[] = "'value' can't be null";
         }
@@ -297,49 +351,69 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets message
+     * Gets balanceType
      *
      * @return string
      */
-    public function getMessage()
+    public function getBalanceType()
     {
-        return $this->container['message'];
+        return $this->container['balanceType'];
     }
 
     /**
-     * Sets message
+     * Sets balanceType
      *
-     * @param string $message Description of the validation error.
+     * @param string $balanceType Define the type of balance about which you want to get notified. Possible values:  * **available**: the balance available for use.  * **balance**: the sum of transactions that have already been settled.  * **pending**: the sum of transactions that will be settled in the future.  * **reserved**: the balance currently held in reserve.
      *
      * @return self
      */
-    public function setMessage($message)
+    public function setBalanceType($balanceType)
     {
-        $this->container['message'] = $message;
+        $allowedValues = $this->getBalanceTypeAllowableValues();
+        if (!in_array($balanceType, $allowedValues, true)) {
+            error_log(
+                sprintf(
+                    "balanceType: unexpected enum value '%s' - Supported values are [%s]",
+                    $balanceType,
+                    implode(', ', $allowedValues)
+                )
+            );
+        }
+        $this->container['balanceType'] = $balanceType;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets conditionType
      *
      * @return string
      */
-    public function getName()
+    public function getConditionType()
     {
-        return $this->container['name'];
+        return $this->container['conditionType'];
     }
 
     /**
-     * Sets name
+     * Sets conditionType
      *
-     * @param string $name The field that has an invalid value.
+     * @param string $conditionType Define when you want to get notified about a balance change. Possible values:  * **greaterThan**: the balance in the account(s) exceeds the specified `value`.  * **greaterThanOrEqual**: the balance in the account(s) reaches or exceeds the specified `value`.  * **lessThan**: the balance in the account(s) drops below the specified `value`.  * **lessThanOrEqual**: the balance in the account(s) reaches to drops below the specified `value`.
      *
      * @return self
      */
-    public function setName($name)
+    public function setConditionType($conditionType)
     {
-        $this->container['name'] = $name;
+        $allowedValues = $this->getConditionTypeAllowableValues();
+        if (!in_array($conditionType, $allowedValues, true)) {
+            error_log(
+                sprintf(
+                    "conditionType: unexpected enum value '%s' - Supported values are [%s]",
+                    $conditionType,
+                    implode(', ', $allowedValues)
+                )
+            );
+        }
+        $this->container['conditionType'] = $conditionType;
 
         return $this;
     }
@@ -347,7 +421,7 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets value
      *
-     * @return string
+     * @return int
      */
     public function getValue()
     {
@@ -357,7 +431,7 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets value
      *
-     * @param string $value The invalid value.
+     * @param int $value The value limit in the specified balance type and currency, in minor units.
      *
      * @return self
      */

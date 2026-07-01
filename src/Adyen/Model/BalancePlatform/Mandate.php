@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\BalancePlatform\ObjectSerializer;
 
 /**
- * InvalidField Class Doc Comment
+ * Mandate Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
+class Mandate implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'InvalidField';
+    protected static $openAPIModelName = 'Mandate';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,14 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'message' => 'string',
-        'name' => 'string',
-        'value' => 'string'
+        'balanceAccountId' => 'string',
+        'counterparty' => '\Adyen\Model\BalancePlatform\MandateBankAccount',
+        'createdAt' => '\DateTime',
+        'id' => 'string',
+        'paymentInstrumentId' => 'string',
+        'status' => '\Adyen\Model\BalancePlatform\MandateStatus',
+        'type' => '\Adyen\Model\BalancePlatform\MandateType',
+        'updatedAt' => '\DateTime'
     ];
 
     /**
@@ -54,9 +59,14 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'message' => null,
-        'name' => null,
-        'value' => null
+        'balanceAccountId' => null,
+        'counterparty' => null,
+        'createdAt' => 'date-time',
+        'id' => null,
+        'paymentInstrumentId' => null,
+        'status' => null,
+        'type' => null,
+        'updatedAt' => 'date-time'
     ];
 
     /**
@@ -65,9 +75,14 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'message' => false,
-        'name' => false,
-        'value' => false
+        'balanceAccountId' => false,
+        'counterparty' => false,
+        'createdAt' => false,
+        'id' => false,
+        'paymentInstrumentId' => false,
+        'status' => false,
+        'type' => false,
+        'updatedAt' => false
     ];
 
     /**
@@ -156,9 +171,14 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'message' => 'message',
-        'name' => 'name',
-        'value' => 'value'
+        'balanceAccountId' => 'balanceAccountId',
+        'counterparty' => 'counterparty',
+        'createdAt' => 'createdAt',
+        'id' => 'id',
+        'paymentInstrumentId' => 'paymentInstrumentId',
+        'status' => 'status',
+        'type' => 'type',
+        'updatedAt' => 'updatedAt'
     ];
 
     /**
@@ -167,9 +187,14 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'message' => 'setMessage',
-        'name' => 'setName',
-        'value' => 'setValue'
+        'balanceAccountId' => 'setBalanceAccountId',
+        'counterparty' => 'setCounterparty',
+        'createdAt' => 'setCreatedAt',
+        'id' => 'setId',
+        'paymentInstrumentId' => 'setPaymentInstrumentId',
+        'status' => 'setStatus',
+        'type' => 'setType',
+        'updatedAt' => 'setUpdatedAt'
     ];
 
     /**
@@ -178,9 +203,14 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'message' => 'getMessage',
-        'name' => 'getName',
-        'value' => 'getValue'
+        'balanceAccountId' => 'getBalanceAccountId',
+        'counterparty' => 'getCounterparty',
+        'createdAt' => 'getCreatedAt',
+        'id' => 'getId',
+        'paymentInstrumentId' => 'getPaymentInstrumentId',
+        'status' => 'getStatus',
+        'type' => 'getType',
+        'updatedAt' => 'getUpdatedAt'
     ];
 
     /**
@@ -240,9 +270,14 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('message', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('balanceAccountId', $data ?? [], null);
+        $this->setIfExists('counterparty', $data ?? [], null);
+        $this->setIfExists('createdAt', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('paymentInstrumentId', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('updatedAt', $data ?? [], null);
     }
 
     /**
@@ -272,15 +307,6 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['message'] === null) {
-            $invalidProperties[] = "'message' can't be null";
-        }
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -297,73 +323,193 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets message
+     * Gets balanceAccountId
      *
-     * @return string
+     * @return string|null
      */
-    public function getMessage()
+    public function getBalanceAccountId()
     {
-        return $this->container['message'];
+        return $this->container['balanceAccountId'];
     }
 
     /**
-     * Sets message
+     * Sets balanceAccountId
      *
-     * @param string $message Description of the validation error.
+     * @param string|null $balanceAccountId The unique identifier of the balance account linked to the payment instrument.
      *
      * @return self
      */
-    public function setMessage($message)
+    public function setBalanceAccountId($balanceAccountId)
     {
-        $this->container['message'] = $message;
+        $this->container['balanceAccountId'] = $balanceAccountId;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets counterparty
      *
-     * @return string
+     * @return \Adyen\Model\BalancePlatform\MandateBankAccount|null
      */
-    public function getName()
+    public function getCounterparty()
     {
-        return $this->container['name'];
+        return $this->container['counterparty'];
     }
 
     /**
-     * Sets name
+     * Sets counterparty
      *
-     * @param string $name The field that has an invalid value.
+     * @param \Adyen\Model\BalancePlatform\MandateBankAccount|null $counterparty counterparty
      *
      * @return self
      */
-    public function setName($name)
+    public function setCounterparty($counterparty)
     {
-        $this->container['name'] = $name;
+        $this->container['counterparty'] = $counterparty;
 
         return $this;
     }
 
     /**
-     * Gets value
+     * Gets createdAt
      *
-     * @return string
+     * @return \DateTime|null
      */
-    public function getValue()
+    public function getCreatedAt()
     {
-        return $this->container['value'];
+        return $this->container['createdAt'];
     }
 
     /**
-     * Sets value
+     * Sets createdAt
      *
-     * @param string $value The invalid value.
+     * @param \DateTime|null $createdAt The date when the mandate was created.
      *
      * @return self
      */
-    public function setValue($value)
+    public function setCreatedAt($createdAt)
     {
-        $this->container['value'] = $value;
+        $this->container['createdAt'] = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Gets id
+     *
+     * @return string|null
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param string|null $id The unique identifier of the mandate.
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets paymentInstrumentId
+     *
+     * @return string|null
+     */
+    public function getPaymentInstrumentId()
+    {
+        return $this->container['paymentInstrumentId'];
+    }
+
+    /**
+     * Sets paymentInstrumentId
+     *
+     * @param string|null $paymentInstrumentId The unique identifier of the payment instrument linked to the mandate.
+     *
+     * @return self
+     */
+    public function setPaymentInstrumentId($paymentInstrumentId)
+    {
+        $this->container['paymentInstrumentId'] = $paymentInstrumentId;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return \Adyen\Model\BalancePlatform\MandateStatus|null
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     *
+     * @param \Adyen\Model\BalancePlatform\MandateStatus|null $status status
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return \Adyen\Model\BalancePlatform\MandateType|null
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param \Adyen\Model\BalancePlatform\MandateType|null $type type
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets updatedAt
+     *
+     * @return \DateTime|null
+     */
+    public function getUpdatedAt()
+    {
+        return $this->container['updatedAt'];
+    }
+
+    /**
+     * Sets updatedAt
+     *
+     * @param \DateTime|null $updatedAt The date when the mandate was updated.
+     *
+     * @return self
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->container['updatedAt'] = $updatedAt;
 
         return $this;
     }
