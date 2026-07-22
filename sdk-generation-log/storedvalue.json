@@ -1,0 +1,8 @@
+{
+  "service": "storedvalue",
+  "project": "php",
+  "generatedAt": "2026-07-22T11:27:57Z",
+  "openapiCommitSha": "c6f0131e5551226fd523852ff6f5ad1df6c72ee2",
+  "automationCommitSha": "0c108bd8050cf480d2710b78b770afdfbdd89397",
+  "libraryCommitSha": "6df5e4fb65e7fe5f352c2abb3cecc434016a4f1c"
+}
