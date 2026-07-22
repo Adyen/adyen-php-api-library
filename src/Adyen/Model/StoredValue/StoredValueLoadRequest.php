@@ -428,7 +428,7 @@ class StoredValueLoadRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets loadType
      *
-     * @param string|null $loadType The type of load you are trying to do, when absent we default to 'Load'
+     * @param string|null $loadType The type of load you are trying to do, when absent we default to 'load'
      *
      * @return self
      */
