@@ -25,6 +25,7 @@
         xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
         bootstrap="tests/bootstrap.php"
         colors="true"
+        convertDeprecationsToExceptions="true"
 >
     <php>
         <ini name="display_errors" value="On"/>
