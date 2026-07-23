@@ -147,7 +147,11 @@ class CurlClient implements ClientInterface
         // Get errors
         [$errno] = $this->curlError($ch);
 
-        curl_close($ch);
+        // On PHP < 8.0 curl handles are resources and must be closed explicitly.
+        // On PHP >= 8.0 they are CurlHandle objects that are garbage collected automatically.
+        if (is_resource($ch)) {
+            curl_close($ch);
+        }
 
         $resultOKHttpStatusCodes = array(200, 201, 202, 204);
 
@@ -354,7 +358,11 @@ class CurlClient implements ClientInterface
         // Get errors
         [$errno] = $this->curlError($ch);
 
-        curl_close($ch);
+        // On PHP < 8.0 curl handles are resources and must be closed explicitly.
+        // On PHP >= 8.0 they are CurlHandle objects that are garbage collected automatically.
+        if (is_resource($ch)) {
+            curl_close($ch);
+        }
 
         $hasFailed = !in_array($httpStatus, array(200, 201, 202, 204));
 
