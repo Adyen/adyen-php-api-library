@@ -317,7 +317,11 @@ class TestCase extends \PHPUnit\Framework\TestCase
         }
 
         $method = $class->getMethod($name);
-        $method->setAccessible(true);
+        // Required before PHP 8.1 to invoke non-public methods, and has no effect in newer PHP versions.
+        if (PHP_VERSION_ID < 80100) {
+            $method->setAccessible(true);
+        }
+
         return $method;
     }
 
