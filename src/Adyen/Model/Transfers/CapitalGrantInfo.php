@@ -41,7 +41,7 @@ class CapitalGrantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'counterparty' => '\Adyen\Model\Transfers\Counterparty',
+        'counterparty' => '\Adyen\Model\Transfers\GrantInfoCounterparty',
         'grantAccountId' => 'string',
         'grantOfferId' => 'string'
     ];
@@ -296,7 +296,7 @@ class CapitalGrantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets counterparty
      *
-     * @return \Adyen\Model\Transfers\Counterparty|null
+     * @return \Adyen\Model\Transfers\GrantInfoCounterparty|null
      */
     public function getCounterparty()
     {
@@ -306,7 +306,7 @@ class CapitalGrantInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets counterparty
      *
-     * @param \Adyen\Model\Transfers\Counterparty|null $counterparty counterparty
+     * @param \Adyen\Model\Transfers\GrantInfoCounterparty|null $counterparty counterparty
      *
      * @return self
      */
