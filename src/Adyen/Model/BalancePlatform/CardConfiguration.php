@@ -54,6 +54,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
         'language' => 'string',
         'logoImageId' => 'string',
         'pinMailer' => 'string',
+        'printLine' => 'string',
         'shipmentMethod' => 'string'
     ];
 
@@ -78,6 +79,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
         'language' => null,
         'logoImageId' => null,
         'pinMailer' => null,
+        'printLine' => null,
         'shipmentMethod' => null
     ];
 
@@ -100,6 +102,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
         'language' => false,
         'logoImageId' => false,
         'pinMailer' => false,
+        'printLine' => false,
         'shipmentMethod' => false
     ];
 
@@ -202,6 +205,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
         'language' => 'language',
         'logoImageId' => 'logoImageId',
         'pinMailer' => 'pinMailer',
+        'printLine' => 'printLine',
         'shipmentMethod' => 'shipmentMethod'
     ];
 
@@ -224,6 +228,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
         'language' => 'setLanguage',
         'logoImageId' => 'setLogoImageId',
         'pinMailer' => 'setPinMailer',
+        'printLine' => 'setPrintLine',
         'shipmentMethod' => 'setShipmentMethod'
     ];
 
@@ -246,6 +251,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
         'language' => 'getLanguage',
         'logoImageId' => 'getLogoImageId',
         'pinMailer' => 'getPinMailer',
+        'printLine' => 'getPrintLine',
         'shipmentMethod' => 'getShipmentMethod'
     ];
 
@@ -319,6 +325,7 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('language', $data ?? [], null);
         $this->setIfExists('logoImageId', $data ?? [], null);
         $this->setIfExists('pinMailer', $data ?? [], null);
+        $this->setIfExists('printLine', $data ?? [], null);
         $this->setIfExists('shipmentMethod', $data ?? [], null);
     }
 
@@ -675,6 +682,30 @@ class CardConfiguration implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function setPinMailer($pinMailer)
     {
         $this->container['pinMailer'] = $pinMailer;
+
+        return $this;
+    }
+
+    /**
+     * Gets printLine
+     *
+     * @return string|null
+     */
+    public function getPrintLine()
+    {
+        return $this->container['printLine'];
+    }
+
+    /**
+     * Sets printLine
+     *
+     * @param string|null $printLine Print Line.  Text printed on the physical card below the cardholder name. You provide the value, which can be up to 26 characters.
+     *
+     * @return self
+     */
+    public function setPrintLine($printLine)
+    {
+        $this->container['printLine'] = $printLine;
 
         return $this;
     }
