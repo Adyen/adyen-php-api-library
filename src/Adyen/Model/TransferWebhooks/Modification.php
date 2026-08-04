@@ -236,8 +236,6 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const STATUS_ADVICE_AUTHORISED = 'adviceAuthorised';
-    public const STATUS_ADVICE_REFUSED = 'adviceRefused';
     public const STATUS_APPROVAL_PENDING = 'approvalPending';
     public const STATUS_ATM_WITHDRAWAL = 'atmWithdrawal';
     public const STATUS_ATM_WITHDRAWAL_REVERSAL_PENDING = 'atmWithdrawalReversalPending';
@@ -317,8 +315,6 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
     public function getStatusAllowableValues()
     {
         return [
-            self::STATUS_ADVICE_AUTHORISED,
-            self::STATUS_ADVICE_REFUSED,
             self::STATUS_APPROVAL_PENDING,
             self::STATUS_ATM_WITHDRAWAL,
             self::STATUS_ATM_WITHDRAWAL_REVERSAL_PENDING,

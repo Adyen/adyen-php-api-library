@@ -59,6 +59,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'executionDate' => '\Adyen\Model\TransferWebhooks\ExecutionDate',
         'externalReason' => '\Adyen\Model\TransferWebhooks\ExternalReason',
         'id' => 'string',
+        'networkReason' => '\Adyen\Model\TransferWebhooks\NetworkReason',
         'paymentInstrument' => '\Adyen\Model\TransferWebhooks\PaymentInstrument',
         'reason' => 'string',
         'reference' => 'string',
@@ -66,6 +67,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'review' => '\Adyen\Model\TransferWebhooks\TransferReview',
         'sequenceNumber' => 'int',
         'status' => 'string',
+        'tracing' => '\Adyen\Model\TransferWebhooks\TransferDataTracing',
         'tracking' => '\Adyen\Model\TransferWebhooks\TransferDataTracking',
         'transactionRulesResult' => '\Adyen\Model\TransferWebhooks\TransactionRulesResult',
         'type' => 'string',
@@ -99,6 +101,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'executionDate' => null,
         'externalReason' => null,
         'id' => null,
+        'networkReason' => null,
         'paymentInstrument' => null,
         'reason' => null,
         'reference' => null,
@@ -106,6 +109,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'review' => null,
         'sequenceNumber' => 'int32',
         'status' => null,
+        'tracing' => null,
         'tracking' => null,
         'transactionRulesResult' => null,
         'type' => null,
@@ -137,6 +141,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'executionDate' => false,
         'externalReason' => false,
         'id' => false,
+        'networkReason' => false,
         'paymentInstrument' => false,
         'reason' => false,
         'reference' => false,
@@ -144,6 +149,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'review' => false,
         'sequenceNumber' => true,
         'status' => false,
+        'tracing' => false,
         'tracking' => false,
         'transactionRulesResult' => false,
         'type' => false,
@@ -255,6 +261,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'executionDate' => 'executionDate',
         'externalReason' => 'externalReason',
         'id' => 'id',
+        'networkReason' => 'networkReason',
         'paymentInstrument' => 'paymentInstrument',
         'reason' => 'reason',
         'reference' => 'reference',
@@ -262,6 +269,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'review' => 'review',
         'sequenceNumber' => 'sequenceNumber',
         'status' => 'status',
+        'tracing' => 'tracing',
         'tracking' => 'tracking',
         'transactionRulesResult' => 'transactionRulesResult',
         'type' => 'type',
@@ -293,6 +301,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'executionDate' => 'setExecutionDate',
         'externalReason' => 'setExternalReason',
         'id' => 'setId',
+        'networkReason' => 'setNetworkReason',
         'paymentInstrument' => 'setPaymentInstrument',
         'reason' => 'setReason',
         'reference' => 'setReference',
@@ -300,6 +309,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'review' => 'setReview',
         'sequenceNumber' => 'setSequenceNumber',
         'status' => 'setStatus',
+        'tracing' => 'setTracing',
         'tracking' => 'setTracking',
         'transactionRulesResult' => 'setTransactionRulesResult',
         'type' => 'setType',
@@ -331,6 +341,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'executionDate' => 'getExecutionDate',
         'externalReason' => 'getExternalReason',
         'id' => 'getId',
+        'networkReason' => 'getNetworkReason',
         'paymentInstrument' => 'getPaymentInstrument',
         'reason' => 'getReason',
         'reference' => 'getReference',
@@ -338,6 +349,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'review' => 'getReview',
         'sequenceNumber' => 'getSequenceNumber',
         'status' => 'getStatus',
+        'tracing' => 'getTracing',
         'tracking' => 'getTracking',
         'transactionRulesResult' => 'getTransactionRulesResult',
         'type' => 'getType',
@@ -479,8 +491,6 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     public const REASON_UNKNOWN = 'unknown';
     public const REASON_WITHDRAWAL_AMOUNT_EXCEEDED = 'withdrawalAmountExceeded';
     public const REASON_WITHDRAWAL_COUNT_EXCEEDED = 'withdrawalCountExceeded';
-    public const STATUS_ADVICE_AUTHORISED = 'adviceAuthorised';
-    public const STATUS_ADVICE_REFUSED = 'adviceRefused';
     public const STATUS_APPROVAL_PENDING = 'approvalPending';
     public const STATUS_ATM_WITHDRAWAL = 'atmWithdrawal';
     public const STATUS_ATM_WITHDRAWAL_REVERSAL_PENDING = 'atmWithdrawalReversalPending';
@@ -721,8 +731,6 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     public function getStatusAllowableValues()
     {
         return [
-            self::STATUS_ADVICE_AUTHORISED,
-            self::STATUS_ADVICE_REFUSED,
             self::STATUS_APPROVAL_PENDING,
             self::STATUS_ATM_WITHDRAWAL,
             self::STATUS_ATM_WITHDRAWAL_REVERSAL_PENDING,
@@ -876,6 +884,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('executionDate', $data ?? [], null);
         $this->setIfExists('externalReason', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('networkReason', $data ?? [], null);
         $this->setIfExists('paymentInstrument', $data ?? [], null);
         $this->setIfExists('reason', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
@@ -883,6 +892,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('review', $data ?? [], null);
         $this->setIfExists('sequenceNumber', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('tracing', $data ?? [], null);
         $this->setIfExists('tracking', $data ?? [], null);
         $this->setIfExists('transactionRulesResult', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
@@ -1441,6 +1451,30 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets networkReason
+     *
+     * @return \Adyen\Model\TransferWebhooks\NetworkReason|null
+     */
+    public function getNetworkReason()
+    {
+        return $this->container['networkReason'];
+    }
+
+    /**
+     * Sets networkReason
+     *
+     * @param \Adyen\Model\TransferWebhooks\NetworkReason|null $networkReason networkReason
+     *
+     * @return self
+     */
+    public function setNetworkReason($networkReason)
+    {
+        $this->container['networkReason'] = $networkReason;
+
+        return $this;
+    }
+
+    /**
      * Gets paymentInstrument
      *
      * @return \Adyen\Model\TransferWebhooks\PaymentInstrument|null
@@ -1624,6 +1658,30 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets tracing
+     *
+     * @return \Adyen\Model\TransferWebhooks\TransferDataTracing|null
+     */
+    public function getTracing()
+    {
+        return $this->container['tracing'];
+    }
+
+    /**
+     * Sets tracing
+     *
+     * @param \Adyen\Model\TransferWebhooks\TransferDataTracing|null $tracing tracing
+     *
+     * @return self
+     */
+    public function setTracing($tracing)
+    {
+        $this->container['tracing'] = $tracing;
 
         return $this;
     }

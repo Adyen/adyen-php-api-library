@@ -54,6 +54,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'originalAmount' => '\Adyen\Model\TransferWebhooks\Amount',
         'reason' => 'string',
         'status' => 'string',
+        'tracingData' => '\Adyen\Model\TransferWebhooks\TransferEventTracingData',
         'trackingData' => '\Adyen\Model\TransferWebhooks\TransferEventTrackingData',
         'transactionId' => 'string',
         'type' => 'string',
@@ -82,6 +83,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'originalAmount' => null,
         'reason' => null,
         'status' => null,
+        'tracingData' => null,
         'trackingData' => null,
         'transactionId' => null,
         'type' => null,
@@ -108,6 +110,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'originalAmount' => false,
         'reason' => false,
         'status' => false,
+        'tracingData' => false,
         'trackingData' => false,
         'transactionId' => false,
         'type' => false,
@@ -214,6 +217,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'originalAmount' => 'originalAmount',
         'reason' => 'reason',
         'status' => 'status',
+        'tracingData' => 'tracingData',
         'trackingData' => 'trackingData',
         'transactionId' => 'transactionId',
         'type' => 'type',
@@ -240,6 +244,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'originalAmount' => 'setOriginalAmount',
         'reason' => 'setReason',
         'status' => 'setStatus',
+        'tracingData' => 'setTracingData',
         'trackingData' => 'setTrackingData',
         'transactionId' => 'setTransactionId',
         'type' => 'setType',
@@ -266,6 +271,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'originalAmount' => 'getOriginalAmount',
         'reason' => 'getReason',
         'status' => 'getStatus',
+        'tracingData' => 'getTracingData',
         'trackingData' => 'getTrackingData',
         'transactionId' => 'getTransactionId',
         'type' => 'getType',
@@ -399,8 +405,6 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     public const REASON_UNKNOWN = 'unknown';
     public const REASON_WITHDRAWAL_AMOUNT_EXCEEDED = 'withdrawalAmountExceeded';
     public const REASON_WITHDRAWAL_COUNT_EXCEEDED = 'withdrawalCountExceeded';
-    public const STATUS_ADVICE_AUTHORISED = 'adviceAuthorised';
-    public const STATUS_ADVICE_REFUSED = 'adviceRefused';
     public const STATUS_APPROVAL_PENDING = 'approvalPending';
     public const STATUS_ATM_WITHDRAWAL = 'atmWithdrawal';
     public const STATUS_ATM_WITHDRAWAL_REVERSAL_PENDING = 'atmWithdrawalReversalPending';
@@ -578,8 +582,6 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     public function getStatusAllowableValues()
     {
         return [
-            self::STATUS_ADVICE_AUTHORISED,
-            self::STATUS_ADVICE_REFUSED,
             self::STATUS_APPROVAL_PENDING,
             self::STATUS_ATM_WITHDRAWAL,
             self::STATUS_ATM_WITHDRAWAL_REVERSAL_PENDING,
@@ -693,6 +695,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('originalAmount', $data ?? [], null);
         $this->setIfExists('reason', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('tracingData', $data ?? [], null);
         $this->setIfExists('trackingData', $data ?? [], null);
         $this->setIfExists('transactionId', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
@@ -1097,6 +1100,30 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets tracingData
+     *
+     * @return \Adyen\Model\TransferWebhooks\TransferEventTracingData|null
+     */
+    public function getTracingData()
+    {
+        return $this->container['tracingData'];
+    }
+
+    /**
+     * Sets tracingData
+     *
+     * @param \Adyen\Model\TransferWebhooks\TransferEventTracingData|null $tracingData tracingData
+     *
+     * @return self
+     */
+    public function setTracingData($tracingData)
+    {
+        $this->container['tracingData'] = $tracingData;
 
         return $this;
     }
