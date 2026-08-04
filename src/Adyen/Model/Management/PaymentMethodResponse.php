@@ -275,6 +275,7 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public const TYPES_WITH_ERRORS_BR_SCHEMES = 'br_schemes';
     public const TYPES_WITH_ERRORS_CARNET = 'carnet';
     public const TYPES_WITH_ERRORS_CARTEBANCAIRE = 'cartebancaire';
+    public const TYPES_WITH_ERRORS_CASHAPP = 'cashapp';
     public const TYPES_WITH_ERRORS_CLEARPAY = 'clearpay';
     public const TYPES_WITH_ERRORS_CLICKTOPAY = 'clicktopay';
     public const TYPES_WITH_ERRORS_COOPER = 'cooper';
@@ -431,6 +432,7 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             self::TYPES_WITH_ERRORS_BR_SCHEMES,
             self::TYPES_WITH_ERRORS_CARNET,
             self::TYPES_WITH_ERRORS_CARTEBANCAIRE,
+            self::TYPES_WITH_ERRORS_CASHAPP,
             self::TYPES_WITH_ERRORS_CLEARPAY,
             self::TYPES_WITH_ERRORS_CLICKTOPAY,
             self::TYPES_WITH_ERRORS_COOPER,
