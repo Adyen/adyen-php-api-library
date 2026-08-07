@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\Management\ObjectSerializer;
 
 /**
- * MealVoucherFRInfo Class Doc Comment
+ * DonationCampaign Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializable
+class DonationCampaign implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var string
       */
-    protected static $openAPIModelName = 'MealVoucherFRInfo';
+    protected static $openAPIModelName = 'DonationCampaign';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,15 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
-        'conecsId' => 'string',
-        'siret' => 'string',
-        'subTypes' => 'string[]'
+        'accountHolderIds' => 'string[]',
+        'activatedAt' => '\DateTime',
+        'endedAt' => '\DateTime',
+        'id' => 'string',
+        'inPerson' => '\Adyen\Model\Management\InPersonDonationSettingsResponse',
+        'name' => 'string',
+        'nonprofitCause' => '\Adyen\Model\Management\DonationCampaignNonprofitCause',
+        'online' => '\Adyen\Model\Management\OnlineDonationSettingsResponse',
+        'status' => '\Adyen\Model\Management\DonationCampaignStatus'
     ];
 
     /**
@@ -54,9 +60,15 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'conecsId' => null,
-        'siret' => null,
-        'subTypes' => null
+        'accountHolderIds' => null,
+        'activatedAt' => 'date-time',
+        'endedAt' => 'date-time',
+        'id' => null,
+        'inPerson' => null,
+        'name' => null,
+        'nonprofitCause' => null,
+        'online' => null,
+        'status' => null
     ];
 
     /**
@@ -65,9 +77,15 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'conecsId' => false,
-        'siret' => false,
-        'subTypes' => false
+        'accountHolderIds' => false,
+        'activatedAt' => false,
+        'endedAt' => false,
+        'id' => false,
+        'inPerson' => false,
+        'name' => false,
+        'nonprofitCause' => false,
+        'online' => false,
+        'status' => false
     ];
 
     /**
@@ -156,9 +174,15 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
-        'conecsId' => 'conecsId',
-        'siret' => 'siret',
-        'subTypes' => 'subTypes'
+        'accountHolderIds' => 'accountHolderIds',
+        'activatedAt' => 'activatedAt',
+        'endedAt' => 'endedAt',
+        'id' => 'id',
+        'inPerson' => 'inPerson',
+        'name' => 'name',
+        'nonprofitCause' => 'nonprofitCause',
+        'online' => 'online',
+        'status' => 'status'
     ];
 
     /**
@@ -167,9 +191,15 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
-        'conecsId' => 'setConecsId',
-        'siret' => 'setSiret',
-        'subTypes' => 'setSubTypes'
+        'accountHolderIds' => 'setAccountHolderIds',
+        'activatedAt' => 'setActivatedAt',
+        'endedAt' => 'setEndedAt',
+        'id' => 'setId',
+        'inPerson' => 'setInPerson',
+        'name' => 'setName',
+        'nonprofitCause' => 'setNonprofitCause',
+        'online' => 'setOnline',
+        'status' => 'setStatus'
     ];
 
     /**
@@ -178,9 +208,15 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
-        'conecsId' => 'getConecsId',
-        'siret' => 'getSiret',
-        'subTypes' => 'getSubTypes'
+        'accountHolderIds' => 'getAccountHolderIds',
+        'activatedAt' => 'getActivatedAt',
+        'endedAt' => 'getEndedAt',
+        'id' => 'getId',
+        'inPerson' => 'getInPerson',
+        'name' => 'getName',
+        'nonprofitCause' => 'getNonprofitCause',
+        'online' => 'getOnline',
+        'status' => 'getStatus'
     ];
 
     /**
@@ -240,9 +276,15 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('conecsId', $data ?? [], null);
-        $this->setIfExists('siret', $data ?? [], null);
-        $this->setIfExists('subTypes', $data ?? [], null);
+        $this->setIfExists('accountHolderIds', $data ?? [], null);
+        $this->setIfExists('activatedAt', $data ?? [], null);
+        $this->setIfExists('endedAt', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('inPerson', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('nonprofitCause', $data ?? [], null);
+        $this->setIfExists('online', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
     }
 
     /**
@@ -272,14 +314,17 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
-        if ($this->container['conecsId'] === null) {
-            $invalidProperties[] = "'conecsId' can't be null";
+        if ($this->container['id'] === null) {
+            $invalidProperties[] = "'id' can't be null";
         }
-        if ($this->container['siret'] === null) {
-            $invalidProperties[] = "'siret' can't be null";
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
         }
-        if ($this->container['subTypes'] === null) {
-            $invalidProperties[] = "'subTypes' can't be null";
+        if ($this->container['nonprofitCause'] === null) {
+            $invalidProperties[] = "'nonprofitCause' can't be null";
+        }
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
         }
         return $invalidProperties;
     }
@@ -297,73 +342,217 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
 
 
     /**
-     * Gets conecsId
+     * Gets accountHolderIds
      *
-     * @return string
+     * @return string[]|null
      */
-    public function getConecsId()
+    public function getAccountHolderIds()
     {
-        return $this->container['conecsId'];
+        return $this->container['accountHolderIds'];
     }
 
     /**
-     * Sets conecsId
+     * Sets accountHolderIds
      *
-     * @param string $conecsId Meal Voucher conecsId. Format: digits only
+     * @param string[]|null $accountHolderIds The unique identifiers of the account holders associated with the donation campaign.
      *
      * @return self
      */
-    public function setConecsId($conecsId)
+    public function setAccountHolderIds($accountHolderIds)
     {
-        $this->container['conecsId'] = $conecsId;
+        $this->container['accountHolderIds'] = $accountHolderIds;
 
         return $this;
     }
 
     /**
-     * Gets siret
+     * Gets activatedAt
      *
-     * @return string
+     * @return \DateTime|null
      */
-    public function getSiret()
+    public function getActivatedAt()
     {
-        return $this->container['siret'];
+        return $this->container['activatedAt'];
     }
 
     /**
-     * Sets siret
+     * Sets activatedAt
      *
-     * @param string $siret Meal Voucher siret. Format: 14 digits.
+     * @param \DateTime|null $activatedAt The date and time when the campaign started, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format. For example, 2026-06-18T10:28:59.820+00:00
      *
      * @return self
      */
-    public function setSiret($siret)
+    public function setActivatedAt($activatedAt)
     {
-        $this->container['siret'] = $siret;
+        $this->container['activatedAt'] = $activatedAt;
 
         return $this;
     }
 
     /**
-     * Gets subTypes
+     * Gets endedAt
      *
-     * @return string[]
+     * @return \DateTime|null
      */
-    public function getSubTypes()
+    public function getEndedAt()
     {
-        return $this->container['subTypes'];
+        return $this->container['endedAt'];
     }
 
     /**
-     * Sets subTypes
+     * Sets endedAt
      *
-     * @param string[] $subTypes The list of additional payment methods. Allowed values: **mealVoucher_FR_endenred**, **mealVoucher_FR_groupeup**, **mealVoucher_FR_natixis**, **mealVoucher_FR_sodexo**.
+     * @param \DateTime|null $endedAt The date and time when the campaign stopped, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.  For example, 2026-06-18T10:28:59.820+00:00.
      *
      * @return self
      */
-    public function setSubTypes($subTypes)
+    public function setEndedAt($endedAt)
     {
-        $this->container['subTypes'] = $subTypes;
+        $this->container['endedAt'] = $endedAt;
+
+        return $this;
+    }
+
+    /**
+     * Gets id
+     *
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param string $id The unique identifier of the donation campaign. This value is generated by Adyen.
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets inPerson
+     *
+     * @return \Adyen\Model\Management\InPersonDonationSettingsResponse|null
+     */
+    public function getInPerson()
+    {
+        return $this->container['inPerson'];
+    }
+
+    /**
+     * Sets inPerson
+     *
+     * @param \Adyen\Model\Management\InPersonDonationSettingsResponse|null $inPerson inPerson
+     *
+     * @return self
+     */
+    public function setInPerson($inPerson)
+    {
+        $this->container['inPerson'] = $inPerson;
+
+        return $this;
+    }
+
+    /**
+     * Gets name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     *
+     * @param string $name The name of the donation campaign.
+     *
+     * @return self
+     */
+    public function setName($name)
+    {
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets nonprofitCause
+     *
+     * @return \Adyen\Model\Management\DonationCampaignNonprofitCause
+     */
+    public function getNonprofitCause()
+    {
+        return $this->container['nonprofitCause'];
+    }
+
+    /**
+     * Sets nonprofitCause
+     *
+     * @param \Adyen\Model\Management\DonationCampaignNonprofitCause $nonprofitCause nonprofitCause
+     *
+     * @return self
+     */
+    public function setNonprofitCause($nonprofitCause)
+    {
+        $this->container['nonprofitCause'] = $nonprofitCause;
+
+        return $this;
+    }
+
+    /**
+     * Gets online
+     *
+     * @return \Adyen\Model\Management\OnlineDonationSettingsResponse|null
+     */
+    public function getOnline()
+    {
+        return $this->container['online'];
+    }
+
+    /**
+     * Sets online
+     *
+     * @param \Adyen\Model\Management\OnlineDonationSettingsResponse|null $online online
+     *
+     * @return self
+     */
+    public function setOnline($online)
+    {
+        $this->container['online'] = $online;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return \Adyen\Model\Management\DonationCampaignStatus
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     *
+     * @param \Adyen\Model\Management\DonationCampaignStatus $status status
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        $this->container['status'] = $status;
 
         return $this;
     }
