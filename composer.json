@@ -20,7 +20,7 @@
     "friendsofphp/php-cs-fixer": "*",
     "phpunit/phpunit": "9.6.35",
     "php-coveralls/php-coveralls": "2.7.0",
-    "squizlabs/php_codesniffer": "4.0.1"
+    "squizlabs/php_codesniffer": "4.0.2"
   },
   "autoload": {
     "psr-4": {
