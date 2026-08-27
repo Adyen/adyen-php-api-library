@@ -61,7 +61,8 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
         'subMerchantPostalCode' => 'string',
         'subMerchantState' => 'string',
         'subMerchantStreet' => 'string',
-        'subMerchantTaxId' => 'string'
+        'subMerchantTaxId' => 'string',
+        'transactionLinkId' => 'string'
     ];
 
     /**
@@ -92,7 +93,8 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
         'subMerchantPostalCode' => null,
         'subMerchantState' => null,
         'subMerchantStreet' => null,
-        'subMerchantTaxId' => null
+        'subMerchantTaxId' => null,
+        'transactionLinkId' => null
     ];
 
     /**
@@ -121,7 +123,8 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
         'subMerchantPostalCode' => false,
         'subMerchantState' => false,
         'subMerchantStreet' => false,
-        'subMerchantTaxId' => false
+        'subMerchantTaxId' => false,
+        'transactionLinkId' => false
     ];
 
     /**
@@ -230,7 +233,8 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
         'subMerchantPostalCode' => 'subMerchantPostalCode',
         'subMerchantState' => 'subMerchantState',
         'subMerchantStreet' => 'subMerchantStreet',
-        'subMerchantTaxId' => 'subMerchantTaxId'
+        'subMerchantTaxId' => 'subMerchantTaxId',
+        'transactionLinkId' => 'transactionLinkId'
     ];
 
     /**
@@ -259,7 +263,8 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
         'subMerchantPostalCode' => 'setSubMerchantPostalCode',
         'subMerchantState' => 'setSubMerchantState',
         'subMerchantStreet' => 'setSubMerchantStreet',
-        'subMerchantTaxId' => 'setSubMerchantTaxId'
+        'subMerchantTaxId' => 'setSubMerchantTaxId',
+        'transactionLinkId' => 'setTransactionLinkId'
     ];
 
     /**
@@ -288,7 +293,8 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
         'subMerchantPostalCode' => 'getSubMerchantPostalCode',
         'subMerchantState' => 'getSubMerchantState',
         'subMerchantStreet' => 'getSubMerchantStreet',
-        'subMerchantTaxId' => 'getSubMerchantTaxId'
+        'subMerchantTaxId' => 'getSubMerchantTaxId',
+        'transactionLinkId' => 'getTransactionLinkId'
     ];
 
     /**
@@ -383,6 +389,7 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('subMerchantState', $data ?? [], null);
         $this->setIfExists('subMerchantStreet', $data ?? [], null);
         $this->setIfExists('subMerchantTaxId', $data ?? [], null);
+        $this->setIfExists('transactionLinkId', $data ?? [], null);
     }
 
     /**
@@ -946,6 +953,30 @@ class AdditionalDataCommon implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setSubMerchantTaxId($subMerchantTaxId)
     {
         $this->container['subMerchantTaxId'] = $subMerchantTaxId;
+
+        return $this;
+    }
+
+    /**
+     * Gets transactionLinkId
+     *
+     * @return string|null
+     */
+    public function getTransactionLinkId()
+    {
+        return $this->container['transactionLinkId'];
+    }
+
+    /**
+     * Sets transactionLinkId
+     *
+     * @param string|null $transactionLinkId Allows you to link the transaction to the original or previous one in a subscription/card-on-file chain For Mastercard payments. This field is required for token-based transactions where Adyen does not tokenize the card.  Transaction identifier from Mastercard.  Submit the original transaction ID of the contract in your payment request if you are not tokenizing card details with Adyen and are making a merchant-initiated transaction (MIT) for subsequent charges.  Make sure you are sending `shopperInteraction` **ContAuth** and `recurringProcessingModel` **Subscription** or **UnscheduledCardOnFile** to ensure that the transaction is classified as MIT.
+     *
+     * @return self
+     */
+    public function setTransactionLinkId($transactionLinkId)
+    {
+        $this->container['transactionLinkId'] = $transactionLinkId;
 
         return $this;
     }
