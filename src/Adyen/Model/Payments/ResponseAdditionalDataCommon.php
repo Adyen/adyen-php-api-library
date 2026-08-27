@@ -103,6 +103,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'tokenizationShopperReference' => 'string',
         'tokenizationStoreOperationType' => 'string',
         'tokenizationStoredPaymentMethodId' => 'string',
+        'transactionLinkId' => 'string',
         'visaTransactionId' => 'string',
         'xid' => 'string'
     ];
@@ -177,6 +178,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'tokenizationShopperReference' => null,
         'tokenizationStoreOperationType' => null,
         'tokenizationStoredPaymentMethodId' => null,
+        'transactionLinkId' => null,
         'visaTransactionId' => null,
         'xid' => null
     ];
@@ -249,6 +251,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'tokenizationShopperReference' => false,
         'tokenizationStoreOperationType' => false,
         'tokenizationStoredPaymentMethodId' => false,
+        'transactionLinkId' => false,
         'visaTransactionId' => false,
         'xid' => false
     ];
@@ -401,6 +404,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'tokenizationShopperReference' => 'tokenization.shopperReference',
         'tokenizationStoreOperationType' => 'tokenization.store.operationType',
         'tokenizationStoredPaymentMethodId' => 'tokenization.storedPaymentMethodId',
+        'transactionLinkId' => 'transactionLinkId',
         'visaTransactionId' => 'visaTransactionId',
         'xid' => 'xid'
     ];
@@ -473,6 +477,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'tokenizationShopperReference' => 'setTokenizationShopperReference',
         'tokenizationStoreOperationType' => 'setTokenizationStoreOperationType',
         'tokenizationStoredPaymentMethodId' => 'setTokenizationStoredPaymentMethodId',
+        'transactionLinkId' => 'setTransactionLinkId',
         'visaTransactionId' => 'setVisaTransactionId',
         'xid' => 'setXid'
     ];
@@ -545,6 +550,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         'tokenizationShopperReference' => 'getTokenizationShopperReference',
         'tokenizationStoreOperationType' => 'getTokenizationStoreOperationType',
         'tokenizationStoredPaymentMethodId' => 'getTokenizationStoredPaymentMethodId',
+        'transactionLinkId' => 'getTransactionLinkId',
         'visaTransactionId' => 'getVisaTransactionId',
         'xid' => 'getXid'
     ];
@@ -736,6 +742,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
         $this->setIfExists('tokenizationShopperReference', $data ?? [], null);
         $this->setIfExists('tokenizationStoreOperationType', $data ?? [], null);
         $this->setIfExists('tokenizationStoredPaymentMethodId', $data ?? [], null);
+        $this->setIfExists('transactionLinkId', $data ?? [], null);
         $this->setIfExists('visaTransactionId', $data ?? [], null);
         $this->setIfExists('xid', $data ?? [], null);
     }
@@ -2346,6 +2353,30 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
     public function setTokenizationStoredPaymentMethodId($tokenizationStoredPaymentMethodId)
     {
         $this->container['tokenizationStoredPaymentMethodId'] = $tokenizationStoredPaymentMethodId;
+
+        return $this;
+    }
+
+    /**
+     * Gets transactionLinkId
+     *
+     * @return string|null
+     */
+    public function getTransactionLinkId()
+    {
+        return $this->container['transactionLinkId'];
+    }
+
+    /**
+     * Sets transactionLinkId
+     *
+     * @param string|null $transactionLinkId Returned in the response for Mastercard payments.  This contains the Mastercard Transaction Link Identifier (TLID).
+     *
+     * @return self
+     */
+    public function setTransactionLinkId($transactionLinkId)
+    {
+        $this->container['transactionLinkId'] = $transactionLinkId;
 
         return $this;
     }
