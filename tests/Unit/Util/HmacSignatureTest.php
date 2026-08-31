@@ -215,8 +215,8 @@ JSON
             'success' => 'true',
         );
 
-        if ($field === 'currency') {
-            $params['amount']['currency'] = $value;
+        if ($field === 'currency' || $field === 'value') {
+            $params['amount'][$field] = $value;
         } else {
             $params[$field] = $value;
         }
