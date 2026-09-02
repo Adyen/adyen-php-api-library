@@ -35,9 +35,9 @@ class PosPayment extends \Adyen\ApiKeyAuthenticatedService
         $config = $this->getClient()->getConfig();
         $region = $config->get('terminalApiRegion')
             ?? $config->get('region');
-        $environment = $this->getClient()->getConfig()->get('environment');
+        $environment = $config->get('environment');
 
-        if ($region !== null && $environment == Environment::LIVE) {
+        if ($region !== null && $environment === Environment::LIVE) {
             $this->getClient()->setTerminalApiRegion($region);
         }
 
