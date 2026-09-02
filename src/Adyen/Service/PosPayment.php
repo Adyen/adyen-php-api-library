@@ -4,7 +4,6 @@ namespace Adyen\Service;
 
 use Adyen\Client;
 use Adyen\Environment;
-use Adyen\Region;
 
 class PosPayment extends \Adyen\ApiKeyAuthenticatedService
 {
@@ -33,14 +32,13 @@ class PosPayment extends \Adyen\ApiKeyAuthenticatedService
     {
         parent::__construct($client);
 
-        $region = $this->getClient()->getConfig()->get('region');
+        $config = $this->getClient()->getConfig();
+        $region = $config->get('terminalApiRegion')
+            ?? $config->get('region');
         $environment = $this->getClient()->getConfig()->get('environment');
 
-        if (isset($region) && $environment == Environment::LIVE) {
-            $this->getClient()->getConfig()->set(
-                'endpointTerminalCloud',
-                Region::TERMINAL_API_ENDPOINTS_MAPPING[$region]
-            );
+        if ($region !== null && $environment == Environment::LIVE) {
+            $this->getClient()->setTerminalApiRegion($region);
         }
 
         $this->runTenderSync = new \Adyen\Service\ResourceModel\Payment\TerminalCloudAPI($this, false);
