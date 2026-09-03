@@ -2,6 +2,8 @@
 
 namespace Adyen\Tests\Unit;
 
+use Adyen\AdyenException;
+use Adyen\Client;
 use PHPUnit\Framework\TestCase;
 use Adyen\Region;
 
@@ -17,7 +19,7 @@ class RegionTest extends TestCase
     {
         $reflection = new \ReflectionClass(Region::class);
         $constants = $reflection->getConstants();
-    
+
         $enumConstants = array_filter($constants, function ($value) {
             return is_string($value);
         });
@@ -70,5 +72,17 @@ class RegionTest extends TestCase
             Region::TERMINAL_API_ENDPOINTS_MAPPING,
             "TERMINAL_API_ENDPOINTS_MAPPING should match the expected mappings."
         );
+    }
+
+    public function testRejectsUnsupportedRegion(): void
+    {
+        $client = new Client();
+
+        $this->expectException(AdyenException::class);
+        $this->expectExceptionMessage(
+            'TerminalAPI endpoint for in is not supported yet'
+        );
+
+        $client->setRegion(Region::IN);
     }
 }
