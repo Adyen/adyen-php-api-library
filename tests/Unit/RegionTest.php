@@ -4,6 +4,8 @@ namespace Adyen\Tests\Unit;
 
 use Adyen\AdyenException;
 use Adyen\Client;
+use Adyen\Environment;
+use Adyen\Service\PosPayment;
 use PHPUnit\Framework\TestCase;
 use Adyen\Region;
 
@@ -71,6 +73,23 @@ class RegionTest extends TestCase
             $expected,
             Region::TERMINAL_API_ENDPOINTS_MAPPING,
             "TERMINAL_API_ENDPOINTS_MAPPING should match the expected mappings."
+        );
+    }
+
+    /**
+     * @throws AdyenException
+     */
+    public function testSetsUnitedStatesTerminalCloudEndpoint(): void
+    {
+        $client = new Client();
+        $client->setRegion(Region::US);
+        $client->setEnvironment(Environment::LIVE);
+
+        new PosPayment($client);
+
+        $this->assertSame(
+            Client::ENDPOINT_TERMINAL_CLOUD_US_LIVE,
+            $client->getConfig()->get('endpointTerminalCloud')
         );
     }
 
