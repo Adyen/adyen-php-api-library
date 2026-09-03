@@ -175,41 +175,23 @@ class Client
         }
 
         // Retrieve and set the Terminal API Cloud Endpoint
-        $this->setCloudEndPoint($this->config->get('terminalApiRegion'), $environment);
+        $endpoint = $this->retrieveCloudEndpoint($this->config->get('terminalApiRegion'), $environment);
+        $this->config->set('terminalApiCloudEndpoint', $endpoint);
     }
 
-    /**
-     * @throws AdyenException
-     */
-    public function setTerminalApiRegion(string $region): void
+    public function setRegion(string $region): void
     {
         if (!array_key_exists($region, Region::TERMINAL_API_ENDPOINTS_MAPPING)) {
             throw new AdyenException("TerminalAPI endpoint for $region is not supported yet");
         }
-        $this->config->set('terminalApiRegion', $region);
-        $environment = $this->config->getEnvironment();
-        if ($environment !== null) {
-            $this->setCloudEndPoint($region, $environment);
-        }
+        $this->config->set('region', $region);
     }
-
-    /**
-     * @throws AdyenException
-     */
-    private function setCloudEndPoint(?string $region, string $environment): void
-    {
-            $endpoint = $this->retrieveCloudEndpoint($region, $environment);
-            $this->config->set('terminalApiCloudEndpoint', $endpoint);
-            $this->config->set('endpointTerminalCloud', $endpoint);
-    }
-
-
 
     /**
      * Retrieve the cloud endpoint for a given region and environment.
      *
      * @param string|null $region The region for which the endpoint is requested.
-     * Defaults to the EU endpoint if null. Throws for unsupported regions in live mode.
+     * Defaults to the EU endpoint if null or unsupported.
      * @param string $environment The environment, either 'test' or 'live'.
      * @return string The endpoint URL.
      * @throws AdyenException
