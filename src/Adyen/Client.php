@@ -179,13 +179,20 @@ class Client
         $this->config->set('terminalApiCloudEndpoint', $endpoint);
     }
 
+    public function setRegion(string $region): void
+    {
+        $this->config->set('region', $region);
+    }
+
     /**
      * Retrieve the cloud endpoint for a given region and environment.
      *
-     * @param string|null $region The region for which the endpoint is requested. Defaults to the EU endpoint if null or unsupported.
+     * @param string|null $region The region for which the endpoint is requested.
+     * Defaults to the EU endpoint if null or unsupported.
      * @param string $environment The environment, either 'test' or 'live'.
      * @return string The endpoint URL.
      * @throws AdyenException
+     * @deprecated
      */
     public function retrieveCloudEndpoint(?string $region, string $environment): string
     {
@@ -196,13 +203,11 @@ class Client
 
         // Check if the environment is LIVE
         if ($environment === Environment::LIVE) {
-            if ($environment === Environment::LIVE) {
                 $region = $region ?? Region::EU;
-                if (!array_key_exists($region, Region::TERMINAL_API_ENDPOINTS_MAPPING)) {
-                    throw new AdyenException("TerminalAPI endpoint for $region is not supported yet");
-                }
-                return Region::TERMINAL_API_ENDPOINTS_MAPPING[$region];
+            if (!array_key_exists($region, Region::TERMINAL_API_ENDPOINTS_MAPPING)) {
+                throw new AdyenException("TerminalAPI endpoint for $region is not supported yet");
             }
+                return Region::TERMINAL_API_ENDPOINTS_MAPPING[$region];
         }
         // Default to TEST endpoint if no valid environment is specified
         return self::ENDPOINT_TERMINAL_CLOUD_TEST;
