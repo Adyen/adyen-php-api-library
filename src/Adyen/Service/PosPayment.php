@@ -2,6 +2,7 @@
 
 namespace Adyen\Service;
 
+use Adyen\AdyenException;
 use Adyen\Client;
 use Adyen\Environment;
 use Adyen\Region;
@@ -37,6 +38,9 @@ class PosPayment extends \Adyen\ApiKeyAuthenticatedService
         $environment = $this->getClient()->getConfig()->get('environment');
 
         if (isset($region) && $environment == Environment::LIVE) {
+            if (!array_key_exists($region, Region::TERMINAL_API_ENDPOINTS_MAPPING)) {
+                throw new AdyenException("TerminalAPI endpoint for $region is not supported yet");
+            }
             $this->getClient()->getConfig()->set(
                 'endpointTerminalCloud',
                 Region::TERMINAL_API_ENDPOINTS_MAPPING[$region]
