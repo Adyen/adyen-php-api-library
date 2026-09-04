@@ -1,8 +1,8 @@
 {
   "service": "configurationwebhooks",
   "project": "php",
-  "generatedAt": "2026-06-19T10:31:32Z",
-  "openapiCommitSha": "02d10c0110523a6a85ae331d2de5ab402c291095",
-  "automationCommitSha": "6f06b47d0661f0891defe6b85461d2c367fbd284",
-  "libraryCommitSha": "87893df3a51b64de2b2ae9ef229d05548a99d010"
+  "generatedAt": "2026-09-04T09:50:28Z",
+  "openapiCommitSha": "f82d1fe674e536cc2c6b0d7946e0e827873a4fbf",
+  "automationCommitSha": "712ab8db80d60bee9054458ea1522cae0073333a",
+  "libraryCommitSha": "077f8fe9bba23381af53c625b18db85e7887c50f"
 }
