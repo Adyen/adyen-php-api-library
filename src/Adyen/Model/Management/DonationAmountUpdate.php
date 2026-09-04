@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\Management\ObjectSerializer;
 
 /**
- * MealVoucherFRInfo Class Doc Comment
+ * DonationAmountUpdate Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializable
+class DonationAmountUpdate implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var string
       */
-    protected static $openAPIModelName = 'MealVoucherFRInfo';
+    protected static $openAPIModelName = 'DonationAmountUpdate';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,8 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
-        'conecsId' => 'string',
-        'siret' => 'string',
-        'subTypes' => 'string[]'
+        'amounts' => 'int[]',
+        'currencyCode' => 'string'
     ];
 
     /**
@@ -54,9 +53,8 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'conecsId' => null,
-        'siret' => null,
-        'subTypes' => null
+        'amounts' => 'int64',
+        'currencyCode' => null
     ];
 
     /**
@@ -65,9 +63,8 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'conecsId' => false,
-        'siret' => false,
-        'subTypes' => false
+        'amounts' => false,
+        'currencyCode' => false
     ];
 
     /**
@@ -156,9 +153,8 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
-        'conecsId' => 'conecsId',
-        'siret' => 'siret',
-        'subTypes' => 'subTypes'
+        'amounts' => 'amounts',
+        'currencyCode' => 'currencyCode'
     ];
 
     /**
@@ -167,9 +163,8 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
-        'conecsId' => 'setConecsId',
-        'siret' => 'setSiret',
-        'subTypes' => 'setSubTypes'
+        'amounts' => 'setAmounts',
+        'currencyCode' => 'setCurrencyCode'
     ];
 
     /**
@@ -178,9 +173,8 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
-        'conecsId' => 'getConecsId',
-        'siret' => 'getSiret',
-        'subTypes' => 'getSubTypes'
+        'amounts' => 'getAmounts',
+        'currencyCode' => 'getCurrencyCode'
     ];
 
     /**
@@ -240,9 +234,8 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('conecsId', $data ?? [], null);
-        $this->setIfExists('siret', $data ?? [], null);
-        $this->setIfExists('subTypes', $data ?? [], null);
+        $this->setIfExists('amounts', $data ?? [], null);
+        $this->setIfExists('currencyCode', $data ?? [], null);
     }
 
     /**
@@ -272,15 +265,6 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
-        if ($this->container['conecsId'] === null) {
-            $invalidProperties[] = "'conecsId' can't be null";
-        }
-        if ($this->container['siret'] === null) {
-            $invalidProperties[] = "'siret' can't be null";
-        }
-        if ($this->container['subTypes'] === null) {
-            $invalidProperties[] = "'subTypes' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -297,73 +281,49 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
 
 
     /**
-     * Gets conecsId
+     * Gets amounts
      *
-     * @return string
+     * @return int[]|null
      */
-    public function getConecsId()
+    public function getAmounts()
     {
-        return $this->container['conecsId'];
+        return $this->container['amounts'];
     }
 
     /**
-     * Sets conecsId
+     * Sets amounts
      *
-     * @param string $conecsId Meal Voucher conecsId. Format: digits only
+     * @param int[]|null $amounts The donation amounts in minor units. The list must contain at least one amount and no more than three amounts.
      *
      * @return self
      */
-    public function setConecsId($conecsId)
+    public function setAmounts($amounts)
     {
-        $this->container['conecsId'] = $conecsId;
+        $this->container['amounts'] = $amounts;
 
         return $this;
     }
 
     /**
-     * Gets siret
+     * Gets currencyCode
      *
-     * @return string
+     * @return string|null
      */
-    public function getSiret()
+    public function getCurrencyCode()
     {
-        return $this->container['siret'];
+        return $this->container['currencyCode'];
     }
 
     /**
-     * Sets siret
+     * Sets currencyCode
      *
-     * @param string $siret Meal Voucher siret. Format: 14 digits.
+     * @param string|null $currencyCode The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes).
      *
      * @return self
      */
-    public function setSiret($siret)
+    public function setCurrencyCode($currencyCode)
     {
-        $this->container['siret'] = $siret;
-
-        return $this;
-    }
-
-    /**
-     * Gets subTypes
-     *
-     * @return string[]
-     */
-    public function getSubTypes()
-    {
-        return $this->container['subTypes'];
-    }
-
-    /**
-     * Sets subTypes
-     *
-     * @param string[] $subTypes The list of additional payment methods. Allowed values: **mealVoucher_FR_endenred**, **mealVoucher_FR_groupeup**, **mealVoucher_FR_natixis**, **mealVoucher_FR_sodexo**.
-     *
-     * @return self
-     */
-    public function setSubTypes($subTypes)
-    {
-        $this->container['subTypes'] = $subTypes;
+        $this->container['currencyCode'] = $currencyCode;
 
         return $this;
     }

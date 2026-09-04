@@ -19,12 +19,14 @@ use ArrayAccess;
 use Adyen\Model\Management\ObjectSerializer;
 
 /**
- * MealVoucherFRInfo Class Doc Comment
+ * DonationCampaignUpdateOnline Class Doc Comment
+ *
+ * The settings for online donations collected as part of the campaign.
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializable
+class DonationCampaignUpdateOnline implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +35,7 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var string
       */
-    protected static $openAPIModelName = 'MealVoucherFRInfo';
+    protected static $openAPIModelName = 'DonationCampaignUpdate_online';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +43,10 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
-        'conecsId' => 'string',
-        'siret' => 'string',
-        'subTypes' => 'string[]'
+        'defaultAmount' => '\Adyen\Model\Management\InPersonDonationSettingsUpdateDefaultAmount',
+        'donationType' => '\Adyen\Model\Management\InPersonDonationSettingsUpdateDonationType',
+        'merchantAccounts' => 'string[]',
+        'storeIds' => 'string[]'
     ];
 
     /**
@@ -54,9 +57,10 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'conecsId' => null,
-        'siret' => null,
-        'subTypes' => null
+        'defaultAmount' => null,
+        'donationType' => null,
+        'merchantAccounts' => null,
+        'storeIds' => null
     ];
 
     /**
@@ -65,9 +69,10 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'conecsId' => false,
-        'siret' => false,
-        'subTypes' => false
+        'defaultAmount' => false,
+        'donationType' => false,
+        'merchantAccounts' => false,
+        'storeIds' => false
     ];
 
     /**
@@ -156,9 +161,10 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
-        'conecsId' => 'conecsId',
-        'siret' => 'siret',
-        'subTypes' => 'subTypes'
+        'defaultAmount' => 'defaultAmount',
+        'donationType' => 'donationType',
+        'merchantAccounts' => 'merchantAccounts',
+        'storeIds' => 'storeIds'
     ];
 
     /**
@@ -167,9 +173,10 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
-        'conecsId' => 'setConecsId',
-        'siret' => 'setSiret',
-        'subTypes' => 'setSubTypes'
+        'defaultAmount' => 'setDefaultAmount',
+        'donationType' => 'setDonationType',
+        'merchantAccounts' => 'setMerchantAccounts',
+        'storeIds' => 'setStoreIds'
     ];
 
     /**
@@ -178,9 +185,10 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
-        'conecsId' => 'getConecsId',
-        'siret' => 'getSiret',
-        'subTypes' => 'getSubTypes'
+        'defaultAmount' => 'getDefaultAmount',
+        'donationType' => 'getDonationType',
+        'merchantAccounts' => 'getMerchantAccounts',
+        'storeIds' => 'getStoreIds'
     ];
 
     /**
@@ -224,7 +232,6 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -240,9 +247,10 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('conecsId', $data ?? [], null);
-        $this->setIfExists('siret', $data ?? [], null);
-        $this->setIfExists('subTypes', $data ?? [], null);
+        $this->setIfExists('defaultAmount', $data ?? [], null);
+        $this->setIfExists('donationType', $data ?? [], null);
+        $this->setIfExists('merchantAccounts', $data ?? [], null);
+        $this->setIfExists('storeIds', $data ?? [], null);
     }
 
     /**
@@ -272,15 +280,6 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
-        if ($this->container['conecsId'] === null) {
-            $invalidProperties[] = "'conecsId' can't be null";
-        }
-        if ($this->container['siret'] === null) {
-            $invalidProperties[] = "'siret' can't be null";
-        }
-        if ($this->container['subTypes'] === null) {
-            $invalidProperties[] = "'subTypes' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -297,73 +296,97 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
 
 
     /**
-     * Gets conecsId
+     * Gets defaultAmount
      *
-     * @return string
+     * @return \Adyen\Model\Management\InPersonDonationSettingsUpdateDefaultAmount|null
      */
-    public function getConecsId()
+    public function getDefaultAmount()
     {
-        return $this->container['conecsId'];
+        return $this->container['defaultAmount'];
     }
 
     /**
-     * Sets conecsId
+     * Sets defaultAmount
      *
-     * @param string $conecsId Meal Voucher conecsId. Format: digits only
+     * @param \Adyen\Model\Management\InPersonDonationSettingsUpdateDefaultAmount|null $defaultAmount defaultAmount
      *
      * @return self
      */
-    public function setConecsId($conecsId)
+    public function setDefaultAmount($defaultAmount)
     {
-        $this->container['conecsId'] = $conecsId;
+        $this->container['defaultAmount'] = $defaultAmount;
 
         return $this;
     }
 
     /**
-     * Gets siret
+     * Gets donationType
      *
-     * @return string
+     * @return \Adyen\Model\Management\InPersonDonationSettingsUpdateDonationType|null
      */
-    public function getSiret()
+    public function getDonationType()
     {
-        return $this->container['siret'];
+        return $this->container['donationType'];
     }
 
     /**
-     * Sets siret
+     * Sets donationType
      *
-     * @param string $siret Meal Voucher siret. Format: 14 digits.
+     * @param \Adyen\Model\Management\InPersonDonationSettingsUpdateDonationType|null $donationType donationType
      *
      * @return self
      */
-    public function setSiret($siret)
+    public function setDonationType($donationType)
     {
-        $this->container['siret'] = $siret;
+        $this->container['donationType'] = $donationType;
 
         return $this;
     }
 
     /**
-     * Gets subTypes
+     * Gets merchantAccounts
      *
-     * @return string[]
+     * @return string[]|null
      */
-    public function getSubTypes()
+    public function getMerchantAccounts()
     {
-        return $this->container['subTypes'];
+        return $this->container['merchantAccounts'];
     }
 
     /**
-     * Sets subTypes
+     * Sets merchantAccounts
      *
-     * @param string[] $subTypes The list of additional payment methods. Allowed values: **mealVoucher_FR_endenred**, **mealVoucher_FR_groupeup**, **mealVoucher_FR_natixis**, **mealVoucher_FR_sodexo**.
+     * @param string[]|null $merchantAccounts The merchant accounts for this sales channel that are associated with the donation campaign.
      *
      * @return self
      */
-    public function setSubTypes($subTypes)
+    public function setMerchantAccounts($merchantAccounts)
     {
-        $this->container['subTypes'] = $subTypes;
+        $this->container['merchantAccounts'] = $merchantAccounts;
+
+        return $this;
+    }
+
+    /**
+     * Gets storeIds
+     *
+     * @return string[]|null
+     */
+    public function getStoreIds()
+    {
+        return $this->container['storeIds'];
+    }
+
+    /**
+     * Sets storeIds
+     *
+     * @param string[]|null $storeIds The Adyen-generated unique identifiers of stores for this sales channel that are associated with the donation campaign.
+     *
+     * @return self
+     */
+    public function setStoreIds($storeIds)
+    {
+        $this->container['storeIds'] = $storeIds;
 
         return $this;
     }
