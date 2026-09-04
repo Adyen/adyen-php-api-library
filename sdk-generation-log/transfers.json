@@ -1,0 +1,8 @@
+{
+  "service": "transfers",
+  "project": "php",
+  "generatedAt": "2026-09-04T09:50:56Z",
+  "openapiCommitSha": "f82d1fe674e536cc2c6b0d7946e0e827873a4fbf",
+  "automationCommitSha": "712ab8db80d60bee9054458ea1522cae0073333a",
+  "libraryCommitSha": "077f8fe9bba23381af53c625b18db85e7887c50f"
+}
