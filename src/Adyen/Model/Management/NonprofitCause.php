@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\Management\ObjectSerializer;
 
 /**
- * MealVoucherFRInfo Class Doc Comment
+ * NonprofitCause Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializable
+class NonprofitCause implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var string
       */
-    protected static $openAPIModelName = 'MealVoucherFRInfo';
+    protected static $openAPIModelName = 'NonprofitCause';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,11 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
-        'conecsId' => 'string',
-        'siret' => 'string',
-        'subTypes' => 'string[]'
+        'bannerUrl' => 'string',
+        'description' => 'string',
+        'id' => 'string',
+        'locales' => 'string[]',
+        'name' => 'string'
     ];
 
     /**
@@ -54,9 +56,11 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'conecsId' => null,
-        'siret' => null,
-        'subTypes' => null
+        'bannerUrl' => null,
+        'description' => null,
+        'id' => null,
+        'locales' => null,
+        'name' => null
     ];
 
     /**
@@ -65,9 +69,11 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'conecsId' => false,
-        'siret' => false,
-        'subTypes' => false
+        'bannerUrl' => false,
+        'description' => false,
+        'id' => false,
+        'locales' => false,
+        'name' => false
     ];
 
     /**
@@ -156,9 +162,11 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
-        'conecsId' => 'conecsId',
-        'siret' => 'siret',
-        'subTypes' => 'subTypes'
+        'bannerUrl' => 'bannerUrl',
+        'description' => 'description',
+        'id' => 'id',
+        'locales' => 'locales',
+        'name' => 'name'
     ];
 
     /**
@@ -167,9 +175,11 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
-        'conecsId' => 'setConecsId',
-        'siret' => 'setSiret',
-        'subTypes' => 'setSubTypes'
+        'bannerUrl' => 'setBannerUrl',
+        'description' => 'setDescription',
+        'id' => 'setId',
+        'locales' => 'setLocales',
+        'name' => 'setName'
     ];
 
     /**
@@ -178,9 +188,11 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
-        'conecsId' => 'getConecsId',
-        'siret' => 'getSiret',
-        'subTypes' => 'getSubTypes'
+        'bannerUrl' => 'getBannerUrl',
+        'description' => 'getDescription',
+        'id' => 'getId',
+        'locales' => 'getLocales',
+        'name' => 'getName'
     ];
 
     /**
@@ -240,9 +252,11 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('conecsId', $data ?? [], null);
-        $this->setIfExists('siret', $data ?? [], null);
-        $this->setIfExists('subTypes', $data ?? [], null);
+        $this->setIfExists('bannerUrl', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('locales', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
     }
 
     /**
@@ -272,14 +286,17 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
-        if ($this->container['conecsId'] === null) {
-            $invalidProperties[] = "'conecsId' can't be null";
+        if ($this->container['bannerUrl'] === null) {
+            $invalidProperties[] = "'bannerUrl' can't be null";
         }
-        if ($this->container['siret'] === null) {
-            $invalidProperties[] = "'siret' can't be null";
+        if ($this->container['description'] === null) {
+            $invalidProperties[] = "'description' can't be null";
         }
-        if ($this->container['subTypes'] === null) {
-            $invalidProperties[] = "'subTypes' can't be null";
+        if ($this->container['locales'] === null) {
+            $invalidProperties[] = "'locales' can't be null";
+        }
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
         }
         return $invalidProperties;
     }
@@ -297,73 +314,121 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
 
 
     /**
-     * Gets conecsId
+     * Gets bannerUrl
      *
      * @return string
      */
-    public function getConecsId()
+    public function getBannerUrl()
     {
-        return $this->container['conecsId'];
+        return $this->container['bannerUrl'];
     }
 
     /**
-     * Sets conecsId
+     * Sets bannerUrl
      *
-     * @param string $conecsId Meal Voucher conecsId. Format: digits only
+     * @param string $bannerUrl The URL to the banner of the cause.
      *
      * @return self
      */
-    public function setConecsId($conecsId)
+    public function setBannerUrl($bannerUrl)
     {
-        $this->container['conecsId'] = $conecsId;
+        $this->container['bannerUrl'] = $bannerUrl;
 
         return $this;
     }
 
     /**
-     * Gets siret
+     * Gets description
      *
      * @return string
      */
-    public function getSiret()
+    public function getDescription()
     {
-        return $this->container['siret'];
+        return $this->container['description'];
     }
 
     /**
-     * Sets siret
+     * Sets description
      *
-     * @param string $siret Meal Voucher siret. Format: 14 digits.
+     * @param string $description The description of the cause.
      *
      * @return self
      */
-    public function setSiret($siret)
+    public function setDescription($description)
     {
-        $this->container['siret'] = $siret;
+        $this->container['description'] = $description;
 
         return $this;
     }
 
     /**
-     * Gets subTypes
+     * Gets id
+     *
+     * @return string|null
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param string|null $id The unique identifier of the cause. This value is generated by Adyen.
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets locales
      *
      * @return string[]
      */
-    public function getSubTypes()
+    public function getLocales()
     {
-        return $this->container['subTypes'];
+        return $this->container['locales'];
     }
 
     /**
-     * Sets subTypes
+     * Sets locales
      *
-     * @param string[] $subTypes The list of additional payment methods. Allowed values: **mealVoucher_FR_endenred**, **mealVoucher_FR_groupeup**, **mealVoucher_FR_natixis**, **mealVoucher_FR_sodexo**.
+     * @param string[] $locales The locales that the cause supports, in [IETF BCP 47](https://en.wikipedia.org/wiki/IETF_language_tag) format.
      *
      * @return self
      */
-    public function setSubTypes($subTypes)
+    public function setLocales($locales)
     {
-        $this->container['subTypes'] = $subTypes;
+        $this->container['locales'] = $locales;
+
+        return $this;
+    }
+
+    /**
+     * Gets name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     *
+     * @param string $name The name of the cause.
+     *
+     * @return self
+     */
+    public function setName($name)
+    {
+        $this->container['name'] = $name;
 
         return $this;
     }

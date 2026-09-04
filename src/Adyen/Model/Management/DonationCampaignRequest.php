@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\Management\ObjectSerializer;
 
 /**
- * MealVoucherFRInfo Class Doc Comment
+ * DonationCampaignRequest Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializable
+class DonationCampaignRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var string
       */
-    protected static $openAPIModelName = 'MealVoucherFRInfo';
+    protected static $openAPIModelName = 'DonationCampaignRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,11 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
-        'conecsId' => 'string',
-        'siret' => 'string',
-        'subTypes' => 'string[]'
+        'accountHolderIds' => 'string[]',
+        'inPerson' => '\Adyen\Model\Management\InPersonDonationSettings',
+        'name' => 'string',
+        'nonprofitCauseId' => 'string',
+        'online' => '\Adyen\Model\Management\OnlineDonationSettings'
     ];
 
     /**
@@ -54,9 +56,11 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'conecsId' => null,
-        'siret' => null,
-        'subTypes' => null
+        'accountHolderIds' => null,
+        'inPerson' => null,
+        'name' => null,
+        'nonprofitCauseId' => null,
+        'online' => null
     ];
 
     /**
@@ -65,9 +69,11 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'conecsId' => false,
-        'siret' => false,
-        'subTypes' => false
+        'accountHolderIds' => false,
+        'inPerson' => false,
+        'name' => false,
+        'nonprofitCauseId' => false,
+        'online' => false
     ];
 
     /**
@@ -156,9 +162,11 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
-        'conecsId' => 'conecsId',
-        'siret' => 'siret',
-        'subTypes' => 'subTypes'
+        'accountHolderIds' => 'accountHolderIds',
+        'inPerson' => 'inPerson',
+        'name' => 'name',
+        'nonprofitCauseId' => 'nonprofitCauseId',
+        'online' => 'online'
     ];
 
     /**
@@ -167,9 +175,11 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
-        'conecsId' => 'setConecsId',
-        'siret' => 'setSiret',
-        'subTypes' => 'setSubTypes'
+        'accountHolderIds' => 'setAccountHolderIds',
+        'inPerson' => 'setInPerson',
+        'name' => 'setName',
+        'nonprofitCauseId' => 'setNonprofitCauseId',
+        'online' => 'setOnline'
     ];
 
     /**
@@ -178,9 +188,11 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
-        'conecsId' => 'getConecsId',
-        'siret' => 'getSiret',
-        'subTypes' => 'getSubTypes'
+        'accountHolderIds' => 'getAccountHolderIds',
+        'inPerson' => 'getInPerson',
+        'name' => 'getName',
+        'nonprofitCauseId' => 'getNonprofitCauseId',
+        'online' => 'getOnline'
     ];
 
     /**
@@ -240,9 +252,11 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('conecsId', $data ?? [], null);
-        $this->setIfExists('siret', $data ?? [], null);
-        $this->setIfExists('subTypes', $data ?? [], null);
+        $this->setIfExists('accountHolderIds', $data ?? [], null);
+        $this->setIfExists('inPerson', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('nonprofitCauseId', $data ?? [], null);
+        $this->setIfExists('online', $data ?? [], null);
     }
 
     /**
@@ -272,14 +286,11 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
-        if ($this->container['conecsId'] === null) {
-            $invalidProperties[] = "'conecsId' can't be null";
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
         }
-        if ($this->container['siret'] === null) {
-            $invalidProperties[] = "'siret' can't be null";
-        }
-        if ($this->container['subTypes'] === null) {
-            $invalidProperties[] = "'subTypes' can't be null";
+        if ($this->container['nonprofitCauseId'] === null) {
+            $invalidProperties[] = "'nonprofitCauseId' can't be null";
         }
         return $invalidProperties;
     }
@@ -297,73 +308,121 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
 
 
     /**
-     * Gets conecsId
+     * Gets accountHolderIds
      *
-     * @return string
+     * @return string[]|null
      */
-    public function getConecsId()
+    public function getAccountHolderIds()
     {
-        return $this->container['conecsId'];
+        return $this->container['accountHolderIds'];
     }
 
     /**
-     * Sets conecsId
+     * Sets accountHolderIds
      *
-     * @param string $conecsId Meal Voucher conecsId. Format: digits only
+     * @param string[]|null $accountHolderIds The unique identifiers of the account holders associated with the donation campaign.
      *
      * @return self
      */
-    public function setConecsId($conecsId)
+    public function setAccountHolderIds($accountHolderIds)
     {
-        $this->container['conecsId'] = $conecsId;
+        $this->container['accountHolderIds'] = $accountHolderIds;
 
         return $this;
     }
 
     /**
-     * Gets siret
+     * Gets inPerson
      *
-     * @return string
+     * @return \Adyen\Model\Management\InPersonDonationSettings|null
      */
-    public function getSiret()
+    public function getInPerson()
     {
-        return $this->container['siret'];
+        return $this->container['inPerson'];
     }
 
     /**
-     * Sets siret
+     * Sets inPerson
      *
-     * @param string $siret Meal Voucher siret. Format: 14 digits.
+     * @param \Adyen\Model\Management\InPersonDonationSettings|null $inPerson inPerson
      *
      * @return self
      */
-    public function setSiret($siret)
+    public function setInPerson($inPerson)
     {
-        $this->container['siret'] = $siret;
+        $this->container['inPerson'] = $inPerson;
 
         return $this;
     }
 
     /**
-     * Gets subTypes
+     * Gets name
      *
-     * @return string[]
+     * @return string
      */
-    public function getSubTypes()
+    public function getName()
     {
-        return $this->container['subTypes'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets subTypes
+     * Sets name
      *
-     * @param string[] $subTypes The list of additional payment methods. Allowed values: **mealVoucher_FR_endenred**, **mealVoucher_FR_groupeup**, **mealVoucher_FR_natixis**, **mealVoucher_FR_sodexo**.
+     * @param string $name The name of the donation campaign.
      *
      * @return self
      */
-    public function setSubTypes($subTypes)
+    public function setName($name)
     {
-        $this->container['subTypes'] = $subTypes;
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets nonprofitCauseId
+     *
+     * @return string
+     */
+    public function getNonprofitCauseId()
+    {
+        return $this->container['nonprofitCauseId'];
+    }
+
+    /**
+     * Sets nonprofitCauseId
+     *
+     * @param string $nonprofitCauseId The unique identifier of the nonprofit cause that the campaign supports.
+     *
+     * @return self
+     */
+    public function setNonprofitCauseId($nonprofitCauseId)
+    {
+        $this->container['nonprofitCauseId'] = $nonprofitCauseId;
+
+        return $this;
+    }
+
+    /**
+     * Gets online
+     *
+     * @return \Adyen\Model\Management\OnlineDonationSettings|null
+     */
+    public function getOnline()
+    {
+        return $this->container['online'];
+    }
+
+    /**
+     * Sets online
+     *
+     * @param \Adyen\Model\Management\OnlineDonationSettings|null $online online
+     *
+     * @return self
+     */
+    public function setOnline($online)
+    {
+        $this->container['online'] = $online;
 
         return $this;
     }

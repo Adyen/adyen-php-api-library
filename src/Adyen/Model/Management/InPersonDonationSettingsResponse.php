@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\Management\ObjectSerializer;
 
 /**
- * MealVoucherFRInfo Class Doc Comment
+ * InPersonDonationSettingsResponse Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializable
+class InPersonDonationSettingsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var string
       */
-    protected static $openAPIModelName = 'MealVoucherFRInfo';
+    protected static $openAPIModelName = 'InPersonDonationSettingsResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,15 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
-        'conecsId' => 'string',
-        'siret' => 'string',
-        'subTypes' => 'string[]'
+        'amounts' => '\Adyen\Model\Management\DonationAmount[]',
+        'defaultCurrency' => 'string',
+        'displayTextField' => '\Adyen\Model\Management\DisplayTextField',
+        'donationFlow' => '\Adyen\Model\Management\DonationFlow',
+        'donationType' => '\Adyen\Model\Management\DonationType',
+        'merchantAccounts' => 'string[]',
+        'presentCardTimeoutMs' => 'int',
+        'promptTimeoutMs' => 'int',
+        'storeIds' => 'string[]'
     ];
 
     /**
@@ -54,9 +60,15 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'conecsId' => null,
-        'siret' => null,
-        'subTypes' => null
+        'amounts' => null,
+        'defaultCurrency' => null,
+        'displayTextField' => null,
+        'donationFlow' => null,
+        'donationType' => null,
+        'merchantAccounts' => null,
+        'presentCardTimeoutMs' => 'int64',
+        'promptTimeoutMs' => 'int64',
+        'storeIds' => null
     ];
 
     /**
@@ -65,9 +77,15 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'conecsId' => false,
-        'siret' => false,
-        'subTypes' => false
+        'amounts' => false,
+        'defaultCurrency' => false,
+        'displayTextField' => false,
+        'donationFlow' => false,
+        'donationType' => false,
+        'merchantAccounts' => false,
+        'presentCardTimeoutMs' => false,
+        'promptTimeoutMs' => false,
+        'storeIds' => false
     ];
 
     /**
@@ -156,9 +174,15 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
-        'conecsId' => 'conecsId',
-        'siret' => 'siret',
-        'subTypes' => 'subTypes'
+        'amounts' => 'amounts',
+        'defaultCurrency' => 'defaultCurrency',
+        'displayTextField' => 'displayTextField',
+        'donationFlow' => 'donationFlow',
+        'donationType' => 'donationType',
+        'merchantAccounts' => 'merchantAccounts',
+        'presentCardTimeoutMs' => 'presentCardTimeoutMs',
+        'promptTimeoutMs' => 'promptTimeoutMs',
+        'storeIds' => 'storeIds'
     ];
 
     /**
@@ -167,9 +191,15 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
-        'conecsId' => 'setConecsId',
-        'siret' => 'setSiret',
-        'subTypes' => 'setSubTypes'
+        'amounts' => 'setAmounts',
+        'defaultCurrency' => 'setDefaultCurrency',
+        'displayTextField' => 'setDisplayTextField',
+        'donationFlow' => 'setDonationFlow',
+        'donationType' => 'setDonationType',
+        'merchantAccounts' => 'setMerchantAccounts',
+        'presentCardTimeoutMs' => 'setPresentCardTimeoutMs',
+        'promptTimeoutMs' => 'setPromptTimeoutMs',
+        'storeIds' => 'setStoreIds'
     ];
 
     /**
@@ -178,9 +208,15 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
-        'conecsId' => 'getConecsId',
-        'siret' => 'getSiret',
-        'subTypes' => 'getSubTypes'
+        'amounts' => 'getAmounts',
+        'defaultCurrency' => 'getDefaultCurrency',
+        'displayTextField' => 'getDisplayTextField',
+        'donationFlow' => 'getDonationFlow',
+        'donationType' => 'getDonationType',
+        'merchantAccounts' => 'getMerchantAccounts',
+        'presentCardTimeoutMs' => 'getPresentCardTimeoutMs',
+        'promptTimeoutMs' => 'getPromptTimeoutMs',
+        'storeIds' => 'getStoreIds'
     ];
 
     /**
@@ -240,9 +276,15 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('conecsId', $data ?? [], null);
-        $this->setIfExists('siret', $data ?? [], null);
-        $this->setIfExists('subTypes', $data ?? [], null);
+        $this->setIfExists('amounts', $data ?? [], null);
+        $this->setIfExists('defaultCurrency', $data ?? [], null);
+        $this->setIfExists('displayTextField', $data ?? [], null);
+        $this->setIfExists('donationFlow', $data ?? [], null);
+        $this->setIfExists('donationType', $data ?? [], null);
+        $this->setIfExists('merchantAccounts', $data ?? [], null);
+        $this->setIfExists('presentCardTimeoutMs', $data ?? [], null);
+        $this->setIfExists('promptTimeoutMs', $data ?? [], null);
+        $this->setIfExists('storeIds', $data ?? [], null);
     }
 
     /**
@@ -272,15 +314,6 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
-        if ($this->container['conecsId'] === null) {
-            $invalidProperties[] = "'conecsId' can't be null";
-        }
-        if ($this->container['siret'] === null) {
-            $invalidProperties[] = "'siret' can't be null";
-        }
-        if ($this->container['subTypes'] === null) {
-            $invalidProperties[] = "'subTypes' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -297,73 +330,217 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
 
 
     /**
-     * Gets conecsId
+     * Gets amounts
      *
-     * @return string
+     * @return \Adyen\Model\Management\DonationAmount[]|null
      */
-    public function getConecsId()
+    public function getAmounts()
     {
-        return $this->container['conecsId'];
+        return $this->container['amounts'];
     }
 
     /**
-     * Sets conecsId
+     * Sets amounts
      *
-     * @param string $conecsId Meal Voucher conecsId. Format: digits only
+     * @param \Adyen\Model\Management\DonationAmount[]|null $amounts The currency and fixed amounts for donations. We automatically add calculated amounts in other currencies for participating stores that use a different currency than the default.
      *
      * @return self
      */
-    public function setConecsId($conecsId)
+    public function setAmounts($amounts)
     {
-        $this->container['conecsId'] = $conecsId;
+        $this->container['amounts'] = $amounts;
 
         return $this;
     }
 
     /**
-     * Gets siret
+     * Gets defaultCurrency
      *
-     * @return string
+     * @return string|null
      */
-    public function getSiret()
+    public function getDefaultCurrency()
     {
-        return $this->container['siret'];
+        return $this->container['defaultCurrency'];
     }
 
     /**
-     * Sets siret
+     * Sets defaultCurrency
      *
-     * @param string $siret Meal Voucher siret. Format: 14 digits.
+     * @param string|null $defaultCurrency The currency that was used in the request to set fixed donation amounts. Format: three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes).
      *
      * @return self
      */
-    public function setSiret($siret)
+    public function setDefaultCurrency($defaultCurrency)
     {
-        $this->container['siret'] = $siret;
+        $this->container['defaultCurrency'] = $defaultCurrency;
 
         return $this;
     }
 
     /**
-     * Gets subTypes
+     * Gets displayTextField
      *
-     * @return string[]
+     * @return \Adyen\Model\Management\DisplayTextField|null
      */
-    public function getSubTypes()
+    public function getDisplayTextField()
     {
-        return $this->container['subTypes'];
+        return $this->container['displayTextField'];
     }
 
     /**
-     * Sets subTypes
+     * Sets displayTextField
      *
-     * @param string[] $subTypes The list of additional payment methods. Allowed values: **mealVoucher_FR_endenred**, **mealVoucher_FR_groupeup**, **mealVoucher_FR_natixis**, **mealVoucher_FR_sodexo**.
+     * @param \Adyen\Model\Management\DisplayTextField|null $displayTextField displayTextField
      *
      * @return self
      */
-    public function setSubTypes($subTypes)
+    public function setDisplayTextField($displayTextField)
     {
-        $this->container['subTypes'] = $subTypes;
+        $this->container['displayTextField'] = $displayTextField;
+
+        return $this;
+    }
+
+    /**
+     * Gets donationFlow
+     *
+     * @return \Adyen\Model\Management\DonationFlow|null
+     */
+    public function getDonationFlow()
+    {
+        return $this->container['donationFlow'];
+    }
+
+    /**
+     * Sets donationFlow
+     *
+     * @param \Adyen\Model\Management\DonationFlow|null $donationFlow donationFlow
+     *
+     * @return self
+     */
+    public function setDonationFlow($donationFlow)
+    {
+        $this->container['donationFlow'] = $donationFlow;
+
+        return $this;
+    }
+
+    /**
+     * Gets donationType
+     *
+     * @return \Adyen\Model\Management\DonationType|null
+     */
+    public function getDonationType()
+    {
+        return $this->container['donationType'];
+    }
+
+    /**
+     * Sets donationType
+     *
+     * @param \Adyen\Model\Management\DonationType|null $donationType donationType
+     *
+     * @return self
+     */
+    public function setDonationType($donationType)
+    {
+        $this->container['donationType'] = $donationType;
+
+        return $this;
+    }
+
+    /**
+     * Gets merchantAccounts
+     *
+     * @return string[]|null
+     */
+    public function getMerchantAccounts()
+    {
+        return $this->container['merchantAccounts'];
+    }
+
+    /**
+     * Sets merchantAccounts
+     *
+     * @param string[]|null $merchantAccounts The merchant accounts for this sales channel that are associated with the donation campaign.
+     *
+     * @return self
+     */
+    public function setMerchantAccounts($merchantAccounts)
+    {
+        $this->container['merchantAccounts'] = $merchantAccounts;
+
+        return $this;
+    }
+
+    /**
+     * Gets presentCardTimeoutMs
+     *
+     * @return int|null
+     */
+    public function getPresentCardTimeoutMs()
+    {
+        return $this->container['presentCardTimeoutMs'];
+    }
+
+    /**
+     * Sets presentCardTimeoutMs
+     *
+     * @param int|null $presentCardTimeoutMs The time, in milliseconds, that the terminal waits for the shopper to present their card.
+     *
+     * @return self
+     */
+    public function setPresentCardTimeoutMs($presentCardTimeoutMs)
+    {
+        $this->container['presentCardTimeoutMs'] = $presentCardTimeoutMs;
+
+        return $this;
+    }
+
+    /**
+     * Gets promptTimeoutMs
+     *
+     * @return int|null
+     */
+    public function getPromptTimeoutMs()
+    {
+        return $this->container['promptTimeoutMs'];
+    }
+
+    /**
+     * Sets promptTimeoutMs
+     *
+     * @param int|null $promptTimeoutMs The time, in milliseconds, that the terminal waits for the shopper to respond to the text asking for a donation.
+     *
+     * @return self
+     */
+    public function setPromptTimeoutMs($promptTimeoutMs)
+    {
+        $this->container['promptTimeoutMs'] = $promptTimeoutMs;
+
+        return $this;
+    }
+
+    /**
+     * Gets storeIds
+     *
+     * @return string[]|null
+     */
+    public function getStoreIds()
+    {
+        return $this->container['storeIds'];
+    }
+
+    /**
+     * Sets storeIds
+     *
+     * @param string[]|null $storeIds The Adyen-generated unique identifiers of stores for this sales channel that are associated with the donation campaign.
+     *
+     * @return self
+     */
+    public function setStoreIds($storeIds)
+    {
+        $this->container['storeIds'] = $storeIds;
 
         return $this;
     }

@@ -19,12 +19,14 @@ use ArrayAccess;
 use Adyen\Model\Management\ObjectSerializer;
 
 /**
- * MealVoucherFRInfo Class Doc Comment
+ * DefaultErrorResponseEntity Class Doc Comment
+ *
+ * Standardized error response following RFC-7807 format
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializable
+class DefaultErrorResponseEntity implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +35,7 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var string
       */
-    protected static $openAPIModelName = 'MealVoucherFRInfo';
+    protected static $openAPIModelName = 'DefaultErrorResponseEntity';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +43,14 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
-        'conecsId' => 'string',
-        'siret' => 'string',
-        'subTypes' => 'string[]'
+        'detail' => 'string',
+        'errorCode' => 'string',
+        'instance' => 'string',
+        'invalidFields' => '\Adyen\Model\Management\InvalidField[]',
+        'requestId' => 'string',
+        'status' => 'int',
+        'title' => 'string',
+        'type' => 'string'
     ];
 
     /**
@@ -54,9 +61,14 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'conecsId' => null,
-        'siret' => null,
-        'subTypes' => null
+        'detail' => null,
+        'errorCode' => null,
+        'instance' => null,
+        'invalidFields' => null,
+        'requestId' => null,
+        'status' => 'int32',
+        'title' => null,
+        'type' => null
     ];
 
     /**
@@ -65,9 +77,14 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'conecsId' => false,
-        'siret' => false,
-        'subTypes' => false
+        'detail' => false,
+        'errorCode' => false,
+        'instance' => false,
+        'invalidFields' => false,
+        'requestId' => false,
+        'status' => true,
+        'title' => false,
+        'type' => false
     ];
 
     /**
@@ -156,9 +173,14 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
-        'conecsId' => 'conecsId',
-        'siret' => 'siret',
-        'subTypes' => 'subTypes'
+        'detail' => 'detail',
+        'errorCode' => 'errorCode',
+        'instance' => 'instance',
+        'invalidFields' => 'invalidFields',
+        'requestId' => 'requestId',
+        'status' => 'status',
+        'title' => 'title',
+        'type' => 'type'
     ];
 
     /**
@@ -167,9 +189,14 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
-        'conecsId' => 'setConecsId',
-        'siret' => 'setSiret',
-        'subTypes' => 'setSubTypes'
+        'detail' => 'setDetail',
+        'errorCode' => 'setErrorCode',
+        'instance' => 'setInstance',
+        'invalidFields' => 'setInvalidFields',
+        'requestId' => 'setRequestId',
+        'status' => 'setStatus',
+        'title' => 'setTitle',
+        'type' => 'setType'
     ];
 
     /**
@@ -178,9 +205,14 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
-        'conecsId' => 'getConecsId',
-        'siret' => 'getSiret',
-        'subTypes' => 'getSubTypes'
+        'detail' => 'getDetail',
+        'errorCode' => 'getErrorCode',
+        'instance' => 'getInstance',
+        'invalidFields' => 'getInvalidFields',
+        'requestId' => 'getRequestId',
+        'status' => 'getStatus',
+        'title' => 'getTitle',
+        'type' => 'getType'
     ];
 
     /**
@@ -240,9 +272,14 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('conecsId', $data ?? [], null);
-        $this->setIfExists('siret', $data ?? [], null);
-        $this->setIfExists('subTypes', $data ?? [], null);
+        $this->setIfExists('detail', $data ?? [], null);
+        $this->setIfExists('errorCode', $data ?? [], null);
+        $this->setIfExists('instance', $data ?? [], null);
+        $this->setIfExists('invalidFields', $data ?? [], null);
+        $this->setIfExists('requestId', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('title', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -272,15 +309,6 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
-        if ($this->container['conecsId'] === null) {
-            $invalidProperties[] = "'conecsId' can't be null";
-        }
-        if ($this->container['siret'] === null) {
-            $invalidProperties[] = "'siret' can't be null";
-        }
-        if ($this->container['subTypes'] === null) {
-            $invalidProperties[] = "'subTypes' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -297,73 +325,193 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
 
 
     /**
-     * Gets conecsId
+     * Gets detail
      *
-     * @return string
+     * @return string|null
      */
-    public function getConecsId()
+    public function getDetail()
     {
-        return $this->container['conecsId'];
+        return $this->container['detail'];
     }
 
     /**
-     * Sets conecsId
+     * Sets detail
      *
-     * @param string $conecsId Meal Voucher conecsId. Format: digits only
+     * @param string|null $detail A human-readable explanation specific to this occurrence of the problem.
      *
      * @return self
      */
-    public function setConecsId($conecsId)
+    public function setDetail($detail)
     {
-        $this->container['conecsId'] = $conecsId;
+        $this->container['detail'] = $detail;
 
         return $this;
     }
 
     /**
-     * Gets siret
+     * Gets errorCode
      *
-     * @return string
+     * @return string|null
      */
-    public function getSiret()
+    public function getErrorCode()
     {
-        return $this->container['siret'];
+        return $this->container['errorCode'];
     }
 
     /**
-     * Sets siret
+     * Sets errorCode
      *
-     * @param string $siret Meal Voucher siret. Format: 14 digits.
+     * @param string|null $errorCode Unique business error code.
      *
      * @return self
      */
-    public function setSiret($siret)
+    public function setErrorCode($errorCode)
     {
-        $this->container['siret'] = $siret;
+        $this->container['errorCode'] = $errorCode;
 
         return $this;
     }
 
     /**
-     * Gets subTypes
+     * Gets instance
      *
-     * @return string[]
+     * @return string|null
      */
-    public function getSubTypes()
+    public function getInstance()
     {
-        return $this->container['subTypes'];
+        return $this->container['instance'];
     }
 
     /**
-     * Sets subTypes
+     * Sets instance
      *
-     * @param string[] $subTypes The list of additional payment methods. Allowed values: **mealVoucher_FR_endenred**, **mealVoucher_FR_groupeup**, **mealVoucher_FR_natixis**, **mealVoucher_FR_sodexo**.
+     * @param string|null $instance A URI that identifies the specific occurrence of the problem if applicable.
      *
      * @return self
      */
-    public function setSubTypes($subTypes)
+    public function setInstance($instance)
     {
-        $this->container['subTypes'] = $subTypes;
+        $this->container['instance'] = $instance;
+
+        return $this;
+    }
+
+    /**
+     * Gets invalidFields
+     *
+     * @return \Adyen\Model\Management\InvalidField[]|null
+     */
+    public function getInvalidFields()
+    {
+        return $this->container['invalidFields'];
+    }
+
+    /**
+     * Sets invalidFields
+     *
+     * @param \Adyen\Model\Management\InvalidField[]|null $invalidFields Array of fields with validation errors when applicable.
+     *
+     * @return self
+     */
+    public function setInvalidFields($invalidFields)
+    {
+        $this->container['invalidFields'] = $invalidFields;
+
+        return $this;
+    }
+
+    /**
+     * Gets requestId
+     *
+     * @return string|null
+     */
+    public function getRequestId()
+    {
+        return $this->container['requestId'];
+    }
+
+    /**
+     * Sets requestId
+     *
+     * @param string|null $requestId The unique reference for the request.
+     *
+     * @return self
+     */
+    public function setRequestId($requestId)
+    {
+        $this->container['requestId'] = $requestId;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return int|null
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     *
+     * @param int|null $status The HTTP status code.
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets title
+     *
+     * @return string|null
+     */
+    public function getTitle()
+    {
+        return $this->container['title'];
+    }
+
+    /**
+     * Sets title
+     *
+     * @param string|null $title A short, human-readable summary of the problem type.
+     *
+     * @return self
+     */
+    public function setTitle($title)
+    {
+        $this->container['title'] = $title;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string|null
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string|null $type A URI that identifies the validation error type. It points to human-readable documentation for the problem type.
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        $this->container['type'] = $type;
 
         return $this;
     }
