@@ -103,5 +103,7 @@ class RegionTest extends TestCase
         );
 
         $client->setRegion(Region::IN);
+        $client->setEnvironment(Environment::LIVE);
+        new PosPayment($client);
     }
 }

@@ -181,9 +181,6 @@ class Client
 
     public function setRegion(string $region): void
     {
-        if (!array_key_exists($region, Region::TERMINAL_API_ENDPOINTS_MAPPING)) {
-            throw new AdyenException("TerminalAPI endpoint for $region is not supported yet");
-        }
         $this->config->set('region', $region);
     }
 
@@ -195,6 +192,7 @@ class Client
      * @param string $environment The environment, either 'test' or 'live'.
      * @return string The endpoint URL.
      * @throws AdyenException
+     * @deprecated
      */
     public function retrieveCloudEndpoint(?string $region, string $environment): string
     {
