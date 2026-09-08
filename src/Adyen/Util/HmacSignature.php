@@ -86,25 +86,15 @@ class HmacSignature
      */
     private function getNotificationDataToSign($params)
     {
-        $pspReference = (!empty($params['pspReference'])) ? $params['pspReference'] : "";
-        $originalReference = (!empty($params['originalReference'])) ? $params['originalReference'] : "";
-        $merchantAccountCode = (!empty($params['merchantAccountCode'])) ? $params['merchantAccountCode'] : "";
-        $merchantReference = (!empty($params['merchantReference'])) ? $params['merchantReference'] : "";
-        // `empty` treats too many value types as empty. `isset` should prevent some of these cases.
-        $value = (isset($params['amount']['value'])) ? $params['amount']['value'] : "";
-        $currency = (!empty($params['amount']['currency'])) ? $params['amount']['currency'] : "";
-        $eventCode = (!empty($params[self::EVENT_CODE])) ? $params[self::EVENT_CODE] : "";
-        $success = (!empty($params['success'])) ? $params['success'] : "";
-
         $dataToSign = array(
-            $pspReference,
-            $originalReference,
-            $merchantAccountCode,
-            $merchantReference,
-            $value,
-            $currency,
-            $eventCode,
-            $success
+            $params['pspReference'] ?? "",
+            $params['originalReference'] ?? "",
+            $params['merchantAccountCode'] ?? "",
+            $params['merchantReference'] ?? "",
+            $params['amount']['value'] ?? "",
+            $params['amount']['currency'] ?? "",
+            $params[self::EVENT_CODE] ?? "",
+            $params['success'] ?? ""
         );
 
         return implode(":", $dataToSign);
