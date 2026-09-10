@@ -9,6 +9,7 @@
   "license": "MIT",
   "require": {
     "php": "^8.1",
+    "ext-ctype": "*",
     "ext-curl": "*",
     "ext-json": "*",
     "ext-mbstring": "*",
