@@ -303,16 +303,14 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
         {{/isEnum}}
         {{#hasValidation}}
         {{#maxLength}}
-        if ({{^required}}!is_null($this->container['{{name}}']) && {{/required}}(mb_strlen($this->container['{{name}}']) > {{maxLength}})) {
+        if ($this->container['{{name}}'] !== null && mb_strlen($this->container['{{name}}']) > {{maxLength}}) {
             $invalidProperties[] = "invalid value for '{{name}}', the character length must be smaller than or equal to {{{maxLength}}}.";
         }
-
         {{/maxLength}}
         {{#minLength}}
-        if ({{^required}}!is_null($this->container['{{name}}']) && {{/required}}(mb_strlen($this->container['{{name}}']) < {{minLength}})) {
+        if ($this->container['{{name}}'] !== null && mb_strlen($this->container['{{name}}']) < {{minLength}}) {
             $invalidProperties[] = "invalid value for '{{name}}', the character length must be bigger than or equal to {{{minLength}}}.";
         }
-
         {{/minLength}}
         {{#maximum}}
         if ({{^required}}!is_null($this->container['{{name}}']) && {{/required}}($this->container['{{name}}'] >{{#exclusiveMaximum}}={{/exclusiveMaximum}} {{maximum}})) {
