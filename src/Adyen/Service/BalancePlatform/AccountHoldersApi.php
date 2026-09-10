@@ -115,6 +115,21 @@ class AccountHoldersApi extends Service
     }
 
     /**
+    * Get summary of tax forms for an account holder
+    *
+    * @param string $id
+    * @param array|null $requestOptions ['queryParams' => ['formType'=> string]]
+    * @return \Adyen\Model\BalancePlatform\TaxFormSummaryResponse
+    * @throws AdyenException
+    */
+    public function getTaxFormSummary(string $id, ?array $requestOptions = null): \Adyen\Model\BalancePlatform\TaxFormSummaryResponse
+    {
+        $endpoint = $this->baseURL . str_replace(['{id}'], [$id], "/accountHolders/{id}/taxFormSummary");
+        $response = $this->requestHttp($endpoint, strtolower('GET'), null, $requestOptions);
+        return ObjectSerializer::deserialize($response, \Adyen\Model\BalancePlatform\TaxFormSummaryResponse::class);
+    }
+
+    /**
     * Update an account holder
     *
     * @param string $id
