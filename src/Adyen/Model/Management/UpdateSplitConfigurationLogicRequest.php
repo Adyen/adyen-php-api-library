@@ -49,6 +49,7 @@ class UpdateSplitConfigurationLogicRequest implements ModelInterface, ArrayAcces
         'chargeback' => 'string',
         'chargebackCostAllocation' => 'string',
         'commission' => '\Adyen\Model\Management\Commission',
+        'dcc' => '\Adyen\Model\Management\SplitDcc',
         'interchange' => 'string',
         'paymentFee' => 'string',
         'refund' => 'string',
@@ -76,6 +77,7 @@ class UpdateSplitConfigurationLogicRequest implements ModelInterface, ArrayAcces
         'chargeback' => null,
         'chargebackCostAllocation' => null,
         'commission' => null,
+        'dcc' => null,
         'interchange' => null,
         'paymentFee' => null,
         'refund' => null,
@@ -101,6 +103,7 @@ class UpdateSplitConfigurationLogicRequest implements ModelInterface, ArrayAcces
         'chargeback' => false,
         'chargebackCostAllocation' => false,
         'commission' => false,
+        'dcc' => false,
         'interchange' => false,
         'paymentFee' => false,
         'refund' => false,
@@ -206,6 +209,7 @@ class UpdateSplitConfigurationLogicRequest implements ModelInterface, ArrayAcces
         'chargeback' => 'chargeback',
         'chargebackCostAllocation' => 'chargebackCostAllocation',
         'commission' => 'commission',
+        'dcc' => 'dcc',
         'interchange' => 'interchange',
         'paymentFee' => 'paymentFee',
         'refund' => 'refund',
@@ -231,6 +235,7 @@ class UpdateSplitConfigurationLogicRequest implements ModelInterface, ArrayAcces
         'chargeback' => 'setChargeback',
         'chargebackCostAllocation' => 'setChargebackCostAllocation',
         'commission' => 'setCommission',
+        'dcc' => 'setDcc',
         'interchange' => 'setInterchange',
         'paymentFee' => 'setPaymentFee',
         'refund' => 'setRefund',
@@ -256,6 +261,7 @@ class UpdateSplitConfigurationLogicRequest implements ModelInterface, ArrayAcces
         'chargeback' => 'getChargeback',
         'chargebackCostAllocation' => 'getChargebackCostAllocation',
         'commission' => 'getCommission',
+        'dcc' => 'getDcc',
         'interchange' => 'getInterchange',
         'paymentFee' => 'getPaymentFee',
         'refund' => 'getRefund',
@@ -532,6 +538,7 @@ class UpdateSplitConfigurationLogicRequest implements ModelInterface, ArrayAcces
         $this->setIfExists('chargeback', $data ?? [], null);
         $this->setIfExists('chargebackCostAllocation', $data ?? [], null);
         $this->setIfExists('commission', $data ?? [], null);
+        $this->setIfExists('dcc', $data ?? [], null);
         $this->setIfExists('interchange', $data ?? [], null);
         $this->setIfExists('paymentFee', $data ?? [], null);
         $this->setIfExists('refund', $data ?? [], null);
@@ -962,6 +969,30 @@ class UpdateSplitConfigurationLogicRequest implements ModelInterface, ArrayAcces
     public function setCommission($commission)
     {
         $this->container['commission'] = $commission;
+
+        return $this;
+    }
+
+    /**
+     * Gets dcc
+     *
+     * @return \Adyen\Model\Management\SplitDcc|null
+     */
+    public function getDcc()
+    {
+        return $this->container['dcc'];
+    }
+
+    /**
+     * Sets dcc
+     *
+     * @param \Adyen\Model\Management\SplitDcc|null $dcc dcc
+     *
+     * @return self
+     */
+    public function setDcc($dcc)
+    {
+        $this->container['dcc'] = $dcc;
 
         return $this;
     }

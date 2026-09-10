@@ -265,12 +265,6 @@ class PayToResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
-        if ($this->container['merchantName'] === null) {
-            $invalidProperties[] = "'merchantName' can't be null";
-        }
-        if ($this->container['payToPurpose'] === null) {
-            $invalidProperties[] = "'payToPurpose' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -289,7 +283,7 @@ class PayToResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets merchantName
      *
-     * @return string
+     * @return string|null
      */
     public function getMerchantName()
     {
@@ -299,7 +293,7 @@ class PayToResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets merchantName
      *
-     * @param string $merchantName Merchant name displayed to the shopper in the Agreements
+     * @param string|null $merchantName Merchant name displayed to the shopper in the Agreements
      *
      * @return self
      */
@@ -313,7 +307,7 @@ class PayToResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets payToPurpose
      *
-     * @return string
+     * @return string|null
      */
     public function getPayToPurpose()
     {
@@ -323,7 +317,7 @@ class PayToResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets payToPurpose
      *
-     * @param string $payToPurpose Represents the purpose of the Agreements created, it relates to the business type **Allowed values**: mortgage, utility, loan, gambling, retail, salary, personal, government, pension, tax, other
+     * @param string|null $payToPurpose Represents the purpose of the Agreements created, it relates to the business type **Allowed values**: mortgage, utility, loan, gambling, retail, salary, personal, government, pension, tax, other
      *
      * @return self
      */

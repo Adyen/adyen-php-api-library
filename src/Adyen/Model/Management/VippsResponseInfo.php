@@ -265,9 +265,6 @@ class VippsResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
-        if ($this->container['logo'] === null) {
-            $invalidProperties[] = "'logo' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -286,7 +283,7 @@ class VippsResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets logo
      *
-     * @return string
+     * @return string|null
      */
     public function getLogo()
     {
@@ -296,7 +293,7 @@ class VippsResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets logo
      *
-     * @param string $logo Vipps logo. Format: Base64-encoded string.
+     * @param string|null $logo Vipps logo. Format: Base64-encoded string.
      *
      * @return self
      */

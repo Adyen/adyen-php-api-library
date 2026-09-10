@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\Management\ObjectSerializer;
 
 /**
- * MealVoucherFRInfo Class Doc Comment
+ * AssociatedPaymentMethod Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializable
+class AssociatedPaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var string
       */
-    protected static $openAPIModelName = 'MealVoucherFRInfo';
+    protected static $openAPIModelName = 'AssociatedPaymentMethod';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,9 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
-        'conecsId' => 'string',
-        'siret' => 'string',
-        'subTypes' => 'string[]'
+        'enabled' => 'bool',
+        'id' => 'string',
+        'type' => 'string'
     ];
 
     /**
@@ -54,9 +54,9 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'conecsId' => null,
-        'siret' => null,
-        'subTypes' => null
+        'enabled' => null,
+        'id' => null,
+        'type' => null
     ];
 
     /**
@@ -65,9 +65,9 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'conecsId' => false,
-        'siret' => false,
-        'subTypes' => false
+        'enabled' => false,
+        'id' => false,
+        'type' => false
     ];
 
     /**
@@ -156,9 +156,9 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
-        'conecsId' => 'conecsId',
-        'siret' => 'siret',
-        'subTypes' => 'subTypes'
+        'enabled' => 'enabled',
+        'id' => 'id',
+        'type' => 'type'
     ];
 
     /**
@@ -167,9 +167,9 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
-        'conecsId' => 'setConecsId',
-        'siret' => 'setSiret',
-        'subTypes' => 'setSubTypes'
+        'enabled' => 'setEnabled',
+        'id' => 'setId',
+        'type' => 'setType'
     ];
 
     /**
@@ -178,9 +178,9 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
-        'conecsId' => 'getConecsId',
-        'siret' => 'getSiret',
-        'subTypes' => 'getSubTypes'
+        'enabled' => 'getEnabled',
+        'id' => 'getId',
+        'type' => 'getType'
     ];
 
     /**
@@ -240,9 +240,9 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('conecsId', $data ?? [], null);
-        $this->setIfExists('siret', $data ?? [], null);
-        $this->setIfExists('subTypes', $data ?? [], null);
+        $this->setIfExists('enabled', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -272,14 +272,14 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
-        if ($this->container['conecsId'] === null) {
-            $invalidProperties[] = "'conecsId' can't be null";
+        if ($this->container['enabled'] === null) {
+            $invalidProperties[] = "'enabled' can't be null";
         }
-        if ($this->container['siret'] === null) {
-            $invalidProperties[] = "'siret' can't be null";
+        if ($this->container['id'] === null) {
+            $invalidProperties[] = "'id' can't be null";
         }
-        if ($this->container['subTypes'] === null) {
-            $invalidProperties[] = "'subTypes' can't be null";
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
         }
         return $invalidProperties;
     }
@@ -297,73 +297,73 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
 
 
     /**
-     * Gets conecsId
+     * Gets enabled
      *
-     * @return string
+     * @return bool
      */
-    public function getConecsId()
+    public function getEnabled()
     {
-        return $this->container['conecsId'];
+        return $this->container['enabled'];
     }
 
     /**
-     * Sets conecsId
+     * Sets enabled
      *
-     * @param string $conecsId Meal Voucher conecsId. Format: digits only
+     * @param bool $enabled Indicates whether the payment method is enabled (**true**) or disabled (**false**).
      *
      * @return self
      */
-    public function setConecsId($conecsId)
+    public function setEnabled($enabled)
     {
-        $this->container['conecsId'] = $conecsId;
+        $this->container['enabled'] = $enabled;
 
         return $this;
     }
 
     /**
-     * Gets siret
+     * Gets id
      *
      * @return string
      */
-    public function getSiret()
+    public function getId()
     {
-        return $this->container['siret'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets siret
+     * Sets id
      *
-     * @param string $siret Meal Voucher siret. Format: 14 digits.
+     * @param string $id The identifier of the payment method.
      *
      * @return self
      */
-    public function setSiret($siret)
+    public function setId($id)
     {
-        $this->container['siret'] = $siret;
+        $this->container['id'] = $id;
 
         return $this;
     }
 
     /**
-     * Gets subTypes
+     * Gets type
      *
-     * @return string[]
+     * @return string
      */
-    public function getSubTypes()
+    public function getType()
     {
-        return $this->container['subTypes'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets subTypes
+     * Sets type
      *
-     * @param string[] $subTypes The list of additional payment methods. Allowed values: **mealVoucher_FR_endenred**, **mealVoucher_FR_groupeup**, **mealVoucher_FR_natixis**, **mealVoucher_FR_sodexo**.
+     * @param string $type Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).
      *
      * @return self
      */
-    public function setSubTypes($subTypes)
+    public function setType($type)
     {
-        $this->container['subTypes'] = $subTypes;
+        $this->container['type'] = $type;
 
         return $this;
     }
