@@ -293,12 +293,6 @@ class ValuelinkResponseInfo implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         $invalidProperties = [];
 
-        if ($this->container['authorisationMid'] === null) {
-            $invalidProperties[] = "'authorisationMid' can't be null";
-        }
-        if ($this->container['pinSupport'] === null) {
-            $invalidProperties[] = "'pinSupport' can't be null";
-        }
         $allowedValues = $this->getPinSupportAllowableValues();
         if (!is_null($this->container['pinSupport']) && !in_array($this->container['pinSupport'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -326,7 +320,7 @@ class ValuelinkResponseInfo implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets authorisationMid
      *
-     * @return string
+     * @return string|null
      */
     public function getAuthorisationMid()
     {
@@ -336,7 +330,7 @@ class ValuelinkResponseInfo implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets authorisationMid
      *
-     * @param string $authorisationMid Authorisation Mid
+     * @param string|null $authorisationMid Authorisation Mid
      *
      * @return self
      */
@@ -350,7 +344,7 @@ class ValuelinkResponseInfo implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets pinSupport
      *
-     * @return string
+     * @return string|null
      */
     public function getPinSupport()
     {
@@ -360,7 +354,7 @@ class ValuelinkResponseInfo implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets pinSupport
      *
-     * @param string $pinSupport PIN Support. For ecommerce, PIN is required.
+     * @param string|null $pinSupport PIN Support. For ecommerce, PIN is required.
      *
      * @return self
      */

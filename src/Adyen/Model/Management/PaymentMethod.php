@@ -48,6 +48,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'allowed' => 'bool',
         'amex' => '\Adyen\Model\Management\AmexResponseInfo',
         'applePay' => '\Adyen\Model\Management\ApplePayResponseInfo',
+        'associatedPaymentMethods' => '\Adyen\Model\Management\AssociatedPaymentMethod[]',
         'bcmc' => '\Adyen\Model\Management\BcmcResponseInfo',
         'businessLineId' => 'string',
         'carnet' => '\Adyen\Model\Management\CarnetResponseInfo',
@@ -115,6 +116,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'allowed' => null,
         'amex' => null,
         'applePay' => null,
+        'associatedPaymentMethods' => null,
         'bcmc' => null,
         'businessLineId' => null,
         'carnet' => null,
@@ -180,6 +182,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'allowed' => false,
         'amex' => false,
         'applePay' => false,
+        'associatedPaymentMethods' => false,
         'bcmc' => false,
         'businessLineId' => false,
         'carnet' => false,
@@ -325,6 +328,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'allowed' => 'allowed',
         'amex' => 'amex',
         'applePay' => 'applePay',
+        'associatedPaymentMethods' => 'associatedPaymentMethods',
         'bcmc' => 'bcmc',
         'businessLineId' => 'businessLineId',
         'carnet' => 'carnet',
@@ -390,6 +394,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'allowed' => 'setAllowed',
         'amex' => 'setAmex',
         'applePay' => 'setApplePay',
+        'associatedPaymentMethods' => 'setAssociatedPaymentMethods',
         'bcmc' => 'setBcmc',
         'businessLineId' => 'setBusinessLineId',
         'carnet' => 'setCarnet',
@@ -455,6 +460,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'allowed' => 'getAllowed',
         'amex' => 'getAmex',
         'applePay' => 'getApplePay',
+        'associatedPaymentMethods' => 'getAssociatedPaymentMethods',
         'bcmc' => 'getBcmc',
         'businessLineId' => 'getBusinessLineId',
         'carnet' => 'getCarnet',
@@ -589,6 +595,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('allowed', $data ?? [], null);
         $this->setIfExists('amex', $data ?? [], null);
         $this->setIfExists('applePay', $data ?? [], null);
+        $this->setIfExists('associatedPaymentMethods', $data ?? [], null);
         $this->setIfExists('bcmc', $data ?? [], null);
         $this->setIfExists('businessLineId', $data ?? [], null);
         $this->setIfExists('carnet', $data ?? [], null);
@@ -859,6 +866,30 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setApplePay($applePay)
     {
         $this->container['applePay'] = $applePay;
+
+        return $this;
+    }
+
+    /**
+     * Gets associatedPaymentMethods
+     *
+     * @return \Adyen\Model\Management\AssociatedPaymentMethod[]|null
+     */
+    public function getAssociatedPaymentMethods()
+    {
+        return $this->container['associatedPaymentMethods'];
+    }
+
+    /**
+     * Sets associatedPaymentMethods
+     *
+     * @param \Adyen\Model\Management\AssociatedPaymentMethod[]|null $associatedPaymentMethods Payment methods that were also updated as part of an associated transition.
+     *
+     * @return self
+     */
+    public function setAssociatedPaymentMethods($associatedPaymentMethods)
+    {
+        $this->container['associatedPaymentMethods'] = $associatedPaymentMethods;
 
         return $this;
     }

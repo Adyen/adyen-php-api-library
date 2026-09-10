@@ -46,6 +46,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'bcmc' => '\Adyen\Model\Management\BcmcUpdateInfo',
         'carnet' => '\Adyen\Model\Management\GenericPmWithTdiUpdateInfo',
         'cartesBancaires' => '\Adyen\Model\Management\CartesBancairesUpdateInfo',
+        'cashapp' => '\Adyen\Model\Management\CashAppUpdateInfo',
         'countries' => 'string[]',
         'cup' => '\Adyen\Model\Management\GenericPmWithTdiUpdateInfo',
         'currencies' => 'string[]',
@@ -85,6 +86,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'bcmc' => null,
         'carnet' => null,
         'cartesBancaires' => null,
+        'cashapp' => null,
         'countries' => null,
         'cup' => null,
         'currencies' => null,
@@ -122,6 +124,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'bcmc' => false,
         'carnet' => false,
         'cartesBancaires' => false,
+        'cashapp' => false,
         'countries' => false,
         'cup' => false,
         'currencies' => false,
@@ -239,6 +242,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'bcmc' => 'bcmc',
         'carnet' => 'carnet',
         'cartesBancaires' => 'cartesBancaires',
+        'cashapp' => 'cashapp',
         'countries' => 'countries',
         'cup' => 'cup',
         'currencies' => 'currencies',
@@ -276,6 +280,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'bcmc' => 'setBcmc',
         'carnet' => 'setCarnet',
         'cartesBancaires' => 'setCartesBancaires',
+        'cashapp' => 'setCashapp',
         'countries' => 'setCountries',
         'cup' => 'setCup',
         'currencies' => 'setCurrencies',
@@ -313,6 +318,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'bcmc' => 'getBcmc',
         'carnet' => 'getCarnet',
         'cartesBancaires' => 'getCartesBancaires',
+        'cashapp' => 'getCashapp',
         'countries' => 'getCountries',
         'cup' => 'getCup',
         'currencies' => 'getCurrencies',
@@ -401,6 +407,7 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('bcmc', $data ?? [], null);
         $this->setIfExists('carnet', $data ?? [], null);
         $this->setIfExists('cartesBancaires', $data ?? [], null);
+        $this->setIfExists('cashapp', $data ?? [], null);
         $this->setIfExists('countries', $data ?? [], null);
         $this->setIfExists('cup', $data ?? [], null);
         $this->setIfExists('currencies', $data ?? [], null);
@@ -585,6 +592,30 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     public function setCartesBancaires($cartesBancaires)
     {
         $this->container['cartesBancaires'] = $cartesBancaires;
+
+        return $this;
+    }
+
+    /**
+     * Gets cashapp
+     *
+     * @return \Adyen\Model\Management\CashAppUpdateInfo|null
+     */
+    public function getCashapp()
+    {
+        return $this->container['cashapp'];
+    }
+
+    /**
+     * Sets cashapp
+     *
+     * @param \Adyen\Model\Management\CashAppUpdateInfo|null $cashapp cashapp
+     *
+     * @return self
+     */
+    public function setCashapp($cashapp)
+    {
+        $this->container['cashapp'] = $cashapp;
 
         return $this;
     }

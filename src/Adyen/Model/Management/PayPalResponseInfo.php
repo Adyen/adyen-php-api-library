@@ -272,12 +272,6 @@ class PayPalResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $invalidProperties = [];
 
-        if ($this->container['payerId'] === null) {
-            $invalidProperties[] = "'payerId' can't be null";
-        }
-        if ($this->container['subject'] === null) {
-            $invalidProperties[] = "'subject' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -320,7 +314,7 @@ class PayPalResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets payerId
      *
-     * @return string
+     * @return string|null
      */
     public function getPayerId()
     {
@@ -330,7 +324,7 @@ class PayPalResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets payerId
      *
-     * @param string $payerId PayPal Merchant ID. Character length and limitations: 13 single-byte alphanumeric characters.
+     * @param string|null $payerId PayPal Merchant ID. Character length and limitations: 13 single-byte alphanumeric characters.
      *
      * @return self
      */
@@ -344,7 +338,7 @@ class PayPalResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets subject
      *
-     * @return string
+     * @return string|null
      */
     public function getSubject()
     {
@@ -354,7 +348,7 @@ class PayPalResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets subject
      *
-     * @param string $subject Your business email address.
+     * @param string|null $subject Your business email address.
      *
      * @return self
      */

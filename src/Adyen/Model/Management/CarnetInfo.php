@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\Management\ObjectSerializer;
 
 /**
- * MealVoucherFRInfo Class Doc Comment
+ * CarnetInfo Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializable
+class CarnetInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var string
       */
-    protected static $openAPIModelName = 'MealVoucherFRInfo';
+    protected static $openAPIModelName = 'CarnetInfo';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,8 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
-        'conecsId' => 'string',
-        'siret' => 'string',
-        'subTypes' => 'string[]'
+        'addMccAcronym' => 'bool',
+        'transactionDescription' => '\Adyen\Model\Management\TransactionDescriptionInfo'
     ];
 
     /**
@@ -54,9 +53,8 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'conecsId' => null,
-        'siret' => null,
-        'subTypes' => null
+        'addMccAcronym' => null,
+        'transactionDescription' => null
     ];
 
     /**
@@ -65,9 +63,8 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'conecsId' => false,
-        'siret' => false,
-        'subTypes' => false
+        'addMccAcronym' => false,
+        'transactionDescription' => false
     ];
 
     /**
@@ -156,9 +153,8 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
-        'conecsId' => 'conecsId',
-        'siret' => 'siret',
-        'subTypes' => 'subTypes'
+        'addMccAcronym' => 'addMccAcronym',
+        'transactionDescription' => 'transactionDescription'
     ];
 
     /**
@@ -167,9 +163,8 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
-        'conecsId' => 'setConecsId',
-        'siret' => 'setSiret',
-        'subTypes' => 'setSubTypes'
+        'addMccAcronym' => 'setAddMccAcronym',
+        'transactionDescription' => 'setTransactionDescription'
     ];
 
     /**
@@ -178,9 +173,8 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
-        'conecsId' => 'getConecsId',
-        'siret' => 'getSiret',
-        'subTypes' => 'getSubTypes'
+        'addMccAcronym' => 'getAddMccAcronym',
+        'transactionDescription' => 'getTransactionDescription'
     ];
 
     /**
@@ -240,9 +234,8 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('conecsId', $data ?? [], null);
-        $this->setIfExists('siret', $data ?? [], null);
-        $this->setIfExists('subTypes', $data ?? [], null);
+        $this->setIfExists('addMccAcronym', $data ?? [], null);
+        $this->setIfExists('transactionDescription', $data ?? [], null);
     }
 
     /**
@@ -272,15 +265,6 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
-        if ($this->container['conecsId'] === null) {
-            $invalidProperties[] = "'conecsId' can't be null";
-        }
-        if ($this->container['siret'] === null) {
-            $invalidProperties[] = "'siret' can't be null";
-        }
-        if ($this->container['subTypes'] === null) {
-            $invalidProperties[] = "'subTypes' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -297,73 +281,49 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
 
 
     /**
-     * Gets conecsId
+     * Gets addMccAcronym
      *
-     * @return string
+     * @return bool|null
      */
-    public function getConecsId()
+    public function getAddMccAcronym()
     {
-        return $this->container['conecsId'];
+        return $this->container['addMccAcronym'];
     }
 
     /**
-     * Sets conecsId
+     * Sets addMccAcronym
      *
-     * @param string $conecsId Meal Voucher conecsId. Format: digits only
+     * @param bool|null $addMccAcronym Indicates whether to add the MCC acronym to the merchant name for Prosa acquirer in Mexico. When set to **true**, the MCC acronym is automatically appended to the merchant name. Default: **false**.
      *
      * @return self
      */
-    public function setConecsId($conecsId)
+    public function setAddMccAcronym($addMccAcronym)
     {
-        $this->container['conecsId'] = $conecsId;
+        $this->container['addMccAcronym'] = $addMccAcronym;
 
         return $this;
     }
 
     /**
-     * Gets siret
+     * Gets transactionDescription
      *
-     * @return string
+     * @return \Adyen\Model\Management\TransactionDescriptionInfo|null
      */
-    public function getSiret()
+    public function getTransactionDescription()
     {
-        return $this->container['siret'];
+        return $this->container['transactionDescription'];
     }
 
     /**
-     * Sets siret
+     * Sets transactionDescription
      *
-     * @param string $siret Meal Voucher siret. Format: 14 digits.
+     * @param \Adyen\Model\Management\TransactionDescriptionInfo|null $transactionDescription transactionDescription
      *
      * @return self
      */
-    public function setSiret($siret)
+    public function setTransactionDescription($transactionDescription)
     {
-        $this->container['siret'] = $siret;
-
-        return $this;
-    }
-
-    /**
-     * Gets subTypes
-     *
-     * @return string[]
-     */
-    public function getSubTypes()
-    {
-        return $this->container['subTypes'];
-    }
-
-    /**
-     * Sets subTypes
-     *
-     * @param string[] $subTypes The list of additional payment methods. Allowed values: **mealVoucher_FR_endenred**, **mealVoucher_FR_groupeup**, **mealVoucher_FR_natixis**, **mealVoucher_FR_sodexo**.
-     *
-     * @return self
-     */
-    public function setSubTypes($subTypes)
-    {
-        $this->container['subTypes'] = $subTypes;
+        $this->container['transactionDescription'] = $transactionDescription;
 
         return $this;
     }

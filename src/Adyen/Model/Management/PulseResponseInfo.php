@@ -281,9 +281,6 @@ class PulseResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
-        if ($this->container['processingType'] === null) {
-            $invalidProperties[] = "'processingType' can't be null";
-        }
         $allowedValues = $this->getProcessingTypeAllowableValues();
         if (!is_null($this->container['processingType']) && !in_array($this->container['processingType'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -311,7 +308,7 @@ class PulseResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets processingType
      *
-     * @return string
+     * @return string|null
      */
     public function getProcessingType()
     {
@@ -321,7 +318,7 @@ class PulseResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets processingType
      *
-     * @param string $processingType The type of transactions processed over this payment method.  Allowed values: - **pos** for in-person payments.  - **billpay** for subscription payments, both the initial payment and the later recurring payments. These transactions have `recurringProcessingModel` **Subscription**.  - **ecom** for all other card not present transactions. This includes non-recurring transactions and transactions with `recurringProcessingModel` **CardOnFile** or **UnscheduledCardOnFile**.
+     * @param string|null $processingType The type of transactions processed over this payment method.  Allowed values: - **pos** for in-person payments.  - **billpay** for subscription payments, both the initial payment and the later recurring payments. These transactions have `recurringProcessingModel` **Subscription**.  - **ecom** for all other card not present transactions. This includes non-recurring transactions and transactions with `recurringProcessingModel` **CardOnFile** or **UnscheduledCardOnFile**.
      *
      * @return self
      */
