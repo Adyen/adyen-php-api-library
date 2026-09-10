@@ -269,14 +269,12 @@ class MerchantDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['countryCode']) && (mb_strlen($this->container['countryCode']) > 2)) {
+        if ($this->container['countryCode'] !== null && mb_strlen($this->container['countryCode']) > 2) {
             $invalidProperties[] = "invalid value for 'countryCode', the character length must be smaller than or equal to 2.";
         }
-
-        if (!is_null($this->container['countryCode']) && (mb_strlen($this->container['countryCode']) < 2)) {
+        if ($this->container['countryCode'] !== null && mb_strlen($this->container['countryCode']) < 2) {
             $invalidProperties[] = "invalid value for 'countryCode', the character length must be bigger than or equal to 2.";
         }
-
         return $invalidProperties;
     }
 

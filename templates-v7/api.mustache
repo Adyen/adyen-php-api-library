@@ -77,9 +77,9 @@ use {{modelPackage}}\ObjectSerializer;
         ?HeaderSelector $selector = null,
         int $hostIndex = 0
     ) {
-        parent::__construct($config);
-        $this->client = $client ?: new Client();
         $this->config = $config ?: Configuration::getDefaultConfiguration();
+        parent::__construct($this->config);
+        $this->client = $client ?: new Client();
         $this->headerSelector = $selector ?: new HeaderSelector();
         $this->hostIndex = $hostIndex;
 
@@ -169,7 +169,7 @@ use {{modelPackage}}\ObjectSerializer;
      * @deprecated
     {{/isDeprecated}}
      */
-    public function {{operationId}}({{^exts.x-group-parameters}}{{#allParams}}{{dataType}}${{paramName}}{{^isBodyParam}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{/isBodyParam}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}\{{invokerPackage}}\RequestOptions $requestOptions = null{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}}): {{#returnType}}{{.}}{{/returnType}}{{^returnType}}void{{/returnType}}
+    public function {{operationId}}({{^exts.x-group-parameters}}{{#allParams}}{{dataType}}${{paramName}}{{^isBodyParam}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{/isBodyParam}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}?\{{invokerPackage}}\RequestOptions $requestOptions = null{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}}): {{#returnType}}{{.}}{{/returnType}}{{^returnType}}void{{/returnType}}
     {
         {{#returnType}}list($response) = {{/returnType}}$this->{{operationId}}WithHttpInfo({{^exts.x-group-parameters}}{{#allParams}}${{paramName}}, {{/allParams}}{{#servers}}{{#-first}}$hostIndex, $variables, {{/-first}}{{/servers}}$requestOptions{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}});{{#returnType}}
         return $response;{{/returnType}}
@@ -228,7 +228,7 @@ use {{modelPackage}}\ObjectSerializer;
      * @deprecated
     {{/isDeprecated}}
      */
-    public function {{operationId}}WithHttpInfo({{^exts.x-group-parameters}}{{#allParams}}{{dataType}} ${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}\{{invokerPackage}}\RequestOptions $requestOptions = null{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}}): array
+    public function {{operationId}}WithHttpInfo({{^exts.x-group-parameters}}{{#allParams}}{{#notRequiredOrIsNullable}}?{{/notRequiredOrIsNullable}}{{dataType}} ${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}?\{{invokerPackage}}\RequestOptions $requestOptions = null{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}}): array
     {
         $contentType = self::CONTENT_TYPES['{{{operationId}}}'][0];
 
@@ -388,7 +388,7 @@ use {{modelPackage}}\ObjectSerializer;
      * @deprecated
     {{/isDeprecated}}
      */
-    public function {{operationId}}Async({{^exts.x-group-parameters}}{{#allParams}}{{dataType}} ${{paramName}}{{^isBodyParam}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{/isBodyParam}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}\{{invokerPackage}}\RequestOptions $requestOptions = null{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}}): \GuzzleHttp\Promise\PromiseInterface
+    public function {{operationId}}Async({{^exts.x-group-parameters}}{{#allParams}}{{dataType}} ${{paramName}}{{^isBodyParam}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{/isBodyParam}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}?\{{invokerPackage}}\RequestOptions $requestOptions = null{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}}): \GuzzleHttp\Promise\PromiseInterface
     {
         return $this->{{operationId}}AsyncWithHttpInfo({{^exts.x-group-parameters}}{{#allParams}}${{paramName}}, {{/allParams}}{{#servers}}{{#-first}}$hostIndex, $variables, {{/-first}}{{/servers}}$requestOptions{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}})
             ->then(
@@ -450,7 +450,7 @@ use {{modelPackage}}\ObjectSerializer;
      * @deprecated
     {{/isDeprecated}}
      */
-    public function {{operationId}}AsyncWithHttpInfo({{^exts.x-group-parameters}}{{#allParams}}{{dataType}} ${{paramName}}{{^isBodyParam}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{/isBodyParam}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}\{{invokerPackage}}\RequestOptions $requestOptions = null{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}}): \GuzzleHttp\Promise\PromiseInterface
+    public function {{operationId}}AsyncWithHttpInfo({{^exts.x-group-parameters}}{{#allParams}}{{dataType}} ${{paramName}}{{^isBodyParam}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{/isBodyParam}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}?\{{invokerPackage}}\RequestOptions $requestOptions = null{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}}): \GuzzleHttp\Promise\PromiseInterface
     {
         $contentType = self::CONTENT_TYPES['{{{operationId}}}'][0];
 
@@ -543,7 +543,7 @@ use {{modelPackage}}\ObjectSerializer;
      * @deprecated
     {{/isDeprecated}}
      */
-    public function {{operationId}}Request({{^exts.x-group-parameters}}{{#allParams}}{{{dataType}}} ${{paramName}}{{^isBodyParam}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{/isBodyParam}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}string $contentType = self::CONTENT_TYPES['{{{operationId}}}'][0]{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}}, \Adyen\RequestOptions $requestOptions = null): Request
+    public function {{operationId}}Request({{^exts.x-group-parameters}}{{#allParams}}{{{dataType}}} ${{paramName}}{{^isBodyParam}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{/isBodyParam}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}string $contentType = self::CONTENT_TYPES['{{{operationId}}}'][0]{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}}, ?\Adyen\RequestOptions $requestOptions = null): Request
     {
     {{#exts.x-group-parameters}}
         // unbox the parameters from the associative array
@@ -762,7 +762,7 @@ use {{modelPackage}}\ObjectSerializer;
         $operationHost = Configuration::getHostString($hostSettings, $hostIndex, $variables);
         {{/servers.0}}
         {{^servers.0}}
-        $operationHost = $this->config->getHost();
+        $operationHost = $this->config->getHost() ?: $this->baseURL;
         {{/servers.0}}
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(

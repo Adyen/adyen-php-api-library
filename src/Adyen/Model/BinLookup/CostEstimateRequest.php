@@ -340,14 +340,12 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         if ($this->container['amount'] === null) {
             $invalidProperties[] = "'amount' can't be null";
         }
-        if (!is_null($this->container['cardNumber']) && (mb_strlen($this->container['cardNumber']) > 19)) {
+        if ($this->container['cardNumber'] !== null && mb_strlen($this->container['cardNumber']) > 19) {
             $invalidProperties[] = "invalid value for 'cardNumber', the character length must be smaller than or equal to 19.";
         }
-
-        if (!is_null($this->container['cardNumber']) && (mb_strlen($this->container['cardNumber']) < 4)) {
+        if ($this->container['cardNumber'] !== null && mb_strlen($this->container['cardNumber']) < 4) {
             $invalidProperties[] = "invalid value for 'cardNumber', the character length must be bigger than or equal to 4.";
         }
-
         if ($this->container['merchantAccount'] === null) {
             $invalidProperties[] = "'merchantAccount' can't be null";
         }
