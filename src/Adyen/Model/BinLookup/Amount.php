@@ -265,14 +265,12 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['currency'] === null) {
             $invalidProperties[] = "'currency' can't be null";
         }
-        if ((mb_strlen($this->container['currency']) > 3)) {
+        if ($this->container['currency'] !== null && mb_strlen($this->container['currency']) > 3) {
             $invalidProperties[] = "invalid value for 'currency', the character length must be smaller than or equal to 3.";
         }
-
-        if ((mb_strlen($this->container['currency']) < 3)) {
+        if ($this->container['currency'] !== null && mb_strlen($this->container['currency']) < 3) {
             $invalidProperties[] = "invalid value for 'currency', the character length must be bigger than or equal to 3.";
         }
-
         if ($this->container['value'] === null) {
             $invalidProperties[] = "'value' can't be null";
         }
