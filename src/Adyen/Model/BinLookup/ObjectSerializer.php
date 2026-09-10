@@ -12,6 +12,7 @@
 
 namespace Adyen\Model\BinLookup;
 
+use Adyen\Configuration;
 use GuzzleHttp\Psr7\Utils;
 use Adyen\Model\BinLookup\ModelInterface;
 

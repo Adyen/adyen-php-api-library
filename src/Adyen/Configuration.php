@@ -648,7 +648,7 @@ class Configuration
      * @param array|null $variables hash of variable and the corresponding value (optional)
      * @return string|null URL based on host settings
      */
-    public function getHostFromSettings(int $index, array $variables = null): ?string
+    public function getHostFromSettings(int $index, ?array $variables = null): ?string
     {
         return self::getHostString($this->getHostSettings(), $index, $variables);
     }

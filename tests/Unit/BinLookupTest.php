@@ -331,4 +331,33 @@ class BinLookupTest extends BaseTest
         $this->assertTrue($result->getThreeDs1Supported());
         $this->assertEmpty($headers);
     }
+
+    public function testRequestUsesBaseUrl()
+    {
+        $service = new BinLookupApi($this->createConfiguration());
+
+        $request = $service->get3dsAvailabilityRequest(
+            new ThreeDSAvailabilityRequest()
+        );
+
+        $this->assertEquals(
+            'https://pal-test.adyen.com/pal/servlet/BinLookup/v54/get3dsAvailability',
+            (string) $request->getUri()
+        );
+    }
+
+    public function testDefaultConfiguration()
+    {
+        $previousConfiguration = Configuration::getDefaultConfiguration();
+        $configuration = $this->createConfiguration();
+        Configuration::setDefaultConfiguration($configuration);
+
+        try {
+            $service = new BinLookupApi();
+
+            $this->assertSame($configuration, $service->getConfig());
+        } finally {
+            Configuration::setDefaultConfiguration($previousConfiguration);
+        }
+    }
 }
