@@ -87,9 +87,9 @@ class BinLookupApi extends BaseService
         ?HeaderSelector $selector = null,
         int $hostIndex = 0
     ) {
-        parent::__construct($config);
-        $this->client = $client ?: new Client();
         $this->config = $config ?: Configuration::getDefaultConfiguration();
+        parent::__construct($this->config);
+        $this->client = $client ?: new Client();
         $this->headerSelector = $selector ?: new HeaderSelector();
         $this->hostIndex = $hostIndex;
 
@@ -137,7 +137,7 @@ class BinLookupApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \Adyen\Model\BinLookup\ThreeDSAvailabilityResponse
      */
-    public function get3dsAvailability(\Adyen\Model\BinLookup\ThreeDSAvailabilityRequest$threeDSAvailabilityRequest, \Adyen\RequestOptions $requestOptions = null): \Adyen\Model\BinLookup\ThreeDSAvailabilityResponse
+    public function get3dsAvailability(\Adyen\Model\BinLookup\ThreeDSAvailabilityRequest$threeDSAvailabilityRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\BinLookup\ThreeDSAvailabilityResponse
     {
         list($response) = $this->get3dsAvailabilityWithHttpInfo($threeDSAvailabilityRequest, $requestOptions);
         return $response;
@@ -155,7 +155,7 @@ class BinLookupApi extends BaseService
      * @throws \InvalidArgumentException
      * @return array of \Adyen\Model\BinLookup\ThreeDSAvailabilityResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function get3dsAvailabilityWithHttpInfo(\Adyen\Model\BinLookup\ThreeDSAvailabilityRequest $threeDSAvailabilityRequest = null, \Adyen\RequestOptions $requestOptions = null): array
+    public function get3dsAvailabilityWithHttpInfo(?\Adyen\Model\BinLookup\ThreeDSAvailabilityRequest $threeDSAvailabilityRequest = null, ?\Adyen\RequestOptions $requestOptions = null): array
     {
         $contentType = self::CONTENT_TYPES['get3dsAvailability'][0];
 
@@ -223,7 +223,7 @@ class BinLookupApi extends BaseService
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new AdyenException(
@@ -294,7 +294,7 @@ class BinLookupApi extends BaseService
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -311,7 +311,7 @@ class BinLookupApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function get3dsAvailabilityAsync(\Adyen\Model\BinLookup\ThreeDSAvailabilityRequest $threeDSAvailabilityRequest, \Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function get3dsAvailabilityAsync(\Adyen\Model\BinLookup\ThreeDSAvailabilityRequest $threeDSAvailabilityRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
         return $this->get3dsAvailabilityAsyncWithHttpInfo($threeDSAvailabilityRequest, $requestOptions)
             ->then(
@@ -332,7 +332,7 @@ class BinLookupApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function get3dsAvailabilityAsyncWithHttpInfo(\Adyen\Model\BinLookup\ThreeDSAvailabilityRequest $threeDSAvailabilityRequest, \Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function get3dsAvailabilityAsyncWithHttpInfo(\Adyen\Model\BinLookup\ThreeDSAvailabilityRequest $threeDSAvailabilityRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
         $contentType = self::CONTENT_TYPES['get3dsAvailability'][0];
 
@@ -385,7 +385,7 @@ class BinLookupApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function get3dsAvailabilityRequest(\Adyen\Model\BinLookup\ThreeDSAvailabilityRequest $threeDSAvailabilityRequest, string $contentType = self::CONTENT_TYPES['get3dsAvailability'][0], \Adyen\RequestOptions $requestOptions = null): Request
+    public function get3dsAvailabilityRequest(\Adyen\Model\BinLookup\ThreeDSAvailabilityRequest $threeDSAvailabilityRequest, string $contentType = self::CONTENT_TYPES['get3dsAvailability'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
     {
 
         $resourcePath = '/get3dsAvailability';
@@ -454,7 +454,7 @@ class BinLookupApi extends BaseService
             $headers
         );
 
-        $operationHost = $this->config->getHost();
+        $operationHost = $this->config->getHost() ?: $this->baseURL;
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
@@ -476,7 +476,7 @@ class BinLookupApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \Adyen\Model\BinLookup\CostEstimateResponse
      */
-    public function getCostEstimate(\Adyen\Model\BinLookup\CostEstimateRequest$costEstimateRequest, \Adyen\RequestOptions $requestOptions = null): \Adyen\Model\BinLookup\CostEstimateResponse
+    public function getCostEstimate(\Adyen\Model\BinLookup\CostEstimateRequest$costEstimateRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\BinLookup\CostEstimateResponse
     {
         list($response) = $this->getCostEstimateWithHttpInfo($costEstimateRequest, $requestOptions);
         return $response;
@@ -494,7 +494,7 @@ class BinLookupApi extends BaseService
      * @throws \InvalidArgumentException
      * @return array of \Adyen\Model\BinLookup\CostEstimateResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getCostEstimateWithHttpInfo(\Adyen\Model\BinLookup\CostEstimateRequest $costEstimateRequest = null, \Adyen\RequestOptions $requestOptions = null): array
+    public function getCostEstimateWithHttpInfo(?\Adyen\Model\BinLookup\CostEstimateRequest $costEstimateRequest = null, ?\Adyen\RequestOptions $requestOptions = null): array
     {
         $contentType = self::CONTENT_TYPES['getCostEstimate'][0];
 
@@ -562,7 +562,7 @@ class BinLookupApi extends BaseService
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new AdyenException(
@@ -633,7 +633,7 @@ class BinLookupApi extends BaseService
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -650,7 +650,7 @@ class BinLookupApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCostEstimateAsync(\Adyen\Model\BinLookup\CostEstimateRequest $costEstimateRequest, \Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function getCostEstimateAsync(\Adyen\Model\BinLookup\CostEstimateRequest $costEstimateRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
         return $this->getCostEstimateAsyncWithHttpInfo($costEstimateRequest, $requestOptions)
             ->then(
@@ -671,7 +671,7 @@ class BinLookupApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCostEstimateAsyncWithHttpInfo(\Adyen\Model\BinLookup\CostEstimateRequest $costEstimateRequest, \Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function getCostEstimateAsyncWithHttpInfo(\Adyen\Model\BinLookup\CostEstimateRequest $costEstimateRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
         $contentType = self::CONTENT_TYPES['getCostEstimate'][0];
 
@@ -724,7 +724,7 @@ class BinLookupApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getCostEstimateRequest(\Adyen\Model\BinLookup\CostEstimateRequest $costEstimateRequest, string $contentType = self::CONTENT_TYPES['getCostEstimate'][0], \Adyen\RequestOptions $requestOptions = null): Request
+    public function getCostEstimateRequest(\Adyen\Model\BinLookup\CostEstimateRequest $costEstimateRequest, string $contentType = self::CONTENT_TYPES['getCostEstimate'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
     {
 
         $resourcePath = '/getCostEstimate';
@@ -793,7 +793,7 @@ class BinLookupApi extends BaseService
             $headers
         );
 
-        $operationHost = $this->config->getHost();
+        $operationHost = $this->config->getHost() ?: $this->baseURL;
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
