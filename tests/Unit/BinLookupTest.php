@@ -346,7 +346,7 @@ class BinLookupTest extends BaseTest
         );
     }
 
-    public function testDefaultConfiguration()
+    public function testConstructorUsesDefaultConfiguration()
     {
         $previousConfiguration = Configuration::getDefaultConfiguration();
         $configuration = $this->createConfiguration();
