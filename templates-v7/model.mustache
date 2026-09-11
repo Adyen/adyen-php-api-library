@@ -1,0 +1,27 @@
+<?php
+
+{{#models}}
+{{#model}}
+{{>partial_header}}
+namespace {{modelPackage}};
+{{^isEnum}}
+{{^parentSchema}}
+
+use \ArrayAccess;
+{{/parentSchema}}
+{{/isEnum}}
+use \{{modelPackage}}\ObjectSerializer;
+
+/**
+ * {{classname}} Class Doc Comment
+ *
+{{#description}}
+ * @description {{.}}
+{{/description}}
+ * @package  {{modelPackage}}
+{{^isEnum}}
+ * @implements \ArrayAccess<string, mixed>
+{{/isEnum}}
+ */
+{{#isEnum}}{{>model_enum}}{{/isEnum}}{{^isEnum}}{{>model_generic}}{{/isEnum}}
+{{/model}}{{/models}}
