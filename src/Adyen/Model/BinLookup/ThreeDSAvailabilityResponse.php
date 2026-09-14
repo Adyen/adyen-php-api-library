@@ -274,28 +274,7 @@ class ThreeDSAvailabilityResponse implements ModelInterface, ArrayAccess, \JsonS
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
 
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
 
 
     /**
@@ -317,9 +296,6 @@ class ThreeDSAvailabilityResponse implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setBinDetails($binDetails): self
     {
-        if (is_null($binDetails)) {
-            throw new \InvalidArgumentException('non-nullable binDetails cannot be null');
-        }
         $this->container['binDetails'] = $binDetails;
 
         return $this;
@@ -344,9 +320,6 @@ class ThreeDSAvailabilityResponse implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setDsPublicKeys($dsPublicKeys): self
     {
-        if (is_null($dsPublicKeys)) {
-            throw new \InvalidArgumentException('non-nullable dsPublicKeys cannot be null');
-        }
         $this->container['dsPublicKeys'] = $dsPublicKeys;
 
         return $this;
@@ -371,9 +344,6 @@ class ThreeDSAvailabilityResponse implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setThreeDS1Supported($threeDS1Supported): self
     {
-        if (is_null($threeDS1Supported)) {
-            throw new \InvalidArgumentException('non-nullable threeDS1Supported cannot be null');
-        }
         $this->container['threeDS1Supported'] = $threeDS1Supported;
 
         return $this;
@@ -398,9 +368,6 @@ class ThreeDSAvailabilityResponse implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setThreeDS2CardRangeDetails($threeDS2CardRangeDetails): self
     {
-        if (is_null($threeDS2CardRangeDetails)) {
-            throw new \InvalidArgumentException('non-nullable threeDS2CardRangeDetails cannot be null');
-        }
         $this->container['threeDS2CardRangeDetails'] = $threeDS2CardRangeDetails;
 
         return $this;
@@ -425,9 +392,6 @@ class ThreeDSAvailabilityResponse implements ModelInterface, ArrayAccess, \JsonS
      */
     public function setThreeDS2supported($threeDS2supported): self
     {
-        if (is_null($threeDS2supported)) {
-            throw new \InvalidArgumentException('non-nullable threeDS2supported cannot be null');
-        }
         $this->container['threeDS2supported'] = $threeDS2supported;
 
         return $this;

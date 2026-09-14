@@ -260,28 +260,7 @@ class CostEstimateAssumptions implements ModelInterface, ArrayAccess, \JsonSeria
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
 
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
 
 
     /**
@@ -303,9 +282,6 @@ class CostEstimateAssumptions implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setAssume3DSecureAuthenticated($assume3DSecureAuthenticated): self
     {
-        if (is_null($assume3DSecureAuthenticated)) {
-            throw new \InvalidArgumentException('non-nullable assume3DSecureAuthenticated cannot be null');
-        }
         $this->container['assume3DSecureAuthenticated'] = $assume3DSecureAuthenticated;
 
         return $this;
@@ -330,9 +306,6 @@ class CostEstimateAssumptions implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setAssumeLevel3Data($assumeLevel3Data): self
     {
-        if (is_null($assumeLevel3Data)) {
-            throw new \InvalidArgumentException('non-nullable assumeLevel3Data cannot be null');
-        }
         $this->container['assumeLevel3Data'] = $assumeLevel3Data;
 
         return $this;
@@ -357,9 +330,6 @@ class CostEstimateAssumptions implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setInstallments($installments): self
     {
-        if (is_null($installments)) {
-            throw new \InvalidArgumentException('non-nullable installments cannot be null');
-        }
         $this->container['installments'] = $installments;
 
         return $this;

@@ -314,46 +314,7 @@ class Recurring implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
 
-        $allowedValues = $this->getContractAllowableValues();
-        if (!is_null($this->container['contract']) && !in_array($this->container['contract'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'contract', must be one of '%s'",
-                $this->container['contract'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        $allowedValues = $this->getTokenServiceAllowableValues();
-        if (!is_null($this->container['tokenService']) && !in_array($this->container['tokenService'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'tokenService', must be one of '%s'",
-                $this->container['tokenService'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
 
 
     /**
@@ -375,19 +336,6 @@ class Recurring implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setContract($contract): self
     {
-        if (is_null($contract)) {
-            throw new \InvalidArgumentException('non-nullable contract cannot be null');
-        }
-        $allowedValues = $this->getContractAllowableValues();
-        if (!in_array($contract, $allowedValues, true)) {
-            error_log(
-                sprintf(
-                    "contract: unexpected enum value '%s' - Supported values are [%s]",
-                    $contract,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
         $this->container['contract'] = $contract;
 
         return $this;
@@ -412,9 +360,6 @@ class Recurring implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRecurringDetailName($recurringDetailName): self
     {
-        if (is_null($recurringDetailName)) {
-            throw new \InvalidArgumentException('non-nullable recurringDetailName cannot be null');
-        }
         $this->container['recurringDetailName'] = $recurringDetailName;
 
         return $this;
@@ -439,9 +384,6 @@ class Recurring implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRecurringExpiry($recurringExpiry): self
     {
-        if (is_null($recurringExpiry)) {
-            throw new \InvalidArgumentException('non-nullable recurringExpiry cannot be null');
-        }
         $this->container['recurringExpiry'] = $recurringExpiry;
 
         return $this;
@@ -466,9 +408,6 @@ class Recurring implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRecurringFrequency($recurringFrequency): self
     {
-        if (is_null($recurringFrequency)) {
-            throw new \InvalidArgumentException('non-nullable recurringFrequency cannot be null');
-        }
         $this->container['recurringFrequency'] = $recurringFrequency;
 
         return $this;
@@ -493,19 +432,6 @@ class Recurring implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTokenService($tokenService): self
     {
-        if (is_null($tokenService)) {
-            throw new \InvalidArgumentException('non-nullable tokenService cannot be null');
-        }
-        $allowedValues = $this->getTokenServiceAllowableValues();
-        if (!in_array($tokenService, $allowedValues, true)) {
-            error_log(
-                sprintf(
-                    "tokenService: unexpected enum value '%s' - Supported values are [%s]",
-                    $tokenService,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
         $this->container['tokenService'] = $tokenService;
 
         return $this;
