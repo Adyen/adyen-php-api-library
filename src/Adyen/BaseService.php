@@ -17,8 +17,11 @@ class BaseService
      */
     public function __construct(Configuration $configuration)
     {
-        if (!$configuration->getAdyenApiKey()) {
-            $msg = 'API Key is undefined';
+        $hasApiKey = !empty($configuration->getAdyenApiKey());
+        $hasBasicAuth = !empty($configuration->getUsername())
+            && !empty($configuration->getPassword());
+        if (!$hasApiKey && !$hasBasicAuth) {
+            $msg = 'API Key or Basic Authentication credentials are undefined';
             throw new AdyenException($msg);
         }
 

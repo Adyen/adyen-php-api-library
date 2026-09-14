@@ -281,31 +281,7 @@ class ThreeDSAvailabilityRequest implements ModelInterface, ArrayAccess, \JsonSe
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
 
-        if ($this->container['merchantAccount'] === null) {
-            $invalidProperties[] = "'merchantAccount' can't be null";
-        }
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
 
 
     /**
@@ -327,9 +303,6 @@ class ThreeDSAvailabilityRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setAdditionalData($additionalData): self
     {
-        if (is_null($additionalData)) {
-            throw new \InvalidArgumentException('non-nullable additionalData cannot be null');
-        }
         $this->container['additionalData'] = $additionalData;
 
         return $this;
@@ -354,9 +327,6 @@ class ThreeDSAvailabilityRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setBrands($brands): self
     {
-        if (is_null($brands)) {
-            throw new \InvalidArgumentException('non-nullable brands cannot be null');
-        }
         $this->container['brands'] = $brands;
 
         return $this;
@@ -381,9 +351,6 @@ class ThreeDSAvailabilityRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setCardNumber($cardNumber): self
     {
-        if (is_null($cardNumber)) {
-            throw new \InvalidArgumentException('non-nullable cardNumber cannot be null');
-        }
         $this->container['cardNumber'] = $cardNumber;
 
         return $this;
@@ -408,9 +375,6 @@ class ThreeDSAvailabilityRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setMerchantAccount($merchantAccount): self
     {
-        if (is_null($merchantAccount)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
-        }
         $this->container['merchantAccount'] = $merchantAccount;
 
         return $this;
@@ -435,9 +399,6 @@ class ThreeDSAvailabilityRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setRecurringDetailReference($recurringDetailReference): self
     {
-        if (is_null($recurringDetailReference)) {
-            throw new \InvalidArgumentException('non-nullable recurringDetailReference cannot be null');
-        }
         $this->container['recurringDetailReference'] = $recurringDetailReference;
 
         return $this;
@@ -462,9 +423,6 @@ class ThreeDSAvailabilityRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function setShopperReference($shopperReference): self
     {
-        if (is_null($shopperReference)) {
-            throw new \InvalidArgumentException('non-nullable shopperReference cannot be null');
-        }
         $this->container['shopperReference'] = $shopperReference;
 
         return $this;
