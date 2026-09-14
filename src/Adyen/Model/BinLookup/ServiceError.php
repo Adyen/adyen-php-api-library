@@ -281,28 +281,7 @@ class ServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
 
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
 
 
     /**
@@ -324,9 +303,6 @@ class ServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAdditionalData($additionalData): self
     {
-        if (is_null($additionalData)) {
-            throw new \InvalidArgumentException('non-nullable additionalData cannot be null');
-        }
         $this->container['additionalData'] = $additionalData;
 
         return $this;
@@ -351,9 +327,6 @@ class ServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setErrorCode($errorCode): self
     {
-        if (is_null($errorCode)) {
-            throw new \InvalidArgumentException('non-nullable errorCode cannot be null');
-        }
         $this->container['errorCode'] = $errorCode;
 
         return $this;
@@ -378,9 +351,6 @@ class ServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setErrorType($errorType): self
     {
-        if (is_null($errorType)) {
-            throw new \InvalidArgumentException('non-nullable errorType cannot be null');
-        }
         $this->container['errorType'] = $errorType;
 
         return $this;
@@ -405,9 +375,6 @@ class ServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMessage($message): self
     {
-        if (is_null($message)) {
-            throw new \InvalidArgumentException('non-nullable message cannot be null');
-        }
         $this->container['message'] = $message;
 
         return $this;
@@ -432,9 +399,6 @@ class ServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPspReference($pspReference): self
     {
-        if (is_null($pspReference)) {
-            throw new \InvalidArgumentException('non-nullable pspReference cannot be null');
-        }
         $this->container['pspReference'] = $pspReference;
 
         return $this;
@@ -459,9 +423,6 @@ class ServiceError implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStatus($status): self
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
         $this->container['status'] = $status;
 
         return $this;

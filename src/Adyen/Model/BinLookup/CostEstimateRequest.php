@@ -328,49 +328,7 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
 
-        if ($this->container['amount'] === null) {
-            $invalidProperties[] = "'amount' can't be null";
-        }
-        if ($this->container['cardNumber'] !== null && mb_strlen($this->container['cardNumber']) > 19) {
-            $invalidProperties[] = "invalid value for 'cardNumber', the character length must be smaller than or equal to 19.";
-        }
-        if ($this->container['cardNumber'] !== null && mb_strlen($this->container['cardNumber']) < 4) {
-            $invalidProperties[] = "invalid value for 'cardNumber', the character length must be bigger than or equal to 4.";
-        }
-        if ($this->container['merchantAccount'] === null) {
-            $invalidProperties[] = "'merchantAccount' can't be null";
-        }
-        $allowedValues = $this->getShopperInteractionAllowableValues();
-        if (!is_null($this->container['shopperInteraction']) && !in_array($this->container['shopperInteraction'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'shopperInteraction', must be one of '%s'",
-                $this->container['shopperInteraction'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
 
 
     /**
@@ -392,9 +350,6 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setAmount($amount): self
     {
-        if (is_null($amount)) {
-            throw new \InvalidArgumentException('non-nullable amount cannot be null');
-        }
         $this->container['amount'] = $amount;
 
         return $this;
@@ -419,9 +374,6 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setAssumptions($assumptions): self
     {
-        if (is_null($assumptions)) {
-            throw new \InvalidArgumentException('non-nullable assumptions cannot be null');
-        }
         $this->container['assumptions'] = $assumptions;
 
         return $this;
@@ -446,16 +398,6 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setCardNumber($cardNumber): self
     {
-        if (is_null($cardNumber)) {
-            throw new \InvalidArgumentException('non-nullable cardNumber cannot be null');
-        }
-        if ((mb_strlen($cardNumber) > 19)) {
-            throw new \InvalidArgumentException('invalid length for $cardNumber when calling CostEstimateRequest., must be smaller than or equal to 19.');
-        }
-        if ((mb_strlen($cardNumber) < 4)) {
-            throw new \InvalidArgumentException('invalid length for $cardNumber when calling CostEstimateRequest., must be bigger than or equal to 4.');
-        }
-
         $this->container['cardNumber'] = $cardNumber;
 
         return $this;
@@ -480,9 +422,6 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setEncryptedCardNumber($encryptedCardNumber): self
     {
-        if (is_null($encryptedCardNumber)) {
-            throw new \InvalidArgumentException('non-nullable encryptedCardNumber cannot be null');
-        }
         $this->container['encryptedCardNumber'] = $encryptedCardNumber;
 
         return $this;
@@ -507,9 +446,6 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setMerchantAccount($merchantAccount): self
     {
-        if (is_null($merchantAccount)) {
-            throw new \InvalidArgumentException('non-nullable merchantAccount cannot be null');
-        }
         $this->container['merchantAccount'] = $merchantAccount;
 
         return $this;
@@ -534,9 +470,6 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setMerchantDetails($merchantDetails): self
     {
-        if (is_null($merchantDetails)) {
-            throw new \InvalidArgumentException('non-nullable merchantDetails cannot be null');
-        }
         $this->container['merchantDetails'] = $merchantDetails;
 
         return $this;
@@ -561,9 +494,6 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setRecurring($recurring): self
     {
-        if (is_null($recurring)) {
-            throw new \InvalidArgumentException('non-nullable recurring cannot be null');
-        }
         $this->container['recurring'] = $recurring;
 
         return $this;
@@ -588,9 +518,6 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setSelectedRecurringDetailReference($selectedRecurringDetailReference): self
     {
-        if (is_null($selectedRecurringDetailReference)) {
-            throw new \InvalidArgumentException('non-nullable selectedRecurringDetailReference cannot be null');
-        }
         $this->container['selectedRecurringDetailReference'] = $selectedRecurringDetailReference;
 
         return $this;
@@ -615,19 +542,6 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setShopperInteraction($shopperInteraction): self
     {
-        if (is_null($shopperInteraction)) {
-            throw new \InvalidArgumentException('non-nullable shopperInteraction cannot be null');
-        }
-        $allowedValues = $this->getShopperInteractionAllowableValues();
-        if (!in_array($shopperInteraction, $allowedValues, true)) {
-            error_log(
-                sprintf(
-                    "shopperInteraction: unexpected enum value '%s' - Supported values are [%s]",
-                    $shopperInteraction,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
         $this->container['shopperInteraction'] = $shopperInteraction;
 
         return $this;
@@ -652,9 +566,6 @@ class CostEstimateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setShopperReference($shopperReference): self
     {
-        if (is_null($shopperReference)) {
-            throw new \InvalidArgumentException('non-nullable shopperReference cannot be null');
-        }
         $this->container['shopperReference'] = $shopperReference;
 
         return $this;

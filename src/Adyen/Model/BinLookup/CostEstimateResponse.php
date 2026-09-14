@@ -267,28 +267,7 @@ class CostEstimateResponse implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
 
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
 
 
     /**
@@ -310,9 +289,6 @@ class CostEstimateResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setCardBin($cardBin): self
     {
-        if (is_null($cardBin)) {
-            throw new \InvalidArgumentException('non-nullable cardBin cannot be null');
-        }
         $this->container['cardBin'] = $cardBin;
 
         return $this;
@@ -337,9 +313,6 @@ class CostEstimateResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setCostEstimateAmount($costEstimateAmount): self
     {
-        if (is_null($costEstimateAmount)) {
-            throw new \InvalidArgumentException('non-nullable costEstimateAmount cannot be null');
-        }
         $this->container['costEstimateAmount'] = $costEstimateAmount;
 
         return $this;
@@ -364,9 +337,6 @@ class CostEstimateResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setCostEstimateReference($costEstimateReference): self
     {
-        if (is_null($costEstimateReference)) {
-            throw new \InvalidArgumentException('non-nullable costEstimateReference cannot be null');
-        }
         $this->container['costEstimateReference'] = $costEstimateReference;
 
         return $this;
@@ -391,9 +361,6 @@ class CostEstimateResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setResultCode($resultCode): self
     {
-        if (is_null($resultCode)) {
-            throw new \InvalidArgumentException('non-nullable resultCode cannot be null');
-        }
         $this->container['resultCode'] = $resultCode;
 
         return $this;

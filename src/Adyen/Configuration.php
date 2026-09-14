@@ -60,13 +60,6 @@ class Configuration
     protected string $password = '';
 
     /**
-     * The host
-     *
-     * @var string
-     */
-    protected string $host = '';
-
-    /**
      * User agent of the HTTP request, set to "OpenAPI-Generator/{version}/PHP" by default
      * It is overridden with the library name and version
      *
@@ -307,29 +300,6 @@ class Configuration
     }
 
     /**
-     * Sets the host
-     *
-     * @param string $host Host
-     *
-     * @return $this
-     */
-    public function setHost($host): self
-    {
-        $this->host = $host;
-        return $this;
-    }
-
-    /**
-     * Gets the host
-     *
-     * @return string Host
-     */
-    public function getHost(): string
-    {
-        return $this->host;
-    }
-
-    /**
      * Sets UserAgent
      * @param string $userAgent
      * @return $this
@@ -512,7 +482,7 @@ class Configuration
     }
 
     /**
-     * @param mixed $liveEndpointUrlPrefix
+     * @param string $liveEndpointUrlPrefix
      */
     public function setLiveEndpointUrlPrefix(string $liveEndpointUrlPrefix): self
     {

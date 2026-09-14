@@ -260,34 +260,7 @@ class MerchantDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
 
-        if ($this->container['countryCode'] !== null && mb_strlen($this->container['countryCode']) > 2) {
-            $invalidProperties[] = "invalid value for 'countryCode', the character length must be smaller than or equal to 2.";
-        }
-        if ($this->container['countryCode'] !== null && mb_strlen($this->container['countryCode']) < 2) {
-            $invalidProperties[] = "invalid value for 'countryCode', the character length must be bigger than or equal to 2.";
-        }
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
 
 
     /**
@@ -309,16 +282,6 @@ class MerchantDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCountryCode($countryCode): self
     {
-        if (is_null($countryCode)) {
-            throw new \InvalidArgumentException('non-nullable countryCode cannot be null');
-        }
-        if ((mb_strlen($countryCode) > 2)) {
-            throw new \InvalidArgumentException('invalid length for $countryCode when calling MerchantDetails., must be smaller than or equal to 2.');
-        }
-        if ((mb_strlen($countryCode) < 2)) {
-            throw new \InvalidArgumentException('invalid length for $countryCode when calling MerchantDetails., must be bigger than or equal to 2.');
-        }
-
         $this->container['countryCode'] = $countryCode;
 
         return $this;
@@ -343,9 +306,6 @@ class MerchantDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEnrolledIn3DSecure($enrolledIn3DSecure): self
     {
-        if (is_null($enrolledIn3DSecure)) {
-            throw new \InvalidArgumentException('non-nullable enrolledIn3DSecure cannot be null');
-        }
         $this->container['enrolledIn3DSecure'] = $enrolledIn3DSecure;
 
         return $this;
@@ -370,9 +330,6 @@ class MerchantDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMcc($mcc): self
     {
-        if (is_null($mcc)) {
-            throw new \InvalidArgumentException('non-nullable mcc cannot be null');
-        }
         $this->container['mcc'] = $mcc;
 
         return $this;
