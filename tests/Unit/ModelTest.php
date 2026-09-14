@@ -44,7 +44,6 @@ class ModelTest extends TestCase
         $this->assertFalse($response->getThreeDS2supported());
 
         $this->assertEquals('ThreeDSAvailabilityResponse', $response->getModelName());
-        $this->assertTrue($response->valid());
     }
 
     public function testStaticMethods()

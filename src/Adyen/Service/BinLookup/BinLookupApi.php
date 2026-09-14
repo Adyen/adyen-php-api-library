@@ -130,7 +130,7 @@ class BinLookupApi extends BaseService
      *
      * Check if 3D Secure is available
      *
-     * @param  \Adyen\Model\BinLookup\ThreeDSAvailabilityRequest|null $threeDSAvailabilityRequest threeDSAvailabilityRequest (optional)
+     * @param  \Adyen\Model\BinLookup\ThreeDSAvailabilityRequest $threeDSAvailabilityRequest threeDSAvailabilityRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
@@ -148,7 +148,7 @@ class BinLookupApi extends BaseService
      *
      * Check if 3D Secure is available
      *
-     * @param  \Adyen\Model\BinLookup\ThreeDSAvailabilityRequest|null $threeDSAvailabilityRequest (optional)
+     * @param  \Adyen\Model\BinLookup\ThreeDSAvailabilityRequest $threeDSAvailabilityRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
@@ -305,7 +305,7 @@ class BinLookupApi extends BaseService
      *
      * Check if 3D Secure is available
      *
-     * @param  \Adyen\Model\BinLookup\ThreeDSAvailabilityRequest|null $threeDSAvailabilityRequest
+     * @param  \Adyen\Model\BinLookup\ThreeDSAvailabilityRequest $threeDSAvailabilityRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
@@ -326,7 +326,7 @@ class BinLookupApi extends BaseService
      *
      * Check if 3D Secure is available
      *
-     * @param  \Adyen\Model\BinLookup\ThreeDSAvailabilityRequest|null $threeDSAvailabilityRequest
+     * @param  \Adyen\Model\BinLookup\ThreeDSAvailabilityRequest $threeDSAvailabilityRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
@@ -378,7 +378,7 @@ class BinLookupApi extends BaseService
     /**
      * Create request for operation 'get3dsAvailability'
      *
-     * @param  \Adyen\Model\BinLookup\ThreeDSAvailabilityRequest|null $threeDSAvailabilityRequest
+     * @param  \Adyen\Model\BinLookup\ThreeDSAvailabilityRequest $threeDSAvailabilityRequest (required)
      * @param  string $contentType The value for the Content-Type header. Check self::CONTENT_TYPES['get3dsAvailability'] to see the possible values for this operation
      * @param \Adyen\RequestOptions|null $requestOptions
      *
@@ -434,7 +434,7 @@ class BinLookupApi extends BaseService
         }
 
         // this endpoint requires HTTP basic authentication
-        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+        if (!empty($this->config->getUsername()) && !(empty($this->config->getPassword()))) {
             $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
         }
         // this endpoint requires API key authentication
@@ -454,7 +454,7 @@ class BinLookupApi extends BaseService
             $headers
         );
 
-        $operationHost = $this->config->getHost() ?: $this->baseURL;
+        $operationHost = $this->baseURL;
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
@@ -469,7 +469,7 @@ class BinLookupApi extends BaseService
      *
      * Get a fees cost estimate
      *
-     * @param  \Adyen\Model\BinLookup\CostEstimateRequest|null $costEstimateRequest costEstimateRequest (optional)
+     * @param  \Adyen\Model\BinLookup\CostEstimateRequest $costEstimateRequest costEstimateRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
@@ -487,7 +487,7 @@ class BinLookupApi extends BaseService
      *
      * Get a fees cost estimate
      *
-     * @param  \Adyen\Model\BinLookup\CostEstimateRequest|null $costEstimateRequest (optional)
+     * @param  \Adyen\Model\BinLookup\CostEstimateRequest $costEstimateRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \Adyen\Exception\AdyenException on non-2xx response or if the response body is not in the expected format
@@ -644,7 +644,7 @@ class BinLookupApi extends BaseService
      *
      * Get a fees cost estimate
      *
-     * @param  \Adyen\Model\BinLookup\CostEstimateRequest|null $costEstimateRequest
+     * @param  \Adyen\Model\BinLookup\CostEstimateRequest $costEstimateRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
@@ -665,7 +665,7 @@ class BinLookupApi extends BaseService
      *
      * Get a fees cost estimate
      *
-     * @param  \Adyen\Model\BinLookup\CostEstimateRequest|null $costEstimateRequest
+     * @param  \Adyen\Model\BinLookup\CostEstimateRequest $costEstimateRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
@@ -717,7 +717,7 @@ class BinLookupApi extends BaseService
     /**
      * Create request for operation 'getCostEstimate'
      *
-     * @param  \Adyen\Model\BinLookup\CostEstimateRequest|null $costEstimateRequest
+     * @param  \Adyen\Model\BinLookup\CostEstimateRequest $costEstimateRequest (required)
      * @param  string $contentType The value for the Content-Type header. Check self::CONTENT_TYPES['getCostEstimate'] to see the possible values for this operation
      * @param \Adyen\RequestOptions|null $requestOptions
      *
@@ -773,7 +773,7 @@ class BinLookupApi extends BaseService
         }
 
         // this endpoint requires HTTP basic authentication
-        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+        if (!empty($this->config->getUsername()) && !(empty($this->config->getPassword()))) {
             $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
         }
         // this endpoint requires API key authentication
@@ -793,7 +793,7 @@ class BinLookupApi extends BaseService
             $headers
         );
 
-        $operationHost = $this->config->getHost() ?: $this->baseURL;
+        $operationHost = $this->baseURL;
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',

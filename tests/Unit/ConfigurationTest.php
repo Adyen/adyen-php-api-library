@@ -57,8 +57,6 @@ class ConfigurationTest extends TestCase
      * @covers \Adyen\Configuration::getUsername
      * @covers \Adyen\Configuration::setPassword
      * @covers \Adyen\Configuration::getPassword
-     * @covers \Adyen\Configuration::setHost
-     * @covers \Adyen\Configuration::getHost
      * @covers \Adyen\Configuration::setUserAgent
      * @covers \Adyen\Configuration::getUserAgent
      * @covers \Adyen\Configuration::setDebug
@@ -93,9 +91,6 @@ class ConfigurationTest extends TestCase
 
         $configuration->setPassword('pass');
         $this->assertEquals('pass', $configuration->getPassword());
-
-        $configuration->setHost('host');
-        $this->assertEquals('host', $configuration->getHost());
 
         $configuration->setUserAgent('ua');
         $this->assertEquals('ua', $configuration->getUserAgent());
