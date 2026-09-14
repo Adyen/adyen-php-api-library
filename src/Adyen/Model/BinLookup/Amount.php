@@ -253,40 +253,7 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
 
-        if ($this->container['currency'] === null) {
-            $invalidProperties[] = "'currency' can't be null";
-        }
-        if ($this->container['currency'] !== null && mb_strlen($this->container['currency']) > 3) {
-            $invalidProperties[] = "invalid value for 'currency', the character length must be smaller than or equal to 3.";
-        }
-        if ($this->container['currency'] !== null && mb_strlen($this->container['currency']) < 3) {
-            $invalidProperties[] = "invalid value for 'currency', the character length must be bigger than or equal to 3.";
-        }
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
-        }
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
 
 
     /**
@@ -308,16 +275,6 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCurrency($currency): self
     {
-        if (is_null($currency)) {
-            throw new \InvalidArgumentException('non-nullable currency cannot be null');
-        }
-        if ((mb_strlen($currency) > 3)) {
-            throw new \InvalidArgumentException('invalid length for $currency when calling Amount., must be smaller than or equal to 3.');
-        }
-        if ((mb_strlen($currency) < 3)) {
-            throw new \InvalidArgumentException('invalid length for $currency when calling Amount., must be bigger than or equal to 3.');
-        }
-
         $this->container['currency'] = $currency;
 
         return $this;
@@ -342,9 +299,6 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setValue($value): self
     {
-        if (is_null($value)) {
-            throw new \InvalidArgumentException('non-nullable value cannot be null');
-        }
         $this->container['value'] = $value;
 
         return $this;

@@ -274,28 +274,7 @@ class DSPublicKeyDetail implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
 
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
 
 
     /**
@@ -317,9 +296,6 @@ class DSPublicKeyDetail implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setBrand($brand): self
     {
-        if (is_null($brand)) {
-            throw new \InvalidArgumentException('non-nullable brand cannot be null');
-        }
         $this->container['brand'] = $brand;
 
         return $this;
@@ -344,9 +320,6 @@ class DSPublicKeyDetail implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setDirectoryServerId($directoryServerId): self
     {
-        if (is_null($directoryServerId)) {
-            throw new \InvalidArgumentException('non-nullable directoryServerId cannot be null');
-        }
         $this->container['directoryServerId'] = $directoryServerId;
 
         return $this;
@@ -371,9 +344,6 @@ class DSPublicKeyDetail implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setFromSDKVersion($fromSDKVersion): self
     {
-        if (is_null($fromSDKVersion)) {
-            throw new \InvalidArgumentException('non-nullable fromSDKVersion cannot be null');
-        }
         $this->container['fromSDKVersion'] = $fromSDKVersion;
 
         return $this;
@@ -398,9 +368,6 @@ class DSPublicKeyDetail implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setPublicKey($publicKey): self
     {
-        if (is_null($publicKey)) {
-            throw new \InvalidArgumentException('non-nullable publicKey cannot be null');
-        }
         $this->container['publicKey'] = $publicKey;
 
         return $this;
@@ -425,9 +392,6 @@ class DSPublicKeyDetail implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setRootCertificates($rootCertificates): self
     {
-        if (is_null($rootCertificates)) {
-            throw new \InvalidArgumentException('non-nullable rootCertificates cannot be null');
-        }
         $this->container['rootCertificates'] = $rootCertificates;
 
         return $this;

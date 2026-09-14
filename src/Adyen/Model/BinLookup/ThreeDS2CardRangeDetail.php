@@ -281,28 +281,7 @@ class ThreeDS2CardRangeDetail implements ModelInterface, ArrayAccess, \JsonSeria
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
 
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
 
 
     /**
@@ -324,9 +303,6 @@ class ThreeDS2CardRangeDetail implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setAcsInfoInd($acsInfoInd): self
     {
-        if (is_null($acsInfoInd)) {
-            throw new \InvalidArgumentException('non-nullable acsInfoInd cannot be null');
-        }
         $this->container['acsInfoInd'] = $acsInfoInd;
 
         return $this;
@@ -351,9 +327,6 @@ class ThreeDS2CardRangeDetail implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setBrandCode($brandCode): self
     {
-        if (is_null($brandCode)) {
-            throw new \InvalidArgumentException('non-nullable brandCode cannot be null');
-        }
         $this->container['brandCode'] = $brandCode;
 
         return $this;
@@ -378,9 +351,6 @@ class ThreeDS2CardRangeDetail implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setEndRange($endRange): self
     {
-        if (is_null($endRange)) {
-            throw new \InvalidArgumentException('non-nullable endRange cannot be null');
-        }
         $this->container['endRange'] = $endRange;
 
         return $this;
@@ -405,9 +375,6 @@ class ThreeDS2CardRangeDetail implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setStartRange($startRange): self
     {
-        if (is_null($startRange)) {
-            throw new \InvalidArgumentException('non-nullable startRange cannot be null');
-        }
         $this->container['startRange'] = $startRange;
 
         return $this;
@@ -432,9 +399,6 @@ class ThreeDS2CardRangeDetail implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setThreeDS2Versions($threeDS2Versions): self
     {
-        if (is_null($threeDS2Versions)) {
-            throw new \InvalidArgumentException('non-nullable threeDS2Versions cannot be null');
-        }
         $this->container['threeDS2Versions'] = $threeDS2Versions;
 
         return $this;
@@ -459,9 +423,6 @@ class ThreeDS2CardRangeDetail implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function setThreeDSMethodURL($threeDSMethodURL): self
     {
-        if (is_null($threeDSMethodURL)) {
-            throw new \InvalidArgumentException('non-nullable threeDSMethodURL cannot be null');
-        }
         $this->container['threeDSMethodURL'] = $threeDSMethodURL;
 
         return $this;

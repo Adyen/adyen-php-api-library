@@ -152,7 +152,7 @@ use {{modelPackage}}\ObjectSerializer;
 {{/-last}}
 {{/servers}}
 {{#allParams}}
-     * @param  {{{dataType}}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}} ${{paramName}}{{#description}} {{.}}{{/description}}{{^description}} {{paramName}}{{/description}} {{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
+     * @param  {{{dataType}}}{{^isBodyParam}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}}{{/isBodyParam}} ${{paramName}}{{#description}} {{.}}{{/description}}{{^description}} {{paramName}}{{/description}} {{#isBodyParam}}(required){{/isBodyParam}}{{^isBodyParam}}{{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{/isBodyParam}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
 {{/allParams}}
 {{#servers}}
 {{#-first}}
@@ -211,7 +211,7 @@ use {{modelPackage}}\ObjectSerializer;
 {{/-last}}
 {{/servers}}
 {{#allParams}}
-     * @param  {{{dataType}}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}} ${{paramName}}{{#description}} {{.}}{{/description}} {{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
+     * @param  {{{dataType}}}{{^isBodyParam}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}}{{/isBodyParam}} ${{paramName}}{{#description}} {{.}}{{/description}} {{#isBodyParam}}(required){{/isBodyParam}}{{^isBodyParam}}{{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{/isBodyParam}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
 {{/allParams}}
 {{#servers}}
 {{#-first}}
@@ -373,7 +373,7 @@ use {{modelPackage}}\ObjectSerializer;
 {{/-last}}
 {{/servers}}
 {{#allParams}}
-     * @param  {{{dataType}}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}} ${{paramName}}{{#description}}{{.}}{{/description}}{{^isBodyParam}}{{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{/isBodyParam}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
+     * @param  {{{dataType}}}{{^isBodyParam}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}}{{/isBodyParam}} ${{paramName}}{{#description}} {{.}}{{/description}} {{#isBodyParam}}(required){{/isBodyParam}}{{^isBodyParam}}{{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{/isBodyParam}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
 {{/allParams}}
 {{#servers}}
 {{#-first}}
@@ -435,7 +435,7 @@ use {{modelPackage}}\ObjectSerializer;
 {{/-last}}
 {{/servers}}
 {{#allParams}}
-     * @param  {{{dataType}}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}} ${{paramName}}{{#description}} {{.}}{{/description}}{{^isBodyParam}}{{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{/isBodyParam}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
+     * @param  {{{dataType}}}{{^isBodyParam}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}}{{/isBodyParam}} ${{paramName}}{{#description}} {{.}}{{/description}} {{#isBodyParam}}(required){{/isBodyParam}}{{^isBodyParam}}{{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{/isBodyParam}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
 {{/allParams}}
 {{#servers}}
 {{#-first}}
@@ -527,7 +527,7 @@ use {{modelPackage}}\ObjectSerializer;
 {{/-last}}
 {{/servers}}
 {{#allParams}}
-     * @param  {{{dataType}}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}} ${{paramName}}{{#description}} {{.}}{{/description}}{{^isBodyParam}}{{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{/isBodyParam}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
+     * @param  {{{dataType}}}{{^isBodyParam}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}}{{/isBodyParam}} ${{paramName}}{{#description}} {{.}}{{/description}} {{#isBodyParam}}(required){{/isBodyParam}}{{^isBodyParam}}{{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{/isBodyParam}}{{#isDeprecated}} (deprecated){{/isDeprecated}}
 {{/allParams}}
 {{#servers}}
 {{#-first}}
@@ -719,7 +719,7 @@ use {{modelPackage}}\ObjectSerializer;
         {{#isBasic}}
         {{#isBasicBasic}}
         // this endpoint requires HTTP basic authentication
-        if (!empty($this->config->getUsername()) || !(empty($this->config->getPassword()))) {
+        if (!empty($this->config->getUsername()) && !(empty($this->config->getPassword()))) {
             $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
         }
         {{/isBasicBasic}}
@@ -763,7 +763,7 @@ use {{modelPackage}}\ObjectSerializer;
         $operationHost = Configuration::getHostString($hostSettings, $hostIndex, $variables);
         {{/servers.0}}
         {{^servers.0}}
-        $operationHost = $this->config->getHost() ?: $this->baseURL;
+        $operationHost = $this->baseURL;
         {{/servers.0}}
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
