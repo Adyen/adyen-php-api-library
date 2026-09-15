@@ -64,8 +64,6 @@ class ModelBasedCheckoutTest extends BaseTest
         $config = $this->createConfiguration();
         $service = new PaymentsApi($config, $client);
         $result = $service->paymentMethods(new PaymentMethodsRequest(null));
-        // And assert that the result is equal to a deep json encode/decode
-        #$this->assertEquals($result->toArray(), json_decode(json_encode($result->jsonSerialize()), true));
         $this->assertEquals(
             $result->toArray(),
             json_decode(json_encode($result->jsonSerialize()), true)
