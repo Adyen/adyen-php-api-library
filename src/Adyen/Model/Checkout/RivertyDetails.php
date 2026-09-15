@@ -321,7 +321,7 @@ class RivertyDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
         $this->setIfExists('subtype', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'riverty');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

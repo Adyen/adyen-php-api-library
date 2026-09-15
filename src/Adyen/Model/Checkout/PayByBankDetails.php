@@ -259,7 +259,7 @@ class PayByBankDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('issuer', $data ?? [], null);
         $this->setIfExists('sdkData', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'paybybank');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

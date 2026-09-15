@@ -283,7 +283,7 @@ class MasterpassDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('fundingSource', $data ?? [], null);
         $this->setIfExists('masterpassTransactionId', $data ?? [], null);
         $this->setIfExists('sdkData', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'masterpass');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

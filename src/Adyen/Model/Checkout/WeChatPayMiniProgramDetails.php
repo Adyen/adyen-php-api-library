@@ -280,7 +280,7 @@ class WeChatPayMiniProgramDetails implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
         $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'wechatpayMiniProgram');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

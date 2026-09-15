@@ -280,7 +280,7 @@ class UpiQrDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('shopperNotificationReference', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'upi_qr');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

@@ -308,7 +308,7 @@ class CashAppDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
         $this->setIfExists('subtype', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'cashapp');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

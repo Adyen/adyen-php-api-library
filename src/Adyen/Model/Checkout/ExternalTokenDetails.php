@@ -300,7 +300,7 @@ class ExternalTokenDetails implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('number', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
         $this->setIfExists('subtype', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'externalToken');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

@@ -301,7 +301,7 @@ class CheckoutForwardRequestCard implements ModelInterface, ArrayAccess, \JsonSe
         $this->setIfExists('expiryYear', $data ?? [], null);
         $this->setIfExists('holderName', $data ?? [], null);
         $this->setIfExists('number', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'scheme');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

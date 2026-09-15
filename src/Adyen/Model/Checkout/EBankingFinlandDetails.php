@@ -259,7 +259,7 @@ class EBankingFinlandDetails implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('issuer', $data ?? [], null);
         $this->setIfExists('sdkData', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'ebanking_FI');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

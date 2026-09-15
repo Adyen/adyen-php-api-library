@@ -408,7 +408,6 @@ class RecurringApi extends BaseService
      *
      * Forward stored payment details
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\CheckoutForwardRequest $checkoutForwardRequest checkoutForwardRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -416,9 +415,9 @@ class RecurringApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \Adyen\Model\Checkout\CheckoutForwardResponse
      */
-    public function forward(string $idempotencyKey = null, \Adyen\Model\Checkout\CheckoutForwardRequest $checkoutForwardRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\CheckoutForwardResponse
+    public function forward(\Adyen\Model\Checkout\CheckoutForwardRequest $checkoutForwardRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\CheckoutForwardResponse
     {
-        list($response) = $this->forwardWithHttpInfo($idempotencyKey, $checkoutForwardRequest, $requestOptions);
+        list($response) = $this->forwardWithHttpInfo($checkoutForwardRequest, $requestOptions);
         return $response;
     }
 
@@ -427,7 +426,6 @@ class RecurringApi extends BaseService
      *
      * Forward stored payment details
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\CheckoutForwardRequest $checkoutForwardRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -435,11 +433,11 @@ class RecurringApi extends BaseService
      * @throws \InvalidArgumentException
      * @return array of \Adyen\Model\Checkout\CheckoutForwardResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function forwardWithHttpInfo(string $idempotencyKey = null, \Adyen\Model\Checkout\CheckoutForwardRequest $checkoutForwardRequest, ?\Adyen\RequestOptions $requestOptions = null): array
+    public function forwardWithHttpInfo(\Adyen\Model\Checkout\CheckoutForwardRequest $checkoutForwardRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
         $contentType = self::CONTENT_TYPES['forward'][0];
 
-        $request = $this->forwardRequest($idempotencyKey, $checkoutForwardRequest, $contentType, $requestOptions);
+        $request = $this->forwardRequest($checkoutForwardRequest, $contentType, $requestOptions);
 
         try {
             $options = $this->createHttpClientOption();
@@ -515,16 +513,15 @@ class RecurringApi extends BaseService
      *
      * Forward stored payment details
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\CheckoutForwardRequest $checkoutForwardRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function forwardAsync(string $idempotencyKey = null, \Adyen\Model\Checkout\CheckoutForwardRequest $checkoutForwardRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function forwardAsync(\Adyen\Model\Checkout\CheckoutForwardRequest $checkoutForwardRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
-        return $this->forwardAsyncWithHttpInfo($idempotencyKey, $checkoutForwardRequest, $requestOptions)
+        return $this->forwardAsyncWithHttpInfo($checkoutForwardRequest, $requestOptions)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -537,18 +534,17 @@ class RecurringApi extends BaseService
      *
      * Forward stored payment details
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\CheckoutForwardRequest $checkoutForwardRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function forwardAsyncWithHttpInfo(string $idempotencyKey = null, \Adyen\Model\Checkout\CheckoutForwardRequest $checkoutForwardRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function forwardAsyncWithHttpInfo(\Adyen\Model\Checkout\CheckoutForwardRequest $checkoutForwardRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
         $contentType = self::CONTENT_TYPES['forward'][0];
 
-        $request = $this->forwardRequest($idempotencyKey, $checkoutForwardRequest, $contentType, $requestOptions);
+        $request = $this->forwardRequest($checkoutForwardRequest, $contentType, $requestOptions);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -590,7 +586,6 @@ class RecurringApi extends BaseService
     /**
      * Create request for operation 'forward'
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\CheckoutForwardRequest $checkoutForwardRequest (required)
      * @param  string $contentType The value for the Content-Type header. Check self::CONTENT_TYPES['forward'] to see the possible values for this operation
      * @param \Adyen\RequestOptions|null $requestOptions
@@ -598,7 +593,7 @@ class RecurringApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function forwardRequest(string $idempotencyKey = null, \Adyen\Model\Checkout\CheckoutForwardRequest $checkoutForwardRequest, string $contentType = self::CONTENT_TYPES['forward'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
+    public function forwardRequest(\Adyen\Model\Checkout\CheckoutForwardRequest $checkoutForwardRequest, string $contentType = self::CONTENT_TYPES['forward'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
     {
 
         $resourcePath = '/forward';
@@ -607,10 +602,6 @@ class RecurringApi extends BaseService
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
-        // header params
-        if ($idempotencyKey !== null) {
-            $headerParams['Idempotency-Key'] = ObjectSerializer::toHeaderValue($idempotencyKey);
-        }
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', ],
@@ -694,7 +685,7 @@ class RecurringApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \Adyen\Model\Checkout\ListStoredPaymentMethodsResponse
      */
-    public function getTokensForStoredPaymentDetails(string $shopperReference = null, string $merchantAccount = null, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\ListStoredPaymentMethodsResponse
+    public function getTokensForStoredPaymentDetails(?string $shopperReference = null, ?string $merchantAccount = null, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\ListStoredPaymentMethodsResponse
     {
         list($response) = $this->getTokensForStoredPaymentDetailsWithHttpInfo($shopperReference, $merchantAccount, $requestOptions);
         return $response;
@@ -713,7 +704,7 @@ class RecurringApi extends BaseService
      * @throws \InvalidArgumentException
      * @return array of \Adyen\Model\Checkout\ListStoredPaymentMethodsResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getTokensForStoredPaymentDetailsWithHttpInfo(string $shopperReference = null, string $merchantAccount = null, ?\Adyen\RequestOptions $requestOptions = null): array
+    public function getTokensForStoredPaymentDetailsWithHttpInfo(?string $shopperReference = null, ?string $merchantAccount = null, ?\Adyen\RequestOptions $requestOptions = null): array
     {
         $contentType = self::CONTENT_TYPES['getTokensForStoredPaymentDetails'][0];
 
@@ -800,7 +791,7 @@ class RecurringApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getTokensForStoredPaymentDetailsAsync(string $shopperReference = null, string $merchantAccount = null, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function getTokensForStoredPaymentDetailsAsync(?string $shopperReference = null, ?string $merchantAccount = null, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
         return $this->getTokensForStoredPaymentDetailsAsyncWithHttpInfo($shopperReference, $merchantAccount, $requestOptions)
             ->then(
@@ -822,7 +813,7 @@ class RecurringApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getTokensForStoredPaymentDetailsAsyncWithHttpInfo(string $shopperReference = null, string $merchantAccount = null, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function getTokensForStoredPaymentDetailsAsyncWithHttpInfo(?string $shopperReference = null, ?string $merchantAccount = null, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
         $contentType = self::CONTENT_TYPES['getTokensForStoredPaymentDetails'][0];
 
@@ -876,7 +867,7 @@ class RecurringApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getTokensForStoredPaymentDetailsRequest(string $shopperReference = null, string $merchantAccount = null, string $contentType = self::CONTENT_TYPES['getTokensForStoredPaymentDetails'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
+    public function getTokensForStoredPaymentDetailsRequest(?string $shopperReference = null, ?string $merchantAccount = null, string $contentType = self::CONTENT_TYPES['getTokensForStoredPaymentDetails'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
     {
 
         $resourcePath = '/storedPaymentMethods';
@@ -973,7 +964,6 @@ class RecurringApi extends BaseService
      *
      * Create a token to store payment details
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\StoredPaymentMethodRequest $storedPaymentMethodRequest storedPaymentMethodRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -981,9 +971,9 @@ class RecurringApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \Adyen\Model\Checkout\StoredPaymentMethodResource
      */
-    public function storedPaymentMethods(string $idempotencyKey = null, \Adyen\Model\Checkout\StoredPaymentMethodRequest $storedPaymentMethodRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\StoredPaymentMethodResource
+    public function storedPaymentMethods(\Adyen\Model\Checkout\StoredPaymentMethodRequest $storedPaymentMethodRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\StoredPaymentMethodResource
     {
-        list($response) = $this->storedPaymentMethodsWithHttpInfo($idempotencyKey, $storedPaymentMethodRequest, $requestOptions);
+        list($response) = $this->storedPaymentMethodsWithHttpInfo($storedPaymentMethodRequest, $requestOptions);
         return $response;
     }
 
@@ -992,7 +982,6 @@ class RecurringApi extends BaseService
      *
      * Create a token to store payment details
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\StoredPaymentMethodRequest $storedPaymentMethodRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -1000,11 +989,11 @@ class RecurringApi extends BaseService
      * @throws \InvalidArgumentException
      * @return array of \Adyen\Model\Checkout\StoredPaymentMethodResource, HTTP status code, HTTP response headers (array of strings)
      */
-    public function storedPaymentMethodsWithHttpInfo(string $idempotencyKey = null, \Adyen\Model\Checkout\StoredPaymentMethodRequest $storedPaymentMethodRequest, ?\Adyen\RequestOptions $requestOptions = null): array
+    public function storedPaymentMethodsWithHttpInfo(\Adyen\Model\Checkout\StoredPaymentMethodRequest $storedPaymentMethodRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
         $contentType = self::CONTENT_TYPES['storedPaymentMethods'][0];
 
-        $request = $this->storedPaymentMethodsRequest($idempotencyKey, $storedPaymentMethodRequest, $contentType, $requestOptions);
+        $request = $this->storedPaymentMethodsRequest($storedPaymentMethodRequest, $contentType, $requestOptions);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1080,16 +1069,15 @@ class RecurringApi extends BaseService
      *
      * Create a token to store payment details
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\StoredPaymentMethodRequest $storedPaymentMethodRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function storedPaymentMethodsAsync(string $idempotencyKey = null, \Adyen\Model\Checkout\StoredPaymentMethodRequest $storedPaymentMethodRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function storedPaymentMethodsAsync(\Adyen\Model\Checkout\StoredPaymentMethodRequest $storedPaymentMethodRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
-        return $this->storedPaymentMethodsAsyncWithHttpInfo($idempotencyKey, $storedPaymentMethodRequest, $requestOptions)
+        return $this->storedPaymentMethodsAsyncWithHttpInfo($storedPaymentMethodRequest, $requestOptions)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1102,18 +1090,17 @@ class RecurringApi extends BaseService
      *
      * Create a token to store payment details
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\StoredPaymentMethodRequest $storedPaymentMethodRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function storedPaymentMethodsAsyncWithHttpInfo(string $idempotencyKey = null, \Adyen\Model\Checkout\StoredPaymentMethodRequest $storedPaymentMethodRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function storedPaymentMethodsAsyncWithHttpInfo(\Adyen\Model\Checkout\StoredPaymentMethodRequest $storedPaymentMethodRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
         $contentType = self::CONTENT_TYPES['storedPaymentMethods'][0];
 
-        $request = $this->storedPaymentMethodsRequest($idempotencyKey, $storedPaymentMethodRequest, $contentType, $requestOptions);
+        $request = $this->storedPaymentMethodsRequest($storedPaymentMethodRequest, $contentType, $requestOptions);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1155,7 +1142,6 @@ class RecurringApi extends BaseService
     /**
      * Create request for operation 'storedPaymentMethods'
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\StoredPaymentMethodRequest $storedPaymentMethodRequest (required)
      * @param  string $contentType The value for the Content-Type header. Check self::CONTENT_TYPES['storedPaymentMethods'] to see the possible values for this operation
      * @param \Adyen\RequestOptions|null $requestOptions
@@ -1163,7 +1149,7 @@ class RecurringApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function storedPaymentMethodsRequest(string $idempotencyKey = null, \Adyen\Model\Checkout\StoredPaymentMethodRequest $storedPaymentMethodRequest, string $contentType = self::CONTENT_TYPES['storedPaymentMethods'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
+    public function storedPaymentMethodsRequest(\Adyen\Model\Checkout\StoredPaymentMethodRequest $storedPaymentMethodRequest, string $contentType = self::CONTENT_TYPES['storedPaymentMethods'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
     {
 
         $resourcePath = '/storedPaymentMethods';
@@ -1172,10 +1158,6 @@ class RecurringApi extends BaseService
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
-        // header params
-        if ($idempotencyKey !== null) {
-            $headerParams['Idempotency-Key'] = ObjectSerializer::toHeaderValue($idempotencyKey);
-        }
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', ],

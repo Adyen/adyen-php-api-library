@@ -266,7 +266,7 @@ class PayByBankAISDirectDebitDetails implements ModelInterface, ArrayAccess, \Js
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
         $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'paybybank_AIS_DD');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

@@ -259,7 +259,7 @@ class CellulantDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('issuer', $data ?? [], null);
         $this->setIfExists('sdkData', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'cellulant');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
