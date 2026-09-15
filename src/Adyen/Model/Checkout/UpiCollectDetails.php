@@ -286,7 +286,7 @@ class UpiCollectDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('shopperNotificationReference', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'upi_collect');
+        $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('virtualPaymentAddress', $data ?? [], null);
     }
 

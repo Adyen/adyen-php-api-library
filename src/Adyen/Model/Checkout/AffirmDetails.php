@@ -259,7 +259,7 @@ class AffirmDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('financingProgram', $data ?? [], null);
         $this->setIfExists('sdkData', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'affirm');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

@@ -1273,7 +1273,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
         $this->setIfExists('transferInstrumentId', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'ach');
+        $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('financingProgram', $data ?? [], null);
         $this->setIfExists('billingAddress', $data ?? [], null);
         $this->setIfExists('deliveryAddress', $data ?? [], null);

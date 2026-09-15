@@ -266,7 +266,7 @@ class PayPayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
         $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'paypay');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

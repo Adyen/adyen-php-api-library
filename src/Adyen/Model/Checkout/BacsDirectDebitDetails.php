@@ -294,7 +294,7 @@ class BacsDirectDebitDetails implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
         $this->setIfExists('transferInstrumentId', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'directdebit_GB');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

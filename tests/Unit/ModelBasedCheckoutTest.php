@@ -21,21 +21,22 @@ use Adyen\Service\Checkout\RecurringApi;
 use Adyen\Model\Checkout\LineItem;
 use Adyen\Model\Checkout\DeliveryAddress;
 
-class ModelBasedCheckoutTest extends TestCaseMock
+class ModelBasedCheckoutTest extends BaseTest
 {
-    
+
     const HOLDER_NAME = "John Smith";
     const RETURN_URL = "https://your-company.com/...";
+
     /**
      * @dataProvider successPaymentMethodsProvider
+     * @throws AdyenException
      */
     public function testPaymentMethodsSuccess($jsonFile, $httpStatus)
     {
         // create Checkout client
-        $client = $this->createMockClient($jsonFile, $httpStatus);
-
-        // initialize service
-        $service = new \Adyen\Service\Checkout\PaymentsApi($client);
+        $client = $this->createMockSerializerClient($jsonFile, $httpStatus);
+        $config = $this->createConfiguration();
+        $service = new PaymentsApi($config, $client);
 
         $params = array('merchant_account' => "YourMerchantAccount");
         $paymentMethodsRequest = new PaymentMethodsRequest($params);
@@ -44,7 +45,7 @@ class ModelBasedCheckoutTest extends TestCaseMock
         $this->assertEquals('AliPay', $result->getPaymentMethods()[0]->getName());
     }
 
-    public static function successPaymentMethodsProvider()
+    public static function successPaymentMethodsProvider(): array
     {
         return array(
             array('tests/Resources/ModelBasedCheckout/payment-methods-success.json', 200)
@@ -53,41 +54,36 @@ class ModelBasedCheckoutTest extends TestCaseMock
 
     /**
      * @dataProvider successPaymentMethodsProvider
+     * @throws AdyenException
+     * @throws \Adyen\Exception\AdyenException
      */
     public function testToArrayMethod($jsonFile, $httpStatus)
     {
-        // TODO refactor this test after OpenAPI Generator upgrade
-        $this->markTestSkipped('Temp skipped');
 
-        // create Checkout client
-        $client = $this->createMockClient($jsonFile, $httpStatus);
-        $service = new \Adyen\Service\Checkout\PaymentsApi($client);
+        $client = $this->createMockSerializerClient($jsonFile, $httpStatus);
+        $config = $this->createConfiguration();
+        $service = new PaymentsApi($config, $client);
         $result = $service->paymentMethods(new PaymentMethodsRequest(null));
-
-        // first function calling to Array
-        $func1 = function () use ($result) {
-            #return $result->toArray();
-            return ObjectSerializer::sanitizeForSerialization($result);
-        };
-        // second function calling to json encode + decode
-        $func2 = function () use ($result) {
-            return json_decode(json_encode($result->jsonSerialize()), true);
-        };
         // And assert that the result is equal to a deep json encode/decode
         #$this->assertEquals($result->toArray(), json_decode(json_encode($result->jsonSerialize()), true));
-        $this->assertEquals(ObjectSerializer::sanitizeForSerialization($result), json_decode(json_encode($result->jsonSerialize()), true));
+        $this->assertEquals(
+            $result->toArray(),
+            json_decode(json_encode($result->jsonSerialize()), true)
+        );
     }
 
     /**
      * @dataProvider successPaymentsProvider
+     * @throws AdyenException
      */
     public function testPaymentsSuccess($jsonFile, $httpStatus)
     {
         // create Checkout client
-        $client = $this->createMockClient(__DIR__ . '/../../' . $jsonFile, $httpStatus);
 
-        // initialize service
-        $service = new PaymentsApi($client);
+
+        $client = $this->createMockSerializerClient(__DIR__ . '/../../' . $jsonFile, $httpStatus);
+        $config = $this->createConfiguration();
+        $service = new PaymentsApi($config, $client);
 
         $params = array(
             'merchant_account' => "YourMerchantAccount",
@@ -121,14 +117,15 @@ class ModelBasedCheckoutTest extends TestCaseMock
 
     /**
      * @dataProvider successPaymentsDetailsProvider
+     * @throws AdyenException
+     * @throws \Adyen\Exception\AdyenException
      */
     public function testPaymentsDetailsSuccess($jsonFile, $httpStatus)
     {
         // create Checkout client
-        $client = $this->createMockClient($jsonFile, $httpStatus);
-
-        // initialize service
-        $service = new PaymentsApi($client);
+        $client = $this->createMockSerializerClient($jsonFile, $httpStatus);
+        $config = $this->createConfiguration();
+        $service = new PaymentsApi($config, $client);
 
         $params = array(
             'merchant_account' => "YourMerchantAccount",
@@ -144,21 +141,21 @@ class ModelBasedCheckoutTest extends TestCaseMock
         $this->assertContains($result->getResultCode(), array('Authorised'));
     }
 
-    public static function successPaymentsDetailsProvider()
+    public static function successPaymentsDetailsProvider(): array
     {
         return array(
             array('tests/Resources/ModelBasedCheckout/payments-details-success.json', 200)
         );
     }
 
-    public static function successPaymentSessionProvider()
+    public static function successPaymentSessionProvider(): array
     {
         return array(
             array('tests/Resources/ModelBasedCheckout/payment-session-success.json', 200)
         );
     }
 
-    public static function successPaymentsResultProvider()
+    public static function successPaymentsResultProvider(): array
     {
         return array(
             array('tests/Resources/ModelBasedCheckout/payments-result-success.json', 200)
@@ -170,12 +167,15 @@ class ModelBasedCheckoutTest extends TestCaseMock
      * @param int $httpStatus
      *
      * @dataProvider successPaymentsLinkProvider
+     * @throws AdyenException
+     * @throws \Adyen\Exception\AdyenException
      */
     public function testPaymentLinksSuccess($jsonFile, $httpStatus)
     {
-        $client = $this->createMockClient($jsonFile, $httpStatus);
+        $client = $this->createMockSerializerClient($jsonFile, $httpStatus);
+        $config = $this->createConfiguration();
+        $service = new PaymentLinksApi($config, $client);
 
-        $service = new PaymentLinksApi($client);
 
         $result = $service->paymentLinks(new PaymentLinkRequest());
 
@@ -185,7 +185,7 @@ class ModelBasedCheckoutTest extends TestCaseMock
         );
     }
 
-    public static function successPaymentsLinkProvider()
+    public static function successPaymentsLinkProvider(): array
     {
         return array(
             array('tests/Resources/ModelBasedCheckout/payment-links-success.json', 200)
@@ -197,12 +197,14 @@ class ModelBasedCheckoutTest extends TestCaseMock
      * @param int $httpStatus
      *
      * @dataProvider successDonationsProvider
+     * @throws AdyenException
+     * @throws \Adyen\Exception\AdyenException
      */
     public function testDonationsSuccess($jsonFile, $httpStatus)
     {
-        $client = $this->createMockClient($jsonFile, $httpStatus);
-
-        $service = new DonationsApi($client);
+        $client = $this->createMockSerializerClient($jsonFile, $httpStatus);
+        $config = $this->createConfiguration();
+        $service = new DonationsApi($config, $client);
 
         $result = $service->donations(new DonationPaymentRequest());
         $this->assertStringContainsString($result->getReference(), 'YOUR_DONATION_REFERENCE');
@@ -222,19 +224,21 @@ class ModelBasedCheckoutTest extends TestCaseMock
      * @param int $httpStatus
      *
      * @dataProvider successSessionsProvider
+     * @throws AdyenException
+     * @throws \Adyen\Exception\AdyenException
      */
     public function testSessionsSuccess($jsonFile, $httpStatus)
     {
-        $client = $this->createMockClient($jsonFile, $httpStatus);
-
-        $service = new PaymentsApi($client);
+        $client = $this->createMockSerializerClient($jsonFile, $httpStatus);
+        $config = $this->createConfiguration();
+        $service = new PaymentsApi($config, $client);
 
         $result = $service->sessions(new CreateCheckoutSessionRequest());
 
         $this->assertNotNull($result->getSessionData());
         $this->assertEquals("CS16116100127511AF", $result->getId());
     }
-    public static function successSessionsProvider()
+    public static function successSessionsProvider(): array
     {
         return array(
             array('tests/Resources/ModelBasedCheckout/sessions-success.json', 200),
@@ -246,19 +250,22 @@ class ModelBasedCheckoutTest extends TestCaseMock
      * @param int $httpStatus
      *
      * @dataProvider successCardDetailsProvider
+     * @throws AdyenException
+     * @throws \Adyen\Exception\AdyenException
      */
     public function testCardDetailsSuccess($jsonFile, $httpStatus)
     {
-        $client = $this->createMockClient($jsonFile, $httpStatus);
+        $client = $this->createMockSerializerClient($jsonFile, $httpStatus);
+        $config = $this->createConfiguration();
+        $service = new PaymentsApi($config, $client);
 
-        $service = new PaymentsApi($client);
 
         $result = $service->cardDetails(new CardDetailsRequest());
 
         $this->assertNotNull($result->getBrands());
     }
 
-    public static function successCardDetailsProvider()
+    public static function successCardDetailsProvider(): array
     {
         return array(
             array('tests/Resources/ModelBasedCheckout/cardDetails-success.json', 200),
@@ -270,12 +277,14 @@ class ModelBasedCheckoutTest extends TestCaseMock
      * @param int $httpStatus
      *
      * @dataProvider successGetStoredPaymentMethodsProvider
+     * @throws AdyenException
+     * @throws \Adyen\Exception\AdyenException
      */
     public function testGetStoredPaymentMethodsSuccess($jsonFile, $httpStatus)
     {
-        $client = $this->createMockClient($jsonFile, $httpStatus);
-
-        $service = new RecurringApi($client);
+        $client = $this->createMockSerializerClient($jsonFile, $httpStatus);
+        $config = $this->createConfiguration();
+        $service = new RecurringApi($config, $client);
 
         $result = $service->getTokensForStoredPaymentDetails();
 
@@ -283,7 +292,7 @@ class ModelBasedCheckoutTest extends TestCaseMock
         $this->assertEquals("merchantAccount", $result->getMerchantAccount());
     }
 
-    public static function successGetStoredPaymentMethodsProvider()
+    public static function successGetStoredPaymentMethodsProvider(): array
     {
         return array(
             array('tests/Resources/ModelBasedCheckout/getStoredPaymentMethods-success.json', 200),
@@ -292,14 +301,15 @@ class ModelBasedCheckoutTest extends TestCaseMock
 
     /**
      * @throws AdyenException
+     * @throws \Adyen\Exception\AdyenException
      */
     public function testDeleteStoredPaymentMethodsSuccess()
     {
-        $client = $this->createMockClient(null, 204);
+        $client = $this->createMockSerializerClient(null, 204);
+        $config = $this->createConfiguration();
+        $service = new RecurringApi($config, $client);
 
-        $service = new RecurringApi($client);
-
-        $service->deleteTokenForStoredPaymentDetails("123");
+        $service->deleteTokenForStoredPaymentDetails("paymentMethodId", "shopperReference", "merchantAccount");
 
         $this->assertTrue(true, 'no exception');
     }
@@ -342,14 +352,16 @@ class ModelBasedCheckoutTest extends TestCaseMock
 
     /**
      * @dataProvider successPaymentsProviderAction
+     * @throws \Adyen\Exception\AdyenException
+     * @throws AdyenException
      */
     public function testPaymentResponseAction($jsonFile, $httpStatus)
     {
         // create Checkout client
-        $client = $this->createMockClient($jsonFile, $httpStatus);
+        $client = $this->createMockSerializerClient($jsonFile, $httpStatus);
+        $config = $this->createConfiguration();
+        $service = new PaymentsApi($config, $client);
 
-        // initialize service
-        $service = new PaymentsApi($client);
         $result = $service->payments(new PaymentRequest());
         $action = $result->getAction();
 
@@ -360,7 +372,7 @@ class ModelBasedCheckoutTest extends TestCaseMock
         $this->assertEquals("GET", $action->getMethod());
     }
 
-    public static function successPaymentsProviderAction()
+    public static function successPaymentsProviderAction(): array
     {
         return array(
             array('tests/Resources/ModelBasedCheckout/payments-action.json', 200)

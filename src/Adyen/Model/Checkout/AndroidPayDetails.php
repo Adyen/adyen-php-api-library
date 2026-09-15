@@ -252,7 +252,7 @@ class AndroidPayDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('sdkData', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'androidpay');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

@@ -252,7 +252,7 @@ class MobilePayDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('sdkData', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'mobilepay');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

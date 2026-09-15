@@ -276,7 +276,7 @@ class BrowserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('acceptHeader', $data ?? [], null);
         $this->setIfExists('colorDepth', $data ?? [], null);
         $this->setIfExists('javaEnabled', $data ?? [], null);
-        $this->setIfExists('javaScriptEnabled', $data ?? [], true);
+        $this->setIfExists('javaScriptEnabled', $data ?? [], null);
         $this->setIfExists('language', $data ?? [], null);
         $this->setIfExists('screenHeight', $data ?? [], null);
         $this->setIfExists('screenWidth', $data ?? [], null);

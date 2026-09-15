@@ -136,7 +136,6 @@ class UtilityApi extends BaseService
      *
      * Get an Apple Pay session
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\ApplePaySessionRequest $applePaySessionRequest applePaySessionRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -144,9 +143,9 @@ class UtilityApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \Adyen\Model\Checkout\ApplePaySessionResponse
      */
-    public function getApplePaySession(string $idempotencyKey = null, \Adyen\Model\Checkout\ApplePaySessionRequest $applePaySessionRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\ApplePaySessionResponse
+    public function getApplePaySession(\Adyen\Model\Checkout\ApplePaySessionRequest $applePaySessionRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\ApplePaySessionResponse
     {
-        list($response) = $this->getApplePaySessionWithHttpInfo($idempotencyKey, $applePaySessionRequest, $requestOptions);
+        list($response) = $this->getApplePaySessionWithHttpInfo($applePaySessionRequest, $requestOptions);
         return $response;
     }
 
@@ -155,7 +154,6 @@ class UtilityApi extends BaseService
      *
      * Get an Apple Pay session
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\ApplePaySessionRequest $applePaySessionRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -163,11 +161,11 @@ class UtilityApi extends BaseService
      * @throws \InvalidArgumentException
      * @return array of \Adyen\Model\Checkout\ApplePaySessionResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getApplePaySessionWithHttpInfo(string $idempotencyKey = null, \Adyen\Model\Checkout\ApplePaySessionRequest $applePaySessionRequest, ?\Adyen\RequestOptions $requestOptions = null): array
+    public function getApplePaySessionWithHttpInfo(\Adyen\Model\Checkout\ApplePaySessionRequest $applePaySessionRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
         $contentType = self::CONTENT_TYPES['getApplePaySession'][0];
 
-        $request = $this->getApplePaySessionRequest($idempotencyKey, $applePaySessionRequest, $contentType, $requestOptions);
+        $request = $this->getApplePaySessionRequest($applePaySessionRequest, $contentType, $requestOptions);
 
         try {
             $options = $this->createHttpClientOption();
@@ -243,16 +241,15 @@ class UtilityApi extends BaseService
      *
      * Get an Apple Pay session
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\ApplePaySessionRequest $applePaySessionRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getApplePaySessionAsync(string $idempotencyKey = null, \Adyen\Model\Checkout\ApplePaySessionRequest $applePaySessionRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function getApplePaySessionAsync(\Adyen\Model\Checkout\ApplePaySessionRequest $applePaySessionRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
-        return $this->getApplePaySessionAsyncWithHttpInfo($idempotencyKey, $applePaySessionRequest, $requestOptions)
+        return $this->getApplePaySessionAsyncWithHttpInfo($applePaySessionRequest, $requestOptions)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -265,18 +262,17 @@ class UtilityApi extends BaseService
      *
      * Get an Apple Pay session
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\ApplePaySessionRequest $applePaySessionRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getApplePaySessionAsyncWithHttpInfo(string $idempotencyKey = null, \Adyen\Model\Checkout\ApplePaySessionRequest $applePaySessionRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function getApplePaySessionAsyncWithHttpInfo(\Adyen\Model\Checkout\ApplePaySessionRequest $applePaySessionRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
         $contentType = self::CONTENT_TYPES['getApplePaySession'][0];
 
-        $request = $this->getApplePaySessionRequest($idempotencyKey, $applePaySessionRequest, $contentType, $requestOptions);
+        $request = $this->getApplePaySessionRequest($applePaySessionRequest, $contentType, $requestOptions);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -318,7 +314,6 @@ class UtilityApi extends BaseService
     /**
      * Create request for operation 'getApplePaySession'
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\ApplePaySessionRequest $applePaySessionRequest (required)
      * @param  string $contentType The value for the Content-Type header. Check self::CONTENT_TYPES['getApplePaySession'] to see the possible values for this operation
      * @param \Adyen\RequestOptions|null $requestOptions
@@ -326,7 +321,7 @@ class UtilityApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getApplePaySessionRequest(string $idempotencyKey = null, \Adyen\Model\Checkout\ApplePaySessionRequest $applePaySessionRequest, string $contentType = self::CONTENT_TYPES['getApplePaySession'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
+    public function getApplePaySessionRequest(\Adyen\Model\Checkout\ApplePaySessionRequest $applePaySessionRequest, string $contentType = self::CONTENT_TYPES['getApplePaySession'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
     {
 
         $resourcePath = '/applePay/sessions';
@@ -335,10 +330,6 @@ class UtilityApi extends BaseService
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
-        // header params
-        if ($idempotencyKey !== null) {
-            $headerParams['Idempotency-Key'] = ObjectSerializer::toHeaderValue($idempotencyKey);
-        }
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', ],
@@ -414,7 +405,6 @@ class UtilityApi extends BaseService
      *
      * Create originKey values for domains
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\UtilityRequest $utilityRequest utilityRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -423,9 +413,9 @@ class UtilityApi extends BaseService
      * @return \Adyen\Model\Checkout\UtilityResponse
      * @deprecated
      */
-    public function originKeys(string $idempotencyKey = null, \Adyen\Model\Checkout\UtilityRequest $utilityRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\UtilityResponse
+    public function originKeys(\Adyen\Model\Checkout\UtilityRequest $utilityRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\UtilityResponse
     {
-        list($response) = $this->originKeysWithHttpInfo($idempotencyKey, $utilityRequest, $requestOptions);
+        list($response) = $this->originKeysWithHttpInfo($utilityRequest, $requestOptions);
         return $response;
     }
 
@@ -434,7 +424,6 @@ class UtilityApi extends BaseService
      *
      * Create originKey values for domains
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\UtilityRequest $utilityRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -443,11 +432,11 @@ class UtilityApi extends BaseService
      * @return array of \Adyen\Model\Checkout\UtilityResponse, HTTP status code, HTTP response headers (array of strings)
      * @deprecated
      */
-    public function originKeysWithHttpInfo(string $idempotencyKey = null, \Adyen\Model\Checkout\UtilityRequest $utilityRequest, ?\Adyen\RequestOptions $requestOptions = null): array
+    public function originKeysWithHttpInfo(\Adyen\Model\Checkout\UtilityRequest $utilityRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
         $contentType = self::CONTENT_TYPES['originKeys'][0];
 
-        $request = $this->originKeysRequest($idempotencyKey, $utilityRequest, $contentType, $requestOptions);
+        $request = $this->originKeysRequest($utilityRequest, $contentType, $requestOptions);
 
         try {
             $options = $this->createHttpClientOption();
@@ -593,7 +582,6 @@ class UtilityApi extends BaseService
      *
      * Create originKey values for domains
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\UtilityRequest $utilityRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -601,9 +589,9 @@ class UtilityApi extends BaseService
      * @return \GuzzleHttp\Promise\PromiseInterface
      * @deprecated
      */
-    public function originKeysAsync(string $idempotencyKey = null, \Adyen\Model\Checkout\UtilityRequest $utilityRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function originKeysAsync(\Adyen\Model\Checkout\UtilityRequest $utilityRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
-        return $this->originKeysAsyncWithHttpInfo($idempotencyKey, $utilityRequest, $requestOptions)
+        return $this->originKeysAsyncWithHttpInfo($utilityRequest, $requestOptions)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -616,7 +604,6 @@ class UtilityApi extends BaseService
      *
      * Create originKey values for domains
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\UtilityRequest $utilityRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -624,11 +611,11 @@ class UtilityApi extends BaseService
      * @return \GuzzleHttp\Promise\PromiseInterface
      * @deprecated
      */
-    public function originKeysAsyncWithHttpInfo(string $idempotencyKey = null, \Adyen\Model\Checkout\UtilityRequest $utilityRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function originKeysAsyncWithHttpInfo(\Adyen\Model\Checkout\UtilityRequest $utilityRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
         $contentType = self::CONTENT_TYPES['originKeys'][0];
 
-        $request = $this->originKeysRequest($idempotencyKey, $utilityRequest, $contentType, $requestOptions);
+        $request = $this->originKeysRequest($utilityRequest, $contentType, $requestOptions);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -670,7 +657,6 @@ class UtilityApi extends BaseService
     /**
      * Create request for operation 'originKeys'
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\UtilityRequest $utilityRequest (required)
      * @param  string $contentType The value for the Content-Type header. Check self::CONTENT_TYPES['originKeys'] to see the possible values for this operation
      * @param \Adyen\RequestOptions|null $requestOptions
@@ -679,7 +665,7 @@ class UtilityApi extends BaseService
      * @return \GuzzleHttp\Psr7\Request
      * @deprecated
      */
-    public function originKeysRequest(string $idempotencyKey = null, \Adyen\Model\Checkout\UtilityRequest $utilityRequest, string $contentType = self::CONTENT_TYPES['originKeys'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
+    public function originKeysRequest(\Adyen\Model\Checkout\UtilityRequest $utilityRequest, string $contentType = self::CONTENT_TYPES['originKeys'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
     {
 
         $resourcePath = '/originKeys';
@@ -688,10 +674,6 @@ class UtilityApi extends BaseService
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
-        // header params
-        if ($idempotencyKey !== null) {
-            $headerParams['Idempotency-Key'] = ObjectSerializer::toHeaderValue($idempotencyKey);
-        }
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', ],
@@ -767,7 +749,6 @@ class UtilityApi extends BaseService
      *
      * Updates the order for PayPal Express Checkout
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaypalUpdateOrderRequest $paypalUpdateOrderRequest paypalUpdateOrderRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -775,9 +756,9 @@ class UtilityApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \Adyen\Model\Checkout\PaypalUpdateOrderResponse
      */
-    public function updatesOrderForPaypalExpressCheckout(string $idempotencyKey = null, \Adyen\Model\Checkout\PaypalUpdateOrderRequest $paypalUpdateOrderRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\PaypalUpdateOrderResponse
+    public function updatesOrderForPaypalExpressCheckout(\Adyen\Model\Checkout\PaypalUpdateOrderRequest $paypalUpdateOrderRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\PaypalUpdateOrderResponse
     {
-        list($response) = $this->updatesOrderForPaypalExpressCheckoutWithHttpInfo($idempotencyKey, $paypalUpdateOrderRequest, $requestOptions);
+        list($response) = $this->updatesOrderForPaypalExpressCheckoutWithHttpInfo($paypalUpdateOrderRequest, $requestOptions);
         return $response;
     }
 
@@ -786,7 +767,6 @@ class UtilityApi extends BaseService
      *
      * Updates the order for PayPal Express Checkout
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaypalUpdateOrderRequest $paypalUpdateOrderRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -794,11 +774,11 @@ class UtilityApi extends BaseService
      * @throws \InvalidArgumentException
      * @return array of \Adyen\Model\Checkout\PaypalUpdateOrderResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updatesOrderForPaypalExpressCheckoutWithHttpInfo(string $idempotencyKey = null, \Adyen\Model\Checkout\PaypalUpdateOrderRequest $paypalUpdateOrderRequest, ?\Adyen\RequestOptions $requestOptions = null): array
+    public function updatesOrderForPaypalExpressCheckoutWithHttpInfo(\Adyen\Model\Checkout\PaypalUpdateOrderRequest $paypalUpdateOrderRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
         $contentType = self::CONTENT_TYPES['updatesOrderForPaypalExpressCheckout'][0];
 
-        $request = $this->updatesOrderForPaypalExpressCheckoutRequest($idempotencyKey, $paypalUpdateOrderRequest, $contentType, $requestOptions);
+        $request = $this->updatesOrderForPaypalExpressCheckoutRequest($paypalUpdateOrderRequest, $contentType, $requestOptions);
 
         try {
             $options = $this->createHttpClientOption();
@@ -944,16 +924,15 @@ class UtilityApi extends BaseService
      *
      * Updates the order for PayPal Express Checkout
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaypalUpdateOrderRequest $paypalUpdateOrderRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updatesOrderForPaypalExpressCheckoutAsync(string $idempotencyKey = null, \Adyen\Model\Checkout\PaypalUpdateOrderRequest $paypalUpdateOrderRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function updatesOrderForPaypalExpressCheckoutAsync(\Adyen\Model\Checkout\PaypalUpdateOrderRequest $paypalUpdateOrderRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
-        return $this->updatesOrderForPaypalExpressCheckoutAsyncWithHttpInfo($idempotencyKey, $paypalUpdateOrderRequest, $requestOptions)
+        return $this->updatesOrderForPaypalExpressCheckoutAsyncWithHttpInfo($paypalUpdateOrderRequest, $requestOptions)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -966,18 +945,17 @@ class UtilityApi extends BaseService
      *
      * Updates the order for PayPal Express Checkout
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaypalUpdateOrderRequest $paypalUpdateOrderRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updatesOrderForPaypalExpressCheckoutAsyncWithHttpInfo(string $idempotencyKey = null, \Adyen\Model\Checkout\PaypalUpdateOrderRequest $paypalUpdateOrderRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function updatesOrderForPaypalExpressCheckoutAsyncWithHttpInfo(\Adyen\Model\Checkout\PaypalUpdateOrderRequest $paypalUpdateOrderRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
         $contentType = self::CONTENT_TYPES['updatesOrderForPaypalExpressCheckout'][0];
 
-        $request = $this->updatesOrderForPaypalExpressCheckoutRequest($idempotencyKey, $paypalUpdateOrderRequest, $contentType, $requestOptions);
+        $request = $this->updatesOrderForPaypalExpressCheckoutRequest($paypalUpdateOrderRequest, $contentType, $requestOptions);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1019,7 +997,6 @@ class UtilityApi extends BaseService
     /**
      * Create request for operation 'updatesOrderForPaypalExpressCheckout'
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaypalUpdateOrderRequest $paypalUpdateOrderRequest (required)
      * @param  string $contentType The value for the Content-Type header. Check self::CONTENT_TYPES['updatesOrderForPaypalExpressCheckout'] to see the possible values for this operation
      * @param \Adyen\RequestOptions|null $requestOptions
@@ -1027,7 +1004,7 @@ class UtilityApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updatesOrderForPaypalExpressCheckoutRequest(string $idempotencyKey = null, \Adyen\Model\Checkout\PaypalUpdateOrderRequest $paypalUpdateOrderRequest, string $contentType = self::CONTENT_TYPES['updatesOrderForPaypalExpressCheckout'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
+    public function updatesOrderForPaypalExpressCheckoutRequest(\Adyen\Model\Checkout\PaypalUpdateOrderRequest $paypalUpdateOrderRequest, string $contentType = self::CONTENT_TYPES['updatesOrderForPaypalExpressCheckout'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
     {
 
         $resourcePath = '/paypal/updateOrder';
@@ -1036,10 +1013,6 @@ class UtilityApi extends BaseService
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
-        // header params
-        if ($idempotencyKey !== null) {
-            $headerParams['Idempotency-Key'] = ObjectSerializer::toHeaderValue($idempotencyKey);
-        }
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', ],

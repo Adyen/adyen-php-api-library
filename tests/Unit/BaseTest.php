@@ -13,13 +13,13 @@ use Adyen\Tests\TestCase;
 class BaseTest extends TestCase
 {
     /**
-     * @param string $jsonFile
+     * @param string|null $jsonFile
      * @param int $httpStatus
      * @return Client
      */
-    protected function createMockSerializerClient(string $jsonFile, int $httpStatus, &$container = []): Client
+    protected function createMockSerializerClient(?string $jsonFile, int $httpStatus, &$container = []): Client
     {
-        $json = file_get_contents($jsonFile);
+        $json = $jsonFile !== null ? file_get_contents($jsonFile) : '';
         $mock = new MockHandler([
             new Response($httpStatus, [], $json)
         ]);
