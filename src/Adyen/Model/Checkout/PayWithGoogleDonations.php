@@ -304,7 +304,7 @@ class PayWithGoogleDonations implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
         $this->setIfExists('threeDS2SdkVersion', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'paywithgoogle');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

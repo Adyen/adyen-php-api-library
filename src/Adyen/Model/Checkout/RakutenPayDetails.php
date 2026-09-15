@@ -266,7 +266,7 @@ class RakutenPayDetails implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
         $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'rakutenpay');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

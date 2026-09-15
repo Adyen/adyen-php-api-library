@@ -297,7 +297,7 @@ class ApplePayDonations implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
         $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'applepay');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

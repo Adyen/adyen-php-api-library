@@ -133,7 +133,6 @@ class OrdersApi extends BaseService
      *
      * Cancel an order
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\CancelOrderRequest $cancelOrderRequest cancelOrderRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -141,9 +140,9 @@ class OrdersApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \Adyen\Model\Checkout\CancelOrderResponse
      */
-    public function cancelOrder(string $idempotencyKey = null, \Adyen\Model\Checkout\CancelOrderRequest $cancelOrderRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\CancelOrderResponse
+    public function cancelOrder(\Adyen\Model\Checkout\CancelOrderRequest $cancelOrderRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\CancelOrderResponse
     {
-        list($response) = $this->cancelOrderWithHttpInfo($idempotencyKey, $cancelOrderRequest, $requestOptions);
+        list($response) = $this->cancelOrderWithHttpInfo($cancelOrderRequest, $requestOptions);
         return $response;
     }
 
@@ -152,7 +151,6 @@ class OrdersApi extends BaseService
      *
      * Cancel an order
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\CancelOrderRequest $cancelOrderRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -160,11 +158,11 @@ class OrdersApi extends BaseService
      * @throws \InvalidArgumentException
      * @return array of \Adyen\Model\Checkout\CancelOrderResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function cancelOrderWithHttpInfo(string $idempotencyKey = null, \Adyen\Model\Checkout\CancelOrderRequest $cancelOrderRequest, ?\Adyen\RequestOptions $requestOptions = null): array
+    public function cancelOrderWithHttpInfo(\Adyen\Model\Checkout\CancelOrderRequest $cancelOrderRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
         $contentType = self::CONTENT_TYPES['cancelOrder'][0];
 
-        $request = $this->cancelOrderRequest($idempotencyKey, $cancelOrderRequest, $contentType, $requestOptions);
+        $request = $this->cancelOrderRequest($cancelOrderRequest, $contentType, $requestOptions);
 
         try {
             $options = $this->createHttpClientOption();
@@ -310,16 +308,15 @@ class OrdersApi extends BaseService
      *
      * Cancel an order
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\CancelOrderRequest $cancelOrderRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function cancelOrderAsync(string $idempotencyKey = null, \Adyen\Model\Checkout\CancelOrderRequest $cancelOrderRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function cancelOrderAsync(\Adyen\Model\Checkout\CancelOrderRequest $cancelOrderRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
-        return $this->cancelOrderAsyncWithHttpInfo($idempotencyKey, $cancelOrderRequest, $requestOptions)
+        return $this->cancelOrderAsyncWithHttpInfo($cancelOrderRequest, $requestOptions)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -332,18 +329,17 @@ class OrdersApi extends BaseService
      *
      * Cancel an order
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\CancelOrderRequest $cancelOrderRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function cancelOrderAsyncWithHttpInfo(string $idempotencyKey = null, \Adyen\Model\Checkout\CancelOrderRequest $cancelOrderRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function cancelOrderAsyncWithHttpInfo(\Adyen\Model\Checkout\CancelOrderRequest $cancelOrderRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
         $contentType = self::CONTENT_TYPES['cancelOrder'][0];
 
-        $request = $this->cancelOrderRequest($idempotencyKey, $cancelOrderRequest, $contentType, $requestOptions);
+        $request = $this->cancelOrderRequest($cancelOrderRequest, $contentType, $requestOptions);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -385,7 +381,6 @@ class OrdersApi extends BaseService
     /**
      * Create request for operation 'cancelOrder'
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\CancelOrderRequest $cancelOrderRequest (required)
      * @param  string $contentType The value for the Content-Type header. Check self::CONTENT_TYPES['cancelOrder'] to see the possible values for this operation
      * @param \Adyen\RequestOptions|null $requestOptions
@@ -393,7 +388,7 @@ class OrdersApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function cancelOrderRequest(string $idempotencyKey = null, \Adyen\Model\Checkout\CancelOrderRequest $cancelOrderRequest, string $contentType = self::CONTENT_TYPES['cancelOrder'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
+    public function cancelOrderRequest(\Adyen\Model\Checkout\CancelOrderRequest $cancelOrderRequest, string $contentType = self::CONTENT_TYPES['cancelOrder'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
     {
 
         $resourcePath = '/orders/cancel';
@@ -402,10 +397,6 @@ class OrdersApi extends BaseService
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
-        // header params
-        if ($idempotencyKey !== null) {
-            $headerParams['Idempotency-Key'] = ObjectSerializer::toHeaderValue($idempotencyKey);
-        }
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', ],
@@ -481,7 +472,6 @@ class OrdersApi extends BaseService
      *
      * Get the balance of a gift card
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\BalanceCheckRequest $balanceCheckRequest balanceCheckRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -489,9 +479,9 @@ class OrdersApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \Adyen\Model\Checkout\BalanceCheckResponse
      */
-    public function getBalanceOfGiftCard(string $idempotencyKey = null, \Adyen\Model\Checkout\BalanceCheckRequest $balanceCheckRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\BalanceCheckResponse
+    public function getBalanceOfGiftCard(\Adyen\Model\Checkout\BalanceCheckRequest $balanceCheckRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\BalanceCheckResponse
     {
-        list($response) = $this->getBalanceOfGiftCardWithHttpInfo($idempotencyKey, $balanceCheckRequest, $requestOptions);
+        list($response) = $this->getBalanceOfGiftCardWithHttpInfo($balanceCheckRequest, $requestOptions);
         return $response;
     }
 
@@ -500,7 +490,6 @@ class OrdersApi extends BaseService
      *
      * Get the balance of a gift card
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\BalanceCheckRequest $balanceCheckRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -508,11 +497,11 @@ class OrdersApi extends BaseService
      * @throws \InvalidArgumentException
      * @return array of \Adyen\Model\Checkout\BalanceCheckResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getBalanceOfGiftCardWithHttpInfo(string $idempotencyKey = null, \Adyen\Model\Checkout\BalanceCheckRequest $balanceCheckRequest, ?\Adyen\RequestOptions $requestOptions = null): array
+    public function getBalanceOfGiftCardWithHttpInfo(\Adyen\Model\Checkout\BalanceCheckRequest $balanceCheckRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
         $contentType = self::CONTENT_TYPES['getBalanceOfGiftCard'][0];
 
-        $request = $this->getBalanceOfGiftCardRequest($idempotencyKey, $balanceCheckRequest, $contentType, $requestOptions);
+        $request = $this->getBalanceOfGiftCardRequest($balanceCheckRequest, $contentType, $requestOptions);
 
         try {
             $options = $this->createHttpClientOption();
@@ -658,16 +647,15 @@ class OrdersApi extends BaseService
      *
      * Get the balance of a gift card
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\BalanceCheckRequest $balanceCheckRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getBalanceOfGiftCardAsync(string $idempotencyKey = null, \Adyen\Model\Checkout\BalanceCheckRequest $balanceCheckRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function getBalanceOfGiftCardAsync(\Adyen\Model\Checkout\BalanceCheckRequest $balanceCheckRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
-        return $this->getBalanceOfGiftCardAsyncWithHttpInfo($idempotencyKey, $balanceCheckRequest, $requestOptions)
+        return $this->getBalanceOfGiftCardAsyncWithHttpInfo($balanceCheckRequest, $requestOptions)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -680,18 +668,17 @@ class OrdersApi extends BaseService
      *
      * Get the balance of a gift card
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\BalanceCheckRequest $balanceCheckRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getBalanceOfGiftCardAsyncWithHttpInfo(string $idempotencyKey = null, \Adyen\Model\Checkout\BalanceCheckRequest $balanceCheckRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function getBalanceOfGiftCardAsyncWithHttpInfo(\Adyen\Model\Checkout\BalanceCheckRequest $balanceCheckRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
         $contentType = self::CONTENT_TYPES['getBalanceOfGiftCard'][0];
 
-        $request = $this->getBalanceOfGiftCardRequest($idempotencyKey, $balanceCheckRequest, $contentType, $requestOptions);
+        $request = $this->getBalanceOfGiftCardRequest($balanceCheckRequest, $contentType, $requestOptions);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -733,7 +720,6 @@ class OrdersApi extends BaseService
     /**
      * Create request for operation 'getBalanceOfGiftCard'
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\BalanceCheckRequest $balanceCheckRequest (required)
      * @param  string $contentType The value for the Content-Type header. Check self::CONTENT_TYPES['getBalanceOfGiftCard'] to see the possible values for this operation
      * @param \Adyen\RequestOptions|null $requestOptions
@@ -741,7 +727,7 @@ class OrdersApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getBalanceOfGiftCardRequest(string $idempotencyKey = null, \Adyen\Model\Checkout\BalanceCheckRequest $balanceCheckRequest, string $contentType = self::CONTENT_TYPES['getBalanceOfGiftCard'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
+    public function getBalanceOfGiftCardRequest(\Adyen\Model\Checkout\BalanceCheckRequest $balanceCheckRequest, string $contentType = self::CONTENT_TYPES['getBalanceOfGiftCard'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
     {
 
         $resourcePath = '/paymentMethods/balance';
@@ -750,10 +736,6 @@ class OrdersApi extends BaseService
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
-        // header params
-        if ($idempotencyKey !== null) {
-            $headerParams['Idempotency-Key'] = ObjectSerializer::toHeaderValue($idempotencyKey);
-        }
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', ],
@@ -829,7 +811,6 @@ class OrdersApi extends BaseService
      *
      * Create an order
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\CreateOrderRequest $createOrderRequest createOrderRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -837,9 +818,9 @@ class OrdersApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \Adyen\Model\Checkout\CreateOrderResponse
      */
-    public function orders(string $idempotencyKey = null, \Adyen\Model\Checkout\CreateOrderRequest $createOrderRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\CreateOrderResponse
+    public function orders(\Adyen\Model\Checkout\CreateOrderRequest $createOrderRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\CreateOrderResponse
     {
-        list($response) = $this->ordersWithHttpInfo($idempotencyKey, $createOrderRequest, $requestOptions);
+        list($response) = $this->ordersWithHttpInfo($createOrderRequest, $requestOptions);
         return $response;
     }
 
@@ -848,7 +829,6 @@ class OrdersApi extends BaseService
      *
      * Create an order
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\CreateOrderRequest $createOrderRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -856,11 +836,11 @@ class OrdersApi extends BaseService
      * @throws \InvalidArgumentException
      * @return array of \Adyen\Model\Checkout\CreateOrderResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function ordersWithHttpInfo(string $idempotencyKey = null, \Adyen\Model\Checkout\CreateOrderRequest $createOrderRequest, ?\Adyen\RequestOptions $requestOptions = null): array
+    public function ordersWithHttpInfo(\Adyen\Model\Checkout\CreateOrderRequest $createOrderRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
         $contentType = self::CONTENT_TYPES['orders'][0];
 
-        $request = $this->ordersRequest($idempotencyKey, $createOrderRequest, $contentType, $requestOptions);
+        $request = $this->ordersRequest($createOrderRequest, $contentType, $requestOptions);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1006,16 +986,15 @@ class OrdersApi extends BaseService
      *
      * Create an order
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\CreateOrderRequest $createOrderRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function ordersAsync(string $idempotencyKey = null, \Adyen\Model\Checkout\CreateOrderRequest $createOrderRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function ordersAsync(\Adyen\Model\Checkout\CreateOrderRequest $createOrderRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
-        return $this->ordersAsyncWithHttpInfo($idempotencyKey, $createOrderRequest, $requestOptions)
+        return $this->ordersAsyncWithHttpInfo($createOrderRequest, $requestOptions)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1028,18 +1007,17 @@ class OrdersApi extends BaseService
      *
      * Create an order
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\CreateOrderRequest $createOrderRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function ordersAsyncWithHttpInfo(string $idempotencyKey = null, \Adyen\Model\Checkout\CreateOrderRequest $createOrderRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function ordersAsyncWithHttpInfo(\Adyen\Model\Checkout\CreateOrderRequest $createOrderRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
         $contentType = self::CONTENT_TYPES['orders'][0];
 
-        $request = $this->ordersRequest($idempotencyKey, $createOrderRequest, $contentType, $requestOptions);
+        $request = $this->ordersRequest($createOrderRequest, $contentType, $requestOptions);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1081,7 +1059,6 @@ class OrdersApi extends BaseService
     /**
      * Create request for operation 'orders'
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\CreateOrderRequest $createOrderRequest (required)
      * @param  string $contentType The value for the Content-Type header. Check self::CONTENT_TYPES['orders'] to see the possible values for this operation
      * @param \Adyen\RequestOptions|null $requestOptions
@@ -1089,7 +1066,7 @@ class OrdersApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function ordersRequest(string $idempotencyKey = null, \Adyen\Model\Checkout\CreateOrderRequest $createOrderRequest, string $contentType = self::CONTENT_TYPES['orders'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
+    public function ordersRequest(\Adyen\Model\Checkout\CreateOrderRequest $createOrderRequest, string $contentType = self::CONTENT_TYPES['orders'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
     {
 
         $resourcePath = '/orders';
@@ -1098,10 +1075,6 @@ class OrdersApi extends BaseService
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
-        // header params
-        if ($idempotencyKey !== null) {
-            $headerParams['Idempotency-Key'] = ObjectSerializer::toHeaderValue($idempotencyKey);
-        }
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', ],

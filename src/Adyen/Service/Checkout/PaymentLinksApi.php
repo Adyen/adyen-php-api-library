@@ -481,7 +481,6 @@ class PaymentLinksApi extends BaseService
      *
      * Create a payment link
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentLinkRequest $paymentLinkRequest paymentLinkRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -489,9 +488,9 @@ class PaymentLinksApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \Adyen\Model\Checkout\PaymentLinkResponse
      */
-    public function paymentLinks(string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentLinkRequest $paymentLinkRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\PaymentLinkResponse
+    public function paymentLinks(\Adyen\Model\Checkout\PaymentLinkRequest $paymentLinkRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\PaymentLinkResponse
     {
-        list($response) = $this->paymentLinksWithHttpInfo($idempotencyKey, $paymentLinkRequest, $requestOptions);
+        list($response) = $this->paymentLinksWithHttpInfo($paymentLinkRequest, $requestOptions);
         return $response;
     }
 
@@ -500,7 +499,6 @@ class PaymentLinksApi extends BaseService
      *
      * Create a payment link
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentLinkRequest $paymentLinkRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -508,11 +506,11 @@ class PaymentLinksApi extends BaseService
      * @throws \InvalidArgumentException
      * @return array of \Adyen\Model\Checkout\PaymentLinkResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function paymentLinksWithHttpInfo(string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentLinkRequest $paymentLinkRequest, ?\Adyen\RequestOptions $requestOptions = null): array
+    public function paymentLinksWithHttpInfo(\Adyen\Model\Checkout\PaymentLinkRequest $paymentLinkRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
         $contentType = self::CONTENT_TYPES['paymentLinks'][0];
 
-        $request = $this->paymentLinksRequest($idempotencyKey, $paymentLinkRequest, $contentType, $requestOptions);
+        $request = $this->paymentLinksRequest($paymentLinkRequest, $contentType, $requestOptions);
 
         try {
             $options = $this->createHttpClientOption();
@@ -658,16 +656,15 @@ class PaymentLinksApi extends BaseService
      *
      * Create a payment link
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentLinkRequest $paymentLinkRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function paymentLinksAsync(string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentLinkRequest $paymentLinkRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function paymentLinksAsync(\Adyen\Model\Checkout\PaymentLinkRequest $paymentLinkRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
-        return $this->paymentLinksAsyncWithHttpInfo($idempotencyKey, $paymentLinkRequest, $requestOptions)
+        return $this->paymentLinksAsyncWithHttpInfo($paymentLinkRequest, $requestOptions)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -680,18 +677,17 @@ class PaymentLinksApi extends BaseService
      *
      * Create a payment link
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentLinkRequest $paymentLinkRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function paymentLinksAsyncWithHttpInfo(string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentLinkRequest $paymentLinkRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function paymentLinksAsyncWithHttpInfo(\Adyen\Model\Checkout\PaymentLinkRequest $paymentLinkRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
         $contentType = self::CONTENT_TYPES['paymentLinks'][0];
 
-        $request = $this->paymentLinksRequest($idempotencyKey, $paymentLinkRequest, $contentType, $requestOptions);
+        $request = $this->paymentLinksRequest($paymentLinkRequest, $contentType, $requestOptions);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -733,7 +729,6 @@ class PaymentLinksApi extends BaseService
     /**
      * Create request for operation 'paymentLinks'
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentLinkRequest $paymentLinkRequest (required)
      * @param  string $contentType The value for the Content-Type header. Check self::CONTENT_TYPES['paymentLinks'] to see the possible values for this operation
      * @param \Adyen\RequestOptions|null $requestOptions
@@ -741,7 +736,7 @@ class PaymentLinksApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function paymentLinksRequest(string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentLinkRequest $paymentLinkRequest, string $contentType = self::CONTENT_TYPES['paymentLinks'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
+    public function paymentLinksRequest(\Adyen\Model\Checkout\PaymentLinkRequest $paymentLinkRequest, string $contentType = self::CONTENT_TYPES['paymentLinks'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
     {
 
         $resourcePath = '/paymentLinks';
@@ -750,10 +745,6 @@ class PaymentLinksApi extends BaseService
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
-        // header params
-        if ($idempotencyKey !== null) {
-            $headerParams['Idempotency-Key'] = ObjectSerializer::toHeaderValue($idempotencyKey);
-        }
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', ],

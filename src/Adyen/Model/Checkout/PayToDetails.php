@@ -273,7 +273,7 @@ class PayToDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('shopperAccountIdentifier', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'payto');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
