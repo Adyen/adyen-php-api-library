@@ -291,7 +291,7 @@ class OpenInvoiceDetails implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
         $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'openinvoice');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

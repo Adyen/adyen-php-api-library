@@ -130,7 +130,6 @@ class DonationsApi extends BaseService
      *
      * Get a list of donation campaigns.
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\DonationCampaignsRequest $donationCampaignsRequest donationCampaignsRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -138,9 +137,9 @@ class DonationsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \Adyen\Model\Checkout\DonationCampaignsResponse
      */
-    public function donationCampaigns(string $idempotencyKey = null, \Adyen\Model\Checkout\DonationCampaignsRequest $donationCampaignsRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\DonationCampaignsResponse
+    public function donationCampaigns(\Adyen\Model\Checkout\DonationCampaignsRequest $donationCampaignsRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\DonationCampaignsResponse
     {
-        list($response) = $this->donationCampaignsWithHttpInfo($idempotencyKey, $donationCampaignsRequest, $requestOptions);
+        list($response) = $this->donationCampaignsWithHttpInfo($donationCampaignsRequest, $requestOptions);
         return $response;
     }
 
@@ -149,7 +148,6 @@ class DonationsApi extends BaseService
      *
      * Get a list of donation campaigns.
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\DonationCampaignsRequest $donationCampaignsRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -157,11 +155,11 @@ class DonationsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return array of \Adyen\Model\Checkout\DonationCampaignsResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function donationCampaignsWithHttpInfo(string $idempotencyKey = null, \Adyen\Model\Checkout\DonationCampaignsRequest $donationCampaignsRequest, ?\Adyen\RequestOptions $requestOptions = null): array
+    public function donationCampaignsWithHttpInfo(\Adyen\Model\Checkout\DonationCampaignsRequest $donationCampaignsRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
         $contentType = self::CONTENT_TYPES['donationCampaigns'][0];
 
-        $request = $this->donationCampaignsRequest($idempotencyKey, $donationCampaignsRequest, $contentType, $requestOptions);
+        $request = $this->donationCampaignsRequest($donationCampaignsRequest, $contentType, $requestOptions);
 
         try {
             $options = $this->createHttpClientOption();
@@ -307,16 +305,15 @@ class DonationsApi extends BaseService
      *
      * Get a list of donation campaigns.
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\DonationCampaignsRequest $donationCampaignsRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function donationCampaignsAsync(string $idempotencyKey = null, \Adyen\Model\Checkout\DonationCampaignsRequest $donationCampaignsRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function donationCampaignsAsync(\Adyen\Model\Checkout\DonationCampaignsRequest $donationCampaignsRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
-        return $this->donationCampaignsAsyncWithHttpInfo($idempotencyKey, $donationCampaignsRequest, $requestOptions)
+        return $this->donationCampaignsAsyncWithHttpInfo($donationCampaignsRequest, $requestOptions)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -329,18 +326,17 @@ class DonationsApi extends BaseService
      *
      * Get a list of donation campaigns.
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\DonationCampaignsRequest $donationCampaignsRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function donationCampaignsAsyncWithHttpInfo(string $idempotencyKey = null, \Adyen\Model\Checkout\DonationCampaignsRequest $donationCampaignsRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function donationCampaignsAsyncWithHttpInfo(\Adyen\Model\Checkout\DonationCampaignsRequest $donationCampaignsRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
         $contentType = self::CONTENT_TYPES['donationCampaigns'][0];
 
-        $request = $this->donationCampaignsRequest($idempotencyKey, $donationCampaignsRequest, $contentType, $requestOptions);
+        $request = $this->donationCampaignsRequest($donationCampaignsRequest, $contentType, $requestOptions);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -382,7 +378,6 @@ class DonationsApi extends BaseService
     /**
      * Create request for operation 'donationCampaigns'
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\DonationCampaignsRequest $donationCampaignsRequest (required)
      * @param  string $contentType The value for the Content-Type header. Check self::CONTENT_TYPES['donationCampaigns'] to see the possible values for this operation
      * @param \Adyen\RequestOptions|null $requestOptions
@@ -390,7 +385,7 @@ class DonationsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function donationCampaignsRequest(string $idempotencyKey = null, \Adyen\Model\Checkout\DonationCampaignsRequest $donationCampaignsRequest, string $contentType = self::CONTENT_TYPES['donationCampaigns'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
+    public function donationCampaignsRequest(\Adyen\Model\Checkout\DonationCampaignsRequest $donationCampaignsRequest, string $contentType = self::CONTENT_TYPES['donationCampaigns'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
     {
 
         $resourcePath = '/donationCampaigns';
@@ -399,10 +394,6 @@ class DonationsApi extends BaseService
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
-        // header params
-        if ($idempotencyKey !== null) {
-            $headerParams['Idempotency-Key'] = ObjectSerializer::toHeaderValue($idempotencyKey);
-        }
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', ],
@@ -478,7 +469,6 @@ class DonationsApi extends BaseService
      *
      * Make a donation
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\DonationPaymentRequest $donationPaymentRequest donationPaymentRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -486,9 +476,9 @@ class DonationsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \Adyen\Model\Checkout\DonationPaymentResponse
      */
-    public function donations(string $idempotencyKey = null, \Adyen\Model\Checkout\DonationPaymentRequest $donationPaymentRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\DonationPaymentResponse
+    public function donations(\Adyen\Model\Checkout\DonationPaymentRequest $donationPaymentRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\DonationPaymentResponse
     {
-        list($response) = $this->donationsWithHttpInfo($idempotencyKey, $donationPaymentRequest, $requestOptions);
+        list($response) = $this->donationsWithHttpInfo($donationPaymentRequest, $requestOptions);
         return $response;
     }
 
@@ -497,7 +487,6 @@ class DonationsApi extends BaseService
      *
      * Make a donation
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\DonationPaymentRequest $donationPaymentRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -505,11 +494,11 @@ class DonationsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return array of \Adyen\Model\Checkout\DonationPaymentResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function donationsWithHttpInfo(string $idempotencyKey = null, \Adyen\Model\Checkout\DonationPaymentRequest $donationPaymentRequest, ?\Adyen\RequestOptions $requestOptions = null): array
+    public function donationsWithHttpInfo(\Adyen\Model\Checkout\DonationPaymentRequest $donationPaymentRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
         $contentType = self::CONTENT_TYPES['donations'][0];
 
-        $request = $this->donationsRequest($idempotencyKey, $donationPaymentRequest, $contentType, $requestOptions);
+        $request = $this->donationsRequest($donationPaymentRequest, $contentType, $requestOptions);
 
         try {
             $options = $this->createHttpClientOption();
@@ -655,16 +644,15 @@ class DonationsApi extends BaseService
      *
      * Make a donation
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\DonationPaymentRequest $donationPaymentRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function donationsAsync(string $idempotencyKey = null, \Adyen\Model\Checkout\DonationPaymentRequest $donationPaymentRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function donationsAsync(\Adyen\Model\Checkout\DonationPaymentRequest $donationPaymentRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
-        return $this->donationsAsyncWithHttpInfo($idempotencyKey, $donationPaymentRequest, $requestOptions)
+        return $this->donationsAsyncWithHttpInfo($donationPaymentRequest, $requestOptions)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -677,18 +665,17 @@ class DonationsApi extends BaseService
      *
      * Make a donation
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\DonationPaymentRequest $donationPaymentRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function donationsAsyncWithHttpInfo(string $idempotencyKey = null, \Adyen\Model\Checkout\DonationPaymentRequest $donationPaymentRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function donationsAsyncWithHttpInfo(\Adyen\Model\Checkout\DonationPaymentRequest $donationPaymentRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
         $contentType = self::CONTENT_TYPES['donations'][0];
 
-        $request = $this->donationsRequest($idempotencyKey, $donationPaymentRequest, $contentType, $requestOptions);
+        $request = $this->donationsRequest($donationPaymentRequest, $contentType, $requestOptions);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -730,7 +717,6 @@ class DonationsApi extends BaseService
     /**
      * Create request for operation 'donations'
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\DonationPaymentRequest $donationPaymentRequest (required)
      * @param  string $contentType The value for the Content-Type header. Check self::CONTENT_TYPES['donations'] to see the possible values for this operation
      * @param \Adyen\RequestOptions|null $requestOptions
@@ -738,7 +724,7 @@ class DonationsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function donationsRequest(string $idempotencyKey = null, \Adyen\Model\Checkout\DonationPaymentRequest $donationPaymentRequest, string $contentType = self::CONTENT_TYPES['donations'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
+    public function donationsRequest(\Adyen\Model\Checkout\DonationPaymentRequest $donationPaymentRequest, string $contentType = self::CONTENT_TYPES['donations'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
     {
 
         $resourcePath = '/donations';
@@ -747,10 +733,6 @@ class DonationsApi extends BaseService
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
-        // header params
-        if ($idempotencyKey !== null) {
-            $headerParams['Idempotency-Key'] = ObjectSerializer::toHeaderValue($idempotencyKey);
-        }
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', ],

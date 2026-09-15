@@ -313,7 +313,7 @@ class KlarnaDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
         $this->setIfExists('subtype', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'klarna');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

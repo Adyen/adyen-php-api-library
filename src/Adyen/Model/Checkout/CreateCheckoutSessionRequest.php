@@ -728,7 +728,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
         $this->setIfExists('merchantAccount', $data ?? [], null);
         $this->setIfExists('merchantOrderReference', $data ?? [], null);
         $this->setIfExists('metadata', $data ?? [], null);
-        $this->setIfExists('mode', $data ?? [], 'embedded');
+        $this->setIfExists('mode', $data ?? [], null);
         $this->setIfExists('mpiData', $data ?? [], null);
         $this->setIfExists('platformChargebackLogic', $data ?? [], null);
         $this->setIfExists('recurringExpiry', $data ?? [], null);
@@ -750,7 +750,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
         $this->setIfExists('showInstallmentAmount', $data ?? [], null);
         $this->setIfExists('showRemovePaymentMethodButton', $data ?? [], null);
         $this->setIfExists('socialSecurityNumber', $data ?? [], null);
-        $this->setIfExists('splitCardFundingSources', $data ?? [], false);
+        $this->setIfExists('splitCardFundingSources', $data ?? [], null);
         $this->setIfExists('splits', $data ?? [], null);
         $this->setIfExists('store', $data ?? [], null);
         $this->setIfExists('storeFiltrationMode', $data ?? [], null);
@@ -760,7 +760,7 @@ class CreateCheckoutSessionRequest implements ModelInterface, ArrayAccess, \Json
         $this->setIfExists('themeId', $data ?? [], null);
         $this->setIfExists('thirdPartyTokenRedundancyInfo', $data ?? [], null);
         $this->setIfExists('threeDS2RequestData', $data ?? [], null);
-        $this->setIfExists('threeDSAuthenticationOnly', $data ?? [], false);
+        $this->setIfExists('threeDSAuthenticationOnly', $data ?? [], null);
         $this->setIfExists('trustedShopper', $data ?? [], null);
     }
 

@@ -287,7 +287,7 @@ class DirectDebitAuDetails implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
         $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'directdebit_AU');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

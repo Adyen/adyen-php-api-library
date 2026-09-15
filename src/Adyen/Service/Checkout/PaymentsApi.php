@@ -145,7 +145,6 @@ class PaymentsApi extends BaseService
      *
      * Get the brands and other details of a card
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\CardDetailsRequest $cardDetailsRequest cardDetailsRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -153,9 +152,9 @@ class PaymentsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \Adyen\Model\Checkout\CardDetailsResponse
      */
-    public function cardDetails(string $idempotencyKey = null, \Adyen\Model\Checkout\CardDetailsRequest $cardDetailsRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\CardDetailsResponse
+    public function cardDetails(\Adyen\Model\Checkout\CardDetailsRequest $cardDetailsRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\CardDetailsResponse
     {
-        list($response) = $this->cardDetailsWithHttpInfo($idempotencyKey, $cardDetailsRequest, $requestOptions);
+        list($response) = $this->cardDetailsWithHttpInfo($cardDetailsRequest, $requestOptions);
         return $response;
     }
 
@@ -164,7 +163,6 @@ class PaymentsApi extends BaseService
      *
      * Get the brands and other details of a card
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\CardDetailsRequest $cardDetailsRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -172,11 +170,11 @@ class PaymentsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return array of \Adyen\Model\Checkout\CardDetailsResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function cardDetailsWithHttpInfo(string $idempotencyKey = null, \Adyen\Model\Checkout\CardDetailsRequest $cardDetailsRequest, ?\Adyen\RequestOptions $requestOptions = null): array
+    public function cardDetailsWithHttpInfo(\Adyen\Model\Checkout\CardDetailsRequest $cardDetailsRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
         $contentType = self::CONTENT_TYPES['cardDetails'][0];
 
-        $request = $this->cardDetailsRequest($idempotencyKey, $cardDetailsRequest, $contentType, $requestOptions);
+        $request = $this->cardDetailsRequest($cardDetailsRequest, $contentType, $requestOptions);
 
         try {
             $options = $this->createHttpClientOption();
@@ -252,16 +250,15 @@ class PaymentsApi extends BaseService
      *
      * Get the brands and other details of a card
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\CardDetailsRequest $cardDetailsRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function cardDetailsAsync(string $idempotencyKey = null, \Adyen\Model\Checkout\CardDetailsRequest $cardDetailsRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function cardDetailsAsync(\Adyen\Model\Checkout\CardDetailsRequest $cardDetailsRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
-        return $this->cardDetailsAsyncWithHttpInfo($idempotencyKey, $cardDetailsRequest, $requestOptions)
+        return $this->cardDetailsAsyncWithHttpInfo($cardDetailsRequest, $requestOptions)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -274,18 +271,17 @@ class PaymentsApi extends BaseService
      *
      * Get the brands and other details of a card
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\CardDetailsRequest $cardDetailsRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function cardDetailsAsyncWithHttpInfo(string $idempotencyKey = null, \Adyen\Model\Checkout\CardDetailsRequest $cardDetailsRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function cardDetailsAsyncWithHttpInfo(\Adyen\Model\Checkout\CardDetailsRequest $cardDetailsRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
         $contentType = self::CONTENT_TYPES['cardDetails'][0];
 
-        $request = $this->cardDetailsRequest($idempotencyKey, $cardDetailsRequest, $contentType, $requestOptions);
+        $request = $this->cardDetailsRequest($cardDetailsRequest, $contentType, $requestOptions);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -327,7 +323,6 @@ class PaymentsApi extends BaseService
     /**
      * Create request for operation 'cardDetails'
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\CardDetailsRequest $cardDetailsRequest (required)
      * @param  string $contentType The value for the Content-Type header. Check self::CONTENT_TYPES['cardDetails'] to see the possible values for this operation
      * @param \Adyen\RequestOptions|null $requestOptions
@@ -335,7 +330,7 @@ class PaymentsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function cardDetailsRequest(string $idempotencyKey = null, \Adyen\Model\Checkout\CardDetailsRequest $cardDetailsRequest, string $contentType = self::CONTENT_TYPES['cardDetails'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
+    public function cardDetailsRequest(\Adyen\Model\Checkout\CardDetailsRequest $cardDetailsRequest, string $contentType = self::CONTENT_TYPES['cardDetails'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
     {
 
         $resourcePath = '/cardDetails';
@@ -344,10 +339,6 @@ class PaymentsApi extends BaseService
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
-        // header params
-        if ($idempotencyKey !== null) {
-            $headerParams['Idempotency-Key'] = ObjectSerializer::toHeaderValue($idempotencyKey);
-        }
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', ],
@@ -723,7 +714,6 @@ class PaymentsApi extends BaseService
      *
      * Get a list of available payment methods
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentMethodsRequest $paymentMethodsRequest paymentMethodsRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -731,9 +721,9 @@ class PaymentsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \Adyen\Model\Checkout\PaymentMethodsResponse
      */
-    public function paymentMethods(string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentMethodsRequest $paymentMethodsRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\PaymentMethodsResponse
+    public function paymentMethods(\Adyen\Model\Checkout\PaymentMethodsRequest $paymentMethodsRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\PaymentMethodsResponse
     {
-        list($response) = $this->paymentMethodsWithHttpInfo($idempotencyKey, $paymentMethodsRequest, $requestOptions);
+        list($response) = $this->paymentMethodsWithHttpInfo($paymentMethodsRequest, $requestOptions);
         return $response;
     }
 
@@ -742,7 +732,6 @@ class PaymentsApi extends BaseService
      *
      * Get a list of available payment methods
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentMethodsRequest $paymentMethodsRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -750,11 +739,11 @@ class PaymentsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return array of \Adyen\Model\Checkout\PaymentMethodsResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function paymentMethodsWithHttpInfo(string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentMethodsRequest $paymentMethodsRequest, ?\Adyen\RequestOptions $requestOptions = null): array
+    public function paymentMethodsWithHttpInfo(\Adyen\Model\Checkout\PaymentMethodsRequest $paymentMethodsRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
         $contentType = self::CONTENT_TYPES['paymentMethods'][0];
 
-        $request = $this->paymentMethodsRequest($idempotencyKey, $paymentMethodsRequest, $contentType, $requestOptions);
+        $request = $this->paymentMethodsRequest($paymentMethodsRequest, $contentType, $requestOptions);
 
         try {
             $options = $this->createHttpClientOption();
@@ -900,16 +889,15 @@ class PaymentsApi extends BaseService
      *
      * Get a list of available payment methods
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentMethodsRequest $paymentMethodsRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function paymentMethodsAsync(string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentMethodsRequest $paymentMethodsRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function paymentMethodsAsync(\Adyen\Model\Checkout\PaymentMethodsRequest $paymentMethodsRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
-        return $this->paymentMethodsAsyncWithHttpInfo($idempotencyKey, $paymentMethodsRequest, $requestOptions)
+        return $this->paymentMethodsAsyncWithHttpInfo($paymentMethodsRequest, $requestOptions)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -922,18 +910,17 @@ class PaymentsApi extends BaseService
      *
      * Get a list of available payment methods
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentMethodsRequest $paymentMethodsRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function paymentMethodsAsyncWithHttpInfo(string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentMethodsRequest $paymentMethodsRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function paymentMethodsAsyncWithHttpInfo(\Adyen\Model\Checkout\PaymentMethodsRequest $paymentMethodsRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
         $contentType = self::CONTENT_TYPES['paymentMethods'][0];
 
-        $request = $this->paymentMethodsRequest($idempotencyKey, $paymentMethodsRequest, $contentType, $requestOptions);
+        $request = $this->paymentMethodsRequest($paymentMethodsRequest, $contentType, $requestOptions);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -975,7 +962,6 @@ class PaymentsApi extends BaseService
     /**
      * Create request for operation 'paymentMethods'
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentMethodsRequest $paymentMethodsRequest (required)
      * @param  string $contentType The value for the Content-Type header. Check self::CONTENT_TYPES['paymentMethods'] to see the possible values for this operation
      * @param \Adyen\RequestOptions|null $requestOptions
@@ -983,7 +969,7 @@ class PaymentsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function paymentMethodsRequest(string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentMethodsRequest $paymentMethodsRequest, string $contentType = self::CONTENT_TYPES['paymentMethods'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
+    public function paymentMethodsRequest(\Adyen\Model\Checkout\PaymentMethodsRequest $paymentMethodsRequest, string $contentType = self::CONTENT_TYPES['paymentMethods'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
     {
 
         $resourcePath = '/paymentMethods';
@@ -992,10 +978,6 @@ class PaymentsApi extends BaseService
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
-        // header params
-        if ($idempotencyKey !== null) {
-            $headerParams['Idempotency-Key'] = ObjectSerializer::toHeaderValue($idempotencyKey);
-        }
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', ],
@@ -1071,7 +1053,6 @@ class PaymentsApi extends BaseService
      *
      * Start a transaction
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentRequest $paymentRequest paymentRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -1079,9 +1060,9 @@ class PaymentsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \Adyen\Model\Checkout\PaymentResponse
      */
-    public function payments(string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentRequest $paymentRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\PaymentResponse
+    public function payments(\Adyen\Model\Checkout\PaymentRequest $paymentRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\PaymentResponse
     {
-        list($response) = $this->paymentsWithHttpInfo($idempotencyKey, $paymentRequest, $requestOptions);
+        list($response) = $this->paymentsWithHttpInfo($paymentRequest, $requestOptions);
         return $response;
     }
 
@@ -1090,7 +1071,6 @@ class PaymentsApi extends BaseService
      *
      * Start a transaction
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentRequest $paymentRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -1098,11 +1078,11 @@ class PaymentsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return array of \Adyen\Model\Checkout\PaymentResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function paymentsWithHttpInfo(string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentRequest $paymentRequest, ?\Adyen\RequestOptions $requestOptions = null): array
+    public function paymentsWithHttpInfo(\Adyen\Model\Checkout\PaymentRequest $paymentRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
         $contentType = self::CONTENT_TYPES['payments'][0];
 
-        $request = $this->paymentsRequest($idempotencyKey, $paymentRequest, $contentType, $requestOptions);
+        $request = $this->paymentsRequest($paymentRequest, $contentType, $requestOptions);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1248,16 +1228,15 @@ class PaymentsApi extends BaseService
      *
      * Start a transaction
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentRequest $paymentRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function paymentsAsync(string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentRequest $paymentRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function paymentsAsync(\Adyen\Model\Checkout\PaymentRequest $paymentRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
-        return $this->paymentsAsyncWithHttpInfo($idempotencyKey, $paymentRequest, $requestOptions)
+        return $this->paymentsAsyncWithHttpInfo($paymentRequest, $requestOptions)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1270,18 +1249,17 @@ class PaymentsApi extends BaseService
      *
      * Start a transaction
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentRequest $paymentRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function paymentsAsyncWithHttpInfo(string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentRequest $paymentRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function paymentsAsyncWithHttpInfo(\Adyen\Model\Checkout\PaymentRequest $paymentRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
         $contentType = self::CONTENT_TYPES['payments'][0];
 
-        $request = $this->paymentsRequest($idempotencyKey, $paymentRequest, $contentType, $requestOptions);
+        $request = $this->paymentsRequest($paymentRequest, $contentType, $requestOptions);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1323,7 +1301,6 @@ class PaymentsApi extends BaseService
     /**
      * Create request for operation 'payments'
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentRequest $paymentRequest (required)
      * @param  string $contentType The value for the Content-Type header. Check self::CONTENT_TYPES['payments'] to see the possible values for this operation
      * @param \Adyen\RequestOptions|null $requestOptions
@@ -1331,7 +1308,7 @@ class PaymentsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function paymentsRequest(string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentRequest $paymentRequest, string $contentType = self::CONTENT_TYPES['payments'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
+    public function paymentsRequest(\Adyen\Model\Checkout\PaymentRequest $paymentRequest, string $contentType = self::CONTENT_TYPES['payments'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
     {
 
         $resourcePath = '/payments';
@@ -1340,10 +1317,6 @@ class PaymentsApi extends BaseService
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
-        // header params
-        if ($idempotencyKey !== null) {
-            $headerParams['Idempotency-Key'] = ObjectSerializer::toHeaderValue($idempotencyKey);
-        }
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', ],
@@ -1419,7 +1392,6 @@ class PaymentsApi extends BaseService
      *
      * Submit details for a payment
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentDetailsRequest $paymentDetailsRequest paymentDetailsRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -1427,9 +1399,9 @@ class PaymentsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \Adyen\Model\Checkout\PaymentDetailsResponse
      */
-    public function paymentsDetails(string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentDetailsRequest $paymentDetailsRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\PaymentDetailsResponse
+    public function paymentsDetails(\Adyen\Model\Checkout\PaymentDetailsRequest $paymentDetailsRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\PaymentDetailsResponse
     {
-        list($response) = $this->paymentsDetailsWithHttpInfo($idempotencyKey, $paymentDetailsRequest, $requestOptions);
+        list($response) = $this->paymentsDetailsWithHttpInfo($paymentDetailsRequest, $requestOptions);
         return $response;
     }
 
@@ -1438,7 +1410,6 @@ class PaymentsApi extends BaseService
      *
      * Submit details for a payment
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentDetailsRequest $paymentDetailsRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -1446,11 +1417,11 @@ class PaymentsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return array of \Adyen\Model\Checkout\PaymentDetailsResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function paymentsDetailsWithHttpInfo(string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentDetailsRequest $paymentDetailsRequest, ?\Adyen\RequestOptions $requestOptions = null): array
+    public function paymentsDetailsWithHttpInfo(\Adyen\Model\Checkout\PaymentDetailsRequest $paymentDetailsRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
         $contentType = self::CONTENT_TYPES['paymentsDetails'][0];
 
-        $request = $this->paymentsDetailsRequest($idempotencyKey, $paymentDetailsRequest, $contentType, $requestOptions);
+        $request = $this->paymentsDetailsRequest($paymentDetailsRequest, $contentType, $requestOptions);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1596,16 +1567,15 @@ class PaymentsApi extends BaseService
      *
      * Submit details for a payment
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentDetailsRequest $paymentDetailsRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function paymentsDetailsAsync(string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentDetailsRequest $paymentDetailsRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function paymentsDetailsAsync(\Adyen\Model\Checkout\PaymentDetailsRequest $paymentDetailsRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
-        return $this->paymentsDetailsAsyncWithHttpInfo($idempotencyKey, $paymentDetailsRequest, $requestOptions)
+        return $this->paymentsDetailsAsyncWithHttpInfo($paymentDetailsRequest, $requestOptions)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1618,18 +1588,17 @@ class PaymentsApi extends BaseService
      *
      * Submit details for a payment
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentDetailsRequest $paymentDetailsRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function paymentsDetailsAsyncWithHttpInfo(string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentDetailsRequest $paymentDetailsRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function paymentsDetailsAsyncWithHttpInfo(\Adyen\Model\Checkout\PaymentDetailsRequest $paymentDetailsRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
         $contentType = self::CONTENT_TYPES['paymentsDetails'][0];
 
-        $request = $this->paymentsDetailsRequest($idempotencyKey, $paymentDetailsRequest, $contentType, $requestOptions);
+        $request = $this->paymentsDetailsRequest($paymentDetailsRequest, $contentType, $requestOptions);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1671,7 +1640,6 @@ class PaymentsApi extends BaseService
     /**
      * Create request for operation 'paymentsDetails'
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentDetailsRequest $paymentDetailsRequest (required)
      * @param  string $contentType The value for the Content-Type header. Check self::CONTENT_TYPES['paymentsDetails'] to see the possible values for this operation
      * @param \Adyen\RequestOptions|null $requestOptions
@@ -1679,7 +1647,7 @@ class PaymentsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function paymentsDetailsRequest(string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentDetailsRequest $paymentDetailsRequest, string $contentType = self::CONTENT_TYPES['paymentsDetails'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
+    public function paymentsDetailsRequest(\Adyen\Model\Checkout\PaymentDetailsRequest $paymentDetailsRequest, string $contentType = self::CONTENT_TYPES['paymentsDetails'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
     {
 
         $resourcePath = '/payments/details';
@@ -1688,10 +1656,6 @@ class PaymentsApi extends BaseService
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
-        // header params
-        if ($idempotencyKey !== null) {
-            $headerParams['Idempotency-Key'] = ObjectSerializer::toHeaderValue($idempotencyKey);
-        }
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', ],
@@ -1767,7 +1731,6 @@ class PaymentsApi extends BaseService
      *
      * Create a payment session
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\CreateCheckoutSessionRequest $createCheckoutSessionRequest createCheckoutSessionRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -1775,9 +1738,9 @@ class PaymentsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \Adyen\Model\Checkout\CreateCheckoutSessionResponse
      */
-    public function sessions(string $idempotencyKey = null, \Adyen\Model\Checkout\CreateCheckoutSessionRequest $createCheckoutSessionRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\CreateCheckoutSessionResponse
+    public function sessions(\Adyen\Model\Checkout\CreateCheckoutSessionRequest $createCheckoutSessionRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\CreateCheckoutSessionResponse
     {
-        list($response) = $this->sessionsWithHttpInfo($idempotencyKey, $createCheckoutSessionRequest, $requestOptions);
+        list($response) = $this->sessionsWithHttpInfo($createCheckoutSessionRequest, $requestOptions);
         return $response;
     }
 
@@ -1786,7 +1749,6 @@ class PaymentsApi extends BaseService
      *
      * Create a payment session
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\CreateCheckoutSessionRequest $createCheckoutSessionRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -1794,11 +1756,11 @@ class PaymentsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return array of \Adyen\Model\Checkout\CreateCheckoutSessionResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function sessionsWithHttpInfo(string $idempotencyKey = null, \Adyen\Model\Checkout\CreateCheckoutSessionRequest $createCheckoutSessionRequest, ?\Adyen\RequestOptions $requestOptions = null): array
+    public function sessionsWithHttpInfo(\Adyen\Model\Checkout\CreateCheckoutSessionRequest $createCheckoutSessionRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
         $contentType = self::CONTENT_TYPES['sessions'][0];
 
-        $request = $this->sessionsRequest($idempotencyKey, $createCheckoutSessionRequest, $contentType, $requestOptions);
+        $request = $this->sessionsRequest($createCheckoutSessionRequest, $contentType, $requestOptions);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1874,16 +1836,15 @@ class PaymentsApi extends BaseService
      *
      * Create a payment session
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\CreateCheckoutSessionRequest $createCheckoutSessionRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function sessionsAsync(string $idempotencyKey = null, \Adyen\Model\Checkout\CreateCheckoutSessionRequest $createCheckoutSessionRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function sessionsAsync(\Adyen\Model\Checkout\CreateCheckoutSessionRequest $createCheckoutSessionRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
-        return $this->sessionsAsyncWithHttpInfo($idempotencyKey, $createCheckoutSessionRequest, $requestOptions)
+        return $this->sessionsAsyncWithHttpInfo($createCheckoutSessionRequest, $requestOptions)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1896,18 +1857,17 @@ class PaymentsApi extends BaseService
      *
      * Create a payment session
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\CreateCheckoutSessionRequest $createCheckoutSessionRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function sessionsAsyncWithHttpInfo(string $idempotencyKey = null, \Adyen\Model\Checkout\CreateCheckoutSessionRequest $createCheckoutSessionRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function sessionsAsyncWithHttpInfo(\Adyen\Model\Checkout\CreateCheckoutSessionRequest $createCheckoutSessionRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
         $contentType = self::CONTENT_TYPES['sessions'][0];
 
-        $request = $this->sessionsRequest($idempotencyKey, $createCheckoutSessionRequest, $contentType, $requestOptions);
+        $request = $this->sessionsRequest($createCheckoutSessionRequest, $contentType, $requestOptions);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1949,7 +1909,6 @@ class PaymentsApi extends BaseService
     /**
      * Create request for operation 'sessions'
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\CreateCheckoutSessionRequest $createCheckoutSessionRequest (required)
      * @param  string $contentType The value for the Content-Type header. Check self::CONTENT_TYPES['sessions'] to see the possible values for this operation
      * @param \Adyen\RequestOptions|null $requestOptions
@@ -1957,7 +1916,7 @@ class PaymentsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function sessionsRequest(string $idempotencyKey = null, \Adyen\Model\Checkout\CreateCheckoutSessionRequest $createCheckoutSessionRequest, string $contentType = self::CONTENT_TYPES['sessions'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
+    public function sessionsRequest(\Adyen\Model\Checkout\CreateCheckoutSessionRequest $createCheckoutSessionRequest, string $contentType = self::CONTENT_TYPES['sessions'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
     {
 
         $resourcePath = '/sessions';
@@ -1966,10 +1925,6 @@ class PaymentsApi extends BaseService
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
-        // header params
-        if ($idempotencyKey !== null) {
-            $headerParams['Idempotency-Key'] = ObjectSerializer::toHeaderValue($idempotencyKey);
-        }
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', ],

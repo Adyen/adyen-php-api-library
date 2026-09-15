@@ -287,7 +287,7 @@ class PixPayByBankDetails implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('riskSignals', $data ?? [], null);
         $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'paybybank_pix');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**

@@ -142,7 +142,6 @@ class ModificationsApi extends BaseService
      *
      * Cancel an authorised payment
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\StandalonePaymentCancelRequest $standalonePaymentCancelRequest standalonePaymentCancelRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -150,9 +149,9 @@ class ModificationsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \Adyen\Model\Checkout\StandalonePaymentCancelResponse
      */
-    public function cancelAuthorisedPayment(string $idempotencyKey = null, \Adyen\Model\Checkout\StandalonePaymentCancelRequest $standalonePaymentCancelRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\StandalonePaymentCancelResponse
+    public function cancelAuthorisedPayment(\Adyen\Model\Checkout\StandalonePaymentCancelRequest $standalonePaymentCancelRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\StandalonePaymentCancelResponse
     {
-        list($response) = $this->cancelAuthorisedPaymentWithHttpInfo($idempotencyKey, $standalonePaymentCancelRequest, $requestOptions);
+        list($response) = $this->cancelAuthorisedPaymentWithHttpInfo($standalonePaymentCancelRequest, $requestOptions);
         return $response;
     }
 
@@ -161,7 +160,6 @@ class ModificationsApi extends BaseService
      *
      * Cancel an authorised payment
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\StandalonePaymentCancelRequest $standalonePaymentCancelRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -169,11 +167,11 @@ class ModificationsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return array of \Adyen\Model\Checkout\StandalonePaymentCancelResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function cancelAuthorisedPaymentWithHttpInfo(string $idempotencyKey = null, \Adyen\Model\Checkout\StandalonePaymentCancelRequest $standalonePaymentCancelRequest, ?\Adyen\RequestOptions $requestOptions = null): array
+    public function cancelAuthorisedPaymentWithHttpInfo(\Adyen\Model\Checkout\StandalonePaymentCancelRequest $standalonePaymentCancelRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
         $contentType = self::CONTENT_TYPES['cancelAuthorisedPayment'][0];
 
-        $request = $this->cancelAuthorisedPaymentRequest($idempotencyKey, $standalonePaymentCancelRequest, $contentType, $requestOptions);
+        $request = $this->cancelAuthorisedPaymentRequest($standalonePaymentCancelRequest, $contentType, $requestOptions);
 
         try {
             $options = $this->createHttpClientOption();
@@ -319,16 +317,15 @@ class ModificationsApi extends BaseService
      *
      * Cancel an authorised payment
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\StandalonePaymentCancelRequest $standalonePaymentCancelRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function cancelAuthorisedPaymentAsync(string $idempotencyKey = null, \Adyen\Model\Checkout\StandalonePaymentCancelRequest $standalonePaymentCancelRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function cancelAuthorisedPaymentAsync(\Adyen\Model\Checkout\StandalonePaymentCancelRequest $standalonePaymentCancelRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
-        return $this->cancelAuthorisedPaymentAsyncWithHttpInfo($idempotencyKey, $standalonePaymentCancelRequest, $requestOptions)
+        return $this->cancelAuthorisedPaymentAsyncWithHttpInfo($standalonePaymentCancelRequest, $requestOptions)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -341,18 +338,17 @@ class ModificationsApi extends BaseService
      *
      * Cancel an authorised payment
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\StandalonePaymentCancelRequest $standalonePaymentCancelRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function cancelAuthorisedPaymentAsyncWithHttpInfo(string $idempotencyKey = null, \Adyen\Model\Checkout\StandalonePaymentCancelRequest $standalonePaymentCancelRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function cancelAuthorisedPaymentAsyncWithHttpInfo(\Adyen\Model\Checkout\StandalonePaymentCancelRequest $standalonePaymentCancelRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
         $contentType = self::CONTENT_TYPES['cancelAuthorisedPayment'][0];
 
-        $request = $this->cancelAuthorisedPaymentRequest($idempotencyKey, $standalonePaymentCancelRequest, $contentType, $requestOptions);
+        $request = $this->cancelAuthorisedPaymentRequest($standalonePaymentCancelRequest, $contentType, $requestOptions);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -394,7 +390,6 @@ class ModificationsApi extends BaseService
     /**
      * Create request for operation 'cancelAuthorisedPayment'
      *
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\StandalonePaymentCancelRequest $standalonePaymentCancelRequest (required)
      * @param  string $contentType The value for the Content-Type header. Check self::CONTENT_TYPES['cancelAuthorisedPayment'] to see the possible values for this operation
      * @param \Adyen\RequestOptions|null $requestOptions
@@ -402,7 +397,7 @@ class ModificationsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function cancelAuthorisedPaymentRequest(string $idempotencyKey = null, \Adyen\Model\Checkout\StandalonePaymentCancelRequest $standalonePaymentCancelRequest, string $contentType = self::CONTENT_TYPES['cancelAuthorisedPayment'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
+    public function cancelAuthorisedPaymentRequest(\Adyen\Model\Checkout\StandalonePaymentCancelRequest $standalonePaymentCancelRequest, string $contentType = self::CONTENT_TYPES['cancelAuthorisedPayment'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
     {
 
         $resourcePath = '/cancels';
@@ -411,10 +406,6 @@ class ModificationsApi extends BaseService
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
-        // header params
-        if ($idempotencyKey !== null) {
-            $headerParams['Idempotency-Key'] = ObjectSerializer::toHeaderValue($idempotencyKey);
-        }
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', ],
@@ -491,7 +482,6 @@ class ModificationsApi extends BaseService
      * Cancel an authorised payment
      *
      * @param  string $paymentPspReference The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to cancel. (required)
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentCancelRequest $paymentCancelRequest paymentCancelRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -499,9 +489,9 @@ class ModificationsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \Adyen\Model\Checkout\PaymentCancelResponse
      */
-    public function cancelAuthorisedPaymentByPspReference(string $paymentPspReference, string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentCancelRequest $paymentCancelRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\PaymentCancelResponse
+    public function cancelAuthorisedPaymentByPspReference(string $paymentPspReference, \Adyen\Model\Checkout\PaymentCancelRequest $paymentCancelRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\PaymentCancelResponse
     {
-        list($response) = $this->cancelAuthorisedPaymentByPspReferenceWithHttpInfo($paymentPspReference, $idempotencyKey, $paymentCancelRequest, $requestOptions);
+        list($response) = $this->cancelAuthorisedPaymentByPspReferenceWithHttpInfo($paymentPspReference, $paymentCancelRequest, $requestOptions);
         return $response;
     }
 
@@ -511,7 +501,6 @@ class ModificationsApi extends BaseService
      * Cancel an authorised payment
      *
      * @param  string $paymentPspReference The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to cancel. (required)
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentCancelRequest $paymentCancelRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -519,11 +508,11 @@ class ModificationsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return array of \Adyen\Model\Checkout\PaymentCancelResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function cancelAuthorisedPaymentByPspReferenceWithHttpInfo(string $paymentPspReference, string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentCancelRequest $paymentCancelRequest, ?\Adyen\RequestOptions $requestOptions = null): array
+    public function cancelAuthorisedPaymentByPspReferenceWithHttpInfo(string $paymentPspReference, \Adyen\Model\Checkout\PaymentCancelRequest $paymentCancelRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
         $contentType = self::CONTENT_TYPES['cancelAuthorisedPaymentByPspReference'][0];
 
-        $request = $this->cancelAuthorisedPaymentByPspReferenceRequest($paymentPspReference, $idempotencyKey, $paymentCancelRequest, $contentType, $requestOptions);
+        $request = $this->cancelAuthorisedPaymentByPspReferenceRequest($paymentPspReference, $paymentCancelRequest, $contentType, $requestOptions);
 
         try {
             $options = $this->createHttpClientOption();
@@ -670,16 +659,15 @@ class ModificationsApi extends BaseService
      * Cancel an authorised payment
      *
      * @param  string $paymentPspReference The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to cancel. (required)
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentCancelRequest $paymentCancelRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function cancelAuthorisedPaymentByPspReferenceAsync(string $paymentPspReference, string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentCancelRequest $paymentCancelRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function cancelAuthorisedPaymentByPspReferenceAsync(string $paymentPspReference, \Adyen\Model\Checkout\PaymentCancelRequest $paymentCancelRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
-        return $this->cancelAuthorisedPaymentByPspReferenceAsyncWithHttpInfo($paymentPspReference, $idempotencyKey, $paymentCancelRequest, $requestOptions)
+        return $this->cancelAuthorisedPaymentByPspReferenceAsyncWithHttpInfo($paymentPspReference, $paymentCancelRequest, $requestOptions)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -693,18 +681,17 @@ class ModificationsApi extends BaseService
      * Cancel an authorised payment
      *
      * @param  string $paymentPspReference The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to cancel. (required)
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentCancelRequest $paymentCancelRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function cancelAuthorisedPaymentByPspReferenceAsyncWithHttpInfo(string $paymentPspReference, string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentCancelRequest $paymentCancelRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function cancelAuthorisedPaymentByPspReferenceAsyncWithHttpInfo(string $paymentPspReference, \Adyen\Model\Checkout\PaymentCancelRequest $paymentCancelRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
         $contentType = self::CONTENT_TYPES['cancelAuthorisedPaymentByPspReference'][0];
 
-        $request = $this->cancelAuthorisedPaymentByPspReferenceRequest($paymentPspReference, $idempotencyKey, $paymentCancelRequest, $contentType, $requestOptions);
+        $request = $this->cancelAuthorisedPaymentByPspReferenceRequest($paymentPspReference, $paymentCancelRequest, $contentType, $requestOptions);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -747,7 +734,6 @@ class ModificationsApi extends BaseService
      * Create request for operation 'cancelAuthorisedPaymentByPspReference'
      *
      * @param  string $paymentPspReference The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to cancel. (required)
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentCancelRequest $paymentCancelRequest (required)
      * @param  string $contentType The value for the Content-Type header. Check self::CONTENT_TYPES['cancelAuthorisedPaymentByPspReference'] to see the possible values for this operation
      * @param \Adyen\RequestOptions|null $requestOptions
@@ -755,7 +741,7 @@ class ModificationsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function cancelAuthorisedPaymentByPspReferenceRequest(string $paymentPspReference, string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentCancelRequest $paymentCancelRequest, string $contentType = self::CONTENT_TYPES['cancelAuthorisedPaymentByPspReference'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
+    public function cancelAuthorisedPaymentByPspReferenceRequest(string $paymentPspReference, \Adyen\Model\Checkout\PaymentCancelRequest $paymentCancelRequest, string $contentType = self::CONTENT_TYPES['cancelAuthorisedPaymentByPspReference'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
     {
 
         // verify the required parameter 'paymentPspReference' is set
@@ -771,10 +757,6 @@ class ModificationsApi extends BaseService
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
-        // header params
-        if ($idempotencyKey !== null) {
-            $headerParams['Idempotency-Key'] = ObjectSerializer::toHeaderValue($idempotencyKey);
-        }
 
         // path params
         if ($paymentPspReference !== null) {
@@ -860,7 +842,6 @@ class ModificationsApi extends BaseService
      * Capture an authorised payment
      *
      * @param  string $paymentPspReference The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to capture. (required)
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentCaptureRequest $paymentCaptureRequest paymentCaptureRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -868,9 +849,9 @@ class ModificationsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \Adyen\Model\Checkout\PaymentCaptureResponse
      */
-    public function captureAuthorisedPayment(string $paymentPspReference, string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentCaptureRequest $paymentCaptureRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\PaymentCaptureResponse
+    public function captureAuthorisedPayment(string $paymentPspReference, \Adyen\Model\Checkout\PaymentCaptureRequest $paymentCaptureRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\PaymentCaptureResponse
     {
-        list($response) = $this->captureAuthorisedPaymentWithHttpInfo($paymentPspReference, $idempotencyKey, $paymentCaptureRequest, $requestOptions);
+        list($response) = $this->captureAuthorisedPaymentWithHttpInfo($paymentPspReference, $paymentCaptureRequest, $requestOptions);
         return $response;
     }
 
@@ -880,7 +861,6 @@ class ModificationsApi extends BaseService
      * Capture an authorised payment
      *
      * @param  string $paymentPspReference The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to capture. (required)
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentCaptureRequest $paymentCaptureRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -888,11 +868,11 @@ class ModificationsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return array of \Adyen\Model\Checkout\PaymentCaptureResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function captureAuthorisedPaymentWithHttpInfo(string $paymentPspReference, string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentCaptureRequest $paymentCaptureRequest, ?\Adyen\RequestOptions $requestOptions = null): array
+    public function captureAuthorisedPaymentWithHttpInfo(string $paymentPspReference, \Adyen\Model\Checkout\PaymentCaptureRequest $paymentCaptureRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
         $contentType = self::CONTENT_TYPES['captureAuthorisedPayment'][0];
 
-        $request = $this->captureAuthorisedPaymentRequest($paymentPspReference, $idempotencyKey, $paymentCaptureRequest, $contentType, $requestOptions);
+        $request = $this->captureAuthorisedPaymentRequest($paymentPspReference, $paymentCaptureRequest, $contentType, $requestOptions);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1039,16 +1019,15 @@ class ModificationsApi extends BaseService
      * Capture an authorised payment
      *
      * @param  string $paymentPspReference The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to capture. (required)
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentCaptureRequest $paymentCaptureRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function captureAuthorisedPaymentAsync(string $paymentPspReference, string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentCaptureRequest $paymentCaptureRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function captureAuthorisedPaymentAsync(string $paymentPspReference, \Adyen\Model\Checkout\PaymentCaptureRequest $paymentCaptureRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
-        return $this->captureAuthorisedPaymentAsyncWithHttpInfo($paymentPspReference, $idempotencyKey, $paymentCaptureRequest, $requestOptions)
+        return $this->captureAuthorisedPaymentAsyncWithHttpInfo($paymentPspReference, $paymentCaptureRequest, $requestOptions)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1062,18 +1041,17 @@ class ModificationsApi extends BaseService
      * Capture an authorised payment
      *
      * @param  string $paymentPspReference The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to capture. (required)
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentCaptureRequest $paymentCaptureRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function captureAuthorisedPaymentAsyncWithHttpInfo(string $paymentPspReference, string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentCaptureRequest $paymentCaptureRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function captureAuthorisedPaymentAsyncWithHttpInfo(string $paymentPspReference, \Adyen\Model\Checkout\PaymentCaptureRequest $paymentCaptureRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
         $contentType = self::CONTENT_TYPES['captureAuthorisedPayment'][0];
 
-        $request = $this->captureAuthorisedPaymentRequest($paymentPspReference, $idempotencyKey, $paymentCaptureRequest, $contentType, $requestOptions);
+        $request = $this->captureAuthorisedPaymentRequest($paymentPspReference, $paymentCaptureRequest, $contentType, $requestOptions);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1116,7 +1094,6 @@ class ModificationsApi extends BaseService
      * Create request for operation 'captureAuthorisedPayment'
      *
      * @param  string $paymentPspReference The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to capture. (required)
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentCaptureRequest $paymentCaptureRequest (required)
      * @param  string $contentType The value for the Content-Type header. Check self::CONTENT_TYPES['captureAuthorisedPayment'] to see the possible values for this operation
      * @param \Adyen\RequestOptions|null $requestOptions
@@ -1124,7 +1101,7 @@ class ModificationsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function captureAuthorisedPaymentRequest(string $paymentPspReference, string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentCaptureRequest $paymentCaptureRequest, string $contentType = self::CONTENT_TYPES['captureAuthorisedPayment'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
+    public function captureAuthorisedPaymentRequest(string $paymentPspReference, \Adyen\Model\Checkout\PaymentCaptureRequest $paymentCaptureRequest, string $contentType = self::CONTENT_TYPES['captureAuthorisedPayment'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
     {
 
         // verify the required parameter 'paymentPspReference' is set
@@ -1140,10 +1117,6 @@ class ModificationsApi extends BaseService
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
-        // header params
-        if ($idempotencyKey !== null) {
-            $headerParams['Idempotency-Key'] = ObjectSerializer::toHeaderValue($idempotencyKey);
-        }
 
         // path params
         if ($paymentPspReference !== null) {
@@ -1229,7 +1202,6 @@ class ModificationsApi extends BaseService
      * Refund a captured payment
      *
      * @param  string $paymentPspReference The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to refund. (required)
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentRefundRequest $paymentRefundRequest paymentRefundRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -1237,9 +1209,9 @@ class ModificationsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \Adyen\Model\Checkout\PaymentRefundResponse
      */
-    public function refundCapturedPayment(string $paymentPspReference, string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentRefundRequest $paymentRefundRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\PaymentRefundResponse
+    public function refundCapturedPayment(string $paymentPspReference, \Adyen\Model\Checkout\PaymentRefundRequest $paymentRefundRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\PaymentRefundResponse
     {
-        list($response) = $this->refundCapturedPaymentWithHttpInfo($paymentPspReference, $idempotencyKey, $paymentRefundRequest, $requestOptions);
+        list($response) = $this->refundCapturedPaymentWithHttpInfo($paymentPspReference, $paymentRefundRequest, $requestOptions);
         return $response;
     }
 
@@ -1249,7 +1221,6 @@ class ModificationsApi extends BaseService
      * Refund a captured payment
      *
      * @param  string $paymentPspReference The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to refund. (required)
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentRefundRequest $paymentRefundRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -1257,11 +1228,11 @@ class ModificationsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return array of \Adyen\Model\Checkout\PaymentRefundResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function refundCapturedPaymentWithHttpInfo(string $paymentPspReference, string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentRefundRequest $paymentRefundRequest, ?\Adyen\RequestOptions $requestOptions = null): array
+    public function refundCapturedPaymentWithHttpInfo(string $paymentPspReference, \Adyen\Model\Checkout\PaymentRefundRequest $paymentRefundRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
         $contentType = self::CONTENT_TYPES['refundCapturedPayment'][0];
 
-        $request = $this->refundCapturedPaymentRequest($paymentPspReference, $idempotencyKey, $paymentRefundRequest, $contentType, $requestOptions);
+        $request = $this->refundCapturedPaymentRequest($paymentPspReference, $paymentRefundRequest, $contentType, $requestOptions);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1408,16 +1379,15 @@ class ModificationsApi extends BaseService
      * Refund a captured payment
      *
      * @param  string $paymentPspReference The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to refund. (required)
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentRefundRequest $paymentRefundRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function refundCapturedPaymentAsync(string $paymentPspReference, string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentRefundRequest $paymentRefundRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function refundCapturedPaymentAsync(string $paymentPspReference, \Adyen\Model\Checkout\PaymentRefundRequest $paymentRefundRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
-        return $this->refundCapturedPaymentAsyncWithHttpInfo($paymentPspReference, $idempotencyKey, $paymentRefundRequest, $requestOptions)
+        return $this->refundCapturedPaymentAsyncWithHttpInfo($paymentPspReference, $paymentRefundRequest, $requestOptions)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1431,18 +1401,17 @@ class ModificationsApi extends BaseService
      * Refund a captured payment
      *
      * @param  string $paymentPspReference The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to refund. (required)
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentRefundRequest $paymentRefundRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function refundCapturedPaymentAsyncWithHttpInfo(string $paymentPspReference, string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentRefundRequest $paymentRefundRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function refundCapturedPaymentAsyncWithHttpInfo(string $paymentPspReference, \Adyen\Model\Checkout\PaymentRefundRequest $paymentRefundRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
         $contentType = self::CONTENT_TYPES['refundCapturedPayment'][0];
 
-        $request = $this->refundCapturedPaymentRequest($paymentPspReference, $idempotencyKey, $paymentRefundRequest, $contentType, $requestOptions);
+        $request = $this->refundCapturedPaymentRequest($paymentPspReference, $paymentRefundRequest, $contentType, $requestOptions);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1485,7 +1454,6 @@ class ModificationsApi extends BaseService
      * Create request for operation 'refundCapturedPayment'
      *
      * @param  string $paymentPspReference The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to refund. (required)
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentRefundRequest $paymentRefundRequest (required)
      * @param  string $contentType The value for the Content-Type header. Check self::CONTENT_TYPES['refundCapturedPayment'] to see the possible values for this operation
      * @param \Adyen\RequestOptions|null $requestOptions
@@ -1493,7 +1461,7 @@ class ModificationsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function refundCapturedPaymentRequest(string $paymentPspReference, string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentRefundRequest $paymentRefundRequest, string $contentType = self::CONTENT_TYPES['refundCapturedPayment'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
+    public function refundCapturedPaymentRequest(string $paymentPspReference, \Adyen\Model\Checkout\PaymentRefundRequest $paymentRefundRequest, string $contentType = self::CONTENT_TYPES['refundCapturedPayment'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
     {
 
         // verify the required parameter 'paymentPspReference' is set
@@ -1509,10 +1477,6 @@ class ModificationsApi extends BaseService
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
-        // header params
-        if ($idempotencyKey !== null) {
-            $headerParams['Idempotency-Key'] = ObjectSerializer::toHeaderValue($idempotencyKey);
-        }
 
         // path params
         if ($paymentPspReference !== null) {
@@ -1598,7 +1562,6 @@ class ModificationsApi extends BaseService
      * Refund or cancel a payment
      *
      * @param  string $paymentPspReference The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to reverse. (required)
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentReversalRequest $paymentReversalRequest paymentReversalRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -1606,9 +1569,9 @@ class ModificationsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \Adyen\Model\Checkout\PaymentReversalResponse
      */
-    public function refundOrCancelPayment(string $paymentPspReference, string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentReversalRequest $paymentReversalRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\PaymentReversalResponse
+    public function refundOrCancelPayment(string $paymentPspReference, \Adyen\Model\Checkout\PaymentReversalRequest $paymentReversalRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\PaymentReversalResponse
     {
-        list($response) = $this->refundOrCancelPaymentWithHttpInfo($paymentPspReference, $idempotencyKey, $paymentReversalRequest, $requestOptions);
+        list($response) = $this->refundOrCancelPaymentWithHttpInfo($paymentPspReference, $paymentReversalRequest, $requestOptions);
         return $response;
     }
 
@@ -1618,7 +1581,6 @@ class ModificationsApi extends BaseService
      * Refund or cancel a payment
      *
      * @param  string $paymentPspReference The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to reverse. (required)
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentReversalRequest $paymentReversalRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -1626,11 +1588,11 @@ class ModificationsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return array of \Adyen\Model\Checkout\PaymentReversalResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function refundOrCancelPaymentWithHttpInfo(string $paymentPspReference, string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentReversalRequest $paymentReversalRequest, ?\Adyen\RequestOptions $requestOptions = null): array
+    public function refundOrCancelPaymentWithHttpInfo(string $paymentPspReference, \Adyen\Model\Checkout\PaymentReversalRequest $paymentReversalRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
         $contentType = self::CONTENT_TYPES['refundOrCancelPayment'][0];
 
-        $request = $this->refundOrCancelPaymentRequest($paymentPspReference, $idempotencyKey, $paymentReversalRequest, $contentType, $requestOptions);
+        $request = $this->refundOrCancelPaymentRequest($paymentPspReference, $paymentReversalRequest, $contentType, $requestOptions);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1777,16 +1739,15 @@ class ModificationsApi extends BaseService
      * Refund or cancel a payment
      *
      * @param  string $paymentPspReference The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to reverse. (required)
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentReversalRequest $paymentReversalRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function refundOrCancelPaymentAsync(string $paymentPspReference, string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentReversalRequest $paymentReversalRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function refundOrCancelPaymentAsync(string $paymentPspReference, \Adyen\Model\Checkout\PaymentReversalRequest $paymentReversalRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
-        return $this->refundOrCancelPaymentAsyncWithHttpInfo($paymentPspReference, $idempotencyKey, $paymentReversalRequest, $requestOptions)
+        return $this->refundOrCancelPaymentAsyncWithHttpInfo($paymentPspReference, $paymentReversalRequest, $requestOptions)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1800,18 +1761,17 @@ class ModificationsApi extends BaseService
      * Refund or cancel a payment
      *
      * @param  string $paymentPspReference The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to reverse. (required)
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentReversalRequest $paymentReversalRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function refundOrCancelPaymentAsyncWithHttpInfo(string $paymentPspReference, string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentReversalRequest $paymentReversalRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function refundOrCancelPaymentAsyncWithHttpInfo(string $paymentPspReference, \Adyen\Model\Checkout\PaymentReversalRequest $paymentReversalRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
         $contentType = self::CONTENT_TYPES['refundOrCancelPayment'][0];
 
-        $request = $this->refundOrCancelPaymentRequest($paymentPspReference, $idempotencyKey, $paymentReversalRequest, $contentType, $requestOptions);
+        $request = $this->refundOrCancelPaymentRequest($paymentPspReference, $paymentReversalRequest, $contentType, $requestOptions);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1854,7 +1814,6 @@ class ModificationsApi extends BaseService
      * Create request for operation 'refundOrCancelPayment'
      *
      * @param  string $paymentPspReference The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to reverse. (required)
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentReversalRequest $paymentReversalRequest (required)
      * @param  string $contentType The value for the Content-Type header. Check self::CONTENT_TYPES['refundOrCancelPayment'] to see the possible values for this operation
      * @param \Adyen\RequestOptions|null $requestOptions
@@ -1862,7 +1821,7 @@ class ModificationsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function refundOrCancelPaymentRequest(string $paymentPspReference, string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentReversalRequest $paymentReversalRequest, string $contentType = self::CONTENT_TYPES['refundOrCancelPayment'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
+    public function refundOrCancelPaymentRequest(string $paymentPspReference, \Adyen\Model\Checkout\PaymentReversalRequest $paymentReversalRequest, string $contentType = self::CONTENT_TYPES['refundOrCancelPayment'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
     {
 
         // verify the required parameter 'paymentPspReference' is set
@@ -1878,10 +1837,6 @@ class ModificationsApi extends BaseService
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
-        // header params
-        if ($idempotencyKey !== null) {
-            $headerParams['Idempotency-Key'] = ObjectSerializer::toHeaderValue($idempotencyKey);
-        }
 
         // path params
         if ($paymentPspReference !== null) {
@@ -1967,7 +1922,6 @@ class ModificationsApi extends BaseService
      * Update an authorised amount
      *
      * @param  string $paymentPspReference The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment. (required)
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentAmountUpdateRequest $paymentAmountUpdateRequest paymentAmountUpdateRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -1975,9 +1929,9 @@ class ModificationsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \Adyen\Model\Checkout\PaymentAmountUpdateResponse
      */
-    public function updateAuthorisedAmount(string $paymentPspReference, string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentAmountUpdateRequest $paymentAmountUpdateRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\PaymentAmountUpdateResponse
+    public function updateAuthorisedAmount(string $paymentPspReference, \Adyen\Model\Checkout\PaymentAmountUpdateRequest $paymentAmountUpdateRequest, ?\Adyen\RequestOptions $requestOptions = null): \Adyen\Model\Checkout\PaymentAmountUpdateResponse
     {
-        list($response) = $this->updateAuthorisedAmountWithHttpInfo($paymentPspReference, $idempotencyKey, $paymentAmountUpdateRequest, $requestOptions);
+        list($response) = $this->updateAuthorisedAmountWithHttpInfo($paymentPspReference, $paymentAmountUpdateRequest, $requestOptions);
         return $response;
     }
 
@@ -1987,7 +1941,6 @@ class ModificationsApi extends BaseService
      * Update an authorised amount
      *
      * @param  string $paymentPspReference The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment. (required)
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentAmountUpdateRequest $paymentAmountUpdateRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
@@ -1995,11 +1948,11 @@ class ModificationsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return array of \Adyen\Model\Checkout\PaymentAmountUpdateResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateAuthorisedAmountWithHttpInfo(string $paymentPspReference, string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentAmountUpdateRequest $paymentAmountUpdateRequest, ?\Adyen\RequestOptions $requestOptions = null): array
+    public function updateAuthorisedAmountWithHttpInfo(string $paymentPspReference, \Adyen\Model\Checkout\PaymentAmountUpdateRequest $paymentAmountUpdateRequest, ?\Adyen\RequestOptions $requestOptions = null): array
     {
         $contentType = self::CONTENT_TYPES['updateAuthorisedAmount'][0];
 
-        $request = $this->updateAuthorisedAmountRequest($paymentPspReference, $idempotencyKey, $paymentAmountUpdateRequest, $contentType, $requestOptions);
+        $request = $this->updateAuthorisedAmountRequest($paymentPspReference, $paymentAmountUpdateRequest, $contentType, $requestOptions);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2146,16 +2099,15 @@ class ModificationsApi extends BaseService
      * Update an authorised amount
      *
      * @param  string $paymentPspReference The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment. (required)
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentAmountUpdateRequest $paymentAmountUpdateRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateAuthorisedAmountAsync(string $paymentPspReference, string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentAmountUpdateRequest $paymentAmountUpdateRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function updateAuthorisedAmountAsync(string $paymentPspReference, \Adyen\Model\Checkout\PaymentAmountUpdateRequest $paymentAmountUpdateRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
-        return $this->updateAuthorisedAmountAsyncWithHttpInfo($paymentPspReference, $idempotencyKey, $paymentAmountUpdateRequest, $requestOptions)
+        return $this->updateAuthorisedAmountAsyncWithHttpInfo($paymentPspReference, $paymentAmountUpdateRequest, $requestOptions)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2169,18 +2121,17 @@ class ModificationsApi extends BaseService
      * Update an authorised amount
      *
      * @param  string $paymentPspReference The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment. (required)
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentAmountUpdateRequest $paymentAmountUpdateRequest (required)
      * @param  \Adyen\RequestOptions|null $requestOptions Additional request options (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateAuthorisedAmountAsyncWithHttpInfo(string $paymentPspReference, string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentAmountUpdateRequest $paymentAmountUpdateRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
+    public function updateAuthorisedAmountAsyncWithHttpInfo(string $paymentPspReference, \Adyen\Model\Checkout\PaymentAmountUpdateRequest $paymentAmountUpdateRequest, ?\Adyen\RequestOptions $requestOptions = null): \GuzzleHttp\Promise\PromiseInterface
     {
         $contentType = self::CONTENT_TYPES['updateAuthorisedAmount'][0];
 
-        $request = $this->updateAuthorisedAmountRequest($paymentPspReference, $idempotencyKey, $paymentAmountUpdateRequest, $contentType, $requestOptions);
+        $request = $this->updateAuthorisedAmountRequest($paymentPspReference, $paymentAmountUpdateRequest, $contentType, $requestOptions);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2223,7 +2174,6 @@ class ModificationsApi extends BaseService
      * Create request for operation 'updateAuthorisedAmount'
      *
      * @param  string $paymentPspReference The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment. (required)
-     * @param  string|null $idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)
      * @param  \Adyen\Model\Checkout\PaymentAmountUpdateRequest $paymentAmountUpdateRequest (required)
      * @param  string $contentType The value for the Content-Type header. Check self::CONTENT_TYPES['updateAuthorisedAmount'] to see the possible values for this operation
      * @param \Adyen\RequestOptions|null $requestOptions
@@ -2231,7 +2181,7 @@ class ModificationsApi extends BaseService
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateAuthorisedAmountRequest(string $paymentPspReference, string $idempotencyKey = null, \Adyen\Model\Checkout\PaymentAmountUpdateRequest $paymentAmountUpdateRequest, string $contentType = self::CONTENT_TYPES['updateAuthorisedAmount'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
+    public function updateAuthorisedAmountRequest(string $paymentPspReference, \Adyen\Model\Checkout\PaymentAmountUpdateRequest $paymentAmountUpdateRequest, string $contentType = self::CONTENT_TYPES['updateAuthorisedAmount'][0], ?\Adyen\RequestOptions $requestOptions = null): Request
     {
 
         // verify the required parameter 'paymentPspReference' is set
@@ -2247,10 +2197,6 @@ class ModificationsApi extends BaseService
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
-        // header params
-        if ($idempotencyKey !== null) {
-            $headerParams['Idempotency-Key'] = ObjectSerializer::toHeaderValue($idempotencyKey);
-        }
 
         // path params
         if ($paymentPspReference !== null) {

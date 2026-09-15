@@ -311,7 +311,7 @@ class GooglePayDonations implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('sdkData', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
         $this->setIfExists('threeDS2SdkVersion', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], 'googlepay');
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
