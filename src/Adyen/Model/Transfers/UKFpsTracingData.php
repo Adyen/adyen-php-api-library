@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\Transfers\ObjectSerializer;
 
 /**
- * Counterparty Class Doc Comment
+ * UKFpsTracingData Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
+class UKFpsTracingData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Counterparty';
+    protected static $openAPIModelName = 'UKFpsTracingData';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,8 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'accountHolderId' => 'string',
-        'balanceAccountId' => 'string',
-        'transferInstrumentId' => 'string'
+        'fpid' => 'string',
+        'type' => 'string'
     ];
 
     /**
@@ -54,9 +53,8 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'accountHolderId' => null,
-        'balanceAccountId' => null,
-        'transferInstrumentId' => null
+        'fpid' => null,
+        'type' => null
     ];
 
     /**
@@ -65,9 +63,8 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'accountHolderId' => false,
-        'balanceAccountId' => false,
-        'transferInstrumentId' => false
+        'fpid' => false,
+        'type' => false
     ];
 
     /**
@@ -156,9 +153,8 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'accountHolderId' => 'accountHolderId',
-        'balanceAccountId' => 'balanceAccountId',
-        'transferInstrumentId' => 'transferInstrumentId'
+        'fpid' => 'fpid',
+        'type' => 'type'
     ];
 
     /**
@@ -167,9 +163,8 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'accountHolderId' => 'setAccountHolderId',
-        'balanceAccountId' => 'setBalanceAccountId',
-        'transferInstrumentId' => 'setTransferInstrumentId'
+        'fpid' => 'setFpid',
+        'type' => 'setType'
     ];
 
     /**
@@ -178,9 +173,8 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'accountHolderId' => 'getAccountHolderId',
-        'balanceAccountId' => 'getBalanceAccountId',
-        'transferInstrumentId' => 'getTransferInstrumentId'
+        'fpid' => 'getFpid',
+        'type' => 'getType'
     ];
 
     /**
@@ -224,7 +218,19 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const TYPE_UK_FPS = 'ukFps';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_UK_FPS,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -240,9 +246,8 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('accountHolderId', $data ?? [], null);
-        $this->setIfExists('balanceAccountId', $data ?? [], null);
-        $this->setIfExists('transferInstrumentId', $data ?? [], null);
+        $this->setIfExists('fpid', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -272,6 +277,21 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['fpid'] === null) {
+            $invalidProperties[] = "'fpid' can't be null";
+        }
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -288,73 +308,59 @@ class Counterparty implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets accountHolderId
+     * Gets fpid
      *
-     * @return string|null
+     * @return string
      */
-    public function getAccountHolderId()
+    public function getFpid()
     {
-        return $this->container['accountHolderId'];
+        return $this->container['fpid'];
     }
 
     /**
-     * Sets accountHolderId
+     * Sets fpid
      *
-     * @param string|null $accountHolderId The identifier of the receiving account holder. The payout will default to the primary balance account of this account holder if no `balanceAccountId` is provided.
+     * @param string $fpid The FPS trace number. This is a unique identifier assigned to transfers processed by [FPS](https://www.bankofengland.co.uk/payment-systems/services/faster-payments-service).
      *
      * @return self
      */
-    public function setAccountHolderId($accountHolderId)
+    public function setFpid($fpid)
     {
-        $this->container['accountHolderId'] = $accountHolderId;
+        $this->container['fpid'] = $fpid;
 
         return $this;
     }
 
     /**
-     * Gets balanceAccountId
+     * Gets type
      *
-     * @return string|null
+     * @return string
      */
-    public function getBalanceAccountId()
+    public function getType()
     {
-        return $this->container['balanceAccountId'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets balanceAccountId
+     * Sets type
      *
-     * @param string|null $balanceAccountId The identifier of the balance account that belongs to the receiving account holder.
+     * @param string $type **ukFps**
      *
      * @return self
      */
-    public function setBalanceAccountId($balanceAccountId)
+    public function setType($type)
     {
-        $this->container['balanceAccountId'] = $balanceAccountId;
-
-        return $this;
-    }
-
-    /**
-     * Gets transferInstrumentId
-     *
-     * @return string|null
-     */
-    public function getTransferInstrumentId()
-    {
-        return $this->container['transferInstrumentId'];
-    }
-
-    /**
-     * Sets transferInstrumentId
-     *
-     * @param string|null $transferInstrumentId The identifier of the transfer instrument that belongs to the legal entity of the account holder.
-     *
-     * @return self
-     */
-    public function setTransferInstrumentId($transferInstrumentId)
-    {
-        $this->container['transferInstrumentId'] = $transferInstrumentId;
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            error_log(
+                sprintf(
+                    "type: unexpected enum value '%s' - Supported values are [%s]",
+                    $type,
+                    implode(', ', $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
 
         return $this;
     }

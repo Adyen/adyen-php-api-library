@@ -28,7 +28,7 @@ use Adyen\Model\Transfers\ObjectSerializer;
  */
 class TransferEventTrackingData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    public const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = 'type';
 
     /**
       * The original name of the model.
@@ -251,6 +251,9 @@ class TransferEventTrackingData implements ModelInterface, ArrayAccess, \JsonSer
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('estimatedArrivalTime', $data ?? [], null);
         $this->setIfExists('reason', $data ?? [], null);
+
+        // Initialize discriminator property with the model name.
+        $this->container['type'] = static::$openAPIModelName;
     }
 
     /**
