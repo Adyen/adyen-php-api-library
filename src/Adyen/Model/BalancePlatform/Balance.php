@@ -45,6 +45,7 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
         'balance' => 'int',
         'currency' => 'string',
         'pending' => 'int',
+        'pendingAvailable' => 'int',
         'reserved' => 'int'
     ];
 
@@ -60,6 +61,7 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
         'balance' => 'int64',
         'currency' => null,
         'pending' => 'int64',
+        'pendingAvailable' => 'int64',
         'reserved' => 'int64'
     ];
 
@@ -73,6 +75,7 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
         'balance' => false,
         'currency' => false,
         'pending' => false,
+        'pendingAvailable' => false,
         'reserved' => false
     ];
 
@@ -166,6 +169,7 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
         'balance' => 'balance',
         'currency' => 'currency',
         'pending' => 'pending',
+        'pendingAvailable' => 'pendingAvailable',
         'reserved' => 'reserved'
     ];
 
@@ -179,6 +183,7 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
         'balance' => 'setBalance',
         'currency' => 'setCurrency',
         'pending' => 'setPending',
+        'pendingAvailable' => 'setPendingAvailable',
         'reserved' => 'setReserved'
     ];
 
@@ -192,6 +197,7 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
         'balance' => 'getBalance',
         'currency' => 'getCurrency',
         'pending' => 'getPending',
+        'pendingAvailable' => 'getPendingAvailable',
         'reserved' => 'getReserved'
     ];
 
@@ -256,6 +262,7 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('balance', $data ?? [], null);
         $this->setIfExists('currency', $data ?? [], null);
         $this->setIfExists('pending', $data ?? [], null);
+        $this->setIfExists('pendingAvailable', $data ?? [], null);
         $this->setIfExists('reserved', $data ?? [], null);
     }
 
@@ -405,6 +412,30 @@ class Balance implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setPending($pending)
     {
         $this->container['pending'] = $pending;
+
+        return $this;
+    }
+
+    /**
+     * Gets pendingAvailable
+     *
+     * @return int|null
+     */
+    public function getPendingAvailable()
+    {
+        return $this->container['pendingAvailable'];
+    }
+
+    /**
+     * Sets pendingAvailable
+     *
+     * @param int|null $pendingAvailable The balance that will become the available balance after the pending balance is settled.  The pending available balance is equal to the lower of the following: - The `pending` balance - The `pending` balance plus the `available` balance.
+     *
+     * @return self
+     */
+    public function setPendingAvailable($pendingAvailable)
+    {
+        $this->container['pendingAvailable'] = $pendingAvailable;
 
         return $this;
     }
