@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\Transfers\ObjectSerializer;
 
 /**
- * IbanAccountIdentification Class Doc Comment
+ * NetworkReason Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
+class NetworkReason implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       *
       * @var string
       */
-    protected static $openAPIModelName = 'IbanAccountIdentification';
+    protected static $openAPIModelName = 'NetworkReason';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,9 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       * @var string[]
       */
     protected static $openAPITypes = [
-        'bic' => 'string',
-        'iban' => 'string',
-        'type' => 'string'
+        'code' => 'string',
+        'description' => 'string',
+        'namespace' => 'string'
     ];
 
     /**
@@ -54,9 +54,9 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'bic' => null,
-        'iban' => null,
-        'type' => null
+        'code' => null,
+        'description' => null,
+        'namespace' => null
     ];
 
     /**
@@ -65,9 +65,9 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'bic' => false,
-        'iban' => false,
-        'type' => false
+        'code' => false,
+        'description' => false,
+        'namespace' => false
     ];
 
     /**
@@ -156,9 +156,9 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $attributeMap = [
-        'bic' => 'bic',
-        'iban' => 'iban',
-        'type' => 'type'
+        'code' => 'code',
+        'description' => 'description',
+        'namespace' => 'namespace'
     ];
 
     /**
@@ -167,9 +167,9 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $setters = [
-        'bic' => 'setBic',
-        'iban' => 'setIban',
-        'type' => 'setType'
+        'code' => 'setCode',
+        'description' => 'setDescription',
+        'namespace' => 'setNamespace'
     ];
 
     /**
@@ -178,9 +178,9 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $getters = [
-        'bic' => 'getBic',
-        'iban' => 'getIban',
-        'type' => 'getType'
+        'code' => 'getCode',
+        'description' => 'getDescription',
+        'namespace' => 'getNamespace'
     ];
 
     /**
@@ -224,17 +224,23 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
         return self::$openAPIModelName;
     }
 
-    public const TYPE_IBAN = 'iban';
+    public const MODEL_NAMESPACE_ISO8583_RESPONSE_CODE = 'iso8583ResponseCode';
+    public const MODEL_NAMESPACE_UK_FPS_REJECTION_CODE = 'ukFpsRejectionCode';
+    public const MODEL_NAMESPACE_UK_FPS_RETURN_REASON_CODE = 'ukFpsReturnReasonCode';
+    public const MODEL_NAMESPACE_US_ACH_RETURN_REASON_CODE = 'usAchReturnReasonCode';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getTypeAllowableValues()
+    public function getNamespaceAllowableValues()
     {
         return [
-            self::TYPE_IBAN,
+            self::MODEL_NAMESPACE_ISO8583_RESPONSE_CODE,
+            self::MODEL_NAMESPACE_UK_FPS_REJECTION_CODE,
+            self::MODEL_NAMESPACE_UK_FPS_RETURN_REASON_CODE,
+            self::MODEL_NAMESPACE_US_ACH_RETURN_REASON_CODE,
         ];
     }
     /**
@@ -252,9 +258,9 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('bic', $data ?? [], null);
-        $this->setIfExists('iban', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('code', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('namespace', $data ?? [], null);
     }
 
     /**
@@ -284,17 +290,11 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
     {
         $invalidProperties = [];
 
-        if ($this->container['iban'] === null) {
-            $invalidProperties[] = "'iban' can't be null";
-        }
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
-        }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+        $allowedValues = $this->getNamespaceAllowableValues();
+        if (!is_null($this->container['namespace']) && !in_array($this->container['namespace'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
+                "invalid value '%s' for 'namespace', must be one of '%s'",
+                $this->container['namespace'],
                 implode("', '", $allowedValues)
             );
         }
@@ -315,83 +315,83 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
 
 
     /**
-     * Gets bic
+     * Gets code
      *
      * @return string|null
      */
-    public function getBic()
+    public function getCode()
     {
-        return $this->container['bic'];
+        return $this->container['code'];
     }
 
     /**
-     * Sets bic
+     * Sets code
      *
-     * @param string|null $bic The bank's 8- or 11-character BIC or SWIFT code.
+     * @param string|null $code The reason code provided by the network.
      *
      * @return self
      */
-    public function setBic($bic)
+    public function setCode($code)
     {
-        $this->container['bic'] = $bic;
+        $this->container['code'] = $code;
 
         return $this;
     }
 
     /**
-     * Gets iban
+     * Gets description
      *
-     * @return string
+     * @return string|null
      */
-    public function getIban()
+    public function getDescription()
     {
-        return $this->container['iban'];
+        return $this->container['description'];
     }
 
     /**
-     * Sets iban
+     * Sets description
      *
-     * @param string $iban The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.
+     * @param string|null $description The description of the reason code.
      *
      * @return self
      */
-    public function setIban($iban)
+    public function setDescription($description)
     {
-        $this->container['iban'] = $iban;
+        $this->container['description'] = $description;
 
         return $this;
     }
 
     /**
-     * Gets type
+     * Gets namespace
      *
-     * @return string
+     * @return string|null
      */
-    public function getType()
+    public function getNamespace()
     {
-        return $this->container['type'];
+        return $this->container['namespace'];
     }
 
     /**
-     * Sets type
+     * Sets namespace
      *
-     * @param string $type **iban**
+     * @param string|null $namespace The namespace that corresponds to the reason code.  Possible values: *  **ukFpsRejectionCode** *  **ukFpsReturnReasonCode** *  **usAchReturnReasonCode** *  **iso8583ResponseCode**
      *
      * @return self
      */
-    public function setType($type)
+    public function setNamespace($namespace)
     {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
+        $allowedValues = $this->getNamespaceAllowableValues();
+        if (!in_array($namespace, $allowedValues, true)) {
             error_log(
                 sprintf(
-                    "type: unexpected enum value '%s' - Supported values are [%s]",
-                    $type,
+                    "namespace: unexpected enum value '%s' - Supported values are [%s]",
+                    $namespace,
                     implode(', ', $allowedValues)
                 )
             );
         }
-        $this->container['type'] = $type;
+        $this->container['namespace'] = $namespace;
 
         return $this;
     }

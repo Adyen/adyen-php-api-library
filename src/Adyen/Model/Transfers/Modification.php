@@ -271,6 +271,7 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_FAILED = 'failed';
     public const STATUS_FEE = 'fee';
     public const STATUS_FEE_PENDING = 'feePending';
+    public const STATUS_INTERCHANGE_ADJUSTED = 'interchangeAdjusted';
     public const STATUS_INTERNAL_TRANSFER = 'internalTransfer';
     public const STATUS_INTERNAL_TRANSFER_PENDING = 'internalTransferPending';
     public const STATUS_INVOICE_DEDUCTION = 'invoiceDeduction';
@@ -287,6 +288,7 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_MISC_COST_PENDING = 'miscCostPending';
     public const STATUS_PAYMENT_COST = 'paymentCost';
     public const STATUS_PAYMENT_COST_PENDING = 'paymentCostPending';
+    public const STATUS_PENDING = 'pending';
     public const STATUS_PENDING_APPROVAL = 'pendingApproval';
     public const STATUS_PENDING_EXECUTION = 'pendingExecution';
     public const STATUS_RECEIVED = 'received';
@@ -300,6 +302,7 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_RESERVE_ADJUSTMENT = 'reserveAdjustment';
     public const STATUS_RESERVE_ADJUSTMENT_PENDING = 'reserveAdjustmentPending';
     public const STATUS_RETURNED = 'returned';
+    public const STATUS_REVERSED = 'reversed';
     public const STATUS_SECOND_CHARGEBACK = 'secondChargeback';
     public const STATUS_SECOND_CHARGEBACK_PENDING = 'secondChargebackPending';
     public const STATUS_UNDEFINED = 'undefined';
@@ -347,6 +350,7 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_FAILED,
             self::STATUS_FEE,
             self::STATUS_FEE_PENDING,
+            self::STATUS_INTERCHANGE_ADJUSTED,
             self::STATUS_INTERNAL_TRANSFER,
             self::STATUS_INTERNAL_TRANSFER_PENDING,
             self::STATUS_INVOICE_DEDUCTION,
@@ -363,6 +367,7 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_MISC_COST_PENDING,
             self::STATUS_PAYMENT_COST,
             self::STATUS_PAYMENT_COST_PENDING,
+            self::STATUS_PENDING,
             self::STATUS_PENDING_APPROVAL,
             self::STATUS_PENDING_EXECUTION,
             self::STATUS_RECEIVED,
@@ -376,6 +381,7 @@ class Modification implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_RESERVE_ADJUSTMENT,
             self::STATUS_RESERVE_ADJUSTMENT_PENDING,
             self::STATUS_RETURNED,
+            self::STATUS_REVERSED,
             self::STATUS_SECOND_CHARGEBACK,
             self::STATUS_SECOND_CHARGEBACK_PENDING,
             self::STATUS_UNDEFINED,

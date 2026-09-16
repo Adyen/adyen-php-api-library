@@ -59,6 +59,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'executionDate' => '\Adyen\Model\Transfers\ExecutionDate',
         'externalReason' => '\Adyen\Model\Transfers\ExternalReason',
         'id' => 'string',
+        'networkReason' => '\Adyen\Model\Transfers\NetworkReason',
         'paymentInstrument' => '\Adyen\Model\Transfers\PaymentInstrument',
         'reason' => 'string',
         'reference' => 'string',
@@ -66,9 +67,11 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'review' => '\Adyen\Model\Transfers\TransferReview',
         'sequenceNumber' => 'int',
         'status' => 'string',
+        'tracing' => '\Adyen\Model\Transfers\TransferDataTracing',
         'tracking' => '\Adyen\Model\Transfers\TransferDataTracking',
         'transactionRulesResult' => '\Adyen\Model\Transfers\TransactionRulesResult',
         'type' => 'string',
+        'ultimateParty' => '\Adyen\Model\Transfers\UltimatePartyIdentification',
         'updatedAt' => '\DateTime'
     ];
 
@@ -98,6 +101,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'executionDate' => null,
         'externalReason' => null,
         'id' => null,
+        'networkReason' => null,
         'paymentInstrument' => null,
         'reason' => null,
         'reference' => null,
@@ -105,9 +109,11 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'review' => null,
         'sequenceNumber' => 'int32',
         'status' => null,
+        'tracing' => null,
         'tracking' => null,
         'transactionRulesResult' => null,
         'type' => null,
+        'ultimateParty' => null,
         'updatedAt' => 'date-time'
     ];
 
@@ -135,6 +141,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'executionDate' => false,
         'externalReason' => false,
         'id' => false,
+        'networkReason' => false,
         'paymentInstrument' => false,
         'reason' => false,
         'reference' => false,
@@ -142,9 +149,11 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'review' => false,
         'sequenceNumber' => true,
         'status' => false,
+        'tracing' => false,
         'tracking' => false,
         'transactionRulesResult' => false,
         'type' => false,
+        'ultimateParty' => false,
         'updatedAt' => false
     ];
 
@@ -252,6 +261,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'executionDate' => 'executionDate',
         'externalReason' => 'externalReason',
         'id' => 'id',
+        'networkReason' => 'networkReason',
         'paymentInstrument' => 'paymentInstrument',
         'reason' => 'reason',
         'reference' => 'reference',
@@ -259,9 +269,11 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'review' => 'review',
         'sequenceNumber' => 'sequenceNumber',
         'status' => 'status',
+        'tracing' => 'tracing',
         'tracking' => 'tracking',
         'transactionRulesResult' => 'transactionRulesResult',
         'type' => 'type',
+        'ultimateParty' => 'ultimateParty',
         'updatedAt' => 'updatedAt'
     ];
 
@@ -289,6 +301,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'executionDate' => 'setExecutionDate',
         'externalReason' => 'setExternalReason',
         'id' => 'setId',
+        'networkReason' => 'setNetworkReason',
         'paymentInstrument' => 'setPaymentInstrument',
         'reason' => 'setReason',
         'reference' => 'setReference',
@@ -296,9 +309,11 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'review' => 'setReview',
         'sequenceNumber' => 'setSequenceNumber',
         'status' => 'setStatus',
+        'tracing' => 'setTracing',
         'tracking' => 'setTracking',
         'transactionRulesResult' => 'setTransactionRulesResult',
         'type' => 'setType',
+        'ultimateParty' => 'setUltimateParty',
         'updatedAt' => 'setUpdatedAt'
     ];
 
@@ -326,6 +341,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'executionDate' => 'getExecutionDate',
         'externalReason' => 'getExternalReason',
         'id' => 'getId',
+        'networkReason' => 'getNetworkReason',
         'paymentInstrument' => 'getPaymentInstrument',
         'reason' => 'getReason',
         'reference' => 'getReference',
@@ -333,9 +349,11 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         'review' => 'getReview',
         'sequenceNumber' => 'getSequenceNumber',
         'status' => 'getStatus',
+        'tracing' => 'getTracing',
         'tracking' => 'getTracking',
         'transactionRulesResult' => 'getTransactionRulesResult',
         'type' => 'getType',
+        'ultimateParty' => 'getUltimateParty',
         'updatedAt' => 'getUpdatedAt'
     ];
 
@@ -508,6 +526,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_FAILED = 'failed';
     public const STATUS_FEE = 'fee';
     public const STATUS_FEE_PENDING = 'feePending';
+    public const STATUS_INTERCHANGE_ADJUSTED = 'interchangeAdjusted';
     public const STATUS_INTERNAL_TRANSFER = 'internalTransfer';
     public const STATUS_INTERNAL_TRANSFER_PENDING = 'internalTransferPending';
     public const STATUS_INVOICE_DEDUCTION = 'invoiceDeduction';
@@ -524,6 +543,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_MISC_COST_PENDING = 'miscCostPending';
     public const STATUS_PAYMENT_COST = 'paymentCost';
     public const STATUS_PAYMENT_COST_PENDING = 'paymentCostPending';
+    public const STATUS_PENDING = 'pending';
     public const STATUS_PENDING_APPROVAL = 'pendingApproval';
     public const STATUS_PENDING_EXECUTION = 'pendingExecution';
     public const STATUS_RECEIVED = 'received';
@@ -537,6 +557,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_RESERVE_ADJUSTMENT = 'reserveAdjustment';
     public const STATUS_RESERVE_ADJUSTMENT_PENDING = 'reserveAdjustmentPending';
     public const STATUS_RETURNED = 'returned';
+    public const STATUS_REVERSED = 'reversed';
     public const STATUS_SECOND_CHARGEBACK = 'secondChargeback';
     public const STATUS_SECOND_CHARGEBACK_PENDING = 'secondChargebackPending';
     public const STATUS_UNDEFINED = 'undefined';
@@ -745,6 +766,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_FAILED,
             self::STATUS_FEE,
             self::STATUS_FEE_PENDING,
+            self::STATUS_INTERCHANGE_ADJUSTED,
             self::STATUS_INTERNAL_TRANSFER,
             self::STATUS_INTERNAL_TRANSFER_PENDING,
             self::STATUS_INVOICE_DEDUCTION,
@@ -761,6 +783,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_MISC_COST_PENDING,
             self::STATUS_PAYMENT_COST,
             self::STATUS_PAYMENT_COST_PENDING,
+            self::STATUS_PENDING,
             self::STATUS_PENDING_APPROVAL,
             self::STATUS_PENDING_EXECUTION,
             self::STATUS_RECEIVED,
@@ -774,6 +797,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_RESERVE_ADJUSTMENT,
             self::STATUS_RESERVE_ADJUSTMENT_PENDING,
             self::STATUS_RETURNED,
+            self::STATUS_REVERSED,
             self::STATUS_SECOND_CHARGEBACK,
             self::STATUS_SECOND_CHARGEBACK_PENDING,
             self::STATUS_UNDEFINED,
@@ -860,6 +884,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('executionDate', $data ?? [], null);
         $this->setIfExists('externalReason', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('networkReason', $data ?? [], null);
         $this->setIfExists('paymentInstrument', $data ?? [], null);
         $this->setIfExists('reason', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
@@ -867,9 +892,11 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('review', $data ?? [], null);
         $this->setIfExists('sequenceNumber', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('tracing', $data ?? [], null);
         $this->setIfExists('tracking', $data ?? [], null);
         $this->setIfExists('transactionRulesResult', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('ultimateParty', $data ?? [], null);
         $this->setIfExists('updatedAt', $data ?? [], null);
     }
 
@@ -1424,6 +1451,30 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets networkReason
+     *
+     * @return \Adyen\Model\Transfers\NetworkReason|null
+     */
+    public function getNetworkReason()
+    {
+        return $this->container['networkReason'];
+    }
+
+    /**
+     * Sets networkReason
+     *
+     * @param \Adyen\Model\Transfers\NetworkReason|null $networkReason networkReason
+     *
+     * @return self
+     */
+    public function setNetworkReason($networkReason)
+    {
+        $this->container['networkReason'] = $networkReason;
+
+        return $this;
+    }
+
+    /**
      * Gets paymentInstrument
      *
      * @return \Adyen\Model\Transfers\PaymentInstrument|null
@@ -1590,7 +1641,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      *
-     * @param string $status The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **refused**: the transfer request is rejected by Adyen for one of the following reasons:   - Lack of funds in the balance account.   - Transfer limit exceeded.   - Transaction rule requirements violated. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user's balance account.  - **failed**: the transfer is rejected by the counterparty's bank. - **returned**: the transfer is returned by the counterparty's bank.
+     * @param string $status The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **refused**: the transfer request is rejected by Adyen for one of the following reasons:   - Transfer limit exceeded.   - Transaction rule requirements violated. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user's balance account.  - **failed**: the transfer is rejected by the counterparty's bank. - **returned**: the transfer is returned by the counterparty's bank.
      *
      * @return self
      */
@@ -1607,6 +1658,30 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets tracing
+     *
+     * @return \Adyen\Model\Transfers\TransferDataTracing|null
+     */
+    public function getTracing()
+    {
+        return $this->container['tracing'];
+    }
+
+    /**
+     * Sets tracing
+     *
+     * @param \Adyen\Model\Transfers\TransferDataTracing|null $tracing tracing
+     *
+     * @return self
+     */
+    public function setTracing($tracing)
+    {
+        $this->container['tracing'] = $tracing;
 
         return $this;
     }
@@ -1689,6 +1764,30 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets ultimateParty
+     *
+     * @return \Adyen\Model\Transfers\UltimatePartyIdentification|null
+     */
+    public function getUltimateParty()
+    {
+        return $this->container['ultimateParty'];
+    }
+
+    /**
+     * Sets ultimateParty
+     *
+     * @param \Adyen\Model\Transfers\UltimatePartyIdentification|null $ultimateParty ultimateParty
+     *
+     * @return self
+     */
+    public function setUltimateParty($ultimateParty)
+    {
+        $this->container['ultimateParty'] = $ultimateParty;
 
         return $this;
     }
