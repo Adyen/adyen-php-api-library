@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\Management\ObjectSerializer;
 
 /**
- * MealVoucherFRInfo Class Doc Comment
+ * CashAppUpdateInfo Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializable
+class CashAppUpdateInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var string
       */
-    protected static $openAPIModelName = 'MealVoucherFRInfo';
+    protected static $openAPIModelName = 'CashAppUpdateInfo';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,8 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
-        'conecsId' => 'string',
-        'siret' => 'string',
-        'subTypes' => 'string[]'
+        'logoUrl' => 'string',
+        'merchantName' => 'string'
     ];
 
     /**
@@ -54,9 +53,8 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'conecsId' => null,
-        'siret' => null,
-        'subTypes' => null
+        'logoUrl' => null,
+        'merchantName' => null
     ];
 
     /**
@@ -65,9 +63,8 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'conecsId' => false,
-        'siret' => false,
-        'subTypes' => false
+        'logoUrl' => false,
+        'merchantName' => false
     ];
 
     /**
@@ -156,9 +153,8 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
-        'conecsId' => 'conecsId',
-        'siret' => 'siret',
-        'subTypes' => 'subTypes'
+        'logoUrl' => 'logoUrl',
+        'merchantName' => 'merchantName'
     ];
 
     /**
@@ -167,9 +163,8 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
-        'conecsId' => 'setConecsId',
-        'siret' => 'setSiret',
-        'subTypes' => 'setSubTypes'
+        'logoUrl' => 'setLogoUrl',
+        'merchantName' => 'setMerchantName'
     ];
 
     /**
@@ -178,9 +173,8 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
-        'conecsId' => 'getConecsId',
-        'siret' => 'getSiret',
-        'subTypes' => 'getSubTypes'
+        'logoUrl' => 'getLogoUrl',
+        'merchantName' => 'getMerchantName'
     ];
 
     /**
@@ -240,9 +234,8 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('conecsId', $data ?? [], null);
-        $this->setIfExists('siret', $data ?? [], null);
-        $this->setIfExists('subTypes', $data ?? [], null);
+        $this->setIfExists('logoUrl', $data ?? [], null);
+        $this->setIfExists('merchantName', $data ?? [], null);
     }
 
     /**
@@ -272,15 +265,6 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
-        if ($this->container['conecsId'] === null) {
-            $invalidProperties[] = "'conecsId' can't be null";
-        }
-        if ($this->container['siret'] === null) {
-            $invalidProperties[] = "'siret' can't be null";
-        }
-        if ($this->container['subTypes'] === null) {
-            $invalidProperties[] = "'subTypes' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -297,73 +281,49 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
 
 
     /**
-     * Gets conecsId
+     * Gets logoUrl
      *
-     * @return string
+     * @return string|null
      */
-    public function getConecsId()
+    public function getLogoUrl()
     {
-        return $this->container['conecsId'];
+        return $this->container['logoUrl'];
     }
 
     /**
-     * Sets conecsId
+     * Sets logoUrl
      *
-     * @param string $conecsId Meal Voucher conecsId. Format: digits only
+     * @param string|null $logoUrl The URL of the logo image shown in Cash App checkout next to payments.
      *
      * @return self
      */
-    public function setConecsId($conecsId)
+    public function setLogoUrl($logoUrl)
     {
-        $this->container['conecsId'] = $conecsId;
+        $this->container['logoUrl'] = $logoUrl;
 
         return $this;
     }
 
     /**
-     * Gets siret
+     * Gets merchantName
      *
-     * @return string
+     * @return string|null
      */
-    public function getSiret()
+    public function getMerchantName()
     {
-        return $this->container['siret'];
+        return $this->container['merchantName'];
     }
 
     /**
-     * Sets siret
+     * Sets merchantName
      *
-     * @param string $siret Meal Voucher siret. Format: 14 digits.
+     * @param string|null $merchantName The merchant display name shown in Cash App checkout.
      *
      * @return self
      */
-    public function setSiret($siret)
+    public function setMerchantName($merchantName)
     {
-        $this->container['siret'] = $siret;
-
-        return $this;
-    }
-
-    /**
-     * Gets subTypes
-     *
-     * @return string[]
-     */
-    public function getSubTypes()
-    {
-        return $this->container['subTypes'];
-    }
-
-    /**
-     * Sets subTypes
-     *
-     * @param string[] $subTypes The list of additional payment methods. Allowed values: **mealVoucher_FR_endenred**, **mealVoucher_FR_groupeup**, **mealVoucher_FR_natixis**, **mealVoucher_FR_sodexo**.
-     *
-     * @return self
-     */
-    public function setSubTypes($subTypes)
-    {
-        $this->container['subTypes'] = $subTypes;
+        $this->container['merchantName'] = $merchantName;
 
         return $this;
     }

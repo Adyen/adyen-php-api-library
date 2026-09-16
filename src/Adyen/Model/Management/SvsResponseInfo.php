@@ -265,12 +265,6 @@ class SvsResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['authorisationMid'] === null) {
-            $invalidProperties[] = "'authorisationMid' can't be null";
-        }
-        if ($this->container['currencyCode'] === null) {
-            $invalidProperties[] = "'currencyCode' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -289,7 +283,7 @@ class SvsResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets authorisationMid
      *
-     * @return string
+     * @return string|null
      */
     public function getAuthorisationMid()
     {
@@ -299,7 +293,7 @@ class SvsResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets authorisationMid
      *
-     * @param string $authorisationMid The merchant ID (MID) that the acquirer recognizes you by.
+     * @param string|null $authorisationMid The merchant ID (MID) that the acquirer recognizes you by.
      *
      * @return self
      */
@@ -313,7 +307,7 @@ class SvsResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets currencyCode
      *
-     * @return string
+     * @return string|null
      */
     public function getCurrencyCode()
     {
@@ -323,7 +317,7 @@ class SvsResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets currencyCode
      *
-     * @param string $currencyCode The three-character ISO currency code, example **USD**
+     * @param string|null $currencyCode The three-character ISO currency code, example **USD**
      *
      * @return self
      */
