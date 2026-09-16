@@ -41,7 +41,8 @@ class BoardingTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var string[]
       */
     protected static $openAPITypes = [
-        'boardingRequestToken' => 'string'
+        'boardingRequestToken' => 'string',
+        'subMerchantData' => '\Adyen\Model\PaymentsApp\SubMerchantData'
     ];
 
     /**
@@ -52,7 +53,8 @@ class BoardingTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializ
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'boardingRequestToken' => null
+        'boardingRequestToken' => null,
+        'subMerchantData' => null
     ];
 
     /**
@@ -61,7 +63,8 @@ class BoardingTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'boardingRequestToken' => false
+        'boardingRequestToken' => false,
+        'subMerchantData' => false
     ];
 
     /**
@@ -150,7 +153,8 @@ class BoardingTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $attributeMap = [
-        'boardingRequestToken' => 'boardingRequestToken'
+        'boardingRequestToken' => 'boardingRequestToken',
+        'subMerchantData' => 'subMerchantData'
     ];
 
     /**
@@ -159,7 +163,8 @@ class BoardingTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $setters = [
-        'boardingRequestToken' => 'setBoardingRequestToken'
+        'boardingRequestToken' => 'setBoardingRequestToken',
+        'subMerchantData' => 'setSubMerchantData'
     ];
 
     /**
@@ -168,7 +173,8 @@ class BoardingTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $getters = [
-        'boardingRequestToken' => 'getBoardingRequestToken'
+        'boardingRequestToken' => 'getBoardingRequestToken',
+        'subMerchantData' => 'getSubMerchantData'
     ];
 
     /**
@@ -229,6 +235,7 @@ class BoardingTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     public function __construct(?array $data = null)
     {
         $this->setIfExists('boardingRequestToken', $data ?? [], null);
+        $this->setIfExists('subMerchantData', $data ?? [], null);
     }
 
     /**
@@ -296,6 +303,30 @@ class BoardingTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setBoardingRequestToken($boardingRequestToken)
     {
         $this->container['boardingRequestToken'] = $boardingRequestToken;
+
+        return $this;
+    }
+
+    /**
+     * Gets subMerchantData
+     *
+     * @return \Adyen\Model\PaymentsApp\SubMerchantData|null
+     */
+    public function getSubMerchantData()
+    {
+        return $this->container['subMerchantData'];
+    }
+
+    /**
+     * Sets subMerchantData
+     *
+     * @param \Adyen\Model\PaymentsApp\SubMerchantData|null $subMerchantData subMerchantData
+     *
+     * @return self
+     */
+    public function setSubMerchantData($subMerchantData)
+    {
+        $this->container['subMerchantData'] = $subMerchantData;
 
         return $this;
     }
