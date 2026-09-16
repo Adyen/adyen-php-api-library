@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\PaymentsApp\ObjectSerializer;
 
 /**
- * InvalidField Class Doc Comment
+ * SubMerchantData Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
+class SubMerchantData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'InvalidField';
+    protected static $openAPIModelName = 'SubMerchantData';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,18 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'message' => 'string',
+        'city' => 'string',
+        'country' => 'string',
+        'displayName' => 'string',
+        'email' => 'string',
+        'id' => 'string',
+        'mcc' => 'string',
         'name' => 'string',
-        'value' => 'string'
+        'phoneNumber' => 'string',
+        'postalCode' => 'string',
+        'state' => 'string',
+        'street' => 'string',
+        'taxId' => 'string'
     ];
 
     /**
@@ -54,9 +63,18 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'message' => null,
+        'city' => null,
+        'country' => null,
+        'displayName' => null,
+        'email' => 'email',
+        'id' => null,
+        'mcc' => null,
         'name' => null,
-        'value' => null
+        'phoneNumber' => null,
+        'postalCode' => null,
+        'state' => null,
+        'street' => null,
+        'taxId' => null
     ];
 
     /**
@@ -65,9 +83,18 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'message' => false,
+        'city' => false,
+        'country' => false,
+        'displayName' => false,
+        'email' => false,
+        'id' => false,
+        'mcc' => false,
         'name' => false,
-        'value' => false
+        'phoneNumber' => false,
+        'postalCode' => false,
+        'state' => false,
+        'street' => false,
+        'taxId' => false
     ];
 
     /**
@@ -156,9 +183,18 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'message' => 'message',
+        'city' => 'city',
+        'country' => 'country',
+        'displayName' => 'displayName',
+        'email' => 'email',
+        'id' => 'id',
+        'mcc' => 'mcc',
         'name' => 'name',
-        'value' => 'value'
+        'phoneNumber' => 'phoneNumber',
+        'postalCode' => 'postalCode',
+        'state' => 'state',
+        'street' => 'street',
+        'taxId' => 'taxId'
     ];
 
     /**
@@ -167,9 +203,18 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'message' => 'setMessage',
+        'city' => 'setCity',
+        'country' => 'setCountry',
+        'displayName' => 'setDisplayName',
+        'email' => 'setEmail',
+        'id' => 'setId',
+        'mcc' => 'setMcc',
         'name' => 'setName',
-        'value' => 'setValue'
+        'phoneNumber' => 'setPhoneNumber',
+        'postalCode' => 'setPostalCode',
+        'state' => 'setState',
+        'street' => 'setStreet',
+        'taxId' => 'setTaxId'
     ];
 
     /**
@@ -178,9 +223,18 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'message' => 'getMessage',
+        'city' => 'getCity',
+        'country' => 'getCountry',
+        'displayName' => 'getDisplayName',
+        'email' => 'getEmail',
+        'id' => 'getId',
+        'mcc' => 'getMcc',
         'name' => 'getName',
-        'value' => 'getValue'
+        'phoneNumber' => 'getPhoneNumber',
+        'postalCode' => 'getPostalCode',
+        'state' => 'getState',
+        'street' => 'getStreet',
+        'taxId' => 'getTaxId'
     ];
 
     /**
@@ -240,9 +294,18 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('message', $data ?? [], null);
+        $this->setIfExists('city', $data ?? [], null);
+        $this->setIfExists('country', $data ?? [], null);
+        $this->setIfExists('displayName', $data ?? [], null);
+        $this->setIfExists('email', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('mcc', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('phoneNumber', $data ?? [], null);
+        $this->setIfExists('postalCode', $data ?? [], null);
+        $this->setIfExists('state', $data ?? [], null);
+        $this->setIfExists('street', $data ?? [], null);
+        $this->setIfExists('taxId', $data ?? [], null);
     }
 
     /**
@@ -272,14 +335,17 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['message'] === null) {
-            $invalidProperties[] = "'message' can't be null";
+        if ($this->container['displayName'] === null) {
+            $invalidProperties[] = "'displayName' can't be null";
+        }
+        if ($this->container['id'] === null) {
+            $invalidProperties[] = "'id' can't be null";
+        }
+        if ($this->container['mcc'] === null) {
+            $invalidProperties[] = "'mcc' can't be null";
         }
         if ($this->container['name'] === null) {
             $invalidProperties[] = "'name' can't be null";
-        }
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
         }
         return $invalidProperties;
     }
@@ -297,25 +363,145 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets message
+     * Gets city
      *
-     * @return string
+     * @return string|null
      */
-    public function getMessage()
+    public function getCity()
     {
-        return $this->container['message'];
+        return $this->container['city'];
     }
 
     /**
-     * Sets message
+     * Sets city
      *
-     * @param string $message Description of the validation error.
+     * @param string|null $city The city of the sub-merchant.
      *
      * @return self
      */
-    public function setMessage($message)
+    public function setCity($city)
     {
-        $this->container['message'] = $message;
+        $this->container['city'] = $city;
+
+        return $this;
+    }
+
+    /**
+     * Gets country
+     *
+     * @return string|null
+     */
+    public function getCountry()
+    {
+        return $this->container['country'];
+    }
+
+    /**
+     * Sets country
+     *
+     * @param string|null $country The country of the sub-merchant.
+     *
+     * @return self
+     */
+    public function setCountry($country)
+    {
+        $this->container['country'] = $country;
+
+        return $this;
+    }
+
+    /**
+     * Gets displayName
+     *
+     * @return string
+     */
+    public function getDisplayName()
+    {
+        return $this->container['displayName'];
+    }
+
+    /**
+     * Sets displayName
+     *
+     * @param string $displayName The display name of the merchant.
+     *
+     * @return self
+     */
+    public function setDisplayName($displayName)
+    {
+        $this->container['displayName'] = $displayName;
+
+        return $this;
+    }
+
+    /**
+     * Gets email
+     *
+     * @return string|null
+     */
+    public function getEmail()
+    {
+        return $this->container['email'];
+    }
+
+    /**
+     * Sets email
+     *
+     * @param string|null $email The email of the sub-merchant.
+     *
+     * @return self
+     */
+    public function setEmail($email)
+    {
+        $this->container['email'] = $email;
+
+        return $this;
+    }
+
+    /**
+     * Gets id
+     *
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param string $id The sub-merchant's ID.
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets mcc
+     *
+     * @return string
+     */
+    public function getMcc()
+    {
+        return $this->container['mcc'];
+    }
+
+    /**
+     * Sets mcc
+     *
+     * @param string $mcc The MCC of the sub-merchant.
+     *
+     * @return self
+     */
+    public function setMcc($mcc)
+    {
+        $this->container['mcc'] = $mcc;
 
         return $this;
     }
@@ -333,7 +519,7 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets name
      *
-     * @param string $name The field that has an invalid value.
+     * @param string $name The name of the sub-merchant.
      *
      * @return self
      */
@@ -345,25 +531,121 @@ class InvalidField implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets value
+     * Gets phoneNumber
      *
-     * @return string
+     * @return string|null
      */
-    public function getValue()
+    public function getPhoneNumber()
     {
-        return $this->container['value'];
+        return $this->container['phoneNumber'];
     }
 
     /**
-     * Sets value
+     * Sets phoneNumber
      *
-     * @param string $value The invalid value.
+     * @param string|null $phoneNumber The phone number of the sub-merchant.
      *
      * @return self
      */
-    public function setValue($value)
+    public function setPhoneNumber($phoneNumber)
     {
-        $this->container['value'] = $value;
+        $this->container['phoneNumber'] = $phoneNumber;
+
+        return $this;
+    }
+
+    /**
+     * Gets postalCode
+     *
+     * @return string|null
+     */
+    public function getPostalCode()
+    {
+        return $this->container['postalCode'];
+    }
+
+    /**
+     * Sets postalCode
+     *
+     * @param string|null $postalCode The postal code of the sub-merchant.
+     *
+     * @return self
+     */
+    public function setPostalCode($postalCode)
+    {
+        $this->container['postalCode'] = $postalCode;
+
+        return $this;
+    }
+
+    /**
+     * Gets state
+     *
+     * @return string|null
+     */
+    public function getState()
+    {
+        return $this->container['state'];
+    }
+
+    /**
+     * Sets state
+     *
+     * @param string|null $state The state of the sub-merchant.
+     *
+     * @return self
+     */
+    public function setState($state)
+    {
+        $this->container['state'] = $state;
+
+        return $this;
+    }
+
+    /**
+     * Gets street
+     *
+     * @return string|null
+     */
+    public function getStreet()
+    {
+        return $this->container['street'];
+    }
+
+    /**
+     * Sets street
+     *
+     * @param string|null $street The street of the sub-merchant.
+     *
+     * @return self
+     */
+    public function setStreet($street)
+    {
+        $this->container['street'] = $street;
+
+        return $this;
+    }
+
+    /**
+     * Gets taxId
+     *
+     * @return string|null
+     */
+    public function getTaxId()
+    {
+        return $this->container['taxId'];
+    }
+
+    /**
+     * Sets taxId
+     *
+     * @param string|null $taxId The tax ID of the sub-merchant.
+     *
+     * @return self
+     */
+    public function setTaxId($taxId)
+    {
+        $this->container['taxId'] = $taxId;
 
         return $this;
     }
