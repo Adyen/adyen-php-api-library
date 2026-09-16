@@ -43,6 +43,7 @@ class Surcharge implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'askConfirmation' => 'bool',
         'configurations' => '\Adyen\Model\Management\Configuration[]',
+        'disclosureOnPresentCard' => 'bool',
         'excludeGratuityFromSurcharge' => 'bool'
     ];
 
@@ -56,6 +57,7 @@ class Surcharge implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'askConfirmation' => null,
         'configurations' => null,
+        'disclosureOnPresentCard' => null,
         'excludeGratuityFromSurcharge' => null
     ];
 
@@ -67,6 +69,7 @@ class Surcharge implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPINullables = [
         'askConfirmation' => false,
         'configurations' => false,
+        'disclosureOnPresentCard' => false,
         'excludeGratuityFromSurcharge' => false
     ];
 
@@ -158,6 +161,7 @@ class Surcharge implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'askConfirmation' => 'askConfirmation',
         'configurations' => 'configurations',
+        'disclosureOnPresentCard' => 'disclosureOnPresentCard',
         'excludeGratuityFromSurcharge' => 'excludeGratuityFromSurcharge'
     ];
 
@@ -169,6 +173,7 @@ class Surcharge implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'askConfirmation' => 'setAskConfirmation',
         'configurations' => 'setConfigurations',
+        'disclosureOnPresentCard' => 'setDisclosureOnPresentCard',
         'excludeGratuityFromSurcharge' => 'setExcludeGratuityFromSurcharge'
     ];
 
@@ -180,6 +185,7 @@ class Surcharge implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'askConfirmation' => 'getAskConfirmation',
         'configurations' => 'getConfigurations',
+        'disclosureOnPresentCard' => 'getDisclosureOnPresentCard',
         'excludeGratuityFromSurcharge' => 'getExcludeGratuityFromSurcharge'
     ];
 
@@ -242,6 +248,7 @@ class Surcharge implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('askConfirmation', $data ?? [], null);
         $this->setIfExists('configurations', $data ?? [], null);
+        $this->setIfExists('disclosureOnPresentCard', $data ?? [], null);
         $this->setIfExists('excludeGratuityFromSurcharge', $data ?? [], null);
     }
 
@@ -331,6 +338,30 @@ class Surcharge implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setConfigurations($configurations)
     {
         $this->container['configurations'] = $configurations;
+
+        return $this;
+    }
+
+    /**
+     * Gets disclosureOnPresentCard
+     *
+     * @return bool|null
+     */
+    public function getDisclosureOnPresentCard()
+    {
+        return $this->container['disclosureOnPresentCard'];
+    }
+
+    /**
+     * Sets disclosureOnPresentCard
+     *
+     * @param bool|null $disclosureOnPresentCard Show the maximum surcharge rate to the shopper on the present card screen before they tap.
+     *
+     * @return self
+     */
+    public function setDisclosureOnPresentCard($disclosureOnPresentCard)
+    {
+        $this->container['disclosureOnPresentCard'] = $disclosureOnPresentCard;
 
         return $this;
     }

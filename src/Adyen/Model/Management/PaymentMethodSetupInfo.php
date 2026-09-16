@@ -49,7 +49,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
         'applePay' => '\Adyen\Model\Management\ApplePayInfo',
         'bcmc' => '\Adyen\Model\Management\BcmcInfo',
         'businessLineId' => 'string',
-        'carnet' => '\Adyen\Model\Management\GenericPmWithTdiInfo',
+        'carnet' => '\Adyen\Model\Management\CarnetInfo',
         'cartesBancaires' => '\Adyen\Model\Management\CartesBancairesInfo',
         'clearpay' => '\Adyen\Model\Management\ClearpayInfo',
         'countries' => 'string[]',
@@ -567,6 +567,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     public const TYPE_BR_SCHEMES = 'br_schemes';
     public const TYPE_CARNET = 'carnet';
     public const TYPE_CARTEBANCAIRE = 'cartebancaire';
+    public const TYPE_CASHAPP = 'cashapp';
     public const TYPE_CLEARPAY = 'clearpay';
     public const TYPE_CLICKTOPAY = 'clicktopay';
     public const TYPE_COOPER = 'cooper';
@@ -737,6 +738,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
             self::TYPE_BR_SCHEMES,
             self::TYPE_CARNET,
             self::TYPE_CARTEBANCAIRE,
+            self::TYPE_CASHAPP,
             self::TYPE_CLEARPAY,
             self::TYPE_CLICKTOPAY,
             self::TYPE_COOPER,
@@ -1175,7 +1177,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets carnet
      *
-     * @return \Adyen\Model\Management\GenericPmWithTdiInfo|null
+     * @return \Adyen\Model\Management\CarnetInfo|null
      */
     public function getCarnet()
     {
@@ -1185,7 +1187,7 @@ class PaymentMethodSetupInfo implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets carnet
      *
-     * @param \Adyen\Model\Management\GenericPmWithTdiInfo|null $carnet carnet
+     * @param \Adyen\Model\Management\CarnetInfo|null $carnet carnet
      *
      * @return self
      */

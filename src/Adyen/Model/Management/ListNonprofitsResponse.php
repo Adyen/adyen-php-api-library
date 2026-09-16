@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\Management\ObjectSerializer;
 
 /**
- * MealVoucherFRInfo Class Doc Comment
+ * ListNonprofitsResponse Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializable
+class ListNonprofitsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var string
       */
-    protected static $openAPIModelName = 'MealVoucherFRInfo';
+    protected static $openAPIModelName = 'ListNonprofitsResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,10 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
-        'conecsId' => 'string',
-        'siret' => 'string',
-        'subTypes' => 'string[]'
+        'links' => '\Adyen\Model\Management\PaginationLinks',
+        'itemsTotal' => 'int',
+        'nonprofits' => '\Adyen\Model\Management\Nonprofit[]',
+        'pagesTotal' => 'int'
     ];
 
     /**
@@ -54,9 +55,10 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'conecsId' => null,
-        'siret' => null,
-        'subTypes' => null
+        'links' => null,
+        'itemsTotal' => 'int32',
+        'nonprofits' => null,
+        'pagesTotal' => 'int32'
     ];
 
     /**
@@ -65,9 +67,10 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'conecsId' => false,
-        'siret' => false,
-        'subTypes' => false
+        'links' => false,
+        'itemsTotal' => true,
+        'nonprofits' => false,
+        'pagesTotal' => true
     ];
 
     /**
@@ -156,9 +159,10 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
-        'conecsId' => 'conecsId',
-        'siret' => 'siret',
-        'subTypes' => 'subTypes'
+        'links' => '_links',
+        'itemsTotal' => 'itemsTotal',
+        'nonprofits' => 'nonprofits',
+        'pagesTotal' => 'pagesTotal'
     ];
 
     /**
@@ -167,9 +171,10 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
-        'conecsId' => 'setConecsId',
-        'siret' => 'setSiret',
-        'subTypes' => 'setSubTypes'
+        'links' => 'setLinks',
+        'itemsTotal' => 'setItemsTotal',
+        'nonprofits' => 'setNonprofits',
+        'pagesTotal' => 'setPagesTotal'
     ];
 
     /**
@@ -178,9 +183,10 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
-        'conecsId' => 'getConecsId',
-        'siret' => 'getSiret',
-        'subTypes' => 'getSubTypes'
+        'links' => 'getLinks',
+        'itemsTotal' => 'getItemsTotal',
+        'nonprofits' => 'getNonprofits',
+        'pagesTotal' => 'getPagesTotal'
     ];
 
     /**
@@ -240,9 +246,10 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('conecsId', $data ?? [], null);
-        $this->setIfExists('siret', $data ?? [], null);
-        $this->setIfExists('subTypes', $data ?? [], null);
+        $this->setIfExists('links', $data ?? [], null);
+        $this->setIfExists('itemsTotal', $data ?? [], null);
+        $this->setIfExists('nonprofits', $data ?? [], null);
+        $this->setIfExists('pagesTotal', $data ?? [], null);
     }
 
     /**
@@ -272,14 +279,11 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
-        if ($this->container['conecsId'] === null) {
-            $invalidProperties[] = "'conecsId' can't be null";
+        if ($this->container['itemsTotal'] === null) {
+            $invalidProperties[] = "'itemsTotal' can't be null";
         }
-        if ($this->container['siret'] === null) {
-            $invalidProperties[] = "'siret' can't be null";
-        }
-        if ($this->container['subTypes'] === null) {
-            $invalidProperties[] = "'subTypes' can't be null";
+        if ($this->container['pagesTotal'] === null) {
+            $invalidProperties[] = "'pagesTotal' can't be null";
         }
         return $invalidProperties;
     }
@@ -297,73 +301,97 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
 
 
     /**
-     * Gets conecsId
+     * Gets links
      *
-     * @return string
+     * @return \Adyen\Model\Management\PaginationLinks|null
      */
-    public function getConecsId()
+    public function getLinks()
     {
-        return $this->container['conecsId'];
+        return $this->container['links'];
     }
 
     /**
-     * Sets conecsId
+     * Sets links
      *
-     * @param string $conecsId Meal Voucher conecsId. Format: digits only
+     * @param \Adyen\Model\Management\PaginationLinks|null $links links
      *
      * @return self
      */
-    public function setConecsId($conecsId)
+    public function setLinks($links)
     {
-        $this->container['conecsId'] = $conecsId;
+        $this->container['links'] = $links;
 
         return $this;
     }
 
     /**
-     * Gets siret
+     * Gets itemsTotal
      *
-     * @return string
+     * @return int
      */
-    public function getSiret()
+    public function getItemsTotal()
     {
-        return $this->container['siret'];
+        return $this->container['itemsTotal'];
     }
 
     /**
-     * Sets siret
+     * Sets itemsTotal
      *
-     * @param string $siret Meal Voucher siret. Format: 14 digits.
+     * @param int $itemsTotal Total number of items.
      *
      * @return self
      */
-    public function setSiret($siret)
+    public function setItemsTotal($itemsTotal)
     {
-        $this->container['siret'] = $siret;
+        $this->container['itemsTotal'] = $itemsTotal;
 
         return $this;
     }
 
     /**
-     * Gets subTypes
+     * Gets nonprofits
      *
-     * @return string[]
+     * @return \Adyen\Model\Management\Nonprofit[]|null
      */
-    public function getSubTypes()
+    public function getNonprofits()
     {
-        return $this->container['subTypes'];
+        return $this->container['nonprofits'];
     }
 
     /**
-     * Sets subTypes
+     * Sets nonprofits
      *
-     * @param string[] $subTypes The list of additional payment methods. Allowed values: **mealVoucher_FR_endenred**, **mealVoucher_FR_groupeup**, **mealVoucher_FR_natixis**, **mealVoucher_FR_sodexo**.
+     * @param \Adyen\Model\Management\Nonprofit[]|null $nonprofits The supported nonprofit organizations.
      *
      * @return self
      */
-    public function setSubTypes($subTypes)
+    public function setNonprofits($nonprofits)
     {
-        $this->container['subTypes'] = $subTypes;
+        $this->container['nonprofits'] = $nonprofits;
+
+        return $this;
+    }
+
+    /**
+     * Gets pagesTotal
+     *
+     * @return int
+     */
+    public function getPagesTotal()
+    {
+        return $this->container['pagesTotal'];
+    }
+
+    /**
+     * Sets pagesTotal
+     *
+     * @param int $pagesTotal Total number of pages.
+     *
+     * @return self
+     */
+    public function setPagesTotal($pagesTotal)
+    {
+        $this->container['pagesTotal'] = $pagesTotal;
 
         return $this;
     }

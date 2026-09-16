@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\Management\ObjectSerializer;
 
 /**
- * MealVoucherFRInfo Class Doc Comment
+ * Nonprofit Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializable
+class Nonprofit implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var string
       */
-    protected static $openAPIModelName = 'MealVoucherFRInfo';
+    protected static $openAPIModelName = 'Nonprofit';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,9 +41,16 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
-        'conecsId' => 'string',
-        'siret' => 'string',
-        'subTypes' => 'string[]'
+        'causes' => '\Adyen\Model\Management\NonprofitCause[]',
+        'description' => 'string',
+        'goals' => 'string[]',
+        'id' => 'string',
+        'locales' => 'string[]',
+        'logoUrl' => 'string',
+        'name' => 'string',
+        'regions' => 'string[]',
+        'termsAndConditionsUrl' => 'string',
+        'website' => 'string'
     ];
 
     /**
@@ -54,9 +61,16 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'conecsId' => null,
-        'siret' => null,
-        'subTypes' => null
+        'causes' => null,
+        'description' => null,
+        'goals' => null,
+        'id' => null,
+        'locales' => null,
+        'logoUrl' => null,
+        'name' => null,
+        'regions' => null,
+        'termsAndConditionsUrl' => null,
+        'website' => null
     ];
 
     /**
@@ -65,9 +79,16 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'conecsId' => false,
-        'siret' => false,
-        'subTypes' => false
+        'causes' => false,
+        'description' => false,
+        'goals' => false,
+        'id' => false,
+        'locales' => false,
+        'logoUrl' => false,
+        'name' => false,
+        'regions' => false,
+        'termsAndConditionsUrl' => false,
+        'website' => false
     ];
 
     /**
@@ -156,9 +177,16 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
-        'conecsId' => 'conecsId',
-        'siret' => 'siret',
-        'subTypes' => 'subTypes'
+        'causes' => 'causes',
+        'description' => 'description',
+        'goals' => 'goals',
+        'id' => 'id',
+        'locales' => 'locales',
+        'logoUrl' => 'logoUrl',
+        'name' => 'name',
+        'regions' => 'regions',
+        'termsAndConditionsUrl' => 'termsAndConditionsUrl',
+        'website' => 'website'
     ];
 
     /**
@@ -167,9 +195,16 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
-        'conecsId' => 'setConecsId',
-        'siret' => 'setSiret',
-        'subTypes' => 'setSubTypes'
+        'causes' => 'setCauses',
+        'description' => 'setDescription',
+        'goals' => 'setGoals',
+        'id' => 'setId',
+        'locales' => 'setLocales',
+        'logoUrl' => 'setLogoUrl',
+        'name' => 'setName',
+        'regions' => 'setRegions',
+        'termsAndConditionsUrl' => 'setTermsAndConditionsUrl',
+        'website' => 'setWebsite'
     ];
 
     /**
@@ -178,9 +213,16 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
-        'conecsId' => 'getConecsId',
-        'siret' => 'getSiret',
-        'subTypes' => 'getSubTypes'
+        'causes' => 'getCauses',
+        'description' => 'getDescription',
+        'goals' => 'getGoals',
+        'id' => 'getId',
+        'locales' => 'getLocales',
+        'logoUrl' => 'getLogoUrl',
+        'name' => 'getName',
+        'regions' => 'getRegions',
+        'termsAndConditionsUrl' => 'getTermsAndConditionsUrl',
+        'website' => 'getWebsite'
     ];
 
     /**
@@ -240,9 +282,16 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('conecsId', $data ?? [], null);
-        $this->setIfExists('siret', $data ?? [], null);
-        $this->setIfExists('subTypes', $data ?? [], null);
+        $this->setIfExists('causes', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('goals', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('locales', $data ?? [], null);
+        $this->setIfExists('logoUrl', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('regions', $data ?? [], null);
+        $this->setIfExists('termsAndConditionsUrl', $data ?? [], null);
+        $this->setIfExists('website', $data ?? [], null);
     }
 
     /**
@@ -272,14 +321,32 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
-        if ($this->container['conecsId'] === null) {
-            $invalidProperties[] = "'conecsId' can't be null";
+        if ($this->container['causes'] === null) {
+            $invalidProperties[] = "'causes' can't be null";
         }
-        if ($this->container['siret'] === null) {
-            $invalidProperties[] = "'siret' can't be null";
+        if ($this->container['description'] === null) {
+            $invalidProperties[] = "'description' can't be null";
         }
-        if ($this->container['subTypes'] === null) {
-            $invalidProperties[] = "'subTypes' can't be null";
+        if ($this->container['goals'] === null) {
+            $invalidProperties[] = "'goals' can't be null";
+        }
+        if ($this->container['locales'] === null) {
+            $invalidProperties[] = "'locales' can't be null";
+        }
+        if ($this->container['logoUrl'] === null) {
+            $invalidProperties[] = "'logoUrl' can't be null";
+        }
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
+        }
+        if ($this->container['regions'] === null) {
+            $invalidProperties[] = "'regions' can't be null";
+        }
+        if ($this->container['termsAndConditionsUrl'] === null) {
+            $invalidProperties[] = "'termsAndConditionsUrl' can't be null";
+        }
+        if ($this->container['website'] === null) {
+            $invalidProperties[] = "'website' can't be null";
         }
         return $invalidProperties;
     }
@@ -297,73 +364,241 @@ class MealVoucherFRInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
 
 
     /**
-     * Gets conecsId
+     * Gets causes
      *
-     * @return string
+     * @return \Adyen\Model\Management\NonprofitCause[]
      */
-    public function getConecsId()
+    public function getCauses()
     {
-        return $this->container['conecsId'];
+        return $this->container['causes'];
     }
 
     /**
-     * Sets conecsId
+     * Sets causes
      *
-     * @param string $conecsId Meal Voucher conecsId. Format: digits only
+     * @param \Adyen\Model\Management\NonprofitCause[] $causes The causes that the nonprofit supports.
      *
      * @return self
      */
-    public function setConecsId($conecsId)
+    public function setCauses($causes)
     {
-        $this->container['conecsId'] = $conecsId;
+        $this->container['causes'] = $causes;
 
         return $this;
     }
 
     /**
-     * Gets siret
+     * Gets description
      *
      * @return string
      */
-    public function getSiret()
+    public function getDescription()
     {
-        return $this->container['siret'];
+        return $this->container['description'];
     }
 
     /**
-     * Sets siret
+     * Sets description
      *
-     * @param string $siret Meal Voucher siret. Format: 14 digits.
+     * @param string $description The description of the nonprofit.
      *
      * @return self
      */
-    public function setSiret($siret)
+    public function setDescription($description)
     {
-        $this->container['siret'] = $siret;
+        $this->container['description'] = $description;
 
         return $this;
     }
 
     /**
-     * Gets subTypes
+     * Gets goals
      *
      * @return string[]
      */
-    public function getSubTypes()
+    public function getGoals()
     {
-        return $this->container['subTypes'];
+        return $this->container['goals'];
     }
 
     /**
-     * Sets subTypes
+     * Sets goals
      *
-     * @param string[] $subTypes The list of additional payment methods. Allowed values: **mealVoucher_FR_endenred**, **mealVoucher_FR_groupeup**, **mealVoucher_FR_natixis**, **mealVoucher_FR_sodexo**.
+     * @param string[] $goals The goals of the nonprofit.
      *
      * @return self
      */
-    public function setSubTypes($subTypes)
+    public function setGoals($goals)
     {
-        $this->container['subTypes'] = $subTypes;
+        $this->container['goals'] = $goals;
+
+        return $this;
+    }
+
+    /**
+     * Gets id
+     *
+     * @return string|null
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param string|null $id The unique identifier of the nonprofit organization. This value is generated by Adyen.
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets locales
+     *
+     * @return string[]
+     */
+    public function getLocales()
+    {
+        return $this->container['locales'];
+    }
+
+    /**
+     * Sets locales
+     *
+     * @param string[] $locales The locales that the nonprofit supports, in [IETF BCP 47](https://en.wikipedia.org/wiki/IETF_language_tag) format.
+     *
+     * @return self
+     */
+    public function setLocales($locales)
+    {
+        $this->container['locales'] = $locales;
+
+        return $this;
+    }
+
+    /**
+     * Gets logoUrl
+     *
+     * @return string
+     */
+    public function getLogoUrl()
+    {
+        return $this->container['logoUrl'];
+    }
+
+    /**
+     * Sets logoUrl
+     *
+     * @param string $logoUrl The URL to the logo of the nonprofit.
+     *
+     * @return self
+     */
+    public function setLogoUrl($logoUrl)
+    {
+        $this->container['logoUrl'] = $logoUrl;
+
+        return $this;
+    }
+
+    /**
+     * Gets name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     *
+     * @param string $name The name of the nonprofit.
+     *
+     * @return self
+     */
+    public function setName($name)
+    {
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets regions
+     *
+     * @return string[]
+     */
+    public function getRegions()
+    {
+        return $this->container['regions'];
+    }
+
+    /**
+     * Sets regions
+     *
+     * @param string[] $regions The regions where the nonprofit operates, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
+     *
+     * @return self
+     */
+    public function setRegions($regions)
+    {
+        $this->container['regions'] = $regions;
+
+        return $this;
+    }
+
+    /**
+     * Gets termsAndConditionsUrl
+     *
+     * @return string
+     */
+    public function getTermsAndConditionsUrl()
+    {
+        return $this->container['termsAndConditionsUrl'];
+    }
+
+    /**
+     * Sets termsAndConditionsUrl
+     *
+     * @param string $termsAndConditionsUrl The URL to the terms and conditions of the nonprofit.
+     *
+     * @return self
+     */
+    public function setTermsAndConditionsUrl($termsAndConditionsUrl)
+    {
+        $this->container['termsAndConditionsUrl'] = $termsAndConditionsUrl;
+
+        return $this;
+    }
+
+    /**
+     * Gets website
+     *
+     * @return string
+     */
+    public function getWebsite()
+    {
+        return $this->container['website'];
+    }
+
+    /**
+     * Sets website
+     *
+     * @param string $website The URL to the website of the nonprofit.
+     *
+     * @return self
+     */
+    public function setWebsite($website)
+    {
+        $this->container['website'] = $website;
 
         return $this;
     }
