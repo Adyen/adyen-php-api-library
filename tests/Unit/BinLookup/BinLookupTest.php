@@ -1,6 +1,6 @@
 <?php
 
-namespace Adyen\Tests\Unit;
+namespace Adyen\Tests\Unit\BinLookup;
 
 use Adyen\AdyenException;
 use Adyen\Configuration;
@@ -13,6 +13,7 @@ use Adyen\Model\BinLookup\MerchantDetails;
 use Adyen\Model\BinLookup\ThreeDSAvailabilityRequest;
 use Adyen\Model\BinLookup\ThreeDSAvailabilityResponse;
 use Adyen\Service\BinLookup\BinLookupApi;
+use Adyen\Tests\Unit\BaseTest;
 
 class BinLookupTest extends BaseTest
 {
@@ -95,7 +96,7 @@ class BinLookupTest extends BaseTest
 
         $threeDSAvailabilityRequest = new ThreeDSAvailabilityRequest($params);
         $result = $service->get3dsAvailability($threeDSAvailabilityRequest);
-        $this->assertTrue($result->getThreeDs1Supported());
+        $this->assertTrue($result['threeDS1Supported']);
     }
 
     /**
@@ -223,7 +224,32 @@ class BinLookupTest extends BaseTest
         $costEstimateRequest = new CostEstimateRequest($params);
 
         $result = $service->getCostEstimate($costEstimateRequest);
-        $this->assertEquals('Unsupported', $result->getResultCode());
+        $this->assertEquals('Unsupported', $result['resultCode']);
+    }
+
+    /**
+     * @throws AdyenException
+     * @throws \Adyen\Exception\AdyenException
+     */
+    public function testGetCostEstimateWithArrayResponse()
+    {
+        // create mock client
+        $client = $this->createMockSerializerClient('tests/Resources/BinLookup/getCostEstimate-success.json', 200);
+
+        // initialize service
+        $config = $this->createConfiguration();
+        $service = new BinLookupApi($config, $client);
+
+        $costEstimateRequest = new CostEstimateRequest();
+        $costEstimateRequest->setCardNumber("4111111111111111");
+        $costEstimateRequest->setMerchantAccount("TestMerchant");
+
+        $result = $service->getCostEstimate($costEstimateRequest);
+        $resultArray = $result->toArray();
+
+        $this->assertIsArray($resultArray);
+        $this->assertEquals('Unsupported', $resultArray['resultCode']);
+        $this->assertEquals('1111', $resultArray['cardBin']['summary']);
     }
 
     public function testGet3DSAvailability401()
