@@ -2,7 +2,16 @@
   "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
   "shopperReference": "411111",
   "storedPaymentMethods": [
-
+    {
+      "brand": "visa",
+      "expiryMonth": "10",
+      "expiryYear": "30",
+      "holderName": "John Smith",
+      "id": "7219687191761347",
+      "lastFour": "1111",
+      "name": "VISA",
+      "type": "scheme"
+    }
   ]
 
 }

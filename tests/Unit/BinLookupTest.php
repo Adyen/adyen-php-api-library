@@ -332,6 +332,53 @@ class BinLookupTest extends BaseTest
         $this->assertEmpty($headers);
     }
 
+    /**
+     * The async fulfilment handler deserialises the body without looking at the status code, so an error
+     * response resolves with an empty model instead of throwing. The synchronous call throws for the very
+     * same response, see testGet3DSAvailability401.
+     */
+    public function testGet3dsAvailabilityAsyncOnErrorResponseThrows()
+    {
+        $this->markTestSkipped('Async ignores the HTTP status code; tracked with the error-handling work.');
+
+        $client = $this->createMockSerializerClient(
+            'tests/Resources/BinLookup/3ds-availability-401-error.json',
+            401
+        );
+        $config = $this->createConfiguration();
+        $service = new BinLookupApi($config, $client);
+
+        $this->expectException(AdyenException::class);
+        $service->get3dsAvailabilityAsync(new ThreeDSAvailabilityRequest())->wait();
+    }
+
+    /**
+     * The async rejection handler calls getResponse() on the exception unguarded. A transport level
+     * failure hands it a ConnectException, which has no such method, so the caller gets a fatal Error.
+     */
+    public function testGet3dsAvailabilityAsyncOnConnectionFailureThrowsAdyenException()
+    {
+        $this->markTestSkipped(
+            'Async rejection handler assumes a response is present; tracked with the error-handling work.'
+        );
+
+        $mock = new \GuzzleHttp\Handler\MockHandler([
+            new \GuzzleHttp\Exception\ConnectException(
+                'Connection refused',
+                new \GuzzleHttp\Psr7\Request(
+                    'POST',
+                    'https://pal-test.adyen.com/pal/servlet/BinLookup/v54/get3dsAvailability'
+                )
+            )
+        ]);
+        $client = new \GuzzleHttp\Client(['handler' => \GuzzleHttp\HandlerStack::create($mock)]);
+        $config = $this->createConfiguration();
+        $service = new BinLookupApi($config, $client);
+
+        $this->expectException(\Adyen\Exception\AdyenException::class);
+        $service->get3dsAvailabilityAsync(new ThreeDSAvailabilityRequest())->wait();
+    }
+
     public function testRequestUsesBaseUrl()
     {
         $service = new BinLookupApi($this->createConfiguration());

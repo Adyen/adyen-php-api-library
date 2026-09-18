@@ -1,7 +1,0 @@
-{
-  "error": {
-    "code": 403,
-    "message": "Forbidden",
-    "requested URI": "\/checkout\/\/v32\/payments"
-  }
-}

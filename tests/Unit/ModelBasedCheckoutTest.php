@@ -9,7 +9,6 @@ use Adyen\Model\Checkout\CardDetailsRequest;
 use Adyen\Model\Checkout\CheckoutPaymentMethod;
 use Adyen\Model\Checkout\CreateCheckoutSessionRequest;
 use Adyen\Model\Checkout\DonationPaymentRequest;
-use Adyen\Model\Checkout\ObjectSerializer;
 use Adyen\Model\Checkout\PaymentDetailsRequest;
 use Adyen\Model\Checkout\PaymentLinkRequest;
 use Adyen\Model\Checkout\PaymentMethodsRequest;
@@ -105,11 +104,11 @@ class ModelBasedCheckoutTest extends BaseTest
         $this->assertContains($result->getResultCode(), array('RedirectShopper', 'Authorised'));
     }
 
-    public static function successPaymentsProvider()
+    public static function successPaymentsProvider(): array
     {
         return array(
-            array('tests/Resources/Checkout/payments-success.json', 200),
-            array('tests/Resources/Checkout/payments-success-3D.json', 200)
+            array('tests/Resources/ModelBasedCheckout/payments-success.json', 200),
+            array('tests/Resources/ModelBasedCheckout/payments-success-3D.json', 200)
         );
     }
 
@@ -143,20 +142,6 @@ class ModelBasedCheckoutTest extends BaseTest
     {
         return array(
             array('tests/Resources/ModelBasedCheckout/payments-details-success.json', 200)
-        );
-    }
-
-    public static function successPaymentSessionProvider(): array
-    {
-        return array(
-            array('tests/Resources/ModelBasedCheckout/payment-session-success.json', 200)
-        );
-    }
-
-    public static function successPaymentsResultProvider(): array
-    {
-        return array(
-            array('tests/Resources/ModelBasedCheckout/payments-result-success.json', 200)
         );
     }
 
