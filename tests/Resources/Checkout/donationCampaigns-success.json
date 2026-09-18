@@ -1,0 +1,42 @@
+{
+  "donationCampaigns": [
+    {
+      "id": "DONATION_CAMPAIGN_ID",
+      "campaignName": "DONATION_CAMPAIGN_NAME",
+      "donation": {
+        "currency": "EUR",
+        "type": "fixedAmounts",
+        "donationType": "fixedAmounts",
+        "values": [
+          100,
+          200,
+          300
+        ]
+      },
+      "nonprofitName": "NONPROFIT_NAME",
+      "causeName": "NONPROFIT_CAUSE",
+      "nonprofitDescription": "NONPROFIT_DESCRIPTION.",
+      "nonprofitUrl": "NONPROFIT_WEBSITE_URL",
+      "logoUrl": "NONPROFIT_LOGO_URL",
+      "bannerUrl": "NONPROFIT_BANNER_URL",
+      "termsAndConditionsUrl": "NONPROFIT_TERMS_AND_CONDITIONS_URL"
+    },
+    {
+      "id": "DONATION_CAMPAIGN_ID",
+      "campaignName": "DONATION_CAMPAIGN_NAME",
+      "donation": {
+        "currency": "EUR",
+        "type": "roundup",
+        "donationType": "roundup",
+        "maxRoundupAmount": 100
+      },
+      "nonprofitName": "NONPROFIT_NAME",
+      "causeName": "NONPROFIT_CAUSE",
+      "nonprofitDescription": "NONPROFIT_DESCRIPTION.",
+      "nonprofitUrl": "NONPROFIT_WEBSITE_URL",
+      "logoUrl": "NONPROFIT_LOGO_URL",
+      "bannerUrl": "NONPROFIT_BANNER_URL",
+      "termsAndConditionsUrl": "NONPROFIT_TERMS_AND_CONDITIONS_URL"
+    }
+  ]
+}
