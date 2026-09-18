@@ -1,0 +1,28 @@
+{
+  "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+  "paymentPspReference": "993617894903480A",
+  "reference": "YOUR_UNIQUE_REFERENCE",
+  "pspReference": "993617894906488A",
+  "status": "received",
+  "amount": {
+    "value": 2000,
+    "currency": "USD"
+  },
+  "splits": [
+    {
+      "account": "8816080397613514",
+      "amount": {
+        "value": 1500
+      },
+      "reference": "Your reference for the sale amount.",
+      "type": "MarketPlace"
+    },
+    {
+      "amount": {
+        "value": 500
+      },
+      "reference": "Your reference for the commission.",
+      "type": "Commission"
+    }
+  ]
+}

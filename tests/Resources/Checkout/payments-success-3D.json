@@ -1,20 +1,20 @@
 {
+  "additionalData": {
+    "cardSummary": "5454",
+    "cardBin": "545454",
+    "paymentMethod": "mc"
+  },
+  "pspReference": "JLCMPCQ8HXSKGK82",
   "resultCode": "RedirectShopper",
-  "details": [{
-    "key": "MD",
-    "type": "text"
-  }, {
-    "key": "PaRes",
-    "type": "text"
-  }],
-  "paymentData": "Ab02b4c0!BQABAgBnicwOBkouhPP08Qjg5E5clc0bGyemR...",
-  "redirect": {
-    "data": {
-      "PaReq": "eNpVUttygjAU\/BXbDyAXQZE5ZoZKZ+oD1lp97jDhjNKR...",
-      "TermUrl": "https:\/\/your-company.com\/...",
-      "MD": "djIhd29JYnByWUlsYkRuWndGakdkd0F5dz09IWSjFITvzeJZYp37u..."
-    },
+  "action": {
+    "paymentMethodType": "scheme",
+    "type": "redirect",
     "method": "POST",
-    "url": "https:\/\/test.adyen.com\/hpp\/3d\/validate.shtml"
+    "url": "https://test.adyen.com/hpp/3d/validate.shtml",
+    "data": {
+      "MD": "M2RkNzQ4NmItNTE3Ny00ZDVjLWE4ZmQ",
+      "PaReq": "eNpVUttygjAUfBXrAzC5gMAZzAwVO7UPWqv2CTMh0dIqIAT19",
+      "TermUrl": "https://your-company.com/checkout?shopperOrder=12xy.."
+    }
   }
 }
