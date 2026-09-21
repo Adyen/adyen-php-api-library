@@ -9,6 +9,7 @@ use Adyen\Environment;
 use Adyen\Model\BinLookup\ThreeDSAvailabilityRequest;
 use Adyen\Model\Checkout\ApplicationInfo;
 use Adyen\Model\Checkout\CommonField;
+use Adyen\Model\Checkout\ExternalPlatform;
 use Adyen\Model\Checkout\PaymentCancelRequest;
 use Adyen\Model\Checkout\PaymentRequest;
 use Adyen\Service\BinLookup\BinLookupApi;
@@ -340,11 +341,83 @@ class BaseServiceTest extends TestCase
     }
 
     /**
+     * @covers \Adyen\BaseService::injectApplicationInfo
+     */
+    public function testInjectApplicationInfoMergesConfiguredApplicationInfo()
+    {
+        $service = $this->createServiceProbe([
+            'adyenPaymentSource' => ['name' => 'source-test', 'version' => '1.2.3'],
+            'externalPlatform' => [
+                'name' => 'platform-test',
+                'version' => '2.3.4',
+                'integrator' => 'integrator-test'
+            ],
+            'merchantApplication' => ['name' => 'merchant-test', 'version' => '3.4.5']
+        ]);
+
+        $request = $service->inject(new PaymentRequest());
+        $applicationInfo = $request->getApplicationInfo();
+
+        $paymentSource = $applicationInfo->getAdyenPaymentSource();
+        $this->assertEquals('source-test', $paymentSource->getName());
+        $this->assertEquals('1.2.3', $paymentSource->getVersion());
+
+        $externalPlatform = $applicationInfo->getExternalPlatform();
+        $this->assertEquals('platform-test', $externalPlatform->getName());
+        $this->assertEquals('2.3.4', $externalPlatform->getVersion());
+        $this->assertEquals('integrator-test', $externalPlatform->getIntegrator());
+
+        $merchantApplication = $applicationInfo->getMerchantApplication();
+        $this->assertEquals('merchant-test', $merchantApplication->getName());
+        $this->assertEquals('3.4.5', $merchantApplication->getVersion());
+    }
+
+    /**
+     * @covers \Adyen\BaseService::injectApplicationInfo
+     */
+    public function testInjectApplicationInfoOmitsIntegratorWhenNotConfigured()
+    {
+        $service = $this->createServiceProbe([
+            'externalPlatform' => ['name' => 'platform-test', 'version' => '2.3.4']
+        ]);
+
+        $externalPlatform = $service->inject(new PaymentRequest())
+            ->getApplicationInfo()
+            ->getExternalPlatform();
+
+        $this->assertEquals('platform-test', $externalPlatform->getName());
+        $this->assertEquals('2.3.4', $externalPlatform->getVersion());
+        $this->assertNull($externalPlatform->getIntegrator());
+    }
+
+    /**
+     * @covers \Adyen\BaseService::injectApplicationInfo
+     */
+    public function testInjectApplicationInfoConfiguredValuesOverwriteMerchantValues()
+    {
+        $service = $this->createServiceProbe([
+            'externalPlatform' => ['name' => 'platform-test', 'version' => '2.3.4']
+        ]);
+
+        $platform = new ExternalPlatform();
+        $platform->setName('merchant-platform');
+        $platform->setVersion('9.9.9');
+        $applicationInfo = new ApplicationInfo();
+        $applicationInfo->setExternalPlatform($platform);
+        $request = new PaymentRequest();
+        $request->setApplicationInfo($applicationInfo);
+
+        $externalPlatform = $service->inject($request)->getApplicationInfo()->getExternalPlatform();
+        $this->assertEquals('platform-test', $externalPlatform->getName());
+        $this->assertEquals('2.3.4', $externalPlatform->getVersion());
+    }
+
+    /**
      * Exposes the protected injectApplicationInfo helper for testing.
      */
-    private function createServiceProbe(): BaseService
+    private function createServiceProbe(array $params = []): BaseService
     {
-        return new class (new Configuration([
+        return new class (new Configuration($params + [
             'adyenApiKey' => 'my-api-key',
             'environment' => Environment::TEST
         ])) extends BaseService {
