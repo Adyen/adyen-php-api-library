@@ -241,12 +241,14 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
 
         {{/parentSchema}}
         {{#vars}}
-        $this->setIfExists('{{name}}', $data ?? [], {{#defaultValue}}{{{defaultValue}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}});
+        $this->setIfExists('{{name}}', $data ?? [], null);
         {{/vars}}
         {{#discriminator}}
 
         // Initialize discriminator property with the model name.
-        $this->container['{{discriminatorName}}'] = static::$openAPIModelName;
+        if (!array_key_exists('{{discriminatorName}}', $data ?? [])) {
+            $this->container['{{discriminatorName}}'] = static::$openAPIModelName;
+        }
         {{/discriminator}}
     }
 
@@ -303,7 +305,7 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
             $index = array_search('{{name}}', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }

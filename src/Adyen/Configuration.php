@@ -13,6 +13,13 @@ class Configuration
     public const BOOLEAN_FORMAT_STRING = 'string';
 
     /**
+     * Library identity, sent with every request as identification headers.
+     * The release script bumps LIB_VERSION here.
+     */
+    public const LIB_NAME = 'adyen-php-api-library';
+    public const LIB_VERSION = '30.0.2';
+
+    /**
      * @var Configuration
      */
     private static ?Configuration $defaultConfiguration = null;
@@ -58,14 +65,6 @@ class Configuration
      * @var string
      */
     protected string $password = '';
-
-    /**
-     * User agent of the HTTP request, set to "OpenAPI-Generator/{version}/PHP" by default
-     * It is overridden with the library name and version
-     *
-     * @var string
-     */
-    protected string $userAgent = 'OpenAPI-Generator/1.0.0/PHP';
 
     /**
      * Debug switch (default set to false)
@@ -119,6 +118,41 @@ class Configuration
      * @var string|null
      */
     protected ?string $liveEndpointUrlPrefix = null;
+
+    /**
+     * Adyen library name, sent with every request as the adyen-library-name header
+     *
+     * @var string
+     */
+    protected string $libraryName = self::LIB_NAME;
+
+    /**
+     * Adyen library version, sent with every request as the adyen-library-version header
+     *
+     * @var string
+     */
+    protected string $libraryVersion = self::LIB_VERSION;
+
+    /**
+     * Adyen payment source name and version, included in applicationInfo.adyenPaymentSource of requests
+     *
+     * @var array{name: string, version: string}|null
+     */
+    protected ?array $adyenPaymentSource = null;
+
+    /**
+     * External platform name, version and integrator, included in applicationInfo.externalPlatform of requests
+     *
+     * @var array{name: string, version: string, integrator: string}|null
+     */
+    protected ?array $externalPlatform = null;
+
+    /**
+     * Merchant application name and version, included in applicationInfo.merchantApplication of requests
+     *
+     * @var array{name: string, version: string}|null
+     */
+    protected ?array $merchantApplication = null;
 
     /**
      * Constructor
@@ -300,24 +334,17 @@ class Configuration
     }
 
     /**
-     * Sets UserAgent
-     * @param string $userAgent
-     * @return $this
-     */
-    public function setUserAgent(string $userAgent): self
-    {
-        $this->userAgent = $userAgent;
-        return $this;
-    }
-
-    /**
-     * Gets the user agent of the api client
+     * Gets the User-Agent for HTTP requests: the application name (if set) followed by
+     * the library name and version, e.g. "MyShopApp adyen-php-api-library/30.0.2"
      *
      * @return string user agent
      */
     public function getUserAgent(): string
     {
-        return $this->userAgent;
+        $suffix = self::LIB_NAME . '/' . self::LIB_VERSION;
+        return $this->applicationName !== ''
+            ? $this->applicationName . ' ' . $suffix
+            : $suffix;
     }
 
     /**
@@ -436,9 +463,17 @@ class Configuration
      *
      * @param string $environment
      * @return $this
+     * @throws AdyenException
      */
     public function setEnvironment(string $environment): self
     {
+        if (!in_array($environment, [Environment::TEST, Environment::LIVE], true)) {
+            throw new AdyenException(
+                "This environment does not exist, use " .
+                Environment::TEST . ' or ' . Environment::LIVE
+            );
+        }
+
         $this->environment = $environment;
         return $this;
     }
@@ -490,6 +525,115 @@ class Configuration
         return $this;
     }
 
+    /**
+     * Gets the library name
+     *
+     * @return string library name
+     */
+    public function getLibraryName(): string
+    {
+        return $this->libraryName;
+    }
+
+    /**
+     * Gets the library version
+     *
+     * @return string library version
+     */
+    public function getLibraryVersion(): string
+    {
+        return $this->libraryVersion;
+    }
+
+    /**
+     * Sets the Adyen payment source name and version
+     *
+     * @param string|array{name: string, version: string} $name
+     * @param string|null $version
+     * @return $this
+     */
+    public function setAdyenPaymentSource(string|array $name, ?string $version = null): self
+    {
+        if (is_array($name)) {
+            $version = $name['version'] ?? '';
+            $name = $name['name'] ?? '';
+        }
+        $this->adyenPaymentSource = ['name' => $name, 'version' => $version ?? ''];
+        return $this;
+    }
+
+    /**
+     * Gets the Adyen payment source
+     *
+     * @return array{name: string, version: string}|null
+     */
+    public function getAdyenPaymentSource(): ?array
+    {
+        return $this->adyenPaymentSource;
+    }
+
+    /**
+     * Sets the external platform name, version and integrator
+     *
+     * @param string|array{name: string, version: string, integrator?: string} $name
+     * @param string|null $version
+     * @param string|null $integrator
+     * @return $this
+     */
+    public function setExternalPlatform(
+        string|array $name,
+        ?string $version = null,
+        ?string $integrator = null
+    ): self {
+        if (is_array($name)) {
+            $integrator = $name['integrator'] ?? '';
+            $version = $name['version'] ?? '';
+            $name = $name['name'] ?? '';
+        }
+        $this->externalPlatform = [
+            'name' => $name,
+            'version' => $version ?? '',
+            'integrator' => $integrator ?? ''
+        ];
+        return $this;
+    }
+
+    /**
+     * Gets the external platform
+     *
+     * @return array{name: string, version: string, integrator: string}|null
+     */
+    public function getExternalPlatform(): ?array
+    {
+        return $this->externalPlatform;
+    }
+
+    /**
+     * Sets the merchant application name and version
+     *
+     * @param string|array{name: string, version: string} $name
+     * @param string|null $version
+     * @return $this
+     */
+    public function setMerchantApplication(string|array $name, ?string $version = null): self
+    {
+        if (is_array($name)) {
+            $version = $name['version'] ?? '';
+            $name = $name['name'] ?? '';
+        }
+        $this->merchantApplication = ['name' => $name, 'version' => $version ?? ''];
+        return $this;
+    }
+
+    /**
+     * Gets the merchant application
+     *
+     * @return array{name: string, version: string}|null
+     */
+    public function getMerchantApplication(): ?array
+    {
+        return $this->merchantApplication;
+    }
 
     /**
      * Gets the default configuration instance

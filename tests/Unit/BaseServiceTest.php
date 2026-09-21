@@ -7,6 +7,9 @@ use Adyen\BaseService;
 use Adyen\Configuration;
 use Adyen\Environment;
 use Adyen\Model\BinLookup\ThreeDSAvailabilityRequest;
+use Adyen\Model\Checkout\ApplicationInfo;
+use Adyen\Model\Checkout\PaymentCancelRequest;
+use Adyen\Model\Checkout\PaymentRequest;
 use Adyen\Service\BinLookup\BinLookupApi;
 use Adyen\Tests\TestCase;
 
@@ -237,5 +240,80 @@ class BaseServiceTest extends TestCase
         $url = 'https://kyc-test.adyen.com/lem/v3/legalEntities';
         $expected = 'https://kyc-live.adyen.com/lem/v3/legalEntities';
         $this->assertEquals($expected, $service->createBaseUrl($url));
+    }
+
+    /**
+     * @covers \Adyen\BaseService::injectApplicationInfo
+     */
+    public function testInjectApplicationInfo()
+    {
+        $service = $this->createServiceProbe([
+            'externalPlatform' => ['name' => 'Magento', 'version' => '2.4', 'integrator' => 'Acme'],
+            'merchantApplication' => ['name' => 'MyShop', 'version' => '1.0'],
+        ]);
+
+        $request = new PaymentRequest();
+        $request->setApplicationInfo([
+            'adyenLibrary' => ['name' => 'fake', 'version' => '0.0.0'],              // overwritten
+            'adyenPaymentSource' => ['name' => 'adyen-giving', 'version' => '1.2'],  // merchant-only, kept
+            'externalPlatform' => ['name' => 'WooCommerce', 'version' => '9.9'],     // loses to config
+        ]);
+
+        $this->assertEquals([
+            'adyenLibrary' => [
+                'name' => Configuration::LIB_NAME,
+                'version' => Configuration::LIB_VERSION
+            ],
+            'adyenPaymentSource' => ['name' => 'adyen-giving', 'version' => '1.2'],
+            'externalPlatform' => ['name' => 'Magento', 'version' => '2.4', 'integrator' => 'Acme'],
+            'merchantApplication' => ['name' => 'MyShop', 'version' => '1.0'],
+        ], $service->inject($request)->getApplicationInfo()->toArray());
+    }
+
+    /**
+     * @covers \Adyen\BaseService::injectApplicationInfo
+     */
+    public function testInjectApplicationInfoOmitsIntegratorWhenNotSet()
+    {
+        $service = $this->createServiceProbe([
+            'externalPlatform' => ['name' => 'Magento', 'version' => '2.4']
+        ]);
+
+        // model-object input: the helper mutates the existing applicationInfo in place
+        $request = new PaymentRequest();
+        $request->setApplicationInfo(new ApplicationInfo());
+
+        $this->assertEquals([
+            'adyenLibrary' => [
+                'name' => Configuration::LIB_NAME,
+                'version' => Configuration::LIB_VERSION
+            ],
+            'externalPlatform' => ['name' => 'Magento', 'version' => '2.4'],
+        ], $service->inject($request)->getApplicationInfo()->toArray());
+    }
+
+    /**
+     * @covers \Adyen\BaseService::injectApplicationInfo
+     */
+    public function testInjectApplicationInfoLeavesModelsWithoutFieldUntouched()
+    {
+        $request = new PaymentCancelRequest();
+        $this->assertSame($request, $this->createServiceProbe()->inject($request));
+    }
+
+    /**
+     * Exposes the protected injectApplicationInfo helper for testing.
+     */
+    private function createServiceProbe(array $params = []): BaseService
+    {
+        return new class (new Configuration($params + [
+            'adyenApiKey' => 'my-api-key',
+            'environment' => Environment::TEST
+        ])) extends BaseService {
+            public function inject($requestModel): ?object
+            {
+                return $this->injectApplicationInfo($requestModel);
+            }
+        };
     }
 }

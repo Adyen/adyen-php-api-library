@@ -3,6 +3,7 @@
 namespace Adyen\Tests\Unit;
 
 use Adyen\Configuration;
+use Adyen\Environment;
 use Adyen\Tests\TestCase;
 
 class ConfigurationTest extends TestCase
@@ -57,7 +58,6 @@ class ConfigurationTest extends TestCase
      * @covers \Adyen\Configuration::getUsername
      * @covers \Adyen\Configuration::setPassword
      * @covers \Adyen\Configuration::getPassword
-     * @covers \Adyen\Configuration::setUserAgent
      * @covers \Adyen\Configuration::getUserAgent
      * @covers \Adyen\Configuration::setDebug
      * @covers \Adyen\Configuration::getDebug
@@ -92,8 +92,10 @@ class ConfigurationTest extends TestCase
         $configuration->setPassword('pass');
         $this->assertEquals('pass', $configuration->getPassword());
 
-        $configuration->setUserAgent('ua');
-        $this->assertEquals('ua', $configuration->getUserAgent());
+        $this->assertEquals(
+            Configuration::LIB_NAME . '/' . Configuration::LIB_VERSION,
+            $configuration->getUserAgent()
+        );
 
         $configuration->setDebug(true);
         $this->assertTrue($configuration->getDebug());
@@ -110,11 +112,15 @@ class ConfigurationTest extends TestCase
         $configuration->setKeyFile('key');
         $this->assertEquals('key', $configuration->getKeyFile());
 
-        $configuration->setEnvironment('env');
-        $this->assertEquals('env', $configuration->getEnvironment());
+        $configuration->setEnvironment(Environment::TEST);
+        $this->assertEquals(Environment::TEST, $configuration->getEnvironment());
 
         $configuration->setApplicationName('app');
         $this->assertEquals('app', $configuration->getApplicationName());
+        $this->assertEquals(
+            'app ' . Configuration::LIB_NAME . '/' . Configuration::LIB_VERSION,
+            $configuration->getUserAgent()
+        );
 
         $configuration->setLiveEndpointUrlPrefix('prefix');
         $this->assertEquals('prefix', $configuration->getLiveEndpointUrlPrefix());
@@ -228,5 +234,95 @@ class ConfigurationTest extends TestCase
 
         $this->expectException(\InvalidArgumentException::class);
         Configuration::getHostString($hostSettings, 0, ['var' => 'invalid']);
+    }
+
+    public function testInvalidEnvironment()
+    {
+        $this->expectException(\Adyen\AdyenException::class);
+        $this->expectExceptionMessage(
+            'This environment does not exist, use test or live'
+        );
+
+        (new Configuration())->setEnvironment('staging');
+    }
+
+    /**
+     * @covers \Adyen\Configuration::setAdyenPaymentSource
+     * @covers \Adyen\Configuration::getAdyenPaymentSource
+     * @covers \Adyen\Configuration::setExternalPlatform
+     * @covers \Adyen\Configuration::getExternalPlatform
+     * @covers \Adyen\Configuration::setMerchantApplication
+     * @covers \Adyen\Configuration::getMerchantApplication
+     */
+    public function testApplicationInfoSettings()
+    {
+        $configuration = new Configuration();
+
+        $this->assertNull($configuration->getAdyenPaymentSource());
+        $this->assertNull($configuration->getExternalPlatform());
+        $this->assertNull($configuration->getMerchantApplication());
+
+        $configuration->setAdyenPaymentSource('source-test', '1.2.3');
+        $this->assertEquals(
+            ['name' => 'source-test', 'version' => '1.2.3'],
+            $configuration->getAdyenPaymentSource()
+        );
+
+        $configuration->setExternalPlatform('platform-test', '2.3.4', 'integrator-test');
+        $this->assertEquals(
+            ['name' => 'platform-test', 'version' => '2.3.4', 'integrator' => 'integrator-test'],
+            $configuration->getExternalPlatform()
+        );
+
+        $configuration->setMerchantApplication('merchant-test', '3.4.5');
+        $this->assertEquals(
+            ['name' => 'merchant-test', 'version' => '3.4.5'],
+            $configuration->getMerchantApplication()
+        );
+    }
+
+    /**
+     * @covers \Adyen\Configuration::setExternalPlatform
+     */
+    public function testExternalPlatformWithoutIntegrator()
+    {
+        $configuration = new Configuration();
+        $configuration->setExternalPlatform('platform-test', '2.3.4');
+        $this->assertEquals(
+            ['name' => 'platform-test', 'version' => '2.3.4', 'integrator' => ''],
+            $configuration->getExternalPlatform()
+        );
+    }
+
+    /**
+     * @covers \Adyen\Configuration::__construct
+     * @covers \Adyen\Configuration::setAdyenPaymentSource
+     * @covers \Adyen\Configuration::setExternalPlatform
+     * @covers \Adyen\Configuration::setMerchantApplication
+     */
+    public function testInitialisationWithArrayApplicationInfoSettings()
+    {
+        $configuration = new Configuration([
+            'adyenPaymentSource' => ['name' => 'source-test', 'version' => '1.2.3'],
+            'externalPlatform' => [
+                'name' => 'platform-test',
+                'version' => '2.3.4',
+                'integrator' => 'integrator-test'
+            ],
+            'merchantApplication' => ['name' => 'merchant-test', 'version' => '3.4.5']
+        ]);
+
+        $this->assertEquals(
+            ['name' => 'source-test', 'version' => '1.2.3'],
+            $configuration->getAdyenPaymentSource()
+        );
+        $this->assertEquals(
+            ['name' => 'platform-test', 'version' => '2.3.4', 'integrator' => 'integrator-test'],
+            $configuration->getExternalPlatform()
+        );
+        $this->assertEquals(
+            ['name' => 'merchant-test', 'version' => '3.4.5'],
+            $configuration->getMerchantApplication()
+        );
     }
 }
