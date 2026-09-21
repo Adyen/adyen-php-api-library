@@ -1,0 +1,7 @@
+{
+  "originKeys": {
+    "https://www.your-domain1.com": "pubkey_1",
+    "https://www.your-domain2.com": "pubkey_2",
+    "https://www.your-domain3.com": "pubkey_3"
+  }
+}

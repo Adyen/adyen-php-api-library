@@ -512,7 +512,9 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('surcharge', $data ?? [], null);
 
         // Initialize discriminator property with the model name.
-        $this->container['type'] = static::$openAPIModelName;
+        if (!array_key_exists('type', $data ?? [])) {
+            $this->container['type'] = static::$openAPIModelName;
+        }
     }
 
     /**

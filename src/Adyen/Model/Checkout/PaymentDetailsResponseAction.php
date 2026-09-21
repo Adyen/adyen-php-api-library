@@ -284,7 +284,9 @@ class PaymentDetailsResponseAction implements ModelInterface, ArrayAccess, \Json
         $this->setIfExists('url', $data ?? [], null);
 
         // Initialize discriminator property with the model name.
-        $this->container['type'] = static::$openAPIModelName;
+        if (!array_key_exists('type', $data ?? [])) {
+            $this->container['type'] = static::$openAPIModelName;
+        }
     }
 
     /**
