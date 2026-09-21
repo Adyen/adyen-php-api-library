@@ -13,6 +13,13 @@ class Configuration
     public const BOOLEAN_FORMAT_STRING = 'string';
 
     /**
+     * Library identity, sent with every request as identification headers.
+     * The release script bumps LIB_VERSION here.
+     */
+    public const LIB_NAME = 'adyen-php-api-library';
+    public const LIB_VERSION = '30.0.2';
+
+    /**
      * @var Configuration
      */
     private static ?Configuration $defaultConfiguration = null;
@@ -58,14 +65,6 @@ class Configuration
      * @var string
      */
     protected string $password = '';
-
-    /**
-     * User agent of the HTTP request, set to "OpenAPI-Generator/{version}/PHP" by default
-     * It is overridden with the library name and version
-     *
-     * @var string
-     */
-    protected string $userAgent = 'OpenAPI-Generator/1.0.0/PHP';
 
     /**
      * Debug switch (default set to false)
@@ -119,6 +118,20 @@ class Configuration
      * @var string|null
      */
     protected ?string $liveEndpointUrlPrefix = null;
+
+    /**
+     * Adyen library name, sent with every request as the adyen-library-name header
+     *
+     * @var string
+     */
+    protected string $libraryName = self::LIB_NAME;
+
+    /**
+     * Adyen library version, sent with every request as the adyen-library-version header
+     *
+     * @var string
+     */
+    protected string $libraryVersion = self::LIB_VERSION;
 
     /**
      * Constructor
@@ -300,24 +313,17 @@ class Configuration
     }
 
     /**
-     * Sets UserAgent
-     * @param string $userAgent
-     * @return $this
-     */
-    public function setUserAgent(string $userAgent): self
-    {
-        $this->userAgent = $userAgent;
-        return $this;
-    }
-
-    /**
-     * Gets the user agent of the api client
+     * Gets the User-Agent for HTTP requests: the application name (if set) followed by
+     * the library name and version, e.g. "MyShopApp adyen-php-api-library/30.0.2"
      *
      * @return string user agent
      */
     public function getUserAgent(): string
     {
-        return $this->userAgent;
+        $suffix = self::LIB_NAME . '/' . self::LIB_VERSION;
+        return $this->applicationName !== ''
+            ? $this->applicationName . ' ' . $suffix
+            : $suffix;
     }
 
     /**
@@ -436,9 +442,17 @@ class Configuration
      *
      * @param string $environment
      * @return $this
+     * @throws AdyenException
      */
     public function setEnvironment(string $environment): self
     {
+        if (!in_array($environment, [Environment::TEST, Environment::LIVE], true)) {
+            throw new AdyenException(
+                "This environment does not exist, use " .
+                Environment::TEST . ' or ' . Environment::LIVE
+            );
+        }
+
         $this->environment = $environment;
         return $this;
     }
@@ -490,6 +504,25 @@ class Configuration
         return $this;
     }
 
+    /**
+     * Gets the library name
+     *
+     * @return string library name
+     */
+    public function getLibraryName(): string
+    {
+        return $this->libraryName;
+    }
+
+    /**
+     * Gets the library version
+     *
+     * @return string library version
+     */
+    public function getLibraryVersion(): string
+    {
+        return $this->libraryVersion;
+    }
 
     /**
      * Gets the default configuration instance

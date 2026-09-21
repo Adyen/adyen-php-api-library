@@ -31,6 +31,15 @@ class ModelBasedCheckoutTest extends BaseTest
         $this->assertEquals("directEbanking", $paymentRequest->getPaymentMethod()->getType());
     }
 
+    public function testPaymentMethodKeepsTypeFromArray()
+    {
+        $paymentMethod = new CheckoutPaymentMethod([
+            'type' => 'paypal'
+        ]);
+
+        $this->assertEquals('paypal', $paymentMethod->getType());
+    }
+
     public function testPaymentMethodOverload()
     {
         $amount = new Amount();

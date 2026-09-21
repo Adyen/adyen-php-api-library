@@ -338,8 +338,12 @@ class UtilityApi extends BaseService
             $requestOptions
         );
 
+        $headers['adyen-library-name'] = $this->config->getLibraryName();
+        $headers['adyen-library-version'] = $this->config->getLibraryVersion();
+
         // for model (json/xml)
         if (isset($applePaySessionRequest)) {
+            $applePaySessionRequest = $this->injectApplicationInfo($applePaySessionRequest);
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($applePaySessionRequest));
@@ -682,8 +686,12 @@ class UtilityApi extends BaseService
             $requestOptions
         );
 
+        $headers['adyen-library-name'] = $this->config->getLibraryName();
+        $headers['adyen-library-version'] = $this->config->getLibraryVersion();
+
         // for model (json/xml)
         if (isset($utilityRequest)) {
+            $utilityRequest = $this->injectApplicationInfo($utilityRequest);
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($utilityRequest));
@@ -1021,8 +1029,12 @@ class UtilityApi extends BaseService
             $requestOptions
         );
 
+        $headers['adyen-library-name'] = $this->config->getLibraryName();
+        $headers['adyen-library-version'] = $this->config->getLibraryVersion();
+
         // for model (json/xml)
         if (isset($paypalUpdateOrderRequest)) {
+            $paypalUpdateOrderRequest = $this->injectApplicationInfo($paypalUpdateOrderRequest);
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($paypalUpdateOrderRequest));
@@ -1367,8 +1379,12 @@ class UtilityApi extends BaseService
             $requestOptions
         );
 
+        $headers['adyen-library-name'] = $this->config->getLibraryName();
+        $headers['adyen-library-version'] = $this->config->getLibraryVersion();
+
         // for model (json/xml)
         if (isset($validateShopperIdRequest)) {
+            $validateShopperIdRequest = $this->injectApplicationInfo($validateShopperIdRequest);
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($validateShopperIdRequest));

@@ -3,6 +3,7 @@
 namespace Adyen\Tests\Unit;
 
 use Adyen\Configuration;
+use Adyen\Environment;
 use Adyen\Tests\TestCase;
 
 class ConfigurationTest extends TestCase
@@ -57,7 +58,6 @@ class ConfigurationTest extends TestCase
      * @covers \Adyen\Configuration::getUsername
      * @covers \Adyen\Configuration::setPassword
      * @covers \Adyen\Configuration::getPassword
-     * @covers \Adyen\Configuration::setUserAgent
      * @covers \Adyen\Configuration::getUserAgent
      * @covers \Adyen\Configuration::setDebug
      * @covers \Adyen\Configuration::getDebug
@@ -92,8 +92,10 @@ class ConfigurationTest extends TestCase
         $configuration->setPassword('pass');
         $this->assertEquals('pass', $configuration->getPassword());
 
-        $configuration->setUserAgent('ua');
-        $this->assertEquals('ua', $configuration->getUserAgent());
+        $this->assertEquals(
+            Configuration::LIB_NAME . '/' . Configuration::LIB_VERSION,
+            $configuration->getUserAgent()
+        );
 
         $configuration->setDebug(true);
         $this->assertTrue($configuration->getDebug());
@@ -110,11 +112,15 @@ class ConfigurationTest extends TestCase
         $configuration->setKeyFile('key');
         $this->assertEquals('key', $configuration->getKeyFile());
 
-        $configuration->setEnvironment('env');
-        $this->assertEquals('env', $configuration->getEnvironment());
+        $configuration->setEnvironment(Environment::TEST);
+        $this->assertEquals(Environment::TEST, $configuration->getEnvironment());
 
         $configuration->setApplicationName('app');
         $this->assertEquals('app', $configuration->getApplicationName());
+        $this->assertEquals(
+            'app ' . Configuration::LIB_NAME . '/' . Configuration::LIB_VERSION,
+            $configuration->getUserAgent()
+        );
 
         $configuration->setLiveEndpointUrlPrefix('prefix');
         $this->assertEquals('prefix', $configuration->getLiveEndpointUrlPrefix());
@@ -228,5 +234,15 @@ class ConfigurationTest extends TestCase
 
         $this->expectException(\InvalidArgumentException::class);
         Configuration::getHostString($hostSettings, 0, ['var' => 'invalid']);
+    }
+
+    public function testInvalidEnvironment()
+    {
+        $this->expectException(\Adyen\AdyenException::class);
+        $this->expectExceptionMessage(
+            'This environment does not exist, use test or live'
+        );
+
+        (new Configuration())->setEnvironment('staging');
     }
 }
