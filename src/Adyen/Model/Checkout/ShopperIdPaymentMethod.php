@@ -228,7 +228,9 @@ class ShopperIdPaymentMethod implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('type', $data ?? [], null);
 
         // Initialize discriminator property with the model name.
-        $this->container['type'] = static::$openAPIModelName;
+        if (!array_key_exists('type', $data ?? [])) {
+            $this->container['type'] = static::$openAPIModelName;
+        }
     }
 
     /**

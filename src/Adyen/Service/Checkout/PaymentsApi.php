@@ -347,8 +347,12 @@ class PaymentsApi extends BaseService
             $requestOptions
         );
 
+        $headers['adyen-library-name'] = $this->config->getLibraryName();
+        $headers['adyen-library-version'] = $this->config->getLibraryVersion();
+
         // for model (json/xml)
         if (isset($cardDetailsRequest)) {
+            $cardDetailsRequest = $this->injectApplicationInfo($cardDetailsRequest);
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($cardDetailsRequest));
@@ -653,6 +657,9 @@ class PaymentsApi extends BaseService
             $multipart,
             $requestOptions
         );
+
+        $headers['adyen-library-name'] = $this->config->getLibraryName();
+        $headers['adyen-library-version'] = $this->config->getLibraryVersion();
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -986,8 +993,12 @@ class PaymentsApi extends BaseService
             $requestOptions
         );
 
+        $headers['adyen-library-name'] = $this->config->getLibraryName();
+        $headers['adyen-library-version'] = $this->config->getLibraryVersion();
+
         // for model (json/xml)
         if (isset($paymentMethodsRequest)) {
+            $paymentMethodsRequest = $this->injectApplicationInfo($paymentMethodsRequest);
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($paymentMethodsRequest));
@@ -1325,8 +1336,12 @@ class PaymentsApi extends BaseService
             $requestOptions
         );
 
+        $headers['adyen-library-name'] = $this->config->getLibraryName();
+        $headers['adyen-library-version'] = $this->config->getLibraryVersion();
+
         // for model (json/xml)
         if (isset($paymentRequest)) {
+            $paymentRequest = $this->injectApplicationInfo($paymentRequest);
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($paymentRequest));
@@ -1664,8 +1679,12 @@ class PaymentsApi extends BaseService
             $requestOptions
         );
 
+        $headers['adyen-library-name'] = $this->config->getLibraryName();
+        $headers['adyen-library-version'] = $this->config->getLibraryVersion();
+
         // for model (json/xml)
         if (isset($paymentDetailsRequest)) {
+            $paymentDetailsRequest = $this->injectApplicationInfo($paymentDetailsRequest);
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($paymentDetailsRequest));
@@ -1933,8 +1952,12 @@ class PaymentsApi extends BaseService
             $requestOptions
         );
 
+        $headers['adyen-library-name'] = $this->config->getLibraryName();
+        $headers['adyen-library-version'] = $this->config->getLibraryVersion();
+
         // for model (json/xml)
         if (isset($createCheckoutSessionRequest)) {
+            $createCheckoutSessionRequest = $this->injectApplicationInfo($createCheckoutSessionRequest);
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($createCheckoutSessionRequest));
@@ -2223,8 +2246,12 @@ class PaymentsApi extends BaseService
             $requestOptions
         );
 
+        $headers['adyen-library-name'] = $this->config->getLibraryName();
+        $headers['adyen-library-version'] = $this->config->getLibraryVersion();
+
         // for model (json/xml)
         if (isset($checkoutSessionPatchSessionRequest)) {
+            $checkoutSessionPatchSessionRequest = $this->injectApplicationInfo($checkoutSessionPatchSessionRequest);
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($checkoutSessionPatchSessionRequest));

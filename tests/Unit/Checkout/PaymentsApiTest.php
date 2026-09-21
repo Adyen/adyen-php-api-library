@@ -219,6 +219,96 @@ class PaymentsApiTest extends BaseTest
     }
 
     /**
+     * Guards the library identification headers stamped by the template: if a future
+     * regeneration drops them, this test fails.
+     *
+     * @throws \Adyen\Exception\AdyenException
+     * @throws AdyenException
+     */
+    public function testLibraryIdentificationHeaders()
+    {
+        $container = [];
+        $client = $this->createMockSerializerClient(
+            'tests/Resources/Checkout/payments-success.json',
+            200,
+            $container
+        );
+        $service = new PaymentsApi($this->createConfiguration(), $client);
+
+        $service->payments(new \Adyen\Model\Checkout\PaymentRequest());
+
+        $request = $container[0]['request'];
+        $this->assertEquals(\Adyen\Configuration::LIB_NAME, $request->getHeaderLine('adyen-library-name'));
+        $this->assertEquals(\Adyen\Configuration::LIB_VERSION, $request->getHeaderLine('adyen-library-version'));
+    }
+
+    /**
+     * The User-Agent header carries the library name and version, prefixed with the
+     * application name when the merchant sets one.
+     *
+     * @throws \Adyen\Exception\AdyenException
+     * @throws AdyenException
+     */
+    public function testUserAgentHeader()
+    {
+        $container = [];
+        $client = $this->createMockSerializerClient(
+            'tests/Resources/Checkout/payments-success.json',
+            200,
+            $container
+        );
+        $service = new PaymentsApi($this->createConfiguration(), $client);
+
+        $service->payments(new \Adyen\Model\Checkout\PaymentRequest());
+
+        $this->assertEquals(
+            \Adyen\Configuration::LIB_NAME . '/' . \Adyen\Configuration::LIB_VERSION,
+            $container[0]['request']->getHeaderLine('User-Agent')
+        );
+
+        $container = [];
+        $client = $this->createMockSerializerClient(
+            'tests/Resources/Checkout/payments-success.json',
+            200,
+            $container
+        );
+        $config = $this->createConfiguration();
+        $config->setApplicationName('MyShopApp');
+        $service = new PaymentsApi($config, $client);
+
+        $service->payments(new \Adyen\Model\Checkout\PaymentRequest());
+
+        $this->assertEquals(
+            'MyShopApp ' . \Adyen\Configuration::LIB_NAME . '/' . \Adyen\Configuration::LIB_VERSION,
+            $container[0]['request']->getHeaderLine('User-Agent')
+        );
+    }
+
+    /**
+     * Guards the applicationInfo adyenLibrary block stamped into the request body: if a
+     * future regeneration drops the injection, this test fails.
+     *
+     * @throws \Adyen\Exception\AdyenException
+     * @throws AdyenException
+     */
+    public function testApplicationInfoInjection()
+    {
+        $container = [];
+        $client = $this->createMockSerializerClient(
+            'tests/Resources/Checkout/payments-success.json',
+            200,
+            $container
+        );
+        $service = new PaymentsApi($this->createConfiguration(), $client);
+
+        $service->payments(new \Adyen\Model\Checkout\PaymentRequest());
+
+        $body = json_decode((string) $container[0]['request']->getBody(), true);
+        $this->assertEquals(\Adyen\Configuration::LIB_NAME, $body['applicationInfo']['adyenLibrary']['name']);
+        $this->assertEquals(\Adyen\Configuration::LIB_VERSION, $body['applicationInfo']['adyenLibrary']['version']);
+    }
+
+    /**
      * @dataProvider successPaymentsProvider
      * @throws \Adyen\Exception\AdyenException
      * @throws AdyenException

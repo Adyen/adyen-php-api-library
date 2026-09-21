@@ -501,7 +501,7 @@ class PaymentRefundRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
             $index = array_search('merchantRefundReason', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
