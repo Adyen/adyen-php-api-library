@@ -8,8 +8,6 @@ use Adyen\Configuration;
 use Adyen\Environment;
 use Adyen\Model\BinLookup\ThreeDSAvailabilityRequest;
 use Adyen\Model\Checkout\ApplicationInfo;
-use Adyen\Model\Checkout\CommonField;
-use Adyen\Model\Checkout\ExternalPlatform;
 use Adyen\Model\Checkout\PaymentCancelRequest;
 use Adyen\Model\Checkout\PaymentRequest;
 use Adyen\Service\BinLookup\BinLookupApi;
@@ -247,15 +245,51 @@ class BaseServiceTest extends TestCase
     /**
      * @covers \Adyen\BaseService::injectApplicationInfo
      */
-    public function testInjectApplicationInfoStampsAdyenLibrary()
+    public function testInjectApplicationInfo()
     {
-        $service = $this->createServiceProbe();
+        $service = $this->createServiceProbe([
+            'externalPlatform' => ['name' => 'Magento', 'version' => '2.4', 'integrator' => 'Acme'],
+            'merchantApplication' => ['name' => 'MyShop', 'version' => '1.0'],
+        ]);
 
-        $request = $service->inject(new PaymentRequest());
+        $request = new PaymentRequest();
+        $request->setApplicationInfo([
+            'adyenLibrary' => ['name' => 'fake', 'version' => '0.0.0'],              // overwritten
+            'adyenPaymentSource' => ['name' => 'adyen-giving', 'version' => '1.2'],  // merchant-only, kept
+            'externalPlatform' => ['name' => 'WooCommerce', 'version' => '9.9'],     // loses to config
+        ]);
 
-        $library = $request->getApplicationInfo()->getAdyenLibrary();
-        $this->assertEquals(Configuration::LIB_NAME, $library->getName());
-        $this->assertEquals(Configuration::LIB_VERSION, $library->getVersion());
+        $this->assertEquals([
+            'adyenLibrary' => [
+                'name' => Configuration::LIB_NAME,
+                'version' => Configuration::LIB_VERSION
+            ],
+            'adyenPaymentSource' => ['name' => 'adyen-giving', 'version' => '1.2'],
+            'externalPlatform' => ['name' => 'Magento', 'version' => '2.4', 'integrator' => 'Acme'],
+            'merchantApplication' => ['name' => 'MyShop', 'version' => '1.0'],
+        ], $service->inject($request)->getApplicationInfo()->toArray());
+    }
+
+    /**
+     * @covers \Adyen\BaseService::injectApplicationInfo
+     */
+    public function testInjectApplicationInfoOmitsIntegratorWhenNotSet()
+    {
+        $service = $this->createServiceProbe([
+            'externalPlatform' => ['name' => 'Magento', 'version' => '2.4']
+        ]);
+
+        // model-object input: the helper mutates the existing applicationInfo in place
+        $request = new PaymentRequest();
+        $request->setApplicationInfo(new ApplicationInfo());
+
+        $this->assertEquals([
+            'adyenLibrary' => [
+                'name' => Configuration::LIB_NAME,
+                'version' => Configuration::LIB_VERSION
+            ],
+            'externalPlatform' => ['name' => 'Magento', 'version' => '2.4'],
+        ], $service->inject($request)->getApplicationInfo()->toArray());
     }
 
     /**
@@ -263,153 +297,8 @@ class BaseServiceTest extends TestCase
      */
     public function testInjectApplicationInfoLeavesModelsWithoutFieldUntouched()
     {
-        $service = $this->createServiceProbe();
-
         $request = new PaymentCancelRequest();
-
-        $this->assertSame($request, $service->inject($request));
-    }
-
-    /**
-     * @covers \Adyen\BaseService::injectApplicationInfo
-     */
-    public function testInjectApplicationInfoOverwritesAdyenLibrary()
-    {
-        $service = $this->createServiceProbe();
-
-        $library = new CommonField();
-        $library->setName('fake');
-        $library->setVersion('0.0.0');
-        $applicationInfo = new ApplicationInfo();
-        $applicationInfo->setAdyenLibrary($library);
-        $request = new PaymentRequest();
-        $request->setApplicationInfo($applicationInfo);
-
-        $library = $service->inject($request)->getApplicationInfo()->getAdyenLibrary();
-        $this->assertEquals(Configuration::LIB_NAME, $library->getName());
-        $this->assertEquals(Configuration::LIB_VERSION, $library->getVersion());
-    }
-
-    /**
-     * @covers \Adyen\BaseService::injectApplicationInfo
-     */
-    public function testInjectApplicationInfoKeepsMerchantExtras()
-    {
-        $service = $this->createServiceProbe();
-
-        $paymentSource = new CommonField();
-        $paymentSource->setName('adyen-giving-plugin');
-        $paymentSource->setVersion('1.2.3');
-        $applicationInfo = new ApplicationInfo();
-        $applicationInfo->setAdyenPaymentSource($paymentSource);
-        $request = new PaymentRequest();
-        $request->setApplicationInfo($applicationInfo);
-
-        $applicationInfo = $service->inject($request)->getApplicationInfo();
-        $this->assertEquals('adyen-giving-plugin', $applicationInfo->getAdyenPaymentSource()->getName());
-        $this->assertEquals('1.2.3', $applicationInfo->getAdyenPaymentSource()->getVersion());
-    }
-
-    /**
-     * @covers \Adyen\BaseService::injectApplicationInfo
-     */
-    public function testInjectApplicationInfoAcceptsArray()
-    {
-        $service = $this->createServiceProbe();
-
-        $request = new PaymentRequest([
-            'applicationInfo' => [
-                'merchantApplication' => [
-                    'name' => 'MyShop',
-                    'version' => '1.0'
-                ]
-            ]
-        ]);
-
-        $request = $service->inject($request);
-        $applicationInfo = $request->getApplicationInfo();
-
-        $this->assertInstanceOf(ApplicationInfo::class, $applicationInfo);
-
-        $library = $applicationInfo->getAdyenLibrary();
-        $this->assertEquals(Configuration::LIB_NAME, $library->getName());
-        $this->assertEquals(Configuration::LIB_VERSION, $library->getVersion());
-
-        $merchantApplication = $applicationInfo->getMerchantApplication();
-        $this->assertEquals('MyShop', $merchantApplication['name']);
-        $this->assertEquals('1.0', $merchantApplication['version']);
-    }
-
-    /**
-     * @covers \Adyen\BaseService::injectApplicationInfo
-     */
-    public function testInjectApplicationInfoMergesConfiguredApplicationInfo()
-    {
-        $service = $this->createServiceProbe([
-            'adyenPaymentSource' => ['name' => 'source-test', 'version' => '1.2.3'],
-            'externalPlatform' => [
-                'name' => 'platform-test',
-                'version' => '2.3.4',
-                'integrator' => 'integrator-test'
-            ],
-            'merchantApplication' => ['name' => 'merchant-test', 'version' => '3.4.5']
-        ]);
-
-        $request = $service->inject(new PaymentRequest());
-        $applicationInfo = $request->getApplicationInfo();
-
-        $paymentSource = $applicationInfo->getAdyenPaymentSource();
-        $this->assertEquals('source-test', $paymentSource->getName());
-        $this->assertEquals('1.2.3', $paymentSource->getVersion());
-
-        $externalPlatform = $applicationInfo->getExternalPlatform();
-        $this->assertEquals('platform-test', $externalPlatform->getName());
-        $this->assertEquals('2.3.4', $externalPlatform->getVersion());
-        $this->assertEquals('integrator-test', $externalPlatform->getIntegrator());
-
-        $merchantApplication = $applicationInfo->getMerchantApplication();
-        $this->assertEquals('merchant-test', $merchantApplication->getName());
-        $this->assertEquals('3.4.5', $merchantApplication->getVersion());
-    }
-
-    /**
-     * @covers \Adyen\BaseService::injectApplicationInfo
-     */
-    public function testInjectApplicationInfoOmitsIntegratorWhenNotConfigured()
-    {
-        $service = $this->createServiceProbe([
-            'externalPlatform' => ['name' => 'platform-test', 'version' => '2.3.4']
-        ]);
-
-        $externalPlatform = $service->inject(new PaymentRequest())
-            ->getApplicationInfo()
-            ->getExternalPlatform();
-
-        $this->assertEquals('platform-test', $externalPlatform->getName());
-        $this->assertEquals('2.3.4', $externalPlatform->getVersion());
-        $this->assertNull($externalPlatform->getIntegrator());
-    }
-
-    /**
-     * @covers \Adyen\BaseService::injectApplicationInfo
-     */
-    public function testInjectApplicationInfoConfiguredValuesOverwriteMerchantValues()
-    {
-        $service = $this->createServiceProbe([
-            'externalPlatform' => ['name' => 'platform-test', 'version' => '2.3.4']
-        ]);
-
-        $platform = new ExternalPlatform();
-        $platform->setName('merchant-platform');
-        $platform->setVersion('9.9.9');
-        $applicationInfo = new ApplicationInfo();
-        $applicationInfo->setExternalPlatform($platform);
-        $request = new PaymentRequest();
-        $request->setApplicationInfo($applicationInfo);
-
-        $externalPlatform = $service->inject($request)->getApplicationInfo()->getExternalPlatform();
-        $this->assertEquals('platform-test', $externalPlatform->getName());
-        $this->assertEquals('2.3.4', $externalPlatform->getVersion());
+        $this->assertSame($request, $this->createServiceProbe()->inject($request));
     }
 
     /**
