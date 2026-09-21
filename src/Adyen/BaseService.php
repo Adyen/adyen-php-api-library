@@ -2,6 +2,9 @@
 
 namespace Adyen;
 
+use Adyen\Model\Checkout\ApplicationInfo;
+use Adyen\Model\Checkout\CommonField;
+
 /**
  * Parent class for API services
  */
@@ -78,5 +81,35 @@ class BaseService
 
         // Replace 'test' in string with 'live' for the other endpoints
         return str_replace('-test', '-live', $url);
+    }
+
+    /**
+     * Adds or overwrites the applicationInfo adyenLibrary name and version on a request model.
+     * Request models without an applicationInfo field are returned untouched.
+     *
+     * @param object|null $requestModel
+     * @return object|null
+     */
+    protected function injectApplicationInfo(?object $requestModel): ?object
+    {
+        if (!is_object($requestModel) || !method_exists($requestModel, 'setApplicationInfo')) {
+            return $requestModel;
+        }
+
+        $applicationInfo = $requestModel->getApplicationInfo();
+
+        if (is_array($applicationInfo)) {
+            $applicationInfo = new ApplicationInfo($applicationInfo);
+        } elseif ($applicationInfo === null) {
+            $applicationInfo = new ApplicationInfo();
+        }
+
+        $library = new CommonField();
+        $library->setName(Configuration::LIB_NAME);
+        $library->setVersion(Configuration::LIB_VERSION);
+        $applicationInfo->setAdyenLibrary($library);
+
+        $requestModel->setApplicationInfo($applicationInfo);
+        return $requestModel;
     }
 }

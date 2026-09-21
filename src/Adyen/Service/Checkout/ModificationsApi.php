@@ -414,8 +414,12 @@ class ModificationsApi extends BaseService
             $requestOptions
         );
 
+        $headers['adyen-library-name'] = $this->config->getLibraryName();
+        $headers['adyen-library-version'] = $this->config->getLibraryVersion();
+
         // for model (json/xml)
         if (isset($standalonePaymentCancelRequest)) {
+            $standalonePaymentCancelRequest = $this->injectApplicationInfo($standalonePaymentCancelRequest);
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($standalonePaymentCancelRequest));
@@ -774,8 +778,12 @@ class ModificationsApi extends BaseService
             $requestOptions
         );
 
+        $headers['adyen-library-name'] = $this->config->getLibraryName();
+        $headers['adyen-library-version'] = $this->config->getLibraryVersion();
+
         // for model (json/xml)
         if (isset($paymentCancelRequest)) {
+            $paymentCancelRequest = $this->injectApplicationInfo($paymentCancelRequest);
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($paymentCancelRequest));
@@ -1134,8 +1142,12 @@ class ModificationsApi extends BaseService
             $requestOptions
         );
 
+        $headers['adyen-library-name'] = $this->config->getLibraryName();
+        $headers['adyen-library-version'] = $this->config->getLibraryVersion();
+
         // for model (json/xml)
         if (isset($paymentCaptureRequest)) {
+            $paymentCaptureRequest = $this->injectApplicationInfo($paymentCaptureRequest);
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($paymentCaptureRequest));
@@ -1494,8 +1506,12 @@ class ModificationsApi extends BaseService
             $requestOptions
         );
 
+        $headers['adyen-library-name'] = $this->config->getLibraryName();
+        $headers['adyen-library-version'] = $this->config->getLibraryVersion();
+
         // for model (json/xml)
         if (isset($paymentRefundRequest)) {
+            $paymentRefundRequest = $this->injectApplicationInfo($paymentRefundRequest);
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($paymentRefundRequest));
@@ -1854,8 +1870,12 @@ class ModificationsApi extends BaseService
             $requestOptions
         );
 
+        $headers['adyen-library-name'] = $this->config->getLibraryName();
+        $headers['adyen-library-version'] = $this->config->getLibraryVersion();
+
         // for model (json/xml)
         if (isset($paymentReversalRequest)) {
+            $paymentReversalRequest = $this->injectApplicationInfo($paymentReversalRequest);
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($paymentReversalRequest));
@@ -2214,8 +2234,12 @@ class ModificationsApi extends BaseService
             $requestOptions
         );
 
+        $headers['adyen-library-name'] = $this->config->getLibraryName();
+        $headers['adyen-library-version'] = $this->config->getLibraryVersion();
+
         // for model (json/xml)
         if (isset($paymentAmountUpdateRequest)) {
+            $paymentAmountUpdateRequest = $this->injectApplicationInfo($paymentAmountUpdateRequest);
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($paymentAmountUpdateRequest));

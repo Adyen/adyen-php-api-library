@@ -402,8 +402,12 @@ class BinLookupApi extends BaseService
             $requestOptions
         );
 
+        $headers['adyen-library-name'] = $this->config->getLibraryName();
+        $headers['adyen-library-version'] = $this->config->getLibraryVersion();
+
         // for model (json/xml)
         if (isset($threeDSAvailabilityRequest)) {
+            $threeDSAvailabilityRequest = $this->injectApplicationInfo($threeDSAvailabilityRequest);
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($threeDSAvailabilityRequest));
@@ -741,8 +745,12 @@ class BinLookupApi extends BaseService
             $requestOptions
         );
 
+        $headers['adyen-library-name'] = $this->config->getLibraryName();
+        $headers['adyen-library-version'] = $this->config->getLibraryVersion();
+
         // for model (json/xml)
         if (isset($costEstimateRequest)) {
+            $costEstimateRequest = $this->injectApplicationInfo($costEstimateRequest);
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($costEstimateRequest));

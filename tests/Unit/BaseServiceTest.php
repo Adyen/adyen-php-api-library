@@ -7,6 +7,10 @@ use Adyen\BaseService;
 use Adyen\Configuration;
 use Adyen\Environment;
 use Adyen\Model\BinLookup\ThreeDSAvailabilityRequest;
+use Adyen\Model\Checkout\ApplicationInfo;
+use Adyen\Model\Checkout\CommonField;
+use Adyen\Model\Checkout\PaymentCancelRequest;
+use Adyen\Model\Checkout\PaymentRequest;
 use Adyen\Service\BinLookup\BinLookupApi;
 use Adyen\Tests\TestCase;
 
@@ -237,5 +241,117 @@ class BaseServiceTest extends TestCase
         $url = 'https://kyc-test.adyen.com/lem/v3/legalEntities';
         $expected = 'https://kyc-live.adyen.com/lem/v3/legalEntities';
         $this->assertEquals($expected, $service->createBaseUrl($url));
+    }
+
+    /**
+     * @covers \Adyen\BaseService::injectApplicationInfo
+     */
+    public function testInjectApplicationInfoStampsAdyenLibrary()
+    {
+        $service = $this->createServiceProbe();
+
+        $request = $service->inject(new PaymentRequest());
+
+        $library = $request->getApplicationInfo()->getAdyenLibrary();
+        $this->assertEquals(Configuration::LIB_NAME, $library->getName());
+        $this->assertEquals(Configuration::LIB_VERSION, $library->getVersion());
+    }
+
+    /**
+     * @covers \Adyen\BaseService::injectApplicationInfo
+     */
+    public function testInjectApplicationInfoLeavesModelsWithoutFieldUntouched()
+    {
+        $service = $this->createServiceProbe();
+
+        $request = new PaymentCancelRequest();
+
+        $this->assertSame($request, $service->inject($request));
+    }
+
+    /**
+     * @covers \Adyen\BaseService::injectApplicationInfo
+     */
+    public function testInjectApplicationInfoOverwritesAdyenLibrary()
+    {
+        $service = $this->createServiceProbe();
+
+        $library = new CommonField();
+        $library->setName('fake');
+        $library->setVersion('0.0.0');
+        $applicationInfo = new ApplicationInfo();
+        $applicationInfo->setAdyenLibrary($library);
+        $request = new PaymentRequest();
+        $request->setApplicationInfo($applicationInfo);
+
+        $library = $service->inject($request)->getApplicationInfo()->getAdyenLibrary();
+        $this->assertEquals(Configuration::LIB_NAME, $library->getName());
+        $this->assertEquals(Configuration::LIB_VERSION, $library->getVersion());
+    }
+
+    /**
+     * @covers \Adyen\BaseService::injectApplicationInfo
+     */
+    public function testInjectApplicationInfoKeepsMerchantExtras()
+    {
+        $service = $this->createServiceProbe();
+
+        $paymentSource = new CommonField();
+        $paymentSource->setName('adyen-giving-plugin');
+        $paymentSource->setVersion('1.2.3');
+        $applicationInfo = new ApplicationInfo();
+        $applicationInfo->setAdyenPaymentSource($paymentSource);
+        $request = new PaymentRequest();
+        $request->setApplicationInfo($applicationInfo);
+
+        $applicationInfo = $service->inject($request)->getApplicationInfo();
+        $this->assertEquals('adyen-giving-plugin', $applicationInfo->getAdyenPaymentSource()->getName());
+        $this->assertEquals('1.2.3', $applicationInfo->getAdyenPaymentSource()->getVersion());
+    }
+
+    /**
+     * @covers \Adyen\BaseService::injectApplicationInfo
+     */
+    public function testInjectApplicationInfoAcceptsArray()
+    {
+        $service = $this->createServiceProbe();
+
+        $request = new PaymentRequest([
+            'applicationInfo' => [
+                'merchantApplication' => [
+                    'name' => 'MyShop',
+                    'version' => '1.0'
+                ]
+            ]
+        ]);
+
+        $request = $service->inject($request);
+        $applicationInfo = $request->getApplicationInfo();
+
+        $this->assertInstanceOf(ApplicationInfo::class, $applicationInfo);
+
+        $library = $applicationInfo->getAdyenLibrary();
+        $this->assertEquals(Configuration::LIB_NAME, $library->getName());
+        $this->assertEquals(Configuration::LIB_VERSION, $library->getVersion());
+
+        $merchantApplication = $applicationInfo->getMerchantApplication();
+        $this->assertEquals('MyShop', $merchantApplication['name']);
+        $this->assertEquals('1.0', $merchantApplication['version']);
+    }
+
+    /**
+     * Exposes the protected injectApplicationInfo helper for testing.
+     */
+    private function createServiceProbe(): BaseService
+    {
+        return new class (new Configuration([
+            'adyenApiKey' => 'my-api-key',
+            'environment' => Environment::TEST
+        ])) extends BaseService {
+            public function inject($requestModel): ?object
+            {
+                return $this->injectApplicationInfo($requestModel);
+            }
+        };
     }
 }

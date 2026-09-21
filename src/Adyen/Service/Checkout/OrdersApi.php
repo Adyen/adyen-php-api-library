@@ -405,8 +405,12 @@ class OrdersApi extends BaseService
             $requestOptions
         );
 
+        $headers['adyen-library-name'] = $this->config->getLibraryName();
+        $headers['adyen-library-version'] = $this->config->getLibraryVersion();
+
         // for model (json/xml)
         if (isset($cancelOrderRequest)) {
+            $cancelOrderRequest = $this->injectApplicationInfo($cancelOrderRequest);
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($cancelOrderRequest));
@@ -744,8 +748,12 @@ class OrdersApi extends BaseService
             $requestOptions
         );
 
+        $headers['adyen-library-name'] = $this->config->getLibraryName();
+        $headers['adyen-library-version'] = $this->config->getLibraryVersion();
+
         // for model (json/xml)
         if (isset($balanceCheckRequest)) {
+            $balanceCheckRequest = $this->injectApplicationInfo($balanceCheckRequest);
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($balanceCheckRequest));
@@ -1083,8 +1091,12 @@ class OrdersApi extends BaseService
             $requestOptions
         );
 
+        $headers['adyen-library-name'] = $this->config->getLibraryName();
+        $headers['adyen-library-version'] = $this->config->getLibraryVersion();
+
         // for model (json/xml)
         if (isset($createOrderRequest)) {
+            $createOrderRequest = $this->injectApplicationInfo($createOrderRequest);
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($createOrderRequest));
