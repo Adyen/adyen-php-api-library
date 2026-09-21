@@ -4,6 +4,7 @@ namespace Adyen;
 
 use Adyen\Model\Checkout\ApplicationInfo;
 use Adyen\Model\Checkout\CommonField;
+use Adyen\Model\Checkout\ExternalPlatform;
 
 /**
  * Parent class for API services
@@ -84,8 +85,11 @@ class BaseService
     }
 
     /**
-     * Adds or overwrites the applicationInfo adyenLibrary name and version on a request model.
-     * Request models without an applicationInfo field are returned untouched.
+     * Adds or overwrites the applicationInfo adyenLibrary name and version on a request model
+     * and merges the adyenPaymentSource, externalPlatform and merchantApplication values
+     * configured on the Configuration, mirroring the behaviour of the array based services.
+     * Request models without an applicationInfo field are returned untouched and
+     * merchant-provided values are kept unless a matching value is configured.
      *
      * @param object|null $requestModel
      * @return object|null
@@ -104,10 +108,35 @@ class BaseService
             $applicationInfo = new ApplicationInfo();
         }
 
+        // add/overwrite applicationInfo adyenLibrary even if it's already set
         $library = new CommonField();
         $library->setName(Configuration::LIB_NAME);
         $library->setVersion(Configuration::LIB_VERSION);
         $applicationInfo->setAdyenLibrary($library);
+
+        if ($adyenPaymentSource = $this->configuration->getAdyenPaymentSource()) {
+            $paymentSource = new CommonField();
+            $paymentSource->setName($adyenPaymentSource['name']);
+            $paymentSource->setVersion($adyenPaymentSource['version']);
+            $applicationInfo->setAdyenPaymentSource($paymentSource);
+        }
+
+        if ($externalPlatform = $this->configuration->getExternalPlatform()) {
+            $platform = new ExternalPlatform();
+            $platform->setName($externalPlatform['name']);
+            $platform->setVersion($externalPlatform['version']);
+            if (!empty($externalPlatform['integrator'])) {
+                $platform->setIntegrator($externalPlatform['integrator']);
+            }
+            $applicationInfo->setExternalPlatform($platform);
+        }
+
+        if ($merchantApplication = $this->configuration->getMerchantApplication()) {
+            $merchantApp = new CommonField();
+            $merchantApp->setName($merchantApplication['name']);
+            $merchantApp->setVersion($merchantApplication['version']);
+            $applicationInfo->setMerchantApplication($merchantApp);
+        }
 
         $requestModel->setApplicationInfo($applicationInfo);
         return $requestModel;

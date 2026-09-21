@@ -134,6 +134,27 @@ class Configuration
     protected string $libraryVersion = self::LIB_VERSION;
 
     /**
+     * Adyen payment source name and version, included in applicationInfo.adyenPaymentSource of requests
+     *
+     * @var array{name: string, version: string}|null
+     */
+    protected ?array $adyenPaymentSource = null;
+
+    /**
+     * External platform name, version and integrator, included in applicationInfo.externalPlatform of requests
+     *
+     * @var array{name: string, version: string, integrator: string}|null
+     */
+    protected ?array $externalPlatform = null;
+
+    /**
+     * Merchant application name and version, included in applicationInfo.merchantApplication of requests
+     *
+     * @var array{name: string, version: string}|null
+     */
+    protected ?array $merchantApplication = null;
+
+    /**
      * Constructor
      *
      * @param array|null $params
@@ -522,6 +543,96 @@ class Configuration
     public function getLibraryVersion(): string
     {
         return $this->libraryVersion;
+    }
+
+    /**
+     * Sets the Adyen payment source name and version
+     *
+     * @param string|array{name: string, version: string} $name
+     * @param string|null $version
+     * @return $this
+     */
+    public function setAdyenPaymentSource(string|array $name, ?string $version = null): self
+    {
+        if (is_array($name)) {
+            $version = $name['version'] ?? '';
+            $name = $name['name'] ?? '';
+        }
+        $this->adyenPaymentSource = ['name' => $name, 'version' => $version ?? ''];
+        return $this;
+    }
+
+    /**
+     * Gets the Adyen payment source
+     *
+     * @return array{name: string, version: string}|null
+     */
+    public function getAdyenPaymentSource(): ?array
+    {
+        return $this->adyenPaymentSource;
+    }
+
+    /**
+     * Sets the external platform name, version and integrator
+     *
+     * @param string|array{name: string, version: string, integrator?: string} $name
+     * @param string|null $version
+     * @param string|null $integrator
+     * @return $this
+     */
+    public function setExternalPlatform(
+        string|array $name,
+        ?string $version = null,
+        ?string $integrator = null
+    ): self {
+        if (is_array($name)) {
+            $integrator = $name['integrator'] ?? '';
+            $version = $name['version'] ?? '';
+            $name = $name['name'] ?? '';
+        }
+        $this->externalPlatform = [
+            'name' => $name,
+            'version' => $version ?? '',
+            'integrator' => $integrator ?? ''
+        ];
+        return $this;
+    }
+
+    /**
+     * Gets the external platform
+     *
+     * @return array{name: string, version: string, integrator: string}|null
+     */
+    public function getExternalPlatform(): ?array
+    {
+        return $this->externalPlatform;
+    }
+
+    /**
+     * Sets the merchant application name and version
+     *
+     * @param string|array{name: string, version: string} $name
+     * @param string|null $version
+     * @return $this
+     */
+    public function setMerchantApplication(string|array $name, ?string $version = null): self
+    {
+        if (is_array($name)) {
+            $version = $name['version'] ?? '';
+            $name = $name['name'] ?? '';
+        }
+        $this->merchantApplication = ['name' => $name, 'version' => $version ?? ''];
+        return $this;
+    }
+
+    /**
+     * Gets the merchant application
+     *
+     * @return array{name: string, version: string}|null
+     */
+    public function getMerchantApplication(): ?array
+    {
+        return $this->merchantApplication;
     }
 
     /**
