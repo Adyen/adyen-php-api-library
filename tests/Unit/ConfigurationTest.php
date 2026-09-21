@@ -245,4 +245,84 @@ class ConfigurationTest extends TestCase
 
         (new Configuration())->setEnvironment('staging');
     }
+
+    /**
+     * @covers \Adyen\Configuration::setAdyenPaymentSource
+     * @covers \Adyen\Configuration::getAdyenPaymentSource
+     * @covers \Adyen\Configuration::setExternalPlatform
+     * @covers \Adyen\Configuration::getExternalPlatform
+     * @covers \Adyen\Configuration::setMerchantApplication
+     * @covers \Adyen\Configuration::getMerchantApplication
+     */
+    public function testApplicationInfoSettings()
+    {
+        $configuration = new Configuration();
+
+        $this->assertNull($configuration->getAdyenPaymentSource());
+        $this->assertNull($configuration->getExternalPlatform());
+        $this->assertNull($configuration->getMerchantApplication());
+
+        $configuration->setAdyenPaymentSource('source-test', '1.2.3');
+        $this->assertEquals(
+            ['name' => 'source-test', 'version' => '1.2.3'],
+            $configuration->getAdyenPaymentSource()
+        );
+
+        $configuration->setExternalPlatform('platform-test', '2.3.4', 'integrator-test');
+        $this->assertEquals(
+            ['name' => 'platform-test', 'version' => '2.3.4', 'integrator' => 'integrator-test'],
+            $configuration->getExternalPlatform()
+        );
+
+        $configuration->setMerchantApplication('merchant-test', '3.4.5');
+        $this->assertEquals(
+            ['name' => 'merchant-test', 'version' => '3.4.5'],
+            $configuration->getMerchantApplication()
+        );
+    }
+
+    /**
+     * @covers \Adyen\Configuration::setExternalPlatform
+     */
+    public function testExternalPlatformWithoutIntegrator()
+    {
+        $configuration = new Configuration();
+        $configuration->setExternalPlatform('platform-test', '2.3.4');
+        $this->assertEquals(
+            ['name' => 'platform-test', 'version' => '2.3.4', 'integrator' => ''],
+            $configuration->getExternalPlatform()
+        );
+    }
+
+    /**
+     * @covers \Adyen\Configuration::__construct
+     * @covers \Adyen\Configuration::setAdyenPaymentSource
+     * @covers \Adyen\Configuration::setExternalPlatform
+     * @covers \Adyen\Configuration::setMerchantApplication
+     */
+    public function testInitialisationWithArrayApplicationInfoSettings()
+    {
+        $configuration = new Configuration([
+            'adyenPaymentSource' => ['name' => 'source-test', 'version' => '1.2.3'],
+            'externalPlatform' => [
+                'name' => 'platform-test',
+                'version' => '2.3.4',
+                'integrator' => 'integrator-test'
+            ],
+            'merchantApplication' => ['name' => 'merchant-test', 'version' => '3.4.5']
+        ]);
+
+        $this->assertEquals(
+            ['name' => 'source-test', 'version' => '1.2.3'],
+            $configuration->getAdyenPaymentSource()
+        );
+        $this->assertEquals(
+            ['name' => 'platform-test', 'version' => '2.3.4', 'integrator' => 'integrator-test'],
+            $configuration->getExternalPlatform()
+        );
+        $this->assertEquals(
+            ['name' => 'merchant-test', 'version' => '3.4.5'],
+            $configuration->getMerchantApplication()
+        );
+    }
 }
