@@ -580,8 +580,8 @@ class ObjectSerializer
                     if ($vv !== null) {
                         $qs .= '=' . $encoder((string)$vv);
                     }
+                    $qs .= '&';
                 }
-                $qs .= '&';
             }
         }
 
