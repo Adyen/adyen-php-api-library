@@ -471,6 +471,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_RESERVE_ADJUSTMENT = 'reserveAdjustment';
     public const STATUS_RESERVE_ADJUSTMENT_PENDING = 'reserveAdjustmentPending';
     public const STATUS_RETURNED = 'returned';
+    public const STATUS_REVERSAL_RECEIVED = 'reversalReceived';
     public const STATUS_REVERSED = 'reversed';
     public const STATUS_SECOND_CHARGEBACK = 'secondChargeback';
     public const STATUS_SECOND_CHARGEBACK_PENDING = 'secondChargebackPending';
@@ -648,6 +649,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_RESERVE_ADJUSTMENT,
             self::STATUS_RESERVE_ADJUSTMENT_PENDING,
             self::STATUS_RETURNED,
+            self::STATUS_REVERSAL_RECEIVED,
             self::STATUS_REVERSED,
             self::STATUS_SECOND_CHARGEBACK,
             self::STATUS_SECOND_CHARGEBACK_PENDING,
