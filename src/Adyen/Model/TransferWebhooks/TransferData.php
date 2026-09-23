@@ -557,6 +557,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_RESERVE_ADJUSTMENT = 'reserveAdjustment';
     public const STATUS_RESERVE_ADJUSTMENT_PENDING = 'reserveAdjustmentPending';
     public const STATUS_RETURNED = 'returned';
+    public const STATUS_REVERSAL_RECEIVED = 'reversalReceived';
     public const STATUS_REVERSED = 'reversed';
     public const STATUS_SECOND_CHARGEBACK = 'secondChargeback';
     public const STATUS_SECOND_CHARGEBACK_PENDING = 'secondChargebackPending';
@@ -599,6 +600,8 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_BALANCE_ADJUSTMENT = 'balanceAdjustment';
     public const TYPE_BALANCE_ROLLOVER = 'balanceRollover';
     public const TYPE_BALANCE_MIGRATION = 'balanceMigration';
+    public const TYPE_FX_SELL = 'fxSell';
+    public const TYPE_FX_BUY = 'fxBuy';
 
     /**
      * Gets allowable values of the enum
@@ -797,6 +800,7 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_RESERVE_ADJUSTMENT,
             self::STATUS_RESERVE_ADJUSTMENT_PENDING,
             self::STATUS_RETURNED,
+            self::STATUS_REVERSAL_RECEIVED,
             self::STATUS_REVERSED,
             self::STATUS_SECOND_CHARGEBACK,
             self::STATUS_SECOND_CHARGEBACK_PENDING,
@@ -849,6 +853,8 @@ class TransferData implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_BALANCE_ADJUSTMENT,
             self::TYPE_BALANCE_ROLLOVER,
             self::TYPE_BALANCE_MIGRATION,
+            self::TYPE_FX_SELL,
+            self::TYPE_FX_BUY,
         ];
     }
     /**

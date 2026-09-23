@@ -228,6 +228,7 @@ class NetworkReason implements ModelInterface, ArrayAccess, \JsonSerializable
     public const MODEL_NAMESPACE_UK_FPS_REJECTION_CODE = 'ukFpsRejectionCode';
     public const MODEL_NAMESPACE_UK_FPS_RETURN_REASON_CODE = 'ukFpsReturnReasonCode';
     public const MODEL_NAMESPACE_US_ACH_RETURN_REASON_CODE = 'usAchReturnReasonCode';
+    public const MODEL_NAMESPACE_US_ACH_CORRECTION_REASON_CODE = 'usAchCorrectionReasonCode';
 
     /**
      * Gets allowable values of the enum
@@ -241,6 +242,7 @@ class NetworkReason implements ModelInterface, ArrayAccess, \JsonSerializable
             self::MODEL_NAMESPACE_UK_FPS_REJECTION_CODE,
             self::MODEL_NAMESPACE_UK_FPS_RETURN_REASON_CODE,
             self::MODEL_NAMESPACE_US_ACH_RETURN_REASON_CODE,
+            self::MODEL_NAMESPACE_US_ACH_CORRECTION_REASON_CODE,
         ];
     }
     /**
@@ -375,7 +377,7 @@ class NetworkReason implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets namespace
      *
-     * @param string|null $namespace The namespace that corresponds to the reason code.  Possible values: *  **ukFpsRejectionCode** *  **ukFpsReturnReasonCode** *  **usAchReturnReasonCode** *  **iso8583ResponseCode**
+     * @param string|null $namespace The namespace that corresponds to the reason code.  Possible values: *  **ukFpsRejectionCode** *  **ukFpsReturnReasonCode** *  **usAchReturnReasonCode** *  **usAchCorrectionReasonCode** *  **iso8583ResponseCode**
      *
      * @return self
      */
