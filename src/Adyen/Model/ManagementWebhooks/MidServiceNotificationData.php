@@ -588,7 +588,7 @@ class MidServiceNotificationData implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets type
      *
-     * @param string $type Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).
+     * @param string $type Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).  For payment method variant **cartebancaire**, method-specific details are returned in the [`cartesBancaires`](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/paymentMethodSettings#responses-200-cartesBancaires) object of the response.
      *
      * @return self
      */
