@@ -1,0 +1,12 @@
+{
+  "createdAt": "2025-06-30T16:40:23+02:00",
+  "eventId": "QBQQ9DLNRHHKGK38",
+  "environment": "test",
+  "data": {
+    "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+    "storedPaymentMethodId": "M5N7TQ4TG5PFWR50",
+    "type": "visastandarddebit",
+    "shopperReference": "YOUR_SHOPPER_REFERENCE"
+  },
+  "type": "recurring.token.disabled"
+}

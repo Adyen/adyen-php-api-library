@@ -1,0 +1,16 @@
+{
+   "type": "merchant.created",
+   "environment": "test",
+   "createdAt": "2022-08-12T10:50:01+02:00",
+   "data": {
+      "capabilities": {
+         "sendToTransferInstrument": {
+            "requested": true,
+            "requestedLevel": "notApplicable"
+         }
+      },
+      "companyId": "YOUR_COMPANY_ID",
+      "merchantId": "MC3224X22322535GH8D537TJR",
+      "status": "PreActive"
+   }
+}

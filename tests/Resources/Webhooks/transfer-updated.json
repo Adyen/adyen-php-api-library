@@ -1,0 +1,83 @@
+{
+  "data": {
+    "balancePlatform": "YOUR_BALANCE_PLATFORM",
+    "creationDate": "2025-06-02T13:46:27+02:00",
+    "id": "01234",
+    "accountHolder": {
+      "description": "The Account Holder",
+      "id": "AH1234567890"
+    },
+    "amount": {
+      "currency": "EUR",
+      "value": 22700
+    },
+    "balanceAccount": {
+      "description": "The Liable Balance Account",
+      "id": "BA1234567890"
+    },
+    "category": "platformPayment",
+    "categoryData": {
+      "modificationMerchantReference": "<auto>",
+      "modificationPspReference": "ZX1234567890",
+      "paymentMerchantReference": "pv-test",
+      "platformPaymentType": "Remainder",
+      "pspPaymentReference": "PSP01234",
+      "type": "platformPayment"
+    },
+    "description": "Remainder Fee for pv-test",
+    "direction": "incoming",
+    "reason": "approved",
+    "reference": "<auto>",
+    "status": "authorised",
+    "type": "capture",
+    "balances": [
+      {
+        "currency": "EUR",
+        "received": 0,
+        "reserved": 22700
+      }
+    ],
+    "eventId": "EV1234567890",
+    "events": [
+      {
+        "bookingDate": "2025-06-02T13:46:27+02:00",
+        "id": "EV1234567890",
+        "eventsData": [
+          {
+            "type": "interchangeData",
+            "interchangeAmount": {
+              "currency": "EUR",
+              "value": 22700
+            },
+            "interchangeRateIndicator": "x"
+          }
+        ],
+        "mutations": [
+          {
+            "currency": "EUR",
+            "received": 22700
+          }
+        ],
+        "status": "received",
+        "type": "accounting"
+      },
+      {
+        "bookingDate": "2025-06-02T13:46:27+02:00",
+        "id": "EV1234567890-2",
+        "mutations": [
+          {
+            "currency": "EUR",
+            "received": -22700,
+            "reserved": 22700
+          }
+        ],
+        "status": "authorised",
+        "type": "accounting"
+      }
+    ],
+    "sequenceNumber": 2
+  },
+  "environment": "test",
+  "timestamp": "2025-06-02T11:46:28.635Z",
+  "type": "balancePlatform.transfer.updated"
+}
