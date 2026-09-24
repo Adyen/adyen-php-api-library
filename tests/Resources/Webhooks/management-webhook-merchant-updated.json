@@ -1,0 +1,18 @@
+{
+   "type": "merchant.updated",
+   "environment": "test",
+   "createdAt": "2022-09-20T13:42:31+02:00",
+   "data": {
+      "capabilities": {
+         "receivePayments": {
+            "allowed": true,
+            "requested": true,
+            "requestedLevel": "notApplicable",
+            "verificationStatus": "valid"
+         }
+      },
+      "legalEntityId": "LE322KH223222F5GNNW694PZN",
+      "merchantId": "YOUR_MERCHANT_ID",
+      "status": "PreActive"
+   }
+}
