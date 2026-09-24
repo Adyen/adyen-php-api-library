@@ -1,0 +1,16 @@
+{
+  "type": "https://docs.adyen.com/errors/validation",
+  "title": "A request validation error",
+  "status": 422,
+  "detail": "The targetCurrency is not supported",
+  "instance": "/fx/api/v1/rates/calculate",
+  "errorCode": "010",
+  "requestId": "8816080397613514",
+  "invalidFields": [
+    {
+      "name": "targetCurrency",
+      "value": "XYZ",
+      "message": "Unsupported currency"
+    }
+  ]
+}
