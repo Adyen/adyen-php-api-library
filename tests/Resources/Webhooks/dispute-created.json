@@ -1,0 +1,13 @@
+{
+  "type": "balancePlatform.dispute.created",
+  "data": {
+    "id": "DS00000000000000000001",
+    "balancePlatform": "YOUR_BALANCE_PLATFORM",
+    "disputedAmount": {
+      "currency": "EUR",
+      "value": 10000
+    },
+    "status": "open",
+    "type": "notDelivered"
+  }
+}

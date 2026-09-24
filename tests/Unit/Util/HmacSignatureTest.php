@@ -212,4 +212,28 @@ JSON
         );
         self::assertTrue($result);
     }
+
+    /**
+     * Validates the HMAC signature for a recurring token webhook
+     * (recurring.token.disabled), calculated over the entire raw request body.
+     *
+     * @see https://docs.adyen.com/development-resources/webhooks/verify-hmac-signatures/
+     */
+    public function testValidateHMACSignatureForRecurringTokenWebhook()
+    {
+        $payload = file_get_contents(
+            __DIR__ . '/../../Resources/Webhooks/tokenization-webhook-recurring-token-disabled.json'
+        );
+        $this->assertIsString($payload);
+        $hmacKey = "6D5BADA576A73109D879220DCB793FFD67DEF7AA18C74CCC0AB66FD87AC8AEEA";
+        $hmacSignature = "dbulfoKoa38vfE3uo55Wiicf2dJU8qsf4TUvtgisnt8=";
+        $hmac = new HmacSignature();
+
+        $this->assertTrue($hmac->validateHMACSignature($hmacKey, $hmacSignature, $payload));
+        $this->assertFalse($hmac->validateHMACSignature(
+            $hmacKey,
+            $hmacSignature,
+            str_replace("M5N7TQ4TG5PFWR50", "M5N7TQ4TG5PFWR51", $payload)
+        ));
+    }
 }
