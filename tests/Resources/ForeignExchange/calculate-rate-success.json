@@ -1,0 +1,30 @@
+{
+  "exchangeCalculations": [
+    {
+      "type": "splitPayment",
+      "exchangeSide": "buy",
+      "sourceAmount": {
+        "value": 112300,
+        "currency": "CZK"
+      },
+      "targetAmount": {
+        "value": 4480,
+        "currency": "EUR"
+      },
+      "appliedExchangeRate": 0.039893143366
+    },
+    {
+      "type": "splitRefund",
+      "exchangeSide": "sell",
+      "sourceAmount": {
+        "value": 24000,
+        "currency": "CZK"
+      },
+      "targetAmount": {
+        "value": 992,
+        "currency": "USD"
+      },
+      "appliedExchangeRate": 0.0413333333333
+    }
+  ]
+}
