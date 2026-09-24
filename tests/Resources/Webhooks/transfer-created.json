@@ -1,0 +1,52 @@
+{
+  "data": {
+    "id": "2WT1N05XXY7P9XH9",
+    "type": "internalTransfer",
+    "accountHolder": {
+      "description": "Your description of the account holder of the target balance account",
+      "id": "AH00000000000000000000002",
+      "reference": "Your reference of the account holder"
+    },
+    "amount": {
+      "currency": "EUR",
+      "value": 1000
+    },
+    "balanceAccount": {
+      "description": "Your description of the target balance account",
+      "id": "BA00000000000000000000002"
+    },
+    "balancePlatform": "YOUR_BALANCE_PLATFORM",
+    "balances": [
+      {
+        "currency": "EUR",
+        "received": 1000
+      }
+    ],
+    "category": "internal",
+    "creationDate": "2023-02-28T13:30:05+02:00",
+    "description": "Your description of the transfer",
+    "direction": "incoming",
+    "events": [
+      {
+        "bookingDate": "2023-02-28T13:30:18+02:00",
+        "id": "JDRF00000000000000000000000001",
+        "mutations": [
+          {
+            "currency": "EUR",
+            "received": 1000
+          }
+        ],
+        "status": "received",
+        "type": "accounting"
+      }
+    ],
+    "reason": "approved",
+    "reference": "Your reference of the transfer",
+    "referenceForBeneficiary": "Your-reference-for-the-recipient-of-the-transfer-request",
+    "sequenceNumber": 1,
+    "status": "received"
+  },
+  "environment": "test",
+  "timestamp": "2023-02-28T13:27:05+02:00",
+  "type": "balancePlatform.transfer.created"
+}

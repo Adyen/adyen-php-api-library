@@ -1,0 +1,12 @@
+{
+  "createdAt": "2022-01-24T14:59:11+01:00",
+  "data": {
+    "id": "PM1234567890000000",
+    "merchantId": "MERCHANT_ACCOUNT",
+    "status": "success",
+    "storeId": "ST322LJ00000000000",
+    "type": "visa"
+  },
+  "environment": "test",
+  "type": "paymentMethod.created"
+}
