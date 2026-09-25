@@ -1,0 +1,8 @@
+{
+  "service": "documentcollector",
+  "project": "php",
+  "generatedAt": "2026-09-25T11:08:23Z",
+  "openapiCommitSha": "e96f4b3de219e3d82330dfd5864e621ffec3f86f",
+  "automationCommitSha": "db93bc35548c7c9d6aff97d76a513634967fd304",
+  "libraryCommitSha": "7eda6b3956a61d41a1fb87ab6d4ef30c7d6712cb"
+}
