@@ -117,7 +117,7 @@ class AndroidFilesCompanyLevelApi extends Service
     }
 
     /**
-    * Upload Android Certificate
+    * Upload Android certificate
     *
     * @param string $companyId
     * @param array|null $requestOptions

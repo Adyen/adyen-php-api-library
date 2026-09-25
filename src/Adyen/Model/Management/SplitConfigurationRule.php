@@ -42,6 +42,7 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPITypes = [
         'cardRegion' => 'string',
+        'cardUsageType' => 'string',
         'currency' => 'string',
         'fundingSource' => 'string',
         'paymentMethod' => 'string',
@@ -59,6 +60,7 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPIFormats = [
         'cardRegion' => null,
+        'cardUsageType' => null,
         'currency' => null,
         'fundingSource' => null,
         'paymentMethod' => null,
@@ -74,6 +76,7 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPINullables = [
         'cardRegion' => false,
+        'cardUsageType' => false,
         'currency' => false,
         'fundingSource' => false,
         'paymentMethod' => false,
@@ -169,6 +172,7 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static $attributeMap = [
         'cardRegion' => 'cardRegion',
+        'cardUsageType' => 'cardUsageType',
         'currency' => 'currency',
         'fundingSource' => 'fundingSource',
         'paymentMethod' => 'paymentMethod',
@@ -184,6 +188,7 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static $setters = [
         'cardRegion' => 'setCardRegion',
+        'cardUsageType' => 'setCardUsageType',
         'currency' => 'setCurrency',
         'fundingSource' => 'setFundingSource',
         'paymentMethod' => 'setPaymentMethod',
@@ -199,6 +204,7 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static $getters = [
         'cardRegion' => 'getCardRegion',
+        'cardUsageType' => 'getCardUsageType',
         'currency' => 'getCurrency',
         'fundingSource' => 'getFundingSource',
         'paymentMethod' => 'getPaymentMethod',
@@ -254,6 +260,9 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
     public const CARD_REGION_INTER_REGIONAL = 'interRegional';
     public const CARD_REGION_DOMESTIC = 'domestic';
     public const CARD_REGION_ANY = 'ANY';
+    public const CARD_USAGE_TYPE_COMMERCIAL = 'commercial';
+    public const CARD_USAGE_TYPE_CONSUMER = 'consumer';
+    public const CARD_USAGE_TYPE_ANY = 'ANY';
     public const FUNDING_SOURCE_CHARGED = 'charged';
     public const FUNDING_SOURCE_CREDIT = 'credit';
     public const FUNDING_SOURCE_DEBIT = 'debit';
@@ -280,6 +289,19 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
             self::CARD_REGION_INTER_REGIONAL,
             self::CARD_REGION_DOMESTIC,
             self::CARD_REGION_ANY,
+        ];
+    }
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getCardUsageTypeAllowableValues()
+    {
+        return [
+            self::CARD_USAGE_TYPE_COMMERCIAL,
+            self::CARD_USAGE_TYPE_CONSUMER,
+            self::CARD_USAGE_TYPE_ANY,
         ];
     }
     /**
@@ -329,6 +351,7 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
     public function __construct(?array $data = null)
     {
         $this->setIfExists('cardRegion', $data ?? [], null);
+        $this->setIfExists('cardUsageType', $data ?? [], null);
         $this->setIfExists('currency', $data ?? [], null);
         $this->setIfExists('fundingSource', $data ?? [], null);
         $this->setIfExists('paymentMethod', $data ?? [], null);
@@ -369,6 +392,15 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'cardRegion', must be one of '%s'",
                 $this->container['cardRegion'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getCardUsageTypeAllowableValues();
+        if (!is_null($this->container['cardUsageType']) && !in_array($this->container['cardUsageType'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'cardUsageType', must be one of '%s'",
+                $this->container['cardUsageType'],
                 implode("', '", $allowedValues)
             );
         }
@@ -434,7 +466,7 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets cardRegion
      *
-     * @param string|null $cardRegion The card region condition that determines whether the [split logic](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic) applies to the transaction.  > This condition is in pilot phase, and not yet available for all platforms.  Possible values: * **domestic**: The card issuer and the store where the transaction is processed are registered in the same country. * **international**: The card issuer and the store where the transaction is processed are registered in different countries or regions. Includes all **interRegional** and **intraRegional** transactions. * **interRegional**: The card issuer and the store where the transaction is processed are registered in different regions. * **intraRegional**: The card issuer and the store where the transaction is processed are registered in different countries, but in the same region. * **intraEEA**: The card issuer and the store where the transaction is processed are registered in different countries, but in the European Economic Area (EEA). * **ANY**: Applies to all transactions, regardless of the processing and issuing country/region.
+     * @param string|null $cardRegion The card region condition that determines whether the [split logic](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic) applies to the transaction.  Possible values: * **domestic**: The card issuer and the store where the transaction is processed are registered in the same country. * **international**: The card issuer and the store where the transaction is processed are registered in different countries or regions. Includes all **interRegional** and **intraRegional** transactions. * **interRegional**: The card issuer and the store where the transaction is processed are registered in different regions. * **intraRegional**: The card issuer and the store where the transaction is processed are registered in different countries, but in the same region. * **intraEEA**: The card issuer and the store where the transaction is processed are registered in different countries, but in the European Economic Area (EEA). * **ANY**: Applies to all transactions, regardless of the processing and issuing country/region.
      *
      * @return self
      */
@@ -451,6 +483,40 @@ class SplitConfigurationRule implements ModelInterface, ArrayAccess, \JsonSerial
             );
         }
         $this->container['cardRegion'] = $cardRegion;
+
+        return $this;
+    }
+
+    /**
+     * Gets cardUsageType
+     *
+     * @return string|null
+     */
+    public function getCardUsageType()
+    {
+        return $this->container['cardUsageType'];
+    }
+
+    /**
+     * Sets cardUsageType
+     *
+     * @param string|null $cardUsageType The card usage type condition that determines whether the split logic applies to commercial cards, consumer cards, or all cards.  * **ANY** (default): The split logic applies to all cards, regardless of its usage type. * **commercial**: The split logic applies to commercial cards only. * **consumer**: The split logic applies to consumer cards only.
+     *
+     * @return self
+     */
+    public function setCardUsageType($cardUsageType)
+    {
+        $allowedValues = $this->getCardUsageTypeAllowableValues();
+        if (!in_array($cardUsageType, $allowedValues, true)) {
+            error_log(
+                sprintf(
+                    "cardUsageType: unexpected enum value '%s' - Supported values are [%s]",
+                    $cardUsageType,
+                    implode(', ', $allowedValues)
+                )
+            );
+        }
+        $this->container['cardUsageType'] = $cardUsageType;
 
         return $this;
     }

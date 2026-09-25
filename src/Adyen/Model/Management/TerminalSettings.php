@@ -59,6 +59,7 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         'receiptOptions' => '\Adyen\Model\Management\ReceiptOptions',
         'receiptPrinting' => '\Adyen\Model\Management\ReceiptPrinting',
         'refunds' => '\Adyen\Model\Management\Refunds',
+        'showCalculatedPercentageTippingAmount' => 'bool',
         'signature' => '\Adyen\Model\Management\Signature',
         'standalone' => '\Adyen\Model\Management\Standalone',
         'storeAndForward' => '\Adyen\Model\Management\StoreAndForward',
@@ -95,6 +96,7 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         'receiptOptions' => null,
         'receiptPrinting' => null,
         'refunds' => null,
+        'showCalculatedPercentageTippingAmount' => null,
         'signature' => null,
         'standalone' => null,
         'storeAndForward' => null,
@@ -129,6 +131,7 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         'receiptOptions' => false,
         'receiptPrinting' => false,
         'refunds' => false,
+        'showCalculatedPercentageTippingAmount' => true,
         'signature' => false,
         'standalone' => false,
         'storeAndForward' => false,
@@ -243,6 +246,7 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         'receiptOptions' => 'receiptOptions',
         'receiptPrinting' => 'receiptPrinting',
         'refunds' => 'refunds',
+        'showCalculatedPercentageTippingAmount' => 'showCalculatedPercentageTippingAmount',
         'signature' => 'signature',
         'standalone' => 'standalone',
         'storeAndForward' => 'storeAndForward',
@@ -277,6 +281,7 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         'receiptOptions' => 'setReceiptOptions',
         'receiptPrinting' => 'setReceiptPrinting',
         'refunds' => 'setRefunds',
+        'showCalculatedPercentageTippingAmount' => 'setShowCalculatedPercentageTippingAmount',
         'signature' => 'setSignature',
         'standalone' => 'setStandalone',
         'storeAndForward' => 'setStoreAndForward',
@@ -311,6 +316,7 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         'receiptOptions' => 'getReceiptOptions',
         'receiptPrinting' => 'getReceiptPrinting',
         'refunds' => 'getRefunds',
+        'showCalculatedPercentageTippingAmount' => 'getShowCalculatedPercentageTippingAmount',
         'signature' => 'getSignature',
         'standalone' => 'getStandalone',
         'storeAndForward' => 'getStoreAndForward',
@@ -396,6 +402,7 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('receiptOptions', $data ?? [], null);
         $this->setIfExists('receiptPrinting', $data ?? [], null);
         $this->setIfExists('refunds', $data ?? [], null);
+        $this->setIfExists('showCalculatedPercentageTippingAmount', $data ?? [], null);
         $this->setIfExists('signature', $data ?? [], null);
         $this->setIfExists('standalone', $data ?? [], null);
         $this->setIfExists('storeAndForward', $data ?? [], null);
@@ -886,6 +893,40 @@ class TerminalSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setRefunds($refunds)
     {
         $this->container['refunds'] = $refunds;
+
+        return $this;
+    }
+
+    /**
+     * Gets showCalculatedPercentageTippingAmount
+     *
+     * @return bool|null
+     */
+    public function getShowCalculatedPercentageTippingAmount()
+    {
+        return $this->container['showCalculatedPercentageTippingAmount'];
+    }
+
+    /**
+     * Sets showCalculatedPercentageTippingAmount
+     *
+     * @param bool|null $showCalculatedPercentageTippingAmount Show the tipping amount calculated from the percentage next to each tipping percentage option on the terminal screen, for example `10 % | 10 EUR` for a 100 EUR payment.
+     *
+     * @return self
+     */
+    public function setShowCalculatedPercentageTippingAmount($showCalculatedPercentageTippingAmount)
+    {
+        if (is_null($showCalculatedPercentageTippingAmount)) {
+            array_push($this->openAPINullablesSetToNull, 'showCalculatedPercentageTippingAmount');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('showCalculatedPercentageTippingAmount', $nullablesSetToNull);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['showCalculatedPercentageTippingAmount'] = $showCalculatedPercentageTippingAmount;
 
         return $this;
     }
