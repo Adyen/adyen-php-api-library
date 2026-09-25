@@ -48,6 +48,8 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'string',
         'interval' => '\Adyen\Model\BalancePlatform\TransactionRuleInterval',
         'outcomeType' => 'string',
+        'overridesRule' => 'string',
+        'purpose' => 'string',
         'reference' => 'string',
         'requestType' => 'string',
         'ruleRestrictions' => '\Adyen\Model\BalancePlatform\TransactionRuleRestrictions',
@@ -72,6 +74,8 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => null,
         'interval' => null,
         'outcomeType' => null,
+        'overridesRule' => null,
+        'purpose' => null,
         'reference' => null,
         'requestType' => null,
         'ruleRestrictions' => null,
@@ -94,6 +98,8 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => false,
         'interval' => false,
         'outcomeType' => false,
+        'overridesRule' => false,
+        'purpose' => false,
         'reference' => false,
         'requestType' => false,
         'ruleRestrictions' => false,
@@ -196,6 +202,8 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'id',
         'interval' => 'interval',
         'outcomeType' => 'outcomeType',
+        'overridesRule' => 'overridesRule',
+        'purpose' => 'purpose',
         'reference' => 'reference',
         'requestType' => 'requestType',
         'ruleRestrictions' => 'ruleRestrictions',
@@ -218,6 +226,8 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'setId',
         'interval' => 'setInterval',
         'outcomeType' => 'setOutcomeType',
+        'overridesRule' => 'setOverridesRule',
+        'purpose' => 'setPurpose',
         'reference' => 'setReference',
         'requestType' => 'setRequestType',
         'ruleRestrictions' => 'setRuleRestrictions',
@@ -240,6 +250,8 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'getId',
         'interval' => 'getInterval',
         'outcomeType' => 'getOutcomeType',
+        'overridesRule' => 'getOverridesRule',
+        'purpose' => 'getPurpose',
         'reference' => 'getReference',
         'requestType' => 'getRequestType',
         'ruleRestrictions' => 'getRuleRestrictions',
@@ -294,6 +306,11 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
     public const OUTCOME_TYPE_HARD_BLOCK = 'hardBlock';
     public const OUTCOME_TYPE_SCORE_BASED = 'scoreBased';
     public const OUTCOME_TYPE_TIMED_BLOCK = 'timedBlock';
+    public const PURPOSE_COMPLIANCE = 'compliance';
+    public const PURPOSE_FRAUD = 'fraud';
+    public const PURPOSE_INTERNAL_POLICY = 'internalPolicy';
+    public const PURPOSE_POLICY = 'policy';
+    public const PURPOSE_SYSTEM = 'system';
     public const REQUEST_TYPE_AUTHENTICATION = 'authentication';
     public const REQUEST_TYPE_AUTHORIZATION = 'authorization';
     public const REQUEST_TYPE_BANK_TRANSFER = 'bankTransfer';
@@ -302,6 +319,7 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_INACTIVE = 'inactive';
     public const TYPE_ALLOW_LIST = 'allowList';
     public const TYPE_BLOCK_LIST = 'blockList';
+    public const TYPE_BYPASS = 'bypass';
     public const TYPE_MAX_USAGE = 'maxUsage';
     public const TYPE_VELOCITY = 'velocity';
 
@@ -317,6 +335,21 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
             self::OUTCOME_TYPE_HARD_BLOCK,
             self::OUTCOME_TYPE_SCORE_BASED,
             self::OUTCOME_TYPE_TIMED_BLOCK,
+        ];
+    }
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getPurposeAllowableValues()
+    {
+        return [
+            self::PURPOSE_COMPLIANCE,
+            self::PURPOSE_FRAUD,
+            self::PURPOSE_INTERNAL_POLICY,
+            self::PURPOSE_POLICY,
+            self::PURPOSE_SYSTEM,
         ];
     }
     /**
@@ -355,6 +388,7 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
         return [
             self::TYPE_ALLOW_LIST,
             self::TYPE_BLOCK_LIST,
+            self::TYPE_BYPASS,
             self::TYPE_MAX_USAGE,
             self::TYPE_VELOCITY,
         ];
@@ -381,6 +415,8 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('interval', $data ?? [], null);
         $this->setIfExists('outcomeType', $data ?? [], null);
+        $this->setIfExists('overridesRule', $data ?? [], null);
+        $this->setIfExists('purpose', $data ?? [], null);
         $this->setIfExists('reference', $data ?? [], null);
         $this->setIfExists('requestType', $data ?? [], null);
         $this->setIfExists('ruleRestrictions', $data ?? [], null);
@@ -431,6 +467,15 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'outcomeType', must be one of '%s'",
                 $this->container['outcomeType'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getPurposeAllowableValues();
+        if (!is_null($this->container['purpose']) && !in_array($this->container['purpose'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'purpose', must be one of '%s'",
+                $this->container['purpose'],
                 implode("', '", $allowedValues)
             );
         }
@@ -665,6 +710,64 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets overridesRule
+     *
+     * @return string|null
+     */
+    public function getOverridesRule()
+    {
+        return $this->container['overridesRule'];
+    }
+
+    /**
+     * Sets overridesRule
+     *
+     * @param string|null $overridesRule The `id` of the transaction rule you want to override or skip for the specified `entityKey`.
+     *
+     * @return self
+     */
+    public function setOverridesRule($overridesRule)
+    {
+        $this->container['overridesRule'] = $overridesRule;
+
+        return $this;
+    }
+
+    /**
+     * Gets purpose
+     *
+     * @return string|null
+     */
+    public function getPurpose()
+    {
+        return $this->container['purpose'];
+    }
+
+    /**
+     * Sets purpose
+     *
+     * @param string|null $purpose Specifies the reason for creating the rule.  Possible values: * **fraud**: the rule is created to regulate fraudulent activity. * **policy**: the rule is created to ensure that the transaction adheres to your business' policies. For example, if your business has policies about the Merchant Category Codes (MCCs) allowed on a transaction, you can create a rule to block transactions that have specific MCCs.
+     *
+     * @return self
+     */
+    public function setPurpose($purpose)
+    {
+        $allowedValues = $this->getPurposeAllowableValues();
+        if (!in_array($purpose, $allowedValues, true)) {
+            error_log(
+                sprintf(
+                    "purpose: unexpected enum value '%s' - Supported values are [%s]",
+                    $purpose,
+                    implode(', ', $allowedValues)
+                )
+            );
+        }
+        $this->container['purpose'] = $purpose;
+
+        return $this;
+    }
+
+    /**
      * Gets reference
      *
      * @return string
@@ -841,7 +944,7 @@ class TransactionRule implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      *
-     * @param string $type The [type of rule](https://docs.adyen.com/issuing/transaction-rules#rule-types), which defines if a rule blocks transactions based on individual characteristics or accumulates data.  Possible values:  * **blockList**: decline a transaction when the conditions are met.  * **maxUsage**: add the amount or number of transactions for the lifetime of a payment instrument, and then decline a transaction when the specified limits are met.  * **velocity**: add the amount or number of transactions based on a specified time interval, and then decline a transaction when the specified limits are met.
+     * @param string $type The [type of rule](https://docs.adyen.com/issuing/transaction-rules#rule-types), which defines if a rule blocks transactions based on individual characteristics or accumulates data.  Possible values:  * **blockList**: decline a transaction when the conditions are met.  * **maxUsage**: add the amount or number of transactions for the lifetime of a payment instrument, and then decline a transaction when the specified limits are met.  * **velocity**: add the amount or number of transactions based on a specified time interval, and then decline a transaction when the specified limits are met.  * **bypass**: bypass or skip a rule for the specified `entityKey`. Transactions processed to that entity are no longer evaluated by the bypassed rule.  You must provide the `id` of the rule to bypass in `overridesRule` and leave the `ruleRestrictions` object empty.
      *
      * @return self
      */
