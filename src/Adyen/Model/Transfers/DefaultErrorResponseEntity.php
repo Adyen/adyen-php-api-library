@@ -19,12 +19,14 @@ use ArrayAccess;
 use Adyen\Model\Transfers\ObjectSerializer;
 
 /**
- * IbanAccountIdentification Class Doc Comment
+ * DefaultErrorResponseEntity Class Doc Comment
+ *
+ * Standardized error response following RFC-7807 format
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
+class DefaultErrorResponseEntity implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +35,7 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       *
       * @var string
       */
-    protected static $openAPIModelName = 'IbanAccountIdentification';
+    protected static $openAPIModelName = 'DefaultErrorResponseEntity';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,8 +43,13 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       * @var string[]
       */
     protected static $openAPITypes = [
-        'bic' => 'string',
-        'iban' => 'string',
+        'detail' => 'string',
+        'errorCode' => 'string',
+        'instance' => 'string',
+        'invalidFields' => '\Adyen\Model\Transfers\InvalidField[]',
+        'requestId' => 'string',
+        'status' => 'int',
+        'title' => 'string',
         'type' => 'string'
     ];
 
@@ -54,8 +61,13 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'bic' => null,
-        'iban' => null,
+        'detail' => null,
+        'errorCode' => null,
+        'instance' => null,
+        'invalidFields' => null,
+        'requestId' => null,
+        'status' => 'int32',
+        'title' => null,
         'type' => null
     ];
 
@@ -65,8 +77,13 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'bic' => false,
-        'iban' => false,
+        'detail' => false,
+        'errorCode' => false,
+        'instance' => false,
+        'invalidFields' => false,
+        'requestId' => false,
+        'status' => true,
+        'title' => false,
         'type' => false
     ];
 
@@ -156,8 +173,13 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $attributeMap = [
-        'bic' => 'bic',
-        'iban' => 'iban',
+        'detail' => 'detail',
+        'errorCode' => 'errorCode',
+        'instance' => 'instance',
+        'invalidFields' => 'invalidFields',
+        'requestId' => 'requestId',
+        'status' => 'status',
+        'title' => 'title',
         'type' => 'type'
     ];
 
@@ -167,8 +189,13 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $setters = [
-        'bic' => 'setBic',
-        'iban' => 'setIban',
+        'detail' => 'setDetail',
+        'errorCode' => 'setErrorCode',
+        'instance' => 'setInstance',
+        'invalidFields' => 'setInvalidFields',
+        'requestId' => 'setRequestId',
+        'status' => 'setStatus',
+        'title' => 'setTitle',
         'type' => 'setType'
     ];
 
@@ -178,8 +205,13 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $getters = [
-        'bic' => 'getBic',
-        'iban' => 'getIban',
+        'detail' => 'getDetail',
+        'errorCode' => 'getErrorCode',
+        'instance' => 'getInstance',
+        'invalidFields' => 'getInvalidFields',
+        'requestId' => 'getRequestId',
+        'status' => 'getStatus',
+        'title' => 'getTitle',
         'type' => 'getType'
     ];
 
@@ -224,19 +256,7 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
         return self::$openAPIModelName;
     }
 
-    public const TYPE_IBAN = 'iban';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_IBAN,
-        ];
-    }
     /**
      * Associative array for storing property values
      *
@@ -252,8 +272,13 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('bic', $data ?? [], null);
-        $this->setIfExists('iban', $data ?? [], null);
+        $this->setIfExists('detail', $data ?? [], null);
+        $this->setIfExists('errorCode', $data ?? [], null);
+        $this->setIfExists('instance', $data ?? [], null);
+        $this->setIfExists('invalidFields', $data ?? [], null);
+        $this->setIfExists('requestId', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('title', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -284,21 +309,6 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
     {
         $invalidProperties = [];
 
-        if ($this->container['iban'] === null) {
-            $invalidProperties[] = "'iban' can't be null";
-        }
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
-        }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -315,49 +325,169 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
 
 
     /**
-     * Gets bic
+     * Gets detail
      *
      * @return string|null
      */
-    public function getBic()
+    public function getDetail()
     {
-        return $this->container['bic'];
+        return $this->container['detail'];
     }
 
     /**
-     * Sets bic
+     * Sets detail
      *
-     * @param string|null $bic The bank's 8- or 11-character BIC or SWIFT code.
+     * @param string|null $detail A human-readable explanation specific to this occurrence of the problem.
      *
      * @return self
      */
-    public function setBic($bic)
+    public function setDetail($detail)
     {
-        $this->container['bic'] = $bic;
+        $this->container['detail'] = $detail;
 
         return $this;
     }
 
     /**
-     * Gets iban
+     * Gets errorCode
      *
-     * @return string
+     * @return string|null
      */
-    public function getIban()
+    public function getErrorCode()
     {
-        return $this->container['iban'];
+        return $this->container['errorCode'];
     }
 
     /**
-     * Sets iban
+     * Sets errorCode
      *
-     * @param string $iban The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.
+     * @param string|null $errorCode Unique business error code.
      *
      * @return self
      */
-    public function setIban($iban)
+    public function setErrorCode($errorCode)
     {
-        $this->container['iban'] = $iban;
+        $this->container['errorCode'] = $errorCode;
+
+        return $this;
+    }
+
+    /**
+     * Gets instance
+     *
+     * @return string|null
+     */
+    public function getInstance()
+    {
+        return $this->container['instance'];
+    }
+
+    /**
+     * Sets instance
+     *
+     * @param string|null $instance A URI that identifies the specific occurrence of the problem if applicable.
+     *
+     * @return self
+     */
+    public function setInstance($instance)
+    {
+        $this->container['instance'] = $instance;
+
+        return $this;
+    }
+
+    /**
+     * Gets invalidFields
+     *
+     * @return \Adyen\Model\Transfers\InvalidField[]|null
+     */
+    public function getInvalidFields()
+    {
+        return $this->container['invalidFields'];
+    }
+
+    /**
+     * Sets invalidFields
+     *
+     * @param \Adyen\Model\Transfers\InvalidField[]|null $invalidFields Array of fields with validation errors when applicable.
+     *
+     * @return self
+     */
+    public function setInvalidFields($invalidFields)
+    {
+        $this->container['invalidFields'] = $invalidFields;
+
+        return $this;
+    }
+
+    /**
+     * Gets requestId
+     *
+     * @return string|null
+     */
+    public function getRequestId()
+    {
+        return $this->container['requestId'];
+    }
+
+    /**
+     * Sets requestId
+     *
+     * @param string|null $requestId The unique reference for the request.
+     *
+     * @return self
+     */
+    public function setRequestId($requestId)
+    {
+        $this->container['requestId'] = $requestId;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return int|null
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     *
+     * @param int|null $status The HTTP status code.
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets title
+     *
+     * @return string|null
+     */
+    public function getTitle()
+    {
+        return $this->container['title'];
+    }
+
+    /**
+     * Sets title
+     *
+     * @param string|null $title A short, human-readable summary of the problem type.
+     *
+     * @return self
+     */
+    public function setTitle($title)
+    {
+        $this->container['title'] = $title;
 
         return $this;
     }
@@ -365,7 +495,7 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets type
      *
-     * @return string
+     * @return string|null
      */
     public function getType()
     {
@@ -375,22 +505,12 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets type
      *
-     * @param string $type **iban**
+     * @param string|null $type A URI that identifies the validation error type. It points to human-readable documentation for the problem type.
      *
      * @return self
      */
     public function setType($type)
     {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            error_log(
-                sprintf(
-                    "type: unexpected enum value '%s' - Supported values are [%s]",
-                    $type,
-                    implode(', ', $allowedValues)
-                )
-            );
-        }
         $this->container['type'] = $type;
 
         return $this;

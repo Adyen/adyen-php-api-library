@@ -19,12 +19,12 @@ use ArrayAccess;
 use Adyen\Model\Transfers\ObjectSerializer;
 
 /**
- * IbanAccountIdentification Class Doc Comment
+ * USAchTracingData Class Doc Comment
  *
  * @package  Adyen
  * @implements ArrayAccess<string, mixed>
  */
-class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSerializable
+class USAchTracingData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -33,7 +33,7 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       *
       * @var string
       */
-    protected static $openAPIModelName = 'IbanAccountIdentification';
+    protected static $openAPIModelName = 'USAchTracingData';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -41,8 +41,7 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       * @var string[]
       */
     protected static $openAPITypes = [
-        'bic' => 'string',
-        'iban' => 'string',
+        'traceNumber' => 'string',
         'type' => 'string'
     ];
 
@@ -54,8 +53,7 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'bic' => null,
-        'iban' => null,
+        'traceNumber' => null,
         'type' => null
     ];
 
@@ -65,8 +63,7 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
       * @var boolean[]
       */
     protected static $openAPINullables = [
-        'bic' => false,
-        'iban' => false,
+        'traceNumber' => false,
         'type' => false
     ];
 
@@ -156,8 +153,7 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $attributeMap = [
-        'bic' => 'bic',
-        'iban' => 'iban',
+        'traceNumber' => 'traceNumber',
         'type' => 'type'
     ];
 
@@ -167,8 +163,7 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $setters = [
-        'bic' => 'setBic',
-        'iban' => 'setIban',
+        'traceNumber' => 'setTraceNumber',
         'type' => 'setType'
     ];
 
@@ -178,8 +173,7 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $getters = [
-        'bic' => 'getBic',
-        'iban' => 'getIban',
+        'traceNumber' => 'getTraceNumber',
         'type' => 'getType'
     ];
 
@@ -224,7 +218,7 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
         return self::$openAPIModelName;
     }
 
-    public const TYPE_IBAN = 'iban';
+    public const TYPE_US_ACH = 'usAch';
 
     /**
      * Gets allowable values of the enum
@@ -234,7 +228,7 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
     public function getTypeAllowableValues()
     {
         return [
-            self::TYPE_IBAN,
+            self::TYPE_US_ACH,
         ];
     }
     /**
@@ -252,8 +246,7 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('bic', $data ?? [], null);
-        $this->setIfExists('iban', $data ?? [], null);
+        $this->setIfExists('traceNumber', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
     }
 
@@ -284,8 +277,8 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
     {
         $invalidProperties = [];
 
-        if ($this->container['iban'] === null) {
-            $invalidProperties[] = "'iban' can't be null";
+        if ($this->container['traceNumber'] === null) {
+            $invalidProperties[] = "'traceNumber' can't be null";
         }
         if ($this->container['type'] === null) {
             $invalidProperties[] = "'type' can't be null";
@@ -315,49 +308,25 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
 
 
     /**
-     * Gets bic
-     *
-     * @return string|null
-     */
-    public function getBic()
-    {
-        return $this->container['bic'];
-    }
-
-    /**
-     * Sets bic
-     *
-     * @param string|null $bic The bank's 8- or 11-character BIC or SWIFT code.
-     *
-     * @return self
-     */
-    public function setBic($bic)
-    {
-        $this->container['bic'] = $bic;
-
-        return $this;
-    }
-
-    /**
-     * Gets iban
+     * Gets traceNumber
      *
      * @return string
      */
-    public function getIban()
+    public function getTraceNumber()
     {
-        return $this->container['iban'];
+        return $this->container['traceNumber'];
     }
 
     /**
-     * Sets iban
+     * Sets traceNumber
      *
-     * @param string $iban The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.
+     * @param string $traceNumber The ACH trace number. This is a unique 15-digit identifier assigned to transfers processed by [ACH](https://fiscal.treasury.gov/payments-from-government/automated-clearing-house-ach).
      *
      * @return self
      */
-    public function setIban($iban)
+    public function setTraceNumber($traceNumber)
     {
-        $this->container['iban'] = $iban;
+        $this->container['traceNumber'] = $traceNumber;
 
         return $this;
     }
@@ -375,7 +344,7 @@ class IbanAccountIdentification implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets type
      *
-     * @param string $type **iban**
+     * @param string $type **usAch**
      *
      * @return self
      */
