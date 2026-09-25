@@ -265,12 +265,6 @@ class SofortResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $invalidProperties = [];
 
-        if ($this->container['currencyCode'] === null) {
-            $invalidProperties[] = "'currencyCode' can't be null";
-        }
-        if ($this->container['logo'] === null) {
-            $invalidProperties[] = "'logo' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -289,7 +283,7 @@ class SofortResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets currencyCode
      *
-     * @return string
+     * @return string|null
      */
     public function getCurrencyCode()
     {
@@ -299,7 +293,7 @@ class SofortResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets currencyCode
      *
-     * @param string $currencyCode Sofort currency code. For example, **EUR**.
+     * @param string|null $currencyCode Sofort currency code. For example, **EUR**.
      *
      * @return self
      */
@@ -313,7 +307,7 @@ class SofortResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets logo
      *
-     * @return string
+     * @return string|null
      */
     public function getLogo()
     {
@@ -323,7 +317,7 @@ class SofortResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets logo
      *
-     * @param string $logo Sofort logo. Format: Base64-encoded string.
+     * @param string|null $logo Sofort logo. Format: Base64-encoded string.
      *
      * @return self
      */

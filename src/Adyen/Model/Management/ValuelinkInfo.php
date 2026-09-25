@@ -41,9 +41,9 @@ class ValuelinkInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'alternateMerchantNumber' => 'string',
         'authorisationMid' => 'string',
         'pinSupport' => 'string',
-        'submitterId' => 'string',
         'terminalId' => 'string'
     ];
 
@@ -55,9 +55,9 @@ class ValuelinkInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'alternateMerchantNumber' => null,
         'authorisationMid' => null,
         'pinSupport' => null,
-        'submitterId' => null,
         'terminalId' => null
     ];
 
@@ -67,9 +67,9 @@ class ValuelinkInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'alternateMerchantNumber' => false,
         'authorisationMid' => false,
         'pinSupport' => false,
-        'submitterId' => false,
         'terminalId' => false
     ];
 
@@ -159,9 +159,9 @@ class ValuelinkInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'alternateMerchantNumber' => 'alternateMerchantNumber',
         'authorisationMid' => 'authorisationMid',
         'pinSupport' => 'pinSupport',
-        'submitterId' => 'submitterId',
         'terminalId' => 'terminalId'
     ];
 
@@ -171,9 +171,9 @@ class ValuelinkInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'alternateMerchantNumber' => 'setAlternateMerchantNumber',
         'authorisationMid' => 'setAuthorisationMid',
         'pinSupport' => 'setPinSupport',
-        'submitterId' => 'setSubmitterId',
         'terminalId' => 'setTerminalId'
     ];
 
@@ -183,9 +183,9 @@ class ValuelinkInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'alternateMerchantNumber' => 'getAlternateMerchantNumber',
         'authorisationMid' => 'getAuthorisationMid',
         'pinSupport' => 'getPinSupport',
-        'submitterId' => 'getSubmitterId',
         'terminalId' => 'getTerminalId'
     ];
 
@@ -260,9 +260,9 @@ class ValuelinkInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('alternateMerchantNumber', $data ?? [], null);
         $this->setIfExists('authorisationMid', $data ?? [], null);
         $this->setIfExists('pinSupport', $data ?? [], null);
-        $this->setIfExists('submitterId', $data ?? [], null);
         $this->setIfExists('terminalId', $data ?? [], null);
     }
 
@@ -324,6 +324,30 @@ class ValuelinkInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
+     * Gets alternateMerchantNumber
+     *
+     * @return string|null
+     */
+    public function getAlternateMerchantNumber()
+    {
+        return $this->container['alternateMerchantNumber'];
+    }
+
+    /**
+     * Sets alternateMerchantNumber
+     *
+     * @param string|null $alternateMerchantNumber Alternate Merchant Number
+     *
+     * @return self
+     */
+    public function setAlternateMerchantNumber($alternateMerchantNumber)
+    {
+        $this->container['alternateMerchantNumber'] = $alternateMerchantNumber;
+
+        return $this;
+    }
+
+    /**
      * Gets authorisationMid
      *
      * @return string
@@ -377,30 +401,6 @@ class ValuelinkInfo implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['pinSupport'] = $pinSupport;
-
-        return $this;
-    }
-
-    /**
-     * Gets submitterId
-     *
-     * @return string|null
-     */
-    public function getSubmitterId()
-    {
-        return $this->container['submitterId'];
-    }
-
-    /**
-     * Sets submitterId
-     *
-     * @param string|null $submitterId Submitter ID
-     *
-     * @return self
-     */
-    public function setSubmitterId($submitterId)
-    {
-        $this->container['submitterId'] = $submitterId;
 
         return $this;
     }

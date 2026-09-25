@@ -41,9 +41,9 @@ class ValuelinkResponseInfo implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var string[]
       */
     protected static $openAPITypes = [
+        'alternateMerchantNumber' => 'string',
         'authorisationMid' => 'string',
         'pinSupport' => 'string',
-        'submitterId' => 'string',
         'terminalId' => 'string'
     ];
 
@@ -55,9 +55,9 @@ class ValuelinkResponseInfo implements ModelInterface, ArrayAccess, \JsonSeriali
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'alternateMerchantNumber' => null,
         'authorisationMid' => null,
         'pinSupport' => null,
-        'submitterId' => null,
         'terminalId' => null
     ];
 
@@ -67,9 +67,9 @@ class ValuelinkResponseInfo implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'alternateMerchantNumber' => false,
         'authorisationMid' => false,
         'pinSupport' => false,
-        'submitterId' => false,
         'terminalId' => false
     ];
 
@@ -159,9 +159,9 @@ class ValuelinkResponseInfo implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $attributeMap = [
+        'alternateMerchantNumber' => 'alternateMerchantNumber',
         'authorisationMid' => 'authorisationMid',
         'pinSupport' => 'pinSupport',
-        'submitterId' => 'submitterId',
         'terminalId' => 'terminalId'
     ];
 
@@ -171,9 +171,9 @@ class ValuelinkResponseInfo implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $setters = [
+        'alternateMerchantNumber' => 'setAlternateMerchantNumber',
         'authorisationMid' => 'setAuthorisationMid',
         'pinSupport' => 'setPinSupport',
-        'submitterId' => 'setSubmitterId',
         'terminalId' => 'setTerminalId'
     ];
 
@@ -183,9 +183,9 @@ class ValuelinkResponseInfo implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $getters = [
+        'alternateMerchantNumber' => 'getAlternateMerchantNumber',
         'authorisationMid' => 'getAuthorisationMid',
         'pinSupport' => 'getPinSupport',
-        'submitterId' => 'getSubmitterId',
         'terminalId' => 'getTerminalId'
     ];
 
@@ -260,9 +260,9 @@ class ValuelinkResponseInfo implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('alternateMerchantNumber', $data ?? [], null);
         $this->setIfExists('authorisationMid', $data ?? [], null);
         $this->setIfExists('pinSupport', $data ?? [], null);
-        $this->setIfExists('submitterId', $data ?? [], null);
         $this->setIfExists('terminalId', $data ?? [], null);
     }
 
@@ -293,12 +293,6 @@ class ValuelinkResponseInfo implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         $invalidProperties = [];
 
-        if ($this->container['authorisationMid'] === null) {
-            $invalidProperties[] = "'authorisationMid' can't be null";
-        }
-        if ($this->container['pinSupport'] === null) {
-            $invalidProperties[] = "'pinSupport' can't be null";
-        }
         $allowedValues = $this->getPinSupportAllowableValues();
         if (!is_null($this->container['pinSupport']) && !in_array($this->container['pinSupport'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -324,9 +318,33 @@ class ValuelinkResponseInfo implements ModelInterface, ArrayAccess, \JsonSeriali
 
 
     /**
+     * Gets alternateMerchantNumber
+     *
+     * @return string|null
+     */
+    public function getAlternateMerchantNumber()
+    {
+        return $this->container['alternateMerchantNumber'];
+    }
+
+    /**
+     * Sets alternateMerchantNumber
+     *
+     * @param string|null $alternateMerchantNumber Alternate Merchant Number
+     *
+     * @return self
+     */
+    public function setAlternateMerchantNumber($alternateMerchantNumber)
+    {
+        $this->container['alternateMerchantNumber'] = $alternateMerchantNumber;
+
+        return $this;
+    }
+
+    /**
      * Gets authorisationMid
      *
-     * @return string
+     * @return string|null
      */
     public function getAuthorisationMid()
     {
@@ -336,7 +354,7 @@ class ValuelinkResponseInfo implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets authorisationMid
      *
-     * @param string $authorisationMid Authorisation Mid
+     * @param string|null $authorisationMid Authorisation Mid
      *
      * @return self
      */
@@ -350,7 +368,7 @@ class ValuelinkResponseInfo implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets pinSupport
      *
-     * @return string
+     * @return string|null
      */
     public function getPinSupport()
     {
@@ -360,7 +378,7 @@ class ValuelinkResponseInfo implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets pinSupport
      *
-     * @param string $pinSupport PIN Support. For ecommerce, PIN is required.
+     * @param string|null $pinSupport PIN Support. For ecommerce, PIN is required.
      *
      * @return self
      */
@@ -377,30 +395,6 @@ class ValuelinkResponseInfo implements ModelInterface, ArrayAccess, \JsonSeriali
             );
         }
         $this->container['pinSupport'] = $pinSupport;
-
-        return $this;
-    }
-
-    /**
-     * Gets submitterId
-     *
-     * @return string|null
-     */
-    public function getSubmitterId()
-    {
-        return $this->container['submitterId'];
-    }
-
-    /**
-     * Sets submitterId
-     *
-     * @param string|null $submitterId Submitter ID
-     *
-     * @return self
-     */
-    public function setSubmitterId($submitterId)
-    {
-        $this->container['submitterId'] = $submitterId;
 
         return $this;
     }

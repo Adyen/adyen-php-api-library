@@ -258,9 +258,6 @@ class SwishResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
-        if ($this->container['swishNumber'] === null) {
-            $invalidProperties[] = "'swishNumber' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -279,7 +276,7 @@ class SwishResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets swishNumber
      *
-     * @return string
+     * @return string|null
      */
     public function getSwishNumber()
     {
@@ -289,7 +286,7 @@ class SwishResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets swishNumber
      *
-     * @param string $swishNumber Swish number. Format: 10 digits without spaces. For example, **1231111111**.
+     * @param string|null $swishNumber Swish number. Format: 10 digits without spaces. For example, **1231111111**.
      *
      * @return self
      */
