@@ -9,6 +9,11 @@ use Adyen\Model\ManagementWebhooks\ObjectSerializer;
 use Adyen\Model\ManagementWebhooks\PaymentMethodRequestRemovedNotificationRequest;
 use Adyen\Model\ManagementWebhooks\PaymentMethodScheduledForRemovalNotificationRequest;
 
+/**
+ * Parses the payload of Management webhooks.
+ *
+ * @deprecated Use \Adyen\Model\ManagementWebhooks\ManagementWebhooksHandler instead.
+ */
 class ManagementWebhookParser
 {
     private $payload;

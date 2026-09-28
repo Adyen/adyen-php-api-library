@@ -1,0 +1,33 @@
+{
+  "data": {
+    "accountHolder": {
+      "description": "Your description of the account holder",
+      "id": "AH00000000000000000000001",
+      "reference": "Your reference of the account holder"
+    },
+    "amount": {
+      "currency": "EUR",
+      "value": 1000
+    },
+    "balanceAccount": {
+      "description": "Your description of the balance account",
+      "id": "BA00000000000000000000001"
+    },
+    "balancePlatform": "YOUR_BALANCE_PLATFORM",
+    "bookingDate": "2023-02-28T13:30:05+02:00",
+    "creationDate": "2023-02-28T13:30:05+02:00",
+    "description": "Your description of the transaction",
+    "id": "TBQQR6G5RQ7P9XH9",
+    "paymentInstrument": {
+      "description": "Your description of the payment instrument",
+      "id": "PI00000000000000000000001",
+      "reference": "Your reference of the payment instrument"
+    },
+    "referenceForBeneficiary": "Your reference for the beneficiary of the transaction",
+    "status": "booked",
+    "valueDate": "2023-02-28T13:30:05+02:00"
+  },
+  "environment": "test",
+  "timestamp": "2023-02-28T13:30:05+02:00",
+  "type": "balancePlatform.transaction.created"
+}

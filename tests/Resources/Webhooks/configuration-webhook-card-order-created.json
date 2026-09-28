@@ -1,0 +1,17 @@
+{
+  "data": {
+    "balancePlatform": "YOUR_BALANCE_PLATFORM",
+    "card": {
+      "status": "delivered",
+      "trackingNumber": "1Z999AA10123456784"
+    },
+    "cardOrderItemId": "OI00000000000000000000001",
+    "creationDate": "2023-02-28T13:30:05+02:00",
+    "id": "CO00000000000000000000001",
+    "paymentInstrumentId": "PI00000000000000000000001",
+    "shippingMethod": "standard"
+  },
+  "environment": "test",
+  "timestamp": "2023-02-28T13:30:05+02:00",
+  "type": "balancePlatform.cardorder.created"
+}
