@@ -11,6 +11,11 @@ use Adyen\Model\TokenizationWebhooks\TokenizationUpdatedDetailsNotificationReque
 use Exception;
 use PhpParser\Error;
 
+/**
+ * Parses the payload of Tokenization webhooks.
+ *
+ * @deprecated Use \Adyen\Model\TokenizationWebhooks\TokenizationWebhooksHandler instead.
+ */
 class TokenizationWebhookParser
 {
     private $payload;

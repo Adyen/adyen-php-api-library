@@ -1,0 +1,21 @@
+{
+  "data": {
+    "balanceAccountId": "BA00000000000000000000001",
+    "balancePlatform": "YOUR_BALANCE_PLATFORM",
+    "balances": {
+      "available": 1000,
+      "balance": 1000,
+      "pending": 0,
+      "reserved": 0
+    },
+    "creationDate": "2023-02-28T13:30:05+02:00",
+    "currency": "EUR",
+    "id": "BR322KT5S4PB5GZ6V",
+    "settingIds": [
+      "PS00000000000000000000001"
+    ]
+  },
+  "environment": "test",
+  "timestamp": "2023-02-28T13:30:05+02:00",
+  "type": "balancePlatform.balanceAccount.balance.updated"
+}

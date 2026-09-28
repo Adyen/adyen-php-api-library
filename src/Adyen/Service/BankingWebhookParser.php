@@ -20,6 +20,11 @@ use Adyen\Model\TransferWebhooks\TransferNotificationRequest;
 use Adyen\Exception\WebhookParseException;
 use JsonException;
 
+/**
+ * Parses the payload of Adyen banking webhooks.
+ *
+ * @deprecated Use the dedicated webhook handler classes
+ */
 class BankingWebhookParser
 {
     private $payload;
@@ -93,7 +98,7 @@ class BankingWebhookParser
     {
         return $this->getWebhookByClass(RelayedAuthorisationRequest::class);
     }
-        
+
     public function getBalanceAccountBalanceNotificationRequest(): BalanceAccountBalanceNotificationRequest
     {
         return $this->getWebhookByClass(BalanceAccountBalanceNotificationRequest::class);

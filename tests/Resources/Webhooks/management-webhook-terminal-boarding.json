@@ -1,0 +1,11 @@
+{
+  "createdAt": "2022-01-24T14:59:11+01:00",
+  "data": {
+    "companyId": "YOUR_COMPANY_ID",
+    "merchantId": "YOUR_MERCHANT_ID",
+    "storeId": "ST322LJ00000000000",
+    "uniqueTerminalId": "P400-374560621"
+  },
+  "environment": "test",
+  "type": "terminalBoarding.triggered"
+}
