@@ -1,0 +1,17 @@
+{
+  "data": {
+    "balancePlatform": "YOUR_BALANCE_PLATFORM",
+    "paymentInstrument": {
+      "balanceAccountId": "BA00000000000000000000001",
+      "description": "Your description of the payment instrument",
+      "id": "PI00000000000000000000001",
+      "issuingCountryCode": "NL",
+      "reference": "Your reference of the payment instrument",
+      "status": "Active",
+      "type": "bankAccount"
+    }
+  },
+  "environment": "test",
+  "timestamp": "2023-02-28T13:30:05+02:00",
+  "type": "balancePlatform.paymentInstrument.created"
+}

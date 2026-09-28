@@ -1,0 +1,19 @@
+{
+  "data": {
+    "accountId": "BA00000000000000000000001",
+    "balancePlatform": "YOUR_BALANCE_PLATFORM",
+    "creationDate": "2023-02-28T13:30:05+02:00",
+    "id": "RC00000000000000000000003",
+    "webhookTopUpConfiguration": {
+      "description": "Your description of the top-up configuration",
+      "disabledReason": "mandateSuspended",
+      "id": "TC00000000000000000000003",
+      "reasonDetail": "The mandate was suspended",
+      "referenceForBeneficiary": "Your reference for the beneficiary of the top-up",
+      "status": "Disabled"
+    }
+  },
+  "environment": "test",
+  "timestamp": "2023-02-28T13:30:05+02:00",
+  "type": "balancePlatform.balanceAccount.recurringTopUp.updated"
+}
