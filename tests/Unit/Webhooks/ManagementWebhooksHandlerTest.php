@@ -23,98 +23,145 @@
 
 namespace Adyen\Tests\Unit\Webhooks;
 
+use Adyen\Model\ManagementWebhooks\ManagementWebhooksHandler;
+use Adyen\Model\ManagementWebhooks\MerchantCreatedNotificationRequest;
+use Adyen\Model\ManagementWebhooks\MerchantUpdatedNotificationRequest;
+use Adyen\Model\ManagementWebhooks\PaymentMethodCreatedNotificationRequest;
+use Adyen\Model\ManagementWebhooks\PaymentMethodRequestRemovedNotificationRequest;
+use Adyen\Model\ManagementWebhooks\PaymentMethodScheduledForRemovalNotificationRequest;
+use Adyen\Model\ManagementWebhooks\TerminalBoardingNotificationRequest;
+use Adyen\Model\ManagementWebhooks\TerminalSettingsNotificationRequest;
+
 /**
  * Tests the generated ManagementWebhooksHandler against its webhook payloads.
+ *
+ * Each webhook gets one test method that reads as a scenario: given the
+ * event, when deserializing it, then expect the model, its fields and
+ * the resilience guarantees. The rejection scenarios live in the shared
+ * base class.
  */
-class ManagementWebhooksHandlerTest extends AbstractWebhooksHandlerTest
+class ManagementWebhooksHandlerTest extends WebhooksHandlerTestCase
 {
     protected static function handlerClass(): string
     {
-        return 'Adyen\Model\ManagementWebhooks\ManagementWebhooksHandler';
+        return ManagementWebhooksHandler::class;
     }
 
-    /**
-     * @return array<string, array<mixed>>
-     */
-    public static function validWebhookProvider(): array
+    public function testPaymentMethodCreated(): void
     {
-        return [
-            'paymentMethod.created' => [
-                'management-webhook-payment-method-created.json',
-                'getPaymentMethodCreatedNotificationRequest',
-                'Adyen\Model\ManagementWebhooks\PaymentMethodCreatedNotificationRequest',
+        $this->scenario()
+            ->givenEvent(
                 'paymentMethod.created',
-                [
-                    'data.id' => 'PM1234567890000000',
-                    'data.status' => 'success',
-                ],
-            ],
-            'merchant.created' => [
-                'management-webhook-merchant-created.json',
-                'getMerchantCreatedNotificationRequest',
-                'Adyen\Model\ManagementWebhooks\MerchantCreatedNotificationRequest',
+                'management-webhook-payment-method-created.json'
+            )
+            ->whenCalling('getPaymentMethodCreatedNotificationRequest')
+            ->expectModel(PaymentMethodCreatedNotificationRequest::class)
+            ->expectField('data.id', 'PM1234567890000000')
+            ->expectField('data.status', 'success')
+            ->expectUnknownFieldsAreIgnored()
+            ->expectOtherTypedGettersReturnNull()
+            ->expectMissingFieldYieldsNull('data.id');
+    }
+
+    public function testMerchantCreated(): void
+    {
+        $this->scenario()
+            ->givenEvent(
                 'merchant.created',
-                [
-                    'data.merchantId' => 'MC3224X22322535GH8D537TJR',
-                    'data.companyId' => 'YOUR_COMPANY_ID',
-                ],
-            ],
-            'merchant.updated' => [
-                'management-webhook-merchant-updated.json',
-                'getMerchantUpdatedNotificationRequest',
-                'Adyen\Model\ManagementWebhooks\MerchantUpdatedNotificationRequest',
+                'management-webhook-merchant-created.json'
+            )
+            ->whenCalling('getMerchantCreatedNotificationRequest')
+            ->expectModel(MerchantCreatedNotificationRequest::class)
+            ->expectField('data.merchantId', 'MC3224X22322535GH8D537TJR')
+            ->expectField('data.companyId', 'YOUR_COMPANY_ID')
+            ->expectUnknownFieldsAreIgnored()
+            ->expectOtherTypedGettersReturnNull()
+            ->expectMissingFieldYieldsNull('data.merchantId');
+    }
+
+    public function testMerchantUpdated(): void
+    {
+        $this->scenario()
+            ->givenEvent(
                 'merchant.updated',
-                [
-                    'data.legalEntityId' => 'LE322KH223222F5GNNW694PZN',
-                    'data.merchantId' => 'YOUR_MERCHANT_ID',
-                ],
-            ],
-            'paymentMethodRequest.scheduledForRemoval' => [
-                'management-webhook-payment-method-scheduled-for-removal.json',
-                'getPaymentMethodScheduledForRemovalNotificationRequest',
-                'Adyen\Model\ManagementWebhooks\PaymentMethodScheduledForRemovalNotificationRequest',
+                'management-webhook-merchant-updated.json'
+            )
+            ->whenCalling('getMerchantUpdatedNotificationRequest')
+            ->expectModel(MerchantUpdatedNotificationRequest::class)
+            ->expectField('data.legalEntityId', 'LE322KH223222F5GNNW694PZN')
+            ->expectField('data.merchantId', 'YOUR_MERCHANT_ID')
+            ->expectUnknownFieldsAreIgnored()
+            ->expectOtherTypedGettersReturnNull()
+            ->expectMissingFieldYieldsNull('data.legalEntityId');
+    }
+
+    public function testPaymentMethodScheduledForRemoval(): void
+    {
+        $this->scenario()
+            ->givenEvent(
                 'paymentMethodRequest.scheduledForRemoval',
-                [
-                    'data.id' => 'PM1234567890000000',
-                    'data.status' => 'pendingRemoval',
-                    'data.enabled' => false,
-                    'data.verificationStatus' => 'valid',
-                ],
-            ],
-            'paymentMethodRequest.removed' => [
-                'management-webhook-payment-method-request-removed.json',
-                'getPaymentMethodRequestRemovedNotificationRequest',
-                'Adyen\Model\ManagementWebhooks\PaymentMethodRequestRemovedNotificationRequest',
+                'management-webhook-payment-method-scheduled-for-removal.json'
+            )
+            ->whenCalling('getPaymentMethodScheduledForRemovalNotificationRequest')
+            ->expectModel(PaymentMethodScheduledForRemovalNotificationRequest::class)
+            ->expectField('data.id', 'PM1234567890000000')
+            ->expectField('data.status', 'pendingRemoval')
+            ->expectField('data.enabled', false)
+            ->expectField('data.verificationStatus', 'valid')
+            ->expectUnknownFieldsAreIgnored()
+            ->expectOtherTypedGettersReturnNull()
+            ->expectMissingFieldYieldsNull('data.id');
+    }
+
+    public function testPaymentMethodRequestRemoved(): void
+    {
+        $this->scenario()
+            ->givenEvent(
                 'paymentMethodRequest.removed',
-                [
-                    'data.id' => 'PM1234567890000000',
-                    'data.status' => 'success',
-                    'data.allowed' => true,
-                    'data.merchantId' => 'MERCHANT_ACCOUNT',
-                ],
-            ],
-            'terminalBoarding.triggered' => [
-                'management-webhook-terminal-boarding.json',
-                'getTerminalBoardingNotificationRequest',
-                'Adyen\Model\ManagementWebhooks\TerminalBoardingNotificationRequest',
+                'management-webhook-payment-method-request-removed.json'
+            )
+            ->whenCalling('getPaymentMethodRequestRemovedNotificationRequest')
+            ->expectModel(PaymentMethodRequestRemovedNotificationRequest::class)
+            ->expectField('data.id', 'PM1234567890000000')
+            ->expectField('data.status', 'success')
+            ->expectField('data.allowed', true)
+            ->expectField('data.merchantId', 'MERCHANT_ACCOUNT')
+            ->expectUnknownFieldsAreIgnored()
+            ->expectOtherTypedGettersReturnNull()
+            ->expectMissingFieldYieldsNull('data.id');
+    }
+
+    public function testTerminalBoardingTriggered(): void
+    {
+        $this->scenario()
+            ->givenEvent(
                 'terminalBoarding.triggered',
-                [
-                    'data.uniqueTerminalId' => 'P400-374560621',
-                    'data.merchantId' => 'YOUR_MERCHANT_ID',
-                    'data.companyId' => 'YOUR_COMPANY_ID',
-                ],
-            ],
-            'terminalSettings.modified' => [
-                'management-webhook-terminal-settings.json',
-                'getTerminalSettingsNotificationRequest',
-                'Adyen\Model\ManagementWebhooks\TerminalSettingsNotificationRequest',
+                'management-webhook-terminal-boarding.json'
+            )
+            ->whenCalling('getTerminalBoardingNotificationRequest')
+            ->expectModel(TerminalBoardingNotificationRequest::class)
+            ->expectField('data.uniqueTerminalId', 'P400-374560621')
+            ->expectField('data.merchantId', 'YOUR_MERCHANT_ID')
+            ->expectField('data.companyId', 'YOUR_COMPANY_ID')
+            ->expectUnknownFieldsAreIgnored()
+            ->expectOtherTypedGettersReturnNull()
+            ->expectMissingFieldYieldsNull('data.uniqueTerminalId');
+    }
+
+    public function testTerminalSettingsModified(): void
+    {
+        $this->scenario()
+            ->givenEvent(
                 'terminalSettings.modified',
-                [
-                    'data.terminalId' => 'P400-374560621',
-                    'data.updateSource' => 'adyen',
-                    'data.storeId' => 'ST322LJ00000000000',
-                ],
-            ],
-        ];
+                'management-webhook-terminal-settings.json'
+            )
+            ->whenCalling('getTerminalSettingsNotificationRequest')
+            ->expectModel(TerminalSettingsNotificationRequest::class)
+            ->expectField('data.terminalId', 'P400-374560621')
+            ->expectField('data.updateSource', 'adyen')
+            ->expectField('data.storeId', 'ST322LJ00000000000')
+            ->expectUnknownFieldsAreIgnored()
+            ->expectOtherTypedGettersReturnNull()
+            ->expectMissingFieldYieldsNull('data.terminalId');
     }
 }
