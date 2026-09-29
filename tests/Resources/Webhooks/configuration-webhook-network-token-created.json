@@ -1,0 +1,16 @@
+{
+  "data": {
+    "authenticationApplied": true,
+    "balancePlatform": "YOUR_BALANCE_PLATFORM",
+    "decision": "approved",
+    "id": "NT00000000000000000000001",
+    "paymentInstrumentId": "PI00000000000000000000001",
+    "schemeRiskScore": "45",
+    "status": "Active",
+    "tokenLastFour": "5678",
+    "type": "networkToken"
+  },
+  "environment": "test",
+  "timestamp": "2023-02-28T13:30:05+02:00",
+  "type": "balancePlatform.networkToken.created"
+}
