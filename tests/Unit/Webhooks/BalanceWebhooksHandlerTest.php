@@ -23,46 +23,58 @@
 
 namespace Adyen\Tests\Unit\Webhooks;
 
+use Adyen\Model\BalanceWebhooks\BalanceAccountBalanceNotificationRequest;
+use Adyen\Model\BalanceWebhooks\BalanceWebhooksHandler;
+use Adyen\Model\BalanceWebhooks\ReleasedBlockedBalanceNotificationRequest;
+
 /**
  * Tests the generated BalanceWebhooksHandler against its webhook payloads.
+ *
+ * Each webhook gets one test method that reads as a scenario: given the
+ * event, when deserializing it, then expect the model, its fields and
+ * the resilience guarantees. The rejection scenarios live in the shared
+ * base class.
  */
-class BalanceWebhooksHandlerTest extends AbstractWebhooksHandlerTest
+class BalanceWebhooksHandlerTest extends WebhooksHandlerTestCase
 {
     protected static function handlerClass(): string
     {
-        return 'Adyen\Model\BalanceWebhooks\BalanceWebhooksHandler';
+        return BalanceWebhooksHandler::class;
     }
 
-    /**
-     * @return array<string, array<mixed>>
-     */
-    public static function validWebhookProvider(): array
+    public function testBalanceAccountBalanceUpdated(): void
     {
-        return [
-            'balancePlatform.balanceAccount.balance.updated' => [
-                'balance-account-balance-updated.json',
-                'getBalanceAccountBalanceNotificationRequest',
-                'Adyen\Model\BalanceWebhooks\BalanceAccountBalanceNotificationRequest',
+        $this->scenario()
+            ->givenEvent(
                 'balancePlatform.balanceAccount.balance.updated',
-                [
-                    'data.id' => 'BR322KT5S4PB5GZ6V',
-                    'data.currency' => 'EUR',
-                    'data.balances.balance' => 1000,
-                    'data.settingIds.0' => 'PS00000000000000000000001',
-                ],
-            ],
-            'balancePlatform.balanceAccount.balance.block.released' => [
-                'balance-account-balance-block-released.json',
-                'getReleasedBlockedBalanceNotificationRequest',
-                'Adyen\Model\BalanceWebhooks\ReleasedBlockedBalanceNotificationRequest',
+                'balance-account-balance-updated.json'
+            )
+            ->whenCalling('getBalanceAccountBalanceNotificationRequest')
+            ->expectModel(BalanceAccountBalanceNotificationRequest::class)
+            ->expectField('data.id', 'BR322KT5S4PB5GZ6V')
+            ->expectField('data.currency', 'EUR')
+            ->expectField('data.balances.balance', 1000)
+            ->expectField('data.settingIds.0', 'PS00000000000000000000001')
+            ->expectUnknownFieldsAreIgnored()
+            ->expectOtherTypedGettersReturnNull()
+            ->expectMissingFieldYieldsNull('data.id');
+    }
+
+    public function testBalanceAccountBalanceBlockReleased(): void
+    {
+        $this->scenario()
+            ->givenEvent(
                 'balancePlatform.balanceAccount.balance.block.released',
-                [
-                    'data.id' => 'BR322KT5S4PB5GZ6V',
-                    'data.batchReference' => 'BR322KT5S4PB5GZ6V',
-                    'data.accountHolder.id' => 'AH00000000000000000000001',
-                    'data.balanceAccount.id' => 'BA00000000000000000000001',
-                ],
-            ],
-        ];
+                'balance-account-balance-block-released.json'
+            )
+            ->whenCalling('getReleasedBlockedBalanceNotificationRequest')
+            ->expectModel(ReleasedBlockedBalanceNotificationRequest::class)
+            ->expectField('data.id', 'BR322KT5S4PB5GZ6V')
+            ->expectField('data.batchReference', 'BR322KT5S4PB5GZ6V')
+            ->expectField('data.accountHolder.id', 'AH00000000000000000000001')
+            ->expectField('data.balanceAccount.id', 'BA00000000000000000000001')
+            ->expectUnknownFieldsAreIgnored()
+            ->expectOtherTypedGettersReturnNull()
+            ->expectMissingFieldYieldsNull('data.id');
     }
 }

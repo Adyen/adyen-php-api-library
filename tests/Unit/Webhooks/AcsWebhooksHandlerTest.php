@@ -23,42 +23,57 @@
 
 namespace Adyen\Tests\Unit\Webhooks;
 
+use Adyen\Model\AcsWebhooks\AcsWebhooksHandler;
+use Adyen\Model\AcsWebhooks\AuthenticationNotificationRequest;
+use Adyen\Model\AcsWebhooks\RelayedAuthenticationRequest;
+
 /**
  * Tests the generated AcsWebhooksHandler against its webhook payloads.
+ *
+ * Each webhook gets one test method that reads as a scenario: given the
+ * event, when deserializing it, then expect the model, its fields and
+ * the resilience guarantees. The rejection scenarios live in the shared
+ * base class.
  */
-class AcsWebhooksHandlerTest extends AbstractWebhooksHandlerTest
+class AcsWebhooksHandlerTest extends WebhooksHandlerTestCase
 {
     protected static function handlerClass(): string
     {
-        return 'Adyen\Model\AcsWebhooks\AcsWebhooksHandler';
+        return AcsWebhooksHandler::class;
     }
 
-    /**
-     * @return array<string, array<mixed>>
-     */
-    public static function validWebhookProvider(): array
+    public function testAuthenticationCreated(): void
     {
-        return [
-            'balancePlatform.authentication.created' => [
-                'balanceplatform-authentication-created.json',
-                'getAuthenticationNotificationRequest',
-                'Adyen\Model\AcsWebhooks\AuthenticationNotificationRequest',
+        $this->scenario()
+            ->givenEvent(
                 'balancePlatform.authentication.created',
-                [
-                    'data.id' => '497f6eca-6276-4993-bfeb-53cbbbba6f08',
-                    'data.authentication.acsTransId' => '6a4c1709-a42e-4c7f-96c7-1043adacfc97',
-                ],
-            ],
-            'balancePlatform.authentication.relayed' => [
-                'balanceplatform-relayed-authentication-request.json',
-                'getRelayedAuthenticationRequest',
-                'Adyen\Model\AcsWebhooks\RelayedAuthenticationRequest',
+                'balanceplatform-authentication-created.json'
+            )
+            ->whenCalling('getAuthenticationNotificationRequest')
+            ->expectModel(AuthenticationNotificationRequest::class)
+            ->expectField('data.id', '497f6eca-6276-4993-bfeb-53cbbbba6f08')
+            ->expectField(
+                'data.authentication.acsTransId',
+                '6a4c1709-a42e-4c7f-96c7-1043adacfc97'
+            )
+            ->expectUnknownFieldsAreIgnored()
+            ->expectOtherTypedGettersReturnNull()
+            ->expectMissingFieldYieldsNull('data.id');
+    }
+
+    public function testAuthenticationRelayed(): void
+    {
+        $this->scenario()
+            ->givenEvent(
                 'balancePlatform.authentication.relayed',
-                [
-                    'id' => '1ea64f8e-d1e1-4b9d-a3a2-3953e385b2c8',
-                    'paymentInstrumentId' => 'PI123ABCDEFGHIJKLMN45678',
-                ],
-            ],
-        ];
+                'balanceplatform-relayed-authentication-request.json'
+            )
+            ->whenCalling('getRelayedAuthenticationRequest')
+            ->expectModel(RelayedAuthenticationRequest::class)
+            ->expectField('id', '1ea64f8e-d1e1-4b9d-a3a2-3953e385b2c8')
+            ->expectField('paymentInstrumentId', 'PI123ABCDEFGHIJKLMN45678')
+            ->expectUnknownFieldsAreIgnored()
+            ->expectOtherTypedGettersReturnNull()
+            ->expectMissingFieldYieldsNull('id');
     }
 }
