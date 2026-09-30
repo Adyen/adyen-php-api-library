@@ -44,6 +44,7 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'donationToken' => 'string',
         'fraudResult' => '\Adyen\Model\Checkout\FraudResult',
         'merchantReference' => 'string',
+        'opi' => '\Adyen\Model\Checkout\OpiResponse',
         'order' => '\Adyen\Model\Checkout\CheckoutOrderResponse',
         'paymentMethod' => '\Adyen\Model\Checkout\ResponsePaymentMethod',
         'paymentValidations' => '\Adyen\Model\Checkout\PaymentValidationsResponse',
@@ -70,6 +71,7 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'donationToken' => null,
         'fraudResult' => null,
         'merchantReference' => null,
+        'opi' => null,
         'order' => null,
         'paymentMethod' => null,
         'paymentValidations' => null,
@@ -94,6 +96,7 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'donationToken' => false,
         'fraudResult' => false,
         'merchantReference' => false,
+        'opi' => false,
         'order' => false,
         'paymentMethod' => false,
         'paymentValidations' => false,
@@ -198,6 +201,7 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'donationToken' => 'donationToken',
         'fraudResult' => 'fraudResult',
         'merchantReference' => 'merchantReference',
+        'opi' => 'opi',
         'order' => 'order',
         'paymentMethod' => 'paymentMethod',
         'paymentValidations' => 'paymentValidations',
@@ -222,6 +226,7 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'donationToken' => 'setDonationToken',
         'fraudResult' => 'setFraudResult',
         'merchantReference' => 'setMerchantReference',
+        'opi' => 'setOpi',
         'order' => 'setOrder',
         'paymentMethod' => 'setPaymentMethod',
         'paymentValidations' => 'setPaymentValidations',
@@ -246,6 +251,7 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'donationToken' => 'getDonationToken',
         'fraudResult' => 'getFraudResult',
         'merchantReference' => 'getMerchantReference',
+        'opi' => 'getOpi',
         'order' => 'getOrder',
         'paymentMethod' => 'getPaymentMethod',
         'paymentValidations' => 'getPaymentValidations',
@@ -360,6 +366,7 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('donationToken', $data ?? [], null);
         $this->setIfExists('fraudResult', $data ?? [], null);
         $this->setIfExists('merchantReference', $data ?? [], null);
+        $this->setIfExists('opi', $data ?? [], null);
         $this->setIfExists('order', $data ?? [], null);
         $this->setIfExists('paymentMethod', $data ?? [], null);
         $this->setIfExists('paymentValidations', $data ?? [], null);
@@ -533,6 +540,30 @@ class PaymentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setMerchantReference($merchantReference): self
     {
         $this->container['merchantReference'] = $merchantReference;
+
+        return $this;
+    }
+
+    /**
+     * Gets opi
+     *
+     * @return \Adyen\Model\Checkout\OpiResponse|null
+     */
+    public function getOpi()
+    {
+        return $this->container['opi'];
+    }
+
+    /**
+     * Sets opi
+     *
+     * @param \Adyen\Model\Checkout\OpiResponse|null $opi opi
+     *
+     * @return self
+     */
+    public function setOpi($opi): self
+    {
+        $this->container['opi'] = $opi;
 
         return $this;
     }

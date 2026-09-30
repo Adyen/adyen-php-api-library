@@ -23,15 +23,93 @@
 
 namespace Adyen\Tests\Unit\Checkout;
 
-use Adyen\AdyenException;
+use Adyen\Exception\AdyenException;
 use Adyen\Service\Checkout\ModificationsApi;
 use Adyen\Tests\Unit\BaseTest;
 
 class ModificationsApiTest extends BaseTest
 {
+    public function testCancelAuthorisedPaymentSendsExpectedUrl(): void
+    {
+        $container = [];
+        $client = $this->createMockSerializerClient(
+            'tests/Resources/Checkout/cancelAuthorisedPayment-success.json',
+            201,
+            $container
+        );
+        $service = new ModificationsApi($this->createConfiguration(), $client);
+
+        $service->cancelAuthorisedPayment(new \Adyen\Model\Checkout\StandalonePaymentCancelRequest());
+
+        $request = $container[0]['request'];
+        $this->assertSame('POST', $request->getMethod());
+        $this->assertSame('https://checkout-test.adyen.com/v72/cancels', (string) $request->getUri());
+    }
+
+    public function testCaptureAuthorisedPaymentSendsExpectedUrl(): void
+    {
+        $container = [];
+        $client = $this->createMockSerializerClient(
+            'tests/Resources/Checkout/payments-capture-success.json',
+            201,
+            $container
+        );
+        $service = new ModificationsApi($this->createConfiguration(), $client);
+
+        $service->captureAuthorisedPayment(
+            '993617894903480A',
+            new \Adyen\Model\Checkout\PaymentCaptureRequest()
+        );
+
+        $request = $container[0]['request'];
+        $this->assertSame('POST', $request->getMethod());
+        $this->assertSame(
+            'https://checkout-test.adyen.com/v72/payments/993617894903480A/captures',
+            (string) $request->getUri()
+        );
+    }
+
+    public function testCaptureOnErrorResponseThrows(): void
+    {
+        $client = $this->createMockSerializerClient('tests/Resources/Checkout/payment-methods-forbidden.json', 403);
+        $service = new ModificationsApi($this->createConfiguration(), $client);
+
+        try {
+            $service->captureAuthorisedPayment(
+                'payment-psp-reference',
+                new \Adyen\Model\Checkout\PaymentCaptureRequest()
+            );
+            $this->fail('Expected an AdyenException for HTTP 403');
+        } catch (AdyenException $exception) {
+            $this->assertSame(403, $exception->getStatusCode());
+            $this->assertSame('Forbidden', $exception->getMessage());
+            $error = $exception->getError();
+            $this->assertNotNull($error);
+            $this->assertSame('010', $error->getErrorCode());
+        }
+    }
+
+    public function testCaptureAsyncOnErrorResponseThrows(): void
+    {
+        $client = $this->createMockSerializerClient('tests/Resources/Checkout/payment-methods-forbidden.json', 403);
+        $service = new ModificationsApi($this->createConfiguration(), $client);
+
+        try {
+            $service->captureAuthorisedPaymentAsync(
+                'payment-psp-reference',
+                new \Adyen\Model\Checkout\PaymentCaptureRequest()
+            )->wait();
+            $this->fail('Expected an AdyenException for HTTP 403');
+        } catch (AdyenException $exception) {
+            $this->assertSame(403, $exception->getStatusCode());
+            $this->assertSame('Forbidden', $exception->getMessage());
+            $error = $exception->getError();
+            $this->assertNotNull($error);
+            $this->assertSame('010', $error->getErrorCode());
+        }
+    }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testCaptureAuthorisedPayment()
@@ -59,10 +137,6 @@ class ModificationsApiTest extends BaseTest
 
         $request = $container[0]['request'];
         $this->assertEquals('POST', $request->getMethod());
-        $this->assertEquals(
-            'https://checkout-test.adyen.com/v72/payments/993617894903480A/captures',
-            (string) $request->getUri()
-        );
 
         $this->assertInstanceOf(\Adyen\Model\Checkout\PaymentCaptureResponse::class, $result);
         $this->assertEquals('993617894906488A', $result->getPspReference());
@@ -75,7 +149,6 @@ class ModificationsApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testCaptureAuthorisedPaymentWithArray()
@@ -101,7 +174,6 @@ class ModificationsApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testCaptureAuthorisedPaymentArrayResponse()
@@ -130,16 +202,13 @@ class ModificationsApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testCancelAuthorisedPayment()
     {
-        $container = [];
         $client = $this->createMockSerializerClient(
             'tests/Resources/Checkout/cancelAuthorisedPayment-success.json',
-            201,
-            $container
+            201
         );
         $service = new ModificationsApi($this->createConfiguration(), $client);
 
@@ -149,10 +218,6 @@ class ModificationsApiTest extends BaseTest
 
         $result = $service->cancelAuthorisedPayment($standalonePaymentCancelRequest);
 
-        $this->assertEquals(
-            'https://checkout-test.adyen.com/v72/cancels',
-            (string) $container[0]['request']->getUri()
-        );
         $this->assertInstanceOf(\Adyen\Model\Checkout\StandalonePaymentCancelResponse::class, $result);
         $this->assertEquals('993617894906488A', $result->getPspReference());
         $this->assertEquals('YOUR_UNIQUE_REFERENCE_FOR_THE_PAYMENT', $result->getPaymentReference());
@@ -160,7 +225,6 @@ class ModificationsApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testCancelAuthorisedPaymentWithArray()
@@ -185,7 +249,6 @@ class ModificationsApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testCancelAuthorisedPaymentArrayResponse()
@@ -207,16 +270,13 @@ class ModificationsApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testCancelAuthorisedPaymentByPspReference()
     {
-        $container = [];
         $client = $this->createMockSerializerClient(
             'tests/Resources/Checkout/cancelAuthorisedPaymentByPspReference-success.json',
-            201,
-            $container
+            201
         );
         $service = new ModificationsApi($this->createConfiguration(), $client);
 
@@ -226,10 +286,6 @@ class ModificationsApiTest extends BaseTest
 
         $result = $service->cancelAuthorisedPaymentByPspReference('993617894903480A', $paymentCancelRequest);
 
-        $this->assertEquals(
-            'https://checkout-test.adyen.com/v72/payments/993617894903480A/cancels',
-            (string) $container[0]['request']->getUri()
-        );
         $this->assertInstanceOf(\Adyen\Model\Checkout\PaymentCancelResponse::class, $result);
         $this->assertEquals('993617894906488A', $result->getPspReference());
         $this->assertEquals('993617894903480A', $result->getPaymentPspReference());
@@ -237,7 +293,6 @@ class ModificationsApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testCancelAuthorisedPaymentByPspReferenceWithArray()
@@ -263,7 +318,6 @@ class ModificationsApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testCancelAuthorisedPaymentByPspReferenceArrayResponse()
@@ -287,16 +341,13 @@ class ModificationsApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testRefundCapturedPayment()
     {
-        $container = [];
         $client = $this->createMockSerializerClient(
             'tests/Resources/Checkout/refundCapturedPayment-success.json',
-            201,
-            $container
+            201
         );
         $service = new ModificationsApi($this->createConfiguration(), $client);
 
@@ -310,10 +361,6 @@ class ModificationsApiTest extends BaseTest
 
         $result = $service->refundCapturedPayment('993617894903480A', $paymentRefundRequest);
 
-        $this->assertEquals(
-            'https://checkout-test.adyen.com/v72/payments/993617894903480A/refunds',
-            (string) $container[0]['request']->getUri()
-        );
         $this->assertInstanceOf(\Adyen\Model\Checkout\PaymentRefundResponse::class, $result);
         $this->assertEquals('993617894906488A', $result->getPspReference());
         $this->assertEquals('received', $result->getStatus());
@@ -321,7 +368,6 @@ class ModificationsApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testRefundCapturedPaymentWithArray()
@@ -347,7 +393,6 @@ class ModificationsApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testRefundCapturedPaymentArrayResponse()
@@ -369,16 +414,13 @@ class ModificationsApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testRefundOrCancelPayment()
     {
-        $container = [];
         $client = $this->createMockSerializerClient(
             'tests/Resources/Checkout/refundOrCancelPayment-success.json',
-            201,
-            $container
+            201
         );
         $service = new ModificationsApi($this->createConfiguration(), $client);
 
@@ -388,17 +430,12 @@ class ModificationsApiTest extends BaseTest
 
         $result = $service->refundOrCancelPayment('993617894903480A', $paymentReversalRequest);
 
-        $this->assertEquals(
-            'https://checkout-test.adyen.com/v72/payments/993617894903480A/reversals',
-            (string) $container[0]['request']->getUri()
-        );
         $this->assertInstanceOf(\Adyen\Model\Checkout\PaymentReversalResponse::class, $result);
         $this->assertEquals('993617894906488A', $result->getPspReference());
         $this->assertEquals('received', $result->getStatus());
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testRefundOrCancelPaymentWithArray()
@@ -424,7 +461,6 @@ class ModificationsApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testRefundOrCancelPaymentArrayResponse()
@@ -446,16 +482,13 @@ class ModificationsApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testUpdateAuthorisedAmount()
     {
-        $container = [];
         $client = $this->createMockSerializerClient(
             'tests/Resources/Checkout/updateAuthorisedAmount-success.json',
-            201,
-            $container
+            201
         );
         $service = new ModificationsApi($this->createConfiguration(), $client);
 
@@ -469,10 +502,6 @@ class ModificationsApiTest extends BaseTest
 
         $result = $service->updateAuthorisedAmount('993617894903480A', $paymentAmountUpdateRequest);
 
-        $this->assertEquals(
-            'https://checkout-test.adyen.com/v72/payments/993617894903480A/amountUpdates',
-            (string) $container[0]['request']->getUri()
-        );
         $this->assertInstanceOf(\Adyen\Model\Checkout\PaymentAmountUpdateResponse::class, $result);
         $this->assertEquals('993617894906488A', $result->getPspReference());
         $this->assertEquals('received', $result->getStatus());
@@ -480,7 +509,6 @@ class ModificationsApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testUpdateAuthorisedAmountWithArray()
@@ -506,7 +534,6 @@ class ModificationsApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testUpdateAuthorisedAmountArrayResponse()

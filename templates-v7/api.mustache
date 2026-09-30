@@ -69,7 +69,7 @@ use {{modelPackage}}\ObjectSerializer;
      * @param ClientInterface|null $client
      * @param HeaderSelector|null $selector
      * @param int $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
-     * @throws \Adyen\AdyenException
+     * @throws \{{invokerPackage}}\Exception\AdyenException
      */
     public function __construct(
         ?Configuration $config = null,
@@ -238,107 +238,86 @@ use {{modelPackage}}\ObjectSerializer;
 
         $request = $this->{{operationId}}Request({{^exts.x-group-parameters}}{{#pathParams}}${{paramName}}, {{/pathParams}}{{#bodyParams}}${{paramName}}, {{/bodyParams}}{{#formParams}}{{#required}}${{paramName}}, {{/required}}{{/formParams}}{{#queryParams}}{{#required}}${{paramName}}, {{/required}}{{/queryParams}}{{#formParams}}{{^required}}${{paramName}}, {{/required}}{{/formParams}}{{#queryParams}}{{^required}}${{paramName}}, {{/required}}{{/queryParams}}{{#servers}}{{#-first}}$hostIndex, $variables, {{/-first}}{{/servers}}$contentType{{/exts.x-group-parameters}}{{#exts.x-group-parameters}}$associative_array{{/exts.x-group-parameters}}, $requestOptions);
 
+        $options = $this->createHttpClientOption();
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new AdyenException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new AdyenException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
+            $response = $this->client->send($request, $options);
+        } catch (RequestException $e) {
+            if ($e->hasResponse()) {
+                $response = $e->getResponse();
+                throw AdyenException::fromResponse(
+                    $response->getStatusCode(),
+                    $response->getHeaders(),
+                    (string) $response->getBody(),
+                    $e
                 );
             }
 
-            $statusCode = $response->getStatusCode();
+            throw new AdyenException(
+                "[{$e->getCode()}] {$e->getMessage()}",
+                (int) $e->getCode(),
+                [],
+                null,
+                $e
+            );
+        } catch (ConnectException $e) {
+            throw new AdyenException(
+                "[{$e->getCode()}] {$e->getMessage()}",
+                (int) $e->getCode(),
+                [],
+                null,
+                $e
+            );
+        }
 
-            {{#returnType}}
-            {{#responses}}
-            {{#-first}}
+        $statusCode = $response->getStatusCode();
+        if ($statusCode < 200 || $statusCode > 299) {
+            throw AdyenException::fromResponse(
+                $statusCode,
+                $response->getHeaders(),
+                (string) $response->getBody()
+            );
+        }
 
-            switch ($statusCode) {
-            {{/-first}}
-            {{#dataType}}
-                {{^isRange}}{{^isWildcard}}case {{code}}:{{/isWildcard}}{{#isWildcard}}default:{{/isWildcard}}
-                    return $this->handleResponseWithDataType(
-                        '{{{dataType}}}',
-                        $request,
-                        $response,
-                    );{{/isRange}}
-            {{/dataType}}
-            {{#-last}}
-            }
-            {{/-last}}
-{{/responses}}
+        {{#returnType}}
+        {{#responses}}
+        {{#-first}}
 
-{{#responses}}{{#dataType}}{{#isRange}}{{^isWildcard}}
-            if ($this->responseWithinRangeCode('{{code}}', $statusCode)) {
+        switch ($statusCode) {
+        {{/-first}}
+        {{#is2xx}}
+        {{#dataType}}
+            {{^isRange}}{{^isWildcard}}case {{code}}:{{/isWildcard}}{{#isWildcard}}default:{{/isWildcard}}
                 return $this->handleResponseWithDataType(
                     '{{{dataType}}}',
                     $request,
                     $response,
-                );
-            }{{/isWildcard}}{{/isRange}}{{/dataType}}{{/responses}}
+                );{{/isRange}}
+        {{/dataType}}
+        {{/is2xx}}
+        {{#-last}}
+        }
+        {{/-last}}
+{{/responses}}
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new AdyenException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
+{{#responses}}{{#is2xx}}{{#dataType}}{{#isRange}}{{^isWildcard}}
+        if ($this->responseWithinRangeCode('{{code}}', $statusCode)) {
             return $this->handleResponseWithDataType(
-                '{{{returnType}}}',
+                '{{{dataType}}}',
                 $request,
                 $response,
             );
-            {{/returnType}}
-            {{^returnType}}
+        }{{/isWildcard}}{{/isRange}}{{/dataType}}{{/is2xx}}{{/responses}}
 
-            return [null, $statusCode, $response->getHeaders()];
-            {{/returnType}}
-        } catch (AdyenException $e) {
-            switch ($e->getCode()) {
-        {{#responses}}
-            {{#dataType}}
-                {{^isRange}}{{^isWildcard}}case {{code}}:{{/isWildcard}}{{#isWildcard}}default:{{/isWildcard}}
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '{{{dataType}}}',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;{{/isRange}}
-            {{/dataType}}
-{{/responses}}
-            }
-{{#responses}}{{#dataType}}{{#isRange}}{{^isWildcard}}
-            if ($this->responseWithinRangeCode('{{code}}', $e->getCode())) {
-                $data = ObjectSerializer::deserialize(
-                    $e->getResponseBody(),
-                    '{{{dataType}}}',
-                    $e->getResponseHeaders()
-                );
-                $e->setResponseObject($data);
-                throw $e;
-            }{{/isWildcard}}{{/isRange}}{{/dataType}}{{/responses}}
+        return $this->handleResponseWithDataType(
+            '{{{returnType}}}',
+            $request,
+            $response,
+        );
+        {{/returnType}}
+        {{^returnType}}
 
-            throw $e;
-        }
+        return [null, $statusCode, $response->getHeaders()];
+        {{/returnType}}
     }
 
     /**
@@ -468,40 +447,44 @@ use {{modelPackage}}\ObjectSerializer;
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) {
-                    $returnType = '{{{returnType}}}';
-                    {{#returnType}}
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
+                function ($response) use ($request) {
+                    $statusCode = $response->getStatusCode();
+                    if ($statusCode < 200 || $statusCode > 299) {
+                        throw AdyenException::fromResponse(
+                            $statusCode,
+                            $response->getHeaders(),
+                            (string) $response->getBody()
+                        );
                     }
 
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                    {{#returnType}}
+                    return $this->handleResponseWithDataType(
+                        '{{{returnType}}}',
+                        $request,
+                        $response
+                    );
                     {{/returnType}}
                     {{^returnType}}
                     return [null, $response->getStatusCode(), $response->getHeaders()];
                     {{/returnType}}
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
+                    if ($exception instanceof RequestException && $exception->hasResponse()) {
+                        $response = $exception->getResponse();
+                        throw AdyenException::fromResponse(
+                            $response->getStatusCode(),
+                            $response->getHeaders(),
+                            (string) $response->getBody(),
+                            $exception
+                        );
+                    }
+
                     throw new AdyenException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
+                        "[{$exception->getCode()}] {$exception->getMessage()}",
+                        (int) $exception->getCode(),
+                        [],
+                        null,
+                        $exception
                     );
                 }
             );
@@ -871,13 +854,6 @@ use {{modelPackage}}\ObjectSerializer;
                         $content
                     );
                 }
-                if ($this->responseWithinRangeCode('4', $response->getStatusCode()) ||
-                    $this->responseWithinRangeCode('5', $response->getStatusCode())) {
-                    $adyenException = $this->decodeAdyenException($content);
-                    if ($adyenException) {
-                        throw $adyenException;
-                    }
-                }
                 $content = json_decode(json_encode($content), false);
             }
         }
@@ -887,22 +863,6 @@ use {{modelPackage}}\ObjectSerializer;
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function decodeAdyenException($decodedPayload): ?\Adyen\AdyenException
-    {
-        if (isset($decodedPayload['message']) && isset($decodedPayload['errorCode'])) {
-            return new \Adyen\AdyenException(
-                $decodedPayload['message'],
-                $decodedPayload['status'] ?? 0,
-                null,
-                $decodedPayload['status'] ?? null,
-                $decodedPayload['errorType'] ?? null,
-                $decodedPayload['pspReference'] ?? null,
-                $decodedPayload['errorCode']
-            );
-        }
-        return null;
     }
 
     private function responseWithinRangeCode(

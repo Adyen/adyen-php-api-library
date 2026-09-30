@@ -2,7 +2,7 @@
 
 namespace Adyen\Tests\Unit\Checkout;
 
-use Adyen\AdyenException;
+use Adyen\Exception\AdyenException;
 use Adyen\Model\Checkout\Amount;
 use Adyen\Model\Checkout\BillingAddress;
 use Adyen\Model\Checkout\CheckoutPaymentMethod;
@@ -63,7 +63,6 @@ class ModelBasedCheckoutTest extends BaseTest
     /**
      * @dataProvider successPaymentsProviderAction
      * @throws \Adyen\Exception\AdyenException
-     * @throws AdyenException
      */
     public function testPaymentResponseAction($jsonFile, $httpStatus)
     {

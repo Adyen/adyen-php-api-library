@@ -23,7 +23,7 @@
 
 namespace Adyen\Tests\Unit\Checkout;
 
-use Adyen\AdyenException;
+use Adyen\Exception\AdyenException;
 use Adyen\Model\Checkout\Amount;
 use Adyen\Model\Checkout\ApplePaySessionRequest;
 use Adyen\Model\Checkout\PaypalUpdateOrderRequest;
@@ -34,9 +34,59 @@ use Adyen\Tests\Unit\BaseTest;
 
 class UtilityApiTest extends BaseTest
 {
+    public function testOriginKeysSendsExpectedUrl(): void
+    {
+        $container = [];
+        $client = $this->createMockSerializerClient(
+            'tests/Resources/Checkout/originKeys-success.json',
+            200,
+            $container
+        );
+        $service = new UtilityApi($this->createConfiguration(), $client);
+
+        $service->originKeys(new UtilityRequest());
+
+        $request = $container[0]['request'];
+        $this->assertSame('POST', $request->getMethod());
+        $this->assertSame('https://checkout-test.adyen.com/v72/originKeys', (string) $request->getUri());
+    }
+
+    public function testOriginKeysOnErrorResponseThrows(): void
+    {
+        $client = $this->createMockSerializerClient('tests/Resources/Checkout/payment-methods-forbidden.json', 403);
+        $service = new UtilityApi($this->createConfiguration(), $client);
+
+        try {
+            $service->originKeys(new UtilityRequest());
+            $this->fail('Expected an AdyenException for HTTP 403');
+        } catch (AdyenException $exception) {
+            $this->assertSame(403, $exception->getStatusCode());
+            $this->assertSame('Forbidden', $exception->getMessage());
+            $error = $exception->getError();
+            $this->assertNotNull($error);
+            $this->assertSame('010', $error->getErrorCode());
+        }
+    }
+
+    public function testOriginKeysAsyncOnErrorResponseThrows(): void
+    {
+        $client = $this->createMockSerializerClient('tests/Resources/Checkout/payment-methods-forbidden.json', 403);
+        $service = new UtilityApi($this->createConfiguration(), $client);
+
+        try {
+            $service->originKeysAsync(new UtilityRequest())->wait();
+            $this->fail('Expected an AdyenException for HTTP 403');
+        } catch (AdyenException $exception) {
+            $this->assertSame(403, $exception->getStatusCode());
+            $this->assertSame('Forbidden', $exception->getMessage());
+            $error = $exception->getError();
+            $this->assertNotNull($error);
+            $this->assertSame('010', $error->getErrorCode());
+        }
+    }
+
     /**
      * @dataProvider successOriginKeysProvider
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testOriginKeysSuccess($jsonFile, $httpStatus)
@@ -61,7 +111,7 @@ class UtilityApiTest extends BaseTest
 
     /**
      * @dataProvider successOriginKeysProvider
-     * @throws \Adyen\Exception\AdyenException|AdyenException
+     * @throws \Adyen\Exception\AdyenException
      */
     public function testOriginKeysSuccessWithArray($jsonFile, $httpStatus)
     {
@@ -84,7 +134,7 @@ class UtilityApiTest extends BaseTest
 
     /**
      * @dataProvider successOriginKeysProvider
-     * @throws \Adyen\Exception\AdyenException|AdyenException
+     * @throws \Adyen\Exception\AdyenException
      */
     public function testOriginKeysSuccessArrayResponse($jsonFile, $httpStatus)
     {
@@ -111,7 +161,6 @@ class UtilityApiTest extends BaseTest
 
     /**
      * @dataProvider successGetApplePaySessionProvider
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testGetApplePaySessionSuccess($jsonFile, $httpStatus)
@@ -132,7 +181,7 @@ class UtilityApiTest extends BaseTest
 
     /**
      * @dataProvider successGetApplePaySessionProvider
-     * @throws \Adyen\Exception\AdyenException|AdyenException
+     * @throws \Adyen\Exception\AdyenException
      */
     public function testGetApplePaySessionSuccessWithArray($jsonFile, $httpStatus)
     {
@@ -153,7 +202,7 @@ class UtilityApiTest extends BaseTest
 
     /**
      * @dataProvider successGetApplePaySessionProvider
-     * @throws \Adyen\Exception\AdyenException|AdyenException
+     * @throws \Adyen\Exception\AdyenException
      */
     public function testGetApplePaySessionSuccessArrayResponse($jsonFile, $httpStatus)
     {
@@ -181,7 +230,6 @@ class UtilityApiTest extends BaseTest
 
     /**
      * @dataProvider successUpdatesOrderForPaypalExpressCheckoutProvider
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testUpdatesOrderForPaypalExpressCheckoutSuccess($jsonFile, $httpStatus)
@@ -207,7 +255,7 @@ class UtilityApiTest extends BaseTest
 
     /**
      * @dataProvider successUpdatesOrderForPaypalExpressCheckoutProvider
-     * @throws \Adyen\Exception\AdyenException|AdyenException
+     * @throws \Adyen\Exception\AdyenException
      */
     public function testUpdatesOrderForPaypalExpressCheckoutSuccessWithArray($jsonFile, $httpStatus)
     {
@@ -232,7 +280,7 @@ class UtilityApiTest extends BaseTest
 
     /**
      * @dataProvider successUpdatesOrderForPaypalExpressCheckoutProvider
-     * @throws \Adyen\Exception\AdyenException|AdyenException
+     * @throws \Adyen\Exception\AdyenException
      */
     public function testUpdatesOrderForPaypalExpressCheckoutSuccessArrayResponse($jsonFile, $httpStatus)
     {
@@ -259,7 +307,6 @@ class UtilityApiTest extends BaseTest
 
     /**
      * @dataProvider successValidateShopperIdProvider
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testValidateShopperIdSuccess($jsonFile, $httpStatus)
@@ -279,7 +326,7 @@ class UtilityApiTest extends BaseTest
 
     /**
      * @dataProvider successValidateShopperIdProvider
-     * @throws \Adyen\Exception\AdyenException|AdyenException
+     * @throws \Adyen\Exception\AdyenException
      */
     public function testValidateShopperIdSuccessWithArray($jsonFile, $httpStatus)
     {
@@ -299,7 +346,7 @@ class UtilityApiTest extends BaseTest
 
     /**
      * @dataProvider successValidateShopperIdProvider
-     * @throws \Adyen\Exception\AdyenException|AdyenException
+     * @throws \Adyen\Exception\AdyenException
      */
     public function testValidateShopperIdSuccessArrayResponse($jsonFile, $httpStatus)
     {

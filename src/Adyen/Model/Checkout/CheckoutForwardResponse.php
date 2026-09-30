@@ -38,7 +38,9 @@ class CheckoutForwardResponse implements ModelInterface, ArrayAccess, \JsonSeria
       * @var string[]
       */
     protected static array $openAPITypes = [
+        'accountUpdate' => '\Adyen\Model\Checkout\CheckoutForwardAccountUpdateResult',
         'merchantReference' => 'string',
+        'networkToken' => '\Adyen\Model\Checkout\CheckoutForwardNetworkTokenResult',
         'pspReference' => 'string',
         'response' => '\Adyen\Model\Checkout\CheckoutForwardResponseFromUrl',
         'storedPaymentMethodId' => 'string'
@@ -52,7 +54,9 @@ class CheckoutForwardResponse implements ModelInterface, ArrayAccess, \JsonSeria
       * @psalm-var array<string, string|null>
       */
     protected static array $openAPIFormats = [
+        'accountUpdate' => null,
         'merchantReference' => null,
+        'networkToken' => null,
         'pspReference' => null,
         'response' => null,
         'storedPaymentMethodId' => null
@@ -64,7 +68,9 @@ class CheckoutForwardResponse implements ModelInterface, ArrayAccess, \JsonSeria
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'accountUpdate' => false,
         'merchantReference' => false,
+        'networkToken' => false,
         'pspReference' => false,
         'response' => false,
         'storedPaymentMethodId' => false
@@ -156,7 +162,9 @@ class CheckoutForwardResponse implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static array $attributeMap = [
+        'accountUpdate' => 'accountUpdate',
         'merchantReference' => 'merchantReference',
+        'networkToken' => 'networkToken',
         'pspReference' => 'pspReference',
         'response' => 'response',
         'storedPaymentMethodId' => 'storedPaymentMethodId'
@@ -168,7 +176,9 @@ class CheckoutForwardResponse implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static array $setters = [
+        'accountUpdate' => 'setAccountUpdate',
         'merchantReference' => 'setMerchantReference',
+        'networkToken' => 'setNetworkToken',
         'pspReference' => 'setPspReference',
         'response' => 'setResponse',
         'storedPaymentMethodId' => 'setStoredPaymentMethodId'
@@ -180,7 +190,9 @@ class CheckoutForwardResponse implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static array $getters = [
+        'accountUpdate' => 'getAccountUpdate',
         'merchantReference' => 'getMerchantReference',
+        'networkToken' => 'getNetworkToken',
         'pspReference' => 'getPspReference',
         'response' => 'getResponse',
         'storedPaymentMethodId' => 'getStoredPaymentMethodId'
@@ -243,7 +255,9 @@ class CheckoutForwardResponse implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('accountUpdate', $data ?? [], null);
         $this->setIfExists('merchantReference', $data ?? [], null);
+        $this->setIfExists('networkToken', $data ?? [], null);
         $this->setIfExists('pspReference', $data ?? [], null);
         $this->setIfExists('response', $data ?? [], null);
         $this->setIfExists('storedPaymentMethodId', $data ?? [], null);
@@ -271,6 +285,30 @@ class CheckoutForwardResponse implements ModelInterface, ArrayAccess, \JsonSeria
 
 
     /**
+     * Gets accountUpdate
+     *
+     * @return \Adyen\Model\Checkout\CheckoutForwardAccountUpdateResult|null
+     */
+    public function getAccountUpdate()
+    {
+        return $this->container['accountUpdate'];
+    }
+
+    /**
+     * Sets accountUpdate
+     *
+     * @param \Adyen\Model\Checkout\CheckoutForwardAccountUpdateResult|null $accountUpdate accountUpdate
+     *
+     * @return self
+     */
+    public function setAccountUpdate($accountUpdate): self
+    {
+        $this->container['accountUpdate'] = $accountUpdate;
+
+        return $this;
+    }
+
+    /**
      * Gets merchantReference
      *
      * @return string|null
@@ -290,6 +328,30 @@ class CheckoutForwardResponse implements ModelInterface, ArrayAccess, \JsonSeria
     public function setMerchantReference($merchantReference): self
     {
         $this->container['merchantReference'] = $merchantReference;
+
+        return $this;
+    }
+
+    /**
+     * Gets networkToken
+     *
+     * @return \Adyen\Model\Checkout\CheckoutForwardNetworkTokenResult|null
+     */
+    public function getNetworkToken()
+    {
+        return $this->container['networkToken'];
+    }
+
+    /**
+     * Sets networkToken
+     *
+     * @param \Adyen\Model\Checkout\CheckoutForwardNetworkTokenResult|null $networkToken networkToken
+     *
+     * @return self
+     */
+    public function setNetworkToken($networkToken): self
+    {
+        $this->container['networkToken'] = $networkToken;
 
         return $this;
     }

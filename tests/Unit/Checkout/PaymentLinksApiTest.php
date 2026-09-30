@@ -23,7 +23,7 @@
 
 namespace Adyen\Tests\Unit\Checkout;
 
-use Adyen\AdyenException;
+use Adyen\Exception\AdyenException;
 use Adyen\Model\Checkout\PaymentLinkRequest;
 use Adyen\Model\Checkout\UpdatePaymentLinkRequest;
 use Adyen\Service\Checkout\PaymentLinksApi;
@@ -31,10 +31,93 @@ use Adyen\Tests\Unit\BaseTest;
 
 class PaymentLinksApiTest extends BaseTest
 {
+    public function testGetPaymentLinkSendsExpectedUrl(): void
+    {
+        $container = [];
+        $client = $this->createMockSerializerClient(
+            'tests/Resources/Checkout/payment-links-success.json',
+            200,
+            $container
+        );
+        $service = new PaymentLinksApi($this->createConfiguration(), $client);
+
+        $service->getPaymentLink('linkId');
+
+        $request = $container[0]['request'];
+        $this->assertSame('GET', $request->getMethod());
+        $this->assertSame('https://checkout-test.adyen.com/v72/paymentLinks/linkId', (string) $request->getUri());
+    }
+
+    public function testPaymentLinksSendsExpectedUrl(): void
+    {
+        $container = [];
+        $client = $this->createMockSerializerClient(
+            'tests/Resources/Checkout/payment-links-success.json',
+            200,
+            $container
+        );
+        $service = new PaymentLinksApi($this->createConfiguration(), $client);
+
+        $service->paymentLinks(new PaymentLinkRequest());
+
+        $request = $container[0]['request'];
+        $this->assertSame('POST', $request->getMethod());
+        $this->assertSame('https://checkout-test.adyen.com/v72/paymentLinks', (string) $request->getUri());
+    }
+
+    public function testUpdatePaymentLinkSendsExpectedUrl(): void
+    {
+        $container = [];
+        $client = $this->createMockSerializerClient(
+            'tests/Resources/Checkout/payment-links-expired.json',
+            200,
+            $container
+        );
+        $service = new PaymentLinksApi($this->createConfiguration(), $client);
+
+        $service->updatePaymentLink('linkId', new UpdatePaymentLinkRequest());
+
+        $request = $container[0]['request'];
+        $this->assertSame('PATCH', $request->getMethod());
+        $this->assertSame('https://checkout-test.adyen.com/v72/paymentLinks/linkId', (string) $request->getUri());
+    }
+
+    public function testPaymentLinksOnErrorResponseThrows(): void
+    {
+        $client = $this->createMockSerializerClient('tests/Resources/Checkout/payment-methods-forbidden.json', 403);
+        $service = new PaymentLinksApi($this->createConfiguration(), $client);
+
+        try {
+            $service->paymentLinks(new PaymentLinkRequest());
+            $this->fail('Expected an AdyenException for HTTP 403');
+        } catch (AdyenException $exception) {
+            $this->assertSame(403, $exception->getStatusCode());
+            $this->assertSame('Forbidden', $exception->getMessage());
+            $error = $exception->getError();
+            $this->assertNotNull($error);
+            $this->assertSame('010', $error->getErrorCode());
+        }
+    }
+
+    public function testPaymentLinksAsyncOnErrorResponseThrows(): void
+    {
+        $client = $this->createMockSerializerClient('tests/Resources/Checkout/payment-methods-forbidden.json', 403);
+        $service = new PaymentLinksApi($this->createConfiguration(), $client);
+
+        try {
+            $service->paymentLinksAsync(new PaymentLinkRequest())->wait();
+            $this->fail('Expected an AdyenException for HTTP 403');
+        } catch (AdyenException $exception) {
+            $this->assertSame(403, $exception->getStatusCode());
+            $this->assertSame('Forbidden', $exception->getMessage());
+            $error = $exception->getError();
+            $this->assertNotNull($error);
+            $this->assertSame('010', $error->getErrorCode());
+        }
+    }
 
     /**
      * @dataProvider failurePaymentsProvider
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testPaymentLinksFailure(
@@ -99,7 +182,6 @@ class PaymentLinksApiTest extends BaseTest
      * @param int $httpStatus
      *
      * @dataProvider successPaymentsLinkProvider
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testPaymentLinksSuccessWithArray($jsonFile, $httpStatus)
@@ -132,7 +214,6 @@ class PaymentLinksApiTest extends BaseTest
      * @param int $httpStatus
      *
      * @dataProvider successPaymentsLinkProvider
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testPaymentLinksSuccess($jsonFile, $httpStatus)
@@ -188,7 +269,6 @@ class PaymentLinksApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testPaymentLinksExpiredWithArray()
@@ -209,7 +289,6 @@ class PaymentLinksApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testPaymentLinksExpired()
@@ -228,7 +307,6 @@ class PaymentLinksApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testPaymentLinksExpiredArrayResponse()
@@ -249,7 +327,6 @@ class PaymentLinksApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testPaymentLinksRetrieveSuccess()
@@ -265,7 +342,6 @@ class PaymentLinksApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testPaymentLinksInvalidWithArray()
@@ -294,7 +370,6 @@ class PaymentLinksApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testPaymentLinksInvalid()

@@ -40,6 +40,7 @@ class KlarnaNetworkDetails implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static array $openAPITypes = [
         'checkoutAttemptId' => 'string',
         'klarnaNetworkData' => 'string',
+        'klarnaNetworkPaymentAccountId' => 'string',
         'klarnaNetworkSessionToken' => 'string',
         'recurringDetailReference' => 'string',
         'sdkData' => 'string',
@@ -57,6 +58,7 @@ class KlarnaNetworkDetails implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static array $openAPIFormats = [
         'checkoutAttemptId' => null,
         'klarnaNetworkData' => null,
+        'klarnaNetworkPaymentAccountId' => null,
         'klarnaNetworkSessionToken' => null,
         'recurringDetailReference' => null,
         'sdkData' => null,
@@ -72,6 +74,7 @@ class KlarnaNetworkDetails implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static array $openAPINullables = [
         'checkoutAttemptId' => false,
         'klarnaNetworkData' => false,
+        'klarnaNetworkPaymentAccountId' => false,
         'klarnaNetworkSessionToken' => false,
         'recurringDetailReference' => false,
         'sdkData' => false,
@@ -167,6 +170,7 @@ class KlarnaNetworkDetails implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static array $attributeMap = [
         'checkoutAttemptId' => 'checkoutAttemptId',
         'klarnaNetworkData' => 'klarnaNetworkData',
+        'klarnaNetworkPaymentAccountId' => 'klarnaNetworkPaymentAccountId',
         'klarnaNetworkSessionToken' => 'klarnaNetworkSessionToken',
         'recurringDetailReference' => 'recurringDetailReference',
         'sdkData' => 'sdkData',
@@ -182,6 +186,7 @@ class KlarnaNetworkDetails implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static array $setters = [
         'checkoutAttemptId' => 'setCheckoutAttemptId',
         'klarnaNetworkData' => 'setKlarnaNetworkData',
+        'klarnaNetworkPaymentAccountId' => 'setKlarnaNetworkPaymentAccountId',
         'klarnaNetworkSessionToken' => 'setKlarnaNetworkSessionToken',
         'recurringDetailReference' => 'setRecurringDetailReference',
         'sdkData' => 'setSdkData',
@@ -197,6 +202,7 @@ class KlarnaNetworkDetails implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static array $getters = [
         'checkoutAttemptId' => 'getCheckoutAttemptId',
         'klarnaNetworkData' => 'getKlarnaNetworkData',
+        'klarnaNetworkPaymentAccountId' => 'getKlarnaNetworkPaymentAccountId',
         'klarnaNetworkSessionToken' => 'getKlarnaNetworkSessionToken',
         'recurringDetailReference' => 'getRecurringDetailReference',
         'sdkData' => 'getSdkData',
@@ -276,6 +282,7 @@ class KlarnaNetworkDetails implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         $this->setIfExists('checkoutAttemptId', $data ?? [], null);
         $this->setIfExists('klarnaNetworkData', $data ?? [], null);
+        $this->setIfExists('klarnaNetworkPaymentAccountId', $data ?? [], null);
         $this->setIfExists('klarnaNetworkSessionToken', $data ?? [], null);
         $this->setIfExists('recurringDetailReference', $data ?? [], null);
         $this->setIfExists('sdkData', $data ?? [], null);
@@ -348,6 +355,30 @@ class KlarnaNetworkDetails implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setKlarnaNetworkData($klarnaNetworkData): self
     {
         $this->container['klarnaNetworkData'] = $klarnaNetworkData;
+
+        return $this;
+    }
+
+    /**
+     * Gets klarnaNetworkPaymentAccountId
+     *
+     * @return string|null
+     */
+    public function getKlarnaNetworkPaymentAccountId()
+    {
+        return $this->container['klarnaNetworkPaymentAccountId'];
+    }
+
+    /**
+     * Sets klarnaNetworkPaymentAccountId
+     *
+     * @param string|null $klarnaNetworkPaymentAccountId The Klarna Network Payment Account identifier to use for the transaction. Required when `klarnaNetworkSessionToken` is provided.
+     *
+     * @return self
+     */
+    public function setKlarnaNetworkPaymentAccountId($klarnaNetworkPaymentAccountId): self
+    {
+        $this->container['klarnaNetworkPaymentAccountId'] = $klarnaNetworkPaymentAccountId;
 
         return $this;
     }

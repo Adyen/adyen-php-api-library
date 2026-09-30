@@ -57,6 +57,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
         'mandate' => '\Adyen\Model\Checkout\TokenMandate',
         'name' => 'string',
         'networkTxReference' => 'string',
+        'opi' => '\Adyen\Model\Checkout\OpiResponse',
         'ownerName' => 'string',
         'shopperEmail' => 'string',
         'shopperReference' => 'string',
@@ -91,6 +92,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
         'mandate' => null,
         'name' => null,
         'networkTxReference' => null,
+        'opi' => null,
         'ownerName' => null,
         'shopperEmail' => null,
         'shopperReference' => null,
@@ -123,6 +125,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
         'mandate' => false,
         'name' => false,
         'networkTxReference' => false,
+        'opi' => false,
         'ownerName' => false,
         'shopperEmail' => false,
         'shopperReference' => false,
@@ -235,6 +238,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
         'mandate' => 'mandate',
         'name' => 'name',
         'networkTxReference' => 'networkTxReference',
+        'opi' => 'opi',
         'ownerName' => 'ownerName',
         'shopperEmail' => 'shopperEmail',
         'shopperReference' => 'shopperReference',
@@ -267,6 +271,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
         'mandate' => 'setMandate',
         'name' => 'setName',
         'networkTxReference' => 'setNetworkTxReference',
+        'opi' => 'setOpi',
         'ownerName' => 'setOwnerName',
         'shopperEmail' => 'setShopperEmail',
         'shopperReference' => 'setShopperReference',
@@ -299,6 +304,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
         'mandate' => 'getMandate',
         'name' => 'getName',
         'networkTxReference' => 'getNetworkTxReference',
+        'opi' => 'getOpi',
         'ownerName' => 'getOwnerName',
         'shopperEmail' => 'getShopperEmail',
         'shopperReference' => 'getShopperReference',
@@ -382,6 +388,7 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('mandate', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('networkTxReference', $data ?? [], null);
+        $this->setIfExists('opi', $data ?? [], null);
         $this->setIfExists('ownerName', $data ?? [], null);
         $this->setIfExists('shopperEmail', $data ?? [], null);
         $this->setIfExists('shopperReference', $data ?? [], null);
@@ -862,6 +869,30 @@ class StoredPaymentMethodResource implements ModelInterface, ArrayAccess, \JsonS
     public function setNetworkTxReference($networkTxReference): self
     {
         $this->container['networkTxReference'] = $networkTxReference;
+
+        return $this;
+    }
+
+    /**
+     * Gets opi
+     *
+     * @return \Adyen\Model\Checkout\OpiResponse|null
+     */
+    public function getOpi()
+    {
+        return $this->container['opi'];
+    }
+
+    /**
+     * Sets opi
+     *
+     * @param \Adyen\Model\Checkout\OpiResponse|null $opi opi
+     *
+     * @return self
+     */
+    public function setOpi($opi): self
+    {
+        $this->container['opi'] = $opi;
 
         return $this;
     }
