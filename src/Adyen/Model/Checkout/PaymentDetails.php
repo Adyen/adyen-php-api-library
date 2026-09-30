@@ -258,6 +258,7 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_WALLEY = 'walley';
     public const TYPE_WALLEY_B2B = 'walley_b2b';
     public const TYPE_PAYPO = 'paypo';
+    public const TYPE_SATISPAY = 'satispay';
     public const TYPE_SCALAPAY = 'scalapay';
     public const TYPE_SCALAPAY_3X = 'scalapay_3x';
     public const TYPE_SCALAPAY_4X = 'scalapay_4x';
@@ -352,6 +353,7 @@ class PaymentDetails implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_WALLEY,
             self::TYPE_WALLEY_B2B,
             self::TYPE_PAYPO,
+            self::TYPE_SATISPAY,
             self::TYPE_SCALAPAY,
             self::TYPE_SCALAPAY_3X,
             self::TYPE_SCALAPAY_4X,

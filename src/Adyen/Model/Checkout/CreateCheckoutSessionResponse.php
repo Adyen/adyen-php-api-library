@@ -70,6 +70,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'metadata' => 'array<string,string>',
         'mode' => 'string',
         'mpiData' => '\Adyen\Model\Checkout\ThreeDSecureData',
+        'payable' => 'bool',
         'platformChargebackLogic' => '\Adyen\Model\Checkout\PlatformChargebackLogic',
         'recurringExpiry' => 'string',
         'recurringFrequency' => 'string',
@@ -145,6 +146,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'metadata' => null,
         'mode' => null,
         'mpiData' => null,
+        'payable' => null,
         'platformChargebackLogic' => null,
         'recurringExpiry' => null,
         'recurringFrequency' => null,
@@ -218,6 +220,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'metadata' => false,
         'mode' => false,
         'mpiData' => false,
+        'payable' => false,
         'platformChargebackLogic' => false,
         'recurringExpiry' => false,
         'recurringFrequency' => false,
@@ -371,6 +374,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'metadata' => 'metadata',
         'mode' => 'mode',
         'mpiData' => 'mpiData',
+        'payable' => 'payable',
         'platformChargebackLogic' => 'platformChargebackLogic',
         'recurringExpiry' => 'recurringExpiry',
         'recurringFrequency' => 'recurringFrequency',
@@ -444,6 +448,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'metadata' => 'setMetadata',
         'mode' => 'setMode',
         'mpiData' => 'setMpiData',
+        'payable' => 'setPayable',
         'platformChargebackLogic' => 'setPlatformChargebackLogic',
         'recurringExpiry' => 'setRecurringExpiry',
         'recurringFrequency' => 'setRecurringFrequency',
@@ -517,6 +522,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         'metadata' => 'getMetadata',
         'mode' => 'getMode',
         'mpiData' => 'getMpiData',
+        'payable' => 'getPayable',
         'platformChargebackLogic' => 'getPlatformChargebackLogic',
         'recurringExpiry' => 'getRecurringExpiry',
         'recurringFrequency' => 'getRecurringFrequency',
@@ -743,6 +749,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         $this->setIfExists('metadata', $data ?? [], null);
         $this->setIfExists('mode', $data ?? [], null);
         $this->setIfExists('mpiData', $data ?? [], null);
+        $this->setIfExists('payable', $data ?? [], null);
         $this->setIfExists('platformChargebackLogic', $data ?? [], null);
         $this->setIfExists('recurringExpiry', $data ?? [], null);
         $this->setIfExists('recurringFrequency', $data ?? [], null);
@@ -1563,6 +1570,30 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
     public function setMpiData($mpiData): self
     {
         $this->container['mpiData'] = $mpiData;
+
+        return $this;
+    }
+
+    /**
+     * Gets payable
+     *
+     * @return bool|null
+     */
+    public function getPayable()
+    {
+        return $this->container['payable'];
+    }
+
+    /**
+     * Sets payable
+     *
+     * @param bool|null $payable Indicates if the session is payable. If the payment amount is final, set this to **true** to indicate that the session is payable, so that the shopper can proceed to submit the payment. When you set this to **true**, you can no longer update the session.  If you set this to **false**, you must make another request to update the session and set this to **true** before the shopper can submit the payment.  If not specified, this defaults to **true**.
+     *
+     * @return self
+     */
+    public function setPayable($payable): self
+    {
+        $this->container['payable'] = $payable;
 
         return $this;
     }

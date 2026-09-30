@@ -77,6 +77,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'merchantRiskIndicator' => '\Adyen\Model\Checkout\MerchantRiskIndicator',
         'metadata' => 'array<string,string>',
         'mpiData' => '\Adyen\Model\Checkout\ThreeDSecureData',
+        'opi' => '\Adyen\Model\Checkout\OpiRequest',
         'order' => '\Adyen\Model\Checkout\EncryptedOrderData',
         'orderReference' => 'string',
         'origin' => 'string',
@@ -161,6 +162,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'merchantRiskIndicator' => null,
         'metadata' => null,
         'mpiData' => null,
+        'opi' => null,
         'order' => null,
         'orderReference' => null,
         'origin' => null,
@@ -243,6 +245,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'merchantRiskIndicator' => false,
         'metadata' => false,
         'mpiData' => false,
+        'opi' => false,
         'order' => false,
         'orderReference' => false,
         'origin' => false,
@@ -405,6 +408,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'merchantRiskIndicator' => 'merchantRiskIndicator',
         'metadata' => 'metadata',
         'mpiData' => 'mpiData',
+        'opi' => 'opi',
         'order' => 'order',
         'orderReference' => 'orderReference',
         'origin' => 'origin',
@@ -487,6 +491,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'merchantRiskIndicator' => 'setMerchantRiskIndicator',
         'metadata' => 'setMetadata',
         'mpiData' => 'setMpiData',
+        'opi' => 'setOpi',
         'order' => 'setOrder',
         'orderReference' => 'setOrderReference',
         'origin' => 'setOrigin',
@@ -569,6 +574,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'merchantRiskIndicator' => 'getMerchantRiskIndicator',
         'metadata' => 'getMetadata',
         'mpiData' => 'getMpiData',
+        'opi' => 'getOpi',
         'order' => 'getOrder',
         'orderReference' => 'getOrderReference',
         'origin' => 'getOrigin',
@@ -787,6 +793,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('merchantRiskIndicator', $data ?? [], null);
         $this->setIfExists('metadata', $data ?? [], null);
         $this->setIfExists('mpiData', $data ?? [], null);
+        $this->setIfExists('opi', $data ?? [], null);
         $this->setIfExists('order', $data ?? [], null);
         $this->setIfExists('orderReference', $data ?? [], null);
         $this->setIfExists('origin', $data ?? [], null);
@@ -1700,7 +1707,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets merchantOrderReference
      *
-     * @param string|null $merchantOrderReference You can use this reference to link multiple transactions to one another (for example, to track order authorization rate).For each billing cycle, this reference should be unique. After the first authorized payment attempt, do not reuse the reference. If you use this parameter, include it in all of the payment requests that you make.   We strongly recommend that you: * Always include this parameter, so that you can benefit from linking payment requests to one another, in case of authorization retries.  * Additionally include the following parameters in the `additionalData` object: [`retry.orderAttemptNumber`](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-orderAttemptNumber), [`retry.chainAttemptNumber`](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-chainAttemptNumber), and [`retry.skipRetry`](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-skipRetry)
+     * @param string|null $merchantOrderReference You can use this reference to link multiple transactions to one another (for example, to track order authorization rate). For each billing cycle, this reference should be unique. After the first authorized payment attempt, do not reuse the reference. If you use this parameter, include it in all of the payment requests that you make.   We strongly recommend that you: * Always include this parameter, so that you can benefit from linking payment requests to one another, in case of authorization retries.  * Additionally include the following parameters in the `additionalData` object: [`retry.orderAttemptNumber`](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-orderAttemptNumber), [`retry.chainAttemptNumber`](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-chainAttemptNumber), and [`retry.skipRetry`](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-skipRetry)
      *
      * @return self
      */
@@ -1779,6 +1786,30 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setMpiData($mpiData): self
     {
         $this->container['mpiData'] = $mpiData;
+
+        return $this;
+    }
+
+    /**
+     * Gets opi
+     *
+     * @return \Adyen\Model\Checkout\OpiRequest|null
+     */
+    public function getOpi()
+    {
+        return $this->container['opi'];
+    }
+
+    /**
+     * Sets opi
+     *
+     * @param \Adyen\Model\Checkout\OpiRequest|null $opi opi
+     *
+     * @return self
+     */
+    public function setOpi($opi): self
+    {
+        $this->container['opi'] = $opi;
 
         return $this;
     }
@@ -2060,7 +2091,7 @@ class PaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets reference
      *
-     * @param string $reference The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. To provide multiple references for one transaction, separate the reference values with the hyphen (`-`) character.We strongly recommend that you use a unique value for each transaction. Maximum length: 80 characters.
+     * @param string $reference The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. To provide multiple references for one transaction, separate the reference values with the hyphen (`-`) character. We strongly recommend that you use a unique value for each transaction. Maximum length: 80 characters.
      *
      * @return self
      */

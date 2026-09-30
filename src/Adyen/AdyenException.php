@@ -4,6 +4,11 @@ namespace Adyen;
 
 use Exception;
 
+/**
+ * Legacy exception used by services that have not adopted the new error handling.
+ *
+ * @deprecated Use \Adyen\Exception\AdyenException with updated services instead.
+ */
 class AdyenException extends Exception
 {
     /**

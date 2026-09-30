@@ -307,7 +307,7 @@ class CheckoutSessionInstallmentOption implements ModelInterface, ArrayAccess, \
     /**
      * Sets plans
      *
-     * @param string[]|null $plans Defines the type of installment plan. If not set, defaults to **regular**.  Possible values: * **regular** * **revolving** * **bonus** * **with_interest** * **buynow_paylater** * **nointerest_bonus** * **interest_bonus** * **refund_prctg** * **nointeres_refund_prctg** * **interes_refund_prctg**
+     * @param string[]|null $plans Defines the type of installment plan. If not set, defaults to **regular**.  Possible values: * **regular** * **revolving** * **bonus**
      *
      * @return self
      */
@@ -355,7 +355,7 @@ class CheckoutSessionInstallmentOption implements ModelInterface, ArrayAccess, \
     /**
      * Sets values
      *
-     * @param int[]|null $values An array of the number of installments that the shopper can choose from. For example, **[2,3,5]**. This cannot be specified simultaneously with `maxValue`.
+     * @param int[]|null $values An array of the number of installments that the shopper can choose from. For example, **[2,3,5]**.
      *
      * @return self
      */

@@ -23,7 +23,7 @@
 
 namespace Adyen\Tests\Unit\Checkout;
 
-use Adyen\AdyenException;
+use Adyen\Exception\AdyenException;
 use Adyen\Model\Checkout\DonationPaymentRequest;
 use Adyen\Model\Checkout\DonationPaymentMethod;
 use Adyen\Service\Checkout\DonationsApi;
@@ -31,16 +31,65 @@ use Adyen\Tests\Unit\BaseTest;
 
 class DonationsApiTest extends BaseTest
 {
-
     const HOLDER_NAME = "John Smith";
     const RETURN_URL = "https://your-company.com/...";
+
+    public function testDonationCampaignsSendsExpectedUrl(): void
+    {
+        $container = [];
+        $client = $this->createMockSerializerClient(
+            'tests/Resources/Checkout/donationCampaigns-success.json',
+            200,
+            $container
+        );
+        $service = new DonationsApi($this->createConfiguration(), $client);
+
+        $service->donationCampaigns(new \Adyen\Model\Checkout\DonationCampaignsRequest());
+
+        $request = $container[0]['request'];
+        $this->assertSame('POST', $request->getMethod());
+        $this->assertSame('https://checkout-test.adyen.com/v72/donationCampaigns', (string) $request->getUri());
+    }
+
+    public function testDonationsOnErrorResponseThrows(): void
+    {
+        $client = $this->createMockSerializerClient('tests/Resources/Checkout/payment-methods-forbidden.json', 403);
+        $service = new DonationsApi($this->createConfiguration(), $client);
+
+        try {
+            $service->donations(new DonationPaymentRequest());
+            $this->fail('Expected an AdyenException for HTTP 403');
+        } catch (AdyenException $exception) {
+            $this->assertSame(403, $exception->getStatusCode());
+            $this->assertSame('Forbidden', $exception->getMessage());
+            $error = $exception->getError();
+            $this->assertNotNull($error);
+            $this->assertSame('010', $error->getErrorCode());
+        }
+    }
+
+    public function testDonationsAsyncOnErrorResponseThrows(): void
+    {
+        $client = $this->createMockSerializerClient('tests/Resources/Checkout/payment-methods-forbidden.json', 403);
+        $service = new DonationsApi($this->createConfiguration(), $client);
+
+        try {
+            $service->donationsAsync(new DonationPaymentRequest())->wait();
+            $this->fail('Expected an AdyenException for HTTP 403');
+        } catch (AdyenException $exception) {
+            $this->assertSame(403, $exception->getStatusCode());
+            $this->assertSame('Forbidden', $exception->getMessage());
+            $error = $exception->getError();
+            $this->assertNotNull($error);
+            $this->assertSame('010', $error->getErrorCode());
+        }
+    }
 
     /**
      * @param string $jsonFile
      * @param int $httpStatus
      *
      * @dataProvider successDonationsProvider
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testDonationsSuccessWithArray($jsonFile, $httpStatus)
@@ -80,7 +129,6 @@ class DonationsApiTest extends BaseTest
      * @param int $httpStatus
      *
      * @dataProvider successDonationsProvider
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testDonationsSuccess($jsonFile, $httpStatus)
@@ -162,16 +210,13 @@ class DonationsApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testDonationCampaigns()
     {
-        $container = [];
         $client = $this->createMockSerializerClient(
             'tests/Resources/Checkout/donationCampaigns-success.json',
-            200,
-            $container
+            200
         );
         $service = new DonationsApi($this->createConfiguration(), $client);
 
@@ -182,10 +227,6 @@ class DonationsApiTest extends BaseTest
 
         $result = $service->donationCampaigns($donationCampaignsRequest);
 
-        $this->assertEquals(
-            'https://checkout-test.adyen.com/v72/donationCampaigns',
-            (string) $container[0]['request']->getUri()
-        );
         $this->assertInstanceOf(\Adyen\Model\Checkout\DonationCampaignsResponse::class, $result);
         $this->assertNotEmpty($result->getDonationCampaigns());
         $this->assertEquals('DONATION_CAMPAIGN_ID', $result->getDonationCampaigns()[0]->getId());
@@ -193,7 +234,6 @@ class DonationsApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testDonationCampaignsWithArray()
@@ -220,7 +260,6 @@ class DonationsApiTest extends BaseTest
      * Covers a response shape the other array tests do not reach: a list of models, each holding a
      * nested model that itself holds a list of scalars.
      *
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testDonationCampaignsArrayResponse()

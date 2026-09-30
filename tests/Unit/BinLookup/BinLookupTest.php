@@ -2,9 +2,9 @@
 
 namespace Adyen\Tests\Unit\BinLookup;
 
-use Adyen\AdyenException;
 use Adyen\Configuration;
 use Adyen\Environment;
+use Adyen\Exception\AdyenException;
 use Adyen\RequestOptions;
 use Adyen\Model\BinLookup\Amount;
 use Adyen\Model\BinLookup\CostEstimateAssumptions;
@@ -14,9 +14,28 @@ use Adyen\Model\BinLookup\ThreeDSAvailabilityRequest;
 use Adyen\Model\BinLookup\ThreeDSAvailabilityResponse;
 use Adyen\Service\BinLookup\BinLookupApi;
 use Adyen\Tests\Unit\BaseTest;
+use GuzzleHttp\Client;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
 
 class BinLookupTest extends BaseTest
 {
+    public function testGet3dsAvailabilitySendsExpectedUrl(): void
+    {
+        $container = [];
+        $client = $this->createMockSerializerClient('tests/Resources/BinLookup/3ds-availability.json', 200, $container);
+        $service = new BinLookupApi($this->createConfiguration(), $client);
+
+        $service->get3dsAvailability(new ThreeDSAvailabilityRequest());
+
+        $request = $container[0]['request'];
+        $this->assertSame('POST', $request->getMethod());
+        $this->assertSame(
+            'https://pal-test.adyen.com/pal/servlet/BinLookup/v54/get3dsAvailability',
+            (string) $request->getUri()
+        );
+    }
 
     public function testTestUrl()
     {
@@ -56,7 +75,6 @@ class BinLookupTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testGet3DSAvailability()
@@ -77,7 +95,6 @@ class BinLookupTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testGet3DSAvailabilityWithArray()
@@ -100,7 +117,6 @@ class BinLookupTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testGet3DSAvailabilityWithArrayResponse()
@@ -126,7 +142,6 @@ class BinLookupTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testGet3dsAvailabilityWithHttpInfo()
@@ -151,7 +166,6 @@ class BinLookupTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testGetCostEstimate()
@@ -190,7 +204,6 @@ class BinLookupTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testGetCostEstimateWithArray()
@@ -228,7 +241,6 @@ class BinLookupTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testGetCostEstimateWithArrayResponse()
@@ -254,27 +266,24 @@ class BinLookupTest extends BaseTest
 
     public function testGet3DSAvailability401()
     {
-        // create mock client
         $client = $this->createMockSerializerClient('tests/Resources/BinLookup/3ds-availability-401-error.json', 401);
-
-        // initialize service
-        $config = $this->createConfiguration();
-        $service = new BinLookupApi($config, $client);
+        $service = new BinLookupApi($this->createConfiguration(), $client);
 
         try {
             $service->get3dsAvailability(new ThreeDSAvailabilityRequest());
-            $this->fail("Expected Adyen\AdyenException was not thrown.");
-        } catch (\Adyen\AdyenException $e) {
-            $this->assertEquals(401, $e->getCode());
-            $this->assertEquals('Unauthorized client error', $e->getMessage());
-            $this->assertEquals('000', $e->getAdyenErrorCode());
-            $this->assertEquals('security', $e->getErrorType());
-            $this->assertNull($e->getPspReference());
+            $this->fail('Expected an AdyenException for HTTP 401');
+        } catch (AdyenException $exception) {
+            $this->assertSame(401, $exception->getStatusCode());
+            $this->assertSame('Unauthorized client error', $exception->getMessage());
+            $error = $exception->getError();
+            $this->assertNotNull($error);
+            $this->assertSame('000', $error->getErrorCode());
+            $this->assertSame('security', $error->getErrorType());
+            $this->assertNull($error->getPspReference());
         }
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testGet3dsAvailabilityWithCustomHeaders()
@@ -301,7 +310,6 @@ class BinLookupTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testGet3DSAvailabilityAsync()
@@ -323,7 +331,6 @@ class BinLookupTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testGet3dsAvailabilityAsyncWithHttpInfo()
@@ -358,37 +365,55 @@ class BinLookupTest extends BaseTest
         $this->assertEmpty($headers);
     }
 
-    /**
-     * The async fulfilment handler deserialises the body without looking at the status code, so an error
-     * response resolves with an empty model instead of throwing. The synchronous call throws for the very
-     * same response, see testGet3DSAvailability401.
-     */
     public function testGet3dsAvailabilityAsyncOnErrorResponseThrows()
     {
-        $this->markTestSkipped('Async ignores the HTTP status code; tracked with the error-handling work.');
-
         $client = $this->createMockSerializerClient(
             'tests/Resources/BinLookup/3ds-availability-401-error.json',
             401
         );
-        $config = $this->createConfiguration();
-        $service = new BinLookupApi($config, $client);
+        $service = new BinLookupApi($this->createConfiguration(), $client);
+
+        try {
+            $service->get3dsAvailabilityAsync(new ThreeDSAvailabilityRequest())->wait();
+            $this->fail('Expected an AdyenException for HTTP 401');
+        } catch (AdyenException $exception) {
+            $this->assertSame(401, $exception->getStatusCode());
+            $this->assertSame('Unauthorized client error', $exception->getMessage());
+            $error = $exception->getError();
+            $this->assertNotNull($error);
+            $this->assertSame('000', $error->getErrorCode());
+            $this->assertSame('security', $error->getErrorType());
+            $this->assertNull($error->getPspReference());
+        }
+    }
+
+    public function testGet3dsAvailabilityRejectsMalformedSuccessResponse()
+    {
+        $client = new Client(['handler' => HandlerStack::create(new MockHandler([
+            new Response(200, [], '{invalid-json')
+        ]))]);
+        $service = new BinLookupApi($this->createConfiguration(), $client);
 
         $this->expectException(AdyenException::class);
+        $this->expectExceptionMessage('Error JSON decoding server response');
+        $service->get3dsAvailability(new ThreeDSAvailabilityRequest());
+    }
+
+    public function testGet3dsAvailabilityAsyncRejectsMalformedSuccessResponse()
+    {
+        $client = new Client(['handler' => HandlerStack::create(new MockHandler([
+            new Response(200, [], '{invalid-json')
+        ]))]);
+        $service = new BinLookupApi($this->createConfiguration(), $client);
+
+        $this->expectException(AdyenException::class);
+        $this->expectExceptionMessage('Error JSON decoding server response');
         $service->get3dsAvailabilityAsync(new ThreeDSAvailabilityRequest())->wait();
     }
 
-    /**
-     * The async rejection handler calls getResponse() on the exception unguarded. A transport level
-     * failure hands it a ConnectException, which has no such method, so the caller gets a fatal Error.
-     */
-    public function testGet3dsAvailabilityAsyncOnConnectionFailureThrowsAdyenException()
+    public function testGet3dsAvailabilityOnConnectionFailureThrowsAdyenException()
     {
-        $this->markTestSkipped(
-            'Async rejection handler assumes a response is present; tracked with the error-handling work.'
-        );
-
-        $mock = new \GuzzleHttp\Handler\MockHandler([
+        $client = new Client(['handler' => HandlerStack::create(new MockHandler([
             new \GuzzleHttp\Exception\ConnectException(
                 'Connection refused',
                 new \GuzzleHttp\Psr7\Request(
@@ -396,12 +421,27 @@ class BinLookupTest extends BaseTest
                     'https://pal-test.adyen.com/pal/servlet/BinLookup/v54/get3dsAvailability'
                 )
             )
-        ]);
-        $client = new \GuzzleHttp\Client(['handler' => \GuzzleHttp\HandlerStack::create($mock)]);
-        $config = $this->createConfiguration();
-        $service = new BinLookupApi($config, $client);
+        ]))]);
+        $service = new BinLookupApi($this->createConfiguration(), $client);
 
-        $this->expectException(\Adyen\Exception\AdyenException::class);
+        $this->expectException(AdyenException::class);
+        $service->get3dsAvailability(new ThreeDSAvailabilityRequest());
+    }
+
+    public function testGet3dsAvailabilityAsyncOnConnectionFailureThrowsAdyenException()
+    {
+        $client = new Client(['handler' => HandlerStack::create(new MockHandler([
+            new \GuzzleHttp\Exception\ConnectException(
+                'Connection refused',
+                new \GuzzleHttp\Psr7\Request(
+                    'POST',
+                    'https://pal-test.adyen.com/pal/servlet/BinLookup/v54/get3dsAvailability'
+                )
+            )
+        ]))]);
+        $service = new BinLookupApi($this->createConfiguration(), $client);
+
+        $this->expectException(AdyenException::class);
         $service->get3dsAvailabilityAsync(new ThreeDSAvailabilityRequest())->wait();
     }
 
