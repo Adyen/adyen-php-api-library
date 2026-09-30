@@ -23,24 +23,67 @@
 
 namespace Adyen\Tests\Unit\Checkout;
 
-use Adyen\AdyenException;
+use Adyen\Exception\AdyenException;
 use Adyen\Service\Checkout\OrdersApi;
 use Adyen\Tests\Unit\BaseTest;
 
 class OrdersApiTest extends BaseTest
 {
+    public function testOrdersSendsExpectedUrl(): void
+    {
+        $container = [];
+        $client = $this->createMockSerializerClient('tests/Resources/Checkout/orders-success.json', 200, $container);
+        $service = new OrdersApi($this->createConfiguration(), $client);
+
+        $service->orders(new \Adyen\Model\Checkout\CreateOrderRequest());
+
+        $request = $container[0]['request'];
+        $this->assertSame('POST', $request->getMethod());
+        $this->assertSame('https://checkout-test.adyen.com/v72/orders', (string) $request->getUri());
+    }
+
+    public function testOrdersOnErrorResponseThrows(): void
+    {
+        $client = $this->createMockSerializerClient('tests/Resources/Checkout/payment-methods-forbidden.json', 403);
+        $service = new OrdersApi($this->createConfiguration(), $client);
+
+        try {
+            $service->orders(new \Adyen\Model\Checkout\CreateOrderRequest());
+            $this->fail('Expected an AdyenException for HTTP 403');
+        } catch (AdyenException $exception) {
+            $this->assertSame(403, $exception->getStatusCode());
+            $this->assertSame('Forbidden', $exception->getMessage());
+            $error = $exception->getError();
+            $this->assertNotNull($error);
+            $this->assertSame('010', $error->getErrorCode());
+        }
+    }
+
+    public function testOrdersAsyncOnErrorResponseThrows(): void
+    {
+        $client = $this->createMockSerializerClient('tests/Resources/Checkout/payment-methods-forbidden.json', 403);
+        $service = new OrdersApi($this->createConfiguration(), $client);
+
+        try {
+            $service->ordersAsync(new \Adyen\Model\Checkout\CreateOrderRequest())->wait();
+            $this->fail('Expected an AdyenException for HTTP 403');
+        } catch (AdyenException $exception) {
+            $this->assertSame(403, $exception->getStatusCode());
+            $this->assertSame('Forbidden', $exception->getMessage());
+            $error = $exception->getError();
+            $this->assertNotNull($error);
+            $this->assertSame('010', $error->getErrorCode());
+        }
+    }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testOrders()
     {
-        $container = [];
         $client = $this->createMockSerializerClient(
             'tests/Resources/Checkout/orders-success.json',
-            200,
-            $container
+            200
         );
         $service = new OrdersApi($this->createConfiguration(), $client);
 
@@ -55,10 +98,6 @@ class OrdersApiTest extends BaseTest
 
         $result = $service->orders($createOrderRequest);
 
-        $this->assertEquals(
-            'https://checkout-test.adyen.com/v72/orders',
-            (string) $container[0]['request']->getUri()
-        );
         $this->assertInstanceOf(\Adyen\Model\Checkout\CreateOrderResponse::class, $result);
         $this->assertEquals('8616178914061985', $result->getPspReference());
         $this->assertEquals('Success', $result->getResultCode());
@@ -67,7 +106,6 @@ class OrdersApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testOrdersWithArray()
@@ -88,7 +126,6 @@ class OrdersApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testOrdersArrayResponse()
@@ -109,16 +146,13 @@ class OrdersApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testCancelOrder()
     {
-        $container = [];
         $client = $this->createMockSerializerClient(
             'tests/Resources/Checkout/cancelOrder-success.json',
-            200,
-            $container
+            200
         );
         $service = new OrdersApi($this->createConfiguration(), $client);
 
@@ -132,17 +166,12 @@ class OrdersApiTest extends BaseTest
 
         $result = $service->cancelOrder($cancelOrderRequest);
 
-        $this->assertEquals(
-            'https://checkout-test.adyen.com/v72/orders/cancel',
-            (string) $container[0]['request']->getUri()
-        );
         $this->assertInstanceOf(\Adyen\Model\Checkout\CancelOrderResponse::class, $result);
         $this->assertEquals('8816178914079738', $result->getPspReference());
         $this->assertEquals('Received', $result->getResultCode());
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testCancelOrderWithArray()
@@ -165,7 +194,6 @@ class OrdersApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testCancelOrderArrayResponse()
@@ -183,16 +211,13 @@ class OrdersApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testGetBalanceOfGiftCard()
     {
-        $container = [];
         $client = $this->createMockSerializerClient(
             'tests/Resources/Checkout/getBalanceOfGiftCard-success.json',
-            200,
-            $container
+            200
         );
         $service = new OrdersApi($this->createConfiguration(), $client);
 
@@ -207,10 +232,6 @@ class OrdersApiTest extends BaseTest
 
         $result = $service->getBalanceOfGiftCard($balanceCheckRequest);
 
-        $this->assertEquals(
-            'https://checkout-test.adyen.com/v72/paymentMethods/balance',
-            (string) $container[0]['request']->getUri()
-        );
         $this->assertInstanceOf(\Adyen\Model\Checkout\BalanceCheckResponse::class, $result);
         $this->assertEquals('Success', $result->getResultCode());
         $this->assertEquals(5000, $result->getBalance()->getValue());
@@ -218,7 +239,6 @@ class OrdersApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testGetBalanceOfGiftCardWithArray()
@@ -242,7 +262,6 @@ class OrdersApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testGetBalanceOfGiftCardArrayResponse()

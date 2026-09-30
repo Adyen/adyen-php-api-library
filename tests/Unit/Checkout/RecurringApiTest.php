@@ -23,17 +23,104 @@
 
 namespace Adyen\Tests\Unit\Checkout;
 
-use Adyen\AdyenException;
+use Adyen\Exception\AdyenException;
 use Adyen\Service\Checkout\RecurringApi;
 use Adyen\Tests\Unit\BaseTest;
 
 class RecurringApiTest extends BaseTest
 {
-
     const HOLDER_NAME = "John Smith";
 
+    public function testDeleteTokenForStoredPaymentDetailsSendsExpectedUrl(): void
+    {
+        $container = [];
+        $client = $this->createMockSerializerClient(null, 204, $container);
+        $service = new RecurringApi($this->createConfiguration(), $client);
+
+        $service->deleteTokenForStoredPaymentDetails('123', '411111', 'YOUR_MERCHANT_ACCOUNT');
+
+        $request = $container[0]['request'];
+        $this->assertSame('DELETE', $request->getMethod());
+        $this->assertSame(
+            'https://checkout-test.adyen.com/v72/storedPaymentMethods/123'
+                . '?shopperReference=411111&merchantAccount=YOUR_MERCHANT_ACCOUNT',
+            (string) $request->getUri()
+        );
+    }
+
+    public function testGetTokensForStoredPaymentDetailsSendsExpectedUrl(): void
+    {
+        $container = [];
+        $client = $this->createMockSerializerClient(
+            'tests/Resources/Checkout/getStoredPaymentMethods-success.json',
+            200,
+            $container
+        );
+        $service = new RecurringApi($this->createConfiguration(), $client);
+
+        $service->getTokensForStoredPaymentDetails('411111', 'YOUR_MERCHANT_ACCOUNT');
+
+        $request = $container[0]['request'];
+        $this->assertSame('GET', $request->getMethod());
+        $this->assertSame(
+            'https://checkout-test.adyen.com/v72/storedPaymentMethods'
+                . '?shopperReference=411111&merchantAccount=YOUR_MERCHANT_ACCOUNT',
+            (string) $request->getUri()
+        );
+    }
+
+    public function testStoredPaymentMethodsSendsExpectedUrl(): void
+    {
+        $container = [];
+        $client = $this->createMockSerializerClient(
+            'tests/Resources/Checkout/storedPaymentMethods-success.json',
+            201,
+            $container
+        );
+        $service = new RecurringApi($this->createConfiguration(), $client);
+
+        $service->storedPaymentMethods(new \Adyen\Model\Checkout\StoredPaymentMethodRequest());
+
+        $request = $container[0]['request'];
+        $this->assertSame('POST', $request->getMethod());
+        $this->assertSame('https://checkout-test.adyen.com/v72/storedPaymentMethods', (string) $request->getUri());
+    }
+
+    public function testForwardOnErrorResponseThrows(): void
+    {
+        $client = $this->createMockSerializerClient('tests/Resources/Checkout/payment-methods-forbidden.json', 403);
+        $service = new RecurringApi($this->createConfiguration(), $client);
+
+        try {
+            $service->forward(new \Adyen\Model\Checkout\CheckoutForwardRequest());
+            $this->fail('Expected an AdyenException for HTTP 403');
+        } catch (AdyenException $exception) {
+            $this->assertSame(403, $exception->getStatusCode());
+            $this->assertSame('Forbidden', $exception->getMessage());
+            $error = $exception->getError();
+            $this->assertNotNull($error);
+            $this->assertSame('010', $error->getErrorCode());
+        }
+    }
+
+    public function testForwardAsyncOnErrorResponseThrows(): void
+    {
+        $client = $this->createMockSerializerClient('tests/Resources/Checkout/payment-methods-forbidden.json', 403);
+        $service = new RecurringApi($this->createConfiguration(), $client);
+
+        try {
+            $service->forwardAsync(new \Adyen\Model\Checkout\CheckoutForwardRequest())->wait();
+            $this->fail('Expected an AdyenException for HTTP 403');
+        } catch (AdyenException $exception) {
+            $this->assertSame(403, $exception->getStatusCode());
+            $this->assertSame('Forbidden', $exception->getMessage());
+            $error = $exception->getError();
+            $this->assertNotNull($error);
+            $this->assertSame('010', $error->getErrorCode());
+        }
+    }
+
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testDeleteTokenForStoredPaymentDetailsWithHttpInfo()
@@ -58,7 +145,6 @@ class RecurringApiTest extends BaseTest
      * @param int $httpStatus
      *
      * @dataProvider successGetStoredPaymentMethodsProvider
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testGetStoredPaymentMethodsSuccess($jsonFile, $httpStatus)
@@ -86,7 +172,6 @@ class RecurringApiTest extends BaseTest
      * @param int $httpStatus
      *
      * @dataProvider successGetStoredPaymentMethodsProvider
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testGetStoredPaymentMethodsSuccessArrayResponse($jsonFile, $httpStatus)
@@ -129,7 +214,6 @@ class RecurringApiTest extends BaseTest
      * @param int $httpStatus
      *
      * @dataProvider successDeleteStoredPaymentMethodsProvider
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testDeleteStoredPaymentMethodsSuccess($jsonFile, $httpStatus)
@@ -147,12 +231,8 @@ class RecurringApiTest extends BaseTest
          );
 
         $request = $container[0]['request'];
-        $uri = (string) $request->getUri();
 
         $this->assertEquals('DELETE', $request->getMethod());
-        $this->assertStringContainsString('/v72/storedPaymentMethods/123', $uri);
-        $this->assertStringContainsString('shopperReference=411111', $uri);
-        $this->assertStringContainsString('merchantAccount=YOUR_MERCHANT_ACCOUNT', $uri);
     }
 
     public static function successDeleteStoredPaymentMethodsProvider(): array
@@ -163,16 +243,13 @@ class RecurringApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testStoredPaymentMethods()
     {
-        $container = [];
         $client = $this->createMockSerializerClient(
             'tests/Resources/Checkout/storedPaymentMethods-success.json',
-            201,
-            $container
+            201
         );
         $service = new RecurringApi($this->createConfiguration(), $client);
 
@@ -183,10 +260,6 @@ class RecurringApiTest extends BaseTest
 
         $result = $service->storedPaymentMethods($storedPaymentMethodRequest);
 
-        $this->assertEquals(
-            'https://checkout-test.adyen.com/v72/storedPaymentMethods',
-            (string) $container[0]['request']->getUri()
-        );
         $this->assertInstanceOf(\Adyen\Model\Checkout\StoredPaymentMethodResource::class, $result);
         $this->assertEquals('KHQC5N7G84BLNK43', $result->getId());
         $this->assertEquals('1111', $result->getLastFour());
@@ -195,7 +268,6 @@ class RecurringApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testStoredPaymentMethodsWithArray()
@@ -216,7 +288,6 @@ class RecurringApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testStoredPaymentMethodsArrayResponse()
@@ -295,7 +366,6 @@ class RecurringApiTest extends BaseTest
      *
      * @dataProvider successForwardCardDetailsResponseProvider
      * @throws \Adyen\Exception\AdyenException
-     * @throws AdyenException
      */
     public function testRecurringForwardWithArray($jsonFile, $httpStatus)
     {
@@ -336,7 +406,6 @@ class RecurringApiTest extends BaseTest
      *
      * @dataProvider successForwardCardDetailsResponseProvider
      * @throws \Adyen\Exception\AdyenException
-     * @throws AdyenException
      */
     public function testRecurringForwardArrayResponse($jsonFile, $httpStatus)
     {

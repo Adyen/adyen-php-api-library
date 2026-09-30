@@ -102,6 +102,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'googlePayToken' => 'string',
         'merchantData' => 'string',
         'klarnaNetworkData' => 'string',
+        'klarnaNetworkPaymentAccountId' => 'string',
         'klarnaNetworkSessionToken' => 'string',
         'masterpassTransactionId' => 'string',
         'orderID' => 'string',
@@ -198,6 +199,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'googlePayToken' => null,
         'merchantData' => null,
         'klarnaNetworkData' => null,
+        'klarnaNetworkPaymentAccountId' => null,
         'klarnaNetworkSessionToken' => null,
         'masterpassTransactionId' => null,
         'orderID' => null,
@@ -292,6 +294,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'googlePayToken' => false,
         'merchantData' => false,
         'klarnaNetworkData' => false,
+        'klarnaNetworkPaymentAccountId' => false,
         'klarnaNetworkSessionToken' => false,
         'masterpassTransactionId' => false,
         'orderID' => false,
@@ -466,6 +469,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'googlePayToken' => 'googlePayToken',
         'merchantData' => 'merchantData',
         'klarnaNetworkData' => 'klarnaNetworkData',
+        'klarnaNetworkPaymentAccountId' => 'klarnaNetworkPaymentAccountId',
         'klarnaNetworkSessionToken' => 'klarnaNetworkSessionToken',
         'masterpassTransactionId' => 'masterpassTransactionId',
         'orderID' => 'orderID',
@@ -560,6 +564,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'googlePayToken' => 'setGooglePayToken',
         'merchantData' => 'setMerchantData',
         'klarnaNetworkData' => 'setKlarnaNetworkData',
+        'klarnaNetworkPaymentAccountId' => 'setKlarnaNetworkPaymentAccountId',
         'klarnaNetworkSessionToken' => 'setKlarnaNetworkSessionToken',
         'masterpassTransactionId' => 'setMasterpassTransactionId',
         'orderID' => 'setOrderID',
@@ -654,6 +659,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         'googlePayToken' => 'getGooglePayToken',
         'merchantData' => 'getMerchantData',
         'klarnaNetworkData' => 'getKlarnaNetworkData',
+        'klarnaNetworkPaymentAccountId' => 'getKlarnaNetworkPaymentAccountId',
         'klarnaNetworkSessionToken' => 'getKlarnaNetworkSessionToken',
         'masterpassTransactionId' => 'getMasterpassTransactionId',
         'orderID' => 'getOrderID',
@@ -847,6 +853,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     public const TYPE_WALLEY = 'walley';
     public const TYPE_WALLEY_B2B = 'walley_b2b';
     public const TYPE_PAYPO = 'paypo';
+    public const TYPE_SATISPAY = 'satispay';
     public const TYPE_SCALAPAY = 'scalapay';
     public const TYPE_SCALAPAY_3X = 'scalapay_3x';
     public const TYPE_SCALAPAY_4X = 'scalapay_4x';
@@ -1113,6 +1120,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
             self::TYPE_WALLEY,
             self::TYPE_WALLEY_B2B,
             self::TYPE_PAYPO,
+            self::TYPE_SATISPAY,
             self::TYPE_SCALAPAY,
             self::TYPE_SCALAPAY_3X,
             self::TYPE_SCALAPAY_4X,
@@ -1324,6 +1332,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('googlePayToken', $data ?? [], null);
         $this->setIfExists('merchantData', $data ?? [], null);
         $this->setIfExists('klarnaNetworkData', $data ?? [], null);
+        $this->setIfExists('klarnaNetworkPaymentAccountId', $data ?? [], null);
         $this->setIfExists('klarnaNetworkSessionToken', $data ?? [], null);
         $this->setIfExists('masterpassTransactionId', $data ?? [], null);
         $this->setIfExists('orderID', $data ?? [], null);
@@ -2887,6 +2896,30 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setKlarnaNetworkData($klarnaNetworkData): self
     {
         $this->container['klarnaNetworkData'] = $klarnaNetworkData;
+
+        return $this;
+    }
+
+    /**
+     * Gets klarnaNetworkPaymentAccountId
+     *
+     * @return string|null
+     */
+    public function getKlarnaNetworkPaymentAccountId()
+    {
+        return $this->container['klarnaNetworkPaymentAccountId'];
+    }
+
+    /**
+     * Sets klarnaNetworkPaymentAccountId
+     *
+     * @param string|null $klarnaNetworkPaymentAccountId The Klarna Network Payment Account identifier to use for the transaction. Required when `klarnaNetworkSessionToken` is provided.
+     *
+     * @return self
+     */
+    public function setKlarnaNetworkPaymentAccountId($klarnaNetworkPaymentAccountId): self
+    {
+        $this->container['klarnaNetworkPaymentAccountId'] = $klarnaNetworkPaymentAccountId;
 
         return $this;
     }

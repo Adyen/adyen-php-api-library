@@ -23,25 +23,169 @@
 
 namespace Adyen\Tests\Unit\Checkout;
 
-use Adyen\AdyenException;
 use Adyen\Configuration;
 use Adyen\Environment;
+use Adyen\Exception\AdyenException;
 use Adyen\Model\Checkout\CardDetailsRequest;
 use Adyen\Model\Checkout\CreateCheckoutSessionRequest;
 use Adyen\Model\Checkout\PaymentMethodsRequest;
 use Adyen\RequestOptions;
 use Adyen\Service\Checkout\PaymentsApi;
 use Adyen\Tests\Unit\BaseTest;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ConnectException;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Response;
 
 class PaymentsApiTest extends BaseTest
 {
-
     const HOLDER_NAME = "John Smith";
     const RETURN_URL = "https://your-company.com/...";
 
+    public function testGetResultOfPaymentSessionSendsExpectedUrl(): void
+    {
+        $container = [];
+        $client = $this->createMockSerializerClient(
+            'tests/Resources/Checkout/getResultOfPaymentSession-success.json',
+            200,
+            $container
+        );
+        $service = new PaymentsApi($this->createConfiguration(), $client);
+
+        $service->getResultOfPaymentSession('CS12345678', 'X123..');
+
+        $request = $container[0]['request'];
+        $this->assertSame('GET', $request->getMethod());
+        $this->assertSame(
+            'https://checkout-test.adyen.com/v72/sessions/CS12345678?sessionResult=X123..',
+            (string) $request->getUri()
+        );
+    }
+
+    public function testPaymentsSendsExpectedUrl(): void
+    {
+        $container = [];
+        $client = $this->createMockSerializerClient('tests/Resources/Checkout/payments-success.json', 200, $container);
+        $service = new PaymentsApi($this->createConfiguration(), $client);
+
+        $service->payments(new \Adyen\Model\Checkout\PaymentRequest());
+
+        $request = $container[0]['request'];
+        $this->assertSame('POST', $request->getMethod());
+        $this->assertSame('https://checkout-test.adyen.com/v72/payments', (string) $request->getUri());
+    }
+
+    public function testUpdateSessionSendsExpectedUrl(): void
+    {
+        $container = [];
+        $client = $this->createMockSerializerClient(
+            'tests/Resources/Checkout/updateSession-success.json',
+            200,
+            $container
+        );
+        $service = new PaymentsApi($this->createConfiguration(), $client);
+
+        $service->updateSession('CS12345678', new \Adyen\Model\Checkout\CheckoutSessionPatchSessionRequest());
+
+        $request = $container[0]['request'];
+        $this->assertSame('PATCH', $request->getMethod());
+        $this->assertSame('https://checkout-test.adyen.com/v72/sessions/CS12345678', (string) $request->getUri());
+    }
+
+    public function testPaymentMethodsOnErrorResponseThrows(): void
+    {
+        $client = $this->createMockSerializerClient('tests/Resources/Checkout/payment-methods-forbidden.json', 403);
+        $service = new PaymentsApi($this->createConfiguration(), $client);
+
+        try {
+            $service->paymentMethods(new PaymentMethodsRequest());
+            $this->fail('Expected an AdyenException for HTTP 403');
+        } catch (AdyenException $exception) {
+            $this->assertSame(403, $exception->getStatusCode());
+            $this->assertSame('Forbidden', $exception->getMessage());
+            $error = $exception->getError();
+            $this->assertNotNull($error);
+            $this->assertSame('010', $error->getErrorCode());
+        }
+    }
+
+    public function testPaymentMethodsAsyncOnErrorResponseThrows(): void
+    {
+        $client = $this->createMockSerializerClient('tests/Resources/Checkout/payment-methods-forbidden.json', 403);
+        $service = new PaymentsApi($this->createConfiguration(), $client);
+
+        try {
+            $service->paymentMethodsAsync(new PaymentMethodsRequest())->wait();
+            $this->fail('Expected an AdyenException for HTTP 403');
+        } catch (AdyenException $exception) {
+            $this->assertSame(403, $exception->getStatusCode());
+            $this->assertSame('Forbidden', $exception->getMessage());
+            $error = $exception->getError();
+            $this->assertNotNull($error);
+            $this->assertSame('010', $error->getErrorCode());
+        }
+    }
+
+    public function testPaymentMethodsRejectMalformedSuccessResponse(): void
+    {
+        $client = new Client(['handler' => HandlerStack::create(new MockHandler([
+            new Response(200, [], '{invalid-json')
+        ]))]);
+        $service = new PaymentsApi($this->createConfiguration(), $client);
+
+        $this->expectException(AdyenException::class);
+        $this->expectExceptionMessage('Error JSON decoding server response');
+        $service->paymentMethods(new PaymentMethodsRequest());
+    }
+
+    public function testPaymentMethodsAsyncRejectMalformedSuccessResponse(): void
+    {
+        $client = new Client(['handler' => HandlerStack::create(new MockHandler([
+            new Response(200, [], '{invalid-json')
+        ]))]);
+        $service = new PaymentsApi($this->createConfiguration(), $client);
+
+        $this->expectException(AdyenException::class);
+        $this->expectExceptionMessage('Error JSON decoding server response');
+        $service->paymentMethodsAsync(new PaymentMethodsRequest())->wait();
+    }
+
+    public function testPaymentMethodsOnConnectionFailureThrows(): void
+    {
+        $connectionError = new ConnectException(
+            'Connection refused',
+            new Request('POST', 'https://checkout-test.adyen.com/v72/paymentMethods')
+        );
+        $client = new Client(['handler' => HandlerStack::create(new MockHandler([$connectionError]))]);
+        $service = new PaymentsApi($this->createConfiguration(), $client);
+
+        try {
+            $service->paymentMethods(new PaymentMethodsRequest());
+            $this->fail('Expected an AdyenException for a connection failure');
+        } catch (AdyenException $exception) {
+            $this->assertSame(0, $exception->getStatusCode());
+            $this->assertNull($exception->getResponseBody());
+            $this->assertSame($connectionError, $exception->getPrevious());
+        }
+    }
+
+    public function testPaymentMethodsAsyncOnConnectionFailureThrows(): void
+    {
+        $connectionError = new ConnectException(
+            'Connection refused',
+            new Request('POST', 'https://checkout-test.adyen.com/v72/paymentMethods')
+        );
+        $client = new Client(['handler' => HandlerStack::create(new MockHandler([$connectionError]))]);
+        $service = new PaymentsApi($this->createConfiguration(), $client);
+
+        $this->expectException(AdyenException::class);
+        $service->paymentMethodsAsync(new PaymentMethodsRequest())->wait();
+    }
+
     /**
      * @dataProvider successPaymentMethodsProvider
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testPaymentMethodsSuccess($jsonFile, $httpStatus)
@@ -60,7 +204,7 @@ class PaymentsApiTest extends BaseTest
 
     /**
      * @dataProvider successPaymentMethodsProvider
-     * @throws \Adyen\Exception\AdyenException|AdyenException
+     * @throws \Adyen\Exception\AdyenException
      */
     public function testPaymentMethodsSuccessWithArray($jsonFile, $httpStatus)
     {
@@ -76,7 +220,7 @@ class PaymentsApiTest extends BaseTest
 
     /**
      * @dataProvider successPaymentMethodsProvider
-     * @throws \Adyen\Exception\AdyenException|AdyenException
+     * @throws \Adyen\Exception\AdyenException
      */
     public function testPaymentMethodsSuccessArrayResponse($jsonFile, $httpStatus)
     {
@@ -100,15 +244,12 @@ class PaymentsApiTest extends BaseTest
         );
     }
 
-    /**
-     * @throws AdyenException
-     */
     public function testPaymentMethodsFailureMissingIdentifierOnLive()
     {
         $config = $this->createConfiguration();
         $config->setEnvironment(Environment::LIVE);
 
-        $this->expectException(\Adyen\AdyenException::class);
+        $this->expectException(AdyenException::class);
         $this->expectExceptionMessage('The live URL prefix is not defined');
 
         new PaymentsApi($config);
@@ -116,7 +257,6 @@ class PaymentsApiTest extends BaseTest
 
     /**
      * @dataProvider failurePaymentMethodsProvider
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testPaymentMethodsFailure(
@@ -140,7 +280,7 @@ class PaymentsApiTest extends BaseTest
 
     /**
      * @dataProvider failurePaymentMethodsProvider
-     * @throws AdyenException|\Adyen\Exception\AdyenException
+     * @throws \Adyen\Exception\AdyenException
      */
     public function testPaymentMethodsFailureWithArray(
         $jsonFile,
@@ -180,7 +320,6 @@ class PaymentsApiTest extends BaseTest
     /**
      * @dataProvider successPaymentsProvider
      * @throws \Adyen\Exception\AdyenException
-     * @throws AdyenException
      */
     public function testPaymentsSuccess($jsonFile, $httpStatus)
     {
@@ -223,7 +362,6 @@ class PaymentsApiTest extends BaseTest
      * regeneration drops them, this test fails.
      *
      * @throws \Adyen\Exception\AdyenException
-     * @throws AdyenException
      */
     public function testLibraryIdentificationHeaders()
     {
@@ -247,7 +385,6 @@ class PaymentsApiTest extends BaseTest
      * application name when the merchant sets one.
      *
      * @throws \Adyen\Exception\AdyenException
-     * @throws AdyenException
      */
     public function testUserAgentHeader()
     {
@@ -289,7 +426,6 @@ class PaymentsApiTest extends BaseTest
      * future regeneration drops the injection, this test fails.
      *
      * @throws \Adyen\Exception\AdyenException
-     * @throws AdyenException
      */
     public function testApplicationInfoInjection()
     {
@@ -311,7 +447,6 @@ class PaymentsApiTest extends BaseTest
     /**
      * @dataProvider successPaymentsProvider
      * @throws \Adyen\Exception\AdyenException
-     * @throws AdyenException
      */
     public function testPaymentsSuccessWithArray($jsonFile, $httpStatus)
     {
@@ -341,7 +476,6 @@ class PaymentsApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testPaymentsSuccessArrayResponse()
@@ -372,7 +506,6 @@ class PaymentsApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testPaymentsWithRequestOptions()
@@ -402,7 +535,6 @@ class PaymentsApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testPaymentsWithoutRequestOptionsSendsNoIdempotencyKey()
@@ -426,7 +558,6 @@ class PaymentsApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testPaymentsWithHttpInfo()
@@ -448,7 +579,6 @@ class PaymentsApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testPaymentsAsync()
@@ -467,7 +597,6 @@ class PaymentsApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testPaymentsAsyncWithHttpInfo()
@@ -500,14 +629,8 @@ class PaymentsApiTest extends BaseTest
         $this->assertIsArray($headers);
     }
 
-    /**
-     * The async fulfilment handler deserialises the body without looking at the status code, so an error
-     * response resolves with an empty model instead of throwing. The synchronous path checks the status.
-     */
     public function testPaymentsAsyncOnErrorResponseThrows()
     {
-        $this->markTestSkipped('Async ignores the HTTP status code; tracked with the error-handling work.');
-
         $client = $this->createMockSerializerClient('tests/Resources/Checkout/payments-forbidden.json', 403);
         $config = $this->createConfiguration();
         $service = new PaymentsApi($config, $client);
@@ -515,36 +638,16 @@ class PaymentsApiTest extends BaseTest
         $paymentRequest = new \Adyen\Model\Checkout\PaymentRequest();
         $paymentRequest->setMerchantAccount("YourMerchantAccount");
 
-        // Same class the synchronous path throws for this body, since decodeAdyenException() builds it.
-        $this->expectException(AdyenException::class);
-        $service->paymentsAsync($paymentRequest)->wait();
-    }
-
-    /**
-     * The async rejection handler calls getResponse() on the exception unguarded. A transport level
-     * failure hands it a ConnectException, which has no such method, so the caller gets a fatal Error.
-     */
-    public function testPaymentsAsyncOnConnectionFailureThrowsAdyenException()
-    {
-        $this->markTestSkipped(
-            'Async rejection handler assumes a response is present; tracked with the error-handling work.'
-        );
-
-        $mock = new \GuzzleHttp\Handler\MockHandler([
-            new \GuzzleHttp\Exception\ConnectException(
-                'Connection refused',
-                new \GuzzleHttp\Psr7\Request('POST', 'https://checkout-test.adyen.com/v72/payments')
-            )
-        ]);
-        $client = new \GuzzleHttp\Client(['handler' => \GuzzleHttp\HandlerStack::create($mock)]);
-        $config = $this->createConfiguration();
-        $service = new PaymentsApi($config, $client);
-
-        $paymentRequest = new \Adyen\Model\Checkout\PaymentRequest();
-        $paymentRequest->setMerchantAccount("YourMerchantAccount");
-
-        $this->expectException(\Adyen\Exception\AdyenException::class);
-        $service->paymentsAsync($paymentRequest)->wait();
+        try {
+            $service->paymentsAsync($paymentRequest)->wait();
+            $this->fail('Expected an AdyenException for HTTP 403');
+        } catch (AdyenException $exception) {
+            $this->assertSame(403, $exception->getStatusCode());
+            $this->assertSame('Forbidden', $exception->getMessage());
+            $error = $exception->getError();
+            $this->assertNotNull($error);
+            $this->assertSame('010', $error->getErrorCode());
+        }
     }
 
     public static function successPaymentsProvider(): array
@@ -557,7 +660,6 @@ class PaymentsApiTest extends BaseTest
 
     /**
      * @dataProvider failurePaymentsProvider
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testPaymentsFailure(
@@ -597,7 +699,6 @@ class PaymentsApiTest extends BaseTest
 
     /**
      * @dataProvider failurePaymentsProvider
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testPaymentsFailureWithArray(
@@ -642,7 +743,6 @@ class PaymentsApiTest extends BaseTest
 
     /**
      * @dataProvider successPaymentsDetailsProvider
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testPaymentsDetailsSuccessWithArray($jsonFile, $httpStatus)
@@ -668,7 +768,6 @@ class PaymentsApiTest extends BaseTest
 
     /**
      * @dataProvider successPaymentsDetailsProvider
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testPaymentsDetailsSuccess($jsonFile, $httpStatus)
@@ -693,7 +792,6 @@ class PaymentsApiTest extends BaseTest
 
     /**
      * @dataProvider successPaymentsDetailsProvider
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testPaymentsDetailsSuccessArrayResponse($jsonFile, $httpStatus)
@@ -728,7 +826,6 @@ class PaymentsApiTest extends BaseTest
      *
      * @dataProvider successSessionsProvider
      * @throws \Adyen\Exception\AdyenException
-     * @throws AdyenException
      */
     public function testSessionsSuccessWithArray($jsonFile, $httpStatus)
     {
@@ -759,7 +856,6 @@ class PaymentsApiTest extends BaseTest
      * @param int $httpStatus
      *
      * @dataProvider successSessionsProvider
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testSessionsSuccess($jsonFile, $httpStatus)
@@ -790,7 +886,6 @@ class PaymentsApiTest extends BaseTest
      * @param int $httpStatus
      *
      * @dataProvider successSessionsProvider
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testSessionsSuccessArrayResponse($jsonFile, $httpStatus)
@@ -851,7 +946,6 @@ class PaymentsApiTest extends BaseTest
      * @param int $httpStatus
      *
      * @dataProvider invalidSessionsProvider
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testSessionsInvalid($jsonFile, $httpStatus, $expectedExceptionMessage)
@@ -873,12 +967,10 @@ class PaymentsApiTest extends BaseTest
         $service->sessions($createCheckoutSessionRequest);
     }
 
-    // The spec doesn't describe errors for /sessions, so a 422 comes back as the generic
-    // exception instead of Adyen's message. Restore this after the error-handling fix.
     public static function invalidSessionsProvider(): array
     {
         return array(
-            array('tests/Resources/Checkout/sessions-invalid.json', 422, '[422] Error connecting to the API'),
+            array('tests/Resources/Checkout/sessions-invalid.json', 422, "Required field 'amount' is null"),
         );
     }
 
@@ -910,7 +1002,6 @@ class PaymentsApiTest extends BaseTest
      * @param int $httpStatus
      *
      * @dataProvider successCardDetailsProvider
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testCardDetailsSuccess($jsonFile, $httpStatus)
@@ -967,7 +1058,6 @@ class PaymentsApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testGetResultOfPaymentSession()
@@ -984,17 +1074,12 @@ class PaymentsApiTest extends BaseTest
 
         $request = $container[0]['request'];
         $this->assertEquals('GET', $request->getMethod());
-        $this->assertEquals(
-            'https://checkout-test.adyen.com/v72/sessions/CS12345678?sessionResult=X123..',
-            (string) $request->getUri()
-        );
         $this->assertInstanceOf(\Adyen\Model\Checkout\SessionResultResponse::class, $result);
         $this->assertEquals('CS12345678', $result->getId());
         $this->assertEquals('completed', $result->getStatus());
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testGetResultOfPaymentSessionArrayResponse()
@@ -1012,7 +1097,6 @@ class PaymentsApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testUpdateSession()
@@ -1037,16 +1121,11 @@ class PaymentsApiTest extends BaseTest
 
         $request = $container[0]['request'];
         $this->assertEquals('PATCH', $request->getMethod());
-        $this->assertEquals(
-            'https://checkout-test.adyen.com/v72/sessions/CS12345678',
-            (string) $request->getUri()
-        );
         $this->assertInstanceOf(\Adyen\Model\Checkout\CheckoutSessionPatchSessionResponse::class, $result);
         $this->assertNotEmpty($result->getSessionData());
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testUpdateSessionWithArray()
@@ -1068,7 +1147,6 @@ class PaymentsApiTest extends BaseTest
     }
 
     /**
-     * @throws AdyenException
      * @throws \Adyen\Exception\AdyenException
      */
     public function testUpdateSessionArrayResponse()

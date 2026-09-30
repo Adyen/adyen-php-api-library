@@ -297,7 +297,7 @@ class CheckoutForwardRequestOptions implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets accountUpdate
      *
-     * @param bool|null $accountUpdate Whether to check for a card account update (true) or not (false)
+     * @param bool|null $accountUpdate Set to **true** to check if the account tied to the card has been updated.
      *
      * @return self
      */
@@ -369,7 +369,7 @@ class CheckoutForwardRequestOptions implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets networkTxReferencePaths
      *
-     * @param string[]|null $networkTxReferencePaths Set in tokenize:true case when forwarding PAN. Addresses to the possible location(s) of networkTxReference in the incoming 3rd party response
+     * @param string[]|null $networkTxReferencePaths Only include when `tokenize` is set to **true**.<br><br>A list of addresses to possible location(s) of the `networkTxReference` that will be returned in the third party response.
      *
      * @return self
      */
@@ -393,7 +393,7 @@ class CheckoutForwardRequestOptions implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets tokenize
      *
-     * @param bool|null $tokenize Set to **true**, the payment details are [tokenized](https://docs.adyen.com/online-payments/tokenization).
+     * @param bool|null $tokenize Set to **true** to [tokenize](https://docs.adyen.com/online-payments/tokenization) the payment details.
      *
      * @return self
      */
@@ -417,7 +417,7 @@ class CheckoutForwardRequestOptions implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets transactionLinkIdPaths
      *
-     * @param string[]|null $transactionLinkIdPaths Set in tokenize:true case when forwarding PAN. Addresses to the possible location(s) of transactionLinkId in the incoming 3rd party response
+     * @param string[]|null $transactionLinkIdPaths Only include when `tokenize` is set to **true**.<br><br>A list of addresses to possible location(s) of the `transactionLinkId` that will be returned in the third party response.
      *
      * @return self
      */

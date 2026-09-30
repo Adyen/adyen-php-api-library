@@ -82,7 +82,7 @@ class PaymentLinksApi extends BaseService
      * @param ClientInterface|null $client
      * @param HeaderSelector|null $selector
      * @param int $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
-     * @throws \Adyen\AdyenException
+     * @throws \Adyen\Exception\AdyenException
      */
     public function __construct(
         ?Configuration $config = null,
@@ -164,143 +164,63 @@ class PaymentLinksApi extends BaseService
 
         $request = $this->getPaymentLinkRequest($linkId, $contentType, $requestOptions);
 
+        $options = $this->createHttpClientOption();
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new AdyenException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new AdyenException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch ($statusCode) {
-                case 200:
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\Checkout\PaymentLinkResponse',
-                        $request,
-                        $response,
-                    );
-                case 400:
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\Checkout\ServiceError',
-                        $request,
-                        $response,
-                    );
-                case 401:
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\Checkout\ServiceError',
-                        $request,
-                        $response,
-                    );
-                case 403:
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\Checkout\ServiceError',
-                        $request,
-                        $response,
-                    );
-                case 422:
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\Checkout\ServiceError',
-                        $request,
-                        $response,
-                    );
-                case 500:
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\Checkout\ServiceError',
-                        $request,
-                        $response,
-                    );
-            }
-
-
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new AdyenException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
+            $response = $this->client->send($request, $options);
+        } catch (RequestException $e) {
+            if ($e->hasResponse()) {
+                $response = $e->getResponse();
+                throw AdyenException::fromResponse(
+                    $response->getStatusCode(),
                     $response->getHeaders(),
-                    (string) $response->getBody()
+                    (string) $response->getBody(),
+                    $e
                 );
             }
 
-            return $this->handleResponseWithDataType(
-                '\Adyen\Model\Checkout\PaymentLinkResponse',
-                $request,
-                $response,
+            throw new AdyenException(
+                "[{$e->getCode()}] {$e->getMessage()}",
+                (int) $e->getCode(),
+                [],
+                null,
+                $e
             );
-        } catch (AdyenException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Adyen\Model\Checkout\PaymentLinkResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Adyen\Model\Checkout\ServiceError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 401:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Adyen\Model\Checkout\ServiceError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Adyen\Model\Checkout\ServiceError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Adyen\Model\Checkout\ServiceError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 500:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Adyen\Model\Checkout\ServiceError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
-
-            throw $e;
+        } catch (ConnectException $e) {
+            throw new AdyenException(
+                "[{$e->getCode()}] {$e->getMessage()}",
+                (int) $e->getCode(),
+                [],
+                null,
+                $e
+            );
         }
+
+        $statusCode = $response->getStatusCode();
+        if ($statusCode < 200 || $statusCode > 299) {
+            throw AdyenException::fromResponse(
+                $statusCode,
+                $response->getHeaders(),
+                (string) $response->getBody()
+            );
+        }
+
+
+        switch ($statusCode) {
+            case 200:
+                return $this->handleResponseWithDataType(
+                    '\Adyen\Model\Checkout\PaymentLinkResponse',
+                    $request,
+                    $response,
+                );
+        }
+
+
+
+        return $this->handleResponseWithDataType(
+            '\Adyen\Model\Checkout\PaymentLinkResponse',
+            $request,
+            $response,
+        );
     }
 
     /**
@@ -344,35 +264,39 @@ class PaymentLinksApi extends BaseService
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) {
-                    $returnType = '\Adyen\Model\Checkout\PaymentLinkResponse';
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
+                function ($response) use ($request) {
+                    $statusCode = $response->getStatusCode();
+                    if ($statusCode < 200 || $statusCode > 299) {
+                        throw AdyenException::fromResponse(
+                            $statusCode,
+                            $response->getHeaders(),
+                            (string) $response->getBody()
+                        );
                     }
 
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                    return $this->handleResponseWithDataType(
+                        '\Adyen\Model\Checkout\PaymentLinkResponse',
+                        $request,
+                        $response
+                    );
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
+                    if ($exception instanceof RequestException && $exception->hasResponse()) {
+                        $response = $exception->getResponse();
+                        throw AdyenException::fromResponse(
+                            $response->getStatusCode(),
+                            $response->getHeaders(),
+                            (string) $response->getBody(),
+                            $exception
+                        );
+                    }
+
                     throw new AdyenException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
+                        "[{$exception->getCode()}] {$exception->getMessage()}",
+                        (int) $exception->getCode(),
+                        [],
+                        null,
+                        $exception
                     );
                 }
             );
@@ -515,143 +439,63 @@ class PaymentLinksApi extends BaseService
 
         $request = $this->paymentLinksRequest($paymentLinkRequest, $contentType, $requestOptions);
 
+        $options = $this->createHttpClientOption();
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new AdyenException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new AdyenException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch ($statusCode) {
-                case 201:
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\Checkout\PaymentLinkResponse',
-                        $request,
-                        $response,
-                    );
-                case 400:
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\Checkout\ServiceError',
-                        $request,
-                        $response,
-                    );
-                case 401:
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\Checkout\ServiceError',
-                        $request,
-                        $response,
-                    );
-                case 403:
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\Checkout\ServiceError',
-                        $request,
-                        $response,
-                    );
-                case 422:
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\Checkout\ServiceError',
-                        $request,
-                        $response,
-                    );
-                case 500:
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\Checkout\ServiceError',
-                        $request,
-                        $response,
-                    );
-            }
-
-
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new AdyenException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
+            $response = $this->client->send($request, $options);
+        } catch (RequestException $e) {
+            if ($e->hasResponse()) {
+                $response = $e->getResponse();
+                throw AdyenException::fromResponse(
+                    $response->getStatusCode(),
                     $response->getHeaders(),
-                    (string) $response->getBody()
+                    (string) $response->getBody(),
+                    $e
                 );
             }
 
-            return $this->handleResponseWithDataType(
-                '\Adyen\Model\Checkout\PaymentLinkResponse',
-                $request,
-                $response,
+            throw new AdyenException(
+                "[{$e->getCode()}] {$e->getMessage()}",
+                (int) $e->getCode(),
+                [],
+                null,
+                $e
             );
-        } catch (AdyenException $e) {
-            switch ($e->getCode()) {
-                case 201:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Adyen\Model\Checkout\PaymentLinkResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Adyen\Model\Checkout\ServiceError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 401:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Adyen\Model\Checkout\ServiceError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Adyen\Model\Checkout\ServiceError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Adyen\Model\Checkout\ServiceError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 500:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Adyen\Model\Checkout\ServiceError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
-
-            throw $e;
+        } catch (ConnectException $e) {
+            throw new AdyenException(
+                "[{$e->getCode()}] {$e->getMessage()}",
+                (int) $e->getCode(),
+                [],
+                null,
+                $e
+            );
         }
+
+        $statusCode = $response->getStatusCode();
+        if ($statusCode < 200 || $statusCode > 299) {
+            throw AdyenException::fromResponse(
+                $statusCode,
+                $response->getHeaders(),
+                (string) $response->getBody()
+            );
+        }
+
+
+        switch ($statusCode) {
+            case 201:
+                return $this->handleResponseWithDataType(
+                    '\Adyen\Model\Checkout\PaymentLinkResponse',
+                    $request,
+                    $response,
+                );
+        }
+
+
+
+        return $this->handleResponseWithDataType(
+            '\Adyen\Model\Checkout\PaymentLinkResponse',
+            $request,
+            $response,
+        );
     }
 
     /**
@@ -695,35 +539,39 @@ class PaymentLinksApi extends BaseService
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) {
-                    $returnType = '\Adyen\Model\Checkout\PaymentLinkResponse';
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
+                function ($response) use ($request) {
+                    $statusCode = $response->getStatusCode();
+                    if ($statusCode < 200 || $statusCode > 299) {
+                        throw AdyenException::fromResponse(
+                            $statusCode,
+                            $response->getHeaders(),
+                            (string) $response->getBody()
+                        );
                     }
 
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                    return $this->handleResponseWithDataType(
+                        '\Adyen\Model\Checkout\PaymentLinkResponse',
+                        $request,
+                        $response
+                    );
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
+                    if ($exception instanceof RequestException && $exception->hasResponse()) {
+                        $response = $exception->getResponse();
+                        throw AdyenException::fromResponse(
+                            $response->getStatusCode(),
+                            $response->getHeaders(),
+                            (string) $response->getBody(),
+                            $exception
+                        );
+                    }
+
                     throw new AdyenException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
+                        "[{$exception->getCode()}] {$exception->getMessage()}",
+                        (int) $exception->getCode(),
+                        [],
+                        null,
+                        $exception
                     );
                 }
             );
@@ -860,143 +708,63 @@ class PaymentLinksApi extends BaseService
 
         $request = $this->updatePaymentLinkRequest($linkId, $updatePaymentLinkRequest, $contentType, $requestOptions);
 
+        $options = $this->createHttpClientOption();
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new AdyenException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new AdyenException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch ($statusCode) {
-                case 200:
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\Checkout\PaymentLinkResponse',
-                        $request,
-                        $response,
-                    );
-                case 400:
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\Checkout\ServiceError',
-                        $request,
-                        $response,
-                    );
-                case 401:
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\Checkout\ServiceError',
-                        $request,
-                        $response,
-                    );
-                case 403:
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\Checkout\ServiceError',
-                        $request,
-                        $response,
-                    );
-                case 422:
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\Checkout\ServiceError',
-                        $request,
-                        $response,
-                    );
-                case 500:
-                    return $this->handleResponseWithDataType(
-                        '\Adyen\Model\Checkout\ServiceError',
-                        $request,
-                        $response,
-                    );
-            }
-
-
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new AdyenException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
+            $response = $this->client->send($request, $options);
+        } catch (RequestException $e) {
+            if ($e->hasResponse()) {
+                $response = $e->getResponse();
+                throw AdyenException::fromResponse(
+                    $response->getStatusCode(),
                     $response->getHeaders(),
-                    (string) $response->getBody()
+                    (string) $response->getBody(),
+                    $e
                 );
             }
 
-            return $this->handleResponseWithDataType(
-                '\Adyen\Model\Checkout\PaymentLinkResponse',
-                $request,
-                $response,
+            throw new AdyenException(
+                "[{$e->getCode()}] {$e->getMessage()}",
+                (int) $e->getCode(),
+                [],
+                null,
+                $e
             );
-        } catch (AdyenException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Adyen\Model\Checkout\PaymentLinkResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Adyen\Model\Checkout\ServiceError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 401:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Adyen\Model\Checkout\ServiceError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Adyen\Model\Checkout\ServiceError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Adyen\Model\Checkout\ServiceError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 500:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Adyen\Model\Checkout\ServiceError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
-
-            throw $e;
+        } catch (ConnectException $e) {
+            throw new AdyenException(
+                "[{$e->getCode()}] {$e->getMessage()}",
+                (int) $e->getCode(),
+                [],
+                null,
+                $e
+            );
         }
+
+        $statusCode = $response->getStatusCode();
+        if ($statusCode < 200 || $statusCode > 299) {
+            throw AdyenException::fromResponse(
+                $statusCode,
+                $response->getHeaders(),
+                (string) $response->getBody()
+            );
+        }
+
+
+        switch ($statusCode) {
+            case 200:
+                return $this->handleResponseWithDataType(
+                    '\Adyen\Model\Checkout\PaymentLinkResponse',
+                    $request,
+                    $response,
+                );
+        }
+
+
+
+        return $this->handleResponseWithDataType(
+            '\Adyen\Model\Checkout\PaymentLinkResponse',
+            $request,
+            $response,
+        );
     }
 
     /**
@@ -1042,35 +810,39 @@ class PaymentLinksApi extends BaseService
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) {
-                    $returnType = '\Adyen\Model\Checkout\PaymentLinkResponse';
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
+                function ($response) use ($request) {
+                    $statusCode = $response->getStatusCode();
+                    if ($statusCode < 200 || $statusCode > 299) {
+                        throw AdyenException::fromResponse(
+                            $statusCode,
+                            $response->getHeaders(),
+                            (string) $response->getBody()
+                        );
                     }
 
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                    return $this->handleResponseWithDataType(
+                        '\Adyen\Model\Checkout\PaymentLinkResponse',
+                        $request,
+                        $response
+                    );
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
+                    if ($exception instanceof RequestException && $exception->hasResponse()) {
+                        $response = $exception->getResponse();
+                        throw AdyenException::fromResponse(
+                            $response->getStatusCode(),
+                            $response->getHeaders(),
+                            (string) $response->getBody(),
+                            $exception
+                        );
+                    }
+
                     throw new AdyenException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
+                        "[{$exception->getCode()}] {$exception->getMessage()}",
+                        (int) $exception->getCode(),
+                        [],
+                        null,
+                        $exception
                     );
                 }
             );
@@ -1239,13 +1011,6 @@ class PaymentLinksApi extends BaseService
                         $content
                     );
                 }
-                if ($this->responseWithinRangeCode('4', $response->getStatusCode()) ||
-                    $this->responseWithinRangeCode('5', $response->getStatusCode())) {
-                    $adyenException = $this->decodeAdyenException($content);
-                    if ($adyenException) {
-                        throw $adyenException;
-                    }
-                }
                 $content = json_decode(json_encode($content), false);
             }
         }
@@ -1255,22 +1020,6 @@ class PaymentLinksApi extends BaseService
             $response->getStatusCode(),
             $response->getHeaders()
         ];
-    }
-
-    private function decodeAdyenException($decodedPayload): ?\Adyen\AdyenException
-    {
-        if (isset($decodedPayload['message']) && isset($decodedPayload['errorCode'])) {
-            return new \Adyen\AdyenException(
-                $decodedPayload['message'],
-                $decodedPayload['status'] ?? 0,
-                null,
-                $decodedPayload['status'] ?? null,
-                $decodedPayload['errorType'] ?? null,
-                $decodedPayload['pspReference'] ?? null,
-                $decodedPayload['errorCode']
-            );
-        }
-        return null;
     }
 
     private function responseWithinRangeCode(

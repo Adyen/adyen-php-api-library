@@ -54,6 +54,7 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'returnShippingCompany' => 'string',
         'returnTrackingNumber' => 'string',
         'returnTrackingUri' => 'string',
+        'riskCategory' => 'string',
         'shippingCompany' => 'string',
         'shippingMethod' => 'string',
         'size' => 'string',
@@ -89,6 +90,7 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'returnShippingCompany' => null,
         'returnTrackingNumber' => null,
         'returnTrackingUri' => null,
+        'riskCategory' => null,
         'shippingCompany' => null,
         'shippingMethod' => null,
         'size' => null,
@@ -122,6 +124,7 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'returnShippingCompany' => false,
         'returnTrackingNumber' => false,
         'returnTrackingUri' => false,
+        'riskCategory' => false,
         'shippingCompany' => false,
         'shippingMethod' => false,
         'size' => false,
@@ -235,6 +238,7 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'returnShippingCompany' => 'returnShippingCompany',
         'returnTrackingNumber' => 'returnTrackingNumber',
         'returnTrackingUri' => 'returnTrackingUri',
+        'riskCategory' => 'riskCategory',
         'shippingCompany' => 'shippingCompany',
         'shippingMethod' => 'shippingMethod',
         'size' => 'size',
@@ -268,6 +272,7 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'returnShippingCompany' => 'setReturnShippingCompany',
         'returnTrackingNumber' => 'setReturnTrackingNumber',
         'returnTrackingUri' => 'setReturnTrackingUri',
+        'riskCategory' => 'setRiskCategory',
         'shippingCompany' => 'setShippingCompany',
         'shippingMethod' => 'setShippingMethod',
         'size' => 'setSize',
@@ -301,6 +306,7 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'returnShippingCompany' => 'getReturnShippingCompany',
         'returnTrackingNumber' => 'getReturnTrackingNumber',
         'returnTrackingUri' => 'getReturnTrackingUri',
+        'riskCategory' => 'getRiskCategory',
         'shippingCompany' => 'getShippingCompany',
         'shippingMethod' => 'getShippingMethod',
         'size' => 'getSize',
@@ -385,6 +391,7 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('returnShippingCompany', $data ?? [], null);
         $this->setIfExists('returnTrackingNumber', $data ?? [], null);
         $this->setIfExists('returnTrackingUri', $data ?? [], null);
+        $this->setIfExists('riskCategory', $data ?? [], null);
         $this->setIfExists('shippingCompany', $data ?? [], null);
         $this->setIfExists('shippingMethod', $data ?? [], null);
         $this->setIfExists('size', $data ?? [], null);
@@ -797,6 +804,30 @@ class LineItem implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setReturnTrackingUri($returnTrackingUri): self
     {
         $this->container['returnTrackingUri'] = $returnTrackingUri;
+
+        return $this;
+    }
+
+    /**
+     * Gets riskCategory
+     *
+     * @return string|null
+     */
+    public function getRiskCategory()
+    {
+        return $this->container['riskCategory'];
+    }
+
+    /**
+     * Sets riskCategory
+     *
+     * @param string|null $riskCategory An optional, free-text category for the item to be used in the risk evaluation. When provided, Protect uses this value to evaluate custom risk rules.
+     *
+     * @return self
+     */
+    public function setRiskCategory($riskCategory): self
+    {
+        $this->container['riskCategory'] = $riskCategory;
 
         return $this;
     }
