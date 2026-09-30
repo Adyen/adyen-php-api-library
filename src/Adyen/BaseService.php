@@ -2,9 +2,7 @@
 
 namespace Adyen;
 
-use Adyen\Model\Checkout\ApplicationInfo;
-use Adyen\Model\Checkout\CommonField;
-use Adyen\Model\Checkout\ExternalPlatform;
+use Adyen\Exception\AdyenException;
 
 /**
  * Parent class for API services
@@ -96,33 +94,49 @@ class BaseService
      */
     protected function injectApplicationInfo(?object $requestModel): ?object
     {
-        if (!is_object($requestModel) || !method_exists($requestModel, 'setApplicationInfo')) {
+        if ($requestModel === null ||
+            !method_exists($requestModel, 'setApplicationInfo') ||
+            !method_exists($requestModel, 'getApplicationInfo') ||
+            !method_exists($requestModel, 'openAPITypes')
+        ) {
+            return $requestModel;
+        }
+
+        $applicationInfoClass = $requestModel::openAPITypes()['applicationInfo'] ?? null;
+        if ($applicationInfoClass === null) {
             return $requestModel;
         }
 
         $applicationInfo = $requestModel->getApplicationInfo();
-
-        if (is_array($applicationInfo)) {
-            $applicationInfo = new ApplicationInfo($applicationInfo);
-        } elseif ($applicationInfo === null) {
-            $applicationInfo = new ApplicationInfo();
+        if (is_array($applicationInfo) || $applicationInfo === null) {
+            $applicationInfo = new $applicationInfoClass($applicationInfo);
         }
+        $fieldTypes = $applicationInfoClass::openAPITypes();
 
         // add/overwrite applicationInfo adyenLibrary even if it's already set
-        $library = new CommonField();
-        $library->setName(Configuration::LIB_NAME);
-        $library->setVersion(Configuration::LIB_VERSION);
-        $applicationInfo->setAdyenLibrary($library);
+        if (isset($fieldTypes['adyenLibrary'])) {
+            $libraryClass = $fieldTypes['adyenLibrary'];
+            $library = new $libraryClass();
+            $library->setName(Configuration::LIB_NAME);
+            $library->setVersion(Configuration::LIB_VERSION);
+            $applicationInfo->setAdyenLibrary($library);
+        }
 
-        if ($adyenPaymentSource = $this->configuration->getAdyenPaymentSource()) {
-            $paymentSource = new CommonField();
+        if (isset($fieldTypes['adyenPaymentSource']) &&
+            ($adyenPaymentSource = $this->configuration->getAdyenPaymentSource())
+        ) {
+            $paymentSourceClass = $fieldTypes['adyenPaymentSource'];
+            $paymentSource = new $paymentSourceClass();
             $paymentSource->setName($adyenPaymentSource['name']);
             $paymentSource->setVersion($adyenPaymentSource['version']);
             $applicationInfo->setAdyenPaymentSource($paymentSource);
         }
 
-        if ($externalPlatform = $this->configuration->getExternalPlatform()) {
-            $platform = new ExternalPlatform();
+        if (isset($fieldTypes['externalPlatform']) &&
+            ($externalPlatform = $this->configuration->getExternalPlatform())
+        ) {
+            $platformClass = $fieldTypes['externalPlatform'];
+            $platform = new $platformClass();
             $platform->setName($externalPlatform['name']);
             $platform->setVersion($externalPlatform['version']);
             if (!empty($externalPlatform['integrator'])) {
@@ -131,8 +145,11 @@ class BaseService
             $applicationInfo->setExternalPlatform($platform);
         }
 
-        if ($merchantApplication = $this->configuration->getMerchantApplication()) {
-            $merchantApp = new CommonField();
+        if (isset($fieldTypes['merchantApplication']) &&
+            ($merchantApplication = $this->configuration->getMerchantApplication())
+        ) {
+            $merchantAppClass = $fieldTypes['merchantApplication'];
+            $merchantApp = new $merchantAppClass();
             $merchantApp->setName($merchantApplication['name']);
             $merchantApp->setVersion($merchantApplication['version']);
             $applicationInfo->setMerchantApplication($merchantApp);

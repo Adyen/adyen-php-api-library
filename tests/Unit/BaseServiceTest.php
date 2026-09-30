@@ -2,12 +2,14 @@
 
 namespace Adyen\Tests\Unit;
 
-use Adyen\AdyenException;
 use Adyen\BaseService;
 use Adyen\Configuration;
 use Adyen\Environment;
+use Adyen\Exception\AdyenException;
 use Adyen\Model\BinLookup\ThreeDSAvailabilityRequest;
 use Adyen\Model\Checkout\ApplicationInfo;
+use Adyen\Model\Checkout\CommonField;
+use Adyen\Model\Checkout\ExternalPlatform;
 use Adyen\Model\Checkout\PaymentCancelRequest;
 use Adyen\Model\Checkout\PaymentRequest;
 use Adyen\Service\BinLookup\BinLookupApi;
@@ -259,6 +261,12 @@ class BaseServiceTest extends TestCase
             'externalPlatform' => ['name' => 'WooCommerce', 'version' => '9.9'],     // loses to config
         ]);
 
+        $applicationInfo = $service->inject($request)->getApplicationInfo();
+        $this->assertInstanceOf(ApplicationInfo::class, $applicationInfo);
+        $this->assertInstanceOf(CommonField::class, $applicationInfo->getAdyenLibrary());
+        $this->assertInstanceOf(ExternalPlatform::class, $applicationInfo->getExternalPlatform());
+        $this->assertInstanceOf(CommonField::class, $applicationInfo->getMerchantApplication());
+
         $this->assertEquals([
             'adyenLibrary' => [
                 'name' => Configuration::LIB_NAME,
@@ -267,7 +275,25 @@ class BaseServiceTest extends TestCase
             'adyenPaymentSource' => ['name' => 'adyen-giving', 'version' => '1.2'],
             'externalPlatform' => ['name' => 'Magento', 'version' => '2.4', 'integrator' => 'Acme'],
             'merchantApplication' => ['name' => 'MyShop', 'version' => '1.0'],
-        ], $service->inject($request)->getApplicationInfo()->toArray());
+        ], $applicationInfo->toArray());
+    }
+
+    /**
+     * @covers \Adyen\BaseService::injectApplicationInfo
+     */
+    public function testInjectApplicationInfoCreatesCheckoutModelsFromMetadata()
+    {
+        $service = $this->createServiceProbe([
+            'adyenPaymentSource' => ['name' => 'adyen-giving', 'version' => '1.2'],
+        ]);
+        $request = new PaymentRequest();
+
+        $applicationInfo = $service->inject($request)->getApplicationInfo();
+
+        $this->assertInstanceOf(ApplicationInfo::class, $applicationInfo);
+        $this->assertInstanceOf(CommonField::class, $applicationInfo->getAdyenLibrary());
+        $this->assertInstanceOf(CommonField::class, $applicationInfo->getAdyenPaymentSource());
+        $this->assertSame('adyen-giving', $applicationInfo->getAdyenPaymentSource()->getName());
     }
 
     /**
@@ -281,15 +307,17 @@ class BaseServiceTest extends TestCase
 
         // model-object input: the helper mutates the existing applicationInfo in place
         $request = new PaymentRequest();
-        $request->setApplicationInfo(new ApplicationInfo());
+        $applicationInfo = new ApplicationInfo();
+        $request->setApplicationInfo($applicationInfo);
 
+        $this->assertSame($applicationInfo, $service->inject($request)->getApplicationInfo());
         $this->assertEquals([
             'adyenLibrary' => [
                 'name' => Configuration::LIB_NAME,
                 'version' => Configuration::LIB_VERSION
             ],
             'externalPlatform' => ['name' => 'Magento', 'version' => '2.4'],
-        ], $service->inject($request)->getApplicationInfo()->toArray());
+        ], $applicationInfo->toArray());
     }
 
     /**
@@ -299,6 +327,12 @@ class BaseServiceTest extends TestCase
     {
         $request = new PaymentCancelRequest();
         $this->assertSame($request, $this->createServiceProbe()->inject($request));
+
+        $requestWithoutApplicationInfo = new ThreeDSAvailabilityRequest();
+        $this->assertSame(
+            $requestWithoutApplicationInfo,
+            $this->createServiceProbe()->inject($requestWithoutApplicationInfo)
+        );
     }
 
     /**

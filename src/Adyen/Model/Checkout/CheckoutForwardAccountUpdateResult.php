@@ -16,12 +16,12 @@ use \ArrayAccess;
 use \Adyen\Model\Checkout\ObjectSerializer;
 
 /**
- * StoredPaymentMethodRequest Class Doc Comment
+ * CheckoutForwardAccountUpdateResult Class Doc Comment
  *
  * @package  Adyen\Model\Checkout
  * @implements \ArrayAccess<string, mixed>
  */
-class StoredPaymentMethodRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class CheckoutForwardAccountUpdateResult implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -30,7 +30,7 @@ class StoredPaymentMethodRequest implements ModelInterface, ArrayAccess, \JsonSe
       *
       * @var string
       */
-    protected static string $openAPIModelName = 'StoredPaymentMethodRequest';
+    protected static string $openAPIModelName = 'CheckoutForwardAccountUpdateResult';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -38,13 +38,7 @@ class StoredPaymentMethodRequest implements ModelInterface, ArrayAccess, \JsonSe
       * @var string[]
       */
     protected static array $openAPITypes = [
-        'merchantAccount' => 'string',
-        'opi' => '\Adyen\Model\Checkout\OpiRequest',
-        'paymentMethod' => '\Adyen\Model\Checkout\PaymentMethodToStore',
-        'recurringProcessingModel' => 'string',
-        'shopperEmail' => 'string',
-        'shopperIP' => 'string',
-        'shopperReference' => 'string'
+        'result' => 'string'
     ];
 
     /**
@@ -55,13 +49,7 @@ class StoredPaymentMethodRequest implements ModelInterface, ArrayAccess, \JsonSe
       * @psalm-var array<string, string|null>
       */
     protected static array $openAPIFormats = [
-        'merchantAccount' => null,
-        'opi' => null,
-        'paymentMethod' => null,
-        'recurringProcessingModel' => null,
-        'shopperEmail' => null,
-        'shopperIP' => null,
-        'shopperReference' => null
+        'result' => null
     ];
 
     /**
@@ -70,13 +58,7 @@ class StoredPaymentMethodRequest implements ModelInterface, ArrayAccess, \JsonSe
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'merchantAccount' => false,
-        'opi' => false,
-        'paymentMethod' => false,
-        'recurringProcessingModel' => false,
-        'shopperEmail' => false,
-        'shopperIP' => false,
-        'shopperReference' => false
+        'result' => false
     ];
 
     /**
@@ -165,13 +147,7 @@ class StoredPaymentMethodRequest implements ModelInterface, ArrayAccess, \JsonSe
      * @var string[]
      */
     protected static array $attributeMap = [
-        'merchantAccount' => 'merchantAccount',
-        'opi' => 'opi',
-        'paymentMethod' => 'paymentMethod',
-        'recurringProcessingModel' => 'recurringProcessingModel',
-        'shopperEmail' => 'shopperEmail',
-        'shopperIP' => 'shopperIP',
-        'shopperReference' => 'shopperReference'
+        'result' => 'result'
     ];
 
     /**
@@ -180,13 +156,7 @@ class StoredPaymentMethodRequest implements ModelInterface, ArrayAccess, \JsonSe
      * @var string[]
      */
     protected static array $setters = [
-        'merchantAccount' => 'setMerchantAccount',
-        'opi' => 'setOpi',
-        'paymentMethod' => 'setPaymentMethod',
-        'recurringProcessingModel' => 'setRecurringProcessingModel',
-        'shopperEmail' => 'setShopperEmail',
-        'shopperIP' => 'setShopperIP',
-        'shopperReference' => 'setShopperReference'
+        'result' => 'setResult'
     ];
 
     /**
@@ -195,13 +165,7 @@ class StoredPaymentMethodRequest implements ModelInterface, ArrayAccess, \JsonSe
      * @var string[]
      */
     protected static array $getters = [
-        'merchantAccount' => 'getMerchantAccount',
-        'opi' => 'getOpi',
-        'paymentMethod' => 'getPaymentMethod',
-        'recurringProcessingModel' => 'getRecurringProcessingModel',
-        'shopperEmail' => 'getShopperEmail',
-        'shopperIP' => 'getShopperIP',
-        'shopperReference' => 'getShopperReference'
+        'result' => 'getResult'
     ];
 
     /**
@@ -245,21 +209,27 @@ class StoredPaymentMethodRequest implements ModelInterface, ArrayAccess, \JsonSe
         return self::$openAPIModelName;
     }
 
-    public const RECURRING_PROCESSING_MODEL_CARD_ON_FILE = 'CardOnFile';
-    public const RECURRING_PROCESSING_MODEL_SUBSCRIPTION = 'Subscription';
-    public const RECURRING_PROCESSING_MODEL_UNSCHEDULED_CARD_ON_FILE = 'UnscheduledCardOnFile';
+    public const RESULT_CARD_CHANGED = 'CardChanged';
+    public const RESULT_CARD_EXPIRY_CHANGED = 'CardExpiryChanged';
+    public const RESULT_CLOSE_ACCOUNT = 'CloseAccount';
+    public const RESULT_CONTACT_CARD_ACCOUNT_HOLDER = 'ContactCardAccountHolder';
+    public const RESULT_ERROR = 'Error';
+    public const RESULT_NO_CHANGE = 'NoChange';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getRecurringProcessingModelAllowableValues()
+    public function getResultAllowableValues()
     {
         return [
-            self::RECURRING_PROCESSING_MODEL_CARD_ON_FILE,
-            self::RECURRING_PROCESSING_MODEL_SUBSCRIPTION,
-            self::RECURRING_PROCESSING_MODEL_UNSCHEDULED_CARD_ON_FILE,
+            self::RESULT_CARD_CHANGED,
+            self::RESULT_CARD_EXPIRY_CHANGED,
+            self::RESULT_CLOSE_ACCOUNT,
+            self::RESULT_CONTACT_CARD_ACCOUNT_HOLDER,
+            self::RESULT_ERROR,
+            self::RESULT_NO_CHANGE,
         ];
     }
 
@@ -278,13 +248,7 @@ class StoredPaymentMethodRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('merchantAccount', $data ?? [], null);
-        $this->setIfExists('opi', $data ?? [], null);
-        $this->setIfExists('paymentMethod', $data ?? [], null);
-        $this->setIfExists('recurringProcessingModel', $data ?? [], null);
-        $this->setIfExists('shopperEmail', $data ?? [], null);
-        $this->setIfExists('shopperIP', $data ?? [], null);
-        $this->setIfExists('shopperReference', $data ?? [], null);
+        $this->setIfExists('result', $data ?? [], null);
     }
 
     /**
@@ -309,169 +273,25 @@ class StoredPaymentMethodRequest implements ModelInterface, ArrayAccess, \JsonSe
 
 
     /**
-     * Gets merchantAccount
-     *
-     * @return string
-     */
-    public function getMerchantAccount()
-    {
-        return $this->container['merchantAccount'];
-    }
-
-    /**
-     * Sets merchantAccount
-     *
-     * @param string $merchantAccount The merchant account identifier, with which you want to process the transaction.
-     *
-     * @return self
-     */
-    public function setMerchantAccount($merchantAccount): self
-    {
-        $this->container['merchantAccount'] = $merchantAccount;
-
-        return $this;
-    }
-
-    /**
-     * Gets opi
-     *
-     * @return \Adyen\Model\Checkout\OpiRequest|null
-     */
-    public function getOpi()
-    {
-        return $this->container['opi'];
-    }
-
-    /**
-     * Sets opi
-     *
-     * @param \Adyen\Model\Checkout\OpiRequest|null $opi opi
-     *
-     * @return self
-     */
-    public function setOpi($opi): self
-    {
-        $this->container['opi'] = $opi;
-
-        return $this;
-    }
-
-    /**
-     * Gets paymentMethod
-     *
-     * @return \Adyen\Model\Checkout\PaymentMethodToStore
-     */
-    public function getPaymentMethod()
-    {
-        return $this->container['paymentMethod'];
-    }
-
-    /**
-     * Sets paymentMethod
-     *
-     * @param \Adyen\Model\Checkout\PaymentMethodToStore $paymentMethod paymentMethod
-     *
-     * @return self
-     */
-    public function setPaymentMethod($paymentMethod): self
-    {
-        $this->container['paymentMethod'] = $paymentMethod;
-
-        return $this;
-    }
-
-    /**
-     * Gets recurringProcessingModel
-     *
-     * @return string
-     */
-    public function getRecurringProcessingModel()
-    {
-        return $this->container['recurringProcessingModel'];
-    }
-
-    /**
-     * Sets recurringProcessingModel
-     *
-     * @param string $recurringProcessingModel Defines a recurring payment type. Required when creating a token to store payment details. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount.
-     *
-     * @return self
-     */
-    public function setRecurringProcessingModel($recurringProcessingModel): self
-    {
-        $this->container['recurringProcessingModel'] = $recurringProcessingModel;
-
-        return $this;
-    }
-
-    /**
-     * Gets shopperEmail
+     * Gets result
      *
      * @return string|null
      */
-    public function getShopperEmail()
+    public function getResult()
     {
-        return $this->container['shopperEmail'];
+        return $this->container['result'];
     }
 
     /**
-     * Sets shopperEmail
+     * Sets result
      *
-     * @param string|null $shopperEmail The shopper's email address. We recommend that you provide this data, as it is used in velocity fraud checks.
+     * @param string|null $result The result of the [Real Time Account Updater](https://docs.adyen.com/online-payments/account-updater/real-time-account-updater). Possible values: * NoChange * CardChanged * CardExpiryChanged * CloseAccount * ContactCardAccountHolder * Error
      *
      * @return self
      */
-    public function setShopperEmail($shopperEmail): self
+    public function setResult($result): self
     {
-        $this->container['shopperEmail'] = $shopperEmail;
-
-        return $this;
-    }
-
-    /**
-     * Gets shopperIP
-     *
-     * @return string|null
-     */
-    public function getShopperIP()
-    {
-        return $this->container['shopperIP'];
-    }
-
-    /**
-     * Sets shopperIP
-     *
-     * @param string|null $shopperIP The IP address of a shopper.
-     *
-     * @return self
-     */
-    public function setShopperIP($shopperIP): self
-    {
-        $this->container['shopperIP'] = $shopperIP;
-
-        return $this;
-    }
-
-    /**
-     * Gets shopperReference
-     *
-     * @return string
-     */
-    public function getShopperReference()
-    {
-        return $this->container['shopperReference'];
-    }
-
-    /**
-     * Sets shopperReference
-     *
-     * @param string $shopperReference A unique identifier for the shopper (for example, user ID or account ID).
-     *
-     * @return self
-     */
-    public function setShopperReference($shopperReference): self
-    {
-        $this->container['shopperReference'] = $shopperReference;
+        $this->container['result'] = $result;
 
         return $this;
     }
