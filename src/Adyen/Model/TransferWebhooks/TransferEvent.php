@@ -1123,7 +1123,7 @@ class TransferEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      *
-     * @param string|null $type The type of the transfer event. Possible values: **accounting**, **tracking**.
+     * @param string|null $type The type of the transfer event. Possible values: **accounting**, **tracing**, **tracking**.
      *
      * @return self
      */

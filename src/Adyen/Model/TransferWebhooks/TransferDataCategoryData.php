@@ -44,6 +44,7 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
         'modificationMerchantReference' => 'string',
         'modificationPspReference' => 'string',
         'authorisationType' => 'string',
+        'networkVariant' => 'string',
         'panEntryMode' => 'string',
         'processingType' => 'string',
         'relayedAuthorisationData' => '\Adyen\Model\TransferWebhooks\RelayedAuthorisationData',
@@ -69,6 +70,7 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
         'modificationMerchantReference' => null,
         'modificationPspReference' => null,
         'authorisationType' => null,
+        'networkVariant' => null,
         'panEntryMode' => null,
         'processingType' => null,
         'relayedAuthorisationData' => null,
@@ -92,6 +94,7 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
         'modificationMerchantReference' => false,
         'modificationPspReference' => false,
         'authorisationType' => false,
+        'networkVariant' => false,
         'panEntryMode' => false,
         'processingType' => false,
         'relayedAuthorisationData' => false,
@@ -195,6 +198,7 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
         'modificationMerchantReference' => 'modificationMerchantReference',
         'modificationPspReference' => 'modificationPspReference',
         'authorisationType' => 'authorisationType',
+        'networkVariant' => 'networkVariant',
         'panEntryMode' => 'panEntryMode',
         'processingType' => 'processingType',
         'relayedAuthorisationData' => 'relayedAuthorisationData',
@@ -218,6 +222,7 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
         'modificationMerchantReference' => 'setModificationMerchantReference',
         'modificationPspReference' => 'setModificationPspReference',
         'authorisationType' => 'setAuthorisationType',
+        'networkVariant' => 'setNetworkVariant',
         'panEntryMode' => 'setPanEntryMode',
         'processingType' => 'setProcessingType',
         'relayedAuthorisationData' => 'setRelayedAuthorisationData',
@@ -241,6 +246,7 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
         'modificationMerchantReference' => 'getModificationMerchantReference',
         'modificationPspReference' => 'getModificationPspReference',
         'authorisationType' => 'getAuthorisationType',
+        'networkVariant' => 'getNetworkVariant',
         'panEntryMode' => 'getPanEntryMode',
         'processingType' => 'getProcessingType',
         'relayedAuthorisationData' => 'getRelayedAuthorisationData',
@@ -304,6 +310,9 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
     public const TYPE_INTERNAL = 'internal';
     public const TYPE_ISSUED_CARD = 'issuedCard';
     public const TYPE_PLATFORM_PAYMENT = 'platformPayment';
+    public const NETWORK_VARIANT_MAESTRO_US = 'maestro_us';
+    public const NETWORK_VARIANT_MASTERCARD = 'mastercard';
+    public const NETWORK_VARIANT_VISA = 'visa';
     public const PAN_ENTRY_MODE_CHIP = 'chip';
     public const PAN_ENTRY_MODE_COF = 'cof';
     public const PAN_ENTRY_MODE_CONTACTLESS = 'contactless';
@@ -367,6 +376,20 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
             self::TYPE_INTERNAL,
             self::TYPE_ISSUED_CARD,
             self::TYPE_PLATFORM_PAYMENT,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getNetworkVariantAllowableValues()
+    {
+        return [
+            self::NETWORK_VARIANT_MAESTRO_US,
+            self::NETWORK_VARIANT_MASTERCARD,
+            self::NETWORK_VARIANT_VISA,
         ];
     }
 
@@ -456,6 +479,7 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
         $this->setIfExists('modificationMerchantReference', $data ?? [], null);
         $this->setIfExists('modificationPspReference', $data ?? [], null);
         $this->setIfExists('authorisationType', $data ?? [], null);
+        $this->setIfExists('networkVariant', $data ?? [], null);
         $this->setIfExists('panEntryMode', $data ?? [], null);
         $this->setIfExists('processingType', $data ?? [], null);
         $this->setIfExists('relayedAuthorisationData', $data ?? [], null);
@@ -610,6 +634,30 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
     public function setAuthorisationType($authorisationType): self
     {
         $this->container['authorisationType'] = $authorisationType;
+
+        return $this;
+    }
+
+    /**
+     * Gets networkVariant
+     *
+     * @return string|null
+     */
+    public function getNetworkVariant()
+    {
+        return $this->container['networkVariant'];
+    }
+
+    /**
+     * Sets networkVariant
+     *
+     * @param string|null $networkVariant The card variant associated with the payment network used to route or process the transaction. For single-network cards, this matches the `brandVariant`. For US dual-network cards routed over an alternate network, this value reflects the specific tier or sub-type under that processing network.
+     *
+     * @return self
+     */
+    public function setNetworkVariant($networkVariant): self
+    {
+        $this->container['networkVariant'] = $networkVariant;
 
         return $this;
     }
