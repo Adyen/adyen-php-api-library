@@ -41,6 +41,7 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
+        'cardUsageType' => 'string',
         'currency' => 'string',
         'fundingSource' => 'string',
         'paymentMethod' => 'string',
@@ -55,6 +56,7 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'cardUsageType' => null,
         'currency' => null,
         'fundingSource' => null,
         'paymentMethod' => null,
@@ -67,6 +69,7 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'cardUsageType' => false,
         'currency' => false,
         'fundingSource' => false,
         'paymentMethod' => false,
@@ -159,6 +162,7 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
+        'cardUsageType' => 'cardUsageType',
         'currency' => 'currency',
         'fundingSource' => 'fundingSource',
         'paymentMethod' => 'paymentMethod',
@@ -171,6 +175,7 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
+        'cardUsageType' => 'setCardUsageType',
         'currency' => 'setCurrency',
         'fundingSource' => 'setFundingSource',
         'paymentMethod' => 'setPaymentMethod',
@@ -183,6 +188,7 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
+        'cardUsageType' => 'getCardUsageType',
         'currency' => 'getCurrency',
         'fundingSource' => 'getFundingSource',
         'paymentMethod' => 'getPaymentMethod',
@@ -230,7 +236,23 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
         return self::$openAPIModelName;
     }
 
+    public const CARD_USAGE_TYPE_COMMERCIAL = 'commercial';
+    public const CARD_USAGE_TYPE_CONSUMER = 'consumer';
+    public const CARD_USAGE_TYPE_ANY = 'ANY';
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getCardUsageTypeAllowableValues()
+    {
+        return [
+            self::CARD_USAGE_TYPE_COMMERCIAL,
+            self::CARD_USAGE_TYPE_CONSUMER,
+            self::CARD_USAGE_TYPE_ANY,
+        ];
+    }
     /**
      * Associative array for storing property values
      *
@@ -246,6 +268,7 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('cardUsageType', $data ?? [], null);
         $this->setIfExists('currency', $data ?? [], null);
         $this->setIfExists('fundingSource', $data ?? [], null);
         $this->setIfExists('paymentMethod', $data ?? [], null);
@@ -279,6 +302,15 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        $allowedValues = $this->getCardUsageTypeAllowableValues();
+        if (!is_null($this->container['cardUsageType']) && !in_array($this->container['cardUsageType'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'cardUsageType', must be one of '%s'",
+                $this->container['cardUsageType'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         if ($this->container['currency'] === null) {
             $invalidProperties[] = "'currency' can't be null";
         }
@@ -305,6 +337,40 @@ class UpdateSplitConfigurationRuleRequest implements ModelInterface, ArrayAccess
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets cardUsageType
+     *
+     * @return string|null
+     */
+    public function getCardUsageType()
+    {
+        return $this->container['cardUsageType'];
+    }
+
+    /**
+     * Sets cardUsageType
+     *
+     * @param string|null $cardUsageType The card usage type condition that determines whether the split logic applies to commercial cards, consumer cards, or all cards.  * **ANY** (default): The split logic applies to all cards, regardless of its usage type. * **commercial**: The split logic applies to commercial cards only. * **consumer**: The split logic applies to consumer cards only.
+     *
+     * @return self
+     */
+    public function setCardUsageType($cardUsageType)
+    {
+        $allowedValues = $this->getCardUsageTypeAllowableValues();
+        if (!in_array($cardUsageType, $allowedValues, true)) {
+            error_log(
+                sprintf(
+                    "cardUsageType: unexpected enum value '%s' - Supported values are [%s]",
+                    $cardUsageType,
+                    implode(', ', $allowedValues)
+                )
+            );
+        }
+        $this->container['cardUsageType'] = $cardUsageType;
+
+        return $this;
+    }
 
     /**
      * Gets currency

@@ -258,9 +258,6 @@ class ApplePayResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         $invalidProperties = [];
 
-        if ($this->container['domains'] === null) {
-            $invalidProperties[] = "'domains' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -279,7 +276,7 @@ class ApplePayResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets domains
      *
-     * @return string[]
+     * @return string[]|null
      */
     public function getDomains()
     {
@@ -289,7 +286,7 @@ class ApplePayResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets domains
      *
-     * @param string[] $domains The list of merchant domains.  For more information, see [Apple Pay documentation](https://docs.adyen.com/payment-methods/apple-pay/web-drop-in?tab=adyen-certificate-live_1#going-live).
+     * @param string[]|null $domains The list of merchant domains.  For more information, see [Apple Pay documentation](https://docs.adyen.com/payment-methods/apple-pay/web-drop-in?tab=adyen-certificate-live_1#going-live).
      *
      * @return self
      */

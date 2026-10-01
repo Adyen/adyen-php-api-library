@@ -261,6 +261,7 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public const TYPES_WITH_ERRORS_ALIPAY_PLUS_TRUEMONEY = 'alipay_plus_truemoney';
     public const TYPES_WITH_ERRORS_ALIPAY_WAP = 'alipay_wap';
     public const TYPES_WITH_ERRORS_AMEX = 'amex';
+    public const TYPES_WITH_ERRORS_ANCV = 'ancv';
     public const TYPES_WITH_ERRORS_APPLEPAY = 'applepay';
     public const TYPES_WITH_ERRORS_AVANCARD = 'avancard';
     public const TYPES_WITH_ERRORS_AVANCARD_CREDIT = 'avancard_credit';
@@ -275,6 +276,7 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public const TYPES_WITH_ERRORS_BR_SCHEMES = 'br_schemes';
     public const TYPES_WITH_ERRORS_CARNET = 'carnet';
     public const TYPES_WITH_ERRORS_CARTEBANCAIRE = 'cartebancaire';
+    public const TYPES_WITH_ERRORS_CASHAPP = 'cashapp';
     public const TYPES_WITH_ERRORS_CLEARPAY = 'clearpay';
     public const TYPES_WITH_ERRORS_CLICKTOPAY = 'clicktopay';
     public const TYPES_WITH_ERRORS_COOPER = 'cooper';
@@ -293,6 +295,7 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public const TYPES_WITH_ERRORS_DIRECTDEBIT_GB = 'directdebit_GB';
     public const TYPES_WITH_ERRORS_DISCOVER = 'discover';
     public const TYPES_WITH_ERRORS_EBANKING_FI = 'ebanking_FI';
+    public const TYPES_WITH_ERRORS_EBT = 'ebt';
     public const TYPES_WITH_ERRORS_EFT_DIRECTDEBIT_CA = 'eft_directdebit_CA';
     public const TYPES_WITH_ERRORS_EFTPOS_AUSTRALIA = 'eftpos_australia';
     public const TYPES_WITH_ERRORS_ELO = 'elo';
@@ -383,6 +386,7 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public const TYPES_WITH_ERRORS_VPAY = 'vpay';
     public const TYPES_WITH_ERRORS_WECHATPAY = 'wechatpay';
     public const TYPES_WITH_ERRORS_WECHATPAY_POS = 'wechatpay_pos';
+    public const TYPES_WITH_ERRORS_WERO = 'wero';
 
     /**
      * Gets allowable values of the enum
@@ -417,6 +421,7 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             self::TYPES_WITH_ERRORS_ALIPAY_PLUS_TRUEMONEY,
             self::TYPES_WITH_ERRORS_ALIPAY_WAP,
             self::TYPES_WITH_ERRORS_AMEX,
+            self::TYPES_WITH_ERRORS_ANCV,
             self::TYPES_WITH_ERRORS_APPLEPAY,
             self::TYPES_WITH_ERRORS_AVANCARD,
             self::TYPES_WITH_ERRORS_AVANCARD_CREDIT,
@@ -431,6 +436,7 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             self::TYPES_WITH_ERRORS_BR_SCHEMES,
             self::TYPES_WITH_ERRORS_CARNET,
             self::TYPES_WITH_ERRORS_CARTEBANCAIRE,
+            self::TYPES_WITH_ERRORS_CASHAPP,
             self::TYPES_WITH_ERRORS_CLEARPAY,
             self::TYPES_WITH_ERRORS_CLICKTOPAY,
             self::TYPES_WITH_ERRORS_COOPER,
@@ -449,6 +455,7 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             self::TYPES_WITH_ERRORS_DIRECTDEBIT_GB,
             self::TYPES_WITH_ERRORS_DISCOVER,
             self::TYPES_WITH_ERRORS_EBANKING_FI,
+            self::TYPES_WITH_ERRORS_EBT,
             self::TYPES_WITH_ERRORS_EFT_DIRECTDEBIT_CA,
             self::TYPES_WITH_ERRORS_EFTPOS_AUSTRALIA,
             self::TYPES_WITH_ERRORS_ELO,
@@ -539,6 +546,7 @@ class PaymentMethodResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             self::TYPES_WITH_ERRORS_VPAY,
             self::TYPES_WITH_ERRORS_WECHATPAY,
             self::TYPES_WITH_ERRORS_WECHATPAY_POS,
+            self::TYPES_WITH_ERRORS_WERO,
         ];
     }
     /**

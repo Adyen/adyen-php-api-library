@@ -265,12 +265,6 @@ class WeChatPayResponseInfo implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         $invalidProperties = [];
 
-        if ($this->container['contactPersonName'] === null) {
-            $invalidProperties[] = "'contactPersonName' can't be null";
-        }
-        if ($this->container['email'] === null) {
-            $invalidProperties[] = "'email' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -289,7 +283,7 @@ class WeChatPayResponseInfo implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets contactPersonName
      *
-     * @return string
+     * @return string|null
      */
     public function getContactPersonName()
     {
@@ -299,7 +293,7 @@ class WeChatPayResponseInfo implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets contactPersonName
      *
-     * @param string $contactPersonName The name of the contact person from merchant support.
+     * @param string|null $contactPersonName The name of the contact person from merchant support.
      *
      * @return self
      */
@@ -313,7 +307,7 @@ class WeChatPayResponseInfo implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets email
      *
-     * @return string
+     * @return string|null
      */
     public function getEmail()
     {
@@ -323,7 +317,7 @@ class WeChatPayResponseInfo implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets email
      *
-     * @param string $email The email address of merchant support.
+     * @param string|null $email The email address of merchant support.
      *
      * @return self
      */

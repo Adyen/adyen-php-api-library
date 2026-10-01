@@ -41,6 +41,9 @@ class AlipayPlusInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'branchName' => 'string',
+        'merchantMobileAppName' => 'string',
+        'productServiceDescription' => 'string',
         'settlementCurrencyCode' => 'string'
     ];
 
@@ -52,6 +55,9 @@ class AlipayPlusInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'branchName' => null,
+        'merchantMobileAppName' => null,
+        'productServiceDescription' => null,
         'settlementCurrencyCode' => null
     ];
 
@@ -61,6 +67,9 @@ class AlipayPlusInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static $openAPINullables = [
+        'branchName' => false,
+        'merchantMobileAppName' => false,
+        'productServiceDescription' => false,
         'settlementCurrencyCode' => false
     ];
 
@@ -150,6 +159,9 @@ class AlipayPlusInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'branchName' => 'branchName',
+        'merchantMobileAppName' => 'merchantMobileAppName',
+        'productServiceDescription' => 'productServiceDescription',
         'settlementCurrencyCode' => 'settlementCurrencyCode'
     ];
 
@@ -159,6 +171,9 @@ class AlipayPlusInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'branchName' => 'setBranchName',
+        'merchantMobileAppName' => 'setMerchantMobileAppName',
+        'productServiceDescription' => 'setProductServiceDescription',
         'settlementCurrencyCode' => 'setSettlementCurrencyCode'
     ];
 
@@ -168,6 +183,9 @@ class AlipayPlusInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'branchName' => 'getBranchName',
+        'merchantMobileAppName' => 'getMerchantMobileAppName',
+        'productServiceDescription' => 'getProductServiceDescription',
         'settlementCurrencyCode' => 'getSettlementCurrencyCode'
     ];
 
@@ -228,6 +246,9 @@ class AlipayPlusInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('branchName', $data ?? [], null);
+        $this->setIfExists('merchantMobileAppName', $data ?? [], null);
+        $this->setIfExists('productServiceDescription', $data ?? [], null);
         $this->setIfExists('settlementCurrencyCode', $data ?? [], null);
     }
 
@@ -272,6 +293,78 @@ class AlipayPlusInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets branchName
+     *
+     * @return string|null
+     */
+    public function getBranchName()
+    {
+        return $this->container['branchName'];
+    }
+
+    /**
+     * Sets branchName
+     *
+     * @param string|null $branchName The name of the company branch. Required for TrueMoney.
+     *
+     * @return self
+     */
+    public function setBranchName($branchName)
+    {
+        $this->container['branchName'] = $branchName;
+
+        return $this;
+    }
+
+    /**
+     * Gets merchantMobileAppName
+     *
+     * @return string|null
+     */
+    public function getMerchantMobileAppName()
+    {
+        return $this->container['merchantMobileAppName'];
+    }
+
+    /**
+     * Sets merchantMobileAppName
+     *
+     * @param string|null $merchantMobileAppName The name of your mobile app. Required for TrueMoney.
+     *
+     * @return self
+     */
+    public function setMerchantMobileAppName($merchantMobileAppName)
+    {
+        $this->container['merchantMobileAppName'] = $merchantMobileAppName;
+
+        return $this;
+    }
+
+    /**
+     * Gets productServiceDescription
+     *
+     * @return string|null
+     */
+    public function getProductServiceDescription()
+    {
+        return $this->container['productServiceDescription'];
+    }
+
+    /**
+     * Sets productServiceDescription
+     *
+     * @param string|null $productServiceDescription The description of the product or service. Required for TrueMoney.
+     *
+     * @return self
+     */
+    public function setProductServiceDescription($productServiceDescription)
+    {
+        $this->container['productServiceDescription'] = $productServiceDescription;
+
+        return $this;
+    }
 
     /**
      * Gets settlementCurrencyCode
