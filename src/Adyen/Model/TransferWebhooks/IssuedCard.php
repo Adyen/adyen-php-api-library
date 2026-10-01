@@ -39,6 +39,7 @@ class IssuedCard implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPITypes = [
         'authorisationType' => 'string',
+        'networkVariant' => 'string',
         'panEntryMode' => 'string',
         'processingType' => 'string',
         'relayedAuthorisationData' => '\Adyen\Model\TransferWebhooks\RelayedAuthorisationData',
@@ -58,6 +59,7 @@ class IssuedCard implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPIFormats = [
         'authorisationType' => null,
+        'networkVariant' => null,
         'panEntryMode' => null,
         'processingType' => null,
         'relayedAuthorisationData' => null,
@@ -75,6 +77,7 @@ class IssuedCard implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'authorisationType' => false,
+        'networkVariant' => false,
         'panEntryMode' => false,
         'processingType' => false,
         'relayedAuthorisationData' => false,
@@ -172,6 +175,7 @@ class IssuedCard implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static array $attributeMap = [
         'authorisationType' => 'authorisationType',
+        'networkVariant' => 'networkVariant',
         'panEntryMode' => 'panEntryMode',
         'processingType' => 'processingType',
         'relayedAuthorisationData' => 'relayedAuthorisationData',
@@ -189,6 +193,7 @@ class IssuedCard implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static array $setters = [
         'authorisationType' => 'setAuthorisationType',
+        'networkVariant' => 'setNetworkVariant',
         'panEntryMode' => 'setPanEntryMode',
         'processingType' => 'setProcessingType',
         'relayedAuthorisationData' => 'setRelayedAuthorisationData',
@@ -206,6 +211,7 @@ class IssuedCard implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static array $getters = [
         'authorisationType' => 'getAuthorisationType',
+        'networkVariant' => 'getNetworkVariant',
         'panEntryMode' => 'getPanEntryMode',
         'processingType' => 'getProcessingType',
         'relayedAuthorisationData' => 'getRelayedAuthorisationData',
@@ -257,6 +263,9 @@ class IssuedCard implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const NETWORK_VARIANT_MAESTRO_US = 'maestro_us';
+    public const NETWORK_VARIANT_MASTERCARD = 'mastercard';
+    public const NETWORK_VARIANT_VISA = 'visa';
     public const PAN_ENTRY_MODE_CHIP = 'chip';
     public const PAN_ENTRY_MODE_COF = 'cof';
     public const PAN_ENTRY_MODE_CONTACTLESS = 'contactless';
@@ -273,6 +282,20 @@ class IssuedCard implements ModelInterface, ArrayAccess, \JsonSerializable
     public const PROCESSING_TYPE_RECURRING = 'recurring';
     public const PROCESSING_TYPE_TOKEN = 'token';
     public const TYPE_ISSUED_CARD = 'issuedCard';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getNetworkVariantAllowableValues()
+    {
+        return [
+            self::NETWORK_VARIANT_MAESTRO_US,
+            self::NETWORK_VARIANT_MASTERCARD,
+            self::NETWORK_VARIANT_VISA,
+        ];
+    }
 
     /**
      * Gets allowable values of the enum
@@ -339,6 +362,7 @@ class IssuedCard implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(?array $data = null)
     {
         $this->setIfExists('authorisationType', $data ?? [], null);
+        $this->setIfExists('networkVariant', $data ?? [], null);
         $this->setIfExists('panEntryMode', $data ?? [], null);
         $this->setIfExists('processingType', $data ?? [], null);
         $this->setIfExists('relayedAuthorisationData', $data ?? [], null);
@@ -390,6 +414,30 @@ class IssuedCard implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setAuthorisationType($authorisationType): self
     {
         $this->container['authorisationType'] = $authorisationType;
+
+        return $this;
+    }
+
+    /**
+     * Gets networkVariant
+     *
+     * @return string|null
+     */
+    public function getNetworkVariant()
+    {
+        return $this->container['networkVariant'];
+    }
+
+    /**
+     * Sets networkVariant
+     *
+     * @param string|null $networkVariant The card variant associated with the payment network used to route or process the transaction. For single-network cards, this matches the `brandVariant`. For US dual-network cards routed over an alternate network, this value reflects the specific tier or sub-type under that processing network.
+     *
+     * @return self
+     */
+    public function setNetworkVariant($networkVariant): self
+    {
+        $this->container['networkVariant'] = $networkVariant;
 
         return $this;
     }
