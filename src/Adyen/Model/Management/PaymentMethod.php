@@ -47,7 +47,9 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'alipayPlus' => '\Adyen\Model\Management\AlipayPlusResponseInfo',
         'allowed' => 'bool',
         'amex' => '\Adyen\Model\Management\AmexResponseInfo',
+        'ancv' => '\Adyen\Model\Management\AncvResponseInfo',
         'applePay' => '\Adyen\Model\Management\ApplePayResponseInfo',
+        'associatedPaymentMethods' => '\Adyen\Model\Management\AssociatedPaymentMethod[]',
         'bcmc' => '\Adyen\Model\Management\BcmcResponseInfo',
         'businessLineId' => 'string',
         'carnet' => '\Adyen\Model\Management\CarnetResponseInfo',
@@ -59,6 +61,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'customRoutingFlags' => 'string[]',
         'diners' => '\Adyen\Model\Management\DinersResponseInfo',
         'discover' => '\Adyen\Model\Management\DiscoverResponseInfo',
+        'ebt' => '\Adyen\Model\Management\EbtResponseInfo',
         'eftDirectdebitCA' => '\Adyen\Model\Management\EFTDirectDebitCAResponseInfo',
         'eftposAustralia' => '\Adyen\Model\Management\EftPosAustraliaResponseInfo',
         'enabled' => 'bool',
@@ -74,6 +77,8 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'maestroUsa' => '\Adyen\Model\Management\MaestroUSAResponseInfo',
         'mc' => '\Adyen\Model\Management\MCResponseInfo',
         'mealVoucherFR' => '\Adyen\Model\Management\MealVoucherFRResponseInfo',
+        'merchantCategoryCode' => 'string',
+        'mid' => 'string',
         'nyce' => '\Adyen\Model\Management\NyceResponseInfo',
         'paybybankPlaid' => '\Adyen\Model\Management\PayByBankPlaidResponseInfo',
         'payme' => '\Adyen\Model\Management\PayMeResponseInfo',
@@ -114,7 +119,9 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'alipayPlus' => null,
         'allowed' => null,
         'amex' => null,
+        'ancv' => null,
         'applePay' => null,
+        'associatedPaymentMethods' => null,
         'bcmc' => null,
         'businessLineId' => null,
         'carnet' => null,
@@ -126,6 +133,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'customRoutingFlags' => null,
         'diners' => null,
         'discover' => null,
+        'ebt' => null,
         'eftDirectdebitCA' => null,
         'eftposAustralia' => null,
         'enabled' => null,
@@ -141,6 +149,8 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'maestroUsa' => null,
         'mc' => null,
         'mealVoucherFR' => null,
+        'merchantCategoryCode' => null,
+        'mid' => null,
         'nyce' => null,
         'paybybankPlaid' => null,
         'payme' => null,
@@ -179,7 +189,9 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'alipayPlus' => false,
         'allowed' => false,
         'amex' => false,
+        'ancv' => false,
         'applePay' => false,
+        'associatedPaymentMethods' => false,
         'bcmc' => false,
         'businessLineId' => false,
         'carnet' => false,
@@ -191,6 +203,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'customRoutingFlags' => false,
         'diners' => false,
         'discover' => false,
+        'ebt' => false,
         'eftDirectdebitCA' => false,
         'eftposAustralia' => false,
         'enabled' => false,
@@ -206,6 +219,8 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'maestroUsa' => false,
         'mc' => false,
         'mealVoucherFR' => false,
+        'merchantCategoryCode' => false,
+        'mid' => false,
         'nyce' => false,
         'paybybankPlaid' => false,
         'payme' => false,
@@ -324,7 +339,9 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'alipayPlus' => 'alipayPlus',
         'allowed' => 'allowed',
         'amex' => 'amex',
+        'ancv' => 'ancv',
         'applePay' => 'applePay',
+        'associatedPaymentMethods' => 'associatedPaymentMethods',
         'bcmc' => 'bcmc',
         'businessLineId' => 'businessLineId',
         'carnet' => 'carnet',
@@ -336,6 +353,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'customRoutingFlags' => 'customRoutingFlags',
         'diners' => 'diners',
         'discover' => 'discover',
+        'ebt' => 'ebt',
         'eftDirectdebitCA' => 'eft_directdebit_CA',
         'eftposAustralia' => 'eftpos_australia',
         'enabled' => 'enabled',
@@ -351,6 +369,8 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'maestroUsa' => 'maestro_usa',
         'mc' => 'mc',
         'mealVoucherFR' => 'mealVoucher_FR',
+        'merchantCategoryCode' => 'merchantCategoryCode',
+        'mid' => 'mid',
         'nyce' => 'nyce',
         'paybybankPlaid' => 'paybybank_plaid',
         'payme' => 'payme',
@@ -389,7 +409,9 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'alipayPlus' => 'setAlipayPlus',
         'allowed' => 'setAllowed',
         'amex' => 'setAmex',
+        'ancv' => 'setAncv',
         'applePay' => 'setApplePay',
+        'associatedPaymentMethods' => 'setAssociatedPaymentMethods',
         'bcmc' => 'setBcmc',
         'businessLineId' => 'setBusinessLineId',
         'carnet' => 'setCarnet',
@@ -401,6 +423,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'customRoutingFlags' => 'setCustomRoutingFlags',
         'diners' => 'setDiners',
         'discover' => 'setDiscover',
+        'ebt' => 'setEbt',
         'eftDirectdebitCA' => 'setEftDirectdebitCA',
         'eftposAustralia' => 'setEftposAustralia',
         'enabled' => 'setEnabled',
@@ -416,6 +439,8 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'maestroUsa' => 'setMaestroUsa',
         'mc' => 'setMc',
         'mealVoucherFR' => 'setMealVoucherFR',
+        'merchantCategoryCode' => 'setMerchantCategoryCode',
+        'mid' => 'setMid',
         'nyce' => 'setNyce',
         'paybybankPlaid' => 'setPaybybankPlaid',
         'payme' => 'setPayme',
@@ -454,7 +479,9 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'alipayPlus' => 'getAlipayPlus',
         'allowed' => 'getAllowed',
         'amex' => 'getAmex',
+        'ancv' => 'getAncv',
         'applePay' => 'getApplePay',
+        'associatedPaymentMethods' => 'getAssociatedPaymentMethods',
         'bcmc' => 'getBcmc',
         'businessLineId' => 'getBusinessLineId',
         'carnet' => 'getCarnet',
@@ -466,6 +493,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'customRoutingFlags' => 'getCustomRoutingFlags',
         'diners' => 'getDiners',
         'discover' => 'getDiscover',
+        'ebt' => 'getEbt',
         'eftDirectdebitCA' => 'getEftDirectdebitCA',
         'eftposAustralia' => 'getEftposAustralia',
         'enabled' => 'getEnabled',
@@ -481,6 +509,8 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         'maestroUsa' => 'getMaestroUsa',
         'mc' => 'getMc',
         'mealVoucherFR' => 'getMealVoucherFR',
+        'merchantCategoryCode' => 'getMerchantCategoryCode',
+        'mid' => 'getMid',
         'nyce' => 'getNyce',
         'paybybankPlaid' => 'getPaybybankPlaid',
         'payme' => 'getPayme',
@@ -588,7 +618,9 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('alipayPlus', $data ?? [], null);
         $this->setIfExists('allowed', $data ?? [], null);
         $this->setIfExists('amex', $data ?? [], null);
+        $this->setIfExists('ancv', $data ?? [], null);
         $this->setIfExists('applePay', $data ?? [], null);
+        $this->setIfExists('associatedPaymentMethods', $data ?? [], null);
         $this->setIfExists('bcmc', $data ?? [], null);
         $this->setIfExists('businessLineId', $data ?? [], null);
         $this->setIfExists('carnet', $data ?? [], null);
@@ -600,6 +632,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('customRoutingFlags', $data ?? [], null);
         $this->setIfExists('diners', $data ?? [], null);
         $this->setIfExists('discover', $data ?? [], null);
+        $this->setIfExists('ebt', $data ?? [], null);
         $this->setIfExists('eftDirectdebitCA', $data ?? [], null);
         $this->setIfExists('eftposAustralia', $data ?? [], null);
         $this->setIfExists('enabled', $data ?? [], null);
@@ -615,6 +648,8 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('maestroUsa', $data ?? [], null);
         $this->setIfExists('mc', $data ?? [], null);
         $this->setIfExists('mealVoucherFR', $data ?? [], null);
+        $this->setIfExists('merchantCategoryCode', $data ?? [], null);
+        $this->setIfExists('mid', $data ?? [], null);
         $this->setIfExists('nyce', $data ?? [], null);
         $this->setIfExists('paybybankPlaid', $data ?? [], null);
         $this->setIfExists('payme', $data ?? [], null);
@@ -840,6 +875,30 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets ancv
+     *
+     * @return \Adyen\Model\Management\AncvResponseInfo|null
+     */
+    public function getAncv()
+    {
+        return $this->container['ancv'];
+    }
+
+    /**
+     * Sets ancv
+     *
+     * @param \Adyen\Model\Management\AncvResponseInfo|null $ancv ancv
+     *
+     * @return self
+     */
+    public function setAncv($ancv)
+    {
+        $this->container['ancv'] = $ancv;
+
+        return $this;
+    }
+
+    /**
      * Gets applePay
      *
      * @return \Adyen\Model\Management\ApplePayResponseInfo|null
@@ -859,6 +918,30 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setApplePay($applePay)
     {
         $this->container['applePay'] = $applePay;
+
+        return $this;
+    }
+
+    /**
+     * Gets associatedPaymentMethods
+     *
+     * @return \Adyen\Model\Management\AssociatedPaymentMethod[]|null
+     */
+    public function getAssociatedPaymentMethods()
+    {
+        return $this->container['associatedPaymentMethods'];
+    }
+
+    /**
+     * Sets associatedPaymentMethods
+     *
+     * @param \Adyen\Model\Management\AssociatedPaymentMethod[]|null $associatedPaymentMethods Payment methods that were also updated as part of an associated transition.
+     *
+     * @return self
+     */
+    public function setAssociatedPaymentMethods($associatedPaymentMethods)
+    {
+        $this->container['associatedPaymentMethods'] = $associatedPaymentMethods;
 
         return $this;
     }
@@ -1123,6 +1206,30 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setDiscover($discover)
     {
         $this->container['discover'] = $discover;
+
+        return $this;
+    }
+
+    /**
+     * Gets ebt
+     *
+     * @return \Adyen\Model\Management\EbtResponseInfo|null
+     */
+    public function getEbt()
+    {
+        return $this->container['ebt'];
+    }
+
+    /**
+     * Sets ebt
+     *
+     * @param \Adyen\Model\Management\EbtResponseInfo|null $ebt ebt
+     *
+     * @return self
+     */
+    public function setEbt($ebt)
+    {
+        $this->container['ebt'] = $ebt;
 
         return $this;
     }
@@ -1483,6 +1590,54 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setMealVoucherFR($mealVoucherFR)
     {
         $this->container['mealVoucherFR'] = $mealVoucherFR;
+
+        return $this;
+    }
+
+    /**
+     * Gets merchantCategoryCode
+     *
+     * @return string|null
+     */
+    public function getMerchantCategoryCode()
+    {
+        return $this->container['merchantCategoryCode'];
+    }
+
+    /**
+     * Sets merchantCategoryCode
+     *
+     * @param string|null $merchantCategoryCode The Merchant Category Code (MCC) associated with the payment method.
+     *
+     * @return self
+     */
+    public function setMerchantCategoryCode($merchantCategoryCode)
+    {
+        $this->container['merchantCategoryCode'] = $merchantCategoryCode;
+
+        return $this;
+    }
+
+    /**
+     * Gets mid
+     *
+     * @return string|null
+     */
+    public function getMid()
+    {
+        return $this->container['mid'];
+    }
+
+    /**
+     * Sets mid
+     *
+     * @param string|null $mid The Merchant Identifier (MID) associated with the payment method.
+     *
+     * @return self
+     */
+    public function setMid($mid)
+    {
+        $this->container['mid'] = $mid;
 
         return $this;
     }
@@ -1908,7 +2063,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      *
-     * @param string|null $type Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).
+     * @param string|null $type Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).  For payment method variant **cartebancaire**, method-specific details are returned in the [`cartesBancaires`](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/paymentMethodSettings#responses-200-cartesBancaires) object.
      *
      * @return self
      */

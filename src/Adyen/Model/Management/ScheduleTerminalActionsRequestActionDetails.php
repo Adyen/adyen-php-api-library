@@ -28,7 +28,7 @@ use Adyen\Model\Management\ObjectSerializer;
  */
 class ScheduleTerminalActionsRequestActionDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    public const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = 'type';
 
     /**
       * The original name of the model.
@@ -251,6 +251,9 @@ class ScheduleTerminalActionsRequestActionDetails implements ModelInterface, Arr
         $this->setIfExists('appId', $data ?? [], null);
         $this->setIfExists('certificateId', $data ?? [], null);
         $this->setIfExists('updateAtFirstMaintenanceCall', $data ?? [], null);
+
+        // Initialize discriminator property with the model name.
+        $this->container['type'] = static::$openAPIModelName;
     }
 
     /**

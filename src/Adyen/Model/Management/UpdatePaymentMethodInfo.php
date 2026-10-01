@@ -46,12 +46,14 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'bcmc' => '\Adyen\Model\Management\BcmcUpdateInfo',
         'carnet' => '\Adyen\Model\Management\GenericPmWithTdiUpdateInfo',
         'cartesBancaires' => '\Adyen\Model\Management\CartesBancairesUpdateInfo',
+        'cashapp' => '\Adyen\Model\Management\CashAppUpdateInfo',
         'countries' => 'string[]',
         'cup' => '\Adyen\Model\Management\GenericPmWithTdiUpdateInfo',
         'currencies' => 'string[]',
         'customRoutingFlags' => 'string[]',
         'diners' => '\Adyen\Model\Management\GenericPmWithTdiUpdateInfo',
         'discover' => '\Adyen\Model\Management\GenericPmWithTdiUpdateInfo',
+        'ebt' => '\Adyen\Model\Management\EbtUpdateInfo',
         'eftDirectdebitCA' => '\Adyen\Model\Management\GenericPmWithTdiUpdateInfo',
         'eftposAustralia' => '\Adyen\Model\Management\GenericPmWithTdiUpdateInfo',
         'enabled' => 'bool',
@@ -85,12 +87,14 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'bcmc' => null,
         'carnet' => null,
         'cartesBancaires' => null,
+        'cashapp' => null,
         'countries' => null,
         'cup' => null,
         'currencies' => null,
         'customRoutingFlags' => null,
         'diners' => null,
         'discover' => null,
+        'ebt' => null,
         'eftDirectdebitCA' => null,
         'eftposAustralia' => null,
         'enabled' => null,
@@ -122,12 +126,14 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'bcmc' => false,
         'carnet' => false,
         'cartesBancaires' => false,
+        'cashapp' => false,
         'countries' => false,
         'cup' => false,
         'currencies' => false,
         'customRoutingFlags' => false,
         'diners' => false,
         'discover' => false,
+        'ebt' => false,
         'eftDirectdebitCA' => false,
         'eftposAustralia' => false,
         'enabled' => false,
@@ -239,12 +245,14 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'bcmc' => 'bcmc',
         'carnet' => 'carnet',
         'cartesBancaires' => 'cartesBancaires',
+        'cashapp' => 'cashapp',
         'countries' => 'countries',
         'cup' => 'cup',
         'currencies' => 'currencies',
         'customRoutingFlags' => 'customRoutingFlags',
         'diners' => 'diners',
         'discover' => 'discover',
+        'ebt' => 'ebt',
         'eftDirectdebitCA' => 'eft_directdebit_CA',
         'eftposAustralia' => 'eftpos_australia',
         'enabled' => 'enabled',
@@ -276,12 +284,14 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'bcmc' => 'setBcmc',
         'carnet' => 'setCarnet',
         'cartesBancaires' => 'setCartesBancaires',
+        'cashapp' => 'setCashapp',
         'countries' => 'setCountries',
         'cup' => 'setCup',
         'currencies' => 'setCurrencies',
         'customRoutingFlags' => 'setCustomRoutingFlags',
         'diners' => 'setDiners',
         'discover' => 'setDiscover',
+        'ebt' => 'setEbt',
         'eftDirectdebitCA' => 'setEftDirectdebitCA',
         'eftposAustralia' => 'setEftposAustralia',
         'enabled' => 'setEnabled',
@@ -313,12 +323,14 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         'bcmc' => 'getBcmc',
         'carnet' => 'getCarnet',
         'cartesBancaires' => 'getCartesBancaires',
+        'cashapp' => 'getCashapp',
         'countries' => 'getCountries',
         'cup' => 'getCup',
         'currencies' => 'getCurrencies',
         'customRoutingFlags' => 'getCustomRoutingFlags',
         'diners' => 'getDiners',
         'discover' => 'getDiscover',
+        'ebt' => 'getEbt',
         'eftDirectdebitCA' => 'getEftDirectdebitCA',
         'eftposAustralia' => 'getEftposAustralia',
         'enabled' => 'getEnabled',
@@ -401,12 +413,14 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('bcmc', $data ?? [], null);
         $this->setIfExists('carnet', $data ?? [], null);
         $this->setIfExists('cartesBancaires', $data ?? [], null);
+        $this->setIfExists('cashapp', $data ?? [], null);
         $this->setIfExists('countries', $data ?? [], null);
         $this->setIfExists('cup', $data ?? [], null);
         $this->setIfExists('currencies', $data ?? [], null);
         $this->setIfExists('customRoutingFlags', $data ?? [], null);
         $this->setIfExists('diners', $data ?? [], null);
         $this->setIfExists('discover', $data ?? [], null);
+        $this->setIfExists('ebt', $data ?? [], null);
         $this->setIfExists('eftDirectdebitCA', $data ?? [], null);
         $this->setIfExists('eftposAustralia', $data ?? [], null);
         $this->setIfExists('enabled', $data ?? [], null);
@@ -590,6 +604,30 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
+     * Gets cashapp
+     *
+     * @return \Adyen\Model\Management\CashAppUpdateInfo|null
+     */
+    public function getCashapp()
+    {
+        return $this->container['cashapp'];
+    }
+
+    /**
+     * Sets cashapp
+     *
+     * @param \Adyen\Model\Management\CashAppUpdateInfo|null $cashapp cashapp
+     *
+     * @return self
+     */
+    public function setCashapp($cashapp)
+    {
+        $this->container['cashapp'] = $cashapp;
+
+        return $this;
+    }
+
+    /**
      * Gets countries
      *
      * @return string[]|null
@@ -729,6 +767,30 @@ class UpdatePaymentMethodInfo implements ModelInterface, ArrayAccess, \JsonSeria
     public function setDiscover($discover)
     {
         $this->container['discover'] = $discover;
+
+        return $this;
+    }
+
+    /**
+     * Gets ebt
+     *
+     * @return \Adyen\Model\Management\EbtUpdateInfo|null
+     */
+    public function getEbt()
+    {
+        return $this->container['ebt'];
+    }
+
+    /**
+     * Sets ebt
+     *
+     * @param \Adyen\Model\Management\EbtUpdateInfo|null $ebt ebt
+     *
+     * @return self
+     */
+    public function setEbt($ebt)
+    {
+        $this->container['ebt'] = $ebt;
 
         return $this;
     }

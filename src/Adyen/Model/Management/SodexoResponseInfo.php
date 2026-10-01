@@ -258,9 +258,6 @@ class SodexoResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $invalidProperties = [];
 
-        if ($this->container['merchantContactPhone'] === null) {
-            $invalidProperties[] = "'merchantContactPhone' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -279,7 +276,7 @@ class SodexoResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets merchantContactPhone
      *
-     * @return string
+     * @return string|null
      */
     public function getMerchantContactPhone()
     {
@@ -289,7 +286,7 @@ class SodexoResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets merchantContactPhone
      *
-     * @param string $merchantContactPhone Sodexo merchantContactPhone
+     * @param string|null $merchantContactPhone Sodexo merchantContactPhone
      *
      * @return self
      */

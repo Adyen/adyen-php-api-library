@@ -258,9 +258,6 @@ class TwintResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
-        if ($this->container['logo'] === null) {
-            $invalidProperties[] = "'logo' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -279,7 +276,7 @@ class TwintResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets logo
      *
-     * @return string
+     * @return string|null
      */
     public function getLogo()
     {
@@ -289,7 +286,7 @@ class TwintResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets logo
      *
-     * @param string $logo Twint logo. Format: Base64-encoded string.
+     * @param string|null $logo Twint logo. Format: Base64-encoded string.
      *
      * @return self
      */

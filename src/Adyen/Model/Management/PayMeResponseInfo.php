@@ -272,15 +272,6 @@ class PayMeResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
-        if ($this->container['displayName'] === null) {
-            $invalidProperties[] = "'displayName' can't be null";
-        }
-        if ($this->container['logo'] === null) {
-            $invalidProperties[] = "'logo' can't be null";
-        }
-        if ($this->container['supportEmail'] === null) {
-            $invalidProperties[] = "'supportEmail' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -299,7 +290,7 @@ class PayMeResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets displayName
      *
-     * @return string
+     * @return string|null
      */
     public function getDisplayName()
     {
@@ -309,7 +300,7 @@ class PayMeResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets displayName
      *
-     * @param string $displayName Merchant display name
+     * @param string|null $displayName Merchant display name
      *
      * @return self
      */
@@ -323,7 +314,7 @@ class PayMeResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets logo
      *
-     * @return string
+     * @return string|null
      */
     public function getLogo()
     {
@@ -333,7 +324,7 @@ class PayMeResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets logo
      *
-     * @param string $logo Merchant logo. Format: Base64-encoded string.
+     * @param string|null $logo Merchant logo. Format: Base64-encoded string.
      *
      * @return self
      */
@@ -347,7 +338,7 @@ class PayMeResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets supportEmail
      *
-     * @return string
+     * @return string|null
      */
     public function getSupportEmail()
     {
@@ -357,7 +348,7 @@ class PayMeResponseInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets supportEmail
      *
-     * @param string $supportEmail The email address of merchant support.
+     * @param string|null $supportEmail The email address of merchant support.
      *
      * @return self
      */
