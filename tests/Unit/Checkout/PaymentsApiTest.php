@@ -27,6 +27,7 @@ use Adyen\Configuration;
 use Adyen\Environment;
 use Adyen\Exception\AdyenException;
 use Adyen\Model\Checkout\CardDetailsRequest;
+use Adyen\Model\Checkout\CheckoutSessionPatchSessionRequest;
 use Adyen\Model\Checkout\CreateCheckoutSessionRequest;
 use Adyen\Model\Checkout\PaymentMethodsRequest;
 use Adyen\RequestOptions;
@@ -1169,6 +1170,18 @@ class PaymentsApiTest extends BaseTest
         $this->assertEquals('PATCH', $request->getMethod());
         $this->assertInstanceOf(\Adyen\Model\Checkout\CheckoutSessionPatchSessionResponse::class, $result);
         $this->assertNotEmpty($result->getSessionData());
+    }
+
+    public function testUpdateSessionIncludesApiKey(): void
+    {
+        $service = new PaymentsApi($this->createConfiguration());
+
+        $request = $service->updateSessionRequest(
+            'session-id',
+            new CheckoutSessionPatchSessionRequest()
+        );
+
+        $this->assertSame('MockAPIKey', $request->getHeaderLine('X-API-Key'));
     }
 
     /**

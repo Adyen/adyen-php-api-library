@@ -53,7 +53,7 @@ class DonationsApi extends BaseService
     protected $headerSelector;
 
     /**
-     * @var int Host index
+     * @var int|null Host index. Null means the host is selected by the configured environment.
      */
     protected $hostIndex;
 
@@ -78,14 +78,15 @@ class DonationsApi extends BaseService
      * @param Configuration|null $config
      * @param ClientInterface|null $client
      * @param HeaderSelector|null $selector
-     * @param int $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
+     * @param int|null $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec.
+     *                            If null, the host matching the configured environment is selected.
      * @throws \Adyen\Exception\AdyenException
      */
     public function __construct(
         ?Configuration $config = null,
         ?ClientInterface $client = null,
         ?HeaderSelector $selector = null,
-        int $hostIndex = 0
+        ?int $hostIndex = null
     ) {
         $this->config = $config ?: Configuration::getDefaultConfiguration();
         parent::__construct($this->config);
@@ -100,9 +101,9 @@ class DonationsApi extends BaseService
     /**
      * Set the host index
      *
-     * @param int $hostIndex Host index (required)
+     * @param int|null $hostIndex Host index. Null restores selection by configured environment.
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex(?int $hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -110,7 +111,7 @@ class DonationsApi extends BaseService
     /**
      * Get the host index
      *
-     * @return int Host index
+     * @return int|null Host index
      */
     public function getHostIndex()
     {
