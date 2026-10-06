@@ -354,7 +354,7 @@ class PaymentValidationsNameRequest implements ModelInterface, ArrayAccess, \Jso
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();
                 // Check if it's type datetime
-                } elseif ($propertyValue instanceof \DateTime) {
+                } elseif ($propertyValue instanceof \DateTimeInterface) {
                     $array[$propertyName] = $propertyValue->format(DATE_ATOM);
                 // If it's an array type we should check whether it contains objects and if so call toArray method
                 } elseif (is_array($propertyValue)) {
