@@ -31,13 +31,11 @@ use Adyen\Model\Checkout\CreateCheckoutSessionRequest;
 use Adyen\Model\Checkout\PaymentMethodsRequest;
 use Adyen\RequestOptions;
 use Adyen\Service\Checkout\PaymentsApi;
+use Adyen\Tests\Unit\ApiExceptionScenario;
 use Adyen\Tests\Unit\BaseTest;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Psr7\Response;
 
 class PaymentsApiTest extends BaseTest
 {
@@ -130,58 +128,106 @@ class PaymentsApiTest extends BaseTest
 
     public function testPaymentMethodsRejectMalformedSuccessResponse(): void
     {
-        $client = new Client(['handler' => HandlerStack::create(new MockHandler([
-            new Response(200, [], '{invalid-json')
-        ]))]);
-        $service = new PaymentsApi($this->createConfiguration(), $client);
-
-        $this->expectException(AdyenException::class);
-        $this->expectExceptionMessage('Error JSON decoding server response');
-        $service->paymentMethods(new PaymentMethodsRequest());
+        $this->apiExceptionScenario()
+            ->givenResponse(200, [], '{invalid-json')
+            ->whenCalling('paymentMethods', new PaymentMethodsRequest())
+            ->expectMessageContains('Error JSON decoding server response');
     }
 
     public function testPaymentMethodsAsyncRejectMalformedSuccessResponse(): void
     {
-        $client = new Client(['handler' => HandlerStack::create(new MockHandler([
-            new Response(200, [], '{invalid-json')
-        ]))]);
-        $service = new PaymentsApi($this->createConfiguration(), $client);
-
-        $this->expectException(AdyenException::class);
-        $this->expectExceptionMessage('Error JSON decoding server response');
-        $service->paymentMethodsAsync(new PaymentMethodsRequest())->wait();
+        $this->apiExceptionScenario()
+            ->givenResponse(200, [], '{invalid-json')
+            ->whenCallingAsync('paymentMethodsAsync', new PaymentMethodsRequest())
+            ->expectMessageContains('Error JSON decoding server response');
     }
 
     public function testPaymentMethodsOnConnectionFailureThrows(): void
     {
-        $connectionError = new ConnectException(
-            'Connection refused',
-            new Request('POST', 'https://checkout-test.adyen.com/v72/paymentMethods')
-        );
-        $client = new Client(['handler' => HandlerStack::create(new MockHandler([$connectionError]))]);
-        $service = new PaymentsApi($this->createConfiguration(), $client);
-
-        try {
-            $service->paymentMethods(new PaymentMethodsRequest());
-            $this->fail('Expected an AdyenException for a connection failure');
-        } catch (AdyenException $exception) {
-            $this->assertSame(0, $exception->getStatusCode());
-            $this->assertNull($exception->getResponseBody());
-            $this->assertSame($connectionError, $exception->getPrevious());
-        }
+        $this->apiExceptionScenario()
+            ->givenConnectionException()
+            ->whenCalling('paymentMethods', new PaymentMethodsRequest())
+            ->expectStatus(0)
+            ->expectNoResponse()
+            ->expectPreviousTransportException();
     }
 
     public function testPaymentMethodsAsyncOnConnectionFailureThrows(): void
     {
-        $connectionError = new ConnectException(
-            'Connection refused',
-            new Request('POST', 'https://checkout-test.adyen.com/v72/paymentMethods')
-        );
-        $client = new Client(['handler' => HandlerStack::create(new MockHandler([$connectionError]))]);
-        $service = new PaymentsApi($this->createConfiguration(), $client);
+        $this->apiExceptionScenario()
+            ->givenConnectionException()
+            ->whenCallingAsync('paymentMethodsAsync', new PaymentMethodsRequest())
+            ->expectStatus(0)
+            ->expectNoResponse()
+            ->expectPreviousTransportException();
+    }
 
-        $this->expectException(AdyenException::class);
-        $service->paymentMethodsAsync(new PaymentMethodsRequest())->wait();
+    public function testPaymentMethodsOnRequestExceptionWithoutResponseThrows(): void
+    {
+        $this->apiExceptionScenario()
+            ->givenRequestExceptionWithoutResponse()
+            ->whenCalling('paymentMethods', new PaymentMethodsRequest())
+            ->expectStatus(0)
+            ->expectMessage('[0] Request failed')
+            ->expectNoResponse()
+            ->expectPreviousTransportException();
+    }
+
+    public function testPaymentMethodsAsyncOnRequestExceptionWithoutResponseThrows(): void
+    {
+        $this->apiExceptionScenario()
+            ->givenRequestExceptionWithoutResponse()
+            ->whenCallingAsync('paymentMethodsAsync', new PaymentMethodsRequest())
+            ->expectStatus(0)
+            ->expectMessage('[0] Request failed')
+            ->expectNoResponse()
+            ->expectPreviousTransportException();
+    }
+
+    public function testPaymentMethodsOnRequestExceptionWithResponseThrows(): void
+    {
+        $body = '{"status":422,"errorCode":"010","message":"Invalid request"}';
+
+        $this->apiExceptionScenario()
+            ->givenRequestExceptionWithResponse(
+                422,
+                ['X-Request-ID' => 'request-id'],
+                $body
+            )
+            ->whenCalling('paymentMethods', new PaymentMethodsRequest())
+            ->expectStatus(422)
+            ->expectMessage('Invalid request')
+            ->expectResponse(['X-Request-ID' => ['request-id']], $body)
+            ->expectErrorCode('010')
+            ->expectPreviousTransportException();
+    }
+
+    public function testPaymentMethodsAsyncOnRequestExceptionWithResponseThrows(): void
+    {
+        $body = '{"status":422,"errorCode":"010","message":"Invalid request"}';
+
+        $this->apiExceptionScenario()
+            ->givenRequestExceptionWithResponse(
+                422,
+                ['X-Request-ID' => 'request-id'],
+                $body
+            )
+            ->whenCallingAsync('paymentMethodsAsync', new PaymentMethodsRequest())
+            ->expectStatus(422)
+            ->expectMessage('Invalid request')
+            ->expectResponse(['X-Request-ID' => ['request-id']], $body)
+            ->expectErrorCode('010')
+            ->expectPreviousTransportException();
+    }
+
+    private function apiExceptionScenario(): ApiExceptionScenario
+    {
+        return new ApiExceptionScenario(
+            $this,
+            'POST',
+            'https://checkout-test.adyen.com/v72/paymentMethods',
+            fn (Client $client): PaymentsApi => new PaymentsApi($this->createConfiguration(), $client)
+        );
     }
 
     /**
