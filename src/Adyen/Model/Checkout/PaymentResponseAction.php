@@ -27,6 +27,24 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
     public const DISCRIMINATOR = 'type';
 
     /**
+      * Mapping of discriminator values to model class names.
+      *
+      * @var string[]
+      */
+    public const DISCRIMINATOR_MAPPING = [
+        'await' => 'Adyen\Model\Checkout\CheckoutAwaitAction',
+        'bankTransfer' => 'Adyen\Model\Checkout\CheckoutBankTransferAction',
+        'delegatedAuthentication' => 'Adyen\Model\Checkout\CheckoutDelegatedAuthenticationAction',
+        'nativeRedirect' => 'Adyen\Model\Checkout\CheckoutNativeRedirectAction',
+        'qrCode' => 'Adyen\Model\Checkout\CheckoutQrCodeAction',
+        'redirect' => 'Adyen\Model\Checkout\CheckoutRedirectAction',
+        'sdk' => 'Adyen\Model\Checkout\CheckoutSDKAction',
+        'threeDS2' => 'Adyen\Model\Checkout\CheckoutThreeDS2Action',
+        'voucher' => 'Adyen\Model\Checkout\CheckoutVoucherAction',
+        'wechatpaySDK' => 'Adyen\Model\Checkout\CheckoutSDKAction',
+    ];
+
+    /**
       * The original name of the model.
       *
       * @var string

@@ -26,6 +26,15 @@ class PaymentInstrumentAdditionalBankAccountIdentificationsInner implements Mode
     public const DISCRIMINATOR = 'type';
 
     /**
+      * Mapping of discriminator values to model class names.
+      *
+      * @var string[]
+      */
+    public const DISCRIMINATOR_MAPPING = [
+        'iban' => 'Adyen\Model\ConfigurationWebhooks\IbanAccountIdentification',
+    ];
+
+    /**
       * The original name of the model.
       *
       * @var string

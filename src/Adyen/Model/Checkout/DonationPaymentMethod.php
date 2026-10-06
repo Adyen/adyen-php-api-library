@@ -27,6 +27,22 @@ class DonationPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     public const DISCRIMINATOR = 'type';
 
     /**
+      * Mapping of discriminator values to model class names.
+      *
+      * @var string[]
+      */
+    public const DISCRIMINATOR_MAPPING = [
+        'applepay' => 'Adyen\Model\Checkout\ApplePayDonations',
+        'card' => 'Adyen\Model\Checkout\CardDonations',
+        'googlepay' => 'Adyen\Model\Checkout\GooglePayDonations',
+        'ideal' => 'Adyen\Model\Checkout\IdealDonations',
+        'networkToken' => 'Adyen\Model\Checkout\CardDonations',
+        'paywithgoogle' => 'Adyen\Model\Checkout\PayWithGoogleDonations',
+        'scheme' => 'Adyen\Model\Checkout\CardDonations',
+        'sepadirectdebit' => 'Adyen\Model\Checkout\SepaDirectDebitDonations',
+    ];
+
+    /**
       * The original name of the model.
       *
       * @var string

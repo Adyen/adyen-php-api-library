@@ -26,6 +26,16 @@ class ShopperIdPaymentMethod implements ModelInterface, ArrayAccess, \JsonSerial
     public const DISCRIMINATOR = 'type';
 
     /**
+      * Mapping of discriminator values to model class names.
+      *
+      * @var string[]
+      */
+    public const DISCRIMINATOR_MAPPING = [
+        'payTo' => 'Adyen\Model\Checkout\PayToPaymentMethod',
+        'upi_collect' => 'Adyen\Model\Checkout\UPIPaymentMethod',
+    ];
+
+    /**
       * The original name of the model.
       *
       * @var string

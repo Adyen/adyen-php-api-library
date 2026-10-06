@@ -27,6 +27,18 @@ class TransferDataCategoryData implements ModelInterface, ArrayAccess, \JsonSeri
     public const DISCRIMINATOR = 'type';
 
     /**
+      * Mapping of discriminator values to model class names.
+      *
+      * @var string[]
+      */
+    public const DISCRIMINATOR_MAPPING = [
+        'bank' => 'Adyen\Model\TransferWebhooks\BankCategoryData',
+        'internal' => 'Adyen\Model\TransferWebhooks\InternalCategoryData',
+        'issuedCard' => 'Adyen\Model\TransferWebhooks\IssuedCard',
+        'platformPayment' => 'Adyen\Model\TransferWebhooks\PlatformPayment',
+    ];
+
+    /**
       * The original name of the model.
       *
       * @var string

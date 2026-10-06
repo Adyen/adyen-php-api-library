@@ -27,6 +27,17 @@ class TransferEventTrackingData implements ModelInterface, ArrayAccess, \JsonSer
     public const DISCRIMINATOR = 'type';
 
     /**
+      * Mapping of discriminator values to model class names.
+      *
+      * @var string[]
+      */
+    public const DISCRIMINATOR_MAPPING = [
+        'confirmation' => 'Adyen\Model\TransferWebhooks\ConfirmationTrackingData',
+        'estimation' => 'Adyen\Model\TransferWebhooks\EstimationTrackingData',
+        'internalReview' => 'Adyen\Model\TransferWebhooks\InternalReviewTrackingData',
+    ];
+
+    /**
       * The original name of the model.
       *
       * @var string

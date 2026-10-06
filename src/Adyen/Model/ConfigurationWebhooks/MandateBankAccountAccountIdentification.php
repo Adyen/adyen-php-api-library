@@ -27,6 +27,15 @@ class MandateBankAccountAccountIdentification implements ModelInterface, ArrayAc
     public const DISCRIMINATOR = 'type';
 
     /**
+      * Mapping of discriminator values to model class names.
+      *
+      * @var string[]
+      */
+    public const DISCRIMINATOR_MAPPING = [
+        'ukLocal' => 'Adyen\Model\ConfigurationWebhooks\UKLocalMandateAccountIdentification',
+    ];
+
+    /**
       * The original name of the model.
       *
       * @var string
