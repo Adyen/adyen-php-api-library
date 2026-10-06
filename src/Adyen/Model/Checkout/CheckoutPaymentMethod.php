@@ -810,6 +810,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     public const TYPE_AFTERPAY_DIRECTDEBIT = 'afterpay_directdebit';
     public const TYPE_ATOME_POS = 'atome_pos';
     public const TYPE_PAYBYBANK_AIS_DD = 'paybybank_AIS_DD';
+    public const TYPE_PAYBYBANK_CA = 'paybybank_ca';
     public const TYPE_PAYBYBANK = 'paybybank';
     public const TYPE_PAYPAL = 'paypal';
     public const TYPE_PAYPAY = 'paypay';
@@ -1077,6 +1078,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
             self::TYPE_AFTERPAY_DIRECTDEBIT,
             self::TYPE_ATOME_POS,
             self::TYPE_PAYBYBANK_AIS_DD,
+            self::TYPE_PAYBYBANK_CA,
             self::TYPE_PAYBYBANK,
             self::TYPE_PAYPAL,
             self::TYPE_PAYPAY,

@@ -23,6 +23,8 @@
 
 namespace Adyen\Tests\Unit\Checkout;
 
+use Adyen\Configuration;
+use Adyen\Environment;
 use Adyen\Exception\AdyenException;
 use Adyen\Model\Checkout\Amount;
 use Adyen\Model\Checkout\ApplePaySessionRequest;
@@ -361,6 +363,35 @@ class UtilityApiTest extends BaseTest
         $resultArray = $result->toArray();
 
         $this->assertEquals('Shopper is known and trusted', $resultArray['reason']);
+    }
+
+    public function testValidateShopperIdIncludesApiKey(): void
+    {
+        $service = new UtilityApi($this->createConfiguration());
+
+        $request = $service->validateShopperIdRequest(
+            new ValidateShopperIdRequest()
+        );
+
+        $this->assertSame('MockAPIKey', $request->getHeaderLine('X-API-Key'));
+    }
+
+    public function testUsesBasicAuthWithoutApiKey(): void
+    {
+        $config = (new Configuration())
+            ->setEnvironment(Environment::TEST)
+            ->setUsername('user')
+            ->setPassword('pass');
+        $service = new UtilityApi($config);
+
+        $request = $service->validateShopperIdRequest(
+            new ValidateShopperIdRequest()
+        );
+
+        $this->assertSame(
+            'Basic ' . base64_encode('user:pass'),
+            $request->getHeaderLine('Authorization')
+        );
     }
 
     public static function successValidateShopperIdProvider(): array

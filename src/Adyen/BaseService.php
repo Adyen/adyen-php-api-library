@@ -33,10 +33,6 @@ class BaseService
             throw new AdyenException($msg);
         }
 
-        if ($configuration->getEnvironment() == Environment::LIVE && !$configuration->getLiveEndpointUrlPrefix()) {
-            $msg = 'The live URL prefix is not defined';
-            throw new AdyenException($msg);
-        }
         $this->configuration = $configuration;
     }
 
@@ -48,31 +44,49 @@ class BaseService
     public function createBaseUrl(string $url): string
     {
         if ($this->configuration->getEnvironment() == Environment::TEST) {
-            return $url;
+            // A specification may list its live server first, which makes the generated
+            // base URL point at live even though the client is configured for test.
+            return str_replace('-live.adyen.com', '-test.adyen.com', $url);
         }
 
+        if (strpos($url, '/authe/') !== false) {
+            return str_replace(
+                'https://test.adyen.com/',
+                'https://authe-live.adyen.com/',
+                $url
+            );
+        }
+
+        $livePrefix = $this->configuration->getLiveEndpointUrlPrefix();
+
         if (strpos($url, "pal-") !== false) {
+            if (!$livePrefix) {
+                throw new AdyenException('The live URL prefix is not defined');
+            }
             // Add live prefix for PAL endpoints
             $url = str_replace(
                 "https://pal-test.adyen.com/pal/servlet/",
-                "https://" . $this->configuration->getLiveEndpointUrlPrefix() . '-pal-live.adyenpayments.com/pal/servlet/',
+                'https://' . $livePrefix . '-pal-live.adyenpayments.com/pal/servlet/',
                 $url
             );
         }
         if (strpos($url, "checkout-") !== false) {
+            if (!$livePrefix) {
+                throw new AdyenException('The live URL prefix is not defined');
+            }
             // Add live prefix for Checkout endpoints
             if (strpos($url, "possdk") !== false) {
-                // PosSdk (PosMobileApi): inject the live prefix like "https://{PREFIX}-" without duplicating `/checkout` in path
+                // PosSdk: inject the live prefix without duplicating the '/checkout' path segment
                 $url = str_replace(
                     "https://checkout-test.adyen.com/",
-                    "https://" . $this->configuration->getLiveEndpointUrlPrefix() . '-checkout-live.adyenpayments.com/',
+                    'https://' . $livePrefix . '-checkout-live.adyenpayments.com/',
                     $url
                 );
             } else {
                 // Other services: inject the live prefix like "https://{PREFIX}-"
                 $url = str_replace(
                     "https://checkout-test.adyen.com/",
-                    "https://" . $this->configuration->getLiveEndpointUrlPrefix() . '-checkout-live.adyenpayments.com/checkout/',
+                    'https://' . $livePrefix . '-checkout-live.adyenpayments.com/checkout/',
                     $url
                 );
             }
@@ -80,6 +94,66 @@ class BaseService
 
         // Replace 'test' in string with 'live' for the other endpoints
         return str_replace('-test', '-live', $url);
+    }
+
+    /**
+     * Resolves an operation-level server for the configured environment.
+     *
+     * @param array $hostSettings
+     * @param int|null $hostIndex
+     * @param array $variables
+     * @param string $baseUrl
+     * @return string
+     */
+    protected function resolveOperationHost(
+        array $hostSettings,
+        ?int $hostIndex,
+        array $variables,
+        string $baseUrl
+    ): string {
+        if (count($hostSettings) === 0) {
+            throw new \InvalidArgumentException('No operation hosts were provided');
+        }
+
+        $isTest = $this->configuration->getEnvironment() === Environment::TEST;
+
+        if ($hostIndex === null) {
+            foreach ($hostSettings as $index => $hostSetting) {
+                $description = $hostSetting['description'] ?? '';
+                if ($description === ($isTest ? 'Test Environment' : 'Live Environment')) {
+                    $hostIndex = $index;
+                    break;
+                }
+            }
+        }
+
+        if ($hostIndex === null) {
+            // Descriptions are specification metadata and may be reworded or absent,
+            // so the host name is used as a second signal before defaulting to the
+            // first host, which specifications tend to point at the live environment.
+            foreach ($hostSettings as $index => $hostSetting) {
+                if (strpos($hostSetting['url'] ?? '', $isTest ? '-test.' : '-live.') !== false) {
+                    $hostIndex = $index;
+                    break;
+                }
+            }
+        }
+
+        $hostIndex ??= 0;
+        $operationHost = Configuration::getHostString($hostSettings, $hostIndex, $variables);
+
+        if ($operationHost === null) {
+            throw new \InvalidArgumentException('The selected operation host is invalid');
+        }
+
+        $basePath = parse_url($baseUrl, PHP_URL_PATH) ?: '';
+        $operationPath = parse_url($operationHost, PHP_URL_PATH) ?: '';
+
+        if ($basePath !== '' && $basePath !== '/' && ($operationPath === '' || $operationPath === '/')) {
+            $operationHost = rtrim($operationHost, '/') . '/' . ltrim($basePath, '/');
+        }
+
+        return $operationHost;
     }
 
     /**

@@ -152,16 +152,17 @@ class BaseServiceTest extends TestCase
 
     /**
      * @covers \Adyen\BaseService::__construct
+     * @throws \Adyen\AdyenException
      */
-    public function testConstructorMissingLivePrefixForLiveEnvironment()
+    public function testConstructorAllowsLiveEnvironmentWithoutPrefix(): void
     {
-        $this->expectException(AdyenException::class);
-        $this->expectExceptionMessage('The live URL prefix is not defined');
-
         $config = new Configuration();
-        $config->setAdyenApiKey("MockedKey");
+        $config->setAdyenApiKey('MockedKey');
         $config->setEnvironment(Environment::LIVE);
-        new BaseService($config);
+
+        $service = new BaseService($config);
+
+        $this->assertInstanceOf(BaseService::class, $service);
     }
 
 
@@ -177,6 +178,38 @@ class BaseServiceTest extends TestCase
         ]);
         $service = new BaseService($config);
         $url = 'https://pal-test.adyen.com/pal/servlet/Payment/v64/authorise';
+        $this->assertEquals($url, $service->createBaseUrl($url));
+    }
+
+    /**
+     * Some specifications list their live server first, so the generated base URL
+     * points at live even when the client is configured for test.
+     *
+     * @covers \Adyen\BaseService::createBaseUrl
+     */
+    public function testCreateBaseUrlTestEnvironmentWithLiveServerInSpec()
+    {
+        $config = new Configuration([
+            'adyenApiKey' => 'my-api-key',
+            'environment' => Environment::TEST
+        ]);
+        $service = new BaseService($config);
+        $url = 'https://management-live.adyen.com/v1';
+        $expected = 'https://management-test.adyen.com/v1';
+        $this->assertEquals($expected, $service->createBaseUrl($url));
+    }
+
+    /**
+     * @covers \Adyen\BaseService::createBaseUrl
+     */
+    public function testCreateBaseUrlLiveEnvironmentWithLiveServerInSpec()
+    {
+        $config = new Configuration([
+            'adyenApiKey' => 'my-api-key',
+            'environment' => Environment::LIVE
+        ]);
+        $service = new BaseService($config);
+        $url = 'https://management-live.adyen.com/v1';
         $this->assertEquals($url, $service->createBaseUrl($url));
     }
 
@@ -242,6 +275,77 @@ class BaseServiceTest extends TestCase
         $url = 'https://kyc-test.adyen.com/lem/v3/legalEntities';
         $expected = 'https://kyc-live.adyen.com/lem/v3/legalEntities';
         $this->assertEquals($expected, $service->createBaseUrl($url));
+    }
+
+    /**
+     * @covers \Adyen\BaseService::resolveOperationHost
+     */
+    public function testResolveOperationHostPrefersTheEnvironmentDescription()
+    {
+        $hostSettings = [
+            ['url' => 'https://management-live.adyen.com', 'description' => 'Live Environment'],
+            ['url' => 'https://management-test.adyen.com', 'description' => 'Test Environment'],
+        ];
+
+        $this->assertSame(
+            'https://management-test.adyen.com',
+            $this->createServiceProbe()->resolveHost($hostSettings)
+        );
+    }
+
+    /**
+     * Descriptions come from the specification, so the host name is the fallback signal.
+     *
+     * @covers \Adyen\BaseService::resolveOperationHost
+     */
+    public function testResolveOperationHostFallsBackToHostNameWhenDescriptionIsUnknown()
+    {
+        $hostSettings = [
+            ['url' => 'https://management-live.adyen.com', 'description' => 'Production'],
+            ['url' => 'https://management-test.adyen.com', 'description' => 'Sandbox'],
+        ];
+
+        $this->assertSame(
+            'https://management-test.adyen.com',
+            $this->createServiceProbe()->resolveHost($hostSettings)
+        );
+
+        $this->assertSame(
+            'https://management-live.adyen.com',
+            $this->createServiceProbe(['environment' => Environment::LIVE])->resolveHost($hostSettings)
+        );
+    }
+
+    /**
+     * @covers \Adyen\BaseService::resolveOperationHost
+     */
+    public function testResolveOperationHostFallsBackToTheFirstHostWhenNothingMatches()
+    {
+        $hostSettings = [
+            ['url' => 'https://first.example.com'],
+            ['url' => 'https://second.example.com'],
+        ];
+
+        $this->assertSame(
+            'https://first.example.com',
+            $this->createServiceProbe()->resolveHost($hostSettings)
+        );
+    }
+
+    /**
+     * @covers \Adyen\BaseService::resolveOperationHost
+     */
+    public function testResolveOperationHostHonoursAnExplicitHostIndex()
+    {
+        $hostSettings = [
+            ['url' => 'https://management-live.adyen.com', 'description' => 'Live Environment'],
+            ['url' => 'https://management-test.adyen.com', 'description' => 'Test Environment'],
+        ];
+
+        $this->assertSame(
+            'https://management-live.adyen.com',
+            $this->createServiceProbe()->resolveHost($hostSettings, 0)
+        );
     }
 
     /**
@@ -336,7 +440,7 @@ class BaseServiceTest extends TestCase
     }
 
     /**
-     * Exposes the protected injectApplicationInfo helper for testing.
+     * Exposes the protected injectApplicationInfo and resolveOperationHost helpers for testing.
      */
     private function createServiceProbe(array $params = []): BaseService
     {
@@ -347,6 +451,11 @@ class BaseServiceTest extends TestCase
             public function inject($requestModel): ?object
             {
                 return $this->injectApplicationInfo($requestModel);
+            }
+
+            public function resolveHost(array $hostSettings, ?int $hostIndex = null): string
+            {
+                return $this->resolveOperationHost($hostSettings, $hostIndex, [], 'https://example.com');
             }
         };
     }
