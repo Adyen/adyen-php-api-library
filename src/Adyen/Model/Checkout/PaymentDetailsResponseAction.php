@@ -27,6 +27,15 @@ class PaymentDetailsResponseAction implements ModelInterface, ArrayAccess, \Json
     public const DISCRIMINATOR = 'type';
 
     /**
+      * Mapping of discriminator values to model class names.
+      *
+      * @var string[]
+      */
+    public const DISCRIMINATOR_MAPPING = [
+        'threeDS2' => 'Adyen\Model\Checkout\CheckoutThreeDS2Action',
+    ];
+
+    /**
       * The original name of the model.
       *
       * @var string

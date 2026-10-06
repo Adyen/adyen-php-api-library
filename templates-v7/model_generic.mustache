@@ -1,6 +1,18 @@
 class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^parentSchema}}implements ModelInterface, ArrayAccess, \JsonSerializable{{/parentSchema}}
 {
     public const DISCRIMINATOR = {{#discriminator}}'{{discriminatorName}}'{{/discriminator}}{{^discriminator}}null{{/discriminator}};
+{{#discriminator}}
+
+    /**
+      * Mapping of discriminator values to model class names.
+      *
+      * @var string[]
+      */
+    public const DISCRIMINATOR_MAPPING = [
+        {{#mappedModels}}'{{mappingName}}' => '{{modelPackage}}\{{modelName}}',{{^-last}}
+        {{/-last}}{{/mappedModels}}
+    ];
+{{/discriminator}}
 
     /**
       * The original name of the model.

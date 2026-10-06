@@ -27,6 +27,30 @@ class BankAccountV3AccountIdentification implements ModelInterface, ArrayAccess,
     public const DISCRIMINATOR = 'type';
 
     /**
+      * Mapping of discriminator values to model class names.
+      *
+      * @var string[]
+      */
+    public const DISCRIMINATOR_MAPPING = [
+        'auLocal' => 'Adyen\Model\TransferWebhooks\AULocalAccountIdentification',
+        'brLocal' => 'Adyen\Model\TransferWebhooks\BRLocalAccountIdentification',
+        'caLocal' => 'Adyen\Model\TransferWebhooks\CALocalAccountIdentification',
+        'czLocal' => 'Adyen\Model\TransferWebhooks\CZLocalAccountIdentification',
+        'dkLocal' => 'Adyen\Model\TransferWebhooks\DKLocalAccountIdentification',
+        'hkLocal' => 'Adyen\Model\TransferWebhooks\HKLocalAccountIdentification',
+        'huLocal' => 'Adyen\Model\TransferWebhooks\HULocalAccountIdentification',
+        'iban' => 'Adyen\Model\TransferWebhooks\IbanAccountIdentification',
+        'noLocal' => 'Adyen\Model\TransferWebhooks\NOLocalAccountIdentification',
+        'numberAndBic' => 'Adyen\Model\TransferWebhooks\NumberAndBicAccountIdentification',
+        'nzLocal' => 'Adyen\Model\TransferWebhooks\NZLocalAccountIdentification',
+        'plLocal' => 'Adyen\Model\TransferWebhooks\PLLocalAccountIdentification',
+        'seLocal' => 'Adyen\Model\TransferWebhooks\SELocalAccountIdentification',
+        'sgLocal' => 'Adyen\Model\TransferWebhooks\SGLocalAccountIdentification',
+        'ukLocal' => 'Adyen\Model\TransferWebhooks\UKLocalAccountIdentification',
+        'usLocal' => 'Adyen\Model\TransferWebhooks\USLocalAccountIdentification',
+    ];
+
+    /**
       * The original name of the model.
       *
       * @var string
