@@ -320,7 +320,7 @@ class PlatformPayment implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('paymentMerchantReference', $data ?? [], null);
         $this->setIfExists('platformPaymentType', $data ?? [], null);
         $this->setIfExists('pspPaymentReference', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], 'platformPayment');
     }
 
     /**
@@ -338,7 +338,13 @@ class PlatformPayment implements ModelInterface, ArrayAccess, \JsonSerializable
             $this->openAPINullablesSetToNull[] = $variableName;
         }
 
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
+        // An explicitly provided value (including null) always wins; the
+        // default only applies when the field was omitted entirely.
+        if (array_key_exists($variableName, $fields)) {
+            $this->container[$variableName] = $fields[$variableName];
+        } else {
+            $this->container[$variableName] = $defaultValue;
+        }
     }
 
 

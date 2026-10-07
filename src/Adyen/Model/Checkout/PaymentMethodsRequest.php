@@ -375,7 +375,7 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('shopperIP', $data ?? [], null);
         $this->setIfExists('shopperLocale', $data ?? [], null);
         $this->setIfExists('shopperReference', $data ?? [], null);
-        $this->setIfExists('splitCardFundingSources', $data ?? [], null);
+        $this->setIfExists('splitCardFundingSources', $data ?? [], false);
         $this->setIfExists('store', $data ?? [], null);
         $this->setIfExists('storeFiltrationMode', $data ?? [], null);
         $this->setIfExists('telephoneNumber', $data ?? [], null);
@@ -396,7 +396,13 @@ class PaymentMethodsRequest implements ModelInterface, ArrayAccess, \JsonSeriali
             $this->openAPINullablesSetToNull[] = $variableName;
         }
 
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
+        // An explicitly provided value (including null) always wins; the
+        // default only applies when the field was omitted entirely.
+        if (array_key_exists($variableName, $fields)) {
+            $this->container[$variableName] = $fields[$variableName];
+        } else {
+            $this->container[$variableName] = $defaultValue;
+        }
     }
 
 

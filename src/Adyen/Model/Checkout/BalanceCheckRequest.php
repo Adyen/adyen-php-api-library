@@ -560,7 +560,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('store', $data ?? [], null);
         $this->setIfExists('telephoneNumber', $data ?? [], null);
         $this->setIfExists('threeDS2RequestData', $data ?? [], null);
-        $this->setIfExists('threeDSAuthenticationOnly', $data ?? [], null);
+        $this->setIfExists('threeDSAuthenticationOnly', $data ?? [], false);
         $this->setIfExists('totalsGroup', $data ?? [], null);
         $this->setIfExists('trustedShopper', $data ?? [], null);
     }
@@ -580,7 +580,13 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
             $this->openAPINullablesSetToNull[] = $variableName;
         }
 
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
+        // An explicitly provided value (including null) always wins; the
+        // default only applies when the field was omitted entirely.
+        if (array_key_exists($variableName, $fields)) {
+            $this->container[$variableName] = $fields[$variableName];
+        } else {
+            $this->container[$variableName] = $defaultValue;
+        }
     }
 
 

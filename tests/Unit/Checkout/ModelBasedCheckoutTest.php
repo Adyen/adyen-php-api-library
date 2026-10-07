@@ -138,6 +138,9 @@ class ModelBasedCheckoutTest extends BaseTest
             "countryCode": "NL",
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
             "reference": "YOUR_PAYMENT_REFERENCE",
+            "mode": "embedded",
+            "splitCardFundingSources": false,
+            "threeDSAuthenticationOnly": false,
             "returnUrl": "https://mycompany.example.org/redirect?orderRef=YOUR_PAYMENT_REFERENCE",
             "lineItems": [
                 {

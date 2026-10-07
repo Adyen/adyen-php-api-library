@@ -237,9 +237,12 @@ class ShopperIdPaymentMethod implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $this->setIfExists('type', $data ?? [], null);
 
-        // Initialize discriminator property with the model name.
+        // Initialize the discriminator property with the wire value that
+        // maps to this class, so variant models carry a valid type by default.
         if (!array_key_exists('type', $data ?? [])) {
-            $this->container['type'] = static::$openAPIModelName;
+            $this->container['type'] = defined(static::class . '::DISCRIMINATOR_MAPPING')
+                ? (array_search(static::class, static::DISCRIMINATOR_MAPPING, true) ?: null)
+                : null;
         }
     }
 
@@ -258,7 +261,13 @@ class ShopperIdPaymentMethod implements ModelInterface, ArrayAccess, \JsonSerial
             $this->openAPINullablesSetToNull[] = $variableName;
         }
 
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
+        // An explicitly provided value (including null) always wins; the
+        // default only applies when the field was omitted entirely.
+        if (array_key_exists($variableName, $fields)) {
+            $this->container[$variableName] = $fields[$variableName];
+        } else {
+            $this->container[$variableName] = $defaultValue;
+        }
     }
 
 

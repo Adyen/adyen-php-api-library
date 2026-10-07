@@ -268,13 +268,13 @@ class BankAccountDetails implements ModelInterface, ArrayAccess, \JsonSerializab
     public function __construct(?array $data = null)
     {
         $this->setIfExists('accountNumber', $data ?? [], null);
-        $this->setIfExists('accountType', $data ?? [], null);
+        $this->setIfExists('accountType', $data ?? [], 'checking');
         $this->setIfExists('branchNumber', $data ?? [], null);
-        $this->setIfExists('formFactor', $data ?? [], null);
+        $this->setIfExists('formFactor', $data ?? [], 'physical');
         $this->setIfExists('iban', $data ?? [], null);
         $this->setIfExists('routingNumber', $data ?? [], null);
         $this->setIfExists('sortCode', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], 'iban');
     }
 
     /**
@@ -292,7 +292,13 @@ class BankAccountDetails implements ModelInterface, ArrayAccess, \JsonSerializab
             $this->openAPINullablesSetToNull[] = $variableName;
         }
 
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
+        // An explicitly provided value (including null) always wins; the
+        // default only applies when the field was omitted entirely.
+        if (array_key_exists($variableName, $fields)) {
+            $this->container[$variableName] = $fields[$variableName];
+        } else {
+            $this->container[$variableName] = $defaultValue;
+        }
     }
 
 
