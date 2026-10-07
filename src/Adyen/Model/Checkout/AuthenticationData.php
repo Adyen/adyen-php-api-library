@@ -253,7 +253,7 @@ class AuthenticationData implements ModelInterface, ArrayAccess, \JsonSerializab
     public function __construct(?array $data = null)
     {
         $this->setIfExists('attemptAuthentication', $data ?? [], null);
-        $this->setIfExists('authenticationOnly', $data ?? [], null);
+        $this->setIfExists('authenticationOnly', $data ?? [], false);
         $this->setIfExists('threeDSRequestData', $data ?? [], null);
     }
 
@@ -272,7 +272,13 @@ class AuthenticationData implements ModelInterface, ArrayAccess, \JsonSerializab
             $this->openAPINullablesSetToNull[] = $variableName;
         }
 
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
+        // An explicitly provided value (including null) always wins; the
+        // default only applies when the field was omitted entirely.
+        if (array_key_exists($variableName, $fields)) {
+            $this->container[$variableName] = $fields[$variableName];
+        } else {
+            $this->container[$variableName] = $defaultValue;
+        }
     }
 
 

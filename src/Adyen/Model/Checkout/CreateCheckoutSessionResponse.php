@@ -747,7 +747,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         $this->setIfExists('merchantAccount', $data ?? [], null);
         $this->setIfExists('merchantOrderReference', $data ?? [], null);
         $this->setIfExists('metadata', $data ?? [], null);
-        $this->setIfExists('mode', $data ?? [], null);
+        $this->setIfExists('mode', $data ?? [], 'embedded');
         $this->setIfExists('mpiData', $data ?? [], null);
         $this->setIfExists('payable', $data ?? [], null);
         $this->setIfExists('platformChargebackLogic', $data ?? [], null);
@@ -770,7 +770,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         $this->setIfExists('showInstallmentAmount', $data ?? [], null);
         $this->setIfExists('showRemovePaymentMethodButton', $data ?? [], null);
         $this->setIfExists('socialSecurityNumber', $data ?? [], null);
-        $this->setIfExists('splitCardFundingSources', $data ?? [], null);
+        $this->setIfExists('splitCardFundingSources', $data ?? [], false);
         $this->setIfExists('splits', $data ?? [], null);
         $this->setIfExists('store', $data ?? [], null);
         $this->setIfExists('storeFiltrationMode', $data ?? [], null);
@@ -780,7 +780,7 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
         $this->setIfExists('themeId', $data ?? [], null);
         $this->setIfExists('thirdPartyTokenRedundancyInfo', $data ?? [], null);
         $this->setIfExists('threeDS2RequestData', $data ?? [], null);
-        $this->setIfExists('threeDSAuthenticationOnly', $data ?? [], null);
+        $this->setIfExists('threeDSAuthenticationOnly', $data ?? [], false);
         $this->setIfExists('trustedShopper', $data ?? [], null);
         $this->setIfExists('url', $data ?? [], null);
     }
@@ -800,7 +800,13 @@ class CreateCheckoutSessionResponse implements ModelInterface, ArrayAccess, \Jso
             $this->openAPINullablesSetToNull[] = $variableName;
         }
 
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
+        // An explicitly provided value (including null) always wins; the
+        // default only applies when the field was omitted entirely.
+        if (array_key_exists($variableName, $fields)) {
+            $this->container[$variableName] = $fields[$variableName];
+        } else {
+            $this->container[$variableName] = $defaultValue;
+        }
     }
 
 

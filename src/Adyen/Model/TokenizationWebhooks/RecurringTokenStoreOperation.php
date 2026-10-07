@@ -271,7 +271,13 @@ class RecurringTokenStoreOperation implements ModelInterface, ArrayAccess, \Json
             $this->openAPINullablesSetToNull[] = $variableName;
         }
 
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
+        // An explicitly provided value (including null) always wins; the
+        // default only applies when the field was omitted entirely.
+        if (array_key_exists($variableName, $fields)) {
+            $this->container[$variableName] = $fields[$variableName];
+        } else {
+            $this->container[$variableName] = $defaultValue;
+        }
     }
 
 

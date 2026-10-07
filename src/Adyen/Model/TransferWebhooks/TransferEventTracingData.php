@@ -266,11 +266,6 @@ class TransferEventTracingData implements ModelInterface, ArrayAccess, \JsonSeri
         $this->setIfExists('fpid', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('traceNumber', $data ?? [], null);
-
-        // Initialize discriminator property with the model name.
-        if (!array_key_exists('type', $data ?? [])) {
-            $this->container['type'] = static::$openAPIModelName;
-        }
     }
 
     /**
@@ -288,7 +283,13 @@ class TransferEventTracingData implements ModelInterface, ArrayAccess, \JsonSeri
             $this->openAPINullablesSetToNull[] = $variableName;
         }
 
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
+        // An explicitly provided value (including null) always wins; the
+        // default only applies when the field was omitted entirely.
+        if (array_key_exists($variableName, $fields)) {
+            $this->container[$variableName] = $fields[$variableName];
+        } else {
+            $this->container[$variableName] = $defaultValue;
+        }
     }
 
 

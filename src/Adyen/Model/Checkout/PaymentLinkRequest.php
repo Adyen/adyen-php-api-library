@@ -559,9 +559,9 @@ class PaymentLinkRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('shopperName', $data ?? [], null);
         $this->setIfExists('shopperReference', $data ?? [], null);
         $this->setIfExists('shopperStatement', $data ?? [], null);
-        $this->setIfExists('showRemovePaymentMethodButton', $data ?? [], null);
+        $this->setIfExists('showRemovePaymentMethodButton', $data ?? [], true);
         $this->setIfExists('socialSecurityNumber', $data ?? [], null);
-        $this->setIfExists('splitCardFundingSources', $data ?? [], null);
+        $this->setIfExists('splitCardFundingSources', $data ?? [], false);
         $this->setIfExists('splits', $data ?? [], null);
         $this->setIfExists('store', $data ?? [], null);
         $this->setIfExists('storePaymentMethodMode', $data ?? [], null);
@@ -585,7 +585,13 @@ class PaymentLinkRequest implements ModelInterface, ArrayAccess, \JsonSerializab
             $this->openAPINullablesSetToNull[] = $variableName;
         }
 
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
+        // An explicitly provided value (including null) always wins; the
+        // default only applies when the field was omitted entirely.
+        if (array_key_exists($variableName, $fields)) {
+            $this->container[$variableName] = $fields[$variableName];
+        } else {
+            $this->container[$variableName] = $defaultValue;
+        }
     }
 
 

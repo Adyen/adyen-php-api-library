@@ -252,7 +252,7 @@ class MerchantPurchaseData implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         $this->setIfExists('airline', $data ?? [], null);
         $this->setIfExists('lodging', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], 'merchantPurchaseData');
     }
 
     /**
@@ -270,7 +270,13 @@ class MerchantPurchaseData implements ModelInterface, ArrayAccess, \JsonSerializ
             $this->openAPINullablesSetToNull[] = $variableName;
         }
 
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
+        // An explicitly provided value (including null) always wins; the
+        // default only applies when the field was omitted entirely.
+        if (array_key_exists($variableName, $fields)) {
+            $this->container[$variableName] = $fields[$variableName];
+        } else {
+            $this->container[$variableName] = $defaultValue;
+        }
     }
 
 
