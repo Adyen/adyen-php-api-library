@@ -151,6 +151,79 @@ JSON
         }
     }
 
+    public function testMerchantReferenceZeroIsNotTreatedAsEmpty()
+    {
+        $params = json_decode('{
+                "pspReference": "7914073381342284",
+                "merchantAccountCode": "TestMerchant",
+                "merchantReference": "0",
+                "amount": {
+                    "value": 1130,
+                    "currency": "EUR"
+                },
+                "eventCode": "AUTHORISATION",
+                "success": "true"
+            }', true);
+        $key = "DFB1EB5485895CFA84146406857104ABB4CBCABDC8AAF103A624C8F6A3EAAB00";
+        $hmac = new HmacSignature();
+        $hmacCalculation = $hmac->calculateNotificationHMAC($key, $params);
+        $this->assertEquals("FxamuQrBMUCLGp4jK2kwgsURDS1pD6NjMXLZz5Ls1nI=", $hmacCalculation);
+
+        $params['additionalData'] = array('hmacSignature' => $hmacCalculation);
+        $this->assertTrue($hmac->isValidNotificationHMAC($key, $params));
+    }
+
+    /**
+     * @dataProvider zeroStringFieldProvider
+     */
+    public function testFieldContainingZeroDoesNotCollideWithEmptyField($field, $expectedHmac)
+    {
+        $key = "DFB1EB5485895CFA84146406857104ABB4CBCABDC8AAF103A624C8F6A3EAAB00";
+        $hmac = new HmacSignature();
+
+        $withZero = $this->notificationWithField($field, "0");
+        $withEmpty = $this->notificationWithField($field, "");
+
+        $zeroHmac = $hmac->calculateNotificationHMAC($key, $withZero);
+        $emptyHmac = $hmac->calculateNotificationHMAC($key, $withEmpty);
+
+        $this->assertEquals($expectedHmac, $zeroHmac);
+        $this->assertNotEquals($emptyHmac, $zeroHmac);
+    }
+
+    public static function zeroStringFieldProvider()
+    {
+        return array(
+            'pspReference' => array('pspReference', 'jh8PoPf6ROKe7ji5v20s41Fb/TEzRTItgID1qHY240Q='),
+            'originalReference' => array('originalReference', '3GHN2RNrz0GHIdbdfN55JqDebcNObEmRG79Bs6Fpx80='),
+            'merchantAccountCode' => array('merchantAccountCode', 'C17xGwk4PJHQMS/PDA2ho+tGRCvCXMTQ0u+CiuXbJlQ='),
+            'merchantReference' => array('merchantReference', 'FxamuQrBMUCLGp4jK2kwgsURDS1pD6NjMXLZz5Ls1nI='),
+            'currency' => array('currency', 'V3hcM/Zbi+UyxllxicWpEYIiWSAwWQ7kEFU/NzjRfPQ='),
+            'eventCode' => array('eventCode', 'z5vWmtlmAQL4a0h2wfdnjHjknlkTP4v8vnfNr0/FFzg='),
+        );
+    }
+
+    private function notificationWithField($field, $value)
+    {
+        $params = array(
+            'pspReference' => '7914073381342284',
+            'originalReference' => '',
+            'merchantAccountCode' => 'TestMerchant',
+            'merchantReference' => 'TestPayment-1407325143704',
+            'amount' => array('value' => 1130, 'currency' => 'EUR'),
+            'eventCode' => 'AUTHORISATION',
+            'success' => 'true',
+        );
+
+        if ($field === 'currency' || $field === 'value') {
+            $params['amount'][$field] = $value;
+        } else {
+            $params[$field] = $value;
+        }
+
+        return $params;
+    }
+
     public function testIsHmacSupportedEventCode()
     {
         $params = json_decode('{
