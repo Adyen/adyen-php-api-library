@@ -29,7 +29,7 @@ use Adyen\Tests\Unit\BaseTest;
 
 class ModificationsApiTest extends BaseTest
 {
-    public function testCancelAuthorisedPaymentSendsExpectedUrl(): void
+    public function testCancelAuthorisedPaymentSendsExpectedUrlOnTest(): void
     {
         $container = [];
         $client = $this->createMockSerializerClient(
@@ -46,7 +46,27 @@ class ModificationsApiTest extends BaseTest
         $this->assertSame('https://checkout-test.adyen.com/v72/cancels', (string) $request->getUri());
     }
 
-    public function testCaptureAuthorisedPaymentSendsExpectedUrl(): void
+    public function testCancelAuthorisedPaymentSendsExpectedUrlOnLive(): void
+    {
+        $container = [];
+        $client = $this->createMockSerializerClient(
+            'tests/Resources/Checkout/cancelAuthorisedPayment-success.json',
+            201,
+            $container
+        );
+        $service = new ModificationsApi($this->createLiveConfiguration(), $client);
+
+        $service->cancelAuthorisedPayment(new \Adyen\Model\Checkout\StandalonePaymentCancelRequest());
+
+        $request = $container[0]['request'];
+        $this->assertSame('POST', $request->getMethod());
+        $this->assertSame(
+            'https://mycompany-checkout-live.adyenpayments.com/checkout/v72/cancels',
+            (string) $request->getUri()
+        );
+    }
+
+    public function testCaptureAuthorisedPaymentSendsExpectedUrlOnTest(): void
     {
         $container = [];
         $client = $this->createMockSerializerClient(
@@ -65,6 +85,29 @@ class ModificationsApiTest extends BaseTest
         $this->assertSame('POST', $request->getMethod());
         $this->assertSame(
             'https://checkout-test.adyen.com/v72/payments/993617894903480A/captures',
+            (string) $request->getUri()
+        );
+    }
+
+    public function testCaptureAuthorisedPaymentSendsExpectedUrlOnLive(): void
+    {
+        $container = [];
+        $client = $this->createMockSerializerClient(
+            'tests/Resources/Checkout/payments-capture-success.json',
+            201,
+            $container
+        );
+        $service = new ModificationsApi($this->createLiveConfiguration(), $client);
+
+        $service->captureAuthorisedPayment(
+            '993617894903480A',
+            new \Adyen\Model\Checkout\PaymentCaptureRequest()
+        );
+
+        $request = $container[0]['request'];
+        $this->assertSame('POST', $request->getMethod());
+        $this->assertSame(
+            'https://mycompany-checkout-live.adyenpayments.com/checkout/v72/payments/993617894903480A/captures',
             (string) $request->getUri()
         );
     }

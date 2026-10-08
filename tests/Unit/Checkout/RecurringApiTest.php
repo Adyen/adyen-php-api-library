@@ -31,7 +31,7 @@ class RecurringApiTest extends BaseTest
 {
     const HOLDER_NAME = "John Smith";
 
-    public function testDeleteTokenForStoredPaymentDetailsSendsExpectedUrl(): void
+    public function testDeleteTokenForStoredPaymentDetailsSendsExpectedUrlOnTest(): void
     {
         $container = [];
         $client = $this->createMockSerializerClient(null, 204, $container);
@@ -48,7 +48,24 @@ class RecurringApiTest extends BaseTest
         );
     }
 
-    public function testGetTokensForStoredPaymentDetailsSendsExpectedUrl(): void
+    public function testDeleteTokenForStoredPaymentDetailsSendsExpectedUrlOnLive(): void
+    {
+        $container = [];
+        $client = $this->createMockSerializerClient(null, 204, $container);
+        $service = new RecurringApi($this->createLiveConfiguration(), $client);
+
+        $service->deleteTokenForStoredPaymentDetails('123', '411111', 'YOUR_MERCHANT_ACCOUNT');
+
+        $request = $container[0]['request'];
+        $this->assertSame('DELETE', $request->getMethod());
+        $this->assertSame(
+            'https://mycompany-checkout-live.adyenpayments.com/checkout/v72/storedPaymentMethods/123'
+                . '?shopperReference=411111&merchantAccount=YOUR_MERCHANT_ACCOUNT',
+            (string) $request->getUri()
+        );
+    }
+
+    public function testGetTokensForStoredPaymentDetailsSendsExpectedUrlOnTest(): void
     {
         $container = [];
         $client = $this->createMockSerializerClient(
@@ -69,7 +86,28 @@ class RecurringApiTest extends BaseTest
         );
     }
 
-    public function testStoredPaymentMethodsSendsExpectedUrl(): void
+    public function testGetTokensForStoredPaymentDetailsSendsExpectedUrlOnLive(): void
+    {
+        $container = [];
+        $client = $this->createMockSerializerClient(
+            'tests/Resources/Checkout/getStoredPaymentMethods-success.json',
+            200,
+            $container
+        );
+        $service = new RecurringApi($this->createLiveConfiguration(), $client);
+
+        $service->getTokensForStoredPaymentDetails('411111', 'YOUR_MERCHANT_ACCOUNT');
+
+        $request = $container[0]['request'];
+        $this->assertSame('GET', $request->getMethod());
+        $this->assertSame(
+            'https://mycompany-checkout-live.adyenpayments.com/checkout/v72/storedPaymentMethods'
+                . '?shopperReference=411111&merchantAccount=YOUR_MERCHANT_ACCOUNT',
+            (string) $request->getUri()
+        );
+    }
+
+    public function testStoredPaymentMethodsSendsExpectedUrlOnTest(): void
     {
         $container = [];
         $client = $this->createMockSerializerClient(
@@ -84,6 +122,26 @@ class RecurringApiTest extends BaseTest
         $request = $container[0]['request'];
         $this->assertSame('POST', $request->getMethod());
         $this->assertSame('https://checkout-test.adyen.com/v72/storedPaymentMethods', (string) $request->getUri());
+    }
+
+    public function testStoredPaymentMethodsSendsExpectedUrlOnLive(): void
+    {
+        $container = [];
+        $client = $this->createMockSerializerClient(
+            'tests/Resources/Checkout/storedPaymentMethods-success.json',
+            201,
+            $container
+        );
+        $service = new RecurringApi($this->createLiveConfiguration(), $client);
+
+        $service->storedPaymentMethods(new \Adyen\Model\Checkout\StoredPaymentMethodRequest());
+
+        $request = $container[0]['request'];
+        $this->assertSame('POST', $request->getMethod());
+        $this->assertSame(
+            'https://mycompany-checkout-live.adyenpayments.com/checkout/v72/storedPaymentMethods',
+            (string) $request->getUri()
+        );
     }
 
     public function testForwardOnErrorResponseThrows(): void

@@ -3,7 +3,6 @@
 namespace Adyen\Tests\Unit\BinLookup;
 
 use Adyen\Configuration;
-use Adyen\Environment;
 use Adyen\Exception\AdyenException;
 use Adyen\RequestOptions;
 use Adyen\Model\BinLookup\Amount;
@@ -21,7 +20,7 @@ use GuzzleHttp\Psr7\Response;
 
 class BinLookupTest extends BaseTest
 {
-    public function testGet3dsAvailabilitySendsExpectedUrl(): void
+    public function testGet3dsAvailabilitySendsExpectedUrlOnTest(): void
     {
         $container = [];
         $client = $this->createMockSerializerClient('tests/Resources/BinLookup/3ds-availability.json', 200, $container);
@@ -37,40 +36,19 @@ class BinLookupTest extends BaseTest
         );
     }
 
-    public function testTestUrl()
+    public function testGet3dsAvailabilitySendsExpectedUrlOnLive(): void
     {
-        $config = new Configuration();
-        $config->setEnvironment(Environment::TEST);
-        $config->setAdyenApiKey("MockAPIKey");
+        $container = [];
+        $client = $this->createMockSerializerClient('tests/Resources/BinLookup/3ds-availability.json', 200, $container);
+        $service = new BinLookupApi($this->createLiveConfiguration(), $client);
 
-        $service = new BinLookupApi($config);
+        $service->get3dsAvailability(new ThreeDSAvailabilityRequest());
 
-        // get field by reflection (it is protected)
-        $reflection = new \ReflectionClass($service);
-        $property = $reflection->getProperty('baseURL');
-
-        $this->assertEquals(
-            'https://pal-test.adyen.com/pal/servlet/BinLookup/v54',
-            $property->getValue($service)
-        );
-    }
-
-    public function testLiveUrl()
-    {
-        $config = new Configuration();
-        $config->setEnvironment(Environment::LIVE);
-        $config->setAdyenApiKey("MockAPIKey");
-        $config->setLiveEndpointUrlPrefix("myCompany");
-
-        $service = new BinLookupApi($config);
-
-        // get field by reflection (it is protected)
-        $reflection = new \ReflectionClass($service);
-        $property = $reflection->getProperty('baseURL');
-
-        $this->assertEquals(
-            'https://myCompany-pal-live.adyenpayments.com/pal/servlet/BinLookup/v54',
-            $property->getValue($service)
+        $request = $container[0]['request'];
+        $this->assertSame('POST', $request->getMethod());
+        $this->assertSame(
+            'https://mycompany-pal-live.adyenpayments.com/pal/servlet/BinLookup/v54/get3dsAvailability',
+            (string) $request->getUri()
         );
     }
 

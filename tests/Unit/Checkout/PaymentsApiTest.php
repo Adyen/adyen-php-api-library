@@ -43,7 +43,7 @@ class PaymentsApiTest extends BaseTest
     const HOLDER_NAME = "John Smith";
     const RETURN_URL = "https://your-company.com/...";
 
-    public function testGetResultOfPaymentSessionSendsExpectedUrl(): void
+    public function testGetResultOfPaymentSessionSendsExpectedUrlOnTest(): void
     {
         $container = [];
         $client = $this->createMockSerializerClient(
@@ -63,7 +63,27 @@ class PaymentsApiTest extends BaseTest
         );
     }
 
-    public function testPaymentsSendsExpectedUrl(): void
+    public function testGetResultOfPaymentSessionSendsExpectedUrlOnLive(): void
+    {
+        $container = [];
+        $client = $this->createMockSerializerClient(
+            'tests/Resources/Checkout/getResultOfPaymentSession-success.json',
+            200,
+            $container
+        );
+        $service = new PaymentsApi($this->createLiveConfiguration(), $client);
+
+        $service->getResultOfPaymentSession('CS12345678', 'X123..');
+
+        $request = $container[0]['request'];
+        $this->assertSame('GET', $request->getMethod());
+        $this->assertSame(
+            'https://mycompany-checkout-live.adyenpayments.com/checkout/v72/sessions/CS12345678?sessionResult=X123..',
+            (string) $request->getUri()
+        );
+    }
+
+    public function testPaymentsSendsExpectedUrlOnTest(): void
     {
         $container = [];
         $client = $this->createMockSerializerClient('tests/Resources/Checkout/payments-success.json', 200, $container);
@@ -76,7 +96,23 @@ class PaymentsApiTest extends BaseTest
         $this->assertSame('https://checkout-test.adyen.com/v72/payments', (string) $request->getUri());
     }
 
-    public function testUpdateSessionSendsExpectedUrl(): void
+    public function testPaymentsSendsExpectedUrlOnLive(): void
+    {
+        $container = [];
+        $client = $this->createMockSerializerClient('tests/Resources/Checkout/payments-success.json', 200, $container);
+        $service = new PaymentsApi($this->createLiveConfiguration(), $client);
+
+        $service->payments(new \Adyen\Model\Checkout\PaymentRequest());
+
+        $request = $container[0]['request'];
+        $this->assertSame('POST', $request->getMethod());
+        $this->assertSame(
+            'https://mycompany-checkout-live.adyenpayments.com/checkout/v72/payments',
+            (string) $request->getUri()
+        );
+    }
+
+    public function testUpdateSessionSendsExpectedUrlOnTest(): void
     {
         $container = [];
         $client = $this->createMockSerializerClient(
@@ -91,6 +127,26 @@ class PaymentsApiTest extends BaseTest
         $request = $container[0]['request'];
         $this->assertSame('PATCH', $request->getMethod());
         $this->assertSame('https://checkout-test.adyen.com/v72/sessions/CS12345678', (string) $request->getUri());
+    }
+
+    public function testUpdateSessionSendsExpectedUrlOnLive(): void
+    {
+        $container = [];
+        $client = $this->createMockSerializerClient(
+            'tests/Resources/Checkout/updateSession-success.json',
+            200,
+            $container
+        );
+        $service = new PaymentsApi($this->createLiveConfiguration(), $client);
+
+        $service->updateSession('CS12345678', new \Adyen\Model\Checkout\CheckoutSessionPatchSessionRequest());
+
+        $request = $container[0]['request'];
+        $this->assertSame('PATCH', $request->getMethod());
+        $this->assertSame(
+            'https://mycompany-checkout-live.adyenpayments.com/checkout/v72/sessions/CS12345678',
+            (string) $request->getUri()
+        );
     }
 
     public function testPaymentMethodsOnErrorResponseThrows(): void
