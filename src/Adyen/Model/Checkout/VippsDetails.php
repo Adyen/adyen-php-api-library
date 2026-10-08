@@ -414,7 +414,7 @@ class VippsDetails implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets telephoneNumber
      *
-     * @param string $telephoneNumber 
+     * @param string $telephoneNumber
      *
      * @return self
      */
