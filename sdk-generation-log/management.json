@@ -1,8 +1,8 @@
 {
   "service": "management",
   "project": "php",
-  "generatedAt": "2026-06-19T10:31:50Z",
-  "openapiCommitSha": "02d10c0110523a6a85ae331d2de5ab402c291095",
-  "automationCommitSha": "6f06b47d0661f0891defe6b85461d2c367fbd284",
-  "libraryCommitSha": "87893df3a51b64de2b2ae9ef229d05548a99d010"
+  "generatedAt": "2026-10-08T14:32:48Z",
+  "openapiCommitSha": "45520ee6246d7e3d8074c3c5c5e991e65c2c02d6",
+  "automationCommitSha": "82147244fd717b50362f88a20e4436e693d0aed6",
+  "libraryCommitSha": "8c6b91a685794228c64140cf106788c72928da24"
 }
