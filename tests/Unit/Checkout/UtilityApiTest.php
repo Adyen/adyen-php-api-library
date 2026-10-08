@@ -36,7 +36,7 @@ use Adyen\Tests\Unit\BaseTest;
 
 class UtilityApiTest extends BaseTest
 {
-    public function testOriginKeysSendsExpectedUrl(): void
+    public function testOriginKeysSendsExpectedUrlOnTest(): void
     {
         $container = [];
         $client = $this->createMockSerializerClient(
@@ -51,6 +51,26 @@ class UtilityApiTest extends BaseTest
         $request = $container[0]['request'];
         $this->assertSame('POST', $request->getMethod());
         $this->assertSame('https://checkout-test.adyen.com/v72/originKeys', (string) $request->getUri());
+    }
+
+    public function testOriginKeysSendsExpectedUrlOnLive(): void
+    {
+        $container = [];
+        $client = $this->createMockSerializerClient(
+            'tests/Resources/Checkout/originKeys-success.json',
+            200,
+            $container
+        );
+        $service = new UtilityApi($this->createLiveConfiguration(), $client);
+
+        $service->originKeys(new UtilityRequest());
+
+        $request = $container[0]['request'];
+        $this->assertSame('POST', $request->getMethod());
+        $this->assertSame(
+            'https://mycompany-checkout-live.adyenpayments.com/checkout/v72/originKeys',
+            (string) $request->getUri()
+        );
     }
 
     public function testOriginKeysOnErrorResponseThrows(): void

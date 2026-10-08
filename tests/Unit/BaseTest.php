@@ -39,4 +39,16 @@ class BaseTest extends TestCase
         $config->setAdyenApiKey("MockAPIKey");
         return $config;
     }
+
+    /**
+     * @return Configuration
+     */
+    protected function createLiveConfiguration(): Configuration
+    {
+        $config = new Configuration();
+        $config->setEnvironment(Environment::LIVE);
+        $config->setAdyenApiKey("MockAPIKey");
+        $config->setLiveEndpointUrlPrefix("mycompany");
+        return $config;
+    }
 }

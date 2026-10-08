@@ -34,7 +34,7 @@ class DonationsApiTest extends BaseTest
     const HOLDER_NAME = "John Smith";
     const RETURN_URL = "https://your-company.com/...";
 
-    public function testDonationCampaignsSendsExpectedUrl(): void
+    public function testDonationCampaignsSendsExpectedUrlOnTest(): void
     {
         $container = [];
         $client = $this->createMockSerializerClient(
@@ -49,6 +49,26 @@ class DonationsApiTest extends BaseTest
         $request = $container[0]['request'];
         $this->assertSame('POST', $request->getMethod());
         $this->assertSame('https://checkout-test.adyen.com/v72/donationCampaigns', (string) $request->getUri());
+    }
+
+    public function testDonationCampaignsSendsExpectedUrlOnLive(): void
+    {
+        $container = [];
+        $client = $this->createMockSerializerClient(
+            'tests/Resources/Checkout/donationCampaigns-success.json',
+            200,
+            $container
+        );
+        $service = new DonationsApi($this->createLiveConfiguration(), $client);
+
+        $service->donationCampaigns(new \Adyen\Model\Checkout\DonationCampaignsRequest());
+
+        $request = $container[0]['request'];
+        $this->assertSame('POST', $request->getMethod());
+        $this->assertSame(
+            'https://mycompany-checkout-live.adyenpayments.com/checkout/v72/donationCampaigns',
+            (string) $request->getUri()
+        );
     }
 
     public function testDonationsOnErrorResponseThrows(): void

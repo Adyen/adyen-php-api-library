@@ -31,7 +31,7 @@ use Adyen\Tests\Unit\BaseTest;
 
 class PaymentLinksApiTest extends BaseTest
 {
-    public function testGetPaymentLinkSendsExpectedUrl(): void
+    public function testGetPaymentLinkSendsExpectedUrlOnTest(): void
     {
         $container = [];
         $client = $this->createMockSerializerClient(
@@ -48,7 +48,27 @@ class PaymentLinksApiTest extends BaseTest
         $this->assertSame('https://checkout-test.adyen.com/v72/paymentLinks/linkId', (string) $request->getUri());
     }
 
-    public function testPaymentLinksSendsExpectedUrl(): void
+    public function testGetPaymentLinkSendsExpectedUrlOnLive(): void
+    {
+        $container = [];
+        $client = $this->createMockSerializerClient(
+            'tests/Resources/Checkout/payment-links-success.json',
+            200,
+            $container
+        );
+        $service = new PaymentLinksApi($this->createLiveConfiguration(), $client);
+
+        $service->getPaymentLink('linkId');
+
+        $request = $container[0]['request'];
+        $this->assertSame('GET', $request->getMethod());
+        $this->assertSame(
+            'https://mycompany-checkout-live.adyenpayments.com/checkout/v72/paymentLinks/linkId',
+            (string) $request->getUri()
+        );
+    }
+
+    public function testPaymentLinksSendsExpectedUrlOnTest(): void
     {
         $container = [];
         $client = $this->createMockSerializerClient(
@@ -65,7 +85,27 @@ class PaymentLinksApiTest extends BaseTest
         $this->assertSame('https://checkout-test.adyen.com/v72/paymentLinks', (string) $request->getUri());
     }
 
-    public function testUpdatePaymentLinkSendsExpectedUrl(): void
+    public function testPaymentLinksSendsExpectedUrlOnLive(): void
+    {
+        $container = [];
+        $client = $this->createMockSerializerClient(
+            'tests/Resources/Checkout/payment-links-success.json',
+            200,
+            $container
+        );
+        $service = new PaymentLinksApi($this->createLiveConfiguration(), $client);
+
+        $service->paymentLinks(new PaymentLinkRequest());
+
+        $request = $container[0]['request'];
+        $this->assertSame('POST', $request->getMethod());
+        $this->assertSame(
+            'https://mycompany-checkout-live.adyenpayments.com/checkout/v72/paymentLinks',
+            (string) $request->getUri()
+        );
+    }
+
+    public function testUpdatePaymentLinkSendsExpectedUrlOnTest(): void
     {
         $container = [];
         $client = $this->createMockSerializerClient(
@@ -80,6 +120,26 @@ class PaymentLinksApiTest extends BaseTest
         $request = $container[0]['request'];
         $this->assertSame('PATCH', $request->getMethod());
         $this->assertSame('https://checkout-test.adyen.com/v72/paymentLinks/linkId', (string) $request->getUri());
+    }
+
+    public function testUpdatePaymentLinkSendsExpectedUrlOnLive(): void
+    {
+        $container = [];
+        $client = $this->createMockSerializerClient(
+            'tests/Resources/Checkout/payment-links-expired.json',
+            200,
+            $container
+        );
+        $service = new PaymentLinksApi($this->createLiveConfiguration(), $client);
+
+        $service->updatePaymentLink('linkId', new UpdatePaymentLinkRequest());
+
+        $request = $container[0]['request'];
+        $this->assertSame('PATCH', $request->getMethod());
+        $this->assertSame(
+            'https://mycompany-checkout-live.adyenpayments.com/checkout/v72/paymentLinks/linkId',
+            (string) $request->getUri()
+        );
     }
 
     public function testPaymentLinksOnErrorResponseThrows(): void

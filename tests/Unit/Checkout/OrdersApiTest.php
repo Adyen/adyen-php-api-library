@@ -29,7 +29,7 @@ use Adyen\Tests\Unit\BaseTest;
 
 class OrdersApiTest extends BaseTest
 {
-    public function testOrdersSendsExpectedUrl(): void
+    public function testOrdersSendsExpectedUrlOnTest(): void
     {
         $container = [];
         $client = $this->createMockSerializerClient('tests/Resources/Checkout/orders-success.json', 200, $container);
@@ -40,6 +40,22 @@ class OrdersApiTest extends BaseTest
         $request = $container[0]['request'];
         $this->assertSame('POST', $request->getMethod());
         $this->assertSame('https://checkout-test.adyen.com/v72/orders', (string) $request->getUri());
+    }
+
+    public function testOrdersSendsExpectedUrlOnLive(): void
+    {
+        $container = [];
+        $client = $this->createMockSerializerClient('tests/Resources/Checkout/orders-success.json', 200, $container);
+        $service = new OrdersApi($this->createLiveConfiguration(), $client);
+
+        $service->orders(new \Adyen\Model\Checkout\CreateOrderRequest());
+
+        $request = $container[0]['request'];
+        $this->assertSame('POST', $request->getMethod());
+        $this->assertSame(
+            'https://mycompany-checkout-live.adyenpayments.com/checkout/v72/orders',
+            (string) $request->getUri()
+        );
     }
 
     public function testOrdersOnErrorResponseThrows(): void
