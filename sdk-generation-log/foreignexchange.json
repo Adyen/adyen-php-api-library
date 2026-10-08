@@ -1,8 +1,8 @@
 {
   "service": "foreignexchange",
   "project": "php",
-  "generatedAt": "2026-09-23T15:27:47Z",
-  "openapiCommitSha": "4840aee6447f7d2cab8c1addb86d5d7980b3571c",
-  "automationCommitSha": "db93bc35548c7c9d6aff97d76a513634967fd304",
-  "libraryCommitSha": "125dc2e9666a3d765068fc33116f0ba1e28288cb"
+  "generatedAt": "2026-10-08T14:31:06Z",
+  "openapiCommitSha": "45520ee6246d7e3d8074c3c5c5e991e65c2c02d6",
+  "automationCommitSha": "82147244fd717b50362f88a20e4436e693d0aed6",
+  "libraryCommitSha": "8c6b91a685794228c64140cf106788c72928da24"
 }
