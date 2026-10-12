@@ -349,7 +349,6 @@ class TermsOfServiceApi extends BaseService
         $resourcePath = '/legalEntities/{id}/termsOfService/{termsofservicedocumentid}';
         $formParams = [];
         $queryParams = [];
-        $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
@@ -420,7 +419,7 @@ class TermsOfServiceApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers['X-API-Key'] = $apiKey;
+            $headers = array_merge(['x-api-key' => $apiKey], $headers);
         }
 
         $defaultHeaders = [];
@@ -430,7 +429,6 @@ class TermsOfServiceApi extends BaseService
 
         $headers = array_merge(
             $defaultHeaders,
-            $headerParams,
             $headers
         );
 
@@ -658,7 +656,6 @@ class TermsOfServiceApi extends BaseService
         $resourcePath = '/legalEntities/{id}/acceptedTermsOfServiceDocument/{termsofserviceacceptancereference}';
         $formParams = [];
         $queryParams = [];
-        $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
@@ -731,7 +728,7 @@ class TermsOfServiceApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers['X-API-Key'] = $apiKey;
+            $headers = array_merge(['x-api-key' => $apiKey], $headers);
         }
 
         $defaultHeaders = [];
@@ -741,7 +738,6 @@ class TermsOfServiceApi extends BaseService
 
         $headers = array_merge(
             $defaultHeaders,
-            $headerParams,
             $headers
         );
 
@@ -957,7 +953,6 @@ class TermsOfServiceApi extends BaseService
         $resourcePath = '/legalEntities/{id}/termsOfService';
         $formParams = [];
         $queryParams = [];
-        $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
@@ -1019,7 +1014,7 @@ class TermsOfServiceApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers['X-API-Key'] = $apiKey;
+            $headers = array_merge(['x-api-key' => $apiKey], $headers);
         }
 
         $defaultHeaders = [];
@@ -1029,7 +1024,6 @@ class TermsOfServiceApi extends BaseService
 
         $headers = array_merge(
             $defaultHeaders,
-            $headerParams,
             $headers
         );
 
@@ -1240,7 +1234,6 @@ class TermsOfServiceApi extends BaseService
         $resourcePath = '/legalEntities/{id}/termsOfServiceAcceptanceInfos';
         $formParams = [];
         $queryParams = [];
-        $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
@@ -1294,7 +1287,7 @@ class TermsOfServiceApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers['X-API-Key'] = $apiKey;
+            $headers = array_merge(['x-api-key' => $apiKey], $headers);
         }
 
         $defaultHeaders = [];
@@ -1304,7 +1297,6 @@ class TermsOfServiceApi extends BaseService
 
         $headers = array_merge(
             $defaultHeaders,
-            $headerParams,
             $headers
         );
 
@@ -1515,7 +1507,6 @@ class TermsOfServiceApi extends BaseService
         $resourcePath = '/legalEntities/{id}/termsOfServiceStatus';
         $formParams = [];
         $queryParams = [];
-        $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
@@ -1569,7 +1560,7 @@ class TermsOfServiceApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers['X-API-Key'] = $apiKey;
+            $headers = array_merge(['x-api-key' => $apiKey], $headers);
         }
 
         $defaultHeaders = [];
@@ -1579,7 +1570,6 @@ class TermsOfServiceApi extends BaseService
 
         $headers = array_merge(
             $defaultHeaders,
-            $headerParams,
             $headers
         );
 

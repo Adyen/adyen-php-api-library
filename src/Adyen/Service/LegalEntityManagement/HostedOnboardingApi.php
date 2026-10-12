@@ -331,7 +331,6 @@ class HostedOnboardingApi extends BaseService
         $resourcePath = '/legalEntities/{id}/onboardingLinks';
         $formParams = [];
         $queryParams = [];
-        $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
@@ -393,7 +392,7 @@ class HostedOnboardingApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers['X-API-Key'] = $apiKey;
+            $headers = array_merge(['x-api-key' => $apiKey], $headers);
         }
 
         $defaultHeaders = [];
@@ -403,7 +402,6 @@ class HostedOnboardingApi extends BaseService
 
         $headers = array_merge(
             $defaultHeaders,
-            $headerParams,
             $headers
         );
 
@@ -614,7 +612,6 @@ class HostedOnboardingApi extends BaseService
         $resourcePath = '/themes/{id}';
         $formParams = [];
         $queryParams = [];
-        $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
@@ -668,7 +665,7 @@ class HostedOnboardingApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers['X-API-Key'] = $apiKey;
+            $headers = array_merge(['x-api-key' => $apiKey], $headers);
         }
 
         $defaultHeaders = [];
@@ -678,7 +675,6 @@ class HostedOnboardingApi extends BaseService
 
         $headers = array_merge(
             $defaultHeaders,
-            $headerParams,
             $headers
         );
 
@@ -877,7 +873,6 @@ class HostedOnboardingApi extends BaseService
         $resourcePath = '/themes';
         $formParams = [];
         $queryParams = [];
-        $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
@@ -922,7 +917,7 @@ class HostedOnboardingApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers['X-API-Key'] = $apiKey;
+            $headers = array_merge(['x-api-key' => $apiKey], $headers);
         }
 
         $defaultHeaders = [];
@@ -932,7 +927,6 @@ class HostedOnboardingApi extends BaseService
 
         $headers = array_merge(
             $defaultHeaders,
-            $headerParams,
             $headers
         );
 

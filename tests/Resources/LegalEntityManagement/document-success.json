@@ -1,0 +1,12 @@
+{
+  "id": "DO00000000000000000000001",
+  "type": "passport",
+  "description": "Identity document",
+  "attachments": [
+    {
+      "content": "dGVzdA==",
+      "filename": "passport.pdf",
+      "contentType": "application/pdf"
+    }
+  ]
+}

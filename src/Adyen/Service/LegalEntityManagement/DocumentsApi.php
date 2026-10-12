@@ -309,7 +309,6 @@ class DocumentsApi extends BaseService
         $resourcePath = '/documents/{id}';
         $formParams = [];
         $queryParams = [];
-        $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
@@ -363,7 +362,7 @@ class DocumentsApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers['X-API-Key'] = $apiKey;
+            $headers = array_merge(['x-api-key' => $apiKey], $headers);
         }
 
         $defaultHeaders = [];
@@ -373,7 +372,6 @@ class DocumentsApi extends BaseService
 
         $headers = array_merge(
             $defaultHeaders,
-            $headerParams,
             $headers
         );
 
@@ -589,7 +587,6 @@ class DocumentsApi extends BaseService
         $resourcePath = '/documents/{id}';
         $formParams = [];
         $queryParams = [];
-        $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
@@ -653,7 +650,7 @@ class DocumentsApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers['X-API-Key'] = $apiKey;
+            $headers = array_merge(['x-api-key' => $apiKey], $headers);
         }
 
         $defaultHeaders = [];
@@ -663,7 +660,6 @@ class DocumentsApi extends BaseService
 
         $headers = array_merge(
             $defaultHeaders,
-            $headerParams,
             $headers
         );
 
@@ -879,7 +875,6 @@ class DocumentsApi extends BaseService
         $resourcePath = '/documents/{id}';
         $formParams = [];
         $queryParams = [];
-        $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
@@ -941,7 +936,7 @@ class DocumentsApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers['X-API-Key'] = $apiKey;
+            $headers = array_merge(['x-api-key' => $apiKey], $headers);
         }
 
         $defaultHeaders = [];
@@ -951,7 +946,6 @@ class DocumentsApi extends BaseService
 
         $headers = array_merge(
             $defaultHeaders,
-            $headerParams,
             $headers
         );
 
@@ -1155,7 +1149,6 @@ class DocumentsApi extends BaseService
         $resourcePath = '/documents';
         $formParams = [];
         $queryParams = [];
-        $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
@@ -1208,7 +1201,7 @@ class DocumentsApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers['X-API-Key'] = $apiKey;
+            $headers = array_merge(['x-api-key' => $apiKey], $headers);
         }
 
         $defaultHeaders = [];
@@ -1218,7 +1211,6 @@ class DocumentsApi extends BaseService
 
         $headers = array_merge(
             $defaultHeaders,
-            $headerParams,
             $headers
         );
 

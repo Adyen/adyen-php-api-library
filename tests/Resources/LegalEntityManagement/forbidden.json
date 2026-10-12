@@ -1,0 +1,7 @@
+{
+  "type": "https://docs.adyen.com/errors/forbidden",
+  "title": "Forbidden",
+  "status": 403,
+  "detail": "Insufficient permissions",
+  "errorCode": "010"
+}
