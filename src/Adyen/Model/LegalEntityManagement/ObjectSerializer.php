@@ -473,16 +473,24 @@ class ObjectSerializer
             ) {
                 $filename = Configuration::getDefaultConfiguration()->getTempFolderPath() . DIRECTORY_SEPARATOR . self::sanitizeFilename($match[1]);
             } else {
-                $filename = tempnam(Configuration::getDefaultConfiguration()->getTempFolderPath(), '');
+                $filename = @tempnam(Configuration::getDefaultConfiguration()->getTempFolderPath(), '');
+                if ($filename === false) {
+                    throw new \RuntimeException('Unable to create the response file');
+                }
             }
 
-            $file = fopen($filename, 'w');
-            while ($chunk = $data->read(200)) {
-                fwrite($file, $chunk);
+            $file = Utils::tryFopen($filename, 'wb');
+            try {
+                while (($chunk = $data->read(200)) !== '') {
+                    if (@fwrite($file, $chunk) !== strlen($chunk)) {
+                        throw new \RuntimeException('Unable to write the complete response');
+                    }
+                }
+            } finally {
+                fclose($file);
             }
-            fclose($file);
 
-            return new \SplFileObject($filename, 'r');
+            return new \SplFileObject($filename, 'rb');
         }
 
         /** @psalm-suppress ParadoxicalCondition */
