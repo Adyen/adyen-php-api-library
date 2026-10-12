@@ -338,7 +338,6 @@ class LegalEntitiesApi extends BaseService
         $resourcePath = '/legalEntities/{id}/checkVerificationErrors';
         $formParams = [];
         $queryParams = [];
-        $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
@@ -392,7 +391,7 @@ class LegalEntitiesApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers['X-API-Key'] = $apiKey;
+            $headers = array_merge(['x-api-key' => $apiKey], $headers);
         }
 
         $defaultHeaders = [];
@@ -402,7 +401,6 @@ class LegalEntitiesApi extends BaseService
 
         $headers = array_merge(
             $defaultHeaders,
-            $headerParams,
             $headers
         );
 
@@ -613,7 +611,6 @@ class LegalEntitiesApi extends BaseService
         $resourcePath = '/legalEntities/{id}/confirmDataReview';
         $formParams = [];
         $queryParams = [];
-        $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
@@ -667,7 +664,7 @@ class LegalEntitiesApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers['X-API-Key'] = $apiKey;
+            $headers = array_merge(['x-api-key' => $apiKey], $headers);
         }
 
         $defaultHeaders = [];
@@ -677,7 +674,6 @@ class LegalEntitiesApi extends BaseService
 
         $headers = array_merge(
             $defaultHeaders,
-            $headerParams,
             $headers
         );
 
@@ -881,7 +877,6 @@ class LegalEntitiesApi extends BaseService
         $resourcePath = '/legalEntities';
         $formParams = [];
         $queryParams = [];
-        $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
@@ -934,7 +929,7 @@ class LegalEntitiesApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers['X-API-Key'] = $apiKey;
+            $headers = array_merge(['x-api-key' => $apiKey], $headers);
         }
 
         $defaultHeaders = [];
@@ -944,7 +939,6 @@ class LegalEntitiesApi extends BaseService
 
         $headers = array_merge(
             $defaultHeaders,
-            $headerParams,
             $headers
         );
 
@@ -1155,7 +1149,6 @@ class LegalEntitiesApi extends BaseService
         $resourcePath = '/legalEntities/{id}/businessLines';
         $formParams = [];
         $queryParams = [];
-        $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
@@ -1209,7 +1202,7 @@ class LegalEntitiesApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers['X-API-Key'] = $apiKey;
+            $headers = array_merge(['x-api-key' => $apiKey], $headers);
         }
 
         $defaultHeaders = [];
@@ -1219,7 +1212,6 @@ class LegalEntitiesApi extends BaseService
 
         $headers = array_merge(
             $defaultHeaders,
-            $headerParams,
             $headers
         );
 
@@ -1430,7 +1422,6 @@ class LegalEntitiesApi extends BaseService
         $resourcePath = '/legalEntities/{id}';
         $formParams = [];
         $queryParams = [];
-        $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
@@ -1484,7 +1475,7 @@ class LegalEntitiesApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers['X-API-Key'] = $apiKey;
+            $headers = array_merge(['x-api-key' => $apiKey], $headers);
         }
 
         $defaultHeaders = [];
@@ -1494,7 +1485,6 @@ class LegalEntitiesApi extends BaseService
 
         $headers = array_merge(
             $defaultHeaders,
-            $headerParams,
             $headers
         );
 
@@ -1685,7 +1675,6 @@ class LegalEntitiesApi extends BaseService
         $resourcePath = '/legalEntities/{id}/requestPeriodicReview';
         $formParams = [];
         $queryParams = [];
-        $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
@@ -1737,7 +1726,7 @@ class LegalEntitiesApi extends BaseService
         $username = $this->config->getUsername();
         $password = $this->config->getPassword();
         if (!empty($apiKey)) {
-            $headers['X-API-Key'] = $apiKey;
+            $headers = array_merge(['x-api-key' => $apiKey], $headers);
         } elseif (!empty($username) && !empty($password)) {
             $headers['Authorization'] = 'Basic ' . base64_encode($username . ':' . $password);
         }
@@ -1749,7 +1738,6 @@ class LegalEntitiesApi extends BaseService
 
         $headers = array_merge(
             $defaultHeaders,
-            $headerParams,
             $headers
         );
 
@@ -1965,7 +1953,6 @@ class LegalEntitiesApi extends BaseService
         $resourcePath = '/legalEntities/{id}';
         $formParams = [];
         $queryParams = [];
-        $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
@@ -2027,7 +2014,7 @@ class LegalEntitiesApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers['X-API-Key'] = $apiKey;
+            $headers = array_merge(['x-api-key' => $apiKey], $headers);
         }
 
         $defaultHeaders = [];
@@ -2037,7 +2024,6 @@ class LegalEntitiesApi extends BaseService
 
         $headers = array_merge(
             $defaultHeaders,
-            $headerParams,
             $headers
         );
 

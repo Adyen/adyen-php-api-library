@@ -596,7 +596,6 @@ use {{modelPackage}}\ObjectSerializer;
         $resourcePath = '{{{path}}}';
         $formParams = [];
         $queryParams = [];
-        $headerParams = [];
         $httpBody = '';
         $multipart = false;
         {{#queryParams}}
@@ -703,7 +702,7 @@ use {{modelPackage}}\ObjectSerializer;
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('{{keyParamName}}');
         if ($apiKey !== null) {
-            {{#isKeyInHeader}}$headers['{{keyParamName}}'] = $apiKey;{{/isKeyInHeader}}{{#isKeyInQuery}}$queryParams['{{keyParamName}}'] = $apiKey;{{/isKeyInQuery}}
+            {{#isKeyInHeader}}$headers = array_merge(['x-api-key' => $apiKey], $headers);{{/isKeyInHeader}}{{#isKeyInQuery}}$queryParams['{{keyParamName}}'] = $apiKey;{{/isKeyInQuery}}
         }
         {{/isKeyInCookie}}
         {{/isApiKey}}
@@ -734,7 +733,7 @@ use {{modelPackage}}\ObjectSerializer;
         $username = $this->config->getUsername();
         $password = $this->config->getPassword();
         if (!empty($apiKey)) {
-            $headers['X-API-Key'] = $apiKey;
+            $headers = array_merge(['x-api-key' => $apiKey], $headers);
         } elseif (!empty($username) && !empty($password)) {
             $headers['Authorization'] = 'Basic ' . base64_encode($username . ':' . $password);
         }
@@ -747,7 +746,6 @@ use {{modelPackage}}\ObjectSerializer;
 
         $headers = array_merge(
             $defaultHeaders,
-            $headerParams,
             $headers
         );
 

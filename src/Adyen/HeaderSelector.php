@@ -40,12 +40,12 @@ class HeaderSelector
         }
 
         if ($requestOptions !== null) {
-            if ($requestOptions->getIdempotencyKey() !== null) {
+            if (!empty($requestOptions->getIdempotencyKey())) {
                 $headers['Idempotency-Key'] = $requestOptions->getIdempotencyKey();
             }
 
             if ($requestOptions->getRequestedVerificationCodeHeader() !== null) {
-                $headers['Adyen-Requested-Verification-Code'] = $requestOptions->getRequestedVerificationCodeHeader();
+                $headers['x-requested-verification-code'] = $requestOptions->getRequestedVerificationCodeHeader();
             }
 
             foreach ($requestOptions->getAdditionalHeaders() as $key => $value) {

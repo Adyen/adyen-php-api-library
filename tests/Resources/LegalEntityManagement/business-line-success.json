@@ -1,0 +1,7 @@
+{
+  "id": "SE322JV223222F5GVGMLNB83F",
+  "legalEntityId": "LE00000000000000000000001",
+  "service": "paymentProcessing",
+  "industryCode": "5399",
+  "salesChannels": ["eCommerce"]
+}

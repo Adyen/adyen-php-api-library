@@ -337,7 +337,6 @@ class PCIQuestionnairesApi extends BaseService
         $resourcePath = '/legalEntities/{id}/pciQuestionnaires/signingRequired';
         $formParams = [];
         $queryParams = [];
-        $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
@@ -399,7 +398,7 @@ class PCIQuestionnairesApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers['X-API-Key'] = $apiKey;
+            $headers = array_merge(['x-api-key' => $apiKey], $headers);
         }
 
         $defaultHeaders = [];
@@ -409,7 +408,6 @@ class PCIQuestionnairesApi extends BaseService
 
         $headers = array_merge(
             $defaultHeaders,
-            $headerParams,
             $headers
         );
 
@@ -625,7 +623,6 @@ class PCIQuestionnairesApi extends BaseService
         $resourcePath = '/legalEntities/{id}/pciQuestionnaires/generatePciTemplates';
         $formParams = [];
         $queryParams = [];
-        $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
@@ -687,7 +684,7 @@ class PCIQuestionnairesApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers['X-API-Key'] = $apiKey;
+            $headers = array_merge(['x-api-key' => $apiKey], $headers);
         }
 
         $defaultHeaders = [];
@@ -697,7 +694,6 @@ class PCIQuestionnairesApi extends BaseService
 
         $headers = array_merge(
             $defaultHeaders,
-            $headerParams,
             $headers
         );
 
@@ -920,7 +916,6 @@ class PCIQuestionnairesApi extends BaseService
         $resourcePath = '/legalEntities/{id}/pciQuestionnaires/{pciid}';
         $formParams = [];
         $queryParams = [];
-        $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
@@ -983,7 +978,7 @@ class PCIQuestionnairesApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers['X-API-Key'] = $apiKey;
+            $headers = array_merge(['x-api-key' => $apiKey], $headers);
         }
 
         $defaultHeaders = [];
@@ -993,7 +988,6 @@ class PCIQuestionnairesApi extends BaseService
 
         $headers = array_merge(
             $defaultHeaders,
-            $headerParams,
             $headers
         );
 
@@ -1204,7 +1198,6 @@ class PCIQuestionnairesApi extends BaseService
         $resourcePath = '/legalEntities/{id}/pciQuestionnaires';
         $formParams = [];
         $queryParams = [];
-        $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
@@ -1258,7 +1251,7 @@ class PCIQuestionnairesApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers['X-API-Key'] = $apiKey;
+            $headers = array_merge(['x-api-key' => $apiKey], $headers);
         }
 
         $defaultHeaders = [];
@@ -1268,7 +1261,6 @@ class PCIQuestionnairesApi extends BaseService
 
         $headers = array_merge(
             $defaultHeaders,
-            $headerParams,
             $headers
         );
 
@@ -1484,7 +1476,6 @@ class PCIQuestionnairesApi extends BaseService
         $resourcePath = '/legalEntities/{id}/pciQuestionnaires/signPciTemplates';
         $formParams = [];
         $queryParams = [];
-        $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
@@ -1546,7 +1537,7 @@ class PCIQuestionnairesApi extends BaseService
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
-            $headers['X-API-Key'] = $apiKey;
+            $headers = array_merge(['x-api-key' => $apiKey], $headers);
         }
 
         $defaultHeaders = [];
@@ -1556,7 +1547,6 @@ class PCIQuestionnairesApi extends BaseService
 
         $headers = array_merge(
             $defaultHeaders,
-            $headerParams,
             $headers
         );
 

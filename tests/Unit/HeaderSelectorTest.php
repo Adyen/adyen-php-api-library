@@ -63,7 +63,31 @@ class HeaderSelectorTest extends BaseTest
         $this->assertEquals('application/json', $headers['Accept']);
         $this->assertEquals('application/json', $headers['Content-Type']);
         $this->assertEquals('idempotencyKey', $headers['Idempotency-Key']);
-        $this->assertEquals('verificationCode', $headers['Adyen-Requested-Verification-Code']);
+        $this->assertEquals('verificationCode', $headers['x-requested-verification-code']);
         $this->assertEquals('CustomValue', $headers['Custom-Header']);
+    }
+
+    public function testSelectHeadersPreservesAdditionalApiKey(): void
+    {
+        $headerSelector = new HeaderSelector();
+        $requestOptions = new RequestOptions();
+        $requestOptions->setAdditionalHeaders(['x-api-key' => 'MerchantAPIKey']);
+
+        $headers = $headerSelector->selectHeaders(['application/json'], 'application/json', false, $requestOptions);
+
+        $this->assertSame('MerchantAPIKey', $headers['x-api-key']);
+        $this->assertSame('application/json', $headers['Accept']);
+        $this->assertSame('application/json', $headers['Content-Type']);
+    }
+
+    public function testSelectHeadersSkipsEmptyIdempotencyKey()
+    {
+        $headerSelector = new HeaderSelector();
+        $requestOptions = new RequestOptions();
+        $requestOptions->setIdempotencyKey('');
+
+        $headers = $headerSelector->selectHeaders(['application/json'], 'application/json', false, $requestOptions);
+
+        $this->assertArrayNotHasKey('Idempotency-Key', $headers);
     }
 }
