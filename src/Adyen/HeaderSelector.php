@@ -40,8 +40,9 @@ class HeaderSelector
         }
 
         if ($requestOptions !== null) {
-            if (!empty($requestOptions->getIdempotencyKey())) {
-                $headers['Idempotency-Key'] = $requestOptions->getIdempotencyKey();
+            $idempotencyKey = $requestOptions->getIdempotencyKey();
+            if ($idempotencyKey !== null && $idempotencyKey !== '') {
+                $headers['Idempotency-Key'] = $idempotencyKey;
             }
 
             if ($requestOptions->getRequestedVerificationCodeHeader() !== null) {

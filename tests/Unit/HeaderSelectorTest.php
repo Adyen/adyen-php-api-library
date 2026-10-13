@@ -90,4 +90,17 @@ class HeaderSelectorTest extends BaseTest
 
         $this->assertArrayNotHasKey('Idempotency-Key', $headers);
     }
+
+    /**
+     * empty() would treat the string "0" as empty and silently drop the header.
+     */
+    public function testSelectHeadersKeepsZeroStringIdempotencyKey()
+    {
+        $headerSelector = new HeaderSelector();
+        $requestOptions = new RequestOptions(['idempotencyKey' => '0']);
+
+        $headers = $headerSelector->selectHeaders(['application/json'], 'application/json', false, $requestOptions);
+
+        $this->assertSame('0', $headers['Idempotency-Key']);
+    }
 }
