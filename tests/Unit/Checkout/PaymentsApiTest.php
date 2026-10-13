@@ -640,6 +640,31 @@ class PaymentsApiTest extends BaseTest
     /**
      * @throws \Adyen\Exception\AdyenException
      */
+    public function testPaymentsWithZeroStringIdempotencyKey()
+    {
+        $container = [];
+        $client = $this->createMockSerializerClient(
+            'tests/Resources/Checkout/payments-success.json',
+            200,
+            $container
+        );
+        $config = $this->createConfiguration();
+        $service = new PaymentsApi($config, $client);
+
+        $requestOptions = new RequestOptions(['idempotencyKey' => '0']);
+
+        $paymentRequest = new \Adyen\Model\Checkout\PaymentRequest();
+        $paymentRequest->setMerchantAccount("YourMerchantAccount");
+
+        $service->payments($paymentRequest, $requestOptions);
+
+        $this->assertCount(1, $container);
+        $this->assertSame('0', $container[0]['request']->getHeaderLine('Idempotency-Key'));
+    }
+
+    /**
+     * @throws \Adyen\Exception\AdyenException
+     */
     public function testPaymentsWithoutRequestOptionsSendsNoIdempotencyKey()
     {
         $container = [];
