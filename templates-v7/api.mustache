@@ -34,6 +34,11 @@ use {{modelPackage}}\ObjectSerializer;
     protected $client;
 
     /**
+     * @var bool Whether the HTTP client uses the SDK's timeout settings.
+     */
+    protected bool $usesDefaultHttpClient;
+
+    /**
      * @var Configuration
      */
     protected $config;
@@ -66,7 +71,7 @@ use {{modelPackage}}\ObjectSerializer;
      * {{classname}} constructor
      *
      * @param Configuration|null $config
-     * @param ClientInterface|null $client
+     * @param ClientInterface|null $client Custom HTTP client. Its timeout settings are preserved.
      * @param HeaderSelector|null $selector
      * @param int|null $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec.
      *                            If null, the host matching the configured environment is selected.
@@ -80,7 +85,11 @@ use {{modelPackage}}\ObjectSerializer;
     ) {
         $this->config = $config ?: Configuration::getDefaultConfiguration();
         parent::__construct($this->config);
-        $this->client = $client ?: new Client();
+        $this->usesDefaultHttpClient = $client === null;
+        $this->client = $client ?: new Client([
+            \GuzzleHttp\RequestOptions::TIMEOUT => $this->config->getTimeout(),
+            \GuzzleHttp\RequestOptions::CONNECT_TIMEOUT => $this->config->getConnectionTimeout(),
+        ]);
         $this->headerSelector = $selector ?: new HeaderSelector();
         $this->hostIndex = $hostIndex;
 
@@ -703,7 +712,21 @@ use {{modelPackage}}\ObjectSerializer;
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('{{keyParamName}}');
         if ($apiKey !== null) {
-            {{#isKeyInHeader}}$headers = array_merge(['x-api-key' => $apiKey], $headers);{{/isKeyInHeader}}{{#isKeyInQuery}}$queryParams['{{keyParamName}}'] = $apiKey;{{/isKeyInQuery}}
+            {{#isKeyInHeader}}
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
+            {{/isKeyInHeader}}
+            {{#isKeyInQuery}}
+            $queryParams['{{keyParamName}}'] = $apiKey;
+            {{/isKeyInQuery}}
         }
         {{/isKeyInCookie}}
         {{/isApiKey}}
@@ -734,7 +757,16 @@ use {{modelPackage}}\ObjectSerializer;
         $username = $this->config->getUsername();
         $password = $this->config->getPassword();
         if (!empty($apiKey)) {
-            $headers = array_merge(['x-api-key' => $apiKey], $headers);
+            $hasApiKey = false;
+            foreach (array_keys($headers) as $headerName) {
+                if (strcasecmp($headerName, 'x-api-key') === 0) {
+                    $hasApiKey = true;
+                    break;
+                }
+            }
+            if (!$hasApiKey) {
+                $headers['x-api-key'] = $apiKey;
+            }
         } elseif (!empty($username) && !empty($password)) {
             $headers['Authorization'] = 'Basic ' . base64_encode($username . ':' . $password);
         }
@@ -823,6 +855,11 @@ use {{modelPackage}}\ObjectSerializer;
         $options = [
             RequestOptions::HTTP_ERRORS => false // prevent Guzzle default behaviour throwing exceptions on 4xx/5xx responses
         ];
+        if ($this->usesDefaultHttpClient) {
+            $options[RequestOptions::TIMEOUT] = $this->config->getTimeout();
+            $options[RequestOptions::CONNECT_TIMEOUT] = $this->config->getConnectionTimeout();
+        }
+
         if ($this->config->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {

@@ -19,7 +19,9 @@ class ConfigurationTest extends TestCase
             'applicationName' => 'my-app',
             'username' => 'test-user',
             'password' => 'test-password',
-            'debug' => true
+            'debug' => true,
+            'timeout' => 12.5,
+            'connectionTimeout' => 3.5
         ];
         $configuration = new Configuration($params);
         $this->assertEquals('live', $configuration->getEnvironment());
@@ -28,6 +30,72 @@ class ConfigurationTest extends TestCase
         $this->assertEquals('test-user', $configuration->getUsername());
         $this->assertEquals('test-password', $configuration->getPassword());
         $this->assertTrue($configuration->getDebug());
+        $this->assertSame(12.5, $configuration->getTimeout());
+        $this->assertSame(3.5, $configuration->getConnectionTimeout());
+    }
+
+    /**
+     * Both HTTP timeouts default to 60 seconds, matching Java's connection default.
+     */
+    public function testDefaultTimeouts(): void
+    {
+        $configuration = new Configuration();
+
+        self::assertSame(60.0, $configuration->getTimeout());
+        self::assertSame(60.0, $configuration->getConnectionTimeout());
+    }
+
+    /**
+     * Timeout setters support fractional seconds and fluent configuration.
+     */
+    public function testTimeoutSetters(): void
+    {
+        $configuration = new Configuration();
+
+        self::assertSame($configuration, $configuration->setTimeout(12.5));
+        self::assertSame($configuration, $configuration->setConnectionTimeout(3.5));
+        self::assertSame(12.5, $configuration->getTimeout());
+        self::assertSame(3.5, $configuration->getConnectionTimeout());
+    }
+
+    /**
+     * Zero is accepted for callers who want Guzzle's zero-timeout behavior.
+     */
+    public function testTimeoutsAcceptZero(): void
+    {
+        $configuration = new Configuration();
+        $configuration->setTimeout(0)->setConnectionTimeout(0);
+
+        self::assertSame(0.0, $configuration->getTimeout());
+        self::assertSame(0.0, $configuration->getConnectionTimeout());
+    }
+
+    public function testNegativeTimeoutIsRejected(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        (new Configuration())->setTimeout(-1);
+    }
+
+    public function testNegativeConnectionTimeoutIsRejected(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        (new Configuration())->setConnectionTimeout(-1);
+    }
+
+    public function testNonFiniteTimeoutIsRejected(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        (new Configuration())->setTimeout(INF);
+    }
+
+    public function testNonFiniteConnectionTimeoutIsRejected(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        (new Configuration())->setConnectionTimeout(NAN);
     }
 
     /**
