@@ -203,6 +203,21 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -435,13 +450,10 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -458,7 +470,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAirlineAgencyInvoiceNumber()
     {
-        return $this->container['airlineAgencyInvoiceNumber'];
+        return $this->container['airlineAgencyInvoiceNumber'] ?? null;
     }
 
     /**
@@ -482,7 +494,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAirlineAgencyPlanName()
     {
-        return $this->container['airlineAgencyPlanName'];
+        return $this->container['airlineAgencyPlanName'] ?? null;
     }
 
     /**
@@ -506,7 +518,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAirlineAirlineCode()
     {
-        return $this->container['airlineAirlineCode'];
+        return $this->container['airlineAirlineCode'] ?? null;
     }
 
     /**
@@ -530,7 +542,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAirlineAirlineDesignatorCode()
     {
-        return $this->container['airlineAirlineDesignatorCode'];
+        return $this->container['airlineAirlineDesignatorCode'] ?? null;
     }
 
     /**
@@ -554,7 +566,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAirlineBoardingFee()
     {
-        return $this->container['airlineBoardingFee'];
+        return $this->container['airlineBoardingFee'] ?? null;
     }
 
     /**
@@ -578,7 +590,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAirlineComputerizedReservationSystem()
     {
-        return $this->container['airlineComputerizedReservationSystem'];
+        return $this->container['airlineComputerizedReservationSystem'] ?? null;
     }
 
     /**
@@ -602,7 +614,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAirlineCustomerReferenceNumber()
     {
-        return $this->container['airlineCustomerReferenceNumber'];
+        return $this->container['airlineCustomerReferenceNumber'] ?? null;
     }
 
     /**
@@ -626,7 +638,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAirlineDocumentType()
     {
-        return $this->container['airlineDocumentType'];
+        return $this->container['airlineDocumentType'] ?? null;
     }
 
     /**
@@ -650,7 +662,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAirlineFlightDate()
     {
-        return $this->container['airlineFlightDate'];
+        return $this->container['airlineFlightDate'] ?? null;
     }
 
     /**
@@ -674,7 +686,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAirlineIssueDate()
     {
-        return $this->container['airlineIssueDate'];
+        return $this->container['airlineIssueDate'] ?? null;
     }
 
     /**
@@ -698,7 +710,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAirlineLegCarrierCode()
     {
-        return $this->container['airlineLegCarrierCode'];
+        return $this->container['airlineLegCarrierCode'] ?? null;
     }
 
     /**
@@ -722,7 +734,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAirlineLegClassOfTravel()
     {
-        return $this->container['airlineLegClassOfTravel'];
+        return $this->container['airlineLegClassOfTravel'] ?? null;
     }
 
     /**
@@ -746,7 +758,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAirlineLegDateOfTravel()
     {
-        return $this->container['airlineLegDateOfTravel'];
+        return $this->container['airlineLegDateOfTravel'] ?? null;
     }
 
     /**
@@ -770,7 +782,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAirlineLegDepartAirport()
     {
-        return $this->container['airlineLegDepartAirport'];
+        return $this->container['airlineLegDepartAirport'] ?? null;
     }
 
     /**
@@ -794,7 +806,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAirlineLegDepartTax()
     {
-        return $this->container['airlineLegDepartTax'];
+        return $this->container['airlineLegDepartTax'] ?? null;
     }
 
     /**
@@ -818,7 +830,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAirlineLegDestinationCode()
     {
-        return $this->container['airlineLegDestinationCode'];
+        return $this->container['airlineLegDestinationCode'] ?? null;
     }
 
     /**
@@ -842,7 +854,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAirlineLegFareBaseCode()
     {
-        return $this->container['airlineLegFareBaseCode'];
+        return $this->container['airlineLegFareBaseCode'] ?? null;
     }
 
     /**
@@ -866,7 +878,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAirlineLegFlightNumber()
     {
-        return $this->container['airlineLegFlightNumber'];
+        return $this->container['airlineLegFlightNumber'] ?? null;
     }
 
     /**
@@ -890,7 +902,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAirlineLegStopOverCode()
     {
-        return $this->container['airlineLegStopOverCode'];
+        return $this->container['airlineLegStopOverCode'] ?? null;
     }
 
     /**
@@ -914,7 +926,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAirlinePassengerDateOfBirth()
     {
-        return $this->container['airlinePassengerDateOfBirth'];
+        return $this->container['airlinePassengerDateOfBirth'] ?? null;
     }
 
     /**
@@ -938,7 +950,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAirlinePassengerFirstName()
     {
-        return $this->container['airlinePassengerFirstName'];
+        return $this->container['airlinePassengerFirstName'] ?? null;
     }
 
     /**
@@ -962,7 +974,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAirlinePassengerLastName()
     {
-        return $this->container['airlinePassengerLastName'];
+        return $this->container['airlinePassengerLastName'] ?? null;
     }
 
     /**
@@ -986,7 +998,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAirlinePassengerPhoneNumber()
     {
-        return $this->container['airlinePassengerPhoneNumber'];
+        return $this->container['airlinePassengerPhoneNumber'] ?? null;
     }
 
     /**
@@ -1010,7 +1022,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAirlinePassengerTravellerType()
     {
-        return $this->container['airlinePassengerTravellerType'];
+        return $this->container['airlinePassengerTravellerType'] ?? null;
     }
 
     /**
@@ -1034,7 +1046,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAirlinePassengerName()
     {
-        return $this->container['airlinePassengerName'];
+        return $this->container['airlinePassengerName'] ?? null;
     }
 
     /**
@@ -1058,7 +1070,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAirlineTicketIssueAddress()
     {
-        return $this->container['airlineTicketIssueAddress'];
+        return $this->container['airlineTicketIssueAddress'] ?? null;
     }
 
     /**
@@ -1082,7 +1094,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAirlineTicketNumber()
     {
-        return $this->container['airlineTicketNumber'];
+        return $this->container['airlineTicketNumber'] ?? null;
     }
 
     /**
@@ -1106,7 +1118,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAirlineTravelAgencyCode()
     {
-        return $this->container['airlineTravelAgencyCode'];
+        return $this->container['airlineTravelAgencyCode'] ?? null;
     }
 
     /**
@@ -1130,7 +1142,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAirlineTravelAgencyName()
     {
-        return $this->container['airlineTravelAgencyName'];
+        return $this->container['airlineTravelAgencyName'] ?? null;
     }
 
     /**
@@ -1185,6 +1197,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -1198,6 +1211,7 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -1216,14 +1230,19 @@ class AdditionalDataAirline implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

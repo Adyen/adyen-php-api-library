@@ -131,6 +131,21 @@ class CardDetailsRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -267,13 +282,10 @@ class CardDetailsRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -290,7 +302,7 @@ class CardDetailsRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getCardNumber()
     {
-        return $this->container['cardNumber'];
+        return $this->container['cardNumber'] ?? null;
     }
 
     /**
@@ -314,7 +326,7 @@ class CardDetailsRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getCountryCode()
     {
-        return $this->container['countryCode'];
+        return $this->container['countryCode'] ?? null;
     }
 
     /**
@@ -338,7 +350,7 @@ class CardDetailsRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getEncryptedCardNumber()
     {
-        return $this->container['encryptedCardNumber'];
+        return $this->container['encryptedCardNumber'] ?? null;
     }
 
     /**
@@ -362,7 +374,7 @@ class CardDetailsRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getMerchantAccount()
     {
-        return $this->container['merchantAccount'];
+        return $this->container['merchantAccount'] ?? null;
     }
 
     /**
@@ -386,7 +398,7 @@ class CardDetailsRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getSupportedBrands()
     {
-        return $this->container['supportedBrands'];
+        return $this->container['supportedBrands'] ?? null;
     }
 
     /**
@@ -441,6 +453,7 @@ class CardDetailsRequest implements ModelInterface, ArrayAccess, \JsonSerializab
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -454,6 +467,7 @@ class CardDetailsRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -472,14 +486,19 @@ class CardDetailsRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

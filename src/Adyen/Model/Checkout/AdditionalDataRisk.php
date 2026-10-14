@@ -179,6 +179,21 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -379,13 +394,10 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -402,7 +414,7 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getRiskdataCustomFieldName()
     {
-        return $this->container['riskdataCustomFieldName'];
+        return $this->container['riskdataCustomFieldName'] ?? null;
     }
 
     /**
@@ -426,7 +438,7 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getRiskdataBasketItemItemNrAmountPerItem()
     {
-        return $this->container['riskdataBasketItemItemNrAmountPerItem'];
+        return $this->container['riskdataBasketItemItemNrAmountPerItem'] ?? null;
     }
 
     /**
@@ -450,7 +462,7 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getRiskdataBasketItemItemNrBrand()
     {
-        return $this->container['riskdataBasketItemItemNrBrand'];
+        return $this->container['riskdataBasketItemItemNrBrand'] ?? null;
     }
 
     /**
@@ -474,7 +486,7 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getRiskdataBasketItemItemNrCategory()
     {
-        return $this->container['riskdataBasketItemItemNrCategory'];
+        return $this->container['riskdataBasketItemItemNrCategory'] ?? null;
     }
 
     /**
@@ -498,7 +510,7 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getRiskdataBasketItemItemNrColor()
     {
-        return $this->container['riskdataBasketItemItemNrColor'];
+        return $this->container['riskdataBasketItemItemNrColor'] ?? null;
     }
 
     /**
@@ -522,7 +534,7 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getRiskdataBasketItemItemNrCurrency()
     {
-        return $this->container['riskdataBasketItemItemNrCurrency'];
+        return $this->container['riskdataBasketItemItemNrCurrency'] ?? null;
     }
 
     /**
@@ -546,7 +558,7 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getRiskdataBasketItemItemNrItemID()
     {
-        return $this->container['riskdataBasketItemItemNrItemID'];
+        return $this->container['riskdataBasketItemItemNrItemID'] ?? null;
     }
 
     /**
@@ -570,7 +582,7 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getRiskdataBasketItemItemNrManufacturer()
     {
-        return $this->container['riskdataBasketItemItemNrManufacturer'];
+        return $this->container['riskdataBasketItemItemNrManufacturer'] ?? null;
     }
 
     /**
@@ -594,7 +606,7 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getRiskdataBasketItemItemNrProductTitle()
     {
-        return $this->container['riskdataBasketItemItemNrProductTitle'];
+        return $this->container['riskdataBasketItemItemNrProductTitle'] ?? null;
     }
 
     /**
@@ -618,7 +630,7 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getRiskdataBasketItemItemNrQuantity()
     {
-        return $this->container['riskdataBasketItemItemNrQuantity'];
+        return $this->container['riskdataBasketItemItemNrQuantity'] ?? null;
     }
 
     /**
@@ -642,7 +654,7 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getRiskdataBasketItemItemNrReceiverEmail()
     {
-        return $this->container['riskdataBasketItemItemNrReceiverEmail'];
+        return $this->container['riskdataBasketItemItemNrReceiverEmail'] ?? null;
     }
 
     /**
@@ -666,7 +678,7 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getRiskdataBasketItemItemNrSize()
     {
-        return $this->container['riskdataBasketItemItemNrSize'];
+        return $this->container['riskdataBasketItemItemNrSize'] ?? null;
     }
 
     /**
@@ -690,7 +702,7 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getRiskdataBasketItemItemNrSku()
     {
-        return $this->container['riskdataBasketItemItemNrSku'];
+        return $this->container['riskdataBasketItemItemNrSku'] ?? null;
     }
 
     /**
@@ -714,7 +726,7 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getRiskdataBasketItemItemNrUpc()
     {
-        return $this->container['riskdataBasketItemItemNrUpc'];
+        return $this->container['riskdataBasketItemItemNrUpc'] ?? null;
     }
 
     /**
@@ -738,7 +750,7 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getRiskdataPromotionsPromotionItemNrPromotionCode()
     {
-        return $this->container['riskdataPromotionsPromotionItemNrPromotionCode'];
+        return $this->container['riskdataPromotionsPromotionItemNrPromotionCode'] ?? null;
     }
 
     /**
@@ -762,7 +774,7 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getRiskdataPromotionsPromotionItemNrPromotionDiscountAmount()
     {
-        return $this->container['riskdataPromotionsPromotionItemNrPromotionDiscountAmount'];
+        return $this->container['riskdataPromotionsPromotionItemNrPromotionDiscountAmount'] ?? null;
     }
 
     /**
@@ -786,7 +798,7 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getRiskdataPromotionsPromotionItemNrPromotionDiscountCurrency()
     {
-        return $this->container['riskdataPromotionsPromotionItemNrPromotionDiscountCurrency'];
+        return $this->container['riskdataPromotionsPromotionItemNrPromotionDiscountCurrency'] ?? null;
     }
 
     /**
@@ -810,7 +822,7 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getRiskdataPromotionsPromotionItemNrPromotionDiscountPercentage()
     {
-        return $this->container['riskdataPromotionsPromotionItemNrPromotionDiscountPercentage'];
+        return $this->container['riskdataPromotionsPromotionItemNrPromotionDiscountPercentage'] ?? null;
     }
 
     /**
@@ -834,7 +846,7 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getRiskdataPromotionsPromotionItemNrPromotionName()
     {
-        return $this->container['riskdataPromotionsPromotionItemNrPromotionName'];
+        return $this->container['riskdataPromotionsPromotionItemNrPromotionName'] ?? null;
     }
 
     /**
@@ -858,7 +870,7 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getRiskdataRiskProfileReference()
     {
-        return $this->container['riskdataRiskProfileReference'];
+        return $this->container['riskdataRiskProfileReference'] ?? null;
     }
 
     /**
@@ -882,7 +894,7 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function getRiskdataSkipRisk()
     {
-        return $this->container['riskdataSkipRisk'];
+        return $this->container['riskdataSkipRisk'] ?? null;
     }
 
     /**
@@ -937,6 +949,7 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -950,6 +963,7 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -968,14 +982,19 @@ class AdditionalDataRisk implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

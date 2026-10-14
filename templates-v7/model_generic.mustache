@@ -1,4 +1,4 @@
-class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^parentSchema}}implements ModelInterface, ArrayAccess, \JsonSerializable{{/parentSchema}}
+class {{classname}} {{#parentSchema}}extends {{{parent}}}{{#vendorExtensions.x-php-implements}} implements {{{vendorExtensions.x-php-implements}}}{{/vendorExtensions.x-php-implements}}{{/parentSchema}}{{^parentSchema}}implements ModelInterface, ArrayAccess, \JsonSerializable{{#vendorExtensions.x-php-implements}}, {{{vendorExtensions.x-php-implements}}}{{/vendorExtensions.x-php-implements}}{{/parentSchema}}
 {
     public const DISCRIMINATOR = {{#discriminator}}'{{discriminatorName}}'{{/discriminator}}{{^discriminator}}null{{/discriminator}};
 {{#discriminator}}
@@ -108,6 +108,21 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
+    }
+
+    /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
     }
 
     /**
@@ -280,13 +295,10 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -300,20 +312,20 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
     /**
      * Gets {{name}}
      *
-     * @return {{{dataType}}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}}
+     * @return {{#vendorExtensions.x-php-doc-type}}{{{vendorExtensions.x-php-doc-type}}}{{/vendorExtensions.x-php-doc-type}}{{^vendorExtensions.x-php-doc-type}}{{{dataType}}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}}{{/vendorExtensions.x-php-doc-type}}
     {{#deprecated}}
      * @deprecated
     {{/deprecated}}
      */
     public function {{getter}}()
     {
-        return $this->container['{{name}}'];
+        return $this->container['{{name}}'] ?? null;
     }
 
     /**
      * Sets {{name}}
      *
-     * @param {{{dataType}}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}} ${{name}}{{#description}} {{{.}}}{{/description}}{{^description}} {{{name}}}{{/description}}
+     * @param {{#vendorExtensions.x-php-doc-type}}{{{vendorExtensions.x-php-doc-type}}}{{/vendorExtensions.x-php-doc-type}}{{^vendorExtensions.x-php-doc-type}}{{{dataType}}}{{#notRequiredOrIsNullable}}|null{{/notRequiredOrIsNullable}}{{/vendorExtensions.x-php-doc-type}} ${{name}}{{#description}} {{{.}}}{{/description}}{{^description}} {{{name}}}{{/description}}
      *
      * @return self
     {{#deprecated}}
@@ -323,17 +335,23 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
     public function {{setter}}(${{name}}): self
     {
         {{#isNullable}}
-        if (is_null(${{name}})) {
-            array_push($this->openAPINullablesSetToNull, '{{name}}');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('{{name}}', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+        $this->updateNullableSetToNull('{{name}}', is_null(${{name}}));
+        {{/isNullable}}
+        {{#isEnum}}
+        if (${{name}} !== null) {
+            $allowedValues = $this->{{getter}}AllowableValues();
+            foreach ({{#isContainer}}(array) ${{name}}{{/isContainer}}{{^isContainer}}[${{name}}]{{/isContainer}} as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "{{name}}: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
             }
         }
-        {{/isNullable}}
+        {{/isEnum}}
         $this->container['{{name}}'] = ${{name}};
 
         return $this;
@@ -378,6 +396,7 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -391,6 +410,7 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -409,14 +429,19 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

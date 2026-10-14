@@ -173,6 +173,21 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -483,13 +498,10 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -506,7 +518,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getAccountAgeIndicator()
     {
-        return $this->container['accountAgeIndicator'];
+        return $this->container['accountAgeIndicator'] ?? null;
     }
 
     /**
@@ -518,6 +530,19 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAccountAgeIndicator($accountAgeIndicator): self
     {
+        if ($accountAgeIndicator !== null) {
+            $allowedValues = $this->getAccountAgeIndicatorAllowableValues();
+            foreach ([$accountAgeIndicator] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "accountAgeIndicator: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['accountAgeIndicator'] = $accountAgeIndicator;
 
         return $this;
@@ -530,7 +555,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getAccountChangeDate()
     {
-        return $this->container['accountChangeDate'];
+        return $this->container['accountChangeDate'] ?? null;
     }
 
     /**
@@ -554,7 +579,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getAccountChangeIndicator()
     {
-        return $this->container['accountChangeIndicator'];
+        return $this->container['accountChangeIndicator'] ?? null;
     }
 
     /**
@@ -566,6 +591,19 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAccountChangeIndicator($accountChangeIndicator): self
     {
+        if ($accountChangeIndicator !== null) {
+            $allowedValues = $this->getAccountChangeIndicatorAllowableValues();
+            foreach ([$accountChangeIndicator] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "accountChangeIndicator: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['accountChangeIndicator'] = $accountChangeIndicator;
 
         return $this;
@@ -578,7 +616,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getAccountCreationDate()
     {
-        return $this->container['accountCreationDate'];
+        return $this->container['accountCreationDate'] ?? null;
     }
 
     /**
@@ -602,7 +640,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getAccountType()
     {
-        return $this->container['accountType'];
+        return $this->container['accountType'] ?? null;
     }
 
     /**
@@ -614,6 +652,19 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAccountType($accountType): self
     {
+        if ($accountType !== null) {
+            $allowedValues = $this->getAccountTypeAllowableValues();
+            foreach ([$accountType] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "accountType: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['accountType'] = $accountType;
 
         return $this;
@@ -626,7 +677,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getAddCardAttemptsDay()
     {
-        return $this->container['addCardAttemptsDay'];
+        return $this->container['addCardAttemptsDay'] ?? null;
     }
 
     /**
@@ -650,7 +701,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getDeliveryAddressUsageDate()
     {
-        return $this->container['deliveryAddressUsageDate'];
+        return $this->container['deliveryAddressUsageDate'] ?? null;
     }
 
     /**
@@ -674,7 +725,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getDeliveryAddressUsageIndicator()
     {
-        return $this->container['deliveryAddressUsageIndicator'];
+        return $this->container['deliveryAddressUsageIndicator'] ?? null;
     }
 
     /**
@@ -686,6 +737,19 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDeliveryAddressUsageIndicator($deliveryAddressUsageIndicator): self
     {
+        if ($deliveryAddressUsageIndicator !== null) {
+            $allowedValues = $this->getDeliveryAddressUsageIndicatorAllowableValues();
+            foreach ([$deliveryAddressUsageIndicator] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "deliveryAddressUsageIndicator: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['deliveryAddressUsageIndicator'] = $deliveryAddressUsageIndicator;
 
         return $this;
@@ -699,7 +763,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getHomePhone()
     {
-        return $this->container['homePhone'];
+        return $this->container['homePhone'] ?? null;
     }
 
     /**
@@ -725,7 +789,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getMobilePhone()
     {
-        return $this->container['mobilePhone'];
+        return $this->container['mobilePhone'] ?? null;
     }
 
     /**
@@ -750,7 +814,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getPasswordChangeDate()
     {
-        return $this->container['passwordChangeDate'];
+        return $this->container['passwordChangeDate'] ?? null;
     }
 
     /**
@@ -774,7 +838,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getPasswordChangeIndicator()
     {
-        return $this->container['passwordChangeIndicator'];
+        return $this->container['passwordChangeIndicator'] ?? null;
     }
 
     /**
@@ -786,6 +850,19 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPasswordChangeIndicator($passwordChangeIndicator): self
     {
+        if ($passwordChangeIndicator !== null) {
+            $allowedValues = $this->getPasswordChangeIndicatorAllowableValues();
+            foreach ([$passwordChangeIndicator] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "passwordChangeIndicator: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['passwordChangeIndicator'] = $passwordChangeIndicator;
 
         return $this;
@@ -798,7 +875,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getPastTransactionsDay()
     {
-        return $this->container['pastTransactionsDay'];
+        return $this->container['pastTransactionsDay'] ?? null;
     }
 
     /**
@@ -822,7 +899,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getPastTransactionsYear()
     {
-        return $this->container['pastTransactionsYear'];
+        return $this->container['pastTransactionsYear'] ?? null;
     }
 
     /**
@@ -846,7 +923,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getPaymentAccountAge()
     {
-        return $this->container['paymentAccountAge'];
+        return $this->container['paymentAccountAge'] ?? null;
     }
 
     /**
@@ -870,7 +947,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getPaymentAccountIndicator()
     {
-        return $this->container['paymentAccountIndicator'];
+        return $this->container['paymentAccountIndicator'] ?? null;
     }
 
     /**
@@ -882,6 +959,19 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPaymentAccountIndicator($paymentAccountIndicator): self
     {
+        if ($paymentAccountIndicator !== null) {
+            $allowedValues = $this->getPaymentAccountIndicatorAllowableValues();
+            foreach ([$paymentAccountIndicator] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "paymentAccountIndicator: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['paymentAccountIndicator'] = $paymentAccountIndicator;
 
         return $this;
@@ -894,7 +984,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getPurchasesLast6Months()
     {
-        return $this->container['purchasesLast6Months'];
+        return $this->container['purchasesLast6Months'] ?? null;
     }
 
     /**
@@ -918,7 +1008,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getSuspiciousActivity()
     {
-        return $this->container['suspiciousActivity'];
+        return $this->container['suspiciousActivity'] ?? null;
     }
 
     /**
@@ -943,7 +1033,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getWorkPhone()
     {
-        return $this->container['workPhone'];
+        return $this->container['workPhone'] ?? null;
     }
 
     /**
@@ -999,6 +1089,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -1012,6 +1103,7 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -1030,14 +1122,19 @@ class AccountInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

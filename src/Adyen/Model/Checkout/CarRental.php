@@ -152,6 +152,21 @@ class CarRental implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -331,13 +346,10 @@ class CarRental implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -354,7 +366,7 @@ class CarRental implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getCustomerServicePhoneNumber()
     {
-        return $this->container['customerServicePhoneNumber'];
+        return $this->container['customerServicePhoneNumber'] ?? null;
     }
 
     /**
@@ -378,7 +390,7 @@ class CarRental implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getNoShow()
     {
-        return $this->container['noShow'];
+        return $this->container['noShow'] ?? null;
     }
 
     /**
@@ -402,7 +414,7 @@ class CarRental implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getPickupInfo()
     {
-        return $this->container['pickupInfo'];
+        return $this->container['pickupInfo'] ?? null;
     }
 
     /**
@@ -426,7 +438,7 @@ class CarRental implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getRateType()
     {
-        return $this->container['rateType'];
+        return $this->container['rateType'] ?? null;
     }
 
     /**
@@ -438,6 +450,19 @@ class CarRental implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRateType($rateType): self
     {
+        if ($rateType !== null) {
+            $allowedValues = $this->getRateTypeAllowableValues();
+            foreach ([$rateType] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "rateType: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['rateType'] = $rateType;
 
         return $this;
@@ -450,7 +475,7 @@ class CarRental implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getRentalAgreementNumber()
     {
-        return $this->container['rentalAgreementNumber'];
+        return $this->container['rentalAgreementNumber'] ?? null;
     }
 
     /**
@@ -474,7 +499,7 @@ class CarRental implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getRentalClassId()
     {
-        return $this->container['rentalClassId'];
+        return $this->container['rentalClassId'] ?? null;
     }
 
     /**
@@ -498,7 +523,7 @@ class CarRental implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getRentalDays()
     {
-        return $this->container['rentalDays'];
+        return $this->container['rentalDays'] ?? null;
     }
 
     /**
@@ -522,7 +547,7 @@ class CarRental implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getRentalRate()
     {
-        return $this->container['rentalRate'];
+        return $this->container['rentalRate'] ?? null;
     }
 
     /**
@@ -546,7 +571,7 @@ class CarRental implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getRentalSurcharges()
     {
-        return $this->container['rentalSurcharges'];
+        return $this->container['rentalSurcharges'] ?? null;
     }
 
     /**
@@ -570,7 +595,7 @@ class CarRental implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getRenterName()
     {
-        return $this->container['renterName'];
+        return $this->container['renterName'] ?? null;
     }
 
     /**
@@ -594,7 +619,7 @@ class CarRental implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getReturnInfo()
     {
-        return $this->container['returnInfo'];
+        return $this->container['returnInfo'] ?? null;
     }
 
     /**
@@ -618,7 +643,7 @@ class CarRental implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getTaxExempt()
     {
-        return $this->container['taxExempt'];
+        return $this->container['taxExempt'] ?? null;
     }
 
     /**
@@ -673,6 +698,7 @@ class CarRental implements ModelInterface, ArrayAccess, \JsonSerializable
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -686,6 +712,7 @@ class CarRental implements ModelInterface, ArrayAccess, \JsonSerializable
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -704,14 +731,19 @@ class CarRental implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

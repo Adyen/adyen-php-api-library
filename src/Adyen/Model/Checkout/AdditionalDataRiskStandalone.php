@@ -161,6 +161,21 @@ class AdditionalDataRiskStandalone implements ModelInterface, ArrayAccess, \Json
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -337,13 +352,10 @@ class AdditionalDataRiskStandalone implements ModelInterface, ArrayAccess, \Json
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -360,7 +372,7 @@ class AdditionalDataRiskStandalone implements ModelInterface, ArrayAccess, \Json
      */
     public function getPayPalCountryCode()
     {
-        return $this->container['payPalCountryCode'];
+        return $this->container['payPalCountryCode'] ?? null;
     }
 
     /**
@@ -384,7 +396,7 @@ class AdditionalDataRiskStandalone implements ModelInterface, ArrayAccess, \Json
      */
     public function getPayPalEmailId()
     {
-        return $this->container['payPalEmailId'];
+        return $this->container['payPalEmailId'] ?? null;
     }
 
     /**
@@ -408,7 +420,7 @@ class AdditionalDataRiskStandalone implements ModelInterface, ArrayAccess, \Json
      */
     public function getPayPalFirstName()
     {
-        return $this->container['payPalFirstName'];
+        return $this->container['payPalFirstName'] ?? null;
     }
 
     /**
@@ -432,7 +444,7 @@ class AdditionalDataRiskStandalone implements ModelInterface, ArrayAccess, \Json
      */
     public function getPayPalLastName()
     {
-        return $this->container['payPalLastName'];
+        return $this->container['payPalLastName'] ?? null;
     }
 
     /**
@@ -456,7 +468,7 @@ class AdditionalDataRiskStandalone implements ModelInterface, ArrayAccess, \Json
      */
     public function getPayPalPayerId()
     {
-        return $this->container['payPalPayerId'];
+        return $this->container['payPalPayerId'] ?? null;
     }
 
     /**
@@ -480,7 +492,7 @@ class AdditionalDataRiskStandalone implements ModelInterface, ArrayAccess, \Json
      */
     public function getPayPalPhone()
     {
-        return $this->container['payPalPhone'];
+        return $this->container['payPalPhone'] ?? null;
     }
 
     /**
@@ -504,7 +516,7 @@ class AdditionalDataRiskStandalone implements ModelInterface, ArrayAccess, \Json
      */
     public function getPayPalProtectionEligibility()
     {
-        return $this->container['payPalProtectionEligibility'];
+        return $this->container['payPalProtectionEligibility'] ?? null;
     }
 
     /**
@@ -528,7 +540,7 @@ class AdditionalDataRiskStandalone implements ModelInterface, ArrayAccess, \Json
      */
     public function getPayPalTransactionId()
     {
-        return $this->container['payPalTransactionId'];
+        return $this->container['payPalTransactionId'] ?? null;
     }
 
     /**
@@ -552,7 +564,7 @@ class AdditionalDataRiskStandalone implements ModelInterface, ArrayAccess, \Json
      */
     public function getAvsResultRaw()
     {
-        return $this->container['avsResultRaw'];
+        return $this->container['avsResultRaw'] ?? null;
     }
 
     /**
@@ -576,7 +588,7 @@ class AdditionalDataRiskStandalone implements ModelInterface, ArrayAccess, \Json
      */
     public function getBin()
     {
-        return $this->container['bin'];
+        return $this->container['bin'] ?? null;
     }
 
     /**
@@ -600,7 +612,7 @@ class AdditionalDataRiskStandalone implements ModelInterface, ArrayAccess, \Json
      */
     public function getCvcResultRaw()
     {
-        return $this->container['cvcResultRaw'];
+        return $this->container['cvcResultRaw'] ?? null;
     }
 
     /**
@@ -624,7 +636,7 @@ class AdditionalDataRiskStandalone implements ModelInterface, ArrayAccess, \Json
      */
     public function getRiskToken()
     {
-        return $this->container['riskToken'];
+        return $this->container['riskToken'] ?? null;
     }
 
     /**
@@ -648,7 +660,7 @@ class AdditionalDataRiskStandalone implements ModelInterface, ArrayAccess, \Json
      */
     public function getThreeDAuthenticated()
     {
-        return $this->container['threeDAuthenticated'];
+        return $this->container['threeDAuthenticated'] ?? null;
     }
 
     /**
@@ -672,7 +684,7 @@ class AdditionalDataRiskStandalone implements ModelInterface, ArrayAccess, \Json
      */
     public function getThreeDOffered()
     {
-        return $this->container['threeDOffered'];
+        return $this->container['threeDOffered'] ?? null;
     }
 
     /**
@@ -696,7 +708,7 @@ class AdditionalDataRiskStandalone implements ModelInterface, ArrayAccess, \Json
      */
     public function getTokenDataType()
     {
-        return $this->container['tokenDataType'];
+        return $this->container['tokenDataType'] ?? null;
     }
 
     /**
@@ -751,6 +763,7 @@ class AdditionalDataRiskStandalone implements ModelInterface, ArrayAccess, \Json
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -764,6 +777,7 @@ class AdditionalDataRiskStandalone implements ModelInterface, ArrayAccess, \Json
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -782,14 +796,19 @@ class AdditionalDataRiskStandalone implements ModelInterface, ArrayAccess, \Json
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

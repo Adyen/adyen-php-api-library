@@ -152,6 +152,21 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -316,13 +331,10 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -339,7 +351,7 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getSubMerchantNumberOfSubSellers()
     {
-        return $this->container['subMerchantNumberOfSubSellers'];
+        return $this->container['subMerchantNumberOfSubSellers'] ?? null;
     }
 
     /**
@@ -363,7 +375,7 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getSubMerchantSubSellerSubSellerNrCity()
     {
-        return $this->container['subMerchantSubSellerSubSellerNrCity'];
+        return $this->container['subMerchantSubSellerSubSellerNrCity'] ?? null;
     }
 
     /**
@@ -387,7 +399,7 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getSubMerchantSubSellerSubSellerNrCountry()
     {
-        return $this->container['subMerchantSubSellerSubSellerNrCountry'];
+        return $this->container['subMerchantSubSellerSubSellerNrCountry'] ?? null;
     }
 
     /**
@@ -411,7 +423,7 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getSubMerchantSubSellerSubSellerNrEmail()
     {
-        return $this->container['subMerchantSubSellerSubSellerNrEmail'];
+        return $this->container['subMerchantSubSellerSubSellerNrEmail'] ?? null;
     }
 
     /**
@@ -435,7 +447,7 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getSubMerchantSubSellerSubSellerNrId()
     {
-        return $this->container['subMerchantSubSellerSubSellerNrId'];
+        return $this->container['subMerchantSubSellerSubSellerNrId'] ?? null;
     }
 
     /**
@@ -459,7 +471,7 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getSubMerchantSubSellerSubSellerNrMcc()
     {
-        return $this->container['subMerchantSubSellerSubSellerNrMcc'];
+        return $this->container['subMerchantSubSellerSubSellerNrMcc'] ?? null;
     }
 
     /**
@@ -483,7 +495,7 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getSubMerchantSubSellerSubSellerNrName()
     {
-        return $this->container['subMerchantSubSellerSubSellerNrName'];
+        return $this->container['subMerchantSubSellerSubSellerNrName'] ?? null;
     }
 
     /**
@@ -507,7 +519,7 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getSubMerchantSubSellerSubSellerNrPhoneNumber()
     {
-        return $this->container['subMerchantSubSellerSubSellerNrPhoneNumber'];
+        return $this->container['subMerchantSubSellerSubSellerNrPhoneNumber'] ?? null;
     }
 
     /**
@@ -531,7 +543,7 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getSubMerchantSubSellerSubSellerNrPostalCode()
     {
-        return $this->container['subMerchantSubSellerSubSellerNrPostalCode'];
+        return $this->container['subMerchantSubSellerSubSellerNrPostalCode'] ?? null;
     }
 
     /**
@@ -555,7 +567,7 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getSubMerchantSubSellerSubSellerNrState()
     {
-        return $this->container['subMerchantSubSellerSubSellerNrState'];
+        return $this->container['subMerchantSubSellerSubSellerNrState'] ?? null;
     }
 
     /**
@@ -579,7 +591,7 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getSubMerchantSubSellerSubSellerNrStreet()
     {
-        return $this->container['subMerchantSubSellerSubSellerNrStreet'];
+        return $this->container['subMerchantSubSellerSubSellerNrStreet'] ?? null;
     }
 
     /**
@@ -603,7 +615,7 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getSubMerchantSubSellerSubSellerNrTaxId()
     {
-        return $this->container['subMerchantSubSellerSubSellerNrTaxId'];
+        return $this->container['subMerchantSubSellerSubSellerNrTaxId'] ?? null;
     }
 
     /**
@@ -658,6 +670,7 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -671,6 +684,7 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -689,14 +703,19 @@ class AdditionalDataSubMerchant implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

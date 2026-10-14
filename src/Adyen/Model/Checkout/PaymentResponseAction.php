@@ -22,7 +22,7 @@ use \Adyen\Model\Checkout\ObjectSerializer;
  * @package  Adyen\Model\Checkout
  * @implements \ArrayAccess<string, mixed>
  */
-class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSerializable
+class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSerializable, \Adyen\Model\Checkout\PaymentResponseActionInterface
 {
     public const DISCRIMINATOR = 'type';
 
@@ -243,6 +243,21 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
+    }
+
+    /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
     }
 
     /**
@@ -541,13 +556,10 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -564,7 +576,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getPaymentData()
     {
-        return $this->container['paymentData'];
+        return $this->container['paymentData'] ?? null;
     }
 
     /**
@@ -588,7 +600,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getPaymentMethodType()
     {
-        return $this->container['paymentMethodType'];
+        return $this->container['paymentMethodType'] ?? null;
     }
 
     /**
@@ -612,7 +624,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getType()
     {
-        return $this->container['type'];
+        return $this->container['type'] ?? null;
     }
 
     /**
@@ -624,6 +636,19 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setType($type): self
     {
+        if ($type !== null) {
+            $allowedValues = $this->getTypeAllowableValues();
+            foreach ([$type] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "type: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['type'] = $type;
 
         return $this;
@@ -636,7 +661,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getUrl()
     {
-        return $this->container['url'];
+        return $this->container['url'] ?? null;
     }
 
     /**
@@ -660,7 +685,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAccountNumber()
     {
-        return $this->container['accountNumber'];
+        return $this->container['accountNumber'] ?? null;
     }
 
     /**
@@ -684,7 +709,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getBankCode()
     {
-        return $this->container['bankCode'];
+        return $this->container['bankCode'] ?? null;
     }
 
     /**
@@ -708,7 +733,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getBeneficiary()
     {
-        return $this->container['beneficiary'];
+        return $this->container['beneficiary'] ?? null;
     }
 
     /**
@@ -732,7 +757,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getBic()
     {
-        return $this->container['bic'];
+        return $this->container['bic'] ?? null;
     }
 
     /**
@@ -756,7 +781,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getBranchCode()
     {
-        return $this->container['branchCode'];
+        return $this->container['branchCode'] ?? null;
     }
 
     /**
@@ -780,7 +805,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getDownloadUrl()
     {
-        return $this->container['downloadUrl'];
+        return $this->container['downloadUrl'] ?? null;
     }
 
     /**
@@ -804,7 +829,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getIban()
     {
-        return $this->container['iban'];
+        return $this->container['iban'] ?? null;
     }
 
     /**
@@ -828,7 +853,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getReference()
     {
-        return $this->container['reference'];
+        return $this->container['reference'] ?? null;
     }
 
     /**
@@ -852,7 +877,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getRoutingNumber()
     {
-        return $this->container['routingNumber'];
+        return $this->container['routingNumber'] ?? null;
     }
 
     /**
@@ -876,7 +901,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getShopperEmail()
     {
-        return $this->container['shopperEmail'];
+        return $this->container['shopperEmail'] ?? null;
     }
 
     /**
@@ -900,7 +925,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getSortCode()
     {
-        return $this->container['sortCode'];
+        return $this->container['sortCode'] ?? null;
     }
 
     /**
@@ -924,7 +949,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getTotalAmount()
     {
-        return $this->container['totalAmount'];
+        return $this->container['totalAmount'] ?? null;
     }
 
     /**
@@ -948,7 +973,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAuthorisationToken()
     {
-        return $this->container['authorisationToken'];
+        return $this->container['authorisationToken'] ?? null;
     }
 
     /**
@@ -972,7 +997,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getToken()
     {
-        return $this->container['token'];
+        return $this->container['token'] ?? null;
     }
 
     /**
@@ -996,7 +1021,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getData()
     {
-        return $this->container['data'];
+        return $this->container['data'] ?? null;
     }
 
     /**
@@ -1020,7 +1045,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getMethod()
     {
-        return $this->container['method'];
+        return $this->container['method'] ?? null;
     }
 
     /**
@@ -1044,7 +1069,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getNativeRedirectData()
     {
-        return $this->container['nativeRedirectData'];
+        return $this->container['nativeRedirectData'] ?? null;
     }
 
     /**
@@ -1068,7 +1093,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getExpiresAt()
     {
-        return $this->container['expiresAt'];
+        return $this->container['expiresAt'] ?? null;
     }
 
     /**
@@ -1092,7 +1117,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getQrCodeData()
     {
-        return $this->container['qrCodeData'];
+        return $this->container['qrCodeData'] ?? null;
     }
 
     /**
@@ -1116,7 +1141,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getSdkData()
     {
-        return $this->container['sdkData'];
+        return $this->container['sdkData'] ?? null;
     }
 
     /**
@@ -1140,7 +1165,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getSubtype()
     {
-        return $this->container['subtype'];
+        return $this->container['subtype'] ?? null;
     }
 
     /**
@@ -1164,7 +1189,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAlternativeReference()
     {
-        return $this->container['alternativeReference'];
+        return $this->container['alternativeReference'] ?? null;
     }
 
     /**
@@ -1188,7 +1213,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getCollectionInstitutionNumber()
     {
-        return $this->container['collectionInstitutionNumber'];
+        return $this->container['collectionInstitutionNumber'] ?? null;
     }
 
     /**
@@ -1212,7 +1237,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getEntity()
     {
-        return $this->container['entity'];
+        return $this->container['entity'] ?? null;
     }
 
     /**
@@ -1236,7 +1261,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getInitialAmount()
     {
-        return $this->container['initialAmount'];
+        return $this->container['initialAmount'] ?? null;
     }
 
     /**
@@ -1260,7 +1285,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getInstructionsUrl()
     {
-        return $this->container['instructionsUrl'];
+        return $this->container['instructionsUrl'] ?? null;
     }
 
     /**
@@ -1284,7 +1309,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getIssuer()
     {
-        return $this->container['issuer'];
+        return $this->container['issuer'] ?? null;
     }
 
     /**
@@ -1308,7 +1333,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getMaskedTelephoneNumber()
     {
-        return $this->container['maskedTelephoneNumber'];
+        return $this->container['maskedTelephoneNumber'] ?? null;
     }
 
     /**
@@ -1332,7 +1357,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getMerchantName()
     {
-        return $this->container['merchantName'];
+        return $this->container['merchantName'] ?? null;
     }
 
     /**
@@ -1356,7 +1381,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getMerchantReference()
     {
-        return $this->container['merchantReference'];
+        return $this->container['merchantReference'] ?? null;
     }
 
     /**
@@ -1380,7 +1405,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getPassCreationToken()
     {
-        return $this->container['passCreationToken'];
+        return $this->container['passCreationToken'] ?? null;
     }
 
     /**
@@ -1404,7 +1429,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getShopperName()
     {
-        return $this->container['shopperName'];
+        return $this->container['shopperName'] ?? null;
     }
 
     /**
@@ -1428,7 +1453,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getSurcharge()
     {
-        return $this->container['surcharge'];
+        return $this->container['surcharge'] ?? null;
     }
 
     /**
@@ -1483,6 +1508,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -1496,6 +1522,7 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -1514,14 +1541,19 @@ class PaymentResponseAction implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

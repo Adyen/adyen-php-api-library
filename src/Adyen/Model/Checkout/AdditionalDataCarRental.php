@@ -185,6 +185,21 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -393,13 +408,10 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -416,7 +428,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function getCarRentalCheckOutDate()
     {
-        return $this->container['carRentalCheckOutDate'];
+        return $this->container['carRentalCheckOutDate'] ?? null;
     }
 
     /**
@@ -440,7 +452,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function getCarRentalCustomerServiceTollFreeNumber()
     {
-        return $this->container['carRentalCustomerServiceTollFreeNumber'];
+        return $this->container['carRentalCustomerServiceTollFreeNumber'] ?? null;
     }
 
     /**
@@ -464,7 +476,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function getCarRentalDaysRented()
     {
-        return $this->container['carRentalDaysRented'];
+        return $this->container['carRentalDaysRented'] ?? null;
     }
 
     /**
@@ -488,7 +500,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function getCarRentalFuelCharges()
     {
-        return $this->container['carRentalFuelCharges'];
+        return $this->container['carRentalFuelCharges'] ?? null;
     }
 
     /**
@@ -512,7 +524,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function getCarRentalInsuranceCharges()
     {
-        return $this->container['carRentalInsuranceCharges'];
+        return $this->container['carRentalInsuranceCharges'] ?? null;
     }
 
     /**
@@ -536,7 +548,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function getCarRentalLocationCity()
     {
-        return $this->container['carRentalLocationCity'];
+        return $this->container['carRentalLocationCity'] ?? null;
     }
 
     /**
@@ -560,7 +572,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function getCarRentalLocationCountry()
     {
-        return $this->container['carRentalLocationCountry'];
+        return $this->container['carRentalLocationCountry'] ?? null;
     }
 
     /**
@@ -584,7 +596,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function getCarRentalLocationStateProvince()
     {
-        return $this->container['carRentalLocationStateProvince'];
+        return $this->container['carRentalLocationStateProvince'] ?? null;
     }
 
     /**
@@ -608,7 +620,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function getCarRentalNoShowIndicator()
     {
-        return $this->container['carRentalNoShowIndicator'];
+        return $this->container['carRentalNoShowIndicator'] ?? null;
     }
 
     /**
@@ -632,7 +644,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function getCarRentalOneWayDropOffCharges()
     {
-        return $this->container['carRentalOneWayDropOffCharges'];
+        return $this->container['carRentalOneWayDropOffCharges'] ?? null;
     }
 
     /**
@@ -656,7 +668,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function getCarRentalRate()
     {
-        return $this->container['carRentalRate'];
+        return $this->container['carRentalRate'] ?? null;
     }
 
     /**
@@ -680,7 +692,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function getCarRentalRateIndicator()
     {
-        return $this->container['carRentalRateIndicator'];
+        return $this->container['carRentalRateIndicator'] ?? null;
     }
 
     /**
@@ -704,7 +716,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function getCarRentalRentalAgreementNumber()
     {
-        return $this->container['carRentalRentalAgreementNumber'];
+        return $this->container['carRentalRentalAgreementNumber'] ?? null;
     }
 
     /**
@@ -728,7 +740,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function getCarRentalRentalClassId()
     {
-        return $this->container['carRentalRentalClassId'];
+        return $this->container['carRentalRentalClassId'] ?? null;
     }
 
     /**
@@ -752,7 +764,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function getCarRentalRenterName()
     {
-        return $this->container['carRentalRenterName'];
+        return $this->container['carRentalRenterName'] ?? null;
     }
 
     /**
@@ -776,7 +788,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function getCarRentalReturnCity()
     {
-        return $this->container['carRentalReturnCity'];
+        return $this->container['carRentalReturnCity'] ?? null;
     }
 
     /**
@@ -800,7 +812,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function getCarRentalReturnCountry()
     {
-        return $this->container['carRentalReturnCountry'];
+        return $this->container['carRentalReturnCountry'] ?? null;
     }
 
     /**
@@ -824,7 +836,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function getCarRentalReturnDate()
     {
-        return $this->container['carRentalReturnDate'];
+        return $this->container['carRentalReturnDate'] ?? null;
     }
 
     /**
@@ -848,7 +860,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function getCarRentalReturnLocationId()
     {
-        return $this->container['carRentalReturnLocationId'];
+        return $this->container['carRentalReturnLocationId'] ?? null;
     }
 
     /**
@@ -872,7 +884,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function getCarRentalReturnStateProvince()
     {
-        return $this->container['carRentalReturnStateProvince'];
+        return $this->container['carRentalReturnStateProvince'] ?? null;
     }
 
     /**
@@ -896,7 +908,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function getCarRentalTaxExemptIndicator()
     {
-        return $this->container['carRentalTaxExemptIndicator'];
+        return $this->container['carRentalTaxExemptIndicator'] ?? null;
     }
 
     /**
@@ -920,7 +932,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function getTravelEntertainmentAuthDataDuration()
     {
-        return $this->container['travelEntertainmentAuthDataDuration'];
+        return $this->container['travelEntertainmentAuthDataDuration'] ?? null;
     }
 
     /**
@@ -944,7 +956,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function getTravelEntertainmentAuthDataMarket()
     {
-        return $this->container['travelEntertainmentAuthDataMarket'];
+        return $this->container['travelEntertainmentAuthDataMarket'] ?? null;
     }
 
     /**
@@ -999,6 +1011,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -1012,6 +1025,7 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -1030,14 +1044,19 @@ class AdditionalDataCarRental implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

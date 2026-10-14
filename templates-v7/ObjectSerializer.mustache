@@ -66,8 +66,13 @@ class ObjectSerializer
                             /** array $callable */
                             $allowedEnumTypes = $callable();
                             if (!in_array($value, $allowedEnumTypes, true)) {
-                                $imploded = implode("', '", $allowedEnumTypes);
-                                throw new \InvalidArgumentException("Invalid value for enum '$openAPIType', must be one of: '$imploded'");
+                                error_log(
+                                    sprintf(
+                                        "%s: unexpected enum value - Supported values are [%s]",
+                                        $openAPIType,
+                                        implode(', ', $allowedEnumTypes)
+                                    )
+                                );
                             }
                         }
                     }
@@ -189,6 +194,7 @@ class ObjectSerializer
      * @param string $style       Parameter serialization style
      * @param bool   $explode     Parameter explode option
      * @param bool   $required    Whether query param is required or not
+     * @param Configuration|null $config Configuration to use; defaults to the global configuration
      *
      * @return array
      */
@@ -198,7 +204,8 @@ class ObjectSerializer
         string $openApiType = 'string',
         string $style = 'form',
         bool $explode = true,
-        bool $required = true
+        bool $required = true,
+        ?Configuration $config = null
     ): array {
 
         # Check if we should omit this parameter from the query. This should only happen when:
@@ -256,7 +263,7 @@ class ObjectSerializer
         }
 
         if ('boolean' === $openApiType && is_bool($value)) {
-            $value = self::convertBoolToQueryStringFormat($value);
+            $value = self::convertBoolToQueryStringFormat($value, $config);
         }
 
         // handle style in serializeCollection
@@ -269,12 +276,14 @@ class ObjectSerializer
      * Convert boolean value to format for query string.
      *
      * @param bool $value Boolean value
+     * @param Configuration|null $config Configuration to use; defaults to the global configuration
      *
      * @return int|string Boolean value in format
      */
-    public static function convertBoolToQueryStringFormat(bool $value)
+    public static function convertBoolToQueryStringFormat(bool $value, ?Configuration $config = null)
     {
-        if (Configuration::BOOLEAN_FORMAT_STRING == Configuration::getDefaultConfiguration()->getBooleanFormatForQueryString()) {
+        $config = $config ?? Configuration::getDefaultConfiguration();
+        if (Configuration::BOOLEAN_FORMAT_STRING == $config->getBooleanFormatForQueryString()) {
             return $value ? 'true' : 'false';
         }
 
@@ -383,14 +392,21 @@ class ObjectSerializer
      * @param mixed    $data          object or primitive to be deserialized
      * @param string   $class         class name is passed as a string
      * @param string[]|null $httpHeaders   HTTP headers
+     * @param Configuration|null $config Configuration to use; defaults to the global configuration
      *
      * @return object|array|null a single or an array of $class instances
      */
-    public static function deserialize($data, $class, $httpHeaders = null)
-    {
+    public static function deserialize(
+        $data,
+        $class,
+        $httpHeaders = null,
+        ?Configuration $config = null
+    ) {
         if (null === $data) {
             return null;
         }
+        $config = $config ?? Configuration::getDefaultConfiguration();
+
 
         if (strcasecmp(substr($class, -2), '[]') === 0) {
             $data = is_string($data) ? json_decode($data) : $data;
@@ -402,7 +418,7 @@ class ObjectSerializer
             $subClass = substr($class, 0, -2);
             $values = [];
             foreach ($data as $key => $value) {
-                $values[] = self::deserialize($value, $subClass, null);
+                $values[] = self::deserialize($value, $subClass, null, $config);
             }
             return $values;
         }
@@ -417,7 +433,7 @@ class ObjectSerializer
                 $subClass_array = explode(',', $inner, 2);
                 $subClass = $subClass_array[1];
                 foreach ($data as $key => $value) {
-                    $deserialized[$key] = self::deserialize($value, $subClass, null);
+                    $deserialized[$key] = self::deserialize($value, $subClass, null, $config);
                 }
             }
             return $deserialized;
@@ -462,9 +478,11 @@ class ObjectSerializer
                 && array_key_exists('Content-Disposition', $httpHeaders)
                 && preg_match('/inline; filename=[\'"]?([^\'"\s]+)[\'"]?$/i', $httpHeaders['Content-Disposition'], $match)
             ) {
-                $filename = Configuration::getDefaultConfiguration()->getTempFolderPath() . DIRECTORY_SEPARATOR . self::sanitizeFilename($match[1]);
+                $filename = $config->getTempFolderPath()
+                    . DIRECTORY_SEPARATOR
+                    . self::sanitizeFilename($match[1]);
             } else {
-                $filename = @tempnam(Configuration::getDefaultConfiguration()->getTempFolderPath(), '');
+                $filename = @tempnam($config->getTempFolderPath(), '');
                 if ($filename === false) {
                     throw new \RuntimeException('Unable to create the response file');
                 }
@@ -492,10 +510,17 @@ class ObjectSerializer
 
 
         if (method_exists($class, 'getAllowableEnumValues')) {
-            if (!in_array($data, $class::getAllowableEnumValues(), true)) {
-                $imploded = implode("', '", $class::getAllowableEnumValues());
-                throw new \InvalidArgumentException("Invalid value for enum '$class', must be one of: '$imploded'");
+            $allowedValues = $class::getAllowableEnumValues();
+            if (!in_array($data, $allowedValues, true)) {
+                error_log(
+                    sprintf(
+                        "%s: unexpected enum value - Supported values are [%s]",
+                        $class,
+                        implode(', ', $allowedValues)
+                    )
+                );
             }
+            // Preserve unknown response values for forward compatibility with new API enum values.
             return $data;
         } else {
             $data = is_string($data) ? json_decode($data) : $data;
@@ -525,7 +550,13 @@ class ObjectSerializer
                     continue;
                 }
 
-                if (!isset($data->{$instance::attributeMap()[$property]})) {
+                $wireName = $instance::attributeMap()[$property];
+                if (!is_object($data) || !property_exists($data, $wireName)) {
+                    continue;
+                }
+
+                $propertyValue = $data->{$wireName};
+                if ($propertyValue === null) {
                     if ($instance::isNullable($property)) {
                         $instance->$propertySetter(null);
                     }
@@ -533,10 +564,7 @@ class ObjectSerializer
                     continue;
                 }
 
-                if (isset($data->{$instance::attributeMap()[$property]})) {
-                    $propertyValue = $data->{$instance::attributeMap()[$property]};
-                    $instance->$propertySetter(self::deserialize($propertyValue, $type, null));
-                }
+                $instance->$propertySetter(self::deserialize($propertyValue, $type, null, $config));
             }
             return $instance;
         }
@@ -556,8 +584,9 @@ class ObjectSerializer
     * @param int|false $encoding            Set to false to not encode, PHP_QUERY_RFC3986
     *                                       to encode using RFC3986, or PHP_QUERY_RFC1738
     *                                       to encode using RFC1738.
+    * @param Configuration|null $config Configuration to use; defaults to the global configuration
     */
-    public static function buildQuery(array $params, $encoding = PHP_QUERY_RFC3986): string
+    public static function buildQuery(array $params, $encoding = PHP_QUERY_RFC3986, ?Configuration $config = null): string
     {
         if (!$params) {
             return '';
@@ -575,7 +604,8 @@ class ObjectSerializer
             throw new \InvalidArgumentException('Invalid type');
         }
 
-        $castBool = (Configuration::BOOLEAN_FORMAT_INT == Configuration::getDefaultConfiguration()->getBooleanFormatForQueryString())
+        $config = $config ?? Configuration::getDefaultConfiguration();
+        $castBool = (Configuration::BOOLEAN_FORMAT_INT == $config->getBooleanFormatForQueryString())
             ? function ($v) {
                 return (int)$v;
             }

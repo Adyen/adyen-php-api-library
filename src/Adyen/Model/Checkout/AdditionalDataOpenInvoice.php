@@ -170,6 +170,21 @@ class AdditionalDataOpenInvoice implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -358,13 +373,10 @@ class AdditionalDataOpenInvoice implements ModelInterface, ArrayAccess, \JsonSer
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -381,7 +393,7 @@ class AdditionalDataOpenInvoice implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getOpeninvoicedataMerchantData()
     {
-        return $this->container['openinvoicedataMerchantData'];
+        return $this->container['openinvoicedataMerchantData'] ?? null;
     }
 
     /**
@@ -405,7 +417,7 @@ class AdditionalDataOpenInvoice implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getOpeninvoicedataNumberOfLines()
     {
-        return $this->container['openinvoicedataNumberOfLines'];
+        return $this->container['openinvoicedataNumberOfLines'] ?? null;
     }
 
     /**
@@ -429,7 +441,7 @@ class AdditionalDataOpenInvoice implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getOpeninvoicedataRecipientFirstName()
     {
-        return $this->container['openinvoicedataRecipientFirstName'];
+        return $this->container['openinvoicedataRecipientFirstName'] ?? null;
     }
 
     /**
@@ -453,7 +465,7 @@ class AdditionalDataOpenInvoice implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getOpeninvoicedataRecipientLastName()
     {
-        return $this->container['openinvoicedataRecipientLastName'];
+        return $this->container['openinvoicedataRecipientLastName'] ?? null;
     }
 
     /**
@@ -477,7 +489,7 @@ class AdditionalDataOpenInvoice implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getOpeninvoicedataLineItemNrCurrencyCode()
     {
-        return $this->container['openinvoicedataLineItemNrCurrencyCode'];
+        return $this->container['openinvoicedataLineItemNrCurrencyCode'] ?? null;
     }
 
     /**
@@ -501,7 +513,7 @@ class AdditionalDataOpenInvoice implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getOpeninvoicedataLineItemNrDescription()
     {
-        return $this->container['openinvoicedataLineItemNrDescription'];
+        return $this->container['openinvoicedataLineItemNrDescription'] ?? null;
     }
 
     /**
@@ -525,7 +537,7 @@ class AdditionalDataOpenInvoice implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getOpeninvoicedataLineItemNrItemAmount()
     {
-        return $this->container['openinvoicedataLineItemNrItemAmount'];
+        return $this->container['openinvoicedataLineItemNrItemAmount'] ?? null;
     }
 
     /**
@@ -549,7 +561,7 @@ class AdditionalDataOpenInvoice implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getOpeninvoicedataLineItemNrItemId()
     {
-        return $this->container['openinvoicedataLineItemNrItemId'];
+        return $this->container['openinvoicedataLineItemNrItemId'] ?? null;
     }
 
     /**
@@ -573,7 +585,7 @@ class AdditionalDataOpenInvoice implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getOpeninvoicedataLineItemNrItemVatAmount()
     {
-        return $this->container['openinvoicedataLineItemNrItemVatAmount'];
+        return $this->container['openinvoicedataLineItemNrItemVatAmount'] ?? null;
     }
 
     /**
@@ -597,7 +609,7 @@ class AdditionalDataOpenInvoice implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getOpeninvoicedataLineItemNrItemVatPercentage()
     {
-        return $this->container['openinvoicedataLineItemNrItemVatPercentage'];
+        return $this->container['openinvoicedataLineItemNrItemVatPercentage'] ?? null;
     }
 
     /**
@@ -621,7 +633,7 @@ class AdditionalDataOpenInvoice implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getOpeninvoicedataLineItemNrNumberOfItems()
     {
-        return $this->container['openinvoicedataLineItemNrNumberOfItems'];
+        return $this->container['openinvoicedataLineItemNrNumberOfItems'] ?? null;
     }
 
     /**
@@ -645,7 +657,7 @@ class AdditionalDataOpenInvoice implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getOpeninvoicedataLineItemNrReturnShippingCompany()
     {
-        return $this->container['openinvoicedataLineItemNrReturnShippingCompany'];
+        return $this->container['openinvoicedataLineItemNrReturnShippingCompany'] ?? null;
     }
 
     /**
@@ -669,7 +681,7 @@ class AdditionalDataOpenInvoice implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getOpeninvoicedataLineItemNrReturnTrackingNumber()
     {
-        return $this->container['openinvoicedataLineItemNrReturnTrackingNumber'];
+        return $this->container['openinvoicedataLineItemNrReturnTrackingNumber'] ?? null;
     }
 
     /**
@@ -693,7 +705,7 @@ class AdditionalDataOpenInvoice implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getOpeninvoicedataLineItemNrReturnTrackingUri()
     {
-        return $this->container['openinvoicedataLineItemNrReturnTrackingUri'];
+        return $this->container['openinvoicedataLineItemNrReturnTrackingUri'] ?? null;
     }
 
     /**
@@ -717,7 +729,7 @@ class AdditionalDataOpenInvoice implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getOpeninvoicedataLineItemNrShippingCompany()
     {
-        return $this->container['openinvoicedataLineItemNrShippingCompany'];
+        return $this->container['openinvoicedataLineItemNrShippingCompany'] ?? null;
     }
 
     /**
@@ -741,7 +753,7 @@ class AdditionalDataOpenInvoice implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getOpeninvoicedataLineItemNrShippingMethod()
     {
-        return $this->container['openinvoicedataLineItemNrShippingMethod'];
+        return $this->container['openinvoicedataLineItemNrShippingMethod'] ?? null;
     }
 
     /**
@@ -765,7 +777,7 @@ class AdditionalDataOpenInvoice implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getOpeninvoicedataLineItemNrTrackingNumber()
     {
-        return $this->container['openinvoicedataLineItemNrTrackingNumber'];
+        return $this->container['openinvoicedataLineItemNrTrackingNumber'] ?? null;
     }
 
     /**
@@ -789,7 +801,7 @@ class AdditionalDataOpenInvoice implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function getOpeninvoicedataLineItemNrTrackingUri()
     {
-        return $this->container['openinvoicedataLineItemNrTrackingUri'];
+        return $this->container['openinvoicedataLineItemNrTrackingUri'] ?? null;
     }
 
     /**
@@ -844,6 +856,7 @@ class AdditionalDataOpenInvoice implements ModelInterface, ArrayAccess, \JsonSer
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -857,6 +870,7 @@ class AdditionalDataOpenInvoice implements ModelInterface, ArrayAccess, \JsonSer
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -875,14 +889,19 @@ class AdditionalDataOpenInvoice implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

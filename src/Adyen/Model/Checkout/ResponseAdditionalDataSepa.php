@@ -128,6 +128,21 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -260,13 +275,10 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -283,7 +295,7 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function getSepadirectdebitDateOfSignature()
     {
-        return $this->container['sepadirectdebitDateOfSignature'];
+        return $this->container['sepadirectdebitDateOfSignature'] ?? null;
     }
 
     /**
@@ -307,7 +319,7 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function getSepadirectdebitMandateId()
     {
-        return $this->container['sepadirectdebitMandateId'];
+        return $this->container['sepadirectdebitMandateId'] ?? null;
     }
 
     /**
@@ -331,7 +343,7 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function getSepadirectdebitSepadirectdebitDueDate()
     {
-        return $this->container['sepadirectdebitSepadirectdebitDueDate'];
+        return $this->container['sepadirectdebitSepadirectdebitDueDate'] ?? null;
     }
 
     /**
@@ -355,7 +367,7 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function getSepadirectdebitSequenceType()
     {
-        return $this->container['sepadirectdebitSequenceType'];
+        return $this->container['sepadirectdebitSequenceType'] ?? null;
     }
 
     /**
@@ -410,6 +422,7 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -423,6 +436,7 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -441,14 +455,19 @@ class ResponseAdditionalDataSepa implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

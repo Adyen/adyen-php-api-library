@@ -149,6 +149,21 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -326,13 +341,10 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -349,7 +361,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getApps()
     {
-        return $this->container['apps'];
+        return $this->container['apps'] ?? null;
     }
 
     /**
@@ -373,7 +385,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getBrand()
     {
-        return $this->container['brand'];
+        return $this->container['brand'] ?? null;
     }
 
     /**
@@ -397,7 +409,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getBrands()
     {
-        return $this->container['brands'];
+        return $this->container['brands'] ?? null;
     }
 
     /**
@@ -421,7 +433,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getConfiguration()
     {
-        return $this->container['configuration'];
+        return $this->container['configuration'] ?? null;
     }
 
     /**
@@ -445,7 +457,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getFundingSource()
     {
-        return $this->container['fundingSource'];
+        return $this->container['fundingSource'] ?? null;
     }
 
     /**
@@ -457,6 +469,19 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFundingSource($fundingSource): self
     {
+        if ($fundingSource !== null) {
+            $allowedValues = $this->getFundingSourceAllowableValues();
+            foreach ([$fundingSource] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "fundingSource: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['fundingSource'] = $fundingSource;
 
         return $this;
@@ -469,7 +494,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getGroup()
     {
-        return $this->container['group'];
+        return $this->container['group'] ?? null;
     }
 
     /**
@@ -494,7 +519,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getInputDetails()
     {
-        return $this->container['inputDetails'];
+        return $this->container['inputDetails'] ?? null;
     }
 
     /**
@@ -519,7 +544,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getIssuers()
     {
-        return $this->container['issuers'];
+        return $this->container['issuers'] ?? null;
     }
 
     /**
@@ -543,7 +568,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getName()
     {
-        return $this->container['name'];
+        return $this->container['name'] ?? null;
     }
 
     /**
@@ -567,7 +592,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getPromoted()
     {
-        return $this->container['promoted'];
+        return $this->container['promoted'] ?? null;
     }
 
     /**
@@ -591,7 +616,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getType()
     {
-        return $this->container['type'];
+        return $this->container['type'] ?? null;
     }
 
     /**
@@ -646,6 +671,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -659,6 +685,7 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -677,14 +704,19 @@ class PaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

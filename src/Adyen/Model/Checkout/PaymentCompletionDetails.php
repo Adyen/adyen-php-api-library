@@ -176,6 +176,21 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -372,13 +387,10 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -395,7 +407,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getMD()
     {
-        return $this->container['mD'];
+        return $this->container['mD'] ?? null;
     }
 
     /**
@@ -419,7 +431,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getPaReq()
     {
-        return $this->container['paReq'];
+        return $this->container['paReq'] ?? null;
     }
 
     /**
@@ -443,7 +455,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getPaRes()
     {
-        return $this->container['paRes'];
+        return $this->container['paRes'] ?? null;
     }
 
     /**
@@ -467,7 +479,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getAuthorizationToken()
     {
-        return $this->container['authorizationToken'];
+        return $this->container['authorizationToken'] ?? null;
     }
 
     /**
@@ -491,7 +503,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getBillingToken()
     {
-        return $this->container['billingToken'];
+        return $this->container['billingToken'] ?? null;
     }
 
     /**
@@ -515,7 +527,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getCupsecureplusSmscode()
     {
-        return $this->container['cupsecureplusSmscode'];
+        return $this->container['cupsecureplusSmscode'] ?? null;
     }
 
     /**
@@ -539,7 +551,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getFacilitatorAccessToken()
     {
-        return $this->container['facilitatorAccessToken'];
+        return $this->container['facilitatorAccessToken'] ?? null;
     }
 
     /**
@@ -563,7 +575,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getOneTimePasscode()
     {
-        return $this->container['oneTimePasscode'];
+        return $this->container['oneTimePasscode'] ?? null;
     }
 
     /**
@@ -587,7 +599,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getOrderID()
     {
-        return $this->container['orderID'];
+        return $this->container['orderID'] ?? null;
     }
 
     /**
@@ -611,7 +623,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getPayerID()
     {
-        return $this->container['payerID'];
+        return $this->container['payerID'] ?? null;
     }
 
     /**
@@ -635,7 +647,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getPayload()
     {
-        return $this->container['payload'];
+        return $this->container['payload'] ?? null;
     }
 
     /**
@@ -659,7 +671,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getPaymentID()
     {
-        return $this->container['paymentID'];
+        return $this->container['paymentID'] ?? null;
     }
 
     /**
@@ -683,7 +695,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getPaymentStatus()
     {
-        return $this->container['paymentStatus'];
+        return $this->container['paymentStatus'] ?? null;
     }
 
     /**
@@ -707,7 +719,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getRedirectResult()
     {
-        return $this->container['redirectResult'];
+        return $this->container['redirectResult'] ?? null;
     }
 
     /**
@@ -731,7 +743,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getResultCode()
     {
-        return $this->container['resultCode'];
+        return $this->container['resultCode'] ?? null;
     }
 
     /**
@@ -755,7 +767,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getReturnUrlQueryString()
     {
-        return $this->container['returnUrlQueryString'];
+        return $this->container['returnUrlQueryString'] ?? null;
     }
 
     /**
@@ -779,7 +791,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getThreeDSResult()
     {
-        return $this->container['threeDSResult'];
+        return $this->container['threeDSResult'] ?? null;
     }
 
     /**
@@ -803,7 +815,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getThreeds2ChallengeResult()
     {
-        return $this->container['threeds2ChallengeResult'];
+        return $this->container['threeds2ChallengeResult'] ?? null;
     }
 
     /**
@@ -827,7 +839,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getThreeds2Fingerprint()
     {
-        return $this->container['threeds2Fingerprint'];
+        return $this->container['threeds2Fingerprint'] ?? null;
     }
 
     /**
@@ -851,7 +863,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function getVaultToken()
     {
-        return $this->container['vaultToken'];
+        return $this->container['vaultToken'] ?? null;
     }
 
     /**
@@ -906,6 +918,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -919,6 +932,7 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -937,14 +951,19 @@ class PaymentCompletionDetails implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

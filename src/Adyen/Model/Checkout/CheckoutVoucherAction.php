@@ -21,7 +21,7 @@ use \Adyen\Model\Checkout\ObjectSerializer;
  * @package  Adyen\Model\Checkout
  * @implements \ArrayAccess<string, mixed>
  */
-class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSerializable
+class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSerializable, \Adyen\Model\Checkout\PaymentResponseActionInterface
 {
     public const DISCRIMINATOR = null;
 
@@ -176,6 +176,21 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
+    }
+
+    /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
     }
 
     /**
@@ -392,13 +407,10 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -415,7 +427,7 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAlternativeReference()
     {
-        return $this->container['alternativeReference'];
+        return $this->container['alternativeReference'] ?? null;
     }
 
     /**
@@ -439,7 +451,7 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getCollectionInstitutionNumber()
     {
-        return $this->container['collectionInstitutionNumber'];
+        return $this->container['collectionInstitutionNumber'] ?? null;
     }
 
     /**
@@ -463,7 +475,7 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getDownloadUrl()
     {
-        return $this->container['downloadUrl'];
+        return $this->container['downloadUrl'] ?? null;
     }
 
     /**
@@ -487,7 +499,7 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getEntity()
     {
-        return $this->container['entity'];
+        return $this->container['entity'] ?? null;
     }
 
     /**
@@ -511,7 +523,7 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getExpiresAt()
     {
-        return $this->container['expiresAt'];
+        return $this->container['expiresAt'] ?? null;
     }
 
     /**
@@ -535,7 +547,7 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getInitialAmount()
     {
-        return $this->container['initialAmount'];
+        return $this->container['initialAmount'] ?? null;
     }
 
     /**
@@ -559,7 +571,7 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getInstructionsUrl()
     {
-        return $this->container['instructionsUrl'];
+        return $this->container['instructionsUrl'] ?? null;
     }
 
     /**
@@ -583,7 +595,7 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getIssuer()
     {
-        return $this->container['issuer'];
+        return $this->container['issuer'] ?? null;
     }
 
     /**
@@ -607,7 +619,7 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getMaskedTelephoneNumber()
     {
-        return $this->container['maskedTelephoneNumber'];
+        return $this->container['maskedTelephoneNumber'] ?? null;
     }
 
     /**
@@ -631,7 +643,7 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getMerchantName()
     {
-        return $this->container['merchantName'];
+        return $this->container['merchantName'] ?? null;
     }
 
     /**
@@ -655,7 +667,7 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getMerchantReference()
     {
-        return $this->container['merchantReference'];
+        return $this->container['merchantReference'] ?? null;
     }
 
     /**
@@ -679,7 +691,7 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getPassCreationToken()
     {
-        return $this->container['passCreationToken'];
+        return $this->container['passCreationToken'] ?? null;
     }
 
     /**
@@ -703,7 +715,7 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getPaymentData()
     {
-        return $this->container['paymentData'];
+        return $this->container['paymentData'] ?? null;
     }
 
     /**
@@ -727,7 +739,7 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getPaymentMethodType()
     {
-        return $this->container['paymentMethodType'];
+        return $this->container['paymentMethodType'] ?? null;
     }
 
     /**
@@ -751,7 +763,7 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getReference()
     {
-        return $this->container['reference'];
+        return $this->container['reference'] ?? null;
     }
 
     /**
@@ -775,7 +787,7 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getShopperEmail()
     {
-        return $this->container['shopperEmail'];
+        return $this->container['shopperEmail'] ?? null;
     }
 
     /**
@@ -799,7 +811,7 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getShopperName()
     {
-        return $this->container['shopperName'];
+        return $this->container['shopperName'] ?? null;
     }
 
     /**
@@ -823,7 +835,7 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getSurcharge()
     {
-        return $this->container['surcharge'];
+        return $this->container['surcharge'] ?? null;
     }
 
     /**
@@ -847,7 +859,7 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getTotalAmount()
     {
-        return $this->container['totalAmount'];
+        return $this->container['totalAmount'] ?? null;
     }
 
     /**
@@ -871,7 +883,7 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getType()
     {
-        return $this->container['type'];
+        return $this->container['type'] ?? null;
     }
 
     /**
@@ -883,6 +895,19 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setType($type): self
     {
+        if ($type !== null) {
+            $allowedValues = $this->getTypeAllowableValues();
+            foreach ([$type] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "type: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['type'] = $type;
 
         return $this;
@@ -895,7 +920,7 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getUrl()
     {
-        return $this->container['url'];
+        return $this->container['url'] ?? null;
     }
 
     /**
@@ -950,6 +975,7 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -963,6 +989,7 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -981,14 +1008,19 @@ class CheckoutVoucherAction implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

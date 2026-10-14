@@ -143,6 +143,21 @@ class BrowserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -295,13 +310,10 @@ class BrowserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -318,7 +330,7 @@ class BrowserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getAcceptHeader()
     {
-        return $this->container['acceptHeader'];
+        return $this->container['acceptHeader'] ?? null;
     }
 
     /**
@@ -342,7 +354,7 @@ class BrowserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getColorDepth()
     {
-        return $this->container['colorDepth'];
+        return $this->container['colorDepth'] ?? null;
     }
 
     /**
@@ -366,7 +378,7 @@ class BrowserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getJavaEnabled()
     {
-        return $this->container['javaEnabled'];
+        return $this->container['javaEnabled'] ?? null;
     }
 
     /**
@@ -390,7 +402,7 @@ class BrowserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getJavaScriptEnabled()
     {
-        return $this->container['javaScriptEnabled'];
+        return $this->container['javaScriptEnabled'] ?? null;
     }
 
     /**
@@ -414,7 +426,7 @@ class BrowserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getLanguage()
     {
-        return $this->container['language'];
+        return $this->container['language'] ?? null;
     }
 
     /**
@@ -438,7 +450,7 @@ class BrowserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getScreenHeight()
     {
-        return $this->container['screenHeight'];
+        return $this->container['screenHeight'] ?? null;
     }
 
     /**
@@ -462,7 +474,7 @@ class BrowserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getScreenWidth()
     {
-        return $this->container['screenWidth'];
+        return $this->container['screenWidth'] ?? null;
     }
 
     /**
@@ -486,7 +498,7 @@ class BrowserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getTimeZoneOffset()
     {
-        return $this->container['timeZoneOffset'];
+        return $this->container['timeZoneOffset'] ?? null;
     }
 
     /**
@@ -510,7 +522,7 @@ class BrowserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function getUserAgent()
     {
-        return $this->container['userAgent'];
+        return $this->container['userAgent'] ?? null;
     }
 
     /**
@@ -565,6 +577,7 @@ class BrowserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -578,6 +591,7 @@ class BrowserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -596,14 +610,19 @@ class BrowserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

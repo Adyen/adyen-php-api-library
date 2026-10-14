@@ -248,6 +248,21 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -576,13 +591,10 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -599,7 +611,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getAccountInfo()
     {
-        return $this->container['accountInfo'];
+        return $this->container['accountInfo'] ?? null;
     }
 
     /**
@@ -623,7 +635,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getAdditionalAmount()
     {
-        return $this->container['additionalAmount'];
+        return $this->container['additionalAmount'] ?? null;
     }
 
     /**
@@ -647,7 +659,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getAdditionalData()
     {
-        return $this->container['additionalData'];
+        return $this->container['additionalData'] ?? null;
     }
 
     /**
@@ -671,7 +683,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getAmount()
     {
-        return $this->container['amount'];
+        return $this->container['amount'] ?? null;
     }
 
     /**
@@ -695,7 +707,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getApplicationInfo()
     {
-        return $this->container['applicationInfo'];
+        return $this->container['applicationInfo'] ?? null;
     }
 
     /**
@@ -719,7 +731,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getBillingAddress()
     {
-        return $this->container['billingAddress'];
+        return $this->container['billingAddress'] ?? null;
     }
 
     /**
@@ -743,7 +755,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getBrowserInfo()
     {
-        return $this->container['browserInfo'];
+        return $this->container['browserInfo'] ?? null;
     }
 
     /**
@@ -767,7 +779,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getCaptureDelayHours()
     {
-        return $this->container['captureDelayHours'];
+        return $this->container['captureDelayHours'] ?? null;
     }
 
     /**
@@ -791,7 +803,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getDateOfBirth()
     {
-        return $this->container['dateOfBirth'];
+        return $this->container['dateOfBirth'] ?? null;
     }
 
     /**
@@ -815,7 +827,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getDccQuote()
     {
-        return $this->container['dccQuote'];
+        return $this->container['dccQuote'] ?? null;
     }
 
     /**
@@ -839,7 +851,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getDeliveryAddress()
     {
-        return $this->container['deliveryAddress'];
+        return $this->container['deliveryAddress'] ?? null;
     }
 
     /**
@@ -863,7 +875,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getDeliveryDate()
     {
-        return $this->container['deliveryDate'];
+        return $this->container['deliveryDate'] ?? null;
     }
 
     /**
@@ -887,7 +899,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getDeviceFingerprint()
     {
-        return $this->container['deviceFingerprint'];
+        return $this->container['deviceFingerprint'] ?? null;
     }
 
     /**
@@ -911,7 +923,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getFraudOffset()
     {
-        return $this->container['fraudOffset'];
+        return $this->container['fraudOffset'] ?? null;
     }
 
     /**
@@ -935,7 +947,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getInstallments()
     {
-        return $this->container['installments'];
+        return $this->container['installments'] ?? null;
     }
 
     /**
@@ -959,7 +971,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getLocalizedShopperStatement()
     {
-        return $this->container['localizedShopperStatement'];
+        return $this->container['localizedShopperStatement'] ?? null;
     }
 
     /**
@@ -983,7 +995,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getMcc()
     {
-        return $this->container['mcc'];
+        return $this->container['mcc'] ?? null;
     }
 
     /**
@@ -1007,7 +1019,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getMerchantAccount()
     {
-        return $this->container['merchantAccount'];
+        return $this->container['merchantAccount'] ?? null;
     }
 
     /**
@@ -1031,7 +1043,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getMerchantOrderReference()
     {
-        return $this->container['merchantOrderReference'];
+        return $this->container['merchantOrderReference'] ?? null;
     }
 
     /**
@@ -1055,7 +1067,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getMerchantRiskIndicator()
     {
-        return $this->container['merchantRiskIndicator'];
+        return $this->container['merchantRiskIndicator'] ?? null;
     }
 
     /**
@@ -1079,7 +1091,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getMetadata()
     {
-        return $this->container['metadata'];
+        return $this->container['metadata'] ?? null;
     }
 
     /**
@@ -1103,7 +1115,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getOrderReference()
     {
-        return $this->container['orderReference'];
+        return $this->container['orderReference'] ?? null;
     }
 
     /**
@@ -1127,7 +1139,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getPaymentMethod()
     {
-        return $this->container['paymentMethod'];
+        return $this->container['paymentMethod'] ?? null;
     }
 
     /**
@@ -1151,7 +1163,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getRecurring()
     {
-        return $this->container['recurring'];
+        return $this->container['recurring'] ?? null;
     }
 
     /**
@@ -1175,7 +1187,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getRecurringProcessingModel()
     {
-        return $this->container['recurringProcessingModel'];
+        return $this->container['recurringProcessingModel'] ?? null;
     }
 
     /**
@@ -1187,6 +1199,19 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setRecurringProcessingModel($recurringProcessingModel): self
     {
+        if ($recurringProcessingModel !== null) {
+            $allowedValues = $this->getRecurringProcessingModelAllowableValues();
+            foreach ([$recurringProcessingModel] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "recurringProcessingModel: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['recurringProcessingModel'] = $recurringProcessingModel;
 
         return $this;
@@ -1199,7 +1224,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getReference()
     {
-        return $this->container['reference'];
+        return $this->container['reference'] ?? null;
     }
 
     /**
@@ -1223,7 +1248,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getSelectedBrand()
     {
-        return $this->container['selectedBrand'];
+        return $this->container['selectedBrand'] ?? null;
     }
 
     /**
@@ -1247,7 +1272,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getSelectedRecurringDetailReference()
     {
-        return $this->container['selectedRecurringDetailReference'];
+        return $this->container['selectedRecurringDetailReference'] ?? null;
     }
 
     /**
@@ -1271,7 +1296,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getSessionId()
     {
-        return $this->container['sessionId'];
+        return $this->container['sessionId'] ?? null;
     }
 
     /**
@@ -1295,7 +1320,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getShopperEmail()
     {
-        return $this->container['shopperEmail'];
+        return $this->container['shopperEmail'] ?? null;
     }
 
     /**
@@ -1319,7 +1344,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getShopperIP()
     {
-        return $this->container['shopperIP'];
+        return $this->container['shopperIP'] ?? null;
     }
 
     /**
@@ -1343,7 +1368,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getShopperInteraction()
     {
-        return $this->container['shopperInteraction'];
+        return $this->container['shopperInteraction'] ?? null;
     }
 
     /**
@@ -1355,6 +1380,19 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setShopperInteraction($shopperInteraction): self
     {
+        if ($shopperInteraction !== null) {
+            $allowedValues = $this->getShopperInteractionAllowableValues();
+            foreach ([$shopperInteraction] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "shopperInteraction: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['shopperInteraction'] = $shopperInteraction;
 
         return $this;
@@ -1367,7 +1405,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getShopperLocale()
     {
-        return $this->container['shopperLocale'];
+        return $this->container['shopperLocale'] ?? null;
     }
 
     /**
@@ -1391,7 +1429,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getShopperName()
     {
-        return $this->container['shopperName'];
+        return $this->container['shopperName'] ?? null;
     }
 
     /**
@@ -1415,7 +1453,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getShopperReference()
     {
-        return $this->container['shopperReference'];
+        return $this->container['shopperReference'] ?? null;
     }
 
     /**
@@ -1439,7 +1477,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getShopperStatement()
     {
-        return $this->container['shopperStatement'];
+        return $this->container['shopperStatement'] ?? null;
     }
 
     /**
@@ -1463,7 +1501,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getSocialSecurityNumber()
     {
-        return $this->container['socialSecurityNumber'];
+        return $this->container['socialSecurityNumber'] ?? null;
     }
 
     /**
@@ -1487,7 +1525,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getSplits()
     {
-        return $this->container['splits'];
+        return $this->container['splits'] ?? null;
     }
 
     /**
@@ -1511,7 +1549,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getStore()
     {
-        return $this->container['store'];
+        return $this->container['store'] ?? null;
     }
 
     /**
@@ -1535,7 +1573,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getTelephoneNumber()
     {
-        return $this->container['telephoneNumber'];
+        return $this->container['telephoneNumber'] ?? null;
     }
 
     /**
@@ -1559,7 +1597,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getThreeDS2RequestData()
     {
-        return $this->container['threeDS2RequestData'];
+        return $this->container['threeDS2RequestData'] ?? null;
     }
 
     /**
@@ -1584,7 +1622,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getThreeDSAuthenticationOnly()
     {
-        return $this->container['threeDSAuthenticationOnly'];
+        return $this->container['threeDSAuthenticationOnly'] ?? null;
     }
 
     /**
@@ -1609,7 +1647,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getTotalsGroup()
     {
-        return $this->container['totalsGroup'];
+        return $this->container['totalsGroup'] ?? null;
     }
 
     /**
@@ -1633,7 +1671,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getTrustedShopper()
     {
-        return $this->container['trustedShopper'];
+        return $this->container['trustedShopper'] ?? null;
     }
 
     /**
@@ -1688,6 +1726,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -1701,6 +1740,7 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -1719,14 +1759,19 @@ class BalanceCheckRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

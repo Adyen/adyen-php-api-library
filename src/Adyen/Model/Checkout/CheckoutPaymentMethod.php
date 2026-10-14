@@ -22,7 +22,7 @@ use \Adyen\Model\Checkout\ObjectSerializer;
  * @package  Adyen\Model\Checkout
  * @implements \ArrayAccess<string, mixed>
  */
-class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable
+class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializable, \Adyen\Model\Checkout\CheckoutPaymentMethodInterface
 {
     public const DISCRIMINATOR = 'type';
 
@@ -626,6 +626,21 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
+    }
+
+    /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
     }
 
     /**
@@ -1622,13 +1637,10 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -1645,7 +1657,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAccountHolderType()
     {
-        return $this->container['accountHolderType'];
+        return $this->container['accountHolderType'] ?? null;
     }
 
     /**
@@ -1657,6 +1669,19 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setAccountHolderType($accountHolderType): self
     {
+        if ($accountHolderType !== null) {
+            $allowedValues = $this->getAccountHolderTypeAllowableValues();
+            foreach ([$accountHolderType] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "accountHolderType: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['accountHolderType'] = $accountHolderType;
 
         return $this;
@@ -1669,7 +1694,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getBankAccountNumber()
     {
-        return $this->container['bankAccountNumber'];
+        return $this->container['bankAccountNumber'] ?? null;
     }
 
     /**
@@ -1693,7 +1718,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getBankAccountType()
     {
-        return $this->container['bankAccountType'];
+        return $this->container['bankAccountType'] ?? null;
     }
 
     /**
@@ -1705,6 +1730,19 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setBankAccountType($bankAccountType): self
     {
+        if ($bankAccountType !== null) {
+            $allowedValues = $this->getBankAccountTypeAllowableValues();
+            foreach ([$bankAccountType] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "bankAccountType: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['bankAccountType'] = $bankAccountType;
 
         return $this;
@@ -1717,7 +1755,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getBankLocationId()
     {
-        return $this->container['bankLocationId'];
+        return $this->container['bankLocationId'] ?? null;
     }
 
     /**
@@ -1741,7 +1779,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getCheckoutAttemptId()
     {
-        return $this->container['checkoutAttemptId'];
+        return $this->container['checkoutAttemptId'] ?? null;
     }
 
     /**
@@ -1765,7 +1803,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getEncryptedBankAccountNumber()
     {
-        return $this->container['encryptedBankAccountNumber'];
+        return $this->container['encryptedBankAccountNumber'] ?? null;
     }
 
     /**
@@ -1789,7 +1827,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getEncryptedBankLocationId()
     {
-        return $this->container['encryptedBankLocationId'];
+        return $this->container['encryptedBankLocationId'] ?? null;
     }
 
     /**
@@ -1813,7 +1851,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getOwnerName()
     {
-        return $this->container['ownerName'];
+        return $this->container['ownerName'] ?? null;
     }
 
     /**
@@ -1838,7 +1876,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getRecurringDetailReference()
     {
-        return $this->container['recurringDetailReference'];
+        return $this->container['recurringDetailReference'] ?? null;
     }
 
     /**
@@ -1863,7 +1901,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getSdkData()
     {
-        return $this->container['sdkData'];
+        return $this->container['sdkData'] ?? null;
     }
 
     /**
@@ -1887,7 +1925,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getStoredPaymentMethodId()
     {
-        return $this->container['storedPaymentMethodId'];
+        return $this->container['storedPaymentMethodId'] ?? null;
     }
 
     /**
@@ -1911,7 +1949,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getTransferInstrumentId()
     {
-        return $this->container['transferInstrumentId'];
+        return $this->container['transferInstrumentId'] ?? null;
     }
 
     /**
@@ -1935,7 +1973,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getType()
     {
-        return $this->container['type'];
+        return $this->container['type'] ?? null;
     }
 
     /**
@@ -1947,6 +1985,19 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setType($type): self
     {
+        if ($type !== null) {
+            $allowedValues = $this->getTypeAllowableValues();
+            foreach ([$type] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "type: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['type'] = $type;
 
         return $this;
@@ -1959,7 +2010,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getFinancingProgram()
     {
-        return $this->container['financingProgram'];
+        return $this->container['financingProgram'] ?? null;
     }
 
     /**
@@ -1983,7 +2034,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getBillingAddress()
     {
-        return $this->container['billingAddress'];
+        return $this->container['billingAddress'] ?? null;
     }
 
     /**
@@ -2007,7 +2058,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getDeliveryAddress()
     {
-        return $this->container['deliveryAddress'];
+        return $this->container['deliveryAddress'] ?? null;
     }
 
     /**
@@ -2031,7 +2082,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getPersonalDetails()
     {
-        return $this->container['personalDetails'];
+        return $this->container['personalDetails'] ?? null;
     }
 
     /**
@@ -2055,7 +2106,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getFeeType()
     {
-        return $this->container['feeType'];
+        return $this->container['feeType'] ?? null;
     }
 
     /**
@@ -2067,6 +2118,19 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setFeeType($feeType): self
     {
+        if ($feeType !== null) {
+            $allowedValues = $this->getFeeTypeAllowableValues();
+            foreach ([$feeType] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "feeType: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['feeType'] = $feeType;
 
         return $this;
@@ -2079,7 +2143,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAmazonPayToken()
     {
-        return $this->container['amazonPayToken'];
+        return $this->container['amazonPayToken'] ?? null;
     }
 
     /**
@@ -2103,7 +2167,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getCheckoutSessionId()
     {
-        return $this->container['checkoutSessionId'];
+        return $this->container['checkoutSessionId'] ?? null;
     }
 
     /**
@@ -2127,7 +2191,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getBeneficiaryId()
     {
-        return $this->container['beneficiaryId'];
+        return $this->container['beneficiaryId'] ?? null;
     }
 
     /**
@@ -2151,7 +2215,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getApplePayToken()
     {
-        return $this->container['applePayToken'];
+        return $this->container['applePayToken'] ?? null;
     }
 
     /**
@@ -2175,7 +2239,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getFundingSource()
     {
-        return $this->container['fundingSource'];
+        return $this->container['fundingSource'] ?? null;
     }
 
     /**
@@ -2187,6 +2251,19 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function setFundingSource($fundingSource): self
     {
+        if ($fundingSource !== null) {
+            $allowedValues = $this->getFundingSourceAllowableValues();
+            foreach ([$fundingSource] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "fundingSource: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['fundingSource'] = $fundingSource;
 
         return $this;
@@ -2199,7 +2276,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getHolderName()
     {
-        return $this->container['holderName'];
+        return $this->container['holderName'] ?? null;
     }
 
     /**
@@ -2223,7 +2300,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getIssuer()
     {
-        return $this->container['issuer'];
+        return $this->container['issuer'] ?? null;
     }
 
     /**
@@ -2247,7 +2324,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getBlikCode()
     {
-        return $this->container['blikCode'];
+        return $this->container['blikCode'] ?? null;
     }
 
     /**
@@ -2271,7 +2348,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getBillingSequenceNumber()
     {
-        return $this->container['billingSequenceNumber'];
+        return $this->container['billingSequenceNumber'] ?? null;
     }
 
     /**
@@ -2295,7 +2372,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getBrand()
     {
-        return $this->container['brand'];
+        return $this->container['brand'] ?? null;
     }
 
     /**
@@ -2320,7 +2397,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getCupsecureplusSmscode()
     {
-        return $this->container['cupsecureplusSmscode'];
+        return $this->container['cupsecureplusSmscode'] ?? null;
     }
 
     /**
@@ -2345,7 +2422,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getCvc()
     {
-        return $this->container['cvc'];
+        return $this->container['cvc'] ?? null;
     }
 
     /**
@@ -2369,7 +2446,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getEncryptedCard()
     {
-        return $this->container['encryptedCard'];
+        return $this->container['encryptedCard'] ?? null;
     }
 
     /**
@@ -2393,7 +2470,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getEncryptedCardNumber()
     {
-        return $this->container['encryptedCardNumber'];
+        return $this->container['encryptedCardNumber'] ?? null;
     }
 
     /**
@@ -2417,7 +2494,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getEncryptedExpiryMonth()
     {
-        return $this->container['encryptedExpiryMonth'];
+        return $this->container['encryptedExpiryMonth'] ?? null;
     }
 
     /**
@@ -2441,7 +2518,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getEncryptedExpiryYear()
     {
-        return $this->container['encryptedExpiryYear'];
+        return $this->container['encryptedExpiryYear'] ?? null;
     }
 
     /**
@@ -2465,7 +2542,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getEncryptedPassword()
     {
-        return $this->container['encryptedPassword'];
+        return $this->container['encryptedPassword'] ?? null;
     }
 
     /**
@@ -2489,7 +2566,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getEncryptedSecurityCode()
     {
-        return $this->container['encryptedSecurityCode'];
+        return $this->container['encryptedSecurityCode'] ?? null;
     }
 
     /**
@@ -2513,7 +2590,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getExpiryMonth()
     {
-        return $this->container['expiryMonth'];
+        return $this->container['expiryMonth'] ?? null;
     }
 
     /**
@@ -2537,7 +2614,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getExpiryYear()
     {
-        return $this->container['expiryYear'];
+        return $this->container['expiryYear'] ?? null;
     }
 
     /**
@@ -2561,7 +2638,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getFastlaneData()
     {
-        return $this->container['fastlaneData'];
+        return $this->container['fastlaneData'] ?? null;
     }
 
     /**
@@ -2585,7 +2662,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getNetworkPaymentReference()
     {
-        return $this->container['networkPaymentReference'];
+        return $this->container['networkPaymentReference'] ?? null;
     }
 
     /**
@@ -2609,7 +2686,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getNumber()
     {
-        return $this->container['number'];
+        return $this->container['number'] ?? null;
     }
 
     /**
@@ -2633,7 +2710,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getShopperNotificationReference()
     {
-        return $this->container['shopperNotificationReference'];
+        return $this->container['shopperNotificationReference'] ?? null;
     }
 
     /**
@@ -2657,7 +2734,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getSrcCorrelationId()
     {
-        return $this->container['srcCorrelationId'];
+        return $this->container['srcCorrelationId'] ?? null;
     }
 
     /**
@@ -2681,7 +2758,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getSrcDigitalCardId()
     {
-        return $this->container['srcDigitalCardId'];
+        return $this->container['srcDigitalCardId'] ?? null;
     }
 
     /**
@@ -2705,7 +2782,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getSrcScheme()
     {
-        return $this->container['srcScheme'];
+        return $this->container['srcScheme'] ?? null;
     }
 
     /**
@@ -2729,7 +2806,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getSrcTokenReference()
     {
-        return $this->container['srcTokenReference'];
+        return $this->container['srcTokenReference'] ?? null;
     }
 
     /**
@@ -2753,7 +2830,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getThreeDS2SdkVersion()
     {
-        return $this->container['threeDS2SdkVersion'];
+        return $this->container['threeDS2SdkVersion'] ?? null;
     }
 
     /**
@@ -2777,7 +2854,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getCashtag()
     {
-        return $this->container['cashtag'];
+        return $this->container['cashtag'] ?? null;
     }
 
     /**
@@ -2801,7 +2878,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getCustomerId()
     {
-        return $this->container['customerId'];
+        return $this->container['customerId'] ?? null;
     }
 
     /**
@@ -2825,7 +2902,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getGrantId()
     {
-        return $this->container['grantId'];
+        return $this->container['grantId'] ?? null;
     }
 
     /**
@@ -2849,7 +2926,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getOnFileGrantId()
     {
-        return $this->container['onFileGrantId'];
+        return $this->container['onFileGrantId'] ?? null;
     }
 
     /**
@@ -2873,7 +2950,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getRequestId()
     {
-        return $this->container['requestId'];
+        return $this->container['requestId'] ?? null;
     }
 
     /**
@@ -2897,7 +2974,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getSubtype()
     {
-        return $this->container['subtype'];
+        return $this->container['subtype'] ?? null;
     }
 
     /**
@@ -2921,7 +2998,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getBankBranchCode()
     {
-        return $this->container['bankBranchCode'];
+        return $this->container['bankBranchCode'] ?? null;
     }
 
     /**
@@ -2945,7 +3022,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getFirstName()
     {
-        return $this->container['firstName'];
+        return $this->container['firstName'] ?? null;
     }
 
     /**
@@ -2969,7 +3046,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getLastName()
     {
-        return $this->container['lastName'];
+        return $this->container['lastName'] ?? null;
     }
 
     /**
@@ -2993,13 +3070,13 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getShopperEmail()
     {
-        return $this->container['shopperEmail'];
+        return $this->container['shopperEmail'] ?? null;
     }
 
     /**
      * Sets shopperEmail
      *
-     * @param string $shopperEmail
+     * @param string $shopperEmail 
      *
      * @return self
      */
@@ -3017,13 +3094,13 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getTelephoneNumber()
     {
-        return $this->container['telephoneNumber'];
+        return $this->container['telephoneNumber'] ?? null;
     }
 
     /**
      * Sets telephoneNumber
      *
-     * @param string $telephoneNumber
+     * @param string $telephoneNumber 
      *
      * @return self
      */
@@ -3041,7 +3118,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getBankCode()
     {
-        return $this->container['bankCode'];
+        return $this->container['bankCode'] ?? null;
     }
 
     /**
@@ -3065,7 +3142,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getGooglePayCardNetwork()
     {
-        return $this->container['googlePayCardNetwork'];
+        return $this->container['googlePayCardNetwork'] ?? null;
     }
 
     /**
@@ -3089,7 +3166,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getGooglePayToken()
     {
-        return $this->container['googlePayToken'];
+        return $this->container['googlePayToken'] ?? null;
     }
 
     /**
@@ -3113,7 +3190,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getMerchantData()
     {
-        return $this->container['merchantData'];
+        return $this->container['merchantData'] ?? null;
     }
 
     /**
@@ -3137,7 +3214,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getKlarnaNetworkData()
     {
-        return $this->container['klarnaNetworkData'];
+        return $this->container['klarnaNetworkData'] ?? null;
     }
 
     /**
@@ -3161,7 +3238,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getKlarnaNetworkPaymentAccountId()
     {
-        return $this->container['klarnaNetworkPaymentAccountId'];
+        return $this->container['klarnaNetworkPaymentAccountId'] ?? null;
     }
 
     /**
@@ -3185,7 +3262,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getKlarnaNetworkSessionToken()
     {
-        return $this->container['klarnaNetworkSessionToken'];
+        return $this->container['klarnaNetworkSessionToken'] ?? null;
     }
 
     /**
@@ -3209,7 +3286,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getMasterpassTransactionId()
     {
-        return $this->container['masterpassTransactionId'];
+        return $this->container['masterpassTransactionId'] ?? null;
     }
 
     /**
@@ -3233,7 +3310,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getOrderID()
     {
-        return $this->container['orderID'];
+        return $this->container['orderID'] ?? null;
     }
 
     /**
@@ -3257,7 +3334,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getPayeePreferred()
     {
-        return $this->container['payeePreferred'];
+        return $this->container['payeePreferred'] ?? null;
     }
 
     /**
@@ -3281,7 +3358,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getPayerID()
     {
-        return $this->container['payerID'];
+        return $this->container['payerID'] ?? null;
     }
 
     /**
@@ -3305,7 +3382,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getPayerSelected()
     {
-        return $this->container['payerSelected'];
+        return $this->container['payerSelected'] ?? null;
     }
 
     /**
@@ -3329,7 +3406,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getShopperAccountIdentifier()
     {
-        return $this->container['shopperAccountIdentifier'];
+        return $this->container['shopperAccountIdentifier'] ?? null;
     }
 
     /**
@@ -3353,7 +3430,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getVirtualPaymentAddress()
     {
-        return $this->container['virtualPaymentAddress'];
+        return $this->container['virtualPaymentAddress'] ?? null;
     }
 
     /**
@@ -3377,7 +3454,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getPixRecurring()
     {
-        return $this->container['pixRecurring'];
+        return $this->container['pixRecurring'] ?? null;
     }
 
     /**
@@ -3401,7 +3478,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getDeviceId()
     {
-        return $this->container['deviceId'];
+        return $this->container['deviceId'] ?? null;
     }
 
     /**
@@ -3425,7 +3502,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getRiskSignals()
     {
-        return $this->container['riskSignals'];
+        return $this->container['riskSignals'] ?? null;
     }
 
     /**
@@ -3449,7 +3526,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getBank()
     {
-        return $this->container['bank'];
+        return $this->container['bank'] ?? null;
     }
 
     /**
@@ -3473,7 +3550,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getClientType()
     {
-        return $this->container['clientType'];
+        return $this->container['clientType'] ?? null;
     }
 
     /**
@@ -3497,7 +3574,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getIdentification()
     {
-        return $this->container['identification'];
+        return $this->container['identification'] ?? null;
     }
 
     /**
@@ -3521,7 +3598,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getIdentificationType()
     {
-        return $this->container['identificationType'];
+        return $this->container['identificationType'] ?? null;
     }
 
     /**
@@ -3545,7 +3622,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getDeviceFingerprint()
     {
-        return $this->container['deviceFingerprint'];
+        return $this->container['deviceFingerprint'] ?? null;
     }
 
     /**
@@ -3569,7 +3646,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getIban()
     {
-        return $this->container['iban'];
+        return $this->container['iban'] ?? null;
     }
 
     /**
@@ -3593,7 +3670,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getSamsungPayToken()
     {
-        return $this->container['samsungPayToken'];
+        return $this->container['samsungPayToken'] ?? null;
     }
 
     /**
@@ -3617,7 +3694,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getDueDate()
     {
-        return $this->container['dueDate'];
+        return $this->container['dueDate'] ?? null;
     }
 
     /**
@@ -3641,7 +3718,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getAppId()
     {
-        return $this->container['appId'];
+        return $this->container['appId'] ?? null;
     }
 
     /**
@@ -3665,7 +3742,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getVisaCheckoutCallId()
     {
-        return $this->container['visaCheckoutCallId'];
+        return $this->container['visaCheckoutCallId'] ?? null;
     }
 
     /**
@@ -3689,7 +3766,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getOpenid()
     {
-        return $this->container['openid'];
+        return $this->container['openid'] ?? null;
     }
 
     /**
@@ -3713,7 +3790,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function getClickAndCollect()
     {
-        return $this->container['clickAndCollect'];
+        return $this->container['clickAndCollect'] ?? null;
     }
 
     /**
@@ -3768,6 +3845,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -3781,6 +3859,7 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -3799,14 +3878,19 @@ class CheckoutPaymentMethod implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

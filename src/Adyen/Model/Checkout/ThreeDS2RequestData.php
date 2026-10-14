@@ -233,6 +233,21 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -621,13 +636,10 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -644,7 +656,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getAcctInfo()
     {
-        return $this->container['acctInfo'];
+        return $this->container['acctInfo'] ?? null;
     }
 
     /**
@@ -668,7 +680,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getAcctType()
     {
-        return $this->container['acctType'];
+        return $this->container['acctType'] ?? null;
     }
 
     /**
@@ -680,6 +692,19 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setAcctType($acctType): self
     {
+        if ($acctType !== null) {
+            $allowedValues = $this->getAcctTypeAllowableValues();
+            foreach ([$acctType] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "acctType: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['acctType'] = $acctType;
 
         return $this;
@@ -692,7 +717,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getAcquirerBIN()
     {
-        return $this->container['acquirerBIN'];
+        return $this->container['acquirerBIN'] ?? null;
     }
 
     /**
@@ -716,7 +741,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getAcquirerMerchantID()
     {
-        return $this->container['acquirerMerchantID'];
+        return $this->container['acquirerMerchantID'] ?? null;
     }
 
     /**
@@ -740,7 +765,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getAddrMatch()
     {
-        return $this->container['addrMatch'];
+        return $this->container['addrMatch'] ?? null;
     }
 
     /**
@@ -752,6 +777,19 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setAddrMatch($addrMatch): self
     {
+        if ($addrMatch !== null) {
+            $allowedValues = $this->getAddrMatchAllowableValues();
+            foreach ([$addrMatch] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "addrMatch: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['addrMatch'] = $addrMatch;
 
         return $this;
@@ -765,7 +803,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getAuthenticationOnly()
     {
-        return $this->container['authenticationOnly'];
+        return $this->container['authenticationOnly'] ?? null;
     }
 
     /**
@@ -791,7 +829,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getChallengeIndicator()
     {
-        return $this->container['challengeIndicator'];
+        return $this->container['challengeIndicator'] ?? null;
     }
 
     /**
@@ -804,6 +842,19 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setChallengeIndicator($challengeIndicator): self
     {
+        if ($challengeIndicator !== null) {
+            $allowedValues = $this->getChallengeIndicatorAllowableValues();
+            foreach ([$challengeIndicator] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "challengeIndicator: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['challengeIndicator'] = $challengeIndicator;
 
         return $this;
@@ -816,7 +867,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getDeviceChannel()
     {
-        return $this->container['deviceChannel'];
+        return $this->container['deviceChannel'] ?? null;
     }
 
     /**
@@ -840,7 +891,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getDeviceRenderOptions()
     {
-        return $this->container['deviceRenderOptions'];
+        return $this->container['deviceRenderOptions'] ?? null;
     }
 
     /**
@@ -864,7 +915,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getHomePhone()
     {
-        return $this->container['homePhone'];
+        return $this->container['homePhone'] ?? null;
     }
 
     /**
@@ -888,7 +939,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getMcc()
     {
-        return $this->container['mcc'];
+        return $this->container['mcc'] ?? null;
     }
 
     /**
@@ -912,7 +963,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getMerchantName()
     {
-        return $this->container['merchantName'];
+        return $this->container['merchantName'] ?? null;
     }
 
     /**
@@ -936,7 +987,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getMessageVersion()
     {
-        return $this->container['messageVersion'];
+        return $this->container['messageVersion'] ?? null;
     }
 
     /**
@@ -960,7 +1011,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getMobilePhone()
     {
-        return $this->container['mobilePhone'];
+        return $this->container['mobilePhone'] ?? null;
     }
 
     /**
@@ -984,7 +1035,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getNotificationURL()
     {
-        return $this->container['notificationURL'];
+        return $this->container['notificationURL'] ?? null;
     }
 
     /**
@@ -1008,7 +1059,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getPayTokenInd()
     {
-        return $this->container['payTokenInd'];
+        return $this->container['payTokenInd'] ?? null;
     }
 
     /**
@@ -1032,7 +1083,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getPaymentAuthenticationUseCase()
     {
-        return $this->container['paymentAuthenticationUseCase'];
+        return $this->container['paymentAuthenticationUseCase'] ?? null;
     }
 
     /**
@@ -1056,7 +1107,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getPurchaseInstalData()
     {
-        return $this->container['purchaseInstalData'];
+        return $this->container['purchaseInstalData'] ?? null;
     }
 
     /**
@@ -1080,7 +1131,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getRecurringExpiry()
     {
-        return $this->container['recurringExpiry'];
+        return $this->container['recurringExpiry'] ?? null;
     }
 
     /**
@@ -1104,7 +1155,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getRecurringFrequency()
     {
-        return $this->container['recurringFrequency'];
+        return $this->container['recurringFrequency'] ?? null;
     }
 
     /**
@@ -1128,7 +1179,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getSdkAppID()
     {
-        return $this->container['sdkAppID'];
+        return $this->container['sdkAppID'] ?? null;
     }
 
     /**
@@ -1152,7 +1203,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getSdkEncData()
     {
-        return $this->container['sdkEncData'];
+        return $this->container['sdkEncData'] ?? null;
     }
 
     /**
@@ -1176,7 +1227,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getSdkEphemPubKey()
     {
-        return $this->container['sdkEphemPubKey'];
+        return $this->container['sdkEphemPubKey'] ?? null;
     }
 
     /**
@@ -1200,7 +1251,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getSdkMaxTimeout()
     {
-        return $this->container['sdkMaxTimeout'];
+        return $this->container['sdkMaxTimeout'] ?? null;
     }
 
     /**
@@ -1224,7 +1275,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getSdkReferenceNumber()
     {
-        return $this->container['sdkReferenceNumber'];
+        return $this->container['sdkReferenceNumber'] ?? null;
     }
 
     /**
@@ -1248,7 +1299,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getSdkTransID()
     {
-        return $this->container['sdkTransID'];
+        return $this->container['sdkTransID'] ?? null;
     }
 
     /**
@@ -1272,7 +1323,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getSdkVersion()
     {
-        return $this->container['sdkVersion'];
+        return $this->container['sdkVersion'] ?? null;
     }
 
     /**
@@ -1296,7 +1347,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getThreeDSCompInd()
     {
-        return $this->container['threeDSCompInd'];
+        return $this->container['threeDSCompInd'] ?? null;
     }
 
     /**
@@ -1320,7 +1371,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getThreeDSRequestorAuthenticationInd()
     {
-        return $this->container['threeDSRequestorAuthenticationInd'];
+        return $this->container['threeDSRequestorAuthenticationInd'] ?? null;
     }
 
     /**
@@ -1344,7 +1395,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getThreeDSRequestorAuthenticationInfo()
     {
-        return $this->container['threeDSRequestorAuthenticationInfo'];
+        return $this->container['threeDSRequestorAuthenticationInfo'] ?? null;
     }
 
     /**
@@ -1368,7 +1419,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getThreeDSRequestorChallengeInd()
     {
-        return $this->container['threeDSRequestorChallengeInd'];
+        return $this->container['threeDSRequestorChallengeInd'] ?? null;
     }
 
     /**
@@ -1380,6 +1431,19 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setThreeDSRequestorChallengeInd($threeDSRequestorChallengeInd): self
     {
+        if ($threeDSRequestorChallengeInd !== null) {
+            $allowedValues = $this->getThreeDSRequestorChallengeIndAllowableValues();
+            foreach ([$threeDSRequestorChallengeInd] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "threeDSRequestorChallengeInd: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['threeDSRequestorChallengeInd'] = $threeDSRequestorChallengeInd;
 
         return $this;
@@ -1392,7 +1456,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getThreeDSRequestorID()
     {
-        return $this->container['threeDSRequestorID'];
+        return $this->container['threeDSRequestorID'] ?? null;
     }
 
     /**
@@ -1416,7 +1480,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getThreeDSRequestorName()
     {
-        return $this->container['threeDSRequestorName'];
+        return $this->container['threeDSRequestorName'] ?? null;
     }
 
     /**
@@ -1440,7 +1504,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getThreeDSRequestorPriorAuthenticationInfo()
     {
-        return $this->container['threeDSRequestorPriorAuthenticationInfo'];
+        return $this->container['threeDSRequestorPriorAuthenticationInfo'] ?? null;
     }
 
     /**
@@ -1464,7 +1528,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getThreeDSRequestorURL()
     {
-        return $this->container['threeDSRequestorURL'];
+        return $this->container['threeDSRequestorURL'] ?? null;
     }
 
     /**
@@ -1488,7 +1552,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getTransType()
     {
-        return $this->container['transType'];
+        return $this->container['transType'] ?? null;
     }
 
     /**
@@ -1500,6 +1564,19 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setTransType($transType): self
     {
+        if ($transType !== null) {
+            $allowedValues = $this->getTransTypeAllowableValues();
+            foreach ([$transType] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "transType: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['transType'] = $transType;
 
         return $this;
@@ -1512,7 +1589,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getTransactionType()
     {
-        return $this->container['transactionType'];
+        return $this->container['transactionType'] ?? null;
     }
 
     /**
@@ -1524,6 +1601,19 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function setTransactionType($transactionType): self
     {
+        if ($transactionType !== null) {
+            $allowedValues = $this->getTransactionTypeAllowableValues();
+            foreach ([$transactionType] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "transactionType: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['transactionType'] = $transactionType;
 
         return $this;
@@ -1536,7 +1626,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getWhiteListStatus()
     {
-        return $this->container['whiteListStatus'];
+        return $this->container['whiteListStatus'] ?? null;
     }
 
     /**
@@ -1560,7 +1650,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getWorkPhone()
     {
-        return $this->container['workPhone'];
+        return $this->container['workPhone'] ?? null;
     }
 
     /**
@@ -1615,6 +1705,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -1628,6 +1719,7 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -1646,14 +1738,19 @@ class ThreeDS2RequestData implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

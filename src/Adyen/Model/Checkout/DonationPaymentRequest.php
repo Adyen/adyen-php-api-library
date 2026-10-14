@@ -233,6 +233,21 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -558,13 +573,10 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -581,7 +593,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getAccountInfo()
     {
-        return $this->container['accountInfo'];
+        return $this->container['accountInfo'] ?? null;
     }
 
     /**
@@ -605,7 +617,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getAmount()
     {
-        return $this->container['amount'];
+        return $this->container['amount'] ?? null;
     }
 
     /**
@@ -629,7 +641,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getApplicationInfo()
     {
-        return $this->container['applicationInfo'];
+        return $this->container['applicationInfo'] ?? null;
     }
 
     /**
@@ -653,7 +665,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getAuthenticationData()
     {
-        return $this->container['authenticationData'];
+        return $this->container['authenticationData'] ?? null;
     }
 
     /**
@@ -677,7 +689,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getBillingAddress()
     {
-        return $this->container['billingAddress'];
+        return $this->container['billingAddress'] ?? null;
     }
 
     /**
@@ -701,7 +713,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getBrowserInfo()
     {
-        return $this->container['browserInfo'];
+        return $this->container['browserInfo'] ?? null;
     }
 
     /**
@@ -725,7 +737,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getChannel()
     {
-        return $this->container['channel'];
+        return $this->container['channel'] ?? null;
     }
 
     /**
@@ -737,6 +749,19 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setChannel($channel): self
     {
+        if ($channel !== null) {
+            $allowedValues = $this->getChannelAllowableValues();
+            foreach ([$channel] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "channel: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['channel'] = $channel;
 
         return $this;
@@ -749,7 +774,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getCheckoutAttemptId()
     {
-        return $this->container['checkoutAttemptId'];
+        return $this->container['checkoutAttemptId'] ?? null;
     }
 
     /**
@@ -773,7 +798,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getCountryCode()
     {
-        return $this->container['countryCode'];
+        return $this->container['countryCode'] ?? null;
     }
 
     /**
@@ -797,7 +822,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getDateOfBirth()
     {
-        return $this->container['dateOfBirth'];
+        return $this->container['dateOfBirth'] ?? null;
     }
 
     /**
@@ -821,7 +846,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getDeliveryAddress()
     {
-        return $this->container['deliveryAddress'];
+        return $this->container['deliveryAddress'] ?? null;
     }
 
     /**
@@ -845,7 +870,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getDeviceFingerprint()
     {
-        return $this->container['deviceFingerprint'];
+        return $this->container['deviceFingerprint'] ?? null;
     }
 
     /**
@@ -869,7 +894,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getDonationAccount()
     {
-        return $this->container['donationAccount'];
+        return $this->container['donationAccount'] ?? null;
     }
 
     /**
@@ -893,7 +918,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getDonationCampaignId()
     {
-        return $this->container['donationCampaignId'];
+        return $this->container['donationCampaignId'] ?? null;
     }
 
     /**
@@ -917,7 +942,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getDonationOriginalPspReference()
     {
-        return $this->container['donationOriginalPspReference'];
+        return $this->container['donationOriginalPspReference'] ?? null;
     }
 
     /**
@@ -941,7 +966,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getDonationToken()
     {
-        return $this->container['donationToken'];
+        return $this->container['donationToken'] ?? null;
     }
 
     /**
@@ -965,7 +990,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getLineItems()
     {
-        return $this->container['lineItems'];
+        return $this->container['lineItems'] ?? null;
     }
 
     /**
@@ -989,7 +1014,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getMerchantAccount()
     {
-        return $this->container['merchantAccount'];
+        return $this->container['merchantAccount'] ?? null;
     }
 
     /**
@@ -1013,7 +1038,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getMerchantRiskIndicator()
     {
-        return $this->container['merchantRiskIndicator'];
+        return $this->container['merchantRiskIndicator'] ?? null;
     }
 
     /**
@@ -1037,7 +1062,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getMetadata()
     {
-        return $this->container['metadata'];
+        return $this->container['metadata'] ?? null;
     }
 
     /**
@@ -1061,7 +1086,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getMpiData()
     {
-        return $this->container['mpiData'];
+        return $this->container['mpiData'] ?? null;
     }
 
     /**
@@ -1085,7 +1110,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getOrigin()
     {
-        return $this->container['origin'];
+        return $this->container['origin'] ?? null;
     }
 
     /**
@@ -1105,17 +1130,17 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets paymentMethod
      *
-     * @return \Adyen\Model\Checkout\DonationPaymentMethod|null
+     * @return \Adyen\Model\Checkout\DonationPaymentMethodInterface|null
      */
     public function getPaymentMethod()
     {
-        return $this->container['paymentMethod'];
+        return $this->container['paymentMethod'] ?? null;
     }
 
     /**
      * Sets paymentMethod
      *
-     * @param \Adyen\Model\Checkout\DonationPaymentMethod|null $paymentMethod paymentMethod
+     * @param \Adyen\Model\Checkout\DonationPaymentMethodInterface|null $paymentMethod paymentMethod
      *
      * @return self
      */
@@ -1133,7 +1158,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getRecurringProcessingModel()
     {
-        return $this->container['recurringProcessingModel'];
+        return $this->container['recurringProcessingModel'] ?? null;
     }
 
     /**
@@ -1145,6 +1170,19 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setRecurringProcessingModel($recurringProcessingModel): self
     {
+        if ($recurringProcessingModel !== null) {
+            $allowedValues = $this->getRecurringProcessingModelAllowableValues();
+            foreach ([$recurringProcessingModel] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "recurringProcessingModel: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['recurringProcessingModel'] = $recurringProcessingModel;
 
         return $this;
@@ -1157,7 +1195,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getRedirectFromIssuerMethod()
     {
-        return $this->container['redirectFromIssuerMethod'];
+        return $this->container['redirectFromIssuerMethod'] ?? null;
     }
 
     /**
@@ -1181,7 +1219,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getRedirectToIssuerMethod()
     {
-        return $this->container['redirectToIssuerMethod'];
+        return $this->container['redirectToIssuerMethod'] ?? null;
     }
 
     /**
@@ -1205,7 +1243,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getReference()
     {
-        return $this->container['reference'];
+        return $this->container['reference'] ?? null;
     }
 
     /**
@@ -1229,7 +1267,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getReturnUrl()
     {
-        return $this->container['returnUrl'];
+        return $this->container['returnUrl'] ?? null;
     }
 
     /**
@@ -1253,7 +1291,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getSessionValidity()
     {
-        return $this->container['sessionValidity'];
+        return $this->container['sessionValidity'] ?? null;
     }
 
     /**
@@ -1277,7 +1315,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getShopperEmail()
     {
-        return $this->container['shopperEmail'];
+        return $this->container['shopperEmail'] ?? null;
     }
 
     /**
@@ -1301,7 +1339,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getShopperIP()
     {
-        return $this->container['shopperIP'];
+        return $this->container['shopperIP'] ?? null;
     }
 
     /**
@@ -1325,7 +1363,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getShopperInteraction()
     {
-        return $this->container['shopperInteraction'];
+        return $this->container['shopperInteraction'] ?? null;
     }
 
     /**
@@ -1337,6 +1375,19 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function setShopperInteraction($shopperInteraction): self
     {
+        if ($shopperInteraction !== null) {
+            $allowedValues = $this->getShopperInteractionAllowableValues();
+            foreach ([$shopperInteraction] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "shopperInteraction: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['shopperInteraction'] = $shopperInteraction;
 
         return $this;
@@ -1349,7 +1400,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getShopperLocale()
     {
-        return $this->container['shopperLocale'];
+        return $this->container['shopperLocale'] ?? null;
     }
 
     /**
@@ -1373,7 +1424,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getShopperName()
     {
-        return $this->container['shopperName'];
+        return $this->container['shopperName'] ?? null;
     }
 
     /**
@@ -1397,7 +1448,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getShopperReference()
     {
-        return $this->container['shopperReference'];
+        return $this->container['shopperReference'] ?? null;
     }
 
     /**
@@ -1421,7 +1472,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getSocialSecurityNumber()
     {
-        return $this->container['socialSecurityNumber'];
+        return $this->container['socialSecurityNumber'] ?? null;
     }
 
     /**
@@ -1445,7 +1496,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getStore()
     {
-        return $this->container['store'];
+        return $this->container['store'] ?? null;
     }
 
     /**
@@ -1469,7 +1520,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getTelephoneNumber()
     {
-        return $this->container['telephoneNumber'];
+        return $this->container['telephoneNumber'] ?? null;
     }
 
     /**
@@ -1493,7 +1544,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getThreeDS2RequestData()
     {
-        return $this->container['threeDS2RequestData'];
+        return $this->container['threeDS2RequestData'] ?? null;
     }
 
     /**
@@ -1548,6 +1599,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -1561,6 +1613,7 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -1579,14 +1632,19 @@ class DonationPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();

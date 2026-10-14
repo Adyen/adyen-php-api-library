@@ -311,6 +311,21 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
     }
 
     /**
+     * Updates explicit-null tracking for a property without duplicate entries.
+     */
+    private function updateNullableSetToNull(string $property, bool $isNull): void
+    {
+        $nullablesSetToNull = array_values(array_filter(
+            $this->getOpenAPINullablesSetToNull(),
+            static fn (string $name): bool => $name !== $property
+        ));
+        if ($isNull && static::isNullable($property)) {
+            $nullablesSetToNull[] = $property;
+        }
+        $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+    }
+
+    /**
      * Checks if a property is nullable
      *
      * @param string $property
@@ -759,13 +774,10 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
         // An explicitly provided value (including null) always wins; the
         // default only applies when the field was omitted entirely.
         if (array_key_exists($variableName, $fields)) {
+            $this->updateNullableSetToNull($variableName, is_null($fields[$variableName]));
             $this->container[$variableName] = $fields[$variableName];
         } else {
             $this->container[$variableName] = $defaultValue;
@@ -782,7 +794,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getAcquirerAccountCode()
     {
-        return $this->container['acquirerAccountCode'];
+        return $this->container['acquirerAccountCode'] ?? null;
     }
 
     /**
@@ -806,7 +818,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getAcquirerCode()
     {
-        return $this->container['acquirerCode'];
+        return $this->container['acquirerCode'] ?? null;
     }
 
     /**
@@ -830,7 +842,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getAcquirerReference()
     {
-        return $this->container['acquirerReference'];
+        return $this->container['acquirerReference'] ?? null;
     }
 
     /**
@@ -854,7 +866,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getAlias()
     {
-        return $this->container['alias'];
+        return $this->container['alias'] ?? null;
     }
 
     /**
@@ -878,7 +890,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getAliasType()
     {
-        return $this->container['aliasType'];
+        return $this->container['aliasType'] ?? null;
     }
 
     /**
@@ -902,7 +914,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getAuthCode()
     {
-        return $this->container['authCode'];
+        return $this->container['authCode'] ?? null;
     }
 
     /**
@@ -926,7 +938,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getAuthorisationMid()
     {
-        return $this->container['authorisationMid'];
+        return $this->container['authorisationMid'] ?? null;
     }
 
     /**
@@ -950,7 +962,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getAuthorisedAmountCurrency()
     {
-        return $this->container['authorisedAmountCurrency'];
+        return $this->container['authorisedAmountCurrency'] ?? null;
     }
 
     /**
@@ -974,7 +986,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getAuthorisedAmountValue()
     {
-        return $this->container['authorisedAmountValue'];
+        return $this->container['authorisedAmountValue'] ?? null;
     }
 
     /**
@@ -998,7 +1010,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getAvsResult()
     {
-        return $this->container['avsResult'];
+        return $this->container['avsResult'] ?? null;
     }
 
     /**
@@ -1022,7 +1034,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getAvsResultRaw()
     {
-        return $this->container['avsResultRaw'];
+        return $this->container['avsResultRaw'] ?? null;
     }
 
     /**
@@ -1046,7 +1058,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getBic()
     {
-        return $this->container['bic'];
+        return $this->container['bic'] ?? null;
     }
 
     /**
@@ -1070,7 +1082,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getCoBrandedWith()
     {
-        return $this->container['coBrandedWith'];
+        return $this->container['coBrandedWith'] ?? null;
     }
 
     /**
@@ -1094,7 +1106,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getCvcResult()
     {
-        return $this->container['cvcResult'];
+        return $this->container['cvcResult'] ?? null;
     }
 
     /**
@@ -1118,7 +1130,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getCvcResultRaw()
     {
-        return $this->container['cvcResultRaw'];
+        return $this->container['cvcResultRaw'] ?? null;
     }
 
     /**
@@ -1142,7 +1154,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getDsTransID()
     {
-        return $this->container['dsTransID'];
+        return $this->container['dsTransID'] ?? null;
     }
 
     /**
@@ -1166,7 +1178,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getEci()
     {
-        return $this->container['eci'];
+        return $this->container['eci'] ?? null;
     }
 
     /**
@@ -1190,7 +1202,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getExpiryDate()
     {
-        return $this->container['expiryDate'];
+        return $this->container['expiryDate'] ?? null;
     }
 
     /**
@@ -1214,7 +1226,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getExtraCostsCurrency()
     {
-        return $this->container['extraCostsCurrency'];
+        return $this->container['extraCostsCurrency'] ?? null;
     }
 
     /**
@@ -1238,7 +1250,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getExtraCostsValue()
     {
-        return $this->container['extraCostsValue'];
+        return $this->container['extraCostsValue'] ?? null;
     }
 
     /**
@@ -1262,7 +1274,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getFraudCheckItemNrFraudCheckname()
     {
-        return $this->container['fraudCheckItemNrFraudCheckname'];
+        return $this->container['fraudCheckItemNrFraudCheckname'] ?? null;
     }
 
     /**
@@ -1286,7 +1298,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getFraudManualReview()
     {
-        return $this->container['fraudManualReview'];
+        return $this->container['fraudManualReview'] ?? null;
     }
 
     /**
@@ -1310,7 +1322,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getFraudResultType()
     {
-        return $this->container['fraudResultType'];
+        return $this->container['fraudResultType'] ?? null;
     }
 
     /**
@@ -1322,6 +1334,19 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setFraudResultType($fraudResultType): self
     {
+        if ($fraudResultType !== null) {
+            $allowedValues = $this->getFraudResultTypeAllowableValues();
+            foreach ([$fraudResultType] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "fraudResultType: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['fraudResultType'] = $fraudResultType;
 
         return $this;
@@ -1334,7 +1359,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getFraudRiskLevel()
     {
-        return $this->container['fraudRiskLevel'];
+        return $this->container['fraudRiskLevel'] ?? null;
     }
 
     /**
@@ -1346,6 +1371,19 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setFraudRiskLevel($fraudRiskLevel): self
     {
+        if ($fraudRiskLevel !== null) {
+            $allowedValues = $this->getFraudRiskLevelAllowableValues();
+            foreach ([$fraudRiskLevel] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "fraudRiskLevel: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['fraudRiskLevel'] = $fraudRiskLevel;
 
         return $this;
@@ -1358,7 +1396,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getFundingSource()
     {
-        return $this->container['fundingSource'];
+        return $this->container['fundingSource'] ?? null;
     }
 
     /**
@@ -1382,7 +1420,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getFundsAvailability()
     {
-        return $this->container['fundsAvailability'];
+        return $this->container['fundsAvailability'] ?? null;
     }
 
     /**
@@ -1406,7 +1444,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getInferredRefusalReason()
     {
-        return $this->container['inferredRefusalReason'];
+        return $this->container['inferredRefusalReason'] ?? null;
     }
 
     /**
@@ -1430,7 +1468,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getIsCardCommercial()
     {
-        return $this->container['isCardCommercial'];
+        return $this->container['isCardCommercial'] ?? null;
     }
 
     /**
@@ -1454,7 +1492,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getIssuerCountry()
     {
-        return $this->container['issuerCountry'];
+        return $this->container['issuerCountry'] ?? null;
     }
 
     /**
@@ -1478,7 +1516,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getLiabilityShift()
     {
-        return $this->container['liabilityShift'];
+        return $this->container['liabilityShift'] ?? null;
     }
 
     /**
@@ -1502,7 +1540,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getMcBankNetReferenceNumber()
     {
-        return $this->container['mcBankNetReferenceNumber'];
+        return $this->container['mcBankNetReferenceNumber'] ?? null;
     }
 
     /**
@@ -1526,7 +1564,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getMerchantAdviceCode()
     {
-        return $this->container['merchantAdviceCode'];
+        return $this->container['merchantAdviceCode'] ?? null;
     }
 
     /**
@@ -1550,7 +1588,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getMerchantReference()
     {
-        return $this->container['merchantReference'];
+        return $this->container['merchantReference'] ?? null;
     }
 
     /**
@@ -1574,7 +1612,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getNetworkProcessingMode()
     {
-        return $this->container['networkProcessingMode'];
+        return $this->container['networkProcessingMode'] ?? null;
     }
 
     /**
@@ -1598,7 +1636,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getNetworkTxReference()
     {
-        return $this->container['networkTxReference'];
+        return $this->container['networkTxReference'] ?? null;
     }
 
     /**
@@ -1622,7 +1660,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getOwnerName()
     {
-        return $this->container['ownerName'];
+        return $this->container['ownerName'] ?? null;
     }
 
     /**
@@ -1646,7 +1684,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getPaymentAccountReference()
     {
-        return $this->container['paymentAccountReference'];
+        return $this->container['paymentAccountReference'] ?? null;
     }
 
     /**
@@ -1670,7 +1708,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getPaymentMethod()
     {
-        return $this->container['paymentMethod'];
+        return $this->container['paymentMethod'] ?? null;
     }
 
     /**
@@ -1694,7 +1732,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getPaymentMethodVariant()
     {
-        return $this->container['paymentMethodVariant'];
+        return $this->container['paymentMethodVariant'] ?? null;
     }
 
     /**
@@ -1718,7 +1756,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getPayoutEligible()
     {
-        return $this->container['payoutEligible'];
+        return $this->container['payoutEligible'] ?? null;
     }
 
     /**
@@ -1742,7 +1780,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getRealtimeAccountUpdaterStatus()
     {
-        return $this->container['realtimeAccountUpdaterStatus'];
+        return $this->container['realtimeAccountUpdaterStatus'] ?? null;
     }
 
     /**
@@ -1766,7 +1804,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getReceiptFreeText()
     {
-        return $this->container['receiptFreeText'];
+        return $this->container['receiptFreeText'] ?? null;
     }
 
     /**
@@ -1790,7 +1828,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getRecurringContractTypes()
     {
-        return $this->container['recurringContractTypes'];
+        return $this->container['recurringContractTypes'] ?? null;
     }
 
     /**
@@ -1814,7 +1852,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getRecurringFirstPspReference()
     {
-        return $this->container['recurringFirstPspReference'];
+        return $this->container['recurringFirstPspReference'] ?? null;
     }
 
     /**
@@ -1839,7 +1877,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getRecurringRecurringDetailReference()
     {
-        return $this->container['recurringRecurringDetailReference'];
+        return $this->container['recurringRecurringDetailReference'] ?? null;
     }
 
     /**
@@ -1865,7 +1903,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getRecurringShopperReference()
     {
-        return $this->container['recurringShopperReference'];
+        return $this->container['recurringShopperReference'] ?? null;
     }
 
     /**
@@ -1890,7 +1928,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getRecurringProcessingModel()
     {
-        return $this->container['recurringProcessingModel'];
+        return $this->container['recurringProcessingModel'] ?? null;
     }
 
     /**
@@ -1902,6 +1940,19 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setRecurringProcessingModel($recurringProcessingModel): self
     {
+        if ($recurringProcessingModel !== null) {
+            $allowedValues = $this->getRecurringProcessingModelAllowableValues();
+            foreach ([$recurringProcessingModel] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "recurringProcessingModel: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['recurringProcessingModel'] = $recurringProcessingModel;
 
         return $this;
@@ -1914,7 +1965,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getReferred()
     {
-        return $this->container['referred'];
+        return $this->container['referred'] ?? null;
     }
 
     /**
@@ -1938,7 +1989,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getRefusalReasonRaw()
     {
-        return $this->container['refusalReasonRaw'];
+        return $this->container['refusalReasonRaw'] ?? null;
     }
 
     /**
@@ -1962,7 +2013,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getRequestAmount()
     {
-        return $this->container['requestAmount'];
+        return $this->container['requestAmount'] ?? null;
     }
 
     /**
@@ -1986,7 +2037,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getRequestCurrencyCode()
     {
-        return $this->container['requestCurrencyCode'];
+        return $this->container['requestCurrencyCode'] ?? null;
     }
 
     /**
@@ -2010,7 +2061,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getShopperInteraction()
     {
-        return $this->container['shopperInteraction'];
+        return $this->container['shopperInteraction'] ?? null;
     }
 
     /**
@@ -2034,7 +2085,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getShopperReference()
     {
-        return $this->container['shopperReference'];
+        return $this->container['shopperReference'] ?? null;
     }
 
     /**
@@ -2058,7 +2109,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getTerminalId()
     {
-        return $this->container['terminalId'];
+        return $this->container['terminalId'] ?? null;
     }
 
     /**
@@ -2082,7 +2133,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getThreeDAuthenticated()
     {
-        return $this->container['threeDAuthenticated'];
+        return $this->container['threeDAuthenticated'] ?? null;
     }
 
     /**
@@ -2106,7 +2157,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getThreeDAuthenticatedResponse()
     {
-        return $this->container['threeDAuthenticatedResponse'];
+        return $this->container['threeDAuthenticatedResponse'] ?? null;
     }
 
     /**
@@ -2130,7 +2181,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getThreeDOffered()
     {
-        return $this->container['threeDOffered'];
+        return $this->container['threeDOffered'] ?? null;
     }
 
     /**
@@ -2154,7 +2205,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getThreeDOfferedResponse()
     {
-        return $this->container['threeDOfferedResponse'];
+        return $this->container['threeDOfferedResponse'] ?? null;
     }
 
     /**
@@ -2178,7 +2229,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getThreeDSVersion()
     {
-        return $this->container['threeDSVersion'];
+        return $this->container['threeDSVersion'] ?? null;
     }
 
     /**
@@ -2202,7 +2253,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getTokenizationShopperReference()
     {
-        return $this->container['tokenizationShopperReference'];
+        return $this->container['tokenizationShopperReference'] ?? null;
     }
 
     /**
@@ -2226,7 +2277,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getTokenizationStoreOperationType()
     {
-        return $this->container['tokenizationStoreOperationType'];
+        return $this->container['tokenizationStoreOperationType'] ?? null;
     }
 
     /**
@@ -2238,6 +2289,19 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function setTokenizationStoreOperationType($tokenizationStoreOperationType): self
     {
+        if ($tokenizationStoreOperationType !== null) {
+            $allowedValues = $this->getTokenizationStoreOperationTypeAllowableValues();
+            foreach ([$tokenizationStoreOperationType] as $enumValue) {
+                if (!in_array($enumValue, $allowedValues, true)) {
+                    error_log(
+                        sprintf(
+                            "tokenizationStoreOperationType: unexpected enum value - Supported values are [%s]",
+                            implode(', ', $allowedValues)
+                        )
+                    );
+                }
+            }
+        }
         $this->container['tokenizationStoreOperationType'] = $tokenizationStoreOperationType;
 
         return $this;
@@ -2250,7 +2314,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getTokenizationStoredPaymentMethodId()
     {
-        return $this->container['tokenizationStoredPaymentMethodId'];
+        return $this->container['tokenizationStoredPaymentMethodId'] ?? null;
     }
 
     /**
@@ -2274,7 +2338,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getTransactionLinkId()
     {
-        return $this->container['transactionLinkId'];
+        return $this->container['transactionLinkId'] ?? null;
     }
 
     /**
@@ -2298,7 +2362,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getVisaTransactionId()
     {
-        return $this->container['visaTransactionId'];
+        return $this->container['visaTransactionId'] ?? null;
     }
 
     /**
@@ -2322,7 +2386,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
      */
     public function getXid()
     {
-        return $this->container['xid'];
+        return $this->container['xid'] ?? null;
     }
 
     /**
@@ -2377,6 +2441,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
             $this->container[] = $value;
         } else {
             $this->container[$offset] = $value;
+            $this->updateNullableSetToNull((string) $offset, is_null($value));
         }
     }
 
@@ -2390,6 +2455,7 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
     public function offsetUnset(mixed $offset): void
     {
         unset($this->container[$offset]);
+        $this->updateNullableSetToNull((string) $offset, false);
     }
 
     /**
@@ -2408,14 +2474,19 @@ class ResponseAdditionalDataCommon implements ModelInterface, ArrayAccess, \Json
     /**
      * Returns an associative array of the model properties.
      *
+     * Nullable properties explicitly set to null are included.
+     *
      * @return array
      */
     public function toArray(): array
     {
         $array = [];
-        foreach (self::$openAPITypes as $propertyName => $propertyType) {
+        foreach (static::openAPITypes() as $propertyName => $propertyType) {
             $propertyValue = $this[$propertyName];
-            if ($propertyValue !== null) {
+            $isExplicitNull = static::isNullable($propertyName)
+                && $this->isNullableSetToNull($propertyName);
+
+            if ($propertyValue !== null || $isExplicitNull) {
                 // Check if the property value is an object and has a toArray() method
                 if (is_object($propertyValue) && method_exists($propertyValue, 'toArray')) {
                     $array[$propertyName] = $propertyValue->toArray();
